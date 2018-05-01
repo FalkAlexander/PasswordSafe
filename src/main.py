@@ -1,7 +1,9 @@
 import gi
+import os
 import pykeepass
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
+from gi.repository import GLib, Gtk
+from os.path import exists, join, dirname, realpath
 from pykeepass import PyKeePass
 import KeepassLoader
 
@@ -39,7 +41,21 @@ def on_password_change(widget):
     print("Passwort ändern")
     KeepassLoader.changePassword()
 
+def config():
+    HOME = os.getenv("HOME")
+    CONFIG_PATH = join(HOME, '.config/keepassgtk')
+    CONFIG_FILE = join(CONFIG_PATH, 'config.conf')
 
+    if not exists(CONFIG_PATH):
+        os.mkdir(CONFIG_PATH)
+
+    if not exists(CONFIG_FILE):
+        cfg = GLib.KeyFile()
+        cfg.set_string('settings', 'theme-variant', 'white')
+        cfg.save_to_file(CONFIG_FILE)
+        cfg.unref()
+
+config()
 assembleWindow()
 fenster.show_all()
 Gtk.main()

@@ -68,8 +68,8 @@ def create_filechooser(widget):
         shutil.copy2('data/database.kdbx', dialog.get_filename())
         dialog.close()
         print("Setze Datenbank Pfad: " + dialog.get_filename())
-        print("Bekomme Datenbank Pfad: " + KeepassLoader.get_database())
         KeepassLoader.set_database(dialog.get_filename())
+        print("Bekomme Datenbank Pfad: " + KeepassLoader.get_database())
         password_creation()
     elif response == Gtk.ResponseType.CANCEL:
         print("Database creation canceled")
@@ -157,3 +157,4 @@ config()
 assembleWindow()
 fenster.show_all()
 Gtk.main()
+

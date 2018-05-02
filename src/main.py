@@ -105,14 +105,15 @@ def on_password_check_button_clicked(widget):
     password_check_input = builder.get_object("password_check_input")
     KeepassLoader.set_password_check(password_check_input.get_text())
 
-    if KeepassLoader.compare_passwords:
+    if KeepassLoader.compare_passwords():
+        KeepassLoader.set_database_password(password_check_input.get_text())
         success_page()
     else:
         repeat_page()
 
 def success_page():
     print("Datenbank Pfad: " + KeepassLoader.get_database())
-    KeepassLoader.set_database_password(KeepassLoader.get_database(), KeepassLoader.password_check)
+    KeepassLoader.set_database_password(KeepassLoader.password_check)
 
     stack = builder.get_object("database_creation_stack")
     stack.set_visible_child(stack.get_child_by_name("page3"))
@@ -132,6 +133,8 @@ def on_password_repeat_button_clicked(widget):
     KeepassLoader.set_password_check(password_repeat_input2.get_text())
 
     if KeepassLoader.compare_passwords():
+        KeepassLoader.set_database_password(password_repeat_input2.get_text())
+        KeepassLoader.save_database()
         success_page()
     else:
         password_repeat_input1.set_text("")

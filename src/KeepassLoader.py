@@ -57,10 +57,15 @@ def set_password_check(password):
     password_check = password
 
 def compare_passwords():
+    print(password_try)
+    print(password_check)
     if password_try == password_check:
         if password_try == "" and password_check == "":
+            print("false verkettet")
             return False
         else:
+            print("true")
             return True
     else:
+        print("false")
         return False

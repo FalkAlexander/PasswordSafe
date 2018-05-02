@@ -118,6 +118,8 @@ def success_page():
     stack = builder.get_object("database_creation_stack")
     stack.set_visible_child(stack.get_child_by_name("page3"))
 
+    clear_input_fields()
+
 def repeat_page():
     stack = builder.get_object("database_creation_stack")
     stack.set_visible_child(stack.get_child_by_name("page2"))
@@ -137,10 +139,21 @@ def on_password_repeat_button_clicked(widget):
         KeepassLoader.save_database()
         success_page()
     else:
-        password_repeat_input1.set_text("")
-        password_repeat_input2.set_text("")
+        clear_input_fields()
         password_repeat_input1.get_style_context().add_class("error")
         password_repeat_input2.get_style_context().add_class("error")
+
+def clear_input_fields():
+    password_creation_input = builder.get_object("password_creation_input")
+    password_check_input = builder.get_object("password_check_input")
+    password_repeat_input1 = builder.get_object("password_repeat_input1")
+    password_repeat_input2 = builder.get_object("password_repeat_input2")
+
+    password_creation_input.set_text("")
+    password_check_input.set_text("")
+    password_repeat_input1.set_text("")
+    password_repeat_input2.set_text("")
+    
 
 def config():
     HOME = os.getenv("HOME")

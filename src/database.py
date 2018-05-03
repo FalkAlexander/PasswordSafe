@@ -16,6 +16,7 @@ class KeepassLoader:
 
     def __init__(self, database_path, password):
         self.kp = PyKeePass(self.database_path, password)
+        self.database_path = database_path
 
     def add_group(self, name, icon, note, root_group):
         group = Group(name, icon, note, root_group)
@@ -46,6 +47,7 @@ class KeepassLoader:
             print("DEBUG: Password cannot be changed, no matching passwords")
 
     def get_database(self):
+        print(self.database_path)
         return self.database_path
 
     def set_password_try(self, password):

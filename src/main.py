@@ -7,6 +7,7 @@ from pykeepass import PyKeePass
 import database
 from database import KeepassLoader
 import config
+import database_creation_gui
 
 class MainWindow(Gtk.Window):
 
@@ -64,86 +65,10 @@ class MainWindow(Gtk.Window):
             print("Setze Datenbank Pfad: " + dialog.get_filename())
             self.keepass_loader = KeepassLoader(dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
             print("Bekomme Datenbank Pfad: " + self.keepass_loader.get_database())
-            self.password_creation()
+            database_creation_gui.run_database_creation_gui(self.keepass_loader)
         elif response == Gtk.ResponseType.CANCEL:
             print("Database creation cancelled")
             dialog.close()
-
-    def password_creation(self):
-        builder = Gtk.Builder()
-        builder.add_from_file("ui/database_creation.glade")
-
-        stack = builder.get_object("database_creation_stack")
-        stack.set_visible_child(stack.get_child_by_name("page0"))
-        password_creation_button = builder.get_object("password_creation_button")
-        password_creation_button.connect("clicked", self.on_password_creation_button_clicked)
-        self.add(stack)
-
-    def on_password_creation_button_clicked(self, widget):
-        password_creation_input = builder.get_object("password_creation_input")
-        self.keepass_loader.set_password_try(password_creation_input.get_text())
-
-        self.check_password_page()
-
-    def check_password_page(self):
-        stack = builder.get_object("database_creation_stack")
-        stack.set_visible_child(stack.get_child_by_name("page1"))
-
-        password_check_button = builder.get_object("password_check_button")
-        password_check_button.connect("clicked", on_password_check_button_clicked)
-
-    def on_password_check_button_clicked(widget):
-        password_check_input = builder.get_object("password_check_input")
-        KeepassLoader.set_password_check(password_check_input.get_text())
-
-        if KeepassLoader.compare_passwords():
-            KeepassLoader.set_database_password(password_check_input.get_text())
-            success_page()
-        else:
-            repeat_page()
-
-    def success_page():
-        print("Datenbank Pfad: " + KeepassLoader.get_database())
-        KeepassLoader.set_database_password(KeepassLoader.password_check)
-
-        stack = builder.get_object("database_creation_stack")
-        stack.set_visible_child(stack.get_child_by_name("page3"))
-
-        clear_input_fields()
-
-    def repeat_page():
-        stack = builder.get_object("database_creation_stack")
-        stack.set_visible_child(stack.get_child_by_name("page2"))
-
-        password_repeat_button = builder.get_object("password_repeat_button")
-        password_repeat_button.connect("clicked", on_password_repeat_button_clicked)
-
-    def on_password_repeat_button_clicked(widget):
-        password_repeat_input1 = builder.get_object("password_repeat_input1")
-        password_repeat_input2 = builder.get_object("password_repeat_input2")
-
-        KeepassLoader.set_password_try(password_repeat_input1.get_text())
-        KeepassLoader.set_password_check(password_repeat_input2.get_text())
-
-        if KeepassLoader.compare_passwords():
-            KeepassLoader.set_database_password(password_repeat_input2.get_text())
-            KeepassLoader.save_database()
-            success_page()
-        else:
-            clear_input_fields()
-            password_repeat_input1.get_style_context().add_class("error")
-            password_repeat_input2.get_style_context().add_class("error")
-
-    def clear_input_fields():
-        password_creation_input = builder.get_object("password_creation_input")
-        password_check_input = builder.get_object("password_check_input")
-        password_repeat_input1 = builder.get_object("password_repeat_input1")
-        password_repeat_input2 = builder.get_object("password_repeat_input2")
-
-        password_creation_input.set_text("")
-        password_check_input.set_text("")
-        password_repeat_input1.set_text("")
-        password_repeat_input2.set_text("")
 
 main_window = MainWindow()
 main_window.show_all()

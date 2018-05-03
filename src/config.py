@@ -26,8 +26,6 @@ def create_config_file(filename):
 
 def create_config_entry(header, option, value):
     cfg.set_string(header, option, value)
-
-config()
     
 
 

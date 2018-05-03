@@ -10,7 +10,7 @@ from database import KeepassLoader
 class DatabaseCreationGui:
 
     builder = Gtk.Builder()
-    builder.add_from_file("ui/database_creation.ui")
+    builder.add_from_file("ui/create_database.ui")
     keepass_loader = NotImplemented
     main_window = MainWindow()
 

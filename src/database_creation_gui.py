@@ -3,7 +3,6 @@ import shutil
 import pykeepass
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
-from main import MainWindow
 import database
 from database import KeepassLoader
 
@@ -12,10 +11,11 @@ class DatabaseCreationGui:
     builder = Gtk.Builder()
     builder.add_from_file("ui/create_database.ui")
     keepass_loader = NotImplemented
-    main_window = MainWindow()
+    main_window = NotImplemented
 
-    def __init__(self, keepass_loader):
-        self.keepass_loader = keepass_loader
+    def __init__(self, window, kpl):
+        self.keepass_loader = kpl
+        self.main_window = window
         self.password_creation()
  
     def password_creation(self):
@@ -43,14 +43,13 @@ class DatabaseCreationGui:
         self.keepass_loader.set_password_check(password_check_input.get_text())
 
         if self.keepass_loader.compare_passwords():
-            self.keepass_loader.set_database_password(password_check_input.get_text())
+            self.keepass_loader.change_database_password(password_check_input.get_text())
             self.success_page()
         else:
             self.repeat_page()
 
     def success_page(self):
         print("Datenbank Pfad: " + self.keepass_loader.get_database())
-        self.keepass_loader.set_database_password(KeepassLoader.password_check)
 
         stack = self.builder.get_object("database_creation_stack")
         stack.set_visible_child(stack.get_child_by_name("page3"))

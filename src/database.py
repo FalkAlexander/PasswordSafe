@@ -15,7 +15,7 @@ class KeepassLoader:
     group_list = []
 
     def __init__(self, database_path, password):
-        self.kp = PyKeePass(self.database_path, password)
+        self.kp = PyKeePass(database_path, password)
         self.database_path = database_path
 
     def add_group(self, name, icon, note, root_group):
@@ -39,12 +39,16 @@ class KeepassLoader:
     def save(self):
         self.kp.save()
 
-    def change_database_password(self, old_password, new_password):
-        if old_password == self.password:
-            self.kp.set_credentials(new_password)
-            self.save()
-        else:
-            print("DEBUG: Password cannot be changed, no matching passwords")
+    def change_database_password(self, new_password): # def change_database_password(self, old_password, new_password):
+        #if old_password == self.password:
+        self.kp.set_credentials(new_password)
+        self.save()
+        # WHY THE HECK DOES THIS NEED A OLD VS. NEW COMPARE??????
+        # TODO: CHECK IF AFTER CHANGING DB's PASSWORD, DO WE NEED TO REINITIALIZE kp VARIABLE WITH 
+        # NEW DB PASSWORD BECAUSE THE API CLOSES THE DB? OR REMAINS THE DB OPEN? 
+        # IF SO WE DONT NEED TO DO ANYTHING FURTHER HERE
+        #else:
+        #    print("DEBUG: Password cannot be changed, no matching passwords")
 
     def get_database(self):
         print(self.database_path)

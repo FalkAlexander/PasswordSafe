@@ -7,7 +7,7 @@ from pykeepass import PyKeePass
 import database
 from database import KeepassLoader
 import config
-import database_creation_gui
+from database_creation_gui import DatabaseCreationGui
 
 class MainWindow(Gtk.Window):
 
@@ -65,7 +65,7 @@ class MainWindow(Gtk.Window):
             print("Setze Datenbank Pfad: " + dialog.get_filename())
             self.keepass_loader = KeepassLoader(dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
             print("Bekomme Datenbank Pfad: " + self.keepass_loader.get_database())
-            database_creation_gui.run_database_creation_gui(self.keepass_loader)
+            DatabaseCreationGui(self, self.keepass_loader)
         elif response == Gtk.ResponseType.CANCEL:
             print("Database creation cancelled")
             dialog.close()

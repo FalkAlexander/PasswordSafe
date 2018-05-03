@@ -10,20 +10,20 @@ class Entry:
 
     #optional
     url = ""
-    note = ""
+    notes = ""
     icon = ""
 
-    def __init__(self,group_path,entry_name,username,password,url,note,icon):
+    def __init__(self, group_path, entry_name, username, password, url, notes, icon):
         self.group_path = group_path
         self.entry_name = entry_name
         self.username = username
         self.password = password
         self.url = url
-        self.note = note
+        self.notes = notes
         self.icon = icon
 
     def change_group_path(self, group_path):
-        self.group_path = path
+        self.group_path = group_path
         #evtl method from library
 
     def change_entry_name(self, entry_name):
@@ -38,8 +38,8 @@ class Entry:
     def change_url(self, url):
         self.url = url
 
-    def change_note(self, note):
-        self.note = note
+    def change_notes(self, notes):
+        self.notes = notes
 
     def change_icon(self, icon):
         self.icon = icon
@@ -61,8 +61,8 @@ class Entry:
     def get_url(self):
         return self.url
 
-    def get_note(self):
-        return self.note
+    def get_notes(self):
+        return self.notes
 
     def get_icon(self):
         return self.icon

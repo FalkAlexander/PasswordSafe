@@ -4,14 +4,14 @@ from pykeepass import PyKeePass
 class Group:
     name = ""
     icon = ""
-    note = ""
+    notes = ""
     uuid = ""
     root_group = ""
 
-    def __init__(self, name, icon, note, root_group):
+    def __init__(self, name, icon, notes, root_group):
         self.name = name
         self.icon = icon
-        self.note = note
+        self.notes = notes
 
     def change_name(self, name):
         self.name = name
@@ -19,13 +19,11 @@ class Group:
     def change_icon(self, icon):
         self.icon = icon
 
-    def change_note(self, note):
+    def change_notes(self, notes):
         self.note = note
 
-    def change_root_group(self, path):
+    #def change_root_group(self, path):
         #todo
-
-
 
     def get_name(self):
         return self.name
@@ -33,10 +31,10 @@ class Group:
     def get_icon(self):
         return self.icon
 
-    def get_note(self):
-        return self.note
+    def get_notes(self):
+        return self.notes
 
-    def get_uuid(self):
+    #def get_uuid(self):
         #build in method from library --> it's the path in form /root_group/sub_group/subsub_group
 
     def get_root_group(self):

@@ -23,7 +23,7 @@ class MainWindow(Gtk.Window):
         self.set_default_size(800, 500)
 
         builder = Gtk.Builder()
-        builder.add_from_file("ui/headerbar.glade")
+        builder.add_from_file("ui/headerbar.ui")
         
         headerbar = builder.get_object("headerbar")
         self.set_titlebar(headerbar)

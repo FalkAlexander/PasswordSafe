@@ -36,8 +36,6 @@ class MainWindow(Gtk.Window):
         file_new_button.connect("clicked", self.create_filechooser)
 
 
-    # Events
-
     def open_filechooser(self, widget):
         dialog = Gtk.FileChooserDialog("Choose Keepass Database", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         response = dialog.run()

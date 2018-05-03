@@ -71,8 +71,7 @@ class DatabaseCreationGui:
         self.keepass_loader.set_password_check(password_repeat_input2.get_text())
 
         if self.keepass_loader.compare_passwords():
-            self.keepass_loader.set_database_password(password_repeat_input2.get_text())
-            self.keepass_loader.save_database()
+            self.keepass_loader.change_database_password(password_repeat_input2.get_text())
             self.success_page()
         else:
             self.clear_input_fields()

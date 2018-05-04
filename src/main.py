@@ -9,6 +9,8 @@ from database import KeepassLoader
 import config
 import database_creation_gui
 from database_creation_gui import DatabaseCreationGui
+import container_page
+from container_page import ContainerPage
 
 class MainWindow(Gtk.Window):
 
@@ -31,23 +33,24 @@ class MainWindow(Gtk.Window):
         headerbar = builder.get_object("headerbar")
         self.set_titlebar(headerbar)
 
-        self.create_container()
-
         file_open_button = builder.get_object("open_button")
         file_open_button.connect("clicked", self.open_filechooser)
 
         file_new_button = builder.get_object("new_button")
         file_new_button.connect("clicked", self.create_filechooser)
 
-    def create_container(self):
-        builder = Gtk.Builder()
-        builder.add_from_file("ui/main_headerbar.ui")
+        # Add the tab bar (our container)
+        self.create_container()
 
-        self.container = builder.get_object("container")
+    def create_container(self):
+        self.container = Gtk.Notebook()
+        page = Gtk.Box()
+        self.container.append_page(page, Gtk.Label("Start"))
         self.add(self.container)
 
     def destroy_container(self):
         self.container.destroy()
+        
 
     # Events
 
@@ -76,13 +79,20 @@ class MainWindow(Gtk.Window):
             shutil.copy2('data/database.kdbx', dialog.get_filename())
             dialog.close()
 
-            self.destroy_container()
-            self.create_container()
+            # Add a tab to our container for the new db
+            #self.container_page = ContainerPage(self.container)
+            self.container_page = Gtk.Box()
+            self.container_page.add(Gtk.Label("Kacken"))
+            self.container.append_page(self.container_page, Gtk.Label(dialog.get_filename()))
+            self.container_page.show_all()
 
             print("Setze Datenbank Pfad: " + dialog.get_filename())
+
             self.keepass_loader = KeepassLoader(dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
+
             print("Bekomme Datenbank Pfad: " + self.keepass_loader.get_database())
-            DatabaseCreationGui(self.container, self.keepass_loader)
+
+            DatabaseCreationGui(self.container_page, self.keepass_loader)
         elif response == Gtk.ResponseType.CANCEL:
             print("Database creation cancelled")
             dialog.close()

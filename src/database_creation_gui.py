@@ -43,6 +43,7 @@ class DatabaseCreationGui:
         password_check_button.connect("clicked", self.on_password_check_button_clicked)
 
     def on_password_check_button_clicked(self, widget):
+        print("führe funktion aus: on_password_check_button_clicked")
         password_check_input = self.builder.get_object("password_check_input")
         self.keepass_loader.set_password_check(password_check_input.get_text())
 

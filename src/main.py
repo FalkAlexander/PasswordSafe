@@ -159,6 +159,7 @@ class MainWindow(Gtk.Window):
 
     def on_cancel_button_clicked(self, widget):
         self.override_dialog.destroy()
+        self.filechooser_creation_dialog.destroy()
 
     def on_override_button_clicked(self, widget):
         self.create_tab()

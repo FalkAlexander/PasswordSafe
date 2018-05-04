@@ -62,6 +62,9 @@
               <object class="GtkEntry" id="password_creation_input">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="is_focus">True</property>
+                <property name="can_default">True</property>
                 <property name="margin_top">10</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
@@ -169,6 +172,8 @@
               <object class="GtkEntry" id="password_check_input">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="can_default">True</property>
                 <property name="margin_top">10</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
@@ -289,6 +294,7 @@
               <object class="GtkEntry" id="password_repeat_input1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
                 <property name="margin_top">10</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
@@ -333,6 +339,9 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
+                <style>
+                  <class name="error"/>
+                </style>
               </object>
               <packing>
                 <property name="expand">True</property>

@@ -7,6 +7,7 @@ from pykeepass import PyKeePass
 import database
 from database import KeepassLoader
 import config
+import database_creation_gui
 from database_creation_gui import DatabaseCreationGui
 
 class MainWindow(Gtk.Window):
@@ -35,6 +36,8 @@ class MainWindow(Gtk.Window):
         file_new_button = builder.get_object("new_button")
         file_new_button.connect("clicked", self.create_filechooser)
 
+
+    # Events
 
     def open_filechooser(self, widget):
         dialog = Gtk.FileChooserDialog("Choose Keepass Database", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))

@@ -35,20 +35,20 @@ class KeepassLoader:
 
         return entry_list
 
-
+    #we wanted to turn off the automatic saving after each action and connect it instead to a button 
     def save(self):
         self.kp.save()
 
-    def change_database_password(self, new_password): # def change_database_password(self, old_password, new_password):
-        #if old_password == self.password:
+    #this method sets the initial password for the newly created database
+    def set_database_password(self, new_password): 
         self.kp.set_credentials(new_password)
         self.save()
-        # WHY THE HECK DOES THIS NEED A OLD VS. NEW COMPARE??????
-        # TODO: CHECK IF AFTER CHANGING DB's PASSWORD, DO WE NEED TO REINITIALIZE kp VARIABLE WITH 
-        # NEW DB PASSWORD BECAUSE THE API CLOSES THE DB? OR REMAINS THE DB OPEN? 
-        # IF SO WE DONT NEED TO DO ANYTHING FURTHER HERE
-        #else:
-        #    print("DEBUG: Password cannot be changed, no matching passwords")
+
+    #this method changes the password of existing database (therefore the old password must be typed in to prevent others changing your password)
+    def change_database_password(self, old_password, new_password):
+        if self.password == old_password:
+            self.kp.set_credentials(new_password)
+            self.save()
 
     def get_database(self):
         print(self.database_path)

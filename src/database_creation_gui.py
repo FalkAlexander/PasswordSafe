@@ -89,6 +89,3 @@ class DatabaseCreationGui:
         password_repeat_input1.set_text("")
         password_repeat_input2.set_text("")
         
-
-def run_database_creation_gui(keepass_loader):
-    DatabaseCreationGui(keepass_loader)

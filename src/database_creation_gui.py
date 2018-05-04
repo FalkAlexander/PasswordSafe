@@ -8,26 +8,22 @@ import database_creation_success_gui
 from database_creation_success_gui import DatabaseCreationSuccessGui
 
 class DatabaseCreationGui:
-
-    builder = Gtk.Builder()
-    builder.add_from_file("ui/create_database.ui")
+    builder = NotImplemented
     keepass_loader = NotImplemented
-    #main_window = NotImplemented
     parent_widget = NotImplemented
-    stack = NotImplemented
 
     def __init__(self, widget, kpl):
         self.keepass_loader = kpl
-        #self.main_window = window
         self.parent_widget = widget
         self.password_creation()
  
     def password_creation(self):
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file("ui/create_database.ui")
         self.stack = self.builder.get_object("database_creation_stack")
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
         password_creation_button = self.builder.get_object("password_creation_button")
         password_creation_button.connect("clicked", self.on_password_creation_button_clicked)
-        #self.main_window.add(self.stack)
         self.parent_widget.add(self.stack)
 
     def on_password_creation_button_clicked(self, widget):
@@ -55,11 +51,8 @@ class DatabaseCreationGui:
 
     def success_page(self):
         print("Datenbank Pfad: " + self.keepass_loader.get_database())
-
         self.clear_input_fields()
-        #self.main_window.remove(self.stack)
         self.parent_widget.remove(self.stack)
-        #DatabaseCreationSuccessGui(self.main_window)
         DatabaseCreationSuccessGui(self.parent_widget)
 
     def repeat_page(self):

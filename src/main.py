@@ -79,20 +79,18 @@ class MainWindow(Gtk.Window):
             shutil.copy2('data/database.kdbx', dialog.get_filename())
             dialog.close()
 
-            # Add a tab to our container for the new db
-            #self.container_page = ContainerPage(self.container)
-            self.container_page = Gtk.Box()
-            self.container_page.add(Gtk.Label("Kacken"))
-            self.container.append_page(self.container_page, Gtk.Label(dialog.get_filename()))
-            self.container_page.show_all()
+            page_instance = ContainerPage(dialog.get_filename())
+            self.container.append_page(page_instance, Gtk.Label(dialog.get_filename()))
 
             print("Setze Datenbank Pfad: " + dialog.get_filename())
 
             self.keepass_loader = KeepassLoader(dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
 
             print("Bekomme Datenbank Pfad: " + self.keepass_loader.get_database())
+            print(page_instance.get_instance_text())
 
-            DatabaseCreationGui(self.container_page, self.keepass_loader)
+            DatabaseCreationGui(page_instance, self.keepass_loader)
+            page_instance.show_all()
         elif response == Gtk.ResponseType.CANCEL:
             print("Database creation cancelled")
             dialog.close()

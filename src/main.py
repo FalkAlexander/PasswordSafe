@@ -190,7 +190,6 @@ class MainWindow(Gtk.Window):
             self.container.set_show_tabs(True)
         else:
             self.container.set_show_tabs(False)
-            self.set_headerbar()
 
 
     def create_tab_title_from_filepath(self, filepath):

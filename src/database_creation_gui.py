@@ -46,6 +46,7 @@ class DatabaseCreationGui:
     def on_headerbar_back_button_clicked(self, widget):
         if self.stack.get_visible_child_name() == "page0":
             self.window.close_tab(self.parent_widget)
+            self.window.set_headerbar()
         elif self.stack.get_visible_child_name() == "page1":
             self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_RIGHT)
             self.switched = True

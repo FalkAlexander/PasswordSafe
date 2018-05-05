@@ -15,34 +15,6 @@
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <child>
-          <object class="GtkLabel" id="password_creation_label1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">New Database</property>
-            <property name="yalign">0.88999998569488525</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="size" value="18000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_creation_label2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Set a password for your database</property>
-            <property name="yalign">0.10000000149011612</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkImage" id="password_creation_image">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -104,6 +76,34 @@
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="password_creation_label2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Set a password for your database</property>
+            <property name="yalign">0.10000000149011612</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="password_creation_label1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Enter Password</property>
+            <property name="yalign">0.88999998569488525</property>
+            <attributes>
+              <attribute name="weight" value="normal"/>
+              <attribute name="size" value="18000"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
           </packing>
         </child>
         <child>
@@ -412,6 +412,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">KeepassGtk</property>
+    <property name="subtitle" translatable="yes">Create Database</property>
     <property name="show_close_button">True</property>
     <child>
       <object class="GtkBox" id="headerbarbuttonbox">

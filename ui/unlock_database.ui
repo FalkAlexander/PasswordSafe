@@ -5,6 +5,7 @@
   <object class="GtkStack" id="database_unlock_stack">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="transition_type">crossfade</property>
     <child>
       <object class="GtkGrid" id="password_unlock_stack">
         <property name="visible">True</property>
@@ -292,9 +293,9 @@
         </child>
         <child>
           <object class="GtkBox" id="keyfile_box">
+            <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">center</property>
             <property name="margin_top">10</property>
             <child>
               <object class="GtkButton" id="keyfile_open_button">
@@ -302,6 +303,10 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>
@@ -317,11 +322,15 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <child>
                   <object class="GtkImage" id="unlock_icon">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="icon_name">mail-attachment-symbolic</property>
+                    <property name="icon_name">changes-allow-symbolic</property>
                   </object>
                 </child>
               </object>

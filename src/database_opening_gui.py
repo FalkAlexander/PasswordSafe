@@ -57,10 +57,8 @@ class DatabaseOpeningGui:
         if widget.get_visibility():
             widget.set_invisible_char("●")
             widget.set_visibility(False)
-            print("not visible")
         else:
             widget.set_visibility(True)
-            print("visible")
 
     def on_headerbar_back_button_clicked(self, widget):
         self.window.close_tab(self.parent_widget)

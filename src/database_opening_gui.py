@@ -41,6 +41,8 @@ class DatabaseOpeningGui:
 
         password_unlock_input = self.builder.get_object("password_unlock_input")
         password_unlock_input.connect("activate", self.on_unlock_database_button_clicked)
+        password_unlock_input.connect("icon-press", self.on_unlock_input_secondary_clicked)
+        #entry = Gtk.Entry()
 
         self.parent_widget.add(self.stack)
 
@@ -50,6 +52,15 @@ class DatabaseOpeningGui:
         self.parent_widget.set_headerbar(headerbar)
         back_button = self.builder.get_object("back_button")
         back_button.connect("clicked", self.on_headerbar_back_button_clicked)
+
+    def on_unlock_input_secondary_clicked(self, widget, position, eventbutton):
+        if widget.get_visibility():
+            widget.set_invisible_char("●")
+            widget.set_visibility(False)
+            print("not visible")
+        else:
+            widget.set_visibility(True)
+            print("visible")
 
     def on_headerbar_back_button_clicked(self, widget):
         self.window.close_tab(self.parent_widget)

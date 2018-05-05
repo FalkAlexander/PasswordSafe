@@ -47,6 +47,9 @@ class MainWindow(Gtk.Window):
 
         self.create_container()
 
+    #
+    # Container Methods (Gtk Notebook holds tabs)
+    #
 
     def create_container(self):
         self.container = Gtk.Notebook()
@@ -61,6 +64,9 @@ class MainWindow(Gtk.Window):
     def destroy_container(self):
         self.container.destroy()
 
+    #
+    # Open Database Methods
+    #
 
     def open_filechooser(self, widget):
         dialog = Gtk.FileChooserDialog("Choose Keepass Database", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
@@ -72,6 +78,9 @@ class MainWindow(Gtk.Window):
             print("File selection cancelled")
             dialog.close()
 
+    #
+    # Create Database Methods
+    #
 
     def create_filechooser(self, widget):
         self.filechooser_creation_dialog = Gtk.FileChooserDialog("Create new Database", self, Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
@@ -111,20 +120,30 @@ class MainWindow(Gtk.Window):
 
             self.override_dialog.show_all()
         else:
-            self.create_tab()
+            self.copy_database_file()
+
+            tab_title = self.create_tab_title_from_filepath(self.filechooser_creation_dialog.get_current_name())
+            self.start_database_creation_routine(tab_title)
 
 
-    def create_tab(self):
+    def copy_database_file(self):
         shutil.copy2('data/database.kdbx', self.filechooser_creation_dialog.get_filename())
         self.filechooser_creation_dialog.close()
 
-        page_instance = ContainerPage(self.filechooser_creation_dialog.get_filename())
+
+    def start_database_creation_routine(self, tab_title):
+        self.keepass_loader = KeepassLoader(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
+        DatabaseCreationGui(self.create_tab(tab_title), self.keepass_loader)
+
+    #
+    # Tab Manager
+    #
+
+    def create_tab(self, title):
+        page_instance = ContainerPage()
 
         tab_hbox = Gtk.HBox(False, 0)
-        
-        regex = re.search("[^\.]+", self.filechooser_creation_dialog.get_current_name())
-        tab_title = regex[0]
-        tab_label = Gtk.Label(tab_title)
+        tab_label = Gtk.Label(title)
         tab_hbox.pack_start(tab_label, False, False, False)
 
         icon = Gio.ThemedIcon(name="window-close-symbolic")
@@ -142,8 +161,7 @@ class MainWindow(Gtk.Window):
         self.container.set_current_page(self.container.page_num(page_instance))
         self.update_tab_bar_visibility()
 
-        self.keepass_loader = KeepassLoader(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
-        DatabaseCreationGui(page_instance, self.keepass_loader)
+        return page_instance
 
 
     def update_tab_bar_visibility(self):
@@ -151,6 +169,12 @@ class MainWindow(Gtk.Window):
             self.container.set_show_tabs(True)
         else:
             self.container.set_show_tabs(False)
+
+
+    def create_tab_title_from_filepath(self, filepath):
+        regex = re.search("[^\.]+", filepath)
+        title = regex[0]
+        return title
 
     #
     # Events
@@ -166,7 +190,11 @@ class MainWindow(Gtk.Window):
         self.filechooser_creation_dialog.destroy()
 
     def on_override_button_clicked(self, widget):
-        self.create_tab()
+        self.copy_database_file()
+
+        tab_title = self.create_tab_title_from_filepath(self.filechooser_creation_dialog.get_current_name())
+        self.start_database_creation_routine(tab_title)
+
         self.override_dialog.destroy()
 
 

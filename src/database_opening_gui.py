@@ -65,17 +65,18 @@ class DatabaseOpeningGui:
     def on_unlock_database_button_clicked(self, widget):
         password_unlock_input = self.builder.get_object("password_unlock_input")
 
-        try:
-            self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
-            self.success_page()
-            print("DEBUG: opening of database was successfull")
+        if password_unlock_input.get_text() != "":
+            try:
+                self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
+                self.success_page()
+                print("DEBUG: opening of database was successfull")
         
-        #OSError:master key invalid
-        except(OSError): 
-            password_unlock_input.grab_focus()
-            password_unlock_input.get_style_context().add_class("error")
-            self.clear_input_fields()
-            print("DEBUG: couldn't open database, wrong password")
+            #OSError:master key invalid
+            except(OSError): 
+                password_unlock_input.grab_focus()
+                password_unlock_input.get_style_context().add_class("error")
+                self.clear_input_fields()
+                print("DEBUG: couldn't open database, wrong password")
 
 
     #when we have the database view page finished, it is shown here

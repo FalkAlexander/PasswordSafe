@@ -26,8 +26,6 @@ class DatabaseCreationSuccessGui:
         self.set_headerbar()
 
     def set_headerbar(self):
-        builder = Gtk.Builder()
-        builder.add_from_file("ui/main_headerbar.ui")
-        headerbar = builder.get_object("headerbar")
+        headerbar = self.window.get_headerbar()
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_headerbar()

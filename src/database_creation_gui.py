@@ -43,8 +43,6 @@ class DatabaseCreationGui:
         back_button = self.builder.get_object("back_button")
         back_button.connect("clicked", self.on_headerbar_back_button_clicked)
 
-
-
     def on_headerbar_back_button_clicked(self, widget):
         if self.stack.get_visible_child_name() == "page0":
             self.window.close_tab(self.parent_widget)
@@ -54,8 +52,7 @@ class DatabaseCreationGui:
             self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
             self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
         elif self.stack.get_visible_child_name() == "page2":
-            back_button = self.builder.get_object("back_button")
-            back_button.destroy()
+            self.window.close_tab(self.parent_widget)
 
 
     def on_password_creation_button_clicked(self, widget):

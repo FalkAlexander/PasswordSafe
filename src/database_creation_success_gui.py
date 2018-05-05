@@ -6,10 +6,12 @@ from gi.repository import GLib, Gtk
 class DatabaseCreationSuccessGui:
 
     builder = NotImplemented
+    window = NotImplemented
     parent_widget = NotImplemented
     stack = NotImplemented
 
-    def __init__(self, widget):
+    def __init__(self, window, widget):
+        self.window = window
         self.parent_widget = widget
         self.success_page()
 
@@ -20,3 +22,12 @@ class DatabaseCreationSuccessGui:
         self.stack = self.builder.get_object("database_creation_success_stack")
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
         self.parent_widget.add(self.stack)
+        
+        self.set_headerbar()
+
+    def set_headerbar(self):
+        builder = Gtk.Builder()
+        builder.add_from_file("ui/main_headerbar.ui")
+        headerbar = builder.get_object("headerbar")
+        self.parent_widget.set_headerbar(headerbar)
+        self.window.set_headerbar()

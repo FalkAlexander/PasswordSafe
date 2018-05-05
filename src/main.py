@@ -33,11 +33,15 @@ class MainWindow(Gtk.Window):
         self.connect("destroy", Gtk.main_quit)
         self.set_default_size(800, 500)
 
+        self.set_headerbar()        
+
+        self.create_container()
+
+    def set_headerbar(self):
         builder = Gtk.Builder()
         builder.add_from_file("ui/main_headerbar.ui")
         
         headerbar = builder.get_object("headerbar")
-        self.set_titlebar(headerbar)
 
         file_open_button = builder.get_object("open_button")
         file_open_button.connect("clicked", self.open_filechooser)
@@ -45,7 +49,8 @@ class MainWindow(Gtk.Window):
         file_new_button = builder.get_object("new_button")
         file_new_button.connect("clicked", self.create_filechooser)
 
-        self.create_container()
+        self.set_titlebar(headerbar)
+
 
     #
     # Container Methods (Gtk Notebook holds tabs)
@@ -57,6 +62,7 @@ class MainWindow(Gtk.Window):
         self.container.set_border_width(0)
         self.container.set_scrollable(True)
         self.container.set_show_border(False)
+        self.container.connect("switch-page", self.on_tab_switch)
 
         self.add(self.container)
 
@@ -133,14 +139,17 @@ class MainWindow(Gtk.Window):
 
     def start_database_creation_routine(self, tab_title):
         self.keepass_loader = KeepassLoader(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
-        DatabaseCreationGui(self.create_tab(tab_title), self.keepass_loader)
+        builder = Gtk.Builder()
+        builder.add_from_file("ui/create_database.ui")
+        headerbar = builder.get_object("headerbar")
+        DatabaseCreationGui(self, self.create_tab(tab_title, headerbar), self.keepass_loader)
 
     #
     # Tab Manager
     #
 
-    def create_tab(self, title):
-        page_instance = ContainerPage()
+    def create_tab(self, title, headerbar):
+        page_instance = ContainerPage(headerbar)
 
         tab_hbox = Gtk.HBox(False, 0)
         tab_label = Gtk.Label(title)
@@ -176,6 +185,11 @@ class MainWindow(Gtk.Window):
         title = regex[0]
         return title
 
+    def close_tab(self, child_widget):
+        page_num = self.container.page_num(child_widget)
+        self.container.remove_page(page_num)
+        self.update_tab_bar_visibility()
+
     #
     # Events
     #
@@ -196,6 +210,13 @@ class MainWindow(Gtk.Window):
         self.start_database_creation_routine(tab_title)
 
         self.override_dialog.destroy()
+
+    def on_tab_switch(self, notebook, tab, pagenum):
+        print("1:" + str(notebook))
+        print("2:" + str(tab))
+        print("3:" + str(pagenum))
+        headerbar = tab.get_headerbar()
+        self.set_titlebar(headerbar)
 
 
 main_window = MainWindow()

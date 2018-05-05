@@ -14,6 +14,8 @@ import database_creation_gui
 from database_creation_gui import DatabaseCreationGui
 import container_page
 from container_page import ContainerPage
+import database_opening_gui
+from database_opening_gui import DatabaseOpeningGui
 
 class MainWindow(Gtk.Window):
 
@@ -87,14 +89,35 @@ class MainWindow(Gtk.Window):
     #
 
     def open_filechooser(self, widget):
-        dialog = Gtk.FileChooserDialog("Choose Keepass Database", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
-        response = dialog.run()
+        filechooser_opening_dialog = Gtk.FileChooserDialog("Choose Keepass Database", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        
+        filter_text = Gtk.FileFilter()
+        filter_text.set_name("Keepass 2 Database")
+        filter_text.add_mime_type("application/x-keepass2")
+        filechooser_opening_dialog.add_filter(filter_text)
+
+        response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.OK:
-            print("File selected: " + dialog.get_filename())
-            dialog.close()
+            print("File selected: " + filechooser_opening_dialog.get_filename())
+            filechooser_opening_dialog.close()
+
+            folder_path = filechooser_opening_dialog.get_current_folder() + "/"
+            file_path = filechooser_opening_dialog.get_filename()
+
+            tab_title = self.create_tab_title_from_filepath(file_path.replace(folder_path, ""))
+            self.start_database_opening_routine(tab_title, filechooser_opening_dialog.get_filename())
         elif response == Gtk.ResponseType.CANCEL:
             print("File selection cancelled")
-            dialog.close()
+            filechooser_opening_dialog.close()
+
+    def start_database_opening_routine(self, tab_title, filepath):
+        #self.keepass_loader = KeepassLoader(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
+        builder = Gtk.Builder()
+        builder.add_from_file("ui/create_database.ui")
+        headerbar = builder.get_object("headerbar")
+
+        DatabaseOpeningGui(self, self.create_tab(tab_title, headerbar), filepath)   
+
 
     #
     # Create Database Methods

@@ -1,5 +1,5 @@
 # KeepassGtk
-KeepassGtk is an password manager which makes use of the Keepass v.4 format.
+KeepassGtk is a password manager which makes use of the Keepass v.4 format.
 There is the awesome pykeepass library from Philipp Schmitt used (https://github.com/pschmitt/pykeepass).
 
 Planned Features:

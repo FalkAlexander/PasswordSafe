@@ -21,6 +21,7 @@ class MainWindow(Gtk.Window):
     container = NotImplemented
     override_dialog = NotImplemented
     filechooser_creation_dialog = NotImplemented
+    headerbar = NotImplemented
 
 
     def __init__(self):
@@ -33,16 +34,19 @@ class MainWindow(Gtk.Window):
         self.connect("destroy", Gtk.main_quit)
         self.set_default_size(800, 500)
 
-        self.set_headerbar()        
+        self.create_headerbar()        
 
         self.create_container()
 
+    #
+    # Headerbar
+    #
 
-    def set_headerbar(self):
+    def create_headerbar(self):
         builder = Gtk.Builder()
         builder.add_from_file("ui/main_headerbar.ui")
         
-        headerbar = builder.get_object("headerbar")
+        self.headerbar = builder.get_object("headerbar")
 
         file_open_button = builder.get_object("open_button")
         file_open_button.connect("clicked", self.open_filechooser)
@@ -50,22 +54,15 @@ class MainWindow(Gtk.Window):
         file_new_button = builder.get_object("new_button")
         file_new_button.connect("clicked", self.create_filechooser)
 
-        self.set_titlebar(headerbar)
+        self.set_titlebar(self.headerbar)
+
+
+    def set_headerbar(self):
+        self.set_titlebar(self.headerbar)
 
     
     def get_headerbar(self):
-        builder = Gtk.Builder()
-        builder.add_from_file("ui/main_headerbar.ui")
-        
-        headerbar = builder.get_object("headerbar")
-
-        file_open_button = builder.get_object("open_button")
-        file_open_button.connect("clicked", self.open_filechooser)
-
-        file_new_button = builder.get_object("new_button")
-        file_new_button.connect("clicked", self.create_filechooser)
-
-        return headerbar
+        return self.headerbar
 
     #
     # Container Methods (Gtk Notebook holds tabs)
@@ -193,12 +190,14 @@ class MainWindow(Gtk.Window):
             self.container.set_show_tabs(True)
         else:
             self.container.set_show_tabs(False)
+            self.set_headerbar()
 
 
     def create_tab_title_from_filepath(self, filepath):
         regex = re.search("[^\.]+", filepath)
         title = regex[0]
         return title
+
 
     def close_tab(self, child_widget):
         page_num = self.container.page_num(child_widget)
@@ -214,9 +213,11 @@ class MainWindow(Gtk.Window):
         self.container.remove_page(page_num)
         self.update_tab_bar_visibility()
 
+
     def on_cancel_button_clicked(self, widget):
         self.override_dialog.destroy()
         self.filechooser_creation_dialog.destroy()
+
 
     def on_override_button_clicked(self, widget):
         self.copy_database_file()
@@ -225,6 +226,7 @@ class MainWindow(Gtk.Window):
         self.start_database_creation_routine(tab_title)
 
         self.override_dialog.destroy()
+
 
     def on_tab_switch(self, notebook, tab, pagenum):
         print("1:" + str(notebook))

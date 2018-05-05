@@ -76,6 +76,7 @@ class MainWindow(Gtk.Window):
     def create_filechooser(self, widget):
         self.filechooser_creation_dialog = Gtk.FileChooserDialog("Create new Database", self, Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
         self.filechooser_creation_dialog.set_current_name("Database.kdbx")
+        self.filechooser_creation_dialog.set_modal(True)
 
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keepass 2 Database")
@@ -97,6 +98,10 @@ class MainWindow(Gtk.Window):
             builder = Gtk.Builder()
             builder.add_from_file("ui/override_dialog.ui")
             self.override_dialog = builder.get_object("override_dialog")
+
+            self.override_dialog.set_parent(self.filechooser_creation_dialog)
+            self.override_dialog.set_destroy_with_parent(True)
+            self.override_dialog.set_modal(True)
 
             cancel_button = builder.get_object("cancel_button")
             override_button = builder.get_object("override_button")

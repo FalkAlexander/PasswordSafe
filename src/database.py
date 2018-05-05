@@ -7,7 +7,7 @@ from entry import Entry
 
 class KeepassLoader:
 
-    kp = 0
+    kp = NotImplemented
     database_path = ""
     password_try = ""
     password_check = ""

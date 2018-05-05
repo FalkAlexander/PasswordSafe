@@ -109,7 +109,6 @@ class MainWindow(Gtk.Window):
             self.create_tab()
 
 
-
     def create_tab(self):
         shutil.copy2('data/database.kdbx', self.filechooser_creation_dialog.get_filename())
         self.filechooser_creation_dialog.close()
@@ -128,7 +127,7 @@ class MainWindow(Gtk.Window):
         close_button = Gtk.Button()
         close_button.set_relief(Gtk.ReliefStyle.NONE)
         close_button.set_focus_on_click(False)
-        close_button.connect("clicked", self.on_tab_close_button_clicked)
+        close_button.connect("clicked", self.on_tab_close_button_clicked, page_instance)
         close_button.add(close_image)
 
         tab_hbox.pack_start(close_button, False, False, False)
@@ -152,7 +151,7 @@ class MainWindow(Gtk.Window):
     # Events
     #
 
-    def on_tab_close_button_clicked(self, widget):
+    def on_tab_close_button_clicked(self, sender, widget):
         page_num = self.container.page_num(widget)
         self.container.remove_page(page_num)
         self.update_tab_bar_visibility()

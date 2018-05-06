@@ -85,7 +85,7 @@ class MainWindow(Gtk.Window):
             tab_title = regex[0]
             self.start_database_opening_routine(tab_title, config_manager.get_string("history", "last-opened-db"))
         else:
-            logging_manager.log_debug("No or not valid last opened database entry found.")
+            logging_manager.log_debug("No / Not valid last opened database entry found.")
             builder = Gtk.Builder()
             builder.add_from_file("ui/main_headerbar.ui")
 
@@ -128,7 +128,7 @@ class MainWindow(Gtk.Window):
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.OK:
-            print("File selected: " + filechooser_opening_dialog.get_filename())
+            logging_manager.log_debug("File selected: " + filechooser_opening_dialog.get_filename())
             filechooser_opening_dialog.close()
 
             folder_path = filechooser_opening_dialog.get_current_folder() + "/"
@@ -137,7 +137,7 @@ class MainWindow(Gtk.Window):
             tab_title = self.create_tab_title_from_filepath(file_path.replace(folder_path, ""))
             self.start_database_opening_routine(tab_title, filechooser_opening_dialog.get_filename())
         elif response == Gtk.ResponseType.CANCEL:
-            print("File selection cancelled")
+            logging_manager.log_debug("File selection canceled")
             filechooser_opening_dialog.close()
 
     def start_database_opening_routine(self, tab_title, filepath):

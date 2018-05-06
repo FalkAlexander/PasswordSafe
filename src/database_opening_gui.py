@@ -7,6 +7,7 @@ from database import KeepassLoader
 import database_open_gui
 from database_open_gui import DatabaseOpenGui
 import config_manager
+import logging_manager
 
 class DatabaseOpeningGui:
     builder = NotImplemented
@@ -97,18 +98,22 @@ class DatabaseOpeningGui:
             try:
                 self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
                 self.open_database_page()
-                print("DEBUG: opening of database was successfull")
+
+                logging_manager.log_debug("Opening of database was successfull")
         
             #OSError:master key invalid
             except(OSError): 
                 password_unlock_input.grab_focus()
                 password_unlock_input.get_style_context().add_class("error")
                 self.clear_input_fields()
-                print("DEBUG: couldn't open database, wrong password")
+                
+                logging_manager.log_debug("Could not open database, wrong password")
 
 
     def on_keyfile_open_button_clicked(self, widget):
-        print("DEBUG: Now comes the keyfile_choser_dialog")
+        logging_manager.log_debug("Opening keyfile chooser dialog")
+        logging_manager.log_error("Feature currently not working")
+
         keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keyfile")
@@ -117,7 +122,7 @@ class DatabaseOpeningGui:
 
         response = keyfile_chooser_dialog.run()
         if response == Gtk.ResponseType.OK:
-            print("File selected: " + keyfile_chooser_dialog.get_filename())
+            logging_manager.log_debug("File selected: " + keyfile_chooser_dialog.get_filename())
             keyfile_chooser_dialog.close()
 
             keyfile_path = keyfile_chooser_dialog.get_filename()
@@ -126,7 +131,7 @@ class DatabaseOpeningGui:
             keyfile_name.set_text(keyfile_path)
             
         elif response == Gtk.ResponseType.CANCEL:
-            print("File selection cancelled")
+            logging_manager.log_debug("File selection canceled")
             keyfile_chooser_dialog.close()
 
 
@@ -137,13 +142,15 @@ class DatabaseOpeningGui:
         try:
             self.keepass_loader = KeepassLoader(self.database_filepath, keyfile_path)
             self.open_database_page()
-            print("DEBUG: database successfully openend with keyfile")
+            logging_manager.log_debug("Database successfully with keyfile opened")
 
         except(OSError):
             self.stack.set_visible_child(self.stack.get_child_by_name("page1"))
             keyfile_open_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
             keyfile_open_button.set_label("Try again")
-            print("DEBUG: invalid keyfile chosen, path of keyfile: " + keyfile_path)
+            
+            logging_manager.log_debug("Invalid keyfile chosen")
+            logging_manager.log_debug("Keyfile path: " + keyfile_path)
 
     #
     # Open Database

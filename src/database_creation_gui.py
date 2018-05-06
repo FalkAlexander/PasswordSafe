@@ -46,7 +46,7 @@ class DatabaseCreationGui:
         self.clear_input_fields()
         self.parent_widget.remove(self.stack)
 
-        DatabaseCreationSuccessGui(self.window, self.parent_widget)
+        DatabaseCreationSuccessGui(self.window, self.parent_widget, self.keepass_loader)
 
 
     def repeat_page(self):

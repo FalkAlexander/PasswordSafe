@@ -2,6 +2,8 @@ import gi
 import pykeepass
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
+import database 
+from database import KeepassLoader
 
 class DatabaseOpenGui:
 
@@ -60,5 +62,8 @@ class DatabaseOpenGui:
             password_input.set_text(entry.password)
 
             list_box.add(entry_row)
+
+
+
 
 

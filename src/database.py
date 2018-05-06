@@ -23,26 +23,38 @@ class KeepassLoader:
         self.kp.add_group(group.get_root_group(), group.get_name())
         self.group_list.append(group)
 
+
     def add_entry(self, group_path, entry_name, username, password, url, notes, icon):
         entry = Entry(group_path, entry_name, username, password, url, notes, icon)
         self.kp.add_entry(self.kp.find_groups_by_path(entry.get_group_path()), entry.get_entry_name(), entry.get_username(), entry.get_password(), url=entry.get_url(), notes=entry.get_notes(), icon=entry.get_icon())
+
 
     def get_entries(self, group_path):
         group = self.kp.find_groups_by_path(group_path)
         entry_list = []
         for entry in group.entries:
-            entry_list.append(entry)
-
+            entry_list.append(Entry(group, entry.title, entry.username, entry.password, entry.url, entry.notes, entry.icon))
         return entry_list
+
+
+    def get_groups(self):
+        group_list = []
+        groups = self.kp.groups
+        for group in groups:
+            group_list.append(Group(group.name, group.icon, group.notes, group.path))
+        return group_list
+
 
     #we wanted to turn off the automatic saving after each action and connect it instead to a button 
     def save(self):
         self.kp.save()
 
+
     #this method sets the initial password for the newly created database
     def set_database_password(self, new_password): 
         self.kp.set_credentials(new_password)
         self.save()
+
 
     #this method changes the password of existing database (therefore the old password must be typed in to prevent others changing your password)
     def change_database_password(self, old_password, new_password):
@@ -50,15 +62,21 @@ class KeepassLoader:
             self.kp.set_credentials(new_password)
             self.save()
 
+
     def get_database(self):
         print(self.database_path)
         return self.database_path
 
+    def get_root_group(self):
+        return self.kp.root_group
+
     def set_password_try(self, password):
         self.password_try = password
 
+
     def set_password_check(self, password):
         self.password_check = password
+
 
     def compare_passwords(self):
         print("DEBUG: " + self.password_try + " (try)")

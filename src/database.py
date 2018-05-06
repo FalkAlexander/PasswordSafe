@@ -30,7 +30,10 @@ class KeepassLoader:
 
 
     def get_entries(self, group_path):
-        group = self.kp.find_groups_by_path(group_path)
+        group = self.kp.find_groups_by_path(group_path, first=True)
+        #group = self.kp.find_groups(name="Untergruppe", first=True)
+        print(group)
+        print(group.entries)
         entry_list = []
         for entry in group.entries:
             entry_list.append(Entry(group, entry.title, entry.username, entry.password, entry.url, entry.notes, entry.icon))
@@ -41,7 +44,7 @@ class KeepassLoader:
         group_list = []
         groups = self.kp.groups
         for group in groups:
-            group_list.append(Group(group.name, group.icon, group.notes, group.path))
+            group_list.append(Group(group.name, group.path, icon=group.icon, notes=""))
         return group_list
 
 

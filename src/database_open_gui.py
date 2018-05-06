@@ -29,7 +29,7 @@ class DatabaseOpenGui:
         
         self.set_headerbar()
 
-        self.insert_groups_in_listbox()
+        self.insert_groups_in_listbox("/")
 
     def set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
@@ -44,11 +44,31 @@ class DatabaseOpenGui:
         self.window.set_titlebar(headerbar)
 
     # Example
-    def insert_groups_in_listbox(self):
+    def insert_groups_in_listbox(self, path):
         list_box = self.builder.get_object("list_box")
 
-        group = self.keepass_loader.kp.root_group
-        for entry in group.entries:
+        groups = self.keepass_loader.get_groups()
+        for group in groups:
+            if group.get_group_path() == path:
+                builder = Gtk.Builder()
+                builder.add_from_file("ui/entries_listbox.ui")
+                group_row = builder.get_object("group_row")
+
+                group_label = builder.get_object("group_label")
+
+                group_label.set_text(group.get_name())
+
+                if group.get_group_path() != "/":
+                    list_box.add(group_row)
+                
+                self.insert_entries_in_listbox(path)
+
+
+    def insert_entries_in_listbox(self, group_path):
+        list_box = self.builder.get_object("list_box")
+
+        entries = self.keepass_loader.get_entries(group_path)
+        for entry in entries:
             builder = Gtk.Builder()
             builder.add_from_file("ui/entries_listbox.ui")
             entry_row = builder.get_object("entry_row")
@@ -57,9 +77,9 @@ class DatabaseOpenGui:
             subtitle_label = builder.get_object("subtitle_label")
             password_input = builder.get_object("password_input")
 
-            name_label.set_text(entry.title)
-            subtitle_label.set_text(entry.url)
-            password_input.set_text(entry.password)
+            name_label.set_text(entry.get_entry_name())
+            subtitle_label.set_text(entry.get_username())
+            password_input.set_text(entry.get_password())
 
             list_box.add(entry_row)
 

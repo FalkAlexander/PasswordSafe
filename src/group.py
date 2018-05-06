@@ -7,11 +7,13 @@ class Group:
     notes = ""
     uuid = ""
     root_group = ""
+    group_path = ""
 
-    def __init__(self, name, icon, notes, group_path, root_group=root_group):
+    def __init__(self, name, group_path, icon=icon, notes=notes, root_group=root_group):
         self.name = name
         self.icon = icon
         self.notes = notes
+        self.group_path = group_path
 
     def change_name(self, name):
         self.name = name
@@ -39,5 +41,8 @@ class Group:
 
     def get_root_group(self):
         return self.root_group 
+
+    def get_group_path(self):
+        return self.group_path
 
     

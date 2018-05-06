@@ -6,7 +6,7 @@ import database
 from database import KeepassLoader
 import database_open_gui
 from database_open_gui import DatabaseOpenGui
-import config
+import config_manager
 
 class DatabaseOpeningGui:
     builder = NotImplemented
@@ -21,6 +21,10 @@ class DatabaseOpeningGui:
         self.parent_widget = widget
         self.database_filepath = filepath
         self.unlock_database()
+
+    #
+    # Stack Pages
+    #
  
     def unlock_database(self):
         self.builder = Gtk.Builder()
@@ -43,7 +47,6 @@ class DatabaseOpeningGui:
         password_unlock_input = self.builder.get_object("password_unlock_input")
         password_unlock_input.connect("activate", self.on_unlock_database_button_clicked)
         password_unlock_input.connect("icon-press", self.on_unlock_input_secondary_clicked)
-        #entry = Gtk.Entry()
 
         keyfile_open_button = self.builder.get_object("keyfile_open_button")
         keyfile_open_button.connect("clicked", self.on_keyfile_open_button_clicked)
@@ -52,6 +55,10 @@ class DatabaseOpeningGui:
         keyfile_unlock_button.connect("clicked", self.on_keyfile_unlock_button_clicked)
 
         self.parent_widget.add(self.stack)
+    
+    #
+    # Headerbar
+    #
 
     def set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
@@ -60,6 +67,10 @@ class DatabaseOpeningGui:
         self.parent_widget.set_headerbar(headerbar)
         back_button = self.builder.get_object("back_button")
         back_button.connect("clicked", self.on_headerbar_back_button_clicked)
+
+    #
+    # Events
+    #
 
     def on_unlock_input_secondary_clicked(self, widget, position, eventbutton):
         if widget.get_visibility():
@@ -134,19 +145,23 @@ class DatabaseOpeningGui:
             keyfile_open_button.set_label("Try again")
             print("DEBUG: invalid keyfile chosen, path of keyfile: " + keyfile_path)
 
+    #
+    # Open Database
+    #
 
-    #when we have the database view page finished, it is shown here
     def open_database_page(self):
         self.clear_input_fields()
         self.parent_widget.remove(self.stack)
 
-        config.create_config_entry_string("history", "last-opened-db", str(self.database_filepath))
-        config.save_config()
+        config_manager.create_config_entry_string("history", "last-opened-db", str(self.database_filepath))
+        config_manager.save_config()
             
         DatabaseOpenGui(self.window, self.parent_widget, self.keepass_loader)
 
+    #
+    # Helper Functions
+    #
 
     def clear_input_fields(self):
         password_unlock_input = self.builder.get_object("password_unlock_input")
         password_unlock_input.set_text("")
-        

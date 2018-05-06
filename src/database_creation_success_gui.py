@@ -15,6 +15,10 @@ class DatabaseCreationSuccessGui:
         self.parent_widget = widget
         self.success_page()
 
+    #
+    # Stack Pages
+    #
+
     def success_page(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_file("ui/create_database_success.ui")
@@ -25,6 +29,10 @@ class DatabaseCreationSuccessGui:
         
         self.set_headerbar()
 
+    #
+    # Headerbar
+    #
+    
     def set_headerbar(self):
         headerbar = self.window.get_headerbar()
         self.parent_widget.set_headerbar(headerbar)

@@ -19,6 +19,10 @@ class DatabaseOpenGui:
         self.keepass_loader = keepass_loader
         self.assemble_listbox()
 
+    #
+    # Stack Pages
+    #
+
     def assemble_listbox(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_file("ui/entries_listbox.ui")
@@ -30,6 +34,10 @@ class DatabaseOpenGui:
         self.set_headerbar()
 
         self.insert_groups_in_listbox("/")
+    
+    #
+    # Headerbar
+    #
 
     def set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
@@ -43,7 +51,10 @@ class DatabaseOpenGui:
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
 
-    # Example
+    #
+    # Group and Entry Management
+    #
+
     def insert_groups_in_listbox(self, path):
         list_box = self.builder.get_object("list_box")
 

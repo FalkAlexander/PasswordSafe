@@ -11,7 +11,7 @@ class KeepassLoader:
     database_path = ""
     password_try = ""
     password_check = ""
-    password = "" # liufhre86ewoiwejmrcu8owe
+    password = ""
     group_list = []
 
     def __init__(self, database_path, password):
@@ -67,33 +67,44 @@ class KeepassLoader:
             self.kp.set_credentials(new_password)
             self.save()
 
+    #
+    # Return the database filesystem path
+    #
 
     def get_database(self):
         print(self.database_path)
         return self.database_path
 
+    #
+    # Return the root group of the database instance
+    #
+
     def get_root_group(self):
         return self.kp.root_group
+
+    #
+    # Set the first password entered by the user (for comparing reasons)
+    #
 
     def set_password_try(self, password):
         self.password_try = password
 
+    #
+    # Set the second password entered by the user (for comparing reasons)
+    #
 
     def set_password_check(self, password):
         self.password_check = password
 
+    #
+    # Compare the first password entered by the user with the second one
+    #
 
     def compare_passwords(self):
-        print("DEBUG: " + self.password_try + " (try)")
-        print("DEBUG: " + self.password_check + " (check)")
         if self.password_try == self.password_check:
             if self.password_try == "" and self.password_check == "":
-                print("DEBUG: Empty password")
                 return False
             else:
-                print("DEBUG: Passwords matching (success)")
                 return True
         else:
-            print("DEBUG: Passwords do not match")
             return False
-

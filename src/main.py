@@ -7,7 +7,8 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
 import pykeepass
 from pykeepass import PyKeePass
-import config
+import config_manager
+import logging_manager
 import database
 from database import KeepassLoader
 import database_creation_gui
@@ -28,7 +29,7 @@ class MainWindow(Gtk.Window):
 
 
     def __init__(self):
-        config.configure()
+        config_manager.configure()
         self.assemble_window()
 
 
@@ -37,9 +38,14 @@ class MainWindow(Gtk.Window):
         self.connect("destroy", Gtk.main_quit)
         self.set_default_size(800, 500)
 
+        self.enable_debug()
+
         self.create_headerbar()
 
         self.first_start_screen()
+
+    def enable_debug(self):
+        logging_manager.debug = True
 
     #
     # Headerbar
@@ -72,11 +78,14 @@ class MainWindow(Gtk.Window):
     #    
 
     def first_start_screen(self):
-        if config.has_group("history") and config.get_string("history", "last-opened-db") != "" and exists(config.get_string("history", "last-opened-db")):
-            regex = re.search("^(([A-Z]:)?[\.]?[\\{1,2}/]?.*[\\{1,2}/])*(.+)\.(.+)", config.get_string("history", "last-opened-db"))
+        if config_manager.has_group("history") and config_manager.get_string("history", "last-opened-db") != "" and exists(config_manager.get_string("history", "last-opened-db")):
+            logging_manager.log_debug("Found last opened database entry (" + config_manager.get_string("history", "last-opened-db") + ")")
+
+            regex = re.search("^(([A-Z]:)?[\.]?[\\{1,2}/]?.*[\\{1,2}/])*(.+)\.(.+)", config_manager.get_string("history", "last-opened-db"))
             tab_title = regex[0]
-            self.start_database_opening_routine(tab_title, config.get_string("history", "last-opened-db"))
+            self.start_database_opening_routine(tab_title, config_manager.get_string("history", "last-opened-db"))
         else:
+            logging_manager.log_debug("No or not valid last opened database entry found.")
             builder = Gtk.Builder()
             builder.add_from_file("ui/main_headerbar.ui")
 

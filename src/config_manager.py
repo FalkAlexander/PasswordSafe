@@ -77,5 +77,3 @@ def save_config():
 
 def unref_config():
     cfg.unref()
-
-

@@ -72,15 +72,10 @@ class MainWindow(Gtk.Window):
     #    
 
     def first_start_screen(self):
-        print(str(config.has_group("history")))
-        #print(str(config.has_key("history", "last-opened-db")))
-        if config.has_group("history"):
-            if config.get_string("history", "last-opened-db") != "":
-                #folder_path = filechooser_opening_dialog.get_current_folder() + "/"
-                #file_path = config.get_string("history", "last-opened-db")
-
-                #tab_title = self.create_tab_title_from_filepath(file_path.replace(folder_path, ""))
-                self.start_database_opening_routine("Last Opened", config.get_string("history", "last-opened-db"))
+        if config.has_group("history") and config.get_string("history", "last-opened-db") != "" and exists(config.get_string("history", "last-opened-db")):
+            regex = re.search("^(([A-Z]:)?[\.]?[\\{1,2}/]?.*[\\{1,2}/])*(.+)\.(.+)", config.get_string("history", "last-opened-db"))
+            tab_title = regex[0]
+            self.start_database_opening_routine(tab_title, config.get_string("history", "last-opened-db"))
         else:
             builder = Gtk.Builder()
             builder.add_from_file("ui/main_headerbar.ui")

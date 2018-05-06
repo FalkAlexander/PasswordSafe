@@ -44,6 +44,12 @@ class DatabaseOpeningGui:
         password_unlock_input.connect("icon-press", self.on_unlock_input_secondary_clicked)
         #entry = Gtk.Entry()
 
+        keyfile_open_button = self.builder.get_object("keyfile_open_button")
+        keyfile_open_button.connect("clicked", self.on_keyfile_open_button_clicked)
+
+        keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
+        keyfile_unlock_button.connect("clicked", self.on_keyfile_unlock_button_clicked)
+
         self.parent_widget.add(self.stack)
 
     def set_headerbar(self):
@@ -89,6 +95,45 @@ class DatabaseOpeningGui:
                 print("DEBUG: couldn't open database, wrong password")
 
 
+    def on_keyfile_open_button_clicked(self, widget):
+        print("DEBUG: Now comes the keyfile_choser_dialog")
+        keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        filter_text = Gtk.FileFilter()
+        filter_text.set_name("Keyfile")
+        filter_text.add_mime_type("application/octet-stream")
+        keyfile_chooser_dialog.add_filter(filter_text)
+
+        response = keyfile_chooser_dialog.run()
+        if response == Gtk.ResponseType.OK:
+            print("File selected: " + keyfile_chooser_dialog.get_filename())
+            keyfile_chooser_dialog.close()
+
+            keyfile_path = keyfile_chooser_dialog.get_filename()
+            self.stack.set_visible_child(self.stack.get_child_by_name("page2"))
+            keyfile_name = self.builder.get_object("keyfile_name")
+            keyfile_name.set_text(keyfile_path)
+            
+        elif response == Gtk.ResponseType.CANCEL:
+            print("File selection cancelled")
+            keyfile_chooser_dialog.close()
+
+
+    def on_keyfile_unlock_button_clicked(self, widget):
+        keyfile_name = self.builder.get_object("keyfile_name")
+        keyfile_path = keyfile_name.get_text()
+        keyfile_open_button = self.builder.get_object("keyfile_open_button")
+        try:
+            self.keepass_loader = KeepassLoader(self.database_filepath, keyfile_path)
+            self.success_page()
+            print("DEBUG: database successfully openend with keyfile")
+
+        except(OSError):
+            self.stack.set_visible_child(self.stack.get_child_by_name("page1"))
+            keyfile_open_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
+            keyfile_open_button.set_label("Try again")
+            print("DEBUG: invalid keyfile chosen, path of keyfile: " + keyfile_path)
+
+
     #when we have the database view page finished, it is shown here
     def success_page(self):
         self.clear_input_fields()
@@ -98,3 +143,4 @@ class DatabaseOpeningGui:
     def clear_input_fields(self):
         password_unlock_input = self.builder.get_object("password_unlock_input")
         password_unlock_input.set_text("")
+        

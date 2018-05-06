@@ -18,9 +18,9 @@ class KeepassLoader:
         self.kp = PyKeePass(database_path, password)
         self.database_path = database_path
 
-    def add_group(self, name, icon, note, root_group):
-        group = Group(name, icon, note, root_group)
-        self.kp.add_group(group.get_root_group(), group.get_name())
+    def add_group(self, name, icon, note, parent_group):
+        group = Group(name, icon, note, parent_group)
+        self.kp.add_group(group.get_parent_group(), group.get_name())
         self.group_list.append(group)
 
 
@@ -44,8 +44,10 @@ class KeepassLoader:
         group_list = []
         groups = self.kp.groups
         for group in groups:
-            group_list.append(Group(group.name, group.path, icon=group.icon, notes=""))
+            if group.path != "/":
+                group_list.append(Group(group.name, group.path, icon=group.icon, notes="", parent_group=group.parent_group))
         return group_list
+
 
 
     #we wanted to turn off the automatic saving after each action and connect it instead to a button 

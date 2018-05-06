@@ -4,8 +4,8 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
 import database
 from database import KeepassLoader
-import database_creation_success_gui
-from database_creation_success_gui import DatabaseCreationSuccessGui
+import database_open_gui
+from database_open_gui import DatabaseOpenGui
 
 class DatabaseOpeningGui:
     builder = NotImplemented
@@ -84,7 +84,7 @@ class DatabaseOpeningGui:
         if password_unlock_input.get_text() != "":
             try:
                 self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
-                self.success_page()
+                self.open_database_page()
                 print("DEBUG: opening of database was successfull")
         
             #OSError:master key invalid
@@ -124,7 +124,7 @@ class DatabaseOpeningGui:
         keyfile_open_button = self.builder.get_object("keyfile_open_button")
         try:
             self.keepass_loader = KeepassLoader(self.database_filepath, keyfile_path)
-            self.success_page()
+            self.open_database_page()
             print("DEBUG: database successfully openend with keyfile")
 
         except(OSError):
@@ -135,10 +135,10 @@ class DatabaseOpeningGui:
 
 
     #when we have the database view page finished, it is shown here
-    def success_page(self):
+    def open_database_page(self):
         self.clear_input_fields()
         self.parent_widget.remove(self.stack)
-        DatabaseCreationSuccessGui(self.window, self.parent_widget)
+        DatabaseOpenGui(self.window, self.parent_widget, self.keepass_loader)
 
     def clear_input_fields(self):
         password_unlock_input = self.builder.get_object("password_unlock_input")

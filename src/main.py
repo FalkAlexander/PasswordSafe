@@ -24,6 +24,7 @@ class MainWindow(Gtk.Window):
     override_dialog = NotImplemented
     filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
+    first_start_grid = NotImplemented
 
 
     def __init__(self):
@@ -36,7 +37,7 @@ class MainWindow(Gtk.Window):
         self.connect("destroy", Gtk.main_quit)
         self.set_default_size(800, 500)
 
-        self.create_headerbar()        
+        self.create_headerbar()
 
         self.create_container()
 
@@ -58,6 +59,8 @@ class MainWindow(Gtk.Window):
 
         self.set_titlebar(self.headerbar)
 
+        self.first_start_grid = builder.get_object("first_start_grid")
+
 
     def set_headerbar(self):
         self.set_titlebar(self.headerbar)
@@ -65,6 +68,10 @@ class MainWindow(Gtk.Window):
     
     def get_headerbar(self):
         return self.headerbar
+    
+
+    def first_start_screen(self):
+        self.add(self.first_start_grid)
 
     #
     # Container Methods (Gtk Notebook holds tabs)

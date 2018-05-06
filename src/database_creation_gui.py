@@ -85,6 +85,7 @@ class DatabaseCreationGui:
             self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
         elif self.stack.get_visible_child_name() == "page2":
             self.window.close_tab(self.parent_widget)
+            self.window.set_headerbar()
 
 
     def on_password_creation_button_clicked(self, widget):

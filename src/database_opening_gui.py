@@ -6,6 +6,7 @@ import database
 from database import KeepassLoader
 import database_open_gui
 from database_open_gui import DatabaseOpenGui
+import config
 
 class DatabaseOpeningGui:
     builder = NotImplemented
@@ -138,7 +139,12 @@ class DatabaseOpeningGui:
     def open_database_page(self):
         self.clear_input_fields()
         self.parent_widget.remove(self.stack)
+
+        config.create_config_entry_string("history", "last-opened-db", str(self.database_filepath))
+        config.save_config()
+            
         DatabaseOpenGui(self.window, self.parent_widget, self.keepass_loader)
+
 
     def clear_input_fields(self):
         password_unlock_input = self.builder.get_object("password_unlock_input")

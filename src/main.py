@@ -39,7 +39,7 @@ class MainWindow(Gtk.Window):
 
         self.create_headerbar()
 
-        self.create_container()
+        self.first_start_screen()
 
     #
     # Headerbar
@@ -59,8 +59,6 @@ class MainWindow(Gtk.Window):
 
         self.set_titlebar(self.headerbar)
 
-        self.first_start_grid = builder.get_object("first_start_grid")
-
 
     def set_headerbar(self):
         self.set_titlebar(self.headerbar)
@@ -68,16 +66,36 @@ class MainWindow(Gtk.Window):
     
     def get_headerbar(self):
         return self.headerbar
-    
+
+    #
+    # First Start Screen
+    #    
 
     def first_start_screen(self):
-        self.add(self.first_start_grid)
+        print(str(config.has_group("history")))
+        #print(str(config.has_key("history", "last-opened-db")))
+        if config.has_group("history"):
+            if config.get_string("history", "last-opened-db") != "":
+                #folder_path = filechooser_opening_dialog.get_current_folder() + "/"
+                #file_path = config.get_string("history", "last-opened-db")
+
+                #tab_title = self.create_tab_title_from_filepath(file_path.replace(folder_path, ""))
+                self.start_database_opening_routine("Last Opened", config.get_string("history", "last-opened-db"))
+        else:
+            builder = Gtk.Builder()
+            builder.add_from_file("ui/main_headerbar.ui")
+
+            self.first_start_grid = builder.get_object("first_start_grid")
+            self.add(self.first_start_grid)
 
     #
     # Container Methods (Gtk Notebook holds tabs)
     #
 
     def create_container(self):
+        if self.first_start_grid != NotImplemented:
+            self.first_start_grid.destroy()
+
         self.container = Gtk.Notebook()
 
         self.container.set_border_width(0)
@@ -86,6 +104,7 @@ class MainWindow(Gtk.Window):
         self.container.connect("switch-page", self.on_tab_switch)
 
         self.add(self.container)
+        self.show_all()
 
 
     def destroy_container(self):
@@ -142,11 +161,8 @@ class MainWindow(Gtk.Window):
 
         response = self.filechooser_creation_dialog.run()
         if response == Gtk.ResponseType.OK:
-            print("KLICK")
-            print("Saving..." + self.filechooser_creation_dialog.get_filename())
             self.does_file_exist()   
         elif response == Gtk.ResponseType.CANCEL:
-            print("Database creation cancelled")
             self.filechooser_creation_dialog.close()
 
 
@@ -191,6 +207,9 @@ class MainWindow(Gtk.Window):
     #
 
     def create_tab(self, title, headerbar):
+        if self.container == NotImplemented:
+            self.create_container()
+
         page_instance = ContainerPage(headerbar)
 
         tab_hbox = Gtk.HBox(False, 0)
@@ -258,9 +277,6 @@ class MainWindow(Gtk.Window):
 
 
     def on_tab_switch(self, notebook, tab, pagenum):
-        print("1:" + str(notebook))
-        print("2:" + str(tab))
-        print("3:" + str(pagenum))
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
 

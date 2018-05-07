@@ -14,8 +14,8 @@ class KeepassLoader:
     password = ""
     group_list = []
 
-    def __init__(self, database_path, password):
-        self.kp = PyKeePass(database_path, password)
+    def __init__(self, database_path, password=None, keyfile=None):
+        self.kp = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
 
     def add_group(self, name, icon, note, parent_group):

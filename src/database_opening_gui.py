@@ -1,4 +1,5 @@
 import gi
+import ntpath
 import pykeepass
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
@@ -16,6 +17,9 @@ class DatabaseOpeningGui:
     switched = False
     database_filepath = NotImplemented
     keepass_loader = NotImplemented
+    keyfile = NotImplemented
+    composite = False
+    composite_keyfile_path = NotImplemented
 
     def __init__(self, window, widget, filepath):
         self.window = window
@@ -41,6 +45,12 @@ class DatabaseOpeningGui:
 
         switch_to_password_button = self.builder.get_object("switch_to_password_button2")
         switch_to_password_button.connect("clicked", self.on_switch_to_password_button_clicked)
+
+        composite_check = self.builder.get_object("composite_check")
+        composite_check.connect("toggled", self.on_composite_button_toggled)
+
+        composite_keyfile_button = self.builder.get_object("composite_keyfile_button")
+        composite_keyfile_button.connect("clicked", self.on_composite_keyfile_button_clicked)
 
         unlock_database_button = self.builder.get_object("password_unlock_button")
         unlock_database_button.connect("clicked", self.on_unlock_database_button_clicked)
@@ -90,23 +100,26 @@ class DatabaseOpeningGui:
     def on_switch_to_password_button_clicked(self, widget):
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
 
-
     def on_unlock_database_button_clicked(self, widget):
         password_unlock_input = self.builder.get_object("password_unlock_input")
 
         if password_unlock_input.get_text() != "":
             try:
-                self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
+                if self.composite:
+                    self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text(), self.composite_keyfile_path)
+                else:
+                    self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
+
                 self.open_database_page()
 
                 logging_manager.log_debug("Opening of database was successfull")
-        
+
             #OSError:master key invalid
             except(OSError): 
                 password_unlock_input.grab_focus()
                 password_unlock_input.get_style_context().add_class("error")
                 self.clear_input_fields()
-                
+
                 logging_manager.log_debug("Could not open database, wrong password")
 
 
@@ -152,10 +165,40 @@ class DatabaseOpeningGui:
             logging_manager.log_debug("Invalid keyfile chosen")
             logging_manager.log_debug("Keyfile path: " + keyfile_path)
 
+    def on_composite_button_toggled(self, widget):
+        revealer = self.builder.get_object("composite_revealer")
+        revealer.set_reveal_child(not revealer.get_reveal_child())
+        self.composite = not self.composite
+
+    def on_composite_keyfile_button_clicked(self, widget):
+        filechooser_opening_dialog = Gtk.FileChooserDialog(
+            "Choose Keyfile", self.window, Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN,
+             Gtk.ResponseType.OK))
+        composite_keyfile_button = self.builder.get_object("composite_keyfile_button")
+
+        filter_text = Gtk.FileFilter()
+        filter_text.set_name("Keyfile")
+        filter_text.add_mime_type("application/x-keepass2")
+        filter_text.add_mime_type("text/plain")
+        filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
+        filechooser_opening_dialog.add_filter(filter_text)
+
+        response = filechooser_opening_dialog.run()
+        if response == Gtk.ResponseType.OK:
+            print("File selected: " + filechooser_opening_dialog.get_filename())
+            filechooser_opening_dialog.close()
+            file_path = filechooser_opening_dialog.get_filename()
+            composite_keyfile_button.set_label(ntpath.basename(file_path))
+
+            self.composite_keyfile_path = file_path
+        elif response == Gtk.ResponseType.CANCEL:
+            print("File selection cancelled")
+            filechooser_opening_dialog.close()
+
     #
     # Open Database
     #
-
     def open_database_page(self):
         self.clear_input_fields()
         self.parent_widget.remove(self.stack)
@@ -164,7 +207,6 @@ class DatabaseOpeningGui:
         config_manager.save_config()
             
         DatabaseOpenGui(self.window, self.parent_widget, self.keepass_loader)
-
     #
     # Helper Functions
     #

@@ -9,6 +9,7 @@ import pykeepass
 from pykeepass import PyKeePass
 import config_manager
 import logging_manager
+from logging_manager import LoggingManager
 import database
 from database import KeepassLoader
 import database_creation_gui
@@ -26,6 +27,7 @@ class MainWindow(Gtk.Window):
     filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
     first_start_grid = NotImplemented
+    logging_manager
 
 
     def __init__(self):
@@ -45,7 +47,7 @@ class MainWindow(Gtk.Window):
         self.first_start_screen()
 
     def enable_debug(self):
-        logging_manager.debug = True
+        self.logging_manager = LoggingManager(True)
 
     #
     # Headerbar
@@ -79,13 +81,13 @@ class MainWindow(Gtk.Window):
 
     def first_start_screen(self):
         if config_manager.has_group("history") and config_manager.get_string("history", "last-opened-db") != "" and exists(config_manager.get_string("history", "last-opened-db")):
-            logging_manager.log_debug("Found last opened database entry (" + config_manager.get_string("history", "last-opened-db") + ")")
+            self.logging_manager.log_debug("Found last opened database entry (" + config_manager.get_string("history", "last-opened-db") + ")")
 
             regex = re.search("^(([A-Z]:)?[\.]?[\\{1,2}/]?.*[\\{1,2}/])*(.+)\.(.+)", config_manager.get_string("history", "last-opened-db"))
             tab_title = regex[0]
             self.start_database_opening_routine(tab_title, config_manager.get_string("history", "last-opened-db"))
         else:
-            logging_manager.log_debug("No / Not valid last opened database entry found.")
+            self.logging_manager.log_debug("No / Not valid last opened database entry found.")
             builder = Gtk.Builder()
             builder.add_from_file("ui/main_headerbar.ui")
 
@@ -128,7 +130,7 @@ class MainWindow(Gtk.Window):
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.OK:
-            logging_manager.log_debug("File selected: " + filechooser_opening_dialog.get_filename())
+            self.logging_manager.log_debug("File selected: " + filechooser_opening_dialog.get_filename())
             filechooser_opening_dialog.close()
 
             folder_path = filechooser_opening_dialog.get_current_folder() + "/"
@@ -137,7 +139,7 @@ class MainWindow(Gtk.Window):
             tab_title = self.create_tab_title_from_filepath(file_path.replace(folder_path, ""))
             self.start_database_opening_routine(tab_title, filechooser_opening_dialog.get_filename())
         elif response == Gtk.ResponseType.CANCEL:
-            logging_manager.log_debug("File selection canceled")
+            self.logging_manager.log_debug("File selection canceled")
             filechooser_opening_dialog.close()
 
     def start_database_opening_routine(self, tab_title, filepath):

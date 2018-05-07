@@ -5,6 +5,7 @@ from gi.repository import GLib, Gtk
 import database 
 from database import KeepassLoader
 import logging_manager
+from logging_manager import LoggingManager
 
 class DatabaseOpenGui:
 
@@ -13,6 +14,7 @@ class DatabaseOpenGui:
     parent_widget = NotImplemented
     stack = NotImplemented
     keepass_loader = NotImplemented
+    logging_manager
 
     def __init__(self, window, widget, keepass_loader):
         self.window = window
@@ -101,7 +103,8 @@ class DatabaseOpenGui:
 
     def on_save_button_clicked(self, widget):
         self.keepass_loader.save()
-        logging_manager.log_debug("Database has been saved")
+        self.logging_manager = LoggingManager(True)
+        self.logging_manager.log_debug("Database has been saved")
 
 
 

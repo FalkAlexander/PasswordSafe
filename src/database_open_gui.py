@@ -14,7 +14,7 @@ class DatabaseOpenGui:
     parent_widget = NotImplemented
     stack = NotImplemented
     keepass_loader = NotImplemented
-    logging_manager
+    logging_manager = NotImplemented
 
     def __init__(self, window, widget, keepass_loader):
         self.window = window
@@ -37,6 +37,9 @@ class DatabaseOpenGui:
         self.set_headerbar()
 
         self.insert_groups_in_listbox("/")
+
+        group_button = self.builder.get_object("group_button")
+        group_button.connect("clicked", self.on_group_button_clicked)
     
     #
     # Headerbar
@@ -63,20 +66,20 @@ class DatabaseOpenGui:
 
     def insert_groups_in_listbox(self, path):
         list_box = self.builder.get_object("list_box")
-
+        self.logging_manager = LoggingManager(True)
         groups = self.keepass_loader.get_groups()
         for group in groups:
-            if group.get_group_path() == path:
+            if group.get_parent_group_path() == path:
                 builder = Gtk.Builder()
                 builder.add_from_file("ui/entries_listbox.ui")
                 group_row = builder.get_object("group_row")
 
-                group_label = builder.get_object("group_label")
+                group_button = builder.get_object("group_button")
 
-                group_label.set_text(group.get_name())
+                group_button.set_label(group.get_group_path())
+                self.logging_manager.log_debug("group path to be shown is: " + group.get_group_path())
 
-                if group.get_group_path() != "/":
-                    list_box.add(group_row)
+                list_box.add(group_row)
                 
                 self.insert_entries_in_listbox(path)
 
@@ -107,5 +110,6 @@ class DatabaseOpenGui:
         self.logging_manager.log_debug("Database has been saved")
 
 
-
-
+    def on_group_button_clicked(self, widget):
+        self.insert_groups_in_listbox(widget.get_label())
+        self.insert_entries_in_listbox(widget.get_label())

@@ -4,6 +4,7 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
 import database 
 from database import KeepassLoader
+import logging_manager
 
 class DatabaseOpenGui:
 
@@ -47,6 +48,9 @@ class DatabaseOpenGui:
 
         file_new_button = self.builder.get_object("new_button")
         file_new_button.connect("clicked", self.window.create_filechooser)
+
+        save_button = self.builder.get_object("save_button")
+        save_button.connect("clicked", self.on_save_button_clicked)
 
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
@@ -94,6 +98,10 @@ class DatabaseOpenGui:
 
             list_box.add(entry_row)
 
+
+    def on_save_button_clicked(self, widget):
+        self.keepass_loader.save()
+        logging_manager.log_debug("Database has been saved")
 
 
 

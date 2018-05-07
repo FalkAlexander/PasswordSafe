@@ -4,6 +4,8 @@ import group
 from group import Group
 import entry
 from entry import Entry
+import logging_manager
+from logging_manager import LoggingManager
 
 class KeepassLoader:
 
@@ -42,10 +44,12 @@ class KeepassLoader:
 
     def get_groups(self):
         group_list = []
+        self.logging_manager = LoggingManager(True)
         groups = self.kp.groups
         for group in groups:
             if group.path != "/":
-                group_list.append(Group(group.name, group.path, icon=group.icon, notes="", parent_group=group.parent_group))
+                self.logging_manager.log_debug("parent group path of " + group.name + " is: " + group.parentgroup.path)
+                group_list.append(Group(group.name, group.path, icon=group.icon, notes="", parent_group=group.parentgroup.name, parent_group_path=group.parentgroup.path))
         return group_list
 
 

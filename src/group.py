@@ -8,12 +8,14 @@ class Group:
     uuid = ""
     parent_group = ""
     group_path = ""
+    parent_group_path = ""
 
-    def __init__(self, name, group_path, icon=icon, notes=notes, parent_group=parent_group):
+    def __init__(self, name, group_path, icon=icon, notes=notes, parent_group=parent_group, parent_group_path=parent_group_path):
         self.name = name
         self.icon = icon
         self.notes = notes
         self.group_path = group_path
+        self.parent_group_path = parent_group_path
 
     def change_name(self, name):
         self.name = name
@@ -44,5 +46,8 @@ class Group:
 
     def get_group_path(self):
         return self.group_path
+
+    def get_parent_group_path(self):
+        return self.parent_group_path
 
     

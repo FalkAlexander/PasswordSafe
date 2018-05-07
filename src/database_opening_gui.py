@@ -40,17 +40,29 @@ class DatabaseOpeningGui:
         self.stack = self.builder.get_object("database_unlock_stack")
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
 
-        switch_to_keyfile_button = self.builder.get_object("switch_to_keyfile_button1")
-        switch_to_keyfile_button.connect("clicked", self.on_switch_to_keyfile_button_clicked)
-
         switch_to_password_button = self.builder.get_object("switch_to_password_button2")
         switch_to_password_button.connect("clicked", self.on_switch_to_password_button_clicked)
 
-        composite_check = self.builder.get_object("composite_check")
-        composite_check.connect("toggled", self.on_composite_button_toggled)
+        switch_to_password_button3 = self.builder.get_object("switch_to_password_button3")
+        switch_to_password_button3.connect("clicked", self.on_switch_to_password_button_clicked)
 
-        composite_keyfile_button = self.builder.get_object("composite_keyfile_button")
-        composite_keyfile_button.connect("clicked", self.on_composite_keyfile_button_clicked)
+        switch_to_password_button4 = self.builder.get_object("switch_to_password_button4")
+        switch_to_password_button4.connect("clicked", self.on_switch_to_password_button_clicked)
+
+        switch_to_keyfile_button = self.builder.get_object("switch_to_keyfile_button1")
+        switch_to_keyfile_button.connect("clicked", self.on_switch_to_keyfile_button_clicked)
+
+        switch_to_keyfile_button4 = self.builder.get_object("switch_to_keyfile_button4")
+        switch_to_keyfile_button4.connect("clicked", self.on_switch_to_keyfile_button_clicked)
+
+        switch_to_composite_button1 = self.builder.get_object("switch_to_composite_button1")
+        switch_to_composite_button1.connect("clicked", self.on_switch_to_composite_button_clicked)
+
+        switch_to_composite_button2 = self.builder.get_object("switch_to_composite_button2")
+        switch_to_composite_button2.connect("clicked", self.on_switch_to_composite_button_clicked)
+
+        switch_to_composite_button3 = self.builder.get_object("switch_to_composite_button3")
+        switch_to_composite_button3.connect("clicked", self.on_switch_to_composite_button_clicked)
 
         unlock_database_button = self.builder.get_object("password_unlock_button")
         unlock_database_button.connect("clicked", self.on_unlock_database_button_clicked)
@@ -64,6 +76,12 @@ class DatabaseOpeningGui:
 
         keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
         keyfile_unlock_button.connect("clicked", self.on_keyfile_unlock_button_clicked)
+
+        composite_keyfile_button = self.builder.get_object("composite_keyfile_button")
+        composite_keyfile_button.connect("clicked", self.on_composite_keyfile_button_clicked)
+
+        composite_unlock_button = self.builder.get_object("composite_unlock_button")
+        composite_unlock_button.connect("clicked", self.on_composite_unlock_button_clicked)
 
         self.parent_widget.add(self.stack)
     
@@ -100,15 +118,16 @@ class DatabaseOpeningGui:
     def on_switch_to_password_button_clicked(self, widget):
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
 
+    def on_switch_to_composite_button_clicked(self, widget):
+        self.stack.set_visible_child(self.stack.get_child_by_name("page3"))
+
     def on_unlock_database_button_clicked(self, widget):
         password_unlock_input = self.builder.get_object("password_unlock_input")
 
         if password_unlock_input.get_text() != "":
             try:
-                if self.composite:
-                    self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text(), self.composite_keyfile_path)
-                else:
-                    self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
+                self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text())
+                #self.keepass_loader = KeepassLoader(self.database_filepath, password_unlock_input.get_text(), self.composite_keyfile_path)
 
                 self.open_database_page()
 
@@ -125,12 +144,14 @@ class DatabaseOpeningGui:
 
     def on_keyfile_open_button_clicked(self, widget):
         logging_manager.log_debug("Opening keyfile chooser dialog")
-        logging_manager.log_error("Feature currently not working")
 
         keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keyfile")
         filter_text.add_mime_type("application/octet-stream")
+        filter_text.add_mime_type("application/x-keepass2")
+        filter_text.add_mime_type("text/plain")
+        filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
         keyfile_chooser_dialog.add_filter(filter_text)
 
         response = keyfile_chooser_dialog.run()
@@ -153,7 +174,7 @@ class DatabaseOpeningGui:
         keyfile_path = keyfile_name.get_text()
         keyfile_open_button = self.builder.get_object("keyfile_open_button")
         try:
-            self.keepass_loader = KeepassLoader(self.database_filepath, keyfile_path)
+            self.keepass_loader = KeepassLoader(self.database_filepath, password=None, keyfile=keyfile_path)
             self.open_database_page()
             logging_manager.log_debug("Database successfully with keyfile opened")
 
@@ -165,10 +186,6 @@ class DatabaseOpeningGui:
             logging_manager.log_debug("Invalid keyfile chosen")
             logging_manager.log_debug("Keyfile path: " + keyfile_path)
 
-    def on_composite_button_toggled(self, widget):
-        revealer = self.builder.get_object("composite_revealer")
-        revealer.set_reveal_child(not revealer.get_reveal_child())
-        self.composite = not self.composite
 
     def on_composite_keyfile_button_clicked(self, widget):
         filechooser_opening_dialog = Gtk.FileChooserDialog(
@@ -179,6 +196,7 @@ class DatabaseOpeningGui:
 
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keyfile")
+        filter_text.add_mime_type("application/octet-stream")
         filter_text.add_mime_type("application/x-keepass2")
         filter_text.add_mime_type("text/plain")
         filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
@@ -196,6 +214,32 @@ class DatabaseOpeningGui:
             print("File selection cancelled")
             filechooser_opening_dialog.close()
 
+
+    def on_composite_unlock_button_clicked(self, widget):
+        composite_password = self.builder.get_object("composite_password")
+        composite_keyfile_button = self.builder.get_object("composite_keyfile_button")
+
+        if composite_password.get_text() != "":
+            try:
+                self.keepass_loader = KeepassLoader(self.database_filepath, composite_password.get_text(), self.composite_keyfile_path)
+
+                self.open_database_page()
+
+                logging_manager.log_debug("Opening of database was successfull")
+
+            #OSError:master key invalid
+            except(OSError): 
+                composite_password.grab_focus()
+                composite_password.get_style_context().add_class("error")
+                composite_keyfile_button.get_style_context().remove_class("suggested-action")
+                composite_keyfile_button.get_style_context().add_class("destructive-action")
+                self.clear_input_fields()
+
+                logging_manager.log_debug("Could not open database, wrong password")
+        else:
+            composite_password.get_style_context().add_class("error")
+
+
     #
     # Open Database
     #
@@ -207,10 +251,13 @@ class DatabaseOpeningGui:
         config_manager.save_config()
             
         DatabaseOpenGui(self.window, self.parent_widget, self.keepass_loader)
+
     #
     # Helper Functions
     #
 
     def clear_input_fields(self):
         password_unlock_input = self.builder.get_object("password_unlock_input")
+        composite_password = self.builder.get_object("composite_password")
         password_unlock_input.set_text("")
+        composite_password.set_text("")

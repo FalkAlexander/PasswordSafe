@@ -15,3 +15,8 @@ Planned Features:
 
 # Known issues
 * For creating databases is used a workaround because the library can't create new ones. There is used a clean pre-configured database which password (liufhre86ewoiwejmrcu8owe; AES-256; Argon2) is being changed.
+
+# Contact
+You can contact the project through [Matrix](https://matrix.org). The room is
+[#keepassgtk:disroot.org](https://matrix.to/#/#keepassgtk:disroot.org). You can
+join through [any application on this list](https://matrix.org/docs/projects/try-matrix-now.html).

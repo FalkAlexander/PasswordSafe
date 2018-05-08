@@ -15,6 +15,7 @@ class DatabaseOpenGui:
     stack = NotImplemented
     keepass_loader = NotImplemented
     logging_manager = NotImplemented
+    list_box = NotImplemented
 
     def __init__(self, window, widget, keepass_loader):
         self.window = window
@@ -30,16 +31,27 @@ class DatabaseOpenGui:
         self.builder = Gtk.Builder()
         self.builder.add_from_file("ui/entries_listbox.ui")
 
+        scrolled_window = self.builder.get_object("scrolled_window")
+        self.parent_widget.add(scrolled_window)
+
         self.stack = self.builder.get_object("list_stack")
+        #scrolled_window.add(self.stack)
+        #self.stack.add(scrolled_window)
+
+        self.list_box = self.builder.get_object("list_box")
+        self.list_box.connect("row-activated", self.on_list_box_row_activated)
+        self.list_box.connect("row-selected", self.on_list_box_row_selected)
+        frame = self.builder.get_object("frame")
+        frame.add(self.stack)
+        self.stack.add(self.list_box)
         self.stack.set_visible_child(self.stack.get_child_by_name("0"))
-        self.parent_widget.add(self.stack)
         
         self.set_headerbar()
 
-        self.insert_groups_in_listbox("/")
+        self.inital_groups_insert_in_listbox()
+        self.initial_entries_insert_in_listbox()
 
-        group_button = self.builder.get_object("group_button")
-        group_button.connect("clicked", self.on_group_button_clicked)
+        #frame.show_all()
     
     #
     # Headerbar
@@ -64,44 +76,60 @@ class DatabaseOpenGui:
     # Group and Entry Management
     #
 
-    def insert_groups_in_listbox(self, path):
-        list_box = self.builder.get_object("list_box")
+    def inital_groups_insert_in_listbox(self):
         self.logging_manager = LoggingManager(True)
         groups = self.keepass_loader.get_groups()
         for group in groups:
-            if group.get_parent_group_path() == path:
+            if group.get_parent_group_path() == "/":
                 builder = Gtk.Builder()
                 builder.add_from_file("ui/entries_listbox.ui")
                 group_row = builder.get_object("group_row")
 
-                group_button = builder.get_object("group_button")
-
-                group_button.set_label(group.get_group_path())
+                group_name_label = builder.get_object("group_name_label")
+                group_name_label.set_text(group.get_group_path())
                 self.logging_manager.log_debug("group path to be shown is: " + group.get_group_path())
 
-                list_box.add(group_row)
-                
-                self.insert_entries_in_listbox(path)
+                self.list_box.add(group_row)
 
 
-    def insert_entries_in_listbox(self, group_path):
-        list_box = self.builder.get_object("list_box")
-
-        entries = self.keepass_loader.get_entries(group_path)
+    def initial_entries_insert_in_listbox(self):
+        entries = self.keepass_loader.get_entries("/")
         for entry in entries:
             builder = Gtk.Builder()
             builder.add_from_file("ui/entries_listbox.ui")
             entry_row = builder.get_object("entry_row")
 
-            name_label = builder.get_object("name_label")
-            subtitle_label = builder.get_object("subtitle_label")
-            password_input = builder.get_object("password_input")
+            entry_name_label = builder.get_object("entry_name_label")
+            entry_subtitle_label = builder.get_object("entry_subtitle_label")
+            entry_password_input = builder.get_object("entry_password_input")
 
-            name_label.set_text(entry.get_entry_name())
-            subtitle_label.set_text(entry.get_username())
-            password_input.set_text(entry.get_password())
+            entry_name_label.set_text(entry.get_entry_name())
+            entry_subtitle_label.set_text(entry.get_username())
+            entry_password_input.set_text(entry.get_password())
 
-            list_box.add(entry_row)
+            self.list_box.add(entry_row)
+
+    def on_list_box_row_activated(self, widget, list_box_row):
+        self.logging_manager.log_debug("activated")
+        
+        lbr = Gtk.ListBoxRow()
+        lbr.get_path_for_child
+
+        list_box_row_child = list_box_row.get_child()
+        entry_box_children = list_box_row_child.get_children()
+        self.logging_manager.log_error(str(entry_box_children))
+        #group_name_label = self.get_child_by_name(entry_box_children, "group_name_label")
+        #entry_name_label = self.get_child_by_name(entry_box_children, "entry_name_label")
+        #if group_name_label is None:
+        #    print(entry_name_label.get_text())
+        #else:
+        #    print(group_name_label.get_text())
+        
+
+
+
+    def on_list_box_row_selected(self, widget, list_box_row):
+        self.logging_manager.log_debug("selected")
 
 
     def on_save_button_clicked(self, widget):
@@ -110,6 +138,12 @@ class DatabaseOpenGui:
         self.logging_manager.log_debug("Database has been saved")
 
 
-    def on_group_button_clicked(self, widget):
-        self.insert_groups_in_listbox(widget.get_label())
-        self.insert_entries_in_listbox(widget.get_label())
+    #
+    # Helper Functions
+    #
+
+    def get_child_by_name(self, children, name):
+        for widget in children:
+            if widget.get_name() == name:
+                return widget
+

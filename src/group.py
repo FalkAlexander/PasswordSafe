@@ -6,11 +6,11 @@ class Group:
     icon = ""
     notes = ""
     uuid = ""
-    parent_group = ""
+    parent_group_name = ""
     group_path = ""
     parent_group_path = ""
 
-    def __init__(self, name, group_path, icon=icon, notes=notes, parent_group=parent_group, parent_group_path=parent_group_path):
+    def __init__(self, name, group_path, icon=icon, notes=notes, parent_group_name=parent_group_name, parent_group_path=parent_group_path):
         self.name = name
         self.icon = icon
         self.notes = notes
@@ -41,8 +41,8 @@ class Group:
     #def get_uuid(self):
         #build in method from library --> it's the path in form /root_group/sub_group/subsub_group
 
-    def get_parent_group(self):
-        return self.parent_group 
+    def get_parent_group_name(self):
+        return self.parent_group_name
 
     def get_group_path(self):
         return self.group_path

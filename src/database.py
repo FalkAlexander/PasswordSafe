@@ -20,9 +20,9 @@ class KeepassLoader:
         self.kp = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
 
-    def add_group(self, name, icon, note, parent_group):
-        group = Group(name, icon, note, parent_group)
-        self.kp.add_group(group.get_parent_group(), group.get_name())
+    def add_group(self, name, icon, note, parent_group_name):
+        group = Group(name, icon, note, parent_group_name)
+        self.kp.add_group(group.get_parent_group_name(), group.get_name())
         self.group_list.append(group)
 
 
@@ -33,13 +33,11 @@ class KeepassLoader:
 
     def get_entries(self, group_path):
         group = self.kp.find_groups_by_path(group_path, first=True)
-        #group = self.kp.find_groups(name="Untergruppe", first=True)
-        print(group)
-        print(group.entries)
         entry_list = []
-        for entry in group.entries:
-            entry_list.append(Entry(group, entry.title, entry.username, entry.password, entry.url, entry.notes, entry.icon))
-        return entry_list
+        if group is not None:
+            for entry in group.entries:
+                entry_list.append(Entry(group, entry.title, entry.username, entry.password, entry.url, entry.notes, entry.icon))
+            return entry_list
 
 
     def get_groups(self):
@@ -49,7 +47,7 @@ class KeepassLoader:
         for group in groups:
             if group.path != "/":
                 self.logging_manager.log_debug("parent group path of " + group.name + " is: " + group.parentgroup.path)
-                group_list.append(Group(group.name, group.path, icon=group.icon, notes="", parent_group=group.parentgroup.name, parent_group_path=group.parentgroup.path))
+                group_list.append(Group(group.name, group.path, icon=group.icon, notes="", parent_group_name=group.parentgroup.name, parent_group_path=group.parentgroup.path))
         return group_list
 
 

@@ -6,6 +6,7 @@ import database
 from database import KeepassLoader
 import logging_manager
 from logging_manager import LoggingManager
+import find_widget
 
 class DatabaseOpenGui:
 
@@ -16,6 +17,8 @@ class DatabaseOpenGui:
     keepass_loader = NotImplemented
     logging_manager = NotImplemented
     list_box = NotImplemented
+    current_path = "/"
+    current_page = 0
 
     def __init__(self, window, widget, keepass_loader):
         self.window = window
@@ -44,12 +47,13 @@ class DatabaseOpenGui:
         frame = self.builder.get_object("frame")
         frame.add(self.stack)
         self.stack.add(self.list_box)
-        self.stack.set_visible_child(self.stack.get_child_by_name("0"))
+        self.stack.set_visible_child(self.stack.get_child_by_name(str(self.current_page)))
+        self.current_page += 1
         
         self.set_headerbar()
 
-        self.inital_groups_insert_in_listbox()
-        self.initial_entries_insert_in_listbox()
+        self.insert_groups_in_listbox()
+        self.insert_entries_in_listbox()
 
         #frame.show_all()
     
@@ -76,24 +80,23 @@ class DatabaseOpenGui:
     # Group and Entry Management
     #
 
-    def inital_groups_insert_in_listbox(self):
+    def insert_groups_in_listbox(self):
         self.logging_manager = LoggingManager(True)
         groups = self.keepass_loader.get_groups()
         for group in groups:
-            if group.get_parent_group_path() == "/":
+            if group.get_parent_group_path() == self.current_path:
                 builder = Gtk.Builder()
                 builder.add_from_file("ui/entries_listbox.ui")
                 group_row = builder.get_object("group_row")
 
                 group_name_label = builder.get_object("group_name_label")
-                group_name_label.set_text(group.get_group_path())
-                self.logging_manager.log_debug("group path to be shown is: " + group.get_group_path())
+                group_name_label.set_text(group.get_name())
 
                 self.list_box.add(group_row)
 
 
-    def initial_entries_insert_in_listbox(self):
-        entries = self.keepass_loader.get_entries("/")
+    def insert_entries_in_listbox(self):
+        entries = self.keepass_loader.get_entries(self.current_path)
         for entry in entries:
             builder = Gtk.Builder()
             builder.add_from_file("ui/entries_listbox.ui")
@@ -109,23 +112,27 @@ class DatabaseOpenGui:
 
             self.list_box.add(entry_row)
 
+
     def on_list_box_row_activated(self, widget, list_box_row):
-        self.logging_manager.log_debug("activated")
-        
-        lbr = Gtk.ListBoxRow()
-        lbr.get_path_for_child
+        #we need to add a new page to the stack here
+        builder = Gtk.Builder()
+        builder.add_from_file("ui/entries_listbox.ui")
+        self.list_box = builder.get_object("list_box")
+        self.stack.add_named(self.list_box, str(self.current_page)) #sadly, this doesn't work
+        self.current_page += 1
+        self.stack.set_visible_child(self.stack.get_child_by_name(str(self.current_page)))
 
-        list_box_row_child = list_box_row.get_child()
-        entry_box_children = list_box_row_child.get_children()
-        self.logging_manager.log_error(str(entry_box_children))
-        #group_name_label = self.get_child_by_name(entry_box_children, "group_name_label")
-        #entry_name_label = self.get_child_by_name(entry_box_children, "entry_name_label")
-        #if group_name_label is None:
-        #    print(entry_name_label.get_text())
-        #else:
-        #    print(group_name_label.get_text())
-        
+        group_name = find_widget.get_child_by_name(list_box_row, "name_label").get_text()
 
+        if self.current_path == "/":
+            self.current_path=group_name
+        else:
+            self.current_path = self.current_path + "/" + group_name
+        
+        self.logging_manager.log_debug("current path is: " + self.current_path)
+
+        self.insert_groups_in_listbox()
+        self.insert_entries_in_listbox()
 
 
     def on_list_box_row_selected(self, widget, list_box_row):
@@ -136,14 +143,4 @@ class DatabaseOpenGui:
         self.keepass_loader.save()
         self.logging_manager = LoggingManager(True)
         self.logging_manager.log_debug("Database has been saved")
-
-
-    #
-    # Helper Functions
-    #
-
-    def get_child_by_name(self, children, name):
-        for widget in children:
-            if widget.get_name() == name:
-                return widget
 

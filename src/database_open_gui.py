@@ -83,10 +83,10 @@ class DatabaseOpenGui:
 
 
     def add_directory_button_to_pathbar(self, name):
-        self.pathbar_box.pack_end(self.directory_button(name), True, True, 0)
         seperator_label = Gtk.Label()
         seperator_label.set_text("/")
         self.pathbar_box.pack_end(seperator_label, True, True, 0)
+        self.pathbar_box.pack_end(self.directory_button(name), True, True, 0)
         self.pathbar_box.show_all()
 
 

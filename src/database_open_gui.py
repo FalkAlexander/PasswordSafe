@@ -7,6 +7,8 @@ from database import KeepassLoader
 import logging_manager
 from logging_manager import LoggingManager
 import find_widget
+import pathbar_button
+from pathbar_button import PathbarButton
 
 class DatabaseOpenGui:
 
@@ -78,26 +80,30 @@ class DatabaseOpenGui:
 
         root_button = self.builder.get_object("root_button")
         root_button.connect("clicked", self.on_root_button_clicked)
+
+        seperator_label = Gtk.Label()
+        seperator_label.set_markup("<span color=\"#999999\">/</span>")
+
+        self.pathbar_box.add(seperator_label)
         
         self.pathbar_box.show_all()
 
 
     def add_directory_button_to_pathbar(self, name):
         seperator_label = Gtk.Label()
-        seperator_label.set_text("/")
+        seperator_label.set_markup("<span color=\"#999999\">/</span>")
         self.pathbar_box.pack_end(seperator_label, True, True, 0)
         self.pathbar_box.pack_end(self.directory_button(name), True, True, 0)
         self.pathbar_box.show_all()
 
 
     def directory_button(self, directory_name):
-        button = Gtk.Button()
-        button.set_label(directory_name)
-        button.set_name(self.current_path)
-        button.set_relief(Gtk.ReliefStyle.NONE)
-        button.connect("clicked", self.on_directory_button_clicked)
+        pathbar_button = PathbarButton(self.current_path)
+        pathbar_button.set_label(directory_name)
+        pathbar_button.set_relief(Gtk.ReliefStyle.NONE)
+        pathbar_button.connect("clicked", self.on_directory_button_clicked)
 
-        return button
+        return pathbar_button
 
 
     def set_current_path(self, group_name):
@@ -181,7 +187,7 @@ class DatabaseOpenGui:
         self.logging_manager.log_debug("Database has been saved")
 
     def on_directory_button_clicked(self, widget):
-        self.current_path = widget.get_name()
+        self.current_path = widget.get_complete_path()
         self.show_page_of_new_directory()
 
     def on_root_button_clicked(self, widget):

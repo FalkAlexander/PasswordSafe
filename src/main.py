@@ -4,7 +4,8 @@ import shutil
 import re
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, Gio, Gtk
+gi.require_version('Gdk', '3.0')
+from gi.repository import GLib, Gio, Gdk, Gtk
 import pykeepass
 from pykeepass import PyKeePass
 import config_manager
@@ -46,6 +47,8 @@ class MainWindow(Gtk.Window):
 
         self.first_start_screen()
 
+        self.custom_pathbar_css()
+
     def enable_debug(self):
         self.logging_manager = LoggingManager(True)
 
@@ -74,6 +77,19 @@ class MainWindow(Gtk.Window):
     
     def get_headerbar(self):
         return self.headerbar
+
+    #
+    # Styles
+    #
+
+    def custom_pathbar_css(self):
+        screen = Gdk.Screen.get_default()
+
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_path('data/pathbar.css')
+
+        context = Gtk.StyleContext()
+        context.add_provider_for_screen(screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
     #
     # First Start Screen

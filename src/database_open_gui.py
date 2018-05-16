@@ -38,7 +38,7 @@ class DatabaseOpenGui:
 
         self.stack = self.builder.get_object("list_stack")
 
-        self.change_directory()
+        self.show_page_of_new_directory()
         
         self.set_headerbar()
 
@@ -76,9 +76,9 @@ class DatabaseOpenGui:
     def assemble_pathbar(self, headerbar):
         self.pathbar_box = self.builder.get_object("pathbar_box")
 
-        seperator_label = Gtk.Label()
-        seperator_label.set_text("/")
-        self.pathbar_box.pack_start(seperator_label, True, True, 0)
+        root_button = self.builder.get_object("root_button")
+        root_button.connect("clicked", self.on_root_button_clicked)
+        
         self.pathbar_box.show_all()
 
 
@@ -93,7 +93,9 @@ class DatabaseOpenGui:
     def directory_button(self, directory_name):
         button = Gtk.Button()
         button.set_label(directory_name)
+        button.set_name(self.current_path)
         button.set_relief(Gtk.ReliefStyle.NONE)
+        button.connect("clicked", self.on_directory_button_clicked)
 
         return button
 
@@ -107,10 +109,10 @@ class DatabaseOpenGui:
             self.add_directory_button_to_pathbar(group_name)
         
         self.logging_manager.log_debug("current path is: " + self.current_path)
-        self.change_directory()
+        self.show_page_of_new_directory()
 
 
-    def change_directory(self):
+    def show_page_of_new_directory(self):
         builder = Gtk.Builder()
         builder.add_from_file("ui/entries_listbox.ui")
         list_box = builder.get_object("list_box")
@@ -177,3 +179,11 @@ class DatabaseOpenGui:
         self.keepass_loader.save()
         self.logging_manager = LoggingManager(True)
         self.logging_manager.log_debug("Database has been saved")
+
+    def on_directory_button_clicked(self, widget):
+        self.current_path = widget.get_name()
+        self.show_page_of_new_directory()
+
+    def on_root_button_clicked(self, widget):
+        self.current_path = "/"
+        self.show_page_of_new_directory()

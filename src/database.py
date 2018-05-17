@@ -21,7 +21,7 @@ class KeepassLoader:
         self.database_path = database_path
 
     def add_group(self, name, icon, note, parent_group_name):
-        group = Group(name, icon, note, parent_group_name)
+        group = Group(name, uuid=group.uuid, icon, note, parent_group_name)
         self.kp.add_group(group.get_parent_group_name(), group.get_name())
         self.group_list.append(group)
 

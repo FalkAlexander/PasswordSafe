@@ -1,9 +1,9 @@
 import pykeepass
 from pykeepass import PyKeePass
 import group
-from group import Group
+from group import ExtendedGroup
 import entry
-from entry import Entry
+from entry import ExtendedEntry
 import logging_manager
 from logging_manager import LoggingManager
 
@@ -15,28 +15,48 @@ class KeepassLoader:
     password_check = ""
     password = ""
     group_list = []
+    group_counter = 0
+    entry_counter = 0
 
     def __init__(self, database_path, password=None, keyfile=None):
         self.kp = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
 
-    def add_group(self, name, icon, note, parent_group_name):
-        group = Group(name, uuid=group.uuid, icon, note, parent_group_name)
-        self.kp.add_group(group.get_parent_group_name(), group.get_name())
+
+    # Return group object from uuid
+
+    def get_group_from_uuid(self, uuid):
+        for group in self.group_list:
+            if group.get_parent_group_uuid() == uuid:
+                return group
+
+
+    # Add new group/directory to list (from GUI)
+
+    def add_group(self, name, group_path, icon, notes, parent_group_uuid):
+        group = ExtendedGroup(name, group_path, icon, notes, parent_group_uuid, self.group_counter)
+        self.kp.add_group(self.get_group_from_uuid(group.get_parent_group_uuid()), group.get_name())
+        self.group_counter+=1
         self.group_list.append(group)
 
 
-    def add_entry(self, group_path, entry_name, username, password, url, notes, icon):
-        entry = Entry(group_path, entry_name, username, password, url, notes, icon)
-        self.kp.add_entry(self.kp.find_groups_by_path(entry.get_group_path()), entry.get_entry_name(), entry.get_username(), entry.get_password(), url=entry.get_url(), notes=entry.get_notes(), icon=entry.get_icon())
+    # Add new entry to list (from GUI)
+
+    def add_entry(self, name, username, password, url, notes, icon, group_uuid):
+        entry = ExtendedEntry(name, username, password, url, notes, icon, group_uuid, self.entry_counter)
+        self.kp.add_entry(self.get_group_from_uuid(entry.get_group_uuid()), entry.get_name(), entry.get_username(), entry.get_password(), url=entry.get_url(), notes=entry.get_notes(), icon=entry.get_icon())
+        self.entry_counter+=1
 
 
-    def get_entries(self, group_path):
-        group = self.kp.find_groups_by_path(group_path, first=True)
+    # Fill our list with the database entries
+
+    def get_entries(self, uuid):
+        group = self.get_group_from_uuid(uuid)
         entry_list = []
         if group is not None:
             for entry in group.entries:
-                entry_list.append(Entry(group, entry.title, entry.username, entry.password, entry.url, entry.notes, entry.icon))
+                entry_list.append(ExtendedEntry(entry.name, entry.username, entry.password, entry.url, entry.notes, entry.icon, group.uuid, self.entry_counter))
+                self.entry_counter+=1
             return entry_list
 
 
@@ -47,7 +67,8 @@ class KeepassLoader:
         for group in groups:
             if group.path != "/":
                 self.logging_manager.log_debug("parent group path of " + group.name + " is: " + group.parentgroup.path)
-                group_list.append(Group(group.name, group.path, icon=group.icon, notes="", parent_group_name=group.parentgroup.name, parent_group_path=group.parentgroup.path))
+                group_list.append(ExtendedGroup(group.name, group.path, group.icon, group.notes, #parent_group_uuid, self.group_counter))
+                self.group_counter+=1
         return group_list
 
 

@@ -1,33 +1,34 @@
 import pykeepass
 from pykeepass import PyKeePass
+import entry
+from entry import Entry
 
-class Entry:
-    #must have
-    group_path = ""
-    entry_name = ""
+class ExtendedEntry(Entry):
+    name = ""
     username = ""
     password = ""
-
-    #optional
     url = ""
     notes = ""
     icon = ""
+    group_uuid = ""
+    uuid = ""
 
-    def __init__(self, group_path, entry_name, username, password, url, notes, icon):
-        self.group_path = group_path
-        self.entry_name = entry_name
+    def __init__(self, name, username, password, url, notes, icon, group_uuid, uuid):
+        self.name = name
         self.username = username
         self.password = password
         self.url = url
         self.notes = notes
         self.icon = icon
+        self.group_uuid = group_uuid
+        self.uuid = uuid
 
-    def change_group_path(self, group_path):
-        self.group_path = group_path
-        #evtl method from library
+    #
+    # Setter
+    #
 
-    def change_entry_name(self, entry_name):
-        self.entry_name = entry_name
+    def change_name(self, name):
+        self.name = name
 
     def change_username(self, username):
         self.username = username
@@ -44,13 +45,15 @@ class Entry:
     def change_icon(self, icon):
         self.icon = icon
 
+    def change_group_uuid(self, group_uuid):
+        self.group_uuid = group_uuid
 
+    #
+    # Getter
+    #
 
-    def get_group_path(self):
-        return self.group_path
-
-    def get_entry_name(self):
-        return self.entry_name
+    def get_name(self):
+        return self.name
 
     def get_username(self):
         return self.username
@@ -66,3 +69,9 @@ class Entry:
 
     def get_icon(self):
         return self.icon
+
+    def get_group_uuid(self):
+        return self.get_group_uuid
+
+    def get_uuid(self):
+        return self.uuid

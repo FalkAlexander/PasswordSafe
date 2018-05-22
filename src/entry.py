@@ -1,7 +1,7 @@
 import pykeepass
 from pykeepass import PyKeePass
-import entry
-from entry import Entry
+import pykeepass.entry
+from pykeepass.entry import Entry
 
 class ExtendedEntry(Entry):
     name = ""

@@ -114,6 +114,7 @@ class DatabaseCreationGui:
 
         if self.keepass_loader.compare_passwords():
             self.keepass_loader.set_database_password(password_check_input.get_text())
+            self.keepass_loader.save_database()
             self.success_page()
         else:
             self.repeat_page()
@@ -128,6 +129,7 @@ class DatabaseCreationGui:
 
         if self.keepass_loader.compare_passwords():
             self.keepass_loader.set_database_password(password_repeat_input2.get_text())
+            self.keepass_loader.save_database()
             self.success_page()
         else:
             self.clear_input_fields()

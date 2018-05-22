@@ -7,8 +7,8 @@ from database import KeepassLoader
 import logging_manager
 from logging_manager import LoggingManager
 import find_widget
-import pathbar_button
-from pathbar_button import PathbarButton
+import pathbar
+from pathbar import Pathbar
 
 class DatabaseOpenGui:
 
@@ -18,20 +18,22 @@ class DatabaseOpenGui:
     stack = NotImplemented
     keepass_loader = NotImplemented
     logging_manager = NotImplemented
-    current_path = "/"
+    current_group = NotImplemented
+    pathbar = NotImplemented
 
     def __init__(self, window, widget, keepass_loader):
         self.window = window
         self.parent_widget = widget
         self.keepass_loader = keepass_loader
         self.assemble_listbox()
-        self.pathbar_box
 
     #
     # Stack Pages
     #
 
     def assemble_listbox(self):
+        self.current_group = self.keepass_loader.get_root_group()
+
         self.builder = Gtk.Builder()
         self.builder.add_from_file("ui/entries_listbox.ui")
 
@@ -40,9 +42,9 @@ class DatabaseOpenGui:
 
         self.stack = self.builder.get_object("list_stack")
 
-        self.show_page_of_new_directory()
-        
         self.set_headerbar()
+
+        self.show_page_of_new_directory()
 
     #
     # Headerbar
@@ -50,73 +52,18 @@ class DatabaseOpenGui:
 
     def set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
-        #modelbutton = self.builder.get_object("menu_modelbutton_new")
-        #popover = self.builder.get_object("menubutton_popover")
-
-        #action = Gio.SimpleAction.new("new", None)
-        #action.connect("activate", self.window.create_filechooser)
-        #popover.bind_model(modelbutton, "app.new")
-        #headerbar.add_action(action)
-
-        #file_open_button = self.builder.get_object("menu_modelbutton_open")
-        #file_open_button.connect("clicked", self.window.open_filechooser)
-
-        #file_new_button = self.builder.get_object("menu_modelbutton_new")
-        #file_new_button.connect("clicked", self.window.create_filechooser)
 
         save_button = self.builder.get_object("save_button")
         save_button.connect("clicked", self.on_save_button_clicked)
 
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
-        self.assemble_pathbar(headerbar)
+
+        self.pathbar = Pathbar(self, self.keepass_loader, self.keepass_loader.get_root_group(), headerbar)
 
     #
     # Group and Entry Management
     #
-
-    def assemble_pathbar(self, headerbar):
-        self.pathbar_box = self.builder.get_object("pathbar_box")
-
-        root_button = self.builder.get_object("root_button")
-        root_button.connect("clicked", self.on_root_button_clicked)
-
-        seperator_label = Gtk.Label()
-        seperator_label.set_markup("<span color=\"#999999\">/</span>")
-
-        self.pathbar_box.add(seperator_label)
-        
-        self.pathbar_box.show_all()
-
-
-    def add_directory_button_to_pathbar(self, name):
-        seperator_label = Gtk.Label()
-        seperator_label.set_markup("<span color=\"#999999\">/</span>")
-        self.pathbar_box.pack_end(seperator_label, True, True, 0)
-        self.pathbar_box.pack_end(self.directory_button(name), True, True, 0)
-        self.pathbar_box.show_all()
-
-
-    def directory_button(self, directory_name):
-        pathbar_button = PathbarButton(self.current_path)
-        pathbar_button.set_label(directory_name)
-        pathbar_button.set_relief(Gtk.ReliefStyle.NONE)
-        pathbar_button.connect("clicked", self.on_directory_button_clicked)
-
-        return pathbar_button
-
-
-    def set_current_path(self, group_name):
-        if self.current_path == "/":
-            self.current_path = "/" + group_name + "/"
-            self.add_directory_button_to_pathbar(group_name)
-        else:
-            self.current_path = self.current_path + group_name + "/"
-            self.add_directory_button_to_pathbar(group_name)
-        
-        self.logging_manager.log_debug("current path is: " + self.current_path)
-        self.show_page_of_new_directory()
-
 
     def show_page_of_new_directory(self):
         builder = Gtk.Builder()
@@ -126,33 +73,45 @@ class DatabaseOpenGui:
         list_box.connect("row-selected", self.on_list_box_row_selected)
 
         self.add_stack_page(list_box)
-        self.insert_groups_in_listbox(list_box)
-        self.insert_entries_in_listbox(list_box)
+        self.insert_groups_into_listbox(list_box)
+        self.insert_entries_into_listbox(list_box)
 
 
     def add_stack_page(self, list_box):
-        self.stack.add_named(list_box, self.current_path)
-        self.stack.set_visible_child_name(self.current_path)
+        print(str(self.current_group))
+        self.stack.add_named(list_box, self.keepass_loader.get_group_name_from_group_object(self.current_group))
+        self.stack.set_visible_child_name(self.keepass_loader.get_group_name_from_group_object(self.current_group))
+
+    def set_current_group(self, group):
+        self.current_group = group
 
 
-    def insert_groups_in_listbox(self, list_box):
-        self.logging_manager = LoggingManager(True)
-        self.logging_manager.log_warn(self.current_path)
-        groups = self.keepass_loader.get_groups()
+    #
+    # Create Group & Entry Rows
+    #
+
+    def insert_groups_into_listbox(self, list_box):
+        groups = NotImplemented
+
+        if self.current_group.is_root_group:
+            groups = self.keepass_loader.get_groups_in_root()
+        else:
+            groups = self.keepass_loader.get_groups_in_folder(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
+        
         for group in groups:
-            if group.get_parent_group_path() == self.current_path:
-                builder = Gtk.Builder()
-                builder.add_from_file("ui/entries_listbox.ui")
-                group_row = builder.get_object("group_row")
+            builder = Gtk.Builder()
+            builder.add_from_file("ui/entries_listbox.ui")
+            group_row = builder.get_object("group_row")
 
-                group_name_label = builder.get_object("group_name_label")
-                group_name_label.set_text(group.get_name())
+            group_name_label = builder.get_object("group_name_label")
+            group_name_label.set_text(self.keepass_loader.get_group_name_from_group_object(group))
 
-                list_box.add(group_row)
+            list_box.add(group_row)
 
 
-    def insert_entries_in_listbox(self, list_box):
-        entries = self.keepass_loader.get_entries(self.current_path)
+    def insert_entries_into_listbox(self, list_box):
+        entries = self.keepass_loader.get_entries_in_folder(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
+        print(str(entries))
         for entry in entries:
             builder = Gtk.Builder()
             builder.add_from_file("ui/entries_listbox.ui")
@@ -162,19 +121,21 @@ class DatabaseOpenGui:
             entry_subtitle_label = builder.get_object("entry_subtitle_label")
             entry_password_input = builder.get_object("entry_password_input")
 
-            entry_name_label.set_text(entry.get_entry_name())
-            entry_subtitle_label.set_text(entry.get_username())
-            entry_password_input.set_text(entry.get_password())
+            entry_name_label.set_text(self.keepass_loader.get_entry_name_from_entry_object(entry))
+            entry_subtitle_label.set_text(self.keepass_loader.get_entry_username_from_entry_object(entry))
+            entry_password_input.set_text(self.keepass_loader.get_entry_password_from_entry_object(entry))
 
             list_box.add(entry_row)
+
 
     #
     # Events
     #
 
     def on_list_box_row_activated(self, widget, list_box_row):
-        group_name = find_widget.get_child_by_name(list_box_row, "name_label").get_text()
-        self.set_current_path(group_name)
+        self.logging_manager.log_debug("activated")
+        #group_name = find_widget.get_child_by_name(list_box_row, "name_label").get_text()
+        #self.set_current_path(group_name)
 
 
     def on_list_box_row_selected(self, widget, list_box_row):
@@ -185,11 +146,3 @@ class DatabaseOpenGui:
         self.keepass_loader.save()
         self.logging_manager = LoggingManager(True)
         self.logging_manager.log_debug("Database has been saved")
-
-    def on_directory_button_clicked(self, widget):
-        self.current_path = widget.get_complete_path()
-        self.show_page_of_new_directory()
-
-    def on_root_button_clicked(self, widget):
-        self.current_path = "/"
-        self.show_page_of_new_directory()

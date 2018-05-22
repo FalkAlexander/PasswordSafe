@@ -1,24 +1,28 @@
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, Gtk
+from gi.repository import Gtk
+
 
 class PathbarButton(Gtk.Button):
+    uuid = NotImplemented
     is_group = NotImplemented
-    complete_path = NotImplemented
 
-    def __init__(self, path):
+    def __init__(self, uuid):
         Gtk.Button.__init__(self)
         self.set_name("PathbarButton")
-        self.complete_path = path
+        self.uuid = uuid
 
-    def set_complete_path(self, path):
-        self.complete_path = path
+    def set_uuid(self, uuid):
+        self.group_uuid = uuid
 
-    def get_complete_path(self):
-        return self.complete_path
+    def set_is_group(self):
+        self.is_group = True
 
-    def set_is_group(self, boolean):
-        self.is_group = boolean
+    def set_is_entry(self):
+        self.is_group = False
 
-    def check_if_group(self):
+    def get_is_group(self):
         return self.is_group
+
+    def get_uuid(self):
+        return self.uuid

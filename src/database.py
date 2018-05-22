@@ -14,114 +14,162 @@ class KeepassLoader:
     password_try = ""
     password_check = ""
     password = ""
-    group_list = []
-    group_counter = 0
-    entry_counter = 0
 
     def __init__(self, database_path, password=None, keyfile=None):
         self.kp = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
 
 
-    # Return group object from uuid
+    #
+    # Group Transformation Methods
+    #
 
-    def get_group_from_uuid(self, uuid):
-        for group in self.group_list:
-            if group.get_parent_group_uuid() == uuid:
-                return group
+    # Return the parent group object from the child group uuid
 
+    def get_parent_group_from_uuid(self, uuid):
+        group = self.kp.find_groups(uuid=uuid, first=True)
+        return group.parentgroup
 
-    # Add new group/directory to list (from GUI)
+    # Return the belonging group object for a group uuid
 
-    def add_group(self, name, group_path, icon, notes, parent_group_uuid):
-        group = ExtendedGroup(name, group_path, icon, notes, parent_group_uuid, self.group_counter)
-        self.kp.add_group(self.get_group_from_uuid(group.get_parent_group_uuid()), group.get_name())
-        self.group_counter+=1
-        self.group_list.append(group)
+    def get_group_object_from_uuid(self, uuid):
+        return self.kp.find_groups(uuid=uuid, first=True)
 
+    # Return the belonging group name for a group uuid
 
-    # Add new entry to list (from GUI)
+    def get_group_name_from_uuid(self, uuid):
+        group = self.kp.find_groups(uuid=uuid, first=True)
+        return group.name
 
-    def add_entry(self, name, username, password, url, notes, icon, group_uuid):
-        entry = ExtendedEntry(name, username, password, url, notes, icon, group_uuid, self.entry_counter)
-        self.kp.add_entry(self.get_group_from_uuid(entry.get_group_uuid()), entry.get_name(), entry.get_username(), entry.get_password(), url=entry.get_url(), notes=entry.get_notes(), icon=entry.get_icon())
-        self.entry_counter+=1
+    # Return the path for a group object
 
+    def get_group_path_from_group_object(self, group):
+        return group.path
 
-    # Fill our list with the database entries
+    # Return the belonging group uuid for a group object
 
-    def get_entries(self, uuid):
-        group = self.get_group_from_uuid(uuid)
-        entry_list = []
-        if group is not None:
-            for entry in group.entries:
-                entry_list.append(ExtendedEntry(entry.name, entry.username, entry.password, entry.url, entry.notes, entry.icon, group.uuid, self.entry_counter))
-                self.entry_counter+=1
-            return entry_list
+    def get_group_uuid_from_group_object(self, group):
+        return group.uuid
 
+    # Return the belonging name for a group object
 
-    def get_groups(self):
-        group_list = []
-        self.logging_manager = LoggingManager(True)
-        groups = self.kp.groups
-        for group in groups:
-            if group.path != "/":
-                self.logging_manager.log_debug("parent group path of " + group.name + " is: " + group.parentgroup.path)
-                group_list.append(ExtendedGroup(group.name, group.path, group.icon, group.notes, #parent_group_uuid, self.group_counter))
-                self.group_counter+=1
-        return group_list
+    def get_group_name_from_group_object(self, group):
+        return group.name
 
+    # Return path for group uuid
 
+    def get_group_path_from_group_uuid(self, uuid):
+        group = self.kp.find_groups(uuid=uuid, first=True)
+        return group.path
 
-    #we wanted to turn off the automatic saving after each action and connect it instead to a button 
-    def save(self):
+    #
+    # Entry Transformation Methods
+    #
+
+    # Return the belonging name for an entry object
+
+    def get_entry_name_from_entry_object(self, entry):
+        return entry.name
+
+    # Return entry name from entry uuid
+
+    def get_entry_name_from_entry_uuid(self, uuid):
+        entry = self.kp.find_entries(uuid=uuid, first=True)
+        return entry.name
+
+    # Return the belonging username for an entry object
+
+    def get_entry_username_from_entry_object(self, entry):
+        return entry.username
+
+    # Return the belonging password for an entry object
+
+    def get_entry_password_from_entry_object(self, entry):
+        return entry.password
+
+    #
+    # Database Modifications
+    #
+
+    # Add new group to database
+
+    def add_group_to_database(self, name, group_path, icon, parent_group_uuid):
+        destination_group = self.get_group_object_from_uuid(parent_group_uuid)
+        self.kp.add_group(destination_group, name, icon)
+
+    # Add new entry to database
+
+    def add_entry_to_database(self, name, username, password, url, notes, icon, group_uuid):
+        destination_group = self.get_group_object_from_uuid(group_uuid)
+        self.kp.add_entry(destination_group, name, username, password, url=url, notes=notes, expiry_time=None, tags=None, icon=icon, force_creation=False)
+
+    # Write all changes to database
+
+    def save_database(self):
         self.kp.save()
 
+    # Set database password
 
-    #this method sets the initial password for the newly created database
-    def set_database_password(self, new_password): 
+    def set_database_password(self, new_password):
         self.kp.set_credentials(new_password)
-        self.save()
 
+    # Change database password
 
-    #this method changes the password of existing database (therefore the old password must be typed in to prevent others changing your password)
     def change_database_password(self, old_password, new_password):
         if self.password == old_password:
             self.kp.set_credentials(new_password)
-            self.save()
 
+    
     #
+    # Read Database
+    #
+
+    def get_groups_in_root(self):
+        return self.kp.find_groups(path="/")
+
+    # Return list of all groups in folder
+
+    def get_groups_in_folder(self, uuid):
+        group_list = []
+        parent_group = self.get_group_object_from_uuid(uuid)
+        groups_in_database = self.kp.groups
+        for group in groups_in_database:
+            if group.parentgroup == parent_group:
+                group_list.append(group)
+        return group_list
+
+    # Return list of all entries in folder
+
+    def get_entries_in_folder(self, uuid):
+        parent_group = self.get_group_object_from_uuid(uuid)
+        return parent_group.entries
+
     # Return the database filesystem path
-    #
 
     def get_database(self):
         print(self.database_path)
         return self.database_path
 
-    #
     # Return the root group of the database instance
-    #
 
     def get_root_group(self):
         return self.kp.root_group
 
     #
-    # Set the first password entered by the user (for comparing reasons)
+    # Database creation methods
     #
+
+    # Set the first password entered by the user (for comparing reasons)
 
     def set_password_try(self, password):
         self.password_try = password
 
-    #
     # Set the second password entered by the user (for comparing reasons)
-    #
 
     def set_password_check(self, password):
         self.password_check = password
 
-    #
     # Compare the first password entered by the user with the second one
-    #
 
     def compare_passwords(self):
         if self.password_try == self.password_check:

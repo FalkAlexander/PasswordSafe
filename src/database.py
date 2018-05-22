@@ -69,13 +69,13 @@ class KeepassLoader:
     # Return the belonging name for an entry object
 
     def get_entry_name_from_entry_object(self, entry):
-        return entry.name
+        return entry.title
 
     # Return entry name from entry uuid
 
     def get_entry_name_from_entry_uuid(self, uuid):
         entry = self.kp.find_entries(uuid=uuid, first=True)
-        return entry.name
+        return entry.title
 
     # Return the belonging username for an entry object
 
@@ -126,6 +126,9 @@ class KeepassLoader:
 
     def get_groups_in_root(self):
         return self.kp.find_groups(path="/")
+
+    def get_entries_in_root(self):
+        return self.kp.find_entries(path="/")
 
     # Return list of all groups in folder
 

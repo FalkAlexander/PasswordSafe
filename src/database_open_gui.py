@@ -109,8 +109,9 @@ class DatabaseOpenGui:
             list_box.add(group_row)
 
 
-    def insert_entries_into_listbox(self, list_box):
+    def insert_entries_into_listbox(self, list_box):        
         entries = self.keepass_loader.get_entries_in_folder(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
+
         print(str(entries))
         for entry in entries:
             builder = Gtk.Builder()

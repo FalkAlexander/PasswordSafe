@@ -84,8 +84,11 @@ class DatabaseOpenGui:
 
     def add_stack_page(self, list_box):
         print(str(self.current_group))
-        self.stack.add_named(list_box, self.keepass_loader.get_group_name_from_group_object(self.current_group))
-        self.stack.set_visible_child_name(self.keepass_loader.get_group_name_from_group_object(self.current_group))
+        self.stack.add_named(list_box, self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
+        self.switch_stack_page()
+        
+    def switch_stack_page(self):
+        self.stack.set_visible_child_name(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
 
     def set_current_group(self, group):
         self.current_group = group
@@ -121,9 +124,12 @@ class DatabaseOpenGui:
     #
 
     def on_list_box_row_activated(self, widget, list_box_row):
-        self.logging_manager.log_debug("activated")
-        #group_name = find_widget.get_child_by_name(list_box_row, "name_label").get_text()
-        #self.set_current_path(group_name)
+        if list_box_row.get_type() == "EntryRow":
+            print(list_box_row.get_label())
+        elif list_box_row.get_type() == "GroupRow":
+            self.set_current_group(self.keepass_loader.get_group_object_from_uuid(list_box_row.get_group_uuid()))
+            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
+            self.show_page_of_new_directory()
 
 
     def on_list_box_row_selected(self, widget, list_box_row):

@@ -12,6 +12,8 @@ class EntryRow(Gtk.ListBoxRow):
     label = NotImplemented
     password = NotImplemented
 
+    type = "EntryRow"
+
     def __init__(self, keepass_loader, entry):
         Gtk.ListBoxRow.__init__(self)
         self.keepass_loader = keepass_loader
@@ -51,3 +53,6 @@ class EntryRow(Gtk.ListBoxRow):
 
     def update_password(self):
         self.password = self.keepass_loader.get_entry_password(self.entry_uuid)
+
+    def get_type(self):
+        return self.type

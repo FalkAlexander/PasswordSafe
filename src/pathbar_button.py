@@ -7,6 +7,8 @@ class PathbarButton(Gtk.Button):
     uuid = NotImplemented
     is_group = NotImplemented
 
+    inheritated_pathbar_buttons = {}
+
     def __init__(self, uuid):
         Gtk.Button.__init__(self)
         self.set_name("PathbarButton")

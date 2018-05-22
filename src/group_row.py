@@ -11,6 +11,8 @@ class GroupRow(Gtk.ListBoxRow):
     group_uuid = NotImplemented
     label = NotImplemented
 
+    type = "GroupRow"
+
     def __init__(self, keepass_loader, group):
         Gtk.ListBoxRow.__init__(self)
         self.keepass_loader = keepass_loader
@@ -25,8 +27,6 @@ class GroupRow(Gtk.ListBoxRow):
         builder = Gtk.Builder()
         builder.add_from_file("ui/entries_listbox.ui")
         group_box = builder.get_object("group_box")
-
-        gr = Gtk.ListBoxRow()
 
         group_name_label = builder.get_object("group_name_label")
         group_name_label.set_text(self.label)
@@ -43,3 +43,6 @@ class GroupRow(Gtk.ListBoxRow):
 
     def set_label(self, label):
         self.label = label
+
+    def get_type(self):
+        return self.type

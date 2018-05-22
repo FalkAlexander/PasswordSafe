@@ -139,14 +139,6 @@ class KeepassLoader:
     def set_entry_password(self, uuid, password):
         entry = self.kp.find_entries(uuid=uuid, first=True)
         entry.password = password
-
-    #
-    # Entry Getter
-    #
-
-    def get_entry_password_from_entry_uuid(self, uuid):
-        entry = self.kp.find_entries(uuid=uuid, first=True)
-        return entry.password
     
     #
     # Read Database
@@ -158,13 +150,8 @@ class KeepassLoader:
     # Return list of all groups in folder
 
     def get_groups_in_folder(self, uuid):
-        group_list = []
-        parent_group = self.get_group_object_from_uuid(uuid)
-        groups_in_database = self.kp.groups
-        for group in groups_in_database:
-            if group.parentgroup == parent_group: #TODO: Using subgroups here? Trying this out later.
-                group_list.append(group)
-        return group_list
+        folder = self.get_group_object_from_uuid(uuid)
+        return folder.subgroups
 
     # Return list of all entries in folder
 

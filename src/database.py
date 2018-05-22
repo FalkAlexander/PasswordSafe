@@ -1,9 +1,5 @@
 import pykeepass
 from pykeepass import PyKeePass
-import group
-from group import ExtendedGroup
-import entry
-from entry import ExtendedEntry
 import logging_manager
 from logging_manager import LoggingManager
 
@@ -66,6 +62,11 @@ class KeepassLoader:
     # Entry Transformation Methods
     #
 
+    # Return entry uuid from entry object
+    
+    def get_entry_uuid_from_entry_object(self, entry):
+        return entry.uuid
+
     # Return the belonging name for an entry object
 
     def get_entry_name_from_entry_object(self, entry):
@@ -82,9 +83,21 @@ class KeepassLoader:
     def get_entry_username_from_entry_object(self, entry):
         return entry.username
 
+    # Return the belonging username for an entry uuid
+
+    def get_entry_username_from_entry_uuid(self, uuid):
+        entry = self.kp.find_entries(uuid=uuid, first=True)
+        return entry.username
+
     # Return the belonging password for an entry object
 
     def get_entry_password_from_entry_object(self, entry):
+        return entry.password
+
+    # Return the belonging password for an entry uuid
+
+    def get_entry_password_from_entry_uuid(self, uuid):
+        entry = self.kp.find_entries(uuid=uuid, first=True)
         return entry.password
 
     #
@@ -119,16 +132,28 @@ class KeepassLoader:
         if self.password == old_password:
             self.kp.set_credentials(new_password)
 
+    #
+    # Entry Modifications
+    #
+
+    def set_entry_password(self, uuid, password):
+        entry = self.kp.find_entries(uuid=uuid, first=True)
+        entry.password = password
+
+    #
+    # Entry Getter
+    #
+
+    def get_entry_password_from_entry_uuid(self, uuid):
+        entry = self.kp.find_entries(uuid=uuid, first=True)
+        return entry.password
     
     #
     # Read Database
     #
 
     def get_groups_in_root(self):
-        return self.kp.find_groups(path="/")
-
-    def get_entries_in_root(self):
-        return self.kp.find_entries(path="/")
+        return self.kp.root_group.subgroups
 
     # Return list of all groups in folder
 
@@ -137,7 +162,7 @@ class KeepassLoader:
         parent_group = self.get_group_object_from_uuid(uuid)
         groups_in_database = self.kp.groups
         for group in groups_in_database:
-            if group.parentgroup == parent_group:
+            if group.parentgroup == parent_group: #TODO: Using subgroups here? Trying this out later.
                 group_list.append(group)
         return group_list
 

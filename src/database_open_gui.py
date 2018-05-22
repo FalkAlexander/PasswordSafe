@@ -6,9 +6,13 @@ import database
 from database import KeepassLoader
 import logging_manager
 from logging_manager import LoggingManager
-import find_widget
 import pathbar
 from pathbar import Pathbar
+import entry_row
+from entry_row import EntryRow
+import group_row
+from group_row import GroupRow
+
 
 class DatabaseOpenGui:
 
@@ -26,6 +30,7 @@ class DatabaseOpenGui:
         self.parent_widget = widget
         self.keepass_loader = keepass_loader
         self.assemble_listbox()
+        self.logging_manager = LoggingManager(True)
 
     #
     # Stack Pages
@@ -99,33 +104,15 @@ class DatabaseOpenGui:
             groups = self.keepass_loader.get_groups_in_folder(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
         
         for group in groups:
-            builder = Gtk.Builder()
-            builder.add_from_file("ui/entries_listbox.ui")
-            group_row = builder.get_object("group_row")
-
-            group_name_label = builder.get_object("group_name_label")
-            group_name_label.set_text(self.keepass_loader.get_group_name_from_group_object(group))
-
+            group_row = GroupRow(self.keepass_loader, group)
             list_box.add(group_row)
 
 
     def insert_entries_into_listbox(self, list_box):        
         entries = self.keepass_loader.get_entries_in_folder(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
-
-        print(str(entries))
+        
         for entry in entries:
-            builder = Gtk.Builder()
-            builder.add_from_file("ui/entries_listbox.ui")
-            entry_row = builder.get_object("entry_row")
-
-            entry_name_label = builder.get_object("entry_name_label")
-            entry_subtitle_label = builder.get_object("entry_subtitle_label")
-            entry_password_input = builder.get_object("entry_password_input")
-
-            entry_name_label.set_text(self.keepass_loader.get_entry_name_from_entry_object(entry))
-            entry_subtitle_label.set_text(self.keepass_loader.get_entry_username_from_entry_object(entry))
-            entry_password_input.set_text(self.keepass_loader.get_entry_password_from_entry_object(entry))
-
+            entry_row = EntryRow(self.keepass_loader, entry)
             list_box.add(entry_row)
 
 

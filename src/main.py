@@ -47,7 +47,7 @@ class MainWindow(Gtk.Window):
 
         self.first_start_screen()
 
-        self.custom_pathbar_css()
+        self.custom_css()
 
     def enable_debug(self):
         self.logging_manager = LoggingManager(True)
@@ -82,11 +82,11 @@ class MainWindow(Gtk.Window):
     # Styles
     #
 
-    def custom_pathbar_css(self):
+    def custom_css(self):
         screen = Gdk.Screen.get_default()
 
         css_provider = Gtk.CssProvider()
-        css_provider.load_from_path('data/pathbar.css')
+        css_provider.load_from_path('data/custom.css')
 
         context = Gtk.StyleContext()
         context.add_provider_for_screen(screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)

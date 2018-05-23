@@ -53,14 +53,25 @@ class Pathbar(Gtk.HBox):
     #
 
     def add_pathbar_button_to_pathbar(self, uuid):
-        self.pack_end(self.get_seperator_label(), True, True, 0)
-        self.pack_end(self.create_pathbar_button(uuid), True, True, 0)
-        self.show_all()
+        contains_button = False
+
+        for button in self.pathbar_buttons:
+            if button.get_uuid() == uuid:
+                contains_button = True
+
+        if self.pathbar_buttons.__len__() == 0 or not contains_button:
+            pathbar_button_object = self.create_pathbar_button(uuid) 
+            self.add(pathbar_button_object)
+            self.add(self.get_seperator_label())
+            self.pathbar_buttons.append(pathbar_button_object)
+            self.show_all()
+
 
     def create_pathbar_button(self, uuid):
         pathbar_button = PathbarButton(uuid)
         pathbar_button.set_label(self.keepass_loader.get_group_name_from_uuid(uuid))
         pathbar_button.set_relief(Gtk.ReliefStyle.NONE)
+        pathbar_button.activate()
         pathbar_button.connect("clicked", self.on_pathbar_button_clicked)
 
         self.pathbar_buttons.append(pathbar_button)

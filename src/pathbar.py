@@ -54,10 +54,23 @@ class Pathbar(Gtk.HBox):
 
     def add_pathbar_button_to_pathbar(self, uuid):
         contains_button = False
+        pathbar_button_object = NotImplemented
 
         for button in self.pathbar_buttons:
             if button.get_uuid() == uuid:
                 contains_button = True
+                pathbar_button_object = button
+            else:
+                current_group = self.database_open_gui.get_current_group()
+                parent_group = self.keepass_loader.get_parent_group_from_uuid(self.keepass_loader.get_group_uuid_from_group_object(current_group))
+
+                for parent_button in self.pathbar_buttons:
+                    if parent_button.get_uuid() == self.keepass_loader.get_group_uuid_from_group_object(parent_group):
+                        index = self.pathbar_buttons.index(parent_button)
+                        for i in range(index, len(self.pathbar_buttons)):
+                            self.pathbar_buttons.remove(self.pathbar_buttons[i])
+
+                self.rebuild_pathbar()
 
         if self.pathbar_buttons.__len__() == 0 or not contains_button:
             pathbar_button_object = self.create_pathbar_button(uuid) 
@@ -66,7 +79,6 @@ class Pathbar(Gtk.HBox):
             self.pathbar_buttons.append(pathbar_button_object)
             self.show_all()
 
-
     def create_pathbar_button(self, uuid):
         pathbar_button = PathbarButton(uuid)
         pathbar_button.set_label(self.keepass_loader.get_group_name_from_uuid(uuid))
@@ -74,9 +86,19 @@ class Pathbar(Gtk.HBox):
         pathbar_button.activate()
         pathbar_button.connect("clicked", self.on_pathbar_button_clicked)
 
-        self.pathbar_buttons.append(pathbar_button)
-
         return pathbar_button
+
+    def rebuild_pathbar(self):
+        for widget in self.get_children():
+            self.remove(widget)
+
+        self.add_home_button()
+        self.add(self.get_seperator_label())
+        self.show_all()
+
+        for button in self.pathbar_buttons:
+            button_uuid = self.keepass_loader.get_group_uuid_from_group_object(button)
+            self.create_pathbar_button(button_uuid)
 
     #
     # Events

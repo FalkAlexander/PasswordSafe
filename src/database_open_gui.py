@@ -93,6 +93,9 @@ class DatabaseOpenGui:
     def set_current_group(self, group):
         self.current_group = group
 
+    def get_current_group(self):
+        return self.current_group
+
 
     #
     # Create Group & Entry Rows

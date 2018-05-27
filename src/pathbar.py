@@ -52,7 +52,13 @@ class Pathbar(Gtk.HBox):
 
     def add_pathbar_button_to_pathbar(self, uuid):
         self.rebuild_pathbar()
-        self.pack_end(self.create_pathbar_button(uuid), True, True, 0)
+        
+        pathbar_button_active = self.create_pathbar_button(uuid)
+
+        self.remove_active_style()
+        self.set_active_style(pathbar_button_active)
+        self.pack_end(pathbar_button_active, True, True, 0)
+
         self.add_seperator_label()
         parent_group = self.keepass_loader.get_parent_group_from_uuid(uuid)
         print("Parent Group:", parent_group.name)
@@ -81,17 +87,32 @@ class Pathbar(Gtk.HBox):
             self.remove(widget)
 
 
+    def set_active_style(self, pathbar_button):
+        context = pathbar_button.get_style_context()
+        context.add_class('PathbarButtonActive')
+
+
+    def remove_active_style(self):
+        for pathbar_button in self.get_children():
+            context = pathbar_button.get_style_context()
+            context.remove_class('PathbarButtonActive')
+
+
     #
     # Events
     #
 
     def on_home_button_clicked(self, widget):
-        #self.database_open_gui.stack.remove(self.keepass_loader.get_group_uuid_from_group_object(self.database_open_gui.current_group))
+        self.remove_active_style()
+        #self.set_active_style(widget) #TODO: this is ugly
+        
         self.database_open_gui.set_current_group(self.keepass_loader.get_root_group())
         self.database_open_gui.switch_stack_page()
 
     def on_pathbar_button_clicked(self, pathbar_button):
         if pathbar_button.get_is_group():
+            self.remove_active_style()
+            self.set_active_style(pathbar_button)
             self.database_open_gui.set_current_group(self.keepass_loader.get_group_object_from_uuid(pathbar_button.get_uuid()))
             self.database_open_gui.switch_stack_page()
         else:

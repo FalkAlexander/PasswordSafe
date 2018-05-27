@@ -71,15 +71,18 @@ class DatabaseOpenGui:
     #
 
     def show_page_of_new_directory(self):
-        builder = Gtk.Builder()
-        builder.add_from_file("ui/entries_listbox.ui")
-        list_box = builder.get_object("list_box")
-        list_box.connect("row-activated", self.on_list_box_row_activated)
-        list_box.connect("row-selected", self.on_list_box_row_selected)
+        if self.stack.get_child_by_name(self.keepass_loader.get_group_uuid_from_group_object(self.current_group)) is None:
+            builder = Gtk.Builder()
+            builder.add_from_file("ui/entries_listbox.ui")
+            list_box = builder.get_object("list_box")
+            list_box.connect("row-activated", self.on_list_box_row_activated)
+            list_box.connect("row-selected", self.on_list_box_row_selected)
 
-        self.add_stack_page(list_box)
-        self.insert_groups_into_listbox(list_box)
-        self.insert_entries_into_listbox(list_box)
+            self.add_stack_page(list_box)
+            self.insert_groups_into_listbox(list_box)
+            self.insert_entries_into_listbox(list_box)
+        else:
+            self.stack.set_visible_child_name(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
 
 
     def add_stack_page(self, list_box):

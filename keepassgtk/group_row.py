@@ -1,9 +1,7 @@
-import database 
-from database import KeepassLoader
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
-
+from keepassgtk.database import KeepassLoader
 
 class GroupRow(Gtk.ListBoxRow):
     keepass_loader = NotImplemented
@@ -25,7 +23,7 @@ class GroupRow(Gtk.ListBoxRow):
 
     def assemble_group_row(self):
         builder = Gtk.Builder()
-        builder.add_from_file("ui/entries_listbox.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
         group_box = builder.get_object("group_box")
 
         group_name_label = builder.get_object("group_name_label")

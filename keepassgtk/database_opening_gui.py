@@ -3,13 +3,10 @@ import ntpath
 import pykeepass
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
-import database
-from database import KeepassLoader
-import database_open_gui
-from database_open_gui import DatabaseOpenGui
-import config_manager
-import logging_manager
-from logging_manager import LoggingManager
+from keepassgtk.database import KeepassLoader
+from keepassgtk.database_open_gui import DatabaseOpenGui
+import keepassgtk.config_manager
+from keepassgtk.logging_manager import LoggingManager
 
 class DatabaseOpeningGui:
     builder = NotImplemented
@@ -35,7 +32,7 @@ class DatabaseOpeningGui:
  
     def unlock_database(self):
         self.builder = Gtk.Builder()
-        self.builder.add_from_file("ui/unlock_database.ui")
+        self.builder.add_from_resource("/run/terminal/KeepassGtk/unlock_database.ui")
 
         self.set_headerbar()
 
@@ -249,8 +246,8 @@ class DatabaseOpeningGui:
         self.clear_input_fields()
         self.parent_widget.remove(self.stack)
 
-        config_manager.create_config_entry_string("history", "last-opened-db", str(self.database_filepath))
-        config_manager.save_config()
+        keepassgtk.config_manager.create_config_entry_string("history", "last-opened-db", str(self.database_filepath))
+        keepassgtk.config_manager.save_config()
             
         DatabaseOpenGui(self.window, self.parent_widget, self.keepass_loader)
 

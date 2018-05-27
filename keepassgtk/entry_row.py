@@ -1,5 +1,4 @@
-import database 
-from database import KeepassLoader
+from keepassgtk.database import KeepassLoader
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -27,7 +26,7 @@ class EntryRow(Gtk.ListBoxRow):
 
     def assemble_entry_row(self):
         builder = Gtk.Builder()
-        builder.add_from_file("ui/entries_listbox.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
         entry_box = builder.get_object("entry_box")
 
         entry_name_label = builder.get_object("entry_name_label")

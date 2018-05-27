@@ -1,7 +1,6 @@
 import pykeepass
 from pykeepass import PyKeePass
-import logging_manager
-from logging_manager import LoggingManager
+from keepassgtk.logging_manager import LoggingManager
 
 class KeepassLoader:
 

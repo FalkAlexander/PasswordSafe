@@ -1,0 +1,38 @@
+#!@PYTHON@
+
+import sys
+import os
+import locale
+
+sys.path.insert(1, '@PYTHON_EXEC_DIR@')
+sys.path.insert(1, '@PYTHON_DIR@')
+
+from gi.repository import Gio
+
+localedir = '@LOCALE_DIR@'
+pkgdatadir = '@DATA_DIR@'
+extensiondir = '@EXTENSION_DIR@'
+
+from keepassgtk.application import Application
+
+def install_excepthook():
+    """ Make sure we exit when an unhandled exception occurs. """
+    from gi.repository import Gtk
+    old_hook = sys.excepthook
+
+    def new_hook(etype, evalue, etb):
+        old_hook(etype, evalue, etb)
+        while Gtk.main_level():
+            Gtk.main_quit()
+        sys.exit()
+    sys.excepthook = new_hook
+
+if __name__ == "__main__":
+    install_excepthook()
+
+    resource = Gio.resource_load(os.path.join(pkgdatadir, 'keepassgtk.gresource'))
+    Gio.Resource._register(resource)
+
+    app = Application()
+    exit_status = app.run(sys.argv)
+    sys.exit(exit_status)

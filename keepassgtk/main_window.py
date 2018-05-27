@@ -8,17 +8,12 @@ gi.require_version('Gdk', '3.0')
 from gi.repository import GLib, Gio, Gdk, Gtk
 import pykeepass
 from pykeepass import PyKeePass
-import config_manager
-import logging_manager
-from logging_manager import LoggingManager
-import database
-from database import KeepassLoader
-import database_creation_gui
-from database_creation_gui import DatabaseCreationGui
-import container_page
-from container_page import ContainerPage
-import database_opening_gui
-from database_opening_gui import DatabaseOpeningGui
+import keepassgtk.config_manager
+from keepassgtk.logging_manager import LoggingManager
+from keepassgtk.database import KeepassLoader
+from keepassgtk.database_creation_gui import DatabaseCreationGui
+from keepassgtk.container_page import ContainerPage
+from keepassgtk.database_opening_gui import DatabaseOpeningGui
 
 class MainWindow(Gtk.ApplicationWindow):
 
@@ -29,13 +24,13 @@ class MainWindow(Gtk.ApplicationWindow):
     filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
     first_start_grid = NotImplemented
-    logging_manager
+    logging_manager = NotImplemented
 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        config_manager.configure()
+        keepassgtk.config_manager.configure()
         self.assemble_window()
 
 
@@ -60,7 +55,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def create_headerbar(self):
         builder = Gtk.Builder()
-        builder.add_from_file("ui/main_headerbar.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/main_headerbar.ui")
         
         self.headerbar = builder.get_object("headerbar")
 
@@ -88,7 +83,8 @@ class MainWindow(Gtk.ApplicationWindow):
         screen = Gdk.Screen.get_default()
 
         css_provider = Gtk.CssProvider()
-        css_provider.load_from_path('data/custom.css')
+        css_provider_resource = Gio.File.new_for_uri('resource:///run/terminal/KeepassGtk/keepassgtk.css')
+        css_provider.load_from_file(css_provider_resource)
 
         context = Gtk.StyleContext()
         context.add_provider_for_screen(screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
@@ -98,16 +94,16 @@ class MainWindow(Gtk.ApplicationWindow):
     #    
 
     def first_start_screen(self):
-        if config_manager.has_group("history") and config_manager.get_string("history", "last-opened-db") != "" and exists(config_manager.get_string("history", "last-opened-db")):
-            self.logging_manager.log_debug("Found last opened database entry (" + config_manager.get_string("history", "last-opened-db") + ")")
+        if keepassgtk.config_manager.has_group("history") and keepassgtk.config_manager.get_string("history", "last-opened-db") != "" and exists(keepassgtk.config_manager.get_string("history", "last-opened-db")):
+            self.logging_manager.log_debug("Found last opened database entry (" + keepassgtk.config_manager.get_string("history", "last-opened-db") + ")")
 
-            regex = re.search("^(([A-Z]:)?[\.]?[\\{1,2}/]?.*[\\{1,2}/])*(.+)\.(.+)", config_manager.get_string("history", "last-opened-db"))
+            regex = re.search("^(([A-Z]:)?[\.]?[\\{1,2}/]?.*[\\{1,2}/])*(.+)\.(.+)", keepassgtk.config_manager.get_string("history", "last-opened-db"))
             tab_title = regex[0]
-            self.start_database_opening_routine(tab_title, config_manager.get_string("history", "last-opened-db"))
+            self.start_database_opening_routine(tab_title, keepassgtk.config_manager.get_string("history", "last-opened-db"))
         else:
             self.logging_manager.log_debug("No / Not valid last opened database entry found.")
             builder = Gtk.Builder()
-            builder.add_from_file("ui/main_headerbar.ui")
+            builder.add_from_resource("/run/terminal/KeepassGtk/main_headerbar.ui")
 
             self.first_start_grid = builder.get_object("first_start_grid")
             self.add(self.first_start_grid)
@@ -162,7 +158,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def start_database_opening_routine(self, tab_title, filepath):
         builder = Gtk.Builder()
-        builder.add_from_file("ui/create_database.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/create_database.ui")
         headerbar = builder.get_object("headerbar")
 
         DatabaseOpeningGui(self, self.create_tab(tab_title, headerbar), filepath)   
@@ -192,7 +188,7 @@ class MainWindow(Gtk.ApplicationWindow):
     def does_file_exist(self):
         if os.path.exists(self.filechooser_creation_dialog.get_filename()):
             builder = Gtk.Builder()
-            builder.add_from_file("ui/override_dialog.ui")
+            builder.add_from_resource("/run/terminal/KeepassGtk/override_dialog.ui")
             self.override_dialog = builder.get_object("override_dialog")
 
             self.override_dialog.set_parent(self.filechooser_creation_dialog)
@@ -221,7 +217,7 @@ class MainWindow(Gtk.ApplicationWindow):
     def start_database_creation_routine(self, tab_title):
         self.keepass_loader = KeepassLoader(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
         builder = Gtk.Builder()
-        builder.add_from_file("ui/create_database.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/create_database.ui")
         headerbar = builder.get_object("headerbar")
         DatabaseCreationGui(self, self.create_tab(tab_title, headerbar), self.keepass_loader)
 

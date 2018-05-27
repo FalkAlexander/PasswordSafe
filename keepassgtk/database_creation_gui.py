@@ -2,10 +2,8 @@ import gi
 import pykeepass
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
-import database
-from database import KeepassLoader
-import database_creation_success_gui
-from database_creation_success_gui import DatabaseCreationSuccessGui
+from keepassgtk.database import KeepassLoader
+from keepassgtk.database_creation_success_gui import DatabaseCreationSuccessGui
 
 class DatabaseCreationGui:
     builder = NotImplemented
@@ -26,7 +24,7 @@ class DatabaseCreationGui:
 
     def password_creation(self):
         self.builder = Gtk.Builder()
-        self.builder.add_from_file("ui/create_database.ui")
+        self.builder.add_from_resource("/run/terminal/KeepassGtk/create_database.ui")
 
         self.set_headerbar()
 

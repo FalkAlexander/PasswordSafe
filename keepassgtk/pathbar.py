@@ -1,5 +1,4 @@
-import pathbar_button
-from pathbar_button import PathbarButton
+from keepassgtk.pathbar_button import PathbarButton
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
@@ -23,7 +22,7 @@ class Pathbar(Gtk.HBox):
         self.headerbar = headerbar
 
         self.builder = Gtk.Builder()
-        self.builder.add_from_file("ui/entries_listbox.ui")
+        self.builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
 
         self.assemble_pathbar()
 

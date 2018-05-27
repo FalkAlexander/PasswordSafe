@@ -1,9 +1,8 @@
 import gi
 import sys
-import main_window
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
-from main_window import MainWindow
+from keepassgtk.main_window import MainWindow
 
 class Application(Gtk.Application):
     def __init__(self, *args, **kwargs):
@@ -48,7 +47,7 @@ class Application(Gtk.Application):
 
     def on_settings_menu_clicked(self, action, param):
         builder = Gtk.Builder()
-        builder.add_from_file("ui/settings_dialog.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/settings_dialog.ui")
         settings_dialog = builder.get_object("settings_dialog")
         settings_dialog.set_modal(True)
         settings_dialog.set_transient_for(self.window)
@@ -56,7 +55,7 @@ class Application(Gtk.Application):
 
     def on_about_menu_clicked(self, action, param):
         builder = Gtk.Builder()
-        builder.add_from_file("ui/about_dialog.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/about_dialog.ui")
         about_dialog = builder.get_object("about_dialog")
         about_dialog.set_modal(True)
         about_dialog.set_transient_for(self.window)

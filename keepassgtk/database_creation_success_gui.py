@@ -2,8 +2,7 @@ import gi
 import pykeepass
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gtk
-import database_opening_gui
-from database_opening_gui import DatabaseOpeningGui
+from keepassgtk.database_opening_gui import DatabaseOpeningGui
 
 class DatabaseCreationSuccessGui:
 
@@ -25,7 +24,7 @@ class DatabaseCreationSuccessGui:
 
     def success_page(self):
         self.builder = Gtk.Builder()
-        self.builder.add_from_file("ui/create_database_success.ui")
+        self.builder.add_from_resource("/run/terminal/KeepassGtk/create_database_success.ui")
 
         self.stack = self.builder.get_object("database_creation_success_stack")
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))

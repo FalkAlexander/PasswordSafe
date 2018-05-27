@@ -61,10 +61,22 @@ class DatabaseOpenGui:
         save_button = self.builder.get_object("save_button")
         save_button.connect("clicked", self.on_save_button_clicked)
 
+        self.assemble_menupopover()
+
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
 
         self.pathbar = Pathbar(self, self.keepass_loader, self.keepass_loader.get_root_group(), headerbar)
+
+    
+    def assemble_menupopover(self):
+        new_action = Gio.SimpleAction.new("new", None)
+        new_action.connect("activate", self.window.create_filechooser)
+        self.window.application.add_action(new_action)
+
+        open_action = Gio.SimpleAction.new("open", None)
+        open_action.connect("activate", self.window.open_filechooser)
+        self.window.application.add_action(open_action)
 
     #
     # Group and Entry Management

@@ -20,8 +20,9 @@ from container_page import ContainerPage
 import database_opening_gui
 from database_opening_gui import DatabaseOpeningGui
 
-class MainWindow(Gtk.Window):
+class MainWindow(Gtk.ApplicationWindow):
 
+    application = NotImplemented
     keepass_loader = NotImplemented
     container = NotImplemented
     override_dialog = NotImplemented
@@ -31,13 +32,14 @@ class MainWindow(Gtk.Window):
     logging_manager
 
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
         config_manager.configure()
         self.assemble_window()
 
 
     def assemble_window(self):
-        Gtk.Window.__init__(self, title="KeepassGtk")
         self.connect("destroy", Gtk.main_quit)
         self.set_default_size(800, 500)
 
@@ -63,10 +65,10 @@ class MainWindow(Gtk.Window):
         self.headerbar = builder.get_object("headerbar")
 
         file_open_button = builder.get_object("open_button")
-        file_open_button.connect("clicked", self.open_filechooser)
+        file_open_button.connect("clicked", self.open_filechooser, None)
 
         file_new_button = builder.get_object("new_button")
-        file_new_button.connect("clicked", self.create_filechooser)
+        file_new_button.connect("clicked", self.create_filechooser, None)
 
         self.set_titlebar(self.headerbar)
 
@@ -136,7 +138,7 @@ class MainWindow(Gtk.Window):
     # Open Database Methods
     #
 
-    def open_filechooser(self, widget):
+    def open_filechooser(self, widget, none):
         filechooser_opening_dialog = Gtk.FileChooserDialog("Choose Keepass Database", self, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         
         filter_text = Gtk.FileFilter()
@@ -159,7 +161,6 @@ class MainWindow(Gtk.Window):
             filechooser_opening_dialog.close()
 
     def start_database_opening_routine(self, tab_title, filepath):
-        #self.keepass_loader = KeepassLoader(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
         builder = Gtk.Builder()
         builder.add_from_file("ui/create_database.ui")
         headerbar = builder.get_object("headerbar")
@@ -171,7 +172,7 @@ class MainWindow(Gtk.Window):
     # Create Database Methods
     #
 
-    def create_filechooser(self, widget):
+    def create_filechooser(self, widget, none):
         self.filechooser_creation_dialog = Gtk.FileChooserDialog("Create new Database", self, Gtk.FileChooserAction.SAVE, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
         self.filechooser_creation_dialog.set_current_name("Database.kdbx")
         self.filechooser_creation_dialog.set_modal(True)
@@ -301,8 +302,3 @@ class MainWindow(Gtk.Window):
     def on_tab_switch(self, notebook, tab, pagenum):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
-
-
-main_window = MainWindow()
-main_window.show_all()
-Gtk.main()

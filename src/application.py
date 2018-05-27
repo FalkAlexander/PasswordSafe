@@ -1,0 +1,57 @@
+import gi
+import sys
+import main_window
+gi.require_version('Gtk', '3.0')
+from gi.repository import GLib, Gio, Gtk
+from main_window import MainWindow
+
+class Application(Gtk.Application):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, application_id="run.terminal.KeepassGtk", **kwargs)
+        self.window = None
+
+    def do_startup(self):
+        Gtk.Application.do_startup(self)
+        GLib.set_prgname("KeepassGtk")
+
+        self.assemble_application_menu()
+
+    def do_activate(self):
+        if not self.window:
+
+            self.window = MainWindow(application=self, title="KeepassGtk", icon_name="dialog-password")
+            self.window.application = self
+
+        self.window.present()
+
+    def assemble_application_menu(self):
+        app_menu = Gio.Menu()
+
+        app_menu.append("About", "app.about")
+        app_menu.append("Quit", "app.quit")
+
+        about_action = Gio.SimpleAction.new("about", None)
+        about_action.connect("activate", self.on_about_menu_clicked)
+
+        quit_action = Gio.SimpleAction.new("quit", None)
+        quit_action.connect("activate", self.on_quit_menu_clicked)
+
+        self.add_action(about_action)
+        self.add_action(quit_action)
+        self.set_app_menu(app_menu)
+
+    def on_about_menu_clicked(self, action, param):
+        builder = Gtk.Builder()
+        builder.add_from_file("ui/about_dialog.ui")
+        about_dialog = builder.get_object("about_dialog")
+        about_dialog.set_modal(True)
+        about_dialog.set_transient_for(self.window)
+        about_dialog.present()
+
+    def on_quit_menu_clicked(self, action, param):
+        self.quit()
+
+
+if __name__ == "__main__":
+    app = Application()
+    app.run(sys.argv)

@@ -53,31 +53,36 @@ class Pathbar(Gtk.HBox):
     #
 
     def add_pathbar_button_to_pathbar(self, uuid):
-        contains_button = False
-        pathbar_button_object = NotImplemented
-
+        parent_group = self.keepass_loader.get_parent_group_from_uuid(uuid)
+        parent_group_button = NotImplemented
         for button in self.pathbar_buttons:
-            if button.get_uuid() == uuid:
-                contains_button = True
-                pathbar_button_object = button
-            else:
-                current_group = self.database_open_gui.get_current_group()
-                parent_group = self.keepass_loader.get_parent_group_from_uuid(self.keepass_loader.get_group_uuid_from_group_object(current_group))
+            if self.keepass_loader.get_group_uuid_from_group_object(parent_group) == button.get_uuid():
+                parent_group_button = button
 
-                for parent_button in self.pathbar_buttons:
-                    if parent_button.get_uuid() == self.keepass_loader.get_group_uuid_from_group_object(parent_group):
-                        index = self.pathbar_buttons.index(parent_button)
-                        for i in range(index, len(self.pathbar_buttons)):
-                            self.pathbar_buttons.remove(self.pathbar_buttons[i])
+        if parent_group_button is NotImplemented:
+            print("sub group of root")
+            self.pathbar_buttons = []
+            self.pathbar_buttons.append(self.create_pathbar_button(uuid))
+            print(self.pathbar_buttons)
+            self.rebuild_pathbar()
 
-                self.rebuild_pathbar()
+        else:    
+            try:
+                if uuid != self.pathbar_buttons[self.pathbar_buttons.index(parent_group_button)+1].get_uuid():
+                    index = self.pathbar_buttons.index(parent_group_button)+1
+                    for i in range(index, len(self.pathbar_buttons)):
+                        self.pathbar_buttons.remove(self.pathbar_buttons[i])
+                    self.pathbar_buttons.append(self.create_pathbar_button(uuid))
+                    self.rebuild_pathbar()
 
-        if self.pathbar_buttons.__len__() == 0 or not contains_button:
-            pathbar_button_object = self.create_pathbar_button(uuid) 
-            self.add(pathbar_button_object)
-            self.add(self.get_seperator_label())
-            self.pathbar_buttons.append(pathbar_button_object)
-            self.show_all()
+            except(IndexError):
+                print("button should be appended")
+                pathbar_button_object = self.create_pathbar_button(uuid) 
+                self.add(pathbar_button_object)
+                self.add(self.get_seperator_label())
+                self.pathbar_buttons.append(self.create_pathbar_button(uuid))
+                self.show_all()
+
 
     def create_pathbar_button(self, uuid):
         pathbar_button = PathbarButton(uuid)
@@ -94,11 +99,12 @@ class Pathbar(Gtk.HBox):
 
         self.add_home_button()
         self.add(self.get_seperator_label())
-        self.show_all()
 
         for button in self.pathbar_buttons:
-            button_uuid = self.keepass_loader.get_group_uuid_from_group_object(button)
-            self.create_pathbar_button(button_uuid)
+            pathbar_button = self.create_pathbar_button(button.get_uuid())
+            self.add(pathbar_button)
+            self.add(self.get_seperator_label())
+        self.show_all()
 
     #
     # Events

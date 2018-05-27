@@ -210,7 +210,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
 
     def copy_database_file(self):
-        shutil.copy2('data/database.kdbx', self.filechooser_creation_dialog.get_filename())
+        #shutil.copy2('data/database.kdbx', self.filechooser_creation_dialog.get_filename())
+        shutil.copy2(Gio.File.new_for_uri('resource:///run/terminal/KeepassGtk/database.kdbx'), self.filechooser_creation_dialog.get_filename())
         self.filechooser_creation_dialog.close()
 
 

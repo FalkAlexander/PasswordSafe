@@ -1,6 +1,5 @@
 import os
 from os.path import exists
-import shutil
 import re
 import gi
 gi.require_version('Gtk', '3.0')
@@ -210,8 +209,10 @@ class MainWindow(Gtk.ApplicationWindow):
 
 
     def copy_database_file(self):
-        #shutil.copy2('data/database.kdbx', self.filechooser_creation_dialog.get_filename())
-        shutil.copy2(Gio.File.new_for_uri('resource:///run/terminal/KeepassGtk/database.kdbx'), self.filechooser_creation_dialog.get_filename())
+        stock_database = Gio.File.new_for_uri('resource:///run/terminal/KeepassGtk/database.kdbx')
+        new_database = Gio.File.new_for_path(self.filechooser_creation_dialog.get_filename())
+
+        stock_database.copy(new_database, Gio.FileCopyFlags.OVERWRITE)
         self.filechooser_creation_dialog.close()
 
 

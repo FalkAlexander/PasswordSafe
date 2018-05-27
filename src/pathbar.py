@@ -51,7 +51,7 @@ class Pathbar(Gtk.HBox):
     #
 
     def add_pathbar_button_to_pathbar(self, uuid):
-        self.rebuild_pathbar()
+        self.clear_pathbar()
         self.pack_end(self.create_pathbar_button(uuid), True, True, 0)
         self.add_seperator_label()
         parent_group = self.keepass_loader.get_parent_group_from_uuid(uuid)
@@ -76,7 +76,7 @@ class Pathbar(Gtk.HBox):
         return pathbar_button
 
 
-    def rebuild_pathbar(self):
+    def clear_pathbar(self):
         for widget in self.get_children():
             self.remove(widget)
 

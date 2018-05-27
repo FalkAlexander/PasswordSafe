@@ -2,6 +2,9 @@
 KeepassGtk is a password manager which makes use of the Keepass v.4 format.
 There is the awesome pykeepass library from Philipp Schmitt used (https://github.com/pschmitt/pykeepass).
 
+###### Screenshot
+![Screenshot](https://terminal.run/stuff/keepassgtk_screenshot.png)
+
 Planned Features:
 * Creating a new Keepass v.4 database
 * Password authentification + password changing of a database
@@ -14,7 +17,7 @@ Planned Features:
 * Gtk 3.22
 
 # Known issues
-* For creating databases is used a workaround because the library can't create new ones. There is used a clean pre-configured database which password (liufhre86ewoiwejmrcu8owe; AES-256; Argon2) is being changed.
+* For creating databases is used a workaround because the library can't create new ones. There is used a clean pre-configured database which password (liufhre86ewoiwejmrcu8owe; AES-256; AES-KDF) is being changed.
 
 # Contact
 You can contact the project through [Matrix](https://matrix.org). The room is

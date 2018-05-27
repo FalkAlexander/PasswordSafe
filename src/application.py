@@ -27,8 +27,13 @@ class Application(Gtk.Application):
     def assemble_application_menu(self):
         app_menu = Gio.Menu()
 
+        app_menu.append("Settings", "app.settings")
+        #TODO: Seperator
         app_menu.append("About", "app.about")
         app_menu.append("Quit", "app.quit")
+
+        settings_action = Gio.SimpleAction.new("settings", None)
+        settings_action.connect("activate", self.on_settings_menu_clicked)
 
         about_action = Gio.SimpleAction.new("about", None)
         about_action.connect("activate", self.on_about_menu_clicked)
@@ -36,9 +41,18 @@ class Application(Gtk.Application):
         quit_action = Gio.SimpleAction.new("quit", None)
         quit_action.connect("activate", self.on_quit_menu_clicked)
 
+        self.add_action(settings_action)
         self.add_action(about_action)
         self.add_action(quit_action)
         self.set_app_menu(app_menu)
+
+    def on_settings_menu_clicked(self, action, param):
+        builder = Gtk.Builder()
+        builder.add_from_file("ui/settings_dialog.ui")
+        settings_dialog = builder.get_object("settings_dialog")
+        settings_dialog.set_modal(True)
+        settings_dialog.set_transient_for(self.window)
+        settings_dialog.present()
 
     def on_about_menu_clicked(self, action, param):
         builder = Gtk.Builder()

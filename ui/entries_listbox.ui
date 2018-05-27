@@ -262,31 +262,6 @@
             <property name="position">1</property>
           </packing>
         </child>
-        <child>
-          <object class="GtkSeparator" id="seperator1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menu_modelbutton_settings">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.preferences</property>
-            <property name="text" translatable="yes">Settings</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
       </object>
       <packing>
         <property name="submenu">submenu0</property>

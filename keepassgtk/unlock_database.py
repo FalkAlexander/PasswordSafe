@@ -6,6 +6,7 @@ from keepassgtk.logging_manager import LoggingManager
 import gi
 gi.require_version('Gtk', '3.0')
 import ntpath
+import threading
 
 
 class UnlockDatabase:
@@ -18,6 +19,7 @@ class UnlockDatabase:
     keyfile = NotImplemented
     composite_keyfile_path = NotImplemented
     logging_manager = LoggingManager(True)
+    overlay = NotImplemented
 
     def __init__(self, window, widget, filepath):
         self.window = window
@@ -51,6 +53,11 @@ class UnlockDatabase:
     #
 
     def assemble_stack(self):
+        self.overlay = Gtk.Overlay()
+
+        unlock_failed_overlay = self.builder.get_object("unlock_failed_overlay")
+        self.overlay.add_overlay(unlock_failed_overlay)
+
         stack = Gtk.Stack()
         stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
 
@@ -71,7 +78,8 @@ class UnlockDatabase:
         stack.add_titled(composite_unlock_stack_page, "composite_unlock", "Composite")
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
-        self.unlock_database_stack_box.add(stack)
+        self.overlay.add(stack)
+        self.unlock_database_stack_box.add(self.overlay)
         self.unlock_database_stack_box.show_all()
 
         self.parent_widget.add(self.unlock_database_stack_box)
@@ -119,13 +127,14 @@ class UnlockDatabase:
                 self.open_database_page()
                 self.logging_manager.log_debug("Opening of database was successfull")
             except(OSError):
+                self.show_unlock_failed_revealer()
+
                 password_unlock_entry.grab_focus()
                 password_unlock_entry.get_style_context().add_class("error")
                 self.clear_input_fields()
                 self.logging_manager.log_debug("Could not open database, wrong password")
 
     def on_keyfile_unlock_select_button_clicked(self, widget):
-
         keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keyfile")
@@ -158,6 +167,8 @@ class UnlockDatabase:
             self.open_database_page()
             self.logging_manager.log_debug("Database successfully opened with keyfile")
         except(OSError, IndexError):
+            self.show_unlock_failed_revealer()
+
             keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
             keyfile_unlock_select_button.set_label("Try again")
 
@@ -200,6 +211,8 @@ class UnlockDatabase:
                 self.open_database_page()
                 self.logging_manager.log_debug("Opening of database was successfull")
             except(OSError):
+                self.show_unlock_failed_revealer()
+
                 composite_unlock_entry.grab_focus()
                 composite_unlock_entry.get_style_context().add_class("error")
                 composite_unlock_select_button.get_style_context().remove_class("suggested-action")
@@ -230,3 +243,17 @@ class UnlockDatabase:
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         password_unlock_entry.set_text("")
         composite_unlock_entry.set_text("")
+
+    def show_unlock_failed_revealer(self):
+        unlock_failed_box = self.builder.get_object("unlock_failed_box")
+        context = unlock_failed_box.get_style_context()
+        context.add_class('NotifyRevealer')
+
+        unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
+        unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())
+        revealer_timer = threading.Timer(3.0, self.hide_unlock_failed_revealer)
+        revealer_timer.start()
+
+    def hide_unlock_failed_revealer(self):
+        unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
+        unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())

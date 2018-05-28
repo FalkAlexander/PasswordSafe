@@ -21,7 +21,7 @@ class MainWindow(Gtk.ApplicationWindow):
     filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
     first_start_grid = NotImplemented
-    logging_manager = NotImplemented
+    logging_manager = LoggingManager(True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -32,15 +32,12 @@ class MainWindow(Gtk.ApplicationWindow):
     def assemble_window(self):
         self.connect("destroy", Gtk.main_quit)
         self.set_default_size(800, 500)
-
-        self.enable_debug()
+        
         self.create_headerbar()
         self.first_start_screen()
 
         self.custom_css()
 
-    def enable_debug(self):
-        self.logging_manager = LoggingManager(True)
 
     #
     # Headerbar

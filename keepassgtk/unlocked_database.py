@@ -13,7 +13,7 @@ class UnlockedDatabase:
     parent_widget = NotImplemented
     stack = NotImplemented
     database_manager = NotImplemented
-    logging_manager = NotImplemented
+    logging_manager = LoggingManager(True)
     current_group = NotImplemented
     pathbar = NotImplemented
 
@@ -22,7 +22,6 @@ class UnlockedDatabase:
         self.parent_widget = widget
         self.database_manager = dbm
         self.assemble_listbox()
-        self.logging_manager = LoggingManager(True)
 
     #
     # Stack Pages
@@ -138,14 +137,14 @@ class UnlockedDatabase:
 
     def on_list_box_row_activated(self, widget, list_box_row):
         if list_box_row.get_type() == "EntryRow":
-            print(list_box_row.get_label())
+            self.logging_manager.log_info("Will show details of the entry in near future. Entry clicked: " + list_box_row.get_label())
         elif list_box_row.get_type() == "GroupRow":
             self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_group_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
             self.show_page_of_new_directory()
 
     def on_list_box_row_selected(self, widget, list_box_row):
-        self.logging_manager.log_debug("selected")
+        self.logging_manager.log_debug(list_box_row.get_label() + " selected")
 
     def on_save_button_clicked(self, widget):
         self.database_manager.save()

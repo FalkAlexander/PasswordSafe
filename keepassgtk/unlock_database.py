@@ -17,13 +17,13 @@ class UnlockDatabase:
     unlock_database_stack_box = NotImplemented
     keyfile = NotImplemented
     composite_keyfile_path = NotImplemented
+    logging_manager = LoggingManager(True)
 
     def __init__(self, window, widget, filepath):
         self.window = window
         self.parent_widget = widget
         self.database_filepath = filepath
         self.unlock_database()
-        self.logging_manager = LoggingManager(True)
 
     def unlock_database(self):
         self.builder = Gtk.Builder()
@@ -124,7 +124,6 @@ class UnlockDatabase:
                 self.logging_manager.log_debug("Could not open database, wrong password")
 
     def on_keyfile_unlock_select_button_clicked(self, widget):
-        self.logging_manager.log_debug("Opening keyfile chooser dialog")
 
         keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         filter_text = Gtk.FileFilter()
@@ -156,7 +155,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=keyfile_path)
             self.open_database_page()
-            self.logging_manager.log_debug("Database successfully with keyfile opened")
+            self.logging_manager.log_debug("Database successfully opened with keyfile")
         except(OSError, IndexError):
             keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
             keyfile_unlock_select_button.set_label("Try again")

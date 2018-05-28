@@ -1,5 +1,6 @@
 from gi.repository import Gtk
 from keepassgtk.pathbar_button import PathbarButton
+from keepassgtk.logging_manager import LoggingManager
 import gi
 gi.require_version('Gtk', '3.0')
 
@@ -10,6 +11,7 @@ class Pathbar(Gtk.HBox):
     path = NotImplemented
     headerbar = NotImplemented
     builder = NotImplemented
+    logging_manager = LoggingManager(True)
 
     pathbar_buttons = []
 
@@ -121,4 +123,4 @@ class Pathbar(Gtk.HBox):
                     pathbar_button.get_uuid()))
             self.database_open_gui.switch_stack_page()
         else:
-            print("Entry pathbar button clicked, do nothing")
+            self.logging_manager.log_info("Functionality of showing details about entries when clicked still to be implemented")

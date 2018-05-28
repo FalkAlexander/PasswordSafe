@@ -6,6 +6,8 @@ from keepassgtk.main_window import MainWindow
 
 
 class Application(Gtk.Application):
+    window = NotImplemented
+
     def __init__(self, *args, **kwargs):
         super().__init__(
             *args, application_id="run.terminal.KeepassGtk", **kwargs)
@@ -22,6 +24,7 @@ class Application(Gtk.Application):
             self.window = MainWindow(
                 application=self, title="KeepassGtk",
                 icon_name="dialog-password")
+            self.add_menubutton_popover_actions()
             self.window.application = self
 
         self.window.present()
@@ -66,6 +69,15 @@ class Application(Gtk.Application):
 
     def on_quit_menu_clicked(self, action, param):
         self.quit()
+
+    def add_menubutton_popover_actions(self):
+        new_action = Gio.SimpleAction.new("new", None)
+        new_action.connect("activate", self.window.create_filechooser)
+        self.add_action(new_action)
+
+        open_action = Gio.SimpleAction.new("open", None)
+        open_action.connect("activate", self.window.open_filechooser)
+        self.add_action(open_action)
 
 
 if __name__ == "__main__":

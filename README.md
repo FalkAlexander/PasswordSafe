@@ -17,9 +17,11 @@ Planned Features:
 * Gtk 3.22
 
 ### Building / Compiling
-We are using Meson as our build system. There are two easy steps to follow in order to build KeepassGtk with Meson:
+We are using Meson as our build system. There are some easy steps to follow in order to build KeepassGtk with Meson:
 
 ```
+git clone https://github.com/TerminalDotRun/KeepassGtk.git
+cd KeepassGtk
 meson . _build --prefix=/usr
 ninja -C _build
 sudo ninja -C _build install

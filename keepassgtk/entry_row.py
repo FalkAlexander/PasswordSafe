@@ -23,7 +23,7 @@ class EntryRow(Gtk.ListBoxRow):
     def assemble_entry_row(self):
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/run/terminal/KeepassGtk/entries_listbox.ui")
+            "/run/terminal/KeepassGtk/unlocked_database.ui")
         entry_box = builder.get_object("entry_box")
 
         entry_name_label = builder.get_object("entry_name_label")

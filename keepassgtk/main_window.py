@@ -30,14 +30,12 @@ class MainWindow(Gtk.ApplicationWindow):
         self.assemble_window()
 
     def assemble_window(self):
-        self.connect("destroy", Gtk.main_quit)
         self.set_default_size(800, 500)
         
         self.create_headerbar()
         self.first_start_screen()
 
         self.custom_css()
-
 
     #
     # Headerbar
@@ -197,9 +195,9 @@ class MainWindow(Gtk.ApplicationWindow):
                 "/run/terminal/KeepassGtk/override_dialog.ui")
             self.override_dialog = builder.get_object("override_dialog")
 
-            self.override_dialog.set_parent(self.filechooser_creation_dialog)
             self.override_dialog.set_destroy_with_parent(True)
             self.override_dialog.set_modal(True)
+            self.override_dialog.set_transient_for(self.filechooser_creation_dialog)
 
             cancel_button = builder.get_object("cancel_button")
             override_button = builder.get_object("override_button")
@@ -207,7 +205,7 @@ class MainWindow(Gtk.ApplicationWindow):
             cancel_button.connect("clicked", self.on_cancel_button_clicked)
             override_button.connect("clicked", self.on_override_button_clicked)
 
-            self.override_dialog.show_all()
+            self.override_dialog.present()
         else:
             self.copy_database_file()
 

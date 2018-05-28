@@ -171,71 +171,15 @@
     <property name="can_focus">False</property>
     <property name="selection_mode">none</property>
   </object>
-  <object class="GtkPopoverMenu" id="menubutton_copy_popover">
+  <object class="GtkPopover" id="menubutton_popover">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkBox" id="menubutton_popover_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkModelButton" id="settings_modelbutton3">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.copy.username</property>
-            <property name="text" translatable="yes">Username</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="settings_modelbutton4">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.copy.password</property>
-            <property name="text" translatable="yes">Password</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="settings_modelbutton5">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.copy.url</property>
-            <property name="text" translatable="yes">Url</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="submenu">submenu0</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
-  </object>
-  <object class="GtkPopoverMenu" id="menubutton_popover">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox" id="menubutton_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton" id="menu_modelbutton_new">
+          <object class="GtkModelButton" id="menubutton_popover_new_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -249,7 +193,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menu_modelbutton_open">
+          <object class="GtkModelButton" id="menubutton_popover_open_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -263,10 +207,6 @@
           </packing>
         </child>
       </object>
-      <packing>
-        <property name="submenu">submenu0</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
   <object class="GtkHeaderBar" id="headerbar">
@@ -404,6 +344,64 @@
       </object>
       <packing>
         <property name="pack_type">end</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkPopoverMenu" id="menubutton_copy_popover">
+    <property name="can_focus">False</property>
+    <property name="relative_to">menupopover_button</property>
+    <property name="modal">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id="settings_modelbutton3">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.copy.username</property>
+            <property name="text" translatable="yes">Username</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="settings_modelbutton4">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.copy.password</property>
+            <property name="text" translatable="yes">Password</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="settings_modelbutton5">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.copy.url</property>
+            <property name="text" translatable="yes">Url</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">submenu0</property>
         <property name="position">1</property>
       </packing>
     </child>

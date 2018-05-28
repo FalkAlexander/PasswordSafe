@@ -1,6 +1,5 @@
 import os
-import gi
-from os.path import exists, join, dirname, realpath
+from os.path import exists, join
 from gi.repository import GLib
 
 cfg = GLib.KeyFile()
@@ -12,6 +11,7 @@ CONFIG_FILE = join(CONFIG_PATH, 'config.conf')
 #
 # Create Config (First Run)
 #
+
 
 def configure():
     if not exists(CONFIG_PATH):
@@ -33,6 +33,7 @@ def create_config_file(filename):
 # Write Into Config
 #
 
+
 def create_config_entry_string(group, key, string):
     cfg.set_string(group, key, string)
 
@@ -52,15 +53,16 @@ def create_config_entry_boolean(group, key, boolean):
 # Checks
 #
 
+
 def has_group(group):
     cfg.load_from_file(CONFIG_FILE, GLib.KeyFileFlags.KEEP_COMMENTS)
     return cfg.has_group(group)
 
 
-#def has_key(key, group):
-#    config_file = cfg.load_from_file(CONFIG_FILE, GLib.KeyFileFlags.KEEP_COMMENTS)
-#    group = cfg.
-#    return cfg.has_key(group, key)
+# def has_key(key, group):
+#     config_file = cfg.load_from_file(CONFIG_FILE, GLib.KeyFileFlags.KEEP_COMMENTS)
+#     group = cfg.
+#     return cfg.has_key(group, key)
 
 
 def get_string(key, group):
@@ -70,6 +72,7 @@ def get_string(key, group):
 #
 # Save Config
 #
+
 
 def save_config():
     cfg.save_to_file(CONFIG_FILE)

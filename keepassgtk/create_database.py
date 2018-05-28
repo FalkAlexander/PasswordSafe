@@ -1,19 +1,18 @@
+from gi.repository import Gtk
+from keepassgtk.created_database import CreatedDatabase
 import gi
-import pykeepass
 gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, Gtk
-from keepassgtk.database import KeepassLoader
-from keepassgtk.database_creation_success_gui import DatabaseCreationSuccessGui
 
-class DatabaseCreationGui:
+
+class CreateDatabase:
     builder = NotImplemented
-    keepass_loader = NotImplemented
+    database_manager = NotImplemented
     parent_widget = NotImplemented
     window = NotImplemented
     switched = False
 
-    def __init__(self, window, widget, kpl):
-        self.keepass_loader = kpl
+    def __init__(self, window, widget, dbm):
+        self.database_manager = dbm
         self.window = window
         self.parent_widget = widget
         self.password_creation()
@@ -24,37 +23,44 @@ class DatabaseCreationGui:
 
     def password_creation(self):
         self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/run/terminal/KeepassGtk/create_database.ui")
+        self.builder.add_from_resource(
+            "/run/terminal/KeepassGtk/create_database.ui")
 
         self.set_headerbar()
 
         self.stack = self.builder.get_object("database_creation_stack")
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
 
-        password_creation_button = self.builder.get_object("password_creation_button")
-        password_creation_button.connect("clicked", self.on_password_creation_button_clicked)
+        password_creation_button = self.builder.get_object(
+            "password_creation_button")
+        password_creation_button.connect(
+            "clicked", self.on_password_creation_button_clicked)
 
-        password_creation_input = self.builder.get_object("password_creation_input")
-        password_creation_input.connect("activate", self.on_password_creation_button_clicked)
+        password_creation_input = self.builder.get_object(
+            "password_creation_input")
+        password_creation_input.connect(
+            "activate", self.on_password_creation_button_clicked)
 
         self.parent_widget.add(self.stack)
-
 
     def success_page(self):
         self.clear_input_fields()
         self.parent_widget.remove(self.stack)
 
-        DatabaseCreationSuccessGui(self.window, self.parent_widget, self.keepass_loader)
-
+        CreatedDatabase(self.window, self.parent_widget, self.database_manager)
 
     def repeat_page(self):
         self.stack.set_visible_child(self.stack.get_child_by_name("page2"))
 
-        password_repeat_button = self.builder.get_object("password_repeat_button")
-        password_repeat_button.connect("clicked", self.on_password_repeat_button_clicked)
+        password_repeat_button = self.builder.get_object(
+            "password_repeat_button")
+        password_repeat_button.connect(
+            "clicked", self.on_password_repeat_button_clicked)
 
-        password_repeat_input2 = self.builder.get_object("password_repeat_input2")
-        password_repeat_input2.connect("activate", self.on_password_repeat_button_clicked)
+        password_repeat_input2 = self.builder.get_object(
+            "password_repeat_input2")
+        password_repeat_input2.connect(
+            "activate", self.on_password_repeat_button_clicked)
 
     #
     # Headerbar
@@ -85,49 +91,57 @@ class DatabaseCreationGui:
             self.window.close_tab(self.parent_widget)
             self.window.set_headerbar()
 
-
     def on_password_creation_button_clicked(self, widget):
-        password_creation_input = self.builder.get_object("password_creation_input")
-        self.keepass_loader.set_password_try(password_creation_input.get_text())
+        password_creation_input = self.builder.get_object(
+            "password_creation_input")
+        self.database_manager.set_password_try(
+            password_creation_input.get_text())
 
         if self.switched:
             self.stack.set_visible_child(self.stack.get_child_by_name("page1"))
         else:
             self.check_password_page()
 
-
     def check_password_page(self):
         self.stack.set_visible_child(self.stack.get_child_by_name("page1"))
 
-        password_check_button = self.builder.get_object("password_check_button")
-        password_check_button.connect("clicked", self.on_password_check_button_clicked)
+        password_check_button = self.builder.get_object(
+            "password_check_button")
+        password_check_button.connect(
+            "clicked", self.on_password_check_button_clicked)
 
         password_check_input = self.builder.get_object("password_check_input")
-        password_check_input.connect("activate", self.on_password_check_button_clicked)
-
+        password_check_input.connect(
+            "activate", self.on_password_check_button_clicked)
 
     def on_password_check_button_clicked(self, widget):
         password_check_input = self.builder.get_object("password_check_input")
-        self.keepass_loader.set_password_check(password_check_input.get_text())
+        self.database_manager.set_password_check(
+            password_check_input.get_text())
 
-        if self.keepass_loader.compare_passwords():
-            self.keepass_loader.set_database_password(password_check_input.get_text())
-            self.keepass_loader.save_database()
+        if self.database_manager.compare_passwords():
+            self.database_manager.set_database_password(
+                password_check_input.get_text())
+            self.database_manager.save_database()
             self.success_page()
         else:
             self.repeat_page()
 
-
     def on_password_repeat_button_clicked(self, widget):
-        password_repeat_input1 = self.builder.get_object("password_repeat_input1")
-        password_repeat_input2 = self.builder.get_object("password_repeat_input2")
+        password_repeat_input1 = self.builder.get_object(
+            "password_repeat_input1")
+        password_repeat_input2 = self.builder.get_object(
+            "password_repeat_input2")
 
-        self.keepass_loader.set_password_try(password_repeat_input1.get_text())
-        self.keepass_loader.set_password_check(password_repeat_input2.get_text())
+        self.database_manager.set_password_try(
+            password_repeat_input1.get_text())
+        self.database_manager.set_password_check(
+            password_repeat_input2.get_text())
 
-        if self.keepass_loader.compare_passwords():
-            self.keepass_loader.set_database_password(password_repeat_input2.get_text())
-            self.keepass_loader.save_database()
+        if self.database_manager.compare_passwords():
+            self.database_manager.set_database_password(
+                password_repeat_input2.get_text())
+            self.database_manager.save_database()
             self.success_page()
         else:
             self.clear_input_fields()
@@ -139,10 +153,14 @@ class DatabaseCreationGui:
     #
 
     def clear_input_fields(self):
-        password_creation_input = self.builder.get_object("password_creation_input")
-        password_check_input = self.builder.get_object("password_check_input")
-        password_repeat_input1 = self.builder.get_object("password_repeat_input1")
-        password_repeat_input2 = self.builder.get_object("password_repeat_input2")
+        password_creation_input = self.builder.get_object(
+            "password_creation_input")
+        password_check_input = self.builder.get_object(
+            "password_check_input")
+        password_repeat_input1 = self.builder.get_object(
+            "password_repeat_input1")
+        password_repeat_input2 = self.builder.get_object(
+            "password_repeat_input2")
 
         password_creation_input.set_text("")
         password_check_input.set_text("")

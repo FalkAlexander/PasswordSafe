@@ -4,9 +4,11 @@ gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
 from keepassgtk.main_window import MainWindow
 
+
 class Application(Gtk.Application):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, application_id="run.terminal.KeepassGtk", **kwargs)
+        super().__init__(
+            *args, application_id="run.terminal.KeepassGtk", **kwargs)
         self.window = None
 
     def do_startup(self):
@@ -17,8 +19,9 @@ class Application(Gtk.Application):
 
     def do_activate(self):
         if not self.window:
-
-            self.window = MainWindow(application=self, title="KeepassGtk", icon_name="dialog-password")
+            self.window = MainWindow(
+                application=self, title="KeepassGtk",
+                icon_name="dialog-password")
             self.window.application = self
 
         self.window.present()
@@ -27,7 +30,7 @@ class Application(Gtk.Application):
         app_menu = Gio.Menu()
 
         app_menu.append("Settings", "app.settings")
-        #TODO: Seperator
+        # TODO: Seperator
         app_menu.append("About", "app.about")
         app_menu.append("Quit", "app.quit")
 

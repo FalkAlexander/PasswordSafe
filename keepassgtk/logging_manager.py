@@ -1,6 +1,7 @@
 import time
 import datetime
 
+
 class LoggingManager:
     debug = NotImplemented
     timestamp = NotImplemented
@@ -9,10 +10,12 @@ class LoggingManager:
     #
     # Log Levels
     #
+
     def __init__(self, debug_mode):
         self.debug = debug_mode
         self.timestamp = time.time()
-        self.date = datetime.datetime.fromtimestamp(self.timestamp).strftime('%Y-%m-%d %H:%M:%S')
+        self.date = datetime.datetime.fromtimestamp(self.timestamp).strftime(
+            '%Y-%m-%d %H:%M:%S')
 
     def log_error(self, message):
         print("( " + self.date + " ):" + "\033[91m ERROR: \033[0m" + message)

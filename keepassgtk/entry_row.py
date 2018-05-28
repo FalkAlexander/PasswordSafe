@@ -1,32 +1,29 @@
-from keepassgtk.database import KeepassLoader
+from gi.repository import Gtk
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 
 
 class EntryRow(Gtk.ListBoxRow):
-    keepass_loader = NotImplemented
-
+    database_manager = NotImplemented
     entry_uuid = NotImplemented
     label = NotImplemented
     password = NotImplemented
-
     type = "EntryRow"
 
-    def __init__(self, keepass_loader, entry):
+    def __init__(self, dbm, entry):
         Gtk.ListBoxRow.__init__(self)
-        self.keepass_loader = keepass_loader
+        self.database_manager = dbm
 
-        self.entry_uuid = keepass_loader.get_entry_uuid_from_entry_object(entry)
-        self.label = keepass_loader.get_entry_name_from_entry_object(entry)
-        self.password = keepass_loader.get_entry_password_from_entry_object(entry)
+        self.entry_uuid = dbm.get_entry_uuid_from_entry_object(entry)
+        self.label = dbm.get_entry_name_from_entry_object(entry)
+        self.password = dbm.get_entry_password_from_entry_object(entry)
 
         self.assemble_entry_row()
 
-
     def assemble_entry_row(self):
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
+        builder.add_from_resource(
+            "/run/terminal/KeepassGtk/entries_listbox.ui")
         entry_box = builder.get_object("entry_box")
 
         entry_name_label = builder.get_object("entry_name_label")
@@ -34,12 +31,13 @@ class EntryRow(Gtk.ListBoxRow):
         entry_password_input = builder.get_object("entry_password_input")
 
         entry_name_label.set_text(self.label)
-        entry_subtitle_label.set_text(self.keepass_loader.get_entry_username_from_entry_uuid(self.entry_uuid))
+        entry_subtitle_label.set_text(
+            self.database_manager.get_entry_username_from_entry_uuid(
+                self.entry_uuid))
         entry_password_input.set_text(self.password)
 
         self.add(entry_box)
         self.show_all()
-
 
     def get_entry_uuid(self):
         return self.entry_uuid
@@ -51,7 +49,8 @@ class EntryRow(Gtk.ListBoxRow):
         self.label = label
 
     def update_password(self):
-        self.password = self.keepass_loader.get_entry_password(self.entry_uuid)
+        self.password = self.database_manager.get_entry_password(
+            self.entry_uuid)
 
     def get_type(self):
         return self.type

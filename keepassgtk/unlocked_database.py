@@ -1,29 +1,26 @@
-import gi
-import pykeepass
-gi.require_version('Gtk', '3.0')
-from gi.repository import GLib, Gio, Gtk
-from keepassgtk.database import KeepassLoader
+from gi.repository import Gio, Gtk
 from keepassgtk.logging_manager import LoggingManager
 from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
 from keepassgtk.group_row import GroupRow
+import gi
+gi.require_version('Gtk', '3.0')
 
 
-class DatabaseOpenGui:
-
+class UnlockedDatabase:
     builder = NotImplemented
     window = NotImplemented
     parent_widget = NotImplemented
     stack = NotImplemented
-    keepass_loader = NotImplemented
+    database_manager = NotImplemented
     logging_manager = NotImplemented
     current_group = NotImplemented
     pathbar = NotImplemented
 
-    def __init__(self, window, widget, keepass_loader):
+    def __init__(self, window, widget, dbm):
         self.window = window
         self.parent_widget = widget
-        self.keepass_loader = keepass_loader
+        self.database_manager = dbm
         self.assemble_listbox()
         self.logging_manager = LoggingManager(True)
 
@@ -32,7 +29,7 @@ class DatabaseOpenGui:
     #
 
     def assemble_listbox(self):
-        self.current_group = self.keepass_loader.get_root_group()
+        self.current_group = self.database_manager.get_root_group()
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
@@ -61,9 +58,8 @@ class DatabaseOpenGui:
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
 
-        self.pathbar = Pathbar(self, self.keepass_loader, self.keepass_loader.get_root_group(), headerbar)
+        self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), headerbar)
 
-    
     def assemble_menupopover(self):
         new_action = Gio.SimpleAction.new("new", None)
         new_action.connect("activate", self.window.create_filechooser)
@@ -78,7 +74,9 @@ class DatabaseOpenGui:
     #
 
     def show_page_of_new_directory(self):
-        if self.stack.get_child_by_name(self.keepass_loader.get_group_uuid_from_group_object(self.current_group)) is None:
+        if self.stack.get_child_by_name(
+            self.database_manager.get_group_uuid_from_group_object(
+                self.current_group)) is None:
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
             list_box = builder.get_object("list_box")
@@ -89,23 +87,27 @@ class DatabaseOpenGui:
             self.insert_groups_into_listbox(list_box)
             self.insert_entries_into_listbox(list_box)
         else:
-            self.stack.set_visible_child_name(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
-
+            self.stack.set_visible_child_name(
+                self.database_manager.get_group_uuid_from_group_object(
+                    self.current_group))
 
     def add_stack_page(self, list_box):
-        print(str(self.current_group))
-        self.stack.add_named(list_box, self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
+        self.stack.add_named(
+            list_box,
+            self.database_manager.get_group_uuid_from_group_object(
+                self.current_group))
         self.switch_stack_page()
-        
+
     def switch_stack_page(self):
-        self.stack.set_visible_child_name(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
+        self.stack.set_visible_child_name(
+            self.database_manager.get_group_uuid_from_group_object(
+                self.current_group))
 
     def set_current_group(self, group):
         self.current_group = group
 
     def get_current_group(self):
         return self.current_group
-
 
     #
     # Create Group & Entry Rows
@@ -115,22 +117,20 @@ class DatabaseOpenGui:
         groups = NotImplemented
 
         if self.current_group.is_root_group:
-            groups = self.keepass_loader.get_groups_in_root()
+            groups = self.database_manager.get_groups_in_root()
         else:
-            groups = self.keepass_loader.get_groups_in_folder(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
-        
+            groups = self.database_manager.get_groups_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+
         for group in groups:
-            group_row = GroupRow(self.keepass_loader, group)
+            group_row = GroupRow(self.database_manager, group)
             list_box.add(group_row)
 
+    def insert_entries_into_listbox(self, list_box):
+        entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
 
-    def insert_entries_into_listbox(self, list_box):        
-        entries = self.keepass_loader.get_entries_in_folder(self.keepass_loader.get_group_uuid_from_group_object(self.current_group))
-        
         for entry in entries:
-            entry_row = EntryRow(self.keepass_loader, entry)
+            entry_row = EntryRow(self.database_manager, entry)
             list_box.add(entry_row)
-
 
     #
     # Events
@@ -140,16 +140,14 @@ class DatabaseOpenGui:
         if list_box_row.get_type() == "EntryRow":
             print(list_box_row.get_label())
         elif list_box_row.get_type() == "GroupRow":
-            self.set_current_group(self.keepass_loader.get_group_object_from_uuid(list_box_row.get_group_uuid()))
+            self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_group_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
             self.show_page_of_new_directory()
-
 
     def on_list_box_row_selected(self, widget, list_box_row):
         self.logging_manager.log_debug("selected")
 
-
     def on_save_button_clicked(self, widget):
-        self.keepass_loader.save()
+        self.database_manager.save()
         self.logging_manager = LoggingManager(True)
         self.logging_manager.log_debug("Database has been saved")

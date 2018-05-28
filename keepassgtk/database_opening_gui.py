@@ -36,53 +36,35 @@ class DatabaseOpeningGui:
 
         self.set_headerbar()
 
-        self.stack = self.builder.get_object("database_unlock_stack")
-        self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
+        #self.parent_widget.add(self.stack)
 
-        switch_to_password_button = self.builder.get_object("switch_to_password_button2")
-        switch_to_password_button.connect("clicked", self.on_switch_to_password_button_clicked)
+        self.assemble_stack()
 
-        switch_to_password_button3 = self.builder.get_object("switch_to_password_button3")
-        switch_to_password_button3.connect("clicked", self.on_switch_to_password_button_clicked)
+    def assemble_stack(self):
+        self.stack = Gtk.Stack()
+        self.stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
 
-        switch_to_password_button4 = self.builder.get_object("switch_to_password_button4")
-        switch_to_password_button4.connect("clicked", self.on_switch_to_password_button_clicked)
+        unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
+        unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
+        unlock_database_stack_switcher.set_stack(self.stack)
 
-        switch_to_keyfile_button = self.builder.get_object("switch_to_keyfile_button1")
-        switch_to_keyfile_button.connect("clicked", self.on_switch_to_keyfile_button_clicked)
+        password_unlock_stack_page = self.builder.get_object("password_unlock_stack_page")
+        keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")
+        composite_unlock_stack_page = self.builder.get_object("composite_unlock_stack_page")
 
-        switch_to_keyfile_button4 = self.builder.get_object("switch_to_keyfile_button4")
-        switch_to_keyfile_button4.connect("clicked", self.on_switch_to_keyfile_button_clicked)
+        self.stack.add_titled(password_unlock_stack_page, "password_unlock", "Password")
+        self.stack.child_set_property(password_unlock_stack_page, "icon-name", "input-dialpad-symbolic")
 
-        switch_to_composite_button1 = self.builder.get_object("switch_to_composite_button1")
-        switch_to_composite_button1.connect("clicked", self.on_switch_to_composite_button_clicked)
+        self.stack.add_titled(keyfile_unlock_stack_page, "keyfile_unlock", "Keyfile")
+        self.stack.child_set_property(keyfile_unlock_stack_page, "icon-name", "mail-attachment-symbolic")
 
-        switch_to_composite_button2 = self.builder.get_object("switch_to_composite_button2")
-        switch_to_composite_button2.connect("clicked", self.on_switch_to_composite_button_clicked)
+        self.stack.add_titled(composite_unlock_stack_page, "composite_unlock", "Composite")
+        self.stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
-        switch_to_composite_button3 = self.builder.get_object("switch_to_composite_button3")
-        switch_to_composite_button3.connect("clicked", self.on_switch_to_composite_button_clicked)
+        unlock_database_stack_box.add(self.stack)
+        unlock_database_stack_box.show_all()
 
-        unlock_database_button = self.builder.get_object("password_unlock_button")
-        unlock_database_button.connect("clicked", self.on_unlock_database_button_clicked)
-
-        password_unlock_input = self.builder.get_object("password_unlock_input")
-        password_unlock_input.connect("activate", self.on_unlock_database_button_clicked)
-        password_unlock_input.connect("icon-press", self.on_unlock_input_secondary_clicked)
-
-        keyfile_open_button = self.builder.get_object("keyfile_open_button")
-        keyfile_open_button.connect("clicked", self.on_keyfile_open_button_clicked)
-
-        keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
-        keyfile_unlock_button.connect("clicked", self.on_keyfile_unlock_button_clicked)
-
-        composite_keyfile_button = self.builder.get_object("composite_keyfile_button")
-        composite_keyfile_button.connect("clicked", self.on_composite_keyfile_button_clicked)
-
-        composite_unlock_button = self.builder.get_object("composite_unlock_button")
-        composite_unlock_button.connect("clicked", self.on_composite_unlock_button_clicked)
-
-        self.parent_widget.add(self.stack)
+        self.parent_widget.add(unlock_database_stack_box)
     
     #
     # Headerbar
@@ -179,7 +161,7 @@ class DatabaseOpeningGui:
 
         except(OSError):
             self.stack.set_visible_child(self.stack.get_child_by_name("page1"))
-            keyfile_open_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
+            keyfile_open_button.get_style_context().add_class(Gtk.STYLE_CLASS_DpESTRUCTIVE_ACTION)
             keyfile_open_button.set_label("Try again")
             
             self.logging_manager.log_debug("Invalid keyfile chosen")

@@ -31,7 +31,7 @@ class UnlockedDatabase:
         self.current_group = self.database_manager.get_root_group()
 
         self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
+        self.builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
 
         scrolled_window = self.builder.get_object("scrolled_window")
         self.parent_widget.add(scrolled_window)
@@ -66,7 +66,7 @@ class UnlockedDatabase:
             self.database_manager.get_group_uuid_from_group_object(
                 self.current_group)) is None:
             builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/entries_listbox.ui")
+            builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
             list_box = builder.get_object("list_box")
             list_box.connect("row-activated", self.on_list_box_row_activated)
             list_box.connect("row-selected", self.on_list_box_row_selected)

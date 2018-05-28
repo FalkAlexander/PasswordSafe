@@ -43,7 +43,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def create_headerbar(self):
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/main_headerbar.ui")
+        builder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
 
         self.headerbar = builder.get_object("headerbar")
 
@@ -99,7 +99,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 "No / Not valid last opened database entry found.")
             builder = Gtk.Builder()
             builder.add_from_resource(
-                "/run/terminal/KeepassGtk/main_headerbar.ui")
+                "/run/terminal/KeepassGtk/main_window.ui")
 
             self.first_start_grid = builder.get_object("first_start_grid")
             self.add(self.first_start_grid)

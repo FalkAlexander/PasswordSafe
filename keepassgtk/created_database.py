@@ -24,7 +24,7 @@ class CreatedDatabase:
     def success_page(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/run/terminal/KeepassGtk/create_database_success.ui")
+            "/run/terminal/KeepassGtk/created_database.ui")
 
         self.stack = self.builder.get_object("database_creation_success_stack")
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))

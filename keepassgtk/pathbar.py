@@ -25,7 +25,7 @@ class Pathbar(Gtk.HBox):
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/run/terminal/KeepassGtk/entries_listbox.ui")
+            "/run/terminal/KeepassGtk/unlocked_database.ui")
 
         self.assemble_pathbar()
 

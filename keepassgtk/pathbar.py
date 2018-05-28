@@ -34,10 +34,20 @@ class Pathbar(Gtk.HBox):
     #
 
     def assemble_pathbar(self):
-        self.add_home_button()
+        self.first_appearance()
         self.show_all()
 
         self.headerbar.add(self)
+
+    def first_appearance(self):
+        home_button = self.builder.get_object("home_button")
+        home_button.connect("clicked", self.on_home_button_clicked)
+        self.set_active_style(home_button)
+        self.pack_start(home_button, True, True, 0)
+
+        seperator_label = Gtk.Label()
+        seperator_label.set_markup("<span color=\"#999999\">/</span>")
+        self.pack_end(seperator_label, True, True, 0)
 
     def add_home_button(self):
         home_button = self.builder.get_object("home_button")
@@ -89,6 +99,7 @@ class Pathbar(Gtk.HBox):
         return pathbar_button
 
     def clear_pathbar(self):
+        self.remove_active_style()
         for widget in self.get_children():
             self.remove(widget)
 
@@ -107,8 +118,7 @@ class Pathbar(Gtk.HBox):
 
     def on_home_button_clicked(self, widget):
         self.remove_active_style()
-
-        # TODO: self.set_active_style(widget) // this is ugly
+        self.set_active_style(widget)
 
         self.database_open_gui.set_current_group(
             self.database_manager.get_root_group())

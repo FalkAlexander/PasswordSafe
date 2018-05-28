@@ -146,11 +146,8 @@ class MainWindow(Gtk.ApplicationWindow):
                 "File selected: " + filechooser_opening_dialog.get_filename())
             filechooser_opening_dialog.close()
 
-            folder_path = filechooser_opening_dialog.get_current_folder() + "/"
-            file_path = filechooser_opening_dialog.get_filename()
-
             tab_title = self.create_tab_title_from_filepath(
-                file_path.replace(folder_path, ""))
+                filechooser_opening_dialog.get_filename())
             self.start_database_opening_routine(
                 tab_title, filechooser_opening_dialog.get_filename())
         elif response == Gtk.ResponseType.CANCEL:

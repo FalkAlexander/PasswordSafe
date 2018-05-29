@@ -1,12 +1,15 @@
 from pykeepass import PyKeePass
+from keepassgtk.logging_manager import LoggingManager
 
 
 class DatabaseManager:
+    logging_manager = LoggingManager(True)
     db = NotImplemented
     database_path = ""
     password_try = ""
     password_check = ""
     password = ""
+    changes = False
 
     def __init__(self, database_path, password=None, keyfile=None):
         self.db = PyKeePass(database_path, password, keyfile)
@@ -90,6 +93,7 @@ class DatabaseManager:
     def add_group_to_database(self, name, group_path, icon, parent_group_uuid):
         destination_group = self.get_group_object_from_uuid(parent_group_uuid)
         self.db.add_group(destination_group, name, icon)
+        self.changes = True
 
     # Add new entry to database
     def add_entry_to_database(
@@ -98,10 +102,13 @@ class DatabaseManager:
         self.db.add_entry(
             destination_group, name, username, password, url=url, notes=notes,
             expiry_time=None, tags=None, icon=icon, force_creation=False)
+        self.changes = True
 
     # Write all changes to database
     def save_database(self):
         self.db.save()
+        self.changes = False
+        self.logging_manager.log_debug("Saved database")
 
     # Set database password
     def set_database_password(self, new_password):
@@ -119,6 +126,7 @@ class DatabaseManager:
     def set_entry_password(self, uuid, password):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.password = password
+        self.changes = True
 
     #
     # Read Database
@@ -166,3 +174,7 @@ class DatabaseManager:
                 return True
         else:
             return False
+
+    # Get changes
+    def made_database_changes(self):
+        return self.changes

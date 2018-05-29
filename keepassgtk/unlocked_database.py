@@ -4,6 +4,8 @@ from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
 from keepassgtk.group_row import GroupRow
 import gi
+import ntpath
+import threading
 gi.require_version('Gtk', '3.0')
 
 
@@ -16,6 +18,7 @@ class UnlockedDatabase:
     logging_manager = LoggingManager(True)
     current_group = NotImplemented
     pathbar = NotImplemented
+    overlay = NotImplemented
 
     def __init__(self, window, widget, dbm):
         self.window = window
@@ -28,13 +31,24 @@ class UnlockedDatabase:
     #
 
     def assemble_listbox(self):
+        self.overlay = Gtk.Overlay()
+        self.parent_widget.add(self.overlay)
+
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/database_action_overlay.ui")
+        database_action_overlay = builder.get_object("database_action_overlay")
+
+        self.overlay.add_overlay(database_action_overlay)
+
         self.current_group = self.database_manager.get_root_group()
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
 
         scrolled_window = self.builder.get_object("scrolled_window")
-        self.parent_widget.add(scrolled_window)
+
+        self.overlay.add(scrolled_window)
+        self.overlay.show_all()
 
         self.stack = self.builder.get_object("list_stack")
 
@@ -51,6 +65,9 @@ class UnlockedDatabase:
 
         save_button = self.builder.get_object("save_button")
         save_button.connect("clicked", self.on_save_button_clicked)
+
+        lock_button = self.builder.get_object("lock_button")
+        lock_button.connect("clicked", self.on_lock_button_clicked)
 
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
@@ -136,6 +153,66 @@ class UnlockedDatabase:
         self.logging_manager.log_debug(list_box_row.get_label() + " selected")
 
     def on_save_button_clicked(self, widget):
-        self.database_manager.save()
-        self.logging_manager = LoggingManager(True)
-        self.logging_manager.log_debug("Database has been saved")
+        self.database_manager.save_database()
+        self.show_database_action_revealer("Saved")
+
+    def on_lock_button_clicked(self, widget):
+        if self.database_manager.made_database_changes is True:
+            self.show_save_dialog()
+        else:
+            self.lock_database()
+
+    def on_save_dialog_save_button_clicked(self, widget, save_dialog):
+        self.database_manager.save_database()
+        save_dialog.destroy()
+
+    def on_save_dialog_discard_button_clicked(self, widget, save_dialog):
+        save_dialog.destroy()
+
+    #
+    # Dialog Creator
+    #
+
+    def show_save_dialog(self):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/save_dialog.ui")
+
+        save_dialog = builder.get_object("save_dialog")
+        save_dialog.set_destroy_with_parent(True)
+        save_dialog.set_modal(True)
+        save_dialog.set_transient_for(self.window)
+
+        discard_button = builder.get_object("discard_button")
+        save_button = builder.get_object("save_button")
+
+        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog)
+        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog)
+
+        save_dialog.present()
+
+    def show_database_action_revealer(self, message):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/database_action_overlay.ui")
+
+        database_action_box = builder.get_object("database_action_box")
+        context = database_action_box.get_style_context()
+        context.add_class('NotifyRevealer')
+
+        database_action_label = builder.get_object("database_action_label")
+        database_action_label.set_text(message)
+
+        database_action_revealer = builder.get_object("database_action_revealer")
+        database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
+        revealer_timer = threading.Timer(3.0, self.hide_database_action_revealer)
+        revealer_timer.start()
+
+    def hide_database_action_revealer(self):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/database_action_overlay.ui")
+
+        database_action_revealer = builder.get_object("database_action_revealer")
+        database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
+
+    def lock_database(self):
+        self.window.close_tab(self.parent_widget)
+        self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)

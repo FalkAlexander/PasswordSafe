@@ -2,13 +2,15 @@
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
 	border: 0;
+	transition: 0.3s;
 }
 
 #PathbarButton:hover {
 	box-shadow: none;
 	transition-property: none;
 	border-top: none;
-	box-shadow: 0px -2px 0px #4a90d9 inset;
+	box-shadow: 0px -2px 0px alpha(currentColor,0.5) inset;
+	transition: box-shadow 0.3s;
 	border-radius: 0px;
 	background: transparent;
 }
@@ -17,13 +19,13 @@
 	box-shadow: none;
 	transition-property: none;
 	border-top: none;
-	box-shadow: 0px -2px 0px #4a90d9 inset;
+	box-shadow: 0px -2px 0px @theme_selected_bg_color inset;
 	border-radius: 0px;
 	background: transparent;
 }
 
 .NotifyRevealer {
-	background-color: #555;
+	background-color: @theme_unfocused_fg_color;
 	color: white;
 	font-size: 1rem;
 	text-shadow: 1px 1px #2a2a2a;

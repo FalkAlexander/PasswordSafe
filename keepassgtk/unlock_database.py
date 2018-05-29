@@ -102,12 +102,13 @@ class UnlockDatabase:
 
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
         password_unlock_entry.connect("activate", self.on_password_unlock_button_clicked)
+        password_unlock_entry.connect("icon-press", self.on_password_unlock_entry_secondary_clicked)
 
     #
     # Events
     #
 
-    def on_unlock_input_secondary_clicked(self, widget, position, eventbutton):
+    def on_password_unlock_entry_secondary_clicked(self, widget, position, eventbutton):
         if widget.get_visibility():
             widget.set_invisible_char("●")
             widget.set_visibility(False)

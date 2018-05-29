@@ -18,6 +18,7 @@ class MainWindow(Gtk.ApplicationWindow):
     database_manager = NotImplemented
     container = NotImplemented
     override_dialog = NotImplemented
+    quit_dialog = NotImplemented
     filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
     first_start_grid = NotImplemented
@@ -34,6 +35,8 @@ class MainWindow(Gtk.ApplicationWindow):
         
         self.create_headerbar()
         self.first_start_screen()
+
+        self.connect("delete-event", self.on_application_quit)
 
         self.custom_css()
 
@@ -300,3 +303,32 @@ class MainWindow(Gtk.ApplicationWindow):
     def on_tab_switch(self, notebook, tab, pagenum):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
+
+    def on_back_button_clicked(self, button):
+        self.quit_dialog.destroy()
+
+    def on_quit_button_clicked(self, button):
+        self.quit_dialog.destroy()
+        self.application.quit()
+
+    def on_application_quit(self, window, event):
+        if self.container.get_n_pages() > 1:
+            builder = Gtk.Builder()
+            builder.add_from_resource(
+                "/run/terminal/KeepassGtk/quit_dialog.ui")
+            self.quit_dialog = builder.get_object("quit_dialog")
+
+            self.quit_dialog.set_destroy_with_parent(True)
+            self.quit_dialog.set_modal(True)
+            self.quit_dialog.set_transient_for(self)
+
+            back_button = builder.get_object("back_button")
+            quit_button = builder.get_object("quit_button")
+
+            back_button.connect("clicked", self.on_back_button_clicked)
+            quit_button.connect("clicked", self.on_quit_button_clicked)
+
+            self.quit_dialog.present()
+
+            return(True)
+            

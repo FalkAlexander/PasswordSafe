@@ -311,6 +311,10 @@ class MainWindow(Gtk.ApplicationWindow):
         self.quit_dialog.destroy()
         self.application.quit()
 
+    #
+    # Application Quit Dialog
+    #
+
     def on_application_quit(self, window, event):
         if self.container.get_n_pages() > 1:
             builder = Gtk.Builder()
@@ -330,5 +334,4 @@ class MainWindow(Gtk.ApplicationWindow):
 
             self.quit_dialog.present()
 
-            return(True)
-            
+            return(True)         

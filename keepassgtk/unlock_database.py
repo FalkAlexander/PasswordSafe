@@ -116,8 +116,8 @@ class UnlockDatabase:
             widget.set_visibility(True)
 
     def on_headerbar_back_button_clicked(self, widget):
-        self.window.close_tab(self.parent_widget)
         self.window.set_headerbar()
+        self.window.close_tab(self.parent_widget)
 
     def on_password_unlock_button_clicked(self, widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")

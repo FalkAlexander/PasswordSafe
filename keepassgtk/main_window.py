@@ -151,10 +151,20 @@ class MainWindow(Gtk.ApplicationWindow):
                 "File selected: " + filechooser_opening_dialog.get_filename())
             filechooser_opening_dialog.close()
 
-            tab_title = self.create_tab_title_from_filepath(
-                filechooser_opening_dialog.get_filename())
-            self.start_database_opening_routine(
-                tab_title, filechooser_opening_dialog.get_filename())
+            database_already_opened = False
+
+            for db in self.opened_databases:
+                if db.database_manager.database_path == filechooser_opening_dialog.get_filename():
+                    database_already_opened = True
+                    page_num = self.container.page_num(db.parent_widget)
+                    self.container.set_current_page(page_num)
+                    db.show_database_action_revealer("Database already opened")
+
+            if database_already_opened is False:
+                tab_title = self.create_tab_title_from_filepath(
+                    filechooser_opening_dialog.get_filename())
+                self.start_database_opening_routine(
+                    tab_title, filechooser_opening_dialog.get_filename())
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.log_debug("File selection canceled")
             filechooser_opening_dialog.close()

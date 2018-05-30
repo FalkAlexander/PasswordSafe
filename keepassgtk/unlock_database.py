@@ -122,7 +122,20 @@ class UnlockDatabase:
     def on_password_unlock_button_clicked(self, widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
 
-        if password_unlock_entry.get_text() != "":
+        database_already_opened = False
+
+        for db in self.window.opened_databases:
+            if db.database_manager.database_path == self.database_filepath:
+                database_already_opened = True
+                page_num = self.window.container.page_num(db.parent_widget)
+                self.window.container.set_current_page(page_num)
+
+                current_page_num = self.window.container.page_num(self.parent_widget)
+                self.window.container.remove_page(current_page_num)
+
+                db.show_database_action_revealer("Database already opened")
+
+        if password_unlock_entry.get_text() != "" and database_already_opened is False:
             try:
                 self.database_manager = DatabaseManager(self.database_filepath, password_unlock_entry.get_text())
                 self.open_database_page()

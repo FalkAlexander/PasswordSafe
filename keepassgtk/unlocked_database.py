@@ -25,6 +25,7 @@ class UnlockedDatabase:
         self.parent_widget = widget
         self.database_manager = dbm
         self.assemble_listbox()
+        self.window.opened_databases.append(self)
 
     #
     # Stack Pages
@@ -66,6 +67,9 @@ class UnlockedDatabase:
 
         lock_button = self.builder.get_object("lock_button")
         lock_button.connect("clicked", self.on_lock_button_clicked)
+
+        add_button = self.builder.get_object("add_button")
+        add_button.connect("clicked", self.on_add_button_clicked)
 
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
@@ -167,6 +171,9 @@ class UnlockedDatabase:
     def on_save_dialog_discard_button_clicked(self, widget, save_dialog):
         save_dialog.destroy()
 
+    def on_add_button_clicked(self, widget):
+        self.database_manager.changes = True
+
     #
     # Dialog Creator
     #
@@ -206,5 +213,6 @@ class UnlockedDatabase:
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
 
     def lock_database(self):
+        self.window.opened_databases.remove(self)
         self.window.close_tab(self.parent_widget)
         self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)

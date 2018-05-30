@@ -23,6 +23,8 @@ class MainWindow(Gtk.ApplicationWindow):
     headerbar = NotImplemented
     first_start_grid = NotImplemented
     logging_manager = LoggingManager(True)
+    opened_databases = []
+    databases_to_save = []
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -284,6 +286,11 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def on_tab_close_button_clicked(self, sender, widget):
         page_num = self.container.page_num(widget)
+
+        for db in self.opened_databases:
+            if db.window.container.page_num(db.parent_widget) == page_num:
+                self.opened_databases.remove(db)
+
         self.container.remove_page(page_num)
         self.update_tab_bar_visibility()
 
@@ -304,10 +311,20 @@ class MainWindow(Gtk.ApplicationWindow):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
 
+    def on_save_check_button_toggled(self, check_button, db):
+        if check_button.get_active():
+            self.databases_to_save.append(db)
+        else:
+            self.databases_to_save.remove(db)
+
     def on_back_button_clicked(self, button):
+        self.databases_to_save.clear()
         self.quit_dialog.destroy()
 
     def on_quit_button_clicked(self, button):
+        for db in self.databases_to_save:
+            db.database_manager.save_database()
+
         self.quit_dialog.destroy()
         self.application.quit()
 
@@ -316,7 +333,12 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def on_application_quit(self, window, event):
-        if self.container.get_n_pages() > 1:
+        unsaved_databases_list = []
+        for db in self.opened_databases:
+            if db.database_manager.changes is True:
+                unsaved_databases_list.append(db)
+
+        if unsaved_databases_list.__len__() > 0:
             builder = Gtk.Builder()
             builder.add_from_resource(
                 "/run/terminal/KeepassGtk/quit_dialog.ui")
@@ -331,6 +353,17 @@ class MainWindow(Gtk.ApplicationWindow):
 
             back_button.connect("clicked", self.on_back_button_clicked)
             quit_button.connect("clicked", self.on_quit_button_clicked)
+
+            unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
+                
+            for db in unsaved_databases_list:
+                unsaved_database_row = Gtk.ListBoxRow()
+                check_button = Gtk.CheckButton()
+                check_button.set_label(db.database_manager.database_path)
+                check_button.connect("toggled", self.on_save_check_button_toggled, db)
+                unsaved_database_row.add(check_button)
+                unsaved_database_row.show_all()
+                unsaved_databases_list_box.add(unsaved_database_row)
 
             self.quit_dialog.present()
 

@@ -5,8 +5,8 @@
   <object class="GtkMessageDialog" id="quit_dialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
-    <property name="text" translatable="yes">Really quit?</property>
-    <property name="secondary_text" translatable="yes">Do you want to lock all opened databases without saving?</property>
+    <property name="text" translatable="yes">Do you want to save all databases with unsaved changes?</property>
+    <property name="secondary_text" translatable="yes">Select the databases you want to save.</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="quit_dialog_box">
         <property name="can_focus">False</property>
@@ -51,7 +51,52 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkBox" id="unsaved_databases_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">35</property>
+            <property name="margin_right">35</property>
+            <property name="margin_bottom">10</property>
+            <property name="hexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkScrolledWindow" id="unsaved_databases_scrolled_window">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="valign">start</property>
+                <property name="hscrollbar_policy">never</property>
+                <property name="vscrollbar_policy">never</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkViewport" id="unsaved_databases_viewport">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="valign">start</property>
+                    <property name="shadow_type">none</property>
+                    <child>
+                      <object class="GtkListBox" id="unsaved_databases_list_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="valign">start</property>
+                        <property name="selection_mode">none</property>
+                        <property name="activate_on_single_click">False</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
         </child>
       </object>
     </child>

@@ -23,7 +23,11 @@ class GroupRow(Gtk.ListBoxRow):
         group_box = builder.get_object("group_box")
 
         group_name_label = builder.get_object("group_name_label")
-        group_name_label.set_text(self.label)
+
+        if self.label is not None:
+            group_name_label.set_text(self.label)
+        else:
+            group_name_label.set_text("")
 
         self.add(group_box)
         self.show_all()

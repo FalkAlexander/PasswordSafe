@@ -30,11 +30,26 @@ class EntryRow(Gtk.ListBoxRow):
         entry_subtitle_label = builder.get_object("entry_subtitle_label")
         entry_password_input = builder.get_object("entry_password_input")
 
-        entry_name_label.set_text(self.label)
-        entry_subtitle_label.set_text(
-            self.database_manager.get_entry_username_from_entry_uuid(
-                self.entry_uuid))
-        entry_password_input.set_text(self.password)
+        # Title/Name
+        if self.label is not None:
+            entry_name_label.set_text(self.label)
+        else:
+            entry_name_label.set_text("")
+
+        # Subtitle
+        subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+        if subtitle is not None:
+            entry_subtitle_label.set_text(
+                self.database_manager.get_entry_username_from_entry_uuid(
+                    self.entry_uuid))
+        else:
+            entry_subtitle_label.set_text("")
+
+        # Password
+        if self.password is not None:
+            entry_password_input.set_text(self.password)
+        else:
+            entry_password_input.set_text("")
 
         self.add(entry_box)
         self.show_all()

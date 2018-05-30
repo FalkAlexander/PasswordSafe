@@ -16,7 +16,7 @@ class UnlockDatabase:
     database_filepath = NotImplemented
     database_manager = NotImplemented
     unlock_database_stack_box = NotImplemented
-    keyfile = NotImplemented
+    keyfile_path = NotImplemented
     composite_keyfile_path = NotImplemented
     logging_manager = LoggingManager(True)
     overlay = NotImplemented
@@ -168,16 +168,17 @@ class UnlockDatabase:
             keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION)
             keyfile_unlock_select_button.set_label(ntpath.basename(keyfile_chooser_dialog.get_filename()))
 
+            self.keyfile_path = keyfile_chooser_dialog.get_filename()
+
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.log_debug("File selection canceled")
             keyfile_chooser_dialog.close()
 
     def on_keyfile_unlock_button_clicked(self, widget):
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
-        keyfile_path = keyfile_unlock_select_button.get_label()
 
         try:
-            self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=keyfile_path)
+            self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
             self.open_database_page()
             self.logging_manager.log_debug("Database successfully opened with keyfile")
         except(OSError, IndexError):

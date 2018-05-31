@@ -10,6 +10,7 @@ class GroupRow(Gtk.ListBoxRow):
 
     def __init__(self, dbm, group):
         Gtk.ListBoxRow.__init__(self)
+        self.set_name("GroupRow")
 
         self.group_uuid = dbm.get_group_uuid_from_group_object(group)
         self.label = dbm.get_group_name_from_group_object(group)

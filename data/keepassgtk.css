@@ -15,6 +15,14 @@
 	background: transparent;
 }
 
+#GroupRow, #EntryRow {
+	box-shadow: 0px 1px 0px alpha(currentColor,0.1) inset;
+}
+
+#entry_subtitle_label {
+	color: alpha(currentColor,0.5);
+}
+
 .PathbarButtonActive {
 	box-shadow: none;
 	transition-property: none;
@@ -38,3 +46,4 @@
 	min-width: 10px;
 	padding: 2px 5px 1px;
 }
+

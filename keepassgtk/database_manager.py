@@ -67,6 +67,15 @@ class DatabaseManager:
         entry = self.db.find_entries(uuid=uuid, first=True)
         return entry.title
 
+    # Return the belonging icon for an entry object
+    def get_entry_icon_from_entry_object(self, entry):
+        return entry.icon
+
+    # Return entry icon from entry uuid
+    def get_entry_icon_from_entry_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.icon
+
     # Return the belonging username for an entry object
     def get_entry_username_from_entry_object(self, entry):
         return entry.username

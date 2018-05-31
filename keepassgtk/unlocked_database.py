@@ -13,6 +13,7 @@ class UnlockedDatabase:
     builder = NotImplemented
     window = NotImplemented
     parent_widget = NotImplemented
+    scrolled_window = NotImplemented
     stack = NotImplemented
     database_manager = NotImplemented
     logging_manager = LoggingManager(True)
@@ -44,12 +45,9 @@ class UnlockedDatabase:
 
         self.current_group = self.database_manager.get_root_group()
 
-        scrolled_window = self.builder.get_object("scrolled_window")
-
-        self.overlay.add(scrolled_window)
-        self.overlay.show_all()
-
         self.stack = self.builder.get_object("list_stack")
+        self.overlay.add(self.stack)
+        self.overlay.show_all()
 
         self.set_headerbar()
 
@@ -81,16 +79,20 @@ class UnlockedDatabase:
     #
 
     def show_page_of_new_directory(self):
-        if self.stack.get_child_by_name(
-            self.database_manager.get_group_uuid_from_group_object(
-                self.current_group)) is None:
+        if self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None:
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
             list_box = builder.get_object("list_box")
             list_box.connect("row-activated", self.on_list_box_row_activated)
             list_box.connect("row-selected", self.on_list_box_row_selected)
 
-            self.add_stack_page(list_box)
+            scrolled_window = builder.get_object("scrolled_window")
+            viewport = Gtk.Viewport()
+            viewport.add(list_box)
+            scrolled_window.add(viewport)
+            scrolled_window.show_all()
+
+            self.add_stack_page(scrolled_window)
             self.insert_groups_into_listbox(list_box)
             self.insert_entries_into_listbox(list_box)
         else:
@@ -98,11 +100,8 @@ class UnlockedDatabase:
                 self.database_manager.get_group_uuid_from_group_object(
                     self.current_group))
 
-    def add_stack_page(self, list_box):
-        self.stack.add_named(
-            list_box,
-            self.database_manager.get_group_uuid_from_group_object(
-                self.current_group))
+    def add_stack_page(self, viewport):
+        self.stack.add_named(viewport, self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.switch_stack_page()
 
     def switch_stack_page(self):

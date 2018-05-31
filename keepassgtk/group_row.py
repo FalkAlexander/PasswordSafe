@@ -28,7 +28,7 @@ class GroupRow(Gtk.ListBoxRow):
         if self.label is not None:
             group_name_label.set_text(self.label)
         else:
-            group_name_label.set_text("")
+            group_name_label.set_markup("<span font-style=\"italic\">" + "No group title specified" + "</span>")
 
         self.add(group_box)
         self.show_all()

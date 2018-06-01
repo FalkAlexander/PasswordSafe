@@ -18,7 +18,6 @@ class UnlockedDatabase:
     database_manager = NotImplemented
     logging_manager = LoggingManager(True)
     current_group = NotImplemented
-    current_entry = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
 
@@ -83,35 +82,56 @@ class UnlockedDatabase:
     #
 
     def show_page_of_new_directory(self):
-        if self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
-            list_box = builder.get_object("list_box")
-            list_box.connect("row-activated", self.on_list_box_row_activated)
-            list_box.connect("row-selected", self.on_list_box_row_selected)
+        if self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None:
+            if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+                print(self.current_group)
+                builder = Gtk.Builder()
+                builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+                list_box = builder.get_object("list_box")
+                list_box.connect("row-activated", self.on_list_box_row_activated)
+                list_box.connect("row-selected", self.on_list_box_row_selected)
 
-            scrolled_window = builder.get_object("scrolled_window")
-            viewport = Gtk.Viewport()
-            viewport.add(list_box)
-            scrolled_window.add(viewport)
-            scrolled_window.show_all()
+                scrolled_window = builder.get_object("scrolled_window")
+                viewport = Gtk.Viewport()
+                viewport.add(list_box)
+                scrolled_window.add(viewport)
+                scrolled_window.show_all()
 
-            self.add_stack_page(scrolled_window)
-            self.insert_groups_into_listbox(list_box)
-            self.insert_entries_into_listbox(list_box)
+                self.add_stack_page(scrolled_window)
+                self.insert_groups_into_listbox(list_box)
+                self.insert_entries_into_listbox(list_box)
+            else:
+                print(self.current_group)
+                print("fill page with entry stuff")
+                builder = Gtk.Builder()
+                builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+
+                scrolled_window = builder.get_object("scrolled_window")
+                viewport = Gtk.Viewport()
+                #viewport.add(list_box)
+                scrolled_window.add(viewport)
+                scrolled_window.show_all()
+
+                self.add_stack_page(scrolled_window)
         else:
-            self.stack.set_visible_child_name(
-                self.database_manager.get_group_uuid_from_group_object(
-                    self.current_group))
+            if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+                self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+            else:
+                self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
 
     def add_stack_page(self, viewport):
-        self.stack.add_named(viewport, self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+            self.stack.add_named(viewport, self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        else:
+            self.stack.add_named(viewport, self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+
         self.switch_stack_page()
 
     def switch_stack_page(self):
-        self.stack.set_visible_child_name(
-            self.database_manager.get_group_uuid_from_group_object(
-                self.current_group))
+        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+            self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        else:
+            self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
 
     def set_current_group(self, group):
         self.current_group = group
@@ -148,7 +168,9 @@ class UnlockedDatabase:
 
     def on_list_box_row_activated(self, widget, list_box_row):
         if list_box_row.get_type() == "EntryRow":
-            self.logging_manager.log_info("Will show details of the entry in near future. Entry clicked: " + list_box_row.get_label())
+            self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
+            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
+            self.show_page_of_new_directory()
         elif list_box_row.get_type() == "GroupRow":
             self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_group_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())

@@ -13,8 +13,6 @@ class Pathbar(Gtk.HBox):
     builder = NotImplemented
     logging_manager = LoggingManager(True)
 
-    pathbar_buttons = []
-
     def __init__(self, database_open_gui, dbm, path, headerbar):
         Gtk.HBox.__init__(self)
         self.set_name("Pathbar")
@@ -73,7 +71,13 @@ class Pathbar(Gtk.HBox):
         self.pack_end(pathbar_button_active, True, True, 0)
 
         self.add_seperator_label()
-        parent_group = self.database_manager.get_parent_group_from_uuid(uuid)
+
+        parent_group = NotImplemented
+
+        if self.database_manager.check_is_group(uuid) is True:
+            parent_group = self.database_manager.get_group_parent_group_from_uuid(uuid)
+        else:
+            parent_group = self.database_manager.get_entry_parent_group_from_uuid(uuid)
 
         while not parent_group.is_root_group:
             self.pack_end(self.create_pathbar_button(
@@ -81,7 +85,7 @@ class Pathbar(Gtk.HBox):
                     parent_group)),
                     True, True, 0)
             self.add_seperator_label()
-            parent_group = self.database_manager.get_parent_group_from_uuid(
+            parent_group = self.database_manager.get_group_parent_group_from_uuid(
                 self.database_manager.get_group_uuid_from_group_object(
                     parent_group))
 
@@ -91,10 +95,15 @@ class Pathbar(Gtk.HBox):
     def create_pathbar_button(self, uuid):
         pathbar_button = PathbarButton(uuid)
 
-        pathbar_button_name = self.database_manager.get_group_name_from_uuid(uuid)
+        pathbar_button_name = NotImplemented
+
+        if self.database_manager.check_is_group(uuid) is True:
+            pathbar_button_name = self.database_manager.get_group_name_from_uuid(uuid)
+        else:
+            pathbar_button_name = self.database_manager.get_entry_name_from_entry_uuid(uuid)
+
         if pathbar_button_name is not None:
-            pathbar_button.set_label(
-                self.database_manager.get_group_name_from_uuid(uuid))
+            pathbar_button.set_label(pathbar_button_name)
         else:
             pathbar_button.set_label("Noname")
 
@@ -139,4 +148,9 @@ class Pathbar(Gtk.HBox):
                     pathbar_button.get_uuid()))
             self.database_open_gui.switch_stack_page()
         else:
-            self.logging_manager.log_info("Functionality of showing details about entries when clicked still to be implemented")
+            self.remove_active_style()
+            self.set_active_style(pathbar_button)
+            self.database_open_gui.set_current_group(
+                self.database_manager.get_entry_object_from_uuid(
+                    pathbar_button.get_uuid()))
+            # Display Entry Page

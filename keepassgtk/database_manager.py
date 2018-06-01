@@ -20,7 +20,7 @@ class DatabaseManager:
     #
 
     # Return the parent group object from the child group uuid
-    def get_parent_group_from_uuid(self, uuid):
+    def get_group_parent_group_from_uuid(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
         return group.parentgroup
 
@@ -54,9 +54,22 @@ class DatabaseManager:
     # Entry Transformation Methods
     #
 
+    # Return the belonging entry object for a entry uuid
+    def get_entry_object_from_uuid(self, uuid):
+        return self.db.find_entries(uuid=uuid, first=True)
+
     # Return entry uuid from entry object
     def get_entry_uuid_from_entry_object(self, entry):
         return entry.uuid
+
+    # Return parent group from entry uuid
+    def get_entry_parent_group_from_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.parentgroup
+
+    # Return parent group from entry object
+    def get_entry_parent_group_from_entry_object(self, entry):
+        return entry.parentgroup
 
     # Return the belonging name for an entry object
     def get_entry_name_from_entry_object(self, entry):
@@ -161,6 +174,14 @@ class DatabaseManager:
     # Return the root group of the database instance
     def get_root_group(self):
         return self.db.root_group
+
+    # Check if object is group
+    def check_is_group(self, uuid):
+        if self.get_group_object_from_uuid(uuid) is None:
+            return False
+        else:
+            return True
+
 
     #
     # Database creation methods

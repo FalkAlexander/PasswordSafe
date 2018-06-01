@@ -188,7 +188,6 @@ class UnlockDatabase:
             keyfile_unlock_select_button.set_label("Try again")
 
             self.logging_manager.log_debug("Invalid keyfile chosen")
-            self.logging_manager.log_debug("Keyfile path: " + keyfile_path)
 
     def on_composite_unlock_select_button_clicked(self, widget):
         filechooser_opening_dialog = Gtk.FileChooserDialog(

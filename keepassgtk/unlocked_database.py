@@ -20,6 +20,12 @@ class UnlockedDatabase:
     current_group = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
+    properties_list_box = NotImplemented
+
+    mod_box = NotImplemented
+    add_entry_button = NotImplemented
+    add_folder_button = NotImplemented
+    add_property_button = NotImplemented
 
     def __init__(self, window, widget, dbm):
         self.window = window
@@ -66,16 +72,38 @@ class UnlockedDatabase:
         lock_button = self.builder.get_object("lock_button")
         lock_button.connect("clicked", self.on_lock_button_clicked)
 
-        add_entry_button = self.builder.get_object("add_entry_button")
-        add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
+        self.mod_box = self.builder.get_object("mod_box")
 
-        add_folder_button = self.builder.get_object("add_folder_button")
-        add_folder_button.connect("clicked", self.on_add_folder_button_clicked)
+        self.add_entry_button = self.builder.get_object("add_entry_button")
+        self.add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
+        self.mod_box.add(self.add_entry_button)
+
+        self.add_folder_button = self.builder.get_object("add_folder_button")
+        self.add_folder_button.connect("clicked", self.on_add_folder_button_clicked)
+        self.mod_box.add(self.add_folder_button)
+
+        self.add_property_button = self.builder.get_object("add_property_button")
+        self.add_property_button.connect("clicked", self.on_add_property_button_clicked)
 
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), headerbar)
+
+    def set_entry_page_headerbar(self):
+        self.mod_box.remove(self.add_entry_button)
+        self.mod_box.remove(self.add_folder_button)
+
+        self.add_property_button.set_sensitive(True)
+
+        self.mod_box.add(self.add_property_button)
+
+    def remove_entry_page_headerbar(self):
+        self.mod_box.remove(self.add_property_button)
+
+        if self.add_entry_button not in self.mod_box.get_children() and self.add_folder_button not in self.mod_box.get_children():
+            self.mod_box.add(self.add_entry_button)
+            self.mod_box.add(self.add_folder_button)
 
     #
     # Group and Entry Management
@@ -101,20 +129,24 @@ class UnlockedDatabase:
                 self.insert_entries_into_listbox(list_box)
             else:
                 builder = Gtk.Builder()
-                builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+                builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+                self.properties_list_box = builder.get_object("properties_list_box")
 
                 scrolled_window = builder.get_object("scrolled_window")
                 viewport = Gtk.Viewport()
-                #viewport.add(list_box)
+                viewport.add(self.properties_list_box)
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
+                self.insert_properties_into_listbox(self.properties_list_box, False)
         else:
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+                self.remove_entry_page_headerbar()
             else:
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+                self.set_entry_page_headerbar()
 
     def add_stack_page(self, viewport):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
@@ -127,8 +159,10 @@ class UnlockedDatabase:
     def switch_stack_page(self):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
             self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+            self.remove_entry_page_headerbar()
         else:
             self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+            self.set_entry_page_headerbar()
 
     def set_current_group(self, group):
         self.current_group = group
@@ -158,6 +192,118 @@ class UnlockedDatabase:
         for entry in entries:
             entry_row = EntryRow(self.database_manager, entry)
             list_box.add(entry_row)
+
+    #
+    # Create Property Entries
+    #
+
+    def insert_properties_into_listbox(self, properties_list_box, add_all):
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+
+        if self.database_manager.has_entry_name(entry_uuid) is True or add_all is True:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+
+            property_row = builder.get_object("property_row")
+            property_name_label = builder.get_object("property_name_label")
+            property_value_entry = builder.get_object("property_value_entry")
+
+            property_name_label.set_text("Title")
+
+            value = self.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
+
+            if self.database_manager.has_entry_name(entry_uuid) is True:
+                property_value_entry.set_text(value)
+            else:
+                property_value_entry.set_text("")
+
+            property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
+
+            properties_list_box.add(property_row)
+
+        if self.database_manager.has_entry_username(entry_uuid) is True or add_all is True:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+
+            property_row = builder.get_object("property_row")
+            property_name_label = builder.get_object("property_name_label")
+            property_value_entry = builder.get_object("property_value_entry")
+
+            property_name_label.set_text("Username")
+
+            value = self.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
+
+            if self.database_manager.has_entry_username(entry_uuid) is True:
+                property_value_entry.set_text(value)
+            else:
+                property_value_entry.set_text("")
+
+            property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
+
+            properties_list_box.add(property_row)
+
+        if self.database_manager.has_entry_password(entry_uuid) is True or add_all is True:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+
+            property_row = builder.get_object("property_row")
+            property_name_label = builder.get_object("property_name_label")
+            property_value_entry = builder.get_object("property_value_entry")
+
+            property_name_label.set_text("Password")
+
+            value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+
+            if self.database_manager.has_entry_password(entry_uuid) is True:
+                property_value_entry.set_text(value)
+            else:
+                property_value_entry.set_text("")
+
+            property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
+
+            properties_list_box.add(property_row)
+
+        if self.database_manager.has_entry_url(entry_uuid) is True or add_all is True:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+
+            property_row = builder.get_object("property_row")
+            property_name_label = builder.get_object("property_name_label")
+            property_value_entry = builder.get_object("property_value_entry")
+
+            property_name_label.set_text("Url")
+
+            value = self.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
+
+            if self.database_manager.has_entry_url(entry_uuid) is True:
+                property_value_entry.set_text(value)
+            else:
+                property_value_entry.set_text("")
+
+            property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
+
+            properties_list_box.add(property_row)
+
+        if self.database_manager.has_entry_notes(entry_uuid) is True or add_all is True:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+
+            property_row = builder.get_object("property_row")
+            property_name_label = builder.get_object("property_name_label")
+            property_value_entry = builder.get_object("property_value_entry")
+
+            property_name_label.set_text("Notes")
+
+            value = self.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+
+            if self.database_manager.has_entry_notes(entry_uuid) is True:
+                property_value_entry.set_text(value)
+            else:
+                property_value_entry.set_text("")
+
+            property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
+
+            properties_list_box.add(property_row)
 
     #
     # Events
@@ -200,6 +346,26 @@ class UnlockedDatabase:
     def on_add_folder_button_clicked(self, widget):
         self.database_manager.changes = True
         self.show_database_action_revealer("Testing only")
+
+    def on_add_property_button_clicked(self, widget):
+        for row in self.properties_list_box.get_children():
+            self.properties_list_box.remove(row)
+
+        self.insert_properties_into_listbox(self.properties_list_box, True)
+
+    def on_property_value_entry_changed(self, widget, type):
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+
+        if type == "name":
+            self.database_manager.set_entry_name(entry_uuid, widget.get_text())
+        elif type == "username":
+            self.database_manager.set_entry_username(entry_uuid, widget.get_text())
+        elif type == "password":
+            self.database_manager.set_entry_password(entry_uuid, widget.get_text())
+        elif type == "url":
+            self.database_manager.set_entry_url(entry_uuid, widget.get_text())
+        elif type == "notes":
+            self.database_manager.set_entry_notes(entry_uuid, widget.get_text())
 
     #
     # Dialog Creator

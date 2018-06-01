@@ -107,6 +107,62 @@ class DatabaseManager:
         entry = self.db.find_entries(uuid=uuid, first=True)
         return entry.password
 
+    # Return the belonging url for an entry uuid
+    def get_entry_url_from_entry_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.url
+
+    # Return the belonging notes for an entry uuid
+    def get_entry_notes_from_entry_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.notes
+
+    #
+    # Entry Checks
+    #
+
+    def has_entry_name(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.title is None:
+            return False
+        else:
+            return True
+
+    def has_entry_username(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.username is None:
+            return False
+        else:
+            return True
+
+    def has_entry_password(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.password is None:
+            return False
+        else:
+            return True
+
+    def has_entry_url(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.url is None:
+            return False
+        else:
+            return True
+
+    def has_entry_notes(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.notes is None:
+            return False
+        else:
+            return True
+
+    def has_entry_icon(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.icon is None:
+            return False
+        else:
+            return True
+
     #
     # Database Modifications
     #
@@ -145,9 +201,34 @@ class DatabaseManager:
     # Entry Modifications
     #
 
+    def set_entry_name(self, uuid, name):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.name = name
+        self.changes = True
+
+    def set_entry_username(self, uuid, username):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.username = username
+        self.changes = True
+
     def set_entry_password(self, uuid, password):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.password = password
+        self.changes = True
+
+    def set_entry_url(self, uuid, url):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.url = url
+        self.changes = True
+
+    def set_entry_notes(self, uuid, notes):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.notes = notes
+        self.changes = True
+
+    def set_entry_icon(self, uuid, icon):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.icon = icon
         self.changes = True
 
     #
@@ -181,7 +262,6 @@ class DatabaseManager:
             return False
         else:
             return True
-
 
     #
     # Database creation methods

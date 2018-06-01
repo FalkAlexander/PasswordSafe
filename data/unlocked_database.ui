@@ -2,6 +2,42 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkButton" id="add_entry_button">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="receives_default">True</property>
+    <child>
+      <object class="GtkImage" id="add_entry_button_image">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="icon_name">document-new-symbolic</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkButton" id="add_folder_button">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="receives_default">True</property>
+    <child>
+      <object class="GtkImage" id="add_folder_button_image">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="icon_name">folder-new-symbolic</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkButton" id="add_property_button">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="receives_default">True</property>
+    <child>
+      <object class="GtkImage" id="add_property_button_image">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="icon_name">list-add-symbolic</property>
+      </object>
+    </child>
+  </object>
   <object class="GtkOverlay" id="database_action_overlay">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -328,42 +364,10 @@
             <property name="can_focus">False</property>
             <property name="margin_right">8</property>
             <child>
-              <object class="GtkButton" id="add_entry_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <child>
-                  <object class="GtkImage" id="add_entry_button_image">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">document-new-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              <placeholder/>
             </child>
             <child>
-              <object class="GtkButton" id="add_folder_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <child>
-                  <object class="GtkImage" id="add_folder_button_image">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">folder-new-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
+              <placeholder/>
             </child>
             <style>
               <class name="linked"/>

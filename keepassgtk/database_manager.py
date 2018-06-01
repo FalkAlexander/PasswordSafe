@@ -203,7 +203,7 @@ class DatabaseManager:
 
     def set_entry_name(self, uuid, name):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.name = name
+        entry.title = name
         self.changes = True
 
     def set_entry_username(self, uuid, username):

@@ -84,7 +84,6 @@ class UnlockedDatabase:
     def show_page_of_new_directory(self):
         if self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None:
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-                print(self.current_group)
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
                 list_box = builder.get_object("list_box")
@@ -101,8 +100,6 @@ class UnlockedDatabase:
                 self.insert_groups_into_listbox(list_box)
                 self.insert_entries_into_listbox(list_box)
             else:
-                print(self.current_group)
-                print("fill page with entry stuff")
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
 

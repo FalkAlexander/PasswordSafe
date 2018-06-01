@@ -99,8 +99,10 @@ class Pathbar(Gtk.HBox):
 
         if self.database_manager.check_is_group(uuid) is True:
             pathbar_button_name = self.database_manager.get_group_name_from_uuid(uuid)
+            pathbar_button.set_is_group()
         else:
             pathbar_button_name = self.database_manager.get_entry_name_from_entry_uuid(uuid)
+            pathbar_button.set_is_entry()
 
         if pathbar_button_name is not None:
             pathbar_button.set_label(pathbar_button_name)
@@ -140,7 +142,7 @@ class Pathbar(Gtk.HBox):
         self.database_open_gui.switch_stack_page()
 
     def on_pathbar_button_clicked(self, pathbar_button):
-        if pathbar_button.get_is_group():
+        if pathbar_button.get_is_group() is True:
             self.remove_active_style()
             self.set_active_style(pathbar_button)
             self.database_open_gui.set_current_group(
@@ -153,4 +155,4 @@ class Pathbar(Gtk.HBox):
             self.database_open_gui.set_current_group(
                 self.database_manager.get_entry_object_from_uuid(
                     pathbar_button.get_uuid()))
-            # Display Entry Page
+            self.database_open_gui.switch_stack_page()

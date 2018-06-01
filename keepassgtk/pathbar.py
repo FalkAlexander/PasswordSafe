@@ -90,8 +90,14 @@ class Pathbar(Gtk.HBox):
 
     def create_pathbar_button(self, uuid):
         pathbar_button = PathbarButton(uuid)
-        pathbar_button.set_label(
-            self.database_manager.get_group_name_from_uuid(uuid))
+
+        pathbar_button_name = self.database_manager.get_group_name_from_uuid(uuid)
+        if pathbar_button_name is not None:
+            pathbar_button.set_label(
+                self.database_manager.get_group_name_from_uuid(uuid))
+        else:
+            pathbar_button.set_label("Noname")
+
         pathbar_button.set_relief(Gtk.ReliefStyle.NONE)
         pathbar_button.activate()
         pathbar_button.connect("clicked", self.on_pathbar_button_clicked)

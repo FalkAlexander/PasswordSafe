@@ -6,6 +6,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="halign">center</property>
+    <property name="valign">start</property>
     <child>
       <object class="GtkRevealer" id="database_action_revealer">
         <property name="visible">True</property>
@@ -149,10 +150,8 @@
         <property name="editable">False</property>
         <property name="visibility">False</property>
         <property name="has_frame">False</property>
-        <property name="invisible_char">●</property>
         <property name="width_chars">14</property>
-        <property name="max_width_chars">14</property>
-        <property name="text" translatable="yes">●●●●●●●</property>
+        <property name="max_width_chars">18</property>
         <property name="shadow_type">none</property>
         <property name="caps_lock_warning">False</property>
         <property name="secondary_icon_name">emblem-documents-symbolic</property>
@@ -324,20 +323,20 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkBox" id="mod_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_right">8</property>
             <child>
-              <object class="GtkButton" id="add_button">
+              <object class="GtkButton" id="add_entry_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <child>
-                  <object class="GtkImage">
+                  <object class="GtkImage" id="add_entry_button_image">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="icon_name">list-add-symbolic</property>
+                    <property name="icon_name">document-new-symbolic</property>
                   </object>
                 </child>
               </object>
@@ -348,15 +347,15 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="add_folder_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <child>
-                  <object class="GtkImage">
+                  <object class="GtkImage" id="add_folder_button_image">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="icon_name">user-trash-symbolic</property>
+                    <property name="icon_name">folder-new-symbolic</property>
                   </object>
                 </child>
               </object>

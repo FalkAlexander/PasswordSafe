@@ -18,6 +18,7 @@ class UnlockedDatabase:
     database_manager = NotImplemented
     logging_manager = LoggingManager(True)
     current_group = NotImplemented
+    current_entry = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
 
@@ -66,8 +67,11 @@ class UnlockedDatabase:
         lock_button = self.builder.get_object("lock_button")
         lock_button.connect("clicked", self.on_lock_button_clicked)
 
-        add_button = self.builder.get_object("add_button")
-        add_button.connect("clicked", self.on_add_button_clicked)
+        add_entry_button = self.builder.get_object("add_entry_button")
+        add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
+
+        add_folder_button = self.builder.get_object("add_folder_button")
+        add_folder_button.connect("clicked", self.on_add_folder_button_clicked)
 
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
@@ -170,8 +174,13 @@ class UnlockedDatabase:
     def on_save_dialog_discard_button_clicked(self, widget, save_dialog):
         save_dialog.destroy()
 
-    def on_add_button_clicked(self, widget):
+    def on_add_entry_button_clicked(self, widget):
         self.database_manager.changes = True
+        self.show_database_action_revealer("Testing only")
+
+    def on_add_folder_button_clicked(self, widget):
+        self.database_manager.changes = True
+        self.show_database_action_revealer("Testing only")
 
     #
     # Dialog Creator

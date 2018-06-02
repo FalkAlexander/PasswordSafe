@@ -6,17 +6,17 @@ gi.require_version('Gtk', '3.0')
 
 
 class Pathbar(Gtk.HBox):
-    database_open_gui = NotImplemented
+    unlocked_database = NotImplemented
     database_manager = NotImplemented
     path = NotImplemented
     headerbar = NotImplemented
     builder = NotImplemented
     logging_manager = LoggingManager(True)
 
-    def __init__(self, database_open_gui, dbm, path, headerbar):
+    def __init__(self, unlocked_database, dbm, path, headerbar):
         Gtk.HBox.__init__(self)
         self.set_name("Pathbar")
-        self.database_open_gui = database_open_gui
+        self.unlocked_database = unlocked_database
         self.database_manager = dbm
         self.path = path
         self.headerbar = headerbar
@@ -137,22 +137,42 @@ class Pathbar(Gtk.HBox):
         self.remove_active_style()
         self.set_active_style(widget)
 
-        self.database_open_gui.set_current_group(
+        self.unlocked_database.set_current_group(
             self.database_manager.get_root_group())
-        self.database_open_gui.switch_stack_page()
+        self.unlocked_database.switch_stack_page()
 
     def on_pathbar_button_clicked(self, pathbar_button):
         if pathbar_button.get_is_group() is True:
             self.remove_active_style()
             self.set_active_style(pathbar_button)
-            self.database_open_gui.set_current_group(
-                self.database_manager.get_group_object_from_uuid(
-                    pathbar_button.get_uuid()))
-            self.database_open_gui.switch_stack_page()
+
+            if self.database_manager.made_database_changes() is True:
+                # Update the page the user have edited properties
+                current_group = self.unlocked_database.get_current_group()
+                changed_group = NotImplemented
+                if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(current_group)) is True:
+                    changed_group = self.database_manager.get_group_path_from_group_object(current_group)
+                else:
+                    changed_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
+
+                stack_page_name = self.database_manager.get_group_uuid_from_group_object(changed_group)
+                stack_page = self.unlocked_database.stack.get_child_by_name(stack_page_name)
+                stack_page.destroy()
+
+                self.unlocked_database.set_current_group(
+                    self.database_manager.get_group_object_from_uuid(
+                        pathbar_button.get_uuid()))
+                self.unlocked_database.show_page_of_new_directory()
+            else:
+                # Switch the stack page if nothing has changed
+                self.unlocked_database.set_current_group(
+                    self.database_manager.get_group_object_from_uuid(
+                        pathbar_button.get_uuid()))
+                self.unlocked_database.switch_stack_page()
         else:
             self.remove_active_style()
             self.set_active_style(pathbar_button)
-            self.database_open_gui.set_current_group(
+            self.unlocked_database.set_current_group(
                 self.database_manager.get_entry_object_from_uuid(
                     pathbar_button.get_uuid()))
-            self.database_open_gui.switch_stack_page()
+            self.unlocked_database.switch_stack_page()

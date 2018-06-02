@@ -347,7 +347,6 @@ class UnlockedDatabase:
             for pathbar_button in self.pathbar.get_children():
                 if pathbar_button.get_name() == "PathbarButtonDynamic":
                     if pathbar_button.get_uuid() == self.database_manager.get_entry_uuid_from_entry_object(self.current_group):
-                        print("ja")
                         pathbar_button.set_label(widget.get_text())
 
         elif type == "username":

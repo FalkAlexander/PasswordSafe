@@ -24,6 +24,10 @@ class DatabaseManager:
         group = self.db.find_groups(uuid=uuid, first=True)
         return group.parentgroup
 
+    # Return the parent group object from the child group object
+    def get_group_parent_group_from_object(self, group):
+        return group.parentgroup
+
     # Return the belonging group object for a group uuid
     def get_group_object_from_uuid(self, uuid):
         return self.db.find_groups(uuid=uuid, first=True)

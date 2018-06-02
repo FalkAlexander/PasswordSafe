@@ -137,27 +137,44 @@ class Pathbar(Gtk.HBox):
         self.remove_active_style()
         self.set_active_style(widget)
 
-        self.unlocked_database.set_current_group(
-            self.database_manager.get_root_group())
-        self.unlocked_database.switch_stack_page()
+        if self.database_manager.made_database_changes() is True and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.unlocked_database.get_current_group())) is False:
+            # Update the page where the user has edited entry properties
+            current_group = self.unlocked_database.get_current_group()
+            changed_group = NotImplemented
+
+            if current_group.parentgroup.is_root_group:
+                changed_group = self.database_manager.get_root_group()
+            else:
+                changed_group = self.database_manager.get_group_parent_group_from_object(current_group)
+
+            stack_page_name = self.database_manager.get_group_uuid_from_group_object(changed_group)
+            self.unlocked_database.scheduled_page_destroy.append(stack_page_name)
+
+            self.unlocked_database.set_current_group(
+                self.database_manager.get_root_group())
+            self.unlocked_database.show_page_of_new_directory()
+        else:
+            self.unlocked_database.set_current_group(
+                self.database_manager.get_root_group())
+            self.unlocked_database.switch_stack_page()
 
     def on_pathbar_button_clicked(self, pathbar_button):
         if pathbar_button.get_is_group() is True:
             self.remove_active_style()
             self.set_active_style(pathbar_button)
 
-            if self.database_manager.made_database_changes() is True:
-                # Update the page the user have edited properties
+            if self.database_manager.made_database_changes() is True and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.unlocked_database.get_current_group())) is False:
+                # Update the page where the user has edited entry properties
                 current_group = self.unlocked_database.get_current_group()
                 changed_group = NotImplemented
-                if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(current_group)) is True:
-                    changed_group = self.database_manager.get_group_path_from_group_object(current_group)
+
+                if current_group.parentgroup.is_root_group:
+                    changed_group = self.database_manager.get_root_group()
                 else:
-                    changed_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
+                    changed_group = self.database_manager.get_group_parent_group_from_object(current_group)
 
                 stack_page_name = self.database_manager.get_group_uuid_from_group_object(changed_group)
-                stack_page = self.unlocked_database.stack.get_child_by_name(stack_page_name)
-                stack_page.destroy()
+                self.unlocked_database.scheduled_page_destroy.append(stack_page_name)
 
                 self.unlocked_database.set_current_group(
                     self.database_manager.get_group_object_from_uuid(

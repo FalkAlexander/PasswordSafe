@@ -21,6 +21,7 @@ class UnlockedDatabase:
     pathbar = NotImplemented
     overlay = NotImplemented
     properties_list_box = NotImplemented
+    scheduled_page_destroy = []
 
     mod_box = NotImplemented
     add_entry_button = NotImplemented
@@ -140,6 +141,15 @@ class UnlockedDatabase:
 
                 self.add_stack_page(scrolled_window)
                 self.insert_properties_into_listbox(self.properties_list_box, False)
+        elif self.database_manager.get_group_uuid_from_group_object(self.current_group) in self.scheduled_page_destroy:
+            stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+            stack_page = self.stack.get_child_by_name(stack_page_name)
+
+            if stack_page is not None:
+                stack_page.destroy()
+
+            self.scheduled_page_destroy.remove(stack_page_name)
+            self.show_page_of_new_directory()
         else:
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))

@@ -2,39 +2,32 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkListBox" id="properties_list_box">
-    <property name="width_request">600</property>
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="selection_mode">none</property>
-    <property name="activate_on_single_click">False</property>
-  </object>
-  <object class="GtkListBoxRow" id="property_row">
+  <object class="GtkListBoxRow" id="icon_property_row">
     <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
     <property name="margin_top">5</property>
     <child>
-      <object class="GtkBox" id="property_box">
+      <object class="GtkBox" id="icon_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
         <property name="spacing">10</property>
         <child>
-          <object class="GtkBox" id="label_box">
+          <object class="GtkBox" id="icon_label_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">end</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="property_name_label">
+              <object class="GtkLabel" id="icon_property_name_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">end</property>
                 <property name="valign">center</property>
                 <property name="vexpand">True</property>
-                <property name="label" translatable="yes">Property Name</property>
+                <property name="label" translatable="yes">Icon</property>
                 <property name="justify">right</property>
                 <property name="ellipsize">end</property>
                 <property name="width_chars">15</property>
@@ -55,7 +48,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="entry_box">
+          <object class="GtkBox" id="icon_entry_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
@@ -64,8 +57,9 @@
             <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkEntry" id="property_value_entry">
+              <object class="GtkEntry" id="icon_property_value_entry">
                 <property name="width_request">450</property>
+                <property name="height_request">-1</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="halign">start</property>
@@ -88,6 +82,312 @@
       </object>
     </child>
   </object>
+  <object class="GtkListBoxRow" id="name_property_row">
+    <property name="height_request">50</property>
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="margin_top">5</property>
+    <child>
+      <object class="GtkBox" id="name_property_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkBox" id="name_label_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="name_property_name_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">Title</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">end</property>
+                <property name="width_chars">15</property>
+                <property name="max_width_chars">15</property>
+                <property name="xalign">1</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="name_entry_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_right">60</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkEntry" id="name_property_value_entry">
+                <property name="width_request">450</property>
+                <property name="height_request">-1</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListBoxRow" id="notes_property_row">
+    <property name="height_request">50</property>
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="margin_top">5</property>
+    <child>
+      <object class="GtkBox" id="notes_property_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkBox" id="notes_label_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="notes_property_name_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">Notes</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">end</property>
+                <property name="width_chars">15</property>
+                <property name="max_width_chars">15</property>
+                <property name="xalign">1</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="notes_entry_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_right">60</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkEntry" id="notes_property_value_entry">
+                <property name="width_request">450</property>
+                <property name="height_request">-1</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListBoxRow" id="password_property_row">
+    <property name="height_request">50</property>
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="margin_top">5</property>
+    <child>
+      <object class="GtkBox" id="password_property_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkBox" id="password_label_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="password_property_name_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">Password</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">end</property>
+                <property name="width_chars">15</property>
+                <property name="max_width_chars">15</property>
+                <property name="xalign">1</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="password_entry_box">
+            <property name="width_request">450</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_right">60</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox" id="linked_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkEntry" id="password_property_value_entry">
+                    <property name="height_request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="valign">center</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="secondary_icon_name">edit-copy-symbolic</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="generate_password_button">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <child>
+                      <object class="GtkImage" id="generate_password_button_image">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">security-high-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack_type">end</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="show_password_button">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <child>
+                      <object class="GtkImage" id="show_password_button_image">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">user-not-tracked-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="pack_type">end</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <style>
+                  <class name="linked"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListBox" id="properties_list_box">
+    <property name="width_request">600</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="selection_mode">none</property>
+    <property name="activate_on_single_click">False</property>
+  </object>
   <object class="GtkScrolledWindow" id="scrolled_window">
     <property name="visible">True</property>
     <property name="can_focus">True</property>
@@ -104,6 +404,168 @@
     <property name="selectable">False</property>
     <child>
       <placeholder/>
+    </child>
+  </object>
+  <object class="GtkListBoxRow" id="url_property_row">
+    <property name="height_request">50</property>
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="margin_top">5</property>
+    <child>
+      <object class="GtkBox" id="url_property_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkBox" id="url_label_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="url_property_name_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">Url</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">end</property>
+                <property name="width_chars">15</property>
+                <property name="max_width_chars">15</property>
+                <property name="xalign">1</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="url_entry_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_right">60</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkEntry" id="url_property_value_entry">
+                <property name="width_request">450</property>
+                <property name="height_request">-1</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="secondary_icon_name">send-to-symbolic</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkListBoxRow" id="username_property_row">
+    <property name="height_request">50</property>
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="margin_top">5</property>
+    <child>
+      <object class="GtkBox" id="username_property_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkBox" id="username_label_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">end</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="username_property_name_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">Username</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">end</property>
+                <property name="width_chars">15</property>
+                <property name="max_width_chars">15</property>
+                <property name="xalign">1</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="username_entry_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_right">60</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkEntry" id="username_property_value_entry">
+                <property name="width_request">450</property>
+                <property name="height_request">-1</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="secondary_icon_name">edit-copy-symbolic</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
     </child>
   </object>
 </interface>

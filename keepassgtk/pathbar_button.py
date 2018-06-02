@@ -9,7 +9,7 @@ class PathbarButton(Gtk.Button):
 
     def __init__(self, uuid):
         Gtk.Button.__init__(self)
-        self.set_name("PathbarButton")
+        self.set_name("PathbarButtonDynamic")
         self.uuid = uuid
 
     def set_uuid(self, uuid):

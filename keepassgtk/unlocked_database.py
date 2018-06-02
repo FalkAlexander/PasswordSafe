@@ -204,106 +204,91 @@ class UnlockedDatabase:
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
 
-            property_row = builder.get_object("property_row")
-            property_name_label = builder.get_object("property_name_label")
-            property_value_entry = builder.get_object("property_value_entry")
-
-            property_name_label.set_text("Title")
+            name_property_row = builder.get_object("name_property_row")
+            name_property_value_entry = builder.get_object("name_property_value_entry")
 
             value = self.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
 
             if self.database_manager.has_entry_name(entry_uuid) is True:
-                property_value_entry.set_text(value)
+                name_property_value_entry.set_text(value)
             else:
-                property_value_entry.set_text("")
+                name_property_value_entry.set_text("")
 
-            property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
+            name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
 
-            properties_list_box.add(property_row)
+            properties_list_box.add(name_property_row)
 
         if self.database_manager.has_entry_username(entry_uuid) is True or add_all is True:
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
 
-            property_row = builder.get_object("property_row")
-            property_name_label = builder.get_object("property_name_label")
-            property_value_entry = builder.get_object("property_value_entry")
-
-            property_name_label.set_text("Username")
+            username_property_row = builder.get_object("username_property_row")
+            username_property_value_entry = builder.get_object("username_property_value_entry")
 
             value = self.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
 
             if self.database_manager.has_entry_username(entry_uuid) is True:
-                property_value_entry.set_text(value)
+                username_property_value_entry.set_text(value)
             else:
-                property_value_entry.set_text("")
+                username_property_value_entry.set_text("")
 
-            property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
+            username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
 
-            properties_list_box.add(property_row)
+            properties_list_box.add(username_property_row)
 
         if self.database_manager.has_entry_password(entry_uuid) is True or add_all is True:
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
 
-            property_row = builder.get_object("property_row")
-            property_name_label = builder.get_object("property_name_label")
-            property_value_entry = builder.get_object("property_value_entry")
-
-            property_name_label.set_text("Password")
+            password_property_row = builder.get_object("password_property_row")
+            password_property_value_entry = builder.get_object("password_property_value_entry")
 
             value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
 
             if self.database_manager.has_entry_password(entry_uuid) is True:
-                property_value_entry.set_text(value)
+                password_property_value_entry.set_text(value)
             else:
-                property_value_entry.set_text("")
+                password_property_value_entry.set_text("")
 
-            property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
+            password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
-            properties_list_box.add(property_row)
+            properties_list_box.add(password_property_row)
 
         if self.database_manager.has_entry_url(entry_uuid) is True or add_all is True:
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
 
-            property_row = builder.get_object("property_row")
-            property_name_label = builder.get_object("property_name_label")
-            property_value_entry = builder.get_object("property_value_entry")
-
-            property_name_label.set_text("Url")
+            url_property_row = builder.get_object("url_property_row")
+            url_property_value_entry = builder.get_object("url_property_value_entry")
 
             value = self.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
 
             if self.database_manager.has_entry_url(entry_uuid) is True:
-                property_value_entry.set_text(value)
+                url_property_value_entry.set_text(value)
             else:
-                property_value_entry.set_text("")
+                url_property_value_entry.set_text("")
 
-            property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
+            url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
 
-            properties_list_box.add(property_row)
+            properties_list_box.add(url_property_row)
 
         if self.database_manager.has_entry_notes(entry_uuid) is True or add_all is True:
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
 
-            property_row = builder.get_object("property_row")
-            property_name_label = builder.get_object("property_name_label")
-            property_value_entry = builder.get_object("property_value_entry")
-
-            property_name_label.set_text("Notes")
+            notes_property_row = builder.get_object("notes_property_row")
+            notes_property_value_entry = builder.get_object("notes_property_value_entry")
 
             value = self.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
 
             if self.database_manager.has_entry_notes(entry_uuid) is True:
-                property_value_entry.set_text(value)
+                notes_property_value_entry.set_text(value)
             else:
-                property_value_entry.set_text("")
+                notes_property_value_entry.set_text("")
 
-            property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
+            notes_property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
 
-            properties_list_box.add(property_row)
+            properties_list_box.add(notes_property_row)
 
     #
     # Events
@@ -358,6 +343,13 @@ class UnlockedDatabase:
 
         if type == "name":
             self.database_manager.set_entry_name(entry_uuid, widget.get_text())
+
+            for pathbar_button in self.pathbar.get_children():
+                if pathbar_button.get_name() == "PathbarButtonDynamic":
+                    if pathbar_button.get_uuid() == self.database_manager.get_entry_uuid_from_entry_object(self.current_group):
+                        print("ja")
+                        pathbar_button.set_label(widget.get_text())
+
         elif type == "username":
             self.database_manager.set_entry_username(entry_uuid, widget.get_text())
         elif type == "password":

@@ -336,7 +336,12 @@ class UnlockedDatabase:
 
     def on_add_entry_button_clicked(self, widget):
         self.database_manager.changes = True
-        self.show_database_action_revealer("Testing only")
+        entry = self.database_manager.add_entry_to_database("", "", "", "", "", "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        self.current_group = entry
+        self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+        self.show_page_of_new_directory()
+
+        self.show_database_action_revealer("Added Entry")
 
     def on_add_folder_button_clicked(self, widget):
         self.database_manager.changes = True

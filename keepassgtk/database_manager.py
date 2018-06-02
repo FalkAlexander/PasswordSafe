@@ -181,10 +181,11 @@ class DatabaseManager:
     def add_entry_to_database(
             self, name, username, password, url, notes, icon, group_uuid):
         destination_group = self.get_group_object_from_uuid(group_uuid)
-        self.db.add_entry(
+        entry = self.db.add_entry(
             destination_group, name, username, password, url=url, notes=notes,
             expiry_time=None, tags=None, icon=icon, force_creation=False)
         self.changes = True
+        return entry
 
     # Write all changes to database
     def save_database(self):

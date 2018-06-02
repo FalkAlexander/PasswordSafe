@@ -22,6 +22,7 @@ class UnlockedDatabase:
     overlay = NotImplemented
     properties_list_box = NotImplemented
     scheduled_page_destroy = []
+    changes = False
 
     mod_box = NotImplemented
     add_entry_button = NotImplemented
@@ -355,6 +356,8 @@ class UnlockedDatabase:
 
     def on_property_value_entry_changed(self, widget, type):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+
+        self.changes = True
 
         if type == "name":
             self.database_manager.set_entry_name(entry_uuid, widget.get_text())

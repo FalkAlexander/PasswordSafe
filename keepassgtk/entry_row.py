@@ -10,6 +10,7 @@ class EntryRow(Gtk.ListBoxRow):
     icon = NotImplemented
     label = NotImplemented
     password = NotImplemented
+    changed = False
     type = "EntryRow"
 
     def __init__(self, dbm, entry):
@@ -78,3 +79,9 @@ class EntryRow(Gtk.ListBoxRow):
 
     def get_type(self):
         return self.type
+
+    def set_changed(self, bool):
+        self.changed = bool
+
+    def get_changed(self):
+        return self.changed

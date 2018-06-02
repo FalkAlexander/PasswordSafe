@@ -40,14 +40,14 @@ class EntryRow(Gtk.ListBoxRow):
         entry_icon.set_from_icon_name(keepassgtk.icon.get_icon(self.icon), 20)
 
         # Title/Name
-        if self.label is not None:
+        if self.database_manager.has_entry_name(self.entry_uuid) is True and self.label is not "":
             entry_name_label.set_text(self.label)
         else:
             entry_name_label.set_markup("<span font-style=\"italic\">" + "Title not specified" + "</span>")
 
         # Subtitle
         subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
-        if subtitle is not None:
+        if self.database_manager.has_entry_username(self.entry_uuid) is True and subtitle is not "":
             entry_subtitle_label.set_text(
                 self.database_manager.get_entry_username_from_entry_uuid(
                     self.entry_uuid))
@@ -55,7 +55,7 @@ class EntryRow(Gtk.ListBoxRow):
             entry_subtitle_label.set_markup("<span font-style=\"italic\">" + "No username specified" + "</span>")
 
         # Password
-        if self.password is not None:
+        if self.database_manager.has_entry_password(self.entry_uuid) is True and self.password is not "":
             entry_password_input.set_text(self.password)
         else:
             entry_password_input.set_text("")

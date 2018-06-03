@@ -101,6 +101,7 @@ class UnlockDatabase:
         composite_unlock_select_button.connect("clicked", self.on_composite_unlock_select_button_clicked)
 
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
+        password_unlock_entry.grab_focus()
         password_unlock_entry.connect("activate", self.on_password_unlock_button_clicked)
         password_unlock_entry.connect("icon-press", self.on_password_unlock_entry_secondary_clicked)
 

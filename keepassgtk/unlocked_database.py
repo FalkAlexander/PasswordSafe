@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gio, Gdk, Gtk
 from keepassgtk.logging_manager import LoggingManager
 from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
@@ -26,8 +26,11 @@ class UnlockedDatabase:
 
     mod_box = NotImplemented
     add_entry_button = NotImplemented
-    add_folder_button = NotImplemented
+    add_group_button = NotImplemented
     add_property_button = NotImplemented
+
+    entry_marked_for_delete = NotImplemented
+    group_marked_for_delete = NotImplemented
 
     def __init__(self, window, widget, dbm):
         self.window = window
@@ -58,8 +61,9 @@ class UnlockedDatabase:
         self.overlay.show_all()
 
         self.set_headerbar()
+        self.prepare_actions()
 
-        self.show_page_of_new_directory()
+        self.show_page_of_new_directory(False)
 
     #
     # Headerbar
@@ -80,9 +84,9 @@ class UnlockedDatabase:
         self.add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
         self.mod_box.add(self.add_entry_button)
 
-        self.add_folder_button = self.builder.get_object("add_folder_button")
-        self.add_folder_button.connect("clicked", self.on_add_folder_button_clicked)
-        self.mod_box.add(self.add_folder_button)
+        self.add_group_button = self.builder.get_object("add_group_button")
+        self.add_group_button.connect("clicked", self.on_add_group_button_clicked)
+        self.mod_box.add(self.add_group_button)
 
         self.add_property_button = self.builder.get_object("add_property_button")
         self.add_property_button.connect("clicked", self.on_add_property_button_clicked)
@@ -94,7 +98,7 @@ class UnlockedDatabase:
 
     def set_entry_page_headerbar(self):
         self.mod_box.remove(self.add_entry_button)
-        self.mod_box.remove(self.add_folder_button)
+        self.mod_box.remove(self.add_group_button)
 
         self.add_property_button.set_sensitive(True)
 
@@ -103,17 +107,44 @@ class UnlockedDatabase:
     def remove_entry_page_headerbar(self):
         self.mod_box.remove(self.add_property_button)
 
-        if self.add_entry_button not in self.mod_box.get_children() and self.add_folder_button not in self.mod_box.get_children():
+        if self.add_entry_button not in self.mod_box.get_children() and self.add_group_button not in self.mod_box.get_children():
             self.mod_box.add(self.add_entry_button)
-            self.mod_box.add(self.add_folder_button)
+            self.mod_box.add(self.add_group_button)
+
+    def prepare_actions(self):
+        delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
+        delete_entry_action.connect("activate", self.on_entry_delete_menu_button_clicked)
+        self.window.application.add_action(delete_entry_action)
+
+        delete_group_action = Gio.SimpleAction.new("group.delete", None)
+        delete_group_action.connect("activate", self.on_group_delete_menu_button_clicked)
+        self.window.application.add_action(delete_group_action)
 
     #
     # Group and Entry Management
     #
 
-    def show_page_of_new_directory(self):
+    def show_page_of_new_directory(self, edit_group):
         if self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None:
-            if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+            if edit_group is True:
+                builder = Gtk.Builder()
+                builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
+                self.properties_list_box = builder.get_object("properties_list_box")
+
+                scrolled_window = builder.get_object("scrolled_window")
+                viewport = Gtk.Viewport()
+                viewport.add(self.properties_list_box)
+                scrolled_window.add(viewport)
+                scrolled_window.show_all()
+
+                stack_page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+                if self.stack.get_child_by_name(stack_page_uuid) is not None:
+                    stack_page = self.stack.get_child_by_name(stack_page_uuid)
+                    stack_page.destroy()
+
+                self.add_stack_page(scrolled_window)
+                self.insert_group_properties_into_listbox(self.properties_list_box, True)
+            elif self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
                 list_box = builder.get_object("list_box")
@@ -141,7 +172,7 @@ class UnlockedDatabase:
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
-                self.insert_properties_into_listbox(self.properties_list_box, False)
+                self.insert_entry_properties_into_listbox(self.properties_list_box, False)
         elif self.database_manager.get_group_uuid_from_group_object(self.current_group) in self.scheduled_page_destroy:
             stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
             stack_page = self.stack.get_child_by_name(stack_page_name)
@@ -150,7 +181,7 @@ class UnlockedDatabase:
                 stack_page.destroy()
 
             self.scheduled_page_destroy.remove(stack_page_name)
-            self.show_page_of_new_directory()
+            self.show_page_of_new_directory(False)
         else:
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -159,11 +190,11 @@ class UnlockedDatabase:
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
                 self.set_entry_page_headerbar()
 
-    def add_stack_page(self, viewport):
+    def add_stack_page(self, scrolled_window):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-            self.stack.add_named(viewport, self.database_manager.get_group_uuid_from_group_object(self.current_group))
+            self.stack.add_named(scrolled_window, self.database_manager.get_group_uuid_from_group_object(self.current_group))
         else:
-            self.stack.add_named(viewport, self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+            self.stack.add_named(scrolled_window, self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
 
         self.switch_stack_page()
 
@@ -174,6 +205,12 @@ class UnlockedDatabase:
         else:
             self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
             self.set_entry_page_headerbar()
+
+    def update_current_stack_page(self):
+        stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        stack_page = self.stack.get_child_by_name(stack_page_name)
+        stack_page.destroy()
+        self.show_page_of_new_directory(False)
 
     def set_current_group(self, group):
         self.current_group = group
@@ -194,21 +231,21 @@ class UnlockedDatabase:
             groups = self.database_manager.get_groups_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
 
         for group in groups:
-            group_row = GroupRow(self.database_manager, group)
+            group_row = GroupRow(self, self.database_manager, group)
             list_box.add(group_row)
 
     def insert_entries_into_listbox(self, list_box):
         entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
 
         for entry in entries:
-            entry_row = EntryRow(self.database_manager, entry)
+            entry_row = EntryRow(self, self.database_manager, entry)
             list_box.add(entry_row)
 
     #
     # Create Property Entries
     #
 
-    def insert_properties_into_listbox(self, properties_list_box, add_all):
+    def insert_entry_properties_into_listbox(self, properties_list_box, add_all):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
         if self.database_manager.has_entry_name(entry_uuid) is True or add_all is True:
@@ -301,19 +338,50 @@ class UnlockedDatabase:
 
             properties_list_box.add(notes_property_row)
 
+    def insert_group_properties_into_listbox(self, properties_list_box):
+        group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
+
+        name_property_row = builder.get_object("name_property_row")
+        name_property_value_entry = builder.get_object("name_property_value_entry")
+        name_property_value_entry.connect("changed", self.on_property_value_group_changed, "name")
+
+        notes_property_row = builder.get_object("notes_property_row")
+        notes_property_row_entry = builder.get_object("notes_property_row_entry")
+        notes_property_row_entry.connect("changed", self.on_property_value_group_changed, "notes")
+
+        name_value = self.database_manager.get_group_name_from_uuid(group_uuid)
+        notes_value = self.database_manager.get_group_notes_from_group_uuid(group_uuid)
+
+        if self.database_manager.has_group_name(group_uuid) is True:
+            name_property_value_entry.set_text(value)
+        else:
+            name_property_value_entry.set_text("")
+
+        if self.database_manager.has_group_notes(group_uuid) is True:
+            notes_property_row_entry.set_text(value)
+        else:
+            notes_property_row_entry.set_text("")
+
+        properties_list_box.add(name_property_row)
+        properties_list_box.add(notes_property_row)
+
     #
     # Events
     #
 
     def on_list_box_row_activated(self, widget, list_box_row):
         if list_box_row.get_type() == "EntryRow":
+
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
-            self.show_page_of_new_directory()
+            self.show_page_of_new_directory(False)
         elif list_box_row.get_type() == "GroupRow":
             self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_group_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
-            self.show_page_of_new_directory()
+            self.show_page_of_new_directory(False)
 
     def on_list_box_row_selected(self, widget, list_box_row):
         self.logging_manager.log_debug(list_box_row.get_label() + " selected")
@@ -340,13 +408,18 @@ class UnlockedDatabase:
         entry = self.database_manager.add_entry_to_database("", "", "", "", "", "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.current_group = entry
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
-        self.show_page_of_new_directory()
+        self.show_page_of_new_directory(False)
 
         self.show_database_action_revealer("Added Entry")
 
-    def on_add_folder_button_clicked(self, widget):
+    def on_add_group_button_clicked(self, widget):
         self.database_manager.changes = True
-        self.show_database_action_revealer("Testing only")
+        group = self.database_manager.add_group_to_database("", "0", "", self.current_group)
+        self.current_group = group
+        self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        self.show_page_of_new_directory(True)
+
+        self.show_database_action_revealer("Added Group")
 
     def on_add_property_button_clicked(self, widget):
         for row in self.properties_list_box.get_children():
@@ -375,6 +448,35 @@ class UnlockedDatabase:
             self.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type == "notes":
             self.database_manager.set_entry_notes(entry_uuid, widget.get_text())
+
+    def on_property_value_group_changed(self, widget, type):
+        group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+
+        self.changes = True
+
+    def on_entry_row_button_pressed(self, widget, event):
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+            self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_entry_uuid())
+            entry_context_popover = self.builder.get_object("entry_context_popover")
+            entry_context_popover.set_relative_to(widget)
+            entry_context_popover.show_all()
+            entry_context_popover.popup()
+
+    def on_entry_delete_menu_button_clicked(self, action, param):
+        self.database_manager.delete_entry_from_database(self.entry_marked_for_delete)
+        self.update_current_stack_page()
+
+    def on_group_row_button_pressed(self, widget, event):
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+            self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
+            group_context_popover = self.builder.get_object("group_context_popover")
+            group_context_popover.set_relative_to(widget)
+            group_context_popover.show_all()
+            group_context_popover.popup()
+
+    def on_group_delete_menu_button_clicked(self, action, param):
+        self.database_manager.delete_group_from_database(self.group_marked_for_delete)
+        self.update_current_stack_page()
 
     #
     # Dialog Creator

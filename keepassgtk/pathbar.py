@@ -161,7 +161,7 @@ class Pathbar(Gtk.HBox):
             self.unlocked_database.changes = False
             self.unlocked_database.set_current_group(
                 self.database_manager.get_root_group())
-            self.unlocked_database.show_page_of_new_directory()
+            self.unlocked_database.show_page_of_new_directory(False)
         else:
             self.unlocked_database.set_current_group(
                 self.database_manager.get_root_group())
@@ -197,7 +197,7 @@ class Pathbar(Gtk.HBox):
                 self.unlocked_database.set_current_group(
                     self.database_manager.get_group_object_from_uuid(
                         pathbar_button.get_uuid()))
-                self.unlocked_database.show_page_of_new_directory()
+                self.unlocked_database.show_page_of_new_directory(False)
             else:
                 # Switch the stack page if nothing has changed
                 self.unlocked_database.set_current_group(

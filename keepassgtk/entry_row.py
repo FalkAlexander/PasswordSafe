@@ -5,6 +5,7 @@ gi.require_version('Gtk', '3.0')
 
 
 class EntryRow(Gtk.ListBoxRow):
+    unlocked_database = NotImplemented
     database_manager = NotImplemented
     entry_uuid = NotImplemented
     icon = NotImplemented
@@ -13,10 +14,11 @@ class EntryRow(Gtk.ListBoxRow):
     changed = False
     type = "EntryRow"
 
-    def __init__(self, dbm, entry):
+    def __init__(self, unlocked_database, dbm, entry):
         Gtk.ListBoxRow.__init__(self)
         self.set_name("EntryRow")
 
+        self.unlocked_database = unlocked_database
         self.database_manager = dbm
 
         self.entry_uuid = dbm.get_entry_uuid_from_entry_object(entry)
@@ -30,7 +32,8 @@ class EntryRow(Gtk.ListBoxRow):
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/run/terminal/KeepassGtk/unlocked_database.ui")
-        entry_box = builder.get_object("entry_box")
+        entry_event_box = builder.get_object("entry_event_box")
+        entry_event_box.connect("button-press-event", self.unlocked_database.on_entry_row_button_pressed)
 
         entry_icon = builder.get_object("entry_icon")
         entry_name_label = builder.get_object("entry_name_label")
@@ -61,7 +64,7 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             entry_password_input.set_text("")
 
-        self.add(entry_box)
+        self.add(entry_event_box)
         self.show_all()
 
     def get_entry_uuid(self):

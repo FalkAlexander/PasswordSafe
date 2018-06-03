@@ -49,6 +49,15 @@ class DatabaseManager:
     def get_group_name_from_group_object(self, group):
         return group.name
 
+    # Return the belonging notes for a group object
+    def get_group_notes_from_group_object(self, group):
+        return group.notes
+
+    # Return the belonging notes for a group uuid
+    def get_group_notes_from_group_uuid(self, uuid):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        return group.notes
+
     # Return path for group uuid
     def get_group_path_from_group_uuid(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
@@ -168,14 +177,42 @@ class DatabaseManager:
             return True
 
     #
+    # Group Checks
+    #
+
+    def has_group_name(self, uuid):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        if group.title is None:
+            return False
+        else:
+            return True
+
+    def has_group_notes(self, uuid):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        if group.notes is None:
+            return False
+        else:
+            return True
+
+    def has_group_icon(self, uuid):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        if group.icon is None:
+            return False
+        else:
+            return True
+
+    #
     # Database Modifications
     #
 
     # Add new group to database
-    def add_group_to_database(self, name, group_path, icon, parent_group_uuid):
-        destination_group = self.get_group_object_from_uuid(parent_group_uuid)
-        self.db.add_group(destination_group, name, icon)
+    def add_group_to_database(self, name, icon, notes, parent_group):
+        self.db.add_group(parent_group, name, icon=icon, notes=notes)
         self.changes = True
+
+    # Delete a group
+    def delete_group_from_database(self, group):
+        self.db.delete_group(group)
 
     # Add new entry to database
     def add_entry_to_database(
@@ -186,6 +223,10 @@ class DatabaseManager:
             expiry_time=None, tags=None, icon=icon, force_creation=False)
         self.changes = True
         return entry
+
+    # Delete an entry
+    def delete_entry_from_database(self, entry):
+        self.db.delete_entry(entry)
 
     # Write all changes to database
     def save_database(self):

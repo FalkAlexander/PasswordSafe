@@ -425,7 +425,7 @@ class UnlockedDatabase:
         for row in self.properties_list_box.get_children():
             self.properties_list_box.remove(row)
 
-        self.insert_properties_into_listbox(self.properties_list_box, True)
+        self.insert_entry_properties_into_listbox(self.properties_list_box, True)
 
     def on_property_value_entry_changed(self, widget, type):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)

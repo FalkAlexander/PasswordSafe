@@ -143,7 +143,7 @@ class UnlockedDatabase:
                     stack_page.destroy()
 
                 self.add_stack_page(scrolled_window)
-                self.insert_group_properties_into_listbox(self.properties_list_box, True)
+                self.insert_group_properties_into_listbox(self.properties_list_box)
             elif self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
@@ -349,21 +349,21 @@ class UnlockedDatabase:
         name_property_value_entry.connect("changed", self.on_property_value_group_changed, "name")
 
         notes_property_row = builder.get_object("notes_property_row")
-        notes_property_row_entry = builder.get_object("notes_property_row_entry")
-        notes_property_row_entry.connect("changed", self.on_property_value_group_changed, "notes")
+        notes_property_value_entry = builder.get_object("notes_property_value_entry")
+        notes_property_value_entry.connect("changed", self.on_property_value_group_changed, "notes")
 
         name_value = self.database_manager.get_group_name_from_uuid(group_uuid)
         notes_value = self.database_manager.get_group_notes_from_group_uuid(group_uuid)
 
         if self.database_manager.has_group_name(group_uuid) is True:
-            name_property_value_entry.set_text(value)
+            name_property_value_entry.set_text(name_value)
         else:
             name_property_value_entry.set_text("")
 
         if self.database_manager.has_group_notes(group_uuid) is True:
-            notes_property_row_entry.set_text(value)
+            notes_property_value_entry.set_text(notes_value)
         else:
-            notes_property_row_entry.set_text("")
+            notes_property_value_entry.set_text("")
 
         properties_list_box.add(name_property_row)
         properties_list_box.add(notes_property_row)
@@ -453,6 +453,17 @@ class UnlockedDatabase:
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
 
         self.changes = True
+
+        if type == "name":
+            self.database_manager.set_group_name(group_uuid, widget.get_text())
+
+            for pathbar_button in self.pathbar.get_children():
+                if pathbar_button.get_name() == "PathbarButtonDynamic":
+                    if pathbar_button.get_uuid() == self.database_manager.get_group_uuid_from_group_object(self.current_group):
+                        pathbar_button.set_label(widget.get_text())
+
+        elif type == "notes":
+            self.database_manager.set_group_notes(group_uuid, widget.get_text())
 
     def on_entry_row_button_pressed(self, widget, event):
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:

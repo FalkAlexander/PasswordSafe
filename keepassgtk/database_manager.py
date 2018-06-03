@@ -182,7 +182,7 @@ class DatabaseManager:
 
     def has_group_name(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
-        if group.title is None:
+        if group.name is None:
             return False
         else:
             return True
@@ -207,12 +207,14 @@ class DatabaseManager:
 
     # Add new group to database
     def add_group_to_database(self, name, icon, notes, parent_group):
-        self.db.add_group(parent_group, name, icon=icon, notes=notes)
+        group = self.db.add_group(parent_group, name, icon=icon, notes=notes)
         self.changes = True
+        return group
 
     # Delete a group
     def delete_group_from_database(self, group):
         self.db.delete_group(group)
+        self.changes = True
 
     # Add new entry to database
     def add_entry_to_database(
@@ -227,6 +229,7 @@ class DatabaseManager:
     # Delete an entry
     def delete_entry_from_database(self, entry):
         self.db.delete_entry(entry)
+        self.changes = True
 
     # Write all changes to database
     def save_database(self):
@@ -276,6 +279,23 @@ class DatabaseManager:
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.icon = icon
         self.changes = True
+
+    #
+    # Group Modifications
+    #
+
+    def set_group_name(self, uuid, name):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        group.name = name
+        self.changes = True
+
+    def set_group_notes(self, uuid, notes):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        group.notes = notes
+
+    def set_group_icon(self, uuid, icon):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        group.icon = icon
 
     #
     # Read Database

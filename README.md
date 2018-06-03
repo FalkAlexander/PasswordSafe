@@ -28,7 +28,7 @@ sudo ninja -C _build install
 ```
 
 ### Install
-* Arch Linux AUR: [keepassgtk](https://aur.archlinux.org/packages/keepassgtk/)
+* Arch Linux AUR: [keepassgtk](https://aur.archlinux.org/packages/keepassgtk-git/)
 
 # Known issues
 * For creating databases is used a workaround because the library can't create new ones. There is used a clean pre-configured database which password (liufhre86ewoiwejmrcu8owe; AES-256; AES-KDF) is being changed.

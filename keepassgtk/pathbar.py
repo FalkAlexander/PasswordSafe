@@ -129,6 +129,14 @@ class Pathbar(Gtk.HBox):
             context = pathbar_button.get_style_context()
             context.remove_class('PathbarButtonActive')
 
+    def rebuild_pathbar(self, group):
+        if self.database_manager.check_is_root_group(group) is True:
+            self.clear_pathbar()
+            self.first_appearance()
+            self.add_seperator_label()
+        else:
+            self.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(group))
+
     #
     # Events
     #
@@ -160,6 +168,10 @@ class Pathbar(Gtk.HBox):
                 self.database_manager.get_entry_object_from_uuid(
                     pathbar_button.get_uuid()))
             self.unlocked_database.switch_stack_page()
+
+    #
+    # Helper Methods
+    #
 
     def check_is_edit_page(self):
         current_group = self.unlocked_database.get_current_group()
@@ -208,6 +220,8 @@ class Pathbar(Gtk.HBox):
 
                 if self.database_manager.check_is_root_group(update_group) is True:
                     update_group = self.database_manager.get_root_group()
+
+                self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(edit_page))
             else:
                 update_group = self.database_manager.get_entry_parent_group_from_entry_object(edit_page)
 
@@ -242,16 +256,9 @@ class Pathbar(Gtk.HBox):
                 if group_notes is None or group_notes is "":
                     if group_icon is "0":
                         parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
-                        if self.database_manager.check_is_root_group(parent_group) is True:
-                            self.database_manager.delete_group_from_database(current_group)
-                            self.clear_pathbar()
-                            self.first_appearance()
-                            self.add_seperator_label()
-                            return True
-                        else:
-                            self.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(parent_group))
-                            self.database_manager.delete_group_from_database(current_group)
-                            return True
+                        self.database_manager.delete_group_from_database(current_group)
+                        self.rebuild_pathbar(parent_group)
+                        return True
             else:
                 return False
         else:
@@ -269,16 +276,9 @@ class Pathbar(Gtk.HBox):
                             if entry_notes is None or entry_notes is "":
                                 if entry_icon is "0":
                                     parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
-                                    if self.database_manager.check_is_root_group(parent_group) is True:
-                                        self.database_manager.delete_entry_from_database(current_group)
-                                        self.clear_pathbar()
-                                        self.first_appearance()
-                                        self.add_seperator_label()
-                                        return True
-                                    else:
-                                        self.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(parent_group))
-                                        self.database_manager.delete_entry_from_database(current_group)
-                                        return True
+                                    self.database_manager.delete_entry_from_database(current_group)
+                                    self.rebuild_pathbar(parent_group)
+                                    return True
             else:
                 return False
 

@@ -174,7 +174,7 @@ class UnlockedDatabase:
                 self.add_stack_page(scrolled_window)
                 self.insert_entry_properties_into_listbox(self.properties_list_box, False)
         elif self.database_manager.get_group_uuid_from_group_object(self.current_group) in self.scheduled_page_destroy:
-            print("komische funktion")
+            self.logging_manager.log_warn("Deleted existing stack page which should not exist")
             stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
             stack_page = self.stack.get_child_by_name(stack_page_name)
 
@@ -495,7 +495,7 @@ class UnlockedDatabase:
 
         # If the deleted entry is in the pathbar, we need to rebuild the pathbar
         if self.pathbar.is_pathbar_button_in_pathbar(entry_uuid) is True:
-            self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+            self.pathbar.rebuild_pathbar(self.current_group)
 
         self.database_manager.delete_entry_from_database(self.entry_marked_for_delete)
         self.update_current_stack_page()
@@ -509,6 +509,12 @@ class UnlockedDatabase:
             group_context_popover.popup()
 
     def on_group_delete_menu_button_clicked(self, action, param):
+        group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.group_marked_for_delete)
+
+        # If the deleted group is in the pathbar, we need to rebuild the pathbar
+        if self.pathbar.is_pathbar_button_in_pathbar(group_uuid) is True:
+            self.pathbar.rebuild_pathbar(self.current_group)
+
         self.database_manager.delete_group_from_database(self.group_marked_for_delete)
         self.update_current_stack_page()
 

@@ -143,6 +143,7 @@ class MainWindow(Gtk.ApplicationWindow):
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keepass 2 Database")
         filter_text.add_mime_type("application/x-keepass2")
+        filter_text.add_mime_type("application/octet-stream")
         filechooser_opening_dialog.add_filter(filter_text)
 
         response = filechooser_opening_dialog.run()

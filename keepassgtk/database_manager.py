@@ -53,6 +53,10 @@ class DatabaseManager:
     def get_group_notes_from_group_object(self, group):
         return group.notes
 
+     # Return the belonging icon for a group object
+    def get_group_icon_from_group_object(self, group):
+        return group.icon
+
     # Return the belonging notes for a group uuid
     def get_group_notes_from_group_uuid(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
@@ -125,9 +129,17 @@ class DatabaseManager:
         entry = self.db.find_entries(uuid=uuid, first=True)
         return entry.url
 
+    # Return the belonging url for an entry object
+    def get_entry_url_from_entry_object(self, entry):
+        return entry.url
+
     # Return the belonging notes for an entry uuid
     def get_entry_notes_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.notes
+
+    # Return the belonging notes for an entry object
+    def get_entry_notes_from_entry_object(self, entry):
         return entry.notes
 
     #

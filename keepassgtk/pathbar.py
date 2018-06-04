@@ -137,18 +137,19 @@ class Pathbar(Gtk.HBox):
         self.remove_active_style()
         self.set_active_style(widget)
 
-        self.query_page_update()
+        if self.check_values_of_edit_page() is False:
+            self.query_page_update()
 
         self.unlocked_database.set_current_group(self.database_manager.get_root_group())
         self.unlocked_database.switch_stack_page()
 
     def on_pathbar_button_clicked(self, pathbar_button):
         if pathbar_button.get_is_group() is True:
-            print("on_pathbar_button_for_group_clicked")
             self.remove_active_style()
             self.set_active_style(pathbar_button)
 
-            self.query_page_update()
+            if self.check_values_of_edit_page() is False:
+                self.query_page_update()
 
             self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
             self.unlocked_database.switch_stack_page()
@@ -195,7 +196,7 @@ class Pathbar(Gtk.HBox):
         else:
             from_group = False
 
-        return 
+        return from_group
         
     def query_page_update(self):
         if self.check_is_edit_page() is True and self.check_update_needed() is True:
@@ -229,4 +230,68 @@ class Pathbar(Gtk.HBox):
 
         scrolled_page.set_made_database_changes(False)
 
+    # Check all values of the group/entry - if all are blank we delete the entry/group and return true (prevents crash)
+    def check_values_of_edit_page(self):
+        current_group = self.unlocked_database.get_current_group()
+        if self.check_is_edit_page_from_group() is True:
+            group_name = self.database_manager.get_group_name_from_group_object(current_group)
+            group_notes = self.database_manager.get_group_notes_from_group_object(current_group)
+            group_icon = self.database_manager.get_group_icon_from_group_object(current_group)
 
+            if group_name is None or group_name is "":
+                if group_notes is None or group_notes is "":
+                    if group_icon is "0":
+                        parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
+                        if self.database_manager.check_is_root_group(parent_group) is True:
+                            self.database_manager.delete_group_from_database(current_group)
+                            self.clear_pathbar()
+                            self.first_appearance()
+                            self.add_seperator_label()
+                            return True
+                        else:
+                            self.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(parent_group))
+                            self.database_manager.delete_group_from_database(current_group)
+                            return True
+            else:
+                return False
+        else:
+            entry_title = self.database_manager.get_entry_name_from_entry_object(current_group)
+            entry_username = self.database_manager.get_entry_username_from_entry_object(current_group)
+            entry_password = self.database_manager.get_entry_password_from_entry_object(current_group)
+            entry_url = self.database_manager.get_entry_notes_from_entry_object(current_group)
+            entry_notes = self.database_manager.get_entry_notes_from_entry_object(current_group)
+            entry_icon = self.database_manager.get_entry_icon_from_entry_object(current_group)
+
+            if entry_title is None or entry_title is "":
+                if entry_username is None or entry_username is "":
+                    if entry_password is None or entry_password is "":
+                        if entry_url is None or entry_url is "":
+                            if entry_notes is None or entry_notes is "":
+                                if entry_icon is "0":
+                                    parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
+                                    if self.database_manager.check_is_root_group(parent_group) is True:
+                                        self.database_manager.delete_entry_from_database(current_group)
+                                        self.clear_pathbar()
+                                        self.first_appearance()
+                                        self.add_seperator_label()
+                                        return True
+                                    else:
+                                        self.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(parent_group))
+                                        self.database_manager.delete_entry_from_database(current_group)
+                                        return True
+            else:
+                return False
+
+    def is_pathbar_button_in_pathbar(self, uuid):
+        for pathbar_button in self.get_children():
+            if pathbar_button.get_name() == "PathbarButtonDynamic":
+                if pathbar_button.get_uuid() == uuid:
+                    return True
+
+        return False
+
+    def get_pathbar_button(self, uuid):
+        for pathbar_button in self.get_children():
+            if pathbar_button.get_name() == "PathbarButtonDynamic":
+                if pathbar_button.get_uuid() == uuid:
+                    return pathbar_button

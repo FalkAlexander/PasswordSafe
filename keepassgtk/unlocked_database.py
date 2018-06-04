@@ -218,7 +218,6 @@ class UnlockedDatabase:
             self.scheduled_page_destroy.remove(page_uuid)
             self.show_page_of_new_directory(False)
 
-        print(page_uuid)
         self.stack.set_visible_child_name(page_uuid)
 
     def update_current_stack_page(self):
@@ -451,15 +450,11 @@ class UnlockedDatabase:
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         scrolled_page.set_made_database_changes(True)
 
-        #self.changes = True
-
         if type == "name":
             self.database_manager.set_entry_name(entry_uuid, widget.get_text())
 
-            for pathbar_button in self.pathbar.get_children():
-                if pathbar_button.get_name() == "PathbarButtonDynamic":
-                    if pathbar_button.get_uuid() == self.database_manager.get_entry_uuid_from_entry_object(self.current_group):
-                        pathbar_button.set_label(widget.get_text())
+            pathbar_button = self.pathbar.get_pathbar_button(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+            pathbar_button.set_label(widget.get_text())
 
         elif type == "username":
             self.database_manager.set_entry_username(entry_uuid, widget.get_text())
@@ -475,8 +470,6 @@ class UnlockedDatabase:
 
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         scrolled_page.set_made_database_changes(True)
-
-        #self.changes = True
 
         if type == "name":
             self.database_manager.set_group_name(group_uuid, widget.get_text())
@@ -498,6 +491,12 @@ class UnlockedDatabase:
             entry_context_popover.popup()
 
     def on_entry_delete_menu_button_clicked(self, action, param):
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.entry_marked_for_delete)
+
+        # If the deleted entry is in the pathbar, we need to rebuild the pathbar
+        if self.pathbar.is_pathbar_button_in_pathbar(entry_uuid) is True:
+            self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+
         self.database_manager.delete_entry_from_database(self.entry_marked_for_delete)
         self.update_current_stack_page()
 

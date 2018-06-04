@@ -3,6 +3,7 @@ from keepassgtk.logging_manager import LoggingManager
 from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
 from keepassgtk.group_row import GroupRow
+from keepassgtk.scrolled_page import ScrolledPage
 import gi
 import ntpath
 import threading
@@ -22,7 +23,6 @@ class UnlockedDatabase:
     overlay = NotImplemented
     properties_list_box = NotImplemented
     scheduled_page_destroy = []
-    changes = False
 
     mod_box = NotImplemented
     add_entry_button = NotImplemented
@@ -131,7 +131,7 @@ class UnlockedDatabase:
                 builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
                 self.properties_list_box = builder.get_object("properties_list_box")
 
-                scrolled_window = builder.get_object("scrolled_window")
+                scrolled_window = ScrolledPage(True)
                 viewport = Gtk.Viewport()
                 viewport.add(self.properties_list_box)
                 scrolled_window.add(viewport)
@@ -151,7 +151,7 @@ class UnlockedDatabase:
                 list_box.connect("row-activated", self.on_list_box_row_activated)
                 list_box.connect("row-selected", self.on_list_box_row_selected)
 
-                scrolled_window = builder.get_object("scrolled_window")
+                scrolled_window = ScrolledPage(False)
                 viewport = Gtk.Viewport()
                 viewport.add(list_box)
                 scrolled_window.add(viewport)
@@ -165,7 +165,7 @@ class UnlockedDatabase:
                 builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
                 self.properties_list_box = builder.get_object("properties_list_box")
 
-                scrolled_window = builder.get_object("scrolled_window")
+                scrolled_window = ScrolledPage(True)
                 viewport = Gtk.Viewport()
                 viewport.add(self.properties_list_box)
                 scrolled_window.add(viewport)
@@ -174,6 +174,7 @@ class UnlockedDatabase:
                 self.add_stack_page(scrolled_window)
                 self.insert_entry_properties_into_listbox(self.properties_list_box, False)
         elif self.database_manager.get_group_uuid_from_group_object(self.current_group) in self.scheduled_page_destroy:
+            print("komische funktion")
             stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
             stack_page = self.stack.get_child_by_name(stack_page_name)
 
@@ -199,12 +200,26 @@ class UnlockedDatabase:
         self.switch_stack_page()
 
     def switch_stack_page(self):
+        page_uuid = NotImplemented
+
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-            self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+            page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
             self.remove_entry_page_headerbar()
         else:
-            self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+            page_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
             self.set_entry_page_headerbar()
+
+        if page_uuid in self.scheduled_page_destroy:
+            stack_page = self.stack.get_child_by_name(page_uuid)
+
+            if stack_page is not None:
+                stack_page.destroy()
+                
+            self.scheduled_page_destroy.remove(page_uuid)
+            self.show_page_of_new_directory(False)
+
+        print(page_uuid)
+        self.stack.set_visible_child_name(page_uuid)
 
     def update_current_stack_page(self):
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
@@ -217,6 +232,9 @@ class UnlockedDatabase:
 
     def get_current_group(self):
         return self.current_group
+
+    def schedule_stack_page_for_destroy(self, page_name):
+        self.scheduled_page_destroy.append(page_name)
 
     #
     # Create Group & Entry Rows
@@ -242,7 +260,7 @@ class UnlockedDatabase:
             list_box.add(entry_row)
 
     #
-    # Create Property Entries
+    # Create Property Rows
     #
 
     def insert_entry_properties_into_listbox(self, properties_list_box, add_all):
@@ -430,7 +448,10 @@ class UnlockedDatabase:
     def on_property_value_entry_changed(self, widget, type):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
-        self.changes = True
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+        scrolled_page.set_made_database_changes(True)
+
+        #self.changes = True
 
         if type == "name":
             self.database_manager.set_entry_name(entry_uuid, widget.get_text())
@@ -452,7 +473,10 @@ class UnlockedDatabase:
     def on_property_value_group_changed(self, widget, type):
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
 
-        self.changes = True
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        scrolled_page.set_made_database_changes(True)
+
+        #self.changes = True
 
         if type == "name":
             self.database_manager.set_group_name(group_uuid, widget.get_text())

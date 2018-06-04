@@ -322,6 +322,13 @@ class DatabaseManager:
     def get_root_group(self):
         return self.db.root_group
 
+    # Check if root group
+    def check_is_root_group(self, group):
+        if group.is_root_group:
+            return True
+        else:
+            return False
+
     # Check if object is group
     def check_is_group(self, uuid):
         if self.get_group_object_from_uuid(uuid) is None:

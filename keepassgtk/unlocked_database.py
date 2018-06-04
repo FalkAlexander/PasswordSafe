@@ -106,11 +106,16 @@ class UnlockedDatabase:
         self.mod_box.add(self.add_property_button)
 
     def remove_entry_page_headerbar(self):
-        self.mod_box.remove(self.add_property_button)
+        if self.add_property_button in self.mod_box.get_children():
+            self.mod_box.remove(self.add_property_button)
 
         if self.add_entry_button not in self.mod_box.get_children() and self.add_group_button not in self.mod_box.get_children():
             self.mod_box.add(self.add_entry_button)
             self.mod_box.add(self.add_group_button)
+
+    def set_group_edit_page_headerbar(self):
+        self.mod_box.remove(self.add_entry_button)
+        self.mod_box.remove(self.add_group_button)
 
     def prepare_actions(self):
         delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
@@ -130,26 +135,31 @@ class UnlockedDatabase:
     #
 
     def show_page_of_new_directory(self, edit_group):
-        if self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None:
-            if edit_group is True:
-                builder = Gtk.Builder()
-                builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
-                self.properties_list_box = builder.get_object("properties_list_box")
+        self.destroy_scheduled_stack_page()
 
-                scrolled_window = ScrolledPage(True)
-                viewport = Gtk.Viewport()
-                viewport.add(self.properties_list_box)
-                scrolled_window.add(viewport)
-                scrolled_window.show_all()
+        if edit_group is True:
+            self.destroy_scheduled_stack_page()
 
-                stack_page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-                if self.stack.get_child_by_name(stack_page_uuid) is not None:
-                    stack_page = self.stack.get_child_by_name(stack_page_uuid)
-                    stack_page.destroy()
+            builder = Gtk.Builder()
+            builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
+            self.properties_list_box = builder.get_object("properties_list_box")
 
-                self.add_stack_page(scrolled_window)
-                self.insert_group_properties_into_listbox(self.properties_list_box)
-            elif self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+            scrolled_window = ScrolledPage(True)
+            viewport = Gtk.Viewport()
+            viewport.add(self.properties_list_box)
+            scrolled_window.add(viewport)
+            scrolled_window.show_all()
+
+            stack_page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+            if self.stack.get_child_by_name(stack_page_uuid) is not None:
+                stack_page = self.stack.get_child_by_name(stack_page_uuid)
+                stack_page.destroy()
+
+            self.add_stack_page(scrolled_window)
+            self.insert_group_properties_into_listbox(self.properties_list_box)
+            self.set_group_edit_page_headerbar()
+        elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
+            if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
                 list_box = builder.get_object("list_box")
@@ -178,16 +188,6 @@ class UnlockedDatabase:
 
                 self.add_stack_page(scrolled_window)
                 self.insert_entry_properties_into_listbox(self.properties_list_box, False)
-        elif self.database_manager.get_group_uuid_from_group_object(self.current_group) in self.scheduled_page_destroy:
-            self.logging_manager.log_warn("Deleted existing stack page which should not exist")
-            stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-            stack_page = self.stack.get_child_by_name(stack_page_name)
-
-            if stack_page is not None:
-                stack_page.destroy()
-
-            self.scheduled_page_destroy.remove(stack_page_name)
-            self.show_page_of_new_directory(False)
         else:
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -239,6 +239,19 @@ class UnlockedDatabase:
 
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)
+
+    def destroy_scheduled_stack_page(self):
+        page_uuid = NotImplemented
+        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+            page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        else:
+            page_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+
+        if page_uuid in self.scheduled_page_destroy:
+            stack_page_name = self.stack.get_child_by_name(page_uuid)
+            if stack_page_name is not None:
+                stack_page_name.destroy()
+            self.scheduled_page_destroy.remove(page_uuid)
 
     #
     # Create Group & Entry Rows
@@ -524,6 +537,7 @@ class UnlockedDatabase:
         self.update_current_stack_page()
 
     def on_group_edit_menu_button_clicked(self, action, param):
+        print("menu clicked")
         group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.group_marked_for_edit)
 
         self.set_current_group(self.group_marked_for_edit)

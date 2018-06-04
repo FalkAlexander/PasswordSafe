@@ -1,0 +1,38 @@
+{
+    "app-id" : "run.terminal.KeepassGtk",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.28",
+    "branch" : "stable",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "keepassgtk",
+    "rename-icon" : "dialog-password",
+    "finish-args" : [
+        "--filesystem=/usr/share/icons:ro",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=home"
+    ],
+    "modules" : [
+        "python3-pykeepass.json",
+        {
+            "name" : "keepassgtk",
+            "buildsystem" : "meson",
+            "builddir" : true,
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/TerminalDotRun/KeepassGtk.git"
+                }
+            ]
+        }
+    ],
+    "build-options" : {
+        "env" : {
+        }
+    }
+}

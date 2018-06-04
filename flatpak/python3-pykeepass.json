@@ -1,0 +1,85 @@
+{
+    "name": "python3-pykeepass",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pykeepass"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/0d/33/3466a3210321a02040e3ab2cd1ffc6f44664301a5d650a7e44be1dc341f2/pyasn1-0.4.3.tar.gz",
+            "sha256": "fb81622d8f3509f0026b0683fe90fea27be7284d3826a5f2edf97f69151ab0fc"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz",
+            "sha256": "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/67/b9/7becc03fbc39a51451a9c4497e8df2268ccccb5ee25472a1303f2e31605a/pysmb-1.1.23.zip",
+            "sha256": "b0233636f272f36dbc930951391c6ee246fcb022ddce420ab2916dde1f14e394"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/e6/76/257b53926889e2835355d74fec73d82662100135293e17d382e2b74d1669/colorama-0.3.9.tar.gz",
+            "sha256": "48eb22f4f8461b1df5734a074b57042430fb06e1d61bd1e11b078c0fe6d7a1f1"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/f9/72/63fc67bf43286a0fe6a377adc68cec30dcb02b862b10d667788bde112741/pycryptodome-3.6.1.tar.gz",
+            "sha256": "15013007e393d0cc0e69f4329a47c4c8597b7f3d02c12c03f805405542f70c71"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/e8/5d/98f56e274bdf17f2e0d9016d1788ca80d26d8987dcd5e1d9416d86ee0625/lxml-4.2.1.tar.gz",
+            "sha256": "e2629cdbcad82b83922a3488937632a4983ecc0fed3e5cfbf430d069382eeb9b"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/a0/b0/a4e3241d2dee665fea11baec21389aec6886655cd4db7647ddf96c3fad15/python-dateutil-2.7.3.tar.gz",
+            "sha256": "e27001de32f627c22380a688bcc43ce83504a7bc5da472209b4c70f02829f0b8"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/91/fa/5274ba70e4d1f0b72f49d2f87028fff0b958d709df0a94eb4cd5d0723a6e/easypysmb-1.4.3.tar.gz",
+            "sha256": "3e84a71140cf654fba1ab4b78aae2f1c29b48735074704480f42a7d0eca938ea"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/51/79/0dfd06576839ccdc1be0b62cd0cddfda173862eb3ce7660287d649e1b3e1/libkeepass-0.3.0.tar.gz",
+            "sha256": "3ed79ea786f7020b14b83c082612ed8fbcc6f8edf65e1697705837ab9e40e9d7"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/f1/d9/94ce5408642bcccc4428d20234c2d49a54a9eb0d5e9abf2a8e88ebb33482/pykeepass-2.8.2.tar.gz",
+            "sha256": "e9e0d29a22bfe6b4d9636a52baaac60e5bd719d7e28d5d180a1471f3d43c0b1f"
+        }
+    ],
+    "modules": [
+        "python3-setuptools_scm.json",
+        {
+            "name": "libxml2",
+            "buildsystem": "autotools",
+            "make-install-args": ["--ignore-errors"],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/GNOME/libxml2/archive/v2.9.8.tar.gz",
+                    "sha256": "ff879b0d9142564bfe63df9753df936f05150afdd7bae07261f12d4dad33ba4a"
+                }
+            ]
+        },
+        {
+            "name": "libxslt",
+            "buildsystem": "autotools",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/GNOME/libxslt/archive/v1.1.32.tar.gz",
+                    "sha256": "2d9123cd4f142905fe2d281a5318ef74a9217bd17501fbc4213460fbf747d01a"
+                }
+            ]
+        }
+    ]
+}

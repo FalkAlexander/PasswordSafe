@@ -31,6 +31,7 @@ class UnlockedDatabase:
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
+    group_marked_for_edit = NotImplemented
 
     def __init__(self, window, widget, dbm):
         self.window = window
@@ -115,6 +116,10 @@ class UnlockedDatabase:
         delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
         delete_entry_action.connect("activate", self.on_entry_delete_menu_button_clicked)
         self.window.application.add_action(delete_entry_action)
+
+        edit_group_action = Gio.SimpleAction.new("group.edit", None)
+        edit_group_action.connect("activate", self.on_group_edit_menu_button_clicked)
+        self.window.application.add_action(edit_group_action)
 
         delete_group_action = Gio.SimpleAction.new("group.delete", None)
         delete_group_action.connect("activate", self.on_group_delete_menu_button_clicked)
@@ -391,7 +396,6 @@ class UnlockedDatabase:
 
     def on_list_box_row_activated(self, widget, list_box_row):
         if list_box_row.get_type() == "EntryRow":
-
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
             self.show_page_of_new_directory(False)
@@ -503,6 +507,7 @@ class UnlockedDatabase:
     def on_group_row_button_pressed(self, widget, event):
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
+            self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
             group_context_popover = self.builder.get_object("group_context_popover")
             group_context_popover.set_relative_to(widget)
             group_context_popover.show_all()
@@ -517,6 +522,13 @@ class UnlockedDatabase:
 
         self.database_manager.delete_group_from_database(self.group_marked_for_delete)
         self.update_current_stack_page()
+
+    def on_group_edit_menu_button_clicked(self, action, param):
+        group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.group_marked_for_edit)
+
+        self.set_current_group(self.group_marked_for_edit)
+        self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
+        self.show_page_of_new_directory(True)
 
     #
     # Dialog Creator

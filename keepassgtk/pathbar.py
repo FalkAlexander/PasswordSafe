@@ -152,22 +152,30 @@ class Pathbar(Gtk.HBox):
         self.unlocked_database.switch_stack_page()
 
     def on_pathbar_button_clicked(self, pathbar_button):
-        if pathbar_button.get_is_group() is True:
-            self.remove_active_style()
-            self.set_active_style(pathbar_button)
-
-            if self.check_values_of_edit_page() is False:
-                self.query_page_update()
-
-            self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
-            self.unlocked_database.switch_stack_page()
+        pathbar_button_uuid = pathbar_button.get_uuid()
+        current_group_uuid = NotImplemented
+        if self.database_manager.check_is_group(pathbar_button_uuid) is True:
+            current_group_uuid = self.database_manager.get_group_uuid_from_group_object(self.unlocked_database.get_current_group())
         else:
-            self.remove_active_style()
-            self.set_active_style(pathbar_button)
-            self.unlocked_database.set_current_group(
-                self.database_manager.get_entry_object_from_uuid(
-                    pathbar_button.get_uuid()))
-            self.unlocked_database.switch_stack_page()
+            current_group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.get_current_group())
+
+        if pathbar_button_uuid != current_group_uuid:
+            if pathbar_button.get_is_group() is True:
+                self.remove_active_style()
+                self.set_active_style(pathbar_button)
+
+                if self.check_values_of_edit_page() is False:
+                    self.query_page_update()
+
+                self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
+                self.unlocked_database.switch_stack_page()
+            else:
+                self.remove_active_style()
+                self.set_active_style(pathbar_button)
+                self.unlocked_database.set_current_group(
+                    self.database_manager.get_entry_object_from_uuid(
+                        pathbar_button.get_uuid()))
+                self.unlocked_database.switch_stack_page()
 
     #
     # Helper Methods

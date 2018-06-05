@@ -267,6 +267,7 @@ class Pathbar(Gtk.HBox):
                         self.database_manager.delete_group_from_database(current_group)
                         self.rebuild_pathbar(parent_group)
                         self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
+                        self.unlocked_database.show_database_action_revealer("Deleted blank group")
                         return True
             else:
                 return False
@@ -288,6 +289,7 @@ class Pathbar(Gtk.HBox):
                                     self.database_manager.delete_entry_from_database(current_group)
                                     self.rebuild_pathbar(parent_group)
                                     self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
+                                    self.unlocked_database.show_database_action_revealer("Deleted blank entry")
                                     return True
             else:
                 return False

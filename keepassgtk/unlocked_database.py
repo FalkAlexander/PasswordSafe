@@ -21,13 +21,7 @@ class UnlockedDatabase:
     current_group = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
-    properties_list_box = NotImplemented
     scheduled_page_destroy = []
-
-    mod_box = NotImplemented
-    add_entry_button = NotImplemented
-    add_group_button = NotImplemented
-    add_property_button = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -70,6 +64,7 @@ class UnlockedDatabase:
     # Headerbar
     #
 
+    # Assemble headerbar
     def set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
 
@@ -79,44 +74,50 @@ class UnlockedDatabase:
         lock_button = self.builder.get_object("lock_button")
         lock_button.connect("clicked", self.on_lock_button_clicked)
 
-        self.mod_box = self.builder.get_object("mod_box")
+        mod_box = self.builder.get_object("mod_box")
+        browser_buttons_box = self.builder.get_object("browser_buttons_box")
+        mod_box.add(browser_buttons_box)
 
-        self.add_entry_button = self.builder.get_object("add_entry_button")
-        self.add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
-        self.mod_box.add(self.add_entry_button)
+        add_entry_button = self.builder.get_object("add_entry_button")
+        add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
 
-        self.add_group_button = self.builder.get_object("add_group_button")
-        self.add_group_button.connect("clicked", self.on_add_group_button_clicked)
-        self.mod_box.add(self.add_group_button)
+        add_group_button = self.builder.get_object("add_group_button")
+        add_group_button.connect("clicked", self.on_add_group_button_clicked)
 
-        self.add_property_button = self.builder.get_object("add_property_button")
-        self.add_property_button.connect("clicked", self.on_add_property_button_clicked)
+        add_property_button = self.builder.get_object("add_property_button")
+        add_property_button.connect("clicked", self.on_add_property_button_clicked)
 
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), headerbar)
 
+    # Group and entry browser headerbar
+    def set_browser_headerbar(self):
+        mod_box = self.builder.get_object("mod_box")
+
+        for child in mod_box.get_children():
+            mod_box.remove(child)
+
+        mod_box.add(self.builder.get_object("browser_buttons_box"))
+
+    # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
-        self.mod_box.remove(self.add_entry_button)
-        self.mod_box.remove(self.add_group_button)
+        mod_box = self.builder.get_object("mod_box")
 
-        self.add_property_button.set_sensitive(True)
+        for child in mod_box.get_children():
+            mod_box.remove(child)
 
-        self.mod_box.add(self.add_property_button)
+        mod_box.add(self.builder.get_object("entry_page_mod_box"))
 
-    def remove_entry_page_headerbar(self):
-        if self.add_property_button in self.mod_box.get_children():
-            self.mod_box.remove(self.add_property_button)
-
-        if self.add_entry_button not in self.mod_box.get_children() and self.add_group_button not in self.mod_box.get_children():
-            self.mod_box.add(self.add_entry_button)
-            self.mod_box.add(self.add_group_button)
-
+    # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
-        self.mod_box.remove(self.add_entry_button)
-        self.mod_box.remove(self.add_group_button)
+        mod_box = self.builder.get_object("mod_box")
 
+        for child in mod_box.get_children():
+            mod_box.remove(child)
+
+    # Actions for MenuButton Popover
     def prepare_actions(self):
         delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
         delete_entry_action.connect("activate", self.on_entry_delete_menu_button_clicked)
@@ -135,8 +136,10 @@ class UnlockedDatabase:
     #
 
     def show_page_of_new_directory(self, edit_group):
+        # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_scheduled_stack_page()
 
+        # Creation of group edit page
         if edit_group is True:
             self.destroy_scheduled_stack_page()
 
@@ -158,8 +161,10 @@ class UnlockedDatabase:
 
             self.add_stack_page(scrolled_window)
             self.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
-            self.set_group_edit_page_headerbar()            
+            self.set_group_edit_page_headerbar()     
+        # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)       
         elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
+            # Create not existing stack page for group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
@@ -176,6 +181,7 @@ class UnlockedDatabase:
                 self.add_stack_page(scrolled_window)
                 self.insert_groups_into_listbox(list_box)
                 self.insert_entries_into_listbox(list_box)
+            # Create not existing stack page for entry
             else:
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
@@ -189,12 +195,14 @@ class UnlockedDatabase:
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
-                print("insert entry props")
                 self.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
+        # Stack page with current group's uuid already exists, we only need to switch stack page
         else:
+            # For group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-                self.remove_entry_page_headerbar()
+                self.set_browser_headerbar()
+            # For entry
             else:
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
                 self.set_entry_page_headerbar()
@@ -212,7 +220,7 @@ class UnlockedDatabase:
 
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
             page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-            self.remove_entry_page_headerbar()
+            self.set_browser_headerbar()
         else:
             page_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
             self.set_entry_page_headerbar()
@@ -292,7 +300,6 @@ class UnlockedDatabase:
 
         if self.database_manager.has_entry_name(entry_uuid) is True or add_all is True:
             if scrolled_page.name_property_row is NotImplemented:
-                print("none name")
                 scrolled_page.name_property_row = builder.get_object("name_property_row")
                 scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
                 value = self.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
@@ -303,7 +310,6 @@ class UnlockedDatabase:
                 scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
                 properties_list_box.add(scrolled_page.name_property_row)
             elif scrolled_page.name_property_row is not "":
-                print("write name")
                 value = self.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
                 if self.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)
@@ -324,7 +330,6 @@ class UnlockedDatabase:
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row is not "":
-                print("write name")
                 value = self.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
                 if self.database_manager.has_entry_username(entry_uuid) is True:
                     scrolled_page.username_property_value_entry.set_text(value)

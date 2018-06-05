@@ -2,43 +2,51 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkButton" id="add_entry_button">
+  <object class="GtkBox" id="browser_buttons_box">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="receives_default">True</property>
-    <child>
-      <object class="GtkImage" id="add_entry_button_image">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="icon_name">document-new-symbolic</property>
-      </object>
-    </child>
-  </object>
-  <object class="GtkButton" id="add_group_button">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="receives_default">True</property>
+    <property name="can_focus">False</property>
     <property name="margin_right">8</property>
     <child>
-      <object class="GtkImage" id="add_folder_button_image">
+      <object class="GtkButton" id="add_entry_button">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="icon_name">folder-new-symbolic</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage" id="add_entry_button_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">document-new-symbolic</property>
+          </object>
+        </child>
       </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
     </child>
-  </object>
-  <object class="GtkButton" id="add_property_button">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="receives_default">True</property>
-    <property name="margin_right">8</property>
     <child>
-      <object class="GtkImage" id="add_property_button_image">
+      <object class="GtkButton" id="add_group_button">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="icon_name">list-add-symbolic</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage" id="add_folder_button_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">folder-new-symbolic</property>
+          </object>
+        </child>
       </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
     </child>
+    <style>
+      <class name="linked"/>
+    </style>
   </object>
   <object class="GtkOverlay" id="database_action_overlay">
     <property name="visible">True</property>
@@ -123,7 +131,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixel_size">20</property>
-            <property name="icon_name">web-browser-symbolic</property>
+            <property name="icon_name">application-x-executable-symbolic</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -219,6 +227,30 @@
           </packing>
         </child>
       </object>
+    </child>
+  </object>
+  <object class="GtkBox" id="entry_page_mod_box">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_right">8</property>
+    <child>
+      <object class="GtkButton" id="add_property_button">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage" id="add_property_button_image1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">list-add-symbolic</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
     </child>
   </object>
   <object class="GtkPopover" id="group_context_popover">
@@ -430,12 +462,6 @@
             <child>
               <placeholder/>
             </child>
-            <child>
-              <placeholder/>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -468,124 +494,6 @@
         <property name="pack_type">end</property>
         <property name="position">1</property>
       </packing>
-    </child>
-  </object>
-  <object class="GtkDialog" id="new_group_dialog">
-    <property name="can_focus">False</property>
-    <property name="default_width">350</property>
-    <property name="default_height">80</property>
-    <property name="type_hint">dialog</property>
-    <child type="titlebar">
-      <object class="GtkHeaderBar" id="new_group_dialog_headerbar">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child type="title">
-          <object class="GtkBox" id="new_group_dialog_headerbar_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="homogeneous">True</property>
-            <child>
-              <object class="GtkButton" id="new_group_dialog_cancel_button">
-                <property name="label" translatable="yes">Cancel</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="hexpand">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="new_group_dialog_title_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="label" translatable="yes">New Group</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="new_group_dialog_create_button">
-                <property name="label" translatable="yes">Create</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">end</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child internal-child="vbox">
-      <object class="GtkBox" id="new_group_dialog_vbox">
-        <property name="can_focus">False</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="new_group_dialog_desc_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">end</property>
-            <property name="vexpand">True</property>
-            <property name="label" translatable="yes">Group name</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkEntry" id="new_group_dialog_entry">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="valign">start</property>
-            <property name="vexpand">True</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-      </object>
     </child>
   </object>
   <object class="GtkScrolledWindow" id="scrolled_window">

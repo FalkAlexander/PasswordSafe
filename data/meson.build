@@ -11,6 +11,12 @@ gnome.compile_resources(
   install: true
 )
 
+# Installing the schema file 
+install_data(
+  project_id + '.gschema.xml',
+  install_dir: 'share/glib-2.0/schemas'
+)
+
 # Merging the translations with the desktop file
 i18n.merge_file(
   output: project_id + '.desktop',

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema path="/run/terminal/KeepassGtk/" id="run.terminal.KeepassGtk" gettext-domain="keepassgtk">
+        <key type="b" name="dark-theme">
+            <default>false</default>
+            <summary>Use dark Gtk theme</summary>
+            <description>Use the dark variant of your Gtk theme. Please note that not every Gtk theme has a dark variant.</description>
+        </key>
+        <key type="b" name="first-start-screen">
+            <default>true</default>
+            <summary>Reopen last opened database</summary>
+            <description>Automatically open the unlock screen of the last opened database, otherwise show the welcome screen.</description>
+        </key>
+        <key type="b" name="save-automatically">
+            <default>false</default>
+            <summary>Save every change automatically</summary>
+            <description>Save every change you made instantly into the database. Please note that you cannot revert changes if Autosave is enabled.</description>
+        </key>
+        <key type="i" name="database-lock-timeout">
+            <default>5</default>
+            <summary>Lock database after x minutes</summary>
+            <description>Automatically lock your database after a given amount of minutes to improve the security.</description>
+        </key>
+        <key type="i" name="clear-clipboard">
+            <default>30</default>
+            <summary>Clear clipboard after x seconds</summary>
+            <description>After copying the password clear the clipboard for security reasons.</description>
+        </key>
+        <key type="b" name="show-password-fields">
+            <default>false</default>
+            <summary>Display passwords in plain text</summary>
+            <description>Show the passwords in the entry fields by default.</description>
+        </key>
+        <key type="ai" name="window-size">
+            <default>[800, 500]</default>
+            <summary>Window size</summary>
+            <description>Remember the window size.</description>
+        </key>
+        <key type="s" name="last-opened-database">
+            <default>""</default>
+            <summary>Last opened database</summary>
+            <description>Path to the last opened database.</description>
+        </key>
+   </schema>
+</schemalist>
+
+

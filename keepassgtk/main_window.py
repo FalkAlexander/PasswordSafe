@@ -1,4 +1,4 @@
-from gi.repository import Gio, Gdk, Gtk
+from gi.repository import Gio, GLib, Gdk, Gtk
 from keepassgtk.logging_manager import LoggingManager
 from keepassgtk.database_manager import DatabaseManager
 from keepassgtk.create_database import CreateDatabase
@@ -29,11 +29,11 @@ class MainWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        keepassgtk.config_manager.configure()
         self.assemble_window()
 
     def assemble_window(self):
-        self.set_default_size(800, 500)
+        window_size = keepassgtk.config_manager.get_window_size()
+        self.set_default_size(window_size[0], window_size[1])
         
         self.create_headerbar()
         self.first_start_screen()
@@ -41,6 +41,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.connect("delete-event", self.on_application_quit)
 
         self.custom_css()
+        self.apply_theme()
 
     #
     # Headerbar
@@ -82,23 +83,26 @@ class MainWindow(Gtk.ApplicationWindow):
         context.add_provider_for_screen(
             screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
+    def apply_theme(self):
+        gtk_settings = Gtk.Settings.get_default()
+
+        if keepassgtk.config_manager.get_dark_theme() is True:
+            gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
+        else:
+            gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
+
     #
     # First Start Screen
     #
 
     def first_start_screen(self):
-        if keepassgtk.config_manager.has_group("history") and keepassgtk.config_manager.get_string("history", "last-opened-db") != "" and exists(keepassgtk.config_manager.get_string("history", "last-opened-db")):
-            self.logging_manager.log_debug(
-                "Found last opened database entry (" +
-                keepassgtk.config_manager.get_string(
-                    "history", "last-opened-db") + ")")
+        filepath = keepassgtk.config_manager.get_last_opened_database()
 
-            tab_title = ntpath.basename(keepassgtk.config_manager.get_string(
-                "history", "last-opened-db"))
-            self.start_database_opening_routine(
-                tab_title,
-                keepassgtk.config_manager.get_string(
-                    "history", "last-opened-db"))
+        if keepassgtk.config_manager.get_first_start_screen() is True and filepath is not "":
+            self.logging_manager.log_debug("Found last opened database entry (" + filepath + ")")
+
+            tab_title = ntpath.basename(filepath)
+            self.start_database_opening_routine(tab_title, filepath)
         else:
             self.logging_manager.log_debug(
                 "No / Not valid last opened database entry found.")
@@ -337,11 +341,16 @@ class MainWindow(Gtk.ApplicationWindow):
             db.database_manager.save_database()
 
         self.quit_dialog.destroy()
+        self.save_window_size()
         self.application.quit()
 
     #
     # Application Quit Dialog
     #
+
+    def save_window_size(self):
+        window_size = [self.get_size().width, self.get_size().height]
+        keepassgtk.config_manager.set_window_size(window_size)
 
     def on_application_quit(self, window, event):
         unsaved_databases_list = []
@@ -378,4 +387,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
             self.quit_dialog.present()
 
-            return(True)         
+            return(True)      
+        else:
+            self.save_window_size()
+              

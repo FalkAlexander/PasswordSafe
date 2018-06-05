@@ -1,82 +1,63 @@
 import os
 from os.path import exists, join
-from gi.repository import GLib
+from gi.repository import GLib, Gio
 
-cfg = GLib.KeyFile()
+setting = Gio.Settings.new("run.terminal.KeepassGtk")
 
-HOME = os.getenv("HOME")
-CONFIG_PATH = join(HOME, '.config/keepassgtk')
-CONFIG_FILE = join(CONFIG_PATH, 'config.conf')
+clear_clipboard = "clear-clipboard"
+dark_theme = "dark-theme"
+database_lock_timeout = "database-lock-timeout"
+first_start_screen = "first-start-screen"
+last_opened_database = "last-opened-database"
+save_automatically = "save-automatically"
+show_password_fields = "show-password-fields"
+window_size = "window-size"
 
-#
-# Create Config (First Run)
-#
+def get_clear_clipboard():
+    return setting.get_int(clear_clipboard)
 
+def set_clear_clipboard(value):
+    setting.set_int(clear_clipboard, value)
 
-def configure():
-    if not exists(CONFIG_PATH):
-        create_config_dir(CONFIG_PATH)
+def get_dark_theme():
+    return setting.get_boolean(dark_theme)
 
-    if not exists(CONFIG_FILE):
-        create_config_file(CONFIG_FILE)
+def set_dark_theme(value):
+    setting.set_boolean(dark_theme, value)
 
+def get_database_lock_timeout():
+    return setting.get_int(database_lock_timeout)
 
-def create_config_dir(path):
-    os.mkdir(path)
+def set_database_lock_timeout(value):
+    setting.set_int(database_lock_timeout, value)
 
+def get_first_start_screen():
+    return setting.get_boolean(first_start_screen)
 
-def create_config_file(filename):
-    create_config_entry_string('settings', 'theme-variant', 'white')
-    cfg.save_to_file(filename)
+def set_first_start_screen(value):
+    setting.set_boolean(first_start_screen, value)
 
-#
-# Write Into Config
-#
+def get_last_opened_database():
+    return setting.get_string(last_opened_database)
 
+def set_last_opened_database(value):
+    setting.set_string(last_opened_database, value)
 
-def create_config_entry_string(group, key, string):
-    cfg.set_string(group, key, string)
+def get_save_automatically():
+    return setting.get_boolean(save_automatically)
 
+def set_save_automatically(value):
+    setting.set_boolean(save_automatically, value)
 
-def create_config_entry_integer(group, key, integer):
-    cfg.set_integer(group, key, integer)
+def get_show_password_fields():
+    return setting.get_boolean(show_password_fields)
 
+def set_show_password_fields(value):
+    setting.set_boolean(show_password_fields, value)
 
-def create_config_entry_double(group, key, double):
-    cfg.set_double(group, key, double)
+def get_window_size():
+    return setting.get_value(window_size)
 
-
-def create_config_entry_boolean(group, key, boolean):
-    cfg.set_boolean(group, key, boolean)
-
-#
-# Checks
-#
-
-
-def has_group(group):
-    cfg.load_from_file(CONFIG_FILE, GLib.KeyFileFlags.KEEP_COMMENTS)
-    return cfg.has_group(group)
-
-
-# def has_key(key, group):
-#     config_file = cfg.load_from_file(CONFIG_FILE, GLib.KeyFileFlags.KEEP_COMMENTS)
-#     group = cfg.
-#     return cfg.has_key(group, key)
-
-
-def get_string(key, group):
-    cfg.load_from_file(CONFIG_FILE, GLib.KeyFileFlags.KEEP_COMMENTS)
-    return cfg.get_string(key, group)
-
-#
-# Save Config
-#
-
-
-def save_config():
-    cfg.save_to_file(CONFIG_FILE)
-
-
-def unref_config():
-    cfg.unref()
+def set_window_size(list):
+    g_variant = GLib.Variant('ai', list)
+    setting.set_value(window_size, g_variant)

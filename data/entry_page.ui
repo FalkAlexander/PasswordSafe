@@ -344,12 +344,10 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="show_password_button">
+                  <object class="GtkToggleButton" id="show_password_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="halign">end</property>
-                    <property name="valign">center</property>
                     <child>
                       <object class="GtkImage" id="show_password_button_image">
                         <property name="visible">True</property>
@@ -361,7 +359,6 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="pack_type">end</property>
                     <property name="position">2</property>
                   </packing>
                 </child>

@@ -4,6 +4,7 @@ from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
 from keepassgtk.group_row import GroupRow
 from keepassgtk.scrolled_page import ScrolledPage
+import keepassgtk.config_manager
 import gi
 import ntpath
 import threading
@@ -338,16 +339,22 @@ class UnlockedDatabase:
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
 
-        if self.database_manager.has_entry_password(entry_uuid) is True or add_all is True:
+        if self.database_manager.has_entry_password(entry_uuid) is True or add_all is True:                
             if scrolled_page.password_property_row is NotImplemented:
                 scrolled_page.password_property_row = builder.get_object("password_property_row")
                 scrolled_page.password_property_value_entry = builder.get_object("password_property_value_entry")
+                scrolled_page.show_password_button = builder.get_object("show_password_button")
                 value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+
                 if self.database_manager.has_entry_password(entry_uuid) is True:
                     scrolled_page.password_property_value_entry.set_text(value)
                 else:
                     scrolled_page.password_property_value_entry.set_text("")
+
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
+
+                self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
+
                 properties_list_box.add(scrolled_page.password_property_row)
             elif scrolled_page.password_property_row is not "":
                 value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
@@ -356,6 +363,7 @@ class UnlockedDatabase:
                 else:
                     scrolled_page.password_property_value_entry.set_text("")
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
+                self.change_password_entry_visibility(scrolled_page.password_property_value_entry)
                 properties_list_box.add(scrolled_page.password_property_row)
 
         if self.database_manager.has_entry_url(entry_uuid) is True or add_all is True:
@@ -570,6 +578,12 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True)
 
+    def on_show_password_button_toggled(self, toggle_button, entry):
+        if entry.get_visibility() is True:
+            entry.set_visibility(False)
+        else:
+            entry.set_visibility(True)
+
     #
     # Dialog Creator
     #
@@ -612,3 +626,16 @@ class UnlockedDatabase:
         self.window.opened_databases.remove(self)
         self.window.close_tab(self.parent_widget)
         self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
+
+    #
+    # Helper Methods
+    #
+
+    def change_password_entry_visibility(self, entry, toggle_button):
+        toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)
+
+        if keepassgtk.config_manager.get_show_password_fields() is False:
+            entry.set_visibility(False)
+        else:
+            toggle_button.toggled()
+            entry.set_visibility(True)

@@ -523,7 +523,6 @@ class UnlockedDatabase:
                 if pathbar_button.get_name() == "PathbarButtonDynamic":
                     if pathbar_button.get_uuid() == self.database_manager.get_group_uuid_from_group_object(self.current_group):
                         pathbar_button.set_label(widget.get_text())
-
         elif type == "notes":
             self.database_manager.set_group_notes(group_uuid, widget.get_text())
 

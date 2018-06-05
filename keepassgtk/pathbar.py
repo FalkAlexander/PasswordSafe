@@ -161,10 +161,12 @@ class Pathbar(Gtk.HBox):
 
         if pathbar_button_uuid != current_group_uuid:
             if pathbar_button.get_is_group() is True:
+                print("1")
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
 
                 if self.check_values_of_edit_page() is False:
+                    print("2")
                     self.query_page_update()
 
                 self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
@@ -176,6 +178,8 @@ class Pathbar(Gtk.HBox):
                     self.database_manager.get_entry_object_from_uuid(
                         pathbar_button.get_uuid()))
                 self.unlocked_database.switch_stack_page()
+        else:
+            print("hi")
 
     #
     # Helper Methods
@@ -260,15 +264,13 @@ class Pathbar(Gtk.HBox):
             group_notes = self.database_manager.get_group_notes_from_group_object(current_group)
             group_icon = self.database_manager.get_group_icon_from_group_object(current_group)
 
-            if group_name is None or group_name is "":
-                if group_notes is None or group_notes is "":
-                    if group_icon is "0":
-                        parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
-                        self.database_manager.delete_group_from_database(current_group)
-                        self.rebuild_pathbar(parent_group)
-                        self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
-                        self.unlocked_database.show_database_action_revealer("Deleted blank group")
-                        return True
+            if (group_name is None or group_name is "") and (group_notes is None or group_notes is "") and (group_icon is "0"):
+                parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
+                self.database_manager.delete_group_from_database(current_group)
+                self.rebuild_pathbar(parent_group)
+                self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
+                self.unlocked_database.show_database_action_revealer("Deleted blank group")
+                return True
             else:
                 return False
         else:
@@ -279,18 +281,13 @@ class Pathbar(Gtk.HBox):
             entry_notes = self.database_manager.get_entry_notes_from_entry_object(current_group)
             entry_icon = self.database_manager.get_entry_icon_from_entry_object(current_group)
 
-            if entry_title is None or entry_title is "":
-                if entry_username is None or entry_username is "":
-                    if entry_password is None or entry_password is "":
-                        if entry_url is None or entry_url is "":
-                            if entry_notes is None or entry_notes is "":
-                                if entry_icon is "0":
-                                    parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
-                                    self.database_manager.delete_entry_from_database(current_group)
-                                    self.rebuild_pathbar(parent_group)
-                                    self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
-                                    self.unlocked_database.show_database_action_revealer("Deleted blank entry")
-                                    return True
+            if (entry_title is None or entry_title is "") and (entry_username is None or entry_username is "") and (entry_password is None or entry_password is "") and (entry_url is None or entry_url is "") and (entry_notes is None or entry_notes is "") and (entry_icon is "0"):
+                parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
+                self.database_manager.delete_entry_from_database(current_group)
+                self.rebuild_pathbar(parent_group)
+                self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
+                self.unlocked_database.show_database_action_revealer("Deleted blank entry")
+                return True
             else:
                 return False
 

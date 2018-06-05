@@ -266,6 +266,7 @@ class Pathbar(Gtk.HBox):
                         parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
                         self.database_manager.delete_group_from_database(current_group)
                         self.rebuild_pathbar(parent_group)
+                        self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
                         return True
             else:
                 return False
@@ -286,6 +287,7 @@ class Pathbar(Gtk.HBox):
                                     parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
                                     self.database_manager.delete_entry_from_database(current_group)
                                     self.rebuild_pathbar(parent_group)
+                                    self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
                                     return True
             else:
                 return False

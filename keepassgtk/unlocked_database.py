@@ -142,11 +142,12 @@ class UnlockedDatabase:
 
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
-            self.properties_list_box = builder.get_object("properties_list_box")
 
             scrolled_window = ScrolledPage(True)
+
             viewport = Gtk.Viewport()
-            viewport.add(self.properties_list_box)
+            scrolled_window.properties_list_box = builder.get_object("properties_list_box")
+            viewport.add(scrolled_window.properties_list_box)
             scrolled_window.add(viewport)
             scrolled_window.show_all()
 
@@ -156,8 +157,8 @@ class UnlockedDatabase:
                 stack_page.destroy()
 
             self.add_stack_page(scrolled_window)
-            self.insert_group_properties_into_listbox(self.properties_list_box)
-            self.set_group_edit_page_headerbar()
+            self.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
+            self.set_group_edit_page_headerbar()            
         elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 builder = Gtk.Builder()
@@ -178,16 +179,18 @@ class UnlockedDatabase:
             else:
                 builder = Gtk.Builder()
                 builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
-                self.properties_list_box = builder.get_object("properties_list_box")
 
                 scrolled_window = ScrolledPage(True)
+
                 viewport = Gtk.Viewport()
-                viewport.add(self.properties_list_box)
+                scrolled_window.properties_list_box = builder.get_object("properties_list_box")
+                viewport.add(scrolled_window.properties_list_box)
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
-                self.insert_entry_properties_into_listbox(self.properties_list_box, False)
+                print("insert entry props")
+                self.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
         else:
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -281,97 +284,114 @@ class UnlockedDatabase:
     #
 
     def insert_entry_properties_into_listbox(self, properties_list_box, add_all):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(entry_uuid)
 
         if self.database_manager.has_entry_name(entry_uuid) is True or add_all is True:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
-
-            name_property_row = builder.get_object("name_property_row")
-            name_property_value_entry = builder.get_object("name_property_value_entry")
-
-            value = self.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
-
-            if self.database_manager.has_entry_name(entry_uuid) is True:
-                name_property_value_entry.set_text(value)
-            else:
-                name_property_value_entry.set_text("")
-
-            name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
-
-            properties_list_box.add(name_property_row)
+            if scrolled_page.name_property_row is NotImplemented:
+                print("none name")
+                scrolled_page.name_property_row = builder.get_object("name_property_row")
+                scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
+                value = self.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_name(entry_uuid) is True:
+                    scrolled_page.name_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.name_property_value_entry.set_text("")
+                scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
+                properties_list_box.add(scrolled_page.name_property_row)
+            elif scrolled_page.name_property_row is not "":
+                print("write name")
+                value = self.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_name(entry_uuid) is True:
+                    scrolled_page.name_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.name_property_value_entry.set_text("")
+                scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
+                properties_list_box.add(scrolled_page.name_property_row)
 
         if self.database_manager.has_entry_username(entry_uuid) is True or add_all is True:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
-
-            username_property_row = builder.get_object("username_property_row")
-            username_property_value_entry = builder.get_object("username_property_value_entry")
-
-            value = self.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
-
-            if self.database_manager.has_entry_username(entry_uuid) is True:
-                username_property_value_entry.set_text(value)
-            else:
-                username_property_value_entry.set_text("")
-
-            username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
-
-            properties_list_box.add(username_property_row)
+            if scrolled_page.username_property_row is NotImplemented:
+                scrolled_page.username_property_row = builder.get_object("username_property_row")
+                scrolled_page.username_property_value_entry = builder.get_object("username_property_value_entry")
+                value = self.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_username(entry_uuid) is True:
+                    scrolled_page.username_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.username_property_value_entry.set_text("")
+                scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
+                properties_list_box.add(scrolled_page.username_property_row)
+            elif scrolled_page.username_property_row is not "":
+                print("write name")
+                value = self.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_username(entry_uuid) is True:
+                    scrolled_page.username_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.username_property_value_entry.set_text("")
+                scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
+                properties_list_box.add(scrolled_page.username_property_row)
 
         if self.database_manager.has_entry_password(entry_uuid) is True or add_all is True:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
-
-            password_property_row = builder.get_object("password_property_row")
-            password_property_value_entry = builder.get_object("password_property_value_entry")
-
-            value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
-
-            if self.database_manager.has_entry_password(entry_uuid) is True:
-                password_property_value_entry.set_text(value)
-            else:
-                password_property_value_entry.set_text("")
-
-            password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
-
-            properties_list_box.add(password_property_row)
+            if scrolled_page.password_property_row is NotImplemented:
+                scrolled_page.password_property_row = builder.get_object("password_property_row")
+                scrolled_page.password_property_value_entry = builder.get_object("password_property_value_entry")
+                value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_password(entry_uuid) is True:
+                    scrolled_page.password_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.password_property_value_entry.set_text("")
+                scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
+                properties_list_box.add(scrolled_page.password_property_row)
+            elif scrolled_page.password_property_row is not "":
+                value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_password(entry_uuid) is True:
+                    scrolled_page.password_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.password_property_value_entry.set_text("")
+                scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
+                properties_list_box.add(scrolled_page.password_property_row)
 
         if self.database_manager.has_entry_url(entry_uuid) is True or add_all is True:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
-
-            url_property_row = builder.get_object("url_property_row")
-            url_property_value_entry = builder.get_object("url_property_value_entry")
-
-            value = self.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
-
-            if self.database_manager.has_entry_url(entry_uuid) is True:
-                url_property_value_entry.set_text(value)
-            else:
-                url_property_value_entry.set_text("")
-
-            url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
-
-            properties_list_box.add(url_property_row)
+            if scrolled_page.url_property_row is NotImplemented:
+                scrolled_page.url_property_row = builder.get_object("url_property_row")
+                scrolled_page.url_property_value_entry = builder.get_object("url_property_value_entry")
+                value = self.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_url(entry_uuid) is True:
+                    scrolled_page.url_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.url_property_value_entry.set_text("")
+                scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
+                properties_list_box.add(scrolled_page.url_property_row)
+            elif scrolled_page.url_property_row is not "":
+                value = self.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_url(entry_uuid) is True:
+                    scrolled_page.url_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.url_property_value_entry.set_text("")
+                scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
+                properties_list_box.add(scrolled_page.url_property_row)
 
         if self.database_manager.has_entry_notes(entry_uuid) is True or add_all is True:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
-
-            notes_property_row = builder.get_object("notes_property_row")
-            notes_property_value_entry = builder.get_object("notes_property_value_entry")
-
-            value = self.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
-
-            if self.database_manager.has_entry_notes(entry_uuid) is True:
-                notes_property_value_entry.set_text(value)
-            else:
-                notes_property_value_entry.set_text("")
-
-            notes_property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
-
-            properties_list_box.add(notes_property_row)
+            if scrolled_page.notes_property_row is NotImplemented:
+                scrolled_page.notes_property_row = builder.get_object("notes_property_row")
+                scrolled_page.notes_property_value_entry = builder.get_object("notes_property_value_entry")
+                value = self.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_notes(entry_uuid) is True:
+                    scrolled_page.notes_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.notes_property_value_entry.set_text("")
+                scrolled_page.notes_property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
+                properties_list_box.add(scrolled_page.notes_property_row)
+            elif scrolled_page.notes_property_row is not "":
+                value = self.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+                if self.database_manager.has_entry_notes(entry_uuid) is True:
+                    scrolled_page.notes_property_value_entry.set_text(value)
+                else:
+                    scrolled_page.notes_property_value_entry.set_text("")
+                scrolled_page.notes_property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
+                properties_list_box.add(scrolled_page.notes_property_row)
 
     def insert_group_properties_into_listbox(self, properties_list_box):
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
@@ -456,10 +476,16 @@ class UnlockedDatabase:
         self.show_database_action_revealer("Added Group")
 
     def on_add_property_button_clicked(self, widget):
-        for row in self.properties_list_box.get_children():
-            self.properties_list_box.remove(row)
+        print("+ clicked")
 
-        self.insert_entry_properties_into_listbox(self.properties_list_box, True)
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(entry_uuid)
+
+        for row in scrolled_page.properties_list_box.get_children():
+            print(row)
+            scrolled_page.properties_list_box.remove(row)
+
+        self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
 
     def on_property_value_entry_changed(self, widget, type):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)

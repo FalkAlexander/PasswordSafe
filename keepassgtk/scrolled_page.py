@@ -7,6 +7,25 @@ class ScrolledPage(Gtk.ScrolledWindow):
     edit_page = False
     made_database_changes = False
 
+    properties_list_box = NotImplemented
+
+    name_property_row = NotImplemented
+    name_property_value_entry = NotImplemented
+
+    username_property_row = NotImplemented
+    username_property_value_entry = NotImplemented
+
+    password_property_row = NotImplemented
+    password_property_value_entry = NotImplemented
+
+    url_property_row = NotImplemented
+    url_property_value_entry = NotImplemented
+
+    notes_property_row = NotImplemented
+    notes_property_value_entry = NotImplemented
+
+    icon_property_row = NotImplemented
+
     def __init__(self, edit):
         Gtk.ScrolledWindow.__init__(self)
         self.set_name("ScrolledPage")

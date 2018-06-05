@@ -481,13 +481,10 @@ class UnlockedDatabase:
         self.show_database_action_revealer("Added Group")
 
     def on_add_property_button_clicked(self, widget):
-        print("+ clicked")
-
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(entry_uuid)
 
         for row in scrolled_page.properties_list_box.get_children():
-            print(row)
             scrolled_page.properties_list_box.remove(row)
 
         self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
@@ -568,7 +565,6 @@ class UnlockedDatabase:
         self.update_current_stack_page()
 
     def on_group_edit_menu_button_clicked(self, action, param):
-        print("menu clicked")
         group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.group_marked_for_edit)
 
         self.set_current_group(self.group_marked_for_edit)

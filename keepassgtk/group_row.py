@@ -29,7 +29,7 @@ class GroupRow(Gtk.ListBoxRow):
 
         group_name_label = builder.get_object("group_name_label")
 
-        if self.label is not None:
+        if self.label is not None and self.label is not "":
             group_name_label.set_text(self.label)
         else:
             group_name_label.set_markup("<span font-style=\"italic\">" + "No group title specified" + "</span>")

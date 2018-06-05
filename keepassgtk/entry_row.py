@@ -51,7 +51,7 @@ class EntryRow(Gtk.ListBoxRow):
 
         # Subtitle
         subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
-        if self.database_manager.has_entry_username(self.entry_uuid) is True and subtitle is not "":
+        if (self.database_manager.has_entry_username(self.entry_uuid) is True and subtitle is not ""):
             entry_subtitle_label.set_text(
                 self.database_manager.get_entry_username_from_entry_uuid(
                     self.entry_uuid))

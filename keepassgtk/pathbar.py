@@ -133,7 +133,7 @@ class Pathbar(Gtk.HBox):
         if self.database_manager.check_is_root_group(group) is True:
             self.clear_pathbar()
             self.first_appearance()
-            self.add_seperator_label()
+            self.show_all()
         else:
             self.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(group))
 
@@ -161,12 +161,10 @@ class Pathbar(Gtk.HBox):
 
         if pathbar_button_uuid != current_group_uuid:
             if pathbar_button.get_is_group() is True:
-                print("1")
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
 
                 if self.check_values_of_edit_page() is False:
-                    print("2")
                     self.query_page_update()
 
                 self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
@@ -178,8 +176,6 @@ class Pathbar(Gtk.HBox):
                     self.database_manager.get_entry_object_from_uuid(
                         pathbar_button.get_uuid()))
                 self.unlocked_database.switch_stack_page()
-        else:
-            print("hi")
 
     #
     # Helper Methods

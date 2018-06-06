@@ -4,6 +4,7 @@ from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
 from keepassgtk.group_row import GroupRow
 from keepassgtk.scrolled_page import ScrolledPage
+import keepassgtk.password_generator 
 import keepassgtk.config_manager
 import gi
 import ntpath
@@ -311,6 +312,8 @@ class UnlockedDatabase:
                     scrolled_page.name_property_value_entry.set_text(value)
                 else:
                     scrolled_page.name_property_value_entry.set_text("")
+
+                scrolled_page.name_property_value_entry.grab_focus()
                 scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
                 properties_list_box.add(scrolled_page.name_property_row)
             elif scrolled_page.name_property_row is not "":
@@ -319,6 +322,8 @@ class UnlockedDatabase:
                     scrolled_page.name_property_value_entry.set_text(value)
                 else:
                     scrolled_page.name_property_value_entry.set_text("")
+
+                scrolled_page.name_property_value_entry.grab_focus()
                 scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
                 properties_list_box.add(scrolled_page.name_property_row)
 
@@ -351,6 +356,7 @@ class UnlockedDatabase:
                 scrolled_page.password_property_row = builder.get_object("password_property_row")
                 scrolled_page.password_property_value_entry = builder.get_object("password_property_value_entry")
                 scrolled_page.show_password_button = builder.get_object("show_password_button")
+                scrolled_page.generate_password_button = builder.get_object("generate_password_button")
                 value = self.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
 
                 if self.database_manager.has_entry_password(entry_uuid) is True:
@@ -362,6 +368,7 @@ class UnlockedDatabase:
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
+                self.show_generate_password_popover(scrolled_page.generate_password_button, scrolled_page.password_property_value_entry)
 
                 properties_list_box.add(scrolled_page.password_property_row)
             elif scrolled_page.password_property_row is not "":
@@ -603,6 +610,33 @@ class UnlockedDatabase:
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
         Gtk.show_uri_on_window(self.window, widget.get_text(), Gtk.get_current_event_time())
 
+    def on_popup_generate_password_popover(self, widget, entry):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+
+        popover = builder.get_object("generate_password_popover")
+        digit_spin_button = builder.get_object("digit_spin_button")
+        generate_button = builder.get_object("generate_button")
+
+        digit_adjustment = Gtk.Adjustment(16, 5, 50, 1, 5)
+        digit_spin_button.set_adjustment(digit_adjustment)
+
+        generate_button.connect("clicked", self.on_generate_button_clicked, builder, entry, digit_spin_button)
+
+        popover.set_relative_to(widget)
+        popover.show_all()
+        popover.popup()
+
+    def on_generate_button_clicked(self, widget, builder, entry, digit_spin_button):
+        high_letter_toggle_button = builder.get_object("high_letter_toggle_button")
+        low_letter_toggle_button = builder.get_object("low_letter_toggle_button")
+        number_toggle_button = builder.get_object("number_toggle_button")
+        special_toggle_button = builder.get_object("special_toggle_button")
+
+        digits = digit_spin_button.get_value_as_int()
+
+        password = keepassgtk.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
+        entry.set_text(password)
     #
     # Dialog Creator
     #
@@ -658,3 +692,6 @@ class UnlockedDatabase:
         else:
             toggle_button.toggled()
             entry.set_visibility(True)
+
+    def show_generate_password_popover(self, show_password_button, entry):
+        show_password_button.connect("clicked", self.on_popup_generate_password_popover, entry)

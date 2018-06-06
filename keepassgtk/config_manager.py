@@ -64,7 +64,13 @@ def set_window_size(list):
     setting.set_value(window_size, g_variant)
 
 def get_sort_order():
-    return setting.get_enum(sort_order)
+    value = setting.get_enum(sort_order)
+    if value == 0:
+        return "A-Z"
+    elif value == 1:
+        return "Z-A"
+    elif value == 2:
+        return "last_added"
 
 def set_sort_order(value):
     if value == "A-Z":

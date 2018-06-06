@@ -134,6 +134,13 @@ class UnlockedDatabase:
 
         mod_box.add(self.builder.get_object("entry_page_mod_box"))
 
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(entry_uuid)
+        if scrolled_page.add_button_disabled is True:
+            self.builder.get_object("add_property_button").set_sensitive(False)
+        else:
+            self.builder.get_object("add_property_button").set_sensitive(True)
+
     # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
         mod_box = self.builder.get_object("mod_box")
@@ -360,7 +367,6 @@ class UnlockedDatabase:
                 else:
                     scrolled_page.name_property_value_entry.set_text("")
 
-                scrolled_page.name_property_value_entry.grab_focus()
                 scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
                 properties_list_box.add(scrolled_page.name_property_row)
             elif scrolled_page.name_property_row is not "":
@@ -370,7 +376,6 @@ class UnlockedDatabase:
                 else:
                     scrolled_page.name_property_value_entry.set_text("")
 
-                scrolled_page.name_property_value_entry.grab_focus()
                 scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
                 properties_list_box.add(scrolled_page.name_property_row)
 
@@ -472,6 +477,10 @@ class UnlockedDatabase:
                     scrolled_page.notes_property_value_entry.set_text("")
                 scrolled_page.notes_property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
+
+        if scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
+            scrolled_page.add_button_disabled = True
+            self.builder.get_object("add_property_button").set_sensitive(False)
 
     def insert_group_properties_into_listbox(self, properties_list_box):
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)

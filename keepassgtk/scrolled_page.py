@@ -6,6 +6,8 @@ gi.require_version('Gtk', '3.0')
 class ScrolledPage(Gtk.ScrolledWindow):
     edit_page = False
     made_database_changes = False
+    
+    add_button_disabled = False
 
     properties_list_box = NotImplemented
 

@@ -145,7 +145,7 @@ class Pathbar(Gtk.HBox):
         self.remove_active_style()
         self.set_active_style(widget)
 
-        if self.check_values_of_edit_page() is False:
+        if self.check_values_of_edit_page(self.database_manager.get_root_group()) is False:
             self.query_page_update()
 
         self.unlocked_database.set_current_group(self.database_manager.get_root_group())
@@ -164,7 +164,7 @@ class Pathbar(Gtk.HBox):
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
 
-                if self.check_values_of_edit_page() is False:
+                if self.check_values_of_edit_page(self.database_manager.get_group_object_from_uuid(pathbar_button_uuid)) is False:
                     self.query_page_update()
 
                 self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
@@ -253,7 +253,7 @@ class Pathbar(Gtk.HBox):
         scrolled_page.set_made_database_changes(False)
 
     # Check all values of the group/entry - if all are blank we delete the entry/group and return true (prevents crash)
-    def check_values_of_edit_page(self):
+    def check_values_of_edit_page(self, pathbar_button):
         current_group = self.unlocked_database.get_current_group()
         if self.check_is_edit_page_from_group() is True:
             group_name = self.database_manager.get_group_name_from_group_object(current_group)
@@ -263,7 +263,7 @@ class Pathbar(Gtk.HBox):
             if (group_name is None or group_name is "") and (group_notes is None or group_notes is "") and (group_icon is "0"):
                 parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
                 self.database_manager.delete_group_from_database(current_group)
-                self.rebuild_pathbar(parent_group)
+                self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
                 self.unlocked_database.show_database_action_revealer("Deleted blank group")
                 return True
@@ -280,7 +280,7 @@ class Pathbar(Gtk.HBox):
             if (entry_title is None or entry_title is "") and (entry_username is None or entry_username is "") and (entry_password is None or entry_password is "") and (entry_url is None or entry_url is "") and (entry_notes is None or entry_notes is "") and (entry_icon is "0"):
                 parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
                 self.database_manager.delete_entry_from_database(current_group)
-                self.rebuild_pathbar(parent_group)
+                self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
                 self.unlocked_database.show_database_action_revealer("Deleted blank entry")
                 return True

@@ -25,6 +25,7 @@ class UnlockedDatabase:
     overlay = NotImplemented
     scheduled_page_destroy = []
     clipboard = NotImplemented
+    list_box_sorting = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -63,6 +64,8 @@ class UnlockedDatabase:
         self.set_headerbar()
         self.prepare_actions()
 
+        self.list_box_sorting = keepassgtk.config_manager.get_sort_order()
+
         self.show_page_of_new_directory(False)
 
     #
@@ -92,10 +95,26 @@ class UnlockedDatabase:
         add_property_button = self.builder.get_object("add_property_button")
         add_property_button.connect("clicked", self.on_add_property_button_clicked)
 
+        self.set_gio_actions()
+
         self.parent_widget.set_headerbar(headerbar)
         self.window.set_titlebar(headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), headerbar)
+
+    def set_gio_actions(self):
+        az_button_action = Gio.SimpleAction.new("sort.az", None)
+        az_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "A-Z")
+
+        za_button_action = Gio.SimpleAction.new("sort.za", None)
+        za_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "Z-A")
+
+        last_added_button_action = Gio.SimpleAction.new("sort.last_added", None)
+        last_added_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "last_added")
+
+        self.window.application.add_action(az_button_action)
+        self.window.application.add_action(za_button_action)
+        self.window.application.add_action(last_added_button_action)
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
@@ -239,7 +258,10 @@ class UnlockedDatabase:
             self.scheduled_page_destroy.remove(page_uuid)
             self.show_page_of_new_directory(False)
 
-        self.stack.set_visible_child_name(page_uuid)
+        if self.stack.get_child_by_name(page_uuid) is None:
+            self.show_page_of_new_directory(False)
+        else:
+            self.stack.set_visible_child_name(page_uuid)
 
     def update_current_stack_page(self):
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
@@ -275,6 +297,7 @@ class UnlockedDatabase:
 
     def insert_groups_into_listbox(self, list_box):
         groups = NotImplemented
+        sorted_list = []
 
         if self.current_group.is_root_group:
             groups = self.database_manager.get_groups_in_root()
@@ -283,15 +306,39 @@ class UnlockedDatabase:
 
         for group in groups:
             group_row = GroupRow(self, self.database_manager, group)
+            sorted_list.append(group_row)
+
+        if self.list_box_sorting == "A-Z":
+            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=False)
+        elif self.list_box_sorting == "Z-A":
+            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=True)
+
+        for group_row in sorted_list:
             list_box.add(group_row)
 
     def insert_entries_into_listbox(self, list_box):
         entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        sorted_list = []
 
         for entry in entries:
             entry_row = EntryRow(self, self.database_manager, entry)
+            sorted_list.append(entry_row)
+
+        if self.list_box_sorting == "A-Z":
+            sorted_list.sort(key=lambda entry: str.lower(entry.label), reverse=False)
+        elif self.list_box_sorting == "Z-A":
+            sorted_list.sort(key=lambda entry: str.lower(entry.label), reverse=True)
+
+        for entry_row in sorted_list:
             list_box.add(entry_row)
 
+    def rebuild_all_pages(self):
+        for page in self.stack.get_children():
+            if page.check_is_edit_page() is False:
+                page.destroy()
+
+        self.show_page_of_new_directory(False)
+        
     #
     # Create Property Rows
     #
@@ -637,6 +684,12 @@ class UnlockedDatabase:
 
         password = keepassgtk.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
         entry.set_text(password)
+
+    def on_sort_menu_button_entry_clicked(self, action, param, sorting):
+        keepassgtk.config_manager.set_sort_order(sorting)
+        self.list_box_sorting = sorting
+        self.rebuild_all_pages()
+
     #
     # Dialog Creator
     #

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+    <enum id="run.terminal.KeepassGtk.Sorting">
+        <value nick="a-z" value="0" />
+        <value nick="z-a" value="1" />
+        <value nick="last_added" value="2" />
+    </enum>
     <schema path="/run/terminal/KeepassGtk/" id="run.terminal.KeepassGtk" gettext-domain="keepassgtk">
         <key type="b" name="dark-theme">
             <default>false</default>
@@ -40,6 +45,11 @@
             <default>""</default>
             <summary>Last opened database</summary>
             <description>Path to the last opened database.</description>
+        </key>
+        <key enum="run.terminal.KeepassGtk.Sorting" name="sort-order">
+            <default>"last_added"</default>
+            <summary>Sorting order of groups and entries</summary>
+            <description>Order of the rows in the groups and entries view.</description>
         </key>
    </schema>
 </schemalist>

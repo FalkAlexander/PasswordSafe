@@ -12,6 +12,7 @@ last_opened_database = "last-opened-database"
 save_automatically = "save-automatically"
 show_password_fields = "show-password-fields"
 window_size = "window-size"
+sort_order = "sort-order"
 
 def get_clear_clipboard():
     return setting.get_int(clear_clipboard)
@@ -61,3 +62,14 @@ def get_window_size():
 def set_window_size(list):
     g_variant = GLib.Variant('ai', list)
     setting.set_value(window_size, g_variant)
+
+def get_sort_order():
+    return setting.get_enum(sort_order)
+
+def set_sort_order(value):
+    if value == "A-Z":
+        setting.set_enum(sort_order, 0)
+    elif value == "Z-A":
+        setting.set_enum(sort_order, 1)
+    elif value == "last_added":
+        setting.set_enum(sort_order, 2)

@@ -314,7 +314,6 @@ class UnlockedDatabase:
         for group in groups:
             group_row = GroupRow(self, self.database_manager, group)
             sorted_list.append(group_row)
-
         if self.list_box_sorting == "A-Z":
             sorted_list.sort(key=lambda group: str.lower(group.label), reverse=False)
         elif self.list_box_sorting == "Z-A":
@@ -534,7 +533,7 @@ class UnlockedDatabase:
         self.show_database_action_revealer("Database saved")
 
     def on_lock_button_clicked(self, widget):
-        if self.database_manager.made_database_changes is True:
+        if self.database_manager.made_database_changes() is True:
             self.show_save_dialog()
         else:
             self.lock_database()
@@ -542,9 +541,11 @@ class UnlockedDatabase:
     def on_save_dialog_save_button_clicked(self, widget, save_dialog):
         self.database_manager.save_database()
         save_dialog.destroy()
+        self.lock_database()
 
     def on_save_dialog_discard_button_clicked(self, widget, save_dialog):
         save_dialog.destroy()
+        self.lock_database()
 
     def on_add_entry_button_clicked(self, widget):
         self.database_manager.changes = True

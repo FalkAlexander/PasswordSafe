@@ -4,11 +4,11 @@ from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
 from keepassgtk.group_row import GroupRow
 from keepassgtk.scrolled_page import ScrolledPage
+from threading import Timer
 import keepassgtk.password_generator 
 import keepassgtk.config_manager
 import gi
 import ntpath
-import threading
 gi.require_version('Gtk', '3.0')
 
 
@@ -26,6 +26,7 @@ class UnlockedDatabase:
     scheduled_page_destroy = []
     clipboard = NotImplemented
     list_box_sorting = NotImplemented
+    clipboard_timer = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -662,7 +663,13 @@ class UnlockedDatabase:
             entry.set_visibility(True)
 
     def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
+        if self.clipboard_timer is not NotImplemented:
+            self.clipboard_timer.cancel()
+
         self.clipboard.set_text(widget.get_text(), -1)
+        clear_clipboard_time = keepassgtk.config_manager.get_clear_clipboard()
+        self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
+        self.clipboard_timer.start()
 
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
         Gtk.show_uri_on_window(self.window, widget.get_text(), Gtk.get_current_event_time())
@@ -758,3 +765,8 @@ class UnlockedDatabase:
 
     def show_generate_password_popover(self, show_password_button, entry):
         show_password_button.connect("clicked", self.on_popup_generate_password_popover, entry)
+
+    def clear_clipboard(self):
+        clear_clipboard_time = keepassgtk.config_manager.get_clear_clipboard()
+        if clear_clipboard_time is not 0:
+            self.clipboard.clear()

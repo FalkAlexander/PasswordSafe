@@ -337,6 +337,9 @@ class MainWindow(Gtk.ApplicationWindow):
         self.quit_dialog.destroy()
 
     def on_quit_button_clicked(self, button):
+        for db in self.opened_databases:
+            db.cancel_timers()
+
         for db in self.databases_to_save:
             db.database_manager.save_database()
 

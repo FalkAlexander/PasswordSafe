@@ -142,6 +142,7 @@ class Pathbar(Gtk.HBox):
     #
 
     def on_home_button_clicked(self, widget):
+        self.unlocked_database.start_database_lock_timer()
         self.remove_active_style()
         self.set_active_style(widget)
 
@@ -152,6 +153,7 @@ class Pathbar(Gtk.HBox):
         self.unlocked_database.switch_stack_page()
 
     def on_pathbar_button_clicked(self, pathbar_button):
+        self.unlocked_database.start_database_lock_timer()
         pathbar_button_uuid = pathbar_button.get_uuid()
         current_group_uuid = NotImplemented
         if self.database_manager.check_is_group(pathbar_button_uuid) is True:

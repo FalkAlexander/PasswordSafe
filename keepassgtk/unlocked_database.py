@@ -9,6 +9,7 @@ import keepassgtk.password_generator
 import keepassgtk.config_manager
 import gi
 import ntpath
+
 gi.require_version('Gtk', '3.0')
 
 
@@ -27,6 +28,7 @@ class UnlockedDatabase:
     clipboard = NotImplemented
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
+    database_lock_timer = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -66,6 +68,7 @@ class UnlockedDatabase:
         self.prepare_actions()
 
         self.list_box_sorting = keepassgtk.config_manager.get_sort_order()
+        self.start_database_lock_timer()
 
         self.show_page_of_new_directory(False)
 
@@ -202,7 +205,6 @@ class UnlockedDatabase:
                 builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
                 list_box = builder.get_object("list_box")
                 list_box.connect("row-activated", self.on_list_box_row_activated)
-                list_box.connect("row-selected", self.on_list_box_row_selected)
 
                 scrolled_window = ScrolledPage(False)
                 viewport = Gtk.Viewport()
@@ -517,6 +519,8 @@ class UnlockedDatabase:
     #
 
     def on_list_box_row_activated(self, widget, list_box_row):
+        self.start_database_lock_timer()
+
         if list_box_row.get_type() == "EntryRow":
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
@@ -526,10 +530,8 @@ class UnlockedDatabase:
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
             self.show_page_of_new_directory(False)
 
-    def on_list_box_row_selected(self, widget, list_box_row):
-        self.logging_manager.log_debug(list_box_row.get_label() + " selected")
-
     def on_save_button_clicked(self, widget):
+        self.start_database_lock_timer()
         self.database_manager.save_database()
         self.show_database_action_revealer("Database saved")
 
@@ -540,15 +542,18 @@ class UnlockedDatabase:
             self.lock_database()
 
     def on_save_dialog_save_button_clicked(self, widget, save_dialog):
+        self.start_database_lock_timer()
         self.database_manager.save_database()
         save_dialog.destroy()
         self.lock_database()
 
     def on_save_dialog_discard_button_clicked(self, widget, save_dialog):
+        self.start_database_lock_timer()
         save_dialog.destroy()
         self.lock_database()
 
     def on_add_entry_button_clicked(self, widget):
+        self.start_database_lock_timer()
         self.database_manager.changes = True
         entry = self.database_manager.add_entry_to_database("", "", "", "", "", "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.current_group = entry
@@ -558,6 +563,7 @@ class UnlockedDatabase:
         self.show_database_action_revealer("Added Entry")
 
     def on_add_group_button_clicked(self, widget):
+        self.start_database_lock_timer()
         self.database_manager.changes = True
         group = self.database_manager.add_group_to_database("", "0", "", self.current_group)
         self.current_group = group
@@ -567,6 +573,7 @@ class UnlockedDatabase:
         self.show_database_action_revealer("Added Group")
 
     def on_add_property_button_clicked(self, widget):
+        self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(entry_uuid)
 
@@ -576,6 +583,7 @@ class UnlockedDatabase:
         self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
 
     def on_property_value_entry_changed(self, widget, type):
+        self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
@@ -597,6 +605,7 @@ class UnlockedDatabase:
             self.database_manager.set_entry_notes(entry_uuid, widget.get_text())
 
     def on_property_value_group_changed(self, widget, type):
+        self.start_database_lock_timer()
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
 
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -613,6 +622,7 @@ class UnlockedDatabase:
             self.database_manager.set_group_notes(group_uuid, widget.get_text())
 
     def on_entry_row_button_pressed(self, widget, event):
+        self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_entry_uuid())
             entry_context_popover = self.builder.get_object("entry_context_popover")
@@ -621,6 +631,7 @@ class UnlockedDatabase:
             entry_context_popover.popup()
 
     def on_entry_delete_menu_button_clicked(self, action, param):
+        self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.entry_marked_for_delete)
 
         # If the deleted entry is in the pathbar, we need to rebuild the pathbar
@@ -631,6 +642,7 @@ class UnlockedDatabase:
         self.update_current_stack_page()
 
     def on_group_row_button_pressed(self, widget, event):
+        self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
             self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
             self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
@@ -640,6 +652,7 @@ class UnlockedDatabase:
             group_context_popover.popup()
 
     def on_group_delete_menu_button_clicked(self, action, param):
+        self.start_database_lock_timer()
         group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.group_marked_for_delete)
 
         # If the deleted group is in the pathbar, we need to rebuild the pathbar
@@ -650,6 +663,7 @@ class UnlockedDatabase:
         self.update_current_stack_page()
 
     def on_group_edit_menu_button_clicked(self, action, param):
+        self.start_database_lock_timer()
         group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.group_marked_for_edit)
 
         self.set_current_group(self.group_marked_for_edit)
@@ -657,12 +671,14 @@ class UnlockedDatabase:
         self.show_page_of_new_directory(True)
 
     def on_show_password_button_toggled(self, toggle_button, entry):
+        self.start_database_lock_timer()
         if entry.get_visibility() is True:
             entry.set_visibility(False)
         else:
             entry.set_visibility(True)
 
     def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
+        self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()
 
@@ -672,9 +688,11 @@ class UnlockedDatabase:
         self.clipboard_timer.start()
 
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
+        self.start_database_lock_timer()
         Gtk.show_uri_on_window(self.window, widget.get_text(), Gtk.get_current_event_time())
 
     def on_popup_generate_password_popover(self, widget, entry):
+        self.start_database_lock_timer()
         builder = Gtk.Builder()
         builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
 
@@ -692,6 +710,7 @@ class UnlockedDatabase:
         popover.popup()
 
     def on_generate_button_clicked(self, widget, builder, entry, digit_spin_button):
+        self.start_database_lock_timer()
         high_letter_toggle_button = builder.get_object("high_letter_toggle_button")
         low_letter_toggle_button = builder.get_object("low_letter_toggle_button")
         number_toggle_button = builder.get_object("number_toggle_button")
@@ -703,9 +722,17 @@ class UnlockedDatabase:
         entry.set_text(password)
 
     def on_sort_menu_button_entry_clicked(self, action, param, sorting):
+        self.start_database_lock_timer()
         keepassgtk.config_manager.set_sort_order(sorting)
         self.list_box_sorting = sorting
         self.rebuild_all_pages()
+
+    def cancel_timers(self):
+        if self.clipboard_timer is not NotImplemented:
+            self.clipboard_timer.cancel()
+
+        if self.database_lock_timer is not NotImplemented:
+            self.database_lock_timer.cancel()
 
     #
     # Dialog Creator
@@ -738,7 +765,7 @@ class UnlockedDatabase:
 
         database_action_revealer = self.builder.get_object("database_action_revealer")
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
-        revealer_timer = threading.Timer(3.0, self.hide_database_action_revealer)
+        revealer_timer = Timer(3.0, self.hide_database_action_revealer)
         revealer_timer.start()
 
     def hide_database_action_revealer(self):
@@ -770,3 +797,12 @@ class UnlockedDatabase:
         clear_clipboard_time = keepassgtk.config_manager.get_clear_clipboard()
         if clear_clipboard_time is not 0:
             self.clipboard.clear()
+
+    def start_database_lock_timer(self):
+        if self.database_lock_timer is not NotImplemented:
+            self.database_lock_timer.cancel()
+        timeout = keepassgtk.config_manager.get_database_lock_timeout() * 60
+        if timeout is not 0:
+            self.database_lock_timer = Timer(timeout, self.lock_database)
+            self.database_lock_timer.start()
+            

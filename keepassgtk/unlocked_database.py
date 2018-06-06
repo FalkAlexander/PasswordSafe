@@ -23,6 +23,7 @@ class UnlockedDatabase:
     pathbar = NotImplemented
     overlay = NotImplemented
     scheduled_page_destroy = []
+    clipboard = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -42,6 +43,8 @@ class UnlockedDatabase:
     def assemble_listbox(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+
+        self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         self.overlay = Gtk.Overlay()
         self.parent_widget.add(self.overlay)
@@ -328,6 +331,8 @@ class UnlockedDatabase:
                     scrolled_page.username_property_value_entry.set_text(value)
                 else:
                     scrolled_page.username_property_value_entry.set_text("")
+
+                scrolled_page.username_property_value_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row is not "":
@@ -336,6 +341,8 @@ class UnlockedDatabase:
                     scrolled_page.username_property_value_entry.set_text(value)
                 else:
                     scrolled_page.username_property_value_entry.set_text("")
+
+                scrolled_page.username_property_value_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
 
@@ -351,6 +358,7 @@ class UnlockedDatabase:
                 else:
                     scrolled_page.password_property_value_entry.set_text("")
 
+                scrolled_page.password_property_value_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
@@ -362,8 +370,9 @@ class UnlockedDatabase:
                     scrolled_page.password_property_value_entry.set_text(value)
                 else:
                     scrolled_page.password_property_value_entry.set_text("")
+
+                scrolled_page.password_property_value_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
-                self.change_password_entry_visibility(scrolled_page.password_property_value_entry)
                 properties_list_box.add(scrolled_page.password_property_row)
 
         if self.database_manager.has_entry_url(entry_uuid) is True or add_all is True:
@@ -375,6 +384,8 @@ class UnlockedDatabase:
                     scrolled_page.url_property_value_entry.set_text(value)
                 else:
                     scrolled_page.url_property_value_entry.set_text("")
+
+                scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
             elif scrolled_page.url_property_row is not "":
@@ -383,6 +394,8 @@ class UnlockedDatabase:
                     scrolled_page.url_property_value_entry.set_text(value)
                 else:
                     scrolled_page.url_property_value_entry.set_text("")
+
+                scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
 
@@ -583,6 +596,12 @@ class UnlockedDatabase:
             entry.set_visibility(False)
         else:
             entry.set_visibility(True)
+
+    def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
+        self.clipboard.set_text(widget.get_text(), -1)
+
+    def on_link_secondary_button_clicked(self, widget, position, eventbutton):
+        Gtk.show_uri_on_window(self.window, widget.get_text(), Gtk.get_current_event_time())
 
     #
     # Dialog Creator

@@ -64,6 +64,8 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             entry_password_input.set_text("")
 
+        entry_password_input.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+
         self.add(entry_event_box)
         self.show_all()
 

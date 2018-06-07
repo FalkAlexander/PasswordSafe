@@ -120,6 +120,16 @@ class UnlockedDatabase:
         self.window.application.add_action(za_button_action)
         self.window.application.add_action(last_added_button_action)
 
+        #menubutton_popover_a_z_button = self.builder.get_object("menubutton_popover_a-z_button")
+        #box = menubutton_popover_a_z_button.get_children()[0]
+        #radio_box = Gtk.Box()
+        #box.add(radio_box)
+        #radio_box.set_halign(Gtk.Align.END)
+        #radio_button = Gtk.RadioButton()
+        #radio_box.add(radio_button)
+        #radio_box.set_hexpand(True)
+        #menubutton_popover_a_z_button.show_all()
+
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
         mod_box = self.builder.get_object("mod_box")
@@ -773,6 +783,7 @@ class UnlockedDatabase:
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
 
     def lock_database(self):
+        self.cancel_timers()
         self.window.opened_databases.remove(self)
         self.window.close_tab(self.parent_widget)
         self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
@@ -804,5 +815,4 @@ class UnlockedDatabase:
         timeout = keepassgtk.config_manager.get_database_lock_timeout() * 60
         if timeout is not 0:
             self.database_lock_timer = Timer(timeout, self.lock_database)
-            self.database_lock_timer.start()
-            
+            self.database_lock_timer.start()    

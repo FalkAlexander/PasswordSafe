@@ -393,4 +393,7 @@ class MainWindow(Gtk.ApplicationWindow):
             return(True)      
         else:
             self.save_window_size()
+
+            for db in self.opened_databases:
+                db.cancel_timers()
               

@@ -17,6 +17,8 @@ class UnlockedDatabase:
     builder = NotImplemented
     window = NotImplemented
     parent_widget = NotImplemented
+    headerbar = NotImplemented
+    headerbar_search = NotImplemented
     scrolled_window = NotImplemented
     stack = NotImplemented
     database_manager = NotImplemented
@@ -78,7 +80,7 @@ class UnlockedDatabase:
 
     # Assemble headerbar
     def set_headerbar(self):
-        headerbar = self.builder.get_object("headerbar")
+        self.headerbar = self.builder.get_object("headerbar")
 
         save_button = self.builder.get_object("save_button")
         save_button.connect("clicked", self.on_save_button_clicked)
@@ -89,6 +91,9 @@ class UnlockedDatabase:
         mod_box = self.builder.get_object("mod_box")
         browser_buttons_box = self.builder.get_object("browser_buttons_box")
         mod_box.add(browser_buttons_box)
+
+        search_button = self.builder.get_object("search_button")
+        search_button.connect("clicked", self.set_search_headerbar)
 
         add_entry_button = self.builder.get_object("add_entry_button")
         add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
@@ -101,10 +106,10 @@ class UnlockedDatabase:
 
         self.set_gio_actions()
 
-        self.parent_widget.set_headerbar(headerbar)
-        self.window.set_titlebar(headerbar)
+        self.parent_widget.set_headerbar(self.headerbar)
+        self.window.set_titlebar(self.headerbar)
 
-        self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), headerbar)
+        self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
 
     def set_gio_actions(self):
         az_button_action = Gio.SimpleAction.new("sort.az", None)
@@ -129,6 +134,19 @@ class UnlockedDatabase:
         #radio_box.add(radio_button)
         #radio_box.set_hexpand(True)
         #menubutton_popover_a_z_button.show_all()
+
+    # Search headerbar
+    def set_search_headerbar(self, widget):
+        self.headerbar_search = self.builder.get_object("headerbar_search")
+        self.parent_widget.set_headerbar(self.headerbar_search)
+        self.window.set_titlebar(self.headerbar_search)
+
+        headerbar_search_box_close_button = self.builder.get_object("headerbar_search_box_close_button")
+        headerbar_search_box_close_button.connect("clicked", self.remove_search_headerbar)
+
+    def remove_search_headerbar(self, widget):
+        self.parent_widget.set_headerbar(self.headerbar)
+        self.window.set_titlebar(self.headerbar)
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):

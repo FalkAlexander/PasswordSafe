@@ -1,6 +1,7 @@
 from pykeepass import PyKeePass
 from keepassgtk.logging_manager import LoggingManager
 import keepassgtk.config_manager
+import re
 
 
 class DatabaseManager:
@@ -37,7 +38,7 @@ class DatabaseManager:
     # Return the belonging group name for a group uuid
     def get_group_name_from_uuid(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
-        return group.name
+        return self.get_group_name_from_group_object(group)
 
     # Return the path for a group object
     def get_group_path_from_group_object(self, group):
@@ -49,11 +50,17 @@ class DatabaseManager:
 
     # Return the belonging name for a group object
     def get_group_name_from_group_object(self, group):
-        return group.name
+        if group.name is None:
+            return ""
+        else:
+            return group.name
 
     # Return the belonging notes for a group object
     def get_group_notes_from_group_object(self, group):
-        return group.notes
+        if group.notes is None:
+            return ""
+        else:
+            return group.notes
 
      # Return the belonging icon for a group object
     def get_group_icon_from_group_object(self, group):
@@ -62,7 +69,7 @@ class DatabaseManager:
     # Return the belonging notes for a group uuid
     def get_group_notes_from_group_uuid(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
-        return group.notes
+        return self.get_group_notes_from_group_object(group)
 
     # Return path for group uuid
     def get_group_path_from_group_uuid(self, uuid):
@@ -92,12 +99,15 @@ class DatabaseManager:
 
     # Return the belonging name for an entry object
     def get_entry_name_from_entry_object(self, entry):
-        return entry.title
+        if entry.title is None:
+            return ""
+        else:
+            return entry.title
 
     # Return entry name from entry uuid
     def get_entry_name_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.title
+        return self.get_entry_name_from_entry_object(entry)
 
     # Return the belonging icon for an entry object
     def get_entry_icon_from_entry_object(self, entry):
@@ -110,30 +120,39 @@ class DatabaseManager:
 
     # Return the belonging username for an entry object
     def get_entry_username_from_entry_object(self, entry):
-        return entry.username
+        if entry.username is None:
+            return ""
+        else:
+            return entry.username
 
     # Return the belonging username for an entry uuid
     def get_entry_username_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.username
+        return self.get_entry_username_from_entry_object(entry)
 
     # Return the belonging password for an entry object
     def get_entry_password_from_entry_object(self, entry):
-        return entry.password
+        if entry.password is None:
+            return ""
+        else:
+            return entry.password
 
     # Return the belonging password for an entry uuid
     def get_entry_password_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.password
+        return self.get_entry_password_from_entry_object(entry)
 
     # Return the belonging url for an entry uuid
     def get_entry_url_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.url
+        return self.get_entry_url_from_entry_object(entry)
 
     # Return the belonging url for an entry object
     def get_entry_url_from_entry_object(self, entry):
-        return entry.url
+        if entry.url is None:
+            return ""
+        else:
+            return entry.url
 
     # Return the belonging notes for an entry uuid
     def get_entry_notes_from_entry_uuid(self, uuid):
@@ -142,7 +161,10 @@ class DatabaseManager:
 
     # Return the belonging notes for an entry object
     def get_entry_notes_from_entry_object(self, entry):
-        return entry.notes
+        if entry.notes is None:
+            return ""
+        else:
+            return entry.notes
 
     #
     # Entry Checks
@@ -374,37 +396,17 @@ class DatabaseManager:
     def global_search(self, string, fulltext):
         uuid_list = []
         for group in self.db.groups:
-            name = ""
-            notes = ""
-            if self.has_group_name(group.uuid):
-                name = group.name
-            if self.has_group_notes(group.uuid):
-                notes = group.notes
-
-            if string in name:
+            if re.search(string, self.get_group_name_from_group_object(group), re.IGNORECASE):
                 uuid_list.append(group.uuid)
             if fulltext is True:
-                if string in notes:
+                if re.search(string, self.get_group_notes_from_group_object(group), re.IGNORECASE):
                     uuid_list.append(group.uuid)
         
         for entry in self.db.entries:
-            name = ""
-            username = ""
-            url = ""
-            notes = ""
-            if self.has_entry_name(entry.uuid):
-                name = entry.title
-            if self.has_entry_username(entry.uuid):
-                username = entry.username
-            if self.has_entry_url(entry.uuid):
-                url = entry.url
-            if self.has_entry_notes(entry.uuid):
-                notes = entry.notes
-
-            if string in name:
+            if re.search(string, self.get_entry_name_from_entry_object(entry), re.IGNORECASE):
                 uuid_list.append(entry.uuid)
             if fulltext is True:
-                if string in username or string in url or string in notes:
+                if re.search(string, self.get_entry_username_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_url_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_notes_from_entry_object(entry), re.IGNORECASE):
                    uuid_list.append(entry.uuid) 
                 
         return uuid_list
@@ -413,37 +415,17 @@ class DatabaseManager:
     def local_search(self, group, string, fulltext):
         uuid_list = []
         for group in group.subgroups:
-            name = ""
-            notes = ""
-            if self.has_group_name(group.uuid):
-                name = name
-            if self.has_group_notes(group.uuid):
-                notes = notes
-
-            if string in name:
+            if re.search(string, self.get_group_name_from_group_object(group), re.IGNORECASE):
                 uuid_list.append(group.uuid)
             if fulltext is True:
-                if string in notes:
+                if re.search(string, self.get_group_notes_from_group_object(group), re.IGNORECASE):
                     uuid_list.append(group.uuid)
         
         for entry in group.entries:
-            name = ""
-            username = ""
-            url = ""
-            notes = ""
-            if self.has_entry_name(entry.uuid):
-                name = entry.title
-            if self.has_entry_username(entry.uuid):
-                username = entry.username
-            if self.has_entry_url(entry.uuid):
-                url = entry.url
-            if self.has_entry_notes(entry.uuid):
-                notes = entry.notes
-
-            if string in name:
+            if re.search(string, self.get_entry_name_from_entry_object(entry), re.IGNORECASE):
                 uuid_list.append(entry.uuid)
             if fulltext is True:
-                if string in username or string in url or string in notes:
+                if re.search(string, self.get_entry_username_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_url_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_notes_from_entry_object(entry), re.IGNORECASE):
                    uuid_list.append(entry.uuid)
             
         return uuid_list 

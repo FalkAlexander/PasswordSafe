@@ -8,10 +8,11 @@ from keepassgtk.settings_dialog import SettingsDialog
 
 class Application(Gtk.Application):
     window = NotImplemented
+    file_list = []
 
     def __init__(self, *args, **kwargs):
         super().__init__(
-            *args, application_id="run.terminal.KeepassGtk", **kwargs)
+            *args, application_id="run.terminal.KeepassGtk", flags=Gio.ApplicationFlags.HANDLES_OPEN)
         self.window = None
 
     def do_startup(self):
@@ -19,6 +20,7 @@ class Application(Gtk.Application):
         GLib.set_application_name('KeepassGtk')
         GLib.set_prgname("KeepassGtk")
 
+        self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 
     def do_activate(self):
@@ -76,6 +78,12 @@ class Application(Gtk.Application):
         open_action.connect("activate", self.window.open_filechooser)
         self.add_action(open_action)
 
+    def file_open_handler(self, app, g_file_list, amount, ukwn):
+        for g_file in g_file_list:
+            self.file_list.append(g_file)
+            #self.window.start_database_opening_routine(g_file.get_basename(), g_file.get_path)
+
+        self.do_activate()
 
 if __name__ == "__main__":
     app = Application()

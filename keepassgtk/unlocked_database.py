@@ -356,7 +356,7 @@ class UnlockedDatabase:
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
         stack_page = self.stack.get_child_by_name(stack_page_name)
         stack_page.destroy()
-        self.show_page_of_new_directory(Fals, False)
+        self.show_page_of_new_directory(False, False)
 
     def set_current_group(self, group):
         self.current_group = group

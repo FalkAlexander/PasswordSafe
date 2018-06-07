@@ -394,41 +394,44 @@ class DatabaseManager:
         
     # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's, search fulltext optionally
     def global_search(self, string, fulltext):
+        lstring = str.lower(string)
         uuid_list = []
         for group in self.db.groups:
-            if re.search(string, self.get_group_name_from_group_object(group), re.IGNORECASE):
+            if lstring in str.lower(self.get_group_name_from_group_object(group)):
                 uuid_list.append(group.uuid)
             if fulltext is True:
-                if re.search(string, self.get_group_notes_from_group_object(group), re.IGNORECASE):
+                if lstring in str.lower(self.get_group_notes_from_group_object(group)):
                     uuid_list.append(group.uuid)
         
         for entry in self.db.entries:
-            if re.search(string, self.get_entry_name_from_entry_object(entry), re.IGNORECASE):
+            if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):
                 uuid_list.append(entry.uuid)
             if fulltext is True:
-                if re.search(string, self.get_entry_username_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_url_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_notes_from_entry_object(entry), re.IGNORECASE):
+                if lstring in str.lower(self.get_entry_username_from_entry_object(entry)) or string in str.lower(self.get_entry_url_from_entry_object(entry)) or string in str.lower(self.get_entry_notes_from_entry_object(entry)):
                    uuid_list.append(entry.uuid) 
                 
         return uuid_list
     
     # Search one group for a string, search fulltext optionally, returns list of uuid's of groups and entries
     def local_search(self, group, string, fulltext):
+        lstring = str.lower(string)
         uuid_list = []
         for group in group.subgroups:
-            if re.search(string, self.get_group_name_from_group_object(group), re.IGNORECASE):
+            if lstring in str.lower(self.get_group_name_from_group_object(group)):
                 uuid_list.append(group.uuid)
             if fulltext is True:
-                if re.search(string, self.get_group_notes_from_group_object(group), re.IGNORECASE):
+                if lstring in str.lower(self.get_group_notes_from_group_object(group)):
                     uuid_list.append(group.uuid)
         
         for entry in group.entries:
-            if re.search(string, self.get_entry_name_from_entry_object(entry), re.IGNORECASE):
+            if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):
                 uuid_list.append(entry.uuid)
             if fulltext is True:
-                if re.search(string, self.get_entry_username_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_url_from_entry_object(entry), re.IGNORECASE) or re.search(string, self.get_entry_notes_from_entry_object(entry), re.IGNORECASE):
-                   uuid_list.append(entry.uuid)
+                if lstring in str.lower(self.get_entry_username_from_entry_object(entry)) or string in str.lower(self.get_entry_url_from_entry_object(entry)) or string in str.lower(self.get_entry_notes_from_entry_object(entry)):
+                   uuid_list.append(entry.uuid) 
             
         return uuid_list 
+
 
     # Check if object is group
     def check_is_group(self, uuid):

@@ -369,34 +369,41 @@ class DatabaseManager:
         else:
             return False
         
-    # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's
-    def global_search(self, string):
+    # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's, search just for name optionally
+    def global_search(self, string, just_name):
         uuid_list = []
         for group in self.db.groups:
-            if string in group.name or string in group.notes:
+            if string in group.name:
                 uuid_list.append(group.uuid)
+            if just_name is False:
+                if string in group.notes:
+                    uuid_list.append(group.uuid)
         
         for entry in self.db.entries:
-            if string in entry.name or string in entry.username or string in entry.url or string in entry.notes:
-                uuid_list.append(entry.uuid)   
+            if string in entry.name:
+                uuid_list.append(entry.uuid)
+            if just_name is False:
+                if string in entry.username or string in entry.url or string in entry.notes:
+                   uuid_list.append(entry.uuid) 
                 
         return uuid_list
     
-    # Search one group for a string, recursive or not recursive, returns list of uuid's of groups and entries
-    def local_search(self, group, string, recursive):
+    # Search one group for a string, search just for name optionally, returns list of uuid's of groups and entries
+    def local_search(self, group, string, just_name):
         uuid_list = []
         for group in group.subgroups():
-            if string in group.name or string in group.notes:
+            if string in group.name:
                 uuid_list.append(group.uuid)
+            if just_name is False:
+                if string in group.notes:
+                    uuid_list.append(group.uuid)
         
         for entry in group.entries:
-            if string in entry.name or string in entry.username or string in entry.url or string in entry.notes:
+            if string in entry.name:
                 uuid_list.append(entry.uuid)
-                
-        if recursive is True:
-            if group.subgroups is not []:
-                for group in group.subgroups:
-                    return self.local_search(group, string, True)
+            if just_name is False:
+                if string in entry.username or string in entry.url or string in entry.notes:
+                   uuid_list.append(entry.uuid)
             
         return uuid_list 
 

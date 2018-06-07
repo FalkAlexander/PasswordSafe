@@ -398,10 +398,12 @@ class DatabaseManager:
         uuid_list = []
         for group in self.db.groups:
             if lstring in str.lower(self.get_group_name_from_group_object(group)):
-                uuid_list.append(group.uuid)
+                if group.is_root_group is False:
+                    uuid_list.append(group.uuid)
             if fulltext is True:
                 if lstring in str.lower(self.get_group_notes_from_group_object(group)):
-                    uuid_list.append(group.uuid)
+                    if group.is_root_group is False:
+                        uuid_list.append(group.uuid)
         
         for entry in self.db.entries:
             if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):
@@ -418,10 +420,12 @@ class DatabaseManager:
         uuid_list = []
         for group in group.subgroups:
             if lstring in str.lower(self.get_group_name_from_group_object(group)):
-                uuid_list.append(group.uuid)
+                if group.is_root_group is False:
+                    uuid_list.append(group.uuid)
             if fulltext is True:
                 if lstring in str.lower(self.get_group_notes_from_group_object(group)):
-                    uuid_list.append(group.uuid)
+                    if group.is_root_group is False:
+                        uuid_list.append(group.uuid)
         
         for entry in group.entries:
             if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):

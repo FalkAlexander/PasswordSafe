@@ -75,7 +75,7 @@ class UnlockedDatabase:
         self.list_box_sorting = keepassgtk.config_manager.get_sort_order()
         self.start_database_lock_timer()
 
-        self.show_page_of_new_directory(False)
+        self.show_page_of_new_directory(False, False)
 
     #
     # Headerbar
@@ -242,7 +242,7 @@ class UnlockedDatabase:
     # Group and Entry Management
     #
 
-    def show_page_of_new_directory(self, edit_group):
+    def show_page_of_new_directory(self, edit_group, new_entry):
         # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_scheduled_stack_page()
 
@@ -305,7 +305,10 @@ class UnlockedDatabase:
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
-                self.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
+                if new_entry is True:
+                    self.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, True)
+                else:
+                    self.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
         # Stack page with current group's uuid already exists, we only need to switch stack page
         else:
             # For group
@@ -342,10 +345,10 @@ class UnlockedDatabase:
                 stack_page.destroy()
                 
             self.scheduled_page_destroy.remove(page_uuid)
-            self.show_page_of_new_directory(False)
+            self.show_page_of_new_directory(False, False)
 
         if self.stack.get_child_by_name(page_uuid) is None:
-            self.show_page_of_new_directory(False)
+            self.show_page_of_new_directory(False, False)
         else:
             self.stack.set_visible_child_name(page_uuid)
 
@@ -353,7 +356,7 @@ class UnlockedDatabase:
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
         stack_page = self.stack.get_child_by_name(stack_page_name)
         stack_page.destroy()
-        self.show_page_of_new_directory(False)
+        self.show_page_of_new_directory(Fals, False)
 
     def set_current_group(self, group):
         self.current_group = group
@@ -422,7 +425,7 @@ class UnlockedDatabase:
             if page.check_is_edit_page() is False:
                 page.destroy()
 
-        self.show_page_of_new_directory(False)
+        self.show_page_of_new_directory(False, False)
         
     #
     # Create Property Rows
@@ -624,11 +627,11 @@ class UnlockedDatabase:
         if list_box_row.get_type() == "EntryRow":
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
-            self.show_page_of_new_directory(False)
+            self.show_page_of_new_directory(False, False)
         elif list_box_row.get_type() == "GroupRow":
             self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_group_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
-            self.show_page_of_new_directory(False)
+            self.show_page_of_new_directory(False, False)
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
@@ -658,7 +661,7 @@ class UnlockedDatabase:
         entry = self.database_manager.add_entry_to_database("", "", "", "", "", "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.current_group = entry
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
-        self.show_page_of_new_directory(False)
+        self.show_page_of_new_directory(False, True)
 
         self.show_database_action_revealer("Added Entry")
 
@@ -668,7 +671,7 @@ class UnlockedDatabase:
         group = self.database_manager.add_group_to_database("", "0", "", self.current_group)
         self.current_group = group
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-        self.show_page_of_new_directory(True)
+        self.show_page_of_new_directory(True, False)
 
         self.show_database_action_revealer("Added Group")
 
@@ -777,7 +780,7 @@ class UnlockedDatabase:
 
         self.set_current_group(self.group_marked_for_edit)
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
-        self.show_page_of_new_directory(True)
+        self.show_page_of_new_directory(True, False)
 
     def on_show_password_button_toggled(self, toggle_button, entry):
         self.start_database_lock_timer()
@@ -841,7 +844,7 @@ class UnlockedDatabase:
 
     def on_headerbar_search_close_button_clicked(self, widget):
         self.remove_search_headerbar(None)
-        self.show_page_of_new_directory(False)
+        self.show_page_of_new_directory(False, False)
 
     def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
         fulltext = False
@@ -881,7 +884,7 @@ class UnlockedDatabase:
 
             self.current_group = first_row
             self.pathbar.add_pathbar_button_to_pathbar(uuid)
-            self.show_page_of_new_directory(False)
+            self.show_page_of_new_directory(False, False)
 
     def on_search_filter_button_toggled(self, widget):
         headerbar_search_entry = self.builder.get_object("headerbar_search_entry")

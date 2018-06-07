@@ -4,6 +4,7 @@ from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
 from keepassgtk.group_row import GroupRow
 from keepassgtk.scrolled_page import ScrolledPage
+from keepassgtk.database_settings_dialog import DatabaseSettingsDialog
 from threading import Timer
 import keepassgtk.password_generator 
 import keepassgtk.config_manager
@@ -130,6 +131,9 @@ class UnlockedDatabase:
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
 
     def set_gio_actions(self):
+        db_settings_action = Gio.SimpleAction.new("db.settings", None)
+        db_settings_action.connect("activate", self.on_database_settings_entry_clicked)
+
         az_button_action = Gio.SimpleAction.new("sort.az", None)
         az_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "A-Z")
 
@@ -139,6 +143,7 @@ class UnlockedDatabase:
         last_added_button_action = Gio.SimpleAction.new("sort.last_added", None)
         last_added_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "last_added")
 
+        self.window.application.add_action(db_settings_action)
         self.window.application.add_action(az_button_action)
         self.window.application.add_action(za_button_action)
         self.window.application.add_action(last_added_button_action)
@@ -790,6 +795,9 @@ class UnlockedDatabase:
 
         password = keepassgtk.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
         entry.set_text(password)
+
+    def on_database_settings_entry_clicked(self, action, param):
+        DatabaseSettingsDialog(self)
 
     def on_sort_menu_button_entry_clicked(self, action, param, sorting):
         self.start_database_lock_timer()

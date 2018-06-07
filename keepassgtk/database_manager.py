@@ -15,6 +15,7 @@ class DatabaseManager:
     def __init__(self, database_path, password=None, keyfile=None):
         self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
+        self.password = password
 
     #
     # Group Transformation Methods
@@ -268,9 +269,9 @@ class DatabaseManager:
         self.db.set_credentials(new_password)
 
     # Change database password
-    def change_database_password(self, old_password, new_password):
-        if self.password == old_password:
-            self.db.set_credentials(new_password)
+    def change_database_password(self, new_password):
+        self.db.set_credentials(new_password)
+        self.db.save()
 
     #
     # Entry Modifications

@@ -29,6 +29,7 @@ class ScrolledPage(Gtk.ScrolledWindow):
     notes_property_value_entry = NotImplemented
 
     icon_property_row = NotImplemented
+    icon_view = NotImplemented
 
     def __init__(self, edit):
         Gtk.ScrolledWindow.__init__(self)

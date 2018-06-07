@@ -1,4 +1,5 @@
 from gi.repository import Gio, Gdk, Gtk
+from gi.repository.GdkPixbuf import Pixbuf
 from keepassgtk.logging_manager import LoggingManager
 from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
@@ -557,6 +558,27 @@ class UnlockedDatabase:
                 buffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
 
+        if self.database_manager.has_entry_icon(entry_uuid) is True or add_all is True:
+            if scrolled_page.icon_view is NotImplemented:
+                scrolled_page.icon_property_row = builder.get_object("icon_property_row")
+                scrolled_page.icon_view = builder.get_object("icon_view")
+
+                liststore = Gtk.ListStore(Pixbuf, str)
+                scrolled_page.icon_view.set_model(liststore)
+                scrolled_page.icon_view.set_pixbuf_column(0)
+                
+                for icon in keepassgtk.icon.icon_list.values():
+                    pixbuf = Gtk.IconTheme.get_default().load_icon(icon, 16, 0)
+                    liststore.append([pixbuf, ""])
+
+                scrolled_page.icon_view.connect("item-activated", self.on_icon_view_item_selected)
+
+                properties_list_box.add(scrolled_page.icon_property_row)
+            elif scrolled_page.icon_view is not NotImplemented:
+                #EventHandling
+                properties_list_box.add(scrolled_page.icon_property_row)
+
+
         if scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
             scrolled_page.add_button_disabled = True
             self.builder.get_object("add_property_button").set_sensitive(False)
@@ -681,6 +703,15 @@ class UnlockedDatabase:
             self.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type == "notes":
             self.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
+
+    def on_icon_view_item_selected(self, widget, icon):
+        self.start_database_lock_timer()
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+        scrolled_page.set_made_database_changes(True)
+
+        self.database_manager.set_entry_icon(entry_uuid, str(icon))
 
     def on_property_value_group_changed(self, widget, type):
         self.start_database_lock_timer()

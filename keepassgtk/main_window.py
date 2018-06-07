@@ -9,6 +9,7 @@ import os
 from os.path import exists
 import ntpath
 import gi
+import signal
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 
@@ -51,13 +52,18 @@ class MainWindow(Gtk.ApplicationWindow):
         builder = Gtk.Builder()
         builder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
 
+        accelerators = Gtk.AccelGroup()
+        self.add_accel_group(accelerators)
+
         self.headerbar = builder.get_object("headerbar")
 
         file_open_button = builder.get_object("open_button")
         file_open_button.connect("clicked", self.open_filechooser, None)
+        self.bind_accelerator(accelerators, file_open_button, "<Control>o")
 
         file_new_button = builder.get_object("new_button")
         file_new_button.connect("clicked", self.create_filechooser, None)
+        self.bind_accelerator(accelerators, file_new_button, "<Control>n")
 
         self.set_titlebar(self.headerbar)
 
@@ -66,6 +72,14 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def get_headerbar(self):
         return self.headerbar
+
+    #
+    # Keystrokes
+    #        
+
+    def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
+        key, mod = Gtk.accelerator_parse(accelerator)
+        widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
 
     #
     # Styles

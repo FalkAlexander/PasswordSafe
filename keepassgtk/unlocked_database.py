@@ -28,6 +28,7 @@ class UnlockedDatabase:
     current_group = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
+    accelerators = NotImplemented
     scheduled_page_destroy = []
     clipboard = NotImplemented
     list_box_sorting = NotImplemented
@@ -55,6 +56,9 @@ class UnlockedDatabase:
         self.builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+
+        self.accelerators = Gtk.AccelGroup()
+        self.window.add_accel_group(self.accelerators)
 
         self.overlay = Gtk.Overlay()
         self.parent_widget.add(self.overlay)
@@ -87,9 +91,11 @@ class UnlockedDatabase:
 
         save_button = self.builder.get_object("save_button")
         save_button.connect("clicked", self.on_save_button_clicked)
+        self.bind_accelerator(self.accelerators, save_button, "<Control>s")
 
         lock_button = self.builder.get_object("lock_button")
         lock_button.connect("clicked", self.on_lock_button_clicked)
+        self.bind_accelerator(self.accelerators, lock_button, "<Control>l")
 
         mod_box = self.builder.get_object("mod_box")
         browser_buttons_box = self.builder.get_object("browser_buttons_box")
@@ -97,6 +103,7 @@ class UnlockedDatabase:
 
         search_button = self.builder.get_object("search_button")
         search_button.connect("clicked", self.set_search_headerbar)
+        self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         add_entry_button = self.builder.get_object("add_entry_button")
         add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
@@ -169,6 +176,7 @@ class UnlockedDatabase:
         self.parent_widget.set_headerbar(self.headerbar_search)
         self.window.set_titlebar(self.headerbar_search)
         self.builder.get_object("headerbar_search_entry").grab_focus()
+        self.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_esc_key)
 
         self.prepare_search_page()
 
@@ -237,6 +245,14 @@ class UnlockedDatabase:
             self.stack.add_named(scrolled_page, "search")
 
         self.stack.set_visible_child(self.stack.get_child_by_name("search"))
+
+    #
+    # Keystrokes
+    #
+
+    def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
+        key, mod = Gtk.accelerator_parse(accelerator)
+        widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
 
     #
     # Group and Entry Management
@@ -498,6 +514,8 @@ class UnlockedDatabase:
                     scrolled_page.password_property_value_entry.set_text("")
 
                 scrolled_page.password_property_value_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
+                scrolled_page.password_property_value_entry.connect("copy-clipboard", self.on_password_entry_copy_clipboard)
+                self.bind_accelerator(self.accelerators, scrolled_page.password_property_value_entry, "<Control>c", signal="copy-clipboard")
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
@@ -799,6 +817,16 @@ class UnlockedDatabase:
         self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
         self.clipboard_timer.start()
 
+    def on_password_entry_copy_clipboard(self, widget):
+        self.start_database_lock_timer()
+        if self.clipboard_timer is not NotImplemented:
+            self.clipboard_timer.cancel()
+
+        self.clipboard.set_text(widget.get_text(), -1)
+        clear_clipboard_time = keepassgtk.config_manager.get_clear_clipboard()
+        self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
+        self.clipboard_timer.start()
+
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
         self.start_database_lock_timer()
         Gtk.show_uri_on_window(self.window, widget.get_text(), Gtk.get_current_event_time())
@@ -843,8 +871,14 @@ class UnlockedDatabase:
         self.rebuild_all_pages()
 
     def on_headerbar_search_close_button_clicked(self, widget):
+        self.start_database_lock_timer()
         self.remove_search_headerbar(None)
         self.show_page_of_new_directory(False, False)
+
+    def on_search_entry_esc_key(self, widget, event, data=None):
+        if event.keyval == Gdk.KEY_Escape:
+            self.remove_search_headerbar(None)
+            self.show_page_of_new_directory(False, False)
 
     def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
         fulltext = False
@@ -871,6 +905,7 @@ class UnlockedDatabase:
                     self.search_list_box.add(entry_row)
 
     def on_headerbar_search_entry_enter_pressed(self, widget):
+        self.start_database_lock_timer()
         if widget.get_text() is not "":
             uuid = NotImplemented
             first_row = NotImplemented
@@ -892,7 +927,7 @@ class UnlockedDatabase:
         search_fulltext_button = self.builder.get_object("search_fulltext_button")
 
         self.on_headerbar_search_entry_changed(headerbar_search_entry, search_local_button, search_fulltext_button)
-
+        
     #
     # Dialog Creator
     #

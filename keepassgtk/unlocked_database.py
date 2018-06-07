@@ -658,7 +658,7 @@ class UnlockedDatabase:
     def on_add_entry_button_clicked(self, widget):
         self.start_database_lock_timer()
         self.database_manager.changes = True
-        entry = self.database_manager.add_entry_to_database("", "", "", "", "", "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        entry = self.database_manager.add_entry_to_database(None, None, None, None, None, "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.current_group = entry
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)

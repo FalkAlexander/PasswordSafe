@@ -31,6 +31,7 @@ class UnlockedDatabase:
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
+    search_list_box = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -104,6 +105,23 @@ class UnlockedDatabase:
         add_property_button = self.builder.get_object("add_property_button")
         add_property_button.connect("clicked", self.on_add_property_button_clicked)
 
+        # Search Headerbar
+        headerbar_search_box_close_button = self.builder.get_object("headerbar_search_box_close_button")
+        headerbar_search_box_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
+
+        search_settings_popover_local_button = self.builder.get_object("search_settings_popover_local_button")
+        search_settings_popover_fulltext_button = self.builder.get_object("search_settings_popover_fulltext_button")
+
+        search_local_button = self.builder.get_object("search_local_button")
+        search_local_button.connect("toggled", self.on_search_filter_button_toggled)
+
+        search_fulltext_button = self.builder.get_object("search_fulltext_button")
+        search_fulltext_button.connect("toggled", self.on_search_filter_button_toggled)
+
+        headerbar_search_entry = self.builder.get_object("headerbar_search_entry")
+        headerbar_search_entry.connect("changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
+        headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
+
         self.set_gio_actions()
 
         self.parent_widget.set_headerbar(self.headerbar)
@@ -137,12 +155,16 @@ class UnlockedDatabase:
 
     # Search headerbar
     def set_search_headerbar(self, widget):
+        hscb = self.builder.get_object("headerbar_search_box_close_button")
+        if hscb.get_active() is False:
+            hscb.set_active(True)
+
         self.headerbar_search = self.builder.get_object("headerbar_search")
         self.parent_widget.set_headerbar(self.headerbar_search)
         self.window.set_titlebar(self.headerbar_search)
+        self.builder.get_object("headerbar_search_entry").grab_focus()
 
-        headerbar_search_box_close_button = self.builder.get_object("headerbar_search_box_close_button")
-        headerbar_search_box_close_button.connect("clicked", self.remove_search_headerbar)
+        self.prepare_search_page()
 
     def remove_search_headerbar(self, widget):
         self.parent_widget.set_headerbar(self.headerbar)
@@ -194,6 +216,22 @@ class UnlockedDatabase:
         delete_group_action.connect("activate", self.on_group_delete_menu_button_clicked)
         self.window.application.add_action(delete_group_action)
 
+    # Set Search stack page
+    def prepare_search_page(self):
+        if self.stack.get_child_by_name("search") is None:
+            scrolled_page = ScrolledPage(False)
+            viewport = Gtk.Viewport()
+            builder = Gtk.Builder()
+            builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+            self.search_list_box = builder.get_object("list_box")
+            self.search_list_box.connect("row-activated", self.on_list_box_row_activated)
+            viewport.add(self.search_list_box)
+            scrolled_page.add(viewport)
+            scrolled_page.show_all()
+            self.stack.add_named(scrolled_page, "search")
+
+        self.stack.set_visible_child(self.stack.get_child_by_name("search"))
+
     #
     # Group and Entry Management
     #
@@ -201,6 +239,10 @@ class UnlockedDatabase:
     def show_page_of_new_directory(self, edit_group):
         # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_scheduled_stack_page()
+
+        # Check if we need to remove the search headerbar
+        if self.parent_widget.get_headerbar() is not self.headerbar:
+            self.remove_search_headerbar(None)
 
         # Creation of group edit page
         if edit_group is True:
@@ -755,12 +797,56 @@ class UnlockedDatabase:
         self.list_box_sorting = sorting
         self.rebuild_all_pages()
 
-    def cancel_timers(self):
-        if self.clipboard_timer is not NotImplemented:
-            self.clipboard_timer.cancel()
+    def on_headerbar_search_close_button_clicked(self, widget):
+        self.remove_search_headerbar(None)
+        self.show_page_of_new_directory(False)
 
-        if self.database_lock_timer is not NotImplemented:
-            self.database_lock_timer.cancel()
+    def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
+        fulltext = False
+        result_list = []
+
+        for row in self.search_list_box.get_children():
+            self.search_list_box.remove(row)
+
+        if search_fulltext_button.get_active() is True:
+            fulltext = True
+
+        if search_local_button.get_active() is True:
+            result_list = self.database_manager.local_search(self.current_group, widget.get_text(), fulltext)
+        else:
+            result_list = self.database_manager.global_search(widget.get_text(), fulltext)
+
+        if widget.get_text() is not "":
+            for uuid in result_list:
+                if self.database_manager.check_is_group(uuid):
+                    group_row = GroupRow(self, self.database_manager, self.database_manager.get_group_object_from_uuid(uuid))
+                    self.search_list_box.add(group_row)
+                else:
+                    entry_row = EntryRow(self, self.database_manager, self.database_manager.get_entry_object_from_uuid(uuid))
+                    self.search_list_box.add(entry_row)
+
+    def on_headerbar_search_entry_enter_pressed(self, widget):
+        if widget.get_text() is not "":
+            uuid = NotImplemented
+            first_row = NotImplemented
+
+            if self.search_list_box.get_children()[0].type is "GroupRow":
+                uuid = self.search_list_box.get_children()[0].get_group_uuid()
+                first_row = self.database_manager.get_group_object_from_uuid(uuid)
+            else:
+                uuid = self.search_list_box.get_children()[0].get_entry_uuid()
+                first_row = self.database_manager.get_entry_object_from_uuid(uuid)
+
+            self.current_group = first_row
+            self.pathbar.add_pathbar_button_to_pathbar(uuid)
+            self.show_page_of_new_directory(False)
+
+    def on_search_filter_button_toggled(self, widget):
+        headerbar_search_entry = self.builder.get_object("headerbar_search_entry")
+        search_local_button = self.builder.get_object("search_local_button")
+        search_fulltext_button = self.builder.get_object("search_fulltext_button")
+
+        self.on_headerbar_search_entry_changed(headerbar_search_entry, search_local_button, search_fulltext_button)
 
     #
     # Dialog Creator
@@ -833,4 +919,11 @@ class UnlockedDatabase:
         timeout = keepassgtk.config_manager.get_database_lock_timeout() * 60
         if timeout is not 0:
             self.database_lock_timer = Timer(timeout, self.lock_database)
-            self.database_lock_timer.start()    
+            self.database_lock_timer.start()   
+
+    def cancel_timers(self):
+        if self.clipboard_timer is not NotImplemented:
+            self.clipboard_timer.cancel()
+
+        if self.database_lock_timer is not NotImplemented:
+            self.database_lock_timer.cancel()

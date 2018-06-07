@@ -369,40 +369,80 @@ class DatabaseManager:
         else:
             return False
         
-    # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's, search just for name optionally
-    def global_search(self, string, just_name):
+    # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's, search fulltext optionally
+    def global_search(self, string, fulltext):
         uuid_list = []
         for group in self.db.groups:
-            if string in group.name:
+            name = ""
+            notes = ""
+            if self.has_group_name(group.uuid):
+                name = group.name
+            if self.has_group_notes(group.uuid):
+                notes = group.notes
+
+            if string in name:
                 uuid_list.append(group.uuid)
-            if just_name is False:
-                if string in group.notes:
+            if fulltext is True:
+                if string in notes:
                     uuid_list.append(group.uuid)
         
         for entry in self.db.entries:
-            if string in entry.name:
+            name = ""
+            username = ""
+            url = ""
+            notes = ""
+            if self.has_entry_name(entry.uuid):
+                name = entry.title
+            if self.has_entry_username(entry.uuid):
+                username = entry.username
+            if self.has_entry_url(entry.uuid):
+                url = entry.url
+            if self.has_entry_notes(entry.uuid):
+                notes = entry.notes
+
+            if string in name:
                 uuid_list.append(entry.uuid)
-            if just_name is False:
-                if string in entry.username or string in entry.url or string in entry.notes:
+            if fulltext is True:
+                if string in username or string in url or string in notes:
                    uuid_list.append(entry.uuid) 
                 
         return uuid_list
     
-    # Search one group for a string, search just for name optionally, returns list of uuid's of groups and entries
-    def local_search(self, group, string, just_name):
+    # Search one group for a string, search fulltext optionally, returns list of uuid's of groups and entries
+    def local_search(self, group, string, fulltext):
         uuid_list = []
-        for group in group.subgroups():
-            if string in group.name:
+        for group in group.subgroups:
+            name = ""
+            notes = ""
+            if self.has_group_name(group.uuid):
+                name = name
+            if self.has_group_notes(group.uuid):
+                notes = notes
+
+            if string in name:
                 uuid_list.append(group.uuid)
-            if just_name is False:
-                if string in group.notes:
+            if fulltext is True:
+                if string in notes:
                     uuid_list.append(group.uuid)
         
         for entry in group.entries:
-            if string in entry.name:
+            name = ""
+            username = ""
+            url = ""
+            notes = ""
+            if self.has_entry_name(entry.uuid):
+                name = entry.title
+            if self.has_entry_username(entry.uuid):
+                username = entry.username
+            if self.has_entry_url(entry.uuid):
+                url = entry.url
+            if self.has_entry_notes(entry.uuid):
+                notes = entry.notes
+
+            if string in name:
                 uuid_list.append(entry.uuid)
-            if just_name is False:
-                if string in entry.username or string in entry.url or string in entry.notes:
+            if fulltext is True:
+                if string in username or string in url or string in notes:
                    uuid_list.append(entry.uuid)
             
         return uuid_list 

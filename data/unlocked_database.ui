@@ -392,75 +392,6 @@
   <object class="GtkPopoverMenu" id="menubutton_popover">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkBox" id="sort_popover_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_sort_back_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">Sorting</property>
-            <property name="menu_name">main</property>
-            <property name="inverted">True</property>
-            <property name="centered">True</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_a-z_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.az</property>
-            <property name="text" translatable="yes">A-Z</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_z-a_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.za</property>
-            <property name="text" translatable="yes">Z-A</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_last_added_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.last_added</property>
-            <property name="text" translatable="yes">Last added</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="submenu">submenu_sorting</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
-    <child>
       <object class="GtkBox" id="menubutton_popover_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -546,6 +477,75 @@
       </object>
       <packing>
         <property name="submenu">main</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="sort_popover_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_sort_back_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text" translatable="yes">Sorting</property>
+            <property name="menu_name">main</property>
+            <property name="inverted">True</property>
+            <property name="centered">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_a-z_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.sort.az</property>
+            <property name="text" translatable="yes">A-Z</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_z-a_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.sort.za</property>
+            <property name="text" translatable="yes">Z-A</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_last_added_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.sort.last_added</property>
+            <property name="text" translatable="yes">Last added</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">submenu_sorting</property>
         <property name="position">2</property>
       </packing>
     </child>
@@ -659,6 +659,50 @@
       <placeholder/>
     </child>
   </object>
+  <object class="GtkBox" id="search_empy_screen">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">10</property>
+    <property name="homogeneous">True</property>
+    <child>
+      <object class="GtkImage">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">end</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="pixel_size">60</property>
+        <property name="icon_name">system-search-symbolic</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">start</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="label" translatable="yes">Enter search keywords</property>
+        <attributes>
+          <attribute name="weight" value="bold"/>
+          <attribute name="size" value="15000"/>
+        </attributes>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkPopoverMenu" id="search_settings_popover">
     <property name="can_focus">False</property>
     <property name="position">bottom</property>
@@ -671,24 +715,12 @@
         <property name="margin_top">5</property>
         <property name="margin_bottom">5</property>
         <child>
-          <object class="GtkToggleButton" id="search_settings_popover_global_button">
-            <property name="label" translatable="yes">Global</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkToggleButton" id="search_settings_popover_local_button">
+          <object class="GtkToggleButton" id="search_local_button">
             <property name="label" translatable="yes">Local</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="hexpand">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -697,11 +729,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkToggleButton" id="search_settings_popover_fulltext_button">
+          <object class="GtkToggleButton" id="search_fulltext_button">
             <property name="label" translatable="yes">Full Text</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="hexpand">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -715,6 +748,7 @@
       </object>
       <packing>
         <property name="submenu">main</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </object>
@@ -726,15 +760,14 @@
       <object class="GtkBox" id="headerbar_search_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">50</property>
-        <property name="margin_right">50</property>
+        <property name="margin_left">80</property>
+        <property name="margin_right">49</property>
         <property name="hexpand">True</property>
         <child>
           <object class="GtkEntry" id="headerbar_search_entry">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hexpand">True</property>
-            <property name="primary_icon_name">system-search-symbolic</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -763,15 +796,16 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="headerbar_search_box_close_button">
+          <object class="GtkToggleButton" id="headerbar_search_box_close_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="active">True</property>
             <child>
-              <object class="GtkImage" id="headerbar_search_box_image2">
+              <object class="GtkImage" id="headerbar_search_box_close_button_image">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">application-exit-symbolic</property>
+                <property name="icon_name">system-search-symbolic</property>
               </object>
             </child>
           </object>

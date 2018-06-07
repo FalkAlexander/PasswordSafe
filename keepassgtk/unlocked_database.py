@@ -539,20 +539,22 @@ class UnlockedDatabase:
             if scrolled_page.notes_property_row is NotImplemented:
                 scrolled_page.notes_property_row = builder.get_object("notes_property_row")
                 scrolled_page.notes_property_value_entry = builder.get_object("notes_property_value_entry")
+                buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 value = self.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
                 if self.database_manager.has_entry_notes(entry_uuid) is True:
-                    scrolled_page.notes_property_value_entry.set_text(value)
+                    buffer.set_text(value)
                 else:
-                    scrolled_page.notes_property_value_entry.set_text("")
-                scrolled_page.notes_property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
+                    buffer.set_text("")
+                buffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
             elif scrolled_page.notes_property_row is not "":
                 value = self.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+                buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 if self.database_manager.has_entry_notes(entry_uuid) is True:
-                    scrolled_page.notes_property_value_entry.set_text(value)
+                    buffer.set_text(value)
                 else:
-                    scrolled_page.notes_property_value_entry.set_text("")
-                scrolled_page.notes_property_value_entry.connect("changed", self.on_property_value_entry_changed, "notes")
+                    buffer.set_text("")
+                buffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
 
         if scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
@@ -571,7 +573,8 @@ class UnlockedDatabase:
 
         notes_property_row = builder.get_object("notes_property_row")
         notes_property_value_entry = builder.get_object("notes_property_value_entry")
-        notes_property_value_entry.connect("changed", self.on_property_value_group_changed, "notes")
+        buffer = notes_property_value_entry.get_buffer()
+        buffer.connect("changed", self.on_property_value_group_changed, "notes")
 
         name_value = self.database_manager.get_group_name_from_uuid(group_uuid)
         notes_value = self.database_manager.get_group_notes_from_group_uuid(group_uuid)
@@ -582,9 +585,9 @@ class UnlockedDatabase:
             name_property_value_entry.set_text("")
 
         if self.database_manager.has_group_notes(group_uuid) is True:
-            notes_property_value_entry.set_text(notes_value)
+            buffer.set_text(notes_value)
         else:
-            notes_property_value_entry.set_text("")
+            buffer.set_text("")
 
         properties_list_box.add(name_property_row)
         properties_list_box.add(notes_property_row)
@@ -677,7 +680,7 @@ class UnlockedDatabase:
         elif type == "url":
             self.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type == "notes":
-            self.database_manager.set_entry_notes(entry_uuid, widget.get_text())
+            self.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
     def on_property_value_group_changed(self, widget, type):
         self.start_database_lock_timer()
@@ -694,7 +697,7 @@ class UnlockedDatabase:
                     if pathbar_button.get_uuid() == self.database_manager.get_group_uuid_from_group_object(self.current_group):
                         pathbar_button.set_label(widget.get_text())
         elif type == "notes":
-            self.database_manager.set_group_notes(group_uuid, widget.get_text())
+            self.database_manager.set_group_notes(group_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()

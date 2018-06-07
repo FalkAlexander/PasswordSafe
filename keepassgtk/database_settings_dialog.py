@@ -52,6 +52,9 @@ class DatabaseSettingsDialog():
                 old_password_entry.get_style_context().remove_class("error")
                 new_password_entry.get_style_context().remove_class("error")
                 repeat_new_password_entry.get_style_context().remove_class("error")
+                old_password_entry.set_text("")
+                new_password_entry.set_text("")
+                repeat_new_password_entry.set_text("")
                 self.show_database_action_revealer("Database password changed")
             else:
                 old_password_entry.get_style_context().add_class("error")

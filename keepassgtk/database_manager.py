@@ -368,6 +368,37 @@ class DatabaseManager:
             return True
         else:
             return False
+        
+    # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's
+    def global_search(self, string):
+        uuid_list = []
+        for group in self.db.groups:
+            if string in group.name or string in group.notes:
+                uuid_list.append(group.uuid)
+        
+        for entry in self.db.entries:
+            if string in entry.name or string in entry.username or string in entry.url or string in entry.notes:
+                uuid_list.append(entry.uuid)   
+                
+        return uuid_list
+    
+    # Search one group for a string, recursive or not recursive, returns list of uuid's of groups and entries
+    def local_search(self, group, string, recursive):
+        uuid_list = []
+        for group in group.subgroups():
+            if string in group.name or string in group.notes:
+                uuid_list.append(group.uuid)
+        
+        for entry in group.entries:
+            if string in entry.name or string in entry.username or string in entry.url or string in entry.notes:
+                uuid_list.append(entry.uuid)
+                
+        if recursive is True:
+            if group.subgroups is not []:
+                for group in group.subgroups:
+                    return self.local_search(group, string, True)
+            
+        return uuid_list 
 
     # Check if object is group
     def check_is_group(self, uuid):

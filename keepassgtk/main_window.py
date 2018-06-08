@@ -18,7 +18,6 @@ class MainWindow(Gtk.ApplicationWindow):
     application = NotImplemented
     database_manager = NotImplemented
     container = NotImplemented
-    override_dialog = NotImplemented
     quit_dialog = NotImplemented
     filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
@@ -208,6 +207,7 @@ class MainWindow(Gtk.ApplicationWindow):
             "Create new Database", self, Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+        self.filechooser_creation_dialog.set_do_overwrite_confirmation(True)
         self.filechooser_creation_dialog.set_current_name("Database.kdbx")
         self.filechooser_creation_dialog.set_modal(True)
 
@@ -218,33 +218,11 @@ class MainWindow(Gtk.ApplicationWindow):
 
         response = self.filechooser_creation_dialog.run()
         if response == Gtk.ResponseType.OK:
-            self.does_file_exist()
-        elif response == Gtk.ResponseType.CANCEL:
-            self.filechooser_creation_dialog.close()
-
-    def does_file_exist(self):
-        if os.path.exists(self.filechooser_creation_dialog.get_filename()):
-            builder = Gtk.Builder()
-            builder.add_from_resource(
-                "/run/terminal/KeepassGtk/override_dialog.ui")
-            self.override_dialog = builder.get_object("override_dialog")
-
-            self.override_dialog.set_destroy_with_parent(True)
-            self.override_dialog.set_modal(True)
-            self.override_dialog.set_transient_for(self.filechooser_creation_dialog)
-
-            cancel_button = builder.get_object("cancel_button")
-            override_button = builder.get_object("override_button")
-
-            cancel_button.connect("clicked", self.on_cancel_button_clicked)
-            override_button.connect("clicked", self.on_override_button_clicked)
-
-            self.override_dialog.present()
-        else:
             self.copy_database_file()
-
             tab_title = self.create_tab_title_from_filepath(self.filechooser_creation_dialog.get_current_name())
             self.start_database_creation_routine(tab_title)
+        elif response == Gtk.ResponseType.CANCEL:
+            self.filechooser_creation_dialog.close()            
 
     def copy_database_file(self):
         stock_database = Gio.File.new_for_uri(

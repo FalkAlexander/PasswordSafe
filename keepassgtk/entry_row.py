@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 import gi
 import keepassgtk.icon
 gi.require_version('Gtk', '3.0')
@@ -26,7 +26,13 @@ class EntryRow(Gtk.ListBoxRow):
         self.label = dbm.get_entry_name_from_entry_object(entry)
         self.password = dbm.get_entry_password_from_entry_object(entry)
 
+        self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, [], Gdk.DragAction.MOVE)
+        self.connect("drag-begin", self.on_drag_begin)
+
         self.assemble_entry_row()
+
+    def on_drag_begin(self, source, drag_context):
+        print("drag begin")
 
     def assemble_entry_row(self):
         builder = Gtk.Builder()

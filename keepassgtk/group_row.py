@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 import gi
 gi.require_version('Gtk', '3.0')
 
@@ -19,6 +19,19 @@ class GroupRow(Gtk.ListBoxRow):
         self.label = dbm.get_group_name_from_group_object(group)
 
         self.assemble_group_row()
+
+        self.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
+        self.connect("drag-data-received", self.on_drag_end)
+
+    def on_drag_end(self, widget, drag_context, x,y, data,info, time):
+        print(widget)
+        print(drag_context)
+        print(x)
+        print(y)
+        print(data)
+        print(info)
+        print(time)
+        print("hallo")
 
     def assemble_group_row(self):
         builder = Gtk.Builder()

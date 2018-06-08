@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="keepassgtk">
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkShortcutsWindow" id="shortcuts_overview">
+    <property name="modal">1</property>
+    <child>
+      <object class="GtkShortcutsSection">
+        <property name="visible">1</property>
+        <property name="section-name">app</property>
+        <property name="title" translatable="yes" context="shortcut window">Application</property>
+        <property name="max-height">12</property>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="visible">1</property>
+            <property name="title" translatable="yes" context="shortcut window">Application</property>
+            <child>
+              <object class="GtkShortcutsShortcut" id ="new_database">
+                <property name="visible">1</property>
+                <property name="title" translatable="yes" context="shortcut window">Create new database</property>
+                <property name="accelerator">&lt;Primary&gt;n</property>               
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut" id ="open_database">
+                <property name="visible">1</property>
+                <property name="title" translatable="yes" context="shortcut window">Open database</property>
+                <property name="accelerator">&lt;Primary&gt;o</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut" id ="lock_database">
+                <property name="visible">1</property>
+                <property name="title" translatable="yes" context="shortcut window">Lock database</property>
+                <property name="accelerator">&lt;Primary&gt;l</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut" id ="save_database">
+                <property name="visible">1</property>
+                <property name="title" translatable="yes" context="shortcut window">Save database</property>
+                <property name="accelerator">&lt;Primary&gt;s</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut" id ="open_search">
+                <property name="visible">1</property>
+                <property name="title" translatable="yes" context="shortcut window">Open search</property>
+                <property name="accelerator">&lt;Primary&gt;f</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut" id ="copy_password">
+                <property name="visible">1</property>
+                <property name="title" translatable="yes" context="shortcut window">Copy password on entry page</property>
+                <property name="accelerator">&lt;Primary&gt;c</property>
+              </object>
+            </child>
+          </object>
+        </child>
+       </object>
+     </child>
+  </object>
+</interface>

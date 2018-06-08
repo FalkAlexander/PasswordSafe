@@ -37,6 +37,7 @@ class Application(Gtk.Application):
         app_menu = Gio.Menu()
 
         app_menu.append("Settings", "app.settings")
+        app_menu.append("Shortcuts", "app.shortcuts")
         # TODO: Seperator
         app_menu.append("About", "app.about")
         app_menu.append("Quit", "app.quit")
@@ -49,10 +50,14 @@ class Application(Gtk.Application):
 
         quit_action = Gio.SimpleAction.new("quit", None)
         quit_action.connect("activate", self.on_quit_menu_clicked)
+        
+        shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
+        shortcuts_action.connect("activate", self.on_shortcuts_menu_clicked)
 
         self.add_action(settings_action)
         self.add_action(about_action)
         self.add_action(quit_action)
+        self.add_action(shortcuts_action)
         self.set_app_menu(app_menu)
 
     def on_settings_menu_clicked(self, action, param):
@@ -63,11 +68,20 @@ class Application(Gtk.Application):
         builder.add_from_resource("/run/terminal/KeepassGtk/about_dialog.ui")
         about_dialog = builder.get_object("about_dialog")
         about_dialog.set_modal(True)
-        about_dialog.set_transient_for(self.window)
+        if self.window is not NotImplemented:
+            about_dialog.set_transient_for(self.window)
         about_dialog.present()
 
     def on_quit_menu_clicked(self, action, param):
         self.quit()
+        
+    def on_shortcuts_menu_clicked(self, action, param):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/run/terminal/KeepassGtk/shortcuts_overview.ui")
+        shortcuts_overview = builder.get_object("shortcuts_overview")
+        if self.window is not NotImplemented:
+            shortcuts_overview.set_transient_for(self.window)
+        shortcuts_overview.show()
 
     def add_menubutton_popover_actions(self):
         new_action = Gio.SimpleAction.new("new", None)

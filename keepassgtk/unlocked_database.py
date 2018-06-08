@@ -514,8 +514,8 @@ class UnlockedDatabase:
                     scrolled_page.password_property_value_entry.set_text("")
 
                 scrolled_page.password_property_value_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
-                scrolled_page.password_property_value_entry.connect("copy-clipboard", self.on_password_entry_copy_clipboard)
-                self.bind_accelerator(self.accelerators, scrolled_page.password_property_value_entry, "<Control>c", signal="copy-clipboard")
+                scrolled_page.password_property_value_entry.connect("copy-clipboard", self.on_password_entry_copy_clipboard, None)
+                self.bind_accelerator(self.accelerators, scrolled_page.password_property_value_entry, "<Control><Shift>c", signal="copy-clipboard")
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
@@ -662,16 +662,20 @@ class UnlockedDatabase:
         else:
             self.lock_database()
 
-    def on_save_dialog_save_button_clicked(self, widget, save_dialog):
-        self.start_database_lock_timer()
+    def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close):
         self.database_manager.save_database()
         save_dialog.destroy()
         self.lock_database()
 
-    def on_save_dialog_discard_button_clicked(self, widget, save_dialog):
-        self.start_database_lock_timer()
+        if tab_close is True:
+            self.window.close_tab(self.parent_widget)
+
+    def on_save_dialog_discard_button_clicked(self, widget, save_dialog, tab_close):
         save_dialog.destroy()
         self.lock_database()
+
+        if tab_close is True:
+            self.window.close_tab(self.parent_widget)
 
     def on_add_entry_button_clicked(self, widget):
         self.start_database_lock_timer()
@@ -817,7 +821,7 @@ class UnlockedDatabase:
         self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
         self.clipboard_timer.start()
 
-    def on_password_entry_copy_clipboard(self, widget):
+    def on_password_entry_copy_clipboard(self, widget, test):
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()
@@ -932,7 +936,7 @@ class UnlockedDatabase:
     # Dialog Creator
     #
 
-    def show_save_dialog(self):
+    def show_save_dialog(self, tab_close=None):
         builder = Gtk.Builder()
         builder.add_from_resource("/run/terminal/KeepassGtk/save_dialog.ui")
 
@@ -944,8 +948,8 @@ class UnlockedDatabase:
         discard_button = builder.get_object("discard_button")
         save_button = builder.get_object("save_button")
 
-        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog)
-        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog)
+        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog, tab_close)
+        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close)
 
         save_dialog.present()
 
@@ -968,7 +972,9 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
-        self.window.opened_databases.remove(self)
+        for db in self.window.opened_databases:
+            if db.database_manager.database_path == self.database_manager.database_path:
+                self.window.opened_databases.remove(db)
         self.window.close_tab(self.parent_widget)
         self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
 

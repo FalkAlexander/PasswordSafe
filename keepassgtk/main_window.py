@@ -318,13 +318,21 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def on_tab_close_button_clicked(self, sender, widget):
         page_num = self.container.page_num(widget)
+        is_contained = False
 
         for db in self.opened_databases:
             if db.window.container.page_num(db.parent_widget) == page_num:
-                self.opened_databases.remove(db)
+                is_contained = True
+                if db.database_manager.made_database_changes() is True:
+                    db.show_save_dialog(True)
+                else:
+                    self.container.remove_page(page_num)
+                    self.update_tab_bar_visibility()
+                    self.opened_databases.remove(db)
 
-        self.container.remove_page(page_num)
-        self.update_tab_bar_visibility()
+        if is_contained is False:
+            self.container.remove_page(page_num)
+            self.update_tab_bar_visibility()
 
     def on_cancel_button_clicked(self, widget):
         self.override_dialog.destroy()
@@ -401,6 +409,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 check_button = Gtk.CheckButton()
                 check_button.set_label(db.database_manager.database_path)
                 check_button.connect("toggled", self.on_save_check_button_toggled, db)
+                check_button.set_active(True)
                 unsaved_database_row.add(check_button)
                 unsaved_database_row.show_all()
                 unsaved_databases_list_box.add(unsaved_database_row)

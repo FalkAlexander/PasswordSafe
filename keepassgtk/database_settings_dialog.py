@@ -23,9 +23,6 @@ class DatabaseSettingsDialog():
         save_password_button = self.builder.get_object("save_password_button")
         save_password_button.connect("clicked", self.on_change_password_button_clicked)
 
-        destroy_database_button = self.builder.get_object("destroy_database_button")
-        destroy_database_button.connect("clicked", self.on_destroy_database_button_clicked)
-
         self.builder.get_object("old_password_entry").grab_focus()
 
         dialog.set_modal(True)
@@ -66,9 +63,6 @@ class DatabaseSettingsDialog():
             new_password_entry.get_style_context().add_class("error")
             repeat_new_password_entry.get_style_context().add_class("error")
             self.show_database_action_revealer("Wrong passwords")
-
-    def on_destroy_database_button_clicked(self, widget):
-        print("sth")
 
     def show_database_action_revealer(self, message):
         database_action_box = self.builder.get_object("database_action_box")

@@ -6,7 +6,7 @@
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <property name="default_width">600</property>
-    <property name="default_height">320</property>
+    <property name="default_height">220</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>
@@ -33,7 +33,7 @@
                 <child>
                   <object class="GtkBox" id="frame_box">
                     <property name="width_request">520</property>
-                    <property name="height_request">300</property>
+                    <property name="height_request">200</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">center</property>
@@ -292,134 +292,6 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="section_label_extra">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="margin_bottom">5</property>
-                        <property name="label" translatable="yes">Extra</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkFrame" id="section_frame_extra">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_bottom">20</property>
-                        <property name="label_xalign">0</property>
-                        <property name="shadow_type">in</property>
-                        <child>
-                          <object class="GtkListBox" id="section_list_box_extra">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="selection_mode">none</property>
-                            <child>
-                              <object class="GtkListBoxRow" id="settings_destroy_row">
-                                <property name="width_request">100</property>
-                                <property name="height_request">50</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <child>
-                                  <object class="GtkBox" id="settings_destroy_box">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <child>
-                                      <object class="GtkBox" id="settings_destroy_label_box">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <property name="halign">start</property>
-                                        <property name="margin_left">15</property>
-                                        <property name="hexpand">True</property>
-                                        <property name="orientation">vertical</property>
-                                        <child>
-                                          <object class="GtkLabel" id="settings_destroy_label">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="halign">start</property>
-                                            <property name="valign">end</property>
-                                            <property name="vexpand">True</property>
-                                            <property name="label" translatable="yes">Destroy database</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkLabel" id="settings_destroy_description">
-                                            <property name="name">SubtitleLabel</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="halign">start</property>
-                                            <property name="valign">start</property>
-                                            <property name="vexpand">True</property>
-                                            <property name="label" translatable="yes">Delete this database irreversibly</property>
-                                            <attributes>
-                                              <attribute name="foreground" value="#555557575353"/>
-                                              <attribute name="size" value="9500"/>
-                                            </attributes>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">False</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkButton" id="destroy_database_button">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">True</property>
-                                        <property name="receives_default">True</property>
-                                        <property name="halign">start</property>
-                                        <property name="valign">center</property>
-                                        <property name="margin_right">15</property>
-                                        <child>
-                                          <object class="GtkImage" id="destroy_database_button_image">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="icon_name">user-trash-symbolic</property>
-                                          </object>
-                                        </child>
-                                        <style>
-                                          <class name="destructive-action"/>
-                                        </style>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">False</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">3</property>
                       </packing>
                     </child>
                   </object>

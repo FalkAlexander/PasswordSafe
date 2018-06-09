@@ -133,6 +133,7 @@ class UnlockDatabase:
 
                 current_page_num = self.window.container.page_num(self.parent_widget)
                 self.window.container.remove_page(current_page_num)
+                self.window.update_tab_bar_visibility()
 
                 db.show_database_action_revealer("Database already opened")
 

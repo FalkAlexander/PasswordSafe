@@ -38,7 +38,7 @@ class Application(Gtk.Application):
 
         app_menu.append("Settings", "app.settings")
         app_menu.append("Shortcuts", "app.shortcuts")
-        # TODO: Seperator
+
         app_menu.append("About", "app.about")
         app_menu.append("Quit", "app.quit")
 

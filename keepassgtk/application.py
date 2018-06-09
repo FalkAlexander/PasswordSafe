@@ -93,9 +93,9 @@ class Application(Gtk.Application):
         self.add_action(open_action)
 
     def file_open_handler(self, app, g_file_list, amount, ukwn):
-        if self.window is not None:
-            for g_file in g_file_list:
-                self.file_list.append(g_file)
+        for g_file in g_file_list:
+            self.file_list.append(g_file)
+            if self.window is not None:
                 self.window.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
 
         self.do_activate()

@@ -596,13 +596,50 @@ class UnlockedDatabase:
 
                 properties_list_box.add(scrolled_page.icon_property_row)
             elif scrolled_page.icon_view is not NotImplemented:
-                #EventHandling
                 properties_list_box.add(scrolled_page.icon_property_row)
 
+        if self.database_manager.has_entry_expiry_date(entry_uuid) is True or add_all is True:
+            if scrolled_page.expiry_property_row is NotImplemented:
+                scrolled_page.expiry_property_row = builder.get_object("expiry_property_row")
+                scrolled_page.expiry_control_button = builder.get_object("expiry_control_button")
+                scrolled_page.expiry_control_button.connect("clicked", self.on_expiry_control_button_clicked)
+                scrolled_page.expiry_control_button_image = builder.get_object("expiry_control_button_image")
+
+                scrolled_page.date_button = builder.get_object("date_button")
+                scrolled_page.time_button = builder.get_object("time_button")
+                scrolled_page.date_label = builder.get_object("date_label")
+                scrolled_page.time_label = builder.get_object("time_label")
+
+                scrolled_page.date_calendar = builder.get_object("date_calendar")
+                scrolled_page.hour_spin_button = builder.get_object("hour_spin_button")
+                scrolled_page.minute_spin_button = builder.get_object("minute_spin_button")
+
+                if self.database_manager.has_entry_expiry_date(entry_uuid) is False:
+                    self.build_expiry_row(False)
+                else:
+                    self.build_expiry_row(True)
+
+                properties_list_box.add(scrolled_page.expiry_property_row)
+            else:
+                properties_list_box.add(scrolled_page.expiry_property_row)
 
         if scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
             scrolled_page.add_button_disabled = True
             self.builder.get_object("add_property_button").set_sensitive(False)
+
+    def build_expiry_row(self, expiry):
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+        
+        if expiry is False:
+            scrolled_page.date_button.set_sensitive(False)
+            scrolled_page.time_button.set_sensitive(False)
+        else:
+            scrolled_page.expiry_control_button_image.set_from_icon_name("user-trash-symbolic", 16)
+            scrolled_page.data_button.set_sensitive(True)
+            scrolled_page.time_button.set_sensitive(True)
+            date_label.set_text(self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid))
+            time_label.set_text(self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid))  
 
     def insert_group_properties_into_listbox(self, properties_list_box):
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
@@ -931,6 +968,26 @@ class UnlockedDatabase:
         search_fulltext_button = self.builder.get_object("search_fulltext_button")
 
         self.on_headerbar_search_entry_changed(headerbar_search_entry, search_local_button, search_fulltext_button)
+
+    def on_expiry_control_button_clicked(self, widget):
+        self.start_database_lock_timer()
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+        icon_name = scrolled_page.expiry_control_button_image.get_icon_name().icon_name
+        icon_size = scrolled_page.expiry_control_button_image.get_icon_name().size
+
+        if icon_name == "list-add-symbolic":
+            scrolled_page.expiry_control_button_image.set_from_icon_name("user-trash-symbolic", icon_size)
+            scrolled_page.date_button.set_sensitive(True)
+            scrolled_page.time_button.set_sensitive(True)
+            datetime = self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid)
+            scrolled_page.date_label.set_text(str(datetime.date()))
+            scrolled_page.time_label.set_text(str(datetime.time()))
+        else:
+            scrolled_page.expiry_control_button_image.set_from_icon_name("list-add-symbolic", icon_size)
+            scrolled_page.date_button.set_sensitive(False)
+            scrolled_page.time_button.set_sensitive(False)   
         
     #
     # Dialog Creator

@@ -6,7 +6,6 @@ from keepassgtk.container_page import ContainerPage
 from keepassgtk.unlock_database import UnlockDatabase
 import keepassgtk.config_manager
 import os
-from os.path import exists
 import ntpath
 import gi
 import signal
@@ -400,4 +399,3 @@ class MainWindow(Gtk.ApplicationWindow):
 
             for db in self.opened_databases:
                 db.cancel_timers()
-              

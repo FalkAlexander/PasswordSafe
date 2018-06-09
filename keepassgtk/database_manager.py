@@ -166,6 +166,15 @@ class DatabaseManager:
         else:
             return entry.notes
 
+    # Return the beloging expiry date for an entry uuid
+    def get_entry_expiry_date_from_entry_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.expiry_time
+
+    # Return the beloging expiry date for an entry object
+    def get_entry_expiry_date_from_entry_object(self, entry):
+        return entry.expiry_time
+
     #
     # Entry Checks
     #
@@ -208,6 +217,20 @@ class DatabaseManager:
     def has_entry_icon(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.icon is None:
+            return False
+        else:
+            return True
+
+    def has_entry_expiry_date(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.expires is False:
+            return False
+        else:
+            return True
+
+    def has_entry_expired(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.expired is False:
             return False
         else:
             return True
@@ -337,6 +360,13 @@ class DatabaseManager:
     def set_entry_icon(self, uuid, icon):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.icon = icon
+        self.changes = True
+        if keepassgtk.config_manager.get_save_automatically() is True:
+            self.save_database()
+
+    def set_entry_expiry_date(self, uuid, date):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.expiry_date = date
         self.changes = True
         if keepassgtk.config_manager.get_save_automatically() is True:
             self.save_database()

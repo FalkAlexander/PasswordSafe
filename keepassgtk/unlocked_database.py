@@ -28,6 +28,7 @@ class UnlockedDatabase:
     current_group = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
+    search_overlay = NotImplemented
     accelerators = NotImplemented
     scheduled_page_destroy = []
     clipboard = NotImplemented
@@ -64,7 +65,6 @@ class UnlockedDatabase:
         self.parent_widget.add(self.overlay)
 
         database_action_overlay = self.builder.get_object("database_action_overlay")
-
         self.overlay.add_overlay(database_action_overlay)
 
         self.current_group = self.database_manager.get_root_group()
@@ -156,16 +156,6 @@ class UnlockedDatabase:
         self.window.application.add_action(za_button_action)
         self.window.application.add_action(last_added_button_action)
 
-        #menubutton_popover_a_z_button = self.builder.get_object("menubutton_popover_a-z_button")
-        #box = menubutton_popover_a_z_button.get_children()[0]
-        #radio_box = Gtk.Box()
-        #box.add(radio_box)
-        #radio_box.set_halign(Gtk.Align.END)
-        #radio_button = Gtk.RadioButton()
-        #radio_box.add(radio_button)
-        #radio_box.set_hexpand(True)
-        #menubutton_popover_a_z_button.show_all()
-
     # Search headerbar
     def set_search_headerbar(self, widget):
         hscb = self.builder.get_object("headerbar_search_box_close_button")
@@ -235,14 +225,19 @@ class UnlockedDatabase:
         if self.stack.get_child_by_name("search") is None:
             scrolled_page = ScrolledPage(False)
             viewport = Gtk.Viewport()
+            self.search_overlay = Gtk.Overlay()
             builder = Gtk.Builder()
             builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
             self.search_list_box = builder.get_object("list_box")
             self.search_list_box.connect("row-activated", self.on_list_box_row_activated)
-            viewport.add(self.search_list_box)
+            viewport.add(self.search_overlay)
+            self.search_overlay.add(self.search_list_box)
             scrolled_page.add(viewport)
             scrolled_page.show_all()
             self.stack.add_named(scrolled_page, "search")
+            if len(self.search_list_box.get_children()) is 0:
+                info_search_overlay = self.builder.get_object("info_search_overlay")
+                self.search_overlay.add_overlay(info_search_overlay)
 
         self.stack.set_visible_child(self.stack.get_child_by_name("search"))
 
@@ -300,13 +295,19 @@ class UnlockedDatabase:
 
                 scrolled_window = ScrolledPage(False)
                 viewport = Gtk.Viewport()
-                viewport.add(list_box)
+                overlay = Gtk.Overlay()
+                overlay.add(list_box)
+                viewport.add(overlay)
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
                 self.insert_groups_into_listbox(list_box)
                 self.insert_entries_into_listbox(list_box)
+
+                if len(list_box.get_children()) is 0:
+                    empty_group_overlay = builder.get_object("empty_group_overlay")
+                    overlay.add_overlay(empty_group_overlay)
             # Create not existing stack page for entry
             else:
                 builder = Gtk.Builder()
@@ -925,6 +926,14 @@ class UnlockedDatabase:
         fulltext = False
         result_list = []
 
+        empty_search_overlay = self.builder.get_object("empty_search_overlay")
+        info_search_overlay = self.builder.get_object("info_search_overlay")
+        if info_search_overlay in self.search_overlay:
+            self.search_overlay.remove(info_search_overlay)
+
+        if empty_search_overlay in self.search_overlay:
+            self.search_overlay.remove(empty_search_overlay)
+
         for row in self.search_list_box.get_children():
             self.search_list_box.remove(row)
 
@@ -937,6 +946,9 @@ class UnlockedDatabase:
             result_list = self.database_manager.global_search(widget.get_text(), fulltext)
 
         if widget.get_text() is not "":
+            if empty_search_overlay in self.search_overlay:
+                self.search_overlay.remove(empty_search_overlay)
+
             for uuid in result_list:
                 if self.database_manager.check_is_group(uuid):
                     group_row = GroupRow(self, self.database_manager, self.database_manager.get_group_object_from_uuid(uuid))
@@ -944,6 +956,11 @@ class UnlockedDatabase:
                 else:
                     entry_row = EntryRow(self, self.database_manager, self.database_manager.get_entry_object_from_uuid(uuid))
                     self.search_list_box.add(entry_row)
+
+            if len(self.search_list_box.get_children()) is 0:
+                self.search_overlay.add_overlay(empty_search_overlay)
+        else:
+            self.search_overlay.add_overlay(info_search_overlay)
 
     def on_headerbar_search_entry_enter_pressed(self, widget):
         self.start_database_lock_timer()

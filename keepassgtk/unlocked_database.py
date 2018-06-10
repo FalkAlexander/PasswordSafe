@@ -844,7 +844,7 @@ class UnlockedDatabase:
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_mode is False:
             self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_entry_uuid())
             entry_context_popover = self.builder.get_object("entry_context_popover")
             entry_context_popover.set_relative_to(widget)
@@ -864,7 +864,7 @@ class UnlockedDatabase:
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_mode is False:
             self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
             self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
             group_context_popover = self.builder.get_object("group_context_popover")
@@ -1142,7 +1142,7 @@ class UnlockedDatabase:
         if rebuild_pathbar is True:
             self.pathbar.rebuild_pathbar(self.current_group)
 
-        if move_conflicht is False:
+        if move_conflict is False:
             self.show_database_action_revealer("Move completed")
         else:
             self.show_database_action_revealer("Skipped moving group into itself")

@@ -1074,18 +1074,29 @@ class UnlockedDatabase:
 
     def on_selection_delete_button_clicked(self, widget):
         if len(self.entries_selected) is not 0 or len(self.groups_selected) is not 0:
+            rebuild_pathbar = False
+
             for entry_row in self.entries_selected:
                 entry = self.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
                 self.database_manager.delete_entry_from_database(entry)
+                # If the deleted entry is in the pathbar, we need to rebuild the pathbar
+                if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+                    rebuild_pathbar = True
 
             for group_row in self.groups_selected:
                 group = self.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
                 self.database_manager.delete_group_from_database(group)
+                # If the deleted group is in the pathbar, we need to rebuild the pathbar
+                if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
+                    rebuild_pathbar = True
 
             for stack_page in self.stack.get_children():
                 if stack_page.check_is_edit_page() is False:
                     stack_page.destroy()
             self.show_page_of_new_directory(False, False)
+
+            if rebuild_pathbar is True:
+                self.pathbar.rebuild_pathbar(self.current_group)
 
             self.show_database_action_revealer("Delete completed")
 
@@ -1101,18 +1112,29 @@ class UnlockedDatabase:
 
     def on_selection_cut_button_clicked(self, widget):
         if len(self.entries_selected) is not 0 or len(self.groups_selected) is not 0:
+            rebuild_pathbar = False
+
             for entry_row in self.entries_selected:
                 entry_uuid = entry_row.get_entry_uuid()
                 self.database_manager.move_entry(entry_uuid, self.current_group)
+                # If the moved entry is in the pathbar, we need to rebuild the pathbar
+                if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+                    rebuild_pathbar = True
 
             for group_row in self.groups_selected:
                 group_uuid = group_row.get_group_uuid()
                 self.database_manager.move_group(group_uuid, self.current_group)
+                # If the moved group is in the pathbar, we need to rebuild the pathbar
+                if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
+                    rebuild_pathbar = True
 
             for stack_page in self.stack.get_children():
                 if stack_page.check_is_edit_page() is False:
                     stack_page.destroy()
             self.show_page_of_new_directory(False, False)
+
+            if rebuild_pathbar is True:
+                self.pathbar.rebuild_pathbar(self.current_group)
 
             self.show_database_action_revealer("Move completed")
 

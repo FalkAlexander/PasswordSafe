@@ -44,7 +44,9 @@ class Pathbar(Gtk.HBox):
         self.pack_start(home_button, True, True, 0)
 
         seperator_label = Gtk.Label()
-        seperator_label.set_markup("<span color=\"#999999\">/</span>")
+        seperator_label.set_text("/")
+        context = seperator_label.get_style_context()
+        context.add_class('SeperatorLabel')
         self.pack_end(seperator_label, True, True, 0)
 
     def add_home_button(self):
@@ -54,7 +56,9 @@ class Pathbar(Gtk.HBox):
 
     def add_seperator_label(self):
         seperator_label = Gtk.Label()
-        seperator_label.set_markup("<span color=\"#999999\">/</span>")
+        seperator_label.set_text("/")
+        context = seperator_label.get_style_context()
+        context.add_class('SeperatorLabel')
         self.pack_end(seperator_label, True, True, 0)
 
     #

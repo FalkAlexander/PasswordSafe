@@ -169,10 +169,18 @@ class UnlockedDatabase:
         last_added_button_action = Gio.SimpleAction.new("sort.last_added", None)
         last_added_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "last_added")
 
+        selection_all_action = Gio.SimpleAction.new("selection.all", None)
+        selection_all_action.connect("activate", self.on_selection_popover_button_clicked, "all")
+
+        selection_none_action = Gio.SimpleAction.new("selection.none", None)
+        selection_none_action.connect("activate", self.on_selection_popover_button_clicked, "none")
+
         self.window.application.add_action(db_settings_action)
         self.window.application.add_action(az_button_action)
         self.window.application.add_action(za_button_action)
         self.window.application.add_action(last_added_button_action)
+        self.window.application.add_action(selection_all_action)
+        self.window.application.add_action(selection_none_action)
 
     # Selection headerbar
     def set_selection_headerbar(self, widget):
@@ -191,7 +199,9 @@ class UnlockedDatabase:
         headerbar_right_box.add(selection_button_box)
         title_box.add(selection_options_button)
 
-        self.headerbar.set_name("SelectionHeaderbar")
+        context = self.headerbar.get_style_context()
+        context.add_class('selection-mode')
+        self.headerbar.set_show_close_button(False)
 
         self.selection_mode = True
 
@@ -213,8 +223,10 @@ class UnlockedDatabase:
         headerbar_right_box.remove(selection_button_box)
         headerbar_right_box.add(linkedbox_right)
         title_box.remove(selection_options_button)
+        self.headerbar.set_show_close_button(True)
 
-        self.headerbar.set_name("")
+        context = self.headerbar.get_style_context()
+        context.remove_class('selection-mode')
 
         self.selection_mode = False
         self.show_page_of_new_directory(False, False)
@@ -1156,6 +1168,17 @@ class UnlockedDatabase:
         self.database_manager.changes = True
         if keepassgtk.config_manager.get_save_automatically() is True:
             self.database_manager.save_database()
+
+    def on_selection_popover_button_clicked(self, action, param, selection_type):
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        viewport = scrolled_page.get_children()[0]
+        overlay = viewport.get_children()[0]
+        list_box = overlay.get_children()[0]
+        for row in list_box:
+            if selection_type is "all":
+                row.selection_checkbox.set_active(True)
+            else:
+                row.selection_checkbox.set_active(False)
 
     #
     # Dialog Creator

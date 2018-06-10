@@ -37,7 +37,6 @@ class EntryRow(Gtk.ListBoxRow):
         self.connect("drag-data-delete", self.on_drag_data_delete)
         self.connect("drag-drop", self.on_drag_drop)
         self.connect("drag-end", self.on_drag_end)
-        self.enable_model
 
         self.assemble_entry_row()
 

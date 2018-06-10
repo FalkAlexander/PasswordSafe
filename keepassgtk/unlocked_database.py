@@ -1089,7 +1089,7 @@ class UnlockedDatabase:
             group = self.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
             self.database_manager.delete_group_from_database(group)
             # If the deleted group is in the pathbar, we need to rebuild the pathbar
-            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
+            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
                 rebuild_pathbar = True
 
         for stack_page in self.stack.get_children():
@@ -1122,9 +1122,10 @@ class UnlockedDatabase:
 
         for group_row in self.groups_selected:
             group_uuid = group_row.get_group_uuid()
-            self.database_manager.move_group(group_uuid, self.current_group)
+            if self.parent_checker(group_uuid, self.current_group) is False:
+                self.database_manager.move_group(group_uuid, self.current_group)
             # If the moved group is in the pathbar, we need to rebuild the pathbar
-            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
+            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
                 rebuild_pathbar = True
 
         for stack_page in self.stack.get_children():
@@ -1144,6 +1145,22 @@ class UnlockedDatabase:
         self.database_manager.changes = True
         if keepassgtk.config_manager.get_save_automatically() is True:
             self.database_manager.save_database()
+
+    #
+    # Parent Checker
+    #
+
+    # Check if group is a parent or a parent of a parent or a parent of a parent of a parent.....
+    def parent_checker(self, parent_group_uuid, current_group):
+        parent_group = NotImplemented
+
+        if self.database_manager.check_is_root_group(current_group):
+            return False
+        if self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_group_parent_group_from_object(current_group)) == parent_group_uuid:
+            return True
+        else:
+            self.database_manager.get_group_parent_group_from_object(current_group)
+
         
     #
     # Dialog Creator

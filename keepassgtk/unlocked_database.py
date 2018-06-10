@@ -233,6 +233,9 @@ class UnlockedDatabase:
         context = self.headerbar.get_style_context()
         context.remove_class('selection-mode')
 
+        self.entries_selected.clear()
+        self.groups_selected.clear()
+
         for element in self.pathbar.get_children():
             if element.get_name() == "SeperatorLabel":
                 el_context = element.get_style_context()

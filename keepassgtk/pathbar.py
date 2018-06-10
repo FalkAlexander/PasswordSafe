@@ -45,8 +45,12 @@ class Pathbar(Gtk.HBox):
 
         seperator_label = Gtk.Label()
         seperator_label.set_text("/")
+        seperator_label.set_name("SeperatorLabel")
         context = seperator_label.get_style_context()
-        context.add_class('SeperatorLabel')
+        if self.unlocked_database.selection_mode is False:
+            context.add_class('SeperatorLabel')
+        else:
+            context.add_class('SeperatorLabelSelectedMode')
         self.pack_end(seperator_label, True, True, 0)
 
     def add_home_button(self):
@@ -57,8 +61,12 @@ class Pathbar(Gtk.HBox):
     def add_seperator_label(self):
         seperator_label = Gtk.Label()
         seperator_label.set_text("/")
+        seperator_label.set_name("SeperatorLabel")
         context = seperator_label.get_style_context()
-        context.add_class('SeperatorLabel')
+        if self.unlocked_database.selection_mode is False:
+            context.add_class('SeperatorLabel')
+        else:
+            context.add_class('SeperatorLabelSelectedMode')
         self.pack_end(seperator_label, True, True, 0)
 
     #

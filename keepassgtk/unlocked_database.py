@@ -203,6 +203,11 @@ class UnlockedDatabase:
         context.add_class('selection-mode')
         self.headerbar.set_show_close_button(False)
 
+        for element in self.pathbar.get_children():
+            if element.get_name() == "SeperatorLabel":
+                el_context = element.get_style_context()
+                el_context.add_class('SeperatorLabelSelectedMode')
+
         self.selection_mode = True
 
         self.prepare_selection_page()
@@ -227,6 +232,12 @@ class UnlockedDatabase:
 
         context = self.headerbar.get_style_context()
         context.remove_class('selection-mode')
+
+        for element in self.pathbar.get_children():
+            if element.get_name() == "SeperatorLabel":
+                el_context = element.get_style_context()
+                el_context.remove_class('SeperatorLabelSelectedMode')
+                el_context.add_class('SeperatorLabel')
 
         self.selection_mode = False
         self.show_page_of_new_directory(False, False)

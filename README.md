@@ -11,7 +11,7 @@ Features:
 * Creating and editing groups, entries
 * Moving and deleting groups and entries
 * Password randomizer
-* Password changing
+* Database password changing
 * Search tool with local, global and fulltext filter
 * Automatic database locking
 

@@ -7,6 +7,7 @@ class GroupRow(Gtk.ListBoxRow):
     unlocked_database = NotImplemented
     group_uuid = NotImplemented
     label = NotImplemented
+    selection_checkbox = NotImplemented
     type = "GroupRow"
 
     def __init__(self, unlocked_database, dbm, group):
@@ -20,36 +21,18 @@ class GroupRow(Gtk.ListBoxRow):
 
         self.assemble_group_row()
 
-        self.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
-        self.connect("drag-data-received", self.on_drag_end)
-        self.connect("drag-data-get", self.on_drag_data_get)
-
-    def on_drag_end(self, widget, drag_context, x,y, data,info, time):
-        print(widget)
-        print(drag_context)
-        print(x)
-        print(y)
-        print(data)
-        print(info)
-        print(time)
-        print("end")
-
-    def on_drag_data_get(self, widget, drag_context, x,y, data,info, time):
-        print(widget)
-        print(drag_context)
-        print(x)
-        print(y)
-        print(data)
-        print(info)
-        print(time)
-        print("get")
-
     def assemble_group_row(self):
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/run/terminal/KeepassGtk/unlocked_database.ui")
         group_event_box = builder.get_object("group_event_box")
         group_event_box.connect("button-press-event", self.unlocked_database.on_group_row_button_pressed)
+
+        if self.unlocked_database.selection_mode is True:
+            group_checkbox_box = builder.get_object("group_checkbox_box")
+            self.selection_checkbox = builder.get_object("selection_checkbox")
+            self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
+            group_checkbox_box.add(self.selection_checkbox)
 
         group_name_label = builder.get_object("group_name_label")
 
@@ -72,3 +55,11 @@ class GroupRow(Gtk.ListBoxRow):
 
     def get_type(self):
         return self.type
+
+    def on_selection_checkbox_toggled(self, widget):
+        if self.selection_checkbox.get_active() is True:
+            if self not in self.unlocked_database.groups_selected:
+                self.unlocked_database.groups_selected.append(self)
+        else:
+            if self in self.unlocked_database.groups_selected:
+                self.unlocked_database.groups_selected.remove(self)

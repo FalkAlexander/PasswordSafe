@@ -171,7 +171,7 @@ class Pathbar(Gtk.HBox):
 
                 self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
                 self.unlocked_database.switch_stack_page()
-            else:
+            elif pathbar_button.get_is_group() is False and self.unlocked_database.selection_mode is False:
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
                 self.unlocked_database.set_current_group(

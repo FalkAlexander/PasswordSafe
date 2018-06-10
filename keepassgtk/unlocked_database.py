@@ -37,10 +37,14 @@ class UnlockedDatabase:
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
     search_list_box = NotImplemented
+    selection_mode = False
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
     group_marked_for_edit = NotImplemented
+
+    entries_selected = []
+    groups_selected = []
 
     def __init__(self, window, widget, dbm):
         self.window = window
@@ -106,6 +110,9 @@ class UnlockedDatabase:
         search_button.connect("clicked", self.set_search_headerbar)
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
+        selection_button = self.builder.get_object("selection_button")
+        selection_button.connect("clicked", self.set_selection_headerbar)
+
         add_entry_button = self.builder.get_object("add_entry_button")
         add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
 
@@ -132,6 +139,16 @@ class UnlockedDatabase:
         headerbar_search_entry.connect("changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
         headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
 
+        # Selection Headerbar
+        selection_cancel_button = self.builder.get_object("selection_cancel_button")
+        selection_cancel_button.connect("clicked", self.on_selection_cancel_button_clicked)
+
+        selection_delete_button = self.builder.get_object("selection_delete_button")
+        selection_delete_button.connect("clicked", self.on_selection_delete_button_clicked)
+
+        selection_cut_button = self.builder.get_object("selection_cut_button")
+        selection_cut_button.connect("clicked", self.on_selection_cut_button_clicked)
+
         self.set_gio_actions()
 
         self.parent_widget.set_headerbar(self.headerbar)
@@ -156,6 +173,48 @@ class UnlockedDatabase:
         self.window.application.add_action(az_button_action)
         self.window.application.add_action(za_button_action)
         self.window.application.add_action(last_added_button_action)
+
+    # Selection headerbar
+    def set_selection_headerbar(self, widget):
+        selection_options_button = self.builder.get_object("selection_options_button")
+        selection_button_box = self.builder.get_object("selection_button_box")
+
+        title_box = self.builder.get_object("title_box")
+        headerbar_right_box = self.builder.get_object("headerbar_right_box")
+
+        linkedbox_right = self.builder.get_object("linkedbox_right")
+
+        headerbar_right_box.remove(linkedbox_right)
+        headerbar_right_box.add(selection_button_box)
+        title_box.add(selection_options_button)
+
+        self.headerbar.set_name("SelectionHeaderbar")
+
+        self.selection_mode = True
+
+        self.prepare_selection_page()
+
+    def remove_selection_headerbar(self):
+        for stack_page in self.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+
+        selection_options_button = self.builder.get_object("selection_options_button")
+        selection_button_box = self.builder.get_object("selection_button_box")
+
+        title_box = self.builder.get_object("title_box")
+        headerbar_right_box = self.builder.get_object("headerbar_right_box")
+
+        linkedbox_right = self.builder.get_object("linkedbox_right")
+
+        headerbar_right_box.remove(selection_button_box)
+        headerbar_right_box.add(linkedbox_right)
+        title_box.remove(selection_options_button)
+
+        self.headerbar.set_name("")
+
+        self.selection_mode = False
+        self.show_page_of_new_directory(False, False)
 
     # Search headerbar
     def set_search_headerbar(self, widget):
@@ -241,6 +300,12 @@ class UnlockedDatabase:
                 self.search_overlay.add_overlay(info_search_overlay)
 
         self.stack.set_visible_child(self.stack.get_child_by_name("search"))
+
+    def prepare_selection_page(self):
+        for stack_page in self.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+        self.show_page_of_new_directory(False, False)
 
     #
     # Keystrokes
@@ -656,7 +721,12 @@ class UnlockedDatabase:
     def on_list_box_row_activated(self, widget, list_box_row):
         self.start_database_lock_timer()
 
-        if list_box_row.get_type() == "EntryRow":
+        if list_box_row.get_type() == "EntryRow" and self.selection_mode is True:
+            if list_box_row.selection_checkbox.get_active():
+                list_box_row.selection_checkbox.set_active(False)
+            else:
+                list_box_row.selection_checkbox.set_active(True)
+        elif list_box_row.get_type() == "EntryRow" and self.selection_mode is not True:
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
             self.show_page_of_new_directory(False, False)
@@ -894,6 +964,7 @@ class UnlockedDatabase:
         self.show_page_of_new_directory(False, False)
 
     def on_search_entry_esc_key(self, widget, event, data=None):
+        self.start_database_lock_timer()
         if event.keyval == Gdk.KEY_Escape:
             self.remove_search_headerbar(None)
             self.show_page_of_new_directory(False, False)
@@ -996,6 +1067,64 @@ class UnlockedDatabase:
         date = self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid)
         scrolled_page.date_label.set_text(str(calendar.get_date().year) + "-" + str(calendar.get_date().month+1) + "-" + str(calendar.get_date().day))
         scrolled_page.time_label.set_text(str(int(hour_button.get_value())) + ":" + str(int(minute_button.get_value())))
+
+    def on_selection_cancel_button_clicked(self, widget):
+        self.remove_selection_headerbar()
+        self.show_page_of_new_directory(False, False)
+
+    def on_selection_delete_button_clicked(self, widget):
+        if len(self.entries_selected) is not 0 or len(self.groups_selected) is not 0:
+            for entry_row in self.entries_selected:
+                entry = self.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
+                self.database_manager.delete_entry_from_database(entry)
+
+            for group_row in self.groups_selected:
+                group = self.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
+                self.database_manager.delete_group_from_database(group)
+
+            for stack_page in self.stack.get_children():
+                if stack_page.check_is_edit_page() is False:
+                    stack_page.destroy()
+            self.show_page_of_new_directory(False, False)
+
+            self.show_database_action_revealer("Delete completed")
+
+            self.entries_selected.clear()
+            self.groups_selected.clear()
+
+            # It is more efficient to do this here and not in the database manager loop
+            self.database_manager.changes = True
+            if keepassgtk.config_manager.get_save_automatically() is True:
+                self.database_manager.save_database()
+        else:
+            self.show_database_action_revealer("You need to select an entry or a group")
+
+    def on_selection_cut_button_clicked(self, widget):
+        if len(self.entries_selected) is not 0 or len(self.groups_selected) is not 0:
+            for entry_row in self.entries_selected:
+                entry_uuid = entry_row.get_entry_uuid()
+                self.database_manager.move_entry(entry_uuid, self.current_group)
+
+            for group_row in self.groups_selected:
+                group_uuid = group_row.get_group_uuid()
+                self.database_manager.move_group(group_uuid, self.current_group)
+
+            for stack_page in self.stack.get_children():
+                if stack_page.check_is_edit_page() is False:
+                    stack_page.destroy()
+            self.show_page_of_new_directory(False, False)
+
+            self.show_database_action_revealer("Move completed")
+
+            self.entries_selected.clear()
+            self.groups_selected.clear()
+
+            # It is more efficient to do this here and not in the database manager loop
+            self.database_manager.changes = True
+            if keepassgtk.config_manager.get_save_automatically() is True:
+                self.database_manager.save_database()
+        else:
+            self.show_database_action_revealer("You need to select an entry or a group")
         
     #
     # Dialog Creator

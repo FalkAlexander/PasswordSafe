@@ -370,6 +370,11 @@ class DatabaseManager:
         if keepassgtk.config_manager.get_save_automatically() is True:
             self.save_database()
 
+    # Move an entry to another group
+    def move_entry(self, uuid, destination_group_object):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        self.db.move_entry(entry, destination_group_object)
+
     #
     # Group Modifications
     #
@@ -388,6 +393,11 @@ class DatabaseManager:
     def set_group_icon(self, uuid, icon):
         group = self.db.find_groups(uuid=uuid, first=True)
         group.icon = icon
+
+    # Move an group
+    def move_group(self, uuid, destination_group_object):
+        group = self.db.find_groups(uuid=uuid, first=True)
+        self.db.move_group(group, destination_group_object)
 
     #
     # Read Database

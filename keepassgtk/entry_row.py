@@ -12,6 +12,7 @@ class EntryRow(Gtk.ListBoxRow):
     label = NotImplemented
     password = NotImplemented
     changed = False
+    selection_checkbox = NotImplemented
     type = "EntryRow"
 
     targets = NotImplemented
@@ -28,41 +29,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.label = dbm.get_entry_name_from_entry_object(entry)
         self.password = dbm.get_entry_password_from_entry_object(entry)
 
-        self.targets = Gtk.TargetList.new([])
-
-        self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, [], Gdk.DragAction.MOVE)
-        self.connect("drag-begin", self.on_drag_begin)
-        self.connect("drag-motion", self.on_drag_motion)
-        self.connect("drag-data-get", self.on_drag_data_get)
-        self.connect("drag-data-delete", self.on_drag_data_delete)
-        self.connect("drag-drop", self.on_drag_drop)
-        self.connect("drag-end", self.on_drag_end)
-
         self.assemble_entry_row()
-
-    def on_drag_begin(self, source, drag_context):
-        print("drag begin")
-        print(drag_context)
-
-    def on_drag_motion(self, source, drag_context):
-        print("drag motion")
-        print(drag_context)
-
-    def on_drag_data_get(self, source, drag_context):
-        print("drag data get")
-        print(drag_context)
-
-    def on_drag_data_delete(self, source, drag_context):
-        print("drag data delete")
-        print(drag_context)
-
-    def on_drag_drop(self, source, drag_context):
-        print("drag drop")
-        print(drag_context)
-
-    def on_drag_end(self, source, drag_context):
-        print("drag end")
-        print(drag_context)
 
     def assemble_entry_row(self):
         builder = Gtk.Builder()
@@ -75,6 +42,12 @@ class EntryRow(Gtk.ListBoxRow):
         entry_name_label = builder.get_object("entry_name_label")
         entry_subtitle_label = builder.get_object("entry_subtitle_label")
         entry_password_input = builder.get_object("entry_password_input")
+
+        if self.unlocked_database.selection_mode is True:
+            entry_checkbox_box = builder.get_object("entry_checkbox_box")
+            self.selection_checkbox = builder.get_object("selection_checkbox")
+            self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
+            entry_checkbox_box.add(self.selection_checkbox)
 
         # Icon
         entry_icon.set_from_icon_name(keepassgtk.icon.get_icon(self.icon), 20)
@@ -126,3 +99,11 @@ class EntryRow(Gtk.ListBoxRow):
 
     def get_changed(self):
         return self.changed
+
+    def on_selection_checkbox_toggled(self, widget):
+        if self.selection_checkbox.get_active() is True:
+            if self not in self.unlocked_database.entries_selected:
+                self.unlocked_database.entries_selected.append(self)
+        else:
+            if self in self.unlocked_database.entries_selected:
+                self.unlocked_database.entries_selected.remove(self)

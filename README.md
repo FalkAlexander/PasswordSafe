@@ -5,15 +5,18 @@ There is the awesome pykeepass library from Philipp Schmitt used (https://github
 ###### Screenshot
 ![Screenshot](https://terminal.run/stuff/keepassgtk_screenshot.png)
 
-Planned Features:
+Features:
 * Creating a new Keepass v.4 database
-* Password authentification + password changing of a database
+* Password, keyfile and composite key authentification
 * Creating and editing groups, entries
-* Nice GUI
+* Moving and deleting groups and entries
+* Password randomizer
+* Password changing
+* Automatic database locking
 
 # Prerequisites
 * Python 3.6.5 or newer
-* pykeepass 2.8.1
+* pykeepass 2.8.2
 * Gtk 3.22
 
 ### Building / Compiling

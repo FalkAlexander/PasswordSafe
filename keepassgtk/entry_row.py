@@ -14,6 +14,8 @@ class EntryRow(Gtk.ListBoxRow):
     changed = False
     type = "EntryRow"
 
+    targets = NotImplemented
+
     def __init__(self, unlocked_database, dbm, entry):
         Gtk.ListBoxRow.__init__(self)
         self.set_name("EntryRow")
@@ -26,13 +28,42 @@ class EntryRow(Gtk.ListBoxRow):
         self.label = dbm.get_entry_name_from_entry_object(entry)
         self.password = dbm.get_entry_password_from_entry_object(entry)
 
+        self.targets = Gtk.TargetList.new([])
+
         self.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, [], Gdk.DragAction.MOVE)
         self.connect("drag-begin", self.on_drag_begin)
+        self.connect("drag-motion", self.on_drag_motion)
+        self.connect("drag-data-get", self.on_drag_data_get)
+        self.connect("drag-data-delete", self.on_drag_data_delete)
+        self.connect("drag-drop", self.on_drag_drop)
+        self.connect("drag-end", self.on_drag_end)
+        self.enable_model
 
         self.assemble_entry_row()
 
     def on_drag_begin(self, source, drag_context):
         print("drag begin")
+        print(drag_context)
+
+    def on_drag_motion(self, source, drag_context):
+        print("drag motion")
+        print(drag_context)
+
+    def on_drag_data_get(self, source, drag_context):
+        print("drag data get")
+        print(drag_context)
+
+    def on_drag_data_delete(self, source, drag_context):
+        print("drag data delete")
+        print(drag_context)
+
+    def on_drag_drop(self, source, drag_context):
+        print("drag drop")
+        print(drag_context)
+
+    def on_drag_end(self, source, drag_context):
+        print("drag end")
+        print(drag_context)
 
     def assemble_entry_row(self):
         builder = Gtk.Builder()

@@ -223,10 +223,7 @@ class DatabaseManager:
 
     def has_entry_expiry_date(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.expires is False:
-            return False
-        else:
-            return True
+        return entry.expires
 
     def has_entry_expired(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
@@ -366,7 +363,9 @@ class DatabaseManager:
 
     def set_entry_expiry_date(self, uuid, date):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.expiry_date = date
+        entry.expiry_time = date
+        entry.expires
+        print(entry.expires)
         self.changes = True
         if keepassgtk.config_manager.get_save_automatically() is True:
             self.save_database()

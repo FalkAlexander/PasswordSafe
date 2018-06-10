@@ -31,17 +31,6 @@ class ScrolledPage(Gtk.ScrolledWindow):
     icon_property_row = NotImplemented
     icon_view = NotImplemented
 
-    expiry_property_row = NotImplemented
-    expiry_control_button = NotImplemented
-    expiry_control_button_image = NotImplemented
-    date_button = NotImplemented
-    time_button = NotImplemented
-    date_label = NotImplemented
-    time_label = NotImplemented
-    date_calendar = NotImplemented
-    hour_spin_button = NotImplemented
-    minute_spin_button = NotImplemented
-
     def __init__(self, edit):
         Gtk.ScrolledWindow.__init__(self)
         self.set_name("ScrolledPage")

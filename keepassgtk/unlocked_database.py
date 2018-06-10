@@ -11,6 +11,7 @@ import keepassgtk.password_generator
 import keepassgtk.config_manager
 import gi
 import ntpath
+import datetime
 
 gi.require_version('Gtk', '3.0')
 
@@ -599,31 +600,6 @@ class UnlockedDatabase:
             elif scrolled_page.icon_view is not NotImplemented:
                 properties_list_box.add(scrolled_page.icon_property_row)
 
-        if self.database_manager.has_entry_expiry_date(entry_uuid) is True or add_all is True:
-            if scrolled_page.expiry_property_row is NotImplemented:
-                scrolled_page.expiry_property_row = builder.get_object("expiry_property_row")
-                scrolled_page.expiry_control_button = builder.get_object("expiry_control_button")
-                scrolled_page.expiry_control_button.connect("clicked", self.on_expiry_control_button_clicked)
-                scrolled_page.expiry_control_button_image = builder.get_object("expiry_control_button_image")
-
-                scrolled_page.date_button = builder.get_object("date_button")
-                scrolled_page.time_button = builder.get_object("time_button")
-                scrolled_page.date_label = builder.get_object("date_label")
-                scrolled_page.time_label = builder.get_object("time_label")
-
-                scrolled_page.date_calendar = builder.get_object("date_calendar")
-                scrolled_page.hour_spin_button = builder.get_object("hour_spin_button")
-                scrolled_page.minute_spin_button = builder.get_object("minute_spin_button")
-
-                if self.database_manager.has_entry_expiry_date(entry_uuid) is False:
-                    self.build_expiry_row(False)
-                else:
-                    self.build_expiry_row(True)
-
-                properties_list_box.add(scrolled_page.expiry_property_row)
-            else:
-                properties_list_box.add(scrolled_page.expiry_property_row)
-
         if scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
             scrolled_page.add_button_disabled = True
             self.builder.get_object("add_property_button").set_sensitive(False)
@@ -1000,11 +976,26 @@ class UnlockedDatabase:
             scrolled_page.time_button.set_sensitive(True)
             datetime = self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid)
             scrolled_page.date_label.set_text(str(datetime.date()))
-            scrolled_page.time_label.set_text(str(datetime.time()))
+            scrolled_page.time_label.set_text(str(datetime.hour) + ":" + str(datetime.minute))
         else:
             scrolled_page.expiry_control_button_image.set_from_icon_name("list-add-symbolic", icon_size)
+            #self.database_manager.set_entry_expiry_date(entry_uuid, None)
             scrolled_page.date_button.set_sensitive(False)
-            scrolled_page.time_button.set_sensitive(False)   
+            scrolled_page.time_button.set_sensitive(False)
+
+    def on_expiry_date_changed(self, widget):
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+
+        calendar = scrolled_page.date_calendar
+        minute_button = scrolled_page.minute_spin_button
+        hour_button = scrolled_page.hour_spin_button
+
+        self.database_manager.set_entry_expiry_date(entry_uuid, datetime.datetime(calendar.get_date().year, calendar.get_date().month+1, calendar.get_date().day, int(hour_button.get_value()), int(minute_button.get_value())))
+
+        date = self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid)
+        scrolled_page.date_label.set_text(str(calendar.get_date().year) + "-" + str(calendar.get_date().month+1) + "-" + str(calendar.get_date().day))
+        scrolled_page.time_label.set_text(str(int(hour_button.get_value())) + ":" + str(int(minute_button.get_value())))
         
     #
     # Dialog Creator

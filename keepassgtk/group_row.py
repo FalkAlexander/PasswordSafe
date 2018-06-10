@@ -22,6 +22,7 @@ class GroupRow(Gtk.ListBoxRow):
 
         self.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.MOVE)
         self.connect("drag-data-received", self.on_drag_end)
+        self.connect("drag-data-get", self.on_drag_data_get)
 
     def on_drag_end(self, widget, drag_context, x,y, data,info, time):
         print(widget)
@@ -31,7 +32,17 @@ class GroupRow(Gtk.ListBoxRow):
         print(data)
         print(info)
         print(time)
-        print("hallo")
+        print("end")
+
+    def on_drag_data_get(self, widget, drag_context, x,y, data,info, time):
+        print(widget)
+        print(drag_context)
+        print(x)
+        print(y)
+        print(data)
+        print(info)
+        print(time)
+        print("get")
 
     def assemble_group_row(self):
         builder = Gtk.Builder()

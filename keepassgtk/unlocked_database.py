@@ -176,6 +176,9 @@ class UnlockedDatabase:
 
     # Selection headerbar
     def set_selection_headerbar(self, widget):
+        self.builder.get_object("selection_delete_button").set_sensitive(False)
+        self.builder.get_object("selection_cut_button").set_sensitive(False)
+
         selection_options_button = self.builder.get_object("selection_options_button")
         selection_button_box = self.builder.get_object("selection_button_box")
 
@@ -1073,80 +1076,74 @@ class UnlockedDatabase:
         self.show_page_of_new_directory(False, False)
 
     def on_selection_delete_button_clicked(self, widget):
-        if len(self.entries_selected) is not 0 or len(self.groups_selected) is not 0:
-            rebuild_pathbar = False
+        rebuild_pathbar = False
 
-            for entry_row in self.entries_selected:
-                entry = self.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
-                self.database_manager.delete_entry_from_database(entry)
-                # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-                if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
-                    rebuild_pathbar = True
+        for entry_row in self.entries_selected:
+            entry = self.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
+            self.database_manager.delete_entry_from_database(entry)
+            # If the deleted entry is in the pathbar, we need to rebuild the pathbar
+            if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+                rebuild_pathbar = True
 
-            for group_row in self.groups_selected:
-                group = self.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
-                self.database_manager.delete_group_from_database(group)
-                # If the deleted group is in the pathbar, we need to rebuild the pathbar
-                if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
-                    rebuild_pathbar = True
+        for group_row in self.groups_selected:
+            group = self.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
+            self.database_manager.delete_group_from_database(group)
+            # If the deleted group is in the pathbar, we need to rebuild the pathbar
+            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
+                rebuild_pathbar = True
 
-            for stack_page in self.stack.get_children():
-                if stack_page.check_is_edit_page() is False:
-                    stack_page.destroy()
-            self.show_page_of_new_directory(False, False)
+        for stack_page in self.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+        self.show_page_of_new_directory(False, False)
 
-            if rebuild_pathbar is True:
-                self.pathbar.rebuild_pathbar(self.current_group)
+        if rebuild_pathbar is True:
+            self.pathbar.rebuild_pathbar(self.current_group)
 
-            self.show_database_action_revealer("Delete completed")
+        self.show_database_action_revealer("Delete completed")
 
-            self.entries_selected.clear()
-            self.groups_selected.clear()
+        self.entries_selected.clear()
+        self.groups_selected.clear()
 
-            # It is more efficient to do this here and not in the database manager loop
-            self.database_manager.changes = True
-            if keepassgtk.config_manager.get_save_automatically() is True:
-                self.database_manager.save_database()
-        else:
-            self.show_database_action_revealer("You need to select an entry or a group")
+        # It is more efficient to do this here and not in the database manager loop
+        self.database_manager.changes = True
+        if keepassgtk.config_manager.get_save_automatically() is True:
+            self.database_manager.save_database()
 
     def on_selection_cut_button_clicked(self, widget):
-        if len(self.entries_selected) is not 0 or len(self.groups_selected) is not 0:
-            rebuild_pathbar = False
+        rebuild_pathbar = False
 
-            for entry_row in self.entries_selected:
-                entry_uuid = entry_row.get_entry_uuid()
-                self.database_manager.move_entry(entry_uuid, self.current_group)
-                # If the moved entry is in the pathbar, we need to rebuild the pathbar
-                if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
-                    rebuild_pathbar = True
+        for entry_row in self.entries_selected:
+            entry_uuid = entry_row.get_entry_uuid()
+            self.database_manager.move_entry(entry_uuid, self.current_group)
+            # If the moved entry is in the pathbar, we need to rebuild the pathbar
+            if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+                rebuild_pathbar = True
 
-            for group_row in self.groups_selected:
-                group_uuid = group_row.get_group_uuid()
-                self.database_manager.move_group(group_uuid, self.current_group)
-                # If the moved group is in the pathbar, we need to rebuild the pathbar
-                if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
-                    rebuild_pathbar = True
+        for group_row in self.groups_selected:
+            group_uuid = group_row.get_group_uuid()
+            self.database_manager.move_group(group_uuid, self.current_group)
+            # If the moved group is in the pathbar, we need to rebuild the pathbar
+            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_entry_uuid()) is True:
+                rebuild_pathbar = True
 
-            for stack_page in self.stack.get_children():
-                if stack_page.check_is_edit_page() is False:
-                    stack_page.destroy()
-            self.show_page_of_new_directory(False, False)
+        for stack_page in self.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+        self.show_page_of_new_directory(False, False)
 
-            if rebuild_pathbar is True:
-                self.pathbar.rebuild_pathbar(self.current_group)
+        if rebuild_pathbar is True:
+            self.pathbar.rebuild_pathbar(self.current_group)
 
-            self.show_database_action_revealer("Move completed")
+        self.show_database_action_revealer("Move completed")
 
-            self.entries_selected.clear()
-            self.groups_selected.clear()
+        self.entries_selected.clear()
+        self.groups_selected.clear()
 
-            # It is more efficient to do this here and not in the database manager loop
-            self.database_manager.changes = True
-            if keepassgtk.config_manager.get_save_automatically() is True:
-                self.database_manager.save_database()
-        else:
-            self.show_database_action_revealer("You need to select an entry or a group")
+        # It is more efficient to do this here and not in the database manager loop
+        self.database_manager.changes = True
+        if keepassgtk.config_manager.get_save_automatically() is True:
+            self.database_manager.save_database()
         
     #
     # Dialog Creator

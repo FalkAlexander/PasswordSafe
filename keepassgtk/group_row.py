@@ -63,3 +63,10 @@ class GroupRow(Gtk.ListBoxRow):
         else:
             if self in self.unlocked_database.groups_selected:
                 self.unlocked_database.groups_selected.remove(self)
+
+        if len(self.unlocked_database.entries_selected) > 0 or len(self.unlocked_database.groups_selected) > 0:
+            self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(True)
+            self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(True)
+        else:
+            self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+            self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)

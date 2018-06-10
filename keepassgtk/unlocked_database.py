@@ -1104,6 +1104,8 @@ class UnlockedDatabase:
 
         self.entries_selected.clear()
         self.groups_selected.clear()
+        self.builder.get_object("selection_delete_button").set_sensitive(False)
+        self.builder.get_object("selection_cut_button").set_sensitive(False)
 
         # It is more efficient to do this here and not in the database manager loop
         self.database_manager.changes = True
@@ -1120,10 +1122,14 @@ class UnlockedDatabase:
             if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
                 rebuild_pathbar = True
 
+        move_conflict = False
+
         for group_row in self.groups_selected:
             group_uuid = group_row.get_group_uuid()
-            if self.parent_checker(group_uuid, self.current_group) is False:
+            if self.database_manager.parent_checker(self.current_group, self.database_manager.get_group_object_from_uuid(group_uuid)) is False:
                 self.database_manager.move_group(group_uuid, self.current_group)
+            else:
+                move_conflict = True
             # If the moved group is in the pathbar, we need to rebuild the pathbar
             if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
                 rebuild_pathbar = True
@@ -1136,32 +1142,21 @@ class UnlockedDatabase:
         if rebuild_pathbar is True:
             self.pathbar.rebuild_pathbar(self.current_group)
 
-        self.show_database_action_revealer("Move completed")
+        if move_conflicht is False:
+            self.show_database_action_revealer("Move completed")
+        else:
+            self.show_database_action_revealer("Skipped moving group into itself")
 
         self.entries_selected.clear()
         self.groups_selected.clear()
+        self.builder.get_object("selection_delete_button").set_sensitive(False)
+        self.builder.get_object("selection_cut_button").set_sensitive(False)
 
         # It is more efficient to do this here and not in the database manager loop
         self.database_manager.changes = True
         if keepassgtk.config_manager.get_save_automatically() is True:
             self.database_manager.save_database()
 
-    #
-    # Parent Checker
-    #
-
-    # Check if group is a parent or a parent of a parent or a parent of a parent of a parent.....
-    def parent_checker(self, parent_group_uuid, current_group):
-        parent_group = NotImplemented
-
-        if self.database_manager.check_is_root_group(current_group):
-            return False
-        if self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_group_parent_group_from_object(current_group)) == parent_group_uuid:
-            return True
-        else:
-            self.database_manager.get_group_parent_group_from_object(current_group)
-
-        
     #
     # Dialog Creator
     #

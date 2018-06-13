@@ -1103,6 +1103,7 @@ class UnlockedDatabase:
 
     def on_selection_delete_button_clicked(self, widget):
         rebuild_pathbar = False
+        reset_stack_page = False
         group = None
 
         for entry_row in self.entries_selected:
@@ -1118,20 +1119,21 @@ class UnlockedDatabase:
             # If the deleted group is in the pathbar, we need to rebuild the pathbar
             if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
                 rebuild_pathbar = True
+            if self.database_manager.get_group_uuid_from_group_object(group) == self.database_manager.get_group_uuid_from_group_object(self.current_group):
+                rebuild_pathbar = True
+                reset_stack_page = True
 
         for stack_page in self.stack.get_children():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 
-        if self.database_manager.get_group_uuid_from_group_object(group) == self.database_manager.get_group_uuid_from_group_object(self.current_group):
-            self.current_group = self.database_manager.get_root_group()
-            rebuild_pathbar = True
-            self.show_page_of_new_directory(False, False)
-        else:
-            self.show_page_of_new_directory(False, False)
+        self.show_page_of_new_directory(False, False)
 
         if rebuild_pathbar is True:
             self.pathbar.rebuild_pathbar(self.current_group)
+
+        if reset_stack_page is True:
+            self.current_group = self.database_manager.get_root_group()
 
         self.show_database_action_revealer("Delete completed")
 

@@ -1103,6 +1103,7 @@ class UnlockedDatabase:
 
     def on_selection_delete_button_clicked(self, widget):
         rebuild_pathbar = False
+        group = None
 
         for entry_row in self.entries_selected:
             entry = self.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
@@ -1121,7 +1122,13 @@ class UnlockedDatabase:
         for stack_page in self.stack.get_children():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
-        self.show_page_of_new_directory(False, False)
+
+        if self.database_manager.get_group_uuid_from_group_object(group) == self.database_manager.get_group_uuid_from_group_object(self.current_group):
+            self.current_group = self.database_manager.get_root_group()
+            rebuild_pathbar = True
+            self.show_page_of_new_directory(False, False)
+        else:
+            self.show_page_of_new_directory(False, False)
 
         if rebuild_pathbar is True:
             self.pathbar.rebuild_pathbar(self.current_group)

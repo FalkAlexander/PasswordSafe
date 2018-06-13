@@ -514,8 +514,5 @@ class DatabaseManager:
             return False
         elif current_group.uuid == moved_group.uuid:
             return True
-        elif current_group.parentgroup.uuid == moved_group.uuid:
-            return True
         else:
-            self.parent_checker(current_group.parentgroup, moved_group)
-            return False
+            return self.parent_checker(current_group.parentgroup, moved_group)

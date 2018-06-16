@@ -110,9 +110,11 @@
                                         <property name="vexpand">True</property>
                                         <property name="label" translatable="yes">Use dark Gtk theme</property>
                                         <attributes>
-                                          <attribute name="foreground" value="#555557575353"/>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
+                                        <style>
+                                          <class name="dim-label"/>
+                                        </style>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -189,9 +191,11 @@
                                         <property name="vexpand">True</property>
                                         <property name="label" translatable="yes">Reopen last opened database</property>
                                         <attributes>
-                                          <attribute name="foreground" value="#555557575353"/>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
+                                        <style>
+                                          <class name="dim-label"/>
+                                        </style>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -307,9 +311,11 @@
                                         <property name="vexpand">True</property>
                                         <property name="label" translatable="yes">Save every change automatically</property>
                                         <attributes>
-                                          <attribute name="foreground" value="#555557575353"/>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
+                                        <style>
+                                          <class name="dim-label"/>
+                                        </style>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -425,9 +431,11 @@
                                         <property name="vexpand">True</property>
                                         <property name="label" translatable="yes">Lock Database on idle after x minutes</property>
                                         <attributes>
-                                          <attribute name="foreground" value="#555557575353"/>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
+                                        <style>
+                                          <class name="dim-label"/>
+                                        </style>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -505,9 +513,11 @@
                                         <property name="vexpand">True</property>
                                         <property name="label" translatable="yes">Clear Clipboard after x seconds</property>
                                         <attributes>
-                                          <attribute name="foreground" value="#555557575353"/>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
+                                        <style>
+                                          <class name="dim-label"/>
+                                        </style>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -585,9 +595,11 @@
                                         <property name="vexpand">True</property>
                                         <property name="label" translatable="yes">Display passwords in plain text</property>
                                         <attributes>
-                                          <attribute name="foreground" value="#555557575353"/>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
+                                        <style>
+                                          <class name="dim-label"/>
+                                        </style>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>

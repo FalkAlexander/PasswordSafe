@@ -676,22 +676,24 @@ class UnlockedDatabase:
                 properties_list_box.add(scrolled_page.notes_property_row)
 
         if self.database_manager.has_entry_icon(entry_uuid) is True or add_all is True:
-            if scrolled_page.icon_view is NotImplemented:
+            if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
-                scrolled_page.icon_view = builder.get_object("icon_view")
 
-                liststore = Gtk.ListStore(Pixbuf, str)
-                scrolled_page.icon_view.set_model(liststore)
-                scrolled_page.icon_view.set_pixbuf_column(0)
+                scrolled_page.iconview_flowbox = builder.get_object("iconview_flowbox")
+                iconview_icon = builder.get_object("iconview_icon")
                 
                 for icon in keepassgtk.icon.icon_list.values():
-                    pixbuf = Gtk.IconTheme.get_default().load_icon(icon, 16, 0)
-                    liststore.append([pixbuf, ""])
+                    nbuilder = Gtk.Builder()
+                    nbuilder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+                    iconview_icon = nbuilder.get_object("iconview_icon")
+                    image = iconview_icon.get_children()[0]
+                    image.set_from_icon_name(icon, 32)
+                    scrolled_page.iconview_flowbox.add(iconview_icon)
 
-                scrolled_page.icon_view.connect("item-activated", self.on_icon_view_item_selected)
+                scrolled_page.iconview_flowbox.connect("child-activated", self.on_icon_view_item_selected)
 
                 properties_list_box.add(scrolled_page.icon_property_row)
-            elif scrolled_page.icon_view is not NotImplemented:
+            elif scrolled_page.icon_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.icon_property_row)
 
         if scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
@@ -842,14 +844,19 @@ class UnlockedDatabase:
         elif type == "notes":
             self.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
-    def on_icon_view_item_selected(self, widget, icon):
+    def on_icon_view_item_selected(self, widget, child):
         self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         scrolled_page.set_made_database_changes(True)
 
-        self.database_manager.set_entry_icon(entry_uuid, str(icon))
+        image = child.get_children()[0]
+        image_name = image.get_icon_name().icon_name
+
+        for key, value in keepassgtk.icon.icon_list.items():
+            if value == image_name:
+                self.database_manager.set_entry_icon(entry_uuid, key)
 
     def on_property_value_group_changed(self, widget, type):
         self.start_database_lock_timer()

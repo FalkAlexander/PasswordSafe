@@ -680,16 +680,6 @@ class UnlockedDatabase:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
 
                 scrolled_page.iconview_flowbox = builder.get_object("iconview_flowbox")
-                iconview_icon = builder.get_object("iconview_icon")
-                
-                for icon in keepassgtk.icon.icon_list.values():
-                    nbuilder = Gtk.Builder()
-                    nbuilder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
-                    iconview_icon = nbuilder.get_object("iconview_icon")
-                    image = iconview_icon.get_children()[0]
-                    image.set_from_icon_name(icon, 32)
-                    scrolled_page.iconview_flowbox.add(iconview_icon)
-
                 scrolled_page.iconview_flowbox.connect("child-activated", self.on_icon_view_item_selected)
 
                 properties_list_box.add(scrolled_page.icon_property_row)

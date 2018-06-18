@@ -767,17 +767,29 @@ class UnlockedDatabase:
         else:
             self.lock_database()
 
-    def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close):
+    def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close, timeout):
         self.database_manager.save_database()
         save_dialog.destroy()
         self.lock_database()
 
+        if timeout is True:
+            for db in self.window.opened_databases:
+                if db.database_manager.database_path == self.database_manager.database_path:
+                    self.window.opened_databases.remove(db)
+            self.window.close_tab(self.parent_widget)
+
         if tab_close is True:
             self.window.close_tab(self.parent_widget)
 
-    def on_save_dialog_discard_button_clicked(self, widget, save_dialog, tab_close):
+    def on_save_dialog_discard_button_clicked(self, widget, save_dialog, tab_close, timeout):
         save_dialog.destroy()
         self.lock_database()
+
+        if timeout is True:
+            for db in self.window.opened_databases:
+                if db.database_manager.database_path == self.database_manager.database_path:
+                    self.window.opened_databases.remove(db)
+            self.window.close_tab(self.parent_widget)
 
         if tab_close is True:
             self.window.close_tab(self.parent_widget)
@@ -1204,7 +1216,7 @@ class UnlockedDatabase:
     # Dialog Creator
     #
 
-    def show_save_dialog(self, tab_close=None):
+    def show_save_dialog(self, tab_close=None, timeout=None):
         builder = Gtk.Builder()
         builder.add_from_resource("/run/terminal/KeepassGtk/save_dialog.ui")
 
@@ -1216,8 +1228,8 @@ class UnlockedDatabase:
         discard_button = builder.get_object("discard_button")
         save_button = builder.get_object("save_button")
 
-        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog, tab_close)
-        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close)
+        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog, tab_close, timeout)
+        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close, timeout)
 
         save_dialog.present()
 
@@ -1240,10 +1252,17 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
+
         for db in self.window.opened_databases:
             if db.database_manager.database_path == self.database_manager.database_path:
                 self.window.opened_databases.remove(db)
         self.window.close_tab(self.parent_widget)
+
+        self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
+
+    def lock_timeout_database(self):
+        self.cancel_timers()
+        self.show_save_dialog(timeout=True)
         self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
 
     #
@@ -1272,8 +1291,8 @@ class UnlockedDatabase:
             self.database_lock_timer.cancel()
         timeout = keepassgtk.config_manager.get_database_lock_timeout() * 60
         if timeout is not 0:
-            self.database_lock_timer = Timer(timeout, self.lock_database)
-            self.database_lock_timer.start()   
+            self.database_lock_timer = Timer(timeout, self.lock_timeout_database)
+            self.database_lock_timer.start()
 
     def cancel_timers(self):
         if self.clipboard_timer is not NotImplemented:

@@ -1,6 +1,6 @@
 # KeepassGtk
 KeepassGtk is a password manager which makes use of the Keepass v.4 format.
-There is the awesome pykeepass library from Philipp Schmitt used (https://github.com/pschmitt/pykeepass).
+It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
 ###### Screenshot
 ![Screenshot](https://terminal.run/stuff/keepassgtk_screenshot.png)
@@ -38,7 +38,10 @@ sudo ninja -C _build install
 * Arch Linux AUR: [keepassgtk-git](https://aur.archlinux.org/packages/keepassgtk-git/)
 
 # Known issues
-* For creating databases is used a workaround because the library can't create new ones. There is used a clean pre-configured database which password (liufhre86ewoiwejmrcu8owe; AES-256; AES-KDF) is being changed.
+* For creating databases is used a workaround because the library can't create new ones (yet).
+
+# Used libraries
+There is the awesome pykeepass library from Philipp Schmitt used (https://github.com/pschmitt/pykeepass).
 
 # Contact
 You can contact the project through [Matrix](https://matrix.org). The room is

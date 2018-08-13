@@ -113,14 +113,13 @@ class MainWindow(Gtk.ApplicationWindow):
         if len(self.get_application().file_list) is not 0:
             for g_file in self.get_application().file_list:
                 self.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
-        elif keepassgtk.config_manager.get_first_start_screen() is True and filepath is not "":
-            self.logging_manager.log_debug("Found last opened database entry (" + filepath + ")")
-
+        elif keepassgtk.config_manager.get_first_start_screen() is True and filepath is not "" and Gio.File.query_exists(Gio.File.new_for_path(filepath)) is True:
+            self.logging_manager.log_debug("Found last opened database (" + filepath + ")")
             tab_title = ntpath.basename(filepath)
             self.start_database_opening_routine(tab_title, filepath)
         else:
             self.logging_manager.log_debug(
-                "No / Not valid last opened database entry found.")
+                "No / Not valid last opened database found.")
             builder = Gtk.Builder()
             builder.add_from_resource(
                 "/run/terminal/KeepassGtk/main_window.ui")

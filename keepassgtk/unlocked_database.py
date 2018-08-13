@@ -683,6 +683,13 @@ class UnlockedDatabase:
                 scrolled_page.iconview_flowbox.connect("child-activated", self.on_icon_view_item_selected)
 
                 properties_list_box.add(scrolled_page.icon_property_row)
+
+                flowbox_child = builder.get_object("iconview_icon" + self.database_manager.get_entry_icon_from_entry_uuid(entry_uuid))
+                if flowbox_child is not None:
+                    scrolled_page.iconview_flowbox.select_child(flowbox_child)
+                else:
+                    flowbox_child = builder.get_object("iconview_icon1")
+                    scrolled_page.iconview_flowbox.select_child(flowbox_child)
             elif scrolled_page.icon_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.icon_property_row)
 

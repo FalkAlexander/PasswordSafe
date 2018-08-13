@@ -24,7 +24,7 @@ Features:
 We are using Meson as our build system. There are some easy steps to follow in order to build KeepassGtk with Meson:
 
 ```
-git clone https://github.com/TerminalDotRun/KeepassGtk.git
+git clone git@gitlab.gnome.org:fseidl/KeepassGtk.git
 cd KeepassGtk
 meson . _build --prefix=/usr
 ninja -C _build
@@ -32,7 +32,7 @@ sudo ninja -C _build install
 ```
 
 ### Install via Flatpak (preferred method)
-* [Flatpak](https://github.com/TerminalDotRun/KeepassGtk/releases/latest/)
+* [Flatpak](https://terminal.run/keepassgtk/flatpak/run.terminal.KeepassGtk.flatpak)
 
 ### Install via distribution package manager
 * Arch Linux AUR: [keepassgtk-git](https://aur.archlinux.org/packages/keepassgtk-git/)

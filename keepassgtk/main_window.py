@@ -284,6 +284,25 @@ class MainWindow(Gtk.ApplicationWindow):
         else:
             self.container.set_show_tabs(False)
 
+        if self.container.get_n_pages() is 0:
+            self.container.hide()
+            self.remove(self.container)
+
+            builder = Gtk.Builder()
+            builder.add_from_resource(
+                "/run/terminal/KeepassGtk/main_window.ui")
+
+            pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
+            app_logo = builder.get_object("app_logo")
+            app_logo.set_from_pixbuf(pix)
+            self.first_start_grid = builder.get_object("first_start_grid")
+            self.add(self.first_start_grid)
+        else:
+            if not self.container.is_visible():
+                self.remove(self.first_start_grid)
+                self.add(self.container)
+                self.container.show_all()
+
     def create_tab_title_from_filepath(self, filepath):
         return ntpath.basename(filepath)
 

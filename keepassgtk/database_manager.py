@@ -2,6 +2,7 @@ from pykeepass import PyKeePass
 from keepassgtk.logging_manager import LoggingManager
 import keepassgtk.config_manager
 import re
+import hashlib
 
 
 class DatabaseManager:
@@ -11,6 +12,7 @@ class DatabaseManager:
     password_try = ""
     password_check = ""
     password = ""
+    keyfile_hash = NotImplemented
     changes = False
 
     def __init__(self, database_path, password=None, keyfile=None):
@@ -504,6 +506,20 @@ class DatabaseManager:
                 return True
         else:
             return False
+
+    # Create keyfile hash
+    def create_keyfile_hash(self, keyfile_path):
+        hasher = hashlib.sha512()
+        with open(keyfile_path, 'rb') as file:
+            buffer = 0
+            while buffer != b'':
+                buffer = file.read(1024)
+                hasher.update(buffer)
+        return hasher.hexdigest()
+
+    # Set keyfile hash
+    def set_keyfile_hash(self, keyfile_path):
+        self.keyfile_hash = self.create_keyfile_hash(keyfile_path)
 
     # Get changes
     def made_database_changes(self):

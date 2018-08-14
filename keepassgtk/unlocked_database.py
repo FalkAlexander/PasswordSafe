@@ -38,6 +38,8 @@ class UnlockedDatabase:
     database_lock_timer = NotImplemented
     search_list_box = NotImplemented
     selection_mode = False
+    unlock_database = NotImplemented
+    search = False
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -46,10 +48,11 @@ class UnlockedDatabase:
     entries_selected = []
     groups_selected = []
 
-    def __init__(self, window, widget, dbm):
+    def __init__(self, window, widget, dbm, unlock_database):
         self.window = window
         self.parent_widget = widget
         self.database_manager = dbm
+        self.unlock_database = unlock_database
         self.assemble_listbox()
         self.window.opened_databases.append(self)
 
@@ -256,12 +259,14 @@ class UnlockedDatabase:
         self.window.set_titlebar(self.headerbar_search)
         self.builder.get_object("headerbar_search_entry").grab_focus()
         self.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_esc_key)
+        self.search = True
 
         self.prepare_search_page()
 
     def remove_search_headerbar(self, widget):
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)
+        self.search = False
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
@@ -1269,8 +1274,7 @@ class UnlockedDatabase:
 
     def lock_timeout_database(self):
         self.cancel_timers()
-        self.show_save_dialog(timeout=True)
-        self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
+        self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
 
     #
     # Helper Methods

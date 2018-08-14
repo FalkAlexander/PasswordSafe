@@ -1,4 +1,5 @@
 from gi.repository import Gio, GLib, Gdk, Gtk
+from gi.repository.GdkPixbuf import Pixbuf
 from keepassgtk.logging_manager import LoggingManager
 from keepassgtk.database_manager import DatabaseManager
 from keepassgtk.create_database import CreateDatabase
@@ -124,6 +125,9 @@ class MainWindow(Gtk.ApplicationWindow):
             builder.add_from_resource(
                 "/run/terminal/KeepassGtk/main_window.ui")
 
+            pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
+            app_logo = builder.get_object("app_logo")
+            app_logo.set_from_pixbuf(pix)
             self.first_start_grid = builder.get_object("first_start_grid")
             self.add(self.first_start_grid)
 

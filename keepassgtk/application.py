@@ -17,8 +17,8 @@ class Application(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
-        GLib.set_application_name('KeepassGtk')
-        GLib.set_prgname("KeepassGtk")
+        GLib.set_application_name('Password Safe')
+        GLib.set_prgname("Password Safe")
 
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
@@ -26,7 +26,7 @@ class Application(Gtk.Application):
     def do_activate(self):
         if not self.window:
             self.window = MainWindow(
-                application=self, title="KeepassGtk",
+                application=self, title="Password Safe",
                 icon_name="dialog-password")
             self.add_menubutton_popover_actions()
             self.window.application = self

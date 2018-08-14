@@ -1,5 +1,5 @@
-# KeepassGtk
-KeepassGtk is a password manager which makes use of the Keepass v.4 format.
+# Password Safe
+Password Safe is a password manager which makes use of the Keepass v.4 format.
 It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
 ###### Screenshot

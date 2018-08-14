@@ -2,6 +2,7 @@ import gi
 import sys
 gi.require_version('Gtk', '3.0')
 from gi.repository import GLib, Gio, Gtk
+from gi.repository import Notify
 from keepassgtk.main_window import MainWindow
 from keepassgtk.settings_dialog import SettingsDialog
 
@@ -19,6 +20,7 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
         GLib.set_application_name('Password Safe')
         GLib.set_prgname("Password Safe")
+        Notify.init("Password Safe")
 
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()

@@ -1,5 +1,6 @@
 from gi.repository import Gio, Gdk, Gtk
 from gi.repository.GdkPixbuf import Pixbuf
+from gi.repository import Notify
 from keepassgtk.logging_manager import LoggingManager
 from keepassgtk.pathbar import Pathbar
 from keepassgtk.entry_row import EntryRow
@@ -1275,6 +1276,7 @@ class UnlockedDatabase:
     def lock_timeout_database(self):
         self.cancel_timers()
         self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
+        self.send_notification("Password Safe", ntpath.basename(self.database_manager.database_path) + " locked due to a timeout", "changes-prevent-symbolic")
 
     #
     # Helper Methods
@@ -1311,3 +1313,8 @@ class UnlockedDatabase:
 
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
+
+    def send_notification(self, title, text, icon):
+        notify = Notify.Notification.new(title, text, icon)
+        notify.show()
+

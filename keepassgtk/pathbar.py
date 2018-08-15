@@ -35,7 +35,17 @@ class Pathbar(Gtk.HBox):
         self.first_appearance()
         self.show_all()
 
-        self.headerbar.add(self)
+        self.set_hexpand(False)
+        self.set_halign(Gtk.Align.START)
+
+        scrolled_window = Gtk.ScrolledWindow()
+        scrolled_window.set_min_content_width(600)
+        viewport = Gtk.Viewport()
+        viewport.add(self)
+        scrolled_window.add(viewport)
+
+        self.headerbar.add(scrolled_window)
+        scrolled_window.show_all()
 
     def first_appearance(self):
         home_button = self.builder.get_object("home_button")

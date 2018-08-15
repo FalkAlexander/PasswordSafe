@@ -136,6 +136,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
             last_opened_list_box = builder.get_object("last_opened_list_box")
 
+            entry_list = []
+
             for path in keepassgtk.config_manager.get_last_opened_list():
                 if Gio.File.query_exists(Gio.File.new_for_path(path)):
                     pbuilder = Gtk.Builder()
@@ -148,7 +150,10 @@ class MainWindow(Gtk.ApplicationWindow):
                     filename_label.set_text(ntpath.basename(path))
                     path_label.set_text(path)
 
-                    last_opened_list_box.add(last_opened_row)
+                    entry_list.append(last_opened_row)
+
+            for row in reversed(entry_list):
+                last_opened_list_box.add(row)
 
             self.first_start_grid = builder.get_object("last_opened_grid")
             self.add(self.first_start_grid)

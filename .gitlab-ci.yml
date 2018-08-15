@@ -10,24 +10,19 @@ flatpak:
     stage: flatpak
     variables:
         MANIFEST_PATH: "flatpak/run.terminal.KeepassGtk.json"
-        RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome.flatpakrepo"
         FLATPAK_MODULE: "keepassgtk"
-        MESON_ARGS: ""
-        DBUS_ID: "run.terminal.KeepassGtk"
-    before_script:
-        - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck adwaita-icon-theme
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
         - flatpak build app meson --prefix=/app ${MESON_ARGS} _build
         - flatpak build app ninja -C _build install
         - flatpak-builder --finish-only --repo=repo app ${MANIFEST_PATH}
-        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} ${DBUS_ID}
+        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} run.terminal.KeepassGtk
     artifacts:
         paths:
             - ${BUNDLE}
             - _build/meson-logs/meson-log.txt
-            - _build/meson-logs/testlog.txt
-        expire_in: 3 days
+        expire_in: 30 days
     cache:
         paths:
              - .flatpak-builder/cache

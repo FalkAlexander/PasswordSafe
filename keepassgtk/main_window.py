@@ -135,6 +135,7 @@ class MainWindow(Gtk.ApplicationWindow):
             app_logo.set_from_pixbuf(pix)
 
             last_opened_list_box = builder.get_object("last_opened_list_box")
+            last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
 
             entry_list = []
 
@@ -149,6 +150,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
                     filename_label.set_text(ntpath.basename(path))
                     path_label.set_text(path)
+                    last_opened_row.set_name(path)
 
                     entry_list.append(last_opened_row)
 
@@ -345,6 +347,10 @@ class MainWindow(Gtk.ApplicationWindow):
     #
     # Events
     #
+
+    def on_last_opened_list_box_activated(self, widget, list_box_row):
+        path = list_box_row.get_name()
+        self.start_database_opening_routine(ntpath.basename(path), path)
 
     def on_tab_close_button_clicked(self, sender, widget):
         page_num = self.container.page_num(widget)

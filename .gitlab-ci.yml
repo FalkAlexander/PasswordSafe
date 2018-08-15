@@ -1,0 +1,34 @@
+stages:
+  - flatpak
+
+variables:
+  BUNDLE: "run.terminal.KeepassGtk.flatpak"
+
+
+flatpak:
+    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
+    stage: flatpak
+    variables:
+        MANIFEST_PATH: "flatpak/run.terminal.KeepassGtk.json"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
+        FLATPAK_MODULE: "keepassgtk"
+        MESON_ARGS: ""
+        DBUS_ID: "org.gnome.Calendar"
+
+    script:
+        - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
+        - flatpak build app meson --prefix=/app ${MESON_ARGS} _build
+        - flatpak build app ninja -C _build install
+        - flatpak-builder --finish-only --repo=repo app ${MANIFEST_PATH}
+        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} ${DBUS_ID}
+        - xvfb-run -a -s "-screen 0 1024x768x24" flatpak build app ninja -C _build test
+    artifacts:
+        paths:
+            - ${BUNDLE}
+            - _build/meson-logs/meson-log.txt
+            - _build/meson-logs/testlog.txt
+        expire_in: 3 days
+    cache:
+        paths:
+             - .flatpak-builder/cache
+

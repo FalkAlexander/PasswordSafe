@@ -14,7 +14,8 @@ flatpak:
         FLATPAK_MODULE: "keepassgtk"
         MESON_ARGS: ""
         DBUS_ID: "org.gnome.Calendar"
-
+    before_script:
+        - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck adwaita-icon-theme
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
         - flatpak build app meson --prefix=/app ${MESON_ARGS} _build

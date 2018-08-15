@@ -13,6 +13,7 @@ flatpak:
         RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
         FLATPAK_MODULE: "keepassgtk"
         MESON_ARGS: ""
+        DBUS_ID: "run.terminal.KeepassGtk"
     before_script:
         - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck adwaita-icon-theme
     script:
@@ -20,7 +21,7 @@ flatpak:
         - flatpak build app meson --prefix=/app ${MESON_ARGS} _build
         - flatpak build app ninja -C _build install
         - flatpak-builder --finish-only --repo=repo app ${MANIFEST_PATH}
-        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO}
+        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} ${DBUS_ID}
     artifacts:
         paths:
             - ${BUNDLE}

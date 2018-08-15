@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+from gi.repository.GdkPixbuf import Pixbuf
 import keepassgtk.config_manager
 import gi
 
@@ -54,6 +55,12 @@ class SettingsDialog():
         settings_showpw_switch_value = keepassgtk.config_manager.get_show_password_fields()
         settings_showpw_switch.set_active(settings_showpw_switch_value)
 
+        settings_clear_button = self.builder.get_object("settings_clear_button")
+        settings_clear_button.connect("clicked", self.on_settings_clear_recents_clicked)
+
+        if len(keepassgtk.config_manager.get_last_opened_list()) is 0:
+            settings_clear_button.set_sensitive(False)
+
     def on_settings_theme_switch_switched(self, switch_button, gparam):
         gtk_settings = Gtk.Settings.get_default()
 
@@ -87,3 +94,21 @@ class SettingsDialog():
             keepassgtk.config_manager.set_show_password_fields(True)
         else:
             keepassgtk.config_manager.set_show_password_fields(False)
+
+    def on_settings_clear_recents_clicked(self, widget):
+        keepassgtk.config_manager.set_last_opened_list([])
+        if self.window.container is not NotImplemented:
+            if self.window.container.get_n_pages() is 0:
+                builder = Gtk.Builder()
+                builder.add_from_resource(
+                    "/run/terminal/KeepassGtk/main_window.ui")
+
+                self.window.remove(self.window.first_start_grid)
+
+                pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
+                app_logo = builder.get_object("app_logo")
+                app_logo.set_from_pixbuf(pix)
+                self.window.first_start_grid = builder.get_object("first_start_grid")
+                self.window.add(self.window.first_start_grid)
+        widget.set_sensitive(False)
+

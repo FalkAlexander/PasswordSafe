@@ -335,6 +335,17 @@ class UnlockDatabase:
         self.clear_input_fields()
         keepassgtk.config_manager.set_last_opened_database(str(self.database_filepath))
 
+        already_added = False
+        list = []
+        for path in keepassgtk.config_manager.get_last_opened_list():
+            list.append(path)
+            if path == self.database_filepath:
+                already_added = True
+
+        if already_added is False:
+            list.append(self.database_filepath)
+            keepassgtk.config_manager.set_last_opened_list(list)
+
         self.unlock_database_stack_box.destroy()
         UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)
 

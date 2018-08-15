@@ -121,15 +121,42 @@ class MainWindow(Gtk.ApplicationWindow):
         else:
             self.logging_manager.log_debug(
                 "No / Not valid last opened database found.")
-            builder = Gtk.Builder()
-            builder.add_from_resource(
-                "/run/terminal/KeepassGtk/main_window.ui")
+            self.assemble_first_start_screen()
 
-            pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
+    def assemble_first_start_screen(self):
+        builder = Gtk.Builder()
+        builder.add_from_resource(
+            "/run/terminal/KeepassGtk/main_window.ui")
+
+        pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
+
+        if len(keepassgtk.config_manager.get_last_opened_list()) is not 0:
+            app_logo = builder.get_object("app_logo1")
+            app_logo.set_from_pixbuf(pix)
+
+            last_opened_list_box = builder.get_object("last_opened_list_box")
+
+            for path in keepassgtk.config_manager.get_last_opened_list():
+                pbuilder = Gtk.Builder()
+                pbuilder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
+
+                last_opened_row = pbuilder.get_object("last_opened_row")
+                filename_label = pbuilder.get_object("filename_label")
+                path_label = pbuilder.get_object("path_label")
+
+                filename_label.set_text(ntpath.basename(path))
+                path_label.set_text(path)
+
+                last_opened_list_box.add(last_opened_row)
+
+            self.first_start_grid = builder.get_object("last_opened_grid")
+            self.add(self.first_start_grid)
+        else:
             app_logo = builder.get_object("app_logo")
             app_logo.set_from_pixbuf(pix)
             self.first_start_grid = builder.get_object("first_start_grid")
             self.add(self.first_start_grid)
+
 
     #
     # Container Methods (Gtk Notebook holds tabs)
@@ -293,10 +320,8 @@ class MainWindow(Gtk.ApplicationWindow):
                 "/run/terminal/KeepassGtk/main_window.ui")
 
             pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
-            app_logo = builder.get_object("app_logo")
-            app_logo.set_from_pixbuf(pix)
-            self.first_start_grid = builder.get_object("first_start_grid")
-            self.add(self.first_start_grid)
+
+            self.assemble_first_start_screen()
         else:
             if not self.container.is_visible():
                 self.remove(self.first_start_grid)

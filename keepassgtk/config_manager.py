@@ -13,6 +13,7 @@ save_automatically = "save-automatically"
 show_password_fields = "show-password-fields"
 window_size = "window-size"
 sort_order = "sort-order"
+last_opened_list = "last-opened-list"
 
 def get_clear_clipboard():
     return setting.get_int(clear_clipboard)
@@ -79,3 +80,11 @@ def set_sort_order(value):
         setting.set_enum(sort_order, 1)
     elif value == "last_added":
         setting.set_enum(sort_order, 2)
+
+def get_last_opened_list():
+    return setting.get_value(last_opened_list)
+
+def set_last_opened_list(list):
+    g_variant = GLib.Variant('as', list)
+    setting.set_value(last_opened_list, g_variant)
+

@@ -347,7 +347,9 @@ class UnlockDatabase:
         else:
             list.sort(key=self.database_filepath.__eq__)
 
-        print(list)
+        if list.len() > 10:
+            list.pop(0)
+
         keepassgtk.config_manager.set_last_opened_list(list)
 
         self.unlock_database_stack_box.destroy()

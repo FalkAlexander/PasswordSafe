@@ -6,11 +6,11 @@ variables:
 
 
 flatpak:
-    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
+    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:3.28
     stage: flatpak
     variables:
         MANIFEST_PATH: "flatpak/run.terminal.KeepassGtk.json"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
+        RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
         FLATPAK_MODULE: "keepassgtk"
         MESON_ARGS: ""
         DBUS_ID: "org.gnome.Calendar"

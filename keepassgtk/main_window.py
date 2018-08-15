@@ -137,17 +137,18 @@ class MainWindow(Gtk.ApplicationWindow):
             last_opened_list_box = builder.get_object("last_opened_list_box")
 
             for path in keepassgtk.config_manager.get_last_opened_list():
-                pbuilder = Gtk.Builder()
-                pbuilder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
+                if Gio.File.query_exists(Gio.File.new_for_path(path)):
+                    pbuilder = Gtk.Builder()
+                    pbuilder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
 
-                last_opened_row = pbuilder.get_object("last_opened_row")
-                filename_label = pbuilder.get_object("filename_label")
-                path_label = pbuilder.get_object("path_label")
+                    last_opened_row = pbuilder.get_object("last_opened_row")
+                    filename_label = pbuilder.get_object("filename_label")
+                    path_label = pbuilder.get_object("path_label")
 
-                filename_label.set_text(ntpath.basename(path))
-                path_label.set_text(path)
+                    filename_label.set_text(ntpath.basename(path))
+                    path_label.set_text(path)
 
-                last_opened_list_box.add(last_opened_row)
+                    last_opened_list_box.add(last_opened_row)
 
             self.first_start_grid = builder.get_object("last_opened_grid")
             self.add(self.first_start_grid)

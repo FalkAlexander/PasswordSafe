@@ -138,8 +138,11 @@ class MainWindow(Gtk.ApplicationWindow):
             last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
 
             entry_list = []
+            entries = 0
+            invalid = 0
 
             for path in keepassgtk.config_manager.get_last_opened_list():
+                entries = entries + 1
                 if Gio.File.query_exists(Gio.File.new_for_path(path)):
                     pbuilder = Gtk.Builder()
                     pbuilder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
@@ -153,12 +156,20 @@ class MainWindow(Gtk.ApplicationWindow):
                     last_opened_row.set_name(path)
 
                     entry_list.append(last_opened_row)
+                else:
+                    invalid = invalid + 1
 
-            for row in reversed(entry_list):
-                last_opened_list_box.add(row)
+            if entries == invalid:
+                app_logo = builder.get_object("app_logo")
+                app_logo.set_from_pixbuf(pix)
+                self.first_start_grid = builder.get_object("first_start_grid")
+                self.add(self.first_start_grid)
+            else:
+                for row in reversed(entry_list):
+                    last_opened_list_box.add(row)
 
-            self.first_start_grid = builder.get_object("last_opened_grid")
-            self.add(self.first_start_grid)
+                self.first_start_grid = builder.get_object("last_opened_grid")
+                self.add(self.first_start_grid)
         else:
             app_logo = builder.get_object("app_logo")
             app_logo.set_from_pixbuf(pix)

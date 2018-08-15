@@ -344,7 +344,11 @@ class UnlockDatabase:
 
         if already_added is False:
             list.append(self.database_filepath)
-            keepassgtk.config_manager.set_last_opened_list(list)
+        else:
+            list.sort(key=self.database_filepath.__eq__)
+
+        print(list)
+        keepassgtk.config_manager.set_last_opened_list(list)
 
         self.unlock_database_stack_box.destroy()
         UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)

@@ -15,7 +15,8 @@
         "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
-        "--filesystem=home"
+        "--filesystem=home",
+        "--talk-name=org.freedesktop.Notifications"
     ],
     "modules" : [
         "python3-pykeepass.json",
@@ -26,7 +27,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://github.com/TerminalDotRun/KeepassGtk.git"
+                    "url" : "https://gitlab.gnome.org/fseidl/KeepassGtk.git"
                 }
             ]
         }

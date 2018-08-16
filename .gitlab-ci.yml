@@ -10,7 +10,7 @@ flatpak:
     stage: flatpak
     variables:
         MANIFEST_PATH: "flatpak/run.terminal.KeepassGtk.json"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome.flatpakrepo"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
         FLATPAK_MODULE: "keepassgtk"
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}

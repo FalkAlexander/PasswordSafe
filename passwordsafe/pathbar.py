@@ -1,6 +1,6 @@
 from gi.repository import Gtk
-from keepassgtk.pathbar_button import PathbarButton
-from keepassgtk.logging_manager import LoggingManager
+from passwordsafe.pathbar_button import PathbarButton
+from passwordsafe.logging_manager import LoggingManager
 import gi
 gi.require_version('Gtk', '3.0')
 
@@ -23,7 +23,7 @@ class Pathbar(Gtk.HBox):
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/run/terminal/KeepassGtk/unlocked_database.ui")
+            "/org/gnome/PasswordSafe/unlocked_database.ui")
 
         self.assemble_pathbar()
 

@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from keepassgtk.created_database import CreatedDatabase
+from passwordsafe.created_database import CreatedDatabase
 import gi
 gi.require_version('Gtk', '3.0')
 
@@ -24,7 +24,7 @@ class CreateDatabase:
     def password_creation(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/run/terminal/KeepassGtk/create_database.ui")
+            "/org/gnome/PasswordSafe/create_database.ui")
 
         self.set_headerbar()
 

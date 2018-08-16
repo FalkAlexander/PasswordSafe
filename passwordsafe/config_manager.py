@@ -2,7 +2,7 @@ import os
 from os.path import exists, join
 from gi.repository import GLib, Gio
 
-setting = Gio.Settings.new("run.terminal.KeepassGtk")
+setting = Gio.Settings.new("org.gnome.PasswordSafe")
 
 clear_clipboard = "clear-clipboard"
 dark_theme = "dark-theme"

@@ -24,7 +24,7 @@ class GroupRow(Gtk.ListBoxRow):
     def assemble_group_row(self):
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/run/terminal/KeepassGtk/unlocked_database.ui")
+            "/org/gnome/PasswordSafe/unlocked_database.ui")
         group_event_box = builder.get_object("group_event_box")
         group_event_box.connect("button-press-event", self.unlocked_database.on_group_row_button_pressed)
 

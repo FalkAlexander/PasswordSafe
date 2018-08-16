@@ -1,5 +1,5 @@
 # Password Safe
-Password Safe is a password manager which makes use of the Keepass v.4 format.
+GNOME Password Safe is a password manager which makes use of the Keepass v.4 format.
 It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
 ###### Screenshot
@@ -21,7 +21,7 @@ Features:
 * Gtk 3.22
 
 ### Building / Compiling
-We are using Meson as our build system. There are some easy steps to follow in order to build KeepassGtk with Meson:
+We are using Meson as our build system. There are some easy steps to follow in order to build GNOME Password Safe with Meson:
 
 ```
 git clone git@gitlab.gnome.org:fseidl/KeepassGtk.git

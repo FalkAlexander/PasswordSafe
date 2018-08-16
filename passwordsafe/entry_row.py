@@ -1,6 +1,6 @@
 from gi.repository import Gtk, Gdk
 import gi
-import keepassgtk.icon
+import passwordsafe.icon
 gi.require_version('Gtk', '3.0')
 
 
@@ -36,7 +36,7 @@ class EntryRow(Gtk.ListBoxRow):
     def assemble_entry_row(self):
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/run/terminal/KeepassGtk/unlocked_database.ui")
+            "/org/gnome/PasswordSafe/unlocked_database.ui")
         entry_event_box = builder.get_object("entry_event_box")
         entry_event_box.connect("button-press-event", self.unlocked_database.on_entry_row_button_pressed)
 
@@ -53,7 +53,7 @@ class EntryRow(Gtk.ListBoxRow):
             entry_checkbox_box.add(self.selection_checkbox)
 
         # Icon
-        entry_icon.set_from_icon_name(keepassgtk.icon.get_icon(self.icon), 20)
+        entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
 
         # Title/Name
         if self.database_manager.has_entry_name(self.entry_uuid) is True and self.label is not "":

@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from keepassgtk.unlock_database import UnlockDatabase
+from passwordsafe.unlock_database import UnlockDatabase
 import gi
 gi.require_version('Gtk', '3.0')
 
@@ -24,7 +24,7 @@ class CreatedDatabase:
     def success_page(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
-            "/run/terminal/KeepassGtk/created_database.ui")
+            "/org/gnome/PasswordSafe/created_database.ui")
 
         self.stack = self.builder.get_object("database_creation_success_stack")
         self.stack.set_visible_child(self.stack.get_child_by_name("page0"))

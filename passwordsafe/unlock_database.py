@@ -1,8 +1,8 @@
 from gi.repository import Gio, Gtk
-from keepassgtk.database_manager import DatabaseManager
-from keepassgtk.unlocked_database import UnlockedDatabase
-import keepassgtk.config_manager
-from keepassgtk.logging_manager import LoggingManager
+from passwordsafe.database_manager import DatabaseManager
+from passwordsafe.unlocked_database import UnlockedDatabase
+import passwordsafe.config_manager
+from passwordsafe.logging_manager import LoggingManager
 import gi
 gi.require_version('Gtk', '3.0')
 import ntpath
@@ -37,7 +37,7 @@ class UnlockDatabase:
             self.parent_widget.remove(self.unlocked_database.overlay)
 
         self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/run/terminal/KeepassGtk/unlock_database.ui")
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
 
         self.set_headerbar()
 
@@ -90,14 +90,14 @@ class UnlockDatabase:
         stack.add_titled(composite_unlock_stack_page, "composite_unlock", "Composite")
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
-        if keepassgtk.config_manager.get_remember_composite_key() is True and keepassgtk.config_manager.get_last_used_composite_key() is not "":
-            keyfile_path = keepassgtk.config_manager.get_last_used_composite_key()
+        if passwordsafe.config_manager.get_remember_composite_key() is True and passwordsafe.config_manager.get_last_used_composite_key() is not "":
+            keyfile_path = passwordsafe.config_manager.get_last_used_composite_key()
             composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
             composite_unlock_select_button.set_label(ntpath.basename(keyfile_path))
             self.composite_keyfile_path = keyfile_path
 
-        if keepassgtk.config_manager.get_remember_unlock_method() is True:
-            stack.set_visible_child(stack.get_child_by_name(keepassgtk.config_manager.get_unlock_method() + "_unlock"))
+        if passwordsafe.config_manager.get_remember_unlock_method() is True:
+            stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
 
         self.overlay.add(stack)
         self.unlock_database_stack_box.add(self.overlay)
@@ -327,8 +327,8 @@ class UnlockDatabase:
                     self.database_manager = DatabaseManager(self.database_filepath, composite_unlock_entry.get_text(), self.composite_keyfile_path)
                     self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
 
-                    if keepassgtk.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
-                            keepassgtk.config_manager.set_last_used_composite_key(self.composite_keyfile_path)
+                    if passwordsafe.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
+                            passwordsafe.config_manager.set_last_used_composite_key(self.composite_keyfile_path)
 
                     self.set_last_used_unlock_method("composite")
 
@@ -357,11 +357,11 @@ class UnlockDatabase:
 
     def open_database_page(self):
         self.clear_input_fields()
-        keepassgtk.config_manager.set_last_opened_database(str(self.database_filepath))
+        passwordsafe.config_manager.set_last_opened_database(str(self.database_filepath))
 
         already_added = False
         list = []
-        for path in keepassgtk.config_manager.get_last_opened_list():
+        for path in passwordsafe.config_manager.get_last_opened_list():
             list.append(path)
             if path == self.database_filepath:
                 already_added = True
@@ -374,7 +374,7 @@ class UnlockDatabase:
         if len(list) > 10:
             list.pop(0)
 
-        keepassgtk.config_manager.set_last_opened_list(list)
+        passwordsafe.config_manager.set_last_opened_list(list)
 
         self.unlock_database_stack_box.destroy()
         UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)
@@ -404,5 +404,5 @@ class UnlockDatabase:
         unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())
 
     def set_last_used_unlock_method(self, method):
-        if keepassgtk.config_manager.get_remember_unlock_method() is True:
-            keepassgtk.config_manager.set_unlock_method(method)
+        if passwordsafe.config_manager.get_remember_unlock_method() is True:
+            passwordsafe.config_manager.set_unlock_method(method)

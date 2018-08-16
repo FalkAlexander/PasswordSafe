@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 from threading import Timer
-import keepassgtk.config_manager
+import passwordsafe.config_manager
 import gi
 
 
@@ -13,7 +13,7 @@ class DatabaseSettingsDialog():
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
         self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/run/terminal/KeepassGtk/database_settings_dialog.ui")
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/database_settings_dialog.ui")
 
         self.open_dialog()
 

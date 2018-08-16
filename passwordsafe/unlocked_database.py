@@ -1,15 +1,15 @@
 from gi.repository import Gio, Gdk, Gtk
 from gi.repository.GdkPixbuf import Pixbuf
 from gi.repository import Notify
-from keepassgtk.logging_manager import LoggingManager
-from keepassgtk.pathbar import Pathbar
-from keepassgtk.entry_row import EntryRow
-from keepassgtk.group_row import GroupRow
-from keepassgtk.scrolled_page import ScrolledPage
-from keepassgtk.database_settings_dialog import DatabaseSettingsDialog
+from passwordsafe.logging_manager import LoggingManager
+from passwordsafe.pathbar import Pathbar
+from passwordsafe.entry_row import EntryRow
+from passwordsafe.group_row import GroupRow
+from passwordsafe.scrolled_page import ScrolledPage
+from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from threading import Timer
-import keepassgtk.password_generator 
-import keepassgtk.config_manager
+import passwordsafe.password_generator
+import passwordsafe.config_manager
 import gi
 import ntpath
 import datetime
@@ -63,7 +63,7 @@ class UnlockedDatabase:
 
     def assemble_listbox(self):
         self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
@@ -85,7 +85,7 @@ class UnlockedDatabase:
         self.set_headerbar()
         self.prepare_actions()
 
-        self.list_box_sorting = keepassgtk.config_manager.get_sort_order()
+        self.list_box_sorting = passwordsafe.config_manager.get_sort_order()
         self.start_database_lock_timer()
 
         self.show_page_of_new_directory(False, False)
@@ -322,7 +322,7 @@ class UnlockedDatabase:
             viewport = Gtk.Viewport()
             self.search_overlay = Gtk.Overlay()
             builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             self.search_list_box = builder.get_object("list_box")
             self.search_list_box.connect("row-activated", self.on_list_box_row_activated)
             viewport.add(self.search_overlay)
@@ -367,7 +367,7 @@ class UnlockedDatabase:
             self.destroy_scheduled_stack_page()
 
             builder = Gtk.Builder()
-            builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
+            builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
 
             scrolled_window = ScrolledPage(True)
 
@@ -390,7 +390,7 @@ class UnlockedDatabase:
             # Create not existing stack page for group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 builder = Gtk.Builder()
-                builder.add_from_resource("/run/terminal/KeepassGtk/unlocked_database.ui")
+                builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
                 list_box = builder.get_object("list_box")
                 list_box.connect("row-activated", self.on_list_box_row_activated)
 
@@ -412,7 +412,7 @@ class UnlockedDatabase:
             # Create not existing stack page for entry
             else:
                 builder = Gtk.Builder()
-                builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+                builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
                 scrolled_window = ScrolledPage(True)
 
@@ -551,7 +551,7 @@ class UnlockedDatabase:
 
     def insert_entry_properties_into_listbox(self, properties_list_box, add_all):
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(entry_uuid)
@@ -811,7 +811,7 @@ class UnlockedDatabase:
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
 
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/group_page.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
 
         name_property_row = builder.get_object("name_property_row")
         name_property_value_entry = builder.get_object("name_property_value_entry")
@@ -1107,7 +1107,7 @@ class UnlockedDatabase:
             self.clipboard_timer.cancel()
 
         self.clipboard.set_text(widget.get_text(), -1)
-        clear_clipboard_time = keepassgtk.config_manager.get_clear_clipboard()
+        clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
         self.clipboard_timer.start()
 
@@ -1117,7 +1117,7 @@ class UnlockedDatabase:
             self.clipboard_timer.cancel()
 
         self.clipboard.set_text(widget.get_text(), -1)
-        clear_clipboard_time = keepassgtk.config_manager.get_clear_clipboard()
+        clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
         self.clipboard_timer.start()
 
@@ -1128,7 +1128,7 @@ class UnlockedDatabase:
     def on_popup_generate_password_popover(self, widget, entry):
         self.start_database_lock_timer()
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/entry_page.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
         popover = builder.get_object("generate_password_popover")
         digit_spin_button = builder.get_object("digit_spin_button")
@@ -1152,7 +1152,7 @@ class UnlockedDatabase:
 
         digits = digit_spin_button.get_value_as_int()
 
-        password = keepassgtk.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
+        password = passwordsafe.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
         entry.set_text(password)
 
     def on_database_settings_entry_clicked(self, action, param):
@@ -1160,7 +1160,7 @@ class UnlockedDatabase:
 
     def on_sort_menu_button_entry_clicked(self, action, param, sorting):
         self.start_database_lock_timer()
-        keepassgtk.config_manager.set_sort_order(sorting)
+        passwordsafe.config_manager.set_sort_order(sorting)
         self.list_box_sorting = sorting
         self.rebuild_all_pages()
 
@@ -1321,7 +1321,7 @@ class UnlockedDatabase:
 
         # It is more efficient to do this here and not in the database manager loop
         self.database_manager.changes = True
-        if keepassgtk.config_manager.get_save_automatically() is True:
+        if passwordsafe.config_manager.get_save_automatically() is True:
             self.database_manager.save_database()
 
     def on_selection_cut_button_clicked(self, widget):
@@ -1366,7 +1366,7 @@ class UnlockedDatabase:
 
         # It is more efficient to do this here and not in the database manager loop
         self.database_manager.changes = True
-        if keepassgtk.config_manager.get_save_automatically() is True:
+        if passwordsafe.config_manager.get_save_automatically() is True:
             self.database_manager.save_database()
 
     def on_selection_popover_button_clicked(self, action, param, selection_type):
@@ -1386,7 +1386,7 @@ class UnlockedDatabase:
 
     def show_save_dialog(self, tab_close=None, timeout=None):
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/save_dialog.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
 
         save_dialog = builder.get_object("save_dialog")
         save_dialog.set_destroy_with_parent(True)
@@ -1440,7 +1440,7 @@ class UnlockedDatabase:
     def change_password_entry_visibility(self, entry, toggle_button):
         toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)
 
-        if keepassgtk.config_manager.get_show_password_fields() is False:
+        if passwordsafe.config_manager.get_show_password_fields() is False:
             entry.set_visibility(False)
         else:
             toggle_button.toggled()
@@ -1450,14 +1450,14 @@ class UnlockedDatabase:
         show_password_button.connect("clicked", self.on_popup_generate_password_popover, entry)
 
     def clear_clipboard(self):
-        clear_clipboard_time = keepassgtk.config_manager.get_clear_clipboard()
+        clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         if clear_clipboard_time is not 0:
             self.clipboard.clear()
 
     def start_database_lock_timer(self):
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
-        timeout = keepassgtk.config_manager.get_database_lock_timeout() * 60
+        timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60
         if timeout is not 0:
             self.database_lock_timer = Timer(timeout, self.lock_timeout_database)
             self.database_lock_timer.start()

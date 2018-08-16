@@ -1,11 +1,11 @@
 from gi.repository import Gio, GLib, Gdk, Gtk
 from gi.repository.GdkPixbuf import Pixbuf
-from keepassgtk.logging_manager import LoggingManager
-from keepassgtk.database_manager import DatabaseManager
-from keepassgtk.create_database import CreateDatabase
-from keepassgtk.container_page import ContainerPage
-from keepassgtk.unlock_database import UnlockDatabase
-import keepassgtk.config_manager
+from passwordsafe.logging_manager import LoggingManager
+from passwordsafe.database_manager import DatabaseManager
+from passwordsafe.create_database import CreateDatabase
+from passwordsafe.container_page import ContainerPage
+from passwordsafe.unlock_database import UnlockDatabase
+import passwordsafe.config_manager
 import os
 import ntpath
 import gi
@@ -32,7 +32,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.assemble_window()
 
     def assemble_window(self):
-        window_size = keepassgtk.config_manager.get_window_size()
+        window_size = passwordsafe.config_manager.get_window_size()
         self.set_default_size(window_size[0], window_size[1])
         
         self.create_headerbar()
@@ -49,7 +49,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def create_headerbar(self):
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
         accelerators = Gtk.AccelGroup()
         self.add_accel_group(accelerators)
@@ -89,7 +89,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         css_provider = Gtk.CssProvider()
         css_provider_resource = Gio.File.new_for_uri(
-            "resource:///run/terminal/KeepassGtk/keepassgtk.css")
+            "resource:///org/gnome/PasswordSafe/passwordsafe.css")
         css_provider.load_from_file(css_provider_resource)
 
         context = Gtk.StyleContext()
@@ -99,7 +99,7 @@ class MainWindow(Gtk.ApplicationWindow):
     def apply_theme(self):
         gtk_settings = Gtk.Settings.get_default()
 
-        if keepassgtk.config_manager.get_dark_theme() is True:
+        if passwordsafe.config_manager.get_dark_theme() is True:
             gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
         else:
             gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
@@ -109,12 +109,12 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def first_start_screen(self):
-        filepath = keepassgtk.config_manager.get_last_opened_database()
+        filepath = passwordsafe.config_manager.get_last_opened_database()
 
         if len(self.get_application().file_list) is not 0:
             for g_file in self.get_application().file_list:
                 self.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
-        elif keepassgtk.config_manager.get_first_start_screen() is True and filepath is not "" and Gio.File.query_exists(Gio.File.new_for_path(filepath)) is True:
+        elif passwordsafe.config_manager.get_first_start_screen() is True and filepath is not "" and Gio.File.query_exists(Gio.File.new_for_path(filepath)) is True:
             self.logging_manager.log_debug("Found last opened database (" + filepath + ")")
             tab_title = ntpath.basename(filepath)
             self.start_database_opening_routine(tab_title, filepath)
@@ -126,11 +126,11 @@ class MainWindow(Gtk.ApplicationWindow):
     def assemble_first_start_screen(self):
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/run/terminal/KeepassGtk/main_window.ui")
+            "/org/gnome/PasswordSafe/main_window.ui")
 
-        pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
+        pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
 
-        if len(keepassgtk.config_manager.get_last_opened_list()) is not 0:
+        if len(passwordsafe.config_manager.get_last_opened_list()) is not 0:
             last_opened_list_box = builder.get_object("last_opened_list_box")
             last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
 
@@ -138,11 +138,11 @@ class MainWindow(Gtk.ApplicationWindow):
             entries = 0
             invalid = 0
 
-            for path in keepassgtk.config_manager.get_last_opened_list():
+            for path in passwordsafe.config_manager.get_last_opened_list():
                 entries = entries + 1
                 if Gio.File.query_exists(Gio.File.new_for_path(path)):
                     pbuilder = Gtk.Builder()
-                    pbuilder.add_from_resource("/run/terminal/KeepassGtk/main_window.ui")
+                    pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
                     last_opened_row = pbuilder.get_object("last_opened_row")
                     filename_label = pbuilder.get_object("filename_label")
@@ -238,7 +238,7 @@ class MainWindow(Gtk.ApplicationWindow):
     def start_database_opening_routine(self, tab_title, filepath):
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/run/terminal/KeepassGtk/create_database.ui")
+            "/org/gnome/PasswordSafe/create_database.ui")
         headerbar = builder.get_object("headerbar")
 
         UnlockDatabase(self, self.create_tab(tab_title, headerbar), filepath)
@@ -271,7 +271,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def copy_database_file(self):
         stock_database = Gio.File.new_for_uri(
-            "resource:///run/terminal/KeepassGtk/database.kdbx")
+            "resource:///org/gnome/PasswordSafe/database.kdbx")
         new_database = Gio.File.new_for_path(
             self.filechooser_creation_dialog.get_filename())
 
@@ -284,7 +284,7 @@ class MainWindow(Gtk.ApplicationWindow):
             "liufhre86ewoiwejmrcu8owe")
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/run/terminal/KeepassGtk/create_database.ui")
+            "/org/gnome/PasswordSafe/create_database.ui")
         headerbar = builder.get_object("headerbar")
         CreateDatabase(
             self, self.create_tab(tab_title, headerbar),
@@ -333,9 +333,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
             builder = Gtk.Builder()
             builder.add_from_resource(
-                "/run/terminal/KeepassGtk/main_window.ui")
+                "/org/gnome/PasswordSafe/main_window.ui")
 
-            pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
+            pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
 
             self.assemble_first_start_screen()
         else:
@@ -422,7 +422,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def save_window_size(self):
         window_size = [self.get_size().width, self.get_size().height]
-        keepassgtk.config_manager.set_window_size(window_size)
+        passwordsafe.config_manager.set_window_size(window_size)
 
     def on_application_quit(self, window, event):
         unsaved_databases_list = []
@@ -433,7 +433,7 @@ class MainWindow(Gtk.ApplicationWindow):
         if unsaved_databases_list.__len__() > 0:
             builder = Gtk.Builder()
             builder.add_from_resource(
-                "/run/terminal/KeepassGtk/quit_dialog.ui")
+                "/org/gnome/PasswordSafe/quit_dialog.ui")
             self.quit_dialog = builder.get_object("quit_dialog")
 
             self.quit_dialog.set_destroy_with_parent(True)

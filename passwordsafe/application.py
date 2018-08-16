@@ -4,8 +4,8 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Notify', '0.7')
 from gi.repository import GLib, Gio, Gtk
 from gi.repository import Notify
-from keepassgtk.main_window import MainWindow
-from keepassgtk.settings_dialog import SettingsDialog
+from passwordsafe.main_window import MainWindow
+from passwordsafe.settings_dialog import SettingsDialog
 
 
 class Application(Gtk.Application):
@@ -14,7 +14,7 @@ class Application(Gtk.Application):
 
     def __init__(self, *args, **kwargs):
         super().__init__(
-            *args, application_id="run.terminal.KeepassGtk", flags=Gio.ApplicationFlags.HANDLES_OPEN)
+            *args, application_id="org.gnome.PasswordSafe", flags=Gio.ApplicationFlags.HANDLES_OPEN)
         self.window = None
 
     def do_startup(self):
@@ -68,7 +68,7 @@ class Application(Gtk.Application):
 
     def on_about_menu_clicked(self, action, param):
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/about_dialog.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/about_dialog.ui")
         about_dialog = builder.get_object("about_dialog")
         about_dialog.set_modal(True)
         if self.window is not NotImplemented:
@@ -80,7 +80,7 @@ class Application(Gtk.Application):
         
     def on_shortcuts_menu_clicked(self, action, param):
         builder = Gtk.Builder()
-        builder.add_from_resource("/run/terminal/KeepassGtk/shortcuts_overview.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/shortcuts_overview.ui")
         shortcuts_overview = builder.get_object("shortcuts_overview")
         if self.window is not NotImplemented:
             shortcuts_overview.set_transient_for(self.window)

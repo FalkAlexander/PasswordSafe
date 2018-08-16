@@ -1,10 +1,10 @@
-project('keepassgtk', 'c',
+project('passwordsafe', 'c',
   version: '0.0.1',
   meson_version: '>= 0.40.0',
 )
 i18n = import('i18n')
 python = import('python3')
-project_id = 'run.terminal.KeepassGtk'
+project_id = 'org.gnome.PasswordSafe'
 
 message('Looking for dependencies')
 python_bin = python.find_python()
@@ -26,7 +26,7 @@ DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 conf = configuration_data()
-conf.set('PACKAGE_URL', 'https://github.com/TerminalDotRun/KeepassGtk')
+conf.set('PACKAGE_URL', 'https://gitlab.gnome.org/fseidl/KeepassGtk')
 conf.set('DATA_DIR', DATA_DIR)
 conf.set('EXTENSION_DIR', EXTENSION_DIR)
 conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
@@ -39,14 +39,14 @@ conf.set('VERSION', meson.project_version())
 subdir('data')
 
 install_subdir(
-  'keepassgtk',
+  'passwordsafe',
   install_dir: python_dir
 )
 
 message('Preparing init file')
 configure_file(
-  input: 'keepassgtk.in',
-  output: 'keepassgtk',
+  input: 'passwordsafe.in',
+  output: 'passwordsafe',
   configuration: conf,
   install_dir: bindir
 )

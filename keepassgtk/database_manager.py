@@ -177,6 +177,14 @@ class DatabaseManager:
     def get_entry_expiry_date_from_entry_object(self, entry):
         return entry.expiry_time
 
+    # Return the belonging color for an entry uuid
+    def get_entry_color_from_entry_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.get_custom_property("color") is None:
+            return "NoneColorButton"
+        else:
+            return entry.get_custom_property("color")
+
     #
     # Entry Checks
     #
@@ -230,6 +238,13 @@ class DatabaseManager:
     def has_entry_expired(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.expired is False:
+            return False
+        else:
+            return True
+
+    def has_entry_color(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.get_custom_property("color") is None or entry.get_custom_property("color") == "NoneColorButton":
             return False
         else:
             return True
@@ -368,6 +383,13 @@ class DatabaseManager:
         entry.expiry_time = date
         entry.expires
         print(entry.expires)
+        self.changes = True
+        if keepassgtk.config_manager.get_save_automatically() is True:
+            self.save_database()
+
+    def set_entry_color(self, uuid, color):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.set_custom_property("color", color)
         self.changes = True
         if keepassgtk.config_manager.get_save_automatically() is True:
             self.save_database()
@@ -532,3 +554,4 @@ class DatabaseManager:
             return True
         else:
             return self.parent_checker(current_group.parentgroup, moved_group)
+        

@@ -29,7 +29,25 @@ class ScrolledPage(Gtk.ScrolledWindow):
     notes_property_value_entry = NotImplemented
 
     icon_property_row = NotImplemented
-    iconview_flowbox = NotImplemented
+    mail_icon_button = NotImplemented
+    profile_icon_button = NotImplemented
+    network_profile_button = NotImplemented
+    key_button = NotImplemented
+    terminal_icon_button = NotImplemented
+    setting_icon_button = NotImplemented
+    folder_icon_button = NotImplemented
+    harddrive_icon_button = NotImplemented
+    wifi_icon_button = NotImplemented
+    desktop_icon_button = NotImplemented
+
+    color_property_row = NotImplemented
+    none_button = NotImplemented
+    orange_button = NotImplemented
+    green_button = NotImplemented
+    blue_button = NotImplemented
+    red_button = NotImplemented
+    purple_button = NotImplemented
+    brown_button = NotImplemented
 
     def __init__(self, edit):
         Gtk.ScrolledWindow.__init__(self)

@@ -681,25 +681,114 @@ class UnlockedDatabase:
                 buffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
 
+        if self.database_manager.has_entry_color(entry_uuid) is True or add_all is True:
+            if scrolled_page.color_property_row is NotImplemented:
+                scrolled_page.color_property_row = builder.get_object("color_property_row")
+
+                scrolled_page.none_button = builder.get_object("none_button")
+                scrolled_page.orange_button = builder.get_object("orange_button")
+                scrolled_page.green_button = builder.get_object("green_button")
+                scrolled_page.blue_button = builder.get_object("blue_button")
+                scrolled_page.red_button = builder.get_object("red_button")
+                scrolled_page.purple_button = builder.get_object("purple_button")
+                scrolled_page.brown_button = builder.get_object("brown_button")
+
+                scrolled_page.none_button.connect("toggled", self.on_entry_color_button_toggled)
+                scrolled_page.orange_button.connect("toggled", self.on_entry_color_button_toggled)
+                scrolled_page.green_button.connect("toggled", self.on_entry_color_button_toggled)
+                scrolled_page.blue_button.connect("toggled", self.on_entry_color_button_toggled)
+                scrolled_page.red_button.connect("toggled", self.on_entry_color_button_toggled)
+                scrolled_page.purple_button.connect("toggled", self.on_entry_color_button_toggled)
+                scrolled_page.brown_button.connect("toggled", self.on_entry_color_button_toggled)
+
+                scrolled_page.none_button.get_children()[0].hide()
+                scrolled_page.orange_button.get_children()[0].hide()
+                scrolled_page.green_button.get_children()[0].hide()
+                scrolled_page.blue_button.get_children()[0].hide()
+                scrolled_page.red_button.get_children()[0].hide()
+                scrolled_page.purple_button.get_children()[0].hide()
+                scrolled_page.brown_button.get_children()[0].hide()
+
+                color = self.database_manager.get_entry_color_from_entry_uuid(entry_uuid)
+
+                if color == "NoneColorButton":
+                    scrolled_page.none_button.set_active(True)
+                    scrolled_page.none_button.get_children()[0].show_all()
+                if color == "BlueColorButton":
+                    scrolled_page.blue_button.set_active(True)
+                    scrolled_page.blue_button.get_children()[0].show_all()
+                if color == "GreenColorButton":
+                    scrolled_page.green_button.set_active(True)
+                    scrolled_page.green_button.get_children()[0].show_all()
+                if color == "OrangeColorButton":
+                    scrolled_page.orange_button.set_active(True)
+                    scrolled_page.orange_button.get_children()[0].show_all()
+                if color == "RedColorButton":
+                    scrolled_page.red_button.set_active(True)
+                    scrolled_page.red_button.get_children()[0].show_all()
+                if color == "PurpleColorButton":
+                    scrolled_page.purple_button.set_active(True)
+                    scrolled_page.purple_button.get_children()[0].show_all()
+                if color == "BrownColorButton":
+                    scrolled_page.brown_button.set_active(True)
+                    scrolled_page.brown_button.get_children()[0].show_all()
+
+                properties_list_box.add(scrolled_page.color_property_row)
+            elif scrolled_page.color_property_row is not NotImplemented:
+                properties_list_box.add(scrolled_page.color_property_row)
+
         if self.database_manager.has_entry_icon(entry_uuid) is True or add_all is True:
             if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
 
-                scrolled_page.iconview_flowbox = builder.get_object("iconview_flowbox")
-                scrolled_page.iconview_flowbox.connect("child-activated", self.on_icon_view_item_selected)
+                scrolled_page.mail_icon_button = builder.get_object("19")
+                scrolled_page.profile_icon_button = builder.get_object("9")
+                scrolled_page.network_profile_button = builder.get_object("1")
+                scrolled_page.key_button = builder.get_object("0")
+                scrolled_page.terminal_icon_button = builder.get_object("30")
+                scrolled_page.setting_icon_button = builder.get_object("34")
+                scrolled_page.folder_icon_button = builder.get_object("48")
+                scrolled_page.harddrive_icon_button = builder.get_object("27")
+                scrolled_page.wifi_icon_button = builder.get_object("12")
+                scrolled_page.desktop_icon_button = builder.get_object("23")
+
+                entry_icon = self.database_manager.get_entry_icon_from_entry_uuid(entry_uuid)
+                if entry_icon == "19":
+                    scrolled_page.mail_icon_button.set_active(True)
+                if entry_icon == "9":
+                    scrolled_page.profile_icon_button.set_active(True)
+                if entry_icon == "1":
+                    scrolled_page.network_profile_button.set_active(True)
+                if entry_icon == "0":
+                    scrolled_page.key_button.set_active(True)
+                if entry_icon == "30":
+                    scrolled_page.terminal_icon_button.set_active(True)
+                if entry_icon == "34":
+                    scrolled_page.setting_icon_button.set_active(True)
+                if entry_icon == "48":
+                    scrolled_page.folder_icon_button.set_active(True)
+                if entry_icon == "27":
+                    scrolled_page.harddrive_icon_button.set_active(True)
+                if entry_icon == "12":
+                    scrolled_page.wifi_icon_button.set_active(True)
+                if entry_icon == "23":
+                    scrolled_page.desktop_icon_button.set_active(True)
+
+                scrolled_page.mail_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.profile_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.network_profile_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.key_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.setting_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.folder_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.harddrive_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.wifi_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.desktop_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
 
                 properties_list_box.add(scrolled_page.icon_property_row)
-
-                flowbox_child = builder.get_object("iconview_icon" + self.database_manager.get_entry_icon_from_entry_uuid(entry_uuid))
-                if flowbox_child is not None:
-                    scrolled_page.iconview_flowbox.select_child(flowbox_child)
-                else:
-                    flowbox_child = builder.get_object("iconview_icon1")
-                    scrolled_page.iconview_flowbox.select_child(flowbox_child)
             elif scrolled_page.icon_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.icon_property_row)
 
-        if scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
+        if scrolled_page.color_property_row is not NotImplemented and scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
             scrolled_page.add_button_disabled = True
             self.builder.get_object("add_property_button").set_sensitive(False)
 
@@ -859,19 +948,77 @@ class UnlockedDatabase:
         elif type == "notes":
             self.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
-    def on_icon_view_item_selected(self, widget, child):
+    def on_entry_icon_button_toggled(self, button):
+        self.start_database_lock_timer()
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+
+        old_icon = str(self.database_manager.get_entry_icon_from_entry_uuid(entry_uuid))
+
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+        scrolled_page.set_made_database_changes(True)
+
+        if old_icon != button.get_name():
+            if old_icon == "19":
+                scrolled_page.mail_icon_button.set_active(False)
+            if old_icon == "9":
+                scrolled_page.profile_icon_button.set_active(False)
+            if old_icon == "1":
+                scrolled_page.network_profile_button.set_active(False)
+            if old_icon == "0":
+                scrolled_page.key_button.set_active(False)
+            if old_icon == "30":
+                scrolled_page.terminal_icon_button.set_active(False)
+            if old_icon == "34":
+                scrolled_page.setting_icon_button.set_active(False)
+            if old_icon == "48":
+                scrolled_page.folder_icon_button.set_active(False)
+            if old_icon == "27":
+                scrolled_page.harddrive_icon_button.set_active(False)
+            if old_icon == "12":
+                scrolled_page.wifi_icon_button.set_active(False)
+            if old_icon == "23":
+                scrolled_page.desktop_icon_button.set_active(False)
+
+        self.database_manager.set_entry_icon(entry_uuid, button.get_name())
+
+    def on_entry_color_button_toggled(self, button):
         self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         scrolled_page.set_made_database_changes(True)
 
-        image = child.get_children()[0]
-        image_name = image.get_icon_name().icon_name
+        old_color = self.database_manager.get_entry_color_from_entry_uuid(entry_uuid)
 
-        for key, value in keepassgtk.icon.icon_list.items():
-            if value == image_name:
-                self.database_manager.set_entry_icon(entry_uuid, key)
+        if old_color != button.get_name():
+            if old_color == "NoneColorButton":
+                scrolled_page.none_button.set_active(False)
+                scrolled_page.none_button.get_children()[0].hide()
+            if old_color == "BlueColorButton":
+                scrolled_page.blue_button.set_active(False)
+                scrolled_page.blue_button.get_children()[0].hide()
+            if old_color == "GreenColorButton":
+                scrolled_page.green_button.set_active(False)
+                scrolled_page.green_button.get_children()[0].hide()
+            if old_color == "OrangeColorButton":
+                scrolled_page.orange_button.set_active(False)
+                scrolled_page.orange_button.get_children()[0].hide()
+            if old_color == "RedColorButton":
+                scrolled_page.red_button.set_active(False)
+                scrolled_page.red_button.get_children()[0].hide()
+            if old_color == "PurpleColorButton":
+                scrolled_page.purple_button.set_active(False)
+                scrolled_page.purple_button.get_children()[0].hide()
+            if old_color == "BrownColorButton":
+                scrolled_page.brown_button.set_active(False)
+                scrolled_page.brown_button.get_children()[0].hide()
+
+        button.get_children()[0].show_all()
+
+        if button.get_active() is False:
+            button.get_children()[0].hide()
+
+        self.database_manager.set_entry_color(entry_uuid, button.get_name())
 
     def on_property_value_group_changed(self, widget, type):
         self.start_database_lock_timer()

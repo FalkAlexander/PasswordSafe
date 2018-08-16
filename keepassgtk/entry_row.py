@@ -13,6 +13,7 @@ class EntryRow(Gtk.ListBoxRow):
     password = NotImplemented
     changed = False
     selection_checkbox = NotImplemented
+    color = NotImplemented
     type = "EntryRow"
 
     targets = NotImplemented
@@ -28,6 +29,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.icon = dbm.get_entry_icon_from_entry_object(entry)
         self.label = dbm.get_entry_name_from_entry_object(entry)
         self.password = dbm.get_entry_password_from_entry_object(entry)
+        self.color = dbm.get_entry_color_from_entry_uuid(self.entry_uuid)
 
         self.assemble_entry_row()
 
@@ -42,6 +44,7 @@ class EntryRow(Gtk.ListBoxRow):
         entry_name_label = builder.get_object("entry_name_label")
         entry_subtitle_label = builder.get_object("entry_subtitle_label")
         entry_password_input = builder.get_object("entry_password_input")
+        entry_color_button = builder.get_object("entry_color_button")
 
         if self.unlocked_database.selection_mode is True:
             entry_checkbox_box = builder.get_object("entry_checkbox_box")
@@ -74,6 +77,9 @@ class EntryRow(Gtk.ListBoxRow):
             entry_password_input.set_text("")
 
         entry_password_input.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+
+        # Color Button
+        entry_color_button.set_name(self.color)
 
         self.add(entry_event_box)
         self.show_all()
@@ -114,3 +120,9 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
             self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
+
+    def update_color(self, color):
+        self.color = color
+
+    def get_color(self):
+        return self.color

@@ -308,16 +308,33 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="entry_icon">
-            <property name="width_request">50</property>
+          <object class="GtkButton" id="entry_color_button">
+            <property name="width_request">38</property>
+            <property name="height_request">38</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="pixel_size">20</property>
-            <property name="icon_name">application-x-executable-symbolic</property>
+            <property name="can_focus">True</property>
+            <property name="focus_on_click">False</property>
+            <property name="receives_default">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="margin_left">10</property>
+            <property name="margin_right">10</property>
+            <property name="relief">none</property>
+            <child>
+              <object class="GtkImage" id="entry_icon">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="pixel_size">16</property>
+                <property name="icon_name">application-x-executable-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="circular"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="position">1</property>
           </packing>
         </child>
@@ -506,6 +523,8 @@
             <property name="width_request">50</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_left">4</property>
+            <property name="margin_right">4</property>
             <property name="pixel_size">20</property>
             <property name="icon_name">folder-symbolic</property>
           </object>

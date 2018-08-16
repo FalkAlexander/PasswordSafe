@@ -2,22 +2,22 @@ stages:
   - flatpak
 
 variables:
-  BUNDLE: "password-store-git.flatpak"
+  BUNDLE: "password-safe-git.flatpak"
 
 
 flatpak:
     image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
     stage: flatpak
     variables:
-        MANIFEST_PATH: "flatpak/run.terminal.KeepassGtk.json"
+        MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.json"
         RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
-        FLATPAK_MODULE: "keepassgtk"
+        FLATPAK_MODULE: "passwordsafe"
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
         - flatpak build app meson --prefix=/app ${MESON_ARGS} _build
         - flatpak build app ninja -C _build install
         - flatpak-builder --finish-only --repo=repo app ${MANIFEST_PATH}
-        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} run.terminal.KeepassGtk
+        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} org.gnome.PasswordSafe
     artifacts:
         paths:
             - ${BUNDLE}

@@ -131,9 +131,6 @@ class MainWindow(Gtk.ApplicationWindow):
         pix = Pixbuf.new_from_resource_at_scale("/run/terminal/KeepassGtk/images/welcome.png", 256, 256, True)
 
         if len(keepassgtk.config_manager.get_last_opened_list()) is not 0:
-            app_logo = builder.get_object("app_logo1")
-            app_logo.set_from_pixbuf(pix)
-
             last_opened_list_box = builder.get_object("last_opened_list_box")
             last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
 
@@ -151,8 +148,8 @@ class MainWindow(Gtk.ApplicationWindow):
                     filename_label = pbuilder.get_object("filename_label")
                     path_label = pbuilder.get_object("path_label")
 
-                    filename_label.set_text(ntpath.basename(path))
-                    path_label.set_text(path)
+                    filename_label.set_text(os.path.splitext(ntpath.basename(path))[0])
+                    path_label.set_text("~/" + os.path.relpath(path))
                     last_opened_row.set_name(path)
 
                     entry_list.append(last_opened_row)

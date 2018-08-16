@@ -79,7 +79,10 @@ class EntryRow(Gtk.ListBoxRow):
         entry_password_input.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
 
         # Color Button
-        entry_color_button.set_name(self.color)
+        entry_color_button.set_name(self.color + "List")
+        if self.color != "NoneColorButton":
+            image = entry_color_button.get_children()[0]
+            image.set_name("BrightIcon")
 
         self.add(entry_event_box)
         self.show_all()

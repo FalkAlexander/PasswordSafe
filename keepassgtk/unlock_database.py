@@ -91,6 +91,15 @@ class UnlockDatabase:
         stack.add_titled(composite_unlock_stack_page, "composite_unlock", "Composite")
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
+        if keepassgtk.config_manager.get_remember_composite_key() is True and keepassgtk.config_manager.get_last_used_composite_key() is not "":
+            keyfile_path = keepassgtk.config_manager.get_last_used_composite_key()
+            composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
+            composite_unlock_select_button.set_label(ntpath.basename(keyfile_path))
+            self.composite_keyfile_path = keyfile_path
+
+        if keepassgtk.config_manager.get_remember_unlock_method() is True:
+            stack.set_visible_child(stack.get_child_by_name(keepassgtk.config_manager.get_unlock_method() + "_unlock"))
+
         self.overlay.add(stack)
         self.unlock_database_stack_box.add(self.overlay)
         self.unlock_database_stack_box.show_all()
@@ -175,6 +184,7 @@ class UnlockDatabase:
             else:
                 try:
                     self.database_manager = DatabaseManager(self.database_filepath, password_unlock_entry.get_text())
+                    self.set_last_used_unlock_method("password")
                     self.open_database_page()
                     self.logging_manager.log_debug("Opening of database was successfull")
                 except(OSError):
@@ -238,6 +248,7 @@ class UnlockDatabase:
             try:
                 self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
                 self.database_manager.set_keyfile_hash(self.keyfile_path)
+                self.set_last_used_unlock_method("keyfile")
                 self.keyfile_path = NotImplemented
                 self.open_database_page()
                 self.logging_manager.log_debug("Database successfully opened with keyfile")
@@ -308,6 +319,12 @@ class UnlockDatabase:
                 try:
                     self.database_manager = DatabaseManager(self.database_filepath, composite_unlock_entry.get_text(), self.composite_keyfile_path)
                     self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
+
+                    if keepassgtk.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
+                            keepassgtk.config_manager.set_last_used_composite_key(self.composite_keyfile_path)
+
+                    self.set_last_used_unlock_method("composite")
+
                     self.composite_keyfile_path = NotImplemented
                     self.open_database_page()
                     self.logging_manager.log_debug("Opening of database was successfull")
@@ -378,3 +395,7 @@ class UnlockDatabase:
     def hide_unlock_failed_revealer(self):
         unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
         unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())
+
+    def set_last_used_unlock_method(self, method):
+        if keepassgtk.config_manager.get_remember_unlock_method() is True:
+            keepassgtk.config_manager.set_unlock_method(method)

@@ -14,6 +14,11 @@ show_password_fields = "show-password-fields"
 window_size = "window-size"
 sort_order = "sort-order"
 last_opened_list = "last-opened-list"
+remember_composite_key = "remember-composite-key"
+last_used_composite_key = "last-used-composite-key"
+remember_unlock_method = "remember-unlock-method"
+unlock_method = "unlock-method"
+
 
 def get_clear_clipboard():
     return setting.get_int(clear_clipboard)
@@ -87,4 +92,39 @@ def get_last_opened_list():
 def set_last_opened_list(list):
     g_variant = GLib.Variant('as', list)
     setting.set_value(last_opened_list, g_variant)
+
+def get_remember_composite_key():
+    return setting.get_boolean(remember_composite_key)
+
+def set_remember_composite_key(value):
+    setting.set_boolean(remember_composite_key, value)
+
+def get_last_used_composite_key():
+    return setting.get_string(last_used_composite_key)
+
+def set_last_used_composite_key(value):
+    setting.set_string(last_used_composite_key, value)
+
+def get_remember_unlock_method():
+    return setting.get_boolean(remember_unlock_method)
+
+def set_remember_unlock_method(value):
+    setting.set_boolean(remember_unlock_method, value)
+
+def get_unlock_method():
+    value = setting.get_enum(unlock_method)
+    if value == 0:
+        return "password"
+    elif value == 1:
+        return "keyfile"
+    elif value == 2:
+        return "composite"
+
+def set_unlock_method(value):
+    if value == "password":
+        setting.set_enum(unlock_method, 0)
+    elif value == "keyfile":
+        setting.set_enum(unlock_method, 1)
+    elif value == "composite":
+        setting.set_enum(unlock_method, 2)
 

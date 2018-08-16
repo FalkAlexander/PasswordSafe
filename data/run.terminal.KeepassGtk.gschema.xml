@@ -5,6 +5,11 @@
         <value nick="z-a" value="1" />
         <value nick="last_added" value="2" />
     </enum>
+    <enum id="run.terminal.KeepassGtk.UnlockMethod">
+        <value nick="password" value="0" />
+        <value nick="keyfile" value="1" />
+        <value nick="composite" value="2" />
+    </enum>
     <schema path="/run/terminal/KeepassGtk/" id="run.terminal.KeepassGtk" gettext-domain="keepassgtk">
         <key type="b" name="dark-theme">
             <default>false</default>
@@ -51,10 +56,30 @@
             <summary>Last opened databases</summary>
             <description>A list of the last opened databases.</description>
         </key>
+        <key type="b" name="remember-composite-key">
+            <default>false</default>
+            <summary>Remember composite key</summary>
+            <description>Remember last used composite key for database unlocking.</description>
+        </key>
+        <key type="s" name="last-used-composite-key">
+            <default>""</default>
+            <summary>Last used composite key</summary>
+            <description>Path to last used key for composite database unlocking.</description>
+        </key>
+        <key type="b" name="remember-unlock-method">
+            <default>true</default>
+            <summary>Remember unlock method</summary>
+            <description>Remember last used unlock method for future database unlocking.</description>
+        </key>
         <key enum="run.terminal.KeepassGtk.Sorting" name="sort-order">
             <default>"last_added"</default>
             <summary>Sorting order of groups and entries</summary>
             <description>Order of the rows in the groups and entries view.</description>
+        </key>
+        <key enum="run.terminal.KeepassGtk.UnlockMethod" name="unlock-method">
+            <default>"password"</default>
+            <summary>Last used unlock method</summary>
+            <description>Used to store the last used unlock method and to enable a faster unlock process.</description>
         </key>
    </schema>
 </schemalist>

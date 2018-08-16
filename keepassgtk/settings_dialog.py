@@ -61,6 +61,17 @@ class SettingsDialog():
         if len(keepassgtk.config_manager.get_last_opened_list()) is 0:
             settings_clear_button.set_sensitive(False)
 
+        settings_remember_switch = self.builder.get_object("settings_remember_switch")
+        settings_remember_switch.connect("notify::active", self.on_settings_remember_switch_switched)
+        settings_remember_switch_value = keepassgtk.config_manager.get_remember_composite_key()
+        settings_remember_switch.set_active(settings_remember_switch_value)
+
+        settings_remember_method_switch = self.builder.get_object("settings_remember_method_switch")
+        settings_remember_method_switch.connect("notify::active", self.on_settings_remember_method_switch_switched)
+        settings_remember_method_switch_value = keepassgtk.config_manager.get_remember_unlock_method()
+        settings_remember_method_switch.set_active(settings_remember_method_switch_value)
+
+
     def on_settings_theme_switch_switched(self, switch_button, gparam):
         gtk_settings = Gtk.Settings.get_default()
 
@@ -111,4 +122,18 @@ class SettingsDialog():
                 self.window.first_start_grid = builder.get_object("first_start_grid")
                 self.window.add(self.window.first_start_grid)
         widget.set_sensitive(False)
+
+    def on_settings_remember_switch_switched(self, switch_button, gparam):
+        if switch_button.get_active():
+            keepassgtk.config_manager.set_remember_composite_key(True)
+        else:
+            keepassgtk.config_manager.set_remember_composite_key(False)
+            keepassgtk.config_manager.set_last_used_composite_key("")
+
+    def on_settings_remember_method_switch_switched(self, switch_button, gparam):
+        if switch_button.get_active():
+            keepassgtk.config_manager.set_remember_unlock_method(True)
+        else:
+            keepassgtk.config_manager.set_remember_unlock_method(False)
+            keepassgtk.config_manager.set_unlock_method("password")
 

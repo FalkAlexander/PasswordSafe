@@ -42,7 +42,6 @@ class UnlockDatabase:
         self.set_headerbar()
 
         self.assemble_stack()
-        self.connect_events()
 
     #
     # Headerbar
@@ -106,7 +105,9 @@ class UnlockDatabase:
 
         self.parent_widget.add(self.unlock_database_stack_box)
 
-    def connect_events(self):
+        self.connect_events(stack)
+
+    def connect_events(self, stack):
         password_unlock_button = self.builder.get_object("password_unlock_button")
         password_unlock_button.connect("clicked", self.on_password_unlock_button_clicked)
 
@@ -123,9 +124,15 @@ class UnlockDatabase:
         composite_unlock_select_button.connect("clicked", self.on_composite_unlock_select_button_clicked)
 
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
-        password_unlock_entry.grab_focus()
+        if stack.get_visible_child_name() == "password_unlock":
+            password_unlock_entry.grab_focus()
         password_unlock_entry.connect("activate", self.on_password_unlock_button_clicked)
         password_unlock_entry.connect("icon-press", self.on_password_unlock_entry_secondary_clicked)
+
+        composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
+        composite_unlock_entry.connect("activate", self.on_composite_unlock_button_clicked)
+        if stack.get_visible_child_name() == "composite_unlock":
+            composite_unlock_entry.grab_focus()
 
     #
     # Events

@@ -778,6 +778,7 @@ class UnlockedDatabase:
                 scrolled_page.profile_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
                 scrolled_page.network_profile_button.connect("toggled", self.on_entry_icon_button_toggled)
                 scrolled_page.key_button.connect("toggled", self.on_entry_icon_button_toggled)
+                scrolled_page.terminal_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
                 scrolled_page.setting_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
                 scrolled_page.folder_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
                 scrolled_page.harddrive_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
@@ -1014,6 +1015,13 @@ class UnlockedDatabase:
                 scrolled_page.brown_button.get_children()[0].hide()
 
         button.get_children()[0].show_all()
+
+        if button.get_name() != "NoneColorButton":
+            image = button.get_children()[0]
+            image.set_name("BrightIcon")
+        else:
+            image = button.get_children()[0]
+            image.set_name("DarkIcon")
 
         if button.get_active() is False:
             button.get_children()[0].hide()

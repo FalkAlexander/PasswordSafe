@@ -32,7 +32,7 @@ sudo ninja -C _build install
 ```
 
 ### Install via Flatpak (preferred method)
-* Development version: [Flatpak](https://terminal.run/keepassgtk/flatpak/org.gnome.PasswordSafe.flatpak)
+* Development version: [Flatpak](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak)
 
 ### Install via distribution package manager
 * Arch Linux AUR: [passwordsafe-git](https://aur.archlinux.org/packages/gnome-passwordsafe-git/)

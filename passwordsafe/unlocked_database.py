@@ -1430,7 +1430,27 @@ class UnlockedDatabase:
 
     def lock_timeout_database(self):
         self.cancel_timers()
-        self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
+
+        # Workaround against crash (pygobject fault?)
+        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is False:
+            orig_group = self.current_group
+            self.current_group = self.database_manager.get_root_group()
+            self.show_page_of_new_directory(False, False)
+
+            self.overlay.hide()
+            self.unlock_database.unlock_database(timeout=True, unlocked_database=self, original_group=orig_group)
+        elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)).edit_page is True:
+            print("group edit page")
+            orig_group = self.current_group
+            self.current_group = self.database_manager.get_root_group()
+            self.show_page_of_new_directory(False, False)
+
+            self.overlay.hide()
+            self.unlock_database.unlock_database(timeout=True, unlocked_database=self, original_group=orig_group, original_group_edit_page=True)
+        else:
+            self.overlay.hide()
+            self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
+
         self.send_notification("Password Safe", ntpath.basename(self.database_manager.database_path) + " locked due to a timeout", "changes-prevent-symbolic")
 
     #

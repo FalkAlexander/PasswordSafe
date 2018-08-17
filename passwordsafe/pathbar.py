@@ -39,7 +39,8 @@ class Pathbar(Gtk.HBox):
         self.set_halign(Gtk.Align.START)
 
         scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.set_min_content_width(600)
+        scrolled_window.set_min_content_width(400)
+        scrolled_window.set_max_content_width(600)
         viewport = Gtk.Viewport()
         viewport.add(self)
         scrolled_window.add(viewport)

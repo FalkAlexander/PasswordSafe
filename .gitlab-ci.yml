@@ -6,7 +6,7 @@ variables:
 
 
 flatpak:
-    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
+    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:3.28
     stage: flatpak
     variables:
         MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.json"
@@ -17,6 +17,7 @@ flatpak:
         - flatpak build app meson --prefix=/app ${MESON_ARGS} _build
         - flatpak build app ninja -C _build install
         - flatpak-builder --finish-only --repo=repo app ${MANIFEST_PATH}
+        - flatpak build-export repo app
         - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} org.gnome.PasswordSafe
     artifacts:
         paths:

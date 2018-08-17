@@ -2,7 +2,7 @@ stages:
   - flatpak
 
 variables:
-  BUNDLE: "password-safe-git.flatpak"
+  BUNDLE: "passwordsafe-git.flatpak"
 
 
 flatpak:
@@ -10,7 +10,7 @@ flatpak:
     stage: flatpak
     variables:
         MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.json"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome.flatpakrepo"
         FLATPAK_MODULE: "passwordsafe"
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}

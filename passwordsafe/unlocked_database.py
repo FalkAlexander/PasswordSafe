@@ -1440,7 +1440,6 @@ class UnlockedDatabase:
             self.overlay.hide()
             self.unlock_database.unlock_database(timeout=True, unlocked_database=self, original_group=orig_group)
         elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)).edit_page is True:
-            print("group edit page")
             orig_group = self.current_group
             self.current_group = self.database_manager.get_root_group()
             self.show_page_of_new_directory(False, False)

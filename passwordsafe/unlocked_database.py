@@ -10,6 +10,7 @@ from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from threading import Timer
 import passwordsafe.password_generator
 import passwordsafe.config_manager
+import os
 import gi
 import ntpath
 import datetime
@@ -1448,7 +1449,7 @@ class UnlockedDatabase:
             self.overlay.hide()
             self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
 
-        self.send_notification("Password Safe", ntpath.basename(self.database_manager.database_path) + " locked due to a timeout", "changes-prevent-symbolic")
+        self.send_notification(os.path.splitext(ntpath.basename(self.database_manager.database_path))[0] + " locked", "Keepass safe locked due to inactivity", "dialog-password-symbolic")
 
     #
     # Helper Methods

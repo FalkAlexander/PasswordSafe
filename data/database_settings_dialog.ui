@@ -319,6 +319,7 @@
                 <property name="vexpand">False</property>
                 <child>
                   <object class="GtkFrame" id="database_action_frame">
+                    <property name="height_request">25</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label_xalign">0</property>
@@ -326,7 +327,6 @@
                     <child>
                       <object class="GtkBox" id="database_action_box">
                         <property name="name">database_action_box</property>
-                        <property name="height_request">45</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
@@ -351,6 +351,9 @@
                     <child type="label_item">
                       <placeholder/>
                     </child>
+                    <style>
+                      <class name="app-notification"/>
+                    </style>
                   </object>
                 </child>
               </object>

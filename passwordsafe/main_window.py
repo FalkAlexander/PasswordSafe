@@ -66,6 +66,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.set_titlebar(self.headerbar)
 
+        print("hi")
+
     def set_headerbar(self):
         self.set_titlebar(self.headerbar)
 

@@ -5,14 +5,14 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 ![Screenshot](https://terminal.run/stuff/overview.png)
 
 ## Features:
-* ⭐ Creating or import a Keepass v.4 safe
+* ⭐ Create and import a Keepass v.4 safe
 * 🔐 Password, keyfile and composite key authentification
-* 📝 Creating and editing groups, entries
-* 🗑 Moving and deleting groups and entries
+* 📝 Create and edit groups, entries
+* 🗑 Move and delete groups and entries
 * 🎲 Password randomizer
 * 🛠 Database password changing
 * 🔎 Search tool with local, global and fulltext filter
-* 🕐 Automatic database locking
+* 🕐 Automatic database lock during inactivity
 
 # Installation
 ## Development Flatpak
@@ -28,7 +28,7 @@ flatpak install passwordsafe-git.flatpak
 
 
 #### Option 1: with GNOME Builder
-Open GNOME Builder, click the "Clone..." button enter the repository url.
+Open GNOME Builder, click the "Clone..." button, paste the repository url.
 Clone the project and hit the ![](https://terminal.run/stuff/run_button.png) button to start building Password Safe.
 
 #### Option 2: with Flatpak Builder

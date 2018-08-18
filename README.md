@@ -1,41 +1,81 @@
 # Password Safe
-GNOME Password Safe is a password manager which makes use of the Keepass v.4 format.
+Password Safe is a password manager which makes use of the Keepass v.4 format.
 It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
-###### Screenshot
-![Screenshot](https://terminal.run/stuff/keepassgtk_screenshot.png)
+![Screenshot](https://terminal.run/stuff/overview.png)
 
-Features:
-* Creating a new Keepass v.4 database
-* Password, keyfile and composite key authentification
-* Creating and editing groups, entries
-* Moving and deleting groups and entries
-* Password randomizer
-* Database password changing
-* Search tool with local, global and fulltext filter
-* Automatic database locking
+## Features:
+* ⭐ Creating or import a Keepass v.4 safe
+* 🔐 Password, keyfile and composite key authentification
+* 📝 Creating and editing groups, entries
+* 🗑 Moving and deleting groups and entries
+* 🎲 Password randomizer
+* 🛠 Database password changing
+* 🔎 Search tool with local, global and fulltext filter
+* 🕐 Automatic database locking
 
-# Prerequisites
+# Installation
+## Development Flatpak
+Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak) and extract it.  
+To install, open the flatpak package with GNOME Software and install it.  
+If you don't have GNOME Software then run
+```
+flatpak install passwordsafe-git.flatpak
+```
+
+
+## Building from source
+
+
+#### Option 1: with GNOME Builder
+Open GNOME Builder, click the "Clone..." button enter the repository url.
+Clone the project and hit the ![](https://terminal.run/stuff/run_button.png) button to start building Password Safe.
+
+#### Option 2: with Flatpak Builder
+```
+# Clone Password Safe repository
+git clone https://gitlab.gnome.org/World/PasswordSafe.git
+cd PasswordSafe
+# Add Flathub repository
+flatpak remote-add flathub --if-not-exists https://dl.flathub.org/repo/flathub.flatpakrepo
+# Install the required GNOME runtimes
+flatpak install flathub org.gnome.Platform//3.28 org.gnome.Sdk//3.28
+# Start building
+flatpak-builder --repo=repo passwordsafe-git flatpak/org.gnome.PasswordSafe.json --force-clean
+# Create the Flatpak
+flatpak build-export repo passwordsafe-git
+flatpak build-bundle repo passwordsafe-git.flatpak org.gnome.PasswordSafe
+# Install the Flatpak
+flatpak install passwordsafe-git.flatpak
+
+```
+
+
+#### Option 3: with Meson
+##### Prerequisites:
 * Python 3.6.5 or newer
 * pykeepass 2.8.2
 * Gtk 3.22
-
-### Building / Compiling
-We are using Meson as our build system. There are some easy steps to follow in order to build GNOME Password Safe with Meson:
+* Meson
+* Git
 
 ```
-git clone git@gitlab.gnome.org:fseidl/KeepassGtk.git
-cd KeepassGtk
+git clone https://gitlab.gnome.org/World/PasswordSafe.git
+cd PasswordSafe
 meson . _build --prefix=/usr
 ninja -C _build
 sudo ninja -C _build install
 ```
 
-### Install via Flatpak (preferred method)
-* Development version: [Flatpak](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak)
+## Install via distribution package manager
+* Arch Linux: [passwordsafe-git](https://aur.archlinux.org/packages/gnome-passwordsafe-git/)
 
-### Install via distribution package manager
-* Arch Linux AUR: [passwordsafe-git](https://aur.archlinux.org/packages/gnome-passwordsafe-git/)
+# Supported encryption algorithms
+Fully supported are AES 256 encryption algorithm and AES-KDF (KDBX 3.1) derivation algorithm (KeepassXC defaults).
+Other algorithms are not supported right now and can may or may not work and/or produce failures.
+
+# Data protection
+Please be careful when using development versions. Create enough backups if you're using a production database with Password Safe. It is possible that data loss will occur, though I give my best that this will never happen.
 
 # Known issues
 * For creating databases is used a workaround because the library can't create new ones (yet).

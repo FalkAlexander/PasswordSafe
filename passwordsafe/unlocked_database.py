@@ -42,6 +42,7 @@ class UnlockedDatabase:
     selection_mode = False
     unlock_database = NotImplemented
     search = False
+    database_locked = False
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -57,6 +58,8 @@ class UnlockedDatabase:
         self.unlock_database = unlock_database
         self.assemble_listbox()
         self.window.opened_databases.append(self)
+
+        self.register_dbus_signal()
 
     #
     # Stack Pages
@@ -1381,6 +1384,10 @@ class UnlockedDatabase:
             else:
                 row.selection_checkbox.set_active(False)
 
+    def on_session_lock(self, state):
+        if state == 1 and self.database_locked is False:
+            self.lock_timeout_database()
+
     #
     # Dialog Creator
     #
@@ -1419,6 +1426,7 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
+        self.window.session_bus.remove_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
 
         for db in self.window.opened_databases:
             if db.database_manager.database_path == self.database_manager.database_path:
@@ -1429,6 +1437,7 @@ class UnlockedDatabase:
 
     def lock_timeout_database(self):
         self.cancel_timers()
+        self.database_locked = True
 
         # Workaround against crash (pygobject fault?)
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is False:
@@ -1490,4 +1499,9 @@ class UnlockedDatabase:
     def send_notification(self, title, text, icon):
         notify = Notify.Notification.new(title, text, icon)
         notify.show()
+
+    def register_dbus_signal(self):
+        self.window.session_bus.add_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
+        self.window.gobject_mainloop.run()
+
 

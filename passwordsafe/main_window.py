@@ -1,4 +1,4 @@
-from gi.repository import Gio, GLib, Gdk, Gtk
+from gi.repository import Gio, GLib, Gdk, Gtk, GObject
 from gi.repository.GdkPixbuf import Pixbuf
 from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.database_manager import DatabaseManager
@@ -10,6 +10,8 @@ import os
 import ntpath
 import gi
 import signal
+import dbus
+from dbus.mainloop.glib import DBusGMainLoop
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
 
@@ -25,6 +27,7 @@ class MainWindow(Gtk.ApplicationWindow):
     logging_manager = LoggingManager(True)
     opened_databases = []
     databases_to_save = []
+    session_bus = NotImplemented
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -42,6 +45,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.custom_css()
         self.apply_theme()
+
+        self.start_gobject_main_loop()
+        self.create_session_bus()
 
     #
     # Headerbar
@@ -103,6 +109,20 @@ class MainWindow(Gtk.ApplicationWindow):
             gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
         else:
             gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
+
+    #
+    # DBus
+    #
+
+    def start_gobject_main_loop(self):
+        DBusGMainLoop(set_as_default=True)
+        self.gobject_mainloop = GObject.MainLoop()
+
+    def cancel_gobject_main_loop(self):
+        self.gobject_mainloop.quit()
+
+    def create_session_bus(self):
+        self.session_bus = dbus.SessionBus()
 
     #
     # First Start Screen
@@ -407,11 +427,14 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def on_quit_button_clicked(self, button):
         for db in self.opened_databases:
+            self.session_bus.remove_signal_receiver(db.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
             db.cancel_timers()
+            db.remove_session_bus_signal()
 
         for db in self.databases_to_save:
             db.database_manager.save_database()
 
+        self.gobject_mainloop.quit()
         self.quit_dialog.destroy()
         self.save_window_size()
         self.application.quit()
@@ -465,4 +488,9 @@ class MainWindow(Gtk.ApplicationWindow):
             self.save_window_size()
 
             for db in self.opened_databases:
+                self.session_bus.remove_signal_receiver(db.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
                 db.cancel_timers()
+
+            self.gobject_mainloop.quit()
+
+            

@@ -100,7 +100,7 @@ class UnlockDatabase:
             keyfile_path = passwordsafe.config_manager.get_last_used_composite_key()
             composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
             composite_unlock_select_button.set_label(ntpath.basename(keyfile_path))
-            self.composite_keyfile_path = keyfile_path
+            self.composite_keyfile_path = Gio.File.new_for_path(self.composite_keyfile_path).get_path()
 
         if passwordsafe.config_manager.get_remember_unlock_method() is True:
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
@@ -362,7 +362,7 @@ class UnlockDatabase:
                     self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
 
                     if passwordsafe.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
-                            passwordsafe.config_manager.set_last_used_composite_key(self.composite_keyfile_path)
+                            passwordsafe.config_manager.set_last_used_composite_key(Gio.File.new_for_path(self.composite_keyfile_path).get_uri())
 
                     self.set_last_used_unlock_method("composite")
 

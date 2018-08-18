@@ -66,8 +66,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.set_titlebar(self.headerbar)
 
-        print("hi")
-
     def set_headerbar(self):
         self.set_titlebar(self.headerbar)
 
@@ -111,7 +109,7 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def first_start_screen(self):
-        filepath = passwordsafe.config_manager.get_last_opened_database()
+        filepath = Gio.File.new_for_path(passwordsafe.config_manager.get_last_opened_database()).get_path()
 
         if len(self.get_application().file_list) is not 0:
             for g_file in self.get_application().file_list:
@@ -142,7 +140,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
             for path in passwordsafe.config_manager.get_last_opened_list():
                 entries = entries + 1
-                if Gio.File.query_exists(Gio.File.new_for_path(path)):
+                if Gio.File.query_exists(Gio.File.new_for_uri(path)):
                     pbuilder = Gtk.Builder()
                     pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
@@ -151,8 +149,12 @@ class MainWindow(Gtk.ApplicationWindow):
                     path_label = pbuilder.get_object("path_label")
 
                     filename_label.set_text(os.path.splitext(ntpath.basename(path))[0])
-                    path_label.set_text("~/" + os.path.relpath(path))
+                    if "/home/" in path:
+                        path_label.set_text("~/" + os.path.relpath(Gio.File.new_for_uri(path).get_path()))
+                    else:
+                        path_label.set_text(path)
                     last_opened_row.set_name(path)
+
 
                     entry_list.append(last_opened_row)
                 else:
@@ -362,7 +364,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def on_last_opened_list_box_activated(self, widget, list_box_row):
         path = list_box_row.get_name()
-        self.start_database_opening_routine(ntpath.basename(path), path)
+        self.start_database_opening_routine(ntpath.basename(path), Gio.File.new_for_uri(path).get_path())
 
     def on_tab_close_button_clicked(self, sender, widget):
         page_num = self.container.page_num(widget)

@@ -6,6 +6,7 @@ from passwordsafe.logging_manager import LoggingManager
 import gi
 gi.require_version('Gtk', '3.0')
 import ntpath
+import os
 import threading
 
 
@@ -50,7 +51,11 @@ class UnlockDatabase:
 
     def set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
-        headerbar.set_subtitle(self.database_filepath)
+
+        if "/home/" in self.database_filepath:
+            headerbar.set_subtitle("~/" + os.path.relpath(self.database_filepath))
+        else:
+            headerbar.set_subtitle(Gio.File.new_for_path(self.database_filepath).get_uri())
 
         if self.timeout is True and self.window.container.get_current_page() == self.window.container.page_num(self.parent_widget):
             self.window.set_titlebar(headerbar)
@@ -386,19 +391,19 @@ class UnlockDatabase:
 
     def open_database_page(self):
         self.clear_input_fields()
-        passwordsafe.config_manager.set_last_opened_database(str(self.database_filepath))
+        passwordsafe.config_manager.set_last_opened_database(Gio.File.new_for_path(self.database_filepath).get_uri())
 
         already_added = False
         list = []
         for path in passwordsafe.config_manager.get_last_opened_list():
             list.append(path)
-            if path == self.database_filepath:
+            if path == Gio.File.new_for_path(self.database_filepath).get_uri():
                 already_added = True
 
         if already_added is False:
-            list.append(self.database_filepath)
+            list.append(Gio.File.new_for_path(self.database_filepath).get_uri())
         else:
-            list.sort(key=self.database_filepath.__eq__)
+            list.sort(key=Gio.File.new_for_path(self.database_filepath).get_uri().__eq__)
 
         if len(list) > 10:
             list.pop(0)

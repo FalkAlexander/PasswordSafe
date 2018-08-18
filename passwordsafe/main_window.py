@@ -457,7 +457,10 @@ class MainWindow(Gtk.ApplicationWindow):
             for db in unsaved_databases_list:
                 unsaved_database_row = Gtk.ListBoxRow()
                 check_button = Gtk.CheckButton()
-                check_button.set_label(db.database_manager.database_path)
+                if "/home/" in db.database_manager.database_path:
+                    check_button.set_label("~/" + os.path.relpath(db.database_manager.database_path))
+                else:
+                    check_button.set_label(Gio.File.new_for_path(db.database_manager.database_path).get_uri())
                 check_button.connect("toggled", self.on_save_check_button_toggled, db)
                 check_button.set_active(True)
                 unsaved_database_row.add(check_button)

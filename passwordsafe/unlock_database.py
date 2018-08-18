@@ -220,6 +220,7 @@ class UnlockDatabase:
         filter_text.add_mime_type("text/plain")
         filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
         keyfile_chooser_dialog.add_filter(filter_text)
+        keyfile_chooser_dialog.set_local_only(False)
 
         response = keyfile_chooser_dialog.run()
         if response == Gtk.ResponseType.OK:
@@ -301,6 +302,7 @@ class UnlockDatabase:
         filter_text.add_mime_type("text/plain")
         filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
         filechooser_opening_dialog.add_filter(filter_text)
+        filechooser_opening_dialog.set_local_only(False)
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.OK:

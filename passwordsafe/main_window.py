@@ -129,7 +129,7 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def first_start_screen(self):
-        filepath = passwordsafe.config_manager.get_last_opened_database()
+        filepath = Gio.File.new_for_path(passwordsafe.config_manager.get_last_opened_database()).get_path()
 
         if len(self.get_application().file_list) is not 0:
             for g_file in self.get_application().file_list:
@@ -160,7 +160,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
             for path in passwordsafe.config_manager.get_last_opened_list():
                 entries = entries + 1
-                if Gio.File.query_exists(Gio.File.new_for_path(path)):
+                if Gio.File.query_exists(Gio.File.new_for_uri(path)):
                     pbuilder = Gtk.Builder()
                     pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
@@ -169,8 +169,12 @@ class MainWindow(Gtk.ApplicationWindow):
                     path_label = pbuilder.get_object("path_label")
 
                     filename_label.set_text(os.path.splitext(ntpath.basename(path))[0])
-                    path_label.set_text("~/" + os.path.relpath(path))
+                    if "/home/" in path:
+                        path_label.set_text("~/" + os.path.relpath(Gio.File.new_for_uri(path).get_path()))
+                    else:
+                        path_label.set_text(path)
                     last_opened_row.set_name(path)
+
 
                     entry_list.append(last_opened_row)
                 else:
@@ -230,6 +234,7 @@ class MainWindow(Gtk.ApplicationWindow):
         filter_text.add_mime_type("application/x-keepass2")
         filter_text.add_mime_type("application/octet-stream")
         filechooser_opening_dialog.add_filter(filter_text)
+        filechooser_opening_dialog.set_local_only(False)
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.OK:
@@ -275,6 +280,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.filechooser_creation_dialog.set_do_overwrite_confirmation(True)
         self.filechooser_creation_dialog.set_current_name("Database.kdbx")
         self.filechooser_creation_dialog.set_modal(True)
+        self.filechooser_creation_dialog.set_local_only(False)
 
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keepass 2 Database")
@@ -378,7 +384,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def on_last_opened_list_box_activated(self, widget, list_box_row):
         path = list_box_row.get_name()
-        self.start_database_opening_routine(ntpath.basename(path), path)
+        self.start_database_opening_routine(ntpath.basename(path), Gio.File.new_for_uri(path).get_path())
 
     def on_tab_close_button_clicked(self, sender, widget):
         page_num = self.container.page_num(widget)
@@ -474,7 +480,10 @@ class MainWindow(Gtk.ApplicationWindow):
             for db in unsaved_databases_list:
                 unsaved_database_row = Gtk.ListBoxRow()
                 check_button = Gtk.CheckButton()
-                check_button.set_label(db.database_manager.database_path)
+                if "/home/" in db.database_manager.database_path:
+                    check_button.set_label("~/" + os.path.relpath(db.database_manager.database_path))
+                else:
+                    check_button.set_label(Gio.File.new_for_path(db.database_manager.database_path).get_uri())
                 check_button.connect("toggled", self.on_save_check_button_toggled, db)
                 check_button.set_active(True)
                 unsaved_database_row.add(check_button)

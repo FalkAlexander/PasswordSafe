@@ -6,6 +6,7 @@ from passwordsafe.logging_manager import LoggingManager
 import gi
 gi.require_version('Gtk', '3.0')
 import ntpath
+import os
 import threading
 
 
@@ -50,7 +51,11 @@ class UnlockDatabase:
 
     def set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
-        headerbar.set_subtitle(self.database_filepath)
+
+        if "/home/" in self.database_filepath:
+            headerbar.set_subtitle("~/" + os.path.relpath(self.database_filepath))
+        else:
+            headerbar.set_subtitle(Gio.File.new_for_path(self.database_filepath).get_uri())
 
         if self.timeout is True and self.window.container.get_current_page() == self.window.container.page_num(self.parent_widget):
             self.window.set_titlebar(headerbar)
@@ -95,7 +100,7 @@ class UnlockDatabase:
             keyfile_path = passwordsafe.config_manager.get_last_used_composite_key()
             composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
             composite_unlock_select_button.set_label(ntpath.basename(keyfile_path))
-            self.composite_keyfile_path = keyfile_path
+            self.composite_keyfile_path = Gio.File.new_for_path(self.composite_keyfile_path).get_path()
 
         if passwordsafe.config_manager.get_remember_unlock_method() is True:
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
@@ -221,6 +226,7 @@ class UnlockDatabase:
         filter_text.add_mime_type("text/plain")
         filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
         keyfile_chooser_dialog.add_filter(filter_text)
+        keyfile_chooser_dialog.set_local_only(False)
 
         response = keyfile_chooser_dialog.run()
         if response == Gtk.ResponseType.OK:
@@ -303,6 +309,7 @@ class UnlockDatabase:
         filter_text.add_mime_type("text/plain")
         filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
         filechooser_opening_dialog.add_filter(filter_text)
+        filechooser_opening_dialog.set_local_only(False)
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.OK:
@@ -357,7 +364,7 @@ class UnlockDatabase:
                     self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
 
                     if passwordsafe.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
-                            passwordsafe.config_manager.set_last_used_composite_key(self.composite_keyfile_path)
+                            passwordsafe.config_manager.set_last_used_composite_key(Gio.File.new_for_path(self.composite_keyfile_path).get_uri())
 
                     self.set_last_used_unlock_method("composite")
 
@@ -386,19 +393,19 @@ class UnlockDatabase:
 
     def open_database_page(self):
         self.clear_input_fields()
-        passwordsafe.config_manager.set_last_opened_database(str(self.database_filepath))
+        passwordsafe.config_manager.set_last_opened_database(Gio.File.new_for_path(self.database_filepath).get_uri())
 
         already_added = False
         list = []
         for path in passwordsafe.config_manager.get_last_opened_list():
             list.append(path)
-            if path == self.database_filepath:
+            if path == Gio.File.new_for_path(self.database_filepath).get_uri():
                 already_added = True
 
         if already_added is False:
-            list.append(self.database_filepath)
+            list.append(Gio.File.new_for_path(self.database_filepath).get_uri())
         else:
-            list.sort(key=self.database_filepath.__eq__)
+            list.sort(key=Gio.File.new_for_path(self.database_filepath).get_uri().__eq__)
 
         if len(list) > 10:
             list.pop(0)

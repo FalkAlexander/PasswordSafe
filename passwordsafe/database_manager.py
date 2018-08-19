@@ -321,7 +321,7 @@ class DatabaseManager:
 
     # Write all changes to database
     def save_database(self):
-        if self.save_running is False:
+        if self.save_running is False and self.changes is True:
             self.save_running = True
             self.db.save()
             self.changes = False

@@ -25,6 +25,7 @@ class UnlockDatabase:
     unlocked_database = NotImplemented
     original_group = NotImplemented
     original_group_edit_page = NotImplemented
+    password_only = NotImplemented
 
     def __init__(self, window, widget, filepath):
         self.window = window
@@ -204,25 +205,47 @@ class UnlockDatabase:
                     self.clear_input_fields()
                     self.logging_manager.log_debug("Could not open database, wrong password")
             else:
-                try:
-                    self.database_manager = DatabaseManager(self.database_filepath, password_unlock_entry.get_text())
-                    self.set_last_used_unlock_method("password")
+                password_unlock_button = self.builder.get_object("password_unlock_button")
+                password_unlock_button_image = password_unlock_button.get_children()[0]
+                password_unlock_entry.set_editable(False)
+                password_unlock_entry.set_sensitive(False)
+                password_unlock_button.set_sensitive(False)
 
-                    thread = threading.Thread(target=self.open_database_page())
-                    thread.daemon = True
-                    thread.start()
+                spinner = Gtk.Spinner()
+                password_unlock_button.show_all()
+                spinner.show()
+                spinner.start()
 
-                    self.logging_manager.log_debug("Opening of database was successfull")
-                except(OSError):
-                    self.show_unlock_failed_revealer()
+                password_unlock_button.remove(password_unlock_button_image)
+                password_unlock_button.add(spinner)
 
-                    password_unlock_entry.grab_focus()
-                    password_unlock_entry.get_style_context().add_class("error")
-                    self.clear_input_fields()
-                    self.logging_manager.log_debug("Could not open database, wrong password")
+                self.password_only = password_unlock_entry.get_text()
+                thread = threading.Thread(target=self.password_unlock_process)
+                thread.daemon = True
+                thread.start()
 
-    def set_database_manager(self, password):
-        self.database_manager = DatabaseManager(self.database_filepath, password)
+    def password_unlock_process(self):
+        try:
+            self.database_manager = DatabaseManager(self.database_filepath, self.password_only)
+            self.password_only = NotImplemented
+            self.open_database_page()
+
+            self.set_last_used_unlock_method("password")
+            self.logging_manager.log_debug("Opening of database was successfull")
+        except(OSError):
+            password_unlock_button = self.builder.get_object("password_unlock_button")
+            password_unlock_button.remove(password_unlock_button.get_children()[0])
+            password_unlock_button.add(self.builder.get_object("password_unlock_button_image"))
+            self.builder.get_object("password_unlock_entry").set_editable(True)
+            self.builder.get_object("password_unlock_entry").set_sensitive(True)
+            password_unlock_button.set_sensitive(True)
+
+            self.show_unlock_failed_revealer()
+
+            password_unlock_entry.grab_focus()
+            password_unlock_entry.get_style_context().add_class("error")
+            self.clear_input_fields()
+            self.logging_manager.log_debug("Could not open database, wrong password")
 
     def on_keyfile_unlock_select_button_clicked(self, widget):
         keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))

@@ -1,4 +1,4 @@
-from gi.repository import Gio, Gtk
+from gi.repository import Gio, Gtk, GLib
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
 import passwordsafe.config_manager
@@ -228,15 +228,15 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, self.password_only)
             self.password_only = NotImplemented
-            self.open_database_page()
-
             self.set_last_used_unlock_method("password")
             self.logging_manager.log_debug("Opening of database was successfull")
+            GLib.idle_add(self.open_database_page)
         except(OSError):
             password_unlock_button = self.builder.get_object("password_unlock_button")
             password_unlock_button.remove(password_unlock_button.get_children()[0])
             password_unlock_button.add(self.builder.get_object("password_unlock_button_image"))
-            self.builder.get_object("password_unlock_entry").set_sensitive(True)
+            password_unlock_entry = self.builder.get_object("password_unlock_entry")
+            password_unlock_entry.set_sensitive(True)
             self.unlock_database_stack_switcher.set_sensitive(True)
             password_unlock_button.set_sensitive(True)
 
@@ -330,15 +330,16 @@ class UnlockDatabase:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
             self.database_manager.set_keyfile_hash(self.keyfile_path)
             self.set_last_used_unlock_method("keyfile")
-            self.keyfile_path = NotImplemented
-            self.open_database_page()
             self.logging_manager.log_debug("Database successfully opened with keyfile")
+            self.keyfile_path = NotImplemented
+            GLib.idle_add(self.open_database_page)
         except(OSError, IndexError):
             keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
             keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
             keyfile_unlock_button.remove(keyfile_unlock_button.get_children()[0])
             keyfile_unlock_button.add(self.builder.get_object("keyfile_unlock_button_image"))
-            self.builder.get_object("keyfile_unlock_select_button").set_sensitive(True)
+            keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
+            keyfile_unlock_select_button.set_sensitive(True)
             keyfile_unlock_button.set_sensitive(True)
             self.unlock_database_stack_switcher.set_sensitive(True)
 
@@ -448,10 +449,9 @@ class UnlockDatabase:
                         passwordsafe.config_manager.set_last_used_composite_key(Gio.File.new_for_path(self.composite_keyfile_path).get_uri())
 
             self.set_last_used_unlock_method("composite")
-
-            self.composite_keyfile_path = NotImplemented
-            self.open_database_page()
             self.logging_manager.log_debug("Opening of database was successfull")
+            self.composite_keyfile_path = NotImplemented
+            GLib.idle_add(self.open_database_page)
         except(OSError, IndexError):
             composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
             composite_unlock_button = self.builder.get_object("composite_unlock_button")
@@ -459,7 +459,8 @@ class UnlockDatabase:
             composite_unlock_button.add(self.builder.get_object("composite_unlock_button_image"))
             composite_unlock_select_button.set_sensitive(True)
             composite_unlock_button.set_sensitive(True)
-            self.builder.get_object("composite_unlock_entry").set_sensitive(True)
+            composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
+            composite_unlock_entry.set_sensitive(True)
             self.unlock_database_stack_switcher.set_sensitive(True)
 
             self.show_unlock_failed_revealer()

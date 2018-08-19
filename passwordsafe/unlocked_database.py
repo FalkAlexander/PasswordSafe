@@ -1,4 +1,4 @@
-from gi.repository import Gio, Gdk, Gtk
+from gi.repository import Gio, Gdk, Gtk, GObject
 from gi.repository.GdkPixbuf import Pixbuf
 from gi.repository import Notify
 from passwordsafe.logging_manager import LoggingManager
@@ -11,6 +11,7 @@ from threading import Timer
 import passwordsafe.password_generator
 import passwordsafe.config_manager
 import os
+import threading
 import gi
 import ntpath
 import datetime
@@ -865,7 +866,11 @@ class UnlockedDatabase:
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
-        self.database_manager.save_database()
+
+        thread = threading.Thread(target=self.database_manager.save_database)
+        thread.daemon = True
+        thread.start()
+
         self.show_database_action_revealer("Database saved")
 
     def on_lock_button_clicked(self, widget):

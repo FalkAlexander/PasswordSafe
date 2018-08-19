@@ -207,7 +207,11 @@ class UnlockDatabase:
                 try:
                     self.database_manager = DatabaseManager(self.database_filepath, password_unlock_entry.get_text())
                     self.set_last_used_unlock_method("password")
-                    self.open_database_page()
+
+                    thread = threading.Thread(target=self.open_database_page())
+                    thread.daemon = True
+                    thread.start()
+
                     self.logging_manager.log_debug("Opening of database was successfull")
                 except(OSError):
                     self.show_unlock_failed_revealer()
@@ -216,6 +220,9 @@ class UnlockDatabase:
                     password_unlock_entry.get_style_context().add_class("error")
                     self.clear_input_fields()
                     self.logging_manager.log_debug("Could not open database, wrong password")
+
+    def set_database_manager(self, password):
+        self.database_manager = DatabaseManager(self.database_filepath, password)
 
     def on_keyfile_unlock_select_button_clicked(self, widget):
         keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))

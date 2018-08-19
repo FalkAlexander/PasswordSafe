@@ -408,6 +408,7 @@ class UnlockedDatabase:
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
+
                 self.insert_groups_into_listbox(list_box)
                 self.insert_entries_into_listbox(list_box)
 
@@ -867,11 +868,13 @@ class UnlockedDatabase:
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
 
-        thread = threading.Thread(target=self.database_manager.save_database)
-        thread.daemon = True
-        thread.start()
-
-        self.show_database_action_revealer("Database saved")
+        if self.database_manager.save_running is False:
+            save_thread = threading.Thread(target=self.database_manager.save_database)
+            save_thread.daemon = True
+            save_thread.start()
+            self.show_database_action_revealer("Database saved")
+        else:
+            self.show_database_action_revealer("Please wait. Another save is running.")
 
     def on_lock_button_clicked(self, widget):
         if self.database_manager.made_database_changes() is True:

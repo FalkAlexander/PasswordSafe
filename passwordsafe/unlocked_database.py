@@ -1235,11 +1235,14 @@ class UnlockedDatabase:
         else:
             result_list = self.database_manager.global_search(widget.get_text(), fulltext)
 
+        GLib.idle_add(self.search_overlay_creation, widget, result_list, empty_search_overlay, info_search_overlay)
+
+    def search_overlay_creation(self, widget, result_list, empty_search_overlay, info_search_overlay):
         if widget.get_text() is not "":
             if empty_search_overlay in self.search_overlay:
-                GLib.idle_add(self.search_overlay.remove, empty_search_overlay)
+                self.search_overlay.remove(empty_search_overlay)
 
-            GLib.idle_add(self.search_instance_creation, result_list, empty_search_overlay)
+            self.search_instance_creation(result_list, empty_search_overlay)
         else:
             self.search_overlay.add_overlay(info_search_overlay)
 

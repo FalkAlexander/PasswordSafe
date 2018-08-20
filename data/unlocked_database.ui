@@ -16,6 +16,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Create password...</property>
             <child>
               <object class="GtkImage" id="add_entry_button_image">
                 <property name="visible">True</property>
@@ -35,6 +36,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Create group...</property>
             <child>
               <object class="GtkImage" id="add_folder_button_image">
                 <property name="visible">True</property>
@@ -64,6 +66,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Selection Mode</property>
         <property name="margin_right">6</property>
         <child>
           <object class="GtkImage" id="selection_button_image">
@@ -84,6 +87,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Search</property>
         <child>
           <object class="GtkImage" id="search_button_image">
             <property name="visible">True</property>
@@ -439,6 +443,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Show all properties</property>
         <child>
           <object class="GtkImage" id="add_property_button_image">
             <property name="visible">True</property>
@@ -907,6 +912,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Lock</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
@@ -1115,6 +1121,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Move selection</property>
         <child>
           <object class="GtkImage" id="selection_cut_button_image">
             <property name="visible">True</property>
@@ -1134,6 +1141,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes">Delete selection</property>
         <child>
           <object class="GtkImage" id="selection_delete_button_image">
             <property name="visible">True</property>

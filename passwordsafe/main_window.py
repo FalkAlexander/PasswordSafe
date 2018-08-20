@@ -455,11 +455,6 @@ class MainWindow(Gtk.ApplicationWindow):
             save_thread = threading.Thread(target=self.threaded_database_saving)
             save_thread.daemon = True
             save_thread.start()
-
-            while Gtk.events_pending():
-                Gtk.main_iteration()
-
-            self.hide()
         else:
             self.gobject_mainloop.quit()
             self.quit_dialog.destroy()
@@ -531,6 +526,9 @@ class MainWindow(Gtk.ApplicationWindow):
         for db in self.databases_to_save:
             db.database_manager.save_database()
 
+        GLib.idle_add(self.quit_gtkwindow)
+
+    def quit_gtkwindow(self):
         self.gobject_mainloop.quit()
         self.quit_dialog.destroy()
         self.save_window_size()

@@ -33,11 +33,6 @@ class SettingsDialog():
         settings_fstart_switch_value = passwordsafe.config_manager.get_first_start_screen()
         settings_fstart_switch.set_active(settings_fstart_switch_value)
 
-        settings_save_switch = self.builder.get_object("settings_save_switch")
-        settings_save_switch.connect("notify::active", self.on_settings_save_switch_switched)
-        settings_save_switch_value = passwordsafe.config_manager.get_save_automatically()
-        settings_save_switch.set_active(settings_save_switch_value)
-
         settings_lockdb_spin_button = self.builder.get_object("settings_lockdb_spin_button")
         settings_lockdb_spin_button.connect("value-changed", self.on_settings_lockdb_spin_button_changed)
         settings_lockdb_spin_button_value = passwordsafe.config_manager.get_database_lock_timeout()
@@ -87,12 +82,6 @@ class SettingsDialog():
             passwordsafe.config_manager.set_first_start_screen(True)
         else:
             passwordsafe.config_manager.set_first_start_screen(False)
-
-    def on_settings_save_switch_switched(self, switch_button, gparam):
-        if switch_button.get_active():
-            passwordsafe.config_manager.set_save_automatically(True)
-        else:
-            passwordsafe.config_manager.set_save_automatically(False)
 
     def on_settings_lockdb_spin_button_changed(self, spin_button):
         passwordsafe.config_manager.set_database_lock_timeout(spin_button.get_value())

@@ -18,6 +18,7 @@ remember_composite_key = "remember-composite-key"
 last_used_composite_key = "last-used-composite-key"
 remember_unlock_method = "remember-unlock-method"
 unlock_method = "unlock-method"
+development_backup_mode = "development-backup-mode"
 
 
 def get_clear_clipboard():
@@ -127,4 +128,10 @@ def set_unlock_method(value):
         setting.set_enum(unlock_method, 1)
     elif value == "composite":
         setting.set_enum(unlock_method, 2)
+
+def get_development_backup_mode():
+    return setting.get_boolean(development_backup_mode)
+
+def set_development_backup_mode(value):
+    setting.set_boolean(development_backup_mode, value)
 

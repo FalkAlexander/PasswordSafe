@@ -1224,7 +1224,7 @@ class UnlockedDatabase:
         if search_fulltext_button.get_active() is True:
             fulltext = True
 
-        search_thread = threading.Thread(target=search_thread_creation, args=(search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay))
+        search_thread = threading.Thread(target=self.search_thread_creation, args=(search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay))
         search_thread.daemon = True
         search_thread.start()
 

@@ -8,6 +8,8 @@ gi.require_version('Gtk', '3.0')
 import ntpath
 import os
 import threading
+import time
+import datetime
 
 
 class UnlockDatabase:
@@ -483,6 +485,15 @@ class UnlockDatabase:
     def open_database_page(self):
         self.clear_input_fields()
         passwordsafe.config_manager.set_last_opened_database(Gio.File.new_for_path(self.database_filepath).get_uri())
+
+        if passwordsafe.config_manager.get_development_backup_mode() is True:
+            cache_dir = os.path.expanduser("~") + "/.cache/passwordsafe/backup"
+            if not os.path.exists(cache_dir):
+                os.makedirs(cache_dir)
+
+            opened = Gio.File.new_for_path(self.database_filepath)
+            backup = Gio.File.new_for_path(cache_dir + "/" + os.path.splitext(ntpath.basename(self.database_filepath))[0] + "_backup_" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S') + ".kdbx")
+            opened.copy(backup, Gio.FileCopyFlags.NONE)
 
         already_added = False
         list = []

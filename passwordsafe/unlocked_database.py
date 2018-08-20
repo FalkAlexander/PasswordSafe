@@ -44,8 +44,7 @@ class UnlockedDatabase:
     unlock_database = NotImplemented
     search = False
     database_locked = False
-    thread_list_box = NotImplemented
-    group_thread_done = False
+    listbox_insert_thread = NotImplemented
     result_list = NotImplemented
 
     entry_marked_for_delete = NotImplemented
@@ -412,10 +411,9 @@ class UnlockedDatabase:
 
                 self.add_stack_page(scrolled_window)
 
-                self.thread_list_box = list_box
-                self.groups_thread = threading.Thread(target=self.insert_groups_into_listbox)
-                self.groups_thread.daemon = True
-                self.groups_thread.start()
+                self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=[list_box])
+                self.listbox_insert_thread.daemon = True
+                self.listbox_insert_thread.start()
                 #self.insert_groups_into_listbox(list_box)
                 #self.insert_entries_into_listbox(list_box)
 
@@ -516,98 +514,50 @@ class UnlockedDatabase:
     # Create Group & Entry Rows
     #
 
-    def insert_groups_into_listbox(self):
-        print("1")
-        writing_list = False
-        print("2")
-        list_box = self.thread_list_box
-        print("3")
+    def insert_groups_into_listbox(self, list_box):
         groups = NotImplemented
-        print("4")
         sorted_list = []
-        print("5")
 
         if self.current_group.is_root_group:
-            print("6")
             groups = self.database_manager.get_groups_in_root()
-            print("7")
         else:
-            print("8")
             groups = self.database_manager.get_groups_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-            print("9")
 
-        for group in groups:
-            print("10")
-            GLib.idle_add(self.c_grouprow, group, sorted_list)
-            print("11")
-            #sorted_list.append(self.group_row)
-            print("12")
-        if self.list_box_sorting == "A-Z":
-            print("13")
-            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=False)
-            print("14")
-        elif self.list_box_sorting == "Z-A":
-            print("15")
-            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=True)
-            print("16")
+        GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
 
-       # print("list len: " + str(len(sorted_list)))
-        #for group_row in sorted_list:
-         #   print("for_loop_add_group_start")
-            #GLib.idle_add(group_row.show_all)
-          #  list_box.add(group_row)
-           # print("for_loop_add_group_end")
+        self.insert_entries_into_listbox(list_box)
 
-        print("17")
-        self.insert_entries_into_listbox()
-        print("18")
-
-    def insert_entries_into_listbox(self):
-        print("19")
-        writing_list = False
-        print("20")
-        list_box = self.thread_list_box
-        print("21")
+    def insert_entries_into_listbox(self, list_box):
         entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-        print("22")
         sorted_list = []
-        print("23")
 
-        for entry in entries:
-            print("24")
-            GLib.idle_add(self.c_entryrow, entry, sorted_list)
-            #entry_row = EntryRow(self, self.database_manager, entry)
-            print("25")
-            #sorted_list.append(self.entry_row)
-            print("26")
+        GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries)
+
+    def group_instance_creation(self, list_box, sorted_list, groups):
+        for group in groups:
+            group_row = GroupRow(self, self.database_manager, group)
+            sorted_list.append(group_row)
 
         if self.list_box_sorting == "A-Z":
-            print("27")
-            sorted_list.sort(key=lambda entry: str.lower(entry.label), reverse=False)
-            print("28")
+            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=False)
         elif self.list_box_sorting == "Z-A":
-            print("29")
+            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=True)
+
+        for group_row in sorted_list:
+            list_box.add(group_row)
+
+    def entry_instance_creation(self, list_box, sorted_list, entries):
+        for entry in entries:
+            entry_row = EntryRow(self, self.database_manager, entry)
+            sorted_list.append(entry_row)
+
+        if self.list_box_sorting == "A-Z":
+            sorted_list.sort(key=lambda entry: str.lower(entry.label), reverse=False)
+        elif self.list_box_sorting == "Z-A":
             sorted_list.sort(key=lambda entry: str.lower(entry.label), reverse=True)
-            print("30")
 
-        #for entry_row in sorted_list:
-           # print("for_loop_add_entry_start")
-            #GLib.idle_add(entry_row.show_all)
-            #GLib.idle_add(list_box.add, entry_row)
-            #print("for_loop_add_entry_end")
-
-    def c_entryrow(self, entry, sorted_list):
-        entry_row = EntryRow(self, self.database_manager, entry)
-        #print(entry_row)
-        sorted_list.append(entry_row)
-        self.thread_list_box.add(entry_row)
-
-    def c_grouprow(self, group, sorted_list):
-        group_row = GroupRow(self, self.database_manager, group)
-        #print(group_row)
-        sorted_list.append(group_row)
-        self.thread_list_box.add(group_row)
-
+        for entry_row in sorted_list:
+            list_box.add(entry_row)
 
     def rebuild_all_pages(self):
         for page in self.stack.get_children():

@@ -11,6 +11,7 @@ import ntpath
 import gi
 import signal
 import dbus
+import threading
 from dbus.mainloop.glib import DBusGMainLoop
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gdk', '3.0')
@@ -436,13 +437,20 @@ class MainWindow(Gtk.ApplicationWindow):
             self.session_bus.remove_signal_receiver(db.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
             db.cancel_timers()
 
-        for db in self.databases_to_save:
-            db.database_manager.save_database()
+        if len(self.databases_to_save) > 0:
+            save_thread = threading.Thread(target=self.threaded_database_saving)
+            save_thread.daemon = True
+            save_thread.start()
 
-        self.gobject_mainloop.quit()
-        self.quit_dialog.destroy()
-        self.save_window_size()
-        self.application.quit()
+            while Gtk.events_pending():
+                Gtk.main_iteration()
+
+            self.hide()
+        else:
+            self.gobject_mainloop.quit()
+            self.quit_dialog.destroy()
+            self.save_window_size()
+            self.application.quit()
 
     #
     # Application Quit Dialog
@@ -500,5 +508,19 @@ class MainWindow(Gtk.ApplicationWindow):
                 db.cancel_timers()
 
             self.gobject_mainloop.quit()
+
+    #
+    # Tools
+    #
+
+    def threaded_database_saving(self):
+        for db in self.databases_to_save:
+            db.database_manager.save_database()
+
+        self.gobject_mainloop.quit()
+        self.quit_dialog.destroy()
+        self.save_window_size()
+        self.application.quit()
+
 
             

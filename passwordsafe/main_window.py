@@ -319,10 +319,12 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def create_new_database_instance(self, tab_title):
         self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
-        GLib.idle_add(self.remove, self.spinner)
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
+        if self.get_children()[0] is self.spinner:
+            self.remove(self.spinner)
+
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/create_database.ui")

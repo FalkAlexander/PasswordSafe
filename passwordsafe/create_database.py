@@ -1,6 +1,7 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 from passwordsafe.created_database import CreatedDatabase
 import gi
+import threading
 gi.require_version('Gtk', '3.0')
 
 
@@ -42,6 +43,7 @@ class CreateDatabase:
             "activate", self.on_password_creation_button_clicked)
 
         self.parent_widget.add(self.stack)
+        password_creation_input.grab_focus()
 
     def success_page(self):
         self.clear_input_fields()
@@ -122,8 +124,10 @@ class CreateDatabase:
         if self.database_manager.compare_passwords():
             self.database_manager.set_database_password(
                 password_check_input.get_text())
-            self.database_manager.save_database()
-            self.success_page()
+
+            save_thread = threading.Thread(target=self.save_pwc_database_thread)
+            save_thread.daemon = True
+            save_thread.start()
         else:
             self.repeat_page()
 
@@ -141,12 +145,45 @@ class CreateDatabase:
         if self.database_manager.compare_passwords():
             self.database_manager.set_database_password(
                 password_repeat_input2.get_text())
-            self.database_manager.save_database()
-            self.success_page()
+
+            save_thread = threading.Thread(target=self.save_pwr_database_thread)
+            save_thread.daemon = True
+            save_thread.start()
         else:
             self.clear_input_fields()
             password_repeat_input1.get_style_context().add_class("error")
             password_repeat_input2.get_style_context().add_class("error")
+
+    def save_pwc_database_thread(self):
+        GLib.idle_add(self.show_pwc_loading)
+        self.database_manager.save_database()
+        GLib.idle_add(self.success_page)
+
+    def show_pwc_loading(self):
+        password_check_button = self.builder.get_object("password_check_button")
+        password_check_button.remove(password_check_button.get_children()[0])
+        spinner = Gtk.Spinner()
+        spinner.start()
+        spinner.show()
+        password_check_button.add(spinner)
+        password_check_button.set_sensitive(False)
+        self.builder.get_object("password_check_input").set_sensitive(False)
+
+    def save_pwr_database_thread(self):
+        GLib.idle_add(self.show_pwr_loading)
+        self.database_manager.save_database()
+        GLib.idle_add(self.success_page)
+
+    def show_pwr_loading(self):
+        password_repeat_button = self.builder.get_object("password_repeat_button")
+        password_repeat_button.remove(password_repeat_button.get_children()[0])
+        spinner = Gtk.Spinner()
+        spinner.start()
+        spinner.show()
+        password_repeat_button.add(spinner)
+        password_repeat_button.set_sensitive(False)
+        self.builder.get_object("password_repeat_input1").set_sensitive(False)
+        self.builder.get_object("password_repeat_input2").set_sensitive(False)
 
     #
     # Helper Functions

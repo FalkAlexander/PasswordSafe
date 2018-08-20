@@ -901,7 +901,10 @@ class UnlockedDatabase:
             self.lock_database()
 
     def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close, timeout):
-        self.database_manager.save_database()
+        save_thread = threading.Thread(target=self.database_manager.save_database)
+        save_thread.daemon = True
+        save_thread.start()
+
         save_dialog.destroy()
         self.lock_database()
 

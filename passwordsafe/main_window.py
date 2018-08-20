@@ -29,6 +29,7 @@ class MainWindow(Gtk.ApplicationWindow):
     opened_databases = []
     databases_to_save = []
     session_bus = NotImplemented
+    spinner = NotImplemented
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -292,7 +293,18 @@ class MainWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.OK:
             self.copy_database_file()
             tab_title = self.create_tab_title_from_filepath(self.filechooser_creation_dialog.get_current_name())
-            self.start_database_creation_routine(tab_title)
+
+            creation_thread = threading.Thread(target=self.create_new_database_instance, args=[tab_title])
+            creation_thread.daemon = True
+            creation_thread.start()
+
+            if self.get_children()[0] is self.first_start_grid:
+                self.remove(self.first_start_grid)
+            builder = Gtk.Builder()
+            builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+            if self.get_children()[0] is not self.container:
+                self.spinner = builder.get_object("spinner_grid")
+                self.add(self.spinner)
         elif response == Gtk.ResponseType.CANCEL:
             self.filechooser_creation_dialog.close()            
 
@@ -305,10 +317,12 @@ class MainWindow(Gtk.ApplicationWindow):
         stock_database.copy(new_database, Gio.FileCopyFlags.OVERWRITE)
         self.filechooser_creation_dialog.close()
 
+    def create_new_database_instance(self, tab_title):
+        self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
+        GLib.idle_add(self.remove, self.spinner)
+        GLib.idle_add(self.start_database_creation_routine, tab_title)
+
     def start_database_creation_routine(self, tab_title):
-        self.database_manager = DatabaseManager(
-            self.filechooser_creation_dialog.get_filename(),
-            "liufhre86ewoiwejmrcu8owe")
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/create_database.ui")

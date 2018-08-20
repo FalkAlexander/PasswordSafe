@@ -45,14 +45,14 @@ class DatabaseSettingsDialog():
             self.show_database_action_revealer("Wrong passwords")
         elif old_password is not "" and new_password is not "" and repeat_password is not "":
             if self.database_manager.password == old_password:
-                self.database_manager.change_database_password(new_password)
+                self.database_manager.set_database_password(new_password)
                 old_password_entry.get_style_context().remove_class("error")
                 new_password_entry.get_style_context().remove_class("error")
                 repeat_new_password_entry.get_style_context().remove_class("error")
                 old_password_entry.set_text("")
                 new_password_entry.set_text("")
                 repeat_new_password_entry.set_text("")
-                self.show_database_action_revealer("Database password changed")
+                self.show_database_action_revealer("You need to save the database to apply the new password")
             else:
                 old_password_entry.get_style_context().add_class("error")
                 new_password_entry.get_style_context().add_class("error")

@@ -331,11 +331,7 @@ class DatabaseManager:
     # Set database password
     def set_database_password(self, new_password):
         self.db.set_credentials(new_password)
-
-    # Change database password
-    def change_database_password(self, new_password):
-        self.db.set_credentials(new_password)
-        self.db.save()
+        self.changes = True
 
     #
     # Entry Modifications

@@ -14,6 +14,8 @@ class DatabaseManager:
     password = ""
     keyfile_hash = NotImplemented
     changes = False
+    save_running = False
+    scheduled_saves = 0
 
     def __init__(self, database_path, password=None, keyfile=None):
         self.db = PyKeePass(database_path, password, keyfile)
@@ -319,18 +321,17 @@ class DatabaseManager:
 
     # Write all changes to database
     def save_database(self):
-        self.db.save()
-        self.changes = False
-        self.logging_manager.log_debug("Saved database")
+        if self.save_running is False and self.changes is True:
+            self.save_running = True
+            self.db.save()
+            self.changes = False
+            self.logging_manager.log_debug("Saved database")
+            self.save_running = False
 
     # Set database password
     def set_database_password(self, new_password):
         self.db.set_credentials(new_password)
-
-    # Change database password
-    def change_database_password(self, new_password):
-        self.db.set_credentials(new_password)
-        self.db.save()
+        self.changes = True
 
     #
     # Entry Modifications

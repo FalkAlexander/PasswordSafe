@@ -1,4 +1,4 @@
-from gi.repository import Gio, Gdk, Gtk
+from gi.repository import Gio, Gdk, Gtk, GObject, GLib
 from gi.repository.GdkPixbuf import Pixbuf
 from gi.repository import Notify
 from passwordsafe.logging_manager import LoggingManager
@@ -11,6 +11,7 @@ from threading import Timer
 import passwordsafe.password_generator
 import passwordsafe.config_manager
 import os
+import threading
 import gi
 import ntpath
 import datetime
@@ -43,6 +44,8 @@ class UnlockedDatabase:
     unlock_database = NotImplemented
     search = False
     database_locked = False
+    listbox_insert_thread = NotImplemented
+    result_list = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -407,12 +410,10 @@ class UnlockedDatabase:
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
-                self.insert_groups_into_listbox(list_box)
-                self.insert_entries_into_listbox(list_box)
 
-                if len(list_box.get_children()) is 0:
-                    empty_group_overlay = builder.get_object("empty_group_overlay")
-                    overlay.add_overlay(empty_group_overlay)
+                self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=(list_box, overlay))
+                self.listbox_insert_thread.daemon = True
+                self.listbox_insert_thread.start()
             # Create not existing stack page for entry
             else:
                 builder = Gtk.Builder()
@@ -441,6 +442,7 @@ class UnlockedDatabase:
             else:
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
                 self.set_entry_page_headerbar()
+
 
     def add_stack_page(self, scrolled_window):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
@@ -506,7 +508,7 @@ class UnlockedDatabase:
     # Create Group & Entry Rows
     #
 
-    def insert_groups_into_listbox(self, list_box):
+    def insert_groups_into_listbox(self, list_box, overlay):
         groups = NotImplemented
         sorted_list = []
 
@@ -515,9 +517,21 @@ class UnlockedDatabase:
         else:
             groups = self.database_manager.get_groups_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
 
+        GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
+
+        self.insert_entries_into_listbox(list_box, overlay)
+
+    def insert_entries_into_listbox(self, list_box, overlay):
+        entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        sorted_list = []
+
+        GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries, overlay)
+
+    def group_instance_creation(self, list_box, sorted_list, groups):
         for group in groups:
             group_row = GroupRow(self, self.database_manager, group)
             sorted_list.append(group_row)
+
         if self.list_box_sorting == "A-Z":
             sorted_list.sort(key=lambda group: str.lower(group.label), reverse=False)
         elif self.list_box_sorting == "Z-A":
@@ -526,10 +540,7 @@ class UnlockedDatabase:
         for group_row in sorted_list:
             list_box.add(group_row)
 
-    def insert_entries_into_listbox(self, list_box):
-        entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-        sorted_list = []
-
+    def entry_instance_creation(self, list_box, sorted_list, entries, overlay):
         for entry in entries:
             entry_row = EntryRow(self, self.database_manager, entry)
             sorted_list.append(entry_row)
@@ -541,6 +552,12 @@ class UnlockedDatabase:
 
         for entry_row in sorted_list:
             list_box.add(entry_row)
+
+        if len(list_box.get_children()) is 0:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+            empty_group_overlay = builder.get_object("empty_group_overlay")
+            overlay.add_overlay(empty_group_overlay)
 
     def rebuild_all_pages(self):
         for page in self.stack.get_children():
@@ -865,8 +882,17 @@ class UnlockedDatabase:
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
-        self.database_manager.save_database()
-        self.show_database_action_revealer("Database saved")
+
+        if self.database_manager.changes is True:
+            if self.database_manager.save_running is False:
+                self.save_thread = threading.Thread(target=self.database_manager.save_database)
+                self.save_thread.daemon = False
+                self.save_thread.start()
+                self.show_database_action_revealer("Database saved")
+            else:
+                self.show_database_action_revealer("Please wait. Another save is running.")
+        else:
+            self.show_database_action_revealer("No changes made")
 
     def on_lock_button_clicked(self, widget):
         if self.database_manager.made_database_changes() is True:
@@ -875,7 +901,10 @@ class UnlockedDatabase:
             self.lock_database()
 
     def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close, timeout):
-        self.database_manager.save_database()
+        save_thread = threading.Thread(target=self.database_manager.save_database)
+        save_thread.daemon = False
+        save_thread.start()
+
         save_dialog.destroy()
         self.lock_database()
 
@@ -986,7 +1015,6 @@ class UnlockedDatabase:
             self.database_manager.set_entry_icon(entry_uuid, button.get_name())
 
     def on_entry_color_button_toggled(self, button):
-        print("on_entry_color_button_toggled")
         self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
@@ -1196,27 +1224,38 @@ class UnlockedDatabase:
         if search_fulltext_button.get_active() is True:
             fulltext = True
 
+        search_thread = threading.Thread(target=self.search_thread_creation, args=(search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay))
+        search_thread.daemon = True
+        search_thread.start()
+
+    def search_thread_creation(self, search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay):
         if search_local_button.get_active() is True:
             result_list = self.database_manager.local_search(self.current_group, widget.get_text(), fulltext)
         else:
             result_list = self.database_manager.global_search(widget.get_text(), fulltext)
 
+        GLib.idle_add(self.search_overlay_creation, widget, result_list, empty_search_overlay, info_search_overlay)
+
+    def search_overlay_creation(self, widget, result_list, empty_search_overlay, info_search_overlay):
         if widget.get_text() is not "":
             if empty_search_overlay in self.search_overlay:
                 self.search_overlay.remove(empty_search_overlay)
 
-            for uuid in result_list:
-                if self.database_manager.check_is_group(uuid):
-                    group_row = GroupRow(self, self.database_manager, self.database_manager.get_group_object_from_uuid(uuid))
-                    self.search_list_box.add(group_row)
-                else:
-                    entry_row = EntryRow(self, self.database_manager, self.database_manager.get_entry_object_from_uuid(uuid))
-                    self.search_list_box.add(entry_row)
-
-            if len(self.search_list_box.get_children()) is 0:
-                self.search_overlay.add_overlay(empty_search_overlay)
+            self.search_instance_creation(result_list, empty_search_overlay)
         else:
             self.search_overlay.add_overlay(info_search_overlay)
+
+    def search_instance_creation(self, result_list, empty_search_overlay):
+        for uuid in result_list:
+            if self.database_manager.check_is_group(uuid):
+                group_row = GroupRow(self, self.database_manager, self.database_manager.get_group_object_from_uuid(uuid))
+                self.search_list_box.add(group_row)
+            else:
+                entry_row = EntryRow(self, self.database_manager, self.database_manager.get_entry_object_from_uuid(uuid))
+                self.search_list_box.add(entry_row)
+
+        if len(self.search_list_box.get_children()) is 0:
+            self.search_overlay.add_overlay(empty_search_overlay)
 
     def on_headerbar_search_entry_enter_pressed(self, widget):
         self.start_database_lock_timer()

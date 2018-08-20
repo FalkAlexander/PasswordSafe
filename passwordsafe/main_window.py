@@ -435,7 +435,6 @@ class MainWindow(Gtk.ApplicationWindow):
         for db in self.opened_databases:
             self.session_bus.remove_signal_receiver(db.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
             db.cancel_timers()
-            db.remove_session_bus_signal()
 
         for db in self.databases_to_save:
             db.database_manager.save_database()

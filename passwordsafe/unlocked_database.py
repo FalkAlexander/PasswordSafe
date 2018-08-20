@@ -411,15 +411,9 @@ class UnlockedDatabase:
 
                 self.add_stack_page(scrolled_window)
 
-                self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=[list_box])
+                self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=(list_box, overlay))
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()
-                #self.insert_groups_into_listbox(list_box)
-                #self.insert_entries_into_listbox(list_box)
-
-                #if len(list_box.get_children()) is 0:
-                #    empty_group_overlay = builder.get_object("empty_group_overlay")
-                #    overlay.add_overlay(empty_group_overlay)
             # Create not existing stack page for entry
             else:
                 builder = Gtk.Builder()
@@ -514,7 +508,7 @@ class UnlockedDatabase:
     # Create Group & Entry Rows
     #
 
-    def insert_groups_into_listbox(self, list_box):
+    def insert_groups_into_listbox(self, list_box, overlay):
         groups = NotImplemented
         sorted_list = []
 
@@ -525,13 +519,13 @@ class UnlockedDatabase:
 
         GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
 
-        self.insert_entries_into_listbox(list_box)
+        self.insert_entries_into_listbox(list_box, overlay)
 
-    def insert_entries_into_listbox(self, list_box):
+    def insert_entries_into_listbox(self, list_box, overlay):
         entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         sorted_list = []
 
-        GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries)
+        GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries, overlay)
 
     def group_instance_creation(self, list_box, sorted_list, groups):
         for group in groups:
@@ -546,7 +540,7 @@ class UnlockedDatabase:
         for group_row in sorted_list:
             list_box.add(group_row)
 
-    def entry_instance_creation(self, list_box, sorted_list, entries):
+    def entry_instance_creation(self, list_box, sorted_list, entries, overlay):
         for entry in entries:
             entry_row = EntryRow(self, self.database_manager, entry)
             sorted_list.append(entry_row)
@@ -558,6 +552,12 @@ class UnlockedDatabase:
 
         for entry_row in sorted_list:
             list_box.add(entry_row)
+
+        if len(list_box.get_children()) is 0:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+            empty_group_overlay = builder.get_object("empty_group_overlay")
+            overlay.add_overlay(empty_group_overlay)
 
     def rebuild_all_pages(self):
         for page in self.stack.get_children():
@@ -1221,6 +1221,11 @@ class UnlockedDatabase:
         if search_fulltext_button.get_active() is True:
             fulltext = True
 
+        search_thread = threading.Thread(target=self.search_thread_creation, args=(search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay))
+        search_thread.daemon = True
+        search_thread.start()
+
+    def search_thread_creation(self, search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay):
         if search_local_button.get_active() is True:
             result_list = self.database_manager.local_search(self.current_group, widget.get_text(), fulltext)
         else:
@@ -1228,28 +1233,23 @@ class UnlockedDatabase:
 
         if widget.get_text() is not "":
             if empty_search_overlay in self.search_overlay:
-                self.search_overlay.remove(empty_search_overlay)
+                GLib.idle_add(self.search_overlay.remove, empty_search_overlay)
 
-            self.result_list = result_list
-            search_thread = threading.Thread(target=self.assemble_search_list_box)
-            search_thread.daemon = True
-            search_thread.start()
-
-            #if len(self.search_list_box.get_children()) is 0:
-            #    self.search_overlay.add_overlay(empty_search_overlay)
+            GLib.idle_add(self.search_instance_creation, result_list, empty_search_overlay)
         else:
             self.search_overlay.add_overlay(info_search_overlay)
 
-    def assemble_search_list_box(self):
-        result_list = self.result_list
-
+    def search_instance_creation(self, result_list, empty_search_overlay):
         for uuid in result_list:
             if self.database_manager.check_is_group(uuid):
                 group_row = GroupRow(self, self.database_manager, self.database_manager.get_group_object_from_uuid(uuid))
-                GLib.idle_add(self.search_list_box.add, group_row)
+                self.search_list_box.add(group_row)
             else:
                 entry_row = EntryRow(self, self.database_manager, self.database_manager.get_entry_object_from_uuid(uuid))
-                GLib.idle_add(self.search_list_box.add, entry_row)
+                self.search_list_box.add(entry_row)
+
+        if len(self.search_list_box.get_children()) is 0:
+            self.search_overlay.add_overlay(empty_search_overlay)
 
     def on_headerbar_search_entry_enter_pressed(self, widget):
         self.start_database_lock_timer()

@@ -8,6 +8,7 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from threading import Timer
+from gettext import gettext as _
 import passwordsafe.password_generator
 import passwordsafe.config_manager
 import os
@@ -888,11 +889,11 @@ class UnlockedDatabase:
                 self.save_thread = threading.Thread(target=self.database_manager.save_database)
                 self.save_thread.daemon = False
                 self.save_thread.start()
-                self.show_database_action_revealer("Database saved")
+                self.show_database_action_revealer(_("Database saved"))
             else:
-                self.show_database_action_revealer("Please wait. Another save is running.")
+                self.show_database_action_revealer(_("Please wait. Another save is running."))
         else:
-            self.show_database_action_revealer("No changes made")
+            self.show_database_action_revealer(_("No changes made"))
 
     def on_lock_button_clicked(self, widget):
         if self.database_manager.made_database_changes() is True:
@@ -1398,9 +1399,9 @@ class UnlockedDatabase:
             self.pathbar.rebuild_pathbar(self.current_group)
 
         if move_conflict is False:
-            self.show_database_action_revealer("Move completed")
+            self.show_database_action_revealer(_("Move completed"))
         else:
-            self.show_database_action_revealer("Skipped moving group into itself")
+            self.show_database_action_revealer(_("Skipped moving group into itself"))
 
         self.entries_selected.clear()
         self.groups_selected.clear()
@@ -1497,7 +1498,7 @@ class UnlockedDatabase:
             self.overlay.hide()
             self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
 
-        self.send_notification(os.path.splitext(ntpath.basename(self.database_manager.database_path))[0] + " locked", "Keepass safe locked due to inactivity", "dialog-password-symbolic")
+        self.send_notification(os.path.splitext(ntpath.basename(self.database_manager.database_path))[0] + _(" locked"), _("Keepass safe locked due to inactivity"), "dialog-password-symbolic")
 
     #
     # Helper Methods

@@ -2,6 +2,7 @@ from gi.repository import Gtk, Gdk
 import gi
 import passwordsafe.icon
 gi.require_version('Gtk', '3.0')
+from gettext import gettext as _
 
 
 class EntryRow(Gtk.ListBoxRow):
@@ -59,7 +60,7 @@ class EntryRow(Gtk.ListBoxRow):
         if self.database_manager.has_entry_name(self.entry_uuid) is True and self.label is not "":
             entry_name_label.set_text(self.label)
         else:
-            entry_name_label.set_markup("<span font-style=\"italic\">" + "Title not specified" + "</span>")
+            entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
 
         # Subtitle
         subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
@@ -68,7 +69,7 @@ class EntryRow(Gtk.ListBoxRow):
                 self.database_manager.get_entry_username_from_entry_uuid(
                     self.entry_uuid))
         else:
-            entry_subtitle_label.set_markup("<span font-style=\"italic\">" + "No username specified" + "</span>")
+            entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
 
         # Password
         if self.database_manager.has_entry_password(self.entry_uuid) is True and self.password is not "":

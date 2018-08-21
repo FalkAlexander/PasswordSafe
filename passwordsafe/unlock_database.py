@@ -10,6 +10,7 @@ import os
 import threading
 import time
 import datetime
+from gettext import gettext as _
 
 
 class UnlockDatabase:
@@ -181,7 +182,7 @@ class UnlockDatabase:
                 self.window.container.remove_page(current_page_num)
                 self.window.update_tab_bar_visibility()
 
-                db.show_database_action_revealer("Database already opened")
+                db.show_database_action_revealer(_("Database already opened"))
 
         if password_unlock_entry.get_text() != "" and database_already_opened is False:
             if self.timeout is True:

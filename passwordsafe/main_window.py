@@ -131,7 +131,7 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def first_start_screen(self):
-        filepath = Gio.File.new_for_path(passwordsafe.config_manager.get_last_opened_database()).get_path()
+        filepath = Gio.File.new_for_uri(passwordsafe.config_manager.get_last_opened_database()).get_path()
 
         if len(self.get_application().file_list) is not 0:
             for g_file in self.get_application().file_list:

@@ -1093,7 +1093,8 @@ class UnlockedDatabase:
         if self.pathbar.is_pathbar_button_in_pathbar(entry_uuid) is True:
             self.pathbar.rebuild_pathbar(self.current_group)
 
-        self.database_manager.delete_entry_from_database(self.entry_marked_for_delete)
+        if self.entry_marked_for_delete is not None:
+            self.database_manager.delete_entry_from_database(self.entry_marked_for_delete)
         self.update_current_stack_page()
 
     def on_group_row_button_pressed(self, widget, event):

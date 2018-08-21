@@ -29,6 +29,7 @@ class UnlockDatabase:
     original_group = NotImplemented
     original_group_edit_page = NotImplemented
     password_only = NotImplemented
+    unlock_thread = NotImplemented
 
     def __init__(self, window, widget, filepath):
         self.window = window
@@ -148,13 +149,6 @@ class UnlockDatabase:
     # Events
     #
 
-    def on_password_unlock_entry_secondary_clicked(self, widget, position, eventbutton):
-        if widget.get_visibility():
-            widget.set_invisible_char("●")
-            widget.set_visibility(False)
-        else:
-            widget.set_visibility(True)
-
     def on_headerbar_back_button_clicked(self, widget):
         if self.timeout is True:
             for db in self.window.opened_databases:
@@ -162,6 +156,15 @@ class UnlockDatabase:
                     self.window.opened_databases.remove(db)
         self.window.set_headerbar()
         self.window.close_tab(self.parent_widget)
+
+    # Password Unlock
+
+    def on_password_unlock_entry_secondary_clicked(self, widget, position, eventbutton):
+        if widget.get_visibility():
+            widget.set_invisible_char("●")
+            widget.set_visibility(False)
+        else:
+            widget.set_visibility(True)
 
     def on_password_unlock_button_clicked(self, widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
@@ -222,32 +225,40 @@ class UnlockDatabase:
                 password_unlock_button.add(spinner)
 
                 self.password_only = password_unlock_entry.get_text()
-                thread = threading.Thread(target=self.password_unlock_process)
-                thread.daemon = True
-                thread.start()
+                self.unlock_thread = threading.Thread(target=self.password_unlock_process)
+                self.unlock_thread.daemon = True
+                self.unlock_thread.start()
 
     def password_unlock_process(self):
         try:
             self.database_manager = DatabaseManager(self.database_filepath, self.password_only)
-            self.password_only = NotImplemented
-            self.set_last_used_unlock_method("password")
-            self.logging_manager.log_debug("Opening of database was successfull")
-            GLib.idle_add(self.open_database_page)
+            GLib.idle_add(self.password_unlock_success)
         except(OSError):
-            password_unlock_button = self.builder.get_object("password_unlock_button")
-            password_unlock_button.remove(password_unlock_button.get_children()[0])
-            password_unlock_button.add(self.builder.get_object("password_unlock_button_image"))
-            password_unlock_entry = self.builder.get_object("password_unlock_entry")
-            password_unlock_entry.set_sensitive(True)
-            self.unlock_database_stack_switcher.set_sensitive(True)
-            password_unlock_button.set_sensitive(True)
+            GLib.idle_add(self.password_unlock_failure)
 
-            self.show_unlock_failed_revealer()
+    def password_unlock_success(self):
+        self.password_only = NotImplemented
+        self.set_last_used_unlock_method("password")
+        self.logging_manager.log_debug("Opening of database was successfull")
+        self.open_database_page()
 
-            password_unlock_entry.grab_focus()
-            password_unlock_entry.get_style_context().add_class("error")
-            self.clear_input_fields()
-            self.logging_manager.log_debug("Could not open database, wrong password")
+    def password_unlock_failure(self):
+        password_unlock_button = self.builder.get_object("password_unlock_button")
+        password_unlock_button.remove(password_unlock_button.get_children()[0])
+        password_unlock_button.add(self.builder.get_object("password_unlock_button_image"))
+        password_unlock_entry = self.builder.get_object("password_unlock_entry")
+        password_unlock_entry.set_sensitive(True)
+        self.unlock_database_stack_switcher.set_sensitive(True)
+        password_unlock_button.set_sensitive(True)
+
+        self.show_unlock_failed_revealer()
+
+        password_unlock_entry.grab_focus()
+        password_unlock_entry.get_style_context().add_class("error")
+        self.clear_input_fields()
+        self.logging_manager.log_debug("Could not open database, wrong password")
+
+    # Keyfile Unlock
 
     def on_keyfile_unlock_select_button_clicked(self, widget):
         keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
@@ -323,37 +334,45 @@ class UnlockDatabase:
             keyfile_unlock_button.remove(keyfile_unlock_button_image)
             keyfile_unlock_button.add(spinner)
 
-            thread = threading.Thread(target=self.keyfile_unlock_process)
-            thread.daemon = True
-            thread.start()
+            self.unlock_thread = threading.Thread(target=self.keyfile_unlock_process)
+            self.unlock_thread.daemon = True
+            self.unlock_thread.start()
 
     def keyfile_unlock_process(self):
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
-            self.database_manager.set_keyfile_hash(self.keyfile_path)
-            self.set_last_used_unlock_method("keyfile")
-            self.logging_manager.log_debug("Database successfully opened with keyfile")
-            self.keyfile_path = NotImplemented
-            GLib.idle_add(self.open_database_page)
+            GLib.idle_add(self.keyfile_unlock_success)
         except(OSError, IndexError):
-            keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
-            keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
-            keyfile_unlock_button.remove(keyfile_unlock_button.get_children()[0])
-            keyfile_unlock_button.add(self.builder.get_object("keyfile_unlock_button_image"))
-            keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
-            keyfile_unlock_select_button.set_sensitive(True)
-            keyfile_unlock_button.set_sensitive(True)
-            self.unlock_database_stack_switcher.set_sensitive(True)
+            GLib.idle_add(self.keyfile_unlock_failure)
 
-            self.show_unlock_failed_revealer()
+    def keyfile_unlock_success(self):
+        self.database_manager.set_keyfile_hash(self.keyfile_path)
+        self.set_last_used_unlock_method("keyfile")
+        self.logging_manager.log_debug("Database successfully opened with keyfile")
+        self.keyfile_path = NotImplemented
+        self.open_database_page()
 
-            if self.database_manager is not NotImplemented:
-                    self.database_manager.keyfile_hash = NotImplemented
+    def keyfile_unlock_failure(self):
+        keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
+        keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
+        keyfile_unlock_button.remove(keyfile_unlock_button.get_children()[0])
+        keyfile_unlock_button.add(self.builder.get_object("keyfile_unlock_button_image"))
+        keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
+        keyfile_unlock_select_button.set_sensitive(True)
+        keyfile_unlock_button.set_sensitive(True)
+        self.unlock_database_stack_switcher.set_sensitive(True)
 
-            keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
-            keyfile_unlock_select_button.set_label("Try again")
+        self.show_unlock_failed_revealer()
 
-            self.logging_manager.log_debug("Invalid keyfile chosen")
+        if self.database_manager is not NotImplemented:
+                self.database_manager.keyfile_hash = NotImplemented
+
+        keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
+        keyfile_unlock_select_button.set_label("Try again")
+
+        self.logging_manager.log_debug("Invalid keyfile chosen")
+
+    # Composite Unlock
 
     def on_composite_unlock_select_button_clicked(self, widget):
         filechooser_opening_dialog = Gtk.FileChooserDialog(
@@ -435,48 +454,54 @@ class UnlockDatabase:
                 composite_unlock_button.add(spinner)
 
                 self.password_composite = composite_unlock_entry.get_text()
-                thread = threading.Thread(target=self.composite_unlock_process)
-                thread.daemon = True
-                thread.start()
+                self.unlock_thread = threading.Thread(target=self.composite_unlock_process)
+                self.unlock_thread.daemon = True
+                self.unlock_thread.start()
             else:
                 composite_unlock_entry.get_style_context().add_class("error")
 
     def composite_unlock_process(self):
         try:
             self.database_manager = DatabaseManager(self.database_filepath, self.password_composite, self.composite_keyfile_path)
-            self.password_composite = NotImplemented
-            self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
-
-            if passwordsafe.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
-                        passwordsafe.config_manager.set_last_used_composite_key(Gio.File.new_for_path(self.composite_keyfile_path).get_uri())
-
-            self.set_last_used_unlock_method("composite")
-            self.logging_manager.log_debug("Opening of database was successfull")
-            self.composite_keyfile_path = NotImplemented
-            GLib.idle_add(self.open_database_page)
+            GLib.idle_add(self.composite_unlock_success)
         except(OSError, IndexError):
-            composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
-            composite_unlock_button = self.builder.get_object("composite_unlock_button")
-            composite_unlock_button.remove(composite_unlock_button.get_children()[0])
-            composite_unlock_button.add(self.builder.get_object("composite_unlock_button_image"))
-            composite_unlock_select_button.set_sensitive(True)
-            composite_unlock_button.set_sensitive(True)
-            composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
-            composite_unlock_entry.set_sensitive(True)
-            self.unlock_database_stack_switcher.set_sensitive(True)
+            GLib.idle_add(self.composite_unlock_failure)
 
-            self.show_unlock_failed_revealer()
+    def composite_unlock_success(self):
+        self.password_composite = NotImplemented
+        self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
 
-            if self.database_manager is not NotImplemented:
-                self.database_manager.keyfile_hash = NotImplemented
+        if passwordsafe.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
+                    passwordsafe.config_manager.set_last_used_composite_key(Gio.File.new_for_path(self.composite_keyfile_path).get_uri())
 
-            composite_unlock_entry.grab_focus()
-            composite_unlock_entry.get_style_context().add_class("error")
-            composite_unlock_select_button.get_style_context().remove_class("suggested-action")
-            composite_unlock_select_button.get_style_context().add_class("destructive-action")
-            self.clear_input_fields()
+        self.set_last_used_unlock_method("composite")
+        self.logging_manager.log_debug("Opening of database was successfull")
+        self.composite_keyfile_path = NotImplemented
+        self.open_database_page()
 
-            self.logging_manager.log_debug("Could not open database, wrong password")
+    def composite_unlock_failure(self):
+        composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
+        composite_unlock_button = self.builder.get_object("composite_unlock_button")
+        composite_unlock_button.remove(composite_unlock_button.get_children()[0])
+        composite_unlock_button.add(self.builder.get_object("composite_unlock_button_image"))
+        composite_unlock_select_button.set_sensitive(True)
+        composite_unlock_button.set_sensitive(True)
+        composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
+        composite_unlock_entry.set_sensitive(True)
+        self.unlock_database_stack_switcher.set_sensitive(True)
+
+        self.show_unlock_failed_revealer()
+
+        if self.database_manager is not NotImplemented:
+            self.database_manager.keyfile_hash = NotImplemented
+
+        composite_unlock_entry.grab_focus()
+        composite_unlock_entry.get_style_context().add_class("error")
+        composite_unlock_select_button.get_style_context().remove_class("suggested-action")
+        composite_unlock_select_button.get_style_context().add_class("destructive-action")
+        self.clear_input_fields()
+
+        self.logging_manager.log_debug("Could not open database, wrong password")
 
     #
     # Open Database

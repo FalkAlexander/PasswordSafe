@@ -2,6 +2,7 @@ from gi.repository import Gtk
 from threading import Timer
 import passwordsafe.config_manager
 import gi
+from gettext import gettext as _
 
 
 class DatabaseSettingsDialog():
@@ -52,17 +53,17 @@ class DatabaseSettingsDialog():
                 old_password_entry.set_text("")
                 new_password_entry.set_text("")
                 repeat_new_password_entry.set_text("")
-                self.show_database_action_revealer("You need to save the database to apply the new password")
+                self.show_database_action_revealer(_("You need to save the database to apply the new password"))
             else:
                 old_password_entry.get_style_context().add_class("error")
                 new_password_entry.get_style_context().add_class("error")
                 repeat_new_password_entry.get_style_context().add_class("error")
-                self.show_database_action_revealer("Wrong passwords")
+                self.show_database_action_revealer(_("Wrong passwords"))
         else:
             old_password_entry.get_style_context().add_class("error")
             new_password_entry.get_style_context().add_class("error")
             repeat_new_password_entry.get_style_context().add_class("error")
-            self.show_database_action_revealer("Wrong passwords")
+            self.show_database_action_revealer(_("Wrong passwords"))
 
     def show_database_action_revealer(self, message):
         database_action_box = self.builder.get_object("database_action_box")

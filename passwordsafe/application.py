@@ -4,6 +4,7 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Notify', '0.7')
 from gi.repository import GLib, Gio, Gtk
 from gi.repository import Notify
+from gettext import gettext as _
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
 
@@ -39,11 +40,11 @@ class Application(Gtk.Application):
     def assemble_application_menu(self):
         app_menu = Gio.Menu()
 
-        app_menu.append("Settings", "app.settings")
-        app_menu.append("Shortcuts", "app.shortcuts")
+        app_menu.append(_("Settings"), "app.settings")
+        app_menu.append(_("Shortcuts"), "app.shortcuts")
 
-        app_menu.append("About", "app.about")
-        app_menu.append("Quit", "app.quit")
+        app_menu.append(_("About"), "app.about")
+        app_menu.append(_("Quit"), "app.quit")
 
         settings_action = Gio.SimpleAction.new("settings", None)
         settings_action.connect("activate", self.on_settings_menu_clicked)

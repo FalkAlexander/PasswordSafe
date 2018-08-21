@@ -1,6 +1,7 @@
 from gi.repository import Gtk, Gdk
 import gi
 gi.require_version('Gtk', '3.0')
+from gettext import gettext as _
 
 
 class GroupRow(Gtk.ListBoxRow):
@@ -39,7 +40,7 @@ class GroupRow(Gtk.ListBoxRow):
         if self.label is not None and self.label is not "":
             group_name_label.set_text(self.label)
         else:
-            group_name_label.set_markup("<span font-style=\"italic\">" + "No group title specified" + "</span>")
+            group_name_label.set_markup("<span font-style=\"italic\">" + _("No group title specified") + "</span>")
 
         self.add(group_event_box)
         self.show_all()

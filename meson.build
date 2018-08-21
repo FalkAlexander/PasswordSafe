@@ -37,6 +37,7 @@ conf.set('libexecdir', LIBEXEC_DIR)
 conf.set('VERSION', meson.project_version())
 
 subdir('data')
+subdir('po')
 
 install_subdir(
   'passwordsafe',

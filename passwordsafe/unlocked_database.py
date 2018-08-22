@@ -1140,6 +1140,7 @@ class UnlockedDatabase:
             self.clipboard_timer.cancel()
 
         self.clipboard.set_text(widget.get_text(), -1)
+        self.show_database_action_revealer(_("Copied to clipboard"))
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
         self.clipboard_timer.start()
@@ -1150,6 +1151,7 @@ class UnlockedDatabase:
             self.clipboard_timer.cancel()
 
         self.clipboard.set_text(widget.get_text(), -1)
+        self.show_database_action_revealer(_("Copied to clipboard"))
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
         self.clipboard_timer.start()

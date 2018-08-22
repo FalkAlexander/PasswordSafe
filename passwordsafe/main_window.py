@@ -475,9 +475,9 @@ class MainWindow(Gtk.ApplicationWindow):
     def on_application_quit(self, window, event):
         unsaved_databases_list = []
         for db in self.opened_databases:
-            db.stop_save_loop()
             if db.database_manager.changes is True:
                 if passwordsafe.config_manager.get_save_automatically() is True:
+                    db.stop_save_loop()
                     save_thread = threading.Thread(target=db.database_manager.save_database)
                     save_thread.daemon = False
                     save_thread.start()

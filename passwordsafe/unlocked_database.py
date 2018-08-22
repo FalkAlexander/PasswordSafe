@@ -1557,7 +1557,7 @@ class UnlockedDatabase:
     def start_save_loop(self):
         self.save_loop = True
         save_loop_thread = threading.Thread(target=self.threaded_save_loop)
-        save_loop_thread.daemon = False
+        save_loop_thread.daemon = True
         save_loop_thread.start()
 
     def threaded_save_loop(self):

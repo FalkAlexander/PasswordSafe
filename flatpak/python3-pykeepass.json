@@ -2,13 +2,13 @@
     "name": "python3-pykeepass",
     "buildsystem": "simple",
     "build-commands": [
-        "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pykeepass"
+        "pip3 install --no-index --no-build-isolation --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pykeepass"
     ],
     "sources": [
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/0d/33/3466a3210321a02040e3ab2cd1ffc6f44664301a5d650a7e44be1dc341f2/pyasn1-0.4.3.tar.gz",
-            "sha256": "fb81622d8f3509f0026b0683fe90fea27be7284d3826a5f2edf97f69151ab0fc"
+            "url": "https://files.pythonhosted.org/packages/10/46/059775dc8e50f722d205452bced4b3cc965d27e8c3389156acd3b1123ae3/pyasn1-0.4.4.tar.gz",
+            "sha256": "f58f2a3d12fd754aa123e9fa74fb7345333000a035f3921dbdaa08597aa53137"
         },
         {
             "type": "file",
@@ -17,8 +17,8 @@
         },
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/67/b9/7becc03fbc39a51451a9c4497e8df2268ccccb5ee25472a1303f2e31605a/pysmb-1.1.23.zip",
-            "sha256": "b0233636f272f36dbc930951391c6ee246fcb022ddce420ab2916dde1f14e394"
+            "url": "https://files.pythonhosted.org/packages/ba/cd/a1d46ac49f817b334e8ee5a0eb1d81edb827a7bbb5891ea13b935c9b775d/pysmb-1.1.25.zip",
+            "sha256": "dc082c2107961e02970f8da643e298bc49a799cbeb47173908dba4163432d04c"
         },
         {
             "type": "file",
@@ -27,13 +27,13 @@
         },
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/f9/72/63fc67bf43286a0fe6a377adc68cec30dcb02b862b10d667788bde112741/pycryptodome-3.6.1.tar.gz",
-            "sha256": "15013007e393d0cc0e69f4329a47c4c8597b7f3d02c12c03f805405542f70c71"
+            "url": "https://files.pythonhosted.org/packages/94/7f/33b748dd22ea889fcb1a6c6f1f30ad1e5a70066cd7615dbce7d9a6392106/pycryptodome-3.6.6.tar.gz",
+            "sha256": "b3cb4af317d9b84f6df50f0cfa6840ba69556af637a83fd971537823e13d601a"
         },
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/e8/5d/98f56e274bdf17f2e0d9016d1788ca80d26d8987dcd5e1d9416d86ee0625/lxml-4.2.1.tar.gz",
-            "sha256": "e2629cdbcad82b83922a3488937632a4983ecc0fed3e5cfbf430d069382eeb9b"
+            "url": "https://files.pythonhosted.org/packages/ca/63/139b710671c1655aed3b20c1e6776118c62e9f9311152f4c6031e12a0554/lxml-4.2.4.tar.gz",
+            "sha256": "e2afbe403090f5893e254958d02875e0732975e73c4c0cdd33c1f009a61963ca"
         },
         {
             "type": "file",

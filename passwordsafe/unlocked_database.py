@@ -16,6 +16,7 @@ import threading
 import gi
 import ntpath
 import datetime
+import time
 
 gi.require_version('Gtk', '3.0')
 
@@ -47,6 +48,7 @@ class UnlockedDatabase:
     database_locked = False
     listbox_insert_thread = NotImplemented
     result_list = NotImplemented
+    save_loop = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -62,6 +64,8 @@ class UnlockedDatabase:
         self.unlock_database = unlock_database
         self.assemble_listbox()
         self.window.opened_databases.append(self)
+
+        self.start_save_loop()
 
         #self.register_dbus_signal()
 
@@ -886,9 +890,9 @@ class UnlockedDatabase:
 
         if self.database_manager.changes is True:
             if self.database_manager.save_running is False:
-                self.save_thread = threading.Thread(target=self.database_manager.save_database)
-                self.save_thread.daemon = False
-                self.save_thread.start()
+                save_thread = threading.Thread(target=self.database_manager.save_database)
+                save_thread.daemon = False
+                save_thread.start()
                 self.show_database_action_revealer(_("Database saved"))
             else:
                 self.show_database_action_revealer(_("Please wait. Another save is running."))
@@ -1367,8 +1371,6 @@ class UnlockedDatabase:
 
         # It is more efficient to do this here and not in the database manager loop
         self.database_manager.changes = True
-        if passwordsafe.config_manager.get_save_automatically() is True:
-            self.database_manager.save_database()
 
     def on_selection_cut_button_clicked(self, widget):
         rebuild_pathbar = False
@@ -1412,8 +1414,6 @@ class UnlockedDatabase:
 
         # It is more efficient to do this here and not in the database manager loop
         self.database_manager.changes = True
-        if passwordsafe.config_manager.get_save_automatically() is True:
-            self.database_manager.save_database()
 
     def on_selection_popover_button_clicked(self, action, param, selection_type):
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -1468,7 +1468,13 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
+        self.stop_save_loop()
         #self.window.session_bus.remove_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
+
+        if passwordsafe.config_manager.get_save_automatically() is True:
+            save_thread = threading.Thread(target=self.database_manager.save_database)
+            save_thread.daemon = False
+            save_thread.start()
 
         for db in self.window.opened_databases:
             if db.database_manager.database_path == self.database_manager.database_path:
@@ -1480,6 +1486,12 @@ class UnlockedDatabase:
     def lock_timeout_database(self):
         self.cancel_timers()
         self.database_locked = True
+        self.stop_save_loop()
+
+        if passwordsafe.config_manager.get_save_automatically() is True:
+            save_thread = threading.Thread(target=self.database_manager.save_database)
+            save_thread.daemon = False
+            save_thread.start()
 
         # Workaround against crash (pygobject fault?)
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is False:
@@ -1541,6 +1553,25 @@ class UnlockedDatabase:
     def send_notification(self, title, text, icon):
         notify = Notify.Notification.new(title, text, icon)
         notify.show()
+
+    def start_save_loop(self):
+        self.save_loop = True
+        save_loop_thread = threading.Thread(target=self.threaded_save_loop)
+        save_loop_thread.daemon = False
+        save_loop_thread.start()
+
+    def threaded_save_loop(self):
+        while self.save_loop is True:
+            if passwordsafe.config_manager.get_save_automatically() is True:
+                self.builder.get_object("save_button").set_sensitive(False)
+                self.database_manager.save_database()
+            else:
+                self.builder.get_object("save_button").set_sensitive(True)
+            time.sleep(30)
+
+    def stop_save_loop(self):
+        self.builder.get_object("save_button").set_sensitive(True)
+        self.save_loop = False
 
     #def register_dbus_signal(self):
     #    self.window.session_bus.add_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')

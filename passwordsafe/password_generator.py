@@ -1,23 +1,21 @@
-import string
-from random import *
+import secrets
 
 def generate(digits, high_letter, low_letter, numbers, special):
     characters = ""
     
     if high_letter is True:
-        characters = characters + string.ascii_uppercase
+        characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     if low_letter is True:
-        characters = characters + string.ascii_lowercase
+        characters += "abcdefghijklmnopqrstuvwxyz"
 
     if numbers is True:
-        characters = characters + string.digits
+        characters += "0123456789"
 
     if special is True:
-        characters = characters + string.punctuation
+        characters += "?!@#$%`<|>^&*()-_.:;,#*+~’§/\={}"
 
     if characters == "":
-        characters = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation
+        characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?!@#$%`<|>^&*()-_.:;,#*+~’§/\={}"
 
-    password = "".join(choice(characters) for i in range(digits))
-    return password
+    return "".join([secrets.choice(characters) for _ in range(0, digits)])

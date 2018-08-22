@@ -358,7 +358,7 @@
                 <property name="valign">end</property>
                 <property name="hexpand">False</property>
                 <property name="vexpand">True</property>
-                <property name="label" translatable="yes">Title not specified</property>
+                <property name="label">Title not specified</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -384,7 +384,7 @@
                     <property name="valign">start</property>
                     <property name="hexpand">False</property>
                     <property name="vexpand">True</property>
-                    <property name="label" translatable="yes">No username specified</property>
+                    <property name="label">No username specified</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -546,7 +546,7 @@
             <property name="name">name_label</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Group title not specified</property>
+            <property name="label">Group title not specified</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -696,7 +696,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.db.settings</property>
-            <property name="text" translatable="yes">Database Settings</property>
+            <property name="text" translatable="yes" comments="Open settings for safe (e.g. password changing)">Safe Settings</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -896,7 +896,7 @@
                 <property name="margin_right">6</property>
                 <child>
                   <object class="GtkButton" id="save_button">
-                    <property name="label" translatable="yes">Save</property>
+                    <property name="label" translatable="yes" comments="Button to save all the changes which were made to the keepass safe">Save</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -1007,7 +1007,7 @@
         <property name="margin_bottom">5</property>
         <child>
           <object class="GtkToggleButton" id="search_local_button">
-            <property name="label" translatable="yes">Local</property>
+            <property name="label" translatable="yes" comments="Only apply the search term for the current group">Local</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -1021,7 +1021,7 @@
         </child>
         <child>
           <object class="GtkToggleButton" id="search_fulltext_button">
-            <property name="label" translatable="yes">Full Text</property>
+            <property name="label" translatable="yes" comments="Use full text search">Full Text</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>

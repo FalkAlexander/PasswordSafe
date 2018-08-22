@@ -81,7 +81,7 @@
           <object class="GtkLabel" id="password_creation_label2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Create a database password</property>
+            <property name="label" translatable="yes">Set password for safe</property>
             <property name="yalign">0.10000000149011612</property>
             <style>
               <class name="dim-label"/>
@@ -222,7 +222,7 @@
           <object class="GtkLabel" id="password_check_label2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Repeat database password</property>
+            <property name="label" translatable="yes">Repeat password for safe</property>
             <property name="yalign">0.10000000149011612</property>
             <style>
               <class name="dim-label"/>
@@ -475,8 +475,8 @@
   <object class="GtkHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Password Safe</property>
-    <property name="subtitle" translatable="yes">Create Database</property>
+    <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
+    <property name="subtitle" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Database</property>
     <property name="show_close_button">True</property>
     <child>
       <object class="GtkBox" id="headerbarbuttonbox">

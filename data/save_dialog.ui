@@ -5,8 +5,8 @@
   <object class="GtkMessageDialog" id="save_dialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
-    <property name="text" translatable="yes">Unsaved Changes</property>
-    <property name="secondary_text" translatable="yes">Do you want to write all changes to database?</property>
+    <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes. ">Unsaved Changes</property>
+    <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed. ">Do you want to write all changes to the safe?</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="message">
         <property name="can_focus">False</property>
@@ -19,7 +19,7 @@
             <property name="layout_style">expand</property>
             <child>
               <object class="GtkButton" id="discard_button">
-                <property name="label" translatable="yes">Discard</property>
+                <property name="label" translatable="yes" comments="Discard all the changes which the user might have made to his keepass safe">Discard</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -32,7 +32,7 @@
             </child>
             <child>
               <object class="GtkButton" id="save_button">
-                <property name="label" translatable="yes">Save</property>
+                <property name="label" translatable="yes" comments="Save all the changes which the user might have made to his keepass safe">Save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

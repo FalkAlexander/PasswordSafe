@@ -6,11 +6,11 @@ variables:
 
 
 flatpak:
-    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:3.28
+    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
     stage: flatpak
     variables:
         MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.json"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome.flatpakrepo"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
         FLATPAK_MODULE: "passwordsafe"
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}

@@ -172,6 +172,7 @@ class UnlockedDatabase:
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
 
+
     def set_gio_actions(self):
         db_settings_action = Gio.SimpleAction.new("db.settings", None)
         db_settings_action.connect("activate", self.on_database_settings_entry_clicked)
@@ -895,8 +896,10 @@ class UnlockedDatabase:
                 save_thread.start()
                 self.show_database_action_revealer(_("Database saved"))
             else:
+                # NOTE: In-app notification to inform the user that already an unfinished save job is running
                 self.show_database_action_revealer(_("Please wait. Another save is running."))
         else:
+            # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
             self.show_database_action_revealer(_("No changes made"))
 
     def on_lock_button_clicked(self, widget):
@@ -1512,7 +1515,8 @@ class UnlockedDatabase:
             self.overlay.hide()
             self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
 
-        self.send_notification(os.path.splitext(ntpath.basename(self.database_manager.database_path))[0] + _(" locked"), _("Keepass safe locked due to inactivity"), "dialog-password-symbolic")
+        # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
+        self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"), "dialog-password-symbolic")
 
     #
     # Helper Methods

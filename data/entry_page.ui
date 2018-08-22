@@ -825,6 +825,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes" comments="Button near input field to show or hide the password (clear text)">Show/hide password</property>
                     <child>
                       <object class="GtkImage" id="show_password_button_image">
                         <property name="visible">True</property>
@@ -844,6 +845,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                    <property name="tooltip_text" translatable="yes">Password generator</property>
                     <property name="halign">end</property>
                     <property name="valign">center</property>
                     <child>
@@ -912,7 +914,7 @@
         </child>
         <child>
           <object class="GtkButton" id="generate_button">
-            <property name="label" translatable="yes">Generate</property>
+            <property name="label" translatable="yes" comments="Button to generate a password">Generate</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -937,7 +939,7 @@
             <property name="hexpand">True</property>
             <child>
               <object class="GtkToggleButton" id="high_letter_toggle_button">
-                <property name="label" translatable="yes">A-Z</property>
+                <property name="label">A-Z</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -952,7 +954,7 @@
             </child>
             <child>
               <object class="GtkToggleButton" id="low_letter_toggle_button">
-                <property name="label" translatable="yes">a-z</property>
+                <property name="label">a-z</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -967,7 +969,7 @@
             </child>
             <child>
               <object class="GtkToggleButton" id="number_toggle_button">
-                <property name="label" translatable="yes">0-9</property>
+                <property name="label">0-9</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -981,7 +983,7 @@
             </child>
             <child>
               <object class="GtkToggleButton" id="special_toggle_button">
-                <property name="label" translatable="yes">#§*</property>
+                <property name="label">#§*</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

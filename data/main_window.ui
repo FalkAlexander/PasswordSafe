@@ -40,7 +40,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_top">12</property>
-            <property name="label" translatable="yes">Secure password safe</property>
+            <property name="label" translatable="yes" comments="The umbrella sentence of the application on the first start screen">Secure password safe</property>
             <attributes>
               <attribute name="weight" value="bold"/>
               <attribute name="size" value="21000"/>
@@ -57,7 +57,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_top">10</property>
-            <property name="label" translatable="yes">Securely store your passwords, notes and data. &lt;b&gt;Create&lt;/b&gt; or &lt;b&gt;import&lt;/b&gt; a new Keepass safe.</property>
+            <property name="label" translatable="yes" comments="The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.">Securely store your passwords, notes and data. &lt;b&gt;Create&lt;/b&gt; or &lt;b&gt;import&lt;/b&gt; a new Keepass safe.</property>
             <property name="use_markup">True</property>
             <property name="track_visited_links">False</property>
             <style>
@@ -285,7 +285,7 @@
   <object class="GtkHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Password Safe</property>
+    <property name="title" translatable="yes" comments="Application title in start screen.">Password Safe</property>
     <property name="show_close_button">True</property>
     <child>
       <object class="GtkBox" id="headerbarbuttonbox">
@@ -298,7 +298,7 @@
             <property name="spacing">6</property>
             <child>
               <object class="GtkButton" id="new_button">
-                <property name="label" translatable="yes">New…</property>
+                <property name="label" translatable="yes" comments="Button at the start screen for the creation of a new keepass safe (starts the creation routine where a password needs to be set for the safe)">New…</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -311,7 +311,7 @@
             </child>
             <child>
               <object class="GtkButton" id="open_button">
-                <property name="label" translatable="yes">Open…</property>
+                <property name="label" translatable="yes" comments="The button for opening an existing keepass safe">Open…</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>

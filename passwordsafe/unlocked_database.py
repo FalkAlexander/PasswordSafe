@@ -1563,12 +1563,14 @@ class UnlockedDatabase:
     def threaded_save_loop(self):
         while self.save_loop is True:
             if passwordsafe.config_manager.get_save_automatically() is True:
+                self.builder.get_object("save_button").set_sensitive(False)
                 self.database_manager.save_database()
             else:
-                print("no save auto")
+                self.builder.get_object("save_button").set_sensitive(True)
             time.sleep(30)
 
     def stop_save_loop(self):
+        self.builder.get_object("save_button").set_sensitive(True)
         self.save_loop = False
 
     #def register_dbus_signal(self):

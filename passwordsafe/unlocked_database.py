@@ -885,13 +885,14 @@ class UnlockedDatabase:
         self.start_database_lock_timer()
 
         if self.database_manager.changes is True:
-            if self.database_manager.save_running is False:
-                self.save_thread = threading.Thread(target=self.database_manager.save_database)
-                self.save_thread.daemon = False
-                self.save_thread.start()
-                self.show_database_action_revealer(_("Database saved"))
-            else:
-                self.show_database_action_revealer(_("Please wait. Another save is running."))
+            #if self.database_manager.save_running is False:
+            #    self.save_thread = threading.Thread(target=self.database_manager.save_database)
+            #    self.save_thread.daemon = False
+            #    self.save_thread.start()
+            #    self.show_database_action_revealer(_("Database saved"))
+            #else:
+            #    self.show_database_action_revealer(_("Please wait. Another save is running."))
+            self.database_manager.save_database()
         else:
             self.show_database_action_revealer(_("No changes made"))
 
@@ -902,9 +903,10 @@ class UnlockedDatabase:
             self.lock_database()
 
     def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close, timeout):
-        save_thread = threading.Thread(target=self.database_manager.save_database)
-        save_thread.daemon = False
-        save_thread.start()
+        #save_thread = threading.Thread(target=self.database_manager.save_database)
+        #save_thread.daemon = False
+        #save_thread.start()
+        self.database_manager.save_database()
 
         save_dialog.destroy()
         self.lock_database()

@@ -407,9 +407,15 @@ class MainWindow(Gtk.ApplicationWindow):
 
         for db in self.opened_databases:
             if db.window.container.page_num(db.parent_widget) == page_num:
+                db.stop_save_loop()
                 is_contained = True
                 if db.database_manager.made_database_changes() is True:
-                    db.show_save_dialog(True)
+                    if passwordsafe.config_manager.get_save_automatically() is True:
+                        save_thread = threading.Thread(target=db.database_manager.save_database)
+                        save_thread.daemon = False
+                        save_thread.start()
+                    else:
+                        db.show_save_dialog(True)
                 else:
                     self.container.remove_page(page_num)
                     self.update_tab_bar_visibility()
@@ -469,8 +475,16 @@ class MainWindow(Gtk.ApplicationWindow):
     def on_application_quit(self, window, event):
         unsaved_databases_list = []
         for db in self.opened_databases:
+            print("hei")
+            if db.save_loop is True:
+                db.stop_save_loop()
             if db.database_manager.changes is True:
-                unsaved_databases_list.append(db)
+                if passwordsafe.config_manager.get_save_automatically() is True:
+                    save_thread = threading.Thread(target=db.database_manager.save_database)
+                    save_thread.daemon = False
+                    save_thread.start()
+                else:
+                    unsaved_databases_list.append(db)
 
         if unsaved_databases_list.__len__() > 0:
             builder = Gtk.Builder()

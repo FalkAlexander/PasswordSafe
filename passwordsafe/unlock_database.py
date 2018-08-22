@@ -195,6 +195,7 @@ class UnlockDatabase:
                         self.parent_widget.set_headerbar(self.unlocked_database.headerbar)
                         self.window.set_titlebar(self.unlocked_database.headerbar)
 
+                    self.unlocked_database.start_save_loop()
                     self.unlocked_database.overlay.show()
                     self.unlocked_database.database_locked = False
                     if self.original_group is not NotImplemented:
@@ -303,6 +304,7 @@ class UnlockDatabase:
                     self.parent_widget.set_headerbar(self.unlocked_database.headerbar)
                     self.window.set_titlebar(self.unlocked_database.headerbar)
 
+                self.unlocked_database.start_save_loop()
                 self.unlocked_database.overlay.show()
                 self.unlocked_database.database_locked = False
                 if self.original_group is not NotImplemented:
@@ -416,7 +418,7 @@ class UnlockDatabase:
                     self.parent_widget.set_headerbar(self.unlocked_database.headerbar)
                     self.window.set_titlebar(self.unlocked_database.headerbar)
 
-
+                self.unlocked_database.start_save_loop()
                 self.unlocked_database.overlay.show()
                 self.unlocked_database.database_locked = False
                 if self.original_group is not NotImplemented:

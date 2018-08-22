@@ -1,4 +1,4 @@
-from gi.repository import Gio, Gdk, Gtk, GObject, GLib
+from gi.repository import Gio, Gdk, Gtk, GLib
 from gi.repository.GdkPixbuf import Pixbuf
 from gi.repository import Notify
 from passwordsafe.logging_manager import LoggingManager
@@ -63,7 +63,7 @@ class UnlockedDatabase:
         self.assemble_listbox()
         self.window.opened_databases.append(self)
 
-        self.register_dbus_signal()
+        #self.register_dbus_signal()
 
     #
     # Stack Pages
@@ -885,14 +885,13 @@ class UnlockedDatabase:
         self.start_database_lock_timer()
 
         if self.database_manager.changes is True:
-            #if self.database_manager.save_running is False:
-            #    self.save_thread = threading.Thread(target=self.database_manager.save_database)
-            #    self.save_thread.daemon = False
-            #    self.save_thread.start()
-            #    self.show_database_action_revealer(_("Database saved"))
-            #else:
-            #    self.show_database_action_revealer(_("Please wait. Another save is running."))
-            self.database_manager.save_database()
+            if self.database_manager.save_running is False:
+                self.save_thread = threading.Thread(target=self.database_manager.save_database)
+                self.save_thread.daemon = False
+                self.save_thread.start()
+                self.show_database_action_revealer(_("Database saved"))
+            else:
+                self.show_database_action_revealer(_("Please wait. Another save is running."))
         else:
             self.show_database_action_revealer(_("No changes made"))
 
@@ -903,10 +902,9 @@ class UnlockedDatabase:
             self.lock_database()
 
     def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close, timeout):
-        #save_thread = threading.Thread(target=self.database_manager.save_database)
-        #save_thread.daemon = False
-        #save_thread.start()
-        self.database_manager.save_database()
+        save_thread = threading.Thread(target=self.database_manager.save_database)
+        save_thread.daemon = False
+        save_thread.start()
 
         save_dialog.destroy()
         self.lock_database()
@@ -1426,9 +1424,9 @@ class UnlockedDatabase:
             else:
                 row.selection_checkbox.set_active(False)
 
-    def on_session_lock(self, state):
-        if state == 1 and self.database_locked is False:
-            self.lock_timeout_database()
+    #def on_session_lock(self, state):
+    #    if state == 1 and self.database_locked is False:
+    #        self.lock_timeout_database()
 
     #
     # Dialog Creator
@@ -1468,7 +1466,7 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
-        self.window.session_bus.remove_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
+        #self.window.session_bus.remove_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
 
         for db in self.window.opened_databases:
             if db.database_manager.database_path == self.database_manager.database_path:
@@ -1542,8 +1540,8 @@ class UnlockedDatabase:
         notify = Notify.Notification.new(title, text, icon)
         notify.show()
 
-    def register_dbus_signal(self):
-        self.window.session_bus.add_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
-        self.window.gobject_mainloop.run()
+    #def register_dbus_signal(self):
+    #    self.window.session_bus.add_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
+    #    self.window.gobject_mainloop.run()
 
 

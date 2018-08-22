@@ -453,13 +453,10 @@ class MainWindow(Gtk.ApplicationWindow):
 
         if len(self.databases_to_save) > 0:
             save_thread = threading.Thread(target=self.threaded_database_saving)
-            save_thread.daemon = True
+            save_thread.daemon = False
             save_thread.start()
         else:
-            self.gobject_mainloop.quit()
-            self.quit_dialog.destroy()
-            self.save_window_size()
-            self.application.quit()
+            self.quit_gtkwindow()
 
     #
     # Application Quit Dialog

@@ -70,6 +70,10 @@ sudo ninja -C _build install
 ## Install via distribution package manager
 * Arch Linux: [passwordsafe-git](https://aur.archlinux.org/packages/gnome-passwordsafe-git/)
 
+# Translations
+Helping to translate Password Safe or add support to a new language is very welcome.  
+You can find everything you need at: https://l10n.gnome.org/module/PasswordSafe/
+
 # Supported encryption algorithms
 Fully supported are AES 256 encryption algorithm and AES-KDF (KDBX 3.1) derivation algorithm (KeepassXC defaults).
 Other algorithms are not supported right now and can may or may not work and/or produce failures.

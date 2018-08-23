@@ -216,8 +216,8 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def open_filechooser(self, widget, none):
-        # NOTE: Filechooser title for opening an existing keepass safe kdbx file
         filechooser_opening_dialog = Gtk.FileChooserDialog(
+            # NOTE: Filechooser title for opening an existing keepass safe kdbx file
             _("Choose a Keepass safe"), self, Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
@@ -266,8 +266,8 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def create_filechooser(self, widget, none):
-        # NOTE: Filechooser title for creating a new keepass safe kdbx file
         self.filechooser_creation_dialog = Gtk.FileChooserDialog(
+            # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"), self, Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_SAVE, Gtk.ResponseType.OK))

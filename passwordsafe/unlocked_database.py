@@ -1491,6 +1491,7 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
+        self.database_locked = True
         self.stop_save_loop()
         #self.window.session_bus.remove_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
 

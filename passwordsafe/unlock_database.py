@@ -93,13 +93,14 @@ class UnlockDatabase:
         keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")
         composite_unlock_stack_page = self.builder.get_object("composite_unlock_stack_page")
 
-        stack.add_titled(password_unlock_stack_page, "password_unlock", "Password")
+        stack.add_titled(password_unlock_stack_page, "password_unlock", _("Password"))
         stack.child_set_property(password_unlock_stack_page, "icon-name", "input-dialpad-symbolic")
 
-        stack.add_titled(keyfile_unlock_stack_page, "keyfile_unlock", "Keyfile")
+        stack.add_titled(keyfile_unlock_stack_page, "keyfile_unlock", _("Keyfile"))
         stack.child_set_property(keyfile_unlock_stack_page, "icon-name", "mail-attachment-symbolic")
 
-        stack.add_titled(composite_unlock_stack_page, "composite_unlock", "Composite")
+        # NOTE: Composite unlock is a authentification method where both password and keyfile are required
+        stack.add_titled(composite_unlock_stack_page, "composite_unlock", _("Composite"))
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
         if passwordsafe.config_manager.get_remember_composite_key() is True and passwordsafe.config_manager.get_last_used_composite_key() is not "":

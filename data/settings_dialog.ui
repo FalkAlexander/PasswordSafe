@@ -11,7 +11,7 @@
       <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="title" translatable="yes">Settings</property>
+        <property name="title" translatable="yes" comments="Title of the settings dialog">Settings</property>
         <property name="show_close_button">True</property>
       </object>
     </child>
@@ -189,7 +189,7 @@
                                         <property name="halign">start</property>
                                         <property name="valign">start</property>
                                         <property name="vexpand">True</property>
-                                        <property name="label" translatable="yes">Reopen last opened database</property>
+                                        <property name="label" translatable="yes">Reopen last opened safe</property>
                                         <attributes>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
@@ -245,7 +245,7 @@
                     <property name="halign">start</property>
                     <property name="valign">start</property>
                     <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Database</property>
+                    <property name="label" translatable="yes">Safe</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
@@ -413,7 +413,7 @@
                                         <property name="halign">start</property>
                                         <property name="valign">end</property>
                                         <property name="vexpand">True</property>
-                                        <property name="label" translatable="yes">Remember Composite Key</property>
+                                        <property name="label" translatable="yes" comments="A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe">Remember Composite Key</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -429,7 +429,7 @@
                                         <property name="halign">start</property>
                                         <property name="valign">start</property>
                                         <property name="vexpand">True</property>
-                                        <property name="label" translatable="yes">Remember last used composite key</property>
+                                        <property name="label" translatable="yes" comments="A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe">Remember last used composite key</property>
                                         <attributes>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
@@ -494,7 +494,7 @@
                                         <property name="halign">start</property>
                                         <property name="valign">end</property>
                                         <property name="vexpand">True</property>
-                                        <property name="label" translatable="yes">Remember Unlock Method</property>
+                                        <property name="label" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember Unlock Method</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -614,7 +614,7 @@
                                         <property name="halign">start</property>
                                         <property name="valign">end</property>
                                         <property name="vexpand">True</property>
-                                        <property name="label" translatable="yes">Database Lock Timeout</property>
+                                        <property name="label" translatable="yes">Safe Lock Timeout</property>
                                       </object>
                                       <packing>
                                         <property name="expand">False</property>
@@ -630,7 +630,7 @@
                                         <property name="halign">start</property>
                                         <property name="valign">start</property>
                                         <property name="vexpand">True</property>
-                                        <property name="label" translatable="yes">Lock database on idle after X minutes</property>
+                                        <property name="label" translatable="yes">Lock safe on idle after X minutes</property>
                                         <attributes>
                                           <attribute name="size" value="9500"/>
                                         </attributes>
@@ -875,7 +875,7 @@
                                         <property name="halign">start</property>
                                         <property name="valign">start</property>
                                         <property name="vexpand">True</property>
-                                        <property name="label" translatable="yes">Clear the recently opened databases list</property>
+                                        <property name="label" translatable="yes">Clear the recently opened safes list</property>
                                         <attributes>
                                           <attribute name="size" value="9500"/>
                                         </attributes>

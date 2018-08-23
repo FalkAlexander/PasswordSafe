@@ -252,7 +252,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.new</property>
-            <property name="text" translatable="yes">New Database</property>
+            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe creation process">New Safe</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -266,7 +266,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.open</property>
-            <property name="text" translatable="yes">Open Database</property>
+            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe opening process (for existing safe)">Open Safe</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -567,7 +567,7 @@
                     <property name="margin_left">15</property>
                     <property name="margin_right">15</property>
                     <property name="hexpand">True</property>
-                    <property name="label" translatable="yes">Safe unlock failed</property>
+                    <property name="label" translatable="yes">Failed to unlock safe</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>

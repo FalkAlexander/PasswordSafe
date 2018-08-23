@@ -16,7 +16,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Create password…</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open page for creation of a new password entry">Create password…</property>
             <child>
               <object class="GtkImage" id="add_entry_button_image">
                 <property name="visible">True</property>
@@ -36,7 +36,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Create group…</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open page for creation of a new group">Create group…</property>
             <child>
               <object class="GtkImage" id="add_folder_button_image">
                 <property name="visible">True</property>
@@ -66,7 +66,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Selection Mode</property>
+        <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
         <property name="margin_right">6</property>
         <child>
           <object class="GtkImage" id="selection_button_image">
@@ -87,7 +87,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Search</property>
+        <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
         <child>
           <object class="GtkImage" id="search_button_image">
             <property name="visible">True</property>
@@ -443,7 +443,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Show all properties</property>
+        <property name="tooltip_text" translatable="yes" comments="Button tooltip in entry/group edit page to reveal all properties for entry/group">Show all properties</property>
         <child>
           <object class="GtkImage" id="add_property_button_image">
             <property name="visible">True</property>
@@ -657,7 +657,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.new</property>
-            <property name="text" translatable="yes">New Database</property>
+            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe creation process">New Safe</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -671,7 +671,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.open</property>
-            <property name="text" translatable="yes">Open Database</property>
+            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe opening process (for existing safe)">Open Safe</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -819,7 +819,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.sort.az</property>
-            <property name="text" translatable="yes">A-Z</property>
+            <property name="text">A-Z</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -833,7 +833,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.sort.za</property>
-            <property name="text" translatable="yes">Z-A</property>
+            <property name="text">Z-A</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -847,7 +847,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.sort.last_added</property>
-            <property name="text" translatable="yes">Last added</property>
+            <property name="text" translatable="yes" comments="This is a modelbutton in a popover to sort entries by last added">Last added</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -1124,7 +1124,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Move selection</property>
+        <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move selection</property>
         <child>
           <object class="GtkImage" id="selection_cut_button_image">
             <property name="visible">True</property>
@@ -1144,7 +1144,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes">Delete selection</property>
+        <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete selection</property>
         <child>
           <object class="GtkImage" id="selection_delete_button_image">
             <property name="visible">True</property>

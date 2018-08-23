@@ -185,7 +185,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">Database Name</property>
+                <property name="label">Safe Name</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -201,7 +201,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="label" translatable="yes">/path/to/database.kdbx</property>
+                <property name="label">/path/to/database.kdbx</property>
                 <property name="ellipsize">middle</property>
                 <style>
                   <class name="dim-label"/>
@@ -285,7 +285,7 @@
   <object class="GtkHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes" comments="Application title in start screen.">Password Safe</property>
+    <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
     <property name="show_close_button">True</property>
     <child>
       <object class="GtkBox" id="headerbarbuttonbox">

@@ -38,8 +38,9 @@ git clone https://gitlab.gnome.org/World/PasswordSafe.git
 cd PasswordSafe
 # Add Flathub repository
 flatpak remote-add flathub --if-not-exists https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add gnome-nightly --if-not-exists https://sdk.gnome.org/gnome-nightly.flatpakrepo
 # Install the required GNOME runtimes
-flatpak install flathub org.gnome.Platform//3.28 org.gnome.Sdk//3.28
+flatpak install gnome-nightly org.gnome.Platform//master org.gnome.Sdk//master
 # Start building
 flatpak-builder --repo=repo passwordsafe-git flatpak/org.gnome.PasswordSafe.json --force-clean
 # Create the Flatpak
@@ -79,7 +80,12 @@ Fully supported are AES 256 encryption algorithm and AES-KDF (KDBX 3.1) derivati
 Other algorithms are not supported right now and can may or may not work and/or produce failures.
 
 # Data protection
-Please be careful when using development versions. Create enough backups if you're using a production database with Password Safe. It is possible that data loss will occur, though I give my best that this will never happen.
+Please be careful when using development versions. Create enough backups if you're using a production database with Password Safe. It is possible that data loss will occur, though I give my best that this will never happen.  
+
+Development versions create a backup of your database on unlocking by default. These can be found at ```~/.cache/passwordsafe/backup/``` where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:  
+```
+gsettings set org.gnome.PasswordSafe development-backup-mode true
+```
 
 # Known issues
 * For creating databases is used a workaround because the library can't create new ones (yet).

@@ -264,7 +264,8 @@ class UnlockDatabase:
     # Keyfile Unlock
 
     def on_keyfile_unlock_select_button_clicked(self, widget):
-        keyfile_chooser_dialog = Gtk.FileChooserDialog("Choose a keyfile", self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        # NOTE: Keyfile filechooser title
+        keyfile_chooser_dialog = Gtk.FileChooserDialog(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keyfile")
         filter_text.add_mime_type("application/octet-stream")
@@ -379,8 +380,9 @@ class UnlockDatabase:
     # Composite Unlock
 
     def on_composite_unlock_select_button_clicked(self, widget):
+        # NOTE: Keyfile filechooser title
         filechooser_opening_dialog = Gtk.FileChooserDialog(
-            "Choose Keyfile", self.window, Gtk.FileChooserAction.OPEN,
+            _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN,
              Gtk.ResponseType.OK))
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")

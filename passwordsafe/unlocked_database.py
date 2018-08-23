@@ -378,6 +378,7 @@ class UnlockedDatabase:
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
 
         if self.window.container.page_num(self.parent_widget) == self.window.container.get_current_page():
+            scrolled_page = self.stack.get_child_by_name(group_uuid)
             if self.database_locked is False and self.selection_mode is False and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) and scrolled_page.edit_page is False:
                 if self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
                     if eventkey.string.isalpha():

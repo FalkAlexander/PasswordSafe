@@ -66,6 +66,7 @@ class UnlockedDatabase:
         self.window.opened_databases.append(self)
 
         self.start_save_loop()
+        self.setup_type_to_search()
 
         #self.register_dbus_signal()
 
@@ -152,7 +153,7 @@ class UnlockedDatabase:
         search_fulltext_button.connect("toggled", self.on_search_filter_button_toggled)
 
         headerbar_search_entry = self.builder.get_object("headerbar_search_entry")
-        headerbar_search_entry.connect("changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
+        headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
         headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
 
         # Selection Headerbar
@@ -362,6 +363,25 @@ class UnlockedDatabase:
     def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
         key, mod = Gtk.accelerator_parse(accelerator)
         widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
+
+    #
+    # Type to search
+    #
+
+    def setup_type_to_search(self):
+        self.window.connect("key-release-event", self.on_type_to_search)
+
+    def on_type_to_search(self, window, eventkey):
+        group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(group_uuid)
+
+        if self.window.container.page_num(self.parent_widget) == self.window.container.get_current_page():
+            if self.database_locked is False and self.selection_mode is False and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) and scrolled_page.edit_page is False:
+                if self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
+                    if eventkey.string.isalpha():
+                        self.set_search_headerbar(self.builder.get_object("search_button"))
+                        self.builder.get_object("headerbar_search_entry").set_text(eventkey.string)
+                        Gtk.Entry.do_move_cursor(self.builder.get_object("headerbar_search_entry"), Gtk.MovementStep.BUFFER_ENDS, 1, False)
 
     #
     # Group and Entry Management

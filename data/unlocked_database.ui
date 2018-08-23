@@ -1055,10 +1055,13 @@
         <property name="margin_right">47</property>
         <property name="hexpand">True</property>
         <child>
-          <object class="GtkEntry" id="headerbar_search_entry">
+          <object class="GtkSearchEntry" id="headerbar_search_entry">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="hexpand">True</property>
+            <property name="primary_icon_name">edit-find-symbolic</property>
+            <property name="primary_icon_activatable">False</property>
+            <property name="primary_icon_sensitive">False</property>
           </object>
           <packing>
             <property name="expand">False</property>

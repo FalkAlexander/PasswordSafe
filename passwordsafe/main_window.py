@@ -216,11 +216,10 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def open_filechooser(self, widget, none):
-        filechooser_opening_dialog = Gtk.FileChooserDialog(
+        filechooser_opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
             _("Choose a Keepass safe"), self, Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+            None, None)
 
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keepass 2 Database")
@@ -230,10 +229,10 @@ class MainWindow(Gtk.ApplicationWindow):
         filechooser_opening_dialog.set_local_only(False)
 
         response = filechooser_opening_dialog.run()
-        if response == Gtk.ResponseType.OK:
+
+        if response == Gtk.ResponseType.ACCEPT:
             self.logging_manager.log_debug(
                 "File selected: " + filechooser_opening_dialog.get_filename())
-            filechooser_opening_dialog.close()
 
             database_already_opened = False
 
@@ -251,7 +250,6 @@ class MainWindow(Gtk.ApplicationWindow):
                     tab_title, filechooser_opening_dialog.get_filename())
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.log_debug("File selection canceled")
-            filechooser_opening_dialog.close()
 
     def start_database_opening_routine(self, tab_title, filepath):
         builder = Gtk.Builder()
@@ -266,11 +264,10 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def create_filechooser(self, widget, none):
-        self.filechooser_creation_dialog = Gtk.FileChooserDialog(
+        self.filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"), self, Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+            "_Save", "_Cancel")
         self.filechooser_creation_dialog.set_do_overwrite_confirmation(True)
         self.filechooser_creation_dialog.set_current_name("Database.kdbx")
         self.filechooser_creation_dialog.set_modal(True)
@@ -282,7 +279,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.filechooser_creation_dialog.add_filter(filter_text)
 
         response = self.filechooser_creation_dialog.run()
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             self.copy_database_file()
             tab_title = self.create_tab_title_from_filepath(self.filechooser_creation_dialog.get_current_name())
 
@@ -297,8 +294,6 @@ class MainWindow(Gtk.ApplicationWindow):
             if self.get_children()[0] is not self.container:
                 self.spinner = builder.get_object("spinner_grid")
                 self.add(self.spinner)
-        elif response == Gtk.ResponseType.CANCEL:
-            self.filechooser_creation_dialog.close()            
 
     def copy_database_file(self):
         stock_database = Gio.File.new_for_uri(
@@ -307,7 +302,6 @@ class MainWindow(Gtk.ApplicationWindow):
             self.filechooser_creation_dialog.get_filename())
 
         stock_database.copy(new_database, Gio.FileCopyFlags.OVERWRITE)
-        self.filechooser_creation_dialog.close()
 
     def create_new_database_instance(self, tab_title):
         self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")

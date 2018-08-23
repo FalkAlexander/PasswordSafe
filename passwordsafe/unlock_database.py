@@ -274,7 +274,7 @@ class UnlockDatabase:
 
     def on_keyfile_unlock_select_button_clicked(self, widget):
         # NOTE: Keyfile filechooser title
-        keyfile_chooser_dialog = Gtk.FileChooserDialog(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+        keyfile_chooser_dialog = Gtk.FileChooserNative.new(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None)
         filter_text = Gtk.FileFilter()
         filter_text.set_name("Keyfile")
         filter_text.add_mime_type("application/octet-stream")
@@ -285,9 +285,8 @@ class UnlockDatabase:
         keyfile_chooser_dialog.set_local_only(False)
 
         response = keyfile_chooser_dialog.run()
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             self.logging_manager.log_debug("File selected: " + keyfile_chooser_dialog.get_filename())
-            keyfile_chooser_dialog.close()
 
             keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
             keyfile_unlock_select_button.get_style_context().remove_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
@@ -299,7 +298,6 @@ class UnlockDatabase:
 
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.log_debug("File selection canceled")
-            keyfile_chooser_dialog.close()
 
     def on_keyfile_unlock_button_clicked(self, widget):
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
@@ -389,11 +387,10 @@ class UnlockDatabase:
     # Composite Unlock
 
     def on_composite_unlock_select_button_clicked(self, widget):
-        filechooser_opening_dialog = Gtk.FileChooserDialog(
+        filechooser_opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Keyfile filechooser title
             _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN,
-             Gtk.ResponseType.OK))
+            None, None)
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
 
         filter_text = Gtk.FileFilter()
@@ -406,15 +403,13 @@ class UnlockDatabase:
         filechooser_opening_dialog.set_local_only(False)
 
         response = filechooser_opening_dialog.run()
-        if response == Gtk.ResponseType.OK:
+        if response == Gtk.ResponseType.ACCEPT:
             self.logging_manager.log_debug("File selected: " + filechooser_opening_dialog.get_filename())
-            filechooser_opening_dialog.close()
             file_path = filechooser_opening_dialog.get_filename()
             composite_unlock_select_button.set_label(ntpath.basename(file_path))
             self.composite_keyfile_path = file_path
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.log_debug("File selection cancelled")
-            filechooser_opening_dialog.close()
 
     def on_composite_unlock_button_clicked(self, widget):
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")

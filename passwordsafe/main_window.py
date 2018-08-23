@@ -450,6 +450,7 @@ class MainWindow(Gtk.ApplicationWindow):
     def on_quit_button_clicked(self, button):
         for db in self.opened_databases:
             db.cancel_timers()
+            db.unregister_dbus_signal()
 
         if len(self.databases_to_save) > 0:
             save_thread = threading.Thread(target=self.threaded_database_saving)

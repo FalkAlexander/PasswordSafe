@@ -155,6 +155,15 @@ class UnlockDatabase:
         if self.timeout is True:
             for db in self.window.opened_databases:
                 if db.database_manager.database_path == self.database_manager.database_path:
+                    db.unregister_dbus_signal()
+                    db.cancel_timers()
+
+                    if passwordsafe.config_manager.get_save_automatically() is True:
+                        save_thread = threading.Thread(target=db.database_manager.save_database)
+                        save_thread.daemon = False
+                        save_thread.start()
+
+                    db.stop_save_loop()
                     self.window.opened_databases.remove(db)
         self.window.set_headerbar()
         self.window.close_tab(self.parent_widget)

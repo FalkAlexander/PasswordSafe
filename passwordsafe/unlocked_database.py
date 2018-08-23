@@ -49,6 +49,7 @@ class UnlockedDatabase:
     listbox_insert_thread = NotImplemented
     result_list = NotImplemented
     save_loop = NotImplemented
+    dbus_subscription_id = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -1512,7 +1513,7 @@ class UnlockedDatabase:
                 row.selection_checkbox.set_active(False)
 
     def on_session_lock(self, connection, unique_name, object_path, interface, signal, state):
-        if state[0] == True:
+        if state[0] == True and self.database_locked is False:
             self.lock_timeout_database()
 
     #
@@ -1554,8 +1555,8 @@ class UnlockedDatabase:
     def lock_database(self):
         self.cancel_timers()
         self.database_locked = True
+        self.unregister_dbus_signal()
         self.stop_save_loop()
-        #self.window.session_bus.remove_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)
@@ -1660,8 +1661,15 @@ class UnlockedDatabase:
         self.builder.get_object("save_button").set_sensitive(True)
         self.save_loop = False
 
+    #
+    # DBus
+    #
+
     def register_dbus_signal(self):
         app = Gio.Application.get_default
-        app().get_dbus_connection().signal_subscribe(":1.10", "org.gnome.ScreenSaver", "ActiveChanged", "/org/gnome/ScreenSaver", None, Gio.DBusSignalFlags.NONE, self.on_session_lock)
+        self.dbus_subscription_id = app().get_dbus_connection().signal_subscribe(":1.10", "org.gnome.ScreenSaver", "ActiveChanged", "/org/gnome/ScreenSaver", None, Gio.DBusSignalFlags.NONE, self.on_session_lock)
 
+    def unregister_dbus_signal(self):
+        app = Gio.Application.get_default
+        app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
 

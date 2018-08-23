@@ -68,7 +68,7 @@ class UnlockedDatabase:
         self.start_save_loop()
         self.register_special_keys()
 
-        #self.register_dbus_signal()
+        self.register_dbus_signal()
 
     #
     # Stack Pages
@@ -1511,9 +1511,9 @@ class UnlockedDatabase:
             else:
                 row.selection_checkbox.set_active(False)
 
-    #def on_session_lock(self, state):
-    #    if state == 1 and self.database_locked is False:
-    #        self.lock_timeout_database()
+    def on_session_lock(self, connection, unique_name, object_path, interface, signal, state):
+        if state[0] == True:
+            self.lock_timeout_database()
 
     #
     # Dialog Creator
@@ -1660,8 +1660,8 @@ class UnlockedDatabase:
         self.builder.get_object("save_button").set_sensitive(True)
         self.save_loop = False
 
-    #def register_dbus_signal(self):
-    #    self.window.session_bus.add_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
-    #    self.window.gobject_mainloop.run()
+    def register_dbus_signal(self):
+        app = Gio.Application.get_default
+        app().get_dbus_connection().signal_subscribe(":1.10", "org.gnome.ScreenSaver", "ActiveChanged", "/org/gnome/ScreenSaver", None, Gio.DBusSignalFlags.NONE, self.on_session_lock)
 
 

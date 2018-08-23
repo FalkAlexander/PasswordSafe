@@ -8,10 +8,15 @@ gnome.compile_resources(
   gresource_bundle: true,
   source_dir: '.',
   install_dir: DATA_DIR,
-  install: true
+  install: true,
+  dependencies: configure_file (
+    input: 'about_dialog.ui.in',
+    output: 'about_dialog.ui',
+    configuration: conf
+  )
 )
 
-# Installing the schema file 
+# Installing the schema file
 install_data(
   project_id + '.gschema.xml',
   install_dir: 'share/glib-2.0/schemas'

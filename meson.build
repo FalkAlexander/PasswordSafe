@@ -1,5 +1,5 @@
 project('passwordsafe', 'c',
-  version: '0.0.1',
+  version: '0.9.3',
   meson_version: '>= 0.40.0',
 )
 i18n = import('i18n')
@@ -26,7 +26,7 @@ DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 conf = configuration_data()
-conf.set('PACKAGE_URL', 'https://gitlab.gnome.org/fseidl/KeepassGtk')
+conf.set('PACKAGE_URL', 'https://gitlab.gnome.org/World/PasswordSafe')
 conf.set('DATA_DIR', DATA_DIR)
 conf.set('EXTENSION_DIR', EXTENSION_DIR)
 conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))

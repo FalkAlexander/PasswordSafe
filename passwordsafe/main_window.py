@@ -407,6 +407,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         for db in self.opened_databases:
             if db.window.container.page_num(db.parent_widget) == page_num:
+                db.database_locked = True
                 db.stop_save_loop()
                 is_contained = True
                 if db.database_manager.made_database_changes() is True:

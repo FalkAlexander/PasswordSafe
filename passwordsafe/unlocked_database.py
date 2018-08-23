@@ -66,6 +66,7 @@ class UnlockedDatabase:
         self.window.opened_databases.append(self)
 
         self.start_save_loop()
+        self.register_special_keys()
 
         #self.register_dbus_signal()
 
@@ -152,7 +153,7 @@ class UnlockedDatabase:
         search_fulltext_button.connect("toggled", self.on_search_filter_button_toggled)
 
         headerbar_search_entry = self.builder.get_object("headerbar_search_entry")
-        headerbar_search_entry.connect("changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
+        headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
         headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
 
         # Selection Headerbar
@@ -171,7 +172,6 @@ class UnlockedDatabase:
         self.window.set_titlebar(self.headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
-
 
     def set_gio_actions(self):
         db_settings_action = Gio.SimpleAction.new("db.settings", None)
@@ -272,8 +272,12 @@ class UnlockedDatabase:
         self.parent_widget.set_headerbar(self.headerbar_search)
         self.window.set_titlebar(self.headerbar_search)
         self.builder.get_object("headerbar_search_entry").grab_focus()
-        self.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_esc_key)
         self.search = True
+        if self.search_list_box is not NotImplemented:
+            self.search_list_box.select_row(self.search_list_box.get_row_at_index(0))
+            self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+        else:
+            self.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_navigation)
 
         self.prepare_search_page()
 
@@ -362,6 +366,56 @@ class UnlockedDatabase:
     def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
         key, mod = Gtk.accelerator_parse(accelerator)
         widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
+
+    #
+    # Type to search
+    #
+
+    def register_special_keys(self):
+        self.window.connect("key-release-event", self.on_special_key_pressed)
+
+    def on_special_key_pressed(self, window, eventkey):
+        group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(group_uuid)
+
+        if self.window.container.page_num(self.parent_widget) == self.window.container.get_current_page():
+            if self.database_locked is False and self.selection_mode is False and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) and scrolled_page.edit_page is False:
+                if self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
+                    if eventkey.string.isalpha():
+                        self.set_search_headerbar(self.builder.get_object("search_button"))
+                        self.builder.get_object("headerbar_search_entry").set_text(eventkey.string)
+                        Gtk.Entry.do_move_cursor(self.builder.get_object("headerbar_search_entry"), Gtk.MovementStep.BUFFER_ENDS, 1, False)
+                    elif eventkey.keyval == Gdk.KEY_BackSpace:
+                        uuid = self.stack.get_visible_child_name()
+                        if self.database_manager.check_is_root_group(self.current_group) is False:
+                            if self.database_manager.check_is_root_group(self.database_manager.get_group_parent_group_from_uuid(uuid)) is True:
+                                self.pathbar.on_home_button_clicked(self.pathbar.home_button)
+                            else:
+                                for button in self.pathbar:
+                                    if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                        if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_group_parent_group_from_uuid(uuid)):
+                                            self.pathbar.on_pathbar_button_clicked(button)
+            elif self.database_locked is False and self.selection_mode is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
+                if eventkey.keyval == Gdk.KEY_Escape:
+                    uuid = self.stack.get_visible_child_name()
+                    if self.database_manager.check_is_group(uuid):
+                        scrolled_page = self.stack.get_child_by_name(uuid)
+                        if self.database_manager.check_is_root_group(self.database_manager.get_group_parent_group_from_uuid(uuid)) is True:
+                            self.pathbar.on_home_button_clicked(self.pathbar.home_button)
+                        else:
+                            if scrolled_page.edit_page is True:
+                                for button in self.pathbar:
+                                    if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                        if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_group_parent_group_from_uuid(uuid)):
+                                            self.pathbar.on_pathbar_button_clicked(button)
+                    else:
+                        if self.database_manager.check_is_root_group(self.database_manager.get_entry_parent_group_from_uuid(uuid)) is True:
+                            self.pathbar.on_home_button_clicked(self.pathbar.home_button)
+                        else:
+                            for button in self.pathbar:
+                                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                    if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_entry_parent_group_from_uuid(uuid)):
+                                        self.pathbar.on_pathbar_button_clicked(button)
 
     #
     # Group and Entry Management
@@ -1211,11 +1265,29 @@ class UnlockedDatabase:
         self.remove_search_headerbar(None)
         self.show_page_of_new_directory(False, False)
 
-    def on_search_entry_esc_key(self, widget, event, data=None):
+    def on_search_entry_navigation(self, widget, event, data=None):
         self.start_database_lock_timer()
         if event.keyval == Gdk.KEY_Escape:
             self.remove_search_headerbar(None)
             self.show_page_of_new_directory(False, False)
+        elif event.keyval == Gdk.KEY_Up:
+            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
+            selected_row = self.search_list_box.get_selected_row()
+            if selected_row is not None:
+                row = self.search_list_box.get_row_at_index(selected_row.get_index() - 1)
+                if row is not None:
+                    self.search_list_box.select_row(row)
+        elif event.keyval == Gdk.KEY_Down:
+            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
+            selected_row = self.search_list_box.get_selected_row()
+            if selected_row is None:
+                row = self.search_list_box.get_row_at_index(0)
+                if row is not None:
+                    self.search_list_box.select_row(row)
+            else:
+                row = self.search_list_box.get_row_at_index(selected_row.get_index() + 1)
+                if row is not None:
+                    self.search_list_box.select_row(row)
 
     def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
         fulltext = False
@@ -1274,16 +1346,26 @@ class UnlockedDatabase:
             uuid = NotImplemented
             first_row = NotImplemented
 
-            if self.search_list_box.get_children()[0].type is "GroupRow":
-                uuid = self.search_list_box.get_children()[0].get_group_uuid()
-                first_row = self.database_manager.get_group_object_from_uuid(uuid)
+            selected_row = self.search_list_box.get_selected_row()
+            if selected_row is None:
+                if self.search_list_box.get_children()[0].type is "GroupRow":
+                    uuid = self.search_list_box.get_children()[0].get_group_uuid()
+                    first_row = self.database_manager.get_group_object_from_uuid(uuid)
+                else:
+                    uuid = self.search_list_box.get_children()[0].get_entry_uuid()
+                    first_row = self.database_manager.get_entry_object_from_uuid(uuid)
             else:
-                uuid = self.search_list_box.get_children()[0].get_entry_uuid()
-                first_row = self.database_manager.get_entry_object_from_uuid(uuid)
+                if selected_row.type is "GroupRow":
+                    uuid = selected_row.get_group_uuid()
+                    first_row = self.database_manager.get_group_object_from_uuid(uuid)
+                else:
+                    uuid = selected_row.get_entry_uuid()
+                    first_row = self.database_manager.get_entry_object_from_uuid(uuid)
 
             self.current_group = first_row
             self.pathbar.add_pathbar_button_to_pathbar(uuid)
             self.show_page_of_new_directory(False, False)
+
 
     def on_search_filter_button_toggled(self, widget):
         headerbar_search_entry = self.builder.get_object("headerbar_search_entry")
@@ -1471,6 +1553,7 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
+        self.database_locked = True
         self.stop_save_loop()
         #self.window.session_bus.remove_signal_receiver(self.on_session_lock, 'ActiveChanged', 'org.gnome.ScreenSaver', path='/org/gnome/ScreenSaver')
 

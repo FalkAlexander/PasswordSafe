@@ -84,7 +84,7 @@ Please be careful when using development versions. Create enough backups if you'
 
 Development versions create a backup of your database on unlocking by default. These can be found at ```~/.cache/passwordsafe/backup/``` where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:  
 ```
-gsettings set org.gnome.PasswordSafe development-backup-mode true
+gsettings set org.gnome.PasswordSafe development-backup-mode false
 ```
 
 # Known issues

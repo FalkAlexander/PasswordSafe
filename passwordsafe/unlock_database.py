@@ -380,8 +380,8 @@ class UnlockDatabase:
     # Composite Unlock
 
     def on_composite_unlock_select_button_clicked(self, widget):
-        # NOTE: Keyfile filechooser title
         filechooser_opening_dialog = Gtk.FileChooserDialog(
+            # NOTE: Keyfile filechooser title
             _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, Gtk.STOCK_OPEN,
              Gtk.ResponseType.OK))

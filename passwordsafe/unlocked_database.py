@@ -385,7 +385,17 @@ class UnlockedDatabase:
                         self.set_search_headerbar(self.builder.get_object("search_button"))
                         self.builder.get_object("headerbar_search_entry").set_text(eventkey.string)
                         Gtk.Entry.do_move_cursor(self.builder.get_object("headerbar_search_entry"), Gtk.MovementStep.BUFFER_ENDS, 1, False)
-            elif self.database_locked is False and self.selection_mode is False:
+                    elif eventkey.keyval == Gdk.KEY_BackSpace:
+                        uuid = self.stack.get_visible_child_name()
+                        if self.database_manager.check_is_root_group(self.current_group) is False:
+                            if self.database_manager.check_is_root_group(self.database_manager.get_group_parent_group_from_uuid(uuid)) is True:
+                                self.pathbar.on_home_button_clicked(self.pathbar.home_button)
+                            else:
+                                for button in self.pathbar:
+                                    if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                        if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_group_parent_group_from_uuid(uuid)):
+                                            self.pathbar.on_pathbar_button_clicked(button)
+            elif self.database_locked is False and self.selection_mode is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
                 if eventkey.keyval == Gdk.KEY_Escape:
                     uuid = self.stack.get_visible_child_name()
                     if self.database_manager.check_is_group(uuid):
@@ -406,7 +416,6 @@ class UnlockedDatabase:
                                 if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
                                     if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_entry_parent_group_from_uuid(uuid)):
                                         self.pathbar.on_pathbar_button_clicked(button)
-
 
     #
     # Group and Entry Management

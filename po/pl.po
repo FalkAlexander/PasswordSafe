@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-08-23 13:53+0000\n"
-"PO-Revision-Date: 2018-08-23 16:02+0200\n"
+"POT-Creation-Date: 2018-08-23 16:23+0000\n"
+"PO-Revision-Date: 2018-08-23 18:24+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -19,13 +19,20 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: data/about_dialog.ui:12 data/org.gnome.PasswordSafe.desktop.in:4
+#: data/about_dialog.ui.in:12 data/org.gnome.PasswordSafe.desktop.in:4
 msgid "A password manager for GNOME"
 msgstr "Menedżer haseł dla środowiska GNOME"
 
-#: data/about_dialog.ui:14
+#: data/about_dialog.ui.in:14
 msgid "Homepage"
 msgstr "Strona domowa"
+
+#. Add your name to the translator credits list
+#: data/about_dialog.ui.in:17
+msgid "translator-credits"
+msgstr ""
+"Piotr Drąg <piotrdrag@gmail.com>, 2018\n"
+"Aviary.pl <community-poland@mozilla.org>, 2018"
 
 #: data/create_database.ui:84
 msgid "Set password for safe"
@@ -192,13 +199,13 @@ msgstr "Klient Keepass"
 
 #: data/org.gnome.PasswordSafe.appdata.xml:9
 msgid ""
-"GNOME Password Safe is a password manager which makes use of the Keepass v.4 "
+"Password Safe is a password manager which makes use of the Keepass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
 "and uncluttered interface for the management of password databases."
 msgstr ""
-"GNOME Password Safe to menedżer haseł używający formatu Keepass v.4. "
-"Idealnie integruje się ze środowiskiem GNOME i zapewnia łatwy i prosty "
-"interfejs do zarządzania bazami haseł."
+"Password Safe to menedżer haseł używający formatu Keepass v.4. Idealnie "
+"integruje się ze środowiskiem GNOME i zapewnia łatwy i prosty interfejs do "
+"zarządzania bazami haseł."
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.PasswordSafe.desktop.in:6
@@ -691,52 +698,53 @@ msgstr "Plik klucza"
 msgid "Composite"
 msgstr "Złożony"
 
-#: passwordsafe/unlock_database.py:186
+#: passwordsafe/unlock_database.py:195
 msgid "Database already opened"
 msgstr "Baza danych jest już otwarta"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:268
+#: passwordsafe/unlock_database.py:277
 msgid "Choose a keyfile"
 msgstr "Wybór pliku klucza"
 
-#: passwordsafe/unlock_database.py:385
+#. NOTE: Keyfile filechooser title
+#: passwordsafe/unlock_database.py:394
 msgid "Choose Keyfile"
 msgstr "Wybór pliku klucza"
 
-#: passwordsafe/unlocked_database.py:951
+#: passwordsafe/unlocked_database.py:952
 msgid "Database saved"
 msgstr "Zapisano bazę danych"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:954
+#: passwordsafe/unlocked_database.py:955
 msgid "Please wait. Another save is running."
 msgstr "Proszę czekać. Trwa inny zapis."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:957
+#: passwordsafe/unlocked_database.py:958
 msgid "No changes made"
 msgstr "Nie wprowadzono zmian"
 
-#: passwordsafe/unlocked_database.py:1204
-#: passwordsafe/unlocked_database.py:1215
+#: passwordsafe/unlocked_database.py:1205
+#: passwordsafe/unlocked_database.py:1216
 msgid "Copied to clipboard"
 msgstr "Skopiowano do schowka"
 
-#: passwordsafe/unlocked_database.py:1491
+#: passwordsafe/unlocked_database.py:1492
 msgid "Move completed"
 msgstr "Ukończono przeniesienie"
 
-#: passwordsafe/unlocked_database.py:1493
+#: passwordsafe/unlocked_database.py:1494
 msgid "Skipped moving group into itself"
 msgstr "Pomijanie przenoszenia grupy do niej samej"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:1602
+#: passwordsafe/unlocked_database.py:1603
 #, python-format
 msgid "%s locked"
 msgstr "Zablokowano %s"
 
-#: passwordsafe/unlocked_database.py:1602
+#: passwordsafe/unlocked_database.py:1603
 msgid "Keepass safe locked due to inactivity"
 msgstr "Zablokowano sejf Keepass z powodu nieaktywności"

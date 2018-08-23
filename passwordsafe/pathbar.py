@@ -11,6 +11,7 @@ class Pathbar(Gtk.HBox):
     path = NotImplemented
     headerbar = NotImplemented
     builder = NotImplemented
+    home_button = NotImplemented
     logging_manager = LoggingManager(True)
 
     def __init__(self, unlocked_database, dbm, path, headerbar):
@@ -49,10 +50,10 @@ class Pathbar(Gtk.HBox):
         scrolled_window.show_all()
 
     def first_appearance(self):
-        home_button = self.builder.get_object("home_button")
-        home_button.connect("clicked", self.on_home_button_clicked)
-        self.set_active_style(home_button)
-        self.pack_start(home_button, True, True, 0)
+        self.home_button = self.builder.get_object("home_button")
+        self.home_button.connect("clicked", self.on_home_button_clicked)
+        self.set_active_style(self.home_button)
+        self.pack_start(self.home_button, True, True, 0)
 
         seperator_label = Gtk.Label()
         seperator_label.set_text("/")
@@ -65,9 +66,9 @@ class Pathbar(Gtk.HBox):
         self.pack_end(seperator_label, True, True, 0)
 
     def add_home_button(self):
-        home_button = self.builder.get_object("home_button")
-        home_button.connect("clicked", self.on_home_button_clicked)
-        self.pack_end(home_button, True, True, 0)
+        self.home_button = self.builder.get_object("home_button")
+        self.home_button.connect("clicked", self.on_home_button_clicked)
+        self.pack_end(self.home_button, True, True, 0)
 
     def add_seperator_label(self):
         seperator_label = Gtk.Label()

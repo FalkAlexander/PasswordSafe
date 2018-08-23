@@ -329,8 +329,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
         page_instance = ContainerPage(headerbar)
 
-        tab_hbox = Gtk.HBox(False, 0)
-        tab_label = Gtk.Label(title)
+        tab_hbox = Gtk.HBox.new(False, 0)
+        tab_label = Gtk.Label.new(title)
         tab_hbox.pack_start(tab_label, False, False, False)
 
         icon = Gio.ThemedIcon(name="window-close-symbolic")

@@ -103,11 +103,19 @@ class UnlockDatabase:
         stack.add_titled(composite_unlock_stack_page, "composite_unlock", _("Composite"))
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
-        if passwordsafe.config_manager.get_remember_composite_key() is True and passwordsafe.config_manager.get_last_used_composite_key() is not "":
-            keyfile_path = passwordsafe.config_manager.get_last_used_composite_key()
-            composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
-            composite_unlock_select_button.set_label(ntpath.basename(keyfile_path))
-            self.composite_keyfile_path = Gio.File.new_for_uri(keyfile_path).get_path()
+        pairs = passwordsafe.config_manager.get_last_used_composite_key()
+        uri = Gio.File.new_for_path(self.database_filepath).get_uri()
+        if passwordsafe.config_manager.get_remember_composite_key() is True and pairs:
+            keyfile_path = None
+
+            for pair in pairs:
+                if pair[0] == uri:
+                    keyfile_path = pair[1]
+
+            if keyfile_path is not None:
+                composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
+                composite_unlock_select_button.set_label(ntpath.basename(keyfile_path))
+                self.composite_keyfile_path = keyfile_path
 
         if passwordsafe.config_manager.get_remember_unlock_method() is True:
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
@@ -481,8 +489,23 @@ class UnlockDatabase:
         self.password_composite = NotImplemented
         self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
 
+        pairs = passwordsafe.config_manager.get_last_used_composite_key()
+        uri = Gio.File.new_for_path(self.database_filepath).get_uri()
         if passwordsafe.config_manager.get_remember_composite_key() is True and self.composite_keyfile_path is not NotImplemented:
-                    passwordsafe.config_manager.set_last_used_composite_key(Gio.File.new_for_path(self.composite_keyfile_path).get_uri())
+            pair_array = []
+            already_added = False
+
+            for pair in pairs:
+                pair_array.append([pair[0], pair[1]])
+
+            for pair in pair_array:
+                if pair[0] == uri:
+                    pair[1] = self.composite_keyfile_path
+                    already_added = True
+
+            if already_added is False:
+                pair_array.append([uri, self.composite_keyfile_path])
+            passwordsafe.config_manager.set_last_used_composite_key(pair_array)
 
         self.set_last_used_unlock_method("composite")
         self.logging_manager.log_debug("Opening of database was successfull")

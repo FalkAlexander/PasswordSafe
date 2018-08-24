@@ -101,10 +101,11 @@ def set_remember_composite_key(value):
     setting.set_boolean(remember_composite_key, value)
 
 def get_last_used_composite_key():
-    return setting.get_string(last_used_composite_key)
+    return setting.get_value(last_used_composite_key)
 
-def set_last_used_composite_key(value):
-    setting.set_string(last_used_composite_key, value)
+def set_last_used_composite_key(list):
+    g_variant = GLib.Variant('aas', list)
+    setting.set_value(last_used_composite_key, g_variant)
 
 def get_remember_unlock_method():
     return setting.get_boolean(remember_unlock_method)

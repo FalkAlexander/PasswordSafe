@@ -267,9 +267,9 @@ class MainWindow(Gtk.ApplicationWindow):
         self.filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"), self, Gtk.FileChooserAction.SAVE,
-            "_Save", "_Cancel")
+            _("Save"), None)
         self.filechooser_creation_dialog.set_do_overwrite_confirmation(True)
-        self.filechooser_creation_dialog.set_current_name("Database.kdbx")
+        self.filechooser_creation_dialog.set_current_name("Safe.kdbx")
         self.filechooser_creation_dialog.set_modal(True)
         self.filechooser_creation_dialog.set_local_only(False)
 

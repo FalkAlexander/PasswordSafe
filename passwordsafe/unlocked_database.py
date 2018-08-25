@@ -1001,7 +1001,8 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)
 
-        self.show_database_action_revealer(_("Added Entry"))
+        # NOTE: In-app notification that indicates that an entry has been added
+        self.show_database_action_revealer(_("Entry added"))
 
     def on_add_group_button_clicked(self, widget):
         self.start_database_lock_timer()
@@ -1011,7 +1012,8 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.show_page_of_new_directory(True, False)
 
-        self.show_database_action_revealer(_("Added Group"))
+        # NOTE: In-app notification that indicates that a group has been added
+        self.show_database_action_revealer(_("Group added"))
 
     def on_add_property_button_clicked(self, widget):
         self.start_database_lock_timer()
@@ -1449,7 +1451,7 @@ class UnlockedDatabase:
         if reset_stack_page is True:
             self.current_group = self.database_manager.get_root_group()
 
-        self.show_database_action_revealer("Delete completed")
+        self.show_database_action_revealer(_("Deletion completed"))
 
         self.entries_selected.clear()
         self.groups_selected.clear()

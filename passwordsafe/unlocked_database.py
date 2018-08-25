@@ -1347,25 +1347,26 @@ class UnlockedDatabase:
             uuid = NotImplemented
             first_row = NotImplemented
 
-            selected_row = self.search_list_box.get_selected_row()
-            if selected_row is None:
-                if self.search_list_box.get_children()[0].type is "GroupRow":
-                    uuid = self.search_list_box.get_children()[0].get_group_uuid()
-                    first_row = self.database_manager.get_group_object_from_uuid(uuid)
+            if len(self.search_list_box.get_children()) != 0:
+                selected_row = self.search_list_box.get_selected_row()
+                if selected_row is None:
+                    if self.search_list_box.get_children()[0].type is "GroupRow":
+                        uuid = self.search_list_box.get_children()[0].get_group_uuid()
+                        first_row = self.database_manager.get_group_object_from_uuid(uuid)
+                    else:
+                        uuid = self.search_list_box.get_children()[0].get_entry_uuid()
+                        first_row = self.database_manager.get_entry_object_from_uuid(uuid)
                 else:
-                    uuid = self.search_list_box.get_children()[0].get_entry_uuid()
-                    first_row = self.database_manager.get_entry_object_from_uuid(uuid)
-            else:
-                if selected_row.type is "GroupRow":
-                    uuid = selected_row.get_group_uuid()
-                    first_row = self.database_manager.get_group_object_from_uuid(uuid)
-                else:
-                    uuid = selected_row.get_entry_uuid()
-                    first_row = self.database_manager.get_entry_object_from_uuid(uuid)
+                    if selected_row.type is "GroupRow":
+                        uuid = selected_row.get_group_uuid()
+                        first_row = self.database_manager.get_group_object_from_uuid(uuid)
+                    else:
+                        uuid = selected_row.get_entry_uuid()
+                        first_row = self.database_manager.get_entry_object_from_uuid(uuid)
 
-            self.current_group = first_row
-            self.pathbar.add_pathbar_button_to_pathbar(uuid)
-            self.show_page_of_new_directory(False, False)
+                self.current_group = first_row
+                self.pathbar.add_pathbar_button_to_pathbar(uuid)
+                self.show_page_of_new_directory(False, False)
 
 
     def on_search_filter_button_toggled(self, widget):

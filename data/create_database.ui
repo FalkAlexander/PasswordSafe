@@ -36,7 +36,9 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
+                <property name="halign">end</property>
                 <property name="margin_top">10</property>
+                <property name="hexpand">True</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
@@ -52,7 +54,10 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
                 <property name="margin_top">10</property>
+                <property name="hexpand">True</property>
                 <child>
                   <object class="GtkImage" id="button_image">
                     <property name="visible">True</property>
@@ -170,6 +175,7 @@
           <object class="GtkBox" id="grid2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">center</property>
             <child>
               <object class="GtkEntry" id="password_check_input">
                 <property name="width_request">250</property>
@@ -177,7 +183,10 @@
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
                 <property name="can_default">True</property>
+                <property name="halign">end</property>
+                <property name="valign">end</property>
                 <property name="margin_top">10</property>
+                <property name="hexpand">True</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
@@ -193,7 +202,9 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">start</property>
                 <property name="margin_top">10</property>
+                <property name="hexpand">True</property>
                 <child>
                   <object class="GtkImage" id="button_image4">
                     <property name="visible">True</property>
@@ -294,8 +305,10 @@
         </child>
         <child>
           <object class="GtkBox" id="grid3">
+            <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">center</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input1">
                 <property name="visible">True</property>
@@ -338,11 +351,12 @@
         </child>
         <child>
           <object class="GtkBox" id="grid4">
+            <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">center</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input2">
-                <property name="width_request">250</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="margin_top">2</property>
@@ -364,6 +378,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">end</property>
                 <property name="margin_top">2</property>
                 <child>
                   <object class="GtkImage" id="button_image5">

@@ -55,6 +55,7 @@
       <object class="GtkBox" id="composite_unlock_input_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">center</property>
         <child>
           <object class="GtkEntry" id="composite_unlock_entry">
             <property name="width_request">150</property>
@@ -81,6 +82,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Unlock</property>
+            <property name="halign">start</property>
             <property name="margin_top">10</property>
             <child>
               <object class="GtkImage" id="composite_unlock_button_image">
@@ -103,6 +105,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <property name="halign">start</property>
             <property name="valign">end</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
@@ -180,6 +183,7 @@
         <property name="width_request">250</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">center</property>
         <property name="margin_top">10</property>
         <child>
           <object class="GtkButton" id="keyfile_unlock_select_button">
@@ -423,14 +427,17 @@
     </child>
     <child>
       <object class="GtkBox" id="password_unlock_input_box">
+        <property name="width_request">250</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">center</property>
         <child>
           <object class="GtkEntry" id="password_unlock_entry">
             <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="can_default">True</property>
+            <property name="halign">end</property>
             <property name="margin_top">10</property>
             <property name="visibility">False</property>
             <property name="invisible_char">●</property>
@@ -449,6 +456,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Unlock</property>
+            <property name="halign">start</property>
             <property name="margin_top">10</property>
             <child>
               <object class="GtkImage" id="password_unlock_button_image">

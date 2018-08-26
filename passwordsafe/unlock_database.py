@@ -336,7 +336,7 @@ class UnlockDatabase:
                 self.show_unlock_failed_revealer()
 
                 keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
-                keyfile_unlock_select_button.set_label("Try again")
+                keyfile_unlock_select_button.set_label(_("Try again"))
 
                 self.logging_manager.log_debug("Invalid keyfile chosen")
         elif self.keyfile_path is not NotImplemented:

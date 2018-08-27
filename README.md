@@ -76,7 +76,15 @@ Helping to translate Password Safe or add support to a new language is very welc
 You can find everything you need at: https://l10n.gnome.org/module/PasswordSafe/
 
 # Supported encryption algorithms
-Fully supported are AES 256 encryption algorithm and AES-KDF (KDBX 3.1) derivation algorithm (KeepassXC defaults).
+### Encryption algorithms:
+* AES 256-bit
+* Twofish 256-bit
+* ChaCha20 256-bit
+
+### Derivation algorithms:
+* Argon2 KDBX4
+* AES-KDF KDBX 3.1
+
 Other algorithms are not supported right now and can may or may not work and/or produce failures.
 
 # Data protection

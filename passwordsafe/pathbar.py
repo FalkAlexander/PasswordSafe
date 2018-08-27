@@ -88,7 +88,6 @@ class Pathbar(Gtk.HBox):
 
     def add_pathbar_button_to_pathbar(self, uuid):
         self.clear_pathbar()
-
         pathbar_button_active = self.create_pathbar_button(uuid)
 
         self.remove_active_style()

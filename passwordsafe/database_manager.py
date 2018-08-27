@@ -319,7 +319,7 @@ class DatabaseManager:
 
     # Set database password
     def set_database_password(self, new_password):
-        self.db.set_credentials(new_password)
+        self.db.password = new_password
         self.changes = True
 
     #
@@ -360,7 +360,6 @@ class DatabaseManager:
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.expiry_time = date
         entry.expires
-        print(entry.expires)
         self.changes = True
 
     def set_entry_color(self, uuid, color):

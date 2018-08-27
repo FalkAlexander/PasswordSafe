@@ -10,7 +10,9 @@ import os
 import threading
 import time
 import datetime
+import construct
 from gettext import gettext as _
+from construct import core
 
 
 class UnlockDatabase:
@@ -253,7 +255,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, self.password_only)
             GLib.idle_add(self.password_unlock_success)
-        except(OSError, ValueError):
+        except(OSError, ValueError, AttributeError, core.ChecksumError):
             GLib.idle_add(self.password_unlock_failure)
 
     def password_unlock_success(self):
@@ -362,7 +364,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
             GLib.idle_add(self.keyfile_unlock_success)
-        except(OSError, IndexError, ValueError):
+        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError):
             GLib.idle_add(self.keyfile_unlock_failure)
 
     def keyfile_unlock_success(self):
@@ -482,7 +484,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, self.password_composite, self.composite_keyfile_path)
             GLib.idle_add(self.composite_unlock_success)
-        except(OSError, IndexError, ValueError):
+        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError):
             GLib.idle_add(self.composite_unlock_failure)
 
     def composite_unlock_success(self):

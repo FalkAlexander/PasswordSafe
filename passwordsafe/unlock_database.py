@@ -253,7 +253,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, self.password_only)
             GLib.idle_add(self.password_unlock_success)
-        except(OSError):
+        except(OSError, ValueError):
             GLib.idle_add(self.password_unlock_failure)
 
     def password_unlock_success(self):
@@ -362,7 +362,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
             GLib.idle_add(self.keyfile_unlock_success)
-        except(OSError, IndexError):
+        except(OSError, IndexError, ValueError):
             GLib.idle_add(self.keyfile_unlock_failure)
 
     def keyfile_unlock_success(self):
@@ -482,7 +482,7 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, self.password_composite, self.composite_keyfile_path)
             GLib.idle_add(self.composite_unlock_success)
-        except(OSError, IndexError):
+        except(OSError, IndexError, ValueError):
             GLib.idle_add(self.composite_unlock_failure)
 
     def composite_unlock_success(self):

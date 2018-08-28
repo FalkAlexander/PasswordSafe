@@ -88,7 +88,8 @@ class CreateDatabase:
 
     def keyfile_creation(self):
         self.stack.set_visible_child(self.stack.get_child_by_name("page3"))
-        self.parent_widget.add(self.stack)
+        if self.composite is False:
+            self.parent_widget.add(self.stack)
 
         self.builder.get_object("generate_keyfile_button").connect("clicked", self.on_generate_keyfile_button_clicked)
 
@@ -203,7 +204,8 @@ class CreateDatabase:
 
     def save_pwc_database_thread(self):
         GLib.idle_add(self.show_pwc_loading)
-        self.database_manager.save_database()
+        if self.composite is False:
+            self.database_manager.save_database()
         GLib.idle_add(self.success_page)
 
     def show_pwc_loading(self):
@@ -218,7 +220,8 @@ class CreateDatabase:
 
     def save_pwr_database_thread(self):
         GLib.idle_add(self.show_pwr_loading)
-        self.database_manager.save_database()
+        if self.composite is False:
+            self.database_manager.save_database()
         GLib.idle_add(self.success_page)
 
     def show_pwr_loading(self):
@@ -255,11 +258,11 @@ class CreateDatabase:
         if response == Gtk.ResponseType.ACCEPT:
             generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
             generate_keyfile_button.set_sensitive(False)
-            generate_keyfile_button.set_label("Generating...")
+            generate_keyfile_button.set_label(_("Generating…"))
 
             self.keyfile_path = filechooser_creation_dialog.get_filename()
 
-            generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.keyfile_path, True, self))
+            generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.keyfile_path, True, self, self.composite))
             generator_thread.daemon = True
             generator_thread.start()
 

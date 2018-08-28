@@ -18,7 +18,7 @@ class DatabaseManager:
     scheduled_saves = 0
 
     def __init__(self, database_path, password=None, keyfile=None):
-        self.db = PyKeePass(database_path, password=password, keyfile=keyfile)
+        self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
         self.password = password
 

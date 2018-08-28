@@ -75,7 +75,7 @@ class UnlockDatabase:
         back_button.connect("clicked", self.on_headerbar_back_button_clicked)
 
     #
-    # Stack
+    # Password stack
     #
 
     def assemble_stack(self):
@@ -304,7 +304,6 @@ class UnlockDatabase:
             keyfile_unlock_select_button.set_label(ntpath.basename(keyfile_chooser_dialog.get_filename()))
 
             self.keyfile_path = keyfile_chooser_dialog.get_filename()
-            print(self.keyfile_path)
 
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.log_debug("File selection canceled")

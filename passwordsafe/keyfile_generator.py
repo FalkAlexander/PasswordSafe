@@ -22,3 +22,7 @@ def generate_keyfile(filepath, database_creation, instance, composite):
         instance.database_manager.set_database_keyfile(str(filepath))
         instance.database_manager.save_database()
         GLib.idle_add(instance.set_database_keyfile)
+    else:
+        GLib.idle_add(instance.keyfile_generated)
+
+

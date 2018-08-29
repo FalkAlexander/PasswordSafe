@@ -58,6 +58,8 @@ class UnlockedDatabase:
     entries_selected = []
     groups_selected = []
 
+    database_settings_dialog = NotImplemented
+
     def __init__(self, window, widget, dbm, unlock_database):
         self.window = window
         self.parent_widget = widget
@@ -1561,6 +1563,9 @@ class UnlockedDatabase:
         self.unregister_dbus_signal()
         self.stop_save_loop()
 
+        if self.database_settings_dialog is not NotImplemented:
+            self.database_settings_dialog.close()
+
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)
             save_thread.daemon = False
@@ -1577,6 +1582,9 @@ class UnlockedDatabase:
         self.cancel_timers()
         self.database_locked = True
         self.stop_save_loop()
+
+        if self.database_settings_dialog is not NotImplemented:
+            self.database_settings_dialog.close()
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)

@@ -90,6 +90,9 @@ class DatabaseSettingsDialog():
         self.dialog.set_transient_for(self.unlocked_database.window)
         self.dialog.present()
 
+        self.unlocked_database.database_settings_dialog = self.dialog
+        self.dialog.connect("delete-event", self.on_dialog_quit)
+
     #
     # Password Section
     #
@@ -440,4 +443,11 @@ class DatabaseSettingsDialog():
             self.encryption_apply_button.set_sensitive(False)
         else:
             self.encryption_apply_button.set_sensitive(True)
+
+    #
+    # Tools
+    #
+
+    def on_dialog_quit(self, window, event):
+        self.unlocked_database.database_settings_dialog = NotImplemented
 

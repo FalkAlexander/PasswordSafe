@@ -142,7 +142,7 @@ class DatabaseSettingsDialog():
         select_dialog.set_local_only(False)
 
         ffilter = Gtk.FileFilter()
-        ffilter.set_name("Keyfile")
+        ffilter.set_name(_("Keyfile"))
         ffilter.add_mime_type("application/octet-stream")
         ffilter.add_mime_type("application/x-keepass2")
         ffilter.add_mime_type("text/plain")
@@ -173,12 +173,12 @@ class DatabaseSettingsDialog():
             _("Choose location for keyfile"), self.dialog, Gtk.FileChooserAction.SAVE,
             _("Generate"), None)
         save_dialog.set_do_overwrite_confirmation(True)
-        save_dialog.set_current_name("Key")
+        save_dialog.set_current_name(_("Keyfile"))
         save_dialog.set_modal(True)
         save_dialog.set_local_only(False)
 
         ffilter = Gtk.FileFilter()
-        ffilter.set_name("Keyfile")
+        ffilter.set_name(_("Keyfile"))
         ffilter.add_mime_type("application/octet-stream")
         ffilter.add_mime_type("application/x-keepass2")
         ffilter.add_mime_type("text/plain")
@@ -344,11 +344,11 @@ class DatabaseSettingsDialog():
         # Encryption Algorithm
         enc_alg = _("Unknown")
         if self.database_manager.db.encryption_algorithm == "aes256":
-            enc_alg = "AES: 256-bit"
+            enc_alg = "AES: " + _("256-bit")
         elif self.database_manager.db.encryption_algorithm == "chacha20":
-            enc_alg = "ChaCha20: 256-bit"
+            enc_alg = "ChaCha20: " + _("256-bit")
         elif self.database_manager.db.encryption_algorithm == "twofish":
-            enc_alg = "Twofish: 256-bit"
+            enc_alg = "Twofish: " + _("256-bit")
         self.builder.get_object("label_enc_alg").set_text(enc_alg)
 
         # Derivation Algorithm

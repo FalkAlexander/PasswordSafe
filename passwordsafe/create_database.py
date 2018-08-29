@@ -241,12 +241,12 @@ class CreateDatabase:
             _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,
             _("Generate"), None)
         filechooser_creation_dialog.set_do_overwrite_confirmation(True)
-        filechooser_creation_dialog.set_current_name("Key")
+        filechooser_creation_dialog.set_current_name(_("Keyfile"))
         filechooser_creation_dialog.set_modal(True)
         filechooser_creation_dialog.set_local_only(False)
 
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("Keyfile")
+        filter_text.set_name(_("Keyfile"))
         filter_text.add_mime_type("application/octet-stream")
         filter_text.add_mime_type("application/x-keepass2")
         filter_text.add_mime_type("text/plain")

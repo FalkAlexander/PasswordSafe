@@ -286,7 +286,7 @@ class UnlockDatabase:
         # NOTE: Keyfile filechooser title
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None)
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("Keyfile")
+        filter_text.set_name(_("Keyfile"))
         filter_text.add_mime_type("application/octet-stream")
         filter_text.add_mime_type("application/x-keepass2")
         filter_text.add_mime_type("text/plain")
@@ -389,7 +389,7 @@ class UnlockDatabase:
                 self.database_manager.keyfile_hash = NotImplemented
 
         keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
-        keyfile_unlock_select_button.set_label("Try again")
+        keyfile_unlock_select_button.set_label(_("Try again"))
 
         self.logging_manager.log_debug("Invalid keyfile chosen")
 
@@ -403,7 +403,7 @@ class UnlockDatabase:
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
 
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("Keyfile")
+        filter_text.set_name(_("Keyfile"))
         filter_text.add_mime_type("application/octet-stream")
         filter_text.add_mime_type("application/x-keepass2")
         filter_text.add_mime_type("text/plain")

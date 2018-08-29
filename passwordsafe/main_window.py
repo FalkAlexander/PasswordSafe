@@ -222,7 +222,7 @@ class MainWindow(Gtk.ApplicationWindow):
             None, None)
 
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("Keepass 2 Database")
+        filter_text.set_name("KeePass 3.1/4 " + _("Database"))
         filter_text.add_mime_type("application/x-keepass2")
         filter_text.add_mime_type("application/octet-stream")
         filechooser_opening_dialog.add_filter(filter_text)
@@ -269,12 +269,12 @@ class MainWindow(Gtk.ApplicationWindow):
             _("Choose location for Keepass safe"), self, Gtk.FileChooserAction.SAVE,
             _("Save"), None)
         self.filechooser_creation_dialog.set_do_overwrite_confirmation(True)
-        self.filechooser_creation_dialog.set_current_name("Safe.kdbx")
+        self.filechooser_creation_dialog.set_current_name(_("Safe") + ".kdbx")
         self.filechooser_creation_dialog.set_modal(True)
         self.filechooser_creation_dialog.set_local_only(False)
 
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("Keepass 2 Database")
+        filter_text.set_name("KeePass 3.1/4 " + _("Database"))
         filter_text.add_mime_type("application/x-keepass2")
         self.filechooser_creation_dialog.add_filter(filter_text)
 

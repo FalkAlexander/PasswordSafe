@@ -5,7 +5,7 @@ project('passwordsafe', 'c',
 i18n = import('i18n')
 python = import('python3')
 project_id = 'org.gnome.PasswordSafe'
-contributors = '\n'.join(['Falk Alexander Seidl', 'Uta Lemke'])
+contributors = '\n'.join(['Falk Alexander Seidl &lt;fa@terminal.run&gt;', 'Uta Lemke'])
 
 message('Looking for dependencies')
 python_bin = python.find_python()

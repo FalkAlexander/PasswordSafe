@@ -382,11 +382,14 @@ class DatabaseSettingsDialog():
         # Encryption Algorithm
         enc_alg = _("Unknown")
         if self.database_manager.db.encryption_algorithm == "aes256":
-            enc_alg = "AES " + _("256-bit")
+            # NOTE: AES is a proper name
+            enc_alg = _("AES 256-bit")
         elif self.database_manager.db.encryption_algorithm == "chacha20":
-            enc_alg = "ChaCha20 " + _("256-bit")
+            # NOTE: ChaCha20 is a proper name
+            enc_alg = _("ChaCha20 256-bit")
         elif self.database_manager.db.encryption_algorithm == "twofish":
-            enc_alg = "Twofish " + _("256-bit")
+            # NOTE: Twofish is a proper name
+            enc_alg = _("Twofish 256-bit")
         self.builder.get_object("label_enc_alg").set_text(enc_alg)
 
         # Derivation Algorithm

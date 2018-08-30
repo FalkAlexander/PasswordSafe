@@ -5,6 +5,7 @@ project('passwordsafe', 'c',
 i18n = import('i18n')
 python = import('python3')
 project_id = 'org.gnome.PasswordSafe'
+contributors = '\n'.join(['Falk Alexander Seidl', 'Uta Lemke'])
 
 message('Looking for dependencies')
 python_bin = python.find_python()
@@ -35,6 +36,7 @@ conf.set('PYTHON_EXEC_DIR', join_paths(get_option('prefix'), python.sysconfig_pa
 conf.set('PYTHON', python_bin.path())
 conf.set('libexecdir', LIBEXEC_DIR)
 conf.set('VERSION', meson.project_version())
+conf.set('CONTRIBUTORS', contributors)
 
 subdir('data')
 subdir('po')

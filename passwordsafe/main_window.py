@@ -222,7 +222,8 @@ class MainWindow(Gtk.ApplicationWindow):
             None, None)
 
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("KeePass 3.1/4 " + _("Database"))
+        # NOTE: KeePass + version number is a proper name, do not translate
+        filter_text.set_name(_("KeePass 3.1/4 Database"))
         filter_text.add_mime_type("application/x-keepass2")
         filter_text.add_mime_type("application/octet-stream")
         filechooser_opening_dialog.add_filter(filter_text)
@@ -274,7 +275,8 @@ class MainWindow(Gtk.ApplicationWindow):
         self.filechooser_creation_dialog.set_local_only(False)
 
         filter_text = Gtk.FileFilter()
-        filter_text.set_name("KeePass 3.1/4 " + _("Database"))
+        # NOTE: KeePass + version number is a proper name, do not translate
+        filter_text.set_name(_("KeePass 3.1/4 Database"))
         filter_text.add_mime_type("application/x-keepass2")
         self.filechooser_creation_dialog.add_filter(filter_text)
 

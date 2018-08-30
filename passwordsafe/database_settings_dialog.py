@@ -1,10 +1,12 @@
 from gettext import gettext as _
 from gi.repository import Gtk, GLib, Gio
+from random import randint
 from threading import Timer
 import gi
 import ntpath
 import passwordsafe.config_manager
 import passwordsafe.keyfile_generator
+import passwordsafe.password_generator
 import threading
 import time
 import os
@@ -70,7 +72,9 @@ class DatabaseSettingsDialog():
         # Password Section
         self.builder.get_object("current_password_entry").connect("changed", self.on_password_entry_changed)
         self.builder.get_object("new_password_entry").connect("changed", self.on_password_entry_changed)
+        self.builder.get_object("new_password_entry").connect("icon-press", self.on_generate_password)
         self.builder.get_object("confirm_password_entry").connect("changed", self.on_password_entry_changed)
+        self.builder.get_object("confirm_password_entry").connect("icon-press", self.on_show_password)
 
         # Keyfile Section
         select_keyfile_button = self.builder.get_object("select_keyfile_button")
@@ -84,6 +88,13 @@ class DatabaseSettingsDialog():
             select_keyfile_button.set_sensitive(False)
         else:
             self.generate_keyfile_button.set_sensitive(False)
+
+        # Password Level Bar
+        level_bar = self.builder.get_object("password_level_bar")
+        level_bar.add_offset_value("weak", 1.0)
+        level_bar.add_offset_value("medium", 3.0)
+        level_bar.add_offset_value("strong", 5.0)
+        level_bar.add_offset_value("secure", 6.0)
 
         # Dialog
         self.dialog.set_modal(True)
@@ -103,6 +114,10 @@ class DatabaseSettingsDialog():
         confirm_password = self.builder.get_object("confirm_password_entry").get_text()
 
         self.new_password = NotImplemented
+
+        if entry.get_name() == "new_entry":
+            level = passwordsafe.password_generator.strength(new_password)
+            self.builder.get_object("password_level_bar").set_value(float(level))
 
         if self.database_manager.password == "" or self.database_manager.password is None:
             if new_password == "" or confirm_password == "":
@@ -128,6 +143,29 @@ class DatabaseSettingsDialog():
 
         self.auth_apply_button.set_sensitive(True)
         self.new_password = confirm_password
+
+    def on_generate_password(self, widget, position, eventbutton):
+        new_password_entry = self.builder.get_object("new_password_entry")
+        confirm_password_entry = self.builder.get_object("confirm_password_entry")
+
+        generated_password = passwordsafe.password_generator.generate(randint(18, 24), True, True, True, True)
+
+        new_password_entry.set_text(generated_password)
+        confirm_password_entry.set_text(generated_password)
+
+        new_password_entry.set_visibility(True)
+        confirm_password_entry.set_visibility(True)
+
+    def on_show_password(self, widget, position, eventbutton):
+        new_password_entry = self.builder.get_object("new_password_entry")
+        confirm_password_entry = self.builder.get_object("confirm_password_entry")
+
+        if new_password_entry.get_visibility() is True:
+            new_password_entry.set_visibility(False)
+            confirm_password_entry.set_visibility(False)
+        else:
+            new_password_entry.set_visibility(True)
+            confirm_password_entry.set_visibility(True)
 
     #
     # Keyfile Section
@@ -344,11 +382,11 @@ class DatabaseSettingsDialog():
         # Encryption Algorithm
         enc_alg = _("Unknown")
         if self.database_manager.db.encryption_algorithm == "aes256":
-            enc_alg = "AES: " + _("256-bit")
+            enc_alg = "AES " + _("256-bit")
         elif self.database_manager.db.encryption_algorithm == "chacha20":
-            enc_alg = "ChaCha20: " + _("256-bit")
+            enc_alg = "ChaCha20 " + _("256-bit")
         elif self.database_manager.db.encryption_algorithm == "twofish":
-            enc_alg = "Twofish: " + _("256-bit")
+            enc_alg = "Twofish " + _("256-bit")
         self.builder.get_object("label_enc_alg").set_text(enc_alg)
 
         # Derivation Algorithm

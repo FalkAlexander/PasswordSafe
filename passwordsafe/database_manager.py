@@ -530,4 +530,10 @@ class DatabaseManager:
             return True
         else:
             return self.parent_checker(current_group.parentgroup, moved_group)
+
+    def get_database_encryption(self):
+        return self.db.encryption_algorithm
+
+    def get_database_derivation(self):
+        return self.db.version
         

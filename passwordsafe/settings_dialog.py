@@ -108,19 +108,18 @@ class SettingsDialog():
 
     def on_settings_clear_recents_clicked(self, widget):
         passwordsafe.config_manager.set_last_opened_list([])
-        if self.window.container is not NotImplemented:
-            if self.window.container.get_n_pages() is 0:
-                builder = Gtk.Builder()
-                builder.add_from_resource(
-                    "/org/gnome/PasswordSafe/main_window.ui")
+        if self.window.container is not NotImplemented and self.window.container.get_n_pages() is 0 or self.window.container is NotImplemented:
+            builder = Gtk.Builder()
+            builder.add_from_resource(
+                "/org/gnome/PasswordSafe/main_window.ui")
 
-                self.window.remove(self.window.first_start_grid)
+            self.window.remove(self.window.first_start_grid)
 
-                pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
-                app_logo = builder.get_object("app_logo")
-                app_logo.set_from_pixbuf(pix)
-                self.window.first_start_grid = builder.get_object("first_start_grid")
-                self.window.add(self.window.first_start_grid)
+            pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
+            app_logo = builder.get_object("app_logo")
+            app_logo.set_from_pixbuf(pix)
+            self.window.first_start_grid = builder.get_object("first_start_grid")
+            self.window.add(self.window.first_start_grid)
         widget.set_sensitive(False)
 
     def on_settings_remember_switch_switched(self, switch_button, gparam):

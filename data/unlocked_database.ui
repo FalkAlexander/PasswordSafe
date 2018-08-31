@@ -5,12 +5,11 @@
   <object class="GtkBox" id="browser_buttons_box">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="margin_right">6</property>
+    <property name="spacing">6</property>
     <child>
       <object class="GtkBox" id="linked_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_right">6</property>
         <child>
           <object class="GtkButton" id="add_entry_button">
             <property name="visible">True</property>
@@ -67,7 +66,6 @@
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
         <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
-        <property name="margin_right">6</property>
         <child>
           <object class="GtkImage" id="selection_button_image">
             <property name="visible">True</property>
@@ -439,7 +437,6 @@
   <object class="GtkBox" id="entry_page_mod_box">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="margin_right">6</property>
     <child>
       <object class="GtkButton" id="add_property_button">
         <property name="visible">True</property>
@@ -892,11 +889,11 @@
           <object class="GtkBox" id="linkedbox_right">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="spacing">6</property>
             <child>
               <object class="GtkBox" id="save_box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_right">6</property>
                 <child>
                   <object class="GtkButton" id="save_button">
                     <property name="label" translatable="yes" comments="Button to save all the changes which were made to the keepass safe">Save</property>

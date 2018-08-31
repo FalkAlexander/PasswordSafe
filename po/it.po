@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
 "POT-Creation-Date: 2018-08-30 16:21+0000\n"
-"PO-Revision-Date: 2018-08-31 17:09+0200\n"
+"PO-Revision-Date: 2018-08-31 17:23+0200\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -56,7 +56,6 @@ msgstr "Usare un file chiave per mettere al sicuro la propria cassaforte"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
 #: data/create_database.ui:233 passwordsafe/unlock_database.py:105
-#, fuzzy
 msgid "Composite"
 msgstr "Composito"
 
@@ -187,7 +186,7 @@ msgstr "Algoritmo di cifratura"
 
 #: data/database_settings_dialog.ui:192
 msgid "Derivation Algorithm"
-msgstr ""
+msgstr "Algoritmo di derivazione"
 
 #. Statistics
 #: data/database_settings_dialog.ui:291
@@ -265,7 +264,7 @@ msgstr "AES: 256-bit"
 #. https://en.wikipedia.org/wiki/Key_derivation_function
 #: data/database_settings_dialog.ui:1025
 msgid "Key Derivation Function"
-msgstr ""
+msgstr "Funzione di derivazione chiave"
 
 #: data/entry_page.ui:31
 msgid "Color"
@@ -424,7 +423,7 @@ msgstr "Dimensione finestra"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:47
 msgid "Remember the window size."
-msgstr "Ricorda la dimensione delle finestra"
+msgstr "Ricorda la dimensione delle finestra."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:51
 msgid "Last opened database"
@@ -444,19 +443,19 @@ msgstr "Un elenco degli ultimi database aperti."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:61
 msgid "Remember composite key"
-msgstr ""
+msgstr "Ricorda la chiave composita"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:62
 msgid "Remember last used composite key for database unlocking."
-msgstr ""
+msgstr "Ricorda l'ultima chiave composita usata per sbloccare il database."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:66
 msgid "Last used composite key"
-msgstr ""
+msgstr "Ultima chiave composita usata"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:67
 msgid "Path to last used key for composite database unlocking."
-msgstr ""
+msgstr "Percorso all'ultima chiave composita usata per sbloccare il database."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:71
 msgid "Remember unlock method"
@@ -496,10 +495,12 @@ msgid ""
 "Used to store the last used unlock method and to enable a faster unlock "
 "process."
 msgstr ""
+"Utilizzato per salvare l'ultimo metodo di sblocco usato e per abilitare lo "
+"sblocco rapido."
 
 #: data/override_dialog.ui:8
 msgid "File already exists"
-msgstr "Il file esiste già?"
+msgstr "Il file esiste già"
 
 #: data/override_dialog.ui:9
 msgid "Do you want to override it?"
@@ -551,7 +552,7 @@ msgstr "Scarta"
 #: data/save_dialog.ui:35 data/unlocked_database.ui:902
 #: passwordsafe/main_window.py:271
 msgid "Save"
-msgstr "Salva "
+msgstr "Salva"
 
 #: data/settings_dialog.ui:96
 msgid "Dark Theme"
@@ -581,17 +582,17 @@ msgstr "Sblocca"
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
 #: data/settings_dialog.ui:426
 msgid "Remember Composite Key"
-msgstr ""
+msgstr "Ricordare chiave composita"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
 #: data/settings_dialog.ui:443
 msgid "Remember last used composite key"
-msgstr ""
+msgstr "Ricorda l'ultima chiave composita usata"
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
 #: data/settings_dialog.ui:510
 msgid "Remember Unlock Method"
-msgstr ""
+msgstr "Ricordare metodo di sblocco"
 
 #: data/settings_dialog.ui:527
 msgid "Enable faster unlocking"
@@ -603,11 +604,11 @@ msgstr "Sicurezza"
 
 #: data/settings_dialog.ui:633
 msgid "Safe Lock Timeout"
-msgstr ""
+msgstr "Timeout blocca cassaforte"
 
 #: data/settings_dialog.ui:650
 msgid "Lock safe on idle after X minutes"
-msgstr ""
+msgstr "Blocca la cassaforte quando inutilizzata per X minuti"
 
 #: data/settings_dialog.ui:718
 msgid "Clear Clipboard"

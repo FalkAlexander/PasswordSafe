@@ -259,7 +259,7 @@ class DatabaseSettingsDialog():
 
     def on_auth_apply_button_clicked(self, button):
         if self.new_password is not NotImplemented:
-            if self.new_keyfile_path is NotImplemented:
+            if self.new_keyfile_path is NotImplemented and self.database_manager.keyfile_hash is not NotImplemented:
                 self.database_manager.set_database_keyfile(None)
                 self.database_manager.keyfile_hash = NotImplemented
 

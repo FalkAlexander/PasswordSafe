@@ -26,6 +26,17 @@ EXTENSION_DIR = join_paths(get_option('prefix'), get_option('libdir'), meson.pro
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
+# Python Module Check
+pykeepass_dir = join_paths(python_dir, 'pykeepass')
+construct_dir = join_paths(python_dir, 'construct')
+if run_command('[', '-d', pykeepass_dir, ']').returncode() != 0
+    error('Missing dependency pykeepass >= master')
+endif
+
+if run_command('[', '-d', construct_dir, ']').returncode() != 0
+    error('Missing dependency python-construct >= 2.9.45')
+endif
+
 conf = configuration_data()
 conf.set('PACKAGE_URL', 'https://gitlab.gnome.org/World/PasswordSafe')
 conf.set('DATA_DIR', DATA_DIR)

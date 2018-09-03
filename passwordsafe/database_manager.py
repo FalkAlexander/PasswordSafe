@@ -271,9 +271,6 @@ class DatabaseManager:
         elif len(entry.custom_properties) == 1:
             if self.has_entry_color(uuid) is True:
                 return False
-        elif len(entry.custom_properties) == 2:
-            if self.has_entry_color(uuid) is True:
-                return False
         else:
             return True
 

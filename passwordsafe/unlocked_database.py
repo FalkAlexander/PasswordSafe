@@ -890,7 +890,9 @@ class UnlockedDatabase:
         if self.database_manager.has_entry_attributes(entry_uuid) is True:
             attributes = self.database_manager.get_entry_attributes_from_entry_uuid(entry_uuid)
             for key in attributes:
+                print(key)
                 if key != "color" and key != "Notes":
+                    print(": " + key)
                     self.add_attribute_property_row(key, attributes[key])
 
         if scrolled_page.color_property_row is not NotImplemented and scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented and scrolled_page.attributes_property_row is not NotImplemented:

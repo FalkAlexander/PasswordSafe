@@ -1,0 +1,947 @@
+# Swedish translation for PasswordSafe.
+# Copyright © 2018 PasswordSafe's COPYRIGHT HOLDER
+# This file is distributed under the same license as the PasswordSafe package.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PasswordSafe master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
+"POT-Creation-Date: 2018-08-31 19:58+0000\n"
+"PO-Revision-Date: 2018-09-02 13:54+0200\n"
+"Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"X-Generator: Poedit 2.1.1\n"
+
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.desktop.in:4
+msgid "A password manager for GNOME"
+msgstr "En lösenordshanterare för GNOME"
+
+#: data/about_dialog.ui.in:13
+msgid "Learn more about Password Safe"
+msgstr "Lär dig mer om Password Safe"
+
+#. Add your name to the translator credits list
+#: data/about_dialog.ui.in:15
+msgid "translator-credits"
+msgstr ""
+"Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"\n"
+"Skicka synpunkter på översättningen till\n"
+"<tp-sv@listor.tp-sv.se>."
+
+#: data/create_database.ui:73 data/database_settings_dialog.ui:507
+#: data/entry_page.ui:756 passwordsafe/unlock_database.py:98
+msgid "Password"
+msgstr "Lösenord"
+
+#: data/create_database.ui:91
+msgid "Use a password to secure your safe"
+msgstr "Använd ett lösenord för att säkra ditt kassaskåp"
+
+#: data/create_database.ui:153 data/database_settings_dialog.ui:647
+#: passwordsafe/create_database.py:244 passwordsafe/create_database.py:249
+#: passwordsafe/database_settings_dialog.py:183
+#: passwordsafe/database_settings_dialog.py:214
+#: passwordsafe/database_settings_dialog.py:219
+#: passwordsafe/unlock_database.py:101 passwordsafe/unlock_database.py:289
+#: passwordsafe/unlock_database.py:406
+msgid "Keyfile"
+msgstr "Nyckelfil"
+
+#: data/create_database.ui:171
+msgid "Use a keyfile to secure your safe"
+msgstr "Använd en nyckelfil för att säkra ditt kassaskåp"
+
+#. NOTE: Composite unlock is a authentification method where both password and keyfile are required
+#: data/create_database.ui:233 passwordsafe/unlock_database.py:105
+msgid "Composite"
+msgstr "Sammansatt"
+
+#: data/create_database.ui:251
+msgid "Use a password in combination with a keyfile to secure your safe"
+msgstr ""
+"Använd ett lösenord i kombination med en nyckelfil för att säkra ditt "
+"kassaskåp"
+
+#: data/create_database.ui:292
+msgid "Protect your safe"
+msgstr "Skydda ditt kassaskåp"
+
+#: data/create_database.ui:418
+msgid "Set password for safe"
+msgstr "Ställ in lösenord för kassaskåp"
+
+#: data/create_database.ui:433
+msgid "Enter Password"
+msgstr "Ange lösenord"
+
+#: data/create_database.ui:479
+msgid "Password Match Check"
+msgstr "Kontroll att lösenord överensstämmer"
+
+#: data/create_database.ui:565
+msgid "Repeat password for safe"
+msgstr "Upprepa lösenord för kassaskåp"
+
+#: data/create_database.ui:611
+msgid "Match Check Failed"
+msgstr "Kontroll av överensstämmelse misslyckades"
+
+#: data/create_database.ui:670
+msgid "Please try again"
+msgstr "Försök igen"
+
+#. Button to generate a password
+#: data/create_database.ui:791 data/entry_page.ui:900
+#: passwordsafe/create_database.py:242
+#: passwordsafe/database_settings_dialog.py:212
+msgid "Generate"
+msgstr "Generera"
+
+#: data/create_database.ui:820
+msgid "Set keyfile for safe"
+msgstr "Ställ in nyckelfil för kassaskåp"
+
+#: data/create_database.ui:835
+msgid "Generate Keyfile"
+msgstr "Generera nyckelfil"
+
+# https://gitlab.gnome.org/World/PasswordSafe/issues/37
+#: data/create_database.ui:868
+msgid "page3"
+msgstr "sida3"
+
+#. Title of the settings dialog
+#: data/create_database.ui:890 data/main_window.ui:247
+#: data/settings_dialog.ui:14 data/unlock_database.ui:298
+#: data/unlocked_database.ui:749 passwordsafe/application.py:43
+msgid "Settings"
+msgstr "Inställningar"
+
+#: data/create_database.ui:904 data/main_window.ui:261
+#: data/unlock_database.ui:312 data/unlocked_database.ui:763
+msgid "Keyboard Shortcuts"
+msgstr "Tangentbordsgenvägar"
+
+#: data/create_database.ui:918 data/main_window.ui:275
+#: data/unlock_database.ui:326 data/unlocked_database.ui:777
+#: passwordsafe/application.py:46
+msgid "About"
+msgstr "Om"
+
+#. Application title in headerbar.
+#: data/create_database.ui:932 data/main_window.ui:289
+#: data/org.gnome.PasswordSafe.appdata.xml:6
+#: data/org.gnome.PasswordSafe.desktop.in:3 data/unlock_database.ui:340
+msgid "Password Safe"
+msgstr "Password Safe"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#: data/create_database.ui:933
+msgid "Create Safe"
+msgstr "Skapa kassaskåp"
+
+#: data/created_database.ui:24
+msgid "Safe Successfully Created"
+msgstr "Kassaskåp skapades"
+
+#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
+#. Headerbar subtitle for the keepass safe unlock screen.
+#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
+#: data/created_database.ui:50 data/unlock_database.ui:273
+#: data/unlock_database.ui:341 data/unlocked_database.ui:674
+msgid "Open Safe"
+msgstr "Öppna kassaskåp"
+
+#: data/database_settings_dialog.ui:59
+msgid "Details"
+msgstr "Detaljer"
+
+#: data/database_settings_dialog.ui:84
+msgid "Path"
+msgstr "Sökväg"
+
+#: data/database_settings_dialog.ui:100
+msgid "File Size"
+msgstr "Filstorlek"
+
+#: data/database_settings_dialog.ui:116
+msgid "Safe Name"
+msgstr "Namn på kassaskåp"
+
+#. KeePass is a proper noun
+#: data/database_settings_dialog.ui:144
+msgid "KeePass Version"
+msgstr "KeePass-version"
+
+#: data/database_settings_dialog.ui:160
+msgid "Creation Date"
+msgstr "Datum för skapande"
+
+#: data/database_settings_dialog.ui:176 data/database_settings_dialog.ui:933
+msgid "Encryption Algorithm"
+msgstr "Krypteringsalgoritm"
+
+# https://it-ord.idg.se/ord/key-derivation-function/
+#: data/database_settings_dialog.ui:192
+msgid "Derivation Algorithm"
+msgstr "Genereringsalgoritm"
+
+#. Statistics
+#: data/database_settings_dialog.ui:291
+msgid "Stats"
+msgstr "Statistik"
+
+#: data/database_settings_dialog.ui:316
+msgid "Number of Groups"
+msgstr "Antal grupper"
+
+#: data/database_settings_dialog.ui:332
+msgid "Passwords"
+msgstr "Lösenord"
+
+#: data/database_settings_dialog.ui:348
+msgid "Number of Entries"
+msgstr "Antal poster"
+
+#: data/database_settings_dialog.ui:474 data/settings_dialog.ui:47
+msgid "General"
+msgstr "Allmänt"
+
+#. New password (replacement for an old one)
+#: data/database_settings_dialog.ui:531
+msgid "New"
+msgstr "Nytt"
+
+#: data/database_settings_dialog.ui:550
+msgid "Generate Password"
+msgstr "Generera lösenord"
+
+#. Retype the new password to confirm
+#: data/database_settings_dialog.ui:563
+msgid "Confirm"
+msgstr "Bekräfta"
+
+#. Current password
+#: data/database_settings_dialog.ui:593
+msgid "Current"
+msgstr "Aktuellt"
+
+#: data/database_settings_dialog.ui:701
+msgid "Select current keyfile"
+msgstr "Välj aktuell nyckelfil"
+
+#: data/database_settings_dialog.ui:777
+msgid "Generate new keyfile"
+msgstr "Generera ny nyckelfil"
+
+#: data/database_settings_dialog.ui:810 data/database_settings_dialog.ui:1094
+#: passwordsafe/database_settings_dialog.py:330
+#: passwordsafe/database_settings_dialog.py:352
+msgid "Apply Changes"
+msgstr "Verkställ ändringar"
+
+#: data/database_settings_dialog.ui:898
+msgid "Authentication"
+msgstr "Autentisering"
+
+#. ChaCha20 is a proper name, do not translate
+#: data/database_settings_dialog.ui:966
+msgid "ChaCha20: 256-bit"
+msgstr "ChaCha20: 256-bitars"
+
+#. Twofish is a proper name, do not translate
+#: data/database_settings_dialog.ui:983
+msgid "Twofish: 256-bit"
+msgstr "Twofish: 256-bitars"
+
+#. AES is a proper name, do not translate
+#: data/database_settings_dialog.ui:1000
+msgid "AES: 256-bit"
+msgstr "AES: 256-bitars"
+
+# https://it-ord.idg.se/ord/key-derivation-function/
+#. https://en.wikipedia.org/wiki/Key_derivation_function
+#: data/database_settings_dialog.ui:1025
+msgid "Key Derivation Function"
+msgstr "Nyckelgenereringsfunktion"
+
+#: data/entry_page.ui:31
+msgid "Color"
+msgstr "Färg"
+
+#: data/entry_page.ui:290 data/group_page.ui:43
+msgid "Icon"
+msgstr "Ikon"
+
+#: data/entry_page.ui:586 data/group_page.ui:131
+msgid "Title"
+msgstr "Titel"
+
+#: data/entry_page.ui:668 data/group_page.ui:212
+msgid "Notes"
+msgstr "Anteckningar"
+
+#. Tooltip for button near input field to show or hide the password (clear text)
+#: data/entry_page.ui:811
+msgid "Show/hide password"
+msgstr "Visa/dölj lösenord"
+
+#. Tooltip for password generator button.
+#: data/entry_page.ui:831
+msgid "Password generator"
+msgstr "Lösenordsgenerator"
+
+#: data/entry_page.ui:1044
+msgid "URL"
+msgstr "URL"
+
+#: data/entry_page.ui:1125
+msgid "Username"
+msgstr "Användarnamn"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/main_window.ui:43
+msgid "Secure password safe"
+msgstr "Säkert kassaskåp för lösenord"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/main_window.ui:60
+msgid ""
+"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
+"b> a new Keepass safe."
+msgstr ""
+"Lagra säkert dina lösenord, anteckningar och data. <b>Skapa</b> eller "
+"<b>importera</b> ett nytt Keepass-kassaskåp."
+
+#: data/main_window.ui:104
+msgid "Recent Databases"
+msgstr "Senaste databaser"
+
+#. Button at the start screen for the creation of a new keepass safe (starts the creation routine where a password needs to be set for the safe)
+#: data/main_window.ui:302
+msgid "New…"
+msgstr "Nytt…"
+
+#. The button for opening an existing keepass safe
+#: data/main_window.ui:315
+msgid "Open…"
+msgstr "Öppna…"
+
+#: data/org.gnome.PasswordSafe.appdata.xml:7
+msgid "Keepass Client"
+msgstr "Keepass-klient"
+
+#: data/org.gnome.PasswordSafe.appdata.xml:9
+msgid ""
+"Password Safe is a password manager which makes use of the Keepass v.4 "
+"format. It integrates perfectly with the GNOME desktop and provides an easy "
+"and uncluttered interface for the management of password databases."
+msgstr ""
+"Password Safe är en lösenordshanterare som använder Keepass v.4-formatet. "
+"Den integrerar perfekt med GNOME-skrivbordet och tillhandahåller ett enkelt "
+"och stilrent gränssnitt för hantering av lösenordsdatabaser."
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.PasswordSafe.desktop.in:6
+msgid "dialog-password"
+msgstr "dialog-password"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.PasswordSafe.desktop.in:13
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;kryptera;säkra;"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:113
+msgid "Use dark GTK+ theme"
+msgstr "Använd GTK+-temat mörk"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:17
+msgid ""
+"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+"theme has a dark variant."
+msgstr ""
+"Använd den mörka varianten av ditt GTK+-tema. Observera att inte alla GTK+-"
+"teman har en mörk variant."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:21
+msgid "Reopen last opened database"
+msgstr "Öppna senast öppnad databas igen"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:22
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Öppna automatiskt upplåsningsskärmen för den senast öppnade databasen, visa "
+"annars välkomstskärmen."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:320
+msgid "Save every change automatically"
+msgstr "Spara varje ändring automatiskt"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:27
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Spara omedelbart varje ändring du gjort in i databasen. Observera att du "
+"inte kan återställa ändringar om automatisk sparning är aktiverad."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:31
+msgid "Lock database after X minutes"
+msgstr "Lås databasen efter X minuter"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:32
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Lås automatiskt din databas efter ett angivet antal minuter för att "
+"förbättra säkerheten."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:735
+msgid "Clear clipboard after X seconds"
+msgstr "Töm urklipp efter X sekunder"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:37
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "Tömmer urklipp efter att lösenordet kopierats av säkerhetsskäl."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:820
+msgid "Display passwords in plain text"
+msgstr "Visa lösenord i klartext"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:42
+msgid "Show the passwords in the entry fields by default."
+msgstr "Visa lösenorden i inmatningsfälten som standard."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:46
+msgid "Window size"
+msgstr "Fönsterstorlek"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:47
+msgid "Remember the window size."
+msgstr "Kom ihåg fönsterstorleken."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:51
+msgid "Last opened database"
+msgstr "Senast öppnad databas"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:52
+msgid "Path to the last opened database."
+msgstr "Sökväg till den senast öppnade databasen."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:56
+msgid "Last opened databases"
+msgstr "Senast öppnade databaser"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:57
+msgid "A list of the last opened databases."
+msgstr "En lista över de senast öppnade databaserna."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:61
+msgid "Remember composite key"
+msgstr "Kom ihåg sammansatt nyckel"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:62
+msgid "Remember last used composite key for database unlocking."
+msgstr "Kom ihåg senast använd sammansatt nyckel för databasupplåsning."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:66
+msgid "Last used composite key"
+msgstr "Senast använd sammansatt nyckel"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:67
+msgid "Path to last used key for composite database unlocking."
+msgstr "Sökväg till senast använd nyckel för sammansatt databasupplåsning."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:71
+msgid "Remember unlock method"
+msgstr "Kom ihåg upplåsningsmetod"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:72
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"Kom ihåg senast använd upplåsningsmetod för framtida databasupplåsning."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:76
+msgid "Backup the database on unlock"
+msgstr "Säkerhetskopiera databasen vid upplåsning"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:77
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/passwordsafe/backups"
+msgstr ""
+"Om ett fel uppstår under tiden databasen sparas kan en säkerhetskopia hittas "
+"på ~/.cache/passwordsafe/backups"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:81
+msgid "Sorting order of groups and entries"
+msgstr "Sorteringsordning för grupper och poster"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:82
+msgid "Order of the rows in the groups and entries view."
+msgstr "Ordning för raderna i vyerna för grupper och poster."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:86
+msgid "Last used unlock method"
+msgstr "Senast använd upplåsningsmetod"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:87
+msgid ""
+"Used to store the last used unlock method and to enable a faster unlock "
+"process."
+msgstr ""
+"Används för att lagra senast använd upplåsningsmetod och för att möjliggöra "
+"en snabbare upplåsningsprocess."
+
+#: data/override_dialog.ui:8
+msgid "File already exists"
+msgstr "Filen finns redan"
+
+#: data/override_dialog.ui:9
+msgid "Do you want to override it?"
+msgstr "Vill du åsidosätta den?"
+
+#: data/override_dialog.ui:22 data/unlocked_database.ui:1165
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: data/override_dialog.ui:35
+msgid "Override"
+msgstr "Åsidosätt"
+
+#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:8
+msgid "Do you want to save all safes with unsaved changes?"
+msgstr "Vill du spara alla kassaskåp med osparade ändringar?"
+
+#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:9
+msgid "Select the safes you want to save."
+msgstr "Välj kassaskåpen som du vill spara."
+
+#: data/quit_dialog.ui:22
+msgid "Back"
+msgstr "Bakåt"
+
+#: data/quit_dialog.ui:35 passwordsafe/application.py:47
+msgid "Quit"
+msgstr "Avsluta"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/save_dialog.ui:8
+msgid "Unsaved Changes"
+msgstr "Osparade ändringar"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/save_dialog.ui:9
+msgid "Do you want to write all changes to the safe?"
+msgstr "Vill du skriva alla ändringar till kassaskåpet?"
+
+#. Discard all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:22
+msgid "Discard"
+msgstr "Förkasta"
+
+#. Save all the changes which the user have made to his keepass safe
+#. Button to save all the changes which were made to the keepass safe
+#: data/save_dialog.ui:35 data/unlocked_database.ui:899
+#: passwordsafe/main_window.py:271
+msgid "Save"
+msgstr "Spara"
+
+#: data/settings_dialog.ui:96
+msgid "Dark Theme"
+msgstr "Mörkt tema"
+
+#: data/settings_dialog.ui:180
+msgid "Hide First Start Screen"
+msgstr "Dölj första startskärm"
+
+#: data/settings_dialog.ui:197
+msgid "Reopen last opened safe"
+msgstr "Öppna det senast öppnade kassaskåpet igen"
+
+#: data/settings_dialog.ui:254 passwordsafe/main_window.py:273
+msgid "Safe"
+msgstr "Kassaskåp"
+
+#: data/settings_dialog.ui:303
+msgid "Save automatically"
+msgstr "Spara automatiskt"
+
+#: data/settings_dialog.ui:377 data/unlock_database.ui:84
+#: data/unlock_database.ui:213 data/unlock_database.ui:458
+msgid "Unlock"
+msgstr "Lås upp"
+
+#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:426
+msgid "Remember Composite Key"
+msgstr "Kom ihåg sammansatt nyckel"
+
+#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:443
+msgid "Remember last used composite key"
+msgstr "Kom ihåg senast använd sammansatt nyckel"
+
+#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
+#: data/settings_dialog.ui:510
+msgid "Remember Unlock Method"
+msgstr "Kom ihåg upplåsningsmetod"
+
+#: data/settings_dialog.ui:527
+msgid "Enable faster unlocking"
+msgstr "Aktivera snabbare upplåsning"
+
+#: data/settings_dialog.ui:584
+msgid "Security"
+msgstr "Säkerhet"
+
+#: data/settings_dialog.ui:633
+msgid "Safe Lock Timeout"
+msgstr "Tidsgräns för låsning av kassaskåp"
+
+#: data/settings_dialog.ui:650
+msgid "Lock safe on idle after X minutes"
+msgstr "Lås kassaskåpet vid inaktivitet efter X minuter"
+
+#: data/settings_dialog.ui:718
+msgid "Clear Clipboard"
+msgstr "Töm urklipp"
+
+#: data/settings_dialog.ui:803
+msgid "Show Password Fields"
+msgstr "Visa lösenordsfält"
+
+#: data/settings_dialog.ui:887
+msgid "Clear Recent List"
+msgstr "Töm lista över senaste"
+
+#: data/settings_dialog.ui:904
+msgid "Clear the recently opened safes list"
+msgstr "Töm listan över senast öppnade kassaskåp"
+
+#: data/shortcuts_overview.ui:10 data/shortcuts_overview.ui:15
+msgctxt "shortcut window"
+msgid "Application"
+msgstr "Program"
+
+#: data/shortcuts_overview.ui:19
+msgctxt "shortcut window"
+msgid "Create a new safe"
+msgstr "Skapa ett nytt kassaskåp"
+
+#: data/shortcuts_overview.ui:26
+msgctxt "shortcut window"
+msgid "Open an existing safe"
+msgstr "Öppna ett befintligt kassaskåp"
+
+#: data/shortcuts_overview.ui:33
+msgctxt "shortcut window"
+msgid "Lock a safe"
+msgstr "Lås ett kassaskåp"
+
+#: data/shortcuts_overview.ui:40
+msgctxt "shortcut window"
+msgid "Save a safe"
+msgstr "Spara ett kassaskåp"
+
+#: data/shortcuts_overview.ui:47
+msgctxt "shortcut window"
+msgid "Open search"
+msgstr "Öppna sökning"
+
+#. Hot key to copy the password on a password entry page
+#: data/shortcuts_overview.ui:54
+msgctxt "shortcut window"
+msgid "Copy password on entry page"
+msgstr "Kopiera lösenord på inmatningssida"
+
+#: data/unlock_database.ui:27
+msgid "Enter password and select keyfile to unlock"
+msgstr "Ange lösenord och välj nyckelfil för att låsa upp"
+
+#: data/unlock_database.ui:42 data/unlock_database.ui:169
+#: data/unlock_database.ui:504
+msgid "Safe is Locked"
+msgstr "Kassaskåpet är låst"
+
+#: data/unlock_database.ui:104 data/unlock_database.ui:190
+msgid "Open Keyfile"
+msgstr "Öppna nyckelfil"
+
+#: data/unlock_database.ui:154
+msgid "Select keyfile to unlock"
+msgstr "Välj nyckelfil för att låsa upp"
+
+#. Menubutton popover in headerbar for starting the safe creation process
+#: data/unlock_database.ui:259 data/unlocked_database.ui:660
+msgid "New Safe"
+msgstr "Nytt kassaskåp"
+
+#: data/unlock_database.ui:489
+msgid "Enter password to unlock"
+msgstr "Ange lösenord för att låsa upp"
+
+#: data/unlock_database.ui:578
+msgid "Failed to unlock safe"
+msgstr "Misslyckades med att låsa upp kassaskåp"
+
+#. Button tooltip in headerbar to open page for creation of a new password entry
+#: data/unlocked_database.ui:18
+msgid "Create password…"
+msgstr "Skapa lösenord…"
+
+#. Button tooltip in headerbar to open page for creation of a new group
+#: data/unlocked_database.ui:38
+msgid "Create group…"
+msgstr "Skapa grupp…"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/unlocked_database.ui:68
+msgid "Selection Mode"
+msgstr "Markeringsläge"
+
+#. Button tooltip in headerbar to open search page
+#: data/unlocked_database.ui:88
+msgid "Search"
+msgstr "Sök"
+
+#: data/unlocked_database.ui:198
+msgid "Empty group"
+msgstr "Tom grupp"
+
+#: data/unlocked_database.ui:254
+msgid "No search results"
+msgstr "Inga sökresultat"
+
+#: data/unlocked_database.ui:285 data/unlocked_database.ui:493
+msgid "Delete"
+msgstr "Ta bort"
+
+#. Button tooltip in entry/group edit page to reveal all properties for entry/group
+#: data/unlocked_database.ui:445
+msgid "Show all properties"
+msgstr "Visa alla egenskaper"
+
+#: data/unlocked_database.ui:479
+msgid "Edit"
+msgstr "Redigera"
+
+#: data/unlocked_database.ui:613
+msgid "Enter search term"
+msgstr "Ange sökterm"
+
+#. Open settings for safe (e.g. password changing)
+#: data/unlocked_database.ui:699
+msgid "Safe Settings"
+msgstr "Inställningar för kassaskåp"
+
+#: data/unlocked_database.ui:723 data/unlocked_database.ui:805
+msgid "Sorting"
+msgstr "Sortering"
+
+#. This is a modelbutton in a popover to sort entries by last added
+#: data/unlocked_database.ui:850
+msgid "Last added"
+msgstr "Senast tillagt"
+
+#: data/unlocked_database.ui:915
+msgid "Lock"
+msgstr "Lås"
+
+#. Only apply the search term for the current group
+#: data/unlocked_database.ui:1011
+msgid "Local"
+msgstr "Lokalt"
+
+#. Use full text search
+#: data/unlocked_database.ui:1025
+msgid "Full Text"
+msgstr "Fullständig text"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/unlocked_database.ui:1128
+msgid "Move selection"
+msgstr "Flytta markering"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/unlocked_database.ui:1148
+msgid "Delete selection"
+msgstr "Ta bort markering"
+
+#: data/unlocked_database.ui:1205
+msgid "Select all"
+msgstr "Markera alla"
+
+#: data/unlocked_database.ui:1219
+msgid "Select none"
+msgstr "Markera inget"
+
+#: data/unlocked_database.ui:1249
+msgid "Click on a checkbox to select"
+msgstr "Klicka på en kryssruta för att välja"
+
+#: passwordsafe/application.py:44
+msgid "Shortcuts"
+msgstr "Genvägar"
+
+#. NOTE: Filechooser title for generating a new keyfile
+#: passwordsafe/create_database.py:241
+#: passwordsafe/database_settings_dialog.py:211
+msgid "Choose location for keyfile"
+msgstr "Välj plats för nyckelfilen"
+
+#: passwordsafe/create_database.py:261
+msgid "Generating…"
+msgstr "Genererar…"
+
+#. NOTE: Filechooser title for choosing current used keyfile
+#: passwordsafe/database_settings_dialog.py:177
+msgid "Choose current keyfile"
+msgstr "Välj aktuell nyckelfil"
+
+#: passwordsafe/database_settings_dialog.py:178
+msgid "Open"
+msgstr "Öppna"
+
+#: passwordsafe/database_settings_dialog.py:285
+#: passwordsafe/database_settings_dialog.py:341
+msgid "Apply…"
+msgstr "Verkställ…"
+
+#. Encryption Algorithm
+#: passwordsafe/database_settings_dialog.py:383
+msgid "Unknown"
+msgstr "Okänd"
+
+#. NOTE: AES is a proper name
+#: passwordsafe/database_settings_dialog.py:386
+msgid "AES 256-bit"
+msgstr "AES 256-bitars"
+
+#. NOTE: ChaCha20 is a proper name
+#: passwordsafe/database_settings_dialog.py:389
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256-bitars"
+
+#. NOTE: Twofish is a proper name
+#: passwordsafe/database_settings_dialog.py:392
+msgid "Twofish 256-bit"
+msgstr "Twofish 256-bitars"
+
+#: passwordsafe/entry_row.py:63
+msgid "Title not specified"
+msgstr "Titel inte angiven"
+
+#: passwordsafe/entry_row.py:72
+msgid "No username specified"
+msgstr "Inget användarnamn angivet"
+
+#: passwordsafe/group_row.py:43
+msgid "No group title specified"
+msgstr "Ingen grupptitel angiven"
+
+#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
+#: passwordsafe/main_window.py:221
+msgid "Choose a Keepass safe"
+msgstr "Välj ett Keepass-kassaskåp"
+
+#. NOTE: KeePass + version number is a proper name, do not translate
+#: passwordsafe/main_window.py:226 passwordsafe/main_window.py:279
+msgid "KeePass 3.1/4 Database"
+msgstr "KeePass 3.1/4-databas"
+
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: passwordsafe/main_window.py:270
+msgid "Choose location for Keepass safe"
+msgstr "Välj plats för Keepass-kassaskåp"
+
+#. NOTE: In-app notification that indicates that an empty group has been deleted
+#: passwordsafe/pathbar.py:295
+msgid "Deleted blank group"
+msgstr "Tog bort tom grupp"
+
+#. NOTE: In-app notification that indicates that an empty group has been deleted
+#: passwordsafe/pathbar.py:313
+msgid "Deleted blank entry"
+msgstr "Tog bort tom post"
+
+#: passwordsafe/unlock_database.py:205
+msgid "Database already opened"
+msgstr "Databasen är redan öppnad"
+
+#. NOTE: Keyfile filechooser title
+#: passwordsafe/unlock_database.py:287
+msgid "Choose a keyfile"
+msgstr "Välj en nyckelfil"
+
+#: passwordsafe/unlock_database.py:340 passwordsafe/unlock_database.py:392
+msgid "Try again"
+msgstr "Försök igen"
+
+#. NOTE: Keyfile filechooser title
+#: passwordsafe/unlock_database.py:401
+msgid "Choose Keyfile"
+msgstr "Välj nyckelfil"
+
+#: passwordsafe/unlocked_database.py:954
+msgid "Database saved"
+msgstr "Databasen sparad"
+
+#. NOTE: In-app notification to inform the user that already an unfinished save job is running
+#: passwordsafe/unlocked_database.py:957
+msgid "Please wait. Another save is running."
+msgstr "Vänta, en annan sparning körs."
+
+#. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
+#: passwordsafe/unlocked_database.py:960
+msgid "No changes made"
+msgstr "Inga ändringar gjorda"
+
+#. NOTE: In-app notification that indicates that an entry has been added
+#: passwordsafe/unlocked_database.py:1007
+msgid "Entry added"
+msgstr "Post lades till"
+
+#. NOTE: In-app notification that indicates that a group has been added
+#: passwordsafe/unlocked_database.py:1018
+msgid "Group added"
+msgstr "Grupp lades till"
+
+#: passwordsafe/unlocked_database.py:1209
+#: passwordsafe/unlocked_database.py:1220
+msgid "Copied to clipboard"
+msgstr "Kopierat till urklipp"
+
+#: passwordsafe/unlocked_database.py:1456
+msgid "Deletion completed"
+msgstr "Borttagning slutförd"
+
+#: passwordsafe/unlocked_database.py:1497
+msgid "Move completed"
+msgstr "Flytt slutförd"
+
+#: passwordsafe/unlocked_database.py:1499
+msgid "Skipped moving group into itself"
+msgstr "Hoppade över att flytta in grupp i sig själv"
+
+#. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
+#: passwordsafe/unlocked_database.py:1614
+#, python-format
+msgid "%s locked"
+msgstr "%s låstes"
+
+#: passwordsafe/unlocked_database.py:1614
+msgid "Keepass safe locked due to inactivity"
+msgstr "Keepass-kassaskåp låstes på grund av inaktivitet"

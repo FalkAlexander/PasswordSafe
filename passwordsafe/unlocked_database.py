@@ -873,9 +873,27 @@ class UnlockedDatabase:
             elif scrolled_page.icon_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.icon_property_row)
 
-        if scrolled_page.color_property_row is not NotImplemented and scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented:
+        if self.database_manager.has_entry_attributes(entry_uuid) is True or add_all is True:
+            if scrolled_page.attributes_property_row is NotImplemented:
+                scrolled_page.attributes_property_row = builder.get_object("attributes_property_row")
+                scrolled_page.attributes_key_entry = builder.get_object("attributes_key_entry")
+                scrolled_page.attributes_value_entry = builder.get_object("attributes_value_entry")
+                scrolled_page.attributes_add_button = builder.get_object("attributes_add_button")
+
+                scrolled_page.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
+                scrolled_page.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
+                scrolled_page.attributes_value_entry.connect("activate", self.on_attributes_add_button_clicked)
+
+                properties_list_box.add(scrolled_page.attributes_property_row)
+            elif scrolled_page.attributes_property_row is not NotImplemented:
+                properties_list_box.add(scrolled_page.attributes_property_row)
+
+        if scrolled_page.color_property_row is not NotImplemented and scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented and scrolled_page.attributes_property_row is not NotImplemented:
             scrolled_page.add_button_disabled = True
             self.builder.get_object("add_property_button").set_sensitive(False)
+
+    def on_attributes_add_button_clicked(self, widget):
+        print("do sth")
 
     def build_expiry_row(self, expiry):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)

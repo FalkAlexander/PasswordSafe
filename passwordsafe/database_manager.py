@@ -251,6 +251,19 @@ class DatabaseManager:
         else:
             return True
 
+    def has_entry_attributes(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if len(entry.custom_properties) == 0:
+            return False
+        elif len(entry.custom_properties) == 1:
+            if self.has_entry_color(uuid) is True:
+                return False
+        elif len(entry.custom_properties) == 2:
+            if self.has_entry_color(uuid) is True:
+                return False
+        else:
+            return True
+
     #
     # Group Checks
     #

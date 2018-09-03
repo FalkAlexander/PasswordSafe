@@ -53,6 +53,7 @@ class ScrolledPage(Gtk.ScrolledWindow):
     attributes_key_entry = NotImplemented
     attributes_value_entry = NotImplemented
     attributes_add_button = NotImplemented
+    attribute_property_row_list = []
 
     def __init__(self, edit):
         Gtk.ScrolledWindow.__init__(self)

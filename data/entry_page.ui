@@ -23,22 +23,30 @@
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <child>
-              <object class="GtkLabel" id="attribute_property_name_label">
+              <object class="GtkButton" id="attribute_key_edit_button">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
                 <property name="halign">end</property>
-                <property name="valign">center</property>
-                <property name="margin_right">10</property>
-                <property name="vexpand">True</property>
-                <property name="label">AtrName</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
-                <property name="xalign">1</property>
+                <property name="relief">none</property>
+                <child>
+                  <object class="GtkLabel" id="attribute_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <property name="vexpand">True</property>
+                    <property name="label">AtrName</property>
+                    <property name="justify">right</property>
+                    <property name="ellipsize">end</property>
+                    <property name="width_chars">14</property>
+                    <property name="max_width_chars">14</property>
+                    <property name="xalign">1</property>
+                  </object>
+                </child>
               </object>
               <packing>
-                <property name="expand">True</property>
+                <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
@@ -98,6 +106,7 @@
     <property name="visible">True</property>
     <property name="can_focus">True</property>
     <property name="margin_top">5</property>
+    <property name="margin_bottom">5</property>
     <child>
       <object class="GtkBox" id="attributes_property_box">
         <property name="visible">True</property>

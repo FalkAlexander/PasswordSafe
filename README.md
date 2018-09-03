@@ -69,7 +69,7 @@ sudo ninja -C _build install
 ```
 
 ## Install via distribution package manager
-* Arch Linux: [passwordsafe-git](https://aur.archlinux.org/packages/gnome-passwordsafe-git/)
+* Arch Linux: [gnome-passwordsafe-git](https://aur.archlinux.org/packages/gnome-passwordsafe-git/)
 
 # Translations
 Helping to translate Password Safe or add support to a new language is very welcome.  

@@ -264,9 +264,9 @@ class DatabaseManager:
         else:
             return True
 
-    def has_entry_attribute(self, uuid, attribute):
+    def has_entry_attribute(self, uuid, key):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.get_custom_property("attribute") is None:
+        if entry.get_custom_property(key) is None:
             return False
         else:
             return True

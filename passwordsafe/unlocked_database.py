@@ -1522,6 +1522,7 @@ class UnlockedDatabase:
         attribute_entry_box.remove(button)
         attribute_entry_box.add(key_entry)
         attribute_entry_box.reorder_child(key_entry, 0)
+        key_entry.grab_focus()
 
     def on_key_entry_activated(self, entry, entry_uuid, key, button, parent):
         if entry.get_text() == "" or entry.get_text is None:

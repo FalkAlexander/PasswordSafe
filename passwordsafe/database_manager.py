@@ -264,6 +264,13 @@ class DatabaseManager:
         else:
             return True
 
+    def has_entry_attribute(self, uuid, attribute):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.get_custom_property("attribute") is None:
+            return False
+        else:
+            return True
+
     #
     # Group Checks
     #
@@ -383,6 +390,16 @@ class DatabaseManager:
     def set_entry_color(self, uuid, color):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.set_custom_property("color", color)
+        self.changes = True
+
+    def set_entry_attribute(self, uuid, key, value):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.set_custom_property(key, value)
+        self.changes = True
+
+    def delete_entry_attribute(self, uuid, key):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.delete_custom_property(key)
         self.changes = True
 
     # Move an entry to another group

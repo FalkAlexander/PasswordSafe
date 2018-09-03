@@ -893,7 +893,16 @@ class UnlockedDatabase:
             self.builder.get_object("add_property_button").set_sensitive(False)
 
     def on_attributes_add_button_clicked(self, widget):
-        print("do sth")
+        key = scrolled_page.attributes_key_entry.get_text()
+        value = scrolled_page.attributes_value_entry.get_text()
+
+        if key == "" or key == None:
+            return
+
+        if value == "" or value == None:
+            return
+
+        if key
 
     def build_expiry_row(self, expiry):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)

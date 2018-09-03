@@ -187,6 +187,14 @@ class DatabaseManager:
         else:
             return entry.get_custom_property("color")
 
+    # Return the belonging value for an attribute
+    def get_entry_attribute_value_from_entry_uuid(self, uuid, key):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if entry.get_custom_property(key) is None:
+            return ""
+        else:
+            return entry.get_custom_property(key)
+
     #
     # Entry Checks
     #

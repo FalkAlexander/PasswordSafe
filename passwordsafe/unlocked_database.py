@@ -927,13 +927,16 @@ class UnlockedDatabase:
 
         attribute_property_row = builder.get_object("attribute_property_row")
         attribute_property_name_label = builder.get_object("attribute_property_name_label")
+        attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
         attribute_value_entry = builder.get_object("attribute_value_entry")
         attribute_remove_button = builder.get_object("attribute_remove_button")
 
         attribute_property_row.set_name(key)
         attribute_property_name_label.set_text(key)
         attribute_value_entry.set_text(value)
+        attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed)
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
+        attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
 
         scrolled_page.properties_list_box.insert(attribute_property_row, index)
         attribute_property_row.show_all()
@@ -948,6 +951,55 @@ class UnlockedDatabase:
 
         self.database_manager.delete_entry_attribute(entry_uuid, key)
         scrolled_page.properties_list_box.remove(parent)
+
+    def on_attributes_value_entry_changed(self, widget):
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+
+        parent = widget.get_parent().get_parent().get_parent()
+        key = parent.get_name()
+
+        self.database_manager.set_entry_attribute(entry_uuid, key, widget.get_text())
+
+    def on_attribute_key_edit_button_clicked(self, button):
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+
+        parent = button.get_parent().get_parent().get_parent()
+        key = parent.get_name()
+
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+
+        key_entry = builder.get_object("key_entry")
+        key_entry.connect("activate", self.on_key_entry_activated, entry_uuid, key, button, parent)
+        key_entry.set_text(key)
+
+        attribute_entry_box = button.get_parent()
+        attribute_entry_box.remove(button)
+        attribute_entry_box.add(key_entry)
+        attribute_entry_box.reorder_child(key_entry, 0)
+
+    def on_key_entry_activated(self, entry, entry_uuid, key, button, parent):
+        if entry.get_text() == "" or entry.get_text is None:
+            entry.get_style_context().add_class("error")
+            return
+
+        if self.database_manager.has_entry_attribute(entry_uuid, entry.get_text()) is True:
+            entry.get_style_context().add_class("error")
+            self.show_database_action_revealer(_("Attribute key already exists"))
+            return
+
+        self.database_manager.set_entry_attribute(entry_uuid, entry.get_text(), self.database_manager.get_entry_attribute_value_from_entry_uuid(entry_uuid, key))
+        self.database_manager.delete_entry_attribute(entry_uuid, key)
+
+        button.get_children()[0].set_text(entry.get_text())
+        parent.set_name(entry.get_text())
+
+        attribute_entry_box = entry.get_parent()
+        attribute_entry_box.remove(entry)
+        attribute_entry_box.add(button)
+        attribute_entry_box.reorder_child(button, 0)
 
     def build_expiry_row(self, expiry):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)

@@ -456,7 +456,7 @@ class UnlockDatabase:
 
                 self.logging_manager.log_debug("Could not open database, wrong password")
         else:
-            if composite_unlock_entry.get_text() is not "":
+            if composite_unlock_entry.get_text() is not "" and self.composite_keyfile_path is not NotImplemented:
                 composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
                 composite_unlock_button = self.builder.get_object("composite_unlock_button")
                 composite_unlock_button_image = composite_unlock_button.get_children()[0]

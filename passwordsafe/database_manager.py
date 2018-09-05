@@ -182,10 +182,10 @@ class DatabaseManager:
     # Return the belonging color for an entry uuid
     def get_entry_color_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.get_custom_property("color") is None:
+        if entry.get_custom_property("color_prop_LcljUMJZ9X") is None:
             return "NoneColorButton"
         else:
-            return entry.get_custom_property("color")
+            return entry.get_custom_property("color_prop_LcljUMJZ9X")
 
     # Return the belonging value for an attribute
     def get_entry_attribute_value_from_entry_uuid(self, uuid, key):
@@ -259,7 +259,7 @@ class DatabaseManager:
 
     def has_entry_color(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.get_custom_property("color") is None or entry.get_custom_property("color") == "NoneColorButton":
+        if entry.get_custom_property("color_prop_LcljUMJZ9X") is None or entry.get_custom_property("color_prop_LcljUMJZ9X") == "NoneColorButton":
             return False
         else:
             return True
@@ -396,7 +396,7 @@ class DatabaseManager:
 
     def set_entry_color(self, uuid, color):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.set_custom_property("color", color)
+        entry.set_custom_property("color_prop_LcljUMJZ9X", color)
         self.changes = True
 
     def set_entry_attribute(self, uuid, key, value):

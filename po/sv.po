@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-08-31 19:58+0000\n"
-"PO-Revision-Date: 2018-09-02 13:54+0200\n"
+"POT-Creation-Date: 2018-09-05 10:48+0000\n"
+"PO-Revision-Date: 2018-09-05 14:11+0200\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "X-Generator: Poedit 2.1.1\n"
 
 #: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.desktop.in:4
@@ -35,8 +35,8 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: data/create_database.ui:73 data/database_settings_dialog.ui:507
-#: data/entry_page.ui:756 passwordsafe/unlock_database.py:98
+#: data/create_database.ui:73 data/database_settings_dialog.ui:411
+#: data/entry_page.ui:979 passwordsafe/unlock_database.py:98
 msgid "Password"
 msgstr "Lösenord"
 
@@ -44,7 +44,7 @@ msgstr "Lösenord"
 msgid "Use a password to secure your safe"
 msgstr "Använd ett lösenord för att säkra ditt kassaskåp"
 
-#: data/create_database.ui:153 data/database_settings_dialog.ui:647
+#: data/create_database.ui:153 data/database_settings_dialog.ui:552
 #: passwordsafe/create_database.py:244 passwordsafe/create_database.py:249
 #: passwordsafe/database_settings_dialog.py:183
 #: passwordsafe/database_settings_dialog.py:214
@@ -73,77 +73,72 @@ msgstr ""
 msgid "Protect your safe"
 msgstr "Skydda ditt kassaskåp"
 
-#: data/create_database.ui:418
+#: data/create_database.ui:400
 msgid "Set password for safe"
 msgstr "Ställ in lösenord för kassaskåp"
 
-#: data/create_database.ui:433
+#: data/create_database.ui:415
 msgid "Enter Password"
 msgstr "Ange lösenord"
 
-#: data/create_database.ui:479
+#: data/create_database.ui:461
 msgid "Password Match Check"
 msgstr "Kontroll att lösenord överensstämmer"
 
-#: data/create_database.ui:565
+#: data/create_database.ui:547
 msgid "Repeat password for safe"
 msgstr "Upprepa lösenord för kassaskåp"
 
-#: data/create_database.ui:611
+#: data/create_database.ui:593
 msgid "Match Check Failed"
 msgstr "Kontroll av överensstämmelse misslyckades"
 
-#: data/create_database.ui:670
+#: data/create_database.ui:652
 msgid "Please try again"
 msgstr "Försök igen"
 
 #. Button to generate a password
-#: data/create_database.ui:791 data/entry_page.ui:900
+#: data/create_database.ui:773 data/entry_page.ui:1123
 #: passwordsafe/create_database.py:242
 #: passwordsafe/database_settings_dialog.py:212
 msgid "Generate"
 msgstr "Generera"
 
-#: data/create_database.ui:820
+#: data/create_database.ui:802
 msgid "Set keyfile for safe"
 msgstr "Ställ in nyckelfil för kassaskåp"
 
-#: data/create_database.ui:835
+#: data/create_database.ui:817
 msgid "Generate Keyfile"
 msgstr "Generera nyckelfil"
 
-# https://gitlab.gnome.org/World/PasswordSafe/issues/37
-#: data/create_database.ui:868
-msgid "page3"
-msgstr "sida3"
-
 #. Title of the settings dialog
-#: data/create_database.ui:890 data/main_window.ui:247
+#: data/create_database.ui:872 data/main_window.ui:247
 #: data/settings_dialog.ui:14 data/unlock_database.ui:298
 #: data/unlocked_database.ui:749 passwordsafe/application.py:43
 msgid "Settings"
 msgstr "Inställningar"
 
-#: data/create_database.ui:904 data/main_window.ui:261
+#: data/create_database.ui:886 data/main_window.ui:261
 #: data/unlock_database.ui:312 data/unlocked_database.ui:763
 msgid "Keyboard Shortcuts"
 msgstr "Tangentbordsgenvägar"
 
-#: data/create_database.ui:918 data/main_window.ui:275
+#: data/create_database.ui:900 data/main_window.ui:275
 #: data/unlock_database.ui:326 data/unlocked_database.ui:777
 #: passwordsafe/application.py:46
 msgid "About"
 msgstr "Om"
 
 #. Application title in headerbar.
-#: data/create_database.ui:932 data/main_window.ui:289
+#: data/create_database.ui:914 data/main_window.ui:289
 #: data/org.gnome.PasswordSafe.appdata.xml:6
 #: data/org.gnome.PasswordSafe.desktop.in:3 data/unlock_database.ui:340
 msgid "Password Safe"
 msgstr "Password Safe"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:933
+#: data/create_database.ui:915
 msgid "Create Safe"
 msgstr "Skapa kassaskåp"
 
@@ -159,150 +154,170 @@ msgstr "Kassaskåp skapades"
 msgid "Open Safe"
 msgstr "Öppna kassaskåp"
 
-#: data/database_settings_dialog.ui:59
+#: data/database_settings_dialog.ui:46
 msgid "Details"
 msgstr "Detaljer"
 
-#: data/database_settings_dialog.ui:84
+#: data/database_settings_dialog.ui:71
 msgid "Path"
 msgstr "Sökväg"
 
-#: data/database_settings_dialog.ui:100
+#: data/database_settings_dialog.ui:87
 msgid "File Size"
 msgstr "Filstorlek"
 
-#: data/database_settings_dialog.ui:116
+#: data/database_settings_dialog.ui:103
 msgid "Safe Name"
 msgstr "Namn på kassaskåp"
 
 #. KeePass is a proper noun
-#: data/database_settings_dialog.ui:144
+#: data/database_settings_dialog.ui:131
 msgid "KeePass Version"
 msgstr "KeePass-version"
 
-#: data/database_settings_dialog.ui:160
+#: data/database_settings_dialog.ui:147
 msgid "Creation Date"
 msgstr "Datum för skapande"
 
-#: data/database_settings_dialog.ui:176 data/database_settings_dialog.ui:933
+#: data/database_settings_dialog.ui:163 data/database_settings_dialog.ui:771
 msgid "Encryption Algorithm"
 msgstr "Krypteringsalgoritm"
 
 # https://it-ord.idg.se/ord/key-derivation-function/
-#: data/database_settings_dialog.ui:192
+#: data/database_settings_dialog.ui:179
 msgid "Derivation Algorithm"
 msgstr "Genereringsalgoritm"
 
 #. Statistics
-#: data/database_settings_dialog.ui:291
+#: data/database_settings_dialog.ui:278
 msgid "Stats"
 msgstr "Statistik"
 
-#: data/database_settings_dialog.ui:316
+#: data/database_settings_dialog.ui:303
 msgid "Number of Groups"
 msgstr "Antal grupper"
 
-#: data/database_settings_dialog.ui:332
+#: data/database_settings_dialog.ui:319
 msgid "Passwords"
 msgstr "Lösenord"
 
-#: data/database_settings_dialog.ui:348
+#: data/database_settings_dialog.ui:335
 msgid "Number of Entries"
 msgstr "Antal poster"
 
-#: data/database_settings_dialog.ui:474 data/settings_dialog.ui:47
+#: data/database_settings_dialog.ui:392 data/settings_dialog.ui:47
 msgid "General"
 msgstr "Allmänt"
 
 #. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:531
+#: data/database_settings_dialog.ui:435
 msgid "New"
 msgstr "Nytt"
 
-#: data/database_settings_dialog.ui:550
+#: data/database_settings_dialog.ui:454 data/database_settings_dialog.ui:455
 msgid "Generate Password"
 msgstr "Generera lösenord"
 
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:563
+#: data/database_settings_dialog.ui:468
 msgid "Confirm"
 msgstr "Bekräfta"
 
 #. Current password
-#: data/database_settings_dialog.ui:593
+#: data/database_settings_dialog.ui:498
 msgid "Current"
 msgstr "Aktuellt"
 
-#: data/database_settings_dialog.ui:701
+#: data/database_settings_dialog.ui:606
 msgid "Select current keyfile"
 msgstr "Välj aktuell nyckelfil"
 
-#: data/database_settings_dialog.ui:777
+#: data/database_settings_dialog.ui:682
 msgid "Generate new keyfile"
 msgstr "Generera ny nyckelfil"
 
-#: data/database_settings_dialog.ui:810 data/database_settings_dialog.ui:1094
+#: data/database_settings_dialog.ui:715 data/database_settings_dialog.ui:932
 #: passwordsafe/database_settings_dialog.py:330
 #: passwordsafe/database_settings_dialog.py:352
 msgid "Apply Changes"
 msgstr "Verkställ ändringar"
 
-#: data/database_settings_dialog.ui:898
+#: data/database_settings_dialog.ui:736
 msgid "Authentication"
 msgstr "Autentisering"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:966
+#: data/database_settings_dialog.ui:804
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-bitars"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:983
+#: data/database_settings_dialog.ui:821
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-bitars"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:1000
+#: data/database_settings_dialog.ui:838
 msgid "AES: 256-bit"
 msgstr "AES: 256-bitars"
 
 # https://it-ord.idg.se/ord/key-derivation-function/
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:1025
+#: data/database_settings_dialog.ui:863
 msgid "Key Derivation Function"
 msgstr "Nyckelgenereringsfunktion"
 
-#: data/entry_page.ui:31
+#: data/entry_page.ui:73
+msgid "Remove attribute"
+msgstr "Ta bort attribut"
+
+#: data/entry_page.ui:131
+msgid "Attributes"
+msgstr "Attribut"
+
+#: data/entry_page.ui:167
+msgid "Key"
+msgstr "Nyckel"
+
+#: data/entry_page.ui:180
+msgid "Value"
+msgstr "Värde"
+
+#: data/entry_page.ui:193
+msgid "Add attribute"
+msgstr "Lägg till attribut"
+
+#: data/entry_page.ui:248
 msgid "Color"
 msgstr "Färg"
 
-#: data/entry_page.ui:290 data/group_page.ui:43
+#: data/entry_page.ui:507 data/group_page.ui:43
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/entry_page.ui:586 data/group_page.ui:131
+#: data/entry_page.ui:809 data/group_page.ui:131
 msgid "Title"
 msgstr "Titel"
 
-#: data/entry_page.ui:668 data/group_page.ui:212
+#: data/entry_page.ui:891 data/group_page.ui:212
 msgid "Notes"
 msgstr "Anteckningar"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:811
+#: data/entry_page.ui:1034
 msgid "Show/hide password"
 msgstr "Visa/dölj lösenord"
 
 #. Tooltip for password generator button.
-#: data/entry_page.ui:831
+#: data/entry_page.ui:1054
 msgid "Password generator"
 msgstr "Lösenordsgenerator"
 
-#: data/entry_page.ui:1044
+#: data/entry_page.ui:1267
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:1125
+#: data/entry_page.ui:1348
 msgid "Username"
 msgstr "Användarnamn"
 
@@ -335,8 +350,8 @@ msgid "Open…"
 msgstr "Öppna…"
 
 #: data/org.gnome.PasswordSafe.appdata.xml:7
-msgid "Keepass Client"
-msgstr "Keepass-klient"
+msgid "KeePass Client"
+msgstr "KeePass-klient"
 
 #: data/org.gnome.PasswordSafe.appdata.xml:9
 msgid ""
@@ -895,53 +910,62 @@ msgstr "Försök igen"
 msgid "Choose Keyfile"
 msgstr "Välj nyckelfil"
 
-#: passwordsafe/unlocked_database.py:954
+#: passwordsafe/unlocked_database.py:1004
 msgid "Database saved"
 msgstr "Databasen sparad"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:957
+#: passwordsafe/unlocked_database.py:1007
 msgid "Please wait. Another save is running."
 msgstr "Vänta, en annan sparning körs."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:960
+#: passwordsafe/unlocked_database.py:1010
 msgid "No changes made"
 msgstr "Inga ändringar gjorda"
 
 #. NOTE: In-app notification that indicates that an entry has been added
-#: passwordsafe/unlocked_database.py:1007
+#: passwordsafe/unlocked_database.py:1057
 msgid "Entry added"
 msgstr "Post lades till"
 
 #. NOTE: In-app notification that indicates that a group has been added
-#: passwordsafe/unlocked_database.py:1018
+#: passwordsafe/unlocked_database.py:1068
 msgid "Group added"
 msgstr "Grupp lades till"
 
-#: passwordsafe/unlocked_database.py:1209
-#: passwordsafe/unlocked_database.py:1220
+#: passwordsafe/unlocked_database.py:1259
+#: passwordsafe/unlocked_database.py:1270
 msgid "Copied to clipboard"
 msgstr "Kopierat till urklipp"
 
-#: passwordsafe/unlocked_database.py:1456
+#: passwordsafe/unlocked_database.py:1481
+#: passwordsafe/unlocked_database.py:1545
+msgid "Attribute key already exists"
+msgstr "Attributnyckel finns redan"
+
+#: passwordsafe/unlocked_database.py:1597
 msgid "Deletion completed"
 msgstr "Borttagning slutförd"
 
-#: passwordsafe/unlocked_database.py:1497
+#: passwordsafe/unlocked_database.py:1638
 msgid "Move completed"
 msgstr "Flytt slutförd"
 
-#: passwordsafe/unlocked_database.py:1499
+#: passwordsafe/unlocked_database.py:1640
 msgid "Skipped moving group into itself"
 msgstr "Hoppade över att flytta in grupp i sig själv"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:1614
+#: passwordsafe/unlocked_database.py:1755
 #, python-format
 msgid "%s locked"
 msgstr "%s låstes"
 
-#: passwordsafe/unlocked_database.py:1614
+#: passwordsafe/unlocked_database.py:1755
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass-kassaskåp låstes på grund av inaktivitet"
+
+# https://gitlab.gnome.org/World/PasswordSafe/issues/37
+#~ msgid "page3"
+#~ msgstr "sida3"

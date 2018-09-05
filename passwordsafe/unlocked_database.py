@@ -918,7 +918,8 @@ class UnlockedDatabase:
 
         attribute_property_row.set_name(key)
         attribute_property_name_label.set_text(key)
-        attribute_value_entry.set_text(value)
+        if value != None:
+            attribute_value_entry.set_text(value)
         attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed)
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
         attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)

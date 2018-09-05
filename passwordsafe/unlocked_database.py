@@ -297,6 +297,7 @@ class UnlockedDatabase:
             mod_box.remove(child)
 
         mod_box.add(self.builder.get_object("browser_buttons_box"))
+        mod_box.show_all()
 
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
@@ -306,6 +307,7 @@ class UnlockedDatabase:
             mod_box.remove(child)
 
         mod_box.add(self.builder.get_object("entry_page_mod_box"))
+        mod_box.show_all()
 
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(entry_uuid)
@@ -320,6 +322,8 @@ class UnlockedDatabase:
 
         for child in mod_box.get_children():
             mod_box.remove(child)
+
+        mod_box.hide()
 
     # Actions for MenuButton Popover
     def prepare_actions(self):

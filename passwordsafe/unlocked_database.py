@@ -587,6 +587,9 @@ class UnlockedDatabase:
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             empty_group_overlay = builder.get_object("empty_group_overlay")
             overlay.add_overlay(empty_group_overlay)
+            list_box.hide()
+        else:
+            list_box.show()
 
     def rebuild_all_pages(self):
         for page in self.stack.get_children():
@@ -1339,9 +1342,11 @@ class UnlockedDatabase:
             if empty_search_overlay in self.search_overlay:
                 self.search_overlay.remove(empty_search_overlay)
 
+            self.search_list_box.show()
             self.search_instance_creation(result_list, empty_search_overlay)
         else:
             self.search_overlay.add_overlay(info_search_overlay)
+            self.search_list_box.hide()
 
     def search_instance_creation(self, result_list, empty_search_overlay):
         for uuid in result_list:
@@ -1354,6 +1359,9 @@ class UnlockedDatabase:
 
         if len(self.search_list_box.get_children()) is 0:
             self.search_overlay.add_overlay(empty_search_overlay)
+            self.search_list_box.hide()
+        else:
+            self.search_list_box.show()
 
     def on_headerbar_search_entry_enter_pressed(self, widget):
         self.start_database_lock_timer()

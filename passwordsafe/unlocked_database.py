@@ -1,4 +1,4 @@
-from gi.repository import Gio, Gdk, Gtk, GLib
+from gi.repository import Gio, Gdk, Gtk, GLib, Handy
 from gi.repository.GdkPixbuf import Pixbuf
 from gi.repository import Notify
 from passwordsafe.logging_manager import LoggingManager
@@ -310,15 +310,24 @@ class UnlockedDatabase:
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             self.search_list_box = builder.get_object("list_box")
+
+            # Responsive Container
+            hdy = Handy.Column()
+            hdy.set_maximum_width(900)
+            hdy.add(self.search_list_box)
+
             self.search_list_box.connect("row-activated", self.on_list_box_row_activated)
             viewport.add(self.search_overlay)
-            self.search_overlay.add(self.search_list_box)
+            self.search_overlay.add(hdy)
             scrolled_page.add(viewport)
             scrolled_page.show_all()
             self.stack.add_named(scrolled_page, "search")
             if len(self.search_list_box.get_children()) is 0:
                 info_search_overlay = self.builder.get_object("info_search_overlay")
                 self.search_overlay.add_overlay(info_search_overlay)
+                self.search_list_box.hide()
+            else:
+                self.search_list_box.show()
 
         self.stack.set_visible_child(self.stack.get_child_by_name("search"))
 
@@ -433,7 +442,13 @@ class UnlockedDatabase:
                 scrolled_window = ScrolledPage(False)
                 viewport = Gtk.Viewport()
                 overlay = Gtk.Overlay()
-                overlay.add(list_box)
+
+                # Responsive Container
+                hdy = Handy.Column()
+                hdy.set_maximum_width(900)
+                hdy.add(list_box)
+                overlay.add(hdy)
+
                 viewport.add(overlay)
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()

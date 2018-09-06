@@ -2,6 +2,7 @@ import gi
 import sys
 gi.require_version('Gtk', '3.0')
 gi.require_version('Notify', '0.7')
+gi.require_version('Handy', '0.0')
 from gi.repository import GLib, Gio, Gtk
 from gi.repository import Notify
 from gettext import gettext as _

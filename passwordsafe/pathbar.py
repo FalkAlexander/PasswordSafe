@@ -2,7 +2,6 @@ from gi.repository import Gtk
 from passwordsafe.pathbar_button import PathbarButton
 from passwordsafe.logging_manager import LoggingManager
 import gi
-gi.require_version('Gtk', '3.0')
 
 
 class Pathbar(Gtk.HBox):
@@ -40,7 +39,7 @@ class Pathbar(Gtk.HBox):
         self.set_halign(Gtk.Align.START)
 
         scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.set_min_content_width(400)
+        scrolled_window.set_propagate_natural_width(True)
         scrolled_window.set_max_content_width(600)
         viewport = Gtk.Viewport()
         viewport.add(self)

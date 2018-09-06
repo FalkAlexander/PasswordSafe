@@ -32,8 +32,13 @@ class Application(Gtk.Application):
             self.window = MainWindow(
                 application=self, title="Password Safe",
                 icon_name="dialog-password")
-            self.add_menubutton_popover_actions()
+
             self.window.application = self
+
+            self.add_menubutton_popover_actions()
+            self.window.add_row_popover_actions()
+            self.window.add_database_menubutton_popover_actions()
+            self.window.add_selection_actions()
 
         self.window.present()
 

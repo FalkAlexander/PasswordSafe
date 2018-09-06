@@ -99,7 +99,6 @@ class UnlockedDatabase:
         self.overlay.show_all()
 
         self.set_headerbar()
-        self.window.prepare_actions()
 
         self.list_box_sorting = passwordsafe.config_manager.get_sort_order()
         self.start_database_lock_timer()
@@ -169,38 +168,10 @@ class UnlockedDatabase:
         selection_cut_button = self.builder.get_object("selection_cut_button")
         selection_cut_button.connect("clicked", self.on_selection_cut_button_clicked)
 
-        self.set_gio_actions()
-
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
-
-    def set_gio_actions(self):
-        db_settings_action = Gio.SimpleAction.new("db.settings", None)
-        db_settings_action.connect("activate", self.on_database_settings_entry_clicked)
-
-        az_button_action = Gio.SimpleAction.new("sort.az", None)
-        az_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "A-Z")
-
-        za_button_action = Gio.SimpleAction.new("sort.za", None)
-        za_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "Z-A")
-
-        last_added_button_action = Gio.SimpleAction.new("sort.last_added", None)
-        last_added_button_action.connect("activate", self.on_sort_menu_button_entry_clicked, "last_added")
-
-        selection_all_action = Gio.SimpleAction.new("selection.all", None)
-        selection_all_action.connect("activate", self.on_selection_popover_button_clicked, "all")
-
-        selection_none_action = Gio.SimpleAction.new("selection.none", None)
-        selection_none_action.connect("activate", self.on_selection_popover_button_clicked, "none")
-
-        self.window.application.add_action(db_settings_action)
-        self.window.application.add_action(az_button_action)
-        self.window.application.add_action(za_button_action)
-        self.window.application.add_action(last_added_button_action)
-        self.window.application.add_action(selection_all_action)
-        self.window.application.add_action(selection_none_action)
 
     # Selection headerbar
     def set_selection_headerbar(self, widget):

@@ -516,23 +516,10 @@ class MainWindow(Gtk.ApplicationWindow):
                 db.cancel_timers()
 
     #
-    # Actions
+    # Gio Actions
     #
 
-    # Actions for MenuButton Popover
-    def prepare_actions(self):
-        delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
-        delete_entry_action.connect("activate", self.on_entry_delete_menu_button_clicked)
-        self.application.add_action(delete_entry_action)
-
-        edit_group_action = Gio.SimpleAction.new("group.edit", None)
-        edit_group_action.connect("activate", self.on_group_edit_menu_button_clicked)
-        self.application.add_action(edit_group_action)
-
-        delete_group_action = Gio.SimpleAction.new("group.delete", None)
-        delete_group_action.connect("activate", self.on_group_delete_menu_button_clicked)
-        self.application.add_action(delete_group_action)
-
+    # Find current displayed tab for executing the action
     def find_action_db(self):
         action_db = NotImplemented
 
@@ -542,27 +529,66 @@ class MainWindow(Gtk.ApplicationWindow):
 
         return action_db
 
-    def on_entry_delete_menu_button_clicked(self, action, param):
+    # Entry/Group Row Popover Actions
+    def add_row_popover_actions(self):
+        delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
+        delete_entry_action.connect("activate", self.execute_gio_action, "on_entry_delete_menu_button_clicked")
+        self.application.add_action(delete_entry_action)
+
+        edit_group_action = Gio.SimpleAction.new("group.edit", None)
+        edit_group_action.connect("activate", self.execute_gio_action, "on_group_edit_menu_button_clicked")
+        self.application.add_action(edit_group_action)
+
+        delete_group_action = Gio.SimpleAction.new("group.delete", None)
+        delete_group_action.connect("activate", self.execute_gio_action, "on_group_delete_menu_button_clicked")
+        self.application.add_action(delete_group_action)
+
+    # MenuButton Popover Actions
+    def add_database_menubutton_popover_actions(self):
+        db_settings_action = Gio.SimpleAction.new("db.settings", None)
+        db_settings_action.connect("activate", self.execute_gio_action, "on_database_settings_entry_clicked")
+        self.application.add_action(db_settings_action)
+
+        az_button_action = Gio.SimpleAction.new("sort.az", None)
+        az_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "A-Z")
+        self.application.add_action(az_button_action)
+
+        za_button_action = Gio.SimpleAction.new("sort.za", None)
+        za_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "Z-A")
+        self.application.add_action(za_button_action)
+
+        last_added_button_action = Gio.SimpleAction.new("sort.last_added", None)
+        last_added_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "last_added")
+        self.application.add_action(last_added_button_action)
+
+    # Selection Mode Actions
+    def add_selection_actions(self):
+        selection_all_action = Gio.SimpleAction.new("selection.all", None)
+        selection_all_action.connect("activate", self.execute_gio_action, "on_selection_popover_button_clicked", "all")
+        self.application.add_action(selection_all_action)
+
+        selection_none_action = Gio.SimpleAction.new("selection.none", None)
+        selection_none_action.connect("activate", self.execute_gio_action, "on_selection_popover_button_clicked", "none")
+        self.application.add_action(selection_none_action)
+
+    # Gio Action Handler
+    def execute_gio_action(self, action, param, name, arg=None):
         action_db = self.find_action_db()
         if action_db is NotImplemented:
             return
 
-        action_db.on_entry_delete_menu_button_clicked(action, param)
-
-    def on_group_edit_menu_button_clicked(self, action, param):
-        action_db = self.find_action_db()
-        if action_db is NotImplemented:
-            return
-
-        action_db.on_group_edit_menu_button_clicked(action, param)
-
-    def on_group_delete_menu_button_clicked(self, action, param):
-        action_db = self.find_action_db()
-        if action_db is NotImplemented:
-            return
-
-        action_db.on_group_delete_menu_button_clicked(action, param)
-
+        if name == "on_entry_delete_menu_button_clicked":
+            action_db.on_entry_delete_menu_button_clicked(action, param)
+        elif name == "on_group_edit_menu_button_clicked":
+            action_db.on_group_edit_menu_button_clicked(action, param)
+        elif name == "on_group_delete_menu_button_clicked":
+            action_db.on_group_delete_menu_button_clicked(action, param)
+        elif name == "on_database_settings_entry_clicked":
+            action_db.on_database_settings_entry_clicked(action, param)
+        elif name == "on_sort_menu_button_entry_clicked":
+            action_db.on_sort_menu_button_entry_clicked(action, param, arg)
+        elif name == "on_selection_popover_button_clicked":
+            action_db.on_selection_popover_button_clicked(action, param, arg)
 
     #
     # Tools

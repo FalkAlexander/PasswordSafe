@@ -237,7 +237,6 @@
     <property name="can_focus">False</property>
     <child>
       <object class="GtkBox" id="entry_box">
-        <property name="width_request">400</property>
         <property name="height_request">60</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -353,28 +352,27 @@
           </packing>
         </child>
         <child>
-          <object class="GtkEntry" id="entry_password_input">
+          <object class="GtkButton" id="entry_copy_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
+            <property name="margin_left">15</property>
             <property name="margin_right">15</property>
             <property name="hexpand">True</property>
-            <property name="vexpand">False</property>
-            <property name="editable">False</property>
-            <property name="visibility">False</property>
-            <property name="has_frame">False</property>
-            <property name="width_chars">14</property>
-            <property name="max_width_chars">18</property>
-            <property name="shadow_type">none</property>
-            <property name="caps_lock_warning">False</property>
-            <property name="secondary_icon_name">edit-copy-symbolic</property>
-            <property name="input_purpose">password</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">edit-copy-symbolic</property>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>
@@ -452,7 +450,6 @@
     <property name="can_focus">False</property>
     <child>
       <object class="GtkBox" id="group_box">
-        <property name="width_request">400</property>
         <property name="height_request">40</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -575,8 +572,14 @@
     </child>
   </object>
   <object class="GtkListBox" id="list_box">
+    <property name="name">BrowserListBox</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="valign">start</property>
+    <property name="margin_left">90</property>
+    <property name="margin_right">90</property>
+    <property name="margin_top">30</property>
+    <property name="margin_bottom">30</property>
     <property name="selection_mode">none</property>
   </object>
   <object class="GtkStack" id="list_stack">
@@ -586,10 +589,10 @@
       <placeholder/>
     </child>
   </object>
-  <object class="GtkPopoverMenu" id="menubutton_database_popover">
+  <object class="GtkPopoverMenu" id="menubutton_popover">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkBox" id="menubutton_database_popover_box">
+      <object class="GtkBox" id="menubutton_popover_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="margin_left">8</property>
@@ -795,37 +798,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_dbsettings_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.db.settings</property>
-            <property name="text" translatable="yes" comments="Open settings for safe (e.g. password changing)">Authentication</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">8</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="submenu">main</property>
-      </packing>
-    </child>
-  </object>
-  <object class="GtkPopoverMenu" id="menubutton_popover">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox" id="menubutton_popover_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">8</property>
-        <property name="margin_right">8</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
-        <property name="orientation">vertical</property>
-        <child>
           <object class="GtkModelButton" id="menubutton_popover_new_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -836,7 +808,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">9</property>
+            <property name="position">8</property>
           </packing>
         </child>
         <child>
@@ -846,6 +818,20 @@
             <property name="receives_default">True</property>
             <property name="action_name">app.open</property>
             <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe opening process (for existing safe)">Open Safe</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_dbsettings_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.db.settings</property>
+            <property name="text" translatable="yes" comments="Open settings for safe (e.g. password changing)">Safe Settings</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -956,27 +942,6 @@
               </packing>
             </child>
             <child>
-              <object class="GtkMenuButton" id="menupopover_database_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">More…</property>
-                <property name="popover">menubutton_database_popover</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">view-more-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkMenuButton" id="menupopover_button">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -1077,8 +1042,8 @@
       <object class="GtkBox" id="headerbar_search_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">95</property>
-        <property name="margin_right">87</property>
+        <property name="margin_left">90</property>
+        <property name="margin_right">47</property>
         <property name="hexpand">True</property>
         <child>
           <object class="GtkSearchEntry" id="headerbar_search_entry">

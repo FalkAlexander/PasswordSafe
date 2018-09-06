@@ -958,7 +958,7 @@ class UnlockedDatabase:
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
-        self.builder.get_object("menubutton_database_popover").popdown()
+        self.builder.get_object("menubutton_popover").popdown()
 
         if self.database_manager.changes is True:
             if self.database_manager.save_running is False:
@@ -1010,7 +1010,7 @@ class UnlockedDatabase:
             self.window.close_tab(self.parent_widget)
 
     def on_add_entry_button_clicked(self, widget):
-        self.builder.get_object("menubutton_database_popover").popdown()
+        self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
         entry = self.database_manager.add_entry_to_database("", "", "", None, None, "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -1019,7 +1019,7 @@ class UnlockedDatabase:
         self.show_page_of_new_directory(False, True)
 
     def on_add_group_button_clicked(self, widget):
-        self.builder.get_object("menubutton_database_popover").popdown()
+        self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
         group = self.database_manager.add_group_to_database("", "0", "", self.current_group)

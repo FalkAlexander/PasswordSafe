@@ -1,8 +1,11 @@
-from gi.repository import Gtk, Gdk
-import gi
-import passwordsafe.icon
-gi.require_version('Gtk', '3.0')
 from gettext import gettext as _
+from gi.repository import Gtk, Gdk
+from threading import Timer
+import gi
+import passwordsafe.config_manager
+import passwordsafe.icon
+import threading
+gi.require_version('Gtk', '3.0')
 
 
 class EntryRow(Gtk.ListBoxRow):
@@ -44,7 +47,7 @@ class EntryRow(Gtk.ListBoxRow):
         entry_icon = builder.get_object("entry_icon")
         entry_name_label = builder.get_object("entry_name_label")
         entry_subtitle_label = builder.get_object("entry_subtitle_label")
-        entry_password_input = builder.get_object("entry_password_input")
+        entry_copy_button = builder.get_object("entry_copy_button")
         entry_color_button = builder.get_object("entry_color_button")
 
         if self.unlocked_database.selection_mode is True:
@@ -71,13 +74,7 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
 
-        # Password
-        if self.database_manager.has_entry_password(self.entry_uuid) is True and self.password is not "":
-            entry_password_input.set_text(self.password)
-        else:
-            entry_password_input.set_text("")
-
-        entry_password_input.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+        entry_copy_button.connect("clicked", self.on_entry_copy_button_clicked)
 
         # Color Button
         entry_color_button.set_name(self.color + "List")
@@ -127,6 +124,16 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
             self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
+
+    def on_entry_copy_button_clicked(self, button):
+        if self.unlocked_database.clipboard_timer is not NotImplemented:
+            self.unlocked_database.clipboard_timer.cancel()
+
+        self.unlocked_database.clipboard.set_text(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid), -1)
+        self.unlocked_database.show_database_action_revealer(_("Copied to clipboard"))
+        clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
+        self.unlocked_database.clipboard_timer = Timer(clear_clipboard_time, self.unlocked_database.clear_clipboard)
+        self.unlocked_database.clipboard_timer.start()
 
     def update_color(self, color):
         self.color = color

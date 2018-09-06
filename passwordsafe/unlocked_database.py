@@ -269,6 +269,7 @@ class UnlockedDatabase:
 
         mod_box.add(self.builder.get_object("browser_buttons_box"))
         mod_box.show_all()
+        self.builder.get_object("linked_box1").show_all()
 
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
@@ -279,6 +280,7 @@ class UnlockedDatabase:
 
         mod_box.add(self.builder.get_object("entry_page_mod_box"))
         mod_box.show_all()
+        self.builder.get_object("linked_box1").show_all()
 
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(entry_uuid)
@@ -287,6 +289,8 @@ class UnlockedDatabase:
         else:
             self.builder.get_object("add_property_button").set_sensitive(True)
 
+        self.builder.get_object("linked_box1").hide()
+
     # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
         mod_box = self.builder.get_object("mod_box")
@@ -294,6 +298,7 @@ class UnlockedDatabase:
         for child in mod_box.get_children():
             mod_box.remove(child)
 
+        self.builder.get_object("linked_box1").hide()
         mod_box.hide()
 
     # Set Search stack page
@@ -953,6 +958,7 @@ class UnlockedDatabase:
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
+        self.builder.get_object("menubutton_database_popover").popdown()
 
         if self.database_manager.changes is True:
             if self.database_manager.save_running is False:
@@ -1004,6 +1010,7 @@ class UnlockedDatabase:
             self.window.close_tab(self.parent_widget)
 
     def on_add_entry_button_clicked(self, widget):
+        self.builder.get_object("menubutton_database_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
         entry = self.database_manager.add_entry_to_database("", "", "", None, None, "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -1011,19 +1018,14 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)
 
-        # NOTE: In-app notification that indicates that an entry has been added
-        self.show_database_action_revealer(_("Entry added"))
-
     def on_add_group_button_clicked(self, widget):
+        self.builder.get_object("menubutton_database_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
         group = self.database_manager.add_group_to_database("", "0", "", self.current_group)
         self.current_group = group
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.show_page_of_new_directory(True, False)
-
-        # NOTE: In-app notification that indicates that a group has been added
-        self.show_database_action_revealer(_("Group added"))
 
     def on_add_property_button_clicked(self, widget):
         self.start_database_lock_timer()

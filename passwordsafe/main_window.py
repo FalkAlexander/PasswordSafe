@@ -516,6 +516,55 @@ class MainWindow(Gtk.ApplicationWindow):
                 db.cancel_timers()
 
     #
+    # Actions
+    #
+
+    # Actions for MenuButton Popover
+    def prepare_actions(self):
+        delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
+        delete_entry_action.connect("activate", self.on_entry_delete_menu_button_clicked)
+        self.application.add_action(delete_entry_action)
+
+        edit_group_action = Gio.SimpleAction.new("group.edit", None)
+        edit_group_action.connect("activate", self.on_group_edit_menu_button_clicked)
+        self.application.add_action(edit_group_action)
+
+        delete_group_action = Gio.SimpleAction.new("group.delete", None)
+        delete_group_action.connect("activate", self.on_group_delete_menu_button_clicked)
+        self.application.add_action(delete_group_action)
+
+    def find_action_db(self):
+        action_db = NotImplemented
+
+        for db in self.opened_databases:
+            if db.window.container.page_num(db.parent_widget) == self.container.get_current_page():
+                action_db = db
+
+        return action_db
+
+    def on_entry_delete_menu_button_clicked(self, action, param):
+        action_db = self.find_action_db()
+        if action_db is NotImplemented:
+            return
+
+        action_db.on_entry_delete_menu_button_clicked(action, param)
+
+    def on_group_edit_menu_button_clicked(self, action, param):
+        action_db = self.find_action_db()
+        if action_db is NotImplemented:
+            return
+
+        action_db.on_group_edit_menu_button_clicked(action, param)
+
+    def on_group_delete_menu_button_clicked(self, action, param):
+        action_db = self.find_action_db()
+        if action_db is NotImplemented:
+            return
+
+        action_db.on_group_delete_menu_button_clicked(action, param)
+
+
+    #
     # Tools
     #
 

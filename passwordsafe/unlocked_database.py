@@ -99,7 +99,7 @@ class UnlockedDatabase:
         self.overlay.show_all()
 
         self.set_headerbar()
-        self.prepare_actions()
+        self.window.prepare_actions()
 
         self.list_box_sorting = passwordsafe.config_manager.get_sort_order()
         self.start_database_lock_timer()
@@ -324,20 +324,6 @@ class UnlockedDatabase:
             mod_box.remove(child)
 
         mod_box.hide()
-
-    # Actions for MenuButton Popover
-    def prepare_actions(self):
-        delete_entry_action = Gio.SimpleAction.new("entry.delete", None)
-        delete_entry_action.connect("activate", self.on_entry_delete_menu_button_clicked)
-        self.window.application.add_action(delete_entry_action)
-
-        edit_group_action = Gio.SimpleAction.new("group.edit", None)
-        edit_group_action.connect("activate", self.on_group_edit_menu_button_clicked)
-        self.window.application.add_action(edit_group_action)
-
-        delete_group_action = Gio.SimpleAction.new("group.delete", None)
-        delete_group_action.connect("activate", self.on_group_delete_menu_button_clicked)
-        self.window.application.add_action(delete_group_action)
 
     # Set Search stack page
     def prepare_search_page(self):

@@ -55,8 +55,9 @@ flatpak install passwordsafe-git.flatpak
 #### Option 3: with Meson
 ##### Prerequisites:
 * Python 3.6.5 or newer
-* pykeepass 2.8.2
+* pykeepass master
 * Gtk 3.22
+* libhandy
 * Meson
 * Git
 

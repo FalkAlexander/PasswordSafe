@@ -29,6 +29,8 @@ class MainWindow(Gtk.ApplicationWindow):
     databases_to_save = []
     spinner = NotImplemented
 
+    mobile_width = False
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -42,6 +44,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.first_start_screen()
 
         self.connect("delete-event", self.on_application_quit)
+        self.connect("check-resize", self.responsive_listener)
 
         self.custom_css()
         self.apply_theme()
@@ -115,6 +118,59 @@ class MainWindow(Gtk.ApplicationWindow):
         self.system_bus = Gio.BusType.SYSTEM
         self.cancellable = None
         self.connection = Gio.bus_get_sync(self.system_bus, self.cancellable)
+
+    #
+    # Responsive Listener
+    #
+
+    def responsive_listener(self, window):
+        if self.get_allocation().width < 700:
+            if self.mobile_width is True:
+                return
+
+            self.mobile_width = True
+            self.change_layout()
+        else:
+            if self.mobile_width is True:
+                self.mobile_width = False
+                self.change_layout()
+
+    def change_layout(self):
+        for db in self.opened_databases:
+                # Do Nothing on Lock Screen
+                if db.database_locked is True:
+                    return
+
+                # For Search View
+                if db.stack.get_visible_child() is db.stack.get_child_by_name("search"):
+                    return
+
+                page_uuid = db.database_manager.get_group_uuid_from_group_object(db.current_group)
+                group_page = NotImplemented
+                if db.database_manager.check_is_group(page_uuid) is True:
+                    group_page = True
+                else:
+                    group_page = False
+                scrolled_page = db.stack.get_child_by_name(page_uuid)
+
+                # For Group/Entry Edit Page
+                if scrolled_page.edit_page is True and group_page is True:
+                    for page in db.stack.get_children():
+                        db.stack.remove(page)
+                    db.show_page_of_new_directory(True, False)
+                    return
+                elif scrolled_page.edit_page is True and group_page is False:
+                    for page in db.stack.get_children():
+                        db.stack.remove(page)
+                    db.show_page_of_new_directory(False, False)
+                    return
+
+                # For Entry/Group Browser and Selection Mode
+                for page in db.stack.get_children():
+                    if scrolled_page.edit_page is True:
+                        return
+                    db.stack.remove(page)
+                db.show_page_of_new_directory(False, False)
 
     #
     # First Start Screen

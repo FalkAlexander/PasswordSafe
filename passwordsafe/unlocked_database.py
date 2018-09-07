@@ -311,14 +311,27 @@ class UnlockedDatabase:
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             self.search_list_box = builder.get_object("list_box")
 
-            # Responsive Container
-            hdy = Handy.Column()
-            hdy.set_maximum_width(900)
-            hdy.add(self.search_list_box)
+            if self.window.mobile_width is False:
+                # Responsive Container
+                self.search_list_box.set_name("BrowserListBox")
+                self.search_list_box.set_margin_top(30)
+                self.search_list_box.set_margin_bottom(30)
+                self.search_list_box.set_valign(Gtk.Align.START)
+
+                hdy_search = Handy.Column()
+                hdy_search.set_maximum_width(900)
+                hdy_search.add(self.search_list_box)
+                self.search_overlay.add(hdy_search)
+            else:
+                self.search_list_box.set_name("")
+                self.search_list_box.set_margin_top(0)
+                self.search_list_box.set_margin_bottom(0)
+                self.search_list_box.set_valign(Gtk.Align.FILL)
+                self.search_overlay.add(self.search_list_box)
 
             self.search_list_box.connect("row-activated", self.on_list_box_row_activated)
             viewport.add(self.search_overlay)
-            self.search_overlay.add(hdy)
+
             scrolled_page.add(viewport)
             scrolled_page.show_all()
             self.stack.add_named(scrolled_page, "search")
@@ -412,7 +425,10 @@ class UnlockedDatabase:
             self.destroy_scheduled_stack_page()
 
             builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
+            if self.window.mobile_width is False:
+                builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
+            else:
+                builder.add_from_resource("/org/gnome/PasswordSafe/group_page_mobile.ui")
 
             scrolled_window = ScrolledPage(True)
 
@@ -443,11 +459,23 @@ class UnlockedDatabase:
                 viewport = Gtk.Viewport()
                 overlay = Gtk.Overlay()
 
-                # Responsive Container
-                hdy = Handy.Column()
-                hdy.set_maximum_width(900)
-                hdy.add(list_box)
-                overlay.add(hdy)
+                if self.window.mobile_width is False:
+                    # Responsive Container
+                    list_box.set_name("BrowserListBox")
+                    list_box.set_margin_top(30)
+                    list_box.set_margin_bottom(30)
+                    list_box.set_valign(Gtk.Align.START)
+
+                    hdy_browser = Handy.Column()
+                    hdy_browser.set_maximum_width(900)
+                    hdy_browser.add(list_box)
+                    overlay.add(hdy_browser)
+                else:
+                    list_box.set_name("")
+                    list_box.set_margin_top(0)
+                    list_box.set_margin_bottom(0)
+                    list_box.set_valign(Gtk.Align.FILL)
+                    overlay.add(list_box)
 
                 viewport.add(overlay)
                 scrolled_window.add(viewport)
@@ -461,7 +489,10 @@ class UnlockedDatabase:
             # Create not existing stack page for entry
             else:
                 builder = Gtk.Builder()
-                builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+                if self.window.mobile_width is False:
+                    builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+                else:
+                    builder.add_from_resource("/org/gnome/PasswordSafe/entry_page_mobile.ui")
 
                 scrolled_window = ScrolledPage(True)
 
@@ -619,7 +650,11 @@ class UnlockedDatabase:
 
     def insert_entry_properties_into_listbox(self, properties_list_box, add_all):
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+
+        if self.window.mobile_width is False:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        else:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page_mobile.ui")
 
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(entry_uuid)
@@ -886,7 +921,10 @@ class UnlockedDatabase:
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
 
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        if self.window.mobile_width is False:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        else:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page_mobile.ui")
 
         index = scrolled_page.attributes_property_row.get_index()
 
@@ -926,7 +964,10 @@ class UnlockedDatabase:
         group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
 
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
+        if self.window.mobile_width is False:
+            builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
+        else:
+            builder.add_from_resource("/org/gnome/PasswordSafe/group_page_mobile.ui")
 
         name_property_row = builder.get_object("name_property_row")
         name_property_value_entry = builder.get_object("name_property_value_entry")
@@ -1257,7 +1298,10 @@ class UnlockedDatabase:
     def on_popup_generate_password_popover(self, widget, entry):
         self.start_database_lock_timer()
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        if self.window.mobile_width is False:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        else:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page_mobile.ui")
 
         popover = builder.get_object("generate_password_popover")
         digit_spin_button = builder.get_object("digit_spin_button")
@@ -1499,7 +1543,10 @@ class UnlockedDatabase:
         key = parent.get_name()
 
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        if self.window.mobile_width is False:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        else:
+            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page_mobile.ui")
 
         key_entry = builder.get_object("key_entry")
         key_entry.connect("activate", self.on_key_entry_activated, entry_uuid, key, button, parent)

@@ -44,14 +44,6 @@ class Application(Gtk.Application):
         self.window.present()
 
     def assemble_application_menu(self):
-        app_menu = Gio.Menu()
-
-        app_menu.append(_("Settings"), "app.settings")
-        app_menu.append(_("Shortcuts"), "app.shortcuts")
-
-        app_menu.append(_("About"), "app.about")
-        app_menu.append(_("Quit"), "app.quit")
-
         settings_action = Gio.SimpleAction.new("settings", None)
         settings_action.connect("activate", self.on_settings_menu_clicked)
 
@@ -68,7 +60,6 @@ class Application(Gtk.Application):
         self.add_action(about_action)
         self.add_action(quit_action)
         self.add_action(shortcuts_action)
-        self.set_app_menu(app_menu)
 
     def on_settings_menu_clicked(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)

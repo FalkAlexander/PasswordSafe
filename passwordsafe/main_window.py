@@ -531,7 +531,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 else:
                     unsaved_databases_list.append(db)
 
-        if unsaved_databases_list.__len__() > 0:
+        if unsaved_databases_list.__len__() > 1:
             builder = Gtk.Builder()
             builder.add_from_resource(
                 "/org/gnome/PasswordSafe/quit_dialog.ui")
@@ -564,7 +564,13 @@ class MainWindow(Gtk.ApplicationWindow):
 
             self.quit_dialog.present()
 
-            return(True)      
+            return(True)
+        elif unsaved_databases_list.__len__() == 1:
+            for db in unsaved_databases_list:
+                db.cancel_timers()
+                db.unregister_dbus_signal()
+                db.show_save_dialog(True, False, True)
+                return(True)
         else:
             self.save_window_size()
 

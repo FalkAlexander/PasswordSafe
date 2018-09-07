@@ -303,9 +303,6 @@
                 <property name="vexpand">True</property>
                 <property name="label">Title not specified</property>
                 <property name="ellipsize">end</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -576,8 +573,6 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="valign">start</property>
-    <property name="margin_top">30</property>
-    <property name="margin_bottom">30</property>
     <property name="selection_mode">none</property>
   </object>
   <object class="GtkStack" id="list_stack">
@@ -863,12 +858,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
+          <object class="GtkModelButton" id="menubutton_popover_about_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
+            <property name="action_name">app.about</property>
+            <property name="text" translatable="yes">About</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -877,12 +872,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_about_button">
+          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.about</property>
-            <property name="text" translatable="yes">About</property>
+            <property name="action_name">app.shortcuts</property>
+            <property name="text" translatable="yes">Keyboard Shortcuts</property>
           </object>
           <packing>
             <property name="expand">False</property>

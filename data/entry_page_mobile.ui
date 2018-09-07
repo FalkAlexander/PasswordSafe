@@ -3,19 +3,19 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkListBoxRow" id="attribute_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
     <property name="margin_top">5</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="attribute_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <child>
@@ -135,20 +135,19 @@
     </child>
   </object>
   <object class="GtkListBoxRow" id="attributes_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="margin_top">5</property>
-    <property name="margin_bottom">5</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="attributes_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
@@ -265,18 +264,19 @@
     </child>
   </object>
   <object class="GtkListBoxRow" id="color_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="color_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">9</property>
+        <property name="margin_bottom">9</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
@@ -540,18 +540,19 @@
     </child>
   </object>
   <object class="GtkListBoxRow" id="icon_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="icon_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
@@ -870,20 +871,19 @@
     <property name="width_chars">14</property>
   </object>
   <object class="GtkListBoxRow" id="name_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="margin_top">5</property>
-    <property name="hexpand">False</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="name_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
@@ -958,18 +958,19 @@
     </child>
   </object>
   <object class="GtkListBoxRow" id="notes_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="notes_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
@@ -1051,19 +1052,19 @@
     </child>
   </object>
   <object class="GtkListBoxRow" id="password_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="margin_top">5</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="password_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
@@ -1333,30 +1334,20 @@
       <placeholder/>
     </child>
   </object>
-  <object class="GtkListBoxRow" id="separator_row">
-    <property name="height_request">10</property>
+  <object class="GtkListBoxRow" id="url_property_row">
     <property name="visible">True</property>
     <property name="can_focus">True</property>
     <property name="activatable">False</property>
     <property name="selectable">False</property>
     <child>
-      <placeholder/>
-    </child>
-  </object>
-  <object class="GtkListBoxRow" id="url_property_row">
-    <property name="height_request">50</property>
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="margin_top">5</property>
-    <child>
       <object class="GtkBox" id="url_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
@@ -1430,19 +1421,19 @@
     </child>
   </object>
   <object class="GtkListBoxRow" id="username_property_row">
-    <property name="height_request">50</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="margin_top">5</property>
+    <property name="activatable">False</property>
+    <property name="selectable">False</property>
     <child>
       <object class="GtkBox" id="username_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_left">10</property>
-        <property name="margin_right">10</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>

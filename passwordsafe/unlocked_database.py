@@ -321,8 +321,8 @@ class UnlockedDatabase:
             if self.window.mobile_width is False:
                 # Responsive Container
                 self.search_list_box.set_name("BrowserListBox")
-                self.search_list_box.set_margin_top(30)
-                self.search_list_box.set_margin_bottom(30)
+                self.search_list_box.set_margin_top(18)
+                self.search_list_box.set_margin_bottom(18)
                 self.search_list_box.set_valign(Gtk.Align.START)
 
                 hdy_search = Handy.Column()
@@ -441,7 +441,15 @@ class UnlockedDatabase:
 
             viewport = Gtk.Viewport()
             scrolled_window.properties_list_box = builder.get_object("properties_list_box")
-            viewport.add(scrolled_window.properties_list_box)
+
+            # Responsive Container
+            hdy_page = Handy.Column()
+            hdy_page.set_maximum_width(900)
+            hdy_page.set_margin_top(18)
+            hdy_page.set_margin_bottom(18)
+            hdy_page.add(scrolled_window.properties_list_box)
+            viewport.add(hdy_page)
+
             scrolled_window.add(viewport)
             scrolled_window.show_all()
 
@@ -469,18 +477,16 @@ class UnlockedDatabase:
                 if self.window.mobile_width is False:
                     # Responsive Container
                     list_box.set_name("BrowserListBox")
-                    list_box.set_margin_top(30)
-                    list_box.set_margin_bottom(30)
                     list_box.set_valign(Gtk.Align.START)
 
                     hdy_browser = Handy.Column()
                     hdy_browser.set_maximum_width(900)
+                    hdy_browser.set_margin_top(18)
+                    hdy_browser.set_margin_bottom(18)
                     hdy_browser.add(list_box)
                     overlay.add(hdy_browser)
                 else:
                     list_box.set_name("")
-                    list_box.set_margin_top(0)
-                    list_box.set_margin_bottom(0)
                     list_box.set_valign(Gtk.Align.FILL)
                     overlay.add(list_box)
 
@@ -505,7 +511,15 @@ class UnlockedDatabase:
 
                 viewport = Gtk.Viewport()
                 scrolled_window.properties_list_box = builder.get_object("properties_list_box")
-                viewport.add(scrolled_window.properties_list_box)
+
+                # Responsive Container
+                hdy_page = Handy.Column()
+                hdy_page.set_maximum_width(900)
+                hdy_page.set_margin_top(18)
+                hdy_page.set_margin_bottom(18)
+                hdy_page.add(scrolled_window.properties_list_box)
+                viewport.add(hdy_page)
+
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 

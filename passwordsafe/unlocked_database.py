@@ -843,6 +843,8 @@ class UnlockedDatabase:
         if self.database_manager.has_entry_icon(entry_uuid) is True or add_all is True:
             if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
+                for button in builder.get_object("icon_entry_box").get_children():
+                    button.get_style_context().add_class("EntryIconButton")
 
                 scrolled_page.mail_icon_button = builder.get_object("19")
                 scrolled_page.profile_icon_button = builder.get_object("9")

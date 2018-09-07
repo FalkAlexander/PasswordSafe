@@ -242,6 +242,13 @@ class UnlockedDatabase:
         if hscb.get_active() is False:
             hscb.set_active(True)
 
+        if self.window.mobile_width is True:
+            self.builder.get_object("headerbar_search_box").set_margin_left(0)
+            self.builder.get_object("headerbar_search_box").set_margin_right(0)
+        else:
+            self.builder.get_object("headerbar_search_box").set_margin_left(90)
+            self.builder.get_object("headerbar_search_box").set_margin_right(47)
+
         self.headerbar_search = self.builder.get_object("headerbar_search")
         self.parent_widget.set_headerbar(self.headerbar_search)
         self.window.set_titlebar(self.headerbar_search)

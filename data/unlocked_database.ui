@@ -863,12 +863,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_about_button">
+          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.about</property>
-            <property name="text" translatable="yes">About</property>
+            <property name="action_name">app.shortcuts</property>
+            <property name="text" translatable="yes">Keyboard Shortcuts</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -877,12 +877,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
+          <object class="GtkModelButton" id="menubutton_popover_about_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
+            <property name="action_name">app.about</property>
+            <property name="text" translatable="yes">About</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -1042,7 +1042,6 @@
         <property name="can_focus">False</property>
         <property name="margin_left">90</property>
         <property name="margin_right">47</property>
-        <property name="hexpand">True</property>
         <child>
           <object class="GtkSearchEntry" id="headerbar_search_entry">
             <property name="visible">True</property>

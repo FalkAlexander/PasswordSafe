@@ -4,7 +4,6 @@ from passwordsafe.unlocked_database import UnlockedDatabase
 import passwordsafe.config_manager
 from passwordsafe.logging_manager import LoggingManager
 import gi
-gi.require_version('Gtk', '3.0')
 import ntpath
 import os
 import threading

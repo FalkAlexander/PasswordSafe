@@ -18,8 +18,6 @@ import ntpath
 import datetime
 import time
 
-gi.require_version('Gtk', '3.0')
-
 
 class UnlockedDatabase:
     builder = NotImplemented

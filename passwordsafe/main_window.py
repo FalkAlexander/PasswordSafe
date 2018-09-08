@@ -12,8 +12,6 @@ import gi
 import signal
 import threading
 from gettext import gettext as _
-gi.require_version('Gtk', '3.0')
-gi.require_version('Gdk', '3.0')
 
 
 class MainWindow(Gtk.ApplicationWindow):

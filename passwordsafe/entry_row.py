@@ -5,7 +5,6 @@ import gi
 import passwordsafe.config_manager
 import passwordsafe.icon
 import threading
-gi.require_version('Gtk', '3.0')
 
 
 class EntryRow(Gtk.ListBoxRow):

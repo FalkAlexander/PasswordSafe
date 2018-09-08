@@ -1,18 +1,21 @@
 # Password Safe
-Password Safe is a password manager which makes use of the Keepass v.4 format.
+Password Safe is a password manager which makes use of the KeePass v.4 format.
 It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
 ![Screenshot](https://terminal.run/stuff/overview.png)
+![Mobile](https://terminal.run/stuff/mobile.gif)
 
 ## Features:
-* ⭐ Create and import a Keepass v.4 safe
+* ⭐ Create or import a KeePass v.4 safe
 * 🔐 Password, keyfile and composite key authentification
-* 📝 Create and edit groups, entries
+* 📝 Create and edit groups and entries
+* ✨ Assign a color and additional attributes to entries
 * 🗑 Move and delete groups and entries
-* 🎲 Password randomizer
-* 🛠 Database password changing
+* 🎲 Cryptographically secure password randomizer
+* 🛠 Database password and keyfile changing
 * 🔎 Search tool with local, global and fulltext filter
-* 🕐 Automatic database lock during inactivity
+* 🕐 Automatic database lock during inactivity and session lock
+* 📲 Responsive UI for both desktop and mobile
 
 # Installation
 ## Development Flatpak
@@ -86,21 +89,16 @@ You can find everything you need at: https://l10n.gnome.org/module/PasswordSafe/
 * Argon2 KDBX4
 * AES-KDF KDBX 3.1
 
-Other algorithms are not supported right now and can may or may not work and/or produce failures.
-
 # Data protection
-Please be careful when using development versions. Create enough backups if you're using a production database with Password Safe. It is possible that data loss will occur, though I give my best that this will never happen.  
+Please be careful when using development versions. Create enough backups if you're using a production database with a Password Safe development version. It is possible that data loss will occur, though I give my best that this will never happen.  
 
 Development versions create a backup of your database on unlocking by default. These can be found at ```~/.cache/passwordsafe/backup/``` where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:  
 ```
 gsettings set org.gnome.PasswordSafe development-backup-mode false
 ```
 
-# Known issues
-* For creating databases is used a workaround because the library can't create new ones (yet).
-
-# Used libraries
-There is the awesome pykeepass library from Philipp Schmitt used (https://github.com/pschmitt/pykeepass).
+# Libraries
+* [pykeepass](https://github.com/pschmitt/pykeepass)
 
 # Contact
 You can contact the project through [Matrix](https://matrix.org). The room is

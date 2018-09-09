@@ -350,10 +350,12 @@ class UnlockedDatabase:
         self.stack.set_visible_child(self.stack.get_child_by_name("search"))
 
     def prepare_selection_page(self):
+        self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
         for stack_page in self.stack.get_children():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
         self.show_page_of_new_directory(False, False)
+        self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
     #
     # Keystrokes
@@ -537,7 +539,6 @@ class UnlockedDatabase:
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
                 self.set_entry_page_headerbar()
 
-
     def add_stack_page(self, scrolled_window):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
             self.stack.add_named(scrolled_window, self.database_manager.get_group_uuid_from_group_object(self.current_group))
@@ -571,10 +572,12 @@ class UnlockedDatabase:
             self.stack.set_visible_child_name(page_uuid)
 
     def update_current_stack_page(self):
+        self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
         stack_page = self.stack.get_child_by_name(stack_page_name)
         stack_page.destroy()
         self.show_page_of_new_directory(False, False)
+        self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
     def set_current_group(self, group):
         self.current_group = group
@@ -1616,8 +1619,10 @@ class UnlockedDatabase:
         attribute_entry_box.reorder_child(button, 0)
 
     def on_selection_cancel_button_clicked(self, widget):
+        self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
         self.remove_selection_headerbar()
         self.show_page_of_new_directory(False, False)
+        self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
     def on_selection_delete_button_clicked(self, widget):
         rebuild_pathbar = False

@@ -1715,7 +1715,14 @@ class UnlockedDatabase:
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         viewport = scrolled_page.get_children()[0]
         overlay = viewport.get_children()[0]
-        list_box = overlay.get_children()[0]
+        list_box = NotImplemented
+
+        if self.window.mobile_width is False:
+            column = overlay.get_children()[0]
+            list_box = column.get_children()[0]
+        else:
+            list_box = overlay.get_children()[0]
+
         for row in list_box:
             if selection_type is "all":
                 row.selection_checkbox.set_active(True)

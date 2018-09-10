@@ -311,6 +311,7 @@ class UnlockedDatabase:
         if self.stack.get_child_by_name("search") is None:
             scrolled_page = ScrolledPage(False)
             viewport = Gtk.Viewport()
+            viewport.set_name("BGPlatform")
             self.search_overlay = Gtk.Overlay()
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
@@ -440,6 +441,7 @@ class UnlockedDatabase:
             scrolled_window = ScrolledPage(True)
 
             viewport = Gtk.Viewport()
+            viewport.set_name("BGPlatform")
             scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
             # Responsive Container
@@ -472,6 +474,7 @@ class UnlockedDatabase:
 
                 scrolled_window = ScrolledPage(False)
                 viewport = Gtk.Viewport()
+                viewport.set_name("BGPlatform")
                 overlay = Gtk.Overlay()
 
                 if self.window.mobile_width is False:
@@ -510,6 +513,7 @@ class UnlockedDatabase:
                 scrolled_window = ScrolledPage(True)
 
                 viewport = Gtk.Viewport()
+                viewport.set_name("BGPlatform")
                 scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
                 # Responsive Container

@@ -11,7 +11,7 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 * 📝 Create and edit groups and entries
 * ✨ Assign a color and additional attributes to entries
 * 🗑 Move and delete groups and entries
-* 🎲 Cryptographically secure password randomizer
+* 🎲 Cryptographically strong password and passphrase generator
 * 🛠 Database password and keyfile changing
 * 🔎 Search tool with local, global and fulltext filter
 * 🕐 Automatic database lock during inactivity and session lock

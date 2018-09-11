@@ -1838,6 +1838,9 @@ class UnlockedDatabase:
             self.clipboard.clear()
 
     def start_database_lock_timer(self):
+        if self.database_locked is True:
+            return
+
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
         timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60

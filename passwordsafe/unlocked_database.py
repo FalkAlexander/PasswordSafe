@@ -1348,9 +1348,6 @@ class UnlockedDatabase:
             pass_text = passwordsafe.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
         else:
             separator = builder.get_object("separator_entry").get_text()
-            if separator is "" or separator is None:
-                separator = " "
-
             words = builder.get_object("words_spin_button").get_value_as_int()
 
             pass_text = passwordsafe.passphrase_generator.generate(words, separator)

@@ -9,6 +9,7 @@ from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from threading import Timer
 from gettext import gettext as _
+import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
 import os
@@ -744,13 +745,14 @@ class UnlockedDatabase:
                 else:
                     scrolled_page.password_property_value_entry.set_text("")
 
+                scrolled_page.generate_password_button.set_popover(builder.get_object("generate_password_popover"))
+                builder.get_object("generate_button").connect("clicked", self.on_generate_button_clicked, builder, scrolled_page.password_property_value_entry)
                 scrolled_page.password_property_value_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
                 scrolled_page.password_property_value_entry.connect("copy-clipboard", self.on_password_entry_copy_clipboard, None)
                 self.bind_accelerator(self.accelerators, scrolled_page.password_property_value_entry, "<Control><Shift>c", signal="copy-clipboard")
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
-                self.show_generate_password_popover(scrolled_page.generate_password_button, scrolled_page.password_property_value_entry)
 
                 properties_list_box.add(scrolled_page.password_property_row)
             elif scrolled_page.password_property_row is not "":
@@ -1331,38 +1333,29 @@ class UnlockedDatabase:
         self.start_database_lock_timer()
         Gtk.show_uri_on_window(self.window, widget.get_text(), Gtk.get_current_event_time())
 
-    def on_popup_generate_password_popover(self, widget, entry):
+    def on_generate_button_clicked(self, button, builder, entry):
         self.start_database_lock_timer()
-        builder = Gtk.Builder()
-        if self.window.mobile_width is False:
-            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        pass_text = NotImplemented
+
+        if builder.get_object("generator_stack").get_visible_child_name() == "password":
+            high_letter_toggle_button = builder.get_object("high_letter_toggle_button")
+            low_letter_toggle_button = builder.get_object("low_letter_toggle_button")
+            number_toggle_button = builder.get_object("number_toggle_button")
+            special_toggle_button = builder.get_object("special_toggle_button")
+
+            digits = builder.get_object("digit_spin_button").get_value_as_int()
+
+            pass_text = passwordsafe.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
         else:
-            builder.add_from_resource("/org/gnome/PasswordSafe/entry_page_mobile.ui")
+            separator = builder.get_object("separator_entry").get_text()
+            if separator is "" or separator is None:
+                separator = " "
 
-        popover = builder.get_object("generate_password_popover")
-        digit_spin_button = builder.get_object("digit_spin_button")
-        generate_button = builder.get_object("generate_button")
+            words = builder.get_object("words_spin_button").get_value_as_int()
 
-        digit_adjustment = Gtk.Adjustment(16, 5, 50, 1, 5)
-        digit_spin_button.set_adjustment(digit_adjustment)
+            pass_text = passwordsafe.passphrase_generator.generate(words, separator)
 
-        generate_button.connect("clicked", self.on_generate_button_clicked, builder, entry, digit_spin_button)
-
-        popover.set_relative_to(widget)
-        popover.show_all()
-        popover.popup()
-
-    def on_generate_button_clicked(self, widget, builder, entry, digit_spin_button):
-        self.start_database_lock_timer()
-        high_letter_toggle_button = builder.get_object("high_letter_toggle_button")
-        low_letter_toggle_button = builder.get_object("low_letter_toggle_button")
-        number_toggle_button = builder.get_object("number_toggle_button")
-        special_toggle_button = builder.get_object("special_toggle_button")
-
-        digits = digit_spin_button.get_value_as_int()
-
-        password = passwordsafe.password_generator.generate(digits, high_letter_toggle_button.get_active(), low_letter_toggle_button.get_active(), number_toggle_button.get_active(), special_toggle_button.get_active())
-        entry.set_text(password)
+        entry.set_text(pass_text)
 
     def on_database_settings_entry_clicked(self, action, param):
         DatabaseSettingsDialog(self)
@@ -1841,9 +1834,6 @@ class UnlockedDatabase:
         else:
             toggle_button.toggled()
             entry.set_visibility(True)
-
-    def show_generate_password_popover(self, show_password_button, entry):
-        show_password_button.connect("clicked", self.on_popup_generate_password_popover, entry)
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

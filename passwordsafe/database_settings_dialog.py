@@ -116,7 +116,7 @@ class DatabaseSettingsDialog():
         self.new_password = NotImplemented
 
         if entry.get_name() == "new_entry":
-            level = passwordsafe.password_generator.strength(new_password)
+            level = passwordsafe.password_generator.entropy(new_password)
             self.builder.get_object("password_level_bar").set_value(float(level))
 
         if self.database_manager.password == "" or self.database_manager.password is None:

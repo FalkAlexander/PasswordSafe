@@ -56,7 +56,13 @@ class EntryRow(Gtk.ListBoxRow):
             entry_checkbox_box.add(self.selection_checkbox)
 
         # Icon
-        entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
+        if self.icon is not None:
+            if int(self.icon) >= 0 and int(self.icon) <= 68 and self.icon:
+                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
+            else:
+                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
+        else:
+            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
 
         # Title/Name
         if self.database_manager.has_entry_name(self.entry_uuid) is True and self.label is not "":

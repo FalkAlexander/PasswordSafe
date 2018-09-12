@@ -1883,7 +1883,7 @@ class UnlockedDatabase:
 
     def register_dbus_signal(self):
         app = Gio.Application.get_default
-        self.dbus_subscription_id = app().get_dbus_connection().signal_subscribe(":1.10", "org.gnome.ScreenSaver", "ActiveChanged", "/org/gnome/ScreenSaver", None, Gio.DBusSignalFlags.NONE, self.on_session_lock)
+        self.dbus_subscription_id = app().get_dbus_connection().signal_subscribe(None, "org.gnome.ScreenSaver", "ActiveChanged", "/org/gnome/ScreenSaver", None, Gio.DBusSignalFlags.NONE, self.on_session_lock)
 
     def unregister_dbus_signal(self):
         app = Gio.Application.get_default

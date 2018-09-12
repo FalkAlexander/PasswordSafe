@@ -64,7 +64,11 @@ def diversity(password):
 
 
 def entropy(password):
-    val = math.log(math.pow(len(string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation), len(password)), 2)
+    passwd_length = len(password)
+    if passwd_length > 156:
+        passwd_length = 156
+
+    val = math.log(math.pow(len(string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation), passwd_length), 2)
     if val < 40:
         return 1
     elif val < 80:

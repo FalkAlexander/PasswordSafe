@@ -42,6 +42,7 @@ class Application(Gtk.Application):
             self.window.add_row_popover_actions()
             self.window.add_database_menubutton_popover_actions()
             self.window.add_selection_actions()
+            self.add_global_accelerators()
 
         self.window.present()
 
@@ -103,6 +104,15 @@ class Application(Gtk.Application):
 
         self.do_activate()
 
+    def add_global_accelerators(self):
+        self.window.add_global_accelerator_actions()
+        self.set_accels_for_action("app.settings", ["<Control>p"])
+        self.set_accels_for_action("app.open", ["<Control>o"])
+        self.set_accels_for_action("app.new", ["<Control>n"])
+        self.set_accels_for_action("app.db.save", ["<Control>s"])
+        self.set_accels_for_action("app.db.lock", ["<Control>l"])
+
 if __name__ == "__main__":
     app = Application()
     app.run(sys.argv)
+

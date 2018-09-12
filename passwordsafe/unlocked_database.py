@@ -114,11 +114,9 @@ class UnlockedDatabase:
 
         save_button = self.builder.get_object("save_button")
         save_button.connect("clicked", self.on_save_button_clicked)
-        self.bind_accelerator(self.accelerators, save_button, "<Control>s")
 
         lock_button = self.builder.get_object("lock_button")
         lock_button.connect("clicked", self.on_lock_button_clicked)
-        self.bind_accelerator(self.accelerators, lock_button, "<Control>l")
 
         mod_box = self.builder.get_object("mod_box")
         browser_buttons_box = self.builder.get_object("browser_buttons_box")
@@ -1047,7 +1045,8 @@ class UnlockedDatabase:
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
-        self.builder.get_object("menubutton_popover").popdown()
+        if widget is not None:
+            self.builder.get_object("menubutton_popover").popdown()
 
         if self.database_manager.changes is True:
             if self.database_manager.save_running is False:

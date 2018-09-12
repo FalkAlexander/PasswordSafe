@@ -55,18 +55,13 @@ class MainWindow(Gtk.ApplicationWindow):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
-        accelerators = Gtk.AccelGroup()
-        self.add_accel_group(accelerators)
-
         self.headerbar = builder.get_object("headerbar")
 
         file_open_button = builder.get_object("open_button")
         file_open_button.connect("clicked", self.open_filechooser, None)
-        self.bind_accelerator(accelerators, file_open_button, "<Control>o")
 
         file_new_button = builder.get_object("new_button")
         file_new_button.connect("clicked", self.create_filechooser, None)
-        self.bind_accelerator(accelerators, file_new_button, "<Control>n")
 
         self.set_titlebar(self.headerbar)
 
@@ -75,14 +70,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def get_headerbar(self):
         return self.headerbar
-
-    #
-    # Keystrokes
-    #        
-
-    def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
-        key, mod = Gtk.accelerator_parse(accelerator)
-        widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
 
     #
     # Styles
@@ -107,15 +94,6 @@ class MainWindow(Gtk.ApplicationWindow):
             gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
         else:
             gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
-
-    #
-    # DBus
-    #
-
-    def create_session_bus(self):
-        self.system_bus = Gio.BusType.SYSTEM
-        self.cancellable = None
-        self.connection = Gio.bus_get_sync(self.system_bus, self.cancellable)
 
     #
     # Responsive Listener
@@ -650,6 +628,27 @@ class MainWindow(Gtk.ApplicationWindow):
         elif name == "on_selection_popover_button_clicked":
             action_db.on_selection_popover_button_clicked(action, param, arg)
 
+    # Add Global Accelerator Actions
+    def add_global_accelerator_actions(self):
+        save_action = Gio.SimpleAction.new("db.save", None)
+        save_action.connect("activate", self.execute_accel_action, "save")
+        self.application.add_action(save_action)
+
+        lock_action = Gio.SimpleAction.new("db.lock", None)
+        lock_action.connect("activate", self.execute_accel_action, "lock")
+        self.application.add_action(lock_action)
+
+    # Accelerator Action Handler
+    def execute_accel_action(self, action, param, name):
+        action_db = self.find_action_db()
+        if action_db is NotImplemented:
+            return
+
+        if name == "save":
+            action_db.on_save_button_clicked(None)
+        elif name == "lock":
+            action_db.lock_database()
+
     #
     # Tools
     #
@@ -664,6 +663,4 @@ class MainWindow(Gtk.ApplicationWindow):
         self.quit_dialog.destroy()
         self.save_window_size()
         self.application.quit()
-
-
             

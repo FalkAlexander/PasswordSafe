@@ -111,6 +111,8 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.new", ["<Control>n"])
         self.set_accels_for_action("app.db.save", ["<Control>s"])
         self.set_accels_for_action("app.db.lock", ["<Control>l"])
+        self.set_accels_for_action("app.db.add_entry", ["<Control>e"])
+        self.set_accels_for_action("app.db.add_group", ["<Control>g"])
 
 if __name__ == "__main__":
     app = Application()

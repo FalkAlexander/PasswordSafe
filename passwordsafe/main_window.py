@@ -638,8 +638,16 @@ class MainWindow(Gtk.ApplicationWindow):
         lock_action.connect("activate", self.execute_accel_action, "lock")
         self.application.add_action(lock_action)
 
+        add_entry_action = Gio.SimpleAction.new("db.add_entry", None)
+        add_entry_action.connect("activate", self.execute_accel_action, "add_action", "entry")
+        self.application.add_action(add_entry_action)
+
+        add_group_action = Gio.SimpleAction.new("db.add_group", None)
+        add_group_action.connect("activate", self.execute_accel_action, "add_action", "group")
+        self.application.add_action(add_group_action)
+
     # Accelerator Action Handler
-    def execute_accel_action(self, action, param, name):
+    def execute_accel_action(self, action, param, name, arg=None):
         action_db = self.find_action_db()
         if action_db is NotImplemented:
             return
@@ -648,6 +656,25 @@ class MainWindow(Gtk.ApplicationWindow):
             action_db.on_save_button_clicked(None)
         elif name == "lock":
             action_db.on_lock_button_clicked(None)
+        elif name == "add_action":
+            if action_db.database_locked is True:
+                return
+
+            if action_db.selection_mode is True:
+                return
+
+            group_uuid = action_db.database_manager.get_group_uuid_from_group_object(action_db.current_group)
+            scrolled_page = action_db.stack.get_child_by_name(group_uuid)
+            if scrolled_page.edit_page is True:
+                return
+
+            if action_db.stack.get_visible_child() is action_db.stack.get_child_by_name("search"):
+                return
+
+            if arg == "entry":
+                action_db.on_add_entry_button_clicked(None)
+            elif arg == "group":
+                action_db.on_add_group_button_clicked(None)
 
     #
     # Tools

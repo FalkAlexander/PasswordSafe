@@ -755,7 +755,7 @@ class UnlockedDatabase:
                 scrolled_page.password_level_bar.add_offset_value("medium", 3.0)
                 scrolled_page.password_level_bar.add_offset_value("strong", 5.0)
                 scrolled_page.password_level_bar.add_offset_value("secure", 6.0)
-                scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.entropy(scrolled_page.password_property_value_entry.get_text())))
+                scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(scrolled_page.password_property_value_entry.get_text())))
 
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
 
@@ -1157,7 +1157,7 @@ class UnlockedDatabase:
             self.database_manager.set_entry_username(entry_uuid, widget.get_text())
         elif type == "password":
             self.database_manager.set_entry_password(entry_uuid, widget.get_text())
-            scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.entropy(widget.get_text())))
+            scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(widget.get_text())))
         elif type == "url":
             self.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type == "notes":

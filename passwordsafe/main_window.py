@@ -647,7 +647,7 @@ class MainWindow(Gtk.ApplicationWindow):
         if name == "save":
             action_db.on_save_button_clicked(None)
         elif name == "lock":
-            action_db.lock_database()
+            action_db.on_lock_button_clicked(None)
 
     #
     # Tools

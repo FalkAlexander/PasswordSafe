@@ -28,6 +28,9 @@ class UnlockedDatabase:
     headerbar_search = NotImplemented
     scrolled_window = NotImplemented
     stack = NotImplemented
+    divider = NotImplemented
+    revealer = NotImplemented
+    action_bar_box = NotImplemented
     database_manager = NotImplemented
     logging_manager = LoggingManager(True)
     current_group = NotImplemented
@@ -94,7 +97,12 @@ class UnlockedDatabase:
         self.current_group = self.database_manager.get_root_group()
 
         self.stack = self.builder.get_object("list_stack")
-        self.overlay.add(self.stack)
+        self.divider = self.builder.get_object("divider")
+        self.revealer = self.builder.get_object("revealer")
+        self.action_bar_box = self.builder.get_object("action_bar_box")
+        self.revealer.set_reveal_child(False)
+        self.divider.pack_start(self.stack, True, True, 0)
+        self.overlay.add(self.divider)
         self.overlay.show_all()
 
         self.set_headerbar()
@@ -169,6 +177,17 @@ class UnlockedDatabase:
         self.window.set_titlebar(self.headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
+
+    # Responsive Controls
+    def responsive_controls(self):
+        if self.window.mobile_width is True:
+            self.headerbar.get_children()[0].get_children()[0].remove(self.pathbar)
+            self.action_bar_box.add(self.pathbar)
+            self.revealer.set_reveal_child(True)
+        else:
+            self.revealer.set_reveal_child(False)
+            self.action_bar_box.remove(self.pathbar)
+            self.headerbar.get_children()[0].get_children()[0].add(self.pathbar)
 
     # Selection headerbar
     def set_selection_headerbar(self, widget):
@@ -316,23 +335,16 @@ class UnlockedDatabase:
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             self.search_list_box = builder.get_object("list_box")
 
-            if self.window.mobile_width is False:
-                # Responsive Container
-                self.search_list_box.set_name("BrowserListBox")
-                self.search_list_box.set_margin_top(18)
-                self.search_list_box.set_margin_bottom(18)
-                self.search_list_box.set_valign(Gtk.Align.START)
+            # Responsive Container
+            self.search_list_box.set_name("BrowserListBox")
+            self.search_list_box.set_margin_top(18)
+            self.search_list_box.set_margin_bottom(18)
+            self.search_list_box.set_valign(Gtk.Align.START)
 
-                hdy_search = Handy.Column()
-                hdy_search.set_maximum_width(900)
-                hdy_search.add(self.search_list_box)
-                self.search_overlay.add(hdy_search)
-            else:
-                self.search_list_box.set_name("")
-                self.search_list_box.set_margin_top(0)
-                self.search_list_box.set_margin_bottom(0)
-                self.search_list_box.set_valign(Gtk.Align.FILL)
-                self.search_overlay.add(self.search_list_box)
+            hdy_search = Handy.Column()
+            hdy_search.set_maximum_width(900)
+            hdy_search.add(self.search_list_box)
+            self.search_overlay.add(hdy_search)
 
             self.search_list_box.connect("row-activated", self.on_list_box_row_activated)
             viewport.add(self.search_overlay)
@@ -476,21 +488,16 @@ class UnlockedDatabase:
                 viewport.set_name("BGPlatform")
                 overlay = Gtk.Overlay()
 
-                if self.window.mobile_width is False:
-                    # Responsive Container
-                    list_box.set_name("BrowserListBox")
-                    list_box.set_valign(Gtk.Align.START)
+                # Responsive Container
+                list_box.set_name("BrowserListBox")
+                list_box.set_valign(Gtk.Align.START)
 
-                    hdy_browser = Handy.Column()
-                    hdy_browser.set_maximum_width(900)
-                    hdy_browser.set_margin_top(18)
-                    hdy_browser.set_margin_bottom(18)
-                    hdy_browser.add(list_box)
-                    overlay.add(hdy_browser)
-                else:
-                    list_box.set_name("")
-                    list_box.set_valign(Gtk.Align.FILL)
-                    overlay.add(list_box)
+                hdy_browser = Handy.Column()
+                hdy_browser.set_maximum_width(900)
+                hdy_browser.set_margin_top(18)
+                hdy_browser.set_margin_bottom(18)
+                hdy_browser.add(list_box)
+                overlay.add(hdy_browser)
 
                 viewport.add(overlay)
                 scrolled_window.add(viewport)

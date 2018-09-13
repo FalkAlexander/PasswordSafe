@@ -103,6 +103,48 @@
       </packing>
     </child>
   </object>
+  <object class="GtkBox" id="divider">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="revealer">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">end</property>
+        <property name="transition_type">slide-up</property>
+        <property name="reveal_child">True</property>
+        <child>
+          <object class="GtkActionBar" id="action_bar">
+            <property name="height_request">50</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkBox" id="action_bar_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack_type">end</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkOverlay" id="empty_group_overlay">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -859,12 +901,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
+          <object class="GtkModelButton" id="menubutton_popover_about_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
+            <property name="action_name">app.about</property>
+            <property name="text" translatable="yes">About</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -873,12 +915,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_about_button">
+          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.about</property>
-            <property name="text" translatable="yes">About</property>
+            <property name="action_name">app.shortcuts</property>
+            <property name="text" translatable="yes">Keyboard Shortcuts</property>
           </object>
           <packing>
             <property name="expand">False</property>

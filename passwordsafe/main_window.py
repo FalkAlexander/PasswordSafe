@@ -160,17 +160,11 @@ class MainWindow(Gtk.ApplicationWindow):
         builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
         if self.mobile_width is True:
-            self.file_open_button.remove(self.file_open_button.get_children()[0])
-            self.file_new_button.remove(self.file_new_button.get_children()[0])
-
-            self.file_open_button.add(builder.get_object("open_button_image"))
-            self.file_new_button.add(builder.get_object("new_button_image"))
+            self.file_open_button.get_children()[0].set_visible_child_name("mobile")
+            self.file_new_button.get_children()[0].set_visible_child_name("mobile")
         else:
-            self.file_open_button.remove(self.file_open_button.get_children()[0])
-            self.file_new_button.remove(self.file_new_button.get_children()[0])
-
-            self.file_open_button.set_label(_("Open…"))
-            self.file_new_button.set_label(_("New…"))
+            self.file_open_button.get_children()[0].set_visible_child_name("desktop")
+            self.file_new_button.get_children()[0].set_visible_child_name("desktop")
 
     #
     # First Start Screen

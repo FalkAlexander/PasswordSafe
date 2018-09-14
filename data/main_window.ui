@@ -249,11 +249,42 @@
             <property name="spacing">6</property>
             <child>
               <object class="GtkButton" id="new_button">
-                <property name="label" translatable="yes" comments="Button at the start screen for the creation of a new keepass safe (starts the creation routine where a password needs to be set for the safe)">New…</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">start</property>
+                <child>
+                  <object class="GtkStack" id="new_button_stack">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hhomogeneous">False</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="label" translatable="yes">New…</property>
+                      </object>
+                      <packing>
+                        <property name="name">desktop</property>
+                        <property name="title">desktop</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">document-new-symbolic</property>
+                      </object>
+                      <packing>
+                        <property name="name">mobile</property>
+                        <property name="title">mobile</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -263,11 +294,42 @@
             </child>
             <child>
               <object class="GtkButton" id="open_button">
-                <property name="label" translatable="yes" comments="The button for opening an existing keepass safe">Open…</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">start</property>
+                <child>
+                  <object class="GtkStack" id="open_button_stack">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hhomogeneous">False</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="label" translatable="yes">Open…</property>
+                      </object>
+                      <packing>
+                        <property name="name">desktop</property>
+                        <property name="title">desktop</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">document-open-symbolic</property>
+                      </object>
+                      <packing>
+                        <property name="name">mobile</property>
+                        <property name="title">mobile</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -330,11 +392,15 @@
   <object class="GtkImage" id="new_button_image">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
     <property name="icon_name">document-new-symbolic</property>
   </object>
   <object class="GtkImage" id="open_button_image">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
     <property name="icon_name">document-open-symbolic</property>
   </object>
   <object class="GtkBox" id="select_box">

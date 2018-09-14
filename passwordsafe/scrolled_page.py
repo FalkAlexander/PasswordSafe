@@ -6,7 +6,8 @@ class ScrolledPage(Gtk.ScrolledWindow):
     edit_page = False
     made_database_changes = False
     
-    add_button_disabled = False
+    all_properties_revealed = False
+    show_all_properties_button = NotImplemented
 
     properties_list_box = NotImplemented
 
@@ -54,6 +55,8 @@ class ScrolledPage(Gtk.ScrolledWindow):
     attributes_value_entry = NotImplemented
     attributes_add_button = NotImplemented
     attribute_property_row_list = []
+
+    show_all_row = NotImplemented
 
     def __init__(self, edit):
         Gtk.ScrolledWindow.__init__(self)

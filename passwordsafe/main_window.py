@@ -131,37 +131,17 @@ class MainWindow(Gtk.ApplicationWindow):
 
             # For Group/Entry Edit Page
             if scrolled_page.edit_page is True and group_page is True:
-                for page in db.stack.get_children():
-                    if page.edit_page is True:
-                        db.stack.remove(page)
-                db.stack.set_transition_type(Gtk.StackTransitionType.NONE)
-                db.show_page_of_new_directory(True, False)
-                db.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
-
                 db.responsive_action_bar()
                 db.responsive_headerbar_title()
                 db.responsive_headerbar_back_button()
                 return
             elif scrolled_page.edit_page is True and group_page is False:
-                for page in db.stack.get_children():
-                    if page.edit_page is True:
-                        db.stack.remove(page)
-                db.stack.set_transition_type(Gtk.StackTransitionType.NONE)
-                db.show_page_of_new_directory(False, False)
-                db.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
-
                 db.responsive_action_bar()
                 db.responsive_headerbar_title()
                 db.responsive_headerbar_back_button()
                 return
 
             # For Entry/Group Browser and Selection Mode
-            for page in db.stack.get_children():
-                if page.edit_page is True:
-                    db.stack.remove(page)
-
-            db.show_page_of_new_directory(False, False)
-
             db.responsive_action_bar()
             db.responsive_headerbar_title()
             db.responsive_headerbar_back_button()

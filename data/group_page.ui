@@ -11,22 +11,25 @@
       <object class="GtkBox" id="name_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="halign">center</property>
         <property name="valign">center</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
-        <property name="spacing">12</property>
+        <property name="hexpand">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">5</property>
         <child>
           <object class="GtkBox" id="name_label_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">end</property>
+            <property name="halign">start</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="name_property_name_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">end</property>
+                <property name="halign">start</property>
                 <property name="valign">center</property>
                 <property name="vexpand">True</property>
                 <property name="label" translatable="yes">Title</property>
@@ -34,7 +37,7 @@
                 <property name="ellipsize">end</property>
                 <property name="width_chars">15</property>
                 <property name="max_width_chars">15</property>
-                <property name="xalign">1</property>
+                <property name="xalign">0</property>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -56,18 +59,14 @@
           <object class="GtkBox" id="name_entry_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="margin_right">60</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkEntry" id="name_property_value_entry">
-                <property name="width_request">450</property>
                 <property name="height_request">-1</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="halign">start</property>
                 <property name="valign">center</property>
                 <property name="vexpand">True</property>
               </object>
@@ -96,16 +95,19 @@
       <object class="GtkBox" id="notes_property_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="halign">center</property>
         <property name="valign">center</property>
+        <property name="margin_left">4</property>
+        <property name="margin_right">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
-        <property name="spacing">12</property>
+        <property name="hexpand">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">5</property>
         <child>
           <object class="GtkBox" id="notes_label_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">end</property>
+            <property name="halign">start</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="notes_property_name_label">
@@ -119,7 +121,7 @@
                 <property name="ellipsize">end</property>
                 <property name="width_chars">15</property>
                 <property name="max_width_chars">15</property>
-                <property name="xalign">1</property>
+                <property name="xalign">0</property>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -141,14 +143,11 @@
           <object class="GtkBox" id="notes_entry_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="margin_right">60</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
-                <property name="width_request">450</property>
                 <property name="height_request">180</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -182,7 +181,6 @@
   </object>
   <object class="GtkListBox" id="properties_list_box">
     <property name="name">PropertiesListBox</property>
-    <property name="width_request">600</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="selection_mode">none</property>

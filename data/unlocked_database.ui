@@ -7,23 +7,31 @@
     <property name="can_focus">False</property>
     <property name="spacing">6</property>
     <child>
-      <object class="GtkButton" id="selection_button">
+      <object class="GtkRevealer" id="selection_button_revealer">
         <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+        <property name="can_focus">False</property>
+        <property name="transition_type">slide-left</property>
+        <property name="reveal_child">True</property>
         <child>
-          <object class="GtkImage" id="selection_button_image">
+          <object class="GtkButton" id="selection_button">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">emblem-ok-symbolic</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+            <child>
+              <object class="GtkImage" id="selection_button_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">emblem-ok-symbolic</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="position">1</property>
+        <property name="position">0</property>
       </packing>
     </child>
     <child>
@@ -123,11 +131,25 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkBox" id="action_bar_box">
+              <object class="GtkScrolledWindow">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">True</property>
+                <property name="vscrollbar_policy">never</property>
+                <property name="propagate_natural_width">True</property>
                 <child>
-                  <placeholder/>
+                  <object class="GtkViewport">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkBox" id="action_bar_box">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
                 </child>
               </object>
               <packing>
@@ -440,6 +462,18 @@
         <property name="position">0</property>
       </packing>
     </child>
+  </object>
+  <object class="GtkLabel" id="filename_label">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+    <property name="margin_left">10</property>
+    <property name="margin_right">10</property>
+    <property name="ellipsize">end</property>
+    <attributes>
+      <attribute name="weight" value="bold"/>
+    </attributes>
   </object>
   <object class="GtkPopover" id="group_context_popover">
     <property name="can_focus">False</property>
@@ -901,12 +935,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_about_button">
+          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.about</property>
-            <property name="text" translatable="yes">About</property>
+            <property name="action_name">app.shortcuts</property>
+            <property name="text" translatable="yes">Keyboard Shortcuts</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -915,12 +949,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
+          <object class="GtkModelButton" id="menubutton_popover_about_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
+            <property name="action_name">app.about</property>
+            <property name="text" translatable="yes">About</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -942,6 +976,57 @@
     <child>
       <placeholder/>
     </child>
+    <child>
+      <object class="GtkRevealer" id="pathbar_button_back_revealer">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="transition_type">slide-right</property>
+        <property name="transition_duration">150</property>
+        <child>
+          <object class="GtkButton" id="back_button_mobile">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Back</property>
+            <child>
+              <object class="GtkImage" id="back_button_image_mobile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">go-previous-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="pathbar_button_selection_revealer">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="transition_type">slide-right</property>
+        <child>
+          <object class="GtkButton" id="selection_button_mobile">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+            <child>
+              <object class="GtkImage" id="selection_button_image_mobile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">emblem-ok-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="position">2</property>
+      </packing>
+    </child>
     <child type="title">
       <object class="GtkBox" id="title_box">
         <property name="visible">True</property>
@@ -952,12 +1037,16 @@
           <placeholder/>
         </child>
       </object>
+      <packing>
+        <property name="position">3</property>
+      </packing>
     </child>
     <child>
       <object class="GtkBox" id="headerbar_right_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
         <child>
           <object class="GtkBox" id="linkedbox_right">
             <property name="visible">True</property>
@@ -1007,7 +1096,7 @@
       </object>
       <packing>
         <property name="pack_type">end</property>
-        <property name="position">1</property>
+        <property name="position">4</property>
       </packing>
     </child>
   </object>
@@ -1272,6 +1361,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Click on a checkbox to select</property>
+            <property name="ellipsize">middle</property>
           </object>
           <packing>
             <property name="expand">False</property>

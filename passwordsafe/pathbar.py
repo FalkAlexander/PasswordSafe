@@ -45,7 +45,7 @@ class Pathbar(Gtk.HBox):
         viewport.add(self)
         scrolled_window.add(viewport)
 
-        self.headerbar.add(scrolled_window)
+        self.headerbar.pack_start(scrolled_window)
         scrolled_window.show_all()
 
     def first_appearance(self):
@@ -172,7 +172,11 @@ class Pathbar(Gtk.HBox):
             self.query_page_update()
 
         self.unlocked_database.set_current_group(self.database_manager.get_root_group())
-        self.unlocked_database.switch_stack_page()
+
+        if self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)) is not None:
+            self.unlocked_database.switch_stack_page()
+        else:
+            self.unlocked_database.show_page_of_new_directory(False, False)
 
     def on_pathbar_button_clicked(self, pathbar_button):
         self.unlocked_database.start_database_lock_timer()

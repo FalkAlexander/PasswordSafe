@@ -113,38 +113,55 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def change_layout(self):
         for db in self.opened_databases:
-                # Do Nothing on Lock Screen
-                if db.database_locked is True:
-                    return
+            # Do Nothing on Lock Screen
+            if db.database_locked is True:
+                return
 
-                # For Search View
-                if db.stack.get_visible_child() is db.stack.get_child_by_name("search"):
-                    return
+            # For Search View
+            if db.stack.get_visible_child() is db.stack.get_child_by_name("search"):
+                return
 
-                page_uuid = db.database_manager.get_group_uuid_from_group_object(db.current_group)
-                group_page = NotImplemented
-                if db.database_manager.check_is_group(page_uuid) is True:
-                    group_page = True
-                else:
-                    group_page = False
-                scrolled_page = db.stack.get_child_by_name(page_uuid)
+            page_uuid = db.database_manager.get_group_uuid_from_group_object(db.current_group)
+            group_page = NotImplemented
+            if db.database_manager.check_is_group(page_uuid) is True:
+                group_page = True
+            else:
+                group_page = False
+            scrolled_page = db.stack.get_child_by_name(page_uuid)
 
-                # For Group/Entry Edit Page
-                if scrolled_page.edit_page is True and group_page is True:
-                    for page in db.stack.get_children():
+            # For Group/Entry Edit Page
+            if scrolled_page.edit_page is True and group_page is True:
+                for page in db.stack.get_children():
+                    if page.edit_page is True:
                         db.stack.remove(page)
-                    db.show_page_of_new_directory(True, False)
-                    db.responsive_controls()
-                    return
-                elif scrolled_page.edit_page is True and group_page is False:
-                    for page in db.stack.get_children():
-                        db.stack.remove(page)
-                    db.show_page_of_new_directory(False, False)
-                    db.responsive_controls()
-                    return
+                db.show_page_of_new_directory(True, False)
 
-                # For Entry/Group Browser and Selection Mode
-                db.responsive_controls()
+                db.responsive_action_bar()
+                db.responsive_headerbar_title()
+                db.responsive_headerbar_back_button()
+                return
+            elif scrolled_page.edit_page is True and group_page is False:
+                for page in db.stack.get_children():
+                    if page.edit_page is True:
+                        db.stack.remove(page)
+                db.show_page_of_new_directory(False, False)
+
+                db.responsive_action_bar()
+                db.responsive_headerbar_title()
+                db.responsive_headerbar_back_button()
+                return
+
+            # For Entry/Group Browser and Selection Mode
+            for page in db.stack.get_children():
+                if page.edit_page is True:
+                    db.stack.remove(page)
+
+            db.show_page_of_new_directory(False, False)
+
+            db.responsive_action_bar()
+            db.responsive_headerbar_title()
+            db.responsive_headerbar_back_button()
+            db.responsive_headerbar_selection_button()
 
     #
     # First Start Screen

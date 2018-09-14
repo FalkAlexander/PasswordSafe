@@ -75,6 +75,11 @@ class UnlockedDatabase:
 
         self.register_dbus_signal()
 
+        self.responsive_action_bar()
+        self.responsive_headerbar_title()
+        self.responsive_headerbar_back_button()
+        self.responsive_headerbar_selection_button()
+
     #
     # Stack Pages
     #
@@ -136,6 +141,11 @@ class UnlockedDatabase:
 
         selection_button = self.builder.get_object("selection_button")
         selection_button.connect("clicked", self.set_selection_headerbar)
+        selection_button_mobile = self.builder.get_object("selection_button_mobile")
+        selection_button_mobile.connect("clicked", self.set_selection_headerbar)
+
+        back_button_mobile = self.builder.get_object("back_button_mobile")
+        back_button_mobile.connect("clicked", self.on_back_button_mobile_clicked)
 
         add_entry_button = self.builder.get_object("add_entry_button")
         add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
@@ -178,16 +188,63 @@ class UnlockedDatabase:
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
 
+    #
     # Responsive Controls
-    def responsive_controls(self):
+    #
+
+    def responsive_action_bar(self):
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         if self.window.mobile_width is True:
-            self.headerbar.get_children()[0].get_children()[0].remove(self.pathbar)
-            self.action_bar_box.add(self.pathbar)
-            self.revealer.set_reveal_child(True)
+            if len(self.headerbar.get_children()[2].get_children()[0]) is not 0:
+                self.headerbar.get_children()[2].get_children()[0].remove(self.pathbar)
+
+            if len(self.action_bar_box.get_children()) is 0:
+                self.action_bar_box.add(self.pathbar)
+
+            if scrolled_page.edit_page is False:
+                self.revealer.set_reveal_child(True)
+            else:
+                self.revealer.set_reveal_child(False)
         else:
             self.revealer.set_reveal_child(False)
-            self.action_bar_box.remove(self.pathbar)
-            self.headerbar.get_children()[0].get_children()[0].add(self.pathbar)
+
+            if len(self.action_bar_box.get_children()) is not 0:
+                self.action_bar_box.remove(self.pathbar)
+
+            if len(self.headerbar.get_children()[2].get_children()[0]) is 0:
+                self.headerbar.get_children()[2].get_children()[0].add(self.pathbar)
+
+    def responsive_headerbar_title(self):
+        if self.window.mobile_width is True and self.selection_mode is False:
+            if len(self.builder.get_object("title_box").get_children()) is not 0:
+                return
+
+            filename_label = self.builder.get_object("filename_label")
+            filename_label.set_text(ntpath.basename(self.database_manager.database_path))
+            self.builder.get_object("title_box").add(filename_label)
+        else:
+            if len(self.builder.get_object("title_box").get_children()) is 0:
+                return
+
+            self.builder.get_object("title_box").remove(self.builder.get_object("filename_label"))
+
+    def responsive_headerbar_back_button(self):
+        if self.window.mobile_width is True and self.selection_mode is False:
+            self.builder.get_object("pathbar_button_back_revealer").set_reveal_child(True)
+        else:
+            self.builder.get_object("pathbar_button_back_revealer").set_reveal_child(False)
+
+    def responsive_headerbar_selection_button(self):
+        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        if self.selection_mode is True:
+            return
+
+        if self.window.mobile_width is True and scrolled_page.edit_page is False:
+            self.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(True)
+            self.builder.get_object("selection_button_revealer").set_reveal_child(False)
+        else:
+            self.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
+            self.builder.get_object("selection_button_revealer").set_reveal_child(True)
 
     # Selection headerbar
     def set_selection_headerbar(self, widget):
@@ -210,10 +267,7 @@ class UnlockedDatabase:
         context.add_class('selection-mode')
         self.headerbar.set_show_close_button(False)
 
-        for element in self.pathbar.get_children():
-            if element.get_name() == "SeperatorLabel":
-                el_context = element.get_style_context()
-                el_context.add_class('SeperatorLabelSelectedMode')
+        self.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
 
         self.selection_mode = True
 
@@ -251,6 +305,11 @@ class UnlockedDatabase:
 
         self.selection_mode = False
         self.show_page_of_new_directory(False, False)
+
+        self.responsive_action_bar()
+        self.responsive_headerbar_title()
+        self.responsive_headerbar_back_button()
+        self.responsive_headerbar_selection_button()
 
     # Search headerbar
     def set_search_headerbar(self, widget):
@@ -294,6 +353,12 @@ class UnlockedDatabase:
         mod_box.show_all()
         self.builder.get_object("linked_box1").show_all()
 
+
+        self.responsive_action_bar()
+        self.responsive_headerbar_title()
+        self.responsive_headerbar_back_button()
+        self.responsive_headerbar_selection_button()
+
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
         mod_box = self.builder.get_object("mod_box")
@@ -314,6 +379,11 @@ class UnlockedDatabase:
 
         self.builder.get_object("linked_box1").hide()
 
+        self.responsive_action_bar()
+        self.responsive_headerbar_title()
+        self.responsive_headerbar_back_button()
+        self.responsive_headerbar_selection_button()
+
     # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
         mod_box = self.builder.get_object("mod_box")
@@ -323,6 +393,11 @@ class UnlockedDatabase:
 
         self.builder.get_object("linked_box1").hide()
         mod_box.hide()
+
+        self.responsive_action_bar()
+        self.responsive_headerbar_title()
+        self.responsive_headerbar_back_button()
+        self.responsive_headerbar_selection_button()
 
     # Set Search stack page
     def prepare_search_page(self):
@@ -342,7 +417,7 @@ class UnlockedDatabase:
             self.search_list_box.set_valign(Gtk.Align.START)
 
             hdy_search = Handy.Column()
-            hdy_search.set_maximum_width(900)
+            hdy_search.set_maximum_width(700)
             hdy_search.add(self.search_list_box)
             self.search_overlay.add(hdy_search)
 
@@ -457,7 +532,7 @@ class UnlockedDatabase:
 
             # Responsive Container
             hdy_page = Handy.Column()
-            hdy_page.set_maximum_width(900)
+            hdy_page.set_maximum_width(700)
             hdy_page.set_margin_top(18)
             hdy_page.set_margin_bottom(18)
             hdy_page.add(scrolled_window.properties_list_box)
@@ -493,7 +568,7 @@ class UnlockedDatabase:
                 list_box.set_valign(Gtk.Align.START)
 
                 hdy_browser = Handy.Column()
-                hdy_browser.set_maximum_width(900)
+                hdy_browser.set_maximum_width(700)
                 hdy_browser.set_margin_top(18)
                 hdy_browser.set_margin_bottom(18)
                 hdy_browser.add(list_box)
@@ -524,7 +599,7 @@ class UnlockedDatabase:
 
                 # Responsive Container
                 hdy_page = Handy.Column()
-                hdy_page.set_maximum_width(900)
+                hdy_page.set_maximum_width(700)
                 hdy_page.set_margin_top(18)
                 hdy_page.set_margin_bottom(18)
                 hdy_page.add(scrolled_window.properties_list_box)
@@ -1725,11 +1800,8 @@ class UnlockedDatabase:
         overlay = viewport.get_children()[0]
         list_box = NotImplemented
 
-        if self.window.mobile_width is False:
-            column = overlay.get_children()[0]
-            list_box = column.get_children()[0]
-        else:
-            list_box = overlay.get_children()[0]
+        column = overlay.get_children()[0]
+        list_box = column.get_children()[0]
 
         for row in list_box:
             if selection_type is "all":
@@ -1740,6 +1812,37 @@ class UnlockedDatabase:
     def on_session_lock(self, connection, unique_name, object_path, interface, signal, state):
         if state[0] == True and self.database_locked is False:
             self.lock_timeout_database()
+
+    def on_back_button_mobile_clicked(self, button):
+        page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        scrolled_page = self.stack.get_child_by_name(page_uuid)
+
+        if self.database_manager.check_is_group(page_uuid) is True:
+            group_page = True
+        else:
+            group_page = False
+
+        parent = NotImplemented
+
+        if scrolled_page.edit_page is True and group_page is True:
+            parent = self.database_manager.get_group_parent_group_from_uuid(page_uuid)
+        elif scrolled_page.edit_page is True and group_page is False:
+            parent = self.database_manager.get_entry_parent_group_from_uuid(page_uuid)
+        elif scrolled_page.edit_page is False and self.selection_mode is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
+            if self.database_manager.check_is_root_group(self.current_group) is True:
+                self.on_lock_button_clicked(None)
+                return
+
+            parent = self.database_manager.get_group_parent_group_from_uuid(page_uuid)
+
+        if self.database_manager.check_is_root_group(parent) is True:
+            self.pathbar.on_home_button_clicked(self.pathbar.home_button)
+            return
+
+        for button in self.pathbar:
+            if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent):
+                    self.pathbar.on_pathbar_button_clicked(button)
 
     #
     # Dialog Creator

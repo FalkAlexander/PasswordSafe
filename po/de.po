@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-09-07 21:11+0000\n"
-"PO-Revision-Date: 2018-09-08 12:44+0200\n"
+"POT-Creation-Date: 2018-09-12 22:03+0000\n"
+"PO-Revision-Date: 2018-09-13 22:06+0200\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -35,8 +35,9 @@ msgstr ""
 "Tim Sabsch <tim@sabsch.com>"
 
 #: data/create_database.ui:73 data/database_settings_dialog.ui:411
-#: data/entry_page_mobile.ui:1084 data/entry_page.ui:1044
-#: passwordsafe/unlock_database.py:98
+#: data/entry_page_mobile.ui:1243 data/entry_page_mobile.ui:1380
+#: data/entry_page.ui:1203 data/entry_page.ui:1338
+#: passwordsafe/unlock_database.py:97
 msgid "Password"
 msgstr "Passwort"
 
@@ -45,12 +46,12 @@ msgid "Use a password to secure your safe"
 msgstr "Ein Passwort verwenden, um Ihren Safe zu schützen"
 
 #: data/create_database.ui:153 data/database_settings_dialog.ui:552
-#: passwordsafe/create_database.py:244 passwordsafe/create_database.py:249
+#: passwordsafe/create_database.py:243 passwordsafe/create_database.py:248
 #: passwordsafe/database_settings_dialog.py:183
 #: passwordsafe/database_settings_dialog.py:214
 #: passwordsafe/database_settings_dialog.py:219
-#: passwordsafe/unlock_database.py:101 passwordsafe/unlock_database.py:289
-#: passwordsafe/unlock_database.py:406
+#: passwordsafe/unlock_database.py:100 passwordsafe/unlock_database.py:288
+#: passwordsafe/unlock_database.py:405
 msgid "Keyfile"
 msgstr "Schlüsseldatei"
 
@@ -59,7 +60,7 @@ msgid "Use a keyfile to secure your safe"
 msgstr "Eine Schlüsseldatei verwenden, um Ihren Safe zu schützen"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:233 passwordsafe/unlock_database.py:105
+#: data/create_database.ui:233 passwordsafe/unlock_database.py:104
 msgid "Composite"
 msgstr "Verbundmethode"
 
@@ -98,8 +99,8 @@ msgid "Please try again"
 msgstr "Bitte erneut versuchen"
 
 #. Button to generate a password
-#: data/create_database.ui:773 data/entry_page_mobile.ui:1228
-#: data/entry_page.ui:1194 passwordsafe/create_database.py:242
+#: data/create_database.ui:773 data/entry_page_mobile.ui:1331
+#: data/entry_page.ui:1289 passwordsafe/create_database.py:241
 #: passwordsafe/database_settings_dialog.py:212
 msgid "Generate"
 msgstr "Erzeugen"
@@ -119,12 +120,12 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 #: data/create_database.ui:886 data/main_window.ui:261
-#: data/unlock_database.ui:312 data/unlocked_database.ui:880
+#: data/unlock_database.ui:312 data/unlocked_database.ui:867
 msgid "Keyboard Shortcuts"
 msgstr "Tastenkombinationen"
 
 #: data/create_database.ui:900 data/main_window.ui:275
-#: data/unlock_database.ui:326 data/unlocked_database.ui:866
+#: data/unlock_database.ui:326 data/unlocked_database.ui:881
 msgid "About"
 msgstr "Info"
 
@@ -148,7 +149,7 @@ msgstr "Safe wurde erfolgreich erstellt"
 #. Headerbar subtitle for the keepass safe unlock screen.
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
 #: data/created_database.ui:50 data/unlock_database.ui:273
-#: data/unlock_database.ui:341 data/unlocked_database.ui:813
+#: data/unlock_database.ui:341 data/unlocked_database.ui:814
 msgid "Open Safe"
 msgstr "Safe öffnen"
 
@@ -301,21 +302,49 @@ msgstr "Titel"
 msgid "Notes"
 msgstr "Notizen"
 
+#: data/entry_page_mobile.ui:1113 data/entry_page.ui:1075
+msgid "Length"
+msgstr "Länge"
+
+#: data/entry_page_mobile.ui:1130
+msgid "16"
+msgstr "16"
+
+#: data/entry_page_mobile.ui:1148 data/entry_page.ui:1108
+msgid "Characters"
+msgstr "Zeichen"
+
+#: data/entry_page_mobile.ui:1256 data/entry_page.ui:1216
+msgid "Words"
+msgstr "Wörter"
+
+#: data/entry_page_mobile.ui:1273
+msgid "8"
+msgstr "8"
+
+#: data/entry_page_mobile.ui:1290 data/entry_page.ui:1248
+msgid "Separator"
+msgstr "Trenner"
+
+#: data/entry_page_mobile.ui:1307 data/entry_page.ui:1265
+msgid "Enter character here…"
+msgstr "Zeichen hier eingeben …"
+
+#: data/entry_page_mobile.ui:1318 data/entry_page.ui:1276
+#| msgid "Passwords"
+msgid "Passphrase"
+msgstr "Passphrase"
+
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page_mobile.ui:1139 data/entry_page.ui:1105
+#: data/entry_page_mobile.ui:1435 data/entry_page.ui:1398
 msgid "Show/hide password"
 msgstr "Passwort anzeigen/ausblenden"
 
-#. Tooltip for password generator button.
-#: data/entry_page_mobile.ui:1159 data/entry_page.ui:1126
-msgid "Password generator"
-msgstr "Passwortgenerator"
-
-#: data/entry_page_mobile.ui:1367 data/entry_page.ui:1341
+#: data/entry_page_mobile.ui:1549 data/entry_page.ui:1523
 msgid "URL"
 msgstr "Adresse"
 
-#: data/entry_page_mobile.ui:1453 data/entry_page.ui:1427
+#: data/entry_page_mobile.ui:1635 data/entry_page.ui:1609
 msgid "Username"
 msgstr "Benutzername"
 
@@ -531,7 +560,7 @@ msgstr "Datei existiert bereits"
 msgid "Do you want to override it?"
 msgstr "Wollen Sie sie überschreiben?"
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1147
+#: data/override_dialog.ui:22 data/unlocked_database.ui:1148
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -574,8 +603,8 @@ msgid "Discard"
 msgstr "Verwerfen"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:665
-#: passwordsafe/main_window.py:327
+#: data/save_dialog.ui:35 data/unlocked_database.ui:666
+#: passwordsafe/main_window.py:303
 msgid "Save"
 msgstr "Speichern"
 
@@ -591,7 +620,7 @@ msgstr "Ersten Startbildschirm verbergen"
 msgid "Reopen last opened safe"
 msgstr "Zuletzt geöffneten Safe erneut öffnen"
 
-#: data/settings_dialog.ui:253 passwordsafe/main_window.py:329
+#: data/settings_dialog.ui:253 passwordsafe/main_window.py:305
 msgid "Safe"
 msgstr "Safe"
 
@@ -651,41 +680,70 @@ msgstr "Liste zuletzt verwendeter Safes leeren"
 msgid "Clear the recently opened safes list"
 msgstr "Die Liste zuletzt verwendeter Safes leeren"
 
-#: data/shortcuts_overview.ui:10 data/shortcuts_overview.ui:15
-msgctxt "shortcut window"
+#: data/shortcuts_overview.ui:14
+msgctxt "Shortcut window description"
 msgid "Application"
 msgstr "Anwendung"
 
-#: data/shortcuts_overview.ui:19
-msgctxt "shortcut window"
-msgid "Create a new safe"
-msgstr "Neuen Safe erstellen"
+#: data/shortcuts_overview.ui:18
+msgctxt "Shortcut window description"
+msgid "Create safe"
+msgstr "Safe erstellen"
 
-#: data/shortcuts_overview.ui:26
-msgctxt "shortcut window"
-msgid "Open an existing safe"
-msgstr "Existierenden Safe öffnen"
+#: data/shortcuts_overview.ui:25
+msgctxt "Shortcut window description"
+msgid "Open safe"
+msgstr "Safe öffnen"
 
-#: data/shortcuts_overview.ui:33
-msgctxt "shortcut window"
-msgid "Lock a safe"
-msgstr "Einen Safe sperren"
+#: data/shortcuts_overview.ui:32
+msgctxt "Shortcut window description"
+msgid "Open preferences"
+msgstr "Einstellungen öffnen"
 
-#: data/shortcuts_overview.ui:40
-msgctxt "shortcut window"
-msgid "Save a safe"
-msgstr "Einen Safe speichern"
+#: data/shortcuts_overview.ui:41
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Safe"
 
-#: data/shortcuts_overview.ui:47
-msgctxt "shortcut window"
+#: data/shortcuts_overview.ui:45
+msgctxt "Shortcut window description"
+msgid "Lock safe"
+msgstr "Safe sperren"
+
+#: data/shortcuts_overview.ui:52
+msgctxt "Shortcut window description"
+msgid "Save safe"
+msgstr "Safe speichern"
+
+#: data/shortcuts_overview.ui:59
+msgctxt "Shortcut window description"
 msgid "Open search"
 msgstr "Suche öffnen"
 
-#. Hot key to copy the password on a password entry page
-#: data/shortcuts_overview.ui:54
-msgctxt "shortcut window"
-msgid "Copy password on entry page"
-msgstr "Passwort im Eingabefeld kopieren"
+#: data/shortcuts_overview.ui:66
+msgctxt "Shortcut window description"
+msgid "Create entry"
+msgstr "Eintrag erstellen"
+
+#: data/shortcuts_overview.ui:73
+msgctxt "Shortcut window description"
+msgid "Create group"
+msgstr "Gruppe erzeugen"
+
+#: data/shortcuts_overview.ui:82
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Eintrag"
+
+#: data/shortcuts_overview.ui:86
+msgctxt "Shortcut window description"
+msgid "Copy password"
+msgstr "Passwort kopieren"
+
+#: data/shortcuts_overview.ui:93
+msgctxt "Shortcut window description"
+msgid "Exit entry page"
+msgstr "Eintragsseite schließen"
 
 #: data/unlock_database.ui:27
 msgid "Enter password and select keyfile to unlock"
@@ -707,7 +765,7 @@ msgid "Select keyfile to unlock"
 msgstr "Schlüsseldatei zum Entsperren auswählen"
 
 #. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:259 data/unlocked_database.ui:799
+#: data/unlock_database.ui:259 data/unlocked_database.ui:800
 msgid "New Safe"
 msgstr "Neuer Safe"
 
@@ -715,7 +773,7 @@ msgstr "Neuer Safe"
 msgid "Enter password to unlock"
 msgstr "Passwort zum Entsperren eingeben"
 
-#: data/unlock_database.ui:578
+#: data/unlock_database.ui:579
 msgid "Failed to unlock safe"
 msgstr "Safe konnte nicht entsperrt werden"
 
@@ -755,76 +813,76 @@ msgid "Enter search term"
 msgstr "Suchbegriff eingeben"
 
 #. Button tooltip in headerbar to open page for creation of a new password entry
-#: data/unlocked_database.ui:607
+#: data/unlocked_database.ui:608
 msgid "Create password…"
 msgstr "Passwort erzeugen …"
 
 #. Button tooltip in headerbar to open page for creation of a new group
-#: data/unlocked_database.ui:629
+#: data/unlocked_database.ui:630
 msgid "Create group…"
 msgstr "Gruppe erzeugen …"
 
-#: data/unlocked_database.ui:687
+#: data/unlocked_database.ui:688
 msgid "Lock"
 msgstr "Sperren"
 
-#: data/unlocked_database.ui:732
+#: data/unlocked_database.ui:733
 msgid "Sort"
 msgstr "Sortierung nach"
 
 #. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:774
+#: data/unlocked_database.ui:775
 msgid "Last Added"
 msgstr "Zuletzt hinzugefügt"
 
 #. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:827
+#: data/unlocked_database.ui:828
 msgid "Safe Settings"
 msgstr "Safe-Einstellungen"
 
-#: data/unlocked_database.ui:852
+#: data/unlocked_database.ui:853
 msgid "Preferences"
 msgstr "Einstellungen"
 
 #. Only apply the search term for the current group
-#: data/unlocked_database.ui:994
+#: data/unlocked_database.ui:995
 msgid "Local"
 msgstr "Lokal"
 
 #. Use full text search
-#: data/unlocked_database.ui:1008
+#: data/unlocked_database.ui:1009
 msgid "Full Text"
 msgstr "Gesamter Text"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1110
+#: data/unlocked_database.ui:1111
 msgid "Move selection"
 msgstr "Auswahl verschieben"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1130
+#: data/unlocked_database.ui:1131
 msgid "Delete selection"
 msgstr "Auswahl löschen"
 
-#: data/unlocked_database.ui:1187
+#: data/unlocked_database.ui:1188
 msgid "Select all"
 msgstr "Alle auswählen"
 
-#: data/unlocked_database.ui:1201
+#: data/unlocked_database.ui:1202
 msgid "Select none"
 msgstr "Nichts auswählen"
 
-#: data/unlocked_database.ui:1231
+#: data/unlocked_database.ui:1232
 msgid "Click on a checkbox to select"
 msgstr "Klicken Sie auf ein Ankreuzfeld zum Auswählen"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:241
+#: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:211
 msgid "Choose location for keyfile"
 msgstr "Ort der Schlüsseldatei wählen"
 
-#: passwordsafe/create_database.py:261
+#: passwordsafe/create_database.py:260
 msgid "Generating…"
 msgstr "Wird erzeugt …"
 
@@ -862,93 +920,93 @@ msgstr "ChaCha20 256-bit"
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_row.py:66
+#: passwordsafe/entry_row.py:65
 msgid "Title not specified"
 msgstr "Kein Titel angegeben"
 
-#: passwordsafe/entry_row.py:75
+#: passwordsafe/entry_row.py:74
 msgid "No username specified"
 msgstr "Kein Benutzername angegeben"
 
-#: passwordsafe/entry_row.py:133 passwordsafe/unlocked_database.py:1309
-#: passwordsafe/unlocked_database.py:1320
+#: passwordsafe/entry_row.py:132 passwordsafe/unlocked_database.py:1323
+#: passwordsafe/unlocked_database.py:1334
 msgid "Copied to clipboard"
 msgstr "In die Zwischenablage kopiert"
 
-#: passwordsafe/group_row.py:43
+#: passwordsafe/group_row.py:42
 msgid "No group title specified"
 msgstr "Kein Gruppentitel angegeben"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:277
+#: passwordsafe/main_window.py:253
 msgid "Choose a Keepass safe"
 msgstr "Einen Keepass-Safe wählen"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:282 passwordsafe/main_window.py:335
+#: passwordsafe/main_window.py:258 passwordsafe/main_window.py:311
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4-Datenbank"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:326
+#: passwordsafe/main_window.py:302
 msgid "Choose location for Keepass safe"
 msgstr "Ort für einen Keepass-Safe wählen"
 
-#: passwordsafe/unlock_database.py:205
+#: passwordsafe/unlock_database.py:204
 msgid "Database already opened"
 msgstr "Datenbank ist bereits geöffnet"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:287
+#: passwordsafe/unlock_database.py:286
 msgid "Choose a keyfile"
 msgstr "Eine Schlüsseldatei wählen"
 
-#: passwordsafe/unlock_database.py:340 passwordsafe/unlock_database.py:392
+#: passwordsafe/unlock_database.py:339 passwordsafe/unlock_database.py:391
 msgid "Try again"
 msgstr "Erneut versuchen"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:401
+#: passwordsafe/unlock_database.py:400
 msgid "Choose Keyfile"
 msgstr "Schlüsseldatei wählen"
 
-#: passwordsafe/unlocked_database.py:1050
+#: passwordsafe/unlocked_database.py:1063
 msgid "Database saved"
 msgstr "Datenbank wurde gespeichert"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:1053
+#: passwordsafe/unlocked_database.py:1066
 msgid "Please wait. Another save is running."
 msgstr "Bitte warten Sie. Ein anderer Speichervorgang wird gerade ausgeführt."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:1056
+#: passwordsafe/unlocked_database.py:1069
 msgid "No changes made"
 msgstr "Keine Änderungen vorgenommen"
 
-#: passwordsafe/unlocked_database.py:1539
-#: passwordsafe/unlocked_database.py:1606
+#: passwordsafe/unlocked_database.py:1541
+#: passwordsafe/unlocked_database.py:1608
 msgid "Attribute key already exists"
 msgstr "Attributschlüssel existiert bereits"
 
-#: passwordsafe/unlocked_database.py:1658
+#: passwordsafe/unlocked_database.py:1662
 msgid "Deletion completed"
 msgstr "Löschen abgeschlossen"
 
-#: passwordsafe/unlocked_database.py:1699
+#: passwordsafe/unlocked_database.py:1703
 msgid "Move completed"
 msgstr "Verschieben abgeschlossen"
 
-#: passwordsafe/unlocked_database.py:1701
+#: passwordsafe/unlocked_database.py:1705
 msgid "Skipped moving group into itself"
 msgstr "Verschieben einer Gruppe in sich selbst wurde übersprungen"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:1816
+#: passwordsafe/unlocked_database.py:1827
 #, python-format
 msgid "%s locked"
 msgstr "%s wurde gesperrt"
 
-#: passwordsafe/unlocked_database.py:1816
+#: passwordsafe/unlocked_database.py:1827
 msgid "Keepass safe locked due to inactivity"
 msgstr "Der Keepass-Safe wurde wegen Inaktivität gesperrt"

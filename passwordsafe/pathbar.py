@@ -9,6 +9,8 @@ class Pathbar(Gtk.HBox):
     database_manager = NotImplemented
     path = NotImplemented
     headerbar = NotImplemented
+    pathbar_box = NotImplemented
+    scrolled_window = NotImplemented
     builder = NotImplemented
     home_button = NotImplemented
     logging_manager = LoggingManager(True)
@@ -38,15 +40,18 @@ class Pathbar(Gtk.HBox):
         self.set_hexpand(False)
         self.set_halign(Gtk.Align.START)
 
-        scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.set_propagate_natural_width(True)
-        scrolled_window.set_max_content_width(600)
+        self.scrolled_window = Gtk.ScrolledWindow()
+        self.scrolled_window.set_propagate_natural_width(True)
+        self.scrolled_window.set_max_content_width(600)
+
         viewport = Gtk.Viewport()
         viewport.add(self)
-        scrolled_window.add(viewport)
+        self.scrolled_window.add(viewport)
 
-        self.headerbar.pack_start(scrolled_window)
-        scrolled_window.show_all()
+        self.pathbar_box = self.headerbar.get_children()[0]
+        self.pathbar_box.add(self.scrolled_window)
+
+        self.scrolled_window.show_all()
 
     def first_appearance(self):
         self.home_button = self.builder.get_object("home_button")
@@ -67,6 +72,7 @@ class Pathbar(Gtk.HBox):
     def add_home_button(self):
         self.home_button = self.builder.get_object("home_button")
         self.home_button.connect("clicked", self.on_home_button_clicked)
+
         self.pack_end(self.home_button, True, True, 0)
 
     def add_seperator_label(self):
@@ -79,6 +85,10 @@ class Pathbar(Gtk.HBox):
         else:
             context.add_class('SeperatorLabelSelectedMode')
         self.pack_end(seperator_label, True, True, 0)
+
+    def set_vertical_dimension(self, element):
+        element.set_vexpand(False)
+        element.set_valign(Gtk.Align.CENTER)
 
     #
     # Pathbar Modifications

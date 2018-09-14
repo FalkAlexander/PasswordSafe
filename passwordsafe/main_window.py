@@ -134,7 +134,9 @@ class MainWindow(Gtk.ApplicationWindow):
                 for page in db.stack.get_children():
                     if page.edit_page is True:
                         db.stack.remove(page)
+                db.stack.set_transition_type(Gtk.StackTransitionType.NONE)
                 db.show_page_of_new_directory(True, False)
+                db.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
                 db.responsive_action_bar()
                 db.responsive_headerbar_title()
@@ -144,7 +146,9 @@ class MainWindow(Gtk.ApplicationWindow):
                 for page in db.stack.get_children():
                     if page.edit_page is True:
                         db.stack.remove(page)
+                db.stack.set_transition_type(Gtk.StackTransitionType.NONE)
                 db.show_page_of_new_directory(False, False)
+                db.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
                 db.responsive_action_bar()
                 db.responsive_headerbar_title()

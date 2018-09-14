@@ -59,6 +59,7 @@
             <property name="margin_top">10</property>
             <property name="label" translatable="yes" comments="The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.">Securely store your passwords, notes and data. &lt;b&gt;Create&lt;/b&gt; or &lt;b&gt;import&lt;/b&gt; a new Keepass safe.</property>
             <property name="use_markup">True</property>
+            <property name="wrap">True</property>
             <property name="track_visited_links">False</property>
             <style>
               <class name="dim-label"/>
@@ -80,83 +81,33 @@
   <object class="GtkGrid" id="last_opened_grid">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="halign">center</property>
     <property name="valign">center</property>
     <child>
-      <object class="GtkBox" id="select_box">
-        <property name="width_request">300</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="halign">center</property>
-        <property name="valign">center</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">end</property>
-                <property name="hexpand">True</property>
-                <property name="label" translatable="yes">Recent Databases</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkScrolledWindow" id="last_opened_scrolled_window">
-            <property name="width_request">400</property>
-            <property name="height_request">62</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="margin_top">5</property>
-            <property name="hscrollbar_policy">never</property>
-            <property name="shadow_type">in</property>
-            <property name="max_content_height">248</property>
-            <property name="propagate_natural_height">True</property>
-            <child>
-              <object class="GtkViewport" id="last_opened_viewport">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <object class="GtkListBox" id="last_opened_list_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-      </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">0</property>
-      </packing>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <placeholder/>
     </child>
   </object>
   <object class="GtkListBoxRow" id="last_opened_row">
@@ -286,7 +237,6 @@
   <object class="GtkHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
     <property name="show_close_button">True</property>
     <child>
       <object class="GtkBox" id="headerbarbuttonbox">
@@ -303,6 +253,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">start</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -316,6 +267,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="halign">start</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -330,6 +282,17 @@
             <property name="position">0</property>
           </packing>
         </child>
+      </object>
+    </child>
+    <child type="title">
+      <object class="GtkLabel">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes" comments="Application name in the headerbar title">Password Safe</property>
+        <property name="ellipsize">end</property>
+        <attributes>
+          <attribute name="weight" value="bold"/>
+        </attributes>
       </object>
     </child>
     <child>
@@ -361,6 +324,86 @@
       <packing>
         <property name="pack_type">end</property>
         <property name="position">1</property>
+      </packing>
+    </child>
+  </object>
+  <object class="GtkImage" id="new_button_image">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">document-new-symbolic</property>
+  </object>
+  <object class="GtkImage" id="open_button_image">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">document-open-symbolic</property>
+  </object>
+  <object class="GtkBox" id="select_box">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="hexpand">True</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">end</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Recent Databases</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow" id="last_opened_scrolled_window">
+        <property name="height_request">62</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="margin_top">5</property>
+        <property name="hexpand">True</property>
+        <property name="hscrollbar_policy">never</property>
+        <property name="shadow_type">in</property>
+        <property name="max_content_height">248</property>
+        <property name="propagate_natural_height">True</property>
+        <child>
+          <object class="GtkViewport" id="last_opened_viewport">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkListBox" id="last_opened_list_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">3</property>
       </packing>
     </child>
   </object>

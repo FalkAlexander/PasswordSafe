@@ -1,4 +1,4 @@
-from gi.repository import Gio, GLib, Gdk, Gtk
+from gi.repository import Gio, GLib, Gdk, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
 from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.database_manager import DatabaseManager
@@ -21,6 +21,8 @@ class MainWindow(Gtk.ApplicationWindow):
     quit_dialog = NotImplemented
     filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
+    file_open_button = NotImplemented
+    file_new_button = NotImplemented
     first_start_grid = NotImplemented
     logging_manager = LoggingManager(True)
     opened_databases = []
@@ -57,15 +59,18 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.headerbar = builder.get_object("headerbar")
 
-        file_open_button = builder.get_object("open_button")
-        file_open_button.connect("clicked", self.open_filechooser, None)
+        self.file_open_button = builder.get_object("open_button")
+        self.file_open_button.connect("clicked", self.open_filechooser, None)
 
-        file_new_button = builder.get_object("new_button")
-        file_new_button.connect("clicked", self.create_filechooser, None)
+        self.file_new_button = builder.get_object("new_button")
+        self.file_new_button.connect("clicked", self.create_filechooser, None)
+
+        self.set_headerbar_button_layout()
 
         self.set_titlebar(self.headerbar)
 
     def set_headerbar(self):
+        self.set_headerbar_button_layout()
         self.set_titlebar(self.headerbar)
 
     def get_headerbar(self):
@@ -147,6 +152,26 @@ class MainWindow(Gtk.ApplicationWindow):
             db.responsive_headerbar_back_button()
             db.responsive_headerbar_selection_button()
 
+        if self.container.get_n_pages() is 0:
+            self.set_headerbar_button_layout()
+
+    def set_headerbar_button_layout(self):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+
+        if self.mobile_width is True:
+            self.file_open_button.remove(self.file_open_button.get_children()[0])
+            self.file_new_button.remove(self.file_new_button.get_children()[0])
+
+            self.file_open_button.add(builder.get_object("open_button_image"))
+            self.file_new_button.add(builder.get_object("new_button_image"))
+        else:
+            self.file_open_button.remove(self.file_open_button.get_children()[0])
+            self.file_new_button.remove(self.file_new_button.get_children()[0])
+
+            self.file_open_button.set_label("Open…")
+            self.file_new_button.set_label("New…")
+
     #
     # First Start Screen
     #
@@ -213,6 +238,15 @@ class MainWindow(Gtk.ApplicationWindow):
                     last_opened_list_box.add(row)
 
                 self.first_start_grid = builder.get_object("last_opened_grid")
+
+                # Responsive Container
+                hdy = Handy.Column()
+                hdy.set_maximum_width(400)
+                hdy.add(builder.get_object("select_box"))
+
+                self.first_start_grid.add(hdy)
+                self.first_start_grid.show_all()
+
                 self.add(self.first_start_grid)
         else:
             app_logo = builder.get_object("app_logo")

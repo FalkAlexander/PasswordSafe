@@ -202,7 +202,7 @@ class UnlockedDatabase:
             if len(self.action_bar_box.get_children()) is 0:
                 self.action_bar_box.add(self.pathbar.scrolled_window)
 
-            if scrolled_page.edit_page is False:
+            if scrolled_page.edit_page is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
                 self.revealer.set_reveal_child(True)
             else:
                 self.revealer.set_reveal_child(False)
@@ -338,6 +338,7 @@ class UnlockedDatabase:
             self.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_navigation)
 
         self.prepare_search_page()
+        self.responsive_action_bar()
 
     def remove_search_headerbar(self, widget):
         self.parent_widget.set_headerbar(self.headerbar)

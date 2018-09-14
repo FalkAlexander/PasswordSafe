@@ -169,8 +169,8 @@ class MainWindow(Gtk.ApplicationWindow):
             self.file_open_button.remove(self.file_open_button.get_children()[0])
             self.file_new_button.remove(self.file_new_button.get_children()[0])
 
-            self.file_open_button.set_label("Open…")
-            self.file_new_button.set_label("New…")
+            self.file_open_button.set_label(_("Open…"))
+            self.file_new_button.set_label(_("New…"))
 
     #
     # First Start Screen

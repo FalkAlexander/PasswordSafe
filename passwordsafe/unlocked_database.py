@@ -192,12 +192,12 @@ class UnlockedDatabase:
     def responsive_action_bar(self):
         scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         if self.window.mobile_width is True:
-            if len(self.pathbar.pathbar_box.get_children()) is not 0:
-                self.pathbar.pathbar_box.remove(self.pathbar.scrolled_window)
+            if len(self.pathbar.viewport.get_children()) is not 0:
+                self.pathbar.viewport.remove(self.pathbar)
                 self.pathbar.pathbar_box.hide()
 
             if len(self.action_bar_box.get_children()) is 0:
-                self.action_bar_box.add(self.pathbar.scrolled_window)
+                self.action_bar_box.add(self.pathbar)
 
             if scrolled_page.edit_page is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
                 self.revealer.set_reveal_child(True)
@@ -207,10 +207,10 @@ class UnlockedDatabase:
             self.revealer.set_reveal_child(False)
 
             if len(self.action_bar_box.get_children()) is not 0:
-                self.action_bar_box.remove(self.pathbar.scrolled_window)
+                self.action_bar_box.remove(self.pathbar)
 
-            if len(self.pathbar.pathbar_box.get_children()) is 0:
-                self.pathbar.pathbar_box.add(self.pathbar.scrolled_window)
+            if len(self.pathbar.viewport.get_children()) is 0:
+                self.pathbar.viewport.add(self.pathbar)
                 self.pathbar.pathbar_box.show()
 
     def responsive_headerbar_title(self):

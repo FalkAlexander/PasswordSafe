@@ -9,8 +9,9 @@ class Pathbar(Gtk.HBox):
     database_manager = NotImplemented
     path = NotImplemented
     headerbar = NotImplemented
-    pathbar_box = NotImplemented
     scrolled_window = NotImplemented
+    viewport = NotImplemented
+    pathbar_box = NotImplemented
     builder = NotImplemented
     home_button = NotImplemented
     logging_manager = LoggingManager(True)
@@ -38,15 +39,16 @@ class Pathbar(Gtk.HBox):
         self.show_all()
 
         self.set_hexpand(False)
+        self.set_vexpand(False)
         self.set_halign(Gtk.Align.START)
 
         self.scrolled_window = Gtk.ScrolledWindow()
         self.scrolled_window.set_propagate_natural_width(True)
         self.scrolled_window.set_max_content_width(600)
 
-        viewport = Gtk.Viewport()
-        viewport.add(self)
-        self.scrolled_window.add(viewport)
+        self.viewport = Gtk.Viewport()
+        self.viewport.add(self)
+        self.scrolled_window.add(self.viewport)
 
         self.pathbar_box = self.headerbar.get_children()[0]
         self.pathbar_box.add(self.scrolled_window)

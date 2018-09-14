@@ -635,13 +635,14 @@ class UnlockedDatabase:
 
     def switch_stack_page(self):
         page_uuid = NotImplemented
+        group_page = NotImplemented
 
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
             page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-            self.set_browser_headerbar()
+            group_page = True
         else:
             page_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
-            self.set_entry_page_headerbar()
+            group_page = False
 
         if page_uuid in self.scheduled_page_destroy:
             stack_page = self.stack.get_child_by_name(page_uuid)
@@ -656,6 +657,12 @@ class UnlockedDatabase:
             self.show_page_of_new_directory(False, False)
         else:
             self.stack.set_visible_child_name(page_uuid)
+
+        if group_page is True:
+            self.set_browser_headerbar()
+        else:
+            self.set_entry_page_headerbar()
+
 
     def update_current_stack_page(self):
         self.stack.set_transition_type(Gtk.StackTransitionType.NONE)

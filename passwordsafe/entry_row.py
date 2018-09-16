@@ -1,10 +1,8 @@
 from gettext import gettext as _
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
 from threading import Timer
-import gi
 import passwordsafe.config_manager
 import passwordsafe.icon
-import threading
 
 
 class EntryRow(Gtk.ListBoxRow):

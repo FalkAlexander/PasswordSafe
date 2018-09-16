@@ -1,11 +1,10 @@
 from gi.repository import Gtk
-import gi
 
 
 class ScrolledPage(Gtk.ScrolledWindow):
     edit_page = False
     made_database_changes = False
-    
+
     all_properties_revealed = False
     show_all_properties_button = NotImplemented
 

@@ -1,9 +1,9 @@
-from gi.repository import Gio, GLib
-import gi
+from gi.repository import Gio
 import re
 import secrets
 
 word_dict = {}
+
 
 def generate(words, separator):
     words_file = Gio.File.new_for_uri("resource:///org/gnome/PasswordSafe/crypto/eff_large_wordlist.txt")
@@ -26,9 +26,11 @@ def generate(words, separator):
 
     return passphrase
 
+
 def dice():
     return "".join([secrets.choice("123456") for _ in range(0, 5)])
 
+
 def get_word(number):
     return word_dict[number]
-    
+

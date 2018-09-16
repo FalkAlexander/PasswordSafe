@@ -1,7 +1,6 @@
 from gi.repository import Gtk
 from passwordsafe.pathbar_button import PathbarButton
 from passwordsafe.logging_manager import LoggingManager
-import gi
 
 
 class Pathbar(Gtk.HBox):

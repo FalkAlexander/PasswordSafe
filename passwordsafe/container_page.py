@@ -1,5 +1,4 @@
 from gi.repository import Gtk
-import gi
 
 
 class ContainerPage(Gtk.Box):

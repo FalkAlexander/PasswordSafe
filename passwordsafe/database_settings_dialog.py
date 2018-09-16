@@ -1,8 +1,6 @@
 from gettext import gettext as _
-from gi.repository import Gtk, GLib, Gio
+from gi.repository import Gtk, GLib
 from random import randint
-from threading import Timer
-import gi
 import ntpath
 import passwordsafe.config_manager
 import passwordsafe.keyfile_generator
@@ -394,7 +392,7 @@ class DatabaseSettingsDialog():
 
         # Derivation Algorithm
         der_alg = "Argon2"
-        if version == (3,1):
+        if version == (3, 1):
             der_alg = "AES-KDF"
         self.builder.get_object("label_der_alg").set_text(der_alg)
 
@@ -416,7 +414,7 @@ class DatabaseSettingsDialog():
         self.groups_number = len(self.database_manager.db.groups)
         self.passwords_number = 0
         for entry in self.database_manager.db.entries:
-            if entry.password != None and entry.password != "":
+            if entry.password is not None and entry.password != "":
                 self.passwords_number = self.passwords_number + 1
         GLib.idle_add(self.set_stats_values)
 
@@ -436,9 +434,9 @@ class DatabaseSettingsDialog():
 
         der_alg_list = self.builder.get_object("der_alg_list_box")
 
-        if self.database_manager.db.version == (4,0):
+        if self.database_manager.db.version == (4, 0):
             der_alg_list.select_row(der_alg_list.get_row_at_index(0))
-        elif self.database_manager.db.version == (3,1):
+        elif self.database_manager.db.version == (3, 1):
             der_alg_list.select_row(der_alg_list.get_row_at_index(1))
 
         enc_alg_list.connect("row-activated", self.on_encryption_changed)
@@ -453,9 +451,9 @@ class DatabaseSettingsDialog():
         self.new_encryption_algorithm = row.get_name()
 
         if self.builder.get_object("der_alg_list_box").get_selected_row().get_name() == "argon2":
-            version_tuple = (4,0)
+            version_tuple = (4, 0)
         elif self.builder.get_object("der_alg_list_box").get_selected_row().get_name() == "aeskdf":
-            version_tuple = (3,1)
+            version_tuple = (3, 1)
 
         if self.database_manager.db.encryption_algorithm == row.get_name() and self.database_manager.db.version == version_tuple:
             self.encryption_apply_button.set_sensitive(False)
@@ -471,9 +469,9 @@ class DatabaseSettingsDialog():
         version_tuple = NotImplemented
 
         if row.get_name() == "argon2":
-            version_tuple = (4,0)
+            version_tuple = (4, 0)
         elif row.get_name() == "aeskdf":
-            version_tuple = (3,1)
+            version_tuple = (3, 1)
 
         if version_tuple == NotImplemented:
             return

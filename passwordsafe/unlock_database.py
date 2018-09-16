@@ -3,13 +3,11 @@ from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
 import passwordsafe.config_manager
 from passwordsafe.logging_manager import LoggingManager
-import gi
 import ntpath
 import os
 import threading
 import time
 import datetime
-import construct
 from gettext import gettext as _
 from construct import core
 

@@ -8,8 +8,6 @@ from passwordsafe.unlock_database import UnlockDatabase
 import passwordsafe.config_manager
 import os
 import ntpath
-import gi
-import signal
 import threading
 from gettext import gettext as _
 
@@ -39,7 +37,7 @@ class MainWindow(Gtk.ApplicationWindow):
     def assemble_window(self):
         window_size = passwordsafe.config_manager.get_window_size()
         self.set_default_size(window_size[0], window_size[1])
-        
+
         self.create_headerbar()
         self.first_start_screen()
 
@@ -217,7 +215,6 @@ class MainWindow(Gtk.ApplicationWindow):
                         path_label.set_text(path)
                     last_opened_row.set_name(path)
 
-
                     entry_list.append(last_opened_row)
                 else:
                     invalid = invalid + 1
@@ -247,7 +244,6 @@ class MainWindow(Gtk.ApplicationWindow):
             app_logo.set_from_pixbuf(pix)
             self.first_start_grid = builder.get_object("first_start_grid")
             self.add(self.first_start_grid)
-
 
     #
     # Container Methods (Gtk Notebook holds tabs)
@@ -551,7 +547,7 @@ class MainWindow(Gtk.ApplicationWindow):
             quit_button.connect("clicked", self.on_quit_button_clicked)
 
             unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
-                
+
             for db in unsaved_databases_list:
                 unsaved_database_row = Gtk.ListBoxRow()
                 check_button = Gtk.CheckButton()

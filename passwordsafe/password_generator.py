@@ -3,9 +3,10 @@ import secrets
 import string
 import re
 
+
 def generate(digits, high_letter, low_letter, numbers, special):
     characters = ""
-    
+
     if high_letter is True:
         characters += string.ascii_uppercase
 
@@ -23,6 +24,7 @@ def generate(digits, high_letter, low_letter, numbers, special):
 
     return "".join([secrets.choice(characters) for _ in range(0, digits)])
 
+
 def strength(password):
     di = diversity(password)
     en = entropy(password)
@@ -30,10 +32,11 @@ def strength(password):
     strength = int(round((di + en) / 2, 0))
     if strength <= 6:
         return strength
-    elif strenth > 6:
+    elif strength > 6:
         return 6
     else:
         return 0
+
 
 def diversity(password):
     if len(password) <= 3:
@@ -57,7 +60,7 @@ def diversity(password):
                 count += 2
             else:
                 count += 1
-        if(re.compile('[@_!#$%^&*()<>?/\|}{~:]').search(password) != None):
+        if(re.compile('[@_!#$%^&*()<>?/\|}{~:]').search(password) is not None):
             count += 1
 
         return count

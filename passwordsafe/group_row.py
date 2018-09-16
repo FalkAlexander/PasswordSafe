@@ -1,5 +1,4 @@
-from gi.repository import Gtk, Gdk
-import gi
+from gi.repository import Gtk
 from gettext import gettext as _
 
 

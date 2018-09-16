@@ -1,6 +1,5 @@
 from gi.repository import Gtk
 from passwordsafe.unlock_database import UnlockDatabase
-import gi
 
 
 class CreatedDatabase:

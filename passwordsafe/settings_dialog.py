@@ -1,7 +1,6 @@
 from gi.repository import Gtk
 from gi.repository.GdkPixbuf import Pixbuf
 import passwordsafe.config_manager
-import gi
 
 
 class SettingsDialog():
@@ -14,7 +13,7 @@ class SettingsDialog():
         self.builder.add_from_resource("/org/gnome/PasswordSafe/settings_dialog.ui")
 
     def on_settings_menu_clicked(self, action, param):
-        settings_dialog = self.builder.get_object("settings_dialog")          
+        settings_dialog = self.builder.get_object("settings_dialog")
 
         settings_dialog.set_modal(True)
         settings_dialog.set_transient_for(self.window)
@@ -70,7 +69,6 @@ class SettingsDialog():
         settings_remember_method_switch.connect("notify::active", self.on_settings_remember_method_switch_switched)
         settings_remember_method_switch_value = passwordsafe.config_manager.get_remember_unlock_method()
         settings_remember_method_switch.set_active(settings_remember_method_switch_value)
-
 
     def on_settings_theme_switch_switched(self, switch_button, gparam):
         gtk_settings = Gtk.Settings.get_default()

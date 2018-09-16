@@ -1,5 +1,4 @@
 from gi.repository import Gio, Gdk, Gtk, GLib, Handy
-from gi.repository.GdkPixbuf import Pixbuf
 from gi.repository import Notify
 from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.pathbar import Pathbar
@@ -14,7 +13,6 @@ import passwordsafe.password_generator
 import passwordsafe.config_manager
 import os
 import threading
-import gi
 import ntpath
 import datetime
 import time
@@ -650,7 +648,6 @@ class UnlockedDatabase:
         else:
             self.set_entry_page_headerbar()
 
-
     def update_current_stack_page(self):
         self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
@@ -745,7 +742,7 @@ class UnlockedDatabase:
                 page.destroy()
 
         self.show_page_of_new_directory(False, False)
-        
+
     #
     # Create Property Rows
     #
@@ -1604,7 +1601,7 @@ class UnlockedDatabase:
         key = scrolled_page.attributes_key_entry.get_text()
         value = scrolled_page.attributes_value_entry.get_text()
 
-        if key == "" or key == None:
+        if key == "" or key is None:
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
             return
 
@@ -1797,7 +1794,7 @@ class UnlockedDatabase:
                 row.selection_checkbox.set_active(False)
 
     def on_session_lock(self, connection, unique_name, object_path, interface, signal, state):
-        if state[0] == True and self.database_locked is False:
+        if state[0] is True and self.database_locked is False:
             self.lock_timeout_database()
 
     def on_back_button_mobile_clicked(self, button):

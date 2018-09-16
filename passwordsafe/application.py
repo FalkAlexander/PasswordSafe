@@ -55,7 +55,7 @@ class Application(Gtk.Application):
 
         quit_action = Gio.SimpleAction.new("quit", None)
         quit_action.connect("activate", self.on_quit_menu_clicked)
-        
+
         shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
         shortcuts_action.connect("activate", self.on_shortcuts_menu_clicked)
 
@@ -78,7 +78,7 @@ class Application(Gtk.Application):
 
     def on_quit_menu_clicked(self, action, param):
         self.quit()
-        
+
     def on_shortcuts_menu_clicked(self, action, param):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/shortcuts_overview.ui")
@@ -113,6 +113,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.db.lock", ["<Control>l"])
         self.set_accels_for_action("app.db.add_entry", ["<Control>e"])
         self.set_accels_for_action("app.db.add_group", ["<Control>g"])
+
 
 if __name__ == "__main__":
     app = Application()

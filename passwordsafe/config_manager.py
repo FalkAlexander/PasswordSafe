@@ -1,5 +1,3 @@
-import os
-from os.path import exists, join
 from gi.repository import GLib, Gio
 
 setting = Gio.Settings.new("org.gnome.PasswordSafe")

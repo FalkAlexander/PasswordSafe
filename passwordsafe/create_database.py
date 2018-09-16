@@ -1,4 +1,4 @@
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk, GLib, Handy
 from passwordsafe.created_database import CreatedDatabase
 from gettext import gettext as _
 import threading
@@ -11,6 +11,9 @@ class CreateDatabase:
     parent_widget = NotImplemented
     window = NotImplemented
     switched = False
+
+    stack = NotImplemented
+    hdy_chooser = NotImplemented
 
     composite = False
     keyfile_path = NotImplemented
@@ -33,7 +36,12 @@ class CreateDatabase:
 
         self.set_headerbar()
 
-        self.parent_widget.add(self.builder.get_object("authentification_method_chooser"))
+        self.hdy_chooser = Handy.Column()
+        self.hdy_chooser.set_maximum_width(600)
+        self.hdy_chooser.add(self.builder.get_object("authentification_method_chooser"))
+        self.hdy_chooser.show_all()
+
+        self.parent_widget.add(self.hdy_chooser)
         self.stack = self.builder.get_object("database_creation_stack")
 
         methods_list_box = self.builder.get_object("methods_list_box")
@@ -58,13 +66,13 @@ class CreateDatabase:
         password_creation_input.connect(
             "activate", self.on_password_creation_button_clicked)
 
-        self.parent_widget.add(self.stack)
+        self.hdy_chooser.add(self.stack)
         password_creation_input.grab_focus()
 
     def success_page(self):
         self.clear_input_fields()
         if self.composite is False:
-            self.parent_widget.remove(self.stack)
+            self.parent_widget.remove(self.hdy_chooser)
             CreatedDatabase(self.window, self.parent_widget, self.database_manager)
         else:
             self.keyfile_creation()
@@ -87,12 +95,12 @@ class CreateDatabase:
     def keyfile_creation(self):
         self.stack.set_visible_child(self.stack.get_child_by_name("page3"))
         if self.composite is False:
-            self.parent_widget.add(self.stack)
+            self.hdy_chooser.add(self.stack)
 
         self.builder.get_object("generate_keyfile_button").connect("clicked", self.on_generate_keyfile_button_clicked)
 
     def set_database_keyfile(self):
-        self.parent_widget.remove(self.stack)
+        self.hdy_chooser.remove(self.stack)
         CreatedDatabase(self.window, self.parent_widget, self.database_manager)
 
     #
@@ -129,7 +137,7 @@ class CreateDatabase:
 
 
     def on_auth_chooser_row_activated(self, widget, row):
-        self.parent_widget.remove(self.builder.get_object("authentification_method_chooser"))
+        self.hdy_chooser.remove(self.builder.get_object("authentification_method_chooser"))
 
         if row.get_name() == "password":
             self.password_creation()

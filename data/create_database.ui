@@ -7,11 +7,9 @@
     <property name="can_focus">False</property>
     <child>
       <object class="GtkScrolledWindow" id="methods_scrolled_window">
-        <property name="width_request">400</property>
         <property name="height_request">62</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <property name="halign">center</property>
         <property name="valign">start</property>
         <property name="margin_left">20</property>
         <property name="margin_right">20</property>
@@ -33,7 +31,6 @@
                 <child>
                   <object class="GtkListBoxRow" id="password_row">
                     <property name="name">password</property>
-                    <property name="width_request">100</property>
                     <property name="height_request">65</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -71,6 +68,7 @@
                                 <property name="valign">end</property>
                                 <property name="vexpand">True</property>
                                 <property name="label" translatable="yes">Password</property>
+                                <property name="ellipsize">end</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -89,6 +87,7 @@
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
                                 <property name="label" translatable="yes">Use a password to secure your safe</property>
+                                <property name="ellipsize">end</property>
                                 <style>
                                   <class name="dim-label"/>
                                 </style>
@@ -113,7 +112,6 @@
                 <child>
                   <object class="GtkListBoxRow" id="keyfile_row">
                     <property name="name">keyfile</property>
-                    <property name="width_request">100</property>
                     <property name="height_request">65</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -151,6 +149,7 @@
                                 <property name="valign">end</property>
                                 <property name="vexpand">True</property>
                                 <property name="label" translatable="yes">Keyfile</property>
+                                <property name="ellipsize">end</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -169,6 +168,7 @@
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
                                 <property name="label" translatable="yes">Use a keyfile to secure your safe</property>
+                                <property name="ellipsize">end</property>
                                 <style>
                                   <class name="dim-label"/>
                                 </style>
@@ -193,7 +193,6 @@
                 <child>
                   <object class="GtkListBoxRow" id="composite_row">
                     <property name="name">composite</property>
-                    <property name="width_request">100</property>
                     <property name="height_request">65</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -231,6 +230,7 @@
                                 <property name="valign">end</property>
                                 <property name="vexpand">True</property>
                                 <property name="label" translatable="yes">Composite</property>
+                                <property name="ellipsize">end</property>
                                 <attributes>
                                   <attribute name="weight" value="bold"/>
                                 </attributes>
@@ -249,6 +249,7 @@
                                 <property name="valign">start</property>
                                 <property name="vexpand">True</property>
                                 <property name="label" translatable="yes">Use a password in combination with a keyfile to secure your safe</property>
+                                <property name="ellipsize">end</property>
                                 <style>
                                   <class name="dim-label"/>
                                 </style>
@@ -290,6 +291,7 @@
         <property name="margin_bottom">20</property>
         <property name="vexpand">True</property>
         <property name="label" translatable="yes">Protect your safe</property>
+        <property name="ellipsize">middle</property>
         <attributes>
           <attribute name="weight" value="bold"/>
           <attribute name="size" value="21000"/>

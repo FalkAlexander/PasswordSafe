@@ -5,7 +5,7 @@ gi.require_version('Gtk', '3.0')
 gi.require_version('Notify', '0.7')
 gi.require_version('Handy', '0.0')
 
-from gi.repository import GLib, Gio, Gtk
+from gi.repository import GObject, GLib, Gio, Gtk, Handy
 from gi.repository import Notify
 from gettext import gettext as _
 from passwordsafe.main_window import MainWindow
@@ -26,6 +26,9 @@ class Application(Gtk.Application):
         GLib.set_application_name('Password Safe')
         GLib.set_prgname("Password Safe")
         Notify.init("Password Safe")
+
+        # Register LibHandy Responsive Column
+        GObject.type_register(Handy.Column)
 
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()

@@ -241,6 +241,10 @@ class UnlockedDatabase:
             self.builder.get_object("selection_button_revealer").set_reveal_child(False)
         else:
             self.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
+
+            if self.window.mobile_width is True:
+                return
+
             self.builder.get_object("selection_button_revealer").set_reveal_child(True)
 
     # Selection headerbar

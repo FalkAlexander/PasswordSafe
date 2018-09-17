@@ -87,10 +87,6 @@ class Pathbar(Gtk.HBox):
             context.add_class('SeperatorLabelSelectedMode')
         self.pack_end(seperator_label, True, True, 0)
 
-    def set_vertical_dimension(self, element):
-        element.set_vexpand(False)
-        element.set_valign(Gtk.Align.CENTER)
-
     #
     # Pathbar Modifications
     #
@@ -340,3 +336,4 @@ class Pathbar(Gtk.HBox):
             if pathbar_button.get_name() == "PathbarButtonDynamic":
                 if pathbar_button.get_uuid() == uuid:
                     return pathbar_button
+

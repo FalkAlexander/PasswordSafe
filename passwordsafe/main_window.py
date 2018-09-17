@@ -150,7 +150,7 @@ class MainWindow(Gtk.ApplicationWindow):
             db.responsive_headerbar_back_button()
             db.responsive_headerbar_selection_button()
 
-        if self.container is NotImplemented or self.container.get_n_pages() is 0:
+        if self.container is NotImplemented or self.container.get_n_pages() == 0:
             self.set_headerbar_button_layout()
 
     def set_headerbar_button_layout(self):

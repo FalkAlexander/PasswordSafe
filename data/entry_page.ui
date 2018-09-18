@@ -1019,7 +1019,7 @@
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
-                <property name="height_request">180</property>
+                <property name="height_request">100</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hexpand">True</property>
@@ -1028,6 +1028,7 @@
                   <object class="GtkTextView" id="notes_property_value_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="wrap_mode">word</property>
                     <property name="left_margin">5</property>
                     <property name="right_margin">5</property>
                     <property name="top_margin">5</property>

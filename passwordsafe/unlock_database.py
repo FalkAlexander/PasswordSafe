@@ -10,6 +10,7 @@ import time
 import datetime
 from gettext import gettext as _
 from construct import core
+from pathlib import Path
 
 
 class UnlockDatabase:
@@ -256,6 +257,10 @@ class UnlockDatabase:
             GLib.idle_add(self.password_unlock_failure)
 
     def password_unlock_success(self):
+        if Path(self.database_filepath).suffix == ".kdb":
+            self.password_unlock_failure()
+            return
+
         self.password_only = NotImplemented
         self.set_last_used_unlock_method("password")
         self.logging_manager.log_debug("Opening of database was successfull")
@@ -365,6 +370,11 @@ class UnlockDatabase:
 
     def keyfile_unlock_success(self):
         self.database_manager.set_keyfile_hash(self.keyfile_path)
+
+        if Path(self.database_filepath).suffix == ".kdb":
+            self.keyfile_unlock_failure()
+            return
+
         self.set_last_used_unlock_method("keyfile")
         self.logging_manager.log_debug("Database successfully opened with keyfile")
         self.keyfile_path = NotImplemented
@@ -486,6 +496,10 @@ class UnlockDatabase:
     def composite_unlock_success(self):
         self.password_composite = NotImplemented
         self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
+
+        if Path(self.database_filepath).suffix == ".kdb":
+            self.composite_unlock_failure()
+            return
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_filepath).get_uri()

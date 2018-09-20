@@ -60,6 +60,7 @@ class UnlockedDatabase:
     selection_ui = NotImplemented
     search = NotImplemented
     entry_page = NotImplemented
+    group_page = NotImplemented
 
     def __init__(self, window, widget, dbm, unlock_database):
         # Instances
@@ -76,10 +77,13 @@ class UnlockedDatabase:
         self.search = Search(self)
         from passwordsafe.entry_page import EntryPage
         self.entry_page = EntryPage(self)
+        from passwordsafe.group_page import GroupPage
+        self.group_page = GroupPage(self)
 
         # Declare database as opened
         self.window.opened_databases.append(self)
 
+        # Browser Mode
         self.assemble_listbox()
         self.start_save_loop()
         self.register_special_keys()
@@ -191,21 +195,6 @@ class UnlockedDatabase:
         self.responsive_ui.action_bar()
         self.responsive_ui.headerbar_title()
 
-    # Group creation/editing headerbar
-    def set_group_edit_page_headerbar(self):
-        mod_box = self.builder.get_object("mod_box")
-
-        for child in mod_box.get_children():
-            mod_box.remove(child)
-
-        self.builder.get_object("linked_box1").hide()
-        mod_box.hide()
-
-        self.responsive_ui.headerbar_back_button()
-        self.responsive_ui.headerbar_selection_button()
-        self.responsive_ui.action_bar()
-        self.responsive_ui.headerbar_title()
-
     #
     # Keystrokes
     #
@@ -306,8 +295,8 @@ class UnlockedDatabase:
                 stack_page.destroy()
 
             self.add_stack_page(scrolled_window)
-            self.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
-            self.set_group_edit_page_headerbar()     
+            self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
+            self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)       
         elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
             # Create not existing stack page for group
@@ -513,37 +502,6 @@ class UnlockedDatabase:
 
         self.show_page_of_new_directory(False, False)
 
-    def insert_group_properties_into_listbox(self, properties_list_box):
-        group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
-
-        name_property_row = builder.get_object("name_property_row")
-        name_property_value_entry = builder.get_object("name_property_value_entry")
-        name_property_value_entry.connect("changed", self.on_property_value_group_changed, "name")
-
-        notes_property_row = builder.get_object("notes_property_row")
-        notes_property_value_entry = builder.get_object("notes_property_value_entry")
-        buffer = notes_property_value_entry.get_buffer()
-        buffer.connect("changed", self.on_property_value_group_changed, "notes")
-
-        name_value = self.database_manager.get_group_name_from_uuid(group_uuid)
-        notes_value = self.database_manager.get_group_notes_from_group_uuid(group_uuid)
-
-        if self.database_manager.has_group_name(group_uuid) is True:
-            name_property_value_entry.set_text(name_value)
-        else:
-            name_property_value_entry.set_text("")
-
-        if self.database_manager.has_group_notes(group_uuid) is True:
-            buffer.set_text(notes_value)
-        else:
-            buffer.set_text("")
-
-        properties_list_box.add(name_property_row)
-        properties_list_box.add(notes_property_row)
-
     #
     # Events
     #
@@ -645,23 +603,6 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
         self.show_page_of_new_directory(True, False)
 
-    def on_property_value_group_changed(self, widget, type):
-        self.start_database_lock_timer()
-        group_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-
-        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-        scrolled_page.set_made_database_changes(True)
-
-        if type == "name":
-            self.database_manager.set_group_name(group_uuid, widget.get_text())
-
-            for pathbar_button in self.pathbar.get_children():
-                if pathbar_button.get_name() == "PathbarButtonDynamic":
-                    if pathbar_button.get_uuid() == self.database_manager.get_group_uuid_from_group_object(self.current_group):
-                        pathbar_button.set_label(widget.get_text())
-        elif type == "notes":
-            self.database_manager.set_group_notes(group_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
-
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
@@ -711,13 +652,6 @@ class UnlockedDatabase:
         self.set_current_group(self.group_marked_for_edit)
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True, False)
-
-    def on_show_password_button_toggled(self, toggle_button, entry):
-        self.start_database_lock_timer()
-        if entry.get_visibility() is True:
-            entry.set_visibility(False)
-        else:
-            entry.set_visibility(True)
 
     def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
         self.start_database_lock_timer()
@@ -869,15 +803,6 @@ class UnlockedDatabase:
     #
     # Helper Methods
     #
-
-    def change_password_entry_visibility(self, entry, toggle_button):
-        toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)
-
-        if passwordsafe.config_manager.get_show_password_fields() is False:
-            entry.set_visibility(False)
-        else:
-            toggle_button.toggled()
-            entry.set_visibility(True)
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

@@ -256,13 +256,16 @@ class UnlockedDatabase:
     # Group and Entry Management
     #
 
-    def show_page_of_new_directory(self, edit_group, new_entry):
+    def show_page_of_new_directory(self, edit_group, new_entry, animation=None):
         # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_scheduled_stack_page()
 
         # Check if we need to remove the search headerbar
         if self.parent_widget.get_headerbar() is not self.headerbar:
             self.search.remove_search_headerbar(None)
+
+        if animation is False:
+            self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
 
         # Creation of group edit page
         if edit_group is True:
@@ -296,6 +299,9 @@ class UnlockedDatabase:
             self.add_stack_page(scrolled_window)
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
             self.group_page.set_group_edit_page_headerbar()
+
+            if animation is False:
+                self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)       
         elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
             # Create not existing stack page for group
@@ -357,6 +363,9 @@ class UnlockedDatabase:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, True)
                 else:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
+
+            if animation is False:
+                self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
         # Stack page with current group's uuid already exists, we only need to switch stack page
         else:
             # For group
@@ -367,6 +376,9 @@ class UnlockedDatabase:
             else:
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
                 self.entry_page.set_entry_page_headerbar()
+
+            if animation is False:
+                self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
     def add_stack_page(self, scrolled_window):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
@@ -407,12 +419,10 @@ class UnlockedDatabase:
             self.entry_page.set_entry_page_headerbar()
 
     def update_current_stack_page(self):
-        self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
         stack_page = self.stack.get_child_by_name(stack_page_name)
         stack_page.destroy()
-        self.show_page_of_new_directory(False, False)
-        self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
+        self.show_page_of_new_directory(False, False, False)
 
     def set_current_group(self, group):
         self.current_group = group
@@ -499,7 +509,7 @@ class UnlockedDatabase:
             if page.check_is_edit_page() is False:
                 page.destroy()
 
-        self.show_page_of_new_directory(False, False)
+        self.show_page_of_new_directory(False, False, False)
 
     #
     # Events

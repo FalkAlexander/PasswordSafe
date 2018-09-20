@@ -98,22 +98,18 @@ class SelectionUI:
         self.unlocked_database.responsive_ui.headerbar_title()
 
     def prepare_selection_page(self):
-        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.NONE)
         for stack_page in self.unlocked_database.stack.get_children():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
-        self.unlocked_database.show_page_of_new_directory(False, False)
-        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
+        self.unlocked_database.show_page_of_new_directory(False, False, False)
 
     #
     # Events
     #
 
     def on_selection_cancel_button_clicked(self, widget):
-        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.NONE)
         self.remove_selection_headerbar()
-        self.unlocked_database.show_page_of_new_directory(False, False)
-        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
+        self.unlocked_database.show_page_of_new_directory(False, False, False)
 
     def on_selection_delete_button_clicked(self, widget):
         rebuild_pathbar = False
@@ -141,7 +137,7 @@ class SelectionUI:
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 
-        self.unlocked_database.show_page_of_new_directory(False, False)
+        self.unlocked_database.show_page_of_new_directory(False, False, False)
 
         if rebuild_pathbar is True:
             self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
@@ -184,7 +180,8 @@ class SelectionUI:
         for stack_page in self.unlocked_database.stack.get_children():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
-        self.unlocked_database.show_page_of_new_directory(False, False)
+
+        self.unlocked_database.show_page_of_new_directory(False, False, False)
 
         if rebuild_pathbar is True:
             self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)

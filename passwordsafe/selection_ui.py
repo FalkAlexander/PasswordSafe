@@ -15,6 +15,17 @@ class SelectionUI:
     def __init__(self, u_d):
         self.unlocked_database = u_d
 
+    def initialize(self):
+        # Selection Headerbar
+        selection_cancel_button = self.unlocked_database.builder.get_object("selection_cancel_button")
+        selection_cancel_button.connect("clicked", self.on_selection_cancel_button_clicked)
+
+        selection_delete_button = self.unlocked_database.builder.get_object("selection_delete_button")
+        selection_delete_button.connect("clicked", self.on_selection_delete_button_clicked)
+
+        selection_cut_button = self.unlocked_database.builder.get_object("selection_cut_button")
+        selection_cut_button.connect("clicked", self.on_selection_cut_button_clicked)
+
     #
     # Selection Mode
     #

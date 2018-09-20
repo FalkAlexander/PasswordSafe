@@ -7,6 +7,7 @@ class SelectionUI:
     #
 
     unlocked_database = NotImplemented
+    selection_mode_active = False
 
     #
     # Init
@@ -53,7 +54,7 @@ class SelectionUI:
 
         self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
 
-        self.unlocked_database.selection_mode = True
+        self.selection_mode_active = True
 
         self.prepare_selection_page()
 
@@ -87,7 +88,7 @@ class SelectionUI:
                 el_context.remove_class('SeperatorLabelSelectedMode')
                 el_context.add_class('SeperatorLabel')
 
-        self.unlocked_database.selection_mode = False
+        self.selection_mode_active = False
         self.unlocked_database.show_page_of_new_directory(False, False)
 
         self.unlocked_database.responsive_ui.headerbar_back_button()

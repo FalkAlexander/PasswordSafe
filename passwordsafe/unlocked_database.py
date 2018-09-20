@@ -41,7 +41,6 @@ class UnlockedDatabase:
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
     search_list_box = NotImplemented
-    selection_mode = False
     unlock_database = NotImplemented
     database_locked = False
     listbox_insert_thread = NotImplemented
@@ -246,7 +245,7 @@ class UnlockedDatabase:
 
         if self.window.container.page_num(self.parent_widget) == self.window.container.get_current_page():
             scrolled_page = self.stack.get_child_by_name(group_uuid)
-            if self.database_locked is False and self.selection_mode is False and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) and scrolled_page.edit_page is False:
+            if self.database_locked is False and self.selection_ui.selection_ui.selection_mode_active_active is False and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) and scrolled_page.edit_page is False:
                 if self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
                     if eventkey.string.isalpha() or eventkey.string.isnumeric():
                         self.search.set_search_headerbar(self.builder.get_object("search_button"))
@@ -262,7 +261,7 @@ class UnlockedDatabase:
                                     if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
                                         if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_group_parent_group_from_uuid(uuid)):
                                             self.pathbar.on_pathbar_button_clicked(button)
-            elif self.database_locked is False and self.selection_mode is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
+            elif self.database_locked is False and self.selection_ui.selection_mode_active is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
                 if eventkey.keyval == Gdk.KEY_Escape:
                     uuid = self.stack.get_visible_child_name()
                     if self.database_manager.check_is_group(uuid):
@@ -895,12 +894,12 @@ class UnlockedDatabase:
     def on_list_box_row_activated(self, widget, list_box_row):
         self.start_database_lock_timer()
 
-        if list_box_row.get_type() == "EntryRow" and self.selection_mode is True:
+        if list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is True:
             if list_box_row.selection_checkbox.get_active():
                 list_box_row.selection_checkbox.set_active(False)
             else:
                 list_box_row.selection_checkbox.set_active(True)
-        elif list_box_row.get_type() == "EntryRow" and self.selection_mode is not True:
+        elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is not True:
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
             self.show_page_of_new_directory(False, False)
@@ -1118,7 +1117,7 @@ class UnlockedDatabase:
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_mode is False:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
             self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_entry_uuid())
             entry_context_popover = self.builder.get_object("entry_context_popover")
             entry_context_popover.set_relative_to(widget)
@@ -1139,7 +1138,7 @@ class UnlockedDatabase:
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_mode is False:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
             self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
             self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
             group_context_popover = self.builder.get_object("group_context_popover")
@@ -1339,7 +1338,7 @@ class UnlockedDatabase:
             parent = self.database_manager.get_group_parent_group_from_uuid(page_uuid)
         elif scrolled_page.edit_page is True and group_page is False:
             parent = self.database_manager.get_entry_parent_group_from_uuid(page_uuid)
-        elif scrolled_page.edit_page is False and self.selection_mode is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
+        elif scrolled_page.edit_page is False and self.selection_ui.selection_mode_active is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
             if self.database_manager.check_is_root_group(self.current_group) is True:
                 self.on_lock_button_clicked(None)
                 return

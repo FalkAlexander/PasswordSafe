@@ -683,7 +683,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if action_db.database_locked is True:
                 return
 
-            if action_db.selection_mode is True:
+            if action_db.selection_ui.selection_mode_active is True:
                 return
 
             group_uuid = action_db.database_manager.get_group_uuid_from_group_object(action_db.current_group)

@@ -4,6 +4,7 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
 import threading
 
+
 class Search:
     #
     # Global Variables

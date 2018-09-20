@@ -1,5 +1,6 @@
 import ntpath
 
+
 class ResponsiveUI:
     #
     # Global Variables

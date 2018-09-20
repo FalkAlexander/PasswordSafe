@@ -43,7 +43,6 @@ class UnlockedDatabase:
     search_list_box = NotImplemented
     selection_mode = False
     unlock_database = NotImplemented
-    search = False
     database_locked = False
     listbox_insert_thread = NotImplemented
     result_list = NotImplemented
@@ -61,6 +60,8 @@ class UnlockedDatabase:
 
     # Instances
     responsive_ui = NotImplemented
+    selection_ui = NotImplemented
+    search = NotImplemented
 
     def __init__(self, window, widget, dbm, unlock_database):
         # Instances
@@ -71,9 +72,10 @@ class UnlockedDatabase:
 
         from passwordsafe.responsive_ui import ResponsiveUI
         self.responsive_ui = ResponsiveUI(self)
-
         from passwordsafe.selection_ui import SelectionUI
         self.selection_ui = SelectionUI(self)
+        from passwordsafe.search import Search
+        self.search = Search(self)
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -145,7 +147,7 @@ class UnlockedDatabase:
         mod_box.add(browser_buttons_box)
 
         search_button = self.builder.get_object("search_button")
-        search_button.connect("clicked", self.set_search_headerbar)
+        search_button.connect("clicked", self.search.set_search_headerbar)
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
@@ -162,22 +164,8 @@ class UnlockedDatabase:
         add_group_button = self.builder.get_object("add_group_button")
         add_group_button.connect("clicked", self.on_add_group_button_clicked)
 
-        # Search Headerbar
-        headerbar_search_box_close_button = self.builder.get_object("headerbar_search_box_close_button")
-        headerbar_search_box_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
-
-        search_settings_popover_local_button = self.builder.get_object("search_settings_popover_local_button")
-        search_settings_popover_fulltext_button = self.builder.get_object("search_settings_popover_fulltext_button")
-
-        search_local_button = self.builder.get_object("search_local_button")
-        search_local_button.connect("toggled", self.on_search_filter_button_toggled)
-
-        search_fulltext_button = self.builder.get_object("search_fulltext_button")
-        search_fulltext_button.connect("toggled", self.on_search_filter_button_toggled)
-
-        headerbar_search_entry = self.builder.get_object("headerbar_search_entry")
-        headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
-        headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
+        # Search
+        self.search.initialize()
 
         # Selection Headerbar
         selection_cancel_button = self.builder.get_object("selection_cancel_button")
@@ -193,38 +181,6 @@ class UnlockedDatabase:
         self.window.set_titlebar(self.headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
-
-    # Search headerbar
-    def set_search_headerbar(self, widget):
-        hscb = self.builder.get_object("headerbar_search_box_close_button")
-        if hscb.get_active() is False:
-            hscb.set_active(True)
-
-        if self.window.mobile_width is True:
-            self.builder.get_object("headerbar_search_box").set_margin_left(0)
-            self.builder.get_object("headerbar_search_box").set_margin_right(0)
-        else:
-            self.builder.get_object("headerbar_search_box").set_margin_left(90)
-            self.builder.get_object("headerbar_search_box").set_margin_right(47)
-
-        self.headerbar_search = self.builder.get_object("headerbar_search")
-        self.parent_widget.set_headerbar(self.headerbar_search)
-        self.window.set_titlebar(self.headerbar_search)
-        self.builder.get_object("headerbar_search_entry").grab_focus()
-        self.search = True
-        if self.search_list_box is not NotImplemented:
-            self.search_list_box.select_row(self.search_list_box.get_row_at_index(0))
-            self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
-        else:
-            self.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_navigation)
-
-        self.prepare_search_page()
-        self.responsive_ui.action_bar()
-
-    def remove_search_headerbar(self, widget):
-        self.parent_widget.set_headerbar(self.headerbar)
-        self.window.set_titlebar(self.headerbar)
-        self.search = False
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
@@ -277,43 +233,6 @@ class UnlockedDatabase:
         self.responsive_ui.action_bar()
         self.responsive_ui.headerbar_title()
 
-    # Set Search stack page
-    def prepare_search_page(self):
-        if self.stack.get_child_by_name("search") is None:
-            scrolled_page = ScrolledPage(False)
-            viewport = Gtk.Viewport()
-            viewport.set_name("BGPlatform")
-            self.search_overlay = Gtk.Overlay()
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-            self.search_list_box = builder.get_object("list_box")
-
-            # Responsive Container
-            self.search_list_box.set_name("BrowserListBox")
-            self.search_list_box.set_margin_top(18)
-            self.search_list_box.set_margin_bottom(18)
-            self.search_list_box.set_valign(Gtk.Align.START)
-
-            hdy_search = Handy.Column()
-            hdy_search.set_maximum_width(700)
-            hdy_search.add(self.search_list_box)
-            self.search_overlay.add(hdy_search)
-
-            self.search_list_box.connect("row-activated", self.on_list_box_row_activated)
-            viewport.add(self.search_overlay)
-
-            scrolled_page.add(viewport)
-            scrolled_page.show_all()
-            self.stack.add_named(scrolled_page, "search")
-            if len(self.search_list_box.get_children()) is 0:
-                info_search_overlay = self.builder.get_object("info_search_overlay")
-                self.search_overlay.add_overlay(info_search_overlay)
-                self.search_list_box.hide()
-            else:
-                self.search_list_box.show()
-
-        self.stack.set_visible_child(self.stack.get_child_by_name("search"))
-
     #
     # Keystrokes
     #
@@ -323,7 +242,7 @@ class UnlockedDatabase:
         widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
 
     #
-    # Type to search
+    # Special Keys (e.g. type-to-search)
     #
 
     def register_special_keys(self):
@@ -337,7 +256,7 @@ class UnlockedDatabase:
             if self.database_locked is False and self.selection_mode is False and self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) and scrolled_page.edit_page is False:
                 if self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
                     if eventkey.string.isalpha() or eventkey.string.isnumeric():
-                        self.set_search_headerbar(self.builder.get_object("search_button"))
+                        self.search.set_search_headerbar(self.builder.get_object("search_button"))
                         self.builder.get_object("headerbar_search_entry").set_text(eventkey.string)
                         Gtk.Entry.do_move_cursor(self.builder.get_object("headerbar_search_entry"), Gtk.MovementStep.BUFFER_ENDS, 1, False)
                     elif eventkey.keyval == Gdk.KEY_BackSpace:
@@ -382,7 +301,7 @@ class UnlockedDatabase:
 
         # Check if we need to remove the search headerbar
         if self.parent_widget.get_headerbar() is not self.headerbar:
-            self.remove_search_headerbar(None)
+            self.search.remove_search_headerbar(None)
 
         # Creation of group edit page
         if edit_group is True:
@@ -1316,161 +1235,6 @@ class UnlockedDatabase:
         passwordsafe.config_manager.set_sort_order(sorting)
         self.list_box_sorting = sorting
         self.rebuild_all_pages()
-
-    def on_headerbar_search_close_button_clicked(self, widget):
-        self.start_database_lock_timer()
-        self.remove_search_headerbar(None)
-        self.show_page_of_new_directory(False, False)
-
-    def on_search_entry_navigation(self, widget, event, data=None):
-        self.start_database_lock_timer()
-        if event.keyval == Gdk.KEY_Escape:
-            self.remove_search_headerbar(None)
-            self.show_page_of_new_directory(False, False)
-        elif event.keyval == Gdk.KEY_Up:
-            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
-            selected_row = self.search_list_box.get_selected_row()
-            if selected_row is not None:
-                row = self.search_list_box.get_row_at_index(selected_row.get_index() - 1)
-                if row is not None:
-                    self.search_list_box.select_row(row)
-        elif event.keyval == Gdk.KEY_Down:
-            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
-            selected_row = self.search_list_box.get_selected_row()
-            if selected_row is None:
-                row = self.search_list_box.get_row_at_index(0)
-                if row is not None:
-                    self.search_list_box.select_row(row)
-            else:
-                row = self.search_list_box.get_row_at_index(selected_row.get_index() + 1)
-                if row is not None:
-                    self.search_list_box.select_row(row)
-
-    def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
-        fulltext = False
-        result_list = []
-
-        empty_search_overlay = self.builder.get_object("empty_search_overlay")
-        info_search_overlay = self.builder.get_object("info_search_overlay")
-        if info_search_overlay in self.search_overlay:
-            self.search_overlay.remove(info_search_overlay)
-
-        if empty_search_overlay in self.search_overlay:
-            self.search_overlay.remove(empty_search_overlay)
-
-        for row in self.search_list_box.get_children():
-            self.search_list_box.remove(row)
-
-        if search_fulltext_button.get_active() is True:
-            fulltext = True
-
-        search_thread = threading.Thread(target=self.search_thread_creation, args=(search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay))
-        search_thread.daemon = True
-        search_thread.start()
-
-    def search_thread_creation(self, search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay):
-        if search_local_button.get_active() is True:
-            result_list = self.database_manager.local_search(self.current_group, widget.get_text(), fulltext)
-        else:
-            result_list = self.database_manager.global_search(widget.get_text(), fulltext)
-
-        GLib.idle_add(self.search_overlay_creation, widget, result_list, empty_search_overlay, info_search_overlay)
-
-    def search_overlay_creation(self, widget, result_list, empty_search_overlay, info_search_overlay):
-        if widget.get_text() is not "":
-            if empty_search_overlay in self.search_overlay:
-                self.search_overlay.remove(empty_search_overlay)
-
-            self.search_list_box.show()
-            self.search_instance_creation(result_list, empty_search_overlay)
-        else:
-            self.search_overlay.add_overlay(info_search_overlay)
-            self.search_list_box.hide()
-
-    def search_instance_creation(self, result_list, empty_search_overlay):
-        for uuid in result_list:
-            if self.database_manager.check_is_group(uuid):
-                group_row = GroupRow(self, self.database_manager, self.database_manager.get_group_object_from_uuid(uuid))
-                self.search_list_box.add(group_row)
-            else:
-                entry_row = EntryRow(self, self.database_manager, self.database_manager.get_entry_object_from_uuid(uuid))
-                self.search_list_box.add(entry_row)
-
-        if len(self.search_list_box.get_children()) is 0:
-            self.search_overlay.add_overlay(empty_search_overlay)
-            self.search_list_box.hide()
-        else:
-            self.search_list_box.show()
-
-    def on_headerbar_search_entry_enter_pressed(self, widget):
-        self.start_database_lock_timer()
-        if widget.get_text() is not "":
-            uuid = NotImplemented
-            first_row = NotImplemented
-
-            if len(self.search_list_box.get_children()) != 0:
-                selected_row = self.search_list_box.get_selected_row()
-                if selected_row is None:
-                    if self.search_list_box.get_children()[0].type is "GroupRow":
-                        uuid = self.search_list_box.get_children()[0].get_group_uuid()
-                        first_row = self.database_manager.get_group_object_from_uuid(uuid)
-                    else:
-                        uuid = self.search_list_box.get_children()[0].get_entry_uuid()
-                        first_row = self.database_manager.get_entry_object_from_uuid(uuid)
-                else:
-                    if selected_row.type is "GroupRow":
-                        uuid = selected_row.get_group_uuid()
-                        first_row = self.database_manager.get_group_object_from_uuid(uuid)
-                    else:
-                        uuid = selected_row.get_entry_uuid()
-                        first_row = self.database_manager.get_entry_object_from_uuid(uuid)
-
-                self.current_group = first_row
-                self.pathbar.add_pathbar_button_to_pathbar(uuid)
-                self.show_page_of_new_directory(False, False)
-
-
-    def on_search_filter_button_toggled(self, widget):
-        headerbar_search_entry = self.builder.get_object("headerbar_search_entry")
-        search_local_button = self.builder.get_object("search_local_button")
-        search_fulltext_button = self.builder.get_object("search_fulltext_button")
-
-        self.on_headerbar_search_entry_changed(headerbar_search_entry, search_local_button, search_fulltext_button)
-
-    def on_expiry_control_button_clicked(self, widget):
-        self.start_database_lock_timer()
-        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
-
-        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
-        icon_name = scrolled_page.expiry_control_button_image.get_icon_name().icon_name
-        icon_size = scrolled_page.expiry_control_button_image.get_icon_name().size
-
-        if icon_name == "list-add-symbolic":
-            scrolled_page.expiry_control_button_image.set_from_icon_name("user-trash-symbolic", icon_size)
-            scrolled_page.date_button.set_sensitive(True)
-            scrolled_page.time_button.set_sensitive(True)
-            datetime = self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid)
-            scrolled_page.date_label.set_text(str(datetime.date()))
-            scrolled_page.time_label.set_text(str(datetime.hour) + ":" + str(datetime.minute))
-        else:
-            scrolled_page.expiry_control_button_image.set_from_icon_name("list-add-symbolic", icon_size)
-            #self.database_manager.set_entry_expiry_date(entry_uuid, None)
-            scrolled_page.date_button.set_sensitive(False)
-            scrolled_page.time_button.set_sensitive(False)
-
-    def on_expiry_date_changed(self, widget):
-        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
-        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
-
-        calendar = scrolled_page.date_calendar
-        minute_button = scrolled_page.minute_spin_button
-        hour_button = scrolled_page.hour_spin_button
-
-        self.database_manager.set_entry_expiry_date(entry_uuid, datetime.datetime(calendar.get_date().year, calendar.get_date().month+1, calendar.get_date().day, int(hour_button.get_value()), int(minute_button.get_value())))
-
-        date = self.database_manager.get_entry_expiry_date_from_entry_uuid(entry_uuid)
-        scrolled_page.date_label.set_text(str(calendar.get_date().year) + "-" + str(calendar.get_date().month+1) + "-" + str(calendar.get_date().day))
-        scrolled_page.time_label.set_text(str(int(hour_button.get_value())) + ":" + str(int(minute_button.get_value())))
 
     def on_attributes_add_button_clicked(self, widget):
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)

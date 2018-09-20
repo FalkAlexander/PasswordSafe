@@ -649,7 +649,7 @@ class MainWindow(Gtk.ApplicationWindow):
         elif name == "on_sort_menu_button_entry_clicked":
             action_db.on_sort_menu_button_entry_clicked(action, param, arg)
         elif name == "on_selection_popover_button_clicked":
-            action_db.on_selection_popover_button_clicked(action, param, arg)
+            action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
 
     # Add Global Accelerator Actions
     def add_global_accelerator_actions(self):

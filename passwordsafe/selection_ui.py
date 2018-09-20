@@ -1,0 +1,206 @@
+from gettext import gettext as _
+from gi.repository import Gtk
+
+class SelectionUI:
+    #
+    # Global Variables
+    #
+
+    unlocked_database = NotImplemented
+
+    #
+    # Init
+    #
+
+    def __init__(self, u_d):
+        self.unlocked_database = u_d
+
+    #
+    # Selection Mode
+    #
+
+    # Selection headerbar
+    def set_selection_headerbar(self, widget):
+        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
+        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+
+        selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
+        selection_button_box = self.unlocked_database.builder.get_object("selection_button_box")
+
+        title_box = self.unlocked_database.builder.get_object("title_box")
+        headerbar_right_box = self.unlocked_database.builder.get_object("headerbar_right_box")
+
+        linkedbox_right = self.unlocked_database.builder.get_object("linkedbox_right")
+
+        headerbar_right_box.remove(linkedbox_right)
+        headerbar_right_box.add(selection_button_box)
+        title_box.add(selection_options_button)
+
+        context = self.unlocked_database.headerbar.get_style_context()
+        context.add_class('selection-mode')
+        self.unlocked_database.headerbar.set_show_close_button(False)
+
+        self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
+
+        self.unlocked_database.selection_mode = True
+
+        self.prepare_selection_page()
+
+    def remove_selection_headerbar(self):
+        for stack_page in self.unlocked_database.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+
+        selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
+        selection_button_box = self.unlocked_database.builder.get_object("selection_button_box")
+
+        title_box = self.unlocked_database.builder.get_object("title_box")
+        headerbar_right_box = self.unlocked_database.builder.get_object("headerbar_right_box")
+
+        linkedbox_right = self.unlocked_database.builder.get_object("linkedbox_right")
+
+        headerbar_right_box.remove(selection_button_box)
+        headerbar_right_box.add(linkedbox_right)
+        title_box.remove(selection_options_button)
+        self.unlocked_database.headerbar.set_show_close_button(True)
+
+        context = self.unlocked_database.headerbar.get_style_context()
+        context.remove_class('selection-mode')
+
+        self.unlocked_database.entries_selected.clear()
+        self.unlocked_database.groups_selected.clear()
+
+        for element in self.unlocked_database.pathbar.get_children():
+            if element.get_name() == "SeperatorLabel":
+                el_context = element.get_style_context()
+                el_context.remove_class('SeperatorLabelSelectedMode')
+                el_context.add_class('SeperatorLabel')
+
+        self.unlocked_database.selection_mode = False
+        self.unlocked_database.show_page_of_new_directory(False, False)
+
+        self.unlocked_database.responsive_ui.headerbar_back_button()
+        self.unlocked_database.responsive_ui.headerbar_selection_button()
+        self.unlocked_database.responsive_ui.action_bar()
+        self.unlocked_database.responsive_ui.headerbar_title()
+
+    def prepare_selection_page(self):
+        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.NONE)
+        for stack_page in self.unlocked_database.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+        self.unlocked_database.show_page_of_new_directory(False, False)
+        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
+
+    #
+    # Events
+    #
+
+    def on_selection_cancel_button_clicked(self, widget):
+        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.NONE)
+        self.remove_selection_headerbar()
+        self.unlocked_database.show_page_of_new_directory(False, False)
+        self.unlocked_database.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
+
+    def on_selection_delete_button_clicked(self, widget):
+        rebuild_pathbar = False
+        reset_stack_page = False
+        group = None
+
+        for entry_row in self.unlocked_database.entries_selected:
+            entry = self.unlocked_database.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
+            self.unlocked_database.database_manager.delete_entry_from_database(entry)
+            # If the deleted entry is in the pathbar, we need to rebuild the pathbar
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+                rebuild_pathbar = True
+
+        for group_row in self.unlocked_database.groups_selected:
+            group = self.unlocked_database.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
+            self.unlocked_database.database_manager.delete_group_from_database(group)
+            # If the deleted group is in the pathbar, we need to rebuild the pathbar
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
+                rebuild_pathbar = True
+            if self.unlocked_database.database_manager.get_group_uuid_from_group_object(group) == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group):
+                rebuild_pathbar = True
+                reset_stack_page = True
+
+        for stack_page in self.unlocked_database.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+
+        self.unlocked_database.show_page_of_new_directory(False, False)
+
+        if rebuild_pathbar is True:
+            self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
+
+        if reset_stack_page is True:
+            self.unlocked_database.current_group = self.unlocked_database.database_manager.get_root_group()
+
+        self.unlocked_database.show_database_action_revealer(_("Deletion completed"))
+
+        self.unlocked_database.entries_selected.clear()
+        self.unlocked_database.groups_selected.clear()
+        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
+        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+
+        # It is more efficient to do this here and not in the database manager loop
+        self.unlocked_database.database_manager.changes = True
+
+    def on_selection_cut_button_clicked(self, widget):
+        rebuild_pathbar = False
+
+        for entry_row in self.unlocked_database.entries_selected:
+            entry_uuid = entry_row.get_entry_uuid()
+            self.unlocked_database.database_manager.move_entry(entry_uuid, self.unlocked_database.current_group)
+            # If the moved entry is in the pathbar, we need to rebuild the pathbar
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+                rebuild_pathbar = True
+
+        move_conflict = False
+
+        for group_row in self.unlocked_database.groups_selected:
+            group_uuid = group_row.get_group_uuid()
+            if self.unlocked_database.database_manager.parent_checker(self.unlocked_database.current_group, self.unlocked_database.database_manager.get_group_object_from_uuid(group_uuid)) is False:
+                self.unlocked_database.database_manager.move_group(group_uuid, self.unlocked_database.current_group)
+            else:
+                move_conflict = True
+            # If the moved group is in the pathbar, we need to rebuild the pathbar
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
+                rebuild_pathbar = True
+
+        for stack_page in self.unlocked_database.stack.get_children():
+            if stack_page.check_is_edit_page() is False:
+                stack_page.destroy()
+        self.unlocked_database.show_page_of_new_directory(False, False)
+
+        if rebuild_pathbar is True:
+            self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
+
+        if move_conflict is False:
+            self.unlocked_database.show_database_action_revealer(_("Move completed"))
+        else:
+            self.unlocked_database.show_database_action_revealer(_("Skipped moving group into itself"))
+
+        self.unlocked_database.entries_selected.clear()
+        self.unlocked_database.groups_selected.clear()
+        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
+        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+
+        # It is more efficient to do this here and not in the database manager loop
+        self.unlocked_database.database_manager.changes = True
+
+    def on_selection_popover_button_clicked(self, action, param, selection_type):
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group))
+        viewport = scrolled_page.get_children()[0]
+        overlay = viewport.get_children()[0]
+        list_box = NotImplemented
+
+        column = overlay.get_children()[0]
+        list_box = column.get_children()[0]
+
+        for row in list_box:
+            if selection_type is "all":
+                row.selection_checkbox.set_active(True)
+            else:
+                row.selection_checkbox.set_active(False)
+

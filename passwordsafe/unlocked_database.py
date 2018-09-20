@@ -1,5 +1,4 @@
-from gi.repository import Gio, Gdk, Gtk, GLib, Handy
-from gi.repository import Notify
+from gi.repository import Gio, Gdk, Gtk, GLib, Handy, Notify
 from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.entry_row import EntryRow
@@ -72,6 +71,9 @@ class UnlockedDatabase:
 
         from passwordsafe.responsive_ui import ResponsiveUI
         self.responsive_ui = ResponsiveUI(self)
+
+        from passwordsafe.selection_ui import SelectionUI
+        self.selection_ui = SelectionUI(self)
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -147,9 +149,9 @@ class UnlockedDatabase:
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
-        selection_button.connect("clicked", self.set_selection_headerbar)
+        selection_button.connect("clicked", self.selection_ui.set_selection_headerbar)
         selection_button_mobile = self.builder.get_object("selection_button_mobile")
-        selection_button_mobile.connect("clicked", self.set_selection_headerbar)
+        selection_button_mobile.connect("clicked", self.selection_ui.set_selection_headerbar)
 
         back_button_mobile = self.builder.get_object("back_button_mobile")
         back_button_mobile.connect("clicked", self.on_back_button_mobile_clicked)
@@ -179,83 +181,18 @@ class UnlockedDatabase:
 
         # Selection Headerbar
         selection_cancel_button = self.builder.get_object("selection_cancel_button")
-        selection_cancel_button.connect("clicked", self.on_selection_cancel_button_clicked)
+        selection_cancel_button.connect("clicked", self.selection_ui.on_selection_cancel_button_clicked)
 
         selection_delete_button = self.builder.get_object("selection_delete_button")
-        selection_delete_button.connect("clicked", self.on_selection_delete_button_clicked)
+        selection_delete_button.connect("clicked", self.selection_ui.on_selection_delete_button_clicked)
 
         selection_cut_button = self.builder.get_object("selection_cut_button")
-        selection_cut_button.connect("clicked", self.on_selection_cut_button_clicked)
+        selection_cut_button.connect("clicked", self.selection_ui.on_selection_cut_button_clicked)
 
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
-
-    # Selection headerbar
-    def set_selection_headerbar(self, widget):
-        self.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.builder.get_object("selection_cut_button").set_sensitive(False)
-
-        selection_options_button = self.builder.get_object("selection_options_button")
-        selection_button_box = self.builder.get_object("selection_button_box")
-
-        title_box = self.builder.get_object("title_box")
-        headerbar_right_box = self.builder.get_object("headerbar_right_box")
-
-        linkedbox_right = self.builder.get_object("linkedbox_right")
-
-        headerbar_right_box.remove(linkedbox_right)
-        headerbar_right_box.add(selection_button_box)
-        title_box.add(selection_options_button)
-
-        context = self.headerbar.get_style_context()
-        context.add_class('selection-mode')
-        self.headerbar.set_show_close_button(False)
-
-        self.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
-
-        self.selection_mode = True
-
-        self.prepare_selection_page()
-
-    def remove_selection_headerbar(self):
-        for stack_page in self.stack.get_children():
-            if stack_page.check_is_edit_page() is False:
-                stack_page.destroy()
-
-        selection_options_button = self.builder.get_object("selection_options_button")
-        selection_button_box = self.builder.get_object("selection_button_box")
-
-        title_box = self.builder.get_object("title_box")
-        headerbar_right_box = self.builder.get_object("headerbar_right_box")
-
-        linkedbox_right = self.builder.get_object("linkedbox_right")
-
-        headerbar_right_box.remove(selection_button_box)
-        headerbar_right_box.add(linkedbox_right)
-        title_box.remove(selection_options_button)
-        self.headerbar.set_show_close_button(True)
-
-        context = self.headerbar.get_style_context()
-        context.remove_class('selection-mode')
-
-        self.entries_selected.clear()
-        self.groups_selected.clear()
-
-        for element in self.pathbar.get_children():
-            if element.get_name() == "SeperatorLabel":
-                el_context = element.get_style_context()
-                el_context.remove_class('SeperatorLabelSelectedMode')
-                el_context.add_class('SeperatorLabel')
-
-        self.selection_mode = False
-        self.show_page_of_new_directory(False, False)
-
-        self.responsive_ui.headerbar_back_button()
-        self.responsive_ui.headerbar_selection_button()
-        self.responsive_ui.action_bar()
-        self.responsive_ui.headerbar_title()
 
     # Search headerbar
     def set_search_headerbar(self, widget):
@@ -376,14 +313,6 @@ class UnlockedDatabase:
                 self.search_list_box.show()
 
         self.stack.set_visible_child(self.stack.get_child_by_name("search"))
-
-    def prepare_selection_page(self):
-        self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
-        for stack_page in self.stack.get_children():
-            if stack_page.check_is_edit_page() is False:
-                stack_page.destroy()
-        self.show_page_of_new_directory(False, False)
-        self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
     #
     # Keystrokes
@@ -1633,114 +1562,6 @@ class UnlockedDatabase:
         attribute_entry_box.remove(entry)
         attribute_entry_box.add(button)
         attribute_entry_box.reorder_child(button, 0)
-
-    def on_selection_cancel_button_clicked(self, widget):
-        self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
-        self.remove_selection_headerbar()
-        self.show_page_of_new_directory(False, False)
-        self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
-
-    def on_selection_delete_button_clicked(self, widget):
-        rebuild_pathbar = False
-        reset_stack_page = False
-        group = None
-
-        for entry_row in self.entries_selected:
-            entry = self.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
-            self.database_manager.delete_entry_from_database(entry)
-            # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-            if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
-                rebuild_pathbar = True
-
-        for group_row in self.groups_selected:
-            group = self.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
-            self.database_manager.delete_group_from_database(group)
-            # If the deleted group is in the pathbar, we need to rebuild the pathbar
-            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
-                rebuild_pathbar = True
-            if self.database_manager.get_group_uuid_from_group_object(group) == self.database_manager.get_group_uuid_from_group_object(self.current_group):
-                rebuild_pathbar = True
-                reset_stack_page = True
-
-        for stack_page in self.stack.get_children():
-            if stack_page.check_is_edit_page() is False:
-                stack_page.destroy()
-
-        self.show_page_of_new_directory(False, False)
-
-        if rebuild_pathbar is True:
-            self.pathbar.rebuild_pathbar(self.current_group)
-
-        if reset_stack_page is True:
-            self.current_group = self.database_manager.get_root_group()
-
-        self.show_database_action_revealer(_("Deletion completed"))
-
-        self.entries_selected.clear()
-        self.groups_selected.clear()
-        self.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.builder.get_object("selection_cut_button").set_sensitive(False)
-
-        # It is more efficient to do this here and not in the database manager loop
-        self.database_manager.changes = True
-
-    def on_selection_cut_button_clicked(self, widget):
-        rebuild_pathbar = False
-
-        for entry_row in self.entries_selected:
-            entry_uuid = entry_row.get_entry_uuid()
-            self.database_manager.move_entry(entry_uuid, self.current_group)
-            # If the moved entry is in the pathbar, we need to rebuild the pathbar
-            if self.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
-                rebuild_pathbar = True
-
-        move_conflict = False
-
-        for group_row in self.groups_selected:
-            group_uuid = group_row.get_group_uuid()
-            if self.database_manager.parent_checker(self.current_group, self.database_manager.get_group_object_from_uuid(group_uuid)) is False:
-                self.database_manager.move_group(group_uuid, self.current_group)
-            else:
-                move_conflict = True
-            # If the moved group is in the pathbar, we need to rebuild the pathbar
-            if self.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
-                rebuild_pathbar = True
-
-        for stack_page in self.stack.get_children():
-            if stack_page.check_is_edit_page() is False:
-                stack_page.destroy()
-        self.show_page_of_new_directory(False, False)
-
-        if rebuild_pathbar is True:
-            self.pathbar.rebuild_pathbar(self.current_group)
-
-        if move_conflict is False:
-            self.show_database_action_revealer(_("Move completed"))
-        else:
-            self.show_database_action_revealer(_("Skipped moving group into itself"))
-
-        self.entries_selected.clear()
-        self.groups_selected.clear()
-        self.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.builder.get_object("selection_cut_button").set_sensitive(False)
-
-        # It is more efficient to do this here and not in the database manager loop
-        self.database_manager.changes = True
-
-    def on_selection_popover_button_clicked(self, action, param, selection_type):
-        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-        viewport = scrolled_page.get_children()[0]
-        overlay = viewport.get_children()[0]
-        list_box = NotImplemented
-
-        column = overlay.get_children()[0]
-        list_box = column.get_children()[0]
-
-        for row in list_box:
-            if selection_type is "all":
-                row.selection_checkbox.set_active(True)
-            else:
-                row.selection_checkbox.set_active(False)
 
     def on_session_lock(self, connection, unique_name, object_path, interface, signal, state):
         if state[0] is True and self.database_locked is False:

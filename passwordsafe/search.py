@@ -12,6 +12,7 @@ class Search:
 
     unlocked_database = NotImplemented
     search_active = False
+    search_list_box = NotImplemented
 
     #
     # Init
@@ -60,9 +61,9 @@ class Search:
         self.unlocked_database.window.set_titlebar(self.unlocked_database.headerbar_search)
         self.unlocked_database.builder.get_object("headerbar_search_entry").grab_focus()
         self.search_active = True
-        if self.unlocked_database.search_list_box is not NotImplemented:
-            self.unlocked_database.search_list_box.select_row(self.unlocked_database.search_list_box.get_row_at_index(0))
-            self.unlocked_database.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+        if self.search_list_box is not NotImplemented:
+            self.search_list_box.select_row(self.search_list_box.get_row_at_index(0))
+            self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
         else:
             self.unlocked_database.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_navigation)
 
@@ -87,31 +88,31 @@ class Search:
             self.unlocked_database.search_overlay = Gtk.Overlay()
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-            self.unlocked_database.search_list_box = builder.get_object("list_box")
+            self.search_list_box = builder.get_object("list_box")
 
             # Responsive Container
-            self.unlocked_database.search_list_box.set_name("BrowserListBox")
-            self.unlocked_database.search_list_box.set_margin_top(18)
-            self.unlocked_database.search_list_box.set_margin_bottom(18)
-            self.unlocked_database.search_list_box.set_valign(Gtk.Align.START)
+            self.search_list_box.set_name("BrowserListBox")
+            self.search_list_box.set_margin_top(18)
+            self.search_list_box.set_margin_bottom(18)
+            self.search_list_box.set_valign(Gtk.Align.START)
 
             hdy_search = Handy.Column()
             hdy_search.set_maximum_width(700)
-            hdy_search.add(self.unlocked_database.search_list_box)
+            hdy_search.add(self.search_list_box)
             self.unlocked_database.search_overlay.add(hdy_search)
 
-            self.unlocked_database.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
+            self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
             viewport.add(self.unlocked_database.search_overlay)
 
             scrolled_page.add(viewport)
             scrolled_page.show_all()
             self.unlocked_database.stack.add_named(scrolled_page, "search")
-            if len(self.unlocked_database.search_list_box.get_children()) is 0:
+            if len(self.search_list_box.get_children()) is 0:
                 info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
                 self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
-                self.unlocked_database.search_list_box.hide()
+                self.search_list_box.hide()
             else:
-                self.unlocked_database.search_list_box.show()
+                self.search_list_box.show()
 
         self.unlocked_database.stack.set_visible_child(self.unlocked_database.stack.get_child_by_name("search"))
 
@@ -132,26 +133,26 @@ class Search:
             if empty_search_overlay in self.unlocked_database.search_overlay:
                 self.unlocked_database.search_overlay.remove(empty_search_overlay)
 
-            self.unlocked_database.search_list_box.show()
+            self.search_list_box.show()
             self.search_instance_creation(result_list, empty_search_overlay)
         else:
             self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
-            self.unlocked_database.search_list_box.hide()
+            self.search_list_box.hide()
 
     def search_instance_creation(self, result_list, empty_search_overlay):
         for uuid in result_list:
             if self.unlocked_database.database_manager.check_is_group(uuid):
                 group_row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group_object_from_uuid(uuid))
-                self.unlocked_database.search_list_box.add(group_row)
+                self.search_list_box.add(group_row)
             else:
                 entry_row = EntryRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid))
-                self.unlocked_database.search_list_box.add(entry_row)
+                self.search_list_box.add(entry_row)
 
-        if len(self.unlocked_database.search_list_box.get_children()) is 0:
+        if len(self.search_list_box.get_children()) is 0:
             self.unlocked_database.search_overlay.add_overlay(empty_search_overlay)
-            self.unlocked_database.search_list_box.hide()
+            self.search_list_box.hide()
         else:
-            self.unlocked_database.search_list_box.show()
+            self.search_list_box.show()
 
     #
     # Events
@@ -168,23 +169,23 @@ class Search:
             self.remove_search_headerbar(None)
             self.unlocked_database.show_page_of_new_directory(False, False)
         elif event.keyval == Gdk.KEY_Up:
-            self.unlocked_database.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
-            selected_row = self.unlocked_database.search_list_box.get_selected_row()
+            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
+            selected_row = self.search_list_box.get_selected_row()
             if selected_row is not None:
-                row = self.unlocked_database.search_list_box.get_row_at_index(selected_row.get_index() - 1)
+                row = self.search_list_box.get_row_at_index(selected_row.get_index() - 1)
                 if row is not None:
-                    self.unlocked_database.search_list_box.select_row(row)
+                    self.search_list_box.select_row(row)
         elif event.keyval == Gdk.KEY_Down:
-            self.unlocked_database.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
-            selected_row = self.unlocked_database.search_list_box.get_selected_row()
+            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
+            selected_row = self.search_list_box.get_selected_row()
             if selected_row is None:
-                row = self.unlocked_database.search_list_box.get_row_at_index(0)
+                row = self.search_list_box.get_row_at_index(0)
                 if row is not None:
-                    self.unlocked_database.search_list_box.select_row(row)
+                    self.search_list_box.select_row(row)
             else:
-                row = self.unlocked_database.search_list_box.get_row_at_index(selected_row.get_index() + 1)
+                row = self.search_list_box.get_row_at_index(selected_row.get_index() + 1)
                 if row is not None:
-                    self.unlocked_database.search_list_box.select_row(row)
+                    self.search_list_box.select_row(row)
 
     def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
         fulltext = False
@@ -198,8 +199,8 @@ class Search:
         if empty_search_overlay in self.unlocked_database.search_overlay:
             self.unlocked_database.search_overlay.remove(empty_search_overlay)
 
-        for row in self.unlocked_database.search_list_box.get_children():
-            self.unlocked_database.search_list_box.remove(row)
+        for row in self.search_list_box.get_children():
+            self.search_list_box.remove(row)
 
         if search_fulltext_button.get_active() is True:
             fulltext = True
@@ -214,14 +215,14 @@ class Search:
             uuid = NotImplemented
             first_row = NotImplemented
 
-            if len(self.unlocked_database.search_list_box.get_children()) != 0:
-                selected_row = self.unlocked_database.search_list_box.get_selected_row()
+            if len(self.search_list_box.get_children()) != 0:
+                selected_row = self.search_list_box.get_selected_row()
                 if selected_row is None:
-                    if self.unlocked_database.search_list_box.get_children()[0].type is "GroupRow":
-                        uuid = self.unlocked_database.search_list_box.get_children()[0].get_group_uuid()
+                    if self.search_list_box.get_children()[0].type is "GroupRow":
+                        uuid = self.search_list_box.get_children()[0].get_group_uuid()
                         first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
                     else:
-                        uuid = self.unlocked_database.search_list_box.get_children()[0].get_entry_uuid()
+                        uuid = self.search_list_box.get_children()[0].get_entry_uuid()
                         first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
                 else:
                     if selected_row.type is "GroupRow":

@@ -1,3 +1,4 @@
+from gettext import gettext as _
 from gi.repository import Gio, GLib, Gdk, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
 from passwordsafe.logging_manager import LoggingManager
@@ -9,7 +10,6 @@ import passwordsafe.config_manager
 import os
 import ntpath
 import threading
-from gettext import gettext as _
 
 
 class MainWindow(Gtk.ApplicationWindow):

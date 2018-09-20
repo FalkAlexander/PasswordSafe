@@ -610,3 +610,4 @@ class UnlockDatabase:
     def set_last_used_unlock_method(self, method):
         if passwordsafe.config_manager.get_remember_unlock_method() is True:
             passwordsafe.config_manager.set_unlock_method(method)
+

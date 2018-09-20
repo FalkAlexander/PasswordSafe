@@ -25,6 +25,7 @@ class UnlockedDatabase:
     window = NotImplemented
     database_manager = NotImplemented
     logging_manager = LoggingManager(True)
+    unlock_database = NotImplemented
     responsive_ui = NotImplemented
     selection_ui = NotImplemented
     search = NotImplemented
@@ -54,13 +55,10 @@ class UnlockedDatabase:
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
-    search_list_box = NotImplemented
-    unlock_database = NotImplemented
     database_locked = False
-    listbox_insert_thread = NotImplemented
-    result_list = NotImplemented
     save_loop = NotImplemented
     dbus_subscription_id = NotImplemented
+    listbox_insert_thread = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented

@@ -8,6 +8,7 @@ from passwordsafe.group_page import GroupPage
 from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.responsive_ui import ResponsiveUI
+from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
 from threading import Timer
@@ -30,7 +31,7 @@ class UnlockedDatabase:
     entry_page = NotImplemented
     group_page = NotImplemented
 
-    builder = NotImplemented
+    # Widgets
     parent_widget = NotImplemented
     headerbar = NotImplemented
     headerbar_search = NotImplemented
@@ -42,7 +43,10 @@ class UnlockedDatabase:
     pathbar = NotImplemented
     overlay = NotImplemented
     search_overlay = NotImplemented
+    database_settings_dialog = NotImplemented
 
+    # Objects
+    builder = NotImplemented
     current_group = NotImplemented
     accelerators = NotImplemented
     scheduled_page_destroy = []
@@ -57,7 +61,6 @@ class UnlockedDatabase:
     result_list = NotImplemented
     save_loop = NotImplemented
     dbus_subscription_id = NotImplemented
-    database_settings_dialog = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented

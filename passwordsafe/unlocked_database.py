@@ -1,23 +1,36 @@
-from gi.repository import Gio, Gdk, Gtk, GLib, Handy, Notify
-from passwordsafe.logging_manager import LoggingManager
-from passwordsafe.pathbar import Pathbar
-from passwordsafe.entry_row import EntryRow
-from passwordsafe.group_row import GroupRow
-from passwordsafe.scrolled_page import ScrolledPage
-from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
-from threading import Timer
 from gettext import gettext as _
-import passwordsafe.config_manager
-import os
-import threading
-import ntpath
+from gi.repository import Gio, Gdk, Gtk, GLib, Handy, Notify
+from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
+from passwordsafe.logging_manager import LoggingManager
+from passwordsafe.entry_page import EntryPage
+from passwordsafe.entry_row import EntryRow
+from passwordsafe.group_page import GroupPage
+from passwordsafe.group_row import GroupRow
+from passwordsafe.pathbar import Pathbar
+from passwordsafe.responsive_ui import ResponsiveUI
+from passwordsafe.selection_ui import SelectionUI
+from passwordsafe.search import Search
+from threading import Timer
 import datetime
+import ntpath
+import os
+import passwordsafe.config_manager
 import time
+import threading
 
 
 class UnlockedDatabase:
-    builder = NotImplemented
+    # Instances
     window = NotImplemented
+    database_manager = NotImplemented
+    logging_manager = LoggingManager(True)
+    responsive_ui = NotImplemented
+    selection_ui = NotImplemented
+    search = NotImplemented
+    entry_page = NotImplemented
+    group_page = NotImplemented
+
+    builder = NotImplemented
     parent_widget = NotImplemented
     headerbar = NotImplemented
     headerbar_search = NotImplemented
@@ -26,12 +39,11 @@ class UnlockedDatabase:
     divider = NotImplemented
     revealer = NotImplemented
     action_bar_box = NotImplemented
-    database_manager = NotImplemented
-    logging_manager = LoggingManager(True)
-    current_group = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
     search_overlay = NotImplemented
+
+    current_group = NotImplemented
     accelerators = NotImplemented
     scheduled_page_destroy = []
     clipboard = NotImplemented
@@ -45,6 +57,7 @@ class UnlockedDatabase:
     result_list = NotImplemented
     save_loop = NotImplemented
     dbus_subscription_id = NotImplemented
+    database_settings_dialog = NotImplemented
 
     entry_marked_for_delete = NotImplemented
     group_marked_for_delete = NotImplemented
@@ -53,31 +66,16 @@ class UnlockedDatabase:
     entries_selected = []
     groups_selected = []
 
-    database_settings_dialog = NotImplemented
-
-    # Instances
-    responsive_ui = NotImplemented
-    selection_ui = NotImplemented
-    search = NotImplemented
-    entry_page = NotImplemented
-    group_page = NotImplemented
-
     def __init__(self, window, widget, dbm, unlock_database):
         # Instances
         self.window = window
         self.parent_widget = widget
         self.database_manager = dbm
         self.unlock_database = unlock_database
-
-        from passwordsafe.responsive_ui import ResponsiveUI
         self.responsive_ui = ResponsiveUI(self)
-        from passwordsafe.selection_ui import SelectionUI
         self.selection_ui = SelectionUI(self)
-        from passwordsafe.search import Search
         self.search = Search(self)
-        from passwordsafe.entry_page import EntryPage
         self.entry_page = EntryPage(self)
-        from passwordsafe.group_page import GroupPage
         self.group_page = GroupPage(self)
 
         # Declare database as opened
@@ -728,6 +726,10 @@ class UnlockedDatabase:
         save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close, timeout, quit)
 
         save_dialog.present()
+
+    #
+    # Utils
+    #
 
     def show_database_action_revealer(self, message):
         database_action_box = self.builder.get_object("database_action_box")

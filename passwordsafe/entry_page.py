@@ -618,3 +618,4 @@ class EntryPage:
         else:
             toggle_button.toggled()
             entry.set_visibility(True)
+

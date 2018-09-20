@@ -47,7 +47,7 @@ class EntryRow(Gtk.ListBoxRow):
         entry_copy_button = builder.get_object("entry_copy_button")
         entry_color_button = builder.get_object("entry_color_button")
 
-        if self.unlocked_database.selection_mode is True:
+        if self.unlocked_database.selection_ui.selection_mode_active is True:
             entry_checkbox_box = builder.get_object("entry_checkbox_box")
             self.selection_checkbox = builder.get_object("selection_checkbox")
             self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)

@@ -134,21 +134,21 @@ class MainWindow(Gtk.ApplicationWindow):
 
             # For Group/Entry Edit Page
             if scrolled_page.edit_page is True and group_page is True:
-                db.responsive_action_bar()
-                db.responsive_headerbar_title()
-                db.responsive_headerbar_back_button()
+                db.responsive_ui.action_bar()
+                db.responsive_ui.headerbar_title()
+                db.responsive_ui.headerbar_back_button()
                 return
             elif scrolled_page.edit_page is True and group_page is False:
-                db.responsive_action_bar()
-                db.responsive_headerbar_title()
-                db.responsive_headerbar_back_button()
+                db.responsive_ui.action_bar()
+                db.responsive_ui.headerbar_title()
+                db.responsive_ui.headerbar_back_button()
                 return
 
             # For Entry/Group Browser and Selection Mode
-            db.responsive_action_bar()
-            db.responsive_headerbar_title()
-            db.responsive_headerbar_back_button()
-            db.responsive_headerbar_selection_button()
+            db.responsive_ui.action_bar()
+            db.responsive_ui.headerbar_title()
+            db.responsive_ui.headerbar_back_button()
+            db.responsive_ui.headerbar_selection_button()
 
         if self.container is NotImplemented or self.container.get_n_pages() == 0:
             self.set_headerbar_button_layout()

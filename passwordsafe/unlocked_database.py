@@ -60,23 +60,32 @@ class UnlockedDatabase:
 
     database_settings_dialog = NotImplemented
 
+    # Instances
+    responsive_ui = NotImplemented
+
     def __init__(self, window, widget, dbm, unlock_database):
+        # Instances
         self.window = window
         self.parent_widget = widget
         self.database_manager = dbm
         self.unlock_database = unlock_database
-        self.assemble_listbox()
+
+        from passwordsafe.responsive_ui import ResponsiveUI
+        self.responsive_ui = ResponsiveUI(self)
+
+        # Declare database as opened
         self.window.opened_databases.append(self)
 
+        self.assemble_listbox()
         self.start_save_loop()
         self.register_special_keys()
-
         self.register_dbus_signal()
 
-        self.responsive_action_bar()
-        self.responsive_headerbar_title()
-        self.responsive_headerbar_back_button()
-        self.responsive_headerbar_selection_button()
+        # Responsive UI
+        self.responsive_ui.action_bar()
+        self.responsive_ui.headerbar_title()
+        self.responsive_ui.headerbar_back_button()
+        self.responsive_ui.headerbar_selection_button()
 
     #
     # Stack Pages
@@ -183,70 +192,6 @@ class UnlockedDatabase:
 
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
 
-    #
-    # Responsive Controls
-    #
-
-    def responsive_action_bar(self):
-        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-        if self.window.mobile_width is True:
-            if len(self.pathbar.viewport.get_children()) is not 0:
-                self.pathbar.viewport.remove(self.pathbar)
-                self.pathbar.pathbar_box.hide()
-
-            if len(self.action_bar_box.get_children()) is 0:
-                self.action_bar_box.add(self.pathbar)
-
-            if scrolled_page.edit_page is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
-                self.revealer.set_reveal_child(True)
-            else:
-                self.revealer.set_reveal_child(False)
-        else:
-            self.revealer.set_reveal_child(False)
-
-            if len(self.action_bar_box.get_children()) is not 0:
-                self.action_bar_box.remove(self.pathbar)
-
-            if len(self.pathbar.viewport.get_children()) is 0:
-                self.pathbar.viewport.add(self.pathbar)
-                self.pathbar.pathbar_box.show()
-
-    def responsive_headerbar_title(self):
-        if self.window.mobile_width is True and self.selection_mode is False:
-            if len(self.builder.get_object("title_box").get_children()) is not 0:
-                return
-
-            filename_label = self.builder.get_object("filename_label")
-            filename_label.set_text(ntpath.basename(self.database_manager.database_path))
-            self.builder.get_object("title_box").add(filename_label)
-        else:
-            if len(self.builder.get_object("title_box").get_children()) is 0:
-                return
-
-            self.builder.get_object("title_box").remove(self.builder.get_object("filename_label"))
-
-    def responsive_headerbar_back_button(self):
-        if self.window.mobile_width is True and self.selection_mode is False:
-            self.builder.get_object("pathbar_button_back_revealer").set_reveal_child(True)
-        else:
-            self.builder.get_object("pathbar_button_back_revealer").set_reveal_child(False)
-
-    def responsive_headerbar_selection_button(self):
-        scrolled_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
-        if self.selection_mode is True:
-            return
-
-        if self.window.mobile_width is True and scrolled_page.edit_page is False:
-            self.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(True)
-            self.builder.get_object("selection_button_revealer").set_reveal_child(False)
-        else:
-            self.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
-
-            if self.window.mobile_width is True:
-                return
-
-            self.builder.get_object("selection_button_revealer").set_reveal_child(True)
-
     # Selection headerbar
     def set_selection_headerbar(self, widget):
         self.builder.get_object("selection_delete_button").set_sensitive(False)
@@ -307,10 +252,10 @@ class UnlockedDatabase:
         self.selection_mode = False
         self.show_page_of_new_directory(False, False)
 
-        self.responsive_headerbar_back_button()
-        self.responsive_headerbar_selection_button()
-        self.responsive_action_bar()
-        self.responsive_headerbar_title()
+        self.responsive_ui.headerbar_back_button()
+        self.responsive_ui.headerbar_selection_button()
+        self.responsive_ui.action_bar()
+        self.responsive_ui.headerbar_title()
 
     # Search headerbar
     def set_search_headerbar(self, widget):
@@ -337,7 +282,7 @@ class UnlockedDatabase:
             self.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_navigation)
 
         self.prepare_search_page()
-        self.responsive_action_bar()
+        self.responsive_ui.action_bar()
 
     def remove_search_headerbar(self, widget):
         self.parent_widget.set_headerbar(self.headerbar)
@@ -355,10 +300,10 @@ class UnlockedDatabase:
         mod_box.show_all()
         self.builder.get_object("linked_box1").show_all()
 
-        self.responsive_headerbar_back_button()
-        self.responsive_headerbar_selection_button()
-        self.responsive_action_bar()
-        self.responsive_headerbar_title()
+        self.responsive_ui.headerbar_back_button()
+        self.responsive_ui.headerbar_selection_button()
+        self.responsive_ui.action_bar()
+        self.responsive_ui.headerbar_title()
 
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
@@ -375,10 +320,10 @@ class UnlockedDatabase:
 
         self.builder.get_object("linked_box1").hide()
 
-        self.responsive_headerbar_back_button()
-        self.responsive_headerbar_selection_button()
-        self.responsive_action_bar()
-        self.responsive_headerbar_title()
+        self.responsive_ui.headerbar_back_button()
+        self.responsive_ui.headerbar_selection_button()
+        self.responsive_ui.action_bar()
+        self.responsive_ui.headerbar_title()
 
     # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
@@ -390,10 +335,10 @@ class UnlockedDatabase:
         self.builder.get_object("linked_box1").hide()
         mod_box.hide()
 
-        self.responsive_headerbar_back_button()
-        self.responsive_headerbar_selection_button()
-        self.responsive_action_bar()
-        self.responsive_headerbar_title()
+        self.responsive_ui.headerbar_back_button()
+        self.responsive_ui.headerbar_selection_button()
+        self.responsive_ui.action_bar()
+        self.responsive_ui.headerbar_title()
 
     # Set Search stack page
     def prepare_search_page(self):

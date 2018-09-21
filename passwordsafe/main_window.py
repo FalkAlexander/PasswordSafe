@@ -1,3 +1,4 @@
+from gettext import gettext as _
 from gi.repository import Gio, GLib, Gdk, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
 from passwordsafe.logging_manager import LoggingManager
@@ -9,7 +10,6 @@ import passwordsafe.config_manager
 import os
 import ntpath
 import threading
-from gettext import gettext as _
 
 
 class MainWindow(Gtk.ApplicationWindow):
@@ -134,21 +134,21 @@ class MainWindow(Gtk.ApplicationWindow):
 
             # For Group/Entry Edit Page
             if scrolled_page.edit_page is True and group_page is True:
-                db.responsive_action_bar()
-                db.responsive_headerbar_title()
-                db.responsive_headerbar_back_button()
+                db.responsive_ui.action_bar()
+                db.responsive_ui.headerbar_title()
+                db.responsive_ui.headerbar_back_button()
                 return
             elif scrolled_page.edit_page is True and group_page is False:
-                db.responsive_action_bar()
-                db.responsive_headerbar_title()
-                db.responsive_headerbar_back_button()
+                db.responsive_ui.action_bar()
+                db.responsive_ui.headerbar_title()
+                db.responsive_ui.headerbar_back_button()
                 return
 
             # For Entry/Group Browser and Selection Mode
-            db.responsive_action_bar()
-            db.responsive_headerbar_title()
-            db.responsive_headerbar_back_button()
-            db.responsive_headerbar_selection_button()
+            db.responsive_ui.action_bar()
+            db.responsive_ui.headerbar_title()
+            db.responsive_ui.headerbar_back_button()
+            db.responsive_ui.headerbar_selection_button()
 
         if self.container is NotImplemented or self.container.get_n_pages() == 0:
             self.set_headerbar_button_layout()
@@ -649,7 +649,7 @@ class MainWindow(Gtk.ApplicationWindow):
         elif name == "on_sort_menu_button_entry_clicked":
             action_db.on_sort_menu_button_entry_clicked(action, param, arg)
         elif name == "on_selection_popover_button_clicked":
-            action_db.on_selection_popover_button_clicked(action, param, arg)
+            action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
 
     # Add Global Accelerator Actions
     def add_global_accelerator_actions(self):
@@ -683,7 +683,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if action_db.database_locked is True:
                 return
 
-            if action_db.selection_mode is True:
+            if action_db.selection_ui.selection_mode_active is True:
                 return
 
             group_uuid = action_db.database_manager.get_group_uuid_from_group_object(action_db.current_group)

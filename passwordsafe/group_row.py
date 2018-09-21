@@ -27,7 +27,7 @@ class GroupRow(Gtk.ListBoxRow):
         group_event_box = builder.get_object("group_event_box")
         group_event_box.connect("button-press-event", self.unlocked_database.on_group_row_button_pressed)
 
-        if self.unlocked_database.selection_mode is True:
+        if self.unlocked_database.selection_ui.selection_mode_active is True:
             group_checkbox_box = builder.get_object("group_checkbox_box")
             self.selection_checkbox = builder.get_object("selection_checkbox")
             self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)

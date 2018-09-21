@@ -1,4 +1,4 @@
-from gi.repository import Gio, Gtk, GLib
+from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
 import passwordsafe.config_manager
@@ -114,7 +114,12 @@ class UnlockDatabase:
 
             if keyfile_path is not None:
                 composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
-                composite_unlock_select_button.set_label(ntpath.basename(keyfile_path))
+                label = Gtk.Label()
+                label.set_text(ntpath.basename(keyfile_path))
+                label.set_ellipsize(Pango.EllipsizeMode.END)
+                composite_unlock_select_button.remove(composite_unlock_select_button.get_children()[0])
+                composite_unlock_select_button.add(label)
+
                 self.composite_keyfile_path = keyfile_path
 
         if passwordsafe.config_manager.get_remember_unlock_method() is True:
@@ -124,7 +129,15 @@ class UnlockDatabase:
         self.unlock_database_stack_box.add(self.overlay)
         self.unlock_database_stack_box.show_all()
 
-        self.parent_widget.add(self.unlock_database_stack_box)
+        # Responsive Container
+        hdy_page = Handy.Column()
+        hdy_page.set_maximum_width(300)
+        hdy_page.set_margin_left(15)
+        hdy_page.set_margin_right(15)
+        hdy_page.add(self.unlock_database_stack_box)
+        hdy_page.show_all()
+
+        self.parent_widget.add(hdy_page)
 
         self.connect_events(stack)
 
@@ -422,7 +435,14 @@ class UnlockDatabase:
         if response == Gtk.ResponseType.ACCEPT:
             self.logging_manager.log_debug("File selected: " + filechooser_opening_dialog.get_filename())
             file_path = filechooser_opening_dialog.get_filename()
-            composite_unlock_select_button.set_label(ntpath.basename(file_path))
+
+            label = Gtk.Label()
+            label.set_text(ntpath.basename(file_path))
+            label.set_ellipsize(Pango.EllipsizeMode.END)
+            composite_unlock_select_button.remove(composite_unlock_select_button.get_children()[0])
+            composite_unlock_select_button.add(label)
+            composite_unlock_select_button.show_all()
+
             self.composite_keyfile_path = file_path
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.log_debug("File selection cancelled")

@@ -5,8 +5,8 @@
   <object class="GtkGrid" id="composite_unlock_stack_page">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="halign">center</property>
     <property name="valign">end</property>
+    <property name="hexpand">True</property>
     <property name="vexpand">True</property>
     <child>
       <object class="GtkImage" id="composite_unlock_image">
@@ -25,6 +25,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">Enter password and select keyfile to unlock</property>
+        <property name="wrap">True</property>
         <property name="yalign">0.10000000149011612</property>
         <style>
           <class name="dim-label"/>
@@ -40,6 +41,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">Safe is Locked</property>
+        <property name="ellipsize">middle</property>
         <property name="yalign">0.88999998569488525</property>
         <attributes>
           <attribute name="weight" value="normal"/>
@@ -55,13 +57,11 @@
       <object class="GtkBox" id="composite_unlock_input_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="halign">center</property>
+        <property name="hexpand">True</property>
         <child>
           <object class="GtkEntry" id="composite_unlock_entry">
-            <property name="width_request">150</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="halign">end</property>
             <property name="valign">end</property>
             <property name="margin_top">10</property>
             <property name="hexpand">True</property>
@@ -82,7 +82,6 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Unlock</property>
-            <property name="halign">start</property>
             <property name="margin_top">10</property>
             <child>
               <object class="GtkImage" id="composite_unlock_button_image">
@@ -101,14 +100,18 @@
         </child>
         <child>
           <object class="GtkButton" id="composite_unlock_select_button">
-            <property name="label" translatable="yes">Open Keyfile</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="halign">start</property>
             <property name="valign">end</property>
-            <property name="hexpand">True</property>
             <property name="vexpand">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">document-open-symbolic</property>
+              </object>
+            </child>
             <style>
               <class name="suggested-action"/>
             </style>
@@ -151,7 +154,10 @@
       <object class="GtkLabel" id="keyfile_unlock_description_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">5</property>
+        <property name="margin_right">5</property>
         <property name="label" translatable="yes">Select keyfile to unlock</property>
+        <property name="wrap">True</property>
         <property name="yalign">0.10000000149011612</property>
         <style>
           <class name="dim-label"/>
@@ -167,6 +173,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">Safe is Locked</property>
+        <property name="ellipsize">middle</property>
         <property name="yalign">0.88999998569488525</property>
         <attributes>
           <attribute name="weight" value="normal"/>
@@ -187,7 +194,6 @@
         <property name="margin_top">10</property>
         <child>
           <object class="GtkButton" id="keyfile_unlock_select_button">
-            <property name="label" translatable="yes">Open Keyfile</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -195,6 +201,13 @@
             <property name="valign">end</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Open Keyfile</property>
+              </object>
+            </child>
             <style>
               <class name="suggested-action"/>
             </style>
@@ -410,7 +423,6 @@
   <object class="GtkGrid" id="password_unlock_stack_page">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="halign">center</property>
     <property name="valign">end</property>
     <property name="vexpand">True</property>
     <child>
@@ -427,18 +439,16 @@
     </child>
     <child>
       <object class="GtkBox" id="password_unlock_input_box">
-        <property name="width_request">250</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="halign">center</property>
+        <property name="hexpand">True</property>
         <child>
           <object class="GtkEntry" id="password_unlock_entry">
-            <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="can_default">True</property>
-            <property name="halign">end</property>
             <property name="margin_top">10</property>
+            <property name="hexpand">True</property>
             <property name="visibility">False</property>
             <property name="invisible_char">●</property>
             <property name="secondary_icon_name">user-not-tracked-symbolic</property>
@@ -456,7 +466,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Unlock</property>
-            <property name="halign">start</property>
+            <property name="halign">end</property>
             <property name="margin_top">10</property>
             <child>
               <object class="GtkImage" id="password_unlock_button_image">
@@ -487,6 +497,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">Enter password to unlock</property>
+        <property name="wrap">True</property>
         <property name="yalign">0.10000000149011612</property>
         <style>
           <class name="dim-label"/>
@@ -502,6 +513,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">Safe is Locked</property>
+        <property name="ellipsize">middle</property>
         <property name="yalign">0.88999998569488525</property>
         <attributes>
           <attribute name="weight" value="normal"/>

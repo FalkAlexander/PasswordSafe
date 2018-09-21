@@ -19,7 +19,7 @@ class UnlockDatabase:
     window = NotImplemented
     database_filepath = NotImplemented
     database_manager = NotImplemented
-    unlock_database_stack_box = NotImplemented
+    hdy_page = NotImplemented
     unlock_database_stack_switcher = NotImplemented
     keyfile_path = NotImplemented
     composite_keyfile_path = NotImplemented
@@ -85,7 +85,7 @@ class UnlockDatabase:
         stack = Gtk.Stack()
         stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
 
-        self.unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
+        unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
         self.unlock_database_stack_switcher.set_stack(stack)
 
@@ -126,18 +126,18 @@ class UnlockDatabase:
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
 
         self.overlay.add(stack)
-        self.unlock_database_stack_box.add(self.overlay)
-        self.unlock_database_stack_box.show_all()
+        unlock_database_stack_box.add(self.overlay)
+        unlock_database_stack_box.show_all()
 
         # Responsive Container
-        hdy_page = Handy.Column()
-        hdy_page.set_maximum_width(300)
-        hdy_page.set_margin_left(15)
-        hdy_page.set_margin_right(15)
-        hdy_page.add(self.unlock_database_stack_box)
-        hdy_page.show_all()
+        self.hdy_page = Handy.Column()
+        self.hdy_page.set_maximum_width(300)
+        self.hdy_page.set_margin_left(15)
+        self.hdy_page.set_margin_right(15)
+        self.hdy_page.add(unlock_database_stack_box)
+        self.hdy_page.show_all()
 
-        self.parent_widget.add(hdy_page)
+        self.parent_widget.add(self.hdy_page)
 
         self.connect_events(stack)
 
@@ -218,7 +218,7 @@ class UnlockDatabase:
         if password_unlock_entry.get_text() != "" and database_already_opened is False:
             if self.timeout is True:
                 if password_unlock_entry.get_text() == self.unlocked_database.database_manager.password and self.unlocked_database.database_manager.keyfile_hash is NotImplemented:
-                    self.parent_widget.remove(self.unlock_database_stack_box)
+                    self.parent_widget.remove(self.hdy_page)
                     if self.unlocked_database.search is True:
                         self.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
                         self.window.set_titlebar(self.unlocked_database.headerbar_search)
@@ -328,7 +328,7 @@ class UnlockDatabase:
 
         if self.timeout is True:
             if self.keyfile_path is not NotImplemented and self.unlocked_database.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path):
-                self.parent_widget.remove(self.unlock_database_stack_box)
+                self.parent_widget.remove(self.hdy_page)
                 self.keyfile_path = NotImplemented
                 if self.unlocked_database.search is True:
                     self.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
@@ -453,7 +453,7 @@ class UnlockDatabase:
 
         if self.timeout is True:
             if (self.composite_keyfile_path is not NotImplemented) and (self.unlocked_database.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.composite_keyfile_path)) and (composite_unlock_entry.get_text() == self.unlocked_database.database_manager.password):
-                self.parent_widget.remove(self.unlock_database_stack_box)
+                self.parent_widget.remove(self.hdy_page)
                 if self.unlocked_database.search is True:
                     self.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
                     self.window.set_titlebar(self.unlocked_database.headerbar_search)
@@ -602,7 +602,7 @@ class UnlockDatabase:
 
         passwordsafe.config_manager.set_last_opened_list(list)
 
-        self.unlock_database_stack_box.destroy()
+        self.hdy_page.destroy()
         UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)
 
     #

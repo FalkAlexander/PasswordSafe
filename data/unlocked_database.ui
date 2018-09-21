@@ -932,12 +932,12 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.about</property>
-            <property name="text" translatable="yes">About</property>
+            <property name="text" translatable="yes" comments="&quot;Password Safe&quot; is the application name">About Password Safe</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">13</property>
+            <property name="position">14</property>
           </packing>
         </child>
       </object>
@@ -960,31 +960,6 @@
           <placeholder/>
         </child>
       </object>
-    </child>
-    <child>
-      <object class="GtkRevealer" id="pathbar_button_selection_revealer">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="transition_type">slide-right</property>
-        <child>
-          <object class="GtkButton" id="selection_button_mobile">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
-            <child>
-              <object class="GtkImage" id="selection_button_image_mobile">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">emblem-ok-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="position">2</property>
-      </packing>
     </child>
     <child>
       <object class="GtkRevealer" id="pathbar_button_back_revealer">
@@ -1010,6 +985,31 @@
       </object>
       <packing>
         <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="pathbar_button_selection_revealer">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="transition_type">slide-right</property>
+        <child>
+          <object class="GtkButton" id="selection_button_mobile">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+            <child>
+              <object class="GtkImage" id="selection_button_image_mobile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">emblem-ok-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="position">2</property>
       </packing>
     </child>
     <child type="title">

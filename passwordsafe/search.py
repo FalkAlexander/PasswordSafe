@@ -141,7 +141,7 @@ class Search:
             self.search_list_box.hide()
 
     def search_instance_creation(self, result_list, empty_search_overlay, load_all=False):
-        window_height = self.unlocked_database.parent_widget.get_allocation().height - 76
+        window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
         group_row_height = 40
         entry_row_height = 60
         search_height = 0
@@ -169,6 +169,8 @@ class Search:
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             load_more_row = builder.get_object("load_more_row")
             self.search_list_box.add(load_more_row)
+
+        self.search_list_box.show()
 
         if len(self.search_list_box.get_children()) is 0:
             self.unlocked_database.search_overlay.add_overlay(empty_search_overlay)
@@ -210,6 +212,7 @@ class Search:
                     self.search_list_box.select_row(row)
 
     def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
+        self.search_list_box.hide()
         fulltext = False
         result_list = []
 

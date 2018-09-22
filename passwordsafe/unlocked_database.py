@@ -518,6 +518,10 @@ class UnlockedDatabase:
     def on_list_box_row_activated(self, widget, list_box_row):
         self.start_database_lock_timer()
 
+        if list_box_row.get_name() == "LoadMoreRow":
+            self.search.on_load_more_row_clicked(list_box_row)
+            return
+
         if list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is True:
             if list_box_row.selection_checkbox.get_active():
                 list_box_row.selection_checkbox.set_active(False)

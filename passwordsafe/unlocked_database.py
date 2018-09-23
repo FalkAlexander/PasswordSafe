@@ -241,6 +241,8 @@ class UnlockedDatabase:
                             if scrolled_page.edit_page is True:
                                 for button in self.pathbar:
                                     if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                        if self.database_manager.get_group_object_from_uuid(uuid) is None:
+                                            return
                                         if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_group_parent_group_from_uuid(uuid)):
                                             self.pathbar.on_pathbar_button_clicked(button)
                     else:
@@ -249,6 +251,8 @@ class UnlockedDatabase:
                         else:
                             for button in self.pathbar:
                                 if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                    if self.database_manager.get_entry_object_from_uuid(uuid) is None:
+                                        return
                                     if button.uuid == self.database_manager.get_group_uuid_from_group_object(self.database_manager.get_entry_parent_group_from_uuid(uuid)):
                                         self.pathbar.on_pathbar_button_clicked(button)
 

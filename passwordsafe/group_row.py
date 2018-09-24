@@ -43,7 +43,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.add(group_event_box)
         self.show_all()
 
-    def get_group_uuid(self):
+    def get_uuid(self):
         return self.group_uuid
 
     def get_label(self):

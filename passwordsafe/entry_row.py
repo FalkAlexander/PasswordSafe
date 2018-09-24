@@ -91,7 +91,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.add(entry_event_box)
         self.show_all()
 
-    def get_entry_uuid(self):
+    def get_uuid(self):
         return self.entry_uuid
 
     def get_label(self):

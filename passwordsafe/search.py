@@ -13,6 +13,7 @@ class Search:
     unlocked_database = NotImplemented
     search_active = False
     search_list_box = NotImplemented
+    cached_rows = []
     skipped_rows = []
 
     #
@@ -149,18 +150,40 @@ class Search:
         last_row = NotImplemented
         self.skipped_rows = []
 
+        # result_list = list(set(result_list))
+
         for uuid in result_list:
+            skip = False
+            row = NotImplemented
+
+            for cached in self.cached_rows:
+                if cached.get_uuid() == uuid:
+                    skip = True
+                    row = cached
+
             if search_height < window_height or load_all is True:
                 if self.unlocked_database.database_manager.check_is_group(uuid):
                     search_height+=group_row_height
-                    group_row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group_object_from_uuid(uuid))
-                    self.search_list_box.add(group_row)
-                    last_row = group_row
+
+                    if skip is False:
+                        row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group_object_from_uuid(uuid))
+                        self.search_list_box.add(row)
+                        self.cached_rows.append(row)
+                    else:
+                        self.search_list_box.add(row)
+
+                    last_row = row
                 else:
                     search_height+=entry_row_height
-                    entry_row = EntryRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid))
-                    self.search_list_box.add(entry_row)
-                    last_row = entry_row
+
+                    if skip is False:
+                        row = EntryRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid))
+                        self.search_list_box.add(row)
+                        self.cached_rows.append(row)
+                    else:
+                        self.search_list_box.add(row)
+
+                    last_row = row
             else:
                 self.skipped_rows.append(uuid)
 
@@ -244,17 +267,17 @@ class Search:
                 selected_row = self.search_list_box.get_selected_row()
                 if selected_row is None:
                     if self.search_list_box.get_children()[0].type is "GroupRow":
-                        uuid = self.search_list_box.get_children()[0].get_group_uuid()
+                        uuid = self.search_list_box.get_children()[0].get_uuid()
                         first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
                     else:
-                        uuid = self.search_list_box.get_children()[0].get_entry_uuid()
+                        uuid = self.search_list_box.get_children()[0].get_uuid()
                         first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
                 else:
                     if selected_row.type is "GroupRow":
-                        uuid = selected_row.get_group_uuid()
+                        uuid = selected_row.get_uuid()
                         first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
                     else:
-                        uuid = selected_row.get_entry_uuid()
+                        uuid = selected_row.get_uuid()
                         first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
 
                 self.unlocked_database.current_group = first_row

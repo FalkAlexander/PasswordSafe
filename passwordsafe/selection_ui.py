@@ -117,17 +117,17 @@ class SelectionUI:
         group = None
 
         for entry_row in self.unlocked_database.entries_selected:
-            entry = self.unlocked_database.database_manager.get_entry_object_from_uuid(entry_row.get_entry_uuid())
+            entry = self.unlocked_database.database_manager.get_entry_object_from_uuid(entry_row.get_uuid())
             self.unlocked_database.database_manager.delete_entry_from_database(entry)
             # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(entry_row.get_uuid()) is True:
                 rebuild_pathbar = True
 
         for group_row in self.unlocked_database.groups_selected:
-            group = self.unlocked_database.database_manager.get_group_object_from_uuid(group_row.get_group_uuid())
+            group = self.unlocked_database.database_manager.get_group_object_from_uuid(group_row.get_uuid())
             self.unlocked_database.database_manager.delete_group_from_database(group)
             # If the deleted group is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(group_row.get_uuid()) is True:
                 rebuild_pathbar = True
             if self.unlocked_database.database_manager.get_group_uuid_from_group_object(group) == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group):
                 rebuild_pathbar = True
@@ -159,22 +159,22 @@ class SelectionUI:
         rebuild_pathbar = False
 
         for entry_row in self.unlocked_database.entries_selected:
-            entry_uuid = entry_row.get_entry_uuid()
+            entry_uuid = entry_row.get_uuid()
             self.unlocked_database.database_manager.move_entry(entry_uuid, self.unlocked_database.current_group)
             # If the moved entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(entry_row.get_entry_uuid()) is True:
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(entry_row.get_uuid()) is True:
                 rebuild_pathbar = True
 
         move_conflict = False
 
         for group_row in self.unlocked_database.groups_selected:
-            group_uuid = group_row.get_group_uuid()
+            group_uuid = group_row.get_uuid()
             if self.unlocked_database.database_manager.parent_checker(self.unlocked_database.current_group, self.unlocked_database.database_manager.get_group_object_from_uuid(group_uuid)) is False:
                 self.unlocked_database.database_manager.move_group(group_uuid, self.unlocked_database.current_group)
             else:
                 move_conflict = True
             # If the moved group is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(group_row.get_group_uuid()) is True:
+            if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(group_row.get_uuid()) is True:
                 rebuild_pathbar = True
 
         for stack_page in self.unlocked_database.stack.get_children():

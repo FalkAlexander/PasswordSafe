@@ -528,12 +528,12 @@ class UnlockedDatabase:
             else:
                 list_box_row.selection_checkbox.set_active(True)
         elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is not True:
-            self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
-            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
+            self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_uuid()))
+            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
         elif list_box_row.get_type() == "GroupRow":
-            self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_group_uuid()))
-            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
+            self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_uuid()))
+            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
 
     def on_save_button_clicked(self, widget):
@@ -619,7 +619,7 @@ class UnlockedDatabase:
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_entry_uuid())
+            self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_uuid())
             entry_context_popover = self.builder.get_object("entry_context_popover")
             entry_context_popover.set_relative_to(widget)
             entry_context_popover.show_all()
@@ -640,8 +640,8 @@ class UnlockedDatabase:
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
-            self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
+            self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_uuid())
+            self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_uuid())
             group_context_popover = self.builder.get_object("group_context_popover")
             group_context_popover.set_relative_to(widget)
             group_context_popover.show_all()

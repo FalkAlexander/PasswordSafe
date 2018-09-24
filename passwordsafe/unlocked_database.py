@@ -877,7 +877,7 @@ class UnlockedDatabase:
 
     def loading_indicator_thread(self, list_box, overlay):
         time.sleep(1)
-        if list_box.is_visible() is False:
+        if list_box.is_visible() is False and len(overlay.get_children()) < 2:
             GLib.idle_add(self.show_loading_indicator, overlay)
 
     def show_loading_indicator(self, overlay):

@@ -13,6 +13,8 @@ class Search:
     unlocked_database = NotImplemented
     search_active = False
     search_list_box = NotImplemented
+    cached_rows = []
+    skipped_rows = []
 
     #
     # Init
@@ -139,14 +141,59 @@ class Search:
             self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
             self.search_list_box.hide()
 
-    def search_instance_creation(self, result_list, empty_search_overlay):
+    def search_instance_creation(self, result_list, empty_search_overlay, load_all=False):
+        window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
+        group_row_height = 40
+        entry_row_height = 60
+        search_height = 0
+
+        last_row = NotImplemented
+        self.skipped_rows = []
+
+        # result_list = list(set(result_list))
+
         for uuid in result_list:
-            if self.unlocked_database.database_manager.check_is_group(uuid):
-                group_row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group_object_from_uuid(uuid))
-                self.search_list_box.add(group_row)
+            skip = False
+            row = NotImplemented
+
+            for cached in self.cached_rows:
+                if cached.get_uuid() == uuid:
+                    skip = True
+                    row = cached
+
+            if search_height < window_height or load_all is True:
+                if self.unlocked_database.database_manager.check_is_group(uuid):
+                    search_height+=group_row_height
+
+                    if skip is False:
+                        row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group_object_from_uuid(uuid))
+                        self.search_list_box.add(row)
+                        self.cached_rows.append(row)
+                    else:
+                        self.search_list_box.add(row)
+
+                    last_row = row
+                else:
+                    search_height+=entry_row_height
+
+                    if skip is False:
+                        row = EntryRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid))
+                        self.search_list_box.add(row)
+                        self.cached_rows.append(row)
+                    else:
+                        self.search_list_box.add(row)
+
+                    last_row = row
             else:
-                entry_row = EntryRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid))
-                self.search_list_box.add(entry_row)
+                self.skipped_rows.append(uuid)
+
+        if last_row is not NotImplemented and len(self.skipped_rows) != 0:
+            builder = Gtk.Builder()
+            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+            load_more_row = builder.get_object("load_more_row")
+            self.search_list_box.add(load_more_row)
+
+        self.search_list_box.show()
 
         if len(self.search_list_box.get_children()) is 0:
             self.unlocked_database.search_overlay.add_overlay(empty_search_overlay)
@@ -188,6 +235,7 @@ class Search:
                     self.search_list_box.select_row(row)
 
     def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
+        self.search_list_box.hide()
         fulltext = False
         result_list = []
 
@@ -219,17 +267,17 @@ class Search:
                 selected_row = self.search_list_box.get_selected_row()
                 if selected_row is None:
                     if self.search_list_box.get_children()[0].type is "GroupRow":
-                        uuid = self.search_list_box.get_children()[0].get_group_uuid()
+                        uuid = self.search_list_box.get_children()[0].get_uuid()
                         first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
                     else:
-                        uuid = self.search_list_box.get_children()[0].get_entry_uuid()
+                        uuid = self.search_list_box.get_children()[0].get_uuid()
                         first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
                 else:
                     if selected_row.type is "GroupRow":
-                        uuid = selected_row.get_group_uuid()
+                        uuid = selected_row.get_uuid()
                         first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
                     else:
-                        uuid = selected_row.get_entry_uuid()
+                        uuid = selected_row.get_uuid()
                         first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
 
                 self.unlocked_database.current_group = first_row
@@ -243,4 +291,8 @@ class Search:
         search_fulltext_button = self.unlocked_database.builder.get_object("search_fulltext_button")
 
         self.on_headerbar_search_entry_changed(headerbar_search_entry, search_local_button, search_fulltext_button)
+
+    def on_load_more_row_clicked(self, row):
+        self.search_list_box.remove(row)
+        self.search_instance_creation(self.skipped_rows, None, True)
 

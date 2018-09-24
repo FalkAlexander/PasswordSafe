@@ -337,6 +337,7 @@ class UnlockedDatabase:
 
                 self.add_stack_page(scrolled_window)
 
+                list_box.hide()
                 self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=(list_box, overlay))
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()
@@ -458,6 +459,9 @@ class UnlockedDatabase:
         groups = NotImplemented
         sorted_list = []
 
+        loading_indicator_thread = threading.Thread(target=self.loading_indicator_thread, args=(list_box, overlay))
+        loading_indicator_thread.start()
+
         if self.current_group.is_root_group:
             groups = self.database_manager.get_groups_in_root()
         else:
@@ -499,6 +503,10 @@ class UnlockedDatabase:
         for entry_row in sorted_list:
             list_box.add(entry_row)
 
+        if len(overlay.get_children()) >= 2:
+            if overlay.get_children()[1].get_name() == "PageAssemblingIndicator":
+                overlay.remove(overlay.get_children()[1])
+
         if len(list_box.get_children()) is 0:
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
@@ -522,18 +530,22 @@ class UnlockedDatabase:
     def on_list_box_row_activated(self, widget, list_box_row):
         self.start_database_lock_timer()
 
+        if list_box_row.get_name() == "LoadMoreRow":
+            self.search.on_load_more_row_clicked(list_box_row)
+            return
+
         if list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is True:
             if list_box_row.selection_checkbox.get_active():
                 list_box_row.selection_checkbox.set_active(False)
             else:
                 list_box_row.selection_checkbox.set_active(True)
         elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is not True:
-            self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_entry_uuid()))
-            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_entry_uuid())
+            self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_uuid()))
+            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
         elif list_box_row.get_type() == "GroupRow":
-            self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_group_uuid()))
-            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_group_uuid())
+            self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_uuid()))
+            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
 
     def on_save_button_clicked(self, widget):
@@ -619,7 +631,7 @@ class UnlockedDatabase:
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_entry_uuid())
+            self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_uuid())
             entry_context_popover = self.builder.get_object("entry_context_popover")
             entry_context_popover.set_relative_to(widget)
             entry_context_popover.show_all()
@@ -640,8 +652,8 @@ class UnlockedDatabase:
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
-            self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_group_uuid())
+            self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_uuid())
+            self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_uuid())
             group_context_popover = self.builder.get_object("group_context_popover")
             group_context_popover.set_relative_to(widget)
             group_context_popover.show_all()
@@ -866,6 +878,18 @@ class UnlockedDatabase:
     def stop_save_loop(self):
         self.builder.get_object("save_button").set_sensitive(True)
         self.save_loop = False
+
+    def loading_indicator_thread(self, list_box, overlay):
+        time.sleep(1)
+        if list_box.is_visible() is False and len(overlay.get_children()) < 2:
+            GLib.idle_add(self.show_loading_indicator, overlay)
+
+    def show_loading_indicator(self, overlay):
+        spinner = Gtk.Spinner()
+        spinner.show()
+        spinner.start()
+        spinner.set_name("PageAssemblingIndicator")
+        overlay.add_overlay(spinner)
 
     #
     # DBus

@@ -333,6 +333,7 @@ class UnlockedDatabase:
 
                 self.add_stack_page(scrolled_window)
 
+                list_box.hide()
                 self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=(list_box, overlay))
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()
@@ -454,6 +455,9 @@ class UnlockedDatabase:
         groups = NotImplemented
         sorted_list = []
 
+        loading_indicator_thread = threading.Thread(target=self.loading_indicator_thread, args=(list_box, overlay))
+        loading_indicator_thread.start()
+
         if self.current_group.is_root_group:
             groups = self.database_manager.get_groups_in_root()
         else:
@@ -494,6 +498,10 @@ class UnlockedDatabase:
 
         for entry_row in sorted_list:
             list_box.add(entry_row)
+
+        if len(overlay.get_children()) >= 2:
+            if overlay.get_children()[1].get_name() == "PageAssemblingIndicator":
+                overlay.remove(overlay.get_children()[1])
 
         if len(list_box.get_children()) is 0:
             builder = Gtk.Builder()
@@ -866,6 +874,18 @@ class UnlockedDatabase:
     def stop_save_loop(self):
         self.builder.get_object("save_button").set_sensitive(True)
         self.save_loop = False
+
+    def loading_indicator_thread(self, list_box, overlay):
+        time.sleep(1)
+        if list_box.is_visible() is False:
+            GLib.idle_add(self.show_loading_indicator, overlay)
+
+    def show_loading_indicator(self, overlay):
+        spinner = Gtk.Spinner()
+        spinner.show()
+        spinner.start()
+        spinner.set_name("PageAssemblingIndicator")
+        overlay.add_overlay(spinner)
 
     #
     # DBus

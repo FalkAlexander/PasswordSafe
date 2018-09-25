@@ -844,7 +844,7 @@ class UnlockedDatabase:
 
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
-        timeout = passwordsafe.config_manager.get_database_lock_timeout() * 10
+        timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60
         if timeout is not 0:
             self.database_lock_timer = Timer(timeout, self.lock_timeout_database)
             self.database_lock_timer.start()

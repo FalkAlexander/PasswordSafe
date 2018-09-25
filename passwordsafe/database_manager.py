@@ -492,21 +492,23 @@ class DatabaseManager:
     def local_search(self, group, string, fulltext):
         lstring = str.lower(string)
         uuid_list = []
-        for group in group.subgroups:
-            if lstring in str.lower(self.get_group_name_from_group_object(group)):
-                if group.is_root_group is False:
-                    uuid_list.append(group.uuid)
+
+        for group_in in group.subgroups:
+            if lstring in str.lower(self.get_group_name_from_group_object(group_in)):
+                if group_in.is_root_group is False:
+                    uuid_list.append(group_in.uuid)
             if fulltext is True:
-                if lstring in str.lower(self.get_group_notes_from_group_object(group)):
-                    if group.is_root_group is False:
-                        uuid_list.append(group.uuid)
+                if lstring in str.lower(self.get_group_notes_from_group_object(group_in)):
+                    if group_in.is_root_group is False:
+                        uuid_list.append(group_in.uuid)
 
         for entry in group.entries:
+            print(entry)
             if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):
                 uuid_list.append(entry.uuid)
             if fulltext is True:
                 if lstring in str.lower(self.get_entry_username_from_entry_object(entry)) or string in str.lower(self.get_entry_url_from_entry_object(entry)) or string in str.lower(self.get_entry_notes_from_entry_object(entry)):
-                   uuid_list.append(entry.uuid) 
+                   uuid_list.append(entry.uuid)
 
         return uuid_list
 

@@ -503,7 +503,6 @@ class DatabaseManager:
                         uuid_list.append(group_in.uuid)
 
         for entry in group.entries:
-            print(entry)
             if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):
                 uuid_list.append(entry.uuid)
             if fulltext is True:

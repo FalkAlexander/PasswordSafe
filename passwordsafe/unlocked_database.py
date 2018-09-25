@@ -807,6 +807,9 @@ class UnlockedDatabase:
             save_thread.daemon = False
             save_thread.start()
 
+        # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
+        self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"), "dialog-password-symbolic")
+
         # Workaround against crash (pygobject fault?)
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is False:
             orig_group = self.current_group
@@ -825,9 +828,6 @@ class UnlockedDatabase:
         else:
             self.overlay.hide()
             self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
-
-        # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-        self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"), "dialog-password-symbolic")
 
     #
     # Helper Methods

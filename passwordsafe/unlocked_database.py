@@ -1,5 +1,5 @@
 from gettext import gettext as _
-from gi.repository import Gio, Gdk, Gtk, GLib, Handy, Notify
+from gi.repository import Gio, Gdk, Gtk, GLib, Handy
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.entry_page import EntryPage
@@ -807,9 +807,6 @@ class UnlockedDatabase:
             save_thread.daemon = False
             save_thread.start()
 
-        # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-        self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"), "dialog-password-symbolic")
-
         # Workaround against crash (pygobject fault?)
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is False:
             orig_group = self.current_group
@@ -829,6 +826,9 @@ class UnlockedDatabase:
             self.overlay.hide()
             self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
 
+        # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
+        self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"))
+
     #
     # Helper Methods
     #
@@ -844,7 +844,7 @@ class UnlockedDatabase:
 
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
-        timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60
+        timeout = passwordsafe.config_manager.get_database_lock_timeout() * 10
         if timeout is not 0:
             self.database_lock_timer = Timer(timeout, self.lock_timeout_database)
             self.database_lock_timer.start()
@@ -856,9 +856,10 @@ class UnlockedDatabase:
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
 
-    def send_notification(self, title, text, icon):
-        notify = Notify.Notification.new(title, text, icon)
-        notify.show()
+    def send_notification(self, title, text):
+        notification = Gio.Notification.new(title)
+        notification.set_body(text)
+        self.window.application.send_notification(None, notification)
 
     def start_save_loop(self):
         self.save_loop = True

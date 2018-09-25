@@ -61,7 +61,7 @@ install_subdir(
 message('Preparing init file')
 configure_file(
   input: 'passwordsafe.in',
-  output: 'passwordsafe',
+  output: 'gnome-passwordsafe',
   configuration: conf,
   install_dir: bindir
 )

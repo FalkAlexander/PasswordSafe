@@ -107,6 +107,8 @@ class DatabaseSettingsDialog():
     #
 
     def on_password_entry_changed(self, entry):
+        self.unlocked_database.start_database_lock_timer()
+
         current_password = self.builder.get_object("current_password_entry").get_text()
         new_password = self.builder.get_object("new_password_entry").get_text()
         confirm_password = self.builder.get_object("confirm_password_entry").get_text()
@@ -170,6 +172,7 @@ class DatabaseSettingsDialog():
     #
 
     def on_keyfile_select_button_clicked(self, button):
+        self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
             _("Choose current keyfile"), self.dialog, Gtk.FileChooserAction.OPEN,
@@ -204,6 +207,7 @@ class DatabaseSettingsDialog():
                 button.show_all()
 
     def on_keyfile_generator_button_clicked(self, button):
+        self.unlocked_database.start_database_lock_timer()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
             _("Choose location for keyfile"), self.dialog, Gtk.FileChooserAction.SAVE,

@@ -48,7 +48,6 @@ class UnlockDatabase:
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
 
         self.set_headerbar()
-
         self.assemble_stack()
 
     #
@@ -620,7 +619,7 @@ class UnlockDatabase:
 
         unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
         unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())
-        revealer_timer = threading.Timer(3.0, self.hide_unlock_failed_revealer)
+        revealer_timer = threading.Timer(3.0, GLib.idle_add, args=[self.hide_unlock_failed_revealer])
         revealer_timer.start()
 
     def hide_unlock_failed_revealer(self):

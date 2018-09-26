@@ -766,7 +766,7 @@ class UnlockedDatabase:
 
         database_action_revealer = self.builder.get_object("database_action_revealer")
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
-        revealer_timer = Timer(3.0, self.hide_database_action_revealer)
+        revealer_timer = Timer(3.0, GLib.idle_add, args=[self.hide_database_action_revealer])
         revealer_timer.start()
 
     def hide_database_action_revealer(self):
@@ -807,24 +807,8 @@ class UnlockedDatabase:
             save_thread.daemon = False
             save_thread.start()
 
-        # Workaround against crash (pygobject fault?)
-        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is False:
-            orig_group = self.current_group
-            self.current_group = self.database_manager.get_root_group()
-            self.show_page_of_new_directory(False, False)
-
-            self.overlay.hide()
-            self.unlock_database.unlock_database(timeout=True, unlocked_database=self, original_group=orig_group)
-        elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)).edit_page is True:
-            orig_group = self.current_group
-            self.current_group = self.database_manager.get_root_group()
-            self.show_page_of_new_directory(False, False)
-
-            self.overlay.hide()
-            self.unlock_database.unlock_database(timeout=True, unlocked_database=self, original_group=orig_group, original_group_edit_page=True)
-        else:
-            self.overlay.hide()
-            self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
+        self.overlay.hide()
+        self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
 
         # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
         self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"))
@@ -846,7 +830,7 @@ class UnlockedDatabase:
             self.database_lock_timer.cancel()
         timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60
         if timeout is not 0:
-            self.database_lock_timer = Timer(timeout, self.lock_timeout_database)
+            self.database_lock_timer = Timer(timeout, GLib.idle_add, args=[self.lock_timeout_database])
             self.database_lock_timer.start()
 
     def cancel_timers(self):

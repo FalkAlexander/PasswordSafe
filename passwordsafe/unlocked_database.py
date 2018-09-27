@@ -451,8 +451,6 @@ class UnlockedDatabase:
         add_loading_indicator_thread = threading.Thread(target=self.add_loading_indicator_thread, args=(list_box, overlay))
         add_loading_indicator_thread.start()
 
-        time.sleep(2)
-
         if self.current_group.is_root_group:
             groups = self.database_manager.get_groups_in_root()
         else:
@@ -861,7 +859,6 @@ class UnlockedDatabase:
         spinner.show()
         spinner.start()
         overlay.add_overlay(spinner)
-        print("added")
 
         remove_loading_indicator_thread = threading.Thread(target=self.remove_loading_indicator_thread, args=(list_box, overlay, spinner))
         remove_loading_indicator_thread.start()

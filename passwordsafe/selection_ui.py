@@ -101,7 +101,7 @@ class SelectionUI:
         for stack_page in self.unlocked_database.stack.get_children():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
-        self.unlocked_database.show_page_of_new_directory(False, False, False)
+        self.unlocked_database.show_page_of_new_directory(False, False)
 
     #
     # Events
@@ -109,7 +109,7 @@ class SelectionUI:
 
     def on_selection_cancel_button_clicked(self, widget):
         self.remove_selection_headerbar()
-        self.unlocked_database.show_page_of_new_directory(False, False, False)
+        self.unlocked_database.show_page_of_new_directory(False, False)
 
     def on_selection_delete_button_clicked(self, widget):
         rebuild_pathbar = False
@@ -137,7 +137,7 @@ class SelectionUI:
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 
-        self.unlocked_database.show_page_of_new_directory(False, False, False)
+        self.unlocked_database.show_page_of_new_directory(False, False)
 
         if rebuild_pathbar is True:
             self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
@@ -181,7 +181,7 @@ class SelectionUI:
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 
-        self.unlocked_database.show_page_of_new_directory(False, False, False)
+        self.unlocked_database.show_page_of_new_directory(False, False)
 
         if rebuild_pathbar is True:
             self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)

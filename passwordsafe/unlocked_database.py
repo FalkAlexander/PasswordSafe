@@ -260,16 +260,13 @@ class UnlockedDatabase:
     # Group and Entry Management
     #
 
-    def show_page_of_new_directory(self, edit_group, new_entry, animation=None):
+    def show_page_of_new_directory(self, edit_group, new_entry):
         # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_scheduled_stack_page()
 
         # Check if we need to remove the search headerbar
         if self.parent_widget.get_headerbar() is not self.headerbar:
             self.search.remove_search_headerbar(None)
-
-        if animation is False:
-            self.stack.set_transition_type(Gtk.StackTransitionType.NONE)
 
         # Creation of group edit page
         if edit_group is True:
@@ -303,10 +300,7 @@ class UnlockedDatabase:
             self.add_stack_page(scrolled_window)
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
             self.group_page.set_group_edit_page_headerbar()
-
-            if animation is False:
-                self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
-        # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)       
+        # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
             # Create not existing stack page for group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
@@ -338,6 +332,7 @@ class UnlockedDatabase:
                 self.add_stack_page(scrolled_window)
 
                 list_box.hide()
+
                 self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=(list_box, overlay))
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()
@@ -368,9 +363,6 @@ class UnlockedDatabase:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, True)
                 else:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
-
-            if animation is False:
-                self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
         # Stack page with current group's uuid already exists, we only need to switch stack page
         else:
             # For group
@@ -381,9 +373,6 @@ class UnlockedDatabase:
             else:
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
                 self.entry_page.set_entry_page_headerbar()
-
-            if animation is False:
-                self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
     def add_stack_page(self, scrolled_window):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
@@ -427,7 +416,7 @@ class UnlockedDatabase:
         stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
         stack_page = self.stack.get_child_by_name(stack_page_name)
         stack_page.destroy()
-        self.show_page_of_new_directory(False, False, False)
+        self.show_page_of_new_directory(False, False)
 
     def set_current_group(self, group):
         self.current_group = group
@@ -459,8 +448,10 @@ class UnlockedDatabase:
         groups = NotImplemented
         sorted_list = []
 
-        loading_indicator_thread = threading.Thread(target=self.loading_indicator_thread, args=(list_box, overlay))
-        loading_indicator_thread.start()
+        add_loading_indicator_thread = threading.Thread(target=self.add_loading_indicator_thread, args=(list_box, overlay))
+        add_loading_indicator_thread.start()
+
+        time.sleep(2)
 
         if self.current_group.is_root_group:
             groups = self.database_manager.get_groups_in_root()
@@ -503,10 +494,6 @@ class UnlockedDatabase:
         for entry_row in sorted_list:
             list_box.add(entry_row)
 
-        if len(overlay.get_children()) >= 2:
-            if overlay.get_children()[1].get_name() == "PageAssemblingIndicator":
-                overlay.remove(overlay.get_children()[1])
-
         if len(list_box.get_children()) is 0:
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
@@ -521,7 +508,7 @@ class UnlockedDatabase:
             if page.check_is_edit_page() is False:
                 page.destroy()
 
-        self.show_page_of_new_directory(False, False, False)
+        self.show_page_of_new_directory(False, False)
 
     #
     # Events
@@ -864,17 +851,29 @@ class UnlockedDatabase:
         self.builder.get_object("save_button").set_sensitive(True)
         self.save_loop = False
 
-    def loading_indicator_thread(self, list_box, overlay):
+    def add_loading_indicator_thread(self, list_box, overlay):
         time.sleep(1)
         if list_box.is_visible() is False and len(overlay.get_children()) < 2:
-            GLib.idle_add(self.show_loading_indicator, overlay)
+            GLib.idle_add(self.show_loading_indicator, list_box, overlay)
 
-    def show_loading_indicator(self, overlay):
+    def show_loading_indicator(self, list_box, overlay):
         spinner = Gtk.Spinner()
         spinner.show()
         spinner.start()
-        spinner.set_name("PageAssemblingIndicator")
         overlay.add_overlay(spinner)
+        print("added")
+
+        remove_loading_indicator_thread = threading.Thread(target=self.remove_loading_indicator_thread, args=(list_box, overlay, spinner))
+        remove_loading_indicator_thread.start()
+
+    def remove_loading_indicator_thread(self, list_box, overlay, spinner):
+        while(list_box.is_visible() is False):
+            continue
+        else:
+            GLib.idle_add(self.remove_loading_indicator, overlay, spinner)
+
+    def remove_loading_indicator(self, overlay, spinner):
+        overlay.remove(spinner)
 
     #
     # DBus

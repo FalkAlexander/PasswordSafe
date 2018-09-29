@@ -116,9 +116,17 @@ class EntryPage:
                 else:
                     scrolled_page.password_property_value_entry.set_text("")
 
-                scrolled_page.generate_password_button.set_popover(builder.get_object("generate_password_popover"))
+                scrolled_page.linked_box = builder.get_object("linked_box")
+                scrolled_page.generate_password_popover = builder.get_object("generate_password_popover")
+
+                scrolled_page.copy_password_button = builder.get_object("copy_password_button")
+                scrolled_page.copy_password_button.connect("clicked", self.on_copy_button_clicked, scrolled_page.password_property_value_entry)
+
+                scrolled_page.generate_password_button.set_popover(scrolled_page.generate_password_popover)
+                scrolled_page.password_property_value_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, None)
+                self.mode_generate_password_button()
+
                 builder.get_object("generate_button").connect("clicked", self.on_generate_button_clicked, builder, scrolled_page.password_property_value_entry)
-                scrolled_page.password_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
                 scrolled_page.password_property_value_entry.connect("copy-clipboard", self.on_password_entry_copy_clipboard, None)
                 self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, scrolled_page.password_property_value_entry, "<Control><Shift>c", signal="copy-clipboard")
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
@@ -130,7 +138,7 @@ class EntryPage:
                 scrolled_page.password_level_bar.add_offset_value("secure", 6.0)
                 scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(scrolled_page.password_property_value_entry.get_text())))
 
-                self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
+                self.change_password_entry_visibility(scrolled_page.password_property_value_entry)
 
                 properties_list_box.add(scrolled_page.password_property_row)
             elif scrolled_page.password_property_row is not "":
@@ -387,6 +395,7 @@ class EntryPage:
         elif type == "password":
             self.unlocked_database.database_manager.set_entry_password(entry_uuid, widget.get_text())
             scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(widget.get_text())))
+            self.mode_generate_password_button()
         elif type == "url":
             self.unlocked_database.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type == "notes":
@@ -505,7 +514,7 @@ class EntryPage:
 
         entry.set_text(pass_text)
 
-    def on_show_password_button_toggled(self, toggle_button, entry):
+    def on_show_password_button_toggled(self, entry, position, eventbutton):
         self.unlocked_database.start_database_lock_timer()
         if entry.get_visibility() is True:
             entry.set_visibility(False)
@@ -607,16 +616,32 @@ class EntryPage:
         attribute_entry_box.add(button)
         attribute_entry_box.reorder_child(button, 0)
 
+    def on_copy_button_clicked(self, button, entry):
+        self.unlocked_database.on_copy_secondary_button_clicked(entry, None, None)
+
     #
     # Helper
     #
 
-    def change_password_entry_visibility(self, entry, toggle_button):
-        toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)
+    def change_password_entry_visibility(self, entry):
+        entry.connect("icon-press", self.on_show_password_button_toggled)
 
         if passwordsafe.config_manager.get_show_password_fields() is False:
             entry.set_visibility(False)
         else:
-            toggle_button.toggled()
             entry.set_visibility(True)
+
+    def mode_generate_password_button(self):
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
+
+        if scrolled_page.password_property_value_entry.get_text() != "":
+            if scrolled_page.linked_box.get_children()[1] != scrolled_page.copy_password_button:
+                scrolled_page.linked_box.remove(scrolled_page.generate_password_button)
+                scrolled_page.linked_box.add(scrolled_page.copy_password_button)
+                scrolled_page.password_property_value_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, "user-not-tracked-symbolic")
+        else:
+            if scrolled_page.linked_box.get_children()[1] != scrolled_page.generate_password_button:
+                scrolled_page.linked_box.remove(scrolled_page.copy_password_button)
+                scrolled_page.linked_box.add(scrolled_page.generate_password_button)
+                scrolled_page.password_property_value_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, None)
 

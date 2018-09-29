@@ -18,9 +18,10 @@ class ScrolledPage(Gtk.ScrolledWindow):
 
     password_property_row = NotImplemented
     password_property_value_entry = NotImplemented
-    show_password_button = NotImplemented
     generate_password_button = NotImplemented
+    linked_box = NotImplemented
     password_level_bar = NotImplemented
+    generate_password_popover = NotImplemented
 
     url_property_row = NotImplemented
     url_property_value_entry = NotImplemented

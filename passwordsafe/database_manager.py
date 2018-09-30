@@ -193,9 +193,13 @@ class DatabaseManager:
         else:
             return entry.get_custom_property(key)
 
-    # Return all attributes for an entry
+    # Return all attributes for an entry uuid
     def get_entry_attributes_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.custom_properties
+
+    # Return all attributes for an entry object
+    def get_entry_attributes_from_entry_object(self, entry):
         return entry.custom_properties
 
     #

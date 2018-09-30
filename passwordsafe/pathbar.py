@@ -299,7 +299,7 @@ class Pathbar(Gtk.HBox):
             group_notes = self.database_manager.get_group_notes_from_group_object(current_group)
             group_icon = self.database_manager.get_group_icon_from_group_object(current_group)
 
-            if (group_name is None or group_name is "") and (group_notes is None or group_notes is "") and (group_icon is "0"):
+            if (group_name is None or group_name == "") and (group_notes is None or group_notes == "") and (group_icon == "0"):
                 parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
                 self.database_manager.delete_group_from_database(current_group)
                 self.rebuild_pathbar(pathbar_button)
@@ -311,11 +311,12 @@ class Pathbar(Gtk.HBox):
             entry_title = self.database_manager.get_entry_name_from_entry_object(current_group)
             entry_username = self.database_manager.get_entry_username_from_entry_object(current_group)
             entry_password = self.database_manager.get_entry_password_from_entry_object(current_group)
-            entry_url = self.database_manager.get_entry_notes_from_entry_object(current_group)
+            entry_url = self.database_manager.get_entry_url_from_entry_object(current_group)
             entry_notes = self.database_manager.get_entry_notes_from_entry_object(current_group)
             entry_icon = self.database_manager.get_entry_icon_from_entry_object(current_group)
+            entry_attributes = len(self.database_manager.get_entry_attributes_from_entry_object(current_group))
 
-            if (entry_title is None or entry_title is "") and (entry_username is None or entry_username is "") and (entry_password is None or entry_password is "") and (entry_url is None or entry_url is "") and (entry_notes is None or entry_notes is "") and (entry_icon is "0"):
+            if (entry_title is None or entry_title == "") and (entry_username is None or entry_username == "") and (entry_password is None or entry_password == "") and (entry_url is None or entry_url == "") and (entry_notes is None or entry_notes == "") and (entry_icon == "0") and (entry_attributes == 0):
                 parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
                 self.database_manager.delete_entry_from_database(current_group)
                 self.rebuild_pathbar(pathbar_button)

@@ -539,6 +539,7 @@ class EntryPage:
 
         self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, value)
         self.add_attribute_property_row(key, value)
+        scrolled_page.set_made_database_changes(True)
 
     def on_attribute_remove_button_clicked(self, button):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)

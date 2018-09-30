@@ -1,6 +1,7 @@
 project('passwordsafe', 'c',
   version: '3.31.1',
   meson_version: '>= 0.40.0',
+  default_options: ['development=false']
 )
 i18n = import('i18n')
 python = import('python3')
@@ -49,6 +50,7 @@ conf.set('PYTHON', python_bin.path())
 conf.set('libexecdir', LIBEXEC_DIR)
 conf.set('VERSION', meson.project_version())
 conf.set('CONTRIBUTORS', contributors)
+conf.set('DEVELOPMENT', get_option('development'))
 
 subdir('data')
 subdir('po')

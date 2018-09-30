@@ -1,10 +1,9 @@
 from pykeepass import PyKeePass
-from passwordsafe.logging_manager import LoggingManager
 import hashlib
 
 
 class DatabaseManager:
-    logging_manager = LoggingManager(True)
+    logging_manager = NotImplemented
     db = NotImplemented
     database_path = ""
     password_try = ""
@@ -15,7 +14,8 @@ class DatabaseManager:
     save_running = False
     scheduled_saves = 0
 
-    def __init__(self, database_path, password=None, keyfile=None):
+    def __init__(self, database_path, password=None, keyfile=None, logging_manager=None):
+        self.logging_manager = logging_manager
         self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
         self.password = password

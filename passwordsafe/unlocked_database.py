@@ -1,7 +1,6 @@
 from gettext import gettext as _
 from gi.repository import Gio, Gdk, Gtk, GLib, Handy
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
-from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.entry_page import EntryPage
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_page import GroupPage
@@ -24,7 +23,6 @@ class UnlockedDatabase:
     # Instances
     window = NotImplemented
     database_manager = NotImplemented
-    logging_manager = LoggingManager(True)
     unlock_database = NotImplemented
     responsive_ui = NotImplemented
     selection_ui = NotImplemented

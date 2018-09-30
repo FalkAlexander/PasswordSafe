@@ -8,6 +8,7 @@ gi.require_version('Handy', '0.0')
 from gi.repository import GObject, GLib, Gio, Gtk, Handy
 from gi.repository import Notify
 from gettext import gettext as _
+from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
 
@@ -15,6 +16,7 @@ from passwordsafe.settings_dialog import SettingsDialog
 class Application(Gtk.Application):
     window = NotImplemented
     file_list = []
+    development_mode = False
 
     def __init__(self, *args, **kwargs):
         super().__init__(
@@ -48,6 +50,9 @@ class Application(Gtk.Application):
             self.add_global_accelerators()
 
         self.window.present()
+
+    def get_logger(self):
+        return LoggingManager(self.development_mode)
 
     def assemble_application_menu(self):
         settings_action = Gio.SimpleAction.new("settings", None)

@@ -1,7 +1,6 @@
 from gettext import gettext as _
 from gi.repository import Gio, GLib, Gdk, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
-from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.create_database import CreateDatabase
 from passwordsafe.container_page import ContainerPage
@@ -15,6 +14,7 @@ import threading
 class MainWindow(Gtk.ApplicationWindow):
     application = NotImplemented
     database_manager = NotImplemented
+    logging_manager = NotImplemented
     container = NotImplemented
     quit_dialog = NotImplemented
     filechooser_creation_dialog = NotImplemented
@@ -22,7 +22,6 @@ class MainWindow(Gtk.ApplicationWindow):
     file_open_button = NotImplemented
     file_new_button = NotImplemented
     first_start_grid = NotImplemented
-    logging_manager = LoggingManager(True)
     opened_databases = []
     databases_to_save = []
     spinner = NotImplemented
@@ -31,8 +30,12 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.logging_manager = kwargs['application'].get_logger()
 
         self.assemble_window()
+
+        if self.logging_manager.development_mode is True:
+            passwordsafe.config_manager.set_development_backup_mode(True)
 
     def assemble_window(self):
         window_size = passwordsafe.config_manager.get_window_size()
@@ -66,6 +69,10 @@ class MainWindow(Gtk.ApplicationWindow):
         self.set_headerbar_button_layout()
 
         self.set_titlebar(self.headerbar)
+
+        if self.logging_manager.development_mode is True:
+            context = self.get_style_context()
+            context.add_class("DevHeaderBar")
 
     def set_headerbar(self):
         self.set_headerbar_button_layout()
@@ -361,7 +368,7 @@ class MainWindow(Gtk.ApplicationWindow):
         stock_database.copy(new_database, Gio.FileCopyFlags.OVERWRITE)
 
     def create_new_database_instance(self, tab_title):
-        self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
+        self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe", logging_manager=self.logging_manager)
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
@@ -384,7 +391,7 @@ class MainWindow(Gtk.ApplicationWindow):
         if self.container == NotImplemented:
             self.create_container()
 
-        page_instance = ContainerPage(headerbar)
+        page_instance = ContainerPage(headerbar, self.logging_manager.development_mode)
 
         tab_hbox = Gtk.HBox.new(False, 0)
         tab_label = Gtk.Label.new(title)

@@ -2,7 +2,6 @@ from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
 import passwordsafe.config_manager
-from passwordsafe.logging_manager import LoggingManager
 import ntpath
 import os
 import threading
@@ -23,7 +22,6 @@ class UnlockDatabase:
     unlock_database_stack_switcher = NotImplemented
     keyfile_path = NotImplemented
     composite_keyfile_path = NotImplemented
-    logging_manager = LoggingManager(True)
     overlay = NotImplemented
     timeout = NotImplemented
     unlocked_database = NotImplemented
@@ -241,7 +239,7 @@ class UnlockDatabase:
                     password_unlock_entry.grab_focus()
                     password_unlock_entry.get_style_context().add_class("error")
                     self.clear_input_fields()
-                    self.logging_manager.log_debug("Could not open database, wrong password")
+                    self.window.logging_manager.log_debug("Could not open database, wrong password")
             else:
                 password_unlock_button = self.builder.get_object("password_unlock_button")
                 password_unlock_button_image = password_unlock_button.get_children()[0]
@@ -263,7 +261,7 @@ class UnlockDatabase:
 
     def password_unlock_process(self):
         try:
-            self.database_manager = DatabaseManager(self.database_filepath, self.password_only)
+            self.database_manager = DatabaseManager(self.database_filepath, password=self.password_only, keyfile=None, logging_manager=self.window.logging_manager)
             GLib.idle_add(self.password_unlock_success)
         except(OSError, ValueError, AttributeError, core.ChecksumError):
             GLib.idle_add(self.password_unlock_failure)
@@ -275,7 +273,7 @@ class UnlockDatabase:
 
         self.password_only = NotImplemented
         self.set_last_used_unlock_method("password")
-        self.logging_manager.log_debug("Opening of database was successfull")
+        self.window.logging_manager.log_debug("Opening of database was successfull")
         self.open_database_page()
 
     def password_unlock_failure(self):
@@ -292,7 +290,7 @@ class UnlockDatabase:
         password_unlock_entry.grab_focus()
         password_unlock_entry.get_style_context().add_class("error")
         self.clear_input_fields()
-        self.logging_manager.log_debug("Could not open database, wrong password")
+        self.window.logging_manager.log_debug("Could not open database, wrong password")
 
     # Keyfile Unlock
 
@@ -310,7 +308,7 @@ class UnlockDatabase:
 
         response = keyfile_chooser_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
-            self.logging_manager.log_debug("File selected: " + keyfile_chooser_dialog.get_filename())
+            self.window.logging_manager.log_debug("File selected: " + keyfile_chooser_dialog.get_filename())
 
             keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
             keyfile_unlock_select_button.get_style_context().remove_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
@@ -320,7 +318,7 @@ class UnlockDatabase:
             self.keyfile_path = keyfile_chooser_dialog.get_filename()
 
         elif response == Gtk.ResponseType.CANCEL:
-            self.logging_manager.log_debug("File selection canceled")
+            self.window.logging_manager.log_debug("File selection canceled")
 
     def on_keyfile_unlock_button_clicked(self, widget):
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
@@ -353,7 +351,7 @@ class UnlockDatabase:
                 keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
                 keyfile_unlock_select_button.set_label(_("Try again"))
 
-                self.logging_manager.log_debug("Invalid keyfile chosen")
+                self.window.logging_manager.log_debug("Invalid keyfile chosen")
         elif self.keyfile_path is not NotImplemented:
             keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
             keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
@@ -375,7 +373,7 @@ class UnlockDatabase:
 
     def keyfile_unlock_process(self):
         try:
-            self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
+            self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path, logging_manager=self.window.logging_manager)
             GLib.idle_add(self.keyfile_unlock_success)
         except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError):
             GLib.idle_add(self.keyfile_unlock_failure)
@@ -388,7 +386,7 @@ class UnlockDatabase:
             return
 
         self.set_last_used_unlock_method("keyfile")
-        self.logging_manager.log_debug("Database successfully opened with keyfile")
+        self.window.logging_manager.log_debug("Database successfully opened with keyfile")
         self.keyfile_path = NotImplemented
         self.open_database_page()
 
@@ -410,7 +408,7 @@ class UnlockDatabase:
         keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
         keyfile_unlock_select_button.set_label(_("Try again"))
 
-        self.logging_manager.log_debug("Invalid keyfile chosen")
+        self.window.logging_manager.log_debug("Invalid keyfile chosen")
 
     # Composite Unlock
 
@@ -432,7 +430,7 @@ class UnlockDatabase:
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
-            self.logging_manager.log_debug("File selected: " + filechooser_opening_dialog.get_filename())
+            self.window.logging_manager.log_debug("File selected: " + filechooser_opening_dialog.get_filename())
             file_path = filechooser_opening_dialog.get_filename()
 
             label = Gtk.Label()
@@ -444,7 +442,7 @@ class UnlockDatabase:
 
             self.composite_keyfile_path = file_path
         elif response == Gtk.ResponseType.CANCEL:
-            self.logging_manager.log_debug("File selection cancelled")
+            self.window.logging_manager.log_debug("File selection cancelled")
 
     def on_composite_unlock_button_clicked(self, widget):
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
@@ -480,7 +478,7 @@ class UnlockDatabase:
                 composite_unlock_select_button.get_style_context().add_class("destructive-action")
                 self.clear_input_fields()
 
-                self.logging_manager.log_debug("Could not open database, wrong password")
+                self.window.logging_manager.log_debug("Could not open database, wrong password")
         else:
             if composite_unlock_entry.get_text() is not "" and self.composite_keyfile_path is not NotImplemented:
                 composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
@@ -507,7 +505,7 @@ class UnlockDatabase:
 
     def composite_unlock_process(self):
         try:
-            self.database_manager = DatabaseManager(self.database_filepath, self.password_composite, self.composite_keyfile_path)
+            self.database_manager = DatabaseManager(self.database_filepath, password=self.password_composite, keyfile=self.composite_keyfile_path, logging_manager=self.window.logging_manager)
             GLib.idle_add(self.composite_unlock_success)
         except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError):
             GLib.idle_add(self.composite_unlock_failure)
@@ -539,7 +537,7 @@ class UnlockDatabase:
             passwordsafe.config_manager.set_last_used_composite_key(pair_array)
 
         self.set_last_used_unlock_method("composite")
-        self.logging_manager.log_debug("Opening of database was successfull")
+        self.window.logging_manager.log_debug("Opening of database was successfull")
         self.composite_keyfile_path = NotImplemented
         self.open_database_page()
 
@@ -565,7 +563,7 @@ class UnlockDatabase:
         composite_unlock_select_button.get_style_context().add_class("destructive-action")
         self.clear_input_fields()
 
-        self.logging_manager.log_debug("Could not open database, wrong password")
+        self.window.logging_manager.log_debug("Could not open database, wrong password")
 
     #
     # Open Database

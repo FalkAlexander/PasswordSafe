@@ -1,6 +1,5 @@
 from gi.repository import Gtk
 from passwordsafe.pathbar_button import PathbarButton
-from passwordsafe.logging_manager import LoggingManager
 
 
 class Pathbar(Gtk.HBox):
@@ -13,7 +12,6 @@ class Pathbar(Gtk.HBox):
     pathbar_box = NotImplemented
     builder = NotImplemented
     home_button = NotImplemented
-    logging_manager = LoggingManager(True)
 
     def __init__(self, unlocked_database, dbm, path, headerbar):
         Gtk.HBox.__init__(self)

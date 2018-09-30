@@ -3,7 +3,7 @@ import datetime
 
 
 class LoggingManager:
-    debug = NotImplemented
+    development_mode = NotImplemented
     timestamp = NotImplemented
     date = NotImplemented
 
@@ -11,8 +11,8 @@ class LoggingManager:
     # Log Levels
     #
 
-    def __init__(self, debug_mode):
-        self.debug = debug_mode
+    def __init__(self, development_mode):
+        self.development_mode = development_mode
         self.timestamp = time.time()
         self.date = datetime.datetime.fromtimestamp(self.timestamp).strftime(
             '%Y-%m-%d %H:%M:%S')
@@ -31,5 +31,5 @@ class LoggingManager:
         print("( " + self.date + " ):" + "\033[92m INFO: \033[0m" + message)
 
     def log_debug(self, message):
-        if(self.debug):
+        if(self.development_mode is True):
             print("( " + self.date + " ):" + "\033[1m DEBUG: \033[0m" + message)

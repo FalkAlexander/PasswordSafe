@@ -323,7 +323,7 @@ class DatabaseManager:
         destination_group = self.get_group_object_from_uuid(group_uuid)
         entry = self.db.add_entry(
             destination_group, name, username, password, url=url, notes=notes,
-            expiry_time=None, tags=None, icon=icon, force_creation=False)
+            expiry_time=None, tags=None, icon=icon, force_creation=self.check_entry_in_group_exists("", destination_group))
         self.changes = True
 
         return entry
@@ -465,6 +465,14 @@ class DatabaseManager:
             return True
         else:
             return False
+
+    # Check if entry with title in group exists
+    def check_entry_in_group_exists(self, title, group):
+        entry = self.db.find_entries(title=title, group=group, recursive=False, history=False, first=True)
+        if entry is None:
+            return False
+        else:
+            return True
 
     # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's, search fulltext optionally
     def global_search(self, string, fulltext):

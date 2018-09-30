@@ -197,6 +197,9 @@ class DatabaseSettingsDialog():
             if self.keyfile_hash == self.database_manager.keyfile_hash or self.database_manager.keyfile_hash is NotImplemented:
                 self.generate_keyfile_button.set_sensitive(True)
 
+                if self.keyfile_hash == self.database_manager.keyfile_hash:
+                    self.new_keyfile_path = selected_keyfile
+
                 button.set_sensitive(False)
                 button.remove(button.get_children()[0])
                 button.add(Gtk.Image.new_from_icon_name("object-select-symbolic", Gtk.IconSize.BUTTON))

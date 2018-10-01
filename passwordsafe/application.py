@@ -16,11 +16,12 @@ from passwordsafe.settings_dialog import SettingsDialog
 class Application(Gtk.Application):
     window = NotImplemented
     file_list = []
-    development_mode = False
+    development_mode = None
+    application_id = "org.gnome.PasswordSafe"
 
     def __init__(self, *args, **kwargs):
         super().__init__(
-            *args, application_id="org.gnome.PasswordSafe", flags=Gio.ApplicationFlags.HANDLES_OPEN)
+            *args, application_id=self.application_id, flags=Gio.ApplicationFlags.HANDLES_OPEN)
         self.window = None
 
     def do_startup(self):
@@ -34,6 +35,8 @@ class Application(Gtk.Application):
 
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
+        print(self.development_mode)
+        print(self.application_id)
 
     def do_activate(self):
         if not self.window:

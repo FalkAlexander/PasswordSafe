@@ -1,7 +1,6 @@
 project('passwordsafe', 'c',
   version: '3.31.1',
-  meson_version: '>= 0.40.0',
-  default_options: ['development=false']
+  meson_version: '>= 0.40.0'
 )
 i18n = import('i18n')
 python = import('python3')
@@ -39,6 +38,16 @@ if run_command('[', '-d', construct_dir, ']').returncode() != 0
     error('Missing dependency python-construct >= 2.9.45')
 endif
 
+# Profiles
+if get_option('profile') == 'development'
+    profile = 'Devel'
+    name_suffix = ' (Development)'
+else
+    profile = ''
+    name_suffix = ''
+endif
+
+
 conf = configuration_data()
 conf.set('PACKAGE_URL', 'https://gitlab.gnome.org/World/PasswordSafe')
 conf.set('DATA_DIR', DATA_DIR)
@@ -48,9 +57,13 @@ conf.set('PYTHON_DIR', python_dir)
 conf.set('PYTHON_EXEC_DIR', join_paths(get_option('prefix'), python.sysconfig_path('stdlib')))
 conf.set('PYTHON', python_bin.path())
 conf.set('libexecdir', LIBEXEC_DIR)
-conf.set('VERSION', meson.project_version())
+if get_option('profile') == 'development'
+    conf.set('VERSION', run_command(['git', 'describe', '--long', '--tags']).stdout())
+else
+    conf.set('VERSION', meson.project_version())
+endif
 conf.set('CONTRIBUTORS', contributors)
-conf.set('DEVELOPMENT', get_option('development'))
+conf.set_quoted('PROFILE', profile)
 
 subdir('data')
 subdir('po')

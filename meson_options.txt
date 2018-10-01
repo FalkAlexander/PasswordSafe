@@ -1,1 +1,9 @@
-option('development', type : 'boolean', value : false, description : 'Enable debug and backup mode')
+option(
+  'profile',
+  type: 'combo',
+  choices: [
+    'default',
+    'development'
+  ],
+  value: 'default'
+)

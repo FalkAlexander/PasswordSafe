@@ -12,6 +12,7 @@ flatpak:
         MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.json"
         RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
         FLATPAK_MODULE: "passwordsafe"
+        MESON_ARGS: "-Dprofile=development"
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
         - flatpak build app meson --prefix=/app ${MESON_ARGS} _build

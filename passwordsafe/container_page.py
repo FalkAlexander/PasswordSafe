@@ -16,7 +16,7 @@ class ContainerPage(Gtk.Box):
 
         if self.development_mode is True:
             context = self.headerbar.get_style_context()
-            context.add_class("DevHeaderBar")
+            context.add_class("devel")
 
     def get_headerbar(self):
         return self.headerbar

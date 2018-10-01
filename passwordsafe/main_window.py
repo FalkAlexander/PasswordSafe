@@ -72,7 +72,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         if self.logging_manager.development_mode is True:
             context = self.get_style_context()
-            context.add_class("DevHeaderBar")
+            context.add_class("devel")
 
     def set_headerbar(self):
         self.set_headerbar_button_layout()

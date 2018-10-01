@@ -51,8 +51,6 @@ class SelectionUI:
 
         context = self.unlocked_database.headerbar.get_style_context()
         context.add_class('selection-mode')
-        if self.unlocked_database.window.logging_manager.development_mode is True:
-            context.remove_class("DevHeaderBar")
 
         self.unlocked_database.headerbar.set_show_close_button(False)
 
@@ -82,8 +80,6 @@ class SelectionUI:
 
         context = self.unlocked_database.headerbar.get_style_context()
         context.remove_class('selection-mode')
-        if self.unlocked_database.window.logging_manager.development_mode is True:
-            context.add_class("DevHeaderBar")
 
         self.unlocked_database.entries_selected.clear()
         self.unlocked_database.groups_selected.clear()

@@ -22,10 +22,20 @@ install_data(
   install_dir: 'share/glib-2.0/schemas'
 )
 
-# Merging the translations with the desktop file
-i18n.merge_file(
-  output: project_id + '.desktop',
-  input: project_id + '.desktop.in',
+desktop_conf = configuration_data()
+application_id = 'org.gnome.PasswordSafe'
+if get_option('profile') == 'development'
+  application_id = 'org.gnome.PasswordSafeDevel'
+endif
+desktop_conf.set('ICON', application_id)
+desktop = i18n.merge_file(
+  'desktop',
+  input: configure_file(
+    input: files('org.gnome.PasswordSafe.desktop.in.in'),
+    output: 'org.gnome.PasswordSafe.desktop.in',
+    configuration: desktop_conf
+  ),
+  output: '@0@.desktop'.format(application_id),
   po_dir: join_paths(meson.source_root(), 'po'),
   type: 'desktop',
   install: true,
@@ -38,9 +48,19 @@ if desktop_file_validate.found()
   test (
     'Validate desktop file',
     desktop_file_validate,
-    args: join_paths(meson.current_build_dir (), project_id + '.desktop')
+    args: join_paths(meson.current_build_dir (), application_id + '.desktop')
   )
 endif
+
+appdata = i18n.merge_file(
+  'appdata',
+  input: 'org.gnome.PasswordSafe.appdata.xml.in',
+  output: application_id + '.appdata.xml',
+  install: true,
+  install_dir: join_paths(join_paths('share'), 'metainfo'),
+  po_dir: join_paths(meson.source_root(), 'po')
+)
+
 
 # Validating the appdata file
 appstreamcli = find_program('appstream-util', required: false)
@@ -48,7 +68,7 @@ if appstreamcli.found()
   test (
     'Validate appdata file',
     appstreamcli,
-    args: ['validate-relax', join_paths(meson.current_build_dir (), project_id + '.appdata.xml')]
+    args: ['validate-relax', join_paths(meson.current_build_dir (), application_id + '.appdata.xml')]
   )
 endif
 

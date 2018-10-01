@@ -58,12 +58,18 @@ conf.set('PYTHON_EXEC_DIR', join_paths(get_option('prefix'), python.sysconfig_pa
 conf.set('PYTHON', python_bin.path())
 conf.set('libexecdir', LIBEXEC_DIR)
 if get_option('profile') == 'development'
-    conf.set('VERSION', run_command(['git', 'describe', '--long', '--tags']).stdout())
+    conf.set('VERSION', ''.join([run_command(['git', 'describe', '--long', '--tags']).stdout(), get_option('profile')]))
 else
     conf.set('VERSION', meson.project_version())
 endif
 conf.set('CONTRIBUTORS', contributors)
 conf.set_quoted('PROFILE', profile)
+
+application_id = 'org.gnome.PasswordSafe'
+if get_option('profile') == 'development'
+  application_id = 'org.gnome.PasswordSafeDevel'
+endif
+conf.set('APPID', application_id)
 
 subdir('data')
 subdir('po')

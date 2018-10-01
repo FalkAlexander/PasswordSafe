@@ -35,14 +35,12 @@ class Application(Gtk.Application):
 
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
-        print(self.development_mode)
-        print(self.application_id)
 
     def do_activate(self):
         if not self.window:
             self.window = MainWindow(
                 application=self, title="Password Safe",
-                icon_name="org.gnome.PasswordSafe")
+                icon_name=self.application_id)
 
             self.window.application = self
 

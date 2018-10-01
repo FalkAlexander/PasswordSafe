@@ -39,7 +39,7 @@ class Application(Gtk.Application):
         if not self.window:
             self.window = MainWindow(
                 application=self, title="Password Safe",
-                icon_name="dialog-password")
+                icon_name="org.gnome.PasswordSafe")
 
             self.window.application = self
 

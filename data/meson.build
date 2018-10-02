@@ -52,9 +52,19 @@ if desktop_file_validate.found()
   )
 endif
 
+appdata_conf = configuration_data()
+application_id = 'org.gnome.PasswordSafe'
+if get_option('profile') == 'development'
+  application_id = 'org.gnome.PasswordSafeDevel'
+endif
+appdata_conf.set('APPID', application_id)
 appdata = i18n.merge_file(
   'appdata',
-  input: 'org.gnome.PasswordSafe.appdata.xml.in',
+  input: configure_file(
+    input: files('org.gnome.PasswordSafe.appdata.xml.in.in'),
+    output: 'org.gnome.PasswordSafe.appdata.xml.in',
+    configuration: appdata_conf
+  ),
   output: application_id + '.appdata.xml',
   install: true,
   install_dir: join_paths(join_paths('share'), 'metainfo'),

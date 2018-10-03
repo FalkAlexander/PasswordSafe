@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PasswordSafe master\n"
+"Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-10-01 17:52+0000\n"
-"PO-Revision-Date: 2018-10-02 10:57+0200\n"
+"POT-Creation-Date: 2018-10-02 21:33+0000\n"
+"PO-Revision-Date: 2018-10-03 08:09+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.desktop.in.in:4
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Správa hesel pro GNOME"
 
@@ -127,7 +128,7 @@ msgstr "O aplikaci Trezor na hesla"
 #. Application name in the headerbar title
 #. Application title in headerbar.
 #: data/create_database.ui:922 data/main_window.ui:353
-#: data/org.gnome.PasswordSafe.appdata.xml.in:6
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:4
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
 msgid "Password Safe"
 msgstr "Trezor na hesla"
@@ -359,11 +360,7 @@ msgstr "Otevřít…"
 msgid "Recent Databases"
 msgstr "Nedávné databáze"
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in:7
-msgid "KeePass Client"
-msgstr "Klient KeePass"
-
-#: data/org.gnome.PasswordSafe.appdata.xml.in:9
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:11
 msgid ""
 "Password Safe is a password manager which makes use of the Keepass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
@@ -372,6 +369,10 @@ msgstr ""
 "Trezor na hesla je správce hesel, který používá databáze ve formátu Keepass "
 "v.4. Je výborně začleněný do uživatelského prostředí GNOME a nabízí "
 "jednoduché a přehledné uživatelské rozhraní pro správu databází hesel."
+
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:57
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.PasswordSafe.desktop.in.in:6
@@ -980,6 +981,9 @@ msgstr "Trezor %s byl uzamknut"
 #: passwordsafe/unlocked_database.py:797
 msgid "Keepass safe locked due to inactivity"
 msgstr "Trezor KeePass byl uzamknut kvůli nečinnosti"
+
+#~ msgid "KeePass Client"
+#~ msgstr "Klient KeePass"
 
 #~ msgid "dialog-password"
 #~ msgstr "dialog-password"

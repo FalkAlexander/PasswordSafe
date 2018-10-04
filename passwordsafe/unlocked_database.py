@@ -11,7 +11,6 @@ from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
 from threading import Timer
-import datetime
 import ntpath
 import os
 import passwordsafe.config_manager

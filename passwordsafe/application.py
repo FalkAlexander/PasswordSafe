@@ -1,13 +1,8 @@
 import gi
 import sys
-
 gi.require_version('Gtk', '3.0')
-gi.require_version('Notify', '0.7')
 gi.require_version('Handy', '0.0')
-
 from gi.repository import GObject, GLib, Gio, Gtk, Handy
-from gi.repository import Notify
-from gettext import gettext as _
 from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
@@ -20,6 +15,9 @@ class Application(Gtk.Application):
     application_id = "org.gnome.PasswordSafe"
 
     def __init__(self, *args, **kwargs):
+        # Register LibHandy Responsive Column
+        GObject.type_register(Handy.Column)
+
         super().__init__(
             *args, application_id=self.application_id, flags=Gio.ApplicationFlags.HANDLES_OPEN)
         self.window = None
@@ -28,10 +26,6 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
         GLib.set_application_name('Password Safe')
         GLib.set_prgname("Password Safe")
-        Notify.init("Password Safe")
-
-        # Register LibHandy Responsive Column
-        GObject.type_register(Handy.Column)
 
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
@@ -127,4 +121,3 @@ class Application(Gtk.Application):
 if __name__ == "__main__":
     app = Application()
     app.run(sys.argv)
-

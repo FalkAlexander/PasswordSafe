@@ -58,6 +58,7 @@ class SelectionUI:
         self.selection_mode_active = True
 
         self.prepare_selection_page()
+        self.unlocked_database.responsive_ui.headerbar_title()
 
     def remove_selection_headerbar(self):
         for stack_page in self.unlocked_database.stack.get_children():

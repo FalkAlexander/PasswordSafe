@@ -62,7 +62,10 @@ class SelectionUI:
     def remove_selection_headerbar(self):
         for stack_page in self.unlocked_database.stack.get_children():
             if stack_page.check_is_edit_page() is False:
-                stack_page.destroy()
+                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
+                for row in list_box:
+                    if hasattr(row, "checkbox_box") is True:
+                        row.checkbox_box.hide()
 
         selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
         selection_button_box = self.unlocked_database.builder.get_object("selection_button_box")
@@ -100,8 +103,7 @@ class SelectionUI:
     def prepare_selection_page(self):
         for stack_page in self.unlocked_database.stack.get_children():
             if stack_page.check_is_edit_page() is False:
-                stack_page.destroy()
-        self.unlocked_database.show_page_of_new_directory(False, False)
+                stack_page.show_all()
 
     #
     # Events
@@ -213,4 +215,3 @@ class SelectionUI:
                 row.selection_checkbox.set_active(True)
             else:
                 row.selection_checkbox.set_active(False)
-

@@ -14,6 +14,7 @@ class EntryRow(Gtk.ListBoxRow):
     password = NotImplemented
     changed = False
     selection_checkbox = NotImplemented
+    checkbox_box = NotImplemented
     color = NotImplemented
     type = "EntryRow"
 
@@ -46,12 +47,6 @@ class EntryRow(Gtk.ListBoxRow):
         entry_subtitle_label = builder.get_object("entry_subtitle_label")
         entry_copy_button = builder.get_object("entry_copy_button")
         entry_color_button = builder.get_object("entry_color_button")
-
-        if self.unlocked_database.selection_ui.selection_mode_active is True:
-            entry_checkbox_box = builder.get_object("entry_checkbox_box")
-            self.selection_checkbox = builder.get_object("selection_checkbox")
-            self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
-            entry_checkbox_box.add(self.selection_checkbox)
 
         # Icon
         if self.icon is not None:
@@ -90,6 +85,15 @@ class EntryRow(Gtk.ListBoxRow):
 
         self.add(entry_event_box)
         self.show_all()
+
+	# Selection Mode Checkboxes
+        self.checkbox_box = builder.get_object("entry_checkbox_box")
+        self.selection_checkbox = builder.get_object("selection_checkbox_entry")
+        self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
+        if self.unlocked_database.selection_ui.selection_mode_active is True:
+            self.checkbox_box.show_all()
+        else:
+            self.checkbox_box.hide()
 
     def get_uuid(self):
         return self.entry_uuid

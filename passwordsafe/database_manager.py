@@ -530,6 +530,9 @@ class DatabaseManager:
         else:
             return True
 
+    def check_is_group_object(self, group):
+        return hasattr(group, "name")
+
     #
     # Database creation methods
     #

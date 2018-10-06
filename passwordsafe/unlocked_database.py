@@ -179,6 +179,9 @@ class UnlockedDatabase:
     def set_browser_headerbar(self):
         self.builder.get_object("linkedbox_right").show_all()
 
+        filename_label = self.builder.get_object("filename_label")
+        filename_label.set_text(ntpath.basename(self.database_manager.database_path))
+
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
         self.responsive_ui.action_bar()

@@ -24,6 +24,9 @@ class GroupPage:
     def set_group_edit_page_headerbar(self):
         self.unlocked_database.builder.get_object("linkedbox_right").hide()
 
+        filename_label = self.unlocked_database.builder.get_object("filename_label")
+        filename_label.set_text(self.unlocked_database.database_manager.get_group_name_from_group_object(self.unlocked_database.current_group))
+
         self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()

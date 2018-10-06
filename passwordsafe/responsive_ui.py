@@ -44,12 +44,20 @@ class ResponsiveUI:
                 self.unlocked_database.pathbar.pathbar_box.show()
 
     def headerbar_title(self):
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group))
         if self.unlocked_database.window.mobile_width is True and self.unlocked_database.selection_ui.selection_mode_active is False:
             if len(self.unlocked_database.builder.get_object("title_box").get_children()) is not 0:
                 return
 
             filename_label = self.unlocked_database.builder.get_object("filename_label")
-            filename_label.set_text(ntpath.basename(self.unlocked_database.database_manager.database_path))
+            if scrolled_page.edit_page is False:
+                filename_label.set_text(ntpath.basename(self.unlocked_database.database_manager.database_path))
+            else:
+                if self.unlocked_database.database_manager.check_is_group_object(self.unlocked_database.current_group) is False:
+                    filename_label.set_text(self.unlocked_database.database_manager.get_entry_name_from_entry_object(self.unlocked_database.current_group))
+                else:
+                    filename_label.set_text(self.unlocked_database.database_manager.get_group_name_from_group_object(self.unlocked_database.current_group))
+
             self.unlocked_database.builder.get_object("title_box").add(filename_label)
         else:
             if len(self.unlocked_database.builder.get_object("title_box").get_children()) is 0:

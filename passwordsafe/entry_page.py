@@ -26,18 +26,7 @@ class EntryPage:
 
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
-        mod_box = self.unlocked_database.builder.get_object("mod_box")
-
-        for child in mod_box.get_children():
-            mod_box.remove(child)
-
-        mod_box.show_all()
-        self.unlocked_database.builder.get_object("linked_box1").show_all()
-
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid)
-
-        self.unlocked_database.builder.get_object("linked_box1").hide()
+        self.unlocked_database.builder.get_object("linkedbox_right").hide()
 
         self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()
@@ -619,4 +608,3 @@ class EntryPage:
         else:
             toggle_button.toggled()
             entry.set_visibility(True)
-

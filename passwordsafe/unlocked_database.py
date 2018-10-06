@@ -177,14 +177,7 @@ class UnlockedDatabase:
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
-        mod_box = self.builder.get_object("mod_box")
-
-        for child in mod_box.get_children():
-            mod_box.remove(child)
-
-        mod_box.add(self.builder.get_object("browser_buttons_box"))
-        mod_box.show_all()
-        self.builder.get_object("linked_box1").show_all()
+        self.builder.get_object("linkedbox_right").show_all()
 
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()

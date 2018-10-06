@@ -22,13 +22,7 @@ class GroupPage:
 
     # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
-        mod_box = self.unlocked_database.builder.get_object("mod_box")
-
-        for child in mod_box.get_children():
-            mod_box.remove(child)
-
-        self.unlocked_database.builder.get_object("linked_box1").hide()
-        mod_box.hide()
+        self.unlocked_database.builder.get_object("linkedbox_right").hide()
 
         self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()

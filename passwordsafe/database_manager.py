@@ -1,3 +1,5 @@
+from gi.repository import Gio
+from pykeepass.kdbx_parsing.kdbx import KDBX
 from pykeepass import PyKeePass
 import hashlib
 
@@ -13,11 +15,13 @@ class DatabaseManager:
     changes = False
     save_running = False
     scheduled_saves = 0
+    database_file_descriptor = NotImplemented
 
     def __init__(self, database_path, password=None, keyfile=None, logging_manager=None):
         self.logging_manager = logging_manager
         self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
+        self.database_file_descriptor = Gio.File.new_for_path(database_path)
         self.password = password
 
     #
@@ -341,9 +345,22 @@ class DatabaseManager:
     def save_database(self):
         if self.save_running is False and self.changes is True:
             self.save_running = True
-            self.db.save()
-            self.changes = False
-            self.logging_manager.log_debug("Saved database")
+
+            kdbx = KDBX.build(self.db.kdbx, password=self.db.password, keyfile=self.db.keyfile)
+
+            try:
+                output_stream = self.database_file_descriptor.replace(None, False, Gio.FileCreateFlags.REPLACE_DESTINATION | Gio.FileCreateFlags.PRIVATE, None)
+                output_stream.write_all(kdbx)
+                output_stream.close()
+                self.logging_manager.log_debug("Saved database")
+                self.changes = False
+            except Exception:
+                self.logging_manager.log_error("Error occured while saving database")
+
+            # Workaround
+            # Fix created and proposed: https://github.com/pschmitt/pykeepass/pull/102
+            self.db.kdbx = KDBX.parse_file(self.db.filename, password=self.db.password, keyfile=self.db.keyfile)
+
             self.save_running = False
 
     # Set database password

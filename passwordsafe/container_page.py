@@ -10,6 +10,7 @@ class ContainerPage(Gtk.Box):
         self.show_all()
         self.development_mode = development_mode
         self.headerbar = headerbar
+        self.set_name("BGPlatform")
 
     def set_headerbar(self, headerbar):
         self.headerbar = headerbar

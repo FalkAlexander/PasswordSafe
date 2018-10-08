@@ -271,7 +271,6 @@ class UnlockedDatabase:
             scrolled_window = ScrolledPage(True)
 
             viewport = Gtk.Viewport()
-            viewport.set_name("BGPlatform")
             scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
             # Responsive Container
@@ -304,7 +303,6 @@ class UnlockedDatabase:
 
                 scrolled_window = ScrolledPage(False)
                 viewport = Gtk.Viewport()
-                viewport.set_name("BGPlatform")
                 overlay = Gtk.Overlay()
 
                 # Responsive Container
@@ -337,7 +335,6 @@ class UnlockedDatabase:
                 scrolled_window = ScrolledPage(True)
 
                 viewport = Gtk.Viewport()
-                viewport.set_name("BGPlatform")
                 scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
                 # Responsive Container

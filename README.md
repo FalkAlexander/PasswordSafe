@@ -18,6 +18,9 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 * 📲 Responsive UI for both desktop and mobile
 
 # Installation
+## Stable Version Available on Flathub
+![https://flathub.org/apps/details/org.gnome.PasswordSafe](https://terminal.run/stuff/flathub_download_badge.png)
+
 ## Development Flatpak
 Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak) and extract it.  
 To install, open the flatpak package with GNOME Software and install it.  

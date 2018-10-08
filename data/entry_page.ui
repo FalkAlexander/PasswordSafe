@@ -1054,14 +1054,14 @@
   </object>
   <object class="GtkAdjustment" id="passphrase_length_adjustment">
     <property name="lower">3</property>
-    <property name="upper">40</property>
+    <property name="upper">999</property>
     <property name="value">8</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="password_length_adjustment">
     <property name="lower">8</property>
-    <property name="upper">128</property>
+    <property name="upper">999999</property>
     <property name="value">16</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
@@ -1127,7 +1127,6 @@
                       <object class="GtkSpinButton" id="digit_spin_button">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="max_length">2</property>
                         <property name="text">16</property>
                         <property name="input_purpose">number</property>
                         <property name="adjustment">password_length_adjustment</property>
@@ -1270,7 +1269,6 @@
                   <object class="GtkSpinButton" id="words_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="max_length">2</property>
                     <property name="text">8</property>
                     <property name="input_purpose">number</property>
                     <property name="adjustment">passphrase_length_adjustment</property>

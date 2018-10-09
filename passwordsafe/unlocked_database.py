@@ -11,6 +11,7 @@ from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
 from threading import Timer
+import codecs
 import ntpath
 import os
 import passwordsafe.config_manager
@@ -654,11 +655,28 @@ class UnlockedDatabase:
         self.show_page_of_new_directory(True, False)
 
     def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
+        self.send_to_clipboard(widget.get_text())
+
+    def send_to_clipboard(self, text):
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()
 
-        self.clipboard.set_text(widget.get_text(), -1)
+        if text.startswith("{REF:P"):
+            try:
+                self.clipboard.set_text(self.database_manager.get_entry_password_from_entry_uuid(self.hex_to_base64(self.reference_to_hex_uuid(text))), -1)
+            except(AttributeError):
+                self.window.logging_manager.log_error("Non-traceable password reference")
+                self.clipboard.set_text(text, -1)
+        elif text.startswith("{REF:U"):
+            try:
+                self.clipboard.set_text(self.database_manager.get_entry_username_from_entry_uuid(self.hex_to_base64(self.reference_to_hex_uuid(text))), -1)
+            except(AttributeError):
+                self.window.logging_manager.log_error("Non-traceable username reference")
+                self.clipboard.set_text(text, -1)
+        else:
+            self.clipboard.set_text(text, -1)
+
         self.show_database_action_revealer(_("Copied to clipboard"))
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
@@ -861,6 +879,12 @@ class UnlockedDatabase:
 
     def remove_loading_indicator(self, overlay, spinner):
         overlay.remove(spinner)
+
+    def reference_to_hex_uuid(self, reference_string):
+        return reference_string[9:-1].lower()
+
+    def hex_to_base64(self, hex_uuid):
+        return codecs.encode(codecs.decode(hex_uuid.encode(), 'hex'), 'base64').decode().splitlines()[0]
 
     #
     # DBus

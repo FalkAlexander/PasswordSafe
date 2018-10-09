@@ -110,7 +110,7 @@ class EntryPage:
                 scrolled_page.generate_password_button.set_popover(builder.get_object("generate_password_popover"))
                 builder.get_object("generate_button").connect("clicked", self.on_generate_button_clicked, builder, scrolled_page.password_property_value_entry)
                 scrolled_page.password_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
-                scrolled_page.password_property_value_entry.connect("copy-clipboard", self.on_password_entry_copy_clipboard, None)
+                scrolled_page.password_property_value_entry.connect("copy-clipboard", self.unlocked_database.on_copy_secondary_button_clicked, None, None)
                 self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, scrolled_page.password_property_value_entry, "<Control><Shift>c", signal="copy-clipboard")
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
@@ -459,17 +459,6 @@ class EntryPage:
 
         if button.get_active() is False:
             button.get_children()[0].hide()
-
-    def on_password_entry_copy_clipboard(self, widget, test):
-        self.unlocked_database.start_database_lock_timer()
-        if self.unlocked_database.clipboard_timer is not NotImplemented:
-            self.unlocked_database.clipboard_timer.cancel()
-
-        self.unlocked_database.clipboard.set_text(widget.get_text(), -1)
-        self.unlocked_database.show_database_action_revealer(_("Copied to clipboard"))
-        clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
-        self.unlocked_database.clipboard_timer = Timer(clear_clipboard_time, self.unlocked_database.clear_clipboard)
-        self.unlocked_database.clipboard_timer.start()
 
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
         self.unlocked_database.start_database_lock_timer()

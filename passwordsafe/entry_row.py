@@ -86,7 +86,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.add(entry_event_box)
         self.show_all()
 
-	# Selection Mode Checkboxes
+        # Selection Mode Checkboxes
         self.checkbox_box = builder.get_object("entry_checkbox_box")
         self.selection_checkbox = builder.get_object("selection_checkbox_entry")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
@@ -133,14 +133,7 @@ class EntryRow(Gtk.ListBoxRow):
             self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
 
     def on_entry_copy_button_clicked(self, button):
-        if self.unlocked_database.clipboard_timer is not NotImplemented:
-            self.unlocked_database.clipboard_timer.cancel()
-
-        self.unlocked_database.clipboard.set_text(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid), -1)
-        self.unlocked_database.show_database_action_revealer(_("Copied to clipboard"))
-        clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
-        self.unlocked_database.clipboard_timer = Timer(clear_clipboard_time, self.unlocked_database.clear_clipboard)
-        self.unlocked_database.clipboard_timer.start()
+        self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid))
 
     def update_color(self, color):
         self.color = color

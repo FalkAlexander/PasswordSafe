@@ -1,6 +1,5 @@
 from gi.repository import Gtk
 from gettext import gettext as _
-from threading import Timer
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager

@@ -1,6 +1,5 @@
 from gettext import gettext as _
 from gi.repository import Gtk
-from threading import Timer
 import passwordsafe.config_manager
 import passwordsafe.icon
 
@@ -66,9 +65,11 @@ class EntryRow(Gtk.ListBoxRow):
         # Subtitle
         subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
         if (self.database_manager.has_entry_username(self.entry_uuid) is True and subtitle is not ""):
-            entry_subtitle_label.set_text(
-                self.database_manager.get_entry_username_from_entry_uuid(
-                    self.entry_uuid))
+            username = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+            if username.startswith("{REF:U"):
+                entry_subtitle_label.set_text(self.database_manager.get_entry_username_from_entry_uuid(self.unlocked_database.hex_to_base64(self.unlocked_database.reference_to_hex_uuid(username))))
+            else:
+                entry_subtitle_label.set_text(username)
         else:
             entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
 

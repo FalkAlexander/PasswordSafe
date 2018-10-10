@@ -361,6 +361,8 @@ class DatabaseManager:
         for key in entry.custom_properties:
             clone_entry.set_custom_property(key, entry.custom_properties[key])
 
+        self.changes = True
+
     # Write all changes to database
     def save_database(self):
         if self.save_running is False and self.changes is True:

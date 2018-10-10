@@ -603,6 +603,10 @@ class MainWindow(Gtk.ApplicationWindow):
         delete_entry_action.connect("activate", self.execute_gio_action, "on_entry_delete_menu_button_clicked")
         self.application.add_action(delete_entry_action)
 
+        duplicate_entry_action = Gio.SimpleAction.new("entry.duplicate", None)
+        duplicate_entry_action.connect("activate", self.execute_gio_action, "on_entry_duplicate_menu_button_clicked")
+        self.application.add_action(duplicate_entry_action)
+
         edit_group_action = Gio.SimpleAction.new("group.edit", None)
         edit_group_action.connect("activate", self.execute_gio_action, "on_group_edit_menu_button_clicked")
         self.application.add_action(edit_group_action)
@@ -647,6 +651,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
         if name == "on_entry_delete_menu_button_clicked":
             action_db.on_entry_delete_menu_button_clicked(action, param)
+        elif name == "on_entry_duplicate_menu_button_clicked":
+            action_db.on_entry_duplicate_menu_button_clicked(action, param)
         elif name == "on_group_edit_menu_button_clicked":
             action_db.on_group_edit_menu_button_clicked(action, param)
         elif name == "on_group_delete_menu_button_clicked":

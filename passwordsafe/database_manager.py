@@ -341,6 +341,26 @@ class DatabaseManager:
         self.db.delete_entry(entry)
         self.changes = True
 
+    # Duplicate an entry
+    def duplicate_entry(self, entry):
+        title = entry.title
+        if title is None:
+            title = ""
+
+        username = entry.username
+        if username is None:
+            username = ""
+
+        password = entry.password
+        if password is None:
+            password = ""
+
+        clone_entry = self.db.add_entry(entry.parentgroup, title + " - Clone", username, password, url=entry.url, notes=entry.notes, expiry_time=entry.expiry_time, tags=entry.tags, icon=entry.icon, force_creation=True)
+
+        # Add custom properties
+        for key in entry.custom_properties:
+            clone_entry.set_custom_property(key, entry.custom_properties[key])
+
     # Write all changes to database
     def save_database(self):
         if self.save_running is False and self.changes is True:

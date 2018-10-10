@@ -58,7 +58,7 @@ class UnlockedDatabase:
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
-    entry_marked_for_delete = NotImplemented
+    entry_marked_popover = NotImplemented
     group_marked_for_delete = NotImplemented
     group_marked_for_edit = NotImplemented
 
@@ -607,7 +607,7 @@ class UnlockedDatabase:
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.entry_marked_for_delete = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_uuid())
+            self.entry_marked_popover = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_uuid())
             entry_context_popover = self.builder.get_object("entry_context_popover")
             entry_context_popover.set_relative_to(widget)
             entry_context_popover.show_all()
@@ -615,14 +615,21 @@ class UnlockedDatabase:
 
     def on_entry_delete_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()
-        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.entry_marked_for_delete)
+        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.entry_marked_popover)
 
         # If the deleted entry is in the pathbar, we need to rebuild the pathbar
         if self.pathbar.is_pathbar_button_in_pathbar(entry_uuid) is True:
             self.pathbar.rebuild_pathbar(self.current_group)
 
-        if self.entry_marked_for_delete is not None:
-            self.database_manager.delete_entry_from_database(self.entry_marked_for_delete)
+        if self.entry_marked_popover is not None:
+            self.database_manager.delete_entry_from_database(self.entry_marked_popover)
+        self.update_current_stack_page()
+
+    def on_entry_duplicate_menu_button_clicked(self, action, param):
+        self.start_database_lock_timer()
+
+        if self.entry_marked_popover is not None:
+            self.database_manager.duplicate_entry(self.entry_marked_popover)
         self.update_current_stack_page()
 
     def on_group_row_button_pressed(self, widget, event):

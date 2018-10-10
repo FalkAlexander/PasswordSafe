@@ -118,7 +118,8 @@ class EntryPage:
                 scrolled_page.password_level_bar.add_offset_value("medium", 3.0)
                 scrolled_page.password_level_bar.add_offset_value("strong", 5.0)
                 scrolled_page.password_level_bar.add_offset_value("secure", 6.0)
-                scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(scrolled_page.password_property_value_entry.get_text())))
+
+                self.set_password_level_bar(scrolled_page)
 
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
 
@@ -376,7 +377,7 @@ class EntryPage:
             self.unlocked_database.database_manager.set_entry_username(entry_uuid, widget.get_text())
         elif type == "password":
             self.unlocked_database.database_manager.set_entry_password(entry_uuid, widget.get_text())
-            scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(widget.get_text())))
+            self.set_password_level_bar(scrolled_page)
         elif type == "url":
             self.unlocked_database.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type == "notes":
@@ -599,3 +600,17 @@ class EntryPage:
         else:
             toggle_button.toggled()
             entry.set_visibility(True)
+
+    def set_password_level_bar(self, scrolled_page):
+        password = NotImplemented
+
+        if scrolled_page.password_property_value_entry.get_text().startswith("{REF:P"):
+            try:
+                password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(self.unlocked_database.hex_to_base64(self.unlocked_database.reference_to_hex_uuid(scrolled_page.password_property_value_entry.get_text())))
+            except(Exception):
+                password = scrolled_page.password_property_value_entry.get_text()
+        else:
+            password = scrolled_page.password_property_value_entry.get_text()
+
+        if password is not NotImplemented:
+            scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(password)))

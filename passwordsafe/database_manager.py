@@ -1,3 +1,4 @@
+from gettext import gettext as _
 from gi.repository import Gio
 from pykeepass.kdbx_parsing.kdbx import KDBX
 from pykeepass import PyKeePass
@@ -355,7 +356,8 @@ class DatabaseManager:
         if password is None:
             password = ""
 
-        clone_entry = self.db.add_entry(entry.parentgroup, title + " - Clone", username, password, url=entry.url, notes=entry.notes, expiry_time=entry.expiry_time, tags=entry.tags, icon=entry.icon, force_creation=True)
+        # NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
+        clone_entry = self.db.add_entry(entry.parentgroup, title + " - " + _("Clone"), username, password, url=entry.url, notes=entry.notes, expiry_time=entry.expiry_time, tags=entry.tags, icon=entry.icon, force_creation=True)
 
         # Add custom properties
         for key in entry.custom_properties:

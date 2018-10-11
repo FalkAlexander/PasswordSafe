@@ -1,3 +1,4 @@
+import logging
 import gi
 import sys
 gi.require_version('Gtk', '3.0')
@@ -47,7 +48,11 @@ class Application(Gtk.Application):
         self.window.present()
 
     def get_logger(self):
-        return LoggingManager(self.development_mode)
+        logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s", datefmt='%d-%m-%y %H:%M:%S', level=logging.DEBUG)
+        logger = logging.getLogger()
+        if self.development_mode is True:
+            logging.basicConfig(level=logging.DEBUG)
+        return logger
 
     def assemble_application_menu(self):
         settings_action = Gio.SimpleAction.new("settings", None)

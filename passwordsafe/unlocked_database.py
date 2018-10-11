@@ -673,13 +673,13 @@ class UnlockedDatabase:
             try:
                 self.clipboard.set_text(self.database_manager.get_entry_password_from_entry_uuid(self.hex_to_base64(self.reference_to_hex_uuid(text))), -1)
             except(AttributeError):
-                self.window.logging_manager.log_error("Non-traceable password reference")
+                self.window.logging_manager.error("Non-traceable password reference")
                 self.clipboard.set_text(text, -1)
         elif text.startswith("{REF:U"):
             try:
                 self.clipboard.set_text(self.database_manager.get_entry_username_from_entry_uuid(self.hex_to_base64(self.reference_to_hex_uuid(text))), -1)
             except(AttributeError):
-                self.window.logging_manager.log_error("Non-traceable username reference")
+                self.window.logging_manager.error("Non-traceable username reference")
                 self.clipboard.set_text(text, -1)
         else:
             self.clipboard.set_text(text, -1)

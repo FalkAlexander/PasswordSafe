@@ -34,7 +34,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.assemble_window()
 
-        if self.logging_manager.development_mode is True:
+        if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
 
     def assemble_window(self):
@@ -70,7 +70,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.set_titlebar(self.headerbar)
 
-        if self.logging_manager.development_mode is True:
+        if Gio.Application.get_default().development_mode is True:
             context = self.get_style_context()
             context.add_class("devel")
 
@@ -182,11 +182,11 @@ class MainWindow(Gtk.ApplicationWindow):
             for g_file in self.get_application().file_list:
                 self.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
         elif passwordsafe.config_manager.get_first_start_screen() is True and filepath is not "" and filepath is not None and os.path.exists(filepath) is True:
-            self.logging_manager.log_debug("Found last opened database (" + filepath + ")")
+            self.logging_manager.debug("Found last opened database (" + filepath + ")")
             tab_title = ntpath.basename(filepath)
             self.start_database_opening_routine(tab_title, filepath)
         else:
-            self.logging_manager.log_debug(
+            self.logging_manager.debug(
                 "No / Not valid last opened database found.")
             self.assemble_first_start_screen()
 
@@ -294,7 +294,7 @@ class MainWindow(Gtk.ApplicationWindow):
         response = filechooser_opening_dialog.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            self.logging_manager.log_debug(
+            self.logging_manager.debug(
                 "File selected: " + filechooser_opening_dialog.get_filename())
 
             database_already_opened = False
@@ -312,7 +312,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 self.start_database_opening_routine(
                     tab_title, filechooser_opening_dialog.get_filename())
         elif response == Gtk.ResponseType.CANCEL:
-            self.logging_manager.log_debug("File selection canceled")
+            self.logging_manager.debug("File selection canceled")
 
     def start_database_opening_routine(self, tab_title, filepath):
         builder = Gtk.Builder()
@@ -391,7 +391,7 @@ class MainWindow(Gtk.ApplicationWindow):
         if self.container == NotImplemented:
             self.create_container()
 
-        page_instance = ContainerPage(headerbar, self.logging_manager.development_mode)
+        page_instance = ContainerPage(headerbar, Gio.Application.get_default().development_mode)
 
         tab_hbox = Gtk.HBox.new(False, 0)
         tab_label = Gtk.Label.new(title)

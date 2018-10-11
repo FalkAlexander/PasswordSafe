@@ -376,10 +376,10 @@ class DatabaseManager:
                 output_stream = self.database_file_descriptor.replace(None, False, Gio.FileCreateFlags.REPLACE_DESTINATION | Gio.FileCreateFlags.PRIVATE, None)
                 output_stream.write_all(kdbx)
                 output_stream.close()
-                self.logging_manager.log_debug("Saved database")
+                self.logging_manager.debug("Saved database")
                 self.changes = False
             except Exception:
-                self.logging_manager.log_error("Error occured while saving database")
+                self.logging_manager.error("Error occured while saving database")
 
             # Workaround
             # Fix created and proposed: https://github.com/pschmitt/pykeepass/pull/102

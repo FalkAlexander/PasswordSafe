@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-10-02 21:33+0000\n"
-"PO-Revision-Date: 2018-10-03 08:09+0200\n"
+"POT-Creation-Date: 2018-10-10 19:27+0000\n"
+"PO-Revision-Date: 2018-10-11 11:09+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -33,7 +33,7 @@ msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
 #: data/create_database.ui:74 data/database_settings_dialog.ui:435
-#: data/entry_page.ui:1244 data/entry_page.ui:1381
+#: data/entry_page.ui:1243 data/entry_page.ui:1379
 #: passwordsafe/unlock_database.py:93
 msgid "Password"
 msgstr "Heslo"
@@ -94,7 +94,7 @@ msgid "Please try again"
 msgstr "Zkuste to prosím znovu"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1332
+#: data/create_database.ui:781 data/entry_page.ui:1330
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
@@ -109,18 +109,18 @@ msgid "Generate Keyfile"
 msgstr "Generování souboru s klíčem"
 
 #: data/create_database.ui:880 data/main_window.ui:198
-#: data/unlock_database.ui:311 data/unlocked_database.ui:920
+#: data/unlock_database.ui:311 data/unlocked_database.ui:974
 msgid "Preferences"
 msgstr "Předvolby"
 
 #: data/create_database.ui:894 data/main_window.ui:212
-#: data/unlock_database.ui:325 data/unlocked_database.ui:934
+#: data/unlock_database.ui:325 data/unlocked_database.ui:988
 msgid "Keyboard Shortcuts"
 msgstr "Klávesové zkratky"
 
 #. "Password Safe" is the application name
 #: data/create_database.ui:908 data/main_window.ui:226
-#: data/unlock_database.ui:339 data/unlocked_database.ui:948
+#: data/unlock_database.ui:339 data/unlocked_database.ui:1002
 msgid "About Password Safe"
 msgstr "O aplikaci Trezor na hesla"
 
@@ -146,7 +146,7 @@ msgstr "Trezor byl úspěšně vytvořen"
 #. Headerbar subtitle for the keepass safe unlock screen.
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
 #: data/created_database.ui:50 data/unlock_database.ui:286
-#: data/unlock_database.ui:354 data/unlocked_database.ui:881
+#: data/unlock_database.ui:354 data/unlocked_database.ui:935
 msgid "Open Safe"
 msgstr "Otevřít trezor"
 
@@ -301,36 +301,36 @@ msgstr "Poznámky"
 msgid "Length"
 msgstr "Délka"
 
-#: data/entry_page.ui:1149
+#: data/entry_page.ui:1148
 msgid "Characters"
 msgstr "Znaky"
 
-#: data/entry_page.ui:1257
+#: data/entry_page.ui:1256
 msgid "Words"
 msgstr "Počet slov"
 
-#: data/entry_page.ui:1291
+#: data/entry_page.ui:1289
 msgid "Separator"
 msgstr "Oddělovač"
 
-#: data/entry_page.ui:1308
+#: data/entry_page.ui:1306
 msgid "Enter character here…"
 msgstr "zde zadejte znak…"
 
-#: data/entry_page.ui:1319
+#: data/entry_page.ui:1317
 msgid "Passphrase"
 msgstr "Heslová fráze"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1436
+#: data/entry_page.ui:1434
 msgid "Show/hide password"
 msgstr "Zobrazit/skrýt heslo"
 
-#: data/entry_page.ui:1616
+#: data/entry_page.ui:1614
 msgid "URL"
 msgstr "Adresa URL"
 
-#: data/entry_page.ui:1702
+#: data/entry_page.ui:1700
 msgid "Username"
 msgstr "Uživatelské jméno"
 
@@ -538,7 +538,7 @@ msgstr "Soubor již existuje"
 msgid "Do you want to override it?"
 msgstr "Chcete jej přepsat?"
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1277
+#: data/override_dialog.ui:22 data/unlocked_database.ui:1331
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -557,7 +557,7 @@ msgid "Select the safes you want to save."
 msgstr "Vyberte trezory, které chcete uložit"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/quit_dialog.ui:22 data/unlocked_database.ui:988
+#: data/quit_dialog.ui:22 data/unlocked_database.ui:1042
 msgid "Back"
 msgstr "Zpět"
 
@@ -581,7 +581,7 @@ msgid "Discard"
 msgstr "Zahodit"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:733
+#: data/save_dialog.ui:35 data/unlocked_database.ui:787
 #: passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Uložit"
@@ -746,7 +746,7 @@ msgid "Open Keyfile"
 msgstr "Otevřít soubor s klíčem"
 
 #. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:272 data/unlocked_database.ui:867
+#: data/unlock_database.ui:272 data/unlocked_database.ui:921
 msgid "New Safe"
 msgstr "Nový trezor"
 
@@ -754,12 +754,12 @@ msgstr "Nový trezor"
 msgid "Enter password to unlock"
 msgstr "Zadejte heslo pro odemknutí"
 
-#: data/unlock_database.ui:591
+#: data/unlock_database.ui:590
 msgid "Failed to unlock safe"
 msgstr "Selhalo odemknutí trezoru"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:20 data/unlocked_database.ui:1013
+#: data/unlocked_database.ui:20 data/unlocked_database.ui:1067
 msgid "Selection Mode"
 msgstr "Režim výběru"
 
@@ -776,75 +776,79 @@ msgstr "Prázdná skupina"
 msgid "No search results"
 msgstr "Hledání nemá žádné výsledky"
 
-#: data/unlocked_database.ui:297 data/unlocked_database.ui:488
+#: data/unlocked_database.ui:302
+msgid "Duplicate"
+msgstr "Duplikovat"
+
+#: data/unlocked_database.ui:316 data/unlocked_database.ui:528
 msgid "Delete"
 msgstr "Smazat"
 
-#: data/unlocked_database.ui:474
+#: data/unlocked_database.ui:514
 msgid "Edit"
 msgstr "Upravit"
 
-#: data/unlocked_database.ui:607
+#: data/unlocked_database.ui:661
 msgid "Enter search term"
 msgstr "Zadejte hledaný výraz"
 
 #. Button tooltip in headerbar to open page for creation of a new password entry
-#: data/unlocked_database.ui:675
+#: data/unlocked_database.ui:729
 msgid "Create password…"
 msgstr "Vytvořit heslo…"
 
 #. Button tooltip in headerbar to open page for creation of a new group
-#: data/unlocked_database.ui:697
+#: data/unlocked_database.ui:751
 msgid "Create group…"
 msgstr "Vytvořit skupinu…"
 
-#: data/unlocked_database.ui:755
+#: data/unlocked_database.ui:809
 msgid "Lock"
 msgstr "Zamknout"
 
-#: data/unlocked_database.ui:800
+#: data/unlocked_database.ui:854
 msgid "Sort"
 msgstr "Řadit"
 
 #. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:842
+#: data/unlocked_database.ui:896
 msgid "Last Added"
 msgstr "Naposledy přidáno"
 
 #. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:895
+#: data/unlocked_database.ui:949
 msgid "Safe Settings"
 msgstr "Nastavení trezoru"
 
 #. Only apply the search term for the current group
-#: data/unlocked_database.ui:1124
+#: data/unlocked_database.ui:1178
 msgid "Local"
 msgstr "V aktuální skupině"
 
 #. Use full text search
-#: data/unlocked_database.ui:1138
+#: data/unlocked_database.ui:1192
 msgid "Full Text"
 msgstr "Ve všech textech"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1240
+#: data/unlocked_database.ui:1294
 msgid "Move selection"
 msgstr "Přesunout vybrané"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1260
+#: data/unlocked_database.ui:1314
 msgid "Delete selection"
 msgstr "Smazat vybrané"
 
-#: data/unlocked_database.ui:1317
+#: data/unlocked_database.ui:1361
 msgid "Select all"
 msgstr "Vybrat vše"
 
-#: data/unlocked_database.ui:1331
+#: data/unlocked_database.ui:1375
 msgid "Select none"
 msgstr "Zrušit výběr"
 
-#: data/unlocked_database.ui:1361
+#: data/unlocked_database.ui:1405
 msgid "Click on a checkbox to select"
 msgstr "Vybírejte klikáním na zaškrtávací políčka"
 
@@ -857,6 +861,11 @@ msgstr "Výběr umístění pro soubor s klíčem"
 #: passwordsafe/create_database.py:259
 msgid "Generating…"
 msgstr "Generuje se…"
+
+#. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
+#: passwordsafe/database_manager.py:360
+msgid "Clone"
+msgstr "Klonovat"
 
 #. NOTE: Filechooser title for choosing current used keyfile
 #: passwordsafe/database_settings_dialog.py:178
@@ -892,24 +901,19 @@ msgstr "ChaCha20 256bitový"
 msgid "Twofish 256-bit"
 msgstr "Twofish 256bitový"
 
-#: passwordsafe/entry_page.py:478 passwordsafe/entry_row.py:136
-#: passwordsafe/unlocked_database.py:670
-msgid "Copied to clipboard"
-msgstr "Zkopírováno do schránky"
-
-#: passwordsafe/entry_page.py:532 passwordsafe/entry_page.py:597
+#: passwordsafe/entry_page.py:512 passwordsafe/entry_page.py:577
 msgid "Attribute key already exists"
 msgstr "Klíč takovéto vlastnosti již existuje"
 
-#: passwordsafe/entry_row.py:69
+#: passwordsafe/entry_row.py:63
 msgid "Title not specified"
 msgstr "Název není zadán"
 
-#: passwordsafe/entry_row.py:78
+#: passwordsafe/entry_row.py:74
 msgid "No username specified"
 msgstr "Není zadáno žádné uživatelské jméno"
 
-#: passwordsafe/group_row.py:41
+#: passwordsafe/group_row.py:36
 msgid "No group title specified"
 msgstr "Není zadán žádný název skupiny"
 
@@ -928,15 +932,15 @@ msgstr "Databáze KeePass 3.1/4"
 msgid "Choose location for Keepass safe"
 msgstr "Výběr umístění pro trezor KeePass"
 
-#: passwordsafe/selection_ui.py:149
+#: passwordsafe/selection_ui.py:151
 msgid "Deletion completed"
 msgstr "Mazání bylo dokončeno"
 
-#: passwordsafe/selection_ui.py:191
+#: passwordsafe/selection_ui.py:193
 msgid "Move completed"
 msgstr "Přesun byl dokončen"
 
-#: passwordsafe/selection_ui.py:193
+#: passwordsafe/selection_ui.py:195
 msgid "Skipped moving group into itself"
 msgstr "Vynechán přesun skupiny do sebe sama"
 
@@ -958,27 +962,31 @@ msgstr "Zkusit znovu"
 msgid "Choose Keyfile"
 msgstr "Výběr souboru s klíčem"
 
-#: passwordsafe/unlocked_database.py:544
+#: passwordsafe/unlocked_database.py:537
 msgid "Database saved"
 msgstr "Databáze byla uložena"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:547
+#: passwordsafe/unlocked_database.py:540
 msgid "Please wait. Another save is running."
 msgstr "Počkejte prosím, probíhá jiné ukládání."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:550
+#: passwordsafe/unlocked_database.py:543
 msgid "No changes made"
 msgstr "Nebyly provedeny žádné změny"
 
+#: passwordsafe/unlocked_database.py:687
+msgid "Copied to clipboard"
+msgstr "Zkopírováno do schránky"
+
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:797
+#: passwordsafe/unlocked_database.py:814
 #, python-format
 msgid "%s locked"
 msgstr "Trezor %s byl uzamknut"
 
-#: passwordsafe/unlocked_database.py:797
+#: passwordsafe/unlocked_database.py:814
 msgid "Keepass safe locked due to inactivity"
 msgstr "Trezor KeePass byl uzamknut kvůli nečinnosti"
 

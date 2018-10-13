@@ -4,7 +4,6 @@ import sys
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '0.0')
 from gi.repository import GObject, GLib, Gio, Gtk, Handy
-from passwordsafe.logging_manager import LoggingManager
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
 
@@ -126,4 +125,3 @@ class Application(Gtk.Application):
 if __name__ == "__main__":
     app = Application()
     app.run(sys.argv)
-

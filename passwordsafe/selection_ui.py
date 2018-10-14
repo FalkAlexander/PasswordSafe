@@ -104,7 +104,10 @@ class SelectionUI:
     def prepare_selection_page(self):
         for stack_page in self.unlocked_database.stack.get_children():
             if stack_page.check_is_edit_page() is False:
-                stack_page.show_all()
+                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
+                for row in list_box:
+                    if hasattr(row, "checkbox_box") is True:
+                        row.checkbox_box.show()
 
     #
     # Events

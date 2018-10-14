@@ -108,6 +108,8 @@ class SelectionUI:
                 for row in list_box:
                     if hasattr(row, "checkbox_box") is True:
                         row.checkbox_box.show()
+                    if hasattr(row, "edit_button") is True:
+                        row.edit_button.hide()
 
     #
     # Events

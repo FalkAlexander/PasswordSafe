@@ -611,12 +611,12 @@ class UnlockedDatabase:
             self.selection_ui.set_selection_headerbar(None)
 
     def on_group_row_hover_begin(self, event_box, event_crossing):
-        edit_button = event_box.get_children()[0].get_children()[3].get_children()[0]
-        edit_button.show_all()
+        if self.selection_ui.selection_mode_active is False:
+            event_box.get_children()[0].get_children()[3].get_children()[0].show_all()
 
     def on_group_row_hover_end(self, event_box, event_crossing):
-        edit_button = event_box.get_children()[0].get_children()[3].get_children()[0]
-        edit_button.hide()
+        if self.selection_ui.selection_mode_active is False:
+            event_box.get_children()[0].get_children()[3].get_children()[0].hide()
 
     def on_entry_delete_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()

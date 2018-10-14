@@ -27,6 +27,8 @@ class GroupRow(Gtk.ListBoxRow):
             "/org/gnome/PasswordSafe/unlocked_database.ui")
         group_event_box = builder.get_object("group_event_box")
         group_event_box.connect("button-press-event", self.unlocked_database.on_group_row_button_pressed)
+        group_event_box.connect("enter-notify-event", self.unlocked_database.on_group_row_hover_begin)
+        group_event_box.connect("leave-notify-event", self.unlocked_database.on_group_row_hover_end)
 
         group_name_label = builder.get_object("group_name_label")
 
@@ -38,7 +40,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.add(group_event_box)
         self.show_all()
 
-	# Selection Mode Checkboxes
+        # Selection Mode Checkboxes
         self.checkbox_box = builder.get_object("group_checkbox_box")
         self.selection_checkbox = builder.get_object("selection_checkbox_group")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
@@ -46,6 +48,9 @@ class GroupRow(Gtk.ListBoxRow):
             self.checkbox_box.show_all()
         else:
             self.checkbox_box.hide()
+
+        # Edit Button
+        builder.get_object("group_edit_button").hide()
 
     def get_uuid(self):
         return self.group_uuid

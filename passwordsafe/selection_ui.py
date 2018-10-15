@@ -67,6 +67,8 @@ class SelectionUI:
                 for row in list_box:
                     if hasattr(row, "checkbox_box") is True:
                         row.checkbox_box.hide()
+                    if hasattr(row, "edit_button") is True:
+                        row.edit_button.show_all()
 
         selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
         selection_button_box = self.unlocked_database.builder.get_object("selection_button_box")

@@ -618,6 +618,9 @@ class UnlockedDatabase:
         if self.selection_ui.selection_mode_active is False:
             event_box.get_children()[0].get_children()[3].get_children()[0].hide()
 
+    def on_group_edit_button_clicked(self, button):
+        print("click")
+
     def on_entry_delete_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.entry_marked_popover)

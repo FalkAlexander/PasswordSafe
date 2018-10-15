@@ -28,8 +28,6 @@ class GroupRow(Gtk.ListBoxRow):
             "/org/gnome/PasswordSafe/unlocked_database.ui")
         group_event_box = builder.get_object("group_event_box")
         group_event_box.connect("button-press-event", self.unlocked_database.on_group_row_button_pressed)
-        group_event_box.connect("enter-notify-event", self.unlocked_database.on_group_row_hover_begin)
-        group_event_box.connect("leave-notify-event", self.unlocked_database.on_group_row_hover_end)
 
         group_name_label = builder.get_object("group_name_label")
 
@@ -52,7 +50,7 @@ class GroupRow(Gtk.ListBoxRow):
 
         # Edit Button
         self.edit_button = builder.get_object("group_edit_button")
-        self.edit_button.hide()
+        self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
 
     def get_uuid(self):
         return self.group_uuid

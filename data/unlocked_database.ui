@@ -458,13 +458,14 @@
         </child>
         <child>
           <object class="GtkButton" id="entry_copy_button">
+            <property name="name">ListBoxRowButton</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
             <property name="margin_left">5</property>
-            <property name="margin_right">5</property>
+            <property name="margin_right">8</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -545,7 +546,7 @@
     <property name="halign">baseline</property>
     <child>
       <object class="GtkBox" id="group_box">
-        <property name="height_request">40</property>
+        <property name="height_request">45</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
@@ -614,13 +615,14 @@
             <property name="hexpand">True</property>
             <child>
               <object class="GtkButton" id="group_edit_button">
+                <property name="name">ListBoxRowButton</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">end</property>
                 <property name="valign">center</property>
                 <property name="margin_left">5</property>
-                <property name="margin_right">5</property>
+                <property name="margin_right">8</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>

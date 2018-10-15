@@ -6,6 +6,7 @@ from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_page import GroupPage
 from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
+from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.scrolled_page import ScrolledPage
@@ -45,6 +46,7 @@ class UnlockedDatabase:
     search_overlay = NotImplemented
     database_settings_dialog = NotImplemented
     references_dialog = NotImplemented
+    properties_dialog = NotImplemented
 
     # Objects
     builder = NotImplemented
@@ -762,6 +764,9 @@ class UnlockedDatabase:
     def show_references_dialog(self, action, param):
         ReferencesDialog(self)
 
+    def show_properties_dialog(self, action, param):
+        PropertiesDialog(self)
+
     #
     # Utils
     #
@@ -793,6 +798,9 @@ class UnlockedDatabase:
         if self.references_dialog is not NotImplemented:
             self.references_dialog.close()
 
+        if self.properties_dialog is not NotImplemented:
+            self.properties.close()
+
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)
             save_thread.daemon = False
@@ -815,6 +823,9 @@ class UnlockedDatabase:
 
         if self.references_dialog is not NotImplemented:
             self.references_dialog.close()
+
+        if self.properties_dialog is not NotImplemented:
+            self.properties.close()
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)

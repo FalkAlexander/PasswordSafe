@@ -1252,6 +1252,20 @@
             <property name="position">3</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkModelButton" id="properties_menu_entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.element.properties</property>
+            <property name="text" translatable="yes">Properties</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
       </object>
       <packing>
         <property name="submenu">main</property>

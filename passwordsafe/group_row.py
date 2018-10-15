@@ -8,6 +8,7 @@ class GroupRow(Gtk.ListBoxRow):
     label = NotImplemented
     selection_checkbox = NotImplemented
     checkbox_box = NotImplemented
+    edit_button = NotImplemented
     type = "GroupRow"
 
     def __init__(self, unlocked_database, dbm, group):
@@ -38,7 +39,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.add(group_event_box)
         self.show_all()
 
-	# Selection Mode Checkboxes
+        # Selection Mode Checkboxes
         self.checkbox_box = builder.get_object("group_checkbox_box")
         self.selection_checkbox = builder.get_object("selection_checkbox_group")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
@@ -46,6 +47,10 @@ class GroupRow(Gtk.ListBoxRow):
             self.checkbox_box.show_all()
         else:
             self.checkbox_box.hide()
+
+        # Edit Button
+        self.edit_button = builder.get_object("group_edit_button")
+        self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
 
     def get_uuid(self):
         return self.group_uuid

@@ -32,7 +32,7 @@ class SelectionUI:
     #
 
     # Selection headerbar
-    def set_selection_headerbar(self, widget):
+    def set_selection_headerbar(self, widget, select_row=None):
         self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
@@ -57,7 +57,7 @@ class SelectionUI:
 
         self.selection_mode_active = True
 
-        self.prepare_selection_page()
+        self.prepare_selection_page(select_row)
         self.unlocked_database.responsive_ui.headerbar_title()
 
     def remove_selection_headerbar(self):
@@ -67,6 +67,9 @@ class SelectionUI:
                 for row in list_box:
                     if hasattr(row, "checkbox_box") is True:
                         row.checkbox_box.hide()
+                        row.selection_checkbox.set_active(False)
+                    if hasattr(row, "edit_button") is True:
+                        row.edit_button.show_all()
 
         selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
         selection_button_box = self.unlocked_database.builder.get_object("selection_button_box")
@@ -101,10 +104,18 @@ class SelectionUI:
         self.unlocked_database.responsive_ui.action_bar()
         self.unlocked_database.responsive_ui.headerbar_title()
 
-    def prepare_selection_page(self):
+    def prepare_selection_page(self, select_row=None):
         for stack_page in self.unlocked_database.stack.get_children():
             if stack_page.check_is_edit_page() is False:
-                stack_page.show_all()
+                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
+                for row in list_box:
+                    if hasattr(row, "checkbox_box") is True:
+                        row.checkbox_box.show()
+                    if hasattr(row, "edit_button") is True:
+                        row.edit_button.hide()
+
+        if select_row is not None:
+            select_row.selection_checkbox.set_active(True)
 
     #
     # Events
@@ -216,3 +227,13 @@ class SelectionUI:
                 row.selection_checkbox.set_active(True)
             else:
                 row.selection_checkbox.set_active(False)
+
+    #
+    # Helper
+    #
+
+    def row_selection_toggled(self, row):
+        if row.selection_checkbox.get_active():
+            row.selection_checkbox.set_active(False)
+        else:
+            row.selection_checkbox.set_active(True)

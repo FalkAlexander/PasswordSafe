@@ -58,10 +58,6 @@ class UnlockedDatabase:
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
-    entry_marked_popover = NotImplemented
-    group_marked_for_delete = NotImplemented
-    group_marked_for_edit = NotImplemented
-
     entries_selected = []
     groups_selected = []
 
@@ -182,6 +178,9 @@ class UnlockedDatabase:
 
         filename_label = self.builder.get_object("filename_label")
         filename_label.set_text(ntpath.basename(self.database_manager.database_path))
+
+        secondary_menupopover_button = self.builder.get_object("secondary_menupopover_button")
+        secondary_menupopover_button.hide()
 
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
@@ -511,11 +510,8 @@ class UnlockedDatabase:
             return
 
         if list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is True:
-            if list_box_row.selection_checkbox.get_active():
-                list_box_row.selection_checkbox.set_active(False)
-            else:
-                list_box_row.selection_checkbox.set_active(True)
-        elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is not True:
+            self.selection_ui.row_selection_toggled(list_box_row)
+        elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is False:
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
@@ -606,58 +602,65 @@ class UnlockedDatabase:
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.entry_marked_popover = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_uuid())
-            entry_context_popover = self.builder.get_object("entry_context_popover")
-            entry_context_popover.set_relative_to(widget)
-            entry_context_popover.show_all()
-            entry_context_popover.popup()
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+            if self.selection_ui.selection_mode_active is False:
+                self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
+            else:
+                self.selection_ui.row_selection_toggled(widget.get_parent())
 
-    def on_entry_delete_menu_button_clicked(self, action, param):
+    def on_element_delete_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()
-        entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.entry_marked_popover)
+
+        element_to_delete = self.current_group
+        uuid = NotImplemented
+        if self.database_manager.check_is_group_object(self.current_group) is True:
+            uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+            self.current_group = self.database_manager.get_group_parent_group_from_object(self.current_group)
+            self.database_manager.delete_group_from_database(element_to_delete)
+        else:
+            uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+            self.current_group = self.database_manager.get_entry_parent_group_from_entry_object(self.current_group)
+            self.database_manager.delete_entry_from_database(element_to_delete)
 
         # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-        if self.pathbar.is_pathbar_button_in_pathbar(entry_uuid) is True:
+        if self.pathbar.is_pathbar_button_in_pathbar(uuid) is True:
             self.pathbar.rebuild_pathbar(self.current_group)
 
-        if self.entry_marked_popover is not None:
-            self.database_manager.delete_entry_from_database(self.entry_marked_popover)
         self.update_current_stack_page()
+        self.show_page_of_new_directory(False, False)
 
     def on_entry_duplicate_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()
 
-        if self.entry_marked_popover is not None:
-            self.database_manager.duplicate_entry(self.entry_marked_popover)
+        self.database_manager.duplicate_entry(self.current_group)
+        parent_group = self.database_manager.get_entry_parent_group_from_entry_object(self.current_group)
+
+        if self.database_manager.check_is_root_group(parent_group) is True:
+            self.pathbar.on_home_button_clicked(self.pathbar.home_button)
+        else:
+            for button in self.pathbar:
+                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                    if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent_group):
+                        self.pathbar.on_pathbar_button_clicked(button)
+
+        self.current_group = parent_group
         self.update_current_stack_page()
+        self.show_page_of_new_directory(False, False)
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.group_marked_for_delete = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_uuid())
-            self.group_marked_for_edit = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_uuid())
-            group_context_popover = self.builder.get_object("group_context_popover")
-            group_context_popover.set_relative_to(widget)
-            group_context_popover.show_all()
-            group_context_popover.popup()
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+            if self.selection_ui.selection_mode_active is False:
+                self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
+            else:
+                self.selection_ui.row_selection_toggled(widget.get_parent())
 
-    def on_group_delete_menu_button_clicked(self, action, param):
+    def on_group_edit_button_clicked(self, button):
         self.start_database_lock_timer()
-        group_uuid = self.database_manager.get_group_uuid_from_group_object(self.group_marked_for_delete)
+        group_uuid = button.get_parent().get_parent().get_parent().get_parent().get_uuid()
+        group_object = self.database_manager.get_group_object_from_uuid(group_uuid)
 
-        # If the deleted group is in the pathbar, we need to rebuild the pathbar
-        if self.pathbar.is_pathbar_button_in_pathbar(group_uuid) is True:
-            self.pathbar.rebuild_pathbar(self.current_group)
-
-        self.database_manager.delete_group_from_database(self.group_marked_for_delete)
-        self.update_current_stack_page()
-
-    def on_group_edit_menu_button_clicked(self, action, param):
-        self.start_database_lock_timer()
-        group_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.group_marked_for_edit)
-
-        self.set_current_group(self.group_marked_for_edit)
+        self.set_current_group(group_object)
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True, False)
 
@@ -904,4 +907,3 @@ class UnlockedDatabase:
     def unregister_dbus_signal(self):
         app = Gio.Application.get_default
         app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
-

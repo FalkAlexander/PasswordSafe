@@ -325,8 +325,10 @@
     </child>
   </object>
   <object class="GtkEventBox" id="entry_event_box">
+    <property name="width_request">1</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="halign">baseline</property>
     <child>
       <object class="GtkBox" id="entry_box">
         <property name="height_request">60</property>
@@ -456,14 +458,14 @@
         </child>
         <child>
           <object class="GtkButton" id="entry_copy_button">
+            <property name="name">ListBoxRowButton</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="halign">end</property>
             <property name="valign">center</property>
-            <property name="margin_left">15</property>
-            <property name="margin_right">15</property>
-            <property name="hexpand">True</property>
+            <property name="margin_left">5</property>
+            <property name="margin_right">8</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -474,7 +476,8 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
+            <property name="pack_type">end</property>
             <property name="position">3</property>
           </packing>
         </child>
@@ -537,11 +540,13 @@
     </child>
   </object>
   <object class="GtkEventBox" id="group_event_box">
+    <property name="width_request">1</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="halign">baseline</property>
     <child>
       <object class="GtkBox" id="group_box">
-        <property name="height_request">40</property>
+        <property name="height_request">45</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
@@ -600,6 +605,45 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="width_request">1</property>
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <child>
+              <object class="GtkButton" id="group_edit_button">
+                <property name="name">ListBoxRowButton</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="margin_left">5</property>
+                <property name="margin_right">8</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">document-edit-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="pack_type">end</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>
@@ -1097,7 +1141,6 @@
       <object class="GtkBox" id="headerbar_right_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <child>
           <object class="GtkBox" id="linkedbox_right">
@@ -1115,7 +1158,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -1143,6 +1186,26 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="secondary_menupopover_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="popover">secondary_menubutton_popover</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">view-more-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
@@ -1280,6 +1343,51 @@
           <class name="linked"/>
         </style>
       </object>
+    </child>
+  </object>
+  <object class="GtkPopoverMenu" id="secondary_menubutton_popover">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">8</property>
+        <property name="margin_right">8</property>
+        <property name="margin_top">8</property>
+        <property name="margin_bottom">8</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id="duplicate_menu_entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.entry.duplicate</property>
+            <property name="text" translatable="yes">Duplicate</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="delete_menu_entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.element.delete</property>
+            <property name="text" translatable="yes">Delete</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">main</property>
+      </packing>
     </child>
   </object>
   <object class="GtkBox" id="selection_button_box">

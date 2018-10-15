@@ -1,3 +1,4 @@
+from datetime import datetime
 from gi.repository import Gtk
 
 
@@ -30,8 +31,18 @@ class PropertiesDialog:
         self.update_properties()
 
     def update_properties(self):
-        return
+        element = self.unlocked_database.current_group
+        encoded_uuid = self.unlocked_database.base64_to_hex(element.uuid)
+        self.builder.get_object("label_uuid").set_text(encoded_uuid)
 
+        accessed = datetime.strftime(element.atime,"%Y-%m-%d %H:%M:%S")
+        self.builder.get_object("label_accessed").set_text(accessed)
+
+        modified = datetime.strftime(element.mtime,"%Y-%m-%d %H:%M:%S")
+        self.builder.get_object("label_modified").set_text(modified)
+
+        created = datetime.strftime(element.ctime,"%Y-%m-%d %H:%M:%S")
+        self.builder.get_object("label_created").set_text(created)
     #
     # Tools
     #

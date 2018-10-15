@@ -10,7 +10,7 @@ import time
 import os
 
 
-class DatabaseSettingsDialog():
+class DatabaseSettingsDialog:
     dialog = NotImplemented
 
     unlocked_database = NotImplemented

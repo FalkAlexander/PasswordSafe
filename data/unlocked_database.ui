@@ -1141,7 +1141,6 @@
       <object class="GtkBox" id="headerbar_right_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
         <property name="spacing">6</property>
         <child>
           <object class="GtkBox" id="linkedbox_right">
@@ -1159,7 +1158,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
@@ -1187,6 +1186,26 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="secondary_menupopover_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="popover">secondary_menubutton_popover</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">view-more-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>
@@ -1324,6 +1343,51 @@
           <class name="linked"/>
         </style>
       </object>
+    </child>
+  </object>
+  <object class="GtkPopoverMenu" id="secondary_menubutton_popover">
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">8</property>
+        <property name="margin_right">8</property>
+        <property name="margin_top">8</property>
+        <property name="margin_bottom">8</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton" id="duplicate_menu_entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.entry.duplicate</property>
+            <property name="text" translatable="yes">Duplicate</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="delete_menu_entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.element.delete</property>
+            <property name="text" translatable="yes">Delete</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">main</property>
+      </packing>
     </child>
   </object>
   <object class="GtkBox" id="selection_button_box">

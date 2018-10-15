@@ -30,6 +30,12 @@ class EntryPage:
         filename_label = self.unlocked_database.builder.get_object("filename_label")
         filename_label.set_text(self.unlocked_database.database_manager.get_entry_name_from_entry_object(self.unlocked_database.current_group))
 
+        secondary_menupopover_button = self.unlocked_database.builder.get_object("secondary_menupopover_button")
+        secondary_menupopover_button.show_all()
+
+        duplicate_menu_entry = self.unlocked_database.builder.get_object("duplicate_menu_entry")
+        duplicate_menu_entry.show_all()
+
         self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()

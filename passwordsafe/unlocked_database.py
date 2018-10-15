@@ -510,11 +510,8 @@ class UnlockedDatabase:
             return
 
         if list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is True:
-            if list_box_row.selection_checkbox.get_active():
-                list_box_row.selection_checkbox.set_active(False)
-            else:
-                list_box_row.selection_checkbox.set_active(True)
-        elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is not True:
+            self.selection_ui.row_selection_toggled(list_box_row)
+        elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is False:
             self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
@@ -605,8 +602,11 @@ class UnlockedDatabase:
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.selection_ui.set_selection_headerbar(None)
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+            if self.selection_ui.selection_mode_active is False:
+                self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
+            else:
+                self.selection_ui.row_selection_toggled(widget.get_parent())
 
     def on_element_delete_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()
@@ -649,8 +649,11 @@ class UnlockedDatabase:
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
-            self.selection_ui.set_selection_headerbar(None)
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+            if self.selection_ui.selection_mode_active is False:
+                self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
+            else:
+                self.selection_ui.row_selection_toggled(widget.get_parent())
 
     def on_group_edit_button_clicked(self, button):
         self.start_database_lock_timer()

@@ -610,17 +610,6 @@ class UnlockedDatabase:
             self.entry_marked = self.database_manager.get_entry_object_from_uuid(widget.get_parent().get_uuid())
             self.selection_ui.set_selection_headerbar(None)
 
-    def on_group_row_hover_begin(self, event_box, event_crossing):
-        if self.selection_ui.selection_mode_active is False:
-            event_box.get_children()[0].get_children()[3].get_children()[0].show_all()
-
-    def on_group_row_hover_end(self, event_box, event_crossing):
-        if self.selection_ui.selection_mode_active is False:
-            event_box.get_children()[0].get_children()[3].get_children()[0].hide()
-
-    def on_group_edit_button_clicked(self, button):
-        print("click")
-
     def on_entry_delete_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()
         entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.entry_marked_popover)
@@ -645,6 +634,15 @@ class UnlockedDatabase:
         if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.selection_ui.selection_mode_active is False:
             self.group_marked = self.database_manager.get_group_object_from_uuid(widget.get_parent().get_uuid())
             self.selection_ui.set_selection_headerbar(None)
+
+    def on_group_edit_button_clicked(self, button):
+        self.start_database_lock_timer()
+        group_uuid = button.get_parent().get_parent().get_parent().get_parent().get_uuid()
+        group_object = self.database_manager.get_group_object_from_uuid(group_uuid)
+
+        self.set_current_group(group_object)
+        self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
+        self.show_page_of_new_directory(True, False)
 
     def on_group_delete_menu_button_clicked(self, action, param):
         self.start_database_lock_timer()
@@ -908,4 +906,3 @@ class UnlockedDatabase:
     def unregister_dbus_signal(self):
         app = Gio.Application.get_default
         app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
-

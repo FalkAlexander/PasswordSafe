@@ -36,6 +36,9 @@ class EntryPage:
         duplicate_menu_entry = self.unlocked_database.builder.get_object("duplicate_menu_entry")
         duplicate_menu_entry.show_all()
 
+        references_menu_entry = self.unlocked_database.builder.get_object("references_menu_entry")
+        references_menu_entry.show_all()
+
         self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()

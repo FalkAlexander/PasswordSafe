@@ -607,6 +607,10 @@ class MainWindow(Gtk.ApplicationWindow):
         duplicate_entry_action.connect("activate", self.execute_gio_action, "on_entry_duplicate_menu_button_clicked")
         self.application.add_action(duplicate_entry_action)
 
+        references_entry_action = Gio.SimpleAction.new("entry.references", None)
+        references_entry_action.connect("activate", self.execute_gio_action, "on_entry_references_menu_button_clicked")
+        self.application.add_action(references_entry_action)
+
         edit_group_action = Gio.SimpleAction.new("group.edit", None)
         edit_group_action.connect("activate", self.execute_gio_action, "on_group_edit_menu_button_clicked")
         self.application.add_action(edit_group_action)
@@ -653,6 +657,8 @@ class MainWindow(Gtk.ApplicationWindow):
             action_db.on_element_delete_menu_button_clicked(action, param)
         elif name == "on_entry_duplicate_menu_button_clicked":
             action_db.on_entry_duplicate_menu_button_clicked(action, param)
+        elif name == "on_entry_references_menu_button_clicked":
+            action_db.show_references_dialog(action, param)
         elif name == "on_group_edit_menu_button_clicked":
             action_db.on_group_edit_menu_button_clicked(action, param)
         elif name == "on_group_delete_menu_button_clicked":

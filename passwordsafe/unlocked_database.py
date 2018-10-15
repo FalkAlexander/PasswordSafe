@@ -6,6 +6,7 @@ from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_page import GroupPage
 from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
+from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
@@ -43,6 +44,7 @@ class UnlockedDatabase:
     overlay = NotImplemented
     search_overlay = NotImplemented
     database_settings_dialog = NotImplemented
+    references_dialog = NotImplemented
 
     # Objects
     builder = NotImplemented
@@ -757,6 +759,9 @@ class UnlockedDatabase:
 
         save_dialog.present()
 
+    def show_references_dialog(self, action, param):
+        ReferencesDialog(self)
+
     #
     # Utils
     #
@@ -785,6 +790,9 @@ class UnlockedDatabase:
         if self.database_settings_dialog is not NotImplemented:
             self.database_settings_dialog.close()
 
+        if self.references_dialog is not NotImplemented:
+            self.references_dialog.close()
+
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)
             save_thread.daemon = False
@@ -804,6 +812,9 @@ class UnlockedDatabase:
 
         if self.database_settings_dialog is not NotImplemented:
             self.database_settings_dialog.close()
+
+        if self.references_dialog is not NotImplemented:
+            self.references_dialog.close()
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)
@@ -895,6 +906,9 @@ class UnlockedDatabase:
 
     def hex_to_base64(self, hex_uuid):
         return codecs.encode(codecs.decode(hex_uuid.encode(), 'hex'), 'base64').decode().splitlines()[0]
+
+    def base64_to_hex(self, base64_uuid):
+        return codecs.encode(codecs.decode(base64_uuid.encode(), 'base64'), 'hex').decode().upper()
 
     #
     # DBus

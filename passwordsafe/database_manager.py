@@ -1,3 +1,4 @@
+from datetime import datetime
 from gettext import gettext as _
 from gi.repository import Gio
 from pykeepass.kdbx_parsing.kdbx import KDBX
@@ -574,6 +575,27 @@ class DatabaseManager:
     def check_is_group_object(self, group):
         return hasattr(group, "name")
 
+    #
+    # Properties
+    #
+
+    def get_element_creation_date(self, element):
+        if element.ctime is not None:
+            return datetime.strftime(element.ctime, "%Y-%m-%d %H:%M:%S")
+        else:
+            return "-"
+
+    def get_element_acessed_date(self, element):
+        if element.atime is not None:
+            return datetime.strftime(element.atime, "%Y-%m-%d %H:%M:%S")
+        else:
+            return "-"
+
+    def get_element_modified_date(self, element):
+        if element.mtime is not None:
+            return datetime.strftime(element.mtime, "%Y-%m-%d %H:%M:%S")
+        else:
+            return "-"
     #
     # Database creation methods
     #

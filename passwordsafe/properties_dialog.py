@@ -46,4 +46,4 @@ class PropertiesDialog:
     #
 
     def on_dialog_quit(self, window, event):
-        self.unlocked_database.references_dialog = NotImplemented
+        self.unlocked_database.properties_dialog = NotImplemented

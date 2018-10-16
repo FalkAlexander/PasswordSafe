@@ -87,6 +87,7 @@
       </object>
       <packing>
         <property name="submenu">main</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </object>
@@ -178,7 +179,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes" comments="please write together and capitalize initial letters">Show Field Codes</property>
-                    <property name="label" translatable="yes">WantedField</property>
+                    <property name="label" translatable="yes">Property</property>
                     <property name="ellipsize">end</property>
                     <attributes>
                       <attribute name="underline" value="True"/>
@@ -243,7 +244,7 @@
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Property</property>
+                    <property name="label">UUID</property>
                     <property name="ellipsize">end</property>
                     <attributes>
                       <attribute name="underline" value="True"/>

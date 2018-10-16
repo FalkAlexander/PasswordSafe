@@ -772,8 +772,6 @@ class UnlockedDatabase:
     #
 
     def show_database_action_revealer(self, message):
-        database_action_box = self.builder.get_object("database_action_box")
-
         database_action_label = self.builder.get_object("database_action_label")
         database_action_label.set_text(message)
 

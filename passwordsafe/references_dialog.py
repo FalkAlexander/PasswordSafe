@@ -36,6 +36,10 @@ class ReferencesDialog():
         self.connect_model_buttons_signals()
 
     def connect_model_buttons_signals(self):
+        self.builder.get_object("property_label").connect("button-press-event", self.open_codes_popover)
+        self.builder.get_object("identifier_label").connect("button-press-event", self.open_codes_popover)
+        self.builder.get_object("uuid_label").connect("button-press-event", self.open_uuid_popover)
+
         self.builder.get_object("title_button").connect("clicked", self.on_property_model_button_clicked)
         self.builder.get_object("username_button").connect("clicked", self.on_property_model_button_clicked)
         self.builder.get_object("password_button").connect("clicked", self.on_property_model_button_clicked)
@@ -62,6 +66,16 @@ class ReferencesDialog():
     def on_property_model_button_clicked(self, widget):
         self.property = widget.get_name()
         self.update_reference_entry()
+
+    def open_codes_popover(self, widget, label):
+        codes_popover = self.builder.get_object("codes_popover")
+        codes_popover.set_relative_to(widget)
+        codes_popover.popup()
+
+    def open_uuid_popover(self, widget, label):
+        uuid_popover = self.builder.get_object("uuid_popover")
+        uuid_popover.set_relative_to(widget)
+        uuid_popover.popup()
 
     #
     # Tools

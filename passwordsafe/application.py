@@ -11,7 +11,7 @@ from passwordsafe.settings_dialog import SettingsDialog
 class Application(Gtk.Application):
     window = NotImplemented
     file_list = []
-    development_mode = None
+    development_mode = False
     application_id = "org.gnome.PasswordSafe"
 
     def __init__(self, *args, **kwargs):
@@ -47,10 +47,11 @@ class Application(Gtk.Application):
         self.window.present()
 
     def get_logger(self):
-        logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s", datefmt='%d-%m-%y %H:%M:%S', level=logging.DEBUG)
         logger = logging.getLogger()
         if self.development_mode is True:
-            logging.basicConfig(level=logging.DEBUG)
+            logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s", datefmt='%d-%m-%y %H:%M:%S', level=logging.DEBUG)
+        else:
+            logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s", datefmt='%d-%m-%y %H:%M:%S', level=logging.INFO)
         return logger
 
     def assemble_application_menu(self):

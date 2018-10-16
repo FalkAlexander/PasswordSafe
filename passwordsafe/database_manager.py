@@ -362,7 +362,10 @@ class DatabaseManager:
 
         # Add custom properties
         for key in entry.custom_properties:
-            clone_entry.set_custom_property(key, entry.custom_properties[key])
+            value = entry.custom_properties[key]
+            if value is None:
+                value = ""
+            clone_entry.set_custom_property(key, value)
 
         self.changes = True
 

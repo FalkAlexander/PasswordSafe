@@ -392,7 +392,7 @@ class UnlockedDatabase:
 
             if stack_page is not None:
                 stack_page.destroy()
-                
+
             self.scheduled_page_destroy.remove(page_uuid)
             self.show_page_of_new_directory(False, False)
 
@@ -606,7 +606,7 @@ class UnlockedDatabase:
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.search.search_active is False:
             if self.selection_ui.selection_mode_active is False:
                 self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
             else:
@@ -653,7 +653,7 @@ class UnlockedDatabase:
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3:
+        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.search.search_active is False:
             if self.selection_ui.selection_mode_active is False:
                 self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
             else:

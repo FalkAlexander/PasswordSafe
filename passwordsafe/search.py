@@ -44,17 +44,6 @@ class Search:
 
     # Search headerbar
     def set_search_headerbar(self, widget):
-        hscb = self.unlocked_database.builder.get_object("headerbar_search_box_close_button")
-        if hscb.get_active() is False:
-            hscb.set_active(True)
-
-        if self.unlocked_database.window.mobile_width is True:
-            self.unlocked_database.builder.get_object("headerbar_search_box").set_margin_left(0)
-            self.unlocked_database.builder.get_object("headerbar_search_box").set_margin_right(0)
-        else:
-            self.unlocked_database.builder.get_object("headerbar_search_box").set_margin_left(90)
-            self.unlocked_database.builder.get_object("headerbar_search_box").set_margin_right(47)
-
         self.unlocked_database.headerbar_search = self.unlocked_database.builder.get_object("headerbar_search")
         self.unlocked_database.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
         self.unlocked_database.window.set_titlebar(self.unlocked_database.headerbar_search)

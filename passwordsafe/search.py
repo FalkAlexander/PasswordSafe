@@ -28,17 +28,14 @@ class Search:
         headerbar_search_box_close_button = self.unlocked_database.builder.get_object("headerbar_search_box_close_button")
         headerbar_search_box_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
 
-        search_settings_popover_local_button = self.unlocked_database.builder.get_object("search_settings_popover_local_button")
-        search_settings_popover_fulltext_button = self.unlocked_database.builder.get_object("search_settings_popover_fulltext_button")
+        search_local_switch = self.unlocked_database.builder.get_object("search_local_switch")
+        search_local_switch.connect("notify::active", self.on_search_filter_switch_toggled)
 
-        search_local_button = self.unlocked_database.builder.get_object("search_local_button")
-        search_local_button.connect("toggled", self.on_search_filter_button_toggled)
-
-        search_fulltext_button = self.unlocked_database.builder.get_object("search_fulltext_button")
-        search_fulltext_button.connect("toggled", self.on_search_filter_button_toggled)
+        search_fulltext_switch = self.unlocked_database.builder.get_object("search_fulltext_switch")
+        search_fulltext_switch.connect("notify::active", self.on_search_filter_switch_toggled)
 
         headerbar_search_entry = self.unlocked_database.builder.get_object("headerbar_search_entry")
-        headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed, search_local_button, search_fulltext_button)
+        headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed, search_local_switch, search_fulltext_switch)
         headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
 
     #
@@ -122,8 +119,8 @@ class Search:
     # Utils
     #
 
-    def search_thread_creation(self, search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay):
-        if search_local_button.get_active() is True:
+    def search_thread_creation(self, search_local_switch, widget, fulltext, result_list, empty_search_overlay, info_search_overlay):
+        if search_local_switch.get_active() is True:
             result_list = self.unlocked_database.database_manager.local_search(self.unlocked_database.current_group, widget.get_text(), fulltext)
         else:
             result_list = self.unlocked_database.database_manager.global_search(widget.get_text(), fulltext)
@@ -234,7 +231,7 @@ class Search:
                 if row is not None:
                     self.search_list_box.select_row(row)
 
-    def on_headerbar_search_entry_changed(self, widget, search_local_button, search_fulltext_button):
+    def on_headerbar_search_entry_changed(self, widget, search_local_switch, search_fulltext_switch):
         self.search_list_box.hide()
         fulltext = False
         result_list = []
@@ -250,10 +247,10 @@ class Search:
         for row in self.search_list_box.get_children():
             self.search_list_box.remove(row)
 
-        if search_fulltext_button.get_active() is True:
+        if search_fulltext_switch.get_active() is True:
             fulltext = True
 
-        search_thread = threading.Thread(target=self.search_thread_creation, args=(search_local_button, widget, fulltext, result_list, empty_search_overlay, info_search_overlay))
+        search_thread = threading.Thread(target=self.search_thread_creation, args=(search_local_switch, widget, fulltext, result_list, empty_search_overlay, info_search_overlay))
         search_thread.daemon = True
         search_thread.start()
 
@@ -285,12 +282,11 @@ class Search:
                 self.unlocked_database.show_page_of_new_directory(False, False)
 
 
-    def on_search_filter_button_toggled(self, widget):
-        headerbar_search_entry = self.unlocked_database.builder.get_object("headerbar_search_entry")
-        search_local_button = self.unlocked_database.builder.get_object("search_local_button")
-        search_fulltext_button = self.unlocked_database.builder.get_object("search_fulltext_button")
-
-        self.on_headerbar_search_entry_changed(headerbar_search_entry, search_local_button, search_fulltext_button)
+    def on_search_filter_switch_toggled(self, switch_button, gparam):
+        self.on_headerbar_search_entry_changed(
+            self.unlocked_database.builder.get_object("headerbar_search_entry"),
+            self.unlocked_database.builder.get_object("search_local_switch"),
+            self.unlocked_database.builder.get_object("search_fulltext_switch"))
 
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)

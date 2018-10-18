@@ -1,5 +1,4 @@
 from gi.repository import Gtk
-from passwordsafe.scrolled_page import ScrolledPage
 
 
 class GroupPage:

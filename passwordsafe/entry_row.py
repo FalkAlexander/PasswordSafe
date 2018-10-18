@@ -120,18 +120,24 @@ class EntryRow(Gtk.ListBoxRow):
 
     def on_selection_checkbox_toggled(self, widget):
         if self.selection_checkbox.get_active() is True:
-            if self not in self.unlocked_database.entries_selected:
-                self.unlocked_database.entries_selected.append(self)
+            if self not in self.unlocked_database.selection_ui.entries_selected:
+                self.unlocked_database.selection_ui.entries_selected.append(self)
         else:
-            if self in self.unlocked_database.entries_selected:
-                self.unlocked_database.entries_selected.remove(self)
+            if self in self.unlocked_database.selection_ui.entries_selected:
+                self.unlocked_database.selection_ui.entries_selected.remove(self)
 
-        if len(self.unlocked_database.entries_selected) > 0 or len(self.unlocked_database.groups_selected) > 0:
+        if len(self.unlocked_database.selection_ui.entries_selected) > 0 or len(self.unlocked_database.selection_ui.groups_selected) > 0:
             self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(True)
             self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(True)
         else:
             self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
             self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
+
+        if self.unlocked_database.selection_ui.cut_mode is False:
+            self.unlocked_database.selection_ui.entries_cut.clear()
+            self.unlocked_database.selection_ui.groups_cut.clear()
+            self.unlocked_database.builder.get_object("selection_cut_button").get_children()[0].set_from_icon_name("edit-cut-symbolic", Gtk.IconSize.BUTTON)
+            self.unlocked_database.selection_ui.cut_mode is True
 
     def on_entry_copy_button_clicked(self, button):
         self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid))
@@ -141,3 +147,4 @@ class EntryRow(Gtk.ListBoxRow):
 
     def get_color(self):
         return self.color
+

@@ -1,4 +1,6 @@
 from gettext import gettext as _
+from gi.repository import Gtk
+import passwordsafe.pathbar_button
 
 
 class SelectionUI:
@@ -8,6 +10,14 @@ class SelectionUI:
 
     unlocked_database = NotImplemented
     selection_mode_active = False
+
+    cut_mode = True
+
+    entries_selected = []
+    groups_selected = []
+
+    entries_cut = []
+    groups_cut = []
 
     #
     # Init
@@ -66,6 +76,7 @@ class SelectionUI:
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
                 for row in list_box:
+                    row.show()
                     if hasattr(row, "checkbox_box") is True:
                         row.checkbox_box.hide()
                         row.selection_checkbox.set_active(False)
@@ -88,8 +99,9 @@ class SelectionUI:
         context = self.unlocked_database.headerbar.get_style_context()
         context.remove_class('selection-mode')
 
-        self.unlocked_database.entries_selected.clear()
-        self.unlocked_database.groups_selected.clear()
+        self.cut_mode = True
+        self.entries_selected.clear()
+        self.groups_selected.clear()
 
         for element in self.unlocked_database.pathbar.get_children():
             if element.get_name() == "SeperatorLabel":
@@ -131,14 +143,14 @@ class SelectionUI:
         reset_stack_page = False
         group = None
 
-        for entry_row in self.unlocked_database.entries_selected:
+        for entry_row in self.entries_selected:
             entry = self.unlocked_database.database_manager.get_entry_object_from_uuid(entry_row.get_uuid())
             self.unlocked_database.database_manager.delete_entry_from_database(entry)
             # If the deleted entry is in the pathbar, we need to rebuild the pathbar
             if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(entry_row.get_uuid()) is True:
                 rebuild_pathbar = True
 
-        for group_row in self.unlocked_database.groups_selected:
+        for group_row in self.groups_selected:
             group = self.unlocked_database.database_manager.get_group_object_from_uuid(group_row.get_uuid())
             self.unlocked_database.database_manager.delete_group_from_database(group)
             # If the deleted group is in the pathbar, we need to rebuild the pathbar
@@ -162,8 +174,8 @@ class SelectionUI:
 
         self.unlocked_database.show_database_action_revealer(_("Deletion completed"))
 
-        self.unlocked_database.entries_selected.clear()
-        self.unlocked_database.groups_selected.clear()
+        self.entries_selected.clear()
+        self.groups_selected.clear()
         self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
@@ -173,7 +185,32 @@ class SelectionUI:
     def on_selection_cut_button_clicked(self, widget):
         rebuild_pathbar = False
 
-        for entry_row in self.unlocked_database.entries_selected:
+        if self.cut_mode is True:
+            self.entries_cut = self.entries_selected
+            self.groups_cut = self.groups_selected
+            widget.get_children()[0].set_from_icon_name("edit-paste-symbolic", Gtk.IconSize.BUTTON)
+            for group_row in self.groups_selected:
+                group_row.hide()
+            for entry_row in self.entries_selected:
+                entry_row.hide()
+
+            rebuild = False
+            for button in self.unlocked_database.pathbar:
+                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                    for group_row in self.groups_cut:
+                        if button.uuid == group_row.get_uuid():
+                            rebuild = True
+
+            if rebuild is True:
+                self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
+
+            self.cut_mode = False
+            return
+        else:
+            widget.get_children()[0].set_from_icon_name("edit-cut-symbolic", Gtk.IconSize.BUTTON)
+            self.cut_mode = True
+
+        for entry_row in self.entries_cut:
             entry_uuid = entry_row.get_uuid()
             self.unlocked_database.database_manager.move_entry(entry_uuid, self.unlocked_database.current_group)
             # If the moved entry is in the pathbar, we need to rebuild the pathbar
@@ -182,7 +219,7 @@ class SelectionUI:
 
         move_conflict = False
 
-        for group_row in self.unlocked_database.groups_selected:
+        for group_row in self.groups_cut:
             group_uuid = group_row.get_uuid()
             if self.unlocked_database.database_manager.parent_checker(self.unlocked_database.current_group, self.unlocked_database.database_manager.get_group_object_from_uuid(group_uuid)) is False:
                 self.unlocked_database.database_manager.move_group(group_uuid, self.unlocked_database.current_group)
@@ -206,8 +243,10 @@ class SelectionUI:
         else:
             self.unlocked_database.show_database_action_revealer(_("Skipped moving group into itself"))
 
-        self.unlocked_database.entries_selected.clear()
-        self.unlocked_database.groups_selected.clear()
+        self.entries_cut.clear()
+        self.groups_cut.clear()
+        self.entries_selected.clear()
+        self.groups_selected.clear()
         self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 

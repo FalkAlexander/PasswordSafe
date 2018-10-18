@@ -62,9 +62,6 @@ class UnlockedDatabase:
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
-    entries_selected = []
-    groups_selected = []
-
     def __init__(self, window, widget, dbm, unlock_database):
         # Instances
         self.window = window

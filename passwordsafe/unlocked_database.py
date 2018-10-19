@@ -676,37 +676,44 @@ class UnlockedDatabase:
 
         replace_string = text
         for ref in re.finditer("(\{REF:.*?\})", text):
+            not_valid = False
             code = ref.group()[5]
-            uuid = self.hex_to_base64(self.reference_to_hex_uuid(ref.group()))
+
+            try:
+                uuid = self.hex_to_base64(self.reference_to_hex_uuid(ref.group()))
+            except(Exception):
+                not_valid = True
+
             value = NotImplemented
 
-            if code == "T":
-                try:
-                    value = self.database_manager.get_entry_name_from_entry_uuid(uuid)
-                except(AttributeError):
-                    value = ref.group()
-            elif code == "U":
-                try:
-                    value = self.database_manager.get_entry_username_from_entry_uuid(uuid)
-                except(AttributeError):
-                    value = ref.group()
-            elif code == "P":
-                try:
-                    value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
-                except(AttributeError):
-                    value = ref.group()
-            elif code == "A":
-                try:
-                    value = str(self.database_manager.get_entry_url_from_entry_uuid(uuid))
-                except(AttributeError):
-                    value = ref.group()
-            elif code == "N":
-                try:
-                    value = str(self.database_manager.get_entry_notes_from_entry_uuid(uuid))
-                except(AttributeError):
-                    value = ref.group()
+            if not_valid is False:
+                if code == "T":
+                    try:
+                        value = self.database_manager.get_entry_name_from_entry_uuid(uuid)
+                    except(AttributeError):
+                        value = ref.group()
+                elif code == "U":
+                    try:
+                        value = self.database_manager.get_entry_username_from_entry_uuid(uuid)
+                    except(AttributeError):
+                        value = ref.group()
+                elif code == "P":
+                    try:
+                        value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
+                    except(AttributeError):
+                        value = ref.group()
+                elif code == "A":
+                    try:
+                        value = str(self.database_manager.get_entry_url_from_entry_uuid(uuid))
+                    except(AttributeError):
+                        value = ref.group()
+                elif code == "N":
+                    try:
+                        value = str(self.database_manager.get_entry_notes_from_entry_uuid(uuid))
+                    except(AttributeError):
+                        value = ref.group()
 
-            replace_string = replace_string.replace(ref.group(), value)
+                replace_string = replace_string.replace(ref.group(), value)
 
         self.clipboard.set_text(replace_string, -1)
 

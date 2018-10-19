@@ -86,3 +86,4 @@ class ResponsiveUI:
                 return
 
             self.unlocked_database.builder.get_object("selection_button_revealer").set_reveal_child(True)
+

@@ -17,6 +17,7 @@ import codecs
 import ntpath
 import os
 import passwordsafe.config_manager
+import re
 import time
 import threading
 
@@ -673,20 +674,41 @@ class UnlockedDatabase:
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()
 
-        if text.startswith("{REF:P"):
-            try:
-                self.clipboard.set_text(self.database_manager.get_entry_password_from_entry_uuid(self.hex_to_base64(self.reference_to_hex_uuid(text))), -1)
-            except(AttributeError):
-                self.window.logging_manager.error("Non-traceable password reference")
-                self.clipboard.set_text(text, -1)
-        elif text.startswith("{REF:U"):
-            try:
-                self.clipboard.set_text(self.database_manager.get_entry_username_from_entry_uuid(self.hex_to_base64(self.reference_to_hex_uuid(text))), -1)
-            except(AttributeError):
-                self.window.logging_manager.error("Non-traceable username reference")
-                self.clipboard.set_text(text, -1)
-        else:
-            self.clipboard.set_text(text, -1)
+        replace_string = text
+        for ref in re.finditer("(\{REF:.*?\})", text):
+            code = ref.group()[5]
+            uuid = self.hex_to_base64(self.reference_to_hex_uuid(ref.group()))
+            value = NotImplemented
+
+            if code == "T":
+                try:
+                    value = self.database_manager.get_entry_name_from_entry_uuid(uuid)
+                except(AttributeError):
+                    value = ref.group()
+            elif code == "U":
+                try:
+                    value = self.database_manager.get_entry_username_from_entry_uuid(uuid)
+                except(AttributeError):
+                    value = ref.group()
+            elif code == "P":
+                try:
+                    value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
+                except(AttributeError):
+                    value = ref.group()
+            elif code == "A":
+                try:
+                    value = str(self.database_manager.get_entry_url_from_entry_uuid(uuid))
+                except(AttributeError):
+                    value = ref.group()
+            elif code == "N":
+                try:
+                    value = str(self.database_manager.get_entry_notes_from_entry_uuid(uuid))
+                except(AttributeError):
+                    value = ref.group()
+
+            replace_string = replace_string.replace(ref.group(), value)
+
+        self.clipboard.set_text(replace_string, -1)
 
         self.show_database_action_revealer(_("Copied to clipboard"))
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

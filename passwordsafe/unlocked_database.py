@@ -157,12 +157,6 @@ class UnlockedDatabase:
         back_button_mobile = self.builder.get_object("back_button_mobile")
         back_button_mobile.connect("clicked", self.on_back_button_mobile_clicked)
 
-        add_entry_button = self.builder.get_object("add_entry_button")
-        add_entry_button.connect("clicked", self.on_add_entry_button_clicked)
-
-        add_group_button = self.builder.get_object("add_group_button")
-        add_group_button.connect("clicked", self.on_add_group_button_clicked)
-
         # Search UI
         self.search.initialize()
 

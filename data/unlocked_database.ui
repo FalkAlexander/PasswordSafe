@@ -564,77 +564,6 @@
       </object>
     </child>
   </object>
-  <object class="GtkHeaderBar" id="headerbar_search">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="show_close_button">True</property>
-    <child>
-      <object class="GtkButton" id="headerbar_search_box_close_button">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">go-previous-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child type="title">
-      <object class="HdyColumn">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="hexpand">True</property>
-        <property name="maximum_width">600</property>
-        <child>
-          <object class="GtkBox" id="headerbar_search_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkSearchEntry" id="headerbar_search_entry">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hexpand">True</property>
-                <property name="primary_icon_name">edit-find-symbolic</property>
-                <property name="primary_icon_activatable">False</property>
-                <property name="primary_icon_sensitive">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="headerbar_search_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="popover">search_settings_popover</property>
-                <child>
-                  <object class="GtkImage" id="headerbar_search_button_image">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">pan-down-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
   <object class="GtkButton" id="home_button">
     <property name="name">PathbarButton</property>
     <property name="visible">True</property>
@@ -737,7 +666,7 @@
   <object class="GtkPopoverMenu" id="menubutton_popover">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkBox" id="menubutton_popover_box">
+      <object class="GtkBox" id="sorting_page_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="margin_left">8</property>
@@ -746,57 +675,15 @@
         <property name="margin_bottom">8</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkBox" id="linked_box1">
+          <object class="GtkModelButton" id="menubutton_popover_main_button">
+            <property name="height_request">30</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_bottom">8</property>
-            <child>
-              <object class="GtkButton" id="add_entry_button">
-                <property name="width_request">70</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open page for creation of a new password entry">Create password…</property>
-                <property name="hexpand">True</property>
-                <child>
-                  <object class="GtkImage" id="add_entry_button_image">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">document-new-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="add_group_button">
-                <property name="width_request">70</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open page for creation of a new group">Create group…</property>
-                <property name="hexpand">True</property>
-                <child>
-                  <object class="GtkImage" id="add_folder_button_image2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">folder-new-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text">Sorting</property>
+            <property name="menu_name">main</property>
+            <property name="inverted">True</property>
+            <property name="centered">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -804,6 +691,63 @@
             <property name="position">0</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_a-z_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.sort.az</property>
+            <property name="text">A-Z</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_z-a_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.sort.za</property>
+            <property name="text">Z-A</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_last_added_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="action_name">app.sort.last_added</property>
+            <property name="text" translatable="yes" comments="This is a modelbutton in a popover to sort entries by last added">Last Added</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">sorting</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="menubutton_popover_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">8</property>
+        <property name="margin_right">8</property>
+        <property name="margin_top">8</property>
+        <property name="margin_bottom">8</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkBox" id="linked_box2">
             <property name="visible">True</property>
@@ -859,7 +803,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -872,63 +816,91 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkModelButton" id="menubutton_popover_sorting_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="text">Sorting</property>
+            <property name="menu_name">sorting</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">2</property>
           </packing>
         </child>
         <child>
-          <object class="GtkModelButton" id="menubutton_popover_reload_button1">
+          <object class="GtkBox" id="linked_box1">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.db.sort</property>
-            <property name="text" translatable="yes">Sort</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkSeparator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_top">5</property>
+                <property name="margin_bottom">5</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkModelButton" id="menubutton_popover_label_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="action_name">app.db.safe</property>
+                <property name="text" translatable="yes">Safe</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkModelButton" id="menubutton_popover_new_entry_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="action_name">app.db.add_entry</property>
+                <property name="text">New Entry</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkModelButton" id="menubutton_popover_new_group_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="action_name">app.db.add_group</property>
+                <property name="text">New Group</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <style>
+              <class name="linked"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_a-z_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.az</property>
-            <property name="text">A-Z</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_z-a_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.za</property>
-            <property name="text">Z-A</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_last_added_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.last_added</property>
-            <property name="text" translatable="yes" comments="This is a modelbutton in a popover to sort entries by last added">Last Added</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">6</property>
+            <property name="position">8</property>
           </packing>
         </child>
         <child>
@@ -939,7 +911,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">7</property>
+            <property name="position">9</property>
           </packing>
         </child>
         <child>
@@ -953,7 +925,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">8</property>
+            <property name="position">10</property>
           </packing>
         </child>
         <child>
@@ -967,7 +939,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">9</property>
+            <property name="position">11</property>
           </packing>
         </child>
         <child>
@@ -981,7 +953,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">10</property>
+            <property name="position">12</property>
           </packing>
         </child>
         <child>
@@ -992,7 +964,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">11</property>
+            <property name="position">15</property>
           </packing>
         </child>
         <child>
@@ -1006,7 +978,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">12</property>
+            <property name="position">16</property>
           </packing>
         </child>
         <child>
@@ -1020,7 +992,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">13</property>
+            <property name="position">17</property>
           </packing>
         </child>
         <child>
@@ -1034,13 +1006,13 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">14</property>
+            <property name="position">18</property>
           </packing>
         </child>
       </object>
       <packing>
         <property name="submenu">main</property>
-        <property name="position">1</property>
+        <property name="position">2</property>
       </packing>
     </child>
   </object>
@@ -1116,6 +1088,77 @@
         <property name="submenu">main</property>
         <property name="position">1</property>
       </packing>
+    </child>
+  </object>
+  <object class="GtkHeaderBar" id="headerbar_search">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="show_close_button">True</property>
+    <child>
+      <object class="GtkButton" id="headerbar_search_box_close_button">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">go-previous-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child type="title">
+      <object class="HdyColumn">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="maximum_width">600</property>
+        <child>
+          <object class="GtkBox" id="headerbar_search_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkSearchEntry" id="headerbar_search_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="primary_icon_name">edit-find-symbolic</property>
+                <property name="primary_icon_activatable">False</property>
+                <property name="primary_icon_sensitive">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="headerbar_search_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="popover">search_settings_popover</property>
+                <child>
+                  <object class="GtkImage" id="headerbar_search_button_image">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">pan-down-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <style>
+              <class name="linked"/>
+            </style>
+          </object>
+        </child>
+      </object>
     </child>
   </object>
   <object class="GtkPopoverMenu" id="secondary_menubutton_popover">

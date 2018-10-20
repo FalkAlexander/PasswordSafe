@@ -625,6 +625,14 @@ class MainWindow(Gtk.ApplicationWindow):
 
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):
+        db_add_entry_action = Gio.SimpleAction.new("db.add_entry", None)
+        db_add_entry_action.connect("activate", self.execute_gio_action, "on_database_add_entry_clicked")
+        self.application.add_action(db_add_entry_action)
+
+        db_add_group_action = Gio.SimpleAction.new("db.add_group", None)
+        db_add_group_action.connect("activate", self.execute_gio_action, "on_database_add_group_clicked")
+        self.application.add_action(db_add_group_action)
+
         db_settings_action = Gio.SimpleAction.new("db.settings", None)
         db_settings_action.connect("activate", self.execute_gio_action, "on_database_settings_entry_clicked")
         self.application.add_action(db_settings_action)
@@ -669,6 +677,10 @@ class MainWindow(Gtk.ApplicationWindow):
             action_db.on_group_edit_menu_button_clicked(action, param)
         elif name == "on_group_delete_menu_button_clicked":
             action_db.on_group_delete_menu_button_clicked(action, param)
+        elif name == "on_database_add_entry_clicked":
+            action_db.on_add_entry_button_clicked(None)
+        elif name == "on_database_add_group_clicked":
+            action_db.on_add_group_button_clicked(None)
         elif name == "on_database_settings_entry_clicked":
             action_db.on_database_settings_entry_clicked(action, param)
         elif name == "on_sort_menu_button_entry_clicked":

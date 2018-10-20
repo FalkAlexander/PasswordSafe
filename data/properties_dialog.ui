@@ -39,7 +39,6 @@
                 <property name="hexpand">False</property>
                 <property name="row_spacing">6</property>
                 <property name="column_spacing">12</property>
-                <property name="column_homogeneous">True</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
@@ -49,6 +48,7 @@
                     <property name="label" translatable="yes">Accessed</property>
                     <property name="justify">right</property>
                     <property name="ellipsize">middle</property>
+                    <property name="xalign">1</property>
                     <style>
                       <class name="dim-label"/>
                     </style>
@@ -66,6 +66,7 @@
                     <property name="label" translatable="yes">Modified</property>
                     <property name="justify">right</property>
                     <property name="ellipsize">middle</property>
+                    <property name="xalign">1</property>
                     <style>
                       <class name="dim-label"/>
                     </style>
@@ -80,9 +81,11 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">end</property>
+                    <property name="hexpand">False</property>
                     <property name="label" translatable="yes">UUID</property>
                     <property name="justify">right</property>
                     <property name="ellipsize">middle</property>
+                    <property name="xalign">1</property>
                     <style>
                       <class name="dim-label"/>
                     </style>
@@ -115,6 +118,7 @@
                     <property name="label" translatable="yes">Created</property>
                     <property name="justify">right</property>
                     <property name="ellipsize">middle</property>
+                    <property name="xalign">1</property>
                     <style>
                       <class name="dim-label"/>
                     </style>

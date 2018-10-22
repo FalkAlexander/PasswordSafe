@@ -680,7 +680,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="text">Sorting</property>
+            <property name="text" translatable="yes">Sorting</property>
             <property name="menu_name">main</property>
             <property name="inverted">True</property>
             <property name="centered">True</property>
@@ -697,7 +697,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.sort.az</property>
-            <property name="text">A-Z</property>
+            <property name="text" translatable="yes" comments="This string depicts the alphabet from the beginning to the end (first character to last one).">A-Z</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -711,7 +711,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.sort.za</property>
-            <property name="text">Z-A</property>
+            <property name="text" comments="This string depicts the alphabet in reversed order, from the end to the start (last character to first one).">Z-A</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -824,7 +824,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="text">Sorting</property>
+            <property name="text" translatable="yes">Sorting</property>
             <property name="menu_name">sorting</property>
           </object>
           <packing>
@@ -871,7 +871,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="action_name">app.db.add_entry</property>
-                <property name="text">New Entry</property>
+                <property name="text" translatable="yes">New Entry</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -885,7 +885,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="action_name">app.db.add_group</property>
-                <property name="text">New Group</property>
+                <property name="text" translatable="yes">New Group</property>
               </object>
               <packing>
                 <property name="expand">False</property>

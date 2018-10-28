@@ -211,6 +211,7 @@
       </object>
       <packing>
         <property name="submenu">main</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </object>
@@ -391,6 +392,7 @@
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkLabel">
+                        <property name="name">LinkLabel</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Show Field Codes</property>
@@ -398,7 +400,6 @@
                         <property name="ellipsize">end</property>
                         <attributes>
                           <attribute name="underline" value="True"/>
-                          <attribute name="foreground" value="#000003028f8f"/>
                         </attributes>
                       </object>
                     </child>
@@ -430,6 +431,7 @@
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkLabel">
+                        <property name="name">LinkLabel</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Show Field Codes</property>
@@ -437,7 +439,6 @@
                         <property name="ellipsize">end</property>
                         <attributes>
                           <attribute name="underline" value="True"/>
-                          <attribute name="foreground" value="#000003028f8f"/>
                         </attributes>
                       </object>
                     </child>
@@ -469,13 +470,13 @@
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkLabel">
+                        <property name="name">LinkLabel</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label">UUID</property>
                         <property name="ellipsize">end</property>
                         <attributes>
                           <attribute name="underline" value="True"/>
-                          <attribute name="foreground" value="#000003028f8f"/>
                         </attributes>
                       </object>
                     </child>
@@ -634,6 +635,7 @@ It can be found in the properties of the entry.</property>
       </object>
       <packing>
         <property name="submenu">main</property>
+        <property name="position">1</property>
       </packing>
     </child>
   </object>

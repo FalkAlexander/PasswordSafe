@@ -209,11 +209,19 @@ class UnlockedDatabase:
                     if self.window.get_focus() is None:
                         return
 
-                    if self.window.get_focus().get_name() == "TabBox":
+                    if "TabBox" in self.window.get_focus().get_name():
                         self.tab_to_next_input_entry(scrolled_page)
                         return(True)
 
     def tab_to_next_input_entry(self, scrolled_page):
+        focus_widget = self.window.get_focus()
+        focus_widget_index = focus_widget.get_parent().get_children().index(focus_widget)
+        new_index = focus_widget_index + 1
+        if new_index < len(focus_widget.get_parent().get_children()):
+            if focus_widget.get_parent().get_children()[new_index].get_name() == "TabBox_Next":
+                self.window.set_focus(focus_widget.get_parent().get_children()[new_index])
+                return
+
         rows = scrolled_page.properties_list_box.get_children()
         current_row = self.iterate_parents(self.window.get_focus())
         current_index = rows.index(current_row)

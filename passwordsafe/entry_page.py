@@ -250,7 +250,6 @@ class EntryPage:
             if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
                 for button in builder.get_object("icon_entry_box").get_children():
-                    print(button)
                     button.get_style_context().add_class("EntryIconButton")
 
                 scrolled_page.mail_icon_button = builder.get_object("19")

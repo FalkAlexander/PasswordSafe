@@ -202,13 +202,13 @@ class EntryPage:
                 scrolled_page.purple_button = builder.get_object("purple_button")
                 scrolled_page.brown_button = builder.get_object("brown_button")
 
-                scrolled_page.none_button.connect("toggled", self.on_entry_color_button_toggled)
-                scrolled_page.orange_button.connect("toggled", self.on_entry_color_button_toggled)
-                scrolled_page.green_button.connect("toggled", self.on_entry_color_button_toggled)
-                scrolled_page.blue_button.connect("toggled", self.on_entry_color_button_toggled)
-                scrolled_page.red_button.connect("toggled", self.on_entry_color_button_toggled)
-                scrolled_page.purple_button.connect("toggled", self.on_entry_color_button_toggled)
-                scrolled_page.brown_button.connect("toggled", self.on_entry_color_button_toggled)
+                scrolled_page.none_button.connect("clicked", self.on_entry_color_button_toggled)
+                scrolled_page.orange_button.connect("clicked", self.on_entry_color_button_toggled)
+                scrolled_page.green_button.connect("clicked", self.on_entry_color_button_toggled)
+                scrolled_page.blue_button.connect("clicked", self.on_entry_color_button_toggled)
+                scrolled_page.red_button.connect("clicked", self.on_entry_color_button_toggled)
+                scrolled_page.purple_button.connect("clicked", self.on_entry_color_button_toggled)
+                scrolled_page.brown_button.connect("clicked", self.on_entry_color_button_toggled)
 
                 scrolled_page.none_button.get_children()[0].hide()
                 scrolled_page.orange_button.get_children()[0].hide()
@@ -425,39 +425,19 @@ class EntryPage:
             self.unlocked_database.database_manager.set_entry_icon(entry_uuid, button.get_name())
 
     def on_entry_color_button_toggled(self, button):
+        if button.get_active() is False:
+            return
+
         self.unlocked_database.start_database_lock_timer()
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
 
-        old_color = self.unlocked_database.database_manager.get_entry_color_from_entry_uuid(entry_uuid)
-
-        if old_color != button.get_name():
-            if old_color == "NoneColorButton":
-                scrolled_page.none_button.set_active(False)
-                scrolled_page.none_button.get_children()[0].hide()
-            if old_color == "BlueColorButton":
-                scrolled_page.blue_button.set_active(False)
-                scrolled_page.blue_button.get_children()[0].hide()
-            if old_color == "GreenColorButton":
-                scrolled_page.green_button.set_active(False)
-                scrolled_page.green_button.get_children()[0].hide()
-            if old_color == "OrangeColorButton":
-                scrolled_page.orange_button.set_active(False)
-                scrolled_page.orange_button.get_children()[0].hide()
-            if old_color == "RedColorButton":
-                scrolled_page.red_button.set_active(False)
-                scrolled_page.red_button.get_children()[0].hide()
-            if old_color == "PurpleColorButton":
-                scrolled_page.purple_button.set_active(False)
-                scrolled_page.purple_button.get_children()[0].hide()
-            if old_color == "BrownColorButton":
-                scrolled_page.brown_button.set_active(False)
-                scrolled_page.brown_button.get_children()[0].hide()
-            scrolled_page.set_made_database_changes(True)
-            self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
+        for btn in button.get_parent().get_children():
+            btn.get_children()[0].hide()
 
         button.get_children()[0].show_all()
+        scrolled_page.set_made_database_changes(True)
+        self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
 
         if button.get_name() != "NoneColorButton":
             image = button.get_children()[0]
@@ -465,9 +445,6 @@ class EntryPage:
         else:
             image = button.get_children()[0]
             image.set_name("DarkIcon")
-
-        if button.get_active() is False:
-            button.get_children()[0].hide()
 
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
         self.unlocked_database.start_database_lock_timer()

@@ -332,16 +332,16 @@
                     <property name="valign">center</property>
                     <property name="spacing">15</property>
                     <child>
-                      <object class="GtkToggleButton" id="none_button">
+                      <object class="GtkRadioButton" id="none_button">
                         <property name="name">NoneColorButton</property>
                         <property name="width_request">50</property>
                         <property name="height_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="focus_on_click">False</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="relief">none</property>
+                        <property name="draw_indicator">False</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -355,21 +355,22 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="blue_button">
+                      <object class="GtkRadioButton" id="blue_button">
                         <property name="name">BlueColorButton</property>
                         <property name="width_request">50</property>
                         <property name="height_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="focus_on_click">False</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="relief">none</property>
+                        <property name="draw_indicator">False</property>
+                        <property name="group">none_button</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -383,21 +384,22 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="green_button">
+                      <object class="GtkRadioButton" id="green_button">
                         <property name="name">GreenColorButton</property>
                         <property name="width_request">50</property>
                         <property name="height_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="focus_on_click">False</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="relief">none</property>
+                        <property name="draw_indicator">False</property>
+                        <property name="group">blue_button</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -411,21 +413,22 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">2</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="orange_button">
+                      <object class="GtkRadioButton" id="orange_button">
                         <property name="name">OrangeColorButton</property>
                         <property name="width_request">50</property>
                         <property name="height_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="focus_on_click">False</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="relief">none</property>
+                        <property name="draw_indicator">False</property>
+                        <property name="group">blue_button</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -439,21 +442,22 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">3</property>
+                        <property name="fill">True</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="red_button">
+                      <object class="GtkRadioButton" id="red_button">
                         <property name="name">RedColorButton</property>
                         <property name="width_request">50</property>
                         <property name="height_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="focus_on_click">False</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="relief">none</property>
+                        <property name="draw_indicator">False</property>
+                        <property name="group">blue_button</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -467,20 +471,22 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">4</property>
+                        <property name="fill">True</property>
+                        <property name="position">5</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="purple_button">
+                      <object class="GtkRadioButton" id="purple_button">
                         <property name="name">PurpleColorButton</property>
                         <property name="width_request">50</property>
                         <property name="height_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="relief">none</property>
+                        <property name="draw_indicator">False</property>
+                        <property name="group">blue_button</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -494,20 +500,22 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">5</property>
+                        <property name="fill">True</property>
+                        <property name="position">6</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="brown_button">
+                      <object class="GtkRadioButton" id="brown_button">
                         <property name="name">BrownColorButton</property>
                         <property name="width_request">50</property>
                         <property name="height_request">50</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">center</property>
                         <property name="hexpand">True</property>
-                        <property name="relief">none</property>
+                        <property name="draw_indicator">False</property>
+                        <property name="group">blue_button</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -521,8 +529,8 @@
                       </object>
                       <packing>
                         <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">6</property>
+                        <property name="fill">True</property>
+                        <property name="position">7</property>
                       </packing>
                     </child>
                   </object>

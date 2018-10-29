@@ -250,6 +250,7 @@ class EntryPage:
             if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
                 for button in builder.get_object("icon_entry_box").get_children():
+                    print(button)
                     button.get_style_context().add_class("EntryIconButton")
 
                 scrolled_page.mail_icon_button = builder.get_object("19")
@@ -393,36 +394,15 @@ class EntryPage:
             self.unlocked_database.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
     def on_entry_icon_button_toggled(self, button):
+        if button.get_active() is False:
+            return
+
         self.unlocked_database.start_database_lock_timer()
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-
-        old_icon = str(self.unlocked_database.database_manager.get_entry_icon_from_entry_uuid(entry_uuid))
-
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
 
-        if old_icon != button.get_name():
-            if old_icon == "19":
-                scrolled_page.mail_icon_button.set_active(False)
-            if old_icon == "9":
-                scrolled_page.profile_icon_button.set_active(False)
-            if old_icon == "1":
-                scrolled_page.network_profile_button.set_active(False)
-            if old_icon == "0":
-                scrolled_page.key_button.set_active(False)
-            if old_icon == "30":
-                scrolled_page.terminal_icon_button.set_active(False)
-            if old_icon == "34":
-                scrolled_page.setting_icon_button.set_active(False)
-            if old_icon == "48":
-                scrolled_page.folder_icon_button.set_active(False)
-            if old_icon == "27":
-                scrolled_page.harddrive_icon_button.set_active(False)
-            if old_icon == "12":
-                scrolled_page.wifi_icon_button.set_active(False)
-            if old_icon == "23":
-                scrolled_page.desktop_icon_button.set_active(False)
-            scrolled_page.set_made_database_changes(True)
-            self.unlocked_database.database_manager.set_entry_icon(entry_uuid, button.get_name())
+        scrolled_page.set_made_database_changes(True)
+        self.unlocked_database.database_manager.set_entry_icon(entry_uuid, button.get_name())
 
     def on_entry_color_button_toggled(self, button):
         if button.get_active() is False:

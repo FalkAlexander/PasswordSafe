@@ -68,6 +68,7 @@ class EntryPage:
 
                 scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
                 properties_list_box.add(scrolled_page.name_property_row)
+                scrolled_page.name_property_value_entry.grab_focus()
             elif scrolled_page.name_property_row is not "":
                 value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:

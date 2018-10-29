@@ -75,6 +75,8 @@ class GroupPage:
         properties_list_box.add(name_property_row)
         properties_list_box.add(notes_property_row)
 
+        name_property_value_entry.grab_focus()
+
     #
     # Events
     #

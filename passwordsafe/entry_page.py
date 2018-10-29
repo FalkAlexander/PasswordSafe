@@ -329,7 +329,6 @@ class EntryPage:
             properties_list_box.add(scrolled_page.show_all_row)
 
     def add_attribute_property_row(self, key, value):
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
 
         builder = Gtk.Builder()
@@ -345,7 +344,7 @@ class EntryPage:
 
         attribute_property_row.set_name(key)
         attribute_property_name_label.set_text(key)
-        if value != None:
+        if value is not None:
             attribute_value_entry.set_text(value)
         attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed)
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
@@ -400,6 +399,9 @@ class EntryPage:
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
 
+        if str(self.unlocked_database.database_manager.get_entry_icon_from_entry_uuid(entry_uuid)) == button.get_name():
+            return
+
         scrolled_page.set_made_database_changes(True)
         self.unlocked_database.database_manager.set_entry_icon(entry_uuid, button.get_name())
 
@@ -411,19 +413,22 @@ class EntryPage:
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
 
-        for btn in button.get_parent().get_children():
-            btn.get_children()[0].hide()
-
-        button.get_children()[0].show_all()
-        scrolled_page.set_made_database_changes(True)
-        self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
-
         if button.get_name() != "NoneColorButton":
             image = button.get_children()[0]
             image.set_name("BrightIcon")
         else:
             image = button.get_children()[0]
             image.set_name("DarkIcon")
+
+        if self.unlocked_database.database_manager.get_entry_color_from_entry_uuid(entry_uuid) == button.get_name():
+            return
+
+        for btn in button.get_parent().get_children():
+            btn.get_children()[0].hide()
+
+        button.get_children()[0].show_all()
+        scrolled_page.set_made_database_changes(True)
+        self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
 
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
         self.unlocked_database.start_database_lock_timer()
@@ -498,7 +503,6 @@ class EntryPage:
 
     def on_attributes_value_entry_changed(self, widget):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
 
         parent = widget.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -507,7 +511,6 @@ class EntryPage:
 
     def on_attribute_key_edit_button_clicked(self, button):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -579,3 +582,4 @@ class EntryPage:
 
         if password is not NotImplemented:
             scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(password)))
+

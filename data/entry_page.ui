@@ -282,7 +282,6 @@
         <property name="margin_top">9</property>
         <property name="margin_bottom">9</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">5</property>
         <child>
           <object class="GtkBox" id="color_label_box">
             <property name="visible">True</property>
@@ -331,9 +330,12 @@
                 <property name="can_focus">False</property>
                 <child>
                   <object class="GtkBox" id="color_selection_box">
+                    <property name="name">ColorButtonBox</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="valign">center</property>
+                    <property name="margin_top">5</property>
+                    <property name="margin_bottom">5</property>
                     <property name="spacing">15</property>
                     <child>
                       <object class="GtkRadioButton" id="none_button">
@@ -355,6 +357,7 @@
                         </child>
                         <style>
                           <class name="circular"/>
+                          <class name="ColorButton"/>
                         </style>
                       </object>
                       <packing>
@@ -384,6 +387,7 @@
                         </child>
                         <style>
                           <class name="circular"/>
+                          <class name="ColorButton"/>
                         </style>
                       </object>
                       <packing>
@@ -413,6 +417,7 @@
                         </child>
                         <style>
                           <class name="circular"/>
+                          <class name="ColorButton"/>
                         </style>
                       </object>
                       <packing>
@@ -442,6 +447,7 @@
                         </child>
                         <style>
                           <class name="circular"/>
+                          <class name="ColorButton"/>
                         </style>
                       </object>
                       <packing>
@@ -471,6 +477,7 @@
                         </child>
                         <style>
                           <class name="circular"/>
+                          <class name="ColorButton"/>
                         </style>
                       </object>
                       <packing>
@@ -500,6 +507,7 @@
                         </child>
                         <style>
                           <class name="circular"/>
+                          <class name="ColorButton"/>
                         </style>
                       </object>
                       <packing>
@@ -529,6 +537,7 @@
                         </child>
                         <style>
                           <class name="circular"/>
+                          <class name="ColorButton"/>
                         </style>
                       </object>
                       <packing>

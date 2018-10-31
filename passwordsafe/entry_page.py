@@ -126,8 +126,8 @@ class EntryPage:
                 scrolled_page.password_level_bar = builder.get_object("password_level_bar")
                 scrolled_page.password_level_bar.add_offset_value("weak", 1.0)
                 scrolled_page.password_level_bar.add_offset_value("medium", 3.0)
-                scrolled_page.password_level_bar.add_offset_value("strong", 5.0)
-                scrolled_page.password_level_bar.add_offset_value("secure", 6.0)
+                scrolled_page.password_level_bar.add_offset_value("strong", 4.0)
+                scrolled_page.password_level_bar.add_offset_value("secure", 5.0)
 
                 self.set_password_level_bar(scrolled_page)
 

@@ -91,8 +91,8 @@ class DatabaseSettingsDialog:
         level_bar = self.builder.get_object("password_level_bar")
         level_bar.add_offset_value("weak", 1.0)
         level_bar.add_offset_value("medium", 3.0)
-        level_bar.add_offset_value("strong", 5.0)
-        level_bar.add_offset_value("secure", 6.0)
+        level_bar.add_offset_value("strong", 4.0)
+        level_bar.add_offset_value("secure", 5.0)
 
         # Dialog
         self.dialog.set_modal(True)

@@ -55,6 +55,10 @@ class CustomKeypressHandler:
             next_row = rows[new_index]
         else:
             next_row = rows[0]
+
+        if next_row.get_name() == "ShowAllRow":
+            next_row = rows[0]
+
         self.interate_to_next_input(next_row)
 
     def interate_to_next_input(self, parent):

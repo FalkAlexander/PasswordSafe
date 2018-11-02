@@ -239,6 +239,7 @@ class UnlockedDatabase:
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
+            self.database_manager.set_element_atime(self.current_group)
             # Create not existing stack page for group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 builder = Gtk.Builder()
@@ -300,6 +301,7 @@ class UnlockedDatabase:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
         # Stack page with current group's uuid already exists, we only need to switch stack page
         else:
+            self.database_manager.set_element_atime(self.current_group)
             # For group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
                 self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))

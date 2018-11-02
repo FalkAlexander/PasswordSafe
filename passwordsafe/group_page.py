@@ -52,12 +52,10 @@ class GroupPage:
 
         name_property_row = builder.get_object("name_property_row")
         name_property_value_entry = builder.get_object("name_property_value_entry")
-        name_property_value_entry.connect("changed", self.on_property_value_group_changed, "name")
 
         notes_property_row = builder.get_object("notes_property_row")
         notes_property_value_entry = builder.get_object("notes_property_value_entry")
         buffer = notes_property_value_entry.get_buffer()
-        buffer.connect("changed", self.on_property_value_group_changed, "notes")
 
         name_value = self.unlocked_database.database_manager.get_group_name_from_uuid(group_uuid)
         notes_value = self.unlocked_database.database_manager.get_group_notes_from_group_uuid(group_uuid)
@@ -72,6 +70,9 @@ class GroupPage:
         else:
             buffer.set_text("")
 
+        name_property_value_entry.connect("changed", self.on_property_value_group_changed, "name")
+        buffer.connect("changed", self.on_property_value_group_changed, "notes")
+
         properties_list_box.add(name_property_row)
         properties_list_box.add(notes_property_row)
 
@@ -82,6 +83,7 @@ class GroupPage:
     #
 
     def on_property_value_group_changed(self, widget, type):
+        print("jo")
         self.unlocked_database.start_database_lock_timer()
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 

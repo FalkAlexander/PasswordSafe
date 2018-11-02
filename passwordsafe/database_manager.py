@@ -1,4 +1,5 @@
 from datetime import datetime
+from dateutil import tz
 from gettext import gettext as _
 from gi.repository import Gio, GLib
 from pykeepass.kdbx_parsing.kdbx import KDBX
@@ -620,42 +621,42 @@ class DatabaseManager:
 
     def get_element_creation_date(self, element):
         if element.ctime is not None:
-            timestamp = GLib.DateTime.new(
-                GLib.TimeZone.new_utc(),
-                int(datetime.strftime(element.ctime, "%Y")),
-                int(datetime.strftime(element.ctime, "%m")),
-                int(datetime.strftime(element.ctime, "%d")),
-                int(datetime.strftime(element.ctime, "%H")),
-                int(datetime.strftime(element.ctime, "%M")),
-                float(datetime.strftime(element.ctime, "%S")))
+            local_timestamp = element.ctime.astimezone(tz.tzlocal())
+            timestamp = GLib.DateTime.new_local(
+                int(datetime.strftime(local_timestamp, "%Y")),
+                int(datetime.strftime(local_timestamp, "%m")),
+                int(datetime.strftime(local_timestamp, "%d")),
+                int(datetime.strftime(local_timestamp, "%H")),
+                int(datetime.strftime(local_timestamp, "%M")),
+                float(datetime.strftime(local_timestamp, "%S")))
             return timestamp.format("%c")
         else:
             return "-"
 
     def get_element_acessed_date(self, element):
         if element.atime is not None:
-            timestamp = GLib.DateTime.new(
-                GLib.TimeZone.new_utc(),
-                int(datetime.strftime(element.atime, "%Y")),
-                int(datetime.strftime(element.atime, "%m")),
-                int(datetime.strftime(element.atime, "%d")),
-                int(datetime.strftime(element.atime, "%H")),
-                int(datetime.strftime(element.atime, "%M")),
-                float(datetime.strftime(element.atime, "%S")))
+            local_timestamp = element.atime.astimezone(tz.tzlocal())
+            timestamp = GLib.DateTime.new_local(
+                int(datetime.strftime(local_timestamp, "%Y")),
+                int(datetime.strftime(local_timestamp, "%m")),
+                int(datetime.strftime(local_timestamp, "%d")),
+                int(datetime.strftime(local_timestamp, "%H")),
+                int(datetime.strftime(local_timestamp, "%M")),
+                float(datetime.strftime(local_timestamp, "%S")))
             return timestamp.format("%c")
         else:
             return "-"
 
     def get_element_modified_date(self, element):
         if element.mtime is not None:
-            timestamp = GLib.DateTime.new(
-                GLib.TimeZone.new_utc(),
-                int(datetime.strftime(element.mtime, "%Y")),
-                int(datetime.strftime(element.mtime, "%m")),
-                int(datetime.strftime(element.mtime, "%d")),
-                int(datetime.strftime(element.mtime, "%H")),
-                int(datetime.strftime(element.mtime, "%M")),
-                float(datetime.strftime(element.mtime, "%S")))
+            local_timestamp = element.mtime.astimezone(tz.tzlocal())
+            timestamp = GLib.DateTime.new_local(
+                int(datetime.strftime(local_timestamp, "%Y")),
+                int(datetime.strftime(local_timestamp, "%m")),
+                int(datetime.strftime(local_timestamp, "%d")),
+                int(datetime.strftime(local_timestamp, "%H")),
+                int(datetime.strftime(local_timestamp, "%M")),
+                float(datetime.strftime(local_timestamp, "%S")))
             return timestamp.format("%c")
         else:
             return "-"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-10-17 09:30+0000\n"
-"PO-Revision-Date: 2018-10-17 11:25+0200\n"
+"POT-Creation-Date: 2018-10-26 20:23+0000\n"
+"PO-Revision-Date: 2018-10-31 16:39+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -113,18 +113,18 @@ msgid "Generate Keyfile"
 msgstr "Generar archivo de claves"
 
 #: data/create_database.ui:880 data/main_window.ui:198
-#: data/unlock_database.ui:311 data/unlocked_database.ui:932
+#: data/unlock_database.ui:311 data/unlocked_database.ui:976
 msgid "Preferences"
 msgstr "Preferencias"
 
 #: data/create_database.ui:894 data/main_window.ui:212
-#: data/unlock_database.ui:325 data/unlocked_database.ui:946
+#: data/unlock_database.ui:325 data/unlocked_database.ui:990
 msgid "Keyboard Shortcuts"
 msgstr "Atajos del teclado"
 
 #. "Password Safe" is the application name
 #: data/create_database.ui:908 data/main_window.ui:226
-#: data/unlock_database.ui:339 data/unlocked_database.ui:960
+#: data/unlock_database.ui:339 data/unlocked_database.ui:1004
 msgid "About Password Safe"
 msgstr "Acerca del Depósito seguro de contraseñas"
 
@@ -150,7 +150,7 @@ msgstr "Depósito seguro creado correctamente"
 #. Headerbar subtitle for the keepass safe unlock screen.
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
 #: data/created_database.ui:50 data/unlock_database.ui:286
-#: data/unlock_database.ui:354 data/unlocked_database.ui:893
+#: data/unlock_database.ui:354 data/unlocked_database.ui:937
 msgid "Open Safe"
 msgstr "Abrir depósito seguro"
 
@@ -364,7 +364,7 @@ msgstr "Nueva…"
 msgid "Open…"
 msgstr "Abrir…"
 
-#: data/main_window.ui:423
+#: data/main_window.ui:409
 msgid "Recent Databases"
 msgstr "Bases de datos recientes"
 
@@ -552,7 +552,7 @@ msgstr "El archivo ya existe"
 msgid "Do you want to override it?"
 msgstr "¿Quiere sobrescribirlo?"
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1393
+#: data/override_dialog.ui:22 data/unlocked_database.ui:1452
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -560,11 +560,11 @@ msgstr "Cancelar"
 msgid "Override"
 msgstr "Anular"
 
-#: data/properties_dialog.ui:13 data/unlocked_database.ui:1150
+#: data/properties_dialog.ui:13 data/unlocked_database.ui:1209
 msgid "Properties"
 msgstr "Propiedades"
 
-#: data/properties_dialog.ui:49
+#: data/properties_dialog.ui:48
 msgid "Accessed"
 msgstr "Accedido"
 
@@ -572,12 +572,11 @@ msgstr "Accedido"
 msgid "Modified"
 msgstr "Modificado"
 
-#: data/properties_dialog.ui:83 data/references_dialog.ui:200
+#: data/properties_dialog.ui:85 data/references_dialog.ui:200
 msgid "UUID"
 msgstr "UUID"
 
-#: data/properties_dialog.ui:114
-#| msgid "Create Safe"
+#: data/properties_dialog.ui:118
 msgid "Created"
 msgstr "Creado"
 
@@ -590,8 +589,7 @@ msgstr "Código"
 msgid "Property"
 msgstr "Propiedad"
 
-#: data/references_dialog.ui:313 data/unlocked_database.ui:1136
-#| msgid "Preferences"
+#: data/references_dialog.ui:313 data/unlocked_database.ui:1195
 msgid "References"
 msgstr "Referencias"
 
@@ -606,7 +604,6 @@ msgstr ""
 "siguiente:"
 
 #: data/references_dialog.ui:396 data/references_dialog.ui:435
-#| msgid "Show Password Fields"
 msgid "Show Field Codes"
 msgstr "Mostrar campos de código"
 
@@ -615,7 +612,6 @@ msgid "Identifier"
 msgstr "Identificador"
 
 #: data/references_dialog.ui:519
-#| msgid "Preferences"
 msgid "Reference"
 msgstr "Referencia"
 
@@ -638,7 +634,7 @@ msgid "Select the safes you want to save."
 msgstr "Seleccione los depósitos seguros que quiere guardar."
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/quit_dialog.ui:22 data/unlocked_database.ui:1215
+#: data/quit_dialog.ui:22 data/unlocked_database.ui:1274
 msgid "Back"
 msgstr "Anterior"
 
@@ -662,7 +658,7 @@ msgid "Discard"
 msgstr "Descartar"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:745
+#: data/save_dialog.ui:35 data/unlocked_database.ui:761
 #: passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Guardar"
@@ -684,7 +680,8 @@ msgstr "Ocultar la pantalla de primer inicio"
 msgid "Reopen last opened safe"
 msgstr "Volver a abrir el último depósito seguro utilizado"
 
-#: data/settings_dialog.ui:254 passwordsafe/main_window.py:335
+#: data/settings_dialog.ui:254 data/unlocked_database.ui:860
+#: passwordsafe/main_window.py:335
 msgid "Safe"
 msgstr "Depósito seguro"
 
@@ -827,7 +824,7 @@ msgid "Open Keyfile"
 msgstr "Abrir archivo de claves"
 
 #. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:272 data/unlocked_database.ui:879
+#: data/unlock_database.ui:272 data/unlocked_database.ui:923
 msgid "New Safe"
 msgstr "Nuevo depósito seguro"
 
@@ -840,92 +837,102 @@ msgid "Failed to unlock safe"
 msgstr "Falló al desbloquear el depósito seguro"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:20 data/unlocked_database.ui:1240
+#: data/unlocked_database.ui:21 data/unlocked_database.ui:1299
 msgid "Selection Mode"
 msgstr "Modo de selección"
 
 #. Button tooltip in headerbar to open search page
-#: data/unlocked_database.ui:42
+#: data/unlocked_database.ui:43
 msgid "Search"
 msgstr "Buscar"
 
-#: data/unlocked_database.ui:210
+#: data/unlocked_database.ui:211
 msgid "Empty group"
 msgstr "Grupo vacío"
 
-#: data/unlocked_database.ui:266
+#: data/unlocked_database.ui:267
 msgid "No search results"
 msgstr "No hay resultados"
 
-#: data/unlocked_database.ui:619
+#: data/unlocked_database.ui:620
 msgid "Enter search term"
 msgstr "Introduzca el término de búsqueda"
 
-#. Button tooltip in headerbar to open page for creation of a new password entry
-#: data/unlocked_database.ui:687
-msgid "Create password…"
-msgstr "Crear contraseña…"
+#: data/unlocked_database.ui:683 data/unlocked_database.ui:827
+#| msgid "Sort"
+msgid "Sorting"
+msgstr "Ordenación"
 
-#. Button tooltip in headerbar to open page for creation of a new group
-#: data/unlocked_database.ui:709
-msgid "Create group…"
-msgstr "Crear grupo…"
+#. This string depicts the alphabet from the beginning to the end (first character to last one).
+#: data/unlocked_database.ui:700
+msgid "A-Z"
+msgstr "A-Z"
 
-#: data/unlocked_database.ui:767
-msgid "Lock"
-msgstr "Bloquear"
-
-#: data/unlocked_database.ui:812
-msgid "Sort"
-msgstr "Ordenar"
+#. This string depicts the alphabet in reversed order, from the end to the start (last character to first one).
+#: data/unlocked_database.ui:714
+msgid "Z-A"
+msgstr "Z-A"
 
 #. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:854
+#: data/unlocked_database.ui:728
 msgid "Last Added"
 msgstr "Añadido recientemente"
 
+#: data/unlocked_database.ui:783
+msgid "Lock"
+msgstr "Bloquear"
+
+#: data/unlocked_database.ui:874
+#| msgctxt "Shortcut window description"
+#| msgid "Entry"
+msgid "New Entry"
+msgstr "Nueva entrada"
+
+#: data/unlocked_database.ui:888
+#| msgid "Number of Groups"
+msgid "New Group"
+msgstr "Grupo nuevo"
+
 #. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:907
+#: data/unlocked_database.ui:951
 msgid "Safe Settings"
 msgstr "Configuración del depósito seguro"
 
-#. Only apply the search term for the current group
-#: data/unlocked_database.ui:998
+#: data/unlocked_database.ui:1066
 msgid "Local"
 msgstr "Local"
 
-#. Use full text search
-#: data/unlocked_database.ui:1012
+#: data/unlocked_database.ui:1078
 msgid "Full Text"
 msgstr "Texto completo"
 
-#: data/unlocked_database.ui:1122
+#: data/unlocked_database.ui:1181
 msgid "Duplicate"
 msgstr "Duplicar"
 
-#: data/unlocked_database.ui:1175
+#: data/unlocked_database.ui:1234
 msgid "Delete"
 msgstr "Eliminar"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1356
+#: data/unlocked_database.ui:1415
 msgid "Move selection"
 msgstr "Mover la selección"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1376
+#: data/unlocked_database.ui:1435
 msgid "Delete selection"
 msgstr "Eliminar la selección"
 
-#: data/unlocked_database.ui:1423
+#: data/unlocked_database.ui:1482
 msgid "Select all"
 msgstr "Seleccionar todo"
 
-#: data/unlocked_database.ui:1437
+#: data/unlocked_database.ui:1496
 msgid "Select none"
 msgstr "No seleccionar nada"
 
-#: data/unlocked_database.ui:1467
+#: data/unlocked_database.ui:1526
 msgid "Click on a checkbox to select"
 msgstr "Pulse en una casilla para seleccionar"
 
@@ -1009,15 +1016,15 @@ msgstr "Base de datos KeePass 3.1/4"
 msgid "Choose location for Keepass safe"
 msgstr "Elija la ubicación para el depósito seguro Keepass"
 
-#: passwordsafe/selection_ui.py:162
+#: passwordsafe/selection_ui.py:175
 msgid "Deletion completed"
 msgstr "Eliminar completado"
 
-#: passwordsafe/selection_ui.py:204
+#: passwordsafe/selection_ui.py:242
 msgid "Move completed"
 msgstr "Mover completado"
 
-#: passwordsafe/selection_ui.py:206
+#: passwordsafe/selection_ui.py:244
 msgid "Skipped moving group into itself"
 msgstr "Se omite el mover un grupo dentro de sí mismo"
 
@@ -1039,33 +1046,39 @@ msgstr "Inténtelo de nuevo"
 msgid "Choose Keyfile"
 msgstr "Elegir archivo de claves"
 
-#: passwordsafe/unlocked_database.py:537
+#: passwordsafe/unlocked_database.py:529
 msgid "Database saved"
 msgstr "Base de datos guardada"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:540
+#: passwordsafe/unlocked_database.py:532
 msgid "Please wait. Another save is running."
 msgstr "Hay otro proceso de guardado en ejecución. Espere."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:543
+#: passwordsafe/unlocked_database.py:535
 msgid "No changes made"
 msgstr "No se han hecho cambios"
 
-#: passwordsafe/unlocked_database.py:694
+#: passwordsafe/unlocked_database.py:714
 msgid "Copied to clipboard"
 msgstr "Copiada al portapapeles"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:837
+#: passwordsafe/unlocked_database.py:857
 #, python-format
 msgid "%s locked"
 msgstr "%s bloqueado"
 
-#: passwordsafe/unlocked_database.py:837
+#: passwordsafe/unlocked_database.py:857
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass ha bloqueado el depósito seguro por inactividad"
+
+#~ msgid "Create password…"
+#~ msgstr "Crear contraseña…"
+
+#~ msgid "Create group…"
+#~ msgstr "Crear grupo…"
 
 #~ msgid "Edit"
 #~ msgstr "Editar"

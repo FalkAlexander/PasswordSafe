@@ -83,7 +83,6 @@ class GroupPage:
     #
 
     def on_property_value_group_changed(self, widget, type):
-        print("jo")
         self.unlocked_database.start_database_lock_timer()
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 

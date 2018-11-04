@@ -279,9 +279,11 @@ class Pathbar(Gtk.HBox):
 
                 self.page_update_queried()
             else:
-                if self.check_is_edit_page_from_group() is True:
-                    edit_page = self.unlocked_database.get_current_group()
-                    self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(edit_page))
+                if self.check_is_edit_page_from_group() is False:
+                    return
+
+                edit_page = self.unlocked_database.get_current_group()
+                self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(edit_page))
 
     def page_update_queried(self):
         current_group = self.unlocked_database.get_current_group()

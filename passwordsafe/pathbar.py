@@ -254,29 +254,34 @@ class Pathbar(Gtk.HBox):
             from_group = False
 
         return from_group
-        
+
     def query_page_update(self):
-        if self.check_is_edit_page() is True and self.check_update_needed() is True:
-            edit_page = self.unlocked_database.get_current_group()
-            update_group = NotImplemented
+        if self.check_is_edit_page() is True:
+            if self.check_update_needed() is True:
+                edit_page = self.unlocked_database.get_current_group()
+                update_group = NotImplemented
 
-            if self.check_is_edit_page_from_group() is True:
-                update_group = self.database_manager.get_group_parent_group_from_object(edit_page)
+                if self.check_is_edit_page_from_group() is True:
+                    update_group = self.database_manager.get_group_parent_group_from_object(edit_page)
 
-                if self.database_manager.check_is_root_group(update_group) is True:
-                    update_group = self.database_manager.get_root_group()
+                    if self.database_manager.check_is_root_group(update_group) is True:
+                        update_group = self.database_manager.get_root_group()
 
-                self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(edit_page))
+                    self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(edit_page))
+                else:
+                    update_group = self.database_manager.get_entry_parent_group_from_entry_object(edit_page)
+
+                    if self.database_manager.check_is_root_group(update_group) is True:
+                        update_group = self.database_manager.get_root_group()
+
+                stack_page_name = self.database_manager.get_group_uuid_from_group_object(update_group)
+                self.unlocked_database.schedule_stack_page_for_destroy(stack_page_name)
+
+                self.page_update_queried()
             else:
-                update_group = self.database_manager.get_entry_parent_group_from_entry_object(edit_page)
-
-                if self.database_manager.check_is_root_group(update_group) is True:
-                    update_group = self.database_manager.get_root_group()
-
-            stack_page_name = self.database_manager.get_group_uuid_from_group_object(update_group)
-            self.unlocked_database.schedule_stack_page_for_destroy(stack_page_name)
-
-            self.page_update_queried()
+                if self.check_is_edit_page_from_group() is True:
+                    edit_page = self.unlocked_database.get_current_group()
+                    self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(edit_page))
 
     def page_update_queried(self):
         current_group = self.unlocked_database.get_current_group()

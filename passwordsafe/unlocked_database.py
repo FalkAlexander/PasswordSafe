@@ -620,7 +620,7 @@ class UnlockedDatabase:
             self.clipboard_timer.cancel()
 
         replace_string = text
-        for ref in re.finditer("(\{REF:.*?\})", text):
+        for ref in re.finditer("({REF:.*?})", text):
             not_valid = False
             code = ref.group()[5]
 

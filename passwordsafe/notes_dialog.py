@@ -25,6 +25,7 @@ class NotesDialog():
         self.dialog.present()
 
         self.unlocked_database.references_dialog = self.dialog
+        self.dialog.connect("delete-event", self.on_dialog_quit)
 
         self.value_entry = self.builder.get_object("value_entry")
         self.value_entry.get_buffer().connect("changed", self.on_value_entry_changed)
@@ -60,4 +61,11 @@ class NotesDialog():
 
     def on_close_button_clicked(self, button):
         self.dialog.destroy()
+
+    #
+    # Tools
+    #
+
+    def on_dialog_quit(self, window, event):
+        self.unlocked_database.notes_dialog = NotImplemented
 

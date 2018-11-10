@@ -49,6 +49,7 @@ class UnlockedDatabase:
     search_overlay = NotImplemented
     database_settings_dialog = NotImplemented
     references_dialog = NotImplemented
+    notes_dialog = NotImplemented
     properties_dialog = NotImplemented
 
     # Objects
@@ -763,6 +764,9 @@ class UnlockedDatabase:
 
         if self.database_settings_dialog is not NotImplemented:
             self.database_settings_dialog.close()
+
+        if self.notes_dialog is not NotImplemented:
+            self.notes_dialog.close()
 
         if self.references_dialog is not NotImplemented:
             self.references_dialog.close()

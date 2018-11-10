@@ -27,6 +27,7 @@ class ScrolledPage(Gtk.ScrolledWindow):
 
     notes_property_row = NotImplemented
     notes_property_value_entry = NotImplemented
+    notes_dialog_value_entry = NotImplemented
 
     icon_property_row = NotImplemented
     mail_icon_button = NotImplemented

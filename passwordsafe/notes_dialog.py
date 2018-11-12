@@ -42,6 +42,10 @@ class NotesDialog():
         self.search_entry = self.builder.get_object("search_entry")
 
         self.search_button.connect("toggled", self.on_search_button_toggled)
+        self.search_entry.connect("search-changed", self.on_search_entry_changed)
+
+        # Tags
+        self.tag = scrolled_page.notes_dialog_value_entry.get_buffer().create_tag("found", background="yellow")
 
         self.update_value_entry()
 
@@ -90,9 +94,29 @@ class NotesDialog():
             self.search_bar.set_search_mode(True)
             self.search_button.set_active(True)
 
+    def on_search_entry_changed(self, entry):
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
+        notes_buffer = scrolled_page.notes_dialog_value_entry.get_buffer()
+
+        scrolled_page.notes_dialog_value_entry.get_buffer().remove_all_tags(
+            scrolled_page.notes_dialog_value_entry.get_buffer().get_start_iter(),
+            scrolled_page.notes_dialog_value_entry.get_buffer().get_end_iter()
+        )
+
+        self.do_search(notes_buffer, entry)
+
     #
     # Tools
     #
+
+    def do_search(self, notes_buffer, entry):
+        start = notes_buffer.get_start_iter()
+        end = notes_buffer.get_end_iter()
+
+        match = start.forward_search(entry.get_text(), Gtk.TextSearchFlags.CASE_INSENSITIVE, end)
+        if match is not None:
+            match_start, match_end = match
+            notes_buffer.apply_tag(self.tag, match_start, match_end)
 
     def on_dialog_quit(self, window, event):
         self.unlocked_database.notes_dialog = NotImplemented

@@ -116,7 +116,9 @@ class NotesDialog():
             scrolled_page.notes_dialog_value_entry.get_buffer().get_end_iter()
         )
 
-        self.do_search(notes_buffer, entry)
+        start = notes_buffer.get_start_iter()
+        if entry.get_text() is not "":
+            self.do_search(notes_buffer, entry.get_text(), start)
 
     def on_search_stopped(self, entry):
         self.search_stopped = True
@@ -127,14 +129,14 @@ class NotesDialog():
     # Tools
     #
 
-    def do_search(self, notes_buffer, entry):
-        start = notes_buffer.get_start_iter()
+    def do_search(self, notes_buffer, keyword, start):
         end = notes_buffer.get_end_iter()
+        match = start.forward_search(keyword, Gtk.TextSearchFlags.CASE_INSENSITIVE, end)
 
-        match = start.forward_search(entry.get_text(), Gtk.TextSearchFlags.CASE_INSENSITIVE, end)
         if match is not None:
             match_start, match_end = match
             notes_buffer.apply_tag(self.tag, match_start, match_end)
+            self.do_search(notes_buffer, keyword, match_end)
 
     def on_dialog_quit(self, window, event):
         self.unlocked_database.notes_dialog = NotImplemented

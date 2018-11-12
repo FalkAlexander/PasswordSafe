@@ -6,10 +6,13 @@ class NotesDialog():
 
     unlocked_database = NotImplemented
     builder = NotImplemented
+    accelerators = NotImplemented
 
     search_button = NotImplemented
     search_bar = NotImplemented
     search_entry = NotImplemented
+
+    search_stopped = False
 
     def __init__(self, unlocked_database):
         self.unlocked_database = unlocked_database
@@ -43,11 +46,21 @@ class NotesDialog():
 
         self.search_button.connect("toggled", self.on_search_button_toggled)
         self.search_entry.connect("search-changed", self.on_search_entry_changed)
+        self.search_entry.connect("stop-search", self.on_search_stopped)
 
         # Tags
         self.tag = scrolled_page.notes_dialog_value_entry.get_buffer().create_tag("found", background="yellow")
 
+        # Accelerators
+        self.accelerators = Gtk.AccelGroup()
+        self.dialog.add_accel_group(self.accelerators)
+        self.add_search_accelerator()
+
         self.update_value_entry()
+
+    def add_search_accelerator(self):
+        key, mod = Gtk.accelerator_parse("<Control>f")
+        self.search_button.add_accelerator("clicked", self.accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
 
     def update_value_entry(self):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
@@ -84,15 +97,15 @@ class NotesDialog():
         self.dialog.destroy()
 
     def on_search_button_toggled(self, button):
+        if self.search_stopped is True:
+            return
         self.toggle_search_bar()
 
     def toggle_search_bar(self):
         if self.search_bar.get_search_mode() is True:
             self.search_bar.set_search_mode(False)
-            self.search_button.set_active(False)
         else:
             self.search_bar.set_search_mode(True)
-            self.search_button.set_active(True)
 
     def on_search_entry_changed(self, entry):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
@@ -104,6 +117,11 @@ class NotesDialog():
         )
 
         self.do_search(notes_buffer, entry)
+
+    def on_search_stopped(self, entry):
+        self.search_stopped = True
+        self.search_button.set_active(False)
+        self.search_stopped = False
 
     #
     # Tools

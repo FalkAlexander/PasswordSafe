@@ -1,0 +1,1060 @@
+# Russian translation for PasswordSafe.
+# Copyright (C) 2018 PasswordSafe's COPYRIGHT HOLDER
+# This file is distributed under the same license as the PasswordSafe package.
+# Artem Polishchuk <ego.cordatus@gmail.com>, 2018.
+# Stas Solovey <whats_up@tut.by>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PasswordSafe master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
+"POT-Creation-Date: 2018-11-03 17:32+0000\n"
+"PO-Revision-Date: 2018-11-13 22:29+0300\n"
+"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"Language-Team: Russian <gnome-cyr@gnome.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.2\n"
+
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in:9
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "Менеджер паролей для GNOME"
+
+#: data/about_dialog.ui.in:13
+msgid "Learn more about Password Safe"
+msgstr "Узнайте больше о Сейфе паролей"
+
+#. Add your name to the translator credits list
+#: data/about_dialog.ui.in:15
+msgid "translator-credits"
+msgstr ""
+"Artem Polishchuk <ego.cordatus@gmail.com>, 2018.\n"
+"Stas Solovey <whats_up@tut.by, 2018."
+
+#: data/create_database.ui:74 data/database_settings_dialog.ui:435
+#: data/entry_page.ui:1244 data/entry_page.ui:1381
+#: passwordsafe/unlock_database.py:93
+msgid "Password"
+msgstr "Пароль"
+
+#: data/create_database.ui:93
+msgid "Use a password to secure your safe"
+msgstr "Использовать пароль чтобы защитить сейф"
+
+#: data/create_database.ui:155 data/database_settings_dialog.ui:575
+#: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
+#: passwordsafe/database_settings_dialog.py:184
+#: passwordsafe/database_settings_dialog.py:219
+#: passwordsafe/database_settings_dialog.py:224
+#: passwordsafe/unlock_database.py:96 passwordsafe/unlock_database.py:301
+#: passwordsafe/unlock_database.py:423
+msgid "Keyfile"
+msgstr "Файл-ключ"
+
+#: data/create_database.ui:174
+msgid "Use a keyfile to secure your safe"
+msgstr "Использовать файл-ключ чтобы защитить сейф"
+
+#. NOTE: Composite unlock is a authentification method where both password and keyfile are required
+#: data/create_database.ui:236 passwordsafe/unlock_database.py:100
+msgid "Composite"
+msgstr "Комбинированный"
+
+#: data/create_database.ui:255
+msgid "Use a password in combination with a keyfile to secure your safe"
+msgstr "Использовать пароль в сочетании с файл-ключом чтобы защитить сейф"
+
+#: data/create_database.ui:297
+msgid "Protect your safe"
+msgstr "Защитите свой сейф"
+
+#: data/create_database.ui:408
+msgid "Set password for safe"
+msgstr "Установите пароль для сейфа"
+
+#: data/create_database.ui:423
+msgid "Enter Password"
+msgstr "Введите пароль"
+
+#: data/create_database.ui:469
+msgid "Password Match Check"
+msgstr "Проверка соответствия пароля"
+
+#: data/create_database.ui:555
+msgid "Repeat password for safe"
+msgstr "Повторите пароль для сейфа"
+
+#: data/create_database.ui:601
+msgid "Match Check Failed"
+msgstr "Сбой при проверке соответствия"
+
+#: data/create_database.ui:660
+msgid "Please try again"
+msgstr "Попробуйте ещё раз"
+
+#. Button to generate a password
+#: data/create_database.ui:781 data/entry_page.ui:1332
+#: passwordsafe/create_database.py:240
+#: passwordsafe/database_settings_dialog.py:217
+msgid "Generate"
+msgstr "Сгенерировать"
+
+#: data/create_database.ui:810
+msgid "Set keyfile for safe"
+msgstr "Установите файл-ключ чтобы защитить сейф"
+
+#: data/create_database.ui:825
+msgid "Generate Keyfile"
+msgstr "Сгенерировать файл-ключ"
+
+#: data/create_database.ui:880 data/main_window.ui:198
+#: data/unlock_database.ui:311 data/unlocked_database.ui:920
+msgid "Preferences"
+msgstr "Параметры"
+
+#: data/create_database.ui:894 data/main_window.ui:212
+#: data/unlock_database.ui:325 data/unlocked_database.ui:934
+msgid "Keyboard Shortcuts"
+msgstr "Комбинации клавиш"
+
+#. "Password Safe" is the application name
+#: data/create_database.ui:908 data/main_window.ui:226
+#: data/unlock_database.ui:339 data/unlocked_database.ui:948
+msgid "About Password Safe"
+msgstr "О сейфе паролей"
+
+#. Application title in headerbar.
+#. Application name in the headerbar title
+#. Application title in headerbar.
+#: data/create_database.ui:922 data/main_window.ui:353
+#: data/org.gnome.PasswordSafe.appdata.xml.in:4
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
+msgid "Password Safe"
+msgstr "Сейф паролей"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#: data/create_database.ui:923
+msgid "Create Safe"
+msgstr "Создать сейф"
+
+#: data/created_database.ui:24
+msgid "Safe Successfully Created"
+msgstr "Сейф успешно создан"
+
+#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
+#. Headerbar subtitle for the keepass safe unlock screen.
+#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
+#: data/created_database.ui:50 data/unlock_database.ui:286
+#: data/unlock_database.ui:354 data/unlocked_database.ui:881
+msgid "Open Safe"
+msgstr "Открыть сейф"
+
+#: data/database_settings_dialog.ui:51
+msgid "Details"
+msgstr "Подробности"
+
+#: data/database_settings_dialog.ui:76
+msgid "Path"
+msgstr "Путь"
+
+#: data/database_settings_dialog.ui:93
+msgid "File Size"
+msgstr "Размер файла"
+
+#: data/database_settings_dialog.ui:110
+msgid "Safe Name"
+msgstr "Имя сейфа"
+
+#. KeePass is a proper noun
+#: data/database_settings_dialog.ui:140
+msgid "KeePass Version"
+msgstr "Версия KeePass"
+
+#: data/database_settings_dialog.ui:157
+msgid "Creation Date"
+msgstr "Дата создания"
+
+#: data/database_settings_dialog.ui:174 data/database_settings_dialog.ui:795
+msgid "Encryption Algorithm"
+msgstr "Алгоритм шифрования"
+
+#: data/database_settings_dialog.ui:191
+msgid "Derivation Algorithm"
+msgstr "Алгоритм формирования"
+
+#. Statistics
+#: data/database_settings_dialog.ui:296
+msgid "Stats"
+msgstr "Статистика"
+
+#: data/database_settings_dialog.ui:321
+msgid "Number of Groups"
+msgstr "Количество групп"
+
+#: data/database_settings_dialog.ui:338
+msgid "Passwords"
+msgstr "Пароли"
+
+#: data/database_settings_dialog.ui:355
+msgid "Number of Entries"
+msgstr "Количество записей"
+
+#: data/database_settings_dialog.ui:416 data/settings_dialog.ui:49
+msgid "General"
+msgstr "Основное"
+
+#. New password (replacement for an old one)
+#: data/database_settings_dialog.ui:457
+msgid "New"
+msgstr "Новый"
+
+#: data/database_settings_dialog.ui:476 data/database_settings_dialog.ui:477
+msgid "Generate Password"
+msgstr "Сгенерировать пароль"
+
+#. Retype the new password to confirm
+#: data/database_settings_dialog.ui:490
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#. Current password
+#: data/database_settings_dialog.ui:520
+msgid "Current"
+msgstr "Текущий"
+
+#: data/database_settings_dialog.ui:628
+msgid "Select current keyfile"
+msgstr "Выберите текущий файл-ключ"
+
+#: data/database_settings_dialog.ui:704
+msgid "Generate new keyfile"
+msgstr "Сгенерировать новый файл-ключ"
+
+#: data/database_settings_dialog.ui:737 data/database_settings_dialog.ui:956
+#: passwordsafe/database_settings_dialog.py:335
+#: passwordsafe/database_settings_dialog.py:357
+msgid "Apply Changes"
+msgstr "Применить изменения"
+
+#: data/database_settings_dialog.ui:758
+msgid "Authentication"
+msgstr "Аутентификация"
+
+#. ChaCha20 is a proper name, do not translate
+#: data/database_settings_dialog.ui:828
+msgid "ChaCha20: 256-bit"
+msgstr "ChaCha20: 256-bit"
+
+#. Twofish is a proper name, do not translate
+#: data/database_settings_dialog.ui:845
+msgid "Twofish: 256-bit"
+msgstr "Twofish: 256-bit"
+
+#. AES is a proper name, do not translate
+#: data/database_settings_dialog.ui:862
+msgid "AES: 256-bit"
+msgstr "AES: 256-bit"
+
+#. https://en.wikipedia.org/wiki/Key_derivation_function
+#: data/database_settings_dialog.ui:887
+msgid "Key Derivation Function"
+msgstr "Функция формирования ключа"
+
+#: data/entry_page.ui:105
+msgid "Remove attribute"
+msgstr "Удалить атрибут"
+
+#: data/entry_page.ui:166
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: data/entry_page.ui:205
+msgid "Key"
+msgstr "Ключ"
+
+#: data/entry_page.ui:218
+msgid "Value"
+msgstr "Значение"
+
+#: data/entry_page.ui:240
+msgid "Add attribute"
+msgstr "Добавить атрибут"
+
+#: data/entry_page.ui:295
+msgid "Color"
+msgstr "Цвет"
+
+#: data/entry_page.ui:571
+msgid "Icon"
+msgstr "Значок"
+
+#: data/entry_page.ui:904 data/group_page.ui:35
+msgid "Title"
+msgstr "Заголовок"
+
+#: data/entry_page.ui:990 data/group_page.ui:119
+msgid "Notes"
+msgstr "Заметки"
+
+#: data/entry_page.ui:1114
+msgid "Length"
+msgstr "Длина"
+
+#: data/entry_page.ui:1149
+msgid "Characters"
+msgstr "Символы"
+
+#: data/entry_page.ui:1257
+msgid "Words"
+msgstr "Слова"
+
+#: data/entry_page.ui:1291
+msgid "Separator"
+msgstr "Разделитель"
+
+#: data/entry_page.ui:1308
+msgid "Enter character here…"
+msgstr "Введите символ здесь…"
+
+#: data/entry_page.ui:1319
+msgid "Passphrase"
+msgstr "Ключевая фраза"
+
+#. Tooltip for button near input field to show or hide the password (clear text)
+#: data/entry_page.ui:1436
+msgid "Show/hide password"
+msgstr "Показать/скрыть пароль"
+
+#: data/entry_page.ui:1616
+msgid "URL"
+msgstr "URL"
+
+#: data/entry_page.ui:1702
+msgid "Username"
+msgstr "Имя пользователя"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/main_window.ui:43
+msgid "Secure password safe"
+msgstr "Надёжный сейф паролей"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/main_window.ui:60
+msgid ""
+"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
+"b> a new Keepass safe."
+msgstr ""
+"Надёжно храните свои пароли, заметки и данные. <b>Создайте</b> или "
+"<b>импортируйте</b> новый сейф Keepass."
+
+#: data/main_window.ui:267
+msgid "New…"
+msgstr "Новый…"
+
+#: data/main_window.ui:312
+msgid "Open…"
+msgstr "Открыть…"
+
+#: data/main_window.ui:423
+msgid "Recent Databases"
+msgstr "Недавние базы данных"
+
+#: data/org.gnome.PasswordSafe.appdata.xml.in:11
+msgid ""
+"Password Safe is a password manager which makes use of the Keepass v.4 "
+"format. It integrates perfectly with the GNOME desktop and provides an easy "
+"and uncluttered interface for the management of password databases."
+msgstr ""
+"Password Safe — это менеджер паролей, который использует формат Keepass v.4. "
+"Он отлично интегрируется с рабочим столом GNOME и предоставляет простой и "
+"лаконичный интерфейс для управления базами данных паролей."
+
+#: data/org.gnome.PasswordSafe.appdata.xml.in:64
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.PasswordSafe.desktop.in.in:6
+msgid "@ICON@"
+msgstr "@ICON@"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.PasswordSafe.desktop.in.in:13
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;шифрование;защита;пароль;"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:115
+msgid "Use dark GTK+ theme"
+msgstr "Использовать тёмную тему GTK+"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:17
+msgid ""
+"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+"theme has a dark variant."
+msgstr ""
+"Использовать тёмный вариант вашей темы GTK+. Обратите внимание, что не "
+"каждая тема GTK+ имеет тёмный вариант."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:21
+msgid "Reopen last opened database"
+msgstr "Повторно открыть последнюю открытую базу данных"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:22
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Автоматически открывать экран разблокировки последней открытой базы данных, "
+"иначе показывать экран приветствия."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:320
+msgid "Save every change automatically"
+msgstr "Автоматически сохранять каждое изменение"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:27
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Мгновенно сохранять все изменения, сделанные в базе данных. Обратите "
+"внимание: вы не сможете отменять изменения, если включена функция "
+"автосохранения."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:31
+msgid "Lock database after X minutes"
+msgstr "Заблокировать базу данных через X минут"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:32
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Автоматически блокировать базу данных по истечении заданного количества "
+"минут для повышения безопасности."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:731
+msgid "Clear clipboard after X seconds"
+msgstr "Очистить буфер обмена через X секунд"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:37
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr ""
+"После копирования пароля очистите буфер обмена из соображений безопасности."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:815
+msgid "Display passwords in plain text"
+msgstr "Отображать пароли в открытом виде"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:42
+msgid "Show the passwords in the entry fields by default."
+msgstr "Показывать пароли в полях ввода по умолчанию."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:46
+msgid "Window size"
+msgstr "Размер окна"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:47
+msgid "Remember the window size."
+msgstr "Запоминать размер окна."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:51
+msgid "Last opened database"
+msgstr "Последняя открытая база данных"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:52
+msgid "Path to the last opened database."
+msgstr "Путь к последней открытой базе данных."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:56
+msgid "Last opened databases"
+msgstr "Последние открытые базы данных"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:57
+msgid "A list of the last opened databases."
+msgstr "Список последних открытых баз данных."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:61
+msgid "Remember composite key"
+msgstr "Запоминать составной ключ"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:62
+msgid "Remember last used composite key for database unlocking."
+msgstr ""
+"Запоминать последний, использованный составной ключ для разблокировки базы "
+"данных."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:66
+msgid "Last used composite key"
+msgstr "Последний использованный составной ключ"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:67
+msgid "Path to last used key for composite database unlocking."
+msgstr ""
+"Путь к последнему, использованному ключу для разблокировки составной базы."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:71
+msgid "Remember unlock method"
+msgstr "Запоминать метод разблокировки"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:72
+msgid "Remember last used unlock method for future database unlocking."
+msgstr "Запоминать последний, использованный метод разблокировки базы данных."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:76
+msgid "Backup the database on unlock"
+msgstr "Резервное копирование базы данных при разблокировке"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:77
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/passwordsafe/backups"
+msgstr ""
+"В случае возникновения ошибки при сохранении базы данных резервную копию "
+"можно найти в ~/.cache/passwordsafe/backups"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:81
+msgid "Sorting order of groups and entries"
+msgstr "Порядок сортировки групп и записей"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:82
+msgid "Order of the rows in the groups and entries view."
+msgstr "Порядок строк в видах группы и записи."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:86
+msgid "Last used unlock method"
+msgstr "Последний использованный метод разблокировки"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:87
+msgid ""
+"Used to store the last used unlock method and to enable a faster unlock "
+"process."
+msgstr ""
+"Используется для хранения последнего используемого метода разблокировки и "
+"для ускорения процесса разблокировки."
+
+#: data/override_dialog.ui:8
+msgid "File already exists"
+msgstr "Файл уже существует"
+
+#: data/override_dialog.ui:9
+msgid "Do you want to override it?"
+msgstr "Хотите заменить его?"
+
+#: data/override_dialog.ui:22 data/unlocked_database.ui:1277
+msgid "Cancel"
+msgstr "Отменить"
+
+#: data/override_dialog.ui:35
+msgid "Override"
+msgstr "Заменить"
+
+#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:8
+msgid "Do you want to save all safes with unsaved changes?"
+msgstr "Сохранить все сейфы с несохранёнными изменениями?"
+
+#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:9
+msgid "Select the safes you want to save."
+msgstr "Выберите сейфы, которые хотите сохранить."
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/quit_dialog.ui:22 data/unlocked_database.ui:988
+msgid "Back"
+msgstr "Назад"
+
+#: data/quit_dialog.ui:35
+msgid "Quit"
+msgstr "Завершить"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/save_dialog.ui:8
+msgid "Unsaved Changes"
+msgstr "Несохранённые изменения"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/save_dialog.ui:9
+msgid "Do you want to write all changes to the safe?"
+msgstr "Внести все изменения в сейф?"
+
+#. Discard all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:22
+msgid "Discard"
+msgstr "Отменить"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:35 data/unlocked_database.ui:733
+#: passwordsafe/main_window.py:333
+msgid "Save"
+msgstr "Сохранить"
+
+#. Title of the settings dialog
+#: data/settings_dialog.ui:15
+msgid "Settings"
+msgstr "Параметры"
+
+#: data/settings_dialog.ui:98
+msgid "Dark Theme"
+msgstr "Тёмная тема"
+
+#: data/settings_dialog.ui:181
+msgid "Hide First Start Screen"
+msgstr "Не показывать стартовый экран"
+
+#: data/settings_dialog.ui:198
+msgid "Reopen last opened safe"
+msgstr "Повторно открыть последний открытый сейф"
+
+#: data/settings_dialog.ui:254 passwordsafe/main_window.py:335
+msgid "Safe"
+msgstr "Сейф"
+
+#: data/settings_dialog.ui:303
+msgid "Save automatically"
+msgstr "Сохранять автоматически"
+
+#: data/settings_dialog.ui:376 data/unlock_database.ui:84
+#: data/unlock_database.ui:226 data/unlock_database.ui:468
+msgid "Unlock"
+msgstr "Разблокировать"
+
+#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:425
+msgid "Remember Composite Key"
+msgstr "Запоминать составной ключ"
+
+#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:442
+msgid "Remember last used composite key"
+msgstr "Запоминать последний использованный составной ключ"
+
+#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
+#: data/settings_dialog.ui:508
+msgid "Remember Unlock Method"
+msgstr "Запоминать метод разблокировки"
+
+#: data/settings_dialog.ui:525
+msgid "Enable faster unlocking"
+msgstr "Включить быструю разблокировку"
+
+#: data/settings_dialog.ui:581
+msgid "Security"
+msgstr "Безопасность"
+
+#: data/settings_dialog.ui:630
+msgid "Safe Lock Timeout"
+msgstr "Тайм-аут блокировки сейфа"
+
+#: data/settings_dialog.ui:647
+msgid "Lock safe on idle after X minutes"
+msgstr "Блокировать сейф при простое после X минут"
+
+#: data/settings_dialog.ui:714
+msgid "Clear Clipboard"
+msgstr "Очистить буфер обмена"
+
+#: data/settings_dialog.ui:798
+msgid "Show Password Fields"
+msgstr "Показывать пароли в полях"
+
+#: data/settings_dialog.ui:881
+msgid "Clear Recent List"
+msgstr "Очистить недавний список"
+
+#: data/settings_dialog.ui:898
+msgid "Clear the recently opened safes list"
+msgstr "Очистить список недавно открытых сейфов"
+
+#: data/shortcuts_overview.ui:14
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Приложение"
+
+#: data/shortcuts_overview.ui:18
+msgctxt "Shortcut window description"
+msgid "Create safe"
+msgstr "Создать сейф"
+
+#: data/shortcuts_overview.ui:25
+msgctxt "Shortcut window description"
+msgid "Open safe"
+msgstr "Открыть сейф"
+
+#: data/shortcuts_overview.ui:32
+msgctxt "Shortcut window description"
+msgid "Open preferences"
+msgstr "Открыть параметры"
+
+#: data/shortcuts_overview.ui:41
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Сейф"
+
+#: data/shortcuts_overview.ui:45
+msgctxt "Shortcut window description"
+msgid "Lock safe"
+msgstr "Заблокировать сейф"
+
+#: data/shortcuts_overview.ui:52
+msgctxt "Shortcut window description"
+msgid "Save safe"
+msgstr "Сохранить сейф"
+
+#: data/shortcuts_overview.ui:59
+msgctxt "Shortcut window description"
+msgid "Open search"
+msgstr "Открыть поиск"
+
+#: data/shortcuts_overview.ui:66
+msgctxt "Shortcut window description"
+msgid "Create entry"
+msgstr "Создать запись"
+
+#: data/shortcuts_overview.ui:73
+msgctxt "Shortcut window description"
+msgid "Create group"
+msgstr "Создать группу"
+
+#: data/shortcuts_overview.ui:82
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Запись"
+
+#: data/shortcuts_overview.ui:86
+msgctxt "Shortcut window description"
+msgid "Copy password"
+msgstr "Скопировать пароль"
+
+#: data/shortcuts_overview.ui:93
+msgctxt "Shortcut window description"
+msgid "Exit entry page"
+msgstr "Выйти из страницы записи"
+
+#: data/unlock_database.ui:27
+msgid "Enter password and select keyfile to unlock"
+msgstr "Введите пароль и выберите файл-ключ для разблокировки"
+
+#: data/unlock_database.ui:43 data/unlock_database.ui:175
+#: data/unlock_database.ui:515
+msgid "Safe is Locked"
+msgstr "Сейф заблокирован"
+
+#: data/unlock_database.ui:159
+msgid "Select keyfile to unlock"
+msgstr "Выберите файл-ключ для разблокировки"
+
+#: data/unlock_database.ui:208
+msgid "Open Keyfile"
+msgstr "Открыть файл-ключ"
+
+#. Menubutton popover in headerbar for starting the safe creation process
+#: data/unlock_database.ui:272 data/unlocked_database.ui:867
+msgid "New Safe"
+msgstr "Новый сейф"
+
+#: data/unlock_database.ui:499
+msgid "Enter password to unlock"
+msgstr "Введите пароль для разблокировки"
+
+#: data/unlock_database.ui:591
+msgid "Failed to unlock safe"
+msgstr "Не удалось разблокировать сейф"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/unlocked_database.ui:20 data/unlocked_database.ui:1013
+msgid "Selection Mode"
+msgstr "Режим выделения"
+
+#. Button tooltip in headerbar to open search page
+#: data/unlocked_database.ui:42
+msgid "Search"
+msgstr "Поиск"
+
+#: data/unlocked_database.ui:210
+msgid "Empty group"
+msgstr "Пустая группа"
+
+#: data/unlocked_database.ui:266
+msgid "No search results"
+msgstr "Нет результатов поиска"
+
+#: data/unlocked_database.ui:297 data/unlocked_database.ui:488
+msgid "Delete"
+msgstr "Удалить"
+
+#: data/unlocked_database.ui:474
+msgid "Edit"
+msgstr "Правка"
+
+#: data/unlocked_database.ui:607
+msgid "Enter search term"
+msgstr "Введите поисковый запрос"
+
+#. Button tooltip in headerbar to open page for creation of a new password entry
+#: data/unlocked_database.ui:675
+msgid "Create password…"
+msgstr "Создать пароль…"
+
+#. Button tooltip in headerbar to open page for creation of a new group
+#: data/unlocked_database.ui:697
+msgid "Create group…"
+msgstr "Создать группу…"
+
+#: data/unlocked_database.ui:755
+msgid "Lock"
+msgstr "Заблокировать"
+
+#: data/unlocked_database.ui:800
+msgid "Sort"
+msgstr "Сортировать"
+
+#. This is a modelbutton in a popover to sort entries by last added
+#: data/unlocked_database.ui:842
+msgid "Last Added"
+msgstr "Последние добавленные"
+
+#. Open settings for safe (e.g. password changing)
+#: data/unlocked_database.ui:895
+msgid "Safe Settings"
+msgstr "Настройки сейфа"
+
+#. Only apply the search term for the current group
+#: data/unlocked_database.ui:1124
+msgid "Local"
+msgstr "Локальный"
+
+#. Use full text search
+#: data/unlocked_database.ui:1138
+msgid "Full Text"
+msgstr "Полный текст"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/unlocked_database.ui:1240
+msgid "Move selection"
+msgstr "Переместить выделенное"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/unlocked_database.ui:1260
+msgid "Delete selection"
+msgstr "Удалить выделенное"
+
+#: data/unlocked_database.ui:1317
+msgid "Select all"
+msgstr "Выбрать все"
+
+#: data/unlocked_database.ui:1331
+msgid "Select none"
+msgstr "Снять выбор"
+
+#: data/unlocked_database.ui:1361
+msgid "Click on a checkbox to select"
+msgstr "Нажмите на флажок для выделения"
+
+#. NOTE: Filechooser title for generating a new keyfile
+#: passwordsafe/create_database.py:239
+#: passwordsafe/database_settings_dialog.py:216
+msgid "Choose location for keyfile"
+msgstr "Выберите местоположение для файла-ключа"
+
+#: passwordsafe/create_database.py:259
+msgid "Generating…"
+msgstr "Создание…"
+
+#. NOTE: Filechooser title for choosing current used keyfile
+#: passwordsafe/database_settings_dialog.py:178
+msgid "Choose current keyfile"
+msgstr "Выберите текущий файл-ключ"
+
+#: passwordsafe/database_settings_dialog.py:179
+msgid "Open"
+msgstr "Открыть"
+
+#: passwordsafe/database_settings_dialog.py:290
+#: passwordsafe/database_settings_dialog.py:346
+msgid "Apply…"
+msgstr "Применить…"
+
+#. Encryption Algorithm
+#: passwordsafe/database_settings_dialog.py:388
+msgid "Unknown"
+msgstr "Неизвестный"
+
+#. NOTE: AES is a proper name
+#: passwordsafe/database_settings_dialog.py:391
+msgid "AES 256-bit"
+msgstr "AES 256-bit"
+
+#. NOTE: ChaCha20 is a proper name
+#: passwordsafe/database_settings_dialog.py:394
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256-bit"
+
+#. NOTE: Twofish is a proper name
+#: passwordsafe/database_settings_dialog.py:397
+msgid "Twofish 256-bit"
+msgstr "Twofish 256-bit"
+
+#: passwordsafe/entry_page.py:478 passwordsafe/entry_row.py:136
+#: passwordsafe/unlocked_database.py:670
+msgid "Copied to clipboard"
+msgstr "Скопировано в буфер обмена"
+
+#: passwordsafe/entry_page.py:532 passwordsafe/entry_page.py:597
+msgid "Attribute key already exists"
+msgstr "Атрибут ключа уже существует"
+
+#: passwordsafe/entry_row.py:69
+msgid "Title not specified"
+msgstr "Заголовок не указан"
+
+#: passwordsafe/entry_row.py:78
+msgid "No username specified"
+msgstr "Не указано имя пользователя"
+
+#: passwordsafe/group_row.py:41
+msgid "No group title specified"
+msgstr "Не указано название группы"
+
+#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
+#: passwordsafe/main_window.py:283
+msgid "Choose a Keepass safe"
+msgstr "Выберите сейф Keepass"
+
+#. NOTE: KeePass + version number is a proper name, do not translate
+#: passwordsafe/main_window.py:288 passwordsafe/main_window.py:341
+msgid "KeePass 3.1/4 Database"
+msgstr "База данных KeePass 3.1/4"
+
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: passwordsafe/main_window.py:332
+msgid "Choose location for Keepass safe"
+msgstr "Выберите местоположение для сейфа Keepass"
+
+#: passwordsafe/selection_ui.py:149
+msgid "Deletion completed"
+msgstr "Удаление завершено"
+
+#: passwordsafe/selection_ui.py:191
+msgid "Move completed"
+msgstr "Перемещение завершено"
+
+#: passwordsafe/selection_ui.py:193
+msgid "Skipped moving group into itself"
+msgstr "Пропуск перемещения группы в саму себя"
+
+#: passwordsafe/unlock_database.py:213
+msgid "Database already opened"
+msgstr "База данных уже открыта"
+
+#. NOTE: Keyfile filechooser title
+#: passwordsafe/unlock_database.py:299
+msgid "Choose a keyfile"
+msgstr "Выберите файл-ключ"
+
+#: passwordsafe/unlock_database.py:352 passwordsafe/unlock_database.py:409
+msgid "Try again"
+msgstr "Попробуйте снова"
+
+#. NOTE: Keyfile filechooser title
+#: passwordsafe/unlock_database.py:418
+msgid "Choose Keyfile"
+msgstr "Выберите файл-ключ"
+
+#: passwordsafe/unlocked_database.py:544
+msgid "Database saved"
+msgstr "База данных сохранена"
+
+#. NOTE: In-app notification to inform the user that already an unfinished save job is running
+#: passwordsafe/unlocked_database.py:547
+msgid "Please wait. Another save is running."
+msgstr "Подождите. Выполняется другое сохранение."
+
+#. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
+#: passwordsafe/unlocked_database.py:550
+msgid "No changes made"
+msgstr "Изменений не было"
+
+#. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
+#: passwordsafe/unlocked_database.py:797
+#, python-format
+msgid "%s locked"
+msgstr "%s заблокирован"
+
+#: passwordsafe/unlocked_database.py:797
+msgid "Keepass safe locked due to inactivity"
+msgstr "Сейф Keepass заблокирован из-за неактивности"
+
+#~ msgid "Copy"
+#~ msgstr "Копировать"
+
+#~ msgid "Close"
+#~ msgstr "Закрыть"
+
+#~ msgid "Properties"
+#~ msgstr "Свойства"
+
+#~ msgid "Accessed"
+#~ msgstr "Доступен"
+
+#~ msgid "Modified"
+#~ msgstr "Изменён"
+
+#~ msgid "UUID"
+#~ msgstr "UUID"
+
+#~ msgid "Created"
+#~ msgstr "Создан"
+
+#~ msgid "Code"
+#~ msgstr "Код"
+
+#~ msgid "Property"
+#~ msgstr "Свойство"
+
+#~ msgid "References"
+#~ msgstr "Ссылки"
+
+#~ msgid "Syntax"
+#~ msgstr "Синтаксис"
+
+#~ msgid "The placeholder syntax for field references is the following:"
+#~ msgstr "Синтаксис заполнителя для ссылок поля следующий:"
+
+#~ msgid "Show Field Codes"
+#~ msgstr "Отображать коды полей"
+
+#~ msgid "Identifier"
+#~ msgstr "Идентификатор"
+
+#~ msgid "Reference"
+#~ msgstr "Ссылка"
+
+#~ msgid ""
+#~ "Each entry has a unique identifier called UUID.\n"
+#~ "It can be found in the properties of the entry."
+#~ msgstr ""
+#~ "Каждая запись имеет уникальный идентификатор UUID.\n"
+#~ "Его можно найти в свойствах записи."
+
+#~ msgid "A-Z"
+#~ msgstr "А-Я"
+
+#~ msgid "Z-A"
+#~ msgstr "Я-А"
+
+#~ msgid "New Entry"
+#~ msgstr "Новая запись"
+
+#~ msgid "New Group"
+#~ msgstr "Новая группа"
+
+#~ msgid "Duplicate"
+#~ msgstr "Дубликат"
+
+#~ msgid "Clone"
+#~ msgstr "Клонировать"

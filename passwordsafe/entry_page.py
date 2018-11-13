@@ -1,5 +1,6 @@
 from gi.repository import Gtk
 from gettext import gettext as _
+from passwordsafe.notes_dialog import NotesDialog
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
@@ -173,6 +174,9 @@ class EntryPage:
             if scrolled_page.notes_property_row is NotImplemented:
                 scrolled_page.notes_property_row = builder.get_object("notes_property_row")
                 scrolled_page.notes_property_value_entry = builder.get_object("notes_property_value_entry")
+
+                builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
+
                 buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 value = self.unlocked_database.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
@@ -391,6 +395,10 @@ class EntryPage:
             self.unlocked_database.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type == "notes":
             self.unlocked_database.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
+
+    def on_notes_detach_button_clicked(self, button):
+        self.unlocked_database.start_database_lock_timer()
+        NotesDialog(self.unlocked_database)
 
     def on_entry_icon_button_toggled(self, button):
         if button.get_active() is False:

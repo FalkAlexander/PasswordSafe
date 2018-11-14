@@ -560,48 +560,30 @@ class DatabaseManager:
         else:
             return True
 
-    # Search for an entry or a group by (part of) name, username, url and notes, returns list of uuid's, search fulltext optionally
-    def global_search(self, string, fulltext):
-        lstring = str.lower(string)
+    # Search for an entry or a group
+    def search(self, string, fulltext, global_search=True, path=None):
         uuid_list = []
-        for group in self.db.groups:
-            if lstring in str.lower(self.get_group_name_from_group_object(group)):
+
+        if fulltext is False:
+            for group in self.db.find_groups(name="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
                 if group.is_root_group is False:
                     uuid_list.append(group.uuid)
-            if fulltext is True:
-                if lstring in str.lower(self.get_group_notes_from_group_object(group)):
-                    if group.is_root_group is False:
+        else:
+            for group in self.db.groups:
+                if group.is_root_group is False and group.uuid not in uuid_list:
+                    if string.lower() in self.get_group_notes_from_group_object(group):
                         uuid_list.append(group.uuid)
 
-        for entry in self.db.entries:
-            if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):
+        if fulltext is False:
+            for entry in self.db.find_entries(title="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
                 uuid_list.append(entry.uuid)
-            if fulltext is True:
-                if lstring in str.lower(self.get_entry_username_from_entry_object(entry)) or string in str.lower(self.get_entry_url_from_entry_object(entry)) or string in str.lower(self.get_entry_notes_from_entry_object(entry)):
-                   uuid_list.append(entry.uuid) 
-
-        return uuid_list
-
-    # Search one group for a string, search fulltext optionally, returns list of uuid's of groups and entries
-    def local_search(self, group, string, fulltext):
-        lstring = str.lower(string)
-        uuid_list = []
-
-        for group_in in group.subgroups:
-            if lstring in str.lower(self.get_group_name_from_group_object(group_in)):
-                if group_in.is_root_group is False:
-                    uuid_list.append(group_in.uuid)
-            if fulltext is True:
-                if lstring in str.lower(self.get_group_notes_from_group_object(group_in)):
-                    if group_in.is_root_group is False:
-                        uuid_list.append(group_in.uuid)
-
-        for entry in group.entries:
-            if lstring in str.lower(self.get_entry_name_from_entry_object(entry)):
-                uuid_list.append(entry.uuid)
-            if fulltext is True:
-                if lstring in str.lower(self.get_entry_username_from_entry_object(entry)) or string in str.lower(self.get_entry_url_from_entry_object(entry)) or string in str.lower(self.get_entry_notes_from_entry_object(entry)):
-                   uuid_list.append(entry.uuid)
+        else:
+            for entry in self.db.entries:
+                if entry.uuid not in uuid_list:
+                    if string.lower() in self.get_entry_username_from_entry_object(entry):
+                        uuid_list.append(entry.uuid)
+                    elif string.lower() in self.get_entry_notes_from_entry_object(entry):
+                        uuid_list.append(entry.uuid)
 
         return uuid_list
 

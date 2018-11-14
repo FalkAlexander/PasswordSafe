@@ -110,9 +110,15 @@ class Search:
 
     def search_thread_creation(self, search_local_switch, widget, fulltext, result_list, empty_search_overlay, info_search_overlay):
         if search_local_switch.get_active() is True:
-            result_list = self.unlocked_database.database_manager.local_search(self.unlocked_database.current_group, widget.get_text(), fulltext)
+            result_list = self.unlocked_database.database_manager.search(widget.get_text(),
+                                                                         fulltext,
+                                                                         global_search=False,
+                                                                         path=self.unlocked_database.current_group.path + "/")
         else:
-            result_list = self.unlocked_database.database_manager.global_search(widget.get_text(), fulltext)
+            result_list = self.unlocked_database.database_manager.search(widget.get_text(),
+                                                                         fulltext,
+                                                                         global_search=True,
+                                                                         path="/")
 
         GLib.idle_add(self.search_overlay_creation, widget, result_list, empty_search_overlay, info_search_overlay)
 

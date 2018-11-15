@@ -5,6 +5,7 @@ import passwordsafe.icon
 
 
 class EntryRow(Gtk.ListBoxRow):
+    builder = NotImplemented
     unlocked_database = NotImplemented
     database_manager = NotImplemented
     entry_uuid = NotImplemented
@@ -35,17 +36,17 @@ class EntryRow(Gtk.ListBoxRow):
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource(
+        self.builder = Gtk.Builder()
+        self.builder.add_from_resource(
             "/org/gnome/PasswordSafe/unlocked_database.ui")
-        entry_event_box = builder.get_object("entry_event_box")
+        entry_event_box = self.builder.get_object("entry_event_box")
         entry_event_box.connect("button-press-event", self.unlocked_database.on_entry_row_button_pressed)
 
-        entry_icon = builder.get_object("entry_icon")
-        entry_name_label = builder.get_object("entry_name_label")
-        entry_subtitle_label = builder.get_object("entry_subtitle_label")
-        entry_copy_button = builder.get_object("entry_copy_button")
-        entry_color_button = builder.get_object("entry_color_button")
+        entry_icon = self.builder.get_object("entry_icon")
+        entry_name_label = self.builder.get_object("entry_name_label")
+        entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
+        entry_copy_button = self.builder.get_object("entry_copy_button")
+        entry_color_button = self.builder.get_object("entry_color_button")
 
         # Icon
         if self.icon is not None:
@@ -88,8 +89,8 @@ class EntryRow(Gtk.ListBoxRow):
         self.show_all()
 
         # Selection Mode Checkboxes
-        self.checkbox_box = builder.get_object("entry_checkbox_box")
-        self.selection_checkbox = builder.get_object("selection_checkbox_entry")
+        self.checkbox_box = self.builder.get_object("entry_checkbox_box")
+        self.selection_checkbox = self.builder.get_object("selection_checkbox_entry")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
         if self.unlocked_database.selection_ui.selection_mode_active is True:
             self.checkbox_box.show_all()
@@ -148,3 +149,27 @@ class EntryRow(Gtk.ListBoxRow):
     def get_color(self):
         return self.color
 
+    #
+    # Update
+    #
+
+    def update_title_label(self):
+        self.builder.get_object("entry_name_label").set_text(self.database_manager.get_entry_name_from_entry_uuid(self.entry_uuid))
+
+    def update_username_label(self):
+        self.builder.get_object("entry_subtitle_label").set_text(self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid))
+
+    def update_color_button(self):
+        self.color = self.database_manager.get_entry_color_from_entry_uuid(self.entry_uuid)
+        entry_color_button = self.builder.get_object("entry_color_button")
+        entry_color_button.set_name(self.color + "List")
+
+        if self.color != "NoneColorButton":
+            image = entry_color_button.get_children()[0]
+            image.set_name("BrightIcon")
+        else:
+            image = entry_color_button.get_children()[0]
+            image.set_name("DarkIcon")
+
+    def update_icon_image(self):
+        self.icon = self.database_manager.get_entry_icon_from_entry_uuid(self.entry_uuid)

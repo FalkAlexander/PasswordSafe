@@ -364,6 +364,10 @@ class UnlockedDatabase:
 
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)
+        self.search.cached_rows.clear()
+        for row in self.search.search_list_box:
+            if row.get_uuid() == self.current_group.uuid:
+                row.update_title()
 
     def destroy_scheduled_stack_page(self):
         page_uuid = NotImplemented

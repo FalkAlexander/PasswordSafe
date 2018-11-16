@@ -8,6 +8,8 @@ class EntryRow(Gtk.ListBoxRow):
     builder = NotImplemented
     unlocked_database = NotImplemented
     database_manager = NotImplemented
+
+    entry = NotImplemented
     entry_uuid = NotImplemented
     icon = NotImplemented
     label = NotImplemented
@@ -27,12 +29,10 @@ class EntryRow(Gtk.ListBoxRow):
         self.unlocked_database = unlocked_database
         self.database_manager = dbm
 
-        self.entry_uuid = dbm.get_entry_uuid_from_entry_object(entry)
-        self.icon = dbm.get_entry_icon_from_entry_object(entry)
-        self.label = dbm.get_entry_name_from_entry_object(entry)
-        self.password = dbm.get_entry_password_from_entry_object(entry)
-        self.color = dbm.get_entry_color_from_entry_uuid(self.entry_uuid)
+        self.entry = entry
+        self.entry_uuid = self.database_manager.get_entry_uuid_from_entry_object(entry)
 
+        self.query_ressources()
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
@@ -42,48 +42,12 @@ class EntryRow(Gtk.ListBoxRow):
         entry_event_box = self.builder.get_object("entry_event_box")
         entry_event_box.connect("button-press-event", self.unlocked_database.on_entry_row_button_pressed)
 
-        entry_icon = self.builder.get_object("entry_icon")
-        entry_name_label = self.builder.get_object("entry_name_label")
-        entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
-        entry_copy_button = self.builder.get_object("entry_copy_button")
-        entry_color_button = self.builder.get_object("entry_color_button")
+        self.update_row_icon()
+        self.update_row_title()
+        self.update_row_subtitle()
+        self.update_row_color()
 
-        # Icon
-        if self.icon is not None:
-            if int(self.icon) >= 0 and int(self.icon) <= 68 and self.icon:
-                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
-            else:
-                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
-        else:
-            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
-
-        # Title/Name
-        if self.database_manager.has_entry_name(self.entry_uuid) is True and self.label is not "":
-            entry_name_label.set_text(self.label)
-        else:
-            entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
-
-        # Subtitle
-        subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
-        if (self.database_manager.has_entry_username(self.entry_uuid) is True and subtitle is not ""):
-            username = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
-            if username.startswith("{REF:U"):
-                entry_subtitle_label.set_text(self.database_manager.get_entry_username_from_entry_uuid(self.unlocked_database.hex_to_base64(self.unlocked_database.reference_to_hex_uuid(username))))
-            else:
-                entry_subtitle_label.set_text(username)
-        else:
-            entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
-
-        entry_copy_button.connect("clicked", self.on_entry_copy_button_clicked)
-
-        # Color Button
-        entry_color_button.set_name(self.color + "List")
-        if self.color != "NoneColorButton":
-            image = entry_color_button.get_children()[0]
-            image.set_name("BrightIcon")
-        else:
-            image = entry_color_button.get_children()[0]
-            image.set_name("DarkIcon")
+        self.builder.get_object("entry_copy_button").connect("clicked", self.on_entry_copy_button_clicked)
 
         self.add(entry_event_box)
         self.show_all()
@@ -153,17 +117,52 @@ class EntryRow(Gtk.ListBoxRow):
     # Update
     #
 
-    def update_title_label(self):
-        self.builder.get_object("entry_name_label").set_text(self.database_manager.get_entry_name_from_entry_uuid(self.entry_uuid))
-
-    def update_username_label(self):
-        self.builder.get_object("entry_subtitle_label").set_text(self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid))
-
-    def update_color_button(self):
+    def query_ressources(self):
+        self.icon = self.database_manager.get_entry_icon_from_entry_uuid(self.entry_uuid)
+        self.label = self.database_manager.get_entry_name_from_entry_uuid(self.entry_uuid)
+        self.password = self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid)
         self.color = self.database_manager.get_entry_color_from_entry_uuid(self.entry_uuid)
+
+    def update_row(self):
+        if self.check_deleted() is False:
+            self.query_ressources()
+            self.update_row_title()
+            self.update_row_subtitle()
+            self.update_row_color()
+            self.update_row_icon()
+
+    def check_deleted(self):
+        if self.entry is None:
+            self.destroy_row()
+            return True
+        else:
+            return False
+
+    def destroy_row(self):
+        self.destroy()
+
+    def update_row_title(self):
+        entry_name_label = self.builder.get_object("entry_name_label")
+        if self.database_manager.has_entry_name(self.entry_uuid) is True and self.label is not "":
+            entry_name_label.set_text(self.label)
+        else:
+            entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
+
+    def update_row_subtitle(self):
+        entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
+        subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+        if (self.database_manager.has_entry_username(self.entry_uuid) is True and subtitle is not ""):
+            username = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+            if username.startswith("{REF:U"):
+                entry_subtitle_label.set_text(self.database_manager.get_entry_username_from_entry_uuid(self.unlocked_database.hex_to_base64(self.unlocked_database.reference_to_hex_uuid(username))))
+            else:
+                entry_subtitle_label.set_text(username)
+        else:
+            entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
+
+    def update_row_color(self):
         entry_color_button = self.builder.get_object("entry_color_button")
         entry_color_button.set_name(self.color + "List")
-
         if self.color != "NoneColorButton":
             image = entry_color_button.get_children()[0]
             image.set_name("BrightIcon")
@@ -171,5 +170,13 @@ class EntryRow(Gtk.ListBoxRow):
             image = entry_color_button.get_children()[0]
             image.set_name("DarkIcon")
 
-    def update_icon_image(self):
-        self.icon = self.database_manager.get_entry_icon_from_entry_uuid(self.entry_uuid)
+    def update_row_icon(self):
+        entry_icon = self.builder.get_object("entry_icon")
+        if self.icon is not None:
+            if int(self.icon) >= 0 and int(self.icon) <= 68 and self.icon:
+                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
+            else:
+                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
+        else:
+            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
+

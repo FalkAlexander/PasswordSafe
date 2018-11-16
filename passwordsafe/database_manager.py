@@ -642,6 +642,10 @@ class DatabaseManager:
             return timestamp.format("%c")
         else:
             return "-"
+
+    def get_element_uuid(self, element):
+        return element.uuid
+
     #
     # Database creation methods
     #

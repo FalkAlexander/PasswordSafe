@@ -274,8 +274,7 @@ class Pathbar(Gtk.HBox):
                     if self.database_manager.check_is_root_group(update_group) is True:
                         update_group = self.database_manager.get_root_group()
 
-                stack_page_name = self.database_manager.get_group_uuid_from_group_object(update_group)
-                self.unlocked_database.schedule_stack_page_for_destroy(stack_page_name)
+                self.unlocked_database.update_row_container(edit_page, update_group)
 
                 self.page_update_queried()
             else:
@@ -283,7 +282,7 @@ class Pathbar(Gtk.HBox):
                     return
 
                 edit_page = self.unlocked_database.get_current_group()
-                self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(edit_page))
+                self.unlocked_database.update_row_container(edit_page, self.database_manager.get_entry_parent_group_from_entry_object(edit_page))
 
     def page_update_queried(self):
         current_group = self.unlocked_database.get_current_group()

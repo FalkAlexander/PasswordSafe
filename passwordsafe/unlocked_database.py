@@ -365,6 +365,8 @@ class UnlockedDatabase:
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)
         self.search.cached_rows.clear()
+        if self.search.search_list_box is NotImplemented:
+            return
         for row in self.search.search_list_box:
             if row.get_uuid() == self.current_group.uuid:
                 row.update_title()
@@ -381,6 +383,15 @@ class UnlockedDatabase:
             if stack_page_name is not None:
                 stack_page_name.destroy()
             self.scheduled_page_destroy.remove(page_uuid)
+
+    def update_row_container(self, element, parent_element):
+        element_uuid = self.database_manager.get_element_uuid(element)
+        page_uuid = self.database_manager.get_element_uuid(parent_element)
+
+        stack_page = self.stack.get_child_by_name(page_uuid)
+        for row in stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]:
+            if row.get_uuid() == element_uuid:
+                row.update_row()
 
     #
     # Create Group & Entry Rows

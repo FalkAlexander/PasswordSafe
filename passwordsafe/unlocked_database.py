@@ -461,6 +461,9 @@ class UnlockedDatabase:
 
         self.show_page_of_new_directory(False, False)
 
+    def list_box_mod_add(self):
+        pass
+
     #
     # Events
     #
@@ -550,6 +553,11 @@ class UnlockedDatabase:
         self.start_database_lock_timer()
         self.database_manager.changes = True
         entry = self.database_manager.add_entry_to_database("", "", "", None, None, "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
+
+        stack_page = self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
+        list_box.add(EntryRow(self, self.database_manager, entry))
+
         self.current_group = entry
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)

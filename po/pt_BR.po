@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-11-03 19:21+0000\n"
-"PO-Revision-Date: 2018-11-05 07:42-0200\n"
+"POT-Creation-Date: 2018-11-21 13:26+0000\n"
+"PO-Revision-Date: 2018-11-22 07:43-0200\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -33,7 +33,7 @@ msgid "translator-credits"
 msgstr "Yuri Otávio Lopes Gomes <yuriotavio@hotmail.com>"
 
 #: data/create_database.ui:74 data/database_settings_dialog.ui:435
-#: data/entry_page.ui:1306 data/entry_page.ui:1442
+#: data/entry_page.ui:1331 data/entry_page.ui:1467
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
 #: passwordsafe/unlock_database.py:93
 msgid "Password"
@@ -96,7 +96,7 @@ msgid "Please try again"
 msgstr "Por favor, tente de novo"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1393
+#: data/create_database.ui:781 data/entry_page.ui:1418
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
@@ -296,46 +296,46 @@ msgstr "Ícone"
 msgid "Title"
 msgstr "Título"
 
-#: data/entry_page.ui:1052 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/entry_page.ui:1050 data/group_page.ui:120 data/references_dialog.ui:185
 #: data/references_dialog.ui:291
 msgid "Notes"
 msgstr "Notas"
 
-#: data/entry_page.ui:1177
+#: data/entry_page.ui:1202
 msgid "Length"
 msgstr "Tamanho"
 
-#: data/entry_page.ui:1211
+#: data/entry_page.ui:1236
 msgid "Characters"
 msgstr "Caracteres"
 
-#: data/entry_page.ui:1319
+#: data/entry_page.ui:1344
 msgid "Words"
 msgstr "Palavras"
 
-#: data/entry_page.ui:1352
+#: data/entry_page.ui:1377
 msgid "Separator"
 msgstr "Separador"
 
-#: data/entry_page.ui:1369
+#: data/entry_page.ui:1394
 msgid "Enter character here…"
 msgstr "Insira caractere aqui…"
 
-#: data/entry_page.ui:1380
+#: data/entry_page.ui:1405
 msgid "Passphrase"
 msgstr "Frase-passe"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1498
+#: data/entry_page.ui:1523
 msgid "Show/hide password"
 msgstr "Mostra/oculta a senha"
 
-#: data/entry_page.ui:1679 data/references_dialog.ui:170
+#: data/entry_page.ui:1704 data/references_dialog.ui:170
 #: data/references_dialog.ui:277
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:1766 data/references_dialog.ui:92
+#: data/entry_page.ui:1791 data/references_dialog.ui:92
 #: data/references_dialog.ui:249
 msgid "Username"
 msgstr "Nome de usuário"
@@ -365,6 +365,14 @@ msgstr "Abrir…"
 #: data/main_window.ui:409
 msgid "Recent Databases"
 msgstr "Bancos de dados recentes"
+
+#: data/notes_dialog.ui:15
+msgid "Copy"
+msgstr "Copiar"
+
+#: data/notes_dialog.ui:52
+msgid "Close"
+msgstr "Fechar"
 
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:11
 msgid ""
@@ -559,7 +567,6 @@ msgid "Override"
 msgstr "Sobrescrever"
 
 #: data/properties_dialog.ui:13 data/unlocked_database.ui:1209
-#| msgid "Show all properties"
 msgid "Properties"
 msgstr "Propriedades"
 
@@ -576,7 +583,6 @@ msgid "UUID"
 msgstr "UUID"
 
 #: data/properties_dialog.ui:118
-#| msgid "Create Safe"
 msgid "Created"
 msgstr "Criado"
 
@@ -590,7 +596,6 @@ msgid "Property"
 msgstr "Propriedade"
 
 #: data/references_dialog.ui:314 data/unlocked_database.ui:1195
-#| msgid "Preferences"
 msgid "References"
 msgstr "Referências"
 
@@ -603,7 +608,6 @@ msgid "The placeholder syntax for field references is the following:"
 msgstr "A sintaxe de espaço reservado para referências de campo é a seguinte:"
 
 #: data/references_dialog.ui:398 data/references_dialog.ui:437
-#| msgid "Show Password Fields"
 msgid "Show Field Codes"
 msgstr "Mostrar códigos de campos"
 
@@ -612,7 +616,6 @@ msgid "Identifier"
 msgstr "Identificador"
 
 #: data/references_dialog.ui:520
-#| msgid "Preferences"
 msgid "Reference"
 msgstr "Referência"
 
@@ -860,7 +863,6 @@ msgid "Enter search term"
 msgstr "Insira os termos de pesquisa"
 
 #: data/unlocked_database.ui:683 data/unlocked_database.ui:827
-#| msgid "Sort"
 msgid "Sorting"
 msgstr "Ordem"
 
@@ -884,13 +886,10 @@ msgid "Lock"
 msgstr "Bloquear"
 
 #: data/unlocked_database.ui:874
-#| msgctxt "Shortcut window description"
-#| msgid "Entry"
 msgid "New Entry"
 msgstr "Nova entrada"
 
 #: data/unlocked_database.ui:888
-#| msgid "Number of Groups"
 msgid "New Group"
 msgstr "Novo grupo"
 
@@ -986,7 +985,7 @@ msgstr "ChaCha20 256-bit"
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:483 passwordsafe/entry_page.py:546
+#: passwordsafe/entry_page.py:491 passwordsafe/entry_page.py:554
 msgid "Attribute key already exists"
 msgstr "A chave de atributo já existente"
 
@@ -1047,31 +1046,31 @@ msgstr "Tente novamente"
 msgid "Choose Keyfile"
 msgstr "Escolher arquivo de chave"
 
-#: passwordsafe/unlocked_database.py:480
+#: passwordsafe/unlocked_database.py:481
 msgid "Database saved"
 msgstr "Banco de dados salvos"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:483
+#: passwordsafe/unlocked_database.py:484
 msgid "Please wait. Another save is running."
 msgstr "Por favor, aguarde. Outro save está sendo executado."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:486
+#: passwordsafe/unlocked_database.py:487
 msgid "No changes made"
 msgstr "Nenhuma alteração feita"
 
-#: passwordsafe/unlocked_database.py:665
+#: passwordsafe/unlocked_database.py:666
 msgid "Copied to clipboard"
 msgstr "Copiar para a área de transferência"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:808
+#: passwordsafe/unlocked_database.py:812
 #, python-format
 msgid "%s locked"
 msgstr "%s bloqueado"
 
-#: passwordsafe/unlocked_database.py:808
+#: passwordsafe/unlocked_database.py:812
 msgid "Keepass safe locked due to inactivity"
 msgstr "Cofre de Keepass bloqueado por causa de inatividade"
 

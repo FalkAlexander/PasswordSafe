@@ -1,5 +1,6 @@
 from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
+from passwordsafe.nitrokey import NitroKey
 from passwordsafe.unlocked_database import UnlockedDatabase
 import passwordsafe.config_manager
 import ntpath
@@ -85,6 +86,9 @@ class UnlockDatabase:
         unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
         self.unlock_database_stack_switcher.set_stack(stack)
+
+        nitrokey = NitroKey()
+        print(nitrokey.get_hotp_code(1))
 
         password_unlock_stack_page = self.builder.get_object("password_unlock_stack_page")
         keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")

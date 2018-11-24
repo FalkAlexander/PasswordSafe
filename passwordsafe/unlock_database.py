@@ -88,8 +88,7 @@ class UnlockDatabase:
         self.unlock_database_stack_switcher.set_stack(stack)
 
         nitrokey = NitroKey()
-        print("HOTP:")
-        print(nitrokey.get_hotp_code(1))
+        nitrokey.connect_test()
 
         password_unlock_stack_page = self.builder.get_object("password_unlock_stack_page")
         keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")

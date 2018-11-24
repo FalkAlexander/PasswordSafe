@@ -4,10 +4,11 @@ import os
 import sys
 
 class NitroKey():
-    ffi = cffi.FFI()
+    ffi = NotImplemented
     native_lib = NotImplemented
 
     def __init__(self):
+        self.ffi = cffi.FFI()
         self.libnitrokey_native()
 
     def libnitrokey_native(self):
@@ -38,4 +39,20 @@ class NitroKey():
 
     def get_hotp_code(self, slot):
         return self.ffi.string(self.native_lib.NK_get_hotp_code(slot))
+
+    def connect_test(self):
+        connected = self.native_lib.NK_login_auto()
+
+        if connected:
+            print("NitroKey Connected!")
+        else:
+            print("No NitroKey Found!")
+
+        pin_correct = self.native_lib.NK_first_authenticate("bla".encode("ascii"), "123456".encode("ascii"))
+        code = self.native_lib.NK_get_hotp_code(0)
+        bytes = self.ffi.string(code)
+        string = bytes.decode("utf-8")
+        print(string)
+
+        self.native_lib.NK_logout()
 

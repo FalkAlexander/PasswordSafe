@@ -4,12 +4,19 @@ import os
 import sys
 
 class NitroKey():
+    logging_manager = NotImplemented
+
     ffi = NotImplemented
     native_lib = NotImplemented
 
-    def __init__(self):
+    device_connected = False
+
+    def __init__(self, logging_manager):
+        self.logging_manager = logging_manager
+
         self.ffi = cffi.FFI()
         self.libnitrokey_native()
+        self.prepare_device()
 
     def libnitrokey_native(self):
         header_file = Gio.File.new_for_uri("resource:///org/gnome/PasswordSafe/native/NK_C_API.h")
@@ -32,27 +39,26 @@ class NitroKey():
         if os.path.exists(library_path):
             self.native_lib = self.ffi.dlopen(library_path)
         else:
-            print("libnitrokey.so not found")
+            self.logging_manager.info("libnitrokey.so not found in system library path")
 
+    def prepare_device(self):
         if self.native_lib is NotImplemented:
-            print("Native Library Missing")
+            return
+
+        if self.native_lib.NK_login_auto():
+            self.device_connected = True
+            self.logging_manager.debug("NitroKey connected")
+        else:
+            self.logging_manager.debug("No NitroKey connected")
+
+        #pin_correct = self.native_lib.NK_first_authenticate("bla".encode("ascii"), "123456".encode("ascii"))
+
+    def logout_device(self):
+        self.native_lib.NK_logout()
 
     def get_hotp_code(self, slot):
-        return self.ffi.string(self.native_lib.NK_get_hotp_code(slot))
-
-    def connect_test(self):
-        connected = self.native_lib.NK_login_auto()
-
-        if connected:
-            print("NitroKey Connected!")
-        else:
-            print("No NitroKey Found!")
-
-        pin_correct = self.native_lib.NK_first_authenticate("bla".encode("ascii"), "123456".encode("ascii"))
-        code = self.native_lib.NK_get_hotp_code(0)
+        code = self.native_lib.NK_get_hotp_code(slot)
         bytes = self.ffi.string(code)
         string = bytes.decode("utf-8")
-        print(string)
-
-        self.native_lib.NK_logout()
+        return bytes.decode("utf-8")
 

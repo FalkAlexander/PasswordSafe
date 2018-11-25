@@ -87,8 +87,10 @@ class UnlockDatabase:
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
         self.unlock_database_stack_switcher.set_stack(stack)
 
-        nitrokey = NitroKey()
-        nitrokey.connect_test()
+        nitrokey = NitroKey(self.window.logging_manager)
+        if nitrokey.device_connected is True:
+            hotp_code = nitrokey.get_hotp_code(0)
+            print(hotp_code)
 
         password_unlock_stack_page = self.builder.get_object("password_unlock_stack_page")
         keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")

@@ -1,0 +1,14 @@
+{
+    "name": "python3-pyotp",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --no-index --no-build-isolation --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pyotp"
+    ],
+    "sources": [
+    	{
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/b1/ab/477cda97b6ca7baced5106471cb1ac1fe698d1b035983b9f8ee3422989eb/pyotp-2.2.7.tar.gz",
+            "sha256": "be0ffeabddaa5ee53e7204e7740da842d070cf69168247a3d0c08541b84de602"
+        }
+    ]
+}

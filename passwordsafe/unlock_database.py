@@ -30,6 +30,7 @@ class UnlockDatabase:
     original_group_edit_page = NotImplemented
     password_only = NotImplemented
     unlock_thread = NotImplemented
+    nitrokey_connected = False
 
     def __init__(self, window, widget, filepath):
         self.window = window
@@ -87,11 +88,6 @@ class UnlockDatabase:
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
         self.unlock_database_stack_switcher.set_stack(stack)
 
-        nitrokey = NitroKey(self.window.logging_manager)
-        if nitrokey.device_connected is True:
-            hotp_code = nitrokey.get_hotp_code(0)
-            print(hotp_code)
-
         password_unlock_stack_page = self.builder.get_object("password_unlock_stack_page")
         keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")
         composite_unlock_stack_page = self.builder.get_object("composite_unlock_stack_page")
@@ -105,6 +101,16 @@ class UnlockDatabase:
         # NOTE: Composite unlock is a authentification method where both password and keyfile are required
         stack.add_titled(composite_unlock_stack_page, "composite_unlock", _("Composite"))
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
+
+        nitrokey = NitroKey(self.window.logging_manager)
+        self.nitrokey_connected = nitrokey.device_connected
+
+        if self.nitrokey_connected is True:
+            nitrokey_unlock_stack_page = self.builder.get_object("nitrokey_unlock_stack_page")
+            stack.add_titled(nitrokey_unlock_stack_page, "nitrokey_unlock", _("NitroKey"))
+            stack.child_set_property(nitrokey_unlock_stack_page, "icon-name", "insert-link-symbolic")
+            #hotp_code = nitrokey.get_hotp_code(0)
+            #print(hotp_code)
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_filepath).get_uri()

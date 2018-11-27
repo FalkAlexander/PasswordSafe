@@ -420,6 +420,113 @@
       </packing>
     </child>
   </object>
+  <object class="GtkGrid" id="nitrokey_unlock_stack_page">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">end</property>
+    <property name="vexpand">True</property>
+    <child>
+      <object class="GtkImage" id="nitrokey_unlock_image">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_bottom">15</property>
+        <property name="pixel_size">100</property>
+        <property name="icon_name">auth-smartcard-symbolic</property>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="nitrokey_unlock_description_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Insert NitroKey to unlock</property>
+        <property name="wrap">True</property>
+        <property name="yalign">0.10000000149011612</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="nitrokey_unlock_header_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Safe is Locked</property>
+        <property name="ellipsize">middle</property>
+        <property name="yalign">0.88999998569488525</property>
+        <attributes>
+          <attribute name="weight" value="normal"/>
+          <attribute name="size" value="18000"/>
+        </attributes>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="nitrokey_unlock_input_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <child>
+          <object class="GtkEntry" id="nitrokey_unlock_entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="can_default">True</property>
+            <property name="margin_top">10</property>
+            <property name="hexpand">True</property>
+            <property name="visibility">False</property>
+            <property name="invisible_char">●</property>
+            <property name="secondary_icon_name">user-not-tracked-symbolic</property>
+            <property name="input_purpose">password</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="nitrokey_unlock_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Unlock</property>
+            <property name="halign">end</property>
+            <property name="margin_top">10</property>
+            <child>
+              <object class="GtkImage" id="nitrokey_unlock_button_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">changes-allow-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <style>
+          <class name="linked"/>
+        </style>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">3</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkGrid" id="password_unlock_stack_page">
     <property name="visible">True</property>
     <property name="can_focus">False</property>

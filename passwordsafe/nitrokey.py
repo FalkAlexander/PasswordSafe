@@ -1,6 +1,8 @@
 from gi.repository import Gio
 import cffi
 import os
+import passwordsafe.password_generator
+import pyotp
 import sys
 
 class NitroKey():
@@ -10,6 +12,7 @@ class NitroKey():
     native_lib = NotImplemented
 
     device_connected = False
+    temporary_password = NotImplemented
 
     def __init__(self, logging_manager):
         self.logging_manager = logging_manager
@@ -47,6 +50,7 @@ class NitroKey():
 
         if self.native_lib.NK_login_auto():
             self.device_connected = True
+            self.temporary_password = passwordsafe.password_generator.generate(8, True, True, True, True)
             self.logging_manager.debug("NitroKey connected")
         else:
             self.logging_manager.debug("No NitroKey connected")
@@ -57,8 +61,20 @@ class NitroKey():
         self.native_lib.NK_logout()
 
     def get_hotp_code(self, slot):
-        code = self.native_lib.NK_get_hotp_code(slot)
-        bytes = self.ffi.string(code)
-        string = bytes.decode("utf-8")
-        return bytes.decode("utf-8")
+        for i in range(0, 3):
+            if self.native_lib.NK_get_hotp_slot_name(i) == "PasswordSafe":
+                code = self.native_lib.NK_get_hotp_code(i)
+                bytes = self.ffi.string(code)
+                string = bytes.decode("utf-8")
+                return string
+
+        return None
+
+    def create_hotp_slot(self):
+        for i in range(0, 3):
+            if self.ffi.string(self.native_lib.NK_get_hotp_code(i)).decode("utf-8") == "":
+                self.native_lib.NK_write_hotp_slot(slot, "PasswordSafe", pyotp.random_base32(), 8, True, False, False, None, self.temporary_password)
+                return True
+
+        return False
 

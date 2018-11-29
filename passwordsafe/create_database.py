@@ -95,6 +95,12 @@ class CreateDatabase:
         self.parent_widget.remove(self.stack)
         CreatedDatabase(self.window, self.parent_widget, self.database_manager)
 
+    # NitroKey
+
+    def nitrokey_creation(self):
+        self.stack.set_visible_child(self.stack.get_child_by_name("page4"))
+        self.parent_widget.add(self.stack)
+        self.builder.get_object("setup_nitrokey_button").connect("clicked", self.on_setup_nitrokey_button_clicked)
     #
     # Headerbar
     #
@@ -120,12 +126,12 @@ class CreateDatabase:
             self.switched = True
             self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
             self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
-        elif self.stack.get_visible_child_name() == "page2":
+        elif self.stack.get_visible_child_name() == "page2" or self.stack.get_visible_child_name() == "page3" or self.stack.get_visible_child_name() == "page4":
             self.window.close_tab(self.parent_widget)
             self.window.set_headerbar()
-        elif self.stack.get_visible_child_name() == "page3":
-            self.window.close_tab(self.parent_widget)
-            self.window.set_headerbar()
+        elif self.stack.get_visible_child_name() == "page5":
+            self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_RIGHT)
+            self.stack.set_visible_child(self.stack.get_child_by_name("page4"))
 
 
     def on_auth_chooser_row_activated(self, widget, row):
@@ -138,6 +144,8 @@ class CreateDatabase:
         elif row.get_name() == "composite":
             self.composite = True
             self.password_creation()
+        elif row.get_name() == "nitrokey":
+            self.nitrokey_creation()
 
     def on_password_creation_button_clicked(self, widget):
         password_creation_input = self.builder.get_object(
@@ -263,6 +271,9 @@ class CreateDatabase:
             generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.keyfile_path, True, self, self.composite))
             generator_thread.daemon = True
             generator_thread.start()
+
+    def on_setup_nitrokey_button_clicked(self, widget):
+        pass
 
     #
     # Helper Functions

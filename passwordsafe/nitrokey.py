@@ -5,6 +5,7 @@ import passwordsafe.password_generator
 import pyotp
 import sys
 
+
 class NitroKey():
     logging_manager = NotImplemented
 
@@ -50,18 +51,33 @@ class NitroKey():
 
         if self.native_lib.NK_login_auto():
             self.device_connected = True
-            self.temporary_password = passwordsafe.password_generator.generate(8, True, True, True, True)
+            self.temporary_password = passwordsafe.password_generator.generate(10, True, True, True, True)
+            pin_correct = self.native_lib.NK_first_authenticate("passwd".encode("ascii"), self.temporary_password.encode("ascii"))
+            if pin_correct:
+                print("corrent pin")
+            else:
+                print("wrong pin")
+                print("Tries left: " + str(self.native_lib.NK_get_admin_retry_count()))
             self.logging_manager.debug("NitroKey connected")
         else:
             self.logging_manager.debug("No NitroKey connected")
 
-        #pin_correct = self.native_lib.NK_first_authenticate("bla".encode("ascii"), "123456".encode("ascii"))
-
     def logout_device(self):
         self.native_lib.NK_logout()
 
-    def get_hotp_code(self, slot):
+    def get_hardware_token_identifier(self):
+        return self.native_lib.NK_device_serial_number()
+
+    def get_hotp_code(self):
         for i in range(0, 3):
+            slot_bytes = self.ffi.string(self.native_lib.NK_get_hotp_slot_name(i))
+            print(slot_bytes.decode("utf-8"))
+
+            code = self.native_lib.NK_get_hotp_code(i)
+            bytes = self.ffi.string(code)
+            string = bytes.decode("utf-8")
+            print(string)
+
             if self.native_lib.NK_get_hotp_slot_name(i) == "PasswordSafe":
                 code = self.native_lib.NK_get_hotp_code(i)
                 bytes = self.ffi.string(code)
@@ -73,7 +89,16 @@ class NitroKey():
     def create_hotp_slot(self):
         for i in range(0, 3):
             if self.ffi.string(self.native_lib.NK_get_hotp_code(i)).decode("utf-8") == "":
-                self.native_lib.NK_write_hotp_slot(slot, "PasswordSafe", pyotp.random_base32(), 8, True, False, False, None, self.temporary_password)
+                self.native_lib.NK_write_hotp_slot(
+                    i,
+                    bytes("PasswordSafe", encoding="utf8"),
+                    bytes(pyotp.random_base32(), encoding="utf8"),
+                    8,
+                    True,
+                    False,
+                    False,
+                    bytes("", encoding="utf8"),
+                    bytes(self.temporary_password, encoding="utf8"))
                 return True
 
         return False

@@ -1,8 +1,10 @@
 from gi.repository import Gtk, GLib
 from passwordsafe.created_database import CreatedDatabase
+from passwordsafe.nitrokey import NitroKey
 from gettext import gettext as _
 import threading
 import passwordsafe.keyfile_generator
+import io
 
 
 class CreateDatabase:
@@ -101,6 +103,7 @@ class CreateDatabase:
         self.stack.set_visible_child(self.stack.get_child_by_name("page4"))
         self.parent_widget.add(self.stack)
         self.builder.get_object("setup_nitrokey_button").connect("clicked", self.on_setup_nitrokey_button_clicked)
+        self.builder.get_object("finish_nitrokey_button").connect("clicked", self.on_finish_nitrokey_button_clicked)
     #
     # Headerbar
     #
@@ -273,7 +276,24 @@ class CreateDatabase:
             generator_thread.start()
 
     def on_setup_nitrokey_button_clicked(self, widget):
+        nitrokey = NitroKey(self.window.logging_manager)
+        if nitrokey.device_connected is True:
+            created = nitrokey.create_hotp_slot()
+            print("Created: " + str(created))
+            hotp_code = nitrokey.get_hotp_code()
+            #cr_virtual_file = io.StringIO(hotp_code)
+            #self.database_manager.set_database_keyfile(cr_virtual_file)
+            print(hotp_code)
+            self.database_manager.set_database_password(hotp_code)
+            self.database_manager.save_database()
+            nitrokey.logout_device()
+            self.stack.set_visible_child(self.stack.get_child_by_name("page5"))
+        else:
+            print("No Nitrokey found!")
+
+    def on_finish_nitrokey_button_clicked(self, widget):
         pass
+
 
     #
     # Helper Functions

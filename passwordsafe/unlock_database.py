@@ -102,13 +102,13 @@ class UnlockDatabase:
         stack.add_titled(composite_unlock_stack_page, "composite_unlock", _("Composite"))
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
-        nitrokey = NitroKey(self.window.logging_manager)
-        self.nitrokey_connected = nitrokey.device_connected
+        #nitrokey = NitroKey(self.window.logging_manager)
+        #self.nitrokey_connected = nitrokey.device_connected
 
-        if self.nitrokey_connected is True:
-            nitrokey_unlock_stack_page = self.builder.get_object("nitrokey_unlock_stack_page")
-            stack.add_titled(nitrokey_unlock_stack_page, "nitrokey_unlock", _("NitroKey"))
-            stack.child_set_property(nitrokey_unlock_stack_page, "icon-name", "auth-smartcard-symbolic")
+        #if self.nitrokey_connected is True:
+        #    nitrokey_unlock_stack_page = self.builder.get_object("nitrokey_unlock_stack_page")
+        #    stack.add_titled(nitrokey_unlock_stack_page, "nitrokey_unlock", _("NitroKey"))
+        #    stack.child_set_property(nitrokey_unlock_stack_page, "icon-name", "auth-smartcard-symbolic")
             #hotp_code = nitrokey.get_hotp_code(0)
             #print(hotp_code)
 

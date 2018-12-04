@@ -278,8 +278,7 @@ class CreateDatabase:
     def on_setup_nitrokey_button_clicked(self, widget):
         nitrokey = NitroKey(self.window.logging_manager)
         if nitrokey.device_connected is True:
-            created = nitrokey.create_hotp_slot()
-            print("Created: " + str(created))
+            nitrokey.create_hotp_slot()
             hotp_code = nitrokey.get_hotp_code()
             #cr_virtual_file = io.StringIO(hotp_code)
             #self.database_manager.set_database_keyfile(cr_virtual_file)

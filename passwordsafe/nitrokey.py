@@ -52,7 +52,7 @@ class NitroKey():
         if self.native_lib.NK_login_auto():
             self.device_connected = True
             self.temporary_password = passwordsafe.password_generator.generate(10, True, True, True, True)
-            pin_correct = self.native_lib.NK_first_authenticate("passwd".encode("ascii"), self.temporary_password.encode("ascii"))
+            pin_correct = self.native_lib.NK_first_authenticate("Shuttleworth98".encode("ascii"), self.temporary_password.encode("ascii"))
             if pin_correct == 0:
                 print("corrent pin")
                 print("Tries left: " + str(self.native_lib.NK_get_admin_retry_count()))
@@ -72,34 +72,34 @@ class NitroKey():
     def get_hotp_code(self):
         for i in range(0, 3):
             slot_bytes = self.ffi.string(self.native_lib.NK_get_hotp_slot_name(i))
-            print(slot_bytes.decode("utf-8"))
+            print(slot_bytes.decode("ascii"))
 
             code = self.native_lib.NK_get_hotp_code(i)
             bytes = self.ffi.string(code)
-            string = bytes.decode("utf-8")
+            string = bytes.decode("ascii")
             print(string)
 
             if self.native_lib.NK_get_hotp_slot_name(i) == "PasswordSafe":
                 code = self.native_lib.NK_get_hotp_code(i)
                 bytes = self.ffi.string(code)
-                string = bytes.decode("utf-8")
+                string = bytes.decode("ascii")
                 return string
 
         return None
 
     def create_hotp_slot(self):
         for i in range(0, 3):
-            if self.ffi.string(self.native_lib.NK_get_hotp_code(i)).decode("utf-8") == "":
+            if self.ffi.string(self.native_lib.NK_get_hotp_code(i)).decode("ascii") == "":
                 self.native_lib.NK_write_hotp_slot(
                     i,
-                    bytes("PasswordSafe", encoding="utf8"),
-                    bytes(pyotp.random_base32(), encoding="utf8"),
+                    "PasswordSafe".encode("ascii"),
+                    bytes(pyotp.random_base32(), encoding="ascii").hex().encode("ascii"),
                     8,
                     True,
                     False,
                     False,
-                    bytes("", encoding="utf8"),
-                    bytes(self.temporary_password, encoding="utf8"))
+                    "".encode("ascii"),
+                    self.temporary_password.encode("ascii"))
                 return True
 
         return False

@@ -279,11 +279,11 @@ class CreateDatabase:
         nitrokey = NitroKey(self.window.logging_manager)
         if nitrokey.device_connected is True:
             nitrokey.create_hotp_slot()
-            hotp_code = nitrokey.get_hotp_code()
-            #cr_virtual_file = io.StringIO(hotp_code)
-            #self.database_manager.set_database_keyfile(cr_virtual_file)
-            print(hotp_code)
-            self.database_manager.set_database_password(hotp_code)
+            response = ""
+            for i in range(0, 8):
+                response += nitrokey.get_hotp_code()
+
+            self.database_manager.set_database_password(response)
             self.database_manager.save_database()
             nitrokey.logout_device()
             self.stack.set_visible_child(self.stack.get_child_by_name("page5"))

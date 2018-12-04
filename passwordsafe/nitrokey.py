@@ -14,6 +14,7 @@ class NitroKey():
 
     device_connected = False
     temporary_password = NotImplemented
+    hotp_token_counter = 0
 
     def __init__(self, logging_manager):
         self.logging_manager = logging_manager
@@ -52,7 +53,7 @@ class NitroKey():
         if self.native_lib.NK_login_auto():
             self.device_connected = True
             self.temporary_password = passwordsafe.password_generator.generate(10, True, True, True, True)
-            pin_correct = self.native_lib.NK_first_authenticate("Shuttleworth98".encode("ascii"), self.temporary_password.encode("ascii"))
+            pin_correct = self.native_lib.NK_first_authenticate("passwd".encode("ascii"), self.temporary_password.encode("ascii"))
             if pin_correct == 0:
                 print("corrent pin")
                 print("Tries left: " + str(self.native_lib.NK_get_admin_retry_count()))
@@ -71,18 +72,13 @@ class NitroKey():
 
     def get_hotp_code(self):
         for i in range(0, 3):
-            slot_bytes = self.ffi.string(self.native_lib.NK_get_hotp_slot_name(i))
-            print(slot_bytes.decode("ascii"))
+            slot_name = self.ffi.string(self.native_lib.NK_get_hotp_slot_name(i)).decode("ascii")
 
-            code = self.native_lib.NK_get_hotp_code(i)
-            bytes = self.ffi.string(code)
-            string = bytes.decode("ascii")
-            print(string)
-
-            if self.native_lib.NK_get_hotp_slot_name(i) == "PasswordSafe":
+            if slot_name == "PasswordSafe":
                 code = self.native_lib.NK_get_hotp_code(i)
                 bytes = self.ffi.string(code)
                 string = bytes.decode("ascii")
+                self.hotp_token_counter += 1
                 return string
 
         return None

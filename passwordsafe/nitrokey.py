@@ -53,8 +53,9 @@ class NitroKey():
             self.device_connected = True
             self.temporary_password = passwordsafe.password_generator.generate(10, True, True, True, True)
             pin_correct = self.native_lib.NK_first_authenticate("passwd".encode("ascii"), self.temporary_password.encode("ascii"))
-            if pin_correct:
+            if pin_correct == 0:
                 print("corrent pin")
+                print("Tries left: " + str(self.native_lib.NK_get_admin_retry_count()))
             else:
                 print("wrong pin")
                 print("Tries left: " + str(self.native_lib.NK_get_admin_retry_count()))

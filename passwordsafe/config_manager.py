@@ -162,3 +162,4 @@ def get_development_backup_mode():
 
 def set_development_backup_mode(value):
     setting.set_boolean(development_backup_mode, value)
+

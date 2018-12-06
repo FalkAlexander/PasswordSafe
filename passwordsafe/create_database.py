@@ -282,6 +282,7 @@ class CreateDatabase:
             response = ""
             for i in range(0, 8):
                 response += nitrokey.get_hotp_code()
+            print(response)
 
             self.database_manager.set_database_password(response)
             self.database_manager.save_database()

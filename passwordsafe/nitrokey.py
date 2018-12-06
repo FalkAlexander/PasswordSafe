@@ -14,6 +14,8 @@ class NitroKey():
 
     device_connected = False
     temporary_password = NotImplemented
+
+    shared_secret = NotImplemented
     hotp_token_counter = 0
 
     def __init__(self, logging_manager):
@@ -86,10 +88,11 @@ class NitroKey():
     def create_hotp_slot(self):
         for i in range(0, 3):
             if self.ffi.string(self.native_lib.NK_get_hotp_code(i)).decode("ascii") == "":
+                self.shared_secret = pyotp.random_base32()
                 self.native_lib.NK_write_hotp_slot(
                     i,
                     "PasswordSafe".encode("ascii"),
-                    bytes(pyotp.random_base32(), encoding="ascii").hex().encode("ascii"),
+                    bytes(self.shared_secret, encoding="ascii").hex().encode("ascii"),
                     8,
                     True,
                     False,

@@ -2,6 +2,7 @@ from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.nitrokey import NitroKey
 from passwordsafe.unlocked_database import UnlockedDatabase
+from passwordsafe.oath_xml_builder import OATH_XML_Builder
 import passwordsafe.config_manager
 import ntpath
 import os
@@ -286,6 +287,7 @@ class UnlockDatabase:
         self.password_only = NotImplemented
         self.set_last_used_unlock_method("password")
         self.window.logging_manager.debug("Opening of database was successfull")
+
         self.open_database_page()
 
     def password_unlock_failure(self):

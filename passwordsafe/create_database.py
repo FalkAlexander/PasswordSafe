@@ -1,6 +1,7 @@
 from gi.repository import Gtk, GLib
 from passwordsafe.created_database import CreatedDatabase
 from passwordsafe.nitrokey import NitroKey
+from passwordsafe.oath_xml_builder import OATH_XML_Builder
 from gettext import gettext as _
 import threading
 import passwordsafe.keyfile_generator
@@ -282,7 +283,10 @@ class CreateDatabase:
             response = ""
             for i in range(0, 8):
                 response += nitrokey.get_hotp_code()
-            print(response)
+
+            print(self.database_manager.database_path + ".hotp.xml")
+            oxb = OATH_XML_Builder(self.database_manager.database_path + ".hotp.xml")
+            oxb.create_xml(8, 0, nitrokey.shared_secret)
 
             self.database_manager.set_database_password(response)
             self.database_manager.save_database()

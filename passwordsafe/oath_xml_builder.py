@@ -52,6 +52,25 @@ class OATH_XML_Builder():
         for elem in root.iter("SharedSecret"):
             return elem.text
 
+    def set_synced_counter(self, count):
+        root = self.tree.getroot()
+        for elem in root.iter("SyncedCounter"):
+            return elem.text = count
+
+    def next_synced_counter(self):
+        root = self.tree.getroot()
+        steps = 0
+        for elem in root.iter("OTPCount"):
+            steps = elem.text
+
+        for elem in root.iter("SyncedCounter"):
+            return elem.text = str(int(elem.text) + int(steps))
+
+    def get_synced_counter(self):
+        root = self.tree.getroot()
+        for elem in root.iter("SyncedCounter"):
+            return elem.text
+
     def build_xml_tree(self):
         plain = etree.tostring(self.root, encoding="utf-8", xml_declaration=True, pretty_print=True)
         return plain

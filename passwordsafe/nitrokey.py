@@ -89,7 +89,6 @@ class NitroKey():
         for i in range(0, 3):
             if self.ffi.string(self.native_lib.NK_get_hotp_code(i)).decode("ascii") == "":
                 self.shared_secret = pyotp.random_base32(length=60)
-                print(self.shared_secret)
                 self.native_lib.NK_write_hotp_slot(
                     i,
                     "PasswordSafe".encode("ascii"),

@@ -209,6 +209,15 @@ class DatabaseManager:
     def get_entry_attributes_from_entry_object(self, entry):
         return entry.custom_properties
 
+    # Return all attachments for an entry uuid
+    def get_entry_attachments_from_entry_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.attachments
+
+    # Return all attachments for an entry object
+    def get_entry_attachments_from_entry_object(self, entry):
+        return entry.attachments
+
     #
     # Entry Checks
     #
@@ -283,6 +292,13 @@ class DatabaseManager:
     def has_entry_attribute(self, uuid, key):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.get_custom_property(key) is None:
+            return False
+        else:
+            return True
+
+    def has_entry_attachments(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if len(entry.attachments) == 0:
             return False
         else:
             return True

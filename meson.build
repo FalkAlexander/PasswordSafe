@@ -1,5 +1,5 @@
 project('passwordsafe', 'c',
-  version: '3.31.3',
+  version: '3.32.0',
   meson_version: '>= 0.46.0'
 )
 i18n = import('i18n')

@@ -392,7 +392,7 @@ class DatabaseManager:
 
             # Workaround
             # Fix created and proposed: https://github.com/pschmitt/pykeepass/pull/102
-            self.db.kdbx = KDBX.parse_file(self.db.filename, password=self.db.password, keyfile=self.db.keyfile)
+            self.db.kdbx = KDBX.parse_file(self.db.filename, password=self.db.password, keyfile=self.db.keyfile, transformed_key=None)
 
             self.save_running = False
 

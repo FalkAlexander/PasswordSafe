@@ -383,12 +383,8 @@ class DatabaseManager:
         if self.save_running is False and self.changes is True:
             self.save_running = True
 
-            kdbx = KDBX.build(self.db.kdbx, password=self.db.password, keyfile=self.db.keyfile)
-
             try:
-                output_stream = self.database_file_descriptor.replace(None, False, Gio.FileCreateFlags.REPLACE_DESTINATION | Gio.FileCreateFlags.PRIVATE, None)
-                output_stream.write_all(kdbx)
-                output_stream.close()
+                self.db.save()
                 self.logging_manager.debug("Saved database")
                 self.changes = False
             except Exception:

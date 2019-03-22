@@ -568,6 +568,12 @@ class MainWindow(Gtk.ApplicationWindow):
                 unsaved_database_row.show_all()
                 unsaved_databases_list_box.add(unsaved_database_row)
 
+                for tmpfile in db.scheduled_tmpfiles_deletion:
+                    try:
+                        tmpfile.delete()
+                    except Exception:
+                        self.logging_manager.warning("Skipping deletion of tmpfile...")
+
             self.quit_dialog.present()
 
             return(True)

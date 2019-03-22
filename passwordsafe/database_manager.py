@@ -209,6 +209,15 @@ class DatabaseManager:
     def get_entry_attributes_from_entry_object(self, entry):
         return entry.custom_properties
 
+    # Return all attachments for an entry uuid
+    def get_entry_attachments_from_entry_uuid(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        return entry.attachments
+
+    # Return all attachments for an entry object
+    def get_entry_attachments_from_entry_object(self, entry):
+        return entry.attachments
+
     #
     # Entry Checks
     #
@@ -283,6 +292,13 @@ class DatabaseManager:
     def has_entry_attribute(self, uuid, key):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.get_custom_property(key) is None:
+            return False
+        else:
+            return True
+
+    def has_entry_attachments(self, uuid):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        if len(entry.attachments) == 0:
             return False
         else:
             return True
@@ -471,6 +487,23 @@ class DatabaseManager:
         self.changes = True
         self.set_element_mtime(entry)
 
+    def add_entry_attachment(self, uuid, bytes, filename):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        attachment_id = self.db.add_binary(bytes)
+        attachment = entry.add_attachment(attachment_id, filename)
+        self.changes = True
+        return attachment
+
+    def delete_entry_attachment(self, uuid, attachment):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        try:
+            entry.delete_attachment(attachment)
+        except Exception:
+            self.logging_manager.warning("Skipping weird library behaviour...")
+
+        self.db.delete_binary(attachment.id-1)
+        self.changes = True
+
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)
@@ -592,6 +625,9 @@ class DatabaseManager:
 
     def check_is_group_object(self, group):
         return hasattr(group, "name")
+
+    def get_attachment_from_id(self, attachment_id):
+        return self.db.find_attachments(id=attachment_id, first=True)
 
     #
     # Properties

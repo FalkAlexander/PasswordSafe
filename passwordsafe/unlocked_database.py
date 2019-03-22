@@ -57,6 +57,7 @@ class UnlockedDatabase:
     current_group = NotImplemented
     accelerators = NotImplemented
     scheduled_page_destroy = []
+    scheduled_tmpfiles_deletion = []
     clipboard = NotImplemented
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
@@ -773,6 +774,13 @@ class UnlockedDatabase:
 
         if self.properties_dialog is not NotImplemented:
             self.properties.close()
+
+        for tmpfile in self.scheduled_tmpfiles_deletion:
+            try:
+                tmpfile.delete()
+            except Exception:
+                self.window.logging_manager.warning("Skipping deletion of tmpfile...")
+
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)

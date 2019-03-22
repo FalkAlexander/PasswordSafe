@@ -1,9 +1,11 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio, GLib
 from gettext import gettext as _
 from passwordsafe.notes_dialog import NotesDialog
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
+import threading
+import subprocess, os
 
 
 class EntryPage:
@@ -305,6 +307,18 @@ class EntryPage:
             elif scrolled_page.icon_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.icon_property_row)
 
+        if scrolled_page.attachment_property_row is NotImplemented:
+            scrolled_page.attachment_property_row = builder.get_object("attachment_property_row")
+            scrolled_page.attachment_list_box = builder.get_object("attachment_list_box")
+            for attachment in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(entry_uuid):
+                self.add_attachment_row(attachment)
+
+            scrolled_page.attachment_list_box.add(builder.get_object("add_attachment_row"))
+            scrolled_page.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
+            properties_list_box.add(scrolled_page.attachment_property_row)
+        elif scrolled_page.attachment_property_row is not NotImplemented:
+            properties_list_box.add(scrolled_page.attachment_property_row)
+
         if scrolled_page.attributes_property_row is NotImplemented:
             scrolled_page.attributes_property_row = builder.get_object("attributes_property_row")
             scrolled_page.attributes_key_entry = builder.get_object("attributes_key_entry")
@@ -566,8 +580,107 @@ class EntryPage:
         attribute_entry_box.reorder_child(button, 0)
 
     #
+    # Attachment Handling
+    #
+
+    def on_attachment_list_box_activated(self, widget, list_box_row):
+        if list_box_row.get_name() == "AddAttachmentRow":
+            self.on_add_attachment_row_clicked()
+        else:
+            self.on_attachment_row_clicked(self.unlocked_database.database_manager.get_attachment_from_id(list_box_row.get_name()))
+
+    def on_add_attachment_row_clicked(self):
+        self.unlocked_database.start_database_lock_timer()
+        select_dialog = Gtk.FileChooserNative.new(
+            # NOTE: Filechooser title for selecting attachment file
+            _("Select attachment"), self.unlocked_database.window, Gtk.FileChooserAction.OPEN,
+            _("Add"), None)
+        select_dialog.set_modal(True)
+        select_dialog.set_local_only(False)
+        select_dialog.set_select_multiple(True)
+
+        response = select_dialog.run()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+            for uri in select_dialog.get_uris():
+                attachment = Gio.File.new_for_uri(uri)
+                bytes = attachment.load_bytes()[0].get_data()
+                filename = attachment.get_basename()
+                self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, filename))
+
+    def add_attachment_row(self, attachment):
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid)
+
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+
+        attachment_row = builder.get_object("attachment_row")
+        attachment_row.set_name(str(attachment.id))
+        builder.get_object("attachment_label").set_label(attachment.filename)
+        builder.get_object("attachment_download_button").connect("clicked", self.on_attachment_download_button_clicked, attachment)
+        builder.get_object("attachment_delete_button").connect("clicked", self.on_attachment_delete_button_clicked, entry_uuid, attachment, attachment_row)
+
+        scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box)-1)
+
+    def on_attachment_row_clicked(self, attachment):
+        self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id-1], attachment.filename)
+
+    def on_attachment_download_button_clicked(self, button, attachment):
+        save_dialog = Gtk.FileChooserNative.new(
+            # NOTE: Filechooser title for downloading an attachment
+            _("Save attachment"), self.unlocked_database.window, Gtk.FileChooserAction.SAVE,
+            _("Save"), None)
+        save_dialog.set_do_overwrite_confirmation(True)
+        save_dialog.set_current_name(attachment.filename)
+        save_dialog.set_modal(True)
+        save_dialog.set_local_only(False)
+
+        response = save_dialog.run()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            bytes = self.unlocked_database.database_manager.db.binaries[attachment.id-1]
+            self.save_to_disk(save_dialog.get_filename(), bytes)
+
+    def on_attachment_delete_button_clicked(self, button, entry_uuid, attachment, attachment_row):
+        self.unlocked_database.database_manager.delete_entry_attachment(entry_uuid, attachment)
+        attachment_row.destroy()
+
+    #
     # Helper
     #
+
+    def save_to_disk(self, filepath, bytes):
+        file = Gio.File.new_for_path(filepath)
+        stream = Gio.File.create(file, Gio.FileCreateFlags.PRIVATE, None)
+        file_buffer = Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes), None)
+        stream.close()
+
+    def open_tmp_file(self, bytes, filename):
+        (file, stream) = Gio.File.new_tmp(filename + ".XXXXXX")
+        stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
+        stream.close()
+
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_warning_dialog.ui")
+        warning_dialog = builder.get_object("warning_dialog")
+        warning_dialog.set_destroy_with_parent(True)
+        warning_dialog.set_modal(True)
+        warning_dialog.set_transient_for(self.unlocked_database.window)
+
+        builder.get_object("back_button").connect("clicked", self.on_warning_dialog_back_button_clicked, warning_dialog)
+        builder.get_object("proceed_button").connect("clicked", self.on_warning_dialog_proceed_button_clicked, warning_dialog, file)
+
+        warning_dialog.present()
+
+    def on_warning_dialog_back_button_clicked(self, button, dialog):
+        dialog.close()
+
+    def on_warning_dialog_proceed_button_clicked(self, button, dialog, file):
+        dialog.close()
+        subprocess.call("xdg-open " + file.get_path(), shell=True)
+        self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
 
     def change_password_entry_visibility(self, entry, toggle_button):
         toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)

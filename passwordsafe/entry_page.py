@@ -622,7 +622,7 @@ class EntryPage:
         attachment_row = builder.get_object("attachment_row")
         builder.get_object("attachment_label").set_label(filename)
 
-        scrolled_page.attachment_list_box.add(attachment_row)
+        scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box)-1)
 
 
 

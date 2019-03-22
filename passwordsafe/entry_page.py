@@ -305,23 +305,17 @@ class EntryPage:
             elif scrolled_page.icon_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.icon_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_attachments(entry_uuid) is True or add_all is True:
-            if scrolled_page.attachment_property_row is NotImplemented:
-                scrolled_page.attachment_property_row = builder.get_object("attachment_property_row")
-                scrolled_page.attachment_list_box = builder.get_object("attachment_list_box")
-                for attachment in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(entry_uuid):
-                    print(attachment)
-                    builder = Gtk.Builder()
-                    builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        if scrolled_page.attachment_property_row is NotImplemented:
+            scrolled_page.attachment_property_row = builder.get_object("attachment_property_row")
+            scrolled_page.attachment_list_box = builder.get_object("attachment_list_box")
+            for attachment in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(entry_uuid):
+                self.add_attachment_row(attachment)
 
-                    builder.get_object("attachment_label").set_text(attachment.filename)
-                    scrolled_page.attachment_list_box.add(builder.get_object("attachment_row"))
-
-                scrolled_page.attachment_list_box.add(builder.get_object("add_attachment_row"))
-                scrolled_page.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
-                properties_list_box.add(scrolled_page.attachment_property_row)
-            elif scrolled_page.attachment_property_row is not NotImplemented:
-                properties_list_box.add(scrolled_page.attachment_property_row)
+            scrolled_page.attachment_list_box.add(builder.get_object("add_attachment_row"))
+            scrolled_page.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
+            properties_list_box.add(scrolled_page.attachment_property_row)
+        elif scrolled_page.attachment_property_row is not NotImplemented:
+            properties_list_box.add(scrolled_page.attachment_property_row)
 
         if scrolled_page.attributes_property_row is NotImplemented:
             scrolled_page.attributes_property_row = builder.get_object("attributes_property_row")

@@ -4,6 +4,7 @@ from passwordsafe.notes_dialog import NotesDialog
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
+import threading
 import subprocess, os
 
 
@@ -660,7 +661,9 @@ class EntryPage:
         (file, stream) = Gio.File.new_tmp(filename + ".XXXXXX")
         stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
         stream.close()
-        subprocess.call(("xdg-open", file.get_path()))
+
+        subprocess.call("xdg-open " + file.get_path(), shell=True)
+        self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
 
     def change_password_entry_visibility(self, entry, toggle_button):
         toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)

@@ -496,7 +496,11 @@ class DatabaseManager:
 
     def delete_entry_attachment(self, uuid, attachment):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.delete_attachment(attachment)
+        try:
+            entry.delete_attachment(attachment)
+        except Exception:
+            self.logging_manager.warning("Skipping weird library behaviour...")
+
         self.db.delete_binary(attachment.id-1)
         self.changes = True
 

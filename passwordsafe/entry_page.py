@@ -625,7 +625,17 @@ class EntryPage:
         scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box)-1)
 
     def on_attachment_row_clicked(self, attachment):
-        self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id-1], attachment.filename)
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_warning_dialog.ui")
+        warning_dialog = builder.get_object("warning_dialog")
+        warning_dialog.set_destroy_with_parent(True)
+        warning_dialog.set_modal(True)
+        warning_dialog.set_transient_for(self.unlocked_database.window)
+
+        builder.get_object("back_button").connect("clicked", self.on_warning_dialog_back_button_clicked, warning_dialog)
+        builder.get_object("proceed_button").connect("clicked", self.on_warning_dialog_proceed_button_clicked, warning_dialog, attachment)
+
+        warning_dialog.present()
 
     def on_attachment_download_button_clicked(self, button, attachment):
         save_dialog = Gtk.FileChooserNative.new(
@@ -661,26 +671,15 @@ class EntryPage:
         (file, stream) = Gio.File.new_tmp(filename + ".XXXXXX")
         stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
         stream.close()
-
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_warning_dialog.ui")
-        warning_dialog = builder.get_object("warning_dialog")
-        warning_dialog.set_destroy_with_parent(True)
-        warning_dialog.set_modal(True)
-        warning_dialog.set_transient_for(self.unlocked_database.window)
-
-        builder.get_object("back_button").connect("clicked", self.on_warning_dialog_back_button_clicked, warning_dialog)
-        builder.get_object("proceed_button").connect("clicked", self.on_warning_dialog_proceed_button_clicked, warning_dialog, file)
-
-        warning_dialog.present()
+        self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
+        subprocess.call("xdg-open " + file.get_path(), shell=True)
 
     def on_warning_dialog_back_button_clicked(self, button, dialog):
         dialog.close()
 
-    def on_warning_dialog_proceed_button_clicked(self, button, dialog, file):
+    def on_warning_dialog_proceed_button_clicked(self, button, dialog, attachment):
         dialog.close()
-        subprocess.call("xdg-open " + file.get_path(), shell=True)
-        self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
+        self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id-1], attachment.filename)
 
     def change_password_entry_visibility(self, entry, toggle_button):
         toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)

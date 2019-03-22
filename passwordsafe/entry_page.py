@@ -606,8 +606,25 @@ class EntryPage:
         if response == Gtk.ResponseType.ACCEPT:
             entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
             for uri in select_dialog.get_uris():
-                bytes = Gio.File.new_for_uri(uri).load_bytes()[0].get_data()
-                self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, Gio.File.new_for_uri(uri).get_basename())
+                attachment = Gio.File.new_for_uri(uri)
+                bytes = attachment.load_bytes()[0].get_data()
+                filename = attachment.get_basename()
+                self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, filename)
+                self.add_attachment_row(filename)
+
+    def add_attachment_row(self, filename):
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid)
+
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+
+        attachment_row = builder.get_object("attachment_row")
+        builder.get_object("attachment_label").set_label(filename)
+
+        scrolled_page.attachment_list_box.add(attachment_row)
+
+
 
     #
     # Helper

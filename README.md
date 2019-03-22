@@ -61,10 +61,10 @@ flatpak install org.gnome.PasswordSafeDevel.flatpak
 #### Option 3: with Meson
 ##### Prerequisites:
 * Python >= 3.6.5
-* pykeepass >= 3.0.2
+* pykeepass >= 3.0.3
 * Gtk >= 3.24.1
-* libhandy >= 0.0.4
-* libpwquality
+* libhandy >= 0.0.9
+* libpwquality >= 1.4.0
 * Meson >= 0.46.0
 * Git
 

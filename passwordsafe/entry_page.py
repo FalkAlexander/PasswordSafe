@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 from gettext import gettext as _
 from passwordsafe.notes_dialog import NotesDialog
 import passwordsafe.passphrase_generator
@@ -318,6 +318,7 @@ class EntryPage:
                     scrolled_page.attachment_list_box.add(builder.get_object("attachment_row"))
 
                 scrolled_page.attachment_list_box.add(builder.get_object("add_attachment_row"))
+                scrolled_page.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
                 properties_list_box.add(scrolled_page.attachment_property_row)
             elif scrolled_page.attachment_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.attachment_property_row)
@@ -581,6 +582,32 @@ class EntryPage:
         attribute_entry_box.remove(entry)
         attribute_entry_box.add(button)
         attribute_entry_box.reorder_child(button, 0)
+
+    #
+    # Attachment Handling
+    #
+
+    def on_attachment_list_box_activated(self, widget, list_box_row):
+        if list_box_row.get_name() == "AddAttachmentRow":
+            self.on_add_attachment_row_clicked()
+
+    def on_add_attachment_row_clicked(self):
+        self.unlocked_database.start_database_lock_timer()
+        select_dialog = Gtk.FileChooserNative.new(
+            # NOTE: Filechooser title for selecting attachment file
+            _("Select attachment"), self.unlocked_database.window, Gtk.FileChooserAction.OPEN,
+            _("Add"), None)
+        select_dialog.set_modal(True)
+        select_dialog.set_local_only(False)
+        select_dialog.set_select_multiple(True)
+
+        response = select_dialog.run()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+            for uri in select_dialog.get_uris():
+                bytes = Gio.File.new_for_uri(uri).load_bytes()[0].get_data()
+                self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, Gio.File.new_for_uri(uri).get_basename())
 
     #
     # Helper

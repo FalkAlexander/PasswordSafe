@@ -487,6 +487,16 @@ class DatabaseManager:
         self.changes = True
         self.set_element_mtime(entry)
 
+    def add_entry_attachment(self, uuid, bytes, filename):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.add_attachment(self.db.add_binary(bytes), filename)
+        self.changes = True
+
+    def delete_entry_attachment(self, id):
+        entry = self.db.find_entries(uuid=uuid, first=True)
+        entry.delete_binary(id)
+        self.changes = True
+
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)

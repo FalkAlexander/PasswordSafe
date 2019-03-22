@@ -624,15 +624,7 @@ class EntryPage:
         scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box)-1)
 
     def on_attachment_row_clicked(self, attachment):
-        cache_dir = os.path.expanduser("~") + "/.cache/passwordsafe/attachments"
-        filepath = cache_dir + "/" + attachment.filename
-
-        if not os.path.exists(cache_dir):
-            os.makedirs(cache_dir)
-
-        self.save_to_disk(filepath, self.unlocked_database.database_manager.db.binaries[attachment.id-1])
-
-        subprocess.call(("xdg-open", filepath))
+        self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id-1], attachment.filename)
 
     def on_attachment_download_button_clicked(self, button, attachment):
         save_dialog = Gtk.FileChooserNative.new(
@@ -663,6 +655,12 @@ class EntryPage:
         stream = Gio.File.create(file, Gio.FileCreateFlags.PRIVATE, None)
         file_buffer = Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes), None)
         stream.close()
+
+    def open_tmp_file(self, bytes, filename):
+        (file, stream) = Gio.File.new_tmp(filename + ".XXXXXX")
+        stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
+        stream.close()
+        subprocess.call(("xdg-open", file.get_path()))
 
     def change_password_entry_visibility(self, entry, toggle_button):
         toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)

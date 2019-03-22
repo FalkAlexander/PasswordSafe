@@ -662,6 +662,23 @@ class EntryPage:
         stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
         stream.close()
 
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_warning_dialog.ui")
+        warning_dialog = builder.get_object("warning_dialog")
+        warning_dialog.set_destroy_with_parent(True)
+        warning_dialog.set_modal(True)
+        warning_dialog.set_transient_for(self.unlocked_database.window)
+
+        builder.get_object("back_button").connect("clicked", self.on_warning_dialog_back_button_clicked, warning_dialog)
+        builder.get_object("proceed_button").connect("clicked", self.on_warning_dialog_proceed_button_clicked, warning_dialog, file)
+
+        warning_dialog.present()
+
+    def on_warning_dialog_back_button_clicked(self, button, dialog):
+        dialog.close()
+
+    def on_warning_dialog_proceed_button_clicked(self, button, dialog, file):
+        dialog.close()
         subprocess.call("xdg-open " + file.get_path(), shell=True)
         self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
 

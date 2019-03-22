@@ -622,6 +622,9 @@ class DatabaseManager:
     def check_is_group_object(self, group):
         return hasattr(group, "name")
 
+    def get_attachment_from_id(self, attachment_id):
+        return self.db.find_attachments(id=attachment_id, first=True)
+
     #
     # Properties
     #

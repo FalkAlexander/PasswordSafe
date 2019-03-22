@@ -609,10 +609,9 @@ class EntryPage:
                 attachment = Gio.File.new_for_uri(uri)
                 bytes = attachment.load_bytes()[0].get_data()
                 filename = attachment.get_basename()
-                self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, filename)
-                self.add_attachment_row(filename)
+                self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, filename))
 
-    def add_attachment_row(self, filename):
+    def add_attachment_row(self, attachment):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid)
 
@@ -620,11 +619,19 @@ class EntryPage:
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
         attachment_row = builder.get_object("attachment_row")
-        builder.get_object("attachment_label").set_label(filename)
+        attachment_row.set_name(str(attachment.id))
+        builder.get_object("attachment_label").set_label(attachment.filename)
+        builder.get_object("attachment_download_button").connect("clicked", self.on_attachment_download_button_clicked)
+        builder.get_object("attachment_delete_button").connect("clicked", self.on_attachment_delete_button_clicked, entry_uuid, attachment, attachment_row)
 
         scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box)-1)
 
+    def on_attachment_download_button_clicked(self, button):
+        print("down")
 
+    def on_attachment_delete_button_clicked(self, button, entry_uuid, attachment, attachment_row):
+        self.unlocked_database.database_manager.delete_entry_attachment(entry_uuid, attachment)
+        attachment_row.destroy()
 
     #
     # Helper

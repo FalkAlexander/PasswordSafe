@@ -489,12 +489,15 @@ class DatabaseManager:
 
     def add_entry_attachment(self, uuid, bytes, filename):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.add_attachment(self.db.add_binary(bytes), filename)
+        attachment_id = self.db.add_binary(bytes)
+        attachment = entry.add_attachment(attachment_id, filename)
         self.changes = True
+        return attachment
 
-    def delete_entry_attachment(self, id):
+    def delete_entry_attachment(self, uuid, attachment):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.delete_binary(id)
+        entry.delete_attachment(attachment)
+        self.db.delete_binary(attachment.id-1)
         self.changes = True
 
     # Move an entry to another group

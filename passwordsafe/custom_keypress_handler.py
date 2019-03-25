@@ -29,14 +29,18 @@ class CustomKeypressHandler:
 
         if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
             scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid)
-            if self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search") and scrolled_page.edit_page is True:
-                if eventkey.keyval == Gdk.KEY_Tab:
-                    if self.unlocked_database.window.get_focus() is None:
-                        return
+            if self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
+                if scrolled_page.edit_page is True:
+                    if eventkey.keyval == Gdk.KEY_Tab:
+                        if self.unlocked_database.window.get_focus() is None:
+                            return
+                        if "TabBox" in self.unlocked_database.window.get_focus().get_name():
+                            self.tab_to_next_input_entry(scrolled_page)
+                            return(True)
+                else:
+                    if eventkey.string.isalpha() or eventkey.string.isnumeric():
+                        self.unlocked_database.search.set_search_headerbar(self.unlocked_database.builder.get_object("search_button"))
 
-                    if "TabBox" in self.unlocked_database.window.get_focus().get_name():
-                        self.tab_to_next_input_entry(scrolled_page)
-                        return(True)
 
     def tab_to_next_input_entry(self, scrolled_page):
         focus_widget = self.unlocked_database.window.get_focus()
@@ -89,11 +93,7 @@ class CustomKeypressHandler:
             scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid)
             if self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.database_manager.check_is_group(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)) and scrolled_page.edit_page is False:
                 if self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
-                    if eventkey.string.isalpha() or eventkey.string.isnumeric():
-                        self.unlocked_database.search.set_search_headerbar(self.unlocked_database.builder.get_object("search_button"))
-                        self.unlocked_database.builder.get_object("headerbar_search_entry").set_text(eventkey.string)
-                        Gtk.Entry.do_move_cursor(self.unlocked_database.builder.get_object("headerbar_search_entry"), Gtk.MovementStep.BUFFER_ENDS, 1, False)
-                    elif eventkey.keyval == Gdk.KEY_BackSpace:
+                    if eventkey.keyval == Gdk.KEY_BackSpace:
                         uuid = self.unlocked_database.stack.get_visible_child_name()
                         if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.current_group) is False:
                             if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)) is True:

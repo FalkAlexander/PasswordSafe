@@ -37,7 +37,9 @@ class Search:
         headerbar_search_entry = self.unlocked_database.builder.get_object("headerbar_search_entry")
         headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed, search_local_switch, search_fulltext_switch)
         headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
+        headerbar_search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
 
+        self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, headerbar_search_entry, "<Control>f", signal="stop-search")
     #
     # Search
     #
@@ -286,4 +288,10 @@ class Search:
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)
         self.search_instance_creation(self.skipped_rows, None, True)
+
+    def on_headerbar_search_entry_focused(self, entry):
+        if entry.has_focus() is True:
+            return
+
+        entry.grab_focus()
 

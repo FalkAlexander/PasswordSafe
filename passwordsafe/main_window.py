@@ -461,6 +461,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if db.window.container.page_num(db.parent_widget) == page_num:
                 db.database_locked = True
                 db.stop_save_loop()
+                db.clipboard.clear()
                 is_contained = True
                 if db.database_manager.made_database_changes() is True:
                     if passwordsafe.config_manager.get_save_automatically() is True:
@@ -509,6 +510,7 @@ class MainWindow(Gtk.ApplicationWindow):
         for db in self.opened_databases:
             db.cancel_timers()
             db.unregister_dbus_signal()
+            db.clipboard.clear()
 
         if len(self.databases_to_save) > 0:
             save_thread = threading.Thread(target=self.threaded_database_saving)
@@ -582,12 +584,14 @@ class MainWindow(Gtk.ApplicationWindow):
                 db.cancel_timers()
                 db.unregister_dbus_signal()
                 db.show_save_dialog(True, False, True)
+                db.clipboard.clear()
                 return(True)
         else:
             self.save_window_size()
 
             for db in self.opened_databases:
                 db.cancel_timers()
+                db.clipboard.clear()
 
     #
     # Gio Actions

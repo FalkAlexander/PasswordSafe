@@ -759,6 +759,7 @@ class UnlockedDatabase:
 
     def lock_database(self):
         self.cancel_timers()
+        self.clipboard.clear()
         self.database_locked = True
         self.unregister_dbus_signal()
         self.stop_save_loop()
@@ -798,6 +799,7 @@ class UnlockedDatabase:
         self.cancel_timers()
         self.database_locked = True
         self.stop_save_loop()
+        self.clipboard.clear()
 
         if self.database_settings_dialog is not NotImplemented:
             self.database_settings_dialog.close()

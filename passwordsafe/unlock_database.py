@@ -580,7 +580,10 @@ class UnlockDatabase:
 
             opened = Gio.File.new_for_path(self.database_filepath)
             backup = Gio.File.new_for_path(cache_dir + "/" + os.path.splitext(ntpath.basename(self.database_filepath))[0] + "_backup_" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S') + ".kdbx")
-            opened.copy(backup, Gio.FileCopyFlags.NONE)
+            try:
+                opened.copy(backup, Gio.FileCopyFlags.NONE)
+            except GLib.Error:
+                self.window.logging_manager.warning("Could not copy database file to backup location. This most likely happened because the database is located on a network drive, and Password Safe doesn't have network permission. Either disable development-backup-mode or if PasswordSafe runs as Flatpak grant network permission")
 
         already_added = False
         list = []

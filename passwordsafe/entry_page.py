@@ -1,6 +1,7 @@
 from gi.repository import Gtk, Gio, GLib
 from gettext import gettext as _
 from passwordsafe.notes_dialog import NotesDialog
+from passwordsafe.history_entry_buffer import HistoryEntryBuffer
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
@@ -63,6 +64,11 @@ class EntryPage:
             if scrolled_page.name_property_row is NotImplemented:
                 scrolled_page.name_property_row = builder.get_object("name_property_row")
                 scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
+                entry_buffer = HistoryEntryBuffer()
+                scrolled_page.name_property_value_entry.set_buffer(entry_buffer)
+                accelerator = Gtk.AccelGroup()
+                scrolled_page.name_property_value_entry.add_accelerator()
+
                 value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)

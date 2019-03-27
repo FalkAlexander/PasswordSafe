@@ -697,6 +697,10 @@ class MainWindow(Gtk.ApplicationWindow):
             action_db.on_sort_menu_button_entry_clicked(action, param, arg)
         elif name == "on_selection_popover_button_clicked":
             action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
+        elif name == "on_edit_undo":
+            action_db.undo_redo_receiver(arg)
+        elif name == "on_edit_redo":
+            action_db.undo_redo_receiver(arg)
 
     # Add Global Accelerator Actions
     def add_global_accelerator_actions(self):
@@ -715,6 +719,14 @@ class MainWindow(Gtk.ApplicationWindow):
         add_group_action = Gio.SimpleAction.new("db.add_group", None)
         add_group_action.connect("activate", self.execute_accel_action, "add_action", "group")
         self.application.add_action(add_group_action)
+
+        undo_action = Gio.SimpleAction.new("undo")
+        undo_action.connect("activate", self.execute_gio_action, "on_edit_undo", "undo")
+        self.application.add_action(undo_action)
+
+        redo_action = Gio.SimpleAction.new("redo")
+        redo_action.connect("activate", self.execute_gio_action, "on_edit_redo", "redo")
+        self.application.add_action(redo_action)
 
     # Accelerator Action Handler
     def execute_accel_action(self, action, param, name, arg=None):

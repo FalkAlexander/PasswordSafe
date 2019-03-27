@@ -825,6 +825,12 @@ class UnlockedDatabase:
     # Helper Methods
     #
 
+    def undo_redo_receiver(self, action):
+        if action == "undo":
+            print("undo")
+        else:
+            print("redo")
+
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         if clear_clipboard_time is not 0:

@@ -256,11 +256,11 @@ class UnlockedDatabase:
                 # Responsive Container
                 list_box.set_name("BrowserListBox")
                 list_box.set_valign(Gtk.Align.START)
+                list_box.set_margin_top(18)
+                list_box.set_margin_bottom(18)
 
                 hdy_browser = Handy.Column()
                 hdy_browser.set_maximum_width(700)
-                hdy_browser.set_margin_top(18)
-                hdy_browser.set_margin_bottom(18)
                 hdy_browser.add(list_box)
                 overlay.add(hdy_browser)
 

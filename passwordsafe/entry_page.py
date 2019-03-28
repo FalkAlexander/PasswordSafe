@@ -1,7 +1,7 @@
 from gi.repository import Gtk, Gio, GLib
 from gettext import gettext as _
 from passwordsafe.notes_dialog import NotesDialog
-from passwordsafe.history_entry_buffer import HistoryEntryBuffer
+from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
@@ -184,6 +184,7 @@ class EntryPage:
 
                 builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
+                scrolled_page.notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
                 buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 value = self.unlocked_database.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
@@ -364,6 +365,7 @@ class EntryPage:
         attribute_property_name_label = builder.get_object("attribute_property_name_label")
         attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
         attribute_value_entry = builder.get_object("attribute_value_entry")
+        attribute_value_entry.set_buffer(HistoryEntryBuffer([]))
         attribute_remove_button = builder.get_object("attribute_remove_button")
 
         attribute_property_row.set_name(key)

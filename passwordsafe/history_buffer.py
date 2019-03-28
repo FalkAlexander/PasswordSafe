@@ -2,22 +2,45 @@ from gi.repository import Gtk
 
 
 class HistoryEntryBuffer(Gtk.EntryBuffer):
+    logic = NotImplemented
+
+    def __init__(self, history):
+        Gtk.EntryBuffer.__init__(self)
+        self.logic = Logic(self, history)
+        self.connect("inserted-text", self.logic.on_buffer_changed)
+        self.connect("deleted-text", self.logic.on_buffer_changed, None)
+
+
+class HistoryTextBuffer(Gtk.TextBuffer):
+    logic = NotImplemented
+
+    def __init__(self, history):
+        Gtk.TextBuffer.__init__(self)
+        self.logic = Logic(self, history)
+        self.connect("changed", self.logic.on_buffer_changed, None, None, None)
+
+
+class Logic():
+    buffer = NotImplemented
     history = NotImplemented
     index = NotImplemented
     increase = True
     buffer_index = 0
 
-    def __init__(self, history):
-        Gtk.EntryBuffer.__init__(self)
+    def __init__(self, buffer, history):
+        self.buffer = buffer
         self.history = history
-        self.connect("inserted-text", self.on_buffer_changed)
-        self.connect("deleted_text", self.on_buffer_changed, None)
 
     def on_buffer_changed(self, buffer, position, chars, n_chars):
-        print(self.history)
         if self.increase is True:
             self.index = NotImplemented
-            self.history.append(self.get_text())
+            if type(buffer) is HistoryEntryBuffer:
+                self.history.append(buffer.get_text())
+            elif type(buffer) is HistoryTextBuffer:
+                self.history.append(buffer.get_text(
+                    buffer.get_start_iter(),
+                    buffer.get_end_iter(),
+                    False))
         else:
             self.buffer_index += 1
             if self.buffer_index == 2:

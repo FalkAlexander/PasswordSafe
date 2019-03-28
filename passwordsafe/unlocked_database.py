@@ -831,13 +831,19 @@ class UnlockedDatabase:
 
         buffer = self.window.get_focus().get_buffer()
         if action == "undo":
-            text = buffer.do_undo()
+            text = buffer.logic.do_undo()
             if text is not None:
-                self.window.get_focus().set_text(text)
+                if type(self.window.get_focus()) is Gtk.TextView:
+                    buffer.set_text(text)
+                else:
+                    self.window.get_focus().set_text(text)
         else:
-            text = buffer.do_redo()
+            text = buffer.logic.do_redo()
             if text is not None:
-                self.window.get_focus().set_text(text)
+                if type(self.window.get_focus()) is Gtk.TextView:
+                    buffer.set_text(text)
+                else:
+                    self.window.get_focus().set_text(text)
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

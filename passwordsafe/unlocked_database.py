@@ -836,14 +836,12 @@ class UnlockedDatabase:
             return
 
         buffer = self.window.get_focus().get_buffer()
+        text = ""
         if action == "undo":
             text = buffer.logic.do_undo()
-            if text is not None:
-                buffer.set_text(text, len(text))
         else:
             text = buffer.logic.do_redo()
-            if text is not None:
-                buffer.set_text(text, len(text))
+        buffer.set_text(text, len(text))
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

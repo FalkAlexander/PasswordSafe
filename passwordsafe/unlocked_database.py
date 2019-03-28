@@ -825,6 +825,24 @@ class UnlockedDatabase:
     # Helper Methods
     #
 
+    def undo_redo_receiver(self, action):
+        if "TabBox" not in self.window.get_focus().get_name():
+            return
+
+        if type(self.window.get_focus()) is not Gtk.Entry and type(self.window.get_focus()) is not Gtk.TextView:
+            return
+
+        if type(self.window.get_focus().get_buffer()) is not passwordsafe.history_buffer.HistoryTextBuffer and type(self.window.get_focus().get_buffer()) is not passwordsafe.history_buffer.HistoryEntryBuffer:
+            return
+
+        buffer = self.window.get_focus().get_buffer()
+        text = ""
+        if action == "undo":
+            text = buffer.logic.do_undo()
+        else:
+            text = buffer.logic.do_redo()
+        buffer.set_text(text, len(text))
+
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         if clear_clipboard_time is not 0:

@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 
 
 class GroupPage:
@@ -52,9 +53,11 @@ class GroupPage:
 
         name_property_row = builder.get_object("name_property_row")
         name_property_value_entry = builder.get_object("name_property_value_entry")
+        name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
         notes_property_row = builder.get_object("notes_property_row")
         notes_property_value_entry = builder.get_object("notes_property_value_entry")
+        notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
         buffer = notes_property_value_entry.get_buffer()
 
         name_value = self.unlocked_database.database_manager.get_group_name_from_uuid(group_uuid)

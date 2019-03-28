@@ -534,11 +534,13 @@ class DatabaseManager:
     def set_group_notes(self, uuid, notes):
         group = self.db.find_groups(uuid=uuid, first=True)
         group.notes = notes
+        self.changes = True
         self.set_element_mtime(group)
 
     def set_group_icon(self, uuid, icon):
         group = self.db.find_groups(uuid=uuid, first=True)
         group.icon = icon
+        self.changes = True
         self.set_element_mtime(group)
 
     # Move an group

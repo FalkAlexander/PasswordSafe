@@ -826,10 +826,18 @@ class UnlockedDatabase:
     #
 
     def undo_redo_receiver(self, action):
+        if "TabBox" not in self.window.get_focus().get_name():
+            return
+
+        buffer = self.window.get_focus().get_buffer()
         if action == "undo":
-            print("undo")
+            text = buffer.do_undo()
+            if text is not None:
+                self.window.get_focus().set_text(text)
         else:
-            print("redo")
+            text = buffer.do_redo()
+            if text is not None:
+                self.window.get_focus().set_text(text)
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

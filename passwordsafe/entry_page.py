@@ -64,9 +64,7 @@ class EntryPage:
             if scrolled_page.name_property_row is NotImplemented:
                 scrolled_page.name_property_row = builder.get_object("name_property_row")
                 scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
-                entry_buffer = HistoryEntryBuffer()
-                scrolled_page.name_property_value_entry.set_buffer(entry_buffer)
-
+                scrolled_page.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
                 value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)
@@ -90,6 +88,7 @@ class EntryPage:
             if scrolled_page.username_property_row is NotImplemented:
                 scrolled_page.username_property_row = builder.get_object("username_property_row")
                 scrolled_page.username_property_value_entry = builder.get_object("username_property_value_entry")
+                scrolled_page.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
                 value = self.unlocked_database.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
                     scrolled_page.username_property_value_entry.set_text(value)
@@ -116,6 +115,7 @@ class EntryPage:
                 scrolled_page.password_property_value_entry = builder.get_object("password_property_value_entry")
                 scrolled_page.show_password_button = builder.get_object("show_password_button")
                 scrolled_page.generate_password_button = builder.get_object("generate_password_button")
+                scrolled_page.password_property_value_entry.set_buffer(HistoryEntryBuffer([]))
                 value = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
 
                 if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
@@ -156,6 +156,7 @@ class EntryPage:
             if scrolled_page.url_property_row is NotImplemented:
                 scrolled_page.url_property_row = builder.get_object("url_property_row")
                 scrolled_page.url_property_value_entry = builder.get_object("url_property_value_entry")
+                scrolled_page.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
                 value = self.unlocked_database.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
                     scrolled_page.url_property_value_entry.set_text(value)

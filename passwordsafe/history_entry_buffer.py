@@ -2,17 +2,19 @@ from gi.repository import Gtk
 
 
 class HistoryEntryBuffer(Gtk.EntryBuffer):
-    history = []
+    history = NotImplemented
     index = NotImplemented
     increase = True
     buffer_index = 0
 
-    def __init__(self):
+    def __init__(self, history):
         Gtk.EntryBuffer.__init__(self)
+        self.history = history
         self.connect("inserted-text", self.on_buffer_changed)
         self.connect("deleted_text", self.on_buffer_changed, None)
 
     def on_buffer_changed(self, buffer, position, chars, n_chars):
+        print(self.history)
         if self.increase is True:
             self.index = NotImplemented
             self.history.append(self.get_text())
@@ -23,24 +25,26 @@ class HistoryEntryBuffer(Gtk.EntryBuffer):
                 self.buffer_index = 0
 
     def do_undo(self):
+        op = False
         if self.index is NotImplemented:
             self.index = len(self.history)-1
+            op = True
 
         if self.index <= 0 or self.index > len(self.history):
             return
 
         self.increase = False
-        self.index -= 1
+        if op is False:
+            self.index -= 1
         self.history.append(self.history[self.index])
         return self.history[self.index-1]
 
 
     def do_redo(self):
-        if self.index == len(self.history) or self.index is NotImplemented:
+        if self.index == len(self.history) or self.index is NotImplemented or self.index+2 > len(self.history) or self.index+1 < 0:
             return
 
         self.increase = False
         self.index += 1
-        self.history.append(self.history[self.index])
         return self.history[self.index]
 

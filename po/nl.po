@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-02-09 13:12+0000\n"
-"PO-Revision-Date: 2019-03-09 18:29+0100\n"
+"POT-Creation-Date: 2019-03-22 20:10+0000\n"
+"PO-Revision-Date: 2019-04-01 14:12+0200\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -35,8 +35,34 @@ msgstr ""
 "\n"
 "Meer info over Gnome-NL http://nl.gnome.org"
 
+#. Dialog title which informs the user about unsaved changes.
+#: data/attachment_warning_dialog.ui:9
+msgid "Safety Info"
+msgstr "Veiligheidsinfo"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/attachment_warning_dialog.ui:10
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"Externe toepassingen kunnen mogelijk onversleutelde verborgen of tijdelijke "
+"kopieën van dit bijlagebestand aanmaken! Wees dus voorzichtig."
+
+#. Discard all the changes which the user have made to his keepass safe
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
+#: data/unlocked_database.ui:1274
+msgid "Back"
+msgstr "Terug"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/attachment_warning_dialog.ui:36
+msgid "Proceed"
+msgstr "Doorgaan"
+
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
-#: data/entry_page.ui:1331 data/entry_page.ui:1467
+#: data/entry_page.ui:1562 data/entry_page.ui:1698
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
 #: passwordsafe/unlock_database.py:93
 msgid "Password"
@@ -100,7 +126,7 @@ msgid "Please try again"
 msgstr "Probeer het opnieuw"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1418
+#: data/create_database.ui:781 data/entry_page.ui:1649
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
@@ -267,79 +293,91 @@ msgstr "AES: 256-bit"
 msgid "Key Derivation Function"
 msgstr "Sleutelafleidingsfunctie"
 
-#: data/entry_page.ui:106
+#: data/entry_page.ui:34
+msgid "Add Attachment"
+msgstr "Bijlage toevoegen"
+
+#: data/entry_page.ui:75
+msgid "Attachments"
+msgstr "Bijlagen"
+
+#: data/entry_page.ui:162
+msgid "Secret_Photo.png"
+msgstr "Geheime_foto.png"
+
+#: data/entry_page.ui:337
 msgid "Remove attribute"
 msgstr "Attribuut verwijderen"
 
-#: data/entry_page.ui:167
+#: data/entry_page.ui:398
 msgid "Attributes"
 msgstr "Attributen"
 
-#: data/entry_page.ui:207
+#: data/entry_page.ui:438
 msgid "Key"
 msgstr "Sleutel"
 
-#: data/entry_page.ui:221
+#: data/entry_page.ui:452
 msgid "Value"
 msgstr "Waarde"
 
-#: data/entry_page.ui:243
+#: data/entry_page.ui:474
 msgid "Add attribute"
 msgstr "Attribuut toevoegen"
 
-#: data/entry_page.ui:298
+#: data/entry_page.ui:529
 msgid "Color"
 msgstr "Kleur"
 
-#: data/entry_page.ui:593
+#: data/entry_page.ui:824
 msgid "Icon"
 msgstr "Pictogram"
 
-#: data/entry_page.ui:965 data/group_page.ui:35 data/references_dialog.ui:65
+#: data/entry_page.ui:1196 data/group_page.ui:35 data/references_dialog.ui:65
 #: data/references_dialog.ui:235
 msgid "Title"
 msgstr "Titel"
 
-#: data/entry_page.ui:1050 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/entry_page.ui:1281 data/group_page.ui:120 data/references_dialog.ui:185
 #: data/references_dialog.ui:291
 msgid "Notes"
 msgstr "Opmerkingen"
 
-#: data/entry_page.ui:1202
+#: data/entry_page.ui:1433
 msgid "Length"
 msgstr "Lengte"
 
-#: data/entry_page.ui:1236
+#: data/entry_page.ui:1467
 msgid "Characters"
 msgstr "Tekens"
 
-#: data/entry_page.ui:1344
+#: data/entry_page.ui:1575
 msgid "Words"
 msgstr "Woorden"
 
-#: data/entry_page.ui:1377
+#: data/entry_page.ui:1608
 msgid "Separator"
 msgstr "Scheiding"
 
-#: data/entry_page.ui:1394
+#: data/entry_page.ui:1625
 msgid "Enter character here…"
 msgstr "Voer teken hier in…"
 
-#: data/entry_page.ui:1405
+#: data/entry_page.ui:1636
 msgid "Passphrase"
 msgstr "Wachtwoord"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1523
+#: data/entry_page.ui:1754
 msgid "Show/hide password"
 msgstr "Wachtwoord tonen/verbergen"
 
-#: data/entry_page.ui:1704 data/references_dialog.ui:170
+#: data/entry_page.ui:1935 data/references_dialog.ui:170
 #: data/references_dialog.ui:277
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:1791 data/references_dialog.ui:92
+#: data/entry_page.ui:2022 data/references_dialog.ui:92
 #: data/references_dialog.ui:249
 msgid "Username"
 msgstr "Gebruikersnaam"
@@ -388,14 +426,9 @@ msgstr ""
 "v.4-formaat. Hij integreert perfect met het Gnome-bureaublad en biedt een "
 "eenvoudige en duidelijke interface voor het beheer van wachtwoorddatabases."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:57
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.PasswordSafe.desktop.in.in:6
-msgid "@ICON@"
-msgstr "@ICON@"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
@@ -639,11 +672,6 @@ msgstr "Wilt u alle kluizen met onopgeslagen wijzigingen opslaan?"
 msgid "Select the safes you want to save."
 msgstr "Selecteer de kluizen dit u wilt opslaan."
 
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/quit_dialog.ui:22 data/unlocked_database.ui:1274
-msgid "Back"
-msgstr "Terug"
-
 #: data/quit_dialog.ui:35
 msgid "Quit"
 msgstr "Afsluiten"
@@ -665,7 +693,7 @@ msgstr "Verwerpen"
 
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/main_window.py:333
+#: passwordsafe/entry_page.py:634 passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Opslaan"
 
@@ -949,7 +977,7 @@ msgid "Generating…"
 msgstr "Bezig met genereren…"
 
 #. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-#: passwordsafe/database_manager.py:368
+#: passwordsafe/database_manager.py:384
 msgid "Clone"
 msgstr "Klonen"
 
@@ -988,9 +1016,23 @@ msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 # Of is het het attribuut 'sleutel'?
-#: passwordsafe/entry_page.py:491 passwordsafe/entry_page.py:554
+#: passwordsafe/entry_page.py:505 passwordsafe/entry_page.py:568
 msgid "Attribute key already exists"
 msgstr "Attribuutsleutel bestaat al"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: passwordsafe/entry_page.py:596
+msgid "Select attachment"
+msgstr "Selecteer een bijlage"
+
+#: passwordsafe/entry_page.py:597
+msgid "Add"
+msgstr "Toevoegen"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: passwordsafe/entry_page.py:633
+msgid "Save attachment"
+msgstr "Bijlage opslaan"
 
 #: passwordsafe/entry_row.py:63
 msgid "Title not specified"
@@ -1049,30 +1091,33 @@ msgstr "Opnieuw proberen"
 msgid "Choose Keyfile"
 msgstr "Kies een sleutelbestand"
 
-#: passwordsafe/unlocked_database.py:481
+#: passwordsafe/unlocked_database.py:482
 msgid "Database saved"
 msgstr "Database opgeslagen"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:484
+#: passwordsafe/unlocked_database.py:485
 msgid "Please wait. Another save is running."
 msgstr "Even geduld, een andere opsla-opdracht wordt uitgevoerd."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:487
+#: passwordsafe/unlocked_database.py:488
 msgid "No changes made"
 msgstr "Geen wijzigingen"
 
-#: passwordsafe/unlocked_database.py:666
+#: passwordsafe/unlocked_database.py:667
 msgid "Copied to clipboard"
 msgstr "Gekopieerd naar klembord"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:820
 #, python-format
 msgid "%s locked"
 msgstr "%s vergrendeld"
 
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:820
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass-kluis vergrendeld wegens inactiviteit"
+
+#~ msgid "@ICON@"
+#~ msgstr "@ICON@"

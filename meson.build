@@ -1,14 +1,14 @@
 project('passwordsafe', 'c',
   version: '3.32.0',
-  meson_version: '>= 0.46.0'
+  meson_version: '>= 0.50.0'
 )
 i18n = import('i18n')
-python = import('python3')
+python = import('python')
 project_id = 'org.gnome.PasswordSafe'
 contributors = '\n'.join(['Falk Alexander Seidl &lt;fseidl@gnome.org&gt;', 'Uta Lemke'])
 
 message('Looking for dependencies')
-python_bin = python.find_python()
+python_bin = python.find_installation('python3')
 if not python_bin.found()
     error('No valid python3 binary found')
 else
@@ -22,7 +22,7 @@ dependency('pwquality')
 
 env = environment()
 
-python_dir = join_paths(get_option('prefix'), python.sysconfig_path('purelib'))
+python_dir = join_paths(get_option('prefix'), python_bin.get_path('purelib'))
 LIBEXEC_DIR = join_paths(get_option('prefix'), get_option('libexecdir'))
 EXTENSION_DIR = join_paths(get_option('prefix'), get_option('libdir'), meson.project_name())
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
@@ -55,7 +55,7 @@ conf.set('DATA_DIR', DATA_DIR)
 conf.set('EXTENSION_DIR', EXTENSION_DIR)
 conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
 conf.set('PYTHON_DIR', python_dir)
-conf.set('PYTHON_EXEC_DIR', join_paths(get_option('prefix'), python.sysconfig_path('stdlib')))
+conf.set('PYTHON_EXEC_DIR', join_paths(get_option('prefix'), python_bin.get_path('stdlib')))
 conf.set('PYTHON', python_bin.path())
 conf.set('libexecdir', LIBEXEC_DIR)
 if get_option('profile') == 'development'

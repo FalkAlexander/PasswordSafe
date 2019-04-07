@@ -52,11 +52,6 @@
         },
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/64/7c/27367b38e6cc3e1f49f193deb761fe75cda9f95da37b67b422e62281fcac/cffi-1.12.2.tar.gz",
-            "sha256": "e113878a446c6228669144ae8a56e268c91b7f1fafae927adc4879d9849e0ea7"
-        },
-        {
-            "type": "file",
             "url": "https://files.pythonhosted.org/packages/aa/bb/d620acb83d6e7d0a1f896557524b85e058500bd858ee814d467428718811/argon2_cffi-19.1.0.tar.gz",
             "sha256": "81548a27b919861040cb928a350733f4f9455dd67c7d1ba92eb5960a1d7f8b26"
         },
@@ -105,6 +100,25 @@
                     "type": "archive",
                     "url": "https://github.com/GNOME/libxslt/archive/v1.1.33.tar.gz",
                     "sha256": "cb4bca0adbabf218948550bdf1f1b20120e7ae8322c7d599be4b58908946aad8"
+                }
+            ]
+        },
+        {
+            "name": "python3-cffi",
+            "buildsystem": "simple",
+            "build-commands": [
+                    "pip3 install --no-index --no-build-isolation --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} cffi"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/68/9e/49196946aee219aead1290e00d1e7fdeab8567783e83e1b9ab5585e6206a/pycparser-2.19.tar.gz",
+                    "sha256": "a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/64/7c/27367b38e6cc3e1f49f193deb761fe75cda9f95da37b67b422e62281fcac/cffi-1.12.2.tar.gz",
+                    "sha256": "e113878a446c6228669144ae8a56e268c91b7f1fafae927adc4879d9849e0ea7"
                 }
             ]
         }

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkMessageDialog" id="save_dialog">
@@ -38,6 +37,19 @@
               </packing>
             </child>
             <child>
+              <object class="GtkButton" id="cancel_button">
+                <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkButton" id="save_button">
                 <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">Save</property>
                 <property name="visible">True</property>
@@ -48,7 +60,7 @@
               <packing>
                 <property name="expand">True</property>
                 <property name="fill">True</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
@@ -60,5 +72,10 @@
         </child>
       </object>
     </child>
+    <action-widgets>
+      <action-widget response="-9">discard_button</action-widget>
+      <action-widget response="-6">cancel_button</action-widget>
+      <action-widget response="-8">save_button</action-widget>
+    </action-widgets>
   </object>
 </interface>

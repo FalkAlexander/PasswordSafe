@@ -1,4 +1,5 @@
 from gettext import gettext as _
+from threading import Timer
 import ntpath
 import os
 import re
@@ -20,7 +21,6 @@ from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
-from threading import Timer
 import passwordsafe.config_manager
 
 
@@ -677,6 +677,7 @@ class UnlockedDatabase:
         if not self.database_manager.is_dirty \
            or self.database_manager.save_running:
             return True  # no dirty db, do nothing.
+
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
         save_dialog = builder.get_object("save_dialog")
@@ -684,7 +685,7 @@ class UnlockedDatabase:
 
         res = save_dialog.run()
         save_dialog.destroy()
-        if res == Gtk.ResponseType.NONE:
+        if res == Gtk.ResponseType.CANCEL or res == Gtk.ResponseType.NONE:
             # Cancel everything, don't quit
             return False
         elif res == Gtk.ResponseType.NO:

@@ -3,7 +3,7 @@ Password Safe is a password manager which makes use of the KeePass v.4 format.
 It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
 ![Screenshot](https://terminal.run/stuff/overview.png)
-![Mobile](https://terminal.run/stuff/mobile.gif)
+![Mobile](https://terminal.run/stuff/passwordsafe-librem5.gif)
 
 ## Features:
 * ⭐ Create or import a KeePass v.4 safe
@@ -11,6 +11,8 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 * 📝 Create and edit groups and entries
 * ✨ Assign a color and additional attributes to entries
 * 🗑 Move and delete groups and entries
+* 📎 Add files to your encrypted database
+* 🔗 Link multiple properties together with references
 * 🎲 Cryptographically strong password and passphrase generator
 * 🛠 Database password and keyfile changing
 * 🔎 Search tool with local, global and fulltext filter
@@ -60,13 +62,13 @@ flatpak install org.gnome.PasswordSafeDevel.flatpak
 
 #### Option 3: with Meson
 ##### Prerequisites:
-* Python >= 3.6.5
+* python >= 3.6.5
 * pykeepass >= 3.0.3
-* Gtk >= 3.24.1
+* gtk >= 3.24.1
 * libhandy >= 0.0.9
 * libpwquality >= 1.4.0
-* Meson >= 0.46.0
-* Git
+* meson >= 0.46.0
+* git
 
 ```
 git clone https://gitlab.gnome.org/World/PasswordSafe.git
@@ -77,7 +79,7 @@ sudo ninja -C _build install
 ```
 
 ## Install via distribution package manager
-* Arch Linux: [gnome-passwordsafe](https://aur.archlinux.org/packages/gnome-passwordsafe/)
+* Arch Linux: [gnome-passwordsafe](https://www.archlinux.org/packages/community/any/gnome-passwordsafe/)
 
 # Translations
 Helping to translate Password Safe or add support to a new language is very welcome.  

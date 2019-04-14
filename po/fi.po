@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-11-21 13:26+0000\n"
-"PO-Revision-Date: 2019-01-16 19:46+0200\n"
+"POT-Creation-Date: 2019-03-22 20:10+0000\n"
+"PO-Revision-Date: 2019-04-14 15:45+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
 #: data/org.gnome.PasswordSafe.desktop.in.in:4
@@ -32,8 +32,32 @@ msgstr "Lisätietoja Salasanasäilöstä"
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
 
-#: data/create_database.ui:74 data/database_settings_dialog.ui:435
-#: data/entry_page.ui:1331 data/entry_page.ui:1467
+#. Dialog title which informs the user about unsaved changes.
+#: data/attachment_warning_dialog.ui:9
+msgid "Safety Info"
+msgstr ""
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/attachment_warning_dialog.ui:10
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+
+#. Discard all the changes which the user have made to his keepass safe
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
+#: data/unlocked_database.ui:1274
+msgid "Back"
+msgstr "Takaisin"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/attachment_warning_dialog.ui:36
+msgid "Proceed"
+msgstr "Jatka"
+
+#: data/create_database.ui:74 data/database_settings_dialog.ui:439
+#: data/entry_page.ui:1562 data/entry_page.ui:1698
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
 #: passwordsafe/unlock_database.py:93
 msgid "Password"
@@ -43,7 +67,7 @@ msgstr "Salasana"
 msgid "Use a password to secure your safe"
 msgstr "Käytä salasanaa suojataksesi säilösi"
 
-#: data/create_database.ui:155 data/database_settings_dialog.ui:575
+#: data/create_database.ui:155 data/database_settings_dialog.ui:579
 #: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
 #: passwordsafe/database_settings_dialog.py:184
 #: passwordsafe/database_settings_dialog.py:219
@@ -95,7 +119,7 @@ msgid "Please try again"
 msgstr "Yritä uudelleen"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1418
+#: data/create_database.ui:781 data/entry_page.ui:1649
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
@@ -151,191 +175,202 @@ msgstr "Säilö luotu onnistuneesti"
 msgid "Open Safe"
 msgstr "Avaa säilö"
 
-#: data/database_settings_dialog.ui:51
+#: data/database_settings_dialog.ui:55
 msgid "Details"
 msgstr "Tiedot"
 
-#: data/database_settings_dialog.ui:76
+#: data/database_settings_dialog.ui:80
 msgid "Path"
 msgstr "Polku"
 
-#: data/database_settings_dialog.ui:93
+#: data/database_settings_dialog.ui:97
 msgid "File Size"
 msgstr "Tiedoston koko"
 
-#: data/database_settings_dialog.ui:110
+#: data/database_settings_dialog.ui:114
 msgid "Safe Name"
 msgstr "Säilön nimi"
 
 #. KeePass is a proper noun
-#: data/database_settings_dialog.ui:140
+#: data/database_settings_dialog.ui:144
 msgid "KeePass Version"
 msgstr "KeePass-versio"
 
-#: data/database_settings_dialog.ui:157
+#: data/database_settings_dialog.ui:161
 msgid "Creation Date"
 msgstr "Luontipäivä"
 
-#: data/database_settings_dialog.ui:174 data/database_settings_dialog.ui:795
+#: data/database_settings_dialog.ui:178 data/database_settings_dialog.ui:801
 msgid "Encryption Algorithm"
 msgstr "Salausalgoritmi"
 
-#: data/database_settings_dialog.ui:191
+#: data/database_settings_dialog.ui:195
 msgid "Derivation Algorithm"
 msgstr "Derivaatioalgoritmi"
 
 #. Statistics
-#: data/database_settings_dialog.ui:296
+#: data/database_settings_dialog.ui:300
 msgid "Stats"
 msgstr "Tilastot"
 
-#: data/database_settings_dialog.ui:321
+#: data/database_settings_dialog.ui:325
 msgid "Number of Groups"
 msgstr "Ryhmien määrä"
 
-#: data/database_settings_dialog.ui:338
+#: data/database_settings_dialog.ui:342
 msgid "Passwords"
 msgstr "Salasanat"
 
-#: data/database_settings_dialog.ui:355
+#: data/database_settings_dialog.ui:359
 msgid "Number of Entries"
 msgstr "Tietueiden määrä"
 
-#: data/database_settings_dialog.ui:416 data/settings_dialog.ui:49
+#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:55
 msgid "General"
 msgstr "Yleiset"
 
 #. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:457
+#: data/database_settings_dialog.ui:461
 msgid "New"
 msgstr "Uusi"
 
-#: data/database_settings_dialog.ui:476 data/database_settings_dialog.ui:477
+#: data/database_settings_dialog.ui:480 data/database_settings_dialog.ui:481
 msgid "Generate Password"
 msgstr "Luo salasana"
 
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:490
+#: data/database_settings_dialog.ui:494
 msgid "Confirm"
 msgstr "Vahvista"
 
 #. Current password
-#: data/database_settings_dialog.ui:520
+#: data/database_settings_dialog.ui:524
 msgid "Current"
 msgstr "Nykyinen"
 
-#: data/database_settings_dialog.ui:628
+#: data/database_settings_dialog.ui:632
 msgid "Select current keyfile"
 msgstr "Valitse nykyinen avaintiedosto"
 
-#: data/database_settings_dialog.ui:704
+#: data/database_settings_dialog.ui:708
 msgid "Generate new keyfile"
 msgstr "Luo uusi avaintiedosto"
 
-#: data/database_settings_dialog.ui:737 data/database_settings_dialog.ui:956
+#: data/database_settings_dialog.ui:741 data/database_settings_dialog.ui:962
 #: passwordsafe/database_settings_dialog.py:335
 #: passwordsafe/database_settings_dialog.py:357
 msgid "Apply Changes"
 msgstr "Toteuta muutokset"
 
-#: data/database_settings_dialog.ui:758
+#: data/database_settings_dialog.ui:762
 msgid "Authentication"
 msgstr "Tunnistautuminen"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:828
+#: data/database_settings_dialog.ui:834
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-bit"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:845
+#: data/database_settings_dialog.ui:851
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-bit"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:862
+#: data/database_settings_dialog.ui:868
 msgid "AES: 256-bit"
 msgstr "AES: 256-bit"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:887
+#: data/database_settings_dialog.ui:893
 msgid "Key Derivation Function"
 msgstr "Avaimen derivaatiofunktio"
 
-#: data/entry_page.ui:106
+#: data/entry_page.ui:34
+msgid "Add Attachment"
+msgstr "Lisää liite"
+
+#: data/entry_page.ui:75
+msgid "Attachments"
+msgstr "Liitteet"
+
+#: data/entry_page.ui:162
+msgid "Secret_Photo.png"
+msgstr "Salainen_kuva.png"
+
+#: data/entry_page.ui:337
 msgid "Remove attribute"
 msgstr "Poista attribuutti"
 
-#: data/entry_page.ui:167
+#: data/entry_page.ui:398
 msgid "Attributes"
 msgstr "Attribuutit"
 
-#: data/entry_page.ui:207
+#: data/entry_page.ui:438
 msgid "Key"
 msgstr "Avain"
 
-#: data/entry_page.ui:221
+#: data/entry_page.ui:452
 msgid "Value"
 msgstr "Arvo"
 
-#: data/entry_page.ui:243
+#: data/entry_page.ui:474
 msgid "Add attribute"
 msgstr "Lisää attribuutti"
 
-#: data/entry_page.ui:298
+#: data/entry_page.ui:529
 msgid "Color"
 msgstr "Väri"
 
-#: data/entry_page.ui:593
+#: data/entry_page.ui:824
 msgid "Icon"
 msgstr "Kuvake"
 
-#: data/entry_page.ui:965 data/group_page.ui:35 data/references_dialog.ui:65
+#: data/entry_page.ui:1196 data/group_page.ui:35 data/references_dialog.ui:65
 #: data/references_dialog.ui:235
 msgid "Title"
 msgstr "Otsikko"
 
-#: data/entry_page.ui:1050 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/entry_page.ui:1281 data/group_page.ui:120 data/references_dialog.ui:185
 #: data/references_dialog.ui:291
 msgid "Notes"
 msgstr "Muistiinpanot"
 
-#: data/entry_page.ui:1202
+#: data/entry_page.ui:1433
 msgid "Length"
 msgstr "Pituus"
 
-#: data/entry_page.ui:1236
+#: data/entry_page.ui:1467
 msgid "Characters"
 msgstr "Merkit"
 
-#: data/entry_page.ui:1344
+#: data/entry_page.ui:1575
 msgid "Words"
 msgstr "Sanat"
 
-#: data/entry_page.ui:1377
+#: data/entry_page.ui:1608
 msgid "Separator"
 msgstr "Erotin"
 
-#: data/entry_page.ui:1394
-#| msgid "Enter search term"
+#: data/entry_page.ui:1625
 msgid "Enter character here…"
 msgstr "Kirjoita merkki tähän…"
 
-#: data/entry_page.ui:1405
+#: data/entry_page.ui:1636
 msgid "Passphrase"
 msgstr "Tunnuslause"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1523
+#: data/entry_page.ui:1754
 msgid "Show/hide password"
 msgstr "Näytä/piilota salasana"
 
-#: data/entry_page.ui:1704 data/references_dialog.ui:170
+#: data/entry_page.ui:1935 data/references_dialog.ui:170
 #: data/references_dialog.ui:277
 msgid "URL"
 msgstr "Osoite"
 
-#: data/entry_page.ui:1791 data/references_dialog.ui:92
+#: data/entry_page.ui:2022 data/references_dialog.ui:92
 #: data/references_dialog.ui:249
 msgid "Username"
 msgstr "Käyttäjätunnus"
@@ -384,21 +419,16 @@ msgstr ""
 "tiedostomuotoa. Se yhdistyy Gnome-työpöydälle ja tarjoaa selkeän sekä "
 "helppokäyttöisen käyttöliittymän salasanatietokantojen hallintaan."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:57
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.PasswordSafe.desktop.in.in:6
-msgid "@ICON@"
-msgstr "@ICON@"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:115
+#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:121
 msgid "Use dark GTK+ theme"
 msgstr "Käytä tummaa GTK+-teemaa"
 
@@ -420,7 +450,7 @@ msgid ""
 "show the welcome screen."
 msgstr ""
 
-#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:320
+#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:326
 msgid "Save every change automatically"
 msgstr "Tallenna jokainen muutos automaattisesti"
 
@@ -442,7 +472,7 @@ msgstr ""
 "Lukitse salasanatietokanta automaattisesti tietyn ajan jälkeen parantaaksesi "
 "tietoturvaa."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:731
+#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:737
 msgid "Clear clipboard after X seconds"
 msgstr "Tyhjennä leikepöytä X sekunnin kuluttua"
 
@@ -450,7 +480,7 @@ msgstr "Tyhjennä leikepöytä X sekunnin kuluttua"
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr "Salasanan kopioimisen jälkeen tyhjennä leikepöytä tietoturvasyistä."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:815
+#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:821
 msgid "Display passwords in plain text"
 msgstr "Näytä salasana raakatekstinä"
 
@@ -576,8 +606,8 @@ msgstr "Luotu"
 msgid "Code"
 msgstr "Koodi"
 
-#: data/references_dialog.ui:38 data/references_dialog.ui:399
-#: data/references_dialog.ui:550
+#: data/references_dialog.ui:38 data/references_dialog.ui:403
+#: data/references_dialog.ui:554
 msgid "Property"
 msgstr "Ominaisuus"
 
@@ -587,31 +617,31 @@ msgstr "Ominaisuus"
 msgid "References"
 msgstr "Asetukset"
 
-#: data/references_dialog.ui:342
+#: data/references_dialog.ui:346
 msgid "Syntax"
 msgstr ""
 
-#: data/references_dialog.ui:357
+#: data/references_dialog.ui:361
 msgid "The placeholder syntax for field references is the following:"
 msgstr ""
 
-#: data/references_dialog.ui:398 data/references_dialog.ui:437
+#: data/references_dialog.ui:402 data/references_dialog.ui:441
 #, fuzzy
 #| msgid "Show Password Fields"
 msgid "Show Field Codes"
 msgstr "Näytä salasanakentät"
 
-#: data/references_dialog.ui:438
+#: data/references_dialog.ui:442
 msgid "Identifier"
 msgstr "Tunniste"
 
-#: data/references_dialog.ui:520
+#: data/references_dialog.ui:524
 #, fuzzy
 #| msgid "Preferences"
 msgid "Reference"
 msgstr "Asetukset"
 
-#: data/references_dialog.ui:625
+#: data/references_dialog.ui:631
 msgid ""
 "Each entry has a unique identifier called UUID.\n"
 "It can be found in the properties of the entry."
@@ -628,11 +658,6 @@ msgstr ""
 #: data/quit_dialog.ui:9
 msgid "Select the safes you want to save."
 msgstr "Valitse säilöt, jotka haluat tallentaa."
-
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/quit_dialog.ui:22 data/unlocked_database.ui:1274
-msgid "Back"
-msgstr "Takaisin"
 
 #: data/quit_dialog.ui:35
 msgid "Quit"
@@ -655,7 +680,7 @@ msgstr "Hylkää"
 
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/main_window.py:333
+#: passwordsafe/entry_page.py:634 passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Tallenna"
 
@@ -664,76 +689,76 @@ msgstr "Tallenna"
 msgid "Settings"
 msgstr "Asetukset"
 
-#: data/settings_dialog.ui:98
+#: data/settings_dialog.ui:104
 msgid "Dark Theme"
 msgstr "Tumma teema"
 
-#: data/settings_dialog.ui:181
+#: data/settings_dialog.ui:187
 msgid "Hide First Start Screen"
 msgstr "Piilota ensimmäisen käynnistyksen näkymä"
 
-#: data/settings_dialog.ui:198
+#: data/settings_dialog.ui:204
 msgid "Reopen last opened safe"
 msgstr "Avaa uudelleen viimeksi avattu säilö"
 
-#: data/settings_dialog.ui:254 data/unlocked_database.ui:860
+#: data/settings_dialog.ui:260 data/unlocked_database.ui:860
 #: passwordsafe/main_window.py:335
 msgid "Safe"
 msgstr "Säilö"
 
-#: data/settings_dialog.ui:303
+#: data/settings_dialog.ui:309
 msgid "Save automatically"
 msgstr "Tallenna automaattisesti"
 
-#: data/settings_dialog.ui:376 data/unlock_database.ui:84
+#: data/settings_dialog.ui:382 data/unlock_database.ui:84
 #: data/unlock_database.ui:226 data/unlock_database.ui:468
 msgid "Unlock"
 msgstr "Avaa lukitus"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:425
+#: data/settings_dialog.ui:431
 msgid "Remember Composite Key"
 msgstr "Muista yhdistelmäavain"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:442
+#: data/settings_dialog.ui:448
 msgid "Remember last used composite key"
 msgstr "Muista viimeksi käytetty yhdistelmäavain"
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:508
+#: data/settings_dialog.ui:514
 msgid "Remember Unlock Method"
 msgstr "Muista lukituksen avaustapa"
 
-#: data/settings_dialog.ui:525
+#: data/settings_dialog.ui:531
 msgid "Enable faster unlocking"
 msgstr "Käytä nopeampaa lukituksen avausta"
 
-#: data/settings_dialog.ui:581
+#: data/settings_dialog.ui:587
 msgid "Security"
 msgstr "Turvallisuus"
 
-#: data/settings_dialog.ui:630
+#: data/settings_dialog.ui:636
 msgid "Safe Lock Timeout"
 msgstr "Säilön lukituksen viive"
 
-#: data/settings_dialog.ui:647
+#: data/settings_dialog.ui:653
 msgid "Lock safe on idle after X minutes"
 msgstr "Lukitse käyttämätön säilö X minuutin kuluttua"
 
-#: data/settings_dialog.ui:714
+#: data/settings_dialog.ui:720
 msgid "Clear Clipboard"
 msgstr "Tyhjennä leikepöytä"
 
-#: data/settings_dialog.ui:798
+#: data/settings_dialog.ui:804
 msgid "Show Password Fields"
 msgstr "Näytä salasanakentät"
 
-#: data/settings_dialog.ui:881
+#: data/settings_dialog.ui:887
 msgid "Clear Recent List"
 msgstr "Tyhjennä viimeisimpien luettelo"
 
-#: data/settings_dialog.ui:898
+#: data/settings_dialog.ui:904
 msgid "Clear the recently opened safes list"
 msgstr "Tyhjennä viimeksi avattujen säilöjen luettelo"
 
@@ -939,7 +964,7 @@ msgid "Generating…"
 msgstr "Luodaan…"
 
 #. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-#: passwordsafe/database_manager.py:368
+#: passwordsafe/database_manager.py:384
 msgid "Clone"
 msgstr "Kaksoiskappale"
 
@@ -977,9 +1002,23 @@ msgstr "ChaCha20 256-bit"
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:491 passwordsafe/entry_page.py:554
+#: passwordsafe/entry_page.py:505 passwordsafe/entry_page.py:568
 msgid "Attribute key already exists"
 msgstr "Avainattribuutti on jo olemassa"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: passwordsafe/entry_page.py:596
+msgid "Select attachment"
+msgstr "Valitse liite"
+
+#: passwordsafe/entry_page.py:597
+msgid "Add"
+msgstr "Lisää"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: passwordsafe/entry_page.py:633
+msgid "Save attachment"
+msgstr "Tallenna liite"
 
 #: passwordsafe/entry_row.py:63
 msgid "Title not specified"
@@ -1038,33 +1077,36 @@ msgstr "Yritä uudelleen"
 msgid "Choose Keyfile"
 msgstr "Valitse avaintiedosto"
 
-#: passwordsafe/unlocked_database.py:481
+#: passwordsafe/unlocked_database.py:482
 msgid "Database saved"
 msgstr "Tietokanta tallennettu"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:484
+#: passwordsafe/unlocked_database.py:485
 msgid "Please wait. Another save is running."
 msgstr "Odota, toinen tallennus on meneillään."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:487
+#: passwordsafe/unlocked_database.py:488
 msgid "No changes made"
 msgstr "Muutoksia ei ole tehty"
 
-#: passwordsafe/unlocked_database.py:666
+#: passwordsafe/unlocked_database.py:667
 msgid "Copied to clipboard"
 msgstr "Kopioitu leikepöydälle"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:820
 #, python-format
 msgid "%s locked"
 msgstr "%s lukittu"
 
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:820
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass-säilö on lukittu toimettomuuden vuoksi"
+
+#~ msgid "@ICON@"
+#~ msgstr "@ICON@"
 
 #~ msgid "Edit"
 #~ msgstr "Muokkaa"

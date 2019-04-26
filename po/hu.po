@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-02-17 22:57+0000\n"
-"PO-Revision-Date: 2019-02-20 11:39+0100\n"
-"Last-Translator: Balázs Meskó <mesko.balazs at fsf dot hu>\n"
+"POT-Creation-Date: 2019-03-22 20:10+0000\n"
+"PO-Revision-Date: 2019-04-25 21:34+0200\n"
+"Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,34 @@ msgstr "Tudjon meg többet a Jelszókezelőről"
 msgid "translator-credits"
 msgstr "Meskó Balázs <mesko.balazs at fsf dot hu>"
 
+#. Dialog title which informs the user about unsaved changes.
+#: data/attachment_warning_dialog.ui:9
+msgid "Safety Info"
+msgstr "Biztonsági információk"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/attachment_warning_dialog.ui:10
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"Előfordulhat, hogy külső alkalmazások titkosítatlan rejtett vagy ideiglenes "
+"másolatokat készítenek a mellékletről! Folytassa körültekintően."
+
+#. Discard all the changes which the user have made to his keepass safe
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
+#: data/unlocked_database.ui:1274
+msgid "Back"
+msgstr "Vissza"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/attachment_warning_dialog.ui:36
+msgid "Proceed"
+msgstr "Folytatás"
+
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
-#: data/entry_page.ui:1331 data/entry_page.ui:1467
+#: data/entry_page.ui:1562 data/entry_page.ui:1698
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
 #: passwordsafe/unlock_database.py:93
 msgid "Password"
@@ -97,7 +123,7 @@ msgid "Please try again"
 msgstr "Próbálja meg újra"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1418
+#: data/create_database.ui:781 data/entry_page.ui:1649
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
@@ -264,79 +290,91 @@ msgstr "AES: 256 bites"
 msgid "Key Derivation Function"
 msgstr "Kulcsszármaztatási függvény"
 
-#: data/entry_page.ui:106
+#: data/entry_page.ui:34
+msgid "Add Attachment"
+msgstr "Melléklet hozzáadása"
+
+#: data/entry_page.ui:75
+msgid "Attachments"
+msgstr "Mellékletek"
+
+#: data/entry_page.ui:162
+msgid "Secret_Photo.png"
+msgstr "Titkos_fenykep.png"
+
+#: data/entry_page.ui:337
 msgid "Remove attribute"
 msgstr "Tulajdonság eltávolítása"
 
-#: data/entry_page.ui:167
+#: data/entry_page.ui:398
 msgid "Attributes"
 msgstr "Tulajdonságok"
 
-#: data/entry_page.ui:207
+#: data/entry_page.ui:438
 msgid "Key"
 msgstr "Kulcs"
 
-#: data/entry_page.ui:221
+#: data/entry_page.ui:452
 msgid "Value"
 msgstr "Érték"
 
-#: data/entry_page.ui:243
+#: data/entry_page.ui:474
 msgid "Add attribute"
 msgstr "Tulajdonság hozzáadása"
 
-#: data/entry_page.ui:298
+#: data/entry_page.ui:529
 msgid "Color"
 msgstr "Szín"
 
-#: data/entry_page.ui:593
+#: data/entry_page.ui:824
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/entry_page.ui:965 data/group_page.ui:35 data/references_dialog.ui:65
+#: data/entry_page.ui:1196 data/group_page.ui:35 data/references_dialog.ui:65
 #: data/references_dialog.ui:235
 msgid "Title"
 msgstr "Cím"
 
-#: data/entry_page.ui:1050 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/entry_page.ui:1281 data/group_page.ui:120 data/references_dialog.ui:185
 #: data/references_dialog.ui:291
 msgid "Notes"
 msgstr "Jegyzetek"
 
-#: data/entry_page.ui:1202
+#: data/entry_page.ui:1433
 msgid "Length"
 msgstr "Hossz"
 
-#: data/entry_page.ui:1236
+#: data/entry_page.ui:1467
 msgid "Characters"
 msgstr "Karakterek"
 
-#: data/entry_page.ui:1344
+#: data/entry_page.ui:1575
 msgid "Words"
 msgstr "Szavak"
 
-#: data/entry_page.ui:1377
+#: data/entry_page.ui:1608
 msgid "Separator"
 msgstr "Elválasztó"
 
-#: data/entry_page.ui:1394
+#: data/entry_page.ui:1625
 msgid "Enter character here…"
 msgstr "Adjon meg egy karaktert itt…"
 
-#: data/entry_page.ui:1405
+#: data/entry_page.ui:1636
 msgid "Passphrase"
 msgstr "Jelmondat"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1523
+#: data/entry_page.ui:1754
 msgid "Show/hide password"
 msgstr "Jelszó megjelenítése/elrejtése"
 
-#: data/entry_page.ui:1704 data/references_dialog.ui:170
+#: data/entry_page.ui:1935 data/references_dialog.ui:170
 #: data/references_dialog.ui:277
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:1791 data/references_dialog.ui:92
+#: data/entry_page.ui:2022 data/references_dialog.ui:92
 #: data/references_dialog.ui:249
 msgid "Username"
 msgstr "Felhasználónév"
@@ -385,14 +423,9 @@ msgstr ""
 "GNOME asztali környezetbe, egyszerű és rendezett felületet biztosít a "
 "jelszóadatbázisok kezeléséhez."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:57
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.PasswordSafe.desktop.in.in:6
-msgid "@ICON@"
-msgstr "@ICON@"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
@@ -635,11 +668,6 @@ msgstr ""
 msgid "Select the safes you want to save."
 msgstr "Válassza ki a mentendő széfeket."
 
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/quit_dialog.ui:22 data/unlocked_database.ui:1274
-msgid "Back"
-msgstr "Vissza"
-
 #: data/quit_dialog.ui:35
 msgid "Quit"
 msgstr "Kilépés"
@@ -661,7 +689,7 @@ msgstr "Eldobás"
 
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/main_window.py:333
+#: passwordsafe/entry_page.py:634 passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Mentés"
 
@@ -945,7 +973,7 @@ msgid "Generating…"
 msgstr "Előállítás…"
 
 #. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-#: passwordsafe/database_manager.py:368
+#: passwordsafe/database_manager.py:384
 msgid "Clone"
 msgstr "Klónozás"
 
@@ -983,9 +1011,23 @@ msgstr "256 bites ChaCha20"
 msgid "Twofish 256-bit"
 msgstr "256 bites Twofish"
 
-#: passwordsafe/entry_page.py:491 passwordsafe/entry_page.py:554
+#: passwordsafe/entry_page.py:505 passwordsafe/entry_page.py:568
 msgid "Attribute key already exists"
-msgstr "A tulajdonság kulcs már létezik"
+msgstr "A tulajdonságkulcs már létezik"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: passwordsafe/entry_page.py:596
+msgid "Select attachment"
+msgstr "Válasszon mellékletet"
+
+#: passwordsafe/entry_page.py:597
+msgid "Add"
+msgstr "Hozzáadás"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: passwordsafe/entry_page.py:633
+msgid "Save attachment"
+msgstr "Melléklet mentése"
 
 #: passwordsafe/entry_row.py:63
 msgid "Title not specified"
@@ -1044,30 +1086,33 @@ msgstr "Próbálja újra"
 msgid "Choose Keyfile"
 msgstr "Válasszon kulcsfájlt"
 
-#: passwordsafe/unlocked_database.py:481
+#: passwordsafe/unlocked_database.py:482
 msgid "Database saved"
 msgstr "Adatbázis mentve"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:484
+#: passwordsafe/unlocked_database.py:485
 msgid "Please wait. Another save is running."
 msgstr "Kis türelmet. Egy másik mentés is fut."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:487
+#: passwordsafe/unlocked_database.py:488
 msgid "No changes made"
 msgstr "Nincsenek módosítások"
 
-#: passwordsafe/unlocked_database.py:666
+#: passwordsafe/unlocked_database.py:667
 msgid "Copied to clipboard"
 msgstr "Vágólapra másolva"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:820
 #, python-format
 msgid "%s locked"
 msgstr "%s zárolva"
 
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:820
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass széf tétlenség miatt zárolva"
+
+#~ msgid "@ICON@"
+#~ msgstr "@ICON@"

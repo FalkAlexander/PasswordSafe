@@ -1,14 +1,14 @@
 # Turkish translation for PasswordSafe.
 # Copyright (C) 2018 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2018.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2018-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2018-08-26 16:35+0000\n"
-"PO-Revision-Date: 2018-08-27 11:37+0300\n"
+"POT-Creation-Date: 2019-05-26 07:26+0000\n"
+"PO-Revision-Date: 2019-07-21 16:44+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -16,72 +16,127 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.32.1\n"
 
-#: data/about_dialog.ui.in:12 data/org.gnome.PasswordSafe.desktop.in:4
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in:9
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "GNOME için parola yöneticisi"
 
-#: data/about_dialog.ui.in:14
-msgid "Homepage"
-msgstr "Web Sitesi"
+#: data/about_dialog.ui.in:13
+msgid "Learn more about Password Safe"
+msgstr "Parola güvenliği hakkında ek bilgi edinin"
 
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:17
+#: data/about_dialog.ui.in:15
 msgid "translator-credits"
-msgstr "Emin Tufan Çetin <etcetin@gmail.com>"
+msgstr ""
+"Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Serdar Sağlam <teknomobil@yandex.com>"
 
-#: data/create_database.ui:89
+#: data/create_database.ui:74 data/database_settings_dialog.ui:435
+#: data/entry_page.ui:1244 data/entry_page.ui:1381
+#: passwordsafe/unlock_database.py:93
+msgid "Password"
+msgstr "Parola"
+
+#: data/create_database.ui:93
+msgid "Use a password to secure your safe"
+msgstr "Kasanızı korumak için bir parola kullanın"
+
+#: data/create_database.ui:155 data/database_settings_dialog.ui:575
+#: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
+#: passwordsafe/database_settings_dialog.py:184
+#: passwordsafe/database_settings_dialog.py:219
+#: passwordsafe/database_settings_dialog.py:224
+#: passwordsafe/unlock_database.py:96 passwordsafe/unlock_database.py:301
+#: passwordsafe/unlock_database.py:423
+msgid "Keyfile"
+msgstr "Anahtar dosyası"
+
+#: data/create_database.ui:174
+msgid "Use a keyfile to secure your safe"
+msgstr "Güvenlik için bir anahtar dosyası kullanın"
+
+#. NOTE: Composite unlock is a authentification method where both password and keyfile are required
+#: data/create_database.ui:236 passwordsafe/unlock_database.py:100
+msgid "Composite"
+msgstr "Birleşik"
+
+#: data/create_database.ui:255
+msgid "Use a password in combination with a keyfile to secure your safe"
+msgstr "Sıkı bir güvenlik için anahtar dosyası ile birlikte parola kullanın"
+
+#: data/create_database.ui:297
+msgid "Protect your safe"
+msgstr "Kasanızı koruyun"
+
+#: data/create_database.ui:408
 msgid "Set password for safe"
 msgstr "Kasa için parola belirle"
 
-#: data/create_database.ui:104
+#: data/create_database.ui:423
 msgid "Enter Password"
 msgstr "Parola Gir"
 
-#: data/create_database.ui:150
+#: data/create_database.ui:469
 msgid "Password Match Check"
 msgstr "Parola Eşleşme Denetimi"
 
-#: data/create_database.ui:236
+#: data/create_database.ui:555
 msgid "Repeat password for safe"
 msgstr "Kasa için parolayı yinele"
 
-#: data/create_database.ui:282
+#: data/create_database.ui:601
 msgid "Match Check Failed"
 msgstr "Eşleşme Denetimi Başarısız"
 
-#: data/create_database.ui:341
+#: data/create_database.ui:660
 msgid "Please try again"
 msgstr "Lütfen yeniden deneyin"
 
-#. Title of the settings dialog
-#: data/create_database.ui:453 data/main_window.ui:247
-#: data/settings_dialog.ui:14 data/unlock_database.ui:298
-#: data/unlocked_database.ui:752 passwordsafe/application.py:43
-msgid "Settings"
-msgstr "Ayarlar"
+#. Button to generate a password
+#: data/create_database.ui:781 data/entry_page.ui:1332
+#: passwordsafe/create_database.py:240
+#: passwordsafe/database_settings_dialog.py:217
+msgid "Generate"
+msgstr "Oluştur"
 
-#: data/create_database.ui:467 data/main_window.ui:261
-#: data/unlock_database.ui:312 data/unlocked_database.ui:766
+#: data/create_database.ui:810
+msgid "Set keyfile for safe"
+msgstr "Güvenli için anahtar dosyası ayarla"
+
+#: data/create_database.ui:825
+msgid "Generate Keyfile"
+msgstr "Anahtar Dosyası Oluştur"
+
+#: data/create_database.ui:880 data/main_window.ui:198
+#: data/unlock_database.ui:311 data/unlocked_database.ui:920
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: data/create_database.ui:894 data/main_window.ui:212
+#: data/unlock_database.ui:325 data/unlocked_database.ui:934
 msgid "Keyboard Shortcuts"
 msgstr "Klavye Kısayolları"
 
-#: data/create_database.ui:481 data/main_window.ui:275
-#: data/unlock_database.ui:326 data/unlocked_database.ui:780
-#: passwordsafe/application.py:46
-msgid "About"
-msgstr "Hakkında"
+#. "Password Safe" is the application name
+#: data/create_database.ui:908 data/main_window.ui:226
+#: data/unlock_database.ui:339 data/unlocked_database.ui:948
+msgid "About Password Safe"
+msgstr "Parola Kasası Hakkında"
 
 #. Application title in headerbar.
-#: data/create_database.ui:495 data/main_window.ui:289
-#: data/org.gnome.PasswordSafe.appdata.xml:6
-#: data/org.gnome.PasswordSafe.desktop.in:3 data/unlock_database.ui:340
+#. Application name in the headerbar title
+#. Application title in headerbar.
+#: data/create_database.ui:922 data/main_window.ui:353
+#: data/org.gnome.PasswordSafe.appdata.xml.in:4
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
 msgid "Password Safe"
 msgstr "Parola Kasası"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:496
+#: data/create_database.ui:923
 msgid "Create Safe"
 msgstr "Kasa Oluştur"
 
@@ -92,73 +147,192 @@ msgstr "Kasa Başarıyla Oluşturuldu"
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
 #. Headerbar subtitle for the keepass safe unlock screen.
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
-#: data/created_database.ui:50 data/unlock_database.ui:273
-#: data/unlock_database.ui:341 data/unlocked_database.ui:677
+#: data/created_database.ui:50 data/unlock_database.ui:286
+#: data/unlock_database.ui:354 data/unlocked_database.ui:881
 msgid "Open Safe"
 msgstr "Kasayı Aç"
 
-#. Title for safe settings dialog (e.g. changing password)
-#. Open settings for safe (e.g. password changing)
-#: data/database_settings_dialog.ui:14 data/unlocked_database.ui:702
-msgid "Safe Settings"
-msgstr "Kasa Ayarları"
+#: data/database_settings_dialog.ui:51
+msgid "Details"
+msgstr "Detaylar"
 
-#: data/database_settings_dialog.ui:50
-msgid "Change password"
-msgstr "Parolayı değiştir"
+#: data/database_settings_dialog.ui:76
+msgid "Path"
+msgstr "Yol"
 
-#: data/database_settings_dialog.ui:98
-msgid "Old password"
-msgstr "Eski parola"
+#: data/database_settings_dialog.ui:93
+msgid "File Size"
+msgstr "Dosya Boyutu"
 
-#: data/database_settings_dialog.ui:158
-msgid "New password"
-msgstr "Yeni parola"
+#: data/database_settings_dialog.ui:110
+msgid "Safe Name"
+msgstr "Kasa İsmi"
 
-#: data/database_settings_dialog.ui:218
-msgid "Repeat password"
-msgstr "Parolayı yinele"
+#. KeePass is a proper noun
+#: data/database_settings_dialog.ui:140
+msgid "KeePass Version"
+msgstr "KeePass Sürümü"
 
-#: data/entry_page.ui:31
+#: data/database_settings_dialog.ui:157
+msgid "Creation Date"
+msgstr "Oluşturma Tarihi"
+
+#: data/database_settings_dialog.ui:174 data/database_settings_dialog.ui:795
+msgid "Encryption Algorithm"
+msgstr "Şifreleme Algoritması"
+
+#: data/database_settings_dialog.ui:191
+msgid "Derivation Algorithm"
+msgstr "Türetme Algoritması"
+
+#. Statistics
+#: data/database_settings_dialog.ui:296
+msgid "Stats"
+msgstr "İstatistik"
+
+#: data/database_settings_dialog.ui:321
+msgid "Number of Groups"
+msgstr "Grup Sayısı"
+
+#: data/database_settings_dialog.ui:338
+msgid "Passwords"
+msgstr "Parolalar"
+
+#: data/database_settings_dialog.ui:355
+msgid "Number of Entries"
+msgstr "Girdi Sayısı"
+
+#: data/database_settings_dialog.ui:416 data/settings_dialog.ui:49
+msgid "General"
+msgstr "Genel"
+
+#. New password (replacement for an old one)
+#: data/database_settings_dialog.ui:457
+msgid "New"
+msgstr "Yeni"
+
+#: data/database_settings_dialog.ui:476 data/database_settings_dialog.ui:477
+msgid "Generate Password"
+msgstr "Parola Oluştur"
+
+#. Retype the new password to confirm
+#: data/database_settings_dialog.ui:490
+msgid "Confirm"
+msgstr "Onayla"
+
+#. Current password
+#: data/database_settings_dialog.ui:520
+msgid "Current"
+msgstr "Mevcut"
+
+#: data/database_settings_dialog.ui:628
+msgid "Select current keyfile"
+msgstr "Geçerli anahtar dosyası seç"
+
+#: data/database_settings_dialog.ui:704
+msgid "Generate new keyfile"
+msgstr "Yeni anahtar dosyası oluştur"
+
+#: data/database_settings_dialog.ui:737 data/database_settings_dialog.ui:956
+#: passwordsafe/database_settings_dialog.py:335
+#: passwordsafe/database_settings_dialog.py:357
+msgid "Apply Changes"
+msgstr "Değişiklikleri Uygula"
+
+#: data/database_settings_dialog.ui:758
+msgid "Authentication"
+msgstr "Doğrulama"
+
+#. ChaCha20 is a proper name, do not translate
+#: data/database_settings_dialog.ui:828
+msgid "ChaCha20: 256-bit"
+msgstr "ChaCha20: 256-bit"
+
+#. Twofish is a proper name, do not translate
+#: data/database_settings_dialog.ui:845
+msgid "Twofish: 256-bit"
+msgstr "Twofish: 256-bit"
+
+#. AES is a proper name, do not translate
+#: data/database_settings_dialog.ui:862
+msgid "AES: 256-bit"
+msgstr "AES: 256-bit"
+
+#. https://en.wikipedia.org/wiki/Key_derivation_function
+#: data/database_settings_dialog.ui:887
+msgid "Key Derivation Function"
+msgstr "Anahtar Türetme İşlevi"
+
+#: data/entry_page.ui:105
+msgid "Remove attribute"
+msgstr "Özniteliği kaldır"
+
+#: data/entry_page.ui:166
+msgid "Attributes"
+msgstr "Öznitelikler"
+
+#: data/entry_page.ui:205
+msgid "Key"
+msgstr "Anahtar"
+
+#: data/entry_page.ui:218
+msgid "Value"
+msgstr "Değer"
+
+#: data/entry_page.ui:240
+msgid "Add attribute"
+msgstr "Öznitelik ekle"
+
+#: data/entry_page.ui:295
 msgid "Color"
 msgstr "Renk"
 
-#: data/entry_page.ui:290 data/group_page.ui:43
+#: data/entry_page.ui:571
 msgid "Icon"
 msgstr "Simge"
 
-#: data/entry_page.ui:586 data/group_page.ui:131
+#: data/entry_page.ui:904 data/group_page.ui:35
 msgid "Title"
 msgstr "Başlık"
 
-#: data/entry_page.ui:668 data/group_page.ui:212
+#: data/entry_page.ui:990 data/group_page.ui:119
 msgid "Notes"
 msgstr "Notlar"
 
-#: data/entry_page.ui:756 passwordsafe/unlock_database.py:96
-msgid "Password"
+#: data/entry_page.ui:1114
+msgid "Length"
+msgstr "Uzunluk"
+
+#: data/entry_page.ui:1149
+msgid "Characters"
+msgstr "Karakterler"
+
+#: data/entry_page.ui:1257
+msgid "Words"
+msgstr "Kelimeler"
+
+#: data/entry_page.ui:1291
+msgid "Separator"
+msgstr "Ayırıcı"
+
+#: data/entry_page.ui:1308
+msgid "Enter character here…"
+msgstr "Buraya karakteri girin…"
+
+#: data/entry_page.ui:1319
+msgid "Passphrase"
 msgstr "Parola"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:811
+#: data/entry_page.ui:1436
 msgid "Show/hide password"
 msgstr "Parolayı göster/gizle"
 
-#. Tooltip for password generator button.
-#: data/entry_page.ui:831
-msgid "Password generator"
-msgstr "Parola oluşturucu"
-
-#. Button to generate a password
-#: data/entry_page.ui:900
-msgid "Generate"
-msgstr "Oluştur"
-
-#: data/entry_page.ui:1044
+#: data/entry_page.ui:1616
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:1125
+#: data/entry_page.ui:1702
 msgid "Username"
 msgstr "Kullanıcı adı"
 
@@ -173,28 +347,22 @@ msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
-"Parolalarınızı, notlarınızı ve verinizi güvenle saklayın. Yeni Keepass "
-"kasası <b>oluşturun</b> veya <b>içe aktarın</b>"
+"Parolalarınızı, notlarınızı ve verilerinizi güvenle saklayın. Yeni Keepass "
+"kasası <b>oluştur</b> veya <b>içe aktar</b>."
 
-#: data/main_window.ui:104
-msgid "Recent Databases"
-msgstr "Son Veri Tabanları"
-
-#. Button at the start screen for the creation of a new keepass safe (starts the creation routine where a password needs to be set for the safe)
-#: data/main_window.ui:302
+#: data/main_window.ui:267
 msgid "New…"
 msgstr "Yeni…"
 
-#. The button for opening an existing keepass safe
-#: data/main_window.ui:315
+#: data/main_window.ui:312
 msgid "Open…"
 msgstr "Aç…"
 
-#: data/org.gnome.PasswordSafe.appdata.xml:7
-msgid "Keepass Client"
-msgstr "Keepass İstemcisi"
+#: data/main_window.ui:423
+msgid "Recent Databases"
+msgstr "Son Veri Tabanları"
 
-#: data/org.gnome.PasswordSafe.appdata.xml:9
+#: data/org.gnome.PasswordSafe.appdata.xml.in:11
 msgid ""
 "Password Safe is a password manager which makes use of the Keepass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
@@ -204,17 +372,16 @@ msgstr ""
 "masaüstüyle kusursuzca tümleşir ve parola veri tabanlarının yönetimi için "
 "kolay ve düzenli bir arayüz sunar."
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.PasswordSafe.desktop.in:6
-msgid "dialog-password"
-msgstr "dialog-password"
+#: data/org.gnome.PasswordSafe.appdata.xml.in:64
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.PasswordSafe.desktop.in:13
+#: data/org.gnome.PasswordSafe.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;şifrele;güvenli;"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:113
+#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:115
 msgid "Use dark GTK+ theme"
 msgstr "Karanlık GTK+ gövdesi kullan"
 
@@ -262,7 +429,7 @@ msgstr ""
 "Güvenliği artırmak için verilen dakika miktarından sonra veri tabanınızı "
 "kendiliğinden kilitleyin."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:735
+#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:731
 msgid "Clear clipboard after X seconds"
 msgstr "Panoya X saniye sonra temizle"
 
@@ -270,7 +437,7 @@ msgstr "Panoya X saniye sonra temizle"
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr "Parolayı kopyaladıktan sonra güvenlik için panoyu temizle."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:820
+#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:815
 msgid "Display passwords in plain text"
 msgstr "Parolaları düz metinde göster"
 
@@ -370,7 +537,7 @@ msgstr "Dosya zaten var"
 msgid "Do you want to override it?"
 msgstr "Üzerine yazmak ister misiniz?"
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1168
+#: data/override_dialog.ui:22 data/unlocked_database.ui:1277
 msgid "Cancel"
 msgstr "İptal Et"
 
@@ -388,11 +555,12 @@ msgstr "Kaydedilmemiş değişikliği olan tüm kasaları kaydetmek ister misini
 msgid "Select the safes you want to save."
 msgstr "Kaydetmek istediğiniz kasaları seçin."
 
-#: data/quit_dialog.ui:22
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/quit_dialog.ui:22 data/unlocked_database.ui:988
 msgid "Back"
 msgstr "Geri"
 
-#: data/quit_dialog.ui:35 passwordsafe/application.py:47
+#: data/quit_dialog.ui:35
 msgid "Quit"
 msgstr "Çık"
 
@@ -412,29 +580,29 @@ msgid "Discard"
 msgstr "Vazgeç"
 
 #. Save all the changes which the user have made to his keepass safe
-#. Button to save all the changes which were made to the keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:902
-#: passwordsafe/main_window.py:270
+#: data/save_dialog.ui:35 data/unlocked_database.ui:733
+#: passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Kaydet"
 
-#: data/settings_dialog.ui:47
-msgid "General"
-msgstr "Genel"
+#. Title of the settings dialog
+#: data/settings_dialog.ui:15
+msgid "Settings"
+msgstr "Ayarlar"
 
-#: data/settings_dialog.ui:96
+#: data/settings_dialog.ui:98
 msgid "Dark Theme"
 msgstr "Karanlık Gövde"
 
-#: data/settings_dialog.ui:180
+#: data/settings_dialog.ui:181
 msgid "Hide First Start Screen"
 msgstr "İlk Başlatma Ekranını Gizle"
 
-#: data/settings_dialog.ui:197
+#: data/settings_dialog.ui:198
 msgid "Reopen last opened safe"
 msgstr "Son açılan kasayı yeniden aç"
 
-#: data/settings_dialog.ui:254
+#: data/settings_dialog.ui:254 passwordsafe/main_window.py:335
 msgid "Safe"
 msgstr "Kasa"
 
@@ -442,333 +610,464 @@ msgstr "Kasa"
 msgid "Save automatically"
 msgstr "Kendiliğinden kaydet"
 
-#: data/settings_dialog.ui:377 data/unlock_database.ui:84
-#: data/unlock_database.ui:213 data/unlock_database.ui:458
+#: data/settings_dialog.ui:376 data/unlock_database.ui:84
+#: data/unlock_database.ui:226 data/unlock_database.ui:468
 msgid "Unlock"
 msgstr "Kilit Aç"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:426
+#: data/settings_dialog.ui:425
 msgid "Remember Composite Key"
 msgstr "Birleşik Anahtarı Anımsa"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:443
+#: data/settings_dialog.ui:442
 msgid "Remember last used composite key"
 msgstr "Son kullanılan birleşik anahtarı anımsa"
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:510
+#: data/settings_dialog.ui:508
 msgid "Remember Unlock Method"
 msgstr "Kilit Açma Yöntemini Anımsa"
 
-#: data/settings_dialog.ui:527
+#: data/settings_dialog.ui:525
 msgid "Enable faster unlocking"
 msgstr "Hızlı kilit açmayı etkinleştir"
 
-#: data/settings_dialog.ui:584
+#: data/settings_dialog.ui:581
 msgid "Security"
 msgstr "Güvenlik"
 
-#: data/settings_dialog.ui:633
+#: data/settings_dialog.ui:630
 msgid "Safe Lock Timeout"
 msgstr "Kasa Kilidi Zaman Aşımı"
 
-#: data/settings_dialog.ui:650
+#: data/settings_dialog.ui:647
 msgid "Lock safe on idle after X minutes"
 msgstr "X dakika boşken kasayı kilitle"
 
-#: data/settings_dialog.ui:718
+#: data/settings_dialog.ui:714
 msgid "Clear Clipboard"
 msgstr "Panoyu Temizle"
 
-#: data/settings_dialog.ui:803
+#: data/settings_dialog.ui:798
 msgid "Show Password Fields"
 msgstr "Parola Alanlarını Göster"
 
-#: data/settings_dialog.ui:887
+#: data/settings_dialog.ui:881
 msgid "Clear Recent List"
 msgstr "Son Listeyi Temizle"
 
-#: data/settings_dialog.ui:904
+#: data/settings_dialog.ui:898
 msgid "Clear the recently opened safes list"
 msgstr "Son açılan kasa listesini temizle"
 
-#: data/shortcuts_overview.ui:10 data/shortcuts_overview.ui:15
-msgctxt "shortcut window"
+#: data/shortcuts_overview.ui:14
+msgctxt "Shortcut window description"
 msgid "Application"
 msgstr "Uygulama"
 
-#: data/shortcuts_overview.ui:19
-msgctxt "shortcut window"
-msgid "Create a new safe"
-msgstr "Yeni kasa oluştur"
+#: data/shortcuts_overview.ui:18
+msgctxt "Shortcut window description"
+msgid "Create safe"
+msgstr "Kasa oluştur"
 
-#: data/shortcuts_overview.ui:26
-msgctxt "shortcut window"
-msgid "Open an existing safe"
-msgstr "Var olan kasayı aç"
+#: data/shortcuts_overview.ui:25
+msgctxt "Shortcut window description"
+msgid "Open safe"
+msgstr "Kasayı aç"
 
-#: data/shortcuts_overview.ui:33
-msgctxt "shortcut window"
-msgid "Lock a safe"
+#: data/shortcuts_overview.ui:32
+msgctxt "Shortcut window description"
+msgid "Open preferences"
+msgstr "Tercihleri aç"
+
+#: data/shortcuts_overview.ui:41
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Kasa"
+
+#: data/shortcuts_overview.ui:45
+msgctxt "Shortcut window description"
+msgid "Lock safe"
 msgstr "Kasayı kilitle"
 
-#: data/shortcuts_overview.ui:40
-msgctxt "shortcut window"
-msgid "Save a safe"
+#: data/shortcuts_overview.ui:52
+msgctxt "Shortcut window description"
+msgid "Save safe"
 msgstr "Kasayı kaydet"
 
-#: data/shortcuts_overview.ui:47
-msgctxt "shortcut window"
+#: data/shortcuts_overview.ui:59
+msgctxt "Shortcut window description"
 msgid "Open search"
 msgstr "Aramayı aç"
 
-#. Hot key to copy the password on a password entry page
-#: data/shortcuts_overview.ui:54
-msgctxt "shortcut window"
-msgid "Copy password on entry page"
-msgstr "Girdi sayfasındaki parolayı kopyala"
+#: data/shortcuts_overview.ui:66
+msgctxt "Shortcut window description"
+msgid "Create entry"
+msgstr "Girdi oluştur"
+
+#: data/shortcuts_overview.ui:73
+msgctxt "Shortcut window description"
+msgid "Create group"
+msgstr "Küme oluştur"
+
+#: data/shortcuts_overview.ui:82
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Girdi"
+
+#: data/shortcuts_overview.ui:86
+msgctxt "Shortcut window description"
+msgid "Copy password"
+msgstr "Parolayı kopyala"
+
+#: data/shortcuts_overview.ui:93
+msgctxt "Shortcut window description"
+msgid "Exit entry page"
+msgstr "Girdi sayfasından çık"
 
 #: data/unlock_database.ui:27
 msgid "Enter password and select keyfile to unlock"
 msgstr "Kilidi açmak için parolayı gir ve anahtar dosyasını seç"
 
-#: data/unlock_database.ui:42 data/unlock_database.ui:169
-#: data/unlock_database.ui:504
+#: data/unlock_database.ui:43 data/unlock_database.ui:175
+#: data/unlock_database.ui:515
 msgid "Safe is Locked"
 msgstr "Kasa Kilitli"
 
-#: data/unlock_database.ui:104 data/unlock_database.ui:190
-msgid "Open Keyfile"
-msgstr "Anahtar Dosyası Aç"
-
-#: data/unlock_database.ui:154
+#: data/unlock_database.ui:159
 msgid "Select keyfile to unlock"
 msgstr "Kilidi açmak için anahtar dosyası seç"
 
+#: data/unlock_database.ui:208
+msgid "Open Keyfile"
+msgstr "Anahtar Dosyası Aç"
+
 #. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:259 data/unlocked_database.ui:663
+#: data/unlock_database.ui:272 data/unlocked_database.ui:867
 msgid "New Safe"
 msgstr "Yeni Kasa"
 
-#: data/unlock_database.ui:489
+#: data/unlock_database.ui:499
 msgid "Enter password to unlock"
 msgstr "Kilidi açmak için parola gir"
 
-#: data/unlock_database.ui:578
+#: data/unlock_database.ui:591
 msgid "Failed to unlock safe"
 msgstr "Kasa kilidi açılamadı"
 
-#. Button tooltip in headerbar to open page for creation of a new password entry
-#: data/unlocked_database.ui:19
-msgid "Create password…"
-msgstr "Parola oluştur…"
-
-#. Button tooltip in headerbar to open page for creation of a new group
-#: data/unlocked_database.ui:39
-msgid "Create group…"
-msgstr "Küme oluştur…"
-
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:69
+#: data/unlocked_database.ui:20 data/unlocked_database.ui:1013
 msgid "Selection Mode"
 msgstr "Seçim Kipi"
 
 #. Button tooltip in headerbar to open search page
-#: data/unlocked_database.ui:90
+#: data/unlocked_database.ui:42
 msgid "Search"
 msgstr "Ara"
 
-#: data/unlocked_database.ui:200
+#: data/unlocked_database.ui:210
 msgid "Empty group"
 msgstr "Boş küme"
 
-#: data/unlocked_database.ui:256
+#: data/unlocked_database.ui:266
 msgid "No search results"
 msgstr "Arama sonucu yok"
 
-#: data/unlocked_database.ui:287 data/unlocked_database.ui:496
+#: data/unlocked_database.ui:297 data/unlocked_database.ui:488
 msgid "Delete"
 msgstr "Sil"
 
-#. Button tooltip in entry/group edit page to reveal all properties for entry/group
-#: data/unlocked_database.ui:448
-msgid "Show all properties"
-msgstr "Tüm özellikleri göster"
-
-#: data/unlocked_database.ui:482
+#: data/unlocked_database.ui:474
 msgid "Edit"
 msgstr "Düzenle"
 
-#: data/unlocked_database.ui:616
+#: data/unlocked_database.ui:607
 msgid "Enter search term"
 msgstr "Arama terimi gir"
 
-#: data/unlocked_database.ui:726 data/unlocked_database.ui:808
-msgid "Sorting"
-msgstr "Sıralama"
+#. Button tooltip in headerbar to open page for creation of a new password entry
+#: data/unlocked_database.ui:675
+msgid "Create password…"
+msgstr "Parola oluştur…"
 
-#. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:853
-msgid "Last added"
-msgstr "Son eklenen"
+#. Button tooltip in headerbar to open page for creation of a new group
+#: data/unlocked_database.ui:697
+msgid "Create group…"
+msgstr "Küme oluştur…"
 
-#: data/unlocked_database.ui:918
+#: data/unlocked_database.ui:755
 msgid "Lock"
 msgstr "Kilitle"
 
+#: data/unlocked_database.ui:800
+#| msgid "Sort"
+msgid "Sort"
+msgstr "Sırala"
+
+#. This is a modelbutton in a popover to sort entries by last added
+#: data/unlocked_database.ui:842
+msgid "Last Added"
+msgstr "Son Eklenen"
+
+#. Open settings for safe (e.g. password changing)
+#: data/unlocked_database.ui:895
+msgid "Safe Settings"
+msgstr "Kasa Ayarları"
+
 #. Only apply the search term for the current group
-#: data/unlocked_database.ui:1014
+#: data/unlocked_database.ui:1124
 msgid "Local"
 msgstr "Yerel"
 
 #. Use full text search
-#: data/unlocked_database.ui:1028
+#: data/unlocked_database.ui:1138
 msgid "Full Text"
 msgstr "Tam Metin"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1131
+#: data/unlocked_database.ui:1240
 msgid "Move selection"
 msgstr "Seçimi taşı"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1151
+#: data/unlocked_database.ui:1260
 msgid "Delete selection"
 msgstr "Seçimi sil"
 
-#: data/unlocked_database.ui:1208
+#: data/unlocked_database.ui:1317
 msgid "Select all"
 msgstr "Tümünü seç"
 
-#: data/unlocked_database.ui:1222
+#: data/unlocked_database.ui:1331
 msgid "Select none"
 msgstr "Hiçbirini seçme"
 
-#: data/unlocked_database.ui:1252
+#: data/unlocked_database.ui:1361
 msgid "Click on a checkbox to select"
 msgstr "Seçmek için kutuya tıkla"
 
-#: passwordsafe/application.py:44
-msgid "Shortcuts"
-msgstr "Kısayollar"
+#. NOTE: Filechooser title for generating a new keyfile
+#: passwordsafe/create_database.py:239
+#: passwordsafe/database_settings_dialog.py:216
+msgid "Choose location for keyfile"
+msgstr "Anahtar dosyası için konum seç"
 
-#: passwordsafe/database_settings_dialog.py:56
-msgid "You need to save the database to apply the new password"
-msgstr "Yeni parolayı uygulamak için veri tabanını kaydetmelisiniz"
+#: passwordsafe/create_database.py:259
+msgid "Generating…"
+msgstr "Oluştur…"
 
-#: passwordsafe/database_settings_dialog.py:61
-#: passwordsafe/database_settings_dialog.py:66
-msgid "Wrong passwords"
-msgstr "Yanlış parolalar"
+#. NOTE: Filechooser title for choosing current used keyfile
+#: passwordsafe/database_settings_dialog.py:178
+msgid "Choose current keyfile"
+msgstr "Geçerli anahtar dosyasını seçin"
 
-#: passwordsafe/entry_row.py:63
+#: passwordsafe/database_settings_dialog.py:179
+msgid "Open"
+msgstr "Açık"
+
+#: passwordsafe/database_settings_dialog.py:290
+#: passwordsafe/database_settings_dialog.py:346
+msgid "Apply…"
+msgstr "Onayla…"
+
+#. Encryption Algorithm
+#: passwordsafe/database_settings_dialog.py:388
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#. NOTE: AES is a proper name
+#: passwordsafe/database_settings_dialog.py:391
+msgid "AES 256-bit"
+msgstr "AES 256-bit"
+
+#. NOTE: ChaCha20 is a proper name
+#: passwordsafe/database_settings_dialog.py:394
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256-bit"
+
+#. NOTE: Twofish is a proper name
+#: passwordsafe/database_settings_dialog.py:397
+msgid "Twofish 256-bit"
+msgstr "Twofish 256-bit"
+
+#: passwordsafe/entry_page.py:478 passwordsafe/entry_row.py:136
+#: passwordsafe/unlocked_database.py:670
+msgid "Copied to clipboard"
+msgstr "Panoya kopyalandı"
+
+#: passwordsafe/entry_page.py:532 passwordsafe/entry_page.py:597
+msgid "Attribute key already exists"
+msgstr "Anahtar dosyası zaten var"
+
+#: passwordsafe/entry_row.py:69
 msgid "Title not specified"
 msgstr "Başlık belirtilmedi"
 
-#: passwordsafe/entry_row.py:72
+#: passwordsafe/entry_row.py:78
 msgid "No username specified"
 msgstr "Kullanıcı adı belirtilmedi"
 
-#: passwordsafe/group_row.py:43
+#: passwordsafe/group_row.py:41
 msgid "No group title specified"
 msgstr "Küme başlığı belirtilmedi"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:221
+#: passwordsafe/main_window.py:283
 msgid "Choose a Keepass safe"
 msgstr "Keepass kasası seç"
 
+#. NOTE: KeePass + version number is a proper name, do not translate
+#: passwordsafe/main_window.py:288 passwordsafe/main_window.py:341
+msgid "KeePass 3.1/4 Database"
+msgstr "KeePass 3.1/4 Veritabanı"
+
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:269
+#: passwordsafe/main_window.py:332
 msgid "Choose location for Keepass safe"
 msgstr "Keepass kasası için konum seç"
 
-#. NOTE: In-app notification that indicates that an empty group has been deleted
-#: passwordsafe/pathbar.py:296
-msgid "Deleted blank group"
-msgstr "Boş küme silindi"
+#: passwordsafe/selection_ui.py:149
+msgid "Deletion completed"
+msgstr "Silme tamamlandı"
 
-#. NOTE: In-app notification that indicates that an empty group has been deleted
-#: passwordsafe/pathbar.py:314
-msgid "Deleted blank entry"
-msgstr "Boş girdi silindi"
+#: passwordsafe/selection_ui.py:191
+msgid "Move completed"
+msgstr "Taşıma tamamlandı"
 
-#: passwordsafe/unlock_database.py:99
-msgid "Keyfile"
-msgstr "Anahtar dosyası"
+#: passwordsafe/selection_ui.py:193
+msgid "Skipped moving group into itself"
+msgstr "Kümeyi kendi içine taşıma atlandı"
 
-#. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: passwordsafe/unlock_database.py:103
-msgid "Composite"
-msgstr "Birleşik"
-
-#: passwordsafe/unlock_database.py:203
+#: passwordsafe/unlock_database.py:213
 msgid "Database already opened"
 msgstr "Veri tabanı zaten açık"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:285
+#: passwordsafe/unlock_database.py:299
 msgid "Choose a keyfile"
 msgstr "Anahtar dosyası seç"
 
-#: passwordsafe/unlock_database.py:339
+#: passwordsafe/unlock_database.py:352 passwordsafe/unlock_database.py:409
 msgid "Try again"
 msgstr "Yeniden dene"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:400
+#: passwordsafe/unlock_database.py:418
 msgid "Choose Keyfile"
 msgstr "Anahtar Dosyası Seç"
 
-#: passwordsafe/unlocked_database.py:952
+#: passwordsafe/unlocked_database.py:544
 msgid "Database saved"
 msgstr "Veri tabanı kaydedildi"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:955
+#: passwordsafe/unlocked_database.py:547
 msgid "Please wait. Another save is running."
 msgstr "Lütfen bekleyin. Başka bir kayıt sürüyor."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:958
+#: passwordsafe/unlocked_database.py:550
 msgid "No changes made"
 msgstr "Değişiklik yapılmadı"
 
-#. NOTE: In-app notification that indicates that an entry has been added
-#: passwordsafe/unlocked_database.py:1005
-msgid "Entry added"
-msgstr "Girdi eklendi"
-
-#. NOTE: In-app notification that indicates that a group has been added
-#: passwordsafe/unlocked_database.py:1016
-msgid "Group added"
-msgstr "Küme eklendi"
-
-#: passwordsafe/unlocked_database.py:1207
-#: passwordsafe/unlocked_database.py:1218
-msgid "Copied to clipboard"
-msgstr "Panoya kopyalandı"
-
-#: passwordsafe/unlocked_database.py:1454
-msgid "Deletion completed"
-msgstr "Silme tamamlandı"
-
-#: passwordsafe/unlocked_database.py:1495
-msgid "Move completed"
-msgstr "Taşıma tamamlandı"
-
-#: passwordsafe/unlocked_database.py:1497
-msgid "Skipped moving group into itself"
-msgstr "Kümeyi kendi içine taşıma atlandı"
-
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:1606
+#: passwordsafe/unlocked_database.py:797
 #, python-format
 msgid "%s locked"
 msgstr "%s kilitlendi"
 
-#: passwordsafe/unlocked_database.py:1606
+#: passwordsafe/unlocked_database.py:797
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass kasası durgunluktan kilitlendi"
+
+#, fuzzy
+#~| msgid "Show all properties"
+#~ msgid "Properties"
+#~ msgstr "Tüm özellikleri göster"
+
+#, fuzzy
+#~| msgid "Create Safe"
+#~ msgid "Created"
+#~ msgstr "Kasa Oluştur"
+
+#, fuzzy
+#~| msgid "Preferences"
+#~ msgid "References"
+#~ msgstr "Tercihler"
+
+#, fuzzy
+#~| msgid "Show Password Fields"
+#~ msgid "Show Field Codes"
+#~ msgstr "Parola Alanlarını Göster"
+
+#, fuzzy
+#~| msgid "Preferences"
+#~ msgid "Reference"
+#~ msgstr "Tercihler"
+
+#, fuzzy
+#~| msgctxt "Shortcut window description"
+#~| msgid "Entry"
+#~ msgid "New Entry"
+#~ msgstr "Girdi"
+
+#, fuzzy
+#~| msgid "Number of Groups"
+#~ msgid "New Group"
+#~ msgstr "Grup Sayısı"
+
+#~ msgid "@ICON@"
+#~ msgstr "@ICON@"
+
+#~ msgid "Homepage"
+#~ msgstr "Web Sitesi"
+
+#~ msgid "About"
+#~ msgstr "Hakkında"
+
+#~ msgid "Change password"
+#~ msgstr "Parolayı değiştir"
+
+#~ msgid "New password"
+#~ msgstr "Yeni parola"
+
+#~ msgid "Repeat password"
+#~ msgstr "Parolayı yinele"
+
+#~ msgid "Password generator"
+#~ msgstr "Parola oluşturucu"
+
+#~ msgid "dialog-password"
+#~ msgstr "dialog-password"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Create a new safe"
+#~ msgstr "Yeni kasa oluştur"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Open an existing safe"
+#~ msgstr "Var olan kasayı aç"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Copy password on entry page"
+#~ msgstr "Girdi sayfasındaki parolayı kopyala"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Kısayollar"
+
+#~ msgid "You need to save the database to apply the new password"
+#~ msgstr "Yeni parolayı uygulamak için veri tabanını kaydetmelisiniz"
+
+#~ msgid "Wrong passwords"
+#~ msgstr "Yanlış parolalar"
+
+#~ msgid "Deleted blank group"
+#~ msgstr "Boş küme silindi"
+
+#~ msgid "Deleted blank entry"
+#~ msgstr "Boş girdi silindi"
+
+#~ msgid "Group added"
+#~ msgstr "Küme eklendi"

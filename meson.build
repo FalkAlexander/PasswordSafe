@@ -31,8 +31,7 @@ bindir = join_paths(get_option('prefix'), get_option('bindir'))
 # Python Module Check
 pykeepass_dir = join_paths(python_dir, 'pykeepass')
 construct_dir = join_paths(python_dir, 'construct')
-message(python_dir)
-message(pykeepass_dir)
+
 if run_command('[', '-d', pykeepass_dir, ']').returncode() != 0
     error('Missing dependency pykeepass >= master')
 endif

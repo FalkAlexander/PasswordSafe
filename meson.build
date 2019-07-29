@@ -22,7 +22,7 @@ dependency('pwquality')
 
 env = environment()
 
-python_dir = join_paths(get_option('prefix'), python_bin.get_path('purelib'))
+python_dir = join_paths(get_option('prefix'), python_bin.get_install_dir())
 LIBEXEC_DIR = join_paths(get_option('prefix'), get_option('libexecdir'))
 EXTENSION_DIR = join_paths(get_option('prefix'), get_option('libdir'), meson.project_name())
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
@@ -31,6 +31,8 @@ bindir = join_paths(get_option('prefix'), get_option('bindir'))
 # Python Module Check
 pykeepass_dir = join_paths(python_dir, 'pykeepass')
 construct_dir = join_paths(python_dir, 'construct')
+message(python_dir)
+message(pykeepass_dir)
 if run_command('[', '-d', pykeepass_dir, ']').returncode() != 0
     error('Missing dependency pykeepass >= master')
 endif

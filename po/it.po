@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-08-22 18:41+0000\n"
-"PO-Revision-Date: 2019-09-04 17:52+0200\n"
+"POT-Creation-Date: 2019-09-04 15:53+0000\n"
+"PO-Revision-Date: 2019-09-18 09:53+0200\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -100,11 +100,11 @@ msgstr "Proteggere la propria cassaforte"
 
 #: data/create_database.ui:415
 msgid "Set password for safe"
-msgstr "Imposta password per cassaforte"
+msgstr "Impostare la password per la cassaforte"
 
 #: data/create_database.ui:430
 msgid "Enter Password"
-msgstr "Inserire password"
+msgstr "Inserire la password"
 
 #: data/create_database.ui:476
 msgid "Password Match Check"
@@ -258,7 +258,7 @@ msgstr "Selezionare il file chiave attuale"
 
 #: data/database_settings_dialog.ui:708
 msgid "Generate new keyfile"
-msgstr "Genera nuovo file chiave"
+msgstr "Generare nuovo file chiave"
 
 #: data/database_settings_dialog.ui:741 data/database_settings_dialog.ui:962
 #: passwordsafe/database_settings_dialog.py:335
@@ -390,8 +390,8 @@ msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
-"Archiviare in sicurezza password, note e dati. <b>Creare</b> o <b>importare</"
-"b> una cassaforte KeePass."
+"Archiviare in sicurezza password, note e dati. È possibile <b>creare</b> o "
+"<b>importare</b> una cassaforte KeePass."
 
 #: data/main_window.ui:269
 msgid "New…"
@@ -434,7 +434,7 @@ msgstr "keepass;cifrare;cifra;sicurezza;sicuro;"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:121
 msgid "Use dark GTK+ theme"
-msgstr "Usa tema scuro"
+msgstr "Usa un tema scuro"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:17
 msgid ""
@@ -653,7 +653,7 @@ msgid ""
 "It can be found in the properties of the entry."
 msgstr ""
 "Ogni voce ha un identificatore univoco chiamato UUID.\n"
-"Può essere trovato nelle proprietà della voce."
+"Può essere trovato nelle proprietà della voce stessa."
 
 #. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
 #: data/quit_dialog.ui:8
@@ -667,7 +667,7 @@ msgstr "Selezionare le casseforti da salvare."
 
 #: data/quit_dialog.ui:35
 msgid "Quit"
-msgstr "Esce"
+msgstr "Esci"
 
 #. Dialog title which informs the user about unsaved changes.
 #: data/save_dialog.ui:8
@@ -677,7 +677,7 @@ msgstr "Modifiche non salvate"
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
 #: data/save_dialog.ui:9
 msgid "Do you want to write all changes to the safe?"
-msgstr "Scrivere tutte le modifiche nella cassaforte?"
+msgstr "Salvare tutte le modifiche nella cassaforte?"
 
 #. Discard all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:22
@@ -705,7 +705,7 @@ msgstr "Nascondere schermata di avvio"
 
 #: data/settings_dialog.ui:204
 msgid "Reopen last opened safe"
-msgstr "Riapri ultima cassaforte aperta"
+msgstr "Riapre l'ultima cassaforte aperta"
 
 #: data/settings_dialog.ui:260 data/unlocked_database.ui:860
 #: passwordsafe/main_window.py:335
@@ -738,7 +738,7 @@ msgstr "Ricordare metodo di sblocco"
 
 #: data/settings_dialog.ui:531
 msgid "Enable faster unlocking"
-msgstr "Abilitare sblocco rapido"
+msgstr "Abilita lo sblocco rapido"
 
 #: data/settings_dialog.ui:587
 msgid "Security"
@@ -746,7 +746,7 @@ msgstr "Sicurezza"
 
 #: data/settings_dialog.ui:636
 msgid "Safe Lock Timeout"
-msgstr "Timeout blocca cassaforte"
+msgstr "Timeout blocco cassaforte"
 
 #: data/settings_dialog.ui:653
 msgid "Lock safe on idle after X minutes"
@@ -754,15 +754,15 @@ msgstr "Blocca la cassaforte quando inutilizzata per X minuti"
 
 #: data/settings_dialog.ui:720
 msgid "Clear Clipboard"
-msgstr "Pulisci appunti"
+msgstr "Pulire gli appunti"
 
 #: data/settings_dialog.ui:804
 msgid "Show Password Fields"
-msgstr "Mostra campi password"
+msgstr "Mostrare campi password"
 
 #: data/settings_dialog.ui:887
 msgid "Clear Recent List"
-msgstr "Pulisci elenco recenti"
+msgstr "Pulire elenco recenti"
 
 #: data/settings_dialog.ui:904
 msgid "Clear the recently opened safes list"
@@ -781,12 +781,12 @@ msgstr "Crea cassaforte"
 #: data/shortcuts_overview.ui:25
 msgctxt "Shortcut window description"
 msgid "Open safe"
-msgstr "Apri cassaforte"
+msgstr "Apre una cassaforte"
 
 #: data/shortcuts_overview.ui:32
 msgctxt "Shortcut window description"
 msgid "Open preferences"
-msgstr "Apri preferenze"
+msgstr "Apre le preferenze"
 
 #: data/shortcuts_overview.ui:41
 msgctxt "Shortcut window description"
@@ -796,12 +796,12 @@ msgstr "Cassaforte"
 #: data/shortcuts_overview.ui:45
 msgctxt "Shortcut window description"
 msgid "Lock safe"
-msgstr "Blocca cassaforte"
+msgstr "Blocca la cassaforte"
 
 #: data/shortcuts_overview.ui:52
 msgctxt "Shortcut window description"
 msgid "Save safe"
-msgstr "Salva cassaforte"
+msgstr "Salva la cassaforte"
 
 #: data/shortcuts_overview.ui:59
 msgctxt "Shortcut window description"

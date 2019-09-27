@@ -6,7 +6,7 @@
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-05-26 07:26+0000\n"
+"POT-Creation-Date: 2019-09-18 07:55+0000\n"
 "PO-Revision-Date: 2019-09-27 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asier.sarasua@gmail.com>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
@@ -16,7 +16,7 @@ msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in:9
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
 #: data/org.gnome.PasswordSafe.desktop.in.in:4
 msgid "A password manager for GNOME"
 msgstr "Pasahitzen kudeatzailea GNOMErako"
@@ -30,17 +30,42 @@ msgstr "Ikasi gehiago Password Safe aplikazioari buruz"
 msgid "translator-credits"
 msgstr "Asier Sarasua Garmendia <asier.sarasua@gmail.com>"
 
-#: data/create_database.ui:74 data/database_settings_dialog.ui:435
-#: data/entry_page.ui:1244 data/entry_page.ui:1381
+#. Dialog title which informs the user about unsaved changes.
+#: data/attachment_warning_dialog.ui:9
+msgid "Safety Info"
+msgstr "Segurtasun-informazioa"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/attachment_warning_dialog.ui:10
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr "Posible da kanpoko aplikazioek eranskin-fitxategi honen zifratu gabeko kopia ezkutuak edo aldi baterakoak sortzea! Kontuz ibili."
+
+#. Discard all the changes which the user have made to his keepass safe
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
+#: data/unlocked_database.ui:1274
+msgid "Back"
+msgstr "Atzera"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/attachment_warning_dialog.ui:36
+msgid "Proceed"
+msgstr "Abiatu"
+
+#: data/create_database.ui:74 data/database_settings_dialog.ui:439
+#: data/entry_page.ui:1563 data/entry_page.ui:1699
+#: data/references_dialog.ui:155 data/references_dialog.ui:263
 #: passwordsafe/unlock_database.py:93
 msgid "Password"
 msgstr "Pasahitza"
 
-#: data/create_database.ui:93
+#: data/create_database.ui:94
 msgid "Use a password to secure your safe"
 msgstr "Erabili pasahitz bat zure kutxa gotorrerako"
 
-#: data/create_database.ui:155 data/database_settings_dialog.ui:575
+#: data/create_database.ui:157 data/database_settings_dialog.ui:579
 #: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
 #: passwordsafe/database_settings_dialog.py:184
 #: passwordsafe/database_settings_dialog.py:219
@@ -50,89 +75,89 @@ msgstr "Erabili pasahitz bat zure kutxa gotorrerako"
 msgid "Keyfile"
 msgstr "Gako-fitxategia"
 
-#: data/create_database.ui:174
+#: data/create_database.ui:177
 msgid "Use a keyfile to secure your safe"
 msgstr "Erabili gako-fitxategi bat zure kutxa gotorrerako"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:236 passwordsafe/unlock_database.py:100
+#: data/create_database.ui:240 passwordsafe/unlock_database.py:100
 msgid "Composite"
 msgstr "Konposatua"
 
-#: data/create_database.ui:255
+#: data/create_database.ui:260
 msgid "Use a password in combination with a keyfile to secure your safe"
 msgstr "Erabili pasahitz bat gako-fitxategi batekin konbinatuta zure kutxa gotorrerako"
 
-#: data/create_database.ui:297
+#: data/create_database.ui:303
 msgid "Protect your safe"
 msgstr "Babestu zure kutxa gotorra"
 
-#: data/create_database.ui:408
+#: data/create_database.ui:415
 msgid "Set password for safe"
 msgstr "Ezarri pasahitza kutxa gotorrerako"
 
-#: data/create_database.ui:423
+#: data/create_database.ui:430
 msgid "Enter Password"
 msgstr "Sartu pasahitza"
 
-#: data/create_database.ui:469
+#: data/create_database.ui:476
 msgid "Password Match Check"
 msgstr "Pasahitzak bat datozela egiaztatzea"
 
-#: data/create_database.ui:555
+#: data/create_database.ui:562
 msgid "Repeat password for safe"
 msgstr "Errepikatu pasahitza kutxa gotorrerako"
 
-#: data/create_database.ui:601
+#: data/create_database.ui:608
 msgid "Match Check Failed"
 msgstr "Bat etortzearen egiaztatzeak huts egin du"
 
-#: data/create_database.ui:660
+#: data/create_database.ui:667
 msgid "Please try again"
 msgstr "Saiatu berriro"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1332
+#: data/create_database.ui:788 data/entry_page.ui:1650
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
 msgstr "Sortu"
 
-#: data/create_database.ui:810
+#: data/create_database.ui:817
 msgid "Set keyfile for safe"
 msgstr "Ezarri gako-fitxategia kutxa gotorrerako"
 
-#: data/create_database.ui:825
+#: data/create_database.ui:832
 msgid "Generate Keyfile"
 msgstr "Sortu gako-fitxategia"
 
-#: data/create_database.ui:880 data/main_window.ui:198
-#: data/unlock_database.ui:311 data/unlocked_database.ui:920
+#: data/create_database.ui:887 data/main_window.ui:200
+#: data/unlock_database.ui:311 data/unlocked_database.ui:976
 msgid "Preferences"
 msgstr "Hobespenak"
 
-#: data/create_database.ui:894 data/main_window.ui:212
-#: data/unlock_database.ui:325 data/unlocked_database.ui:934
+#: data/create_database.ui:901 data/main_window.ui:214
+#: data/unlock_database.ui:325 data/unlocked_database.ui:990
 msgid "Keyboard Shortcuts"
 msgstr "Laster-teklak"
 
 #. "Password Safe" is the application name
-#: data/create_database.ui:908 data/main_window.ui:226
-#: data/unlock_database.ui:339 data/unlocked_database.ui:948
+#: data/create_database.ui:915 data/main_window.ui:228
+#: data/unlock_database.ui:339 data/unlocked_database.ui:1004
 msgid "About Password Safe"
 msgstr "Password Safe aplikazioari buruz"
 
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:922 data/main_window.ui:353
-#: data/org.gnome.PasswordSafe.appdata.xml.in:4
+#: data/create_database.ui:929 data/main_window.ui:355
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:4
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
 msgid "Password Safe"
 msgstr "Password Safe"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:923
+#: data/create_database.ui:930
 msgid "Create Safe"
 msgstr "Sortu kutxa gotorra"
 
@@ -144,191 +169,207 @@ msgstr "Kutxa gotorra ongi sortu da"
 #. Headerbar subtitle for the keepass safe unlock screen.
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
 #: data/created_database.ui:50 data/unlock_database.ui:286
-#: data/unlock_database.ui:354 data/unlocked_database.ui:881
+#: data/unlock_database.ui:354 data/unlocked_database.ui:937
 msgid "Open Safe"
 msgstr "Ireki kutxa gotorra"
 
-#: data/database_settings_dialog.ui:51
+#: data/database_settings_dialog.ui:55
 msgid "Details"
 msgstr "Xehetasunak"
 
-#: data/database_settings_dialog.ui:76
+#: data/database_settings_dialog.ui:80
 msgid "Path"
 msgstr "Bide-izena"
 
-#: data/database_settings_dialog.ui:93
+#: data/database_settings_dialog.ui:97
 msgid "File Size"
 msgstr "Fitxategiaren tamaina"
 
-#: data/database_settings_dialog.ui:110
+#: data/database_settings_dialog.ui:114
 msgid "Safe Name"
 msgstr "Kutxa gotorraren izena"
 
 #. KeePass is a proper noun
-#: data/database_settings_dialog.ui:140
+#: data/database_settings_dialog.ui:144
 msgid "KeePass Version"
 msgstr "KeePass bertsioa"
 
-#: data/database_settings_dialog.ui:157
+#: data/database_settings_dialog.ui:161
 msgid "Creation Date"
 msgstr "Sorrera-data"
 
-#: data/database_settings_dialog.ui:174 data/database_settings_dialog.ui:795
+#: data/database_settings_dialog.ui:178 data/database_settings_dialog.ui:801
 msgid "Encryption Algorithm"
 msgstr "Zifratze-algoritmoa"
 
-#: data/database_settings_dialog.ui:191
+#: data/database_settings_dialog.ui:195
 msgid "Derivation Algorithm"
 msgstr "Deribazio-algoritmoa"
 
 #. Statistics
-#: data/database_settings_dialog.ui:296
+#: data/database_settings_dialog.ui:300
 msgid "Stats"
 msgstr "Estatistikak"
 
-#: data/database_settings_dialog.ui:321
+#: data/database_settings_dialog.ui:325
 msgid "Number of Groups"
 msgstr "Talde kopurua"
 
-#: data/database_settings_dialog.ui:338
+#: data/database_settings_dialog.ui:342
 msgid "Passwords"
 msgstr "Pasahitzak"
 
-#: data/database_settings_dialog.ui:355
+#: data/database_settings_dialog.ui:359
 msgid "Number of Entries"
 msgstr "Sarrera kopurua"
 
-#: data/database_settings_dialog.ui:416 data/settings_dialog.ui:49
+#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:55
 msgid "General"
 msgstr "Orokorra"
 
 #. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:457
+#: data/database_settings_dialog.ui:461
 msgid "New"
 msgstr "Berria"
 
-#: data/database_settings_dialog.ui:476 data/database_settings_dialog.ui:477
+#: data/database_settings_dialog.ui:480 data/database_settings_dialog.ui:481
 msgid "Generate Password"
 msgstr "Sortu pasahitza"
 
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:490
+#: data/database_settings_dialog.ui:494
 msgid "Confirm"
 msgstr "Berretsi"
 
 #. Current password
-#: data/database_settings_dialog.ui:520
+#: data/database_settings_dialog.ui:524
 msgid "Current"
 msgstr "Unekoa"
 
-#: data/database_settings_dialog.ui:628
+#: data/database_settings_dialog.ui:632
 msgid "Select current keyfile"
 msgstr "Hautatu uneko gako-fitxategia"
 
-#: data/database_settings_dialog.ui:704
+#: data/database_settings_dialog.ui:708
 msgid "Generate new keyfile"
 msgstr "Sortu gako-fitxategi berria"
 
-#: data/database_settings_dialog.ui:737 data/database_settings_dialog.ui:956
+#: data/database_settings_dialog.ui:741 data/database_settings_dialog.ui:962
 #: passwordsafe/database_settings_dialog.py:335
 #: passwordsafe/database_settings_dialog.py:357
 msgid "Apply Changes"
 msgstr "Aplikatu aldaketak"
 
-#: data/database_settings_dialog.ui:758
+#: data/database_settings_dialog.ui:762
 msgid "Authentication"
 msgstr "Autentifikazioa"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:828
+#: data/database_settings_dialog.ui:834
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-bit"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:845
+#: data/database_settings_dialog.ui:851
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-bit"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:862
+#: data/database_settings_dialog.ui:868
 msgid "AES: 256-bit"
 msgstr "AES: 256-bit"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:887
+#: data/database_settings_dialog.ui:893
 msgid "Key Derivation Function"
 msgstr "Gako-deribazioaren funtzioa"
 
-#: data/entry_page.ui:105
+#: data/entry_page.ui:34
+msgid "Add Attachment"
+msgstr "Gehitu eranskina"
+
+#: data/entry_page.ui:76
+msgid "Attachments"
+msgstr "Eranskinak"
+
+#: data/entry_page.ui:163
+msgid "Secret_Photo.png"
+msgstr ""
+
+#: data/entry_page.ui:338
 msgid "Remove attribute"
 msgstr "Kendu atributua"
 
-#: data/entry_page.ui:166
+#: data/entry_page.ui:399
 msgid "Attributes"
 msgstr "Atributuak"
 
-#: data/entry_page.ui:205
+#: data/entry_page.ui:439
 msgid "Key"
 msgstr "Gakoa"
 
-#: data/entry_page.ui:218
+#: data/entry_page.ui:453
 msgid "Value"
 msgstr "Balioa"
 
-#: data/entry_page.ui:240
+#: data/entry_page.ui:475
 msgid "Add attribute"
 msgstr "Gehitu atributua"
 
-#: data/entry_page.ui:295
+#: data/entry_page.ui:530
 msgid "Color"
 msgstr "Kolorea"
 
-#: data/entry_page.ui:571
+#: data/entry_page.ui:825
 msgid "Icon"
 msgstr "Ikonoa"
 
-#: data/entry_page.ui:904 data/group_page.ui:35
+#: data/entry_page.ui:1197 data/group_page.ui:35 data/references_dialog.ui:65
+#: data/references_dialog.ui:235
 msgid "Title"
 msgstr "Titulua"
 
-#: data/entry_page.ui:990 data/group_page.ui:119
+#: data/entry_page.ui:1282 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/references_dialog.ui:291
 msgid "Notes"
 msgstr "Oharrak"
 
-#: data/entry_page.ui:1114
+#: data/entry_page.ui:1434
 msgid "Length"
 msgstr "Luzera"
 
-#: data/entry_page.ui:1149
+#: data/entry_page.ui:1468
 msgid "Characters"
 msgstr "Karaktereak"
 
-#: data/entry_page.ui:1257
+#: data/entry_page.ui:1576
 msgid "Words"
 msgstr "Hitzak"
 
-#: data/entry_page.ui:1291
+#: data/entry_page.ui:1609
 msgid "Separator"
 msgstr "Bereizlea"
 
-#: data/entry_page.ui:1308
+#: data/entry_page.ui:1626
 msgid "Enter character here…"
 msgstr "Sartu karakterea hemen…"
 
-#: data/entry_page.ui:1319
+#: data/entry_page.ui:1637
 msgid "Passphrase"
 msgstr "Pasaesaldia"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1436
+#: data/entry_page.ui:1755
 msgid "Show/hide password"
 msgstr "Erakutsi/ezkutatu pasahitza"
 
-#: data/entry_page.ui:1616
+#: data/entry_page.ui:1936 data/references_dialog.ui:170
+#: data/references_dialog.ui:277
 msgid "URL"
 msgstr "URLa"
 
-#: data/entry_page.ui:1702
+#: data/entry_page.ui:2023 data/references_dialog.ui:92
+#: data/references_dialog.ui:249
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
@@ -338,32 +379,40 @@ msgid "Secure password safe"
 msgstr "Pasahitzen kutxa gotor segurua"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:60
+#: data/main_window.ui:62
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr "Gorde zure pasahitzak, oharra eta datuak modu seguruan. <b>Sortu</b> edo <b>inportatu</b> Keepass kutxa gotor bat."
 
-#: data/main_window.ui:267
+#: data/main_window.ui:269
 msgid "New…"
 msgstr "Berria…"
 
-#: data/main_window.ui:312
+#: data/main_window.ui:314
 msgid "Open…"
 msgstr "Ireki…"
 
-#: data/main_window.ui:423
+#: data/main_window.ui:411
 msgid "Recent Databases"
 msgstr "Azken datu-baseak"
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in:11
+#: data/notes_dialog.ui:15
+msgid "Copy"
+msgstr "Kopiatu"
+
+#: data/notes_dialog.ui:52
+msgid "Close"
+msgstr "Itxi"
+
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:11
 msgid ""
 "Password Safe is a password manager which makes use of the Keepass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
 "and uncluttered interface for the management of password databases."
 msgstr "Password Safe aplikazioa Keepass v.4 formatua erabiltzen duen pasahitz-kudeatzaile bat da. GNOME mahaigainean ongi integratzen da eta interfaze erraz eta garbia eskaintzen du pasahitzen datu-baseak kudeatzeko."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in:64
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -372,7 +421,7 @@ msgstr "Falk Alexander Seidl"
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;zifratu;segurua;"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:115
+#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:121
 msgid "Use dark GTK+ theme"
 msgstr "Erabili GTK+ gai iluna"
 
@@ -392,7 +441,7 @@ msgid ""
 "show the welcome screen."
 msgstr "Automatikoki ireki azken irekitako datu-basearen desblokeo-pantaila, bestela erakutsi ongi etorriko pantaila."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:320
+#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:326
 msgid "Save every change automatically"
 msgstr "Gorde automatikoki aldaketa bakoitza"
 
@@ -412,7 +461,7 @@ msgid ""
 "the security."
 msgstr "Automatikoki blokeatu zure datu-basea minutu kopuru jakin baten ondoren, segurtasuna hobetzeko."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:731
+#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:737
 msgid "Clear clipboard after X seconds"
 msgstr "Garbitu arbela X segundo ondoren"
 
@@ -420,7 +469,7 @@ msgstr "Garbitu arbela X segundo ondoren"
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr "Pasahitza kopiatu ondoren, garbitu arbela segurtasun arrazoiengatik."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:815
+#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:821
 msgid "Display passwords in plain text"
 msgstr "Bistaratu pasahitzak testu soilean"
 
@@ -512,13 +561,73 @@ msgstr "Fitxategia badago lehendik ere"
 msgid "Do you want to override it?"
 msgstr "Gainidatzi nahi duzu?"
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1277
+#: data/override_dialog.ui:22 data/unlocked_database.ui:1452
 msgid "Cancel"
 msgstr "Utzi"
 
 #: data/override_dialog.ui:35
 msgid "Override"
 msgstr "Gainidatzi"
+
+#: data/properties_dialog.ui:13 data/unlocked_database.ui:1209
+msgid "Properties"
+msgstr "Propietateak"
+
+#: data/properties_dialog.ui:48
+msgid "Accessed"
+msgstr "Atzituta"
+
+#: data/properties_dialog.ui:66
+msgid "Modified"
+msgstr "Aldatze-data"
+
+#: data/properties_dialog.ui:85 data/references_dialog.ui:200
+msgid "UUID"
+msgstr "UUIDa"
+
+#: data/properties_dialog.ui:118
+msgid "Created"
+msgstr "Sortuta"
+
+#: data/references_dialog.ui:23
+msgid "Code"
+msgstr "Kodea"
+
+#: data/references_dialog.ui:38 data/references_dialog.ui:403
+#: data/references_dialog.ui:554
+msgid "Property"
+msgstr "Propietatea"
+
+#: data/references_dialog.ui:314 data/unlocked_database.ui:1195
+msgid "References"
+msgstr "Erreferentziak"
+
+#: data/references_dialog.ui:346
+msgid "Syntax"
+msgstr "Sintaxia"
+
+#: data/references_dialog.ui:361
+msgid "The placeholder syntax for field references is the following:"
+msgstr "Eremu-erreferentzien leku-markaren sintaxia honakoa da:"
+
+#: data/references_dialog.ui:402 data/references_dialog.ui:441
+msgid "Show Field Codes"
+msgstr "Erakutsi eremu-kodeak"
+
+#: data/references_dialog.ui:442
+msgid "Identifier"
+msgstr "Identifikatzailea"
+
+#: data/references_dialog.ui:524
+msgid "Reference"
+msgstr "Erreferentzia"
+
+#: data/references_dialog.ui:631
+msgid ""
+"Each entry has a unique identifier called UUID.\n"
+"It can be found in the properties of the entry."
+msgstr "Sarrera bakoitzak identifikatzaile bakarra du, UUIDa.\n"
+"Sarreraren propietateetan dago."
 
 #. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
 #: data/quit_dialog.ui:8
@@ -529,11 +638,6 @@ msgstr "Gorde gabeko aldaketak dituzten kutxa gotor guztiak gorde nahi dituzu?"
 #: data/quit_dialog.ui:9
 msgid "Select the safes you want to save."
 msgstr "Hautatu gorde nahi dituzun kutxa gotorrak."
-
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/quit_dialog.ui:22 data/unlocked_database.ui:988
-msgid "Back"
-msgstr "Atzera"
 
 #: data/quit_dialog.ui:35
 msgid "Quit"
@@ -555,8 +659,8 @@ msgid "Discard"
 msgstr "Baztertu"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:733
-#: passwordsafe/main_window.py:333
+#: data/save_dialog.ui:35 data/unlocked_database.ui:761
+#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Gorde"
 
@@ -565,75 +669,76 @@ msgstr "Gorde"
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: data/settings_dialog.ui:98
+#: data/settings_dialog.ui:104
 msgid "Dark Theme"
 msgstr "Gai iluna"
 
-#: data/settings_dialog.ui:181
+#: data/settings_dialog.ui:187
 msgid "Hide First Start Screen"
 msgstr "Ezkutatu abioko lehen pantaila"
 
-#: data/settings_dialog.ui:198
+#: data/settings_dialog.ui:204
 msgid "Reopen last opened safe"
 msgstr "Berrireki irekitako azken kutxa gotorra"
 
-#: data/settings_dialog.ui:254 passwordsafe/main_window.py:335
+#: data/settings_dialog.ui:260 data/unlocked_database.ui:860
+#: passwordsafe/main_window.py:335
 msgid "Safe"
 msgstr "Kutxa gotorra"
 
-#: data/settings_dialog.ui:303
+#: data/settings_dialog.ui:309
 msgid "Save automatically"
 msgstr "Gorde automatikoki"
 
-#: data/settings_dialog.ui:376 data/unlock_database.ui:84
+#: data/settings_dialog.ui:382 data/unlock_database.ui:84
 #: data/unlock_database.ui:226 data/unlock_database.ui:468
 msgid "Unlock"
 msgstr "Desblokeatu"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:425
+#: data/settings_dialog.ui:431
 msgid "Remember Composite Key"
 msgstr "Gogoratu gako konposatua"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:442
+#: data/settings_dialog.ui:448
 msgid "Remember last used composite key"
 msgstr "Gogoratu erabilitako azken gako konposatua"
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:508
+#: data/settings_dialog.ui:514
 msgid "Remember Unlock Method"
 msgstr "Gogoratu desblokeo-metodoa"
 
-#: data/settings_dialog.ui:525
+#: data/settings_dialog.ui:531
 msgid "Enable faster unlocking"
 msgstr "Gaitu desblokeo azkarra"
 
-#: data/settings_dialog.ui:581
+#: data/settings_dialog.ui:587
 msgid "Security"
 msgstr "Segurtasuna"
 
-#: data/settings_dialog.ui:630
+#: data/settings_dialog.ui:636
 msgid "Safe Lock Timeout"
 msgstr "Kutxa gotorraren blokeoaren denbora-muga"
 
-#: data/settings_dialog.ui:647
+#: data/settings_dialog.ui:653
 msgid "Lock safe on idle after X minutes"
 msgstr "Blokeatu X minutu ondoren inaktibo dagoen kutxa gotorra"
 
-#: data/settings_dialog.ui:714
+#: data/settings_dialog.ui:720
 msgid "Clear Clipboard"
 msgstr "Garbitu arbela"
 
-#: data/settings_dialog.ui:798
+#: data/settings_dialog.ui:804
 msgid "Show Password Fields"
 msgstr "Erakutsi pasahitz-eremuak"
 
-#: data/settings_dialog.ui:881
+#: data/settings_dialog.ui:887
 msgid "Clear Recent List"
 msgstr "Garbitu azken kutxa gotorren zerrenda"
 
-#: data/settings_dialog.ui:898
+#: data/settings_dialog.ui:904
 msgid "Clear the recently opened safes list"
 msgstr "Garbitu azken aldian irekitako kutxa gotorren zerrenda"
 
@@ -720,7 +825,7 @@ msgid "Open Keyfile"
 msgstr "Ireki gako-fitxategia"
 
 #. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:272 data/unlocked_database.ui:867
+#: data/unlock_database.ui:272 data/unlocked_database.ui:923
 msgid "New Safe"
 msgstr "Kutxa gotor berria"
 
@@ -728,97 +833,103 @@ msgstr "Kutxa gotor berria"
 msgid "Enter password to unlock"
 msgstr "Idatzi pasahitza desblokeatzeko"
 
-#: data/unlock_database.ui:591
+#: data/unlock_database.ui:590
 msgid "Failed to unlock safe"
 msgstr "Huts egin du kutxa gotorra desblokeatzeak"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:20 data/unlocked_database.ui:1013
+#: data/unlocked_database.ui:21 data/unlocked_database.ui:1299
 msgid "Selection Mode"
 msgstr "Hautapen modua"
 
 #. Button tooltip in headerbar to open search page
-#: data/unlocked_database.ui:42
+#: data/unlocked_database.ui:43
 msgid "Search"
 msgstr "Bilatu"
 
-#: data/unlocked_database.ui:210
+#: data/unlocked_database.ui:211
 msgid "Empty group"
 msgstr "Hustu taldea"
 
-#: data/unlocked_database.ui:266
+#: data/unlocked_database.ui:267
 msgid "No search results"
 msgstr "Bilaketak ez du emaitzarik"
 
-#: data/unlocked_database.ui:297 data/unlocked_database.ui:488
-msgid "Delete"
-msgstr "Ezabatu"
-
-#: data/unlocked_database.ui:474
-msgid "Edit"
-msgstr "Editatu"
-
-#: data/unlocked_database.ui:607
+#: data/unlocked_database.ui:620
 msgid "Enter search term"
 msgstr "Sartu bilaketa-terminoa"
 
-#. Button tooltip in headerbar to open page for creation of a new password entry
-#: data/unlocked_database.ui:675
-msgid "Create password…"
-msgstr "Sortu pasahitza…"
+#: data/unlocked_database.ui:683 data/unlocked_database.ui:827
+msgid "Sorting"
+msgstr "Ordenatzen"
 
-#. Button tooltip in headerbar to open page for creation of a new group
-#: data/unlocked_database.ui:697
-msgid "Create group…"
-msgstr "Sortu taldea…"
+#. This string depicts the alphabet from the beginning to the end (first character to last one).
+#: data/unlocked_database.ui:700
+msgid "A-Z"
+msgstr "A-Z"
 
-#: data/unlocked_database.ui:755
-msgid "Lock"
-msgstr "Blokeatu"
-
-#: data/unlocked_database.ui:800
-msgid "Sort"
-msgstr "Ordenatu"
+#. This string depicts the alphabet in reversed order, from the end to the start (last character to first one).
+#: data/unlocked_database.ui:714
+msgid "Z-A"
+msgstr "Z-A"
 
 #. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:842
+#: data/unlocked_database.ui:728
 msgid "Last Added"
 msgstr "Azken gehitua"
 
+#: data/unlocked_database.ui:783
+msgid "Lock"
+msgstr "Blokeatu"
+
+#: data/unlocked_database.ui:874
+msgid "New Entry"
+msgstr "Sarrera berria"
+
+#: data/unlocked_database.ui:888
+msgid "New Group"
+msgstr "Talde berria"
+
 #. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:895
+#: data/unlocked_database.ui:951
 msgid "Safe Settings"
 msgstr "Kutxa gotorraren ezarpenak"
 
-#. Only apply the search term for the current group
-#: data/unlocked_database.ui:1124
+#: data/unlocked_database.ui:1066
 msgid "Local"
 msgstr "Lokala"
 
-#. Use full text search
-#: data/unlocked_database.ui:1138
+#: data/unlocked_database.ui:1078
 msgid "Full Text"
 msgstr "Testu osoa"
 
+#: data/unlocked_database.ui:1181
+msgid "Duplicate"
+msgstr "Bikoiztu"
+
+#: data/unlocked_database.ui:1234
+msgid "Delete"
+msgstr "Ezabatu"
+
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1240
+#: data/unlocked_database.ui:1415
 msgid "Move selection"
 msgstr "Mugitu hautapena"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1260
+#: data/unlocked_database.ui:1435
 msgid "Delete selection"
 msgstr "Ezabatu hautapena"
 
-#: data/unlocked_database.ui:1317
+#: data/unlocked_database.ui:1482
 msgid "Select all"
 msgstr "Hautatu dena"
 
-#: data/unlocked_database.ui:1331
+#: data/unlocked_database.ui:1496
 msgid "Select none"
 msgstr "Hautatu bat ere ez"
 
-#: data/unlocked_database.ui:1361
+#: data/unlocked_database.ui:1526
 msgid "Click on a checkbox to select"
 msgstr "Egin klik kontrol-laukian hautatzeko"
 
@@ -831,6 +942,11 @@ msgstr "Aukeratu gako-fitxategiaren kokalekua"
 #: passwordsafe/create_database.py:259
 msgid "Generating…"
 msgstr "Sortzen…"
+
+#. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
+#: passwordsafe/database_manager.py:384
+msgid "Clone"
+msgstr "Klonatu"
 
 #. NOTE: Filechooser title for choosing current used keyfile
 #: passwordsafe/database_settings_dialog.py:178
@@ -866,24 +982,33 @@ msgstr "ChaCha20 256-bit"
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:478 passwordsafe/entry_row.py:136
-#: passwordsafe/unlocked_database.py:670
-msgid "Copied to clipboard"
-msgstr "Kopiatu arbelean"
-
-#: passwordsafe/entry_page.py:532 passwordsafe/entry_page.py:597
+#: passwordsafe/entry_page.py:512 passwordsafe/entry_page.py:575
 msgid "Attribute key already exists"
 msgstr "Atributu-gakoa badago lehendik"
 
-#: passwordsafe/entry_row.py:69
+#. NOTE: Filechooser title for selecting attachment file
+#: passwordsafe/entry_page.py:603
+msgid "Select attachment"
+msgstr "Hautatu eranskina"
+
+#: passwordsafe/entry_page.py:604
+msgid "Add"
+msgstr "Gehitu"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: passwordsafe/entry_page.py:650
+msgid "Save attachment"
+msgstr "Gorde eranskina"
+
+#: passwordsafe/entry_row.py:63
 msgid "Title not specified"
 msgstr "Ez da izenburua zehaztu"
 
-#: passwordsafe/entry_row.py:78
+#: passwordsafe/entry_row.py:74
 msgid "No username specified"
 msgstr "Ez da erabiltzaile-izena zehaztu"
 
-#: passwordsafe/group_row.py:41
+#: passwordsafe/group_row.py:37
 msgid "No group title specified"
 msgstr "Ez da talde-izenburua zehaztu"
 
@@ -902,15 +1027,15 @@ msgstr "KeePass 3.1/4 datu-basea"
 msgid "Choose location for Keepass safe"
 msgstr "Hautatu Keepass kutxa gotorraren kokalekua"
 
-#: passwordsafe/selection_ui.py:149
+#: passwordsafe/selection_ui.py:175
 msgid "Deletion completed"
 msgstr "Ezabatzea osatu da"
 
-#: passwordsafe/selection_ui.py:191
+#: passwordsafe/selection_ui.py:242
 msgid "Move completed"
 msgstr "Lekuz aldatzea osatu da"
 
-#: passwordsafe/selection_ui.py:193
+#: passwordsafe/selection_ui.py:244
 msgid "Skipped moving group into itself"
 msgstr "Talde bere baitara lekuz aldatzea saltatu da"
 
@@ -932,29 +1057,42 @@ msgstr "Saiatu berriro"
 msgid "Choose Keyfile"
 msgstr "Aukeratu gako-fitxategi bat"
 
-#: passwordsafe/unlocked_database.py:544
+#: passwordsafe/unlocked_database.py:482
 msgid "Database saved"
 msgstr "Datu-basea gorde da"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:547
+#: passwordsafe/unlocked_database.py:485
 msgid "Please wait. Another save is running."
 msgstr "Itxaron. Beste gordetze-eragitea bat exekutatzen ari da."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:550
+#: passwordsafe/unlocked_database.py:488
 msgid "No changes made"
 msgstr "Ez da aldaketarik egin"
 
+#: passwordsafe/unlocked_database.py:667
+msgid "Copied to clipboard"
+msgstr "Kopiatu arbelean"
+
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:797
+#: passwordsafe/unlocked_database.py:822
 #, python-format
 msgid "%s locked"
 msgstr "%s blokeatuta"
 
-#: passwordsafe/unlocked_database.py:797
+#: passwordsafe/unlocked_database.py:822
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass kutxa gotorra blokeatu da inaktibo dagoelako"
 
 #~ msgid "@ICON@"
 #~ msgstr "@ICON@"
+
+#~ msgid "Edit"
+#~ msgstr "Editatu"
+
+#~ msgid "Create password…"
+#~ msgstr "Sortu pasahitza..."
+
+#~ msgid "Create group…"
+#~ msgstr "Sortu taldea..."

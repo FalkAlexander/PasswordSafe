@@ -919,9 +919,6 @@ class UnlockedDatabase:
     def hex_to_base64(self, hex_uuid):
         return codecs.encode(codecs.decode(hex_uuid.encode(), 'hex'), 'base64').decode().splitlines()[0]
 
-    def base64_to_hex(self, base64_uuid):
-        return codecs.encode(codecs.decode(base64_uuid.encode(), 'base64'), 'hex').decode().upper()
-
     #
     # DBus
     #

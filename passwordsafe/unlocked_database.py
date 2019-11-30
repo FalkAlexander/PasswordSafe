@@ -933,4 +933,3 @@ class UnlockedDatabase:
     def unregister_dbus_signal(self):
         app = Gio.Application.get_default
         app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
-

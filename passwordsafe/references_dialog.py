@@ -50,7 +50,7 @@ class ReferencesDialog():
 
     def update_reference_entry(self):
         uuid = self.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        encoded_uuid = self.unlocked_database.base64_to_hex(uuid)
+        encoded_uuid = uuid.hex.upper()
 
         self.builder.get_object("selected_property_label").set_text(self.property)
 

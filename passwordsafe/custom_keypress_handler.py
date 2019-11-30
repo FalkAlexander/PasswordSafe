@@ -28,7 +28,7 @@ class CustomKeypressHandler:
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid)
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
             if self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
                 if scrolled_page.edit_page is True:
                     if eventkey.keyval == Gdk.KEY_Tab:
@@ -90,7 +90,7 @@ class CustomKeypressHandler:
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid)
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
             if self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.database_manager.check_is_group(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)) and scrolled_page.edit_page is False:
                 if self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
                     if eventkey.keyval == Gdk.KEY_BackSpace:
@@ -107,7 +107,7 @@ class CustomKeypressHandler:
                 if eventkey.keyval == Gdk.KEY_Escape:
                     uuid = self.unlocked_database.stack.get_visible_child_name()
                     if self.unlocked_database.database_manager.check_is_group(uuid):
-                        scrolled_page = self.unlocked_database.stack.get_child_by_name(uuid)
+                        scrolled_page = self.unlocked_database.stack.get_child_by_name(uuid.urn)
                         if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)) is True:
                             self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
                         else:

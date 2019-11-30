@@ -232,15 +232,15 @@ class UnlockedDatabase:
             scrolled_window.show_all()
 
             stack_page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-            if self.stack.get_child_by_name(stack_page_uuid) is not None:
-                stack_page = self.stack.get_child_by_name(stack_page_uuid)
+            if self.stack.get_child_by_name(stack_page_uuid.urn) is not None:
+                stack_page = self.stack.get_child_by_name(stack_page_uuid.urn)
                 stack_page.destroy()
 
             self.add_stack_page(scrolled_window)
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
-        elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group)) is None and edit_group is False:
+        elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group).urn) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group).urn) is None and edit_group is False:
             self.database_manager.set_element_atime(self.current_group)
             # Create not existing stack page for group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
@@ -306,18 +306,18 @@ class UnlockedDatabase:
             self.database_manager.set_element_atime(self.current_group)
             # For group
             if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-                self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+                self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group).urn)
                 self.set_browser_headerbar()
             # For entry
             else:
-                self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+                self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group).urn)
                 self.entry_page.set_entry_page_headerbar()
 
     def add_stack_page(self, scrolled_window):
         if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-            self.stack.add_named(scrolled_window, self.database_manager.get_group_uuid_from_group_object(self.current_group))
+            self.stack.add_named(scrolled_window, self.database_manager.get_group_uuid_from_group_object(self.current_group).urn)
         else:
-            self.stack.add_named(scrolled_window, self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
+            self.stack.add_named(scrolled_window, self.database_manager.get_entry_uuid_from_entry_object(self.current_group).urn)
 
         self.switch_stack_page()
 
@@ -333,7 +333,7 @@ class UnlockedDatabase:
             group_page = False
 
         if page_uuid in self.scheduled_page_destroy:
-            stack_page = self.stack.get_child_by_name(page_uuid)
+            stack_page = self.stack.get_child_by_name(page_uuid.urn)
 
             if stack_page is not None:
                 stack_page.destroy()
@@ -341,10 +341,10 @@ class UnlockedDatabase:
             self.scheduled_page_destroy.remove(page_uuid)
             self.show_page_of_new_directory(False, False)
 
-        if self.stack.get_child_by_name(page_uuid) is None:
+        if self.stack.get_child_by_name(page_uuid.urn) is None:
             self.show_page_of_new_directory(False, False)
         else:
-            self.stack.set_visible_child_name(page_uuid)
+            self.stack.set_visible_child_name(page_uuid.urn)
 
         if group_page is True:
             self.set_browser_headerbar()
@@ -352,7 +352,7 @@ class UnlockedDatabase:
             self.entry_page.set_entry_page_headerbar()
 
     def update_current_stack_page(self):
-        stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group).urn
         stack_page = self.stack.get_child_by_name(stack_page_name)
         stack_page.destroy()
         self.show_page_of_new_directory(False, False)
@@ -374,7 +374,7 @@ class UnlockedDatabase:
             page_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
 
         if page_uuid in self.scheduled_page_destroy:
-            stack_page_name = self.stack.get_child_by_name(page_uuid)
+            stack_page_name = self.stack.get_child_by_name(page_uuid.urn)
             if stack_page_name is not None:
                 stack_page_name.destroy()
             self.scheduled_page_destroy.remove(page_uuid)
@@ -684,7 +684,7 @@ class UnlockedDatabase:
 
     def on_back_button_mobile_clicked(self, button):
         page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-        scrolled_page = self.stack.get_child_by_name(page_uuid)
+        scrolled_page = self.stack.get_child_by_name(page_uuid.urn)
 
         if self.database_manager.check_is_group(page_uuid) is True:
             group_page = True

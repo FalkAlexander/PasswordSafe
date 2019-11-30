@@ -343,4 +343,3 @@ class Pathbar(Gtk.HBox):
             if pathbar_button.get_name() == "PathbarButtonDynamic":
                 if pathbar_button.get_uuid() == uuid:
                     return pathbar_button
-

@@ -101,4 +101,3 @@ class GroupPage:
                         pathbar_button.set_label(widget.get_text())
         elif type == "notes":
             self.unlocked_database.database_manager.set_group_notes(group_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
-

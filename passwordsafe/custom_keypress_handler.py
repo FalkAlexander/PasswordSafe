@@ -128,4 +128,3 @@ class CustomKeypressHandler:
                                         return
                                     if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_entry_parent_group_from_uuid(uuid)):
                                         self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
-

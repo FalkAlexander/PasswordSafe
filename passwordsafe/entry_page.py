@@ -710,4 +710,3 @@ class EntryPage:
 
         if password is not NotImplemented:
             scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(password)))
-

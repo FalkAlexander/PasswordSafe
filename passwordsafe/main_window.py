@@ -4,6 +4,7 @@ from gi.repository.GdkPixbuf import Pixbuf
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.create_database import CreateDatabase
 from passwordsafe.container_page import ContainerPage
+from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.unlock_database import UnlockDatabase
 import passwordsafe.config_manager
 import os
@@ -31,6 +32,9 @@ class MainWindow(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.logging_manager = kwargs['application'].get_logger()
+
+        self._info_bar = None
+        self._info_bar_response_id = None
 
         self.assemble_window()
 
@@ -240,6 +244,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 # Responsive Container
                 hdy = Handy.Column()
                 hdy.set_maximum_width(400)
+                hdy.props.vexpand = True
                 hdy.add(builder.get_object("select_box"))
 
                 self.first_start_grid.add(hdy)
@@ -277,7 +282,16 @@ class MainWindow(Gtk.ApplicationWindow):
     # Open Database Methods
     #
 
+    def _on_info_bar_response(self, info_bar=None, response_id=None):
+        self._info_bar.hide()
+        self._info_bar.disconnect(self._info_bar_response_id)
+        self._info_bar = None
+        self._info_bar_response_id = None
+
     def open_filechooser(self, widget, none):
+        if self._info_bar is not None:
+            self._on_info_bar_response()
+
         filechooser_opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
             _("Choose a Keepass safe"), self, Gtk.FileChooserAction.OPEN,
@@ -313,12 +327,23 @@ class MainWindow(Gtk.ApplicationWindow):
                         db_filename, e.message))
                 return
 
-            db_file_content_type = db_file_info.get_content_type()
-            db_file_mime_type = Gio.content_type_get_mime_type(
-                db_file_content_type)
-            if db_file_mime_type not in supported_mime_types:
+            file_content_type = db_file_info.get_content_type()
+            file_mime_type = Gio.content_type_get_mime_type(file_content_type)
+            if file_mime_type not in supported_mime_types:
                 self.logging_manager.debug(
-                    "Unsupported mime type {}".format(db_file_mime_type))
+                    "Unsupported mime type {}".format(file_mime_type))
+                main_message = _(
+                    'Unable to open file "{}".'.format(db_filename))
+                mime_desc = Gio.content_type_get_description(file_content_type)
+                second_message = _(
+                    "File type {} ({}) is not supported.".format(
+                        mime_desc, file_mime_type))
+                self._info_bar = ErrorInfoBar(main_message, second_message)
+                self._info_bar_response_id = self._info_bar.connect(
+                    "response", self._on_info_bar_response)
+                first_child = self.first_start_grid.get_children()[0]
+                self.first_start_grid.attach_next_to(
+                    self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
                 return
 
             database_already_opened = False

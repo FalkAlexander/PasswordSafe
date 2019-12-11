@@ -772,4 +772,3 @@ class MainWindow(Gtk.ApplicationWindow):
         self.quit_dialog.destroy()
         self.save_window_size()
         self.application.quit()
-            

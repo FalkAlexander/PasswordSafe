@@ -283,34 +283,56 @@ class MainWindow(Gtk.ApplicationWindow):
             _("Choose a Keepass safe"), self, Gtk.FileChooserAction.OPEN,
             None, None)
 
+        supported_mime_types = [
+            "application/x-keepass2",
+            "application/octet-stream"
+        ]
+
         filter_text = Gtk.FileFilter()
         # NOTE: KeePass + version number is a proper name, do not translate
         filter_text.set_name(_("KeePass 3.1/4 Database"))
-        filter_text.add_mime_type("application/x-keepass2")
-        filter_text.add_mime_type("application/octet-stream")
+        for mime_type in supported_mime_types:
+            filter_text.add_mime_type(mime_type)
         filechooser_opening_dialog.add_filter(filter_text)
         filechooser_opening_dialog.set_local_only(False)
 
         response = filechooser_opening_dialog.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            self.logging_manager.debug(
-                "File selected: " + filechooser_opening_dialog.get_filename())
+            db_filename = filechooser_opening_dialog.get_filename()
+            self.logging_manager.debug("File selected: " + db_filename)
+
+            db_gfile = Gio.File.new_for_path(db_filename)
+            try:
+                db_file_info = db_gfile.query_info(
+                    "standard::content-type", Gio.FileQueryInfoFlags.NONE,
+                    None)
+            except GLib.Error as e:
+                self.logging_manager.debug(
+                    "Unable to query info for file {}: {}".format(
+                        db_filename, e.message))
+                return
+
+            db_file_content_type = db_file_info.get_content_type()
+            db_file_mime_type = Gio.content_type_get_mime_type(
+                db_file_content_type)
+            if db_file_mime_type not in supported_mime_types:
+                self.logging_manager.debug(
+                    "Unsupported mime type {}".format(db_file_mime_type))
+                return
 
             database_already_opened = False
 
             for db in self.opened_databases:
-                if db.database_manager.database_path == filechooser_opening_dialog.get_filename():
+                if db.database_manager.database_path == db_filename:
                     database_already_opened = True
                     page_num = self.container.page_num(db.parent_widget)
                     self.container.set_current_page(page_num)
                     db.show_database_action_revealer("Database already opened")
 
             if database_already_opened is False:
-                tab_title = self.create_tab_title_from_filepath(
-                    filechooser_opening_dialog.get_filename())
-                self.start_database_opening_routine(
-                    tab_title, filechooser_opening_dialog.get_filename())
+                tab_title = self.create_tab_title_from_filepath(db_filename)
+                self.start_database_opening_routine(tab_title, db_filename)
         elif response == Gtk.ResponseType.CANCEL:
             self.logging_manager.debug("File selection canceled")
 

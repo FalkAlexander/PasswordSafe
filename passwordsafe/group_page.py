@@ -89,7 +89,7 @@ class GroupPage:
         self.unlocked_database.start_database_lock_timer()
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group))
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
         scrolled_page.set_made_database_changes(True)
 
         if type == "name":
@@ -101,4 +101,3 @@ class GroupPage:
                         pathbar_button.set_label(widget.get_text())
         elif type == "notes":
             self.unlocked_database.database_manager.set_group_notes(group_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
-

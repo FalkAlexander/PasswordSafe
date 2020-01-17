@@ -137,7 +137,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 group_page = True
             else:
                 group_page = False
-            scrolled_page = db.stack.get_child_by_name(page_uuid)
+            scrolled_page = db.stack.get_child_by_name(page_uuid.urn)
 
             # For Group/Entry Edit Page
             if scrolled_page.edit_page is True and group_page is True:
@@ -746,7 +746,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             group_uuid = action_db.database_manager.get_group_uuid_from_group_object(action_db.current_group)
-            scrolled_page = action_db.stack.get_child_by_name(group_uuid)
+            scrolled_page = action_db.stack.get_child_by_name(group_uuid.urn)
             if scrolled_page.edit_page is True:
                 return
 
@@ -772,4 +772,3 @@ class MainWindow(Gtk.ApplicationWindow):
         self.quit_dialog.destroy()
         self.save_window_size()
         self.application.quit()
-            

@@ -179,7 +179,7 @@ class Pathbar(Gtk.HBox):
 
         self.unlocked_database.set_current_group(self.database_manager.get_root_group())
 
-        if self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)) is not None:
+        if self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn) is not None:
             self.unlocked_database.switch_stack_page()
         else:
             self.unlocked_database.show_page_of_new_directory(False, False)
@@ -224,9 +224,9 @@ class Pathbar(Gtk.HBox):
         edit_page = NotImplemented
 
         if self.check_is_edit_page_from_group() is True:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group))
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group).urn)
         else:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group))
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group).urn)
 
         edit_page = scrolled_page.check_is_edit_page()
         return edit_page
@@ -237,9 +237,9 @@ class Pathbar(Gtk.HBox):
         made_database_changes = NotImplemented
 
         if self.check_is_edit_page_from_group() is True:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group))
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group).urn)
         else:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group))
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group).urn)
 
         made_database_changes = scrolled_page.get_made_database_changes()
         return made_database_changes
@@ -290,9 +290,9 @@ class Pathbar(Gtk.HBox):
         scrolled_page = NotImplemented
 
         if self.check_is_edit_page_from_group() is True:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group))
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group).urn)
         else:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group))
+            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group).urn)
 
         scrolled_page.set_made_database_changes(False)
 
@@ -343,4 +343,3 @@ class Pathbar(Gtk.HBox):
             if pathbar_button.get_name() == "PathbarButtonDynamic":
                 if pathbar_button.get_uuid() == uuid:
                     return pathbar_button
-

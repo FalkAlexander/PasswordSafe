@@ -595,26 +595,71 @@ class DatabaseManager:
     def search(self, string, fulltext, global_search=True, path=None):
         uuid_list = []
 
+        # if fulltext is False:
+        #     for group in self.db.find_groups(name="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
+        #         if group.is_root_group is False:
+        #             uuid_list.append(group.uuid)
+        # else:
+        #     for group in self.db.groups:
+        #         if group.is_root_group is False and group.uuid not in uuid_list:
+        #             if string.lower() in self.get_group_notes_from_group_object(group):
+        #                 uuid_list.append(group.uuid)
+
+        # if fulltext is False:
+        #     for entry in self.db.find_entries(title="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
+        #         uuid_list.append(entry.uuid)
+        # else:
+        #     for entry in self.db.entries:
+        #         if entry.uuid not in uuid_list:
+        #             if string.lower() in self.get_entry_username_from_entry_object(entry):
+        #                 uuid_list.append(entry.uuid)
+        #             elif string.lower() in self.get_entry_notes_from_entry_object(entry):
+        #                 uuid_list.append(entry.uuid)
+
+        # Workaround
         if fulltext is False:
-            for group in self.db.find_groups(name="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
-                if group.is_root_group is False:
-                    uuid_list.append(group.uuid)
+            for group in self.db.groups:
+                if group.is_root_group is False and group.uuid not in uuid_list:
+                    if string.lower() in group.name.lower():
+                        if global_search is True:
+                            uuid_list.append(group.uuid)
+                        else:
+                            if group.path[:-1].rsplit("/", 1)[0] == path.replace("//", ""):
+                                uuid_list.append(group.uuid)
         else:
             for group in self.db.groups:
                 if group.is_root_group is False and group.uuid not in uuid_list:
-                    if string.lower() in self.get_group_notes_from_group_object(group):
-                        uuid_list.append(group.uuid)
+                    if string.lower() in self.get_group_notes_from_group_object(group).lower():
+                        if global_search is True:
+                            uuid_list.append(group.uuid)
+                        else:
+                            if group.path[:-1].rsplit("/", 1)[0] == path.replace("//", ""):
+                                uuid_list.append(group.uuid)
 
         if fulltext is False:
-            for entry in self.db.find_entries(title="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
-                uuid_list.append(entry.uuid)
+            for entry in self.db.entries:
+                if entry.uuid not in uuid_list:
+                    if string.lower() in entry.title.lower():
+                        if global_search is True:
+                            uuid_list.append(entry.uuid)
+                        else:
+                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                                uuid_list.append(entry.uuid)
         else:
             for entry in self.db.entries:
                 if entry.uuid not in uuid_list:
-                    if string.lower() in self.get_entry_username_from_entry_object(entry):
-                        uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_entry_notes_from_entry_object(entry):
-                        uuid_list.append(entry.uuid)
+                    if string.lower() in self.get_entry_username_from_entry_object(entry).lower():
+                        if global_search is True:
+                            uuid_list.append(entry.uuid)
+                        else:
+                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                                uuid_list.append(entry.uuid)
+                    elif string.lower() in self.get_entry_notes_from_entry_object(entry).lower():
+                        if global_search is True:
+                            uuid_list.append(entry.uuid)
+                        else:
+                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                                uuid_list.append(entry.uuid)
 
         return uuid_list
 

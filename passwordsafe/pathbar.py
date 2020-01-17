@@ -209,7 +209,7 @@ class Pathbar(Gtk.HBox):
                 self.unlocked_database.set_current_group(
                     self.database_manager.get_entry_object_from_uuid(
                         pathbar_button.get_uuid()))
-                if self.unlocked_database.stack.get_child_by_name(pathbar_button_uuid) is not None:
+                if self.unlocked_database.stack.get_child_by_name(str(pathbar_button_uuid)) is not None:
                     self.unlocked_database.switch_stack_page()
                 else:
                     self.unlocked_database.show_page_of_new_directory(False, False)

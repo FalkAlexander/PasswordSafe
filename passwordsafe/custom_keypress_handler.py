@@ -1,5 +1,6 @@
 from gi.repository import Gtk, Gdk
 import passwordsafe.pathbar_button
+import uuid as u
 
 
 class CustomKeypressHandler:
@@ -96,16 +97,16 @@ class CustomKeypressHandler:
                     if eventkey.keyval == Gdk.KEY_BackSpace:
                         uuid = self.unlocked_database.stack.get_visible_child_name()
                         if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.current_group) is False:
-                            if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)) is True:
+                            if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(u.UUID(uuid))) is True:
                                 self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
                             else:
                                 for button in self.unlocked_database.pathbar:
                                     if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
-                                        if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)):
+                                        if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(u.UUID(uuid))):
                                             self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
             elif self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
                 if eventkey.keyval == Gdk.KEY_Escape:
-                    uuid = self.unlocked_database.stack.get_visible_child_name()
+                    uuid = u.UUID(self.unlocked_database.stack.get_visible_child_name())
                     if self.unlocked_database.database_manager.check_is_group(uuid):
                         scrolled_page = self.unlocked_database.stack.get_child_by_name(uuid.urn)
                         if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)) is True:

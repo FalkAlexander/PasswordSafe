@@ -80,6 +80,7 @@ sudo ninja -C _build install
 
 ## Install via distribution package manager
 * Arch Linux: [gnome-passwordsafe](https://www.archlinux.org/packages/community/any/gnome-passwordsafe/)
+* Fedora: [gnome-passwordsafe](https://apps.fedoraproject.org/packages/gnome-passwordsafe)
 
 # Translations
 Helping to translate Password Safe or add support to a new language is very welcome.  

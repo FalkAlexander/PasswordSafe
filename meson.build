@@ -28,17 +28,18 @@ EXTENSION_DIR = join_paths(get_option('prefix'), get_option('libdir'), meson.pro
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
+
 # Python Module Check
-pykeepass_dir = join_paths(python_dir, 'pykeepass')
-construct_dir = join_paths(python_dir, 'construct')
+python3_required_modules = ['pykeepass', 'construct']
 
-if run_command('[', '-d', pykeepass_dir, ']').returncode() != 0
-    error('Missing dependency pykeepass >= master')
-endif
+foreach p : python3_required_modules
+    # Source: https://docs.python.org/3/library/importlib.html#checking-if-a-module-can-be-imported
+    script = 'import importlib.util; import sys; exit(1) if importlib.util.find_spec(\''+ p +'\') is None else exit(0)'
+    if run_command(python_bin, '-c', script).returncode() != 0
+        error('Required Python3 module \'' + p + '\' not found')
+    endif
+endforeach
 
-if run_command('[', '-d', construct_dir, ']').returncode() != 0
-    error('Missing dependency python-construct >= 2.9.45')
-endif
 
 # Profiles
 if get_option('profile') == 'development'

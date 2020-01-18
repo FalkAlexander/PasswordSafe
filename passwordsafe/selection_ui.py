@@ -156,7 +156,7 @@ class SelectionUI:
             # If the deleted group is in the pathbar, we need to rebuild the pathbar
             if self.unlocked_database.pathbar.is_pathbar_button_in_pathbar(group_row.get_uuid()) is True:
                 rebuild_pathbar = True
-            if self.unlocked_database.database_manager.get_group_uuid_from_group_object(group) == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group):
+            if self.unlocked_database.database_manager.get_group_uuid_from_group_object(group).urn == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn:
                 rebuild_pathbar = True
                 reset_stack_page = True
 
@@ -254,7 +254,7 @@ class SelectionUI:
         self.unlocked_database.database_manager.changes = True
 
     def on_selection_popover_button_clicked(self, action, param, selection_type):
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group))
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
         viewport = scrolled_page.get_children()[0]
         overlay = viewport.get_children()[0]
         list_box = NotImplemented

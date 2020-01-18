@@ -657,12 +657,25 @@ class EntryPage:
         response = save_dialog.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            bytes = self.unlocked_database.database_manager.db.binaries[attachment.id-1]
+            bytes = self.unlocked_database.database_manager.db.binaries[attachment.id]
             self.save_to_disk(save_dialog.get_filename(), bytes)
 
     def on_attachment_delete_button_clicked(self, button, entry_uuid, attachment, attachment_row):
         self.unlocked_database.database_manager.delete_entry_attachment(entry_uuid, attachment)
         attachment_row.destroy()
+
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
+
+        for row in scrolled_page.attachment_list_box.get_children():
+            if row.get_name() != "AddAttachmentRow":
+                row.destroy()
+
+        for attachment in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(entry_uuid):
+            self.add_attachment_row(attachment)
 
     #
     # Helper
@@ -686,7 +699,7 @@ class EntryPage:
 
     def on_warning_dialog_proceed_button_clicked(self, button, dialog, attachment):
         dialog.close()
-        self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id-1], attachment.filename)
+        self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id], attachment.filename)
 
     def change_password_entry_visibility(self, entry, toggle_button):
         toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)

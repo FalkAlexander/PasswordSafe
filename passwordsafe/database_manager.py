@@ -497,11 +497,10 @@ class DatabaseManager:
     def delete_entry_attachment(self, uuid, attachment):
         entry = self.db.find_entries(uuid=uuid, first=True)
         try:
+            self.db.delete_binary(attachment.id)
             entry.delete_attachment(attachment)
         except Exception:
-            self.logging_manager.warning("Skipping weird library behaviour...")
-
-        self.db.delete_binary(attachment.id-1)
+            self.logging_manager.warning("Skipping attachment handling...")
         self.changes = True
 
     # Move an entry to another group

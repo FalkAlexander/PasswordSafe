@@ -7,6 +7,7 @@ import passwordsafe.password_generator
 import passwordsafe.config_manager
 import threading
 import subprocess, os
+import uuid as u
 
 
 class EntryPage:
@@ -715,7 +716,7 @@ class EntryPage:
 
         if scrolled_page.password_property_value_entry.get_text().startswith("{REF:P"):
             try:
-                password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(self.unlocked_database.hex_to_base64(self.unlocked_database.reference_to_hex_uuid(scrolled_page.password_property_value_entry.get_text())))
+                password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(u.UUID(self.unlocked_database.reference_to_hex_uuid(scrolled_page.password_property_value_entry.get_text())))
             except(Exception):
                 password = scrolled_page.password_property_value_entry.get_text()
         else:

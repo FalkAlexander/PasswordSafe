@@ -21,6 +21,7 @@ import passwordsafe.config_manager
 import re
 import time
 import threading
+import uuid as u
 
 
 class UnlockedDatabase:
@@ -627,7 +628,7 @@ class UnlockedDatabase:
             code = ref.group()[5]
 
             try:
-                uuid = self.hex_to_base64(self.reference_to_hex_uuid(ref.group()))
+                uuid = u.UUID(self.reference_to_hex_uuid(ref.group()))
             except(Exception):
                 not_valid = True
 
@@ -648,6 +649,7 @@ class UnlockedDatabase:
                     try:
                         value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
                     except(AttributeError):
+                        print("FAIL")
                         value = ref.group()
                 elif code == "A":
                     try:
@@ -917,9 +919,6 @@ class UnlockedDatabase:
 
     def reference_to_hex_uuid(self, reference_string):
         return reference_string[9:-1].lower()
-
-    def hex_to_base64(self, hex_uuid):
-        return codecs.encode(codecs.decode(hex_uuid.encode(), 'hex'), 'base64').decode().splitlines()[0]
 
     #
     # DBus

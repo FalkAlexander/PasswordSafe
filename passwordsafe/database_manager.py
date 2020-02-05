@@ -619,12 +619,13 @@ class DatabaseManager:
         if fulltext is False:
             for group in self.db.groups:
                 if group.is_root_group is False and group.uuid not in uuid_list:
-                    if string.lower() in group.name.lower():
-                        if global_search is True:
-                            uuid_list.append(group.uuid)
-                        else:
-                            if group.path[:-1].rsplit("/", 1)[0] == path.replace("//", ""):
+                    if group.name is not None:
+                        if string.lower() in group.name.lower():
+                            if global_search is True:
                                 uuid_list.append(group.uuid)
+                            else:
+                                if group.path[:-1].rsplit("/", 1)[0] == path.replace("//", ""):
+                                    uuid_list.append(group.uuid)
         else:
             for group in self.db.groups:
                 if group.is_root_group is False and group.uuid not in uuid_list:
@@ -638,12 +639,13 @@ class DatabaseManager:
         if fulltext is False:
             for entry in self.db.entries:
                 if entry.uuid not in uuid_list:
-                    if string.lower() in entry.title.lower():
-                        if global_search is True:
-                            uuid_list.append(entry.uuid)
-                        else:
-                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                    if entry.title is not None:
+                        if string.lower() in entry.title.lower():
+                            if global_search is True:
                                 uuid_list.append(entry.uuid)
+                            else:
+                                if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                                    uuid_list.append(entry.uuid)
         else:
             for entry in self.db.entries:
                 if entry.uuid not in uuid_list:

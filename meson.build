@@ -1,5 +1,5 @@
 project('passwordsafe', 'c',
-  version: '3.99.1',
+  version: '3.99.2',
   meson_version: '>= 0.50.0'
 )
 i18n = import('i18n')
@@ -17,7 +17,7 @@ endif
 dependency('glib-2.0')
 dependency('gobject-introspection-1.0', version: '>=1.35.9')
 dependency('gtk+-3.0', version :'>=3.20')
-dependency('libhandy-1', version :'>=0.0.13')
+dependency('libhandy-0.0', version :'>=0.0.10')
 dependency('pwquality')
 
 env = environment()

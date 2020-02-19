@@ -1,14 +1,14 @@
 # Turkish translation for PasswordSafe.
 # Copyright (C) 2018 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2018-2019.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2018-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-04-09 15:29+0000\n"
-"PO-Revision-Date: 2019-07-21 16:40+0300\n"
+"POT-Creation-Date: 2020-01-18 16:11+0000\n"
+"PO-Revision-Date: 2020-02-19 10:54+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -63,36 +63,36 @@ msgstr "Devam"
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
 #: data/entry_page.ui:1563 data/entry_page.ui:1699
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
-#: passwordsafe/unlock_database.py:93
+#: passwordsafe/unlock_database.py:94
 msgid "Password"
 msgstr "Parola"
 
 #: data/create_database.ui:94
 msgid "Use a password to secure your safe"
-msgstr "Kasanızı korumak için bir parola kullanın"
+msgstr "Kasanızı korumak için parola kullanın"
 
 #: data/create_database.ui:157 data/database_settings_dialog.ui:579
 #: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
 #: passwordsafe/database_settings_dialog.py:184
 #: passwordsafe/database_settings_dialog.py:219
 #: passwordsafe/database_settings_dialog.py:224
-#: passwordsafe/unlock_database.py:96 passwordsafe/unlock_database.py:301
-#: passwordsafe/unlock_database.py:423
+#: passwordsafe/unlock_database.py:97 passwordsafe/unlock_database.py:302
+#: passwordsafe/unlock_database.py:424
 msgid "Keyfile"
 msgstr "Anahtar dosyası"
 
 #: data/create_database.ui:177
 msgid "Use a keyfile to secure your safe"
-msgstr "Güvenlik için bir anahtar dosyası kullanın"
+msgstr "Güvenlik için anahtar dosyası kullanın"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:240 passwordsafe/unlock_database.py:100
+#: data/create_database.ui:240 passwordsafe/unlock_database.py:101
 msgid "Composite"
 msgstr "Birleşik"
 
 #: data/create_database.ui:260
 msgid "Use a password in combination with a keyfile to secure your safe"
-msgstr "Sıkı bir güvenlik için anahtar dosyası ile birlikte parola kullanın"
+msgstr "Sıkı güvenlik için anahtar dosyası ile birlikte parola kullanın"
 
 #: data/create_database.ui:303
 msgid "Protect your safe"
@@ -419,9 +419,9 @@ msgid ""
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
 "and uncluttered interface for the management of password databases."
 msgstr ""
-"Parola Kasası, Keepass v.4 biçimini kullanan bir parola yöneticisidir. GNOME "
+"Parola Kasası, Keepass v.4 biçimini kullanan parola yöneticisidir. GNOME "
 "masaüstüyle kusursuzca tümleşir ve parola veri tabanlarının yönetimi için "
-"kolay ve düzenli bir arayüz sunar."
+"kolay ve düzenli arayüz sunar."
 
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
 msgid "Falk Alexander Seidl"
@@ -557,7 +557,7 @@ msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/passwordsafe/backups"
 msgstr ""
-"Veri tabanını kaydederken bir hata olursa bir yedek ~/.cache/passwordsafe/"
+"Veri tabanını kaydederken hata olursa yedek ~/.cache/passwordsafe/"
 "backups yolunda bulunabilir"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:81
@@ -654,7 +654,7 @@ msgid ""
 "Each entry has a unique identifier called UUID.\n"
 "It can be found in the properties of the entry."
 msgstr ""
-"Her girdi, UUID adlı benzersiz bir tanımlayıcıya sahiptir.\n"
+"Her girdinin, UUID adlı benzersiz tanımlayıcısı vardır.\n"
 "Girdinin özelliklerinde bulunabilir."
 
 #. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
@@ -688,7 +688,7 @@ msgstr "Vazgeç"
 
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:333
+#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:380
 msgid "Save"
 msgstr "Kaydet"
 
@@ -710,7 +710,7 @@ msgid "Reopen last opened safe"
 msgstr "Son açılan kasayı yeniden aç"
 
 #: data/settings_dialog.ui:260 data/unlocked_database.ui:860
-#: passwordsafe/main_window.py:335
+#: passwordsafe/main_window.py:382
 msgid "Safe"
 msgstr "Kasa"
 
@@ -1041,17 +1041,25 @@ msgid "No group title specified"
 msgstr "Küme başlığı belirtilmedi"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:283
+#: passwordsafe/main_window.py:297
 msgid "Choose a Keepass safe"
 msgstr "Keepass kasası seç"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:288 passwordsafe/main_window.py:341
+#: passwordsafe/main_window.py:307 passwordsafe/main_window.py:388
 msgid "KeePass 3.1/4 Database"
-msgstr "KeePass 3.1/4 Veritabanı"
+msgstr "KeePass 3.1/4 Veri Tabanı"
+
+#: passwordsafe/main_window.py:336
+msgid "Unable to open file \"{}\"."
+msgstr "\"{}\" dosyası açılamadı."
+
+#: passwordsafe/main_window.py:339
+msgid "File type {} ({}) is not supported."
+msgstr "{} ({}) dosya türü desteklenmiyor."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:332
+#: passwordsafe/main_window.py:379
 msgid "Choose location for Keepass safe"
 msgstr "Keepass kasası için konum seç"
 
@@ -1067,21 +1075,21 @@ msgstr "Taşıma tamamlandı"
 msgid "Skipped moving group into itself"
 msgstr "Kümeyi kendi içine taşıma atlandı"
 
-#: passwordsafe/unlock_database.py:213
+#: passwordsafe/unlock_database.py:214
 msgid "Database already opened"
 msgstr "Veri tabanı zaten açık"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:299
+#: passwordsafe/unlock_database.py:300
 msgid "Choose a keyfile"
 msgstr "Anahtar dosyası seç"
 
-#: passwordsafe/unlock_database.py:352 passwordsafe/unlock_database.py:409
+#: passwordsafe/unlock_database.py:353 passwordsafe/unlock_database.py:410
 msgid "Try again"
 msgstr "Yeniden dene"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:418
+#: passwordsafe/unlock_database.py:419
 msgid "Choose Keyfile"
 msgstr "Anahtar Dosyası Seç"
 
@@ -1092,7 +1100,7 @@ msgstr "Veri tabanı kaydedildi"
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
 #: passwordsafe/unlocked_database.py:485
 msgid "Please wait. Another save is running."
-msgstr "Lütfen bekleyin. Başka bir kayıt sürüyor."
+msgstr "Lütfen bekleyin. Başka kayıt sürüyor."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
 #: passwordsafe/unlocked_database.py:488

@@ -1,15 +1,16 @@
 # Danish translation for PasswordSafe.
 # Copyright (C) 2019 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
-# scootergrisen, 2019.
+# scootergrisen, 2019-2020.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-02-10 10:46+0000\n"
-"PO-Revision-Date: 2019-02-23 00:00+0200\n"
+"POT-Creation-Date: 2019-12-25 22:37+0000\n"
+"PO-Revision-Date: 2020-01-16 22:19+0200\n"
 "Last-Translator: scootergrisen\n"
-"Language-Team: Danish\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,18 +31,45 @@ msgstr "Lær mere om Adgangskodeboks"
 msgid "translator-credits"
 msgstr "scootergrisen"
 
+#. Dialog title which informs the user about unsaved changes.
+#: data/attachment_warning_dialog.ui:9
+msgid "Safety Info"
+msgstr "Sikkerhedsinformation"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/attachment_warning_dialog.ui:10
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"Der er risiko for, at eksterne programmer opretter ukrypterede skjulte "
+"eller midlertidige kopier af den vedhæftede fil! Vær venligst forsigtig, når "
+"du fortsætter."
+
+#. Discard all the changes which the user have made to his keepass safe
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
+#: data/unlocked_database.ui:1274
+msgid "Back"
+msgstr "Tilbage"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/attachment_warning_dialog.ui:36
+msgid "Proceed"
+msgstr "Fortsæt"
+
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
-#: data/entry_page.ui:1331 data/entry_page.ui:1467
+#: data/entry_page.ui:1563 data/entry_page.ui:1699
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
 #: passwordsafe/unlock_database.py:93
 msgid "Password"
 msgstr "Adgangskode"
 
-#: data/create_database.ui:93
+#: data/create_database.ui:94
 msgid "Use a password to secure your safe"
 msgstr "Brug en adgangskode til at beskytte din boks"
 
-#: data/create_database.ui:155 data/database_settings_dialog.ui:579
+#: data/create_database.ui:157 data/database_settings_dialog.ui:579
 #: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
 #: passwordsafe/database_settings_dialog.py:184
 #: passwordsafe/database_settings_dialog.py:219
@@ -51,75 +79,75 @@ msgstr "Brug en adgangskode til at beskytte din boks"
 msgid "Keyfile"
 msgstr "Nøglefil"
 
-#: data/create_database.ui:174
+#: data/create_database.ui:177
 msgid "Use a keyfile to secure your safe"
 msgstr "Brug en nøglefil til at beskytte din boks"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:236 passwordsafe/unlock_database.py:100
+#: data/create_database.ui:240 passwordsafe/unlock_database.py:100
 msgid "Composite"
 msgstr "Kombinering"
 
-#: data/create_database.ui:255
+#: data/create_database.ui:260
 msgid "Use a password in combination with a keyfile to secure your safe"
 msgstr ""
 "Brug en adgangskode i kombination med en nøglefil til at beskytte din boks"
 
-#: data/create_database.ui:297
+#: data/create_database.ui:303
 msgid "Protect your safe"
 msgstr "Beskyt din boks"
 
-#: data/create_database.ui:408
+#: data/create_database.ui:415
 msgid "Set password for safe"
 msgstr "Indstil adgangskode til boksen"
 
-#: data/create_database.ui:423
+#: data/create_database.ui:430
 msgid "Enter Password"
 msgstr "Indtast adgangskode"
 
-#: data/create_database.ui:469
+#: data/create_database.ui:476
 msgid "Password Match Check"
 msgstr "Match af adgangskoder"
 
-#: data/create_database.ui:555
+#: data/create_database.ui:562
 msgid "Repeat password for safe"
 msgstr "Gentag adgangskoden til boksen"
 
-#: data/create_database.ui:601
+#: data/create_database.ui:608
 msgid "Match Check Failed"
 msgstr "De er ikke ens"
 
-#: data/create_database.ui:660
+#: data/create_database.ui:667
 msgid "Please try again"
 msgstr "Prøv venligst igen"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1418
+#: data/create_database.ui:788 data/entry_page.ui:1650
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
 msgstr "Generer"
 
-#: data/create_database.ui:810
+#: data/create_database.ui:817
 msgid "Set keyfile for safe"
 msgstr "Indstil nøglefil til boksen"
 
-#: data/create_database.ui:825
+#: data/create_database.ui:832
 msgid "Generate Keyfile"
 msgstr "Generer nøglefil"
 
-#: data/create_database.ui:880 data/main_window.ui:198
+#: data/create_database.ui:887 data/main_window.ui:200
 #: data/unlock_database.ui:311 data/unlocked_database.ui:976
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: data/create_database.ui:894 data/main_window.ui:212
+#: data/create_database.ui:901 data/main_window.ui:214
 #: data/unlock_database.ui:325 data/unlocked_database.ui:990
 msgid "Keyboard Shortcuts"
 msgstr "Tastaturgenveje"
 
 #. "Password Safe" is the application name
-#: data/create_database.ui:908 data/main_window.ui:226
+#: data/create_database.ui:915 data/main_window.ui:228
 #: data/unlock_database.ui:339 data/unlocked_database.ui:1004
 msgid "About Password Safe"
 msgstr "Om Adgangskodeboks"
@@ -127,14 +155,14 @@ msgstr "Om Adgangskodeboks"
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:922 data/main_window.ui:353
+#: data/create_database.ui:929 data/main_window.ui:355
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:4
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
 msgid "Password Safe"
 msgstr "Adgangskodeboks"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:923
+#: data/create_database.ui:930
 msgid "Create Safe"
 msgstr "Opret boks"
 
@@ -261,79 +289,91 @@ msgstr "AES: 256-bit"
 msgid "Key Derivation Function"
 msgstr "Nøgleudledningsfunktion"
 
-#: data/entry_page.ui:106
+#: data/entry_page.ui:34
+msgid "Add Attachment"
+msgstr "Tilføj vedhæfting"
+
+#: data/entry_page.ui:76
+msgid "Attachments"
+msgstr "Vedhæftinger"
+
+#: data/entry_page.ui:163
+msgid "Secret_Photo.png"
+msgstr "Hemmeligt_billede.png"
+
+#: data/entry_page.ui:338
 msgid "Remove attribute"
 msgstr "Fjern attribut"
 
-#: data/entry_page.ui:167
+#: data/entry_page.ui:399
 msgid "Attributes"
 msgstr "Attributter"
 
-#: data/entry_page.ui:207
+#: data/entry_page.ui:439
 msgid "Key"
 msgstr "Nøgle"
 
-#: data/entry_page.ui:221
+#: data/entry_page.ui:453
 msgid "Value"
 msgstr "Værdi"
 
-#: data/entry_page.ui:243
+#: data/entry_page.ui:475
 msgid "Add attribute"
 msgstr "Tilføj attribut"
 
-#: data/entry_page.ui:298
+#: data/entry_page.ui:530
 msgid "Color"
 msgstr "Farve"
 
-#: data/entry_page.ui:593
+#: data/entry_page.ui:825
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/entry_page.ui:965 data/group_page.ui:35 data/references_dialog.ui:65
+#: data/entry_page.ui:1197 data/group_page.ui:35 data/references_dialog.ui:65
 #: data/references_dialog.ui:235
 msgid "Title"
 msgstr "Titel"
 
-#: data/entry_page.ui:1050 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/entry_page.ui:1282 data/group_page.ui:120 data/references_dialog.ui:185
 #: data/references_dialog.ui:291
 msgid "Notes"
 msgstr "Noter"
 
-#: data/entry_page.ui:1202
+#: data/entry_page.ui:1434
 msgid "Length"
 msgstr "Længde"
 
-#: data/entry_page.ui:1236
+#: data/entry_page.ui:1468
 msgid "Characters"
 msgstr "Tegn"
 
-#: data/entry_page.ui:1344
+#: data/entry_page.ui:1576
 msgid "Words"
 msgstr "Ord"
 
-#: data/entry_page.ui:1377
+#: data/entry_page.ui:1609
 msgid "Separator"
 msgstr "Separator"
 
-#: data/entry_page.ui:1394
+#: data/entry_page.ui:1626
 msgid "Enter character here…"
 msgstr "Indtast tegn her …"
 
-#: data/entry_page.ui:1405
+#: data/entry_page.ui:1637
 msgid "Passphrase"
 msgstr "Adgangskode"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1523
+#: data/entry_page.ui:1755
 msgid "Show/hide password"
 msgstr "Vis/skjul adgangskode"
 
-#: data/entry_page.ui:1704 data/references_dialog.ui:170
+#: data/entry_page.ui:1936 data/references_dialog.ui:170
 #: data/references_dialog.ui:277
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:1791 data/references_dialog.ui:92
+#: data/entry_page.ui:2023 data/references_dialog.ui:92
 #: data/references_dialog.ui:249
 msgid "Username"
 msgstr "Brugernavn"
@@ -344,7 +384,7 @@ msgid "Secure password safe"
 msgstr "Sikker adgangskodeboks"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:60
+#: data/main_window.ui:62
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -352,15 +392,15 @@ msgstr ""
 "Gem dine adgangskoder, noter og data på en sikker måde. <b>Opret</b> eller "
 "<b>importér</b> en ny Keepass-boks."
 
-#: data/main_window.ui:267
+#: data/main_window.ui:269
 msgid "New…"
 msgstr "Ny …"
 
-#: data/main_window.ui:312
+#: data/main_window.ui:314
 msgid "Open…"
 msgstr "Åbn …"
 
-#: data/main_window.ui:409
+#: data/main_window.ui:411
 msgid "Recent Databases"
 msgstr "Seneste databaser"
 
@@ -382,14 +422,9 @@ msgstr ""
 "Den integrerer perfekt med GNOME-skrivebordet og giver en let og ryddelig "
 "brugerflade til håndtering af adgangskodedatabaser."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:57
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.PasswordSafe.desktop.in.in:6
-msgid "@ICON@"
-msgstr "@ICON@"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
@@ -634,11 +669,6 @@ msgstr "Vil du gemme alle bokse med ændringer som ikke er blevet gemt?"
 msgid "Select the safes you want to save."
 msgstr "Vælg de bokse du vil gemme."
 
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/quit_dialog.ui:22 data/unlocked_database.ui:1274
-msgid "Back"
-msgstr "Tilbage"
-
 #: data/quit_dialog.ui:35
 msgid "Quit"
 msgstr "Afslut"
@@ -660,7 +690,7 @@ msgstr "Forkast"
 
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/main_window.py:333
+#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:333
 msgid "Save"
 msgstr "Gem"
 
@@ -944,7 +974,7 @@ msgid "Generating…"
 msgstr "Genererer …"
 
 #. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-#: passwordsafe/database_manager.py:368
+#: passwordsafe/database_manager.py:384
 msgid "Clone"
 msgstr "Klon"
 
@@ -982,9 +1012,23 @@ msgstr "ChaCha20 256-bit"
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:491 passwordsafe/entry_page.py:554
+#: passwordsafe/entry_page.py:512 passwordsafe/entry_page.py:575
 msgid "Attribute key already exists"
 msgstr "Attributnøglen findes allerede"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: passwordsafe/entry_page.py:603
+msgid "Select attachment"
+msgstr "Vælg vedhæfting"
+
+#: passwordsafe/entry_page.py:604
+msgid "Add"
+msgstr "Tilføj"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: passwordsafe/entry_page.py:650
+msgid "Save attachment"
+msgstr "Gem vedhæfting"
 
 #: passwordsafe/entry_row.py:63
 msgid "Title not specified"
@@ -1043,30 +1087,30 @@ msgstr "Prøv igen"
 msgid "Choose Keyfile"
 msgstr "Vælg nøglefil"
 
-#: passwordsafe/unlocked_database.py:481
+#: passwordsafe/unlocked_database.py:482
 msgid "Database saved"
 msgstr "Databasen blev gemt"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:484
+#: passwordsafe/unlocked_database.py:485
 msgid "Please wait. Another save is running."
 msgstr "Vent venligst. Er allerede ved at gemme."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:487
+#: passwordsafe/unlocked_database.py:488
 msgid "No changes made"
 msgstr "Der er ikke foretaget nogen ændringer"
 
-#: passwordsafe/unlocked_database.py:666
+#: passwordsafe/unlocked_database.py:667
 msgid "Copied to clipboard"
 msgstr "Kopieret til udklipsholder"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:822
 #, python-format
 msgid "%s locked"
 msgstr "%s låst"
 
-#: passwordsafe/unlocked_database.py:812
+#: passwordsafe/unlocked_database.py:822
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass-boksen blev låst pga. inaktivitet"

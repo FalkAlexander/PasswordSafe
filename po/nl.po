@@ -1,14 +1,14 @@
 # Dutch translation for PasswordSafe.
 # Copyright (C) 2019 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
-# Nathan Follens <nthn@unseen.is>, 2019.
+# Nathan Follens <nthn@unseen.is>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-03-22 20:10+0000\n"
-"PO-Revision-Date: 2019-04-01 14:12+0200\n"
+"POT-Creation-Date: 2020-02-05 11:39+0000\n"
+"PO-Revision-Date: 2020-02-26 14:41+0100\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
 #: data/org.gnome.PasswordSafe.desktop.in.in:4
@@ -62,96 +62,96 @@ msgid "Proceed"
 msgstr "Doorgaan"
 
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
-#: data/entry_page.ui:1562 data/entry_page.ui:1698
+#: data/entry_page.ui:1563 data/entry_page.ui:1699
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
-#: passwordsafe/unlock_database.py:93
+#: passwordsafe/unlock_database.py:94
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: data/create_database.ui:93
+#: data/create_database.ui:94
 msgid "Use a password to secure your safe"
 msgstr "Gebruik een wachtwoord om uw kluis te beveiligen"
 
-#: data/create_database.ui:155 data/database_settings_dialog.ui:579
+#: data/create_database.ui:157 data/database_settings_dialog.ui:579
 #: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
 #: passwordsafe/database_settings_dialog.py:184
 #: passwordsafe/database_settings_dialog.py:219
 #: passwordsafe/database_settings_dialog.py:224
-#: passwordsafe/unlock_database.py:96 passwordsafe/unlock_database.py:301
-#: passwordsafe/unlock_database.py:423
+#: passwordsafe/unlock_database.py:97 passwordsafe/unlock_database.py:302
+#: passwordsafe/unlock_database.py:424
 msgid "Keyfile"
 msgstr "Sleutelbestand"
 
-#: data/create_database.ui:174
+#: data/create_database.ui:177
 msgid "Use a keyfile to secure your safe"
 msgstr "Gebruik een sleutelbestand om uw kluis te beveiligen"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:236 passwordsafe/unlock_database.py:100
+#: data/create_database.ui:240 passwordsafe/unlock_database.py:101
 msgid "Composite"
 msgstr "Samengesteld"
 
-#: data/create_database.ui:255
+#: data/create_database.ui:260
 msgid "Use a password in combination with a keyfile to secure your safe"
 msgstr ""
 "Gebruik een wachtwoord in combinatie met een sleutelbestand om uw kluis te "
 "beveiligen"
 
-#: data/create_database.ui:297
+#: data/create_database.ui:303
 msgid "Protect your safe"
 msgstr "Beveilig uw kluis"
 
-#: data/create_database.ui:408
+#: data/create_database.ui:415
 msgid "Set password for safe"
 msgstr "Stel een wachtwoord in voor uw kluis"
 
-#: data/create_database.ui:423
+#: data/create_database.ui:430
 msgid "Enter Password"
 msgstr "Voer wachtwoord in"
 
-#: data/create_database.ui:469
+#: data/create_database.ui:476
 msgid "Password Match Check"
 msgstr "Voer wachtwoord opnieuw in"
 
-#: data/create_database.ui:555
+#: data/create_database.ui:562
 msgid "Repeat password for safe"
 msgstr "Herhaal wachtwoord voor kluis"
 
-#: data/create_database.ui:601
+#: data/create_database.ui:608
 msgid "Match Check Failed"
 msgstr "Wachtwoorden komen niet overeen"
 
-#: data/create_database.ui:660
+#: data/create_database.ui:667
 msgid "Please try again"
 msgstr "Probeer het opnieuw"
 
 #. Button to generate a password
-#: data/create_database.ui:781 data/entry_page.ui:1649
+#: data/create_database.ui:788 data/entry_page.ui:1650
 #: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:217
 msgid "Generate"
 msgstr "Genereren"
 
-#: data/create_database.ui:810
+#: data/create_database.ui:817
 msgid "Set keyfile for safe"
 msgstr "Stel sleutelbestand in voor kluis"
 
-#: data/create_database.ui:825
+#: data/create_database.ui:832
 msgid "Generate Keyfile"
 msgstr "Sleutelbestand genereren"
 
-#: data/create_database.ui:880 data/main_window.ui:198
+#: data/create_database.ui:887 data/main_window.ui:200
 #: data/unlock_database.ui:311 data/unlocked_database.ui:976
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/create_database.ui:894 data/main_window.ui:212
+#: data/create_database.ui:901 data/main_window.ui:214
 #: data/unlock_database.ui:325 data/unlocked_database.ui:990
 msgid "Keyboard Shortcuts"
 msgstr "Sneltoetsen"
 
 #. "Password Safe" is the application name
-#: data/create_database.ui:908 data/main_window.ui:226
+#: data/create_database.ui:915 data/main_window.ui:228
 #: data/unlock_database.ui:339 data/unlocked_database.ui:1004
 msgid "About Password Safe"
 msgstr "Over Wachtwoordkluis"
@@ -159,14 +159,14 @@ msgstr "Over Wachtwoordkluis"
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:922 data/main_window.ui:353
+#: data/create_database.ui:929 data/main_window.ui:355
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:4
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
 msgid "Password Safe"
 msgstr "Wachtwoordkluis"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:923
+#: data/create_database.ui:930
 msgid "Create Safe"
 msgstr "Kluis aanmaken"
 
@@ -297,87 +297,87 @@ msgstr "Sleutelafleidingsfunctie"
 msgid "Add Attachment"
 msgstr "Bijlage toevoegen"
 
-#: data/entry_page.ui:75
+#: data/entry_page.ui:76
 msgid "Attachments"
 msgstr "Bijlagen"
 
-#: data/entry_page.ui:162
+#: data/entry_page.ui:163
 msgid "Secret_Photo.png"
 msgstr "Geheime_foto.png"
 
-#: data/entry_page.ui:337
+#: data/entry_page.ui:338
 msgid "Remove attribute"
 msgstr "Attribuut verwijderen"
 
-#: data/entry_page.ui:398
+#: data/entry_page.ui:399
 msgid "Attributes"
 msgstr "Attributen"
 
-#: data/entry_page.ui:438
+#: data/entry_page.ui:439
 msgid "Key"
 msgstr "Sleutel"
 
-#: data/entry_page.ui:452
+#: data/entry_page.ui:453
 msgid "Value"
 msgstr "Waarde"
 
-#: data/entry_page.ui:474
+#: data/entry_page.ui:475
 msgid "Add attribute"
 msgstr "Attribuut toevoegen"
 
-#: data/entry_page.ui:529
+#: data/entry_page.ui:530
 msgid "Color"
 msgstr "Kleur"
 
-#: data/entry_page.ui:824
+#: data/entry_page.ui:825
 msgid "Icon"
 msgstr "Pictogram"
 
-#: data/entry_page.ui:1196 data/group_page.ui:35 data/references_dialog.ui:65
+#: data/entry_page.ui:1197 data/group_page.ui:35 data/references_dialog.ui:65
 #: data/references_dialog.ui:235
 msgid "Title"
 msgstr "Titel"
 
-#: data/entry_page.ui:1281 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/entry_page.ui:1282 data/group_page.ui:120 data/references_dialog.ui:185
 #: data/references_dialog.ui:291
 msgid "Notes"
 msgstr "Opmerkingen"
 
-#: data/entry_page.ui:1433
+#: data/entry_page.ui:1434
 msgid "Length"
 msgstr "Lengte"
 
-#: data/entry_page.ui:1467
+#: data/entry_page.ui:1468
 msgid "Characters"
 msgstr "Tekens"
 
-#: data/entry_page.ui:1575
+#: data/entry_page.ui:1576
 msgid "Words"
 msgstr "Woorden"
 
-#: data/entry_page.ui:1608
+#: data/entry_page.ui:1609
 msgid "Separator"
 msgstr "Scheiding"
 
-#: data/entry_page.ui:1625
+#: data/entry_page.ui:1626
 msgid "Enter character here…"
 msgstr "Voer teken hier in…"
 
-#: data/entry_page.ui:1636
+#: data/entry_page.ui:1637
 msgid "Passphrase"
 msgstr "Wachtwoord"
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1754
+#: data/entry_page.ui:1755
 msgid "Show/hide password"
 msgstr "Wachtwoord tonen/verbergen"
 
-#: data/entry_page.ui:1935 data/references_dialog.ui:170
+#: data/entry_page.ui:1936 data/references_dialog.ui:170
 #: data/references_dialog.ui:277
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:2022 data/references_dialog.ui:92
+#: data/entry_page.ui:2023 data/references_dialog.ui:92
 #: data/references_dialog.ui:249
 msgid "Username"
 msgstr "Gebruikersnaam"
@@ -388,7 +388,7 @@ msgid "Secure password safe"
 msgstr "Veilige wachtwoordkluis"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:60
+#: data/main_window.ui:62
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -396,15 +396,15 @@ msgstr ""
 "Bewaar uw wachtwoorden, notities en gegevens op een veilige manier. <b>Maak "
 "een nieuwe Keepass-kluis aan</b> of <b>importeer er een</b>."
 
-#: data/main_window.ui:267
+#: data/main_window.ui:269
 msgid "New…"
 msgstr "Nieuw…"
 
-#: data/main_window.ui:312
+#: data/main_window.ui:314
 msgid "Open…"
 msgstr "Openen…"
 
-#: data/main_window.ui:409
+#: data/main_window.ui:411
 msgid "Recent Databases"
 msgstr "Recente databases"
 
@@ -426,7 +426,7 @@ msgstr ""
 "v.4-formaat. Hij integreert perfect met het Gnome-bureaublad en biedt een "
 "eenvoudige en duidelijke interface voor het beheer van wachtwoorddatabases."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:90
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -693,7 +693,7 @@ msgstr "Verwerpen"
 
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/entry_page.py:634 passwordsafe/main_window.py:333
+#: passwordsafe/entry_page.py:652 passwordsafe/main_window.py:380
 msgid "Save"
 msgstr "Opslaan"
 
@@ -715,7 +715,7 @@ msgid "Reopen last opened safe"
 msgstr "Laatst geopende kluis opnieuw openen"
 
 #: data/settings_dialog.ui:260 data/unlocked_database.ui:860
-#: passwordsafe/main_window.py:335
+#: passwordsafe/main_window.py:382
 msgid "Safe"
 msgstr "Kluis"
 
@@ -1016,29 +1016,29 @@ msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 # Of is het het attribuut 'sleutel'?
-#: passwordsafe/entry_page.py:505 passwordsafe/entry_page.py:568
+#: passwordsafe/entry_page.py:513 passwordsafe/entry_page.py:576
 msgid "Attribute key already exists"
 msgstr "Attribuutsleutel bestaat al"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:596
+#: passwordsafe/entry_page.py:604
 msgid "Select attachment"
 msgstr "Selecteer een bijlage"
 
-#: passwordsafe/entry_page.py:597
+#: passwordsafe/entry_page.py:605
 msgid "Add"
 msgstr "Toevoegen"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:633
+#: passwordsafe/entry_page.py:651
 msgid "Save attachment"
 msgstr "Bijlage opslaan"
 
-#: passwordsafe/entry_row.py:63
+#: passwordsafe/entry_row.py:64
 msgid "Title not specified"
 msgstr "Geen titel opgegeven"
 
-#: passwordsafe/entry_row.py:74
+#: passwordsafe/entry_row.py:75
 msgid "No username specified"
 msgstr "Geen gebruikersnaam opgegeven"
 
@@ -1047,17 +1047,25 @@ msgid "No group title specified"
 msgstr "Geen groepstitel opgegeven"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:283
+#: passwordsafe/main_window.py:297
 msgid "Choose a Keepass safe"
 msgstr "Kies een Keepass-kluis"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:288 passwordsafe/main_window.py:341
+#: passwordsafe/main_window.py:307 passwordsafe/main_window.py:388
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4-database"
 
+#: passwordsafe/main_window.py:336
+msgid "Unable to open file \"{}\"."
+msgstr "Kan bestand ‘{}’ niet openen."
+
+#: passwordsafe/main_window.py:339
+msgid "File type {} ({}) is not supported."
+msgstr "Bestandstype {} ({}) wordt niet ondersteund."
+
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:332
+#: passwordsafe/main_window.py:379
 msgid "Choose location for Keepass safe"
 msgstr "Kies locatie voor Keepass-kluis"
 
@@ -1073,49 +1081,49 @@ msgstr "Verplaatsen voltooid"
 msgid "Skipped moving group into itself"
 msgstr "Verplaatsen van groep in zichzelf overgeslagen"
 
-#: passwordsafe/unlock_database.py:213
+#: passwordsafe/unlock_database.py:214
 msgid "Database already opened"
 msgstr "Database reeds geopend"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:299
+#: passwordsafe/unlock_database.py:300
 msgid "Choose a keyfile"
 msgstr "Kies een sleutelbestand"
 
-#: passwordsafe/unlock_database.py:352 passwordsafe/unlock_database.py:409
+#: passwordsafe/unlock_database.py:353 passwordsafe/unlock_database.py:410
 msgid "Try again"
 msgstr "Opnieuw proberen"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:418
+#: passwordsafe/unlock_database.py:419
 msgid "Choose Keyfile"
 msgstr "Kies een sleutelbestand"
 
-#: passwordsafe/unlocked_database.py:482
+#: passwordsafe/unlocked_database.py:483
 msgid "Database saved"
 msgstr "Database opgeslagen"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:485
+#: passwordsafe/unlocked_database.py:486
 msgid "Please wait. Another save is running."
 msgstr "Even geduld, een andere opsla-opdracht wordt uitgevoerd."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:488
+#: passwordsafe/unlocked_database.py:489
 msgid "No changes made"
 msgstr "Geen wijzigingen"
 
-#: passwordsafe/unlocked_database.py:667
+#: passwordsafe/unlocked_database.py:669
 msgid "Copied to clipboard"
 msgstr "Gekopieerd naar klembord"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:820
+#: passwordsafe/unlocked_database.py:824
 #, python-format
 msgid "%s locked"
 msgstr "%s vergrendeld"
 
-#: passwordsafe/unlocked_database.py:820
+#: passwordsafe/unlocked_database.py:824
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass-kluis vergrendeld wegens inactiviteit"
 

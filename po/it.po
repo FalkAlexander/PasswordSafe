@@ -1,14 +1,14 @@
 # Italian translation for PasswordSafe.
-# Copyright (C) 2018, 2019 the Free Software Foundation, Inc.
+# Copyright (C) 2018, 2019, 2020 the Free Software Foundation, Inc.
 # This file is distributed under the same license as the PasswordSafe package.
-# Milo Casagrande <milo@milo.name>, 2018, 2019.
+# Milo Casagrande <milo@milo.name>, 2018, 2019, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2019-09-04 15:53+0000\n"
-"PO-Revision-Date: 2019-09-18 09:53+0200\n"
+"POT-Creation-Date: 2020-01-23 21:05+0000\n"
+"PO-Revision-Date: 2020-02-05 15:11+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
 #: data/org.gnome.PasswordSafe.desktop.in.in:4
@@ -61,7 +61,7 @@ msgstr "Procedi"
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
 #: data/entry_page.ui:1563 data/entry_page.ui:1699
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
-#: passwordsafe/unlock_database.py:93
+#: passwordsafe/unlock_database.py:94
 msgid "Password"
 msgstr "Password"
 
@@ -74,8 +74,8 @@ msgstr "Usare una password per mettere al sicuro la propria cassaforte"
 #: passwordsafe/database_settings_dialog.py:184
 #: passwordsafe/database_settings_dialog.py:219
 #: passwordsafe/database_settings_dialog.py:224
-#: passwordsafe/unlock_database.py:96 passwordsafe/unlock_database.py:301
-#: passwordsafe/unlock_database.py:423
+#: passwordsafe/unlock_database.py:97 passwordsafe/unlock_database.py:302
+#: passwordsafe/unlock_database.py:424
 msgid "Keyfile"
 msgstr "File chiave"
 
@@ -84,7 +84,7 @@ msgid "Use a keyfile to secure your safe"
 msgstr "Usare un file chiave per mettere al sicuro la propria cassaforte"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:240 passwordsafe/unlock_database.py:100
+#: data/create_database.ui:240 passwordsafe/unlock_database.py:101
 msgid "Composite"
 msgstr "Composito"
 
@@ -423,7 +423,7 @@ msgstr ""
 "Si integra perfettamente con l'ambiente grafico GNOME e fornisce una "
 "semplice interfaccia per la gestione delle proprie password."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:90
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -686,7 +686,7 @@ msgstr "Scarta"
 
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:333
+#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:380
 msgid "Save"
 msgstr "Salva"
 
@@ -708,7 +708,7 @@ msgid "Reopen last opened safe"
 msgstr "Riapre l'ultima cassaforte aperta"
 
 #: data/settings_dialog.ui:260 data/unlocked_database.ui:860
-#: passwordsafe/main_window.py:335
+#: passwordsafe/main_window.py:382
 msgid "Safe"
 msgstr "Cassaforte"
 
@@ -1039,17 +1039,25 @@ msgid "No group title specified"
 msgstr "Nome gruppo non specificato"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:283
+#: passwordsafe/main_window.py:297
 msgid "Choose a Keepass safe"
 msgstr "Scelta cassaforte Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:288 passwordsafe/main_window.py:341
+#: passwordsafe/main_window.py:307 passwordsafe/main_window.py:388
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 Database"
 
+#: passwordsafe/main_window.py:336
+msgid "Unable to open file \"{}\"."
+msgstr "Impossibile aprire il file «{}»."
+
+#: passwordsafe/main_window.py:339
+msgid "File type {} ({}) is not supported."
+msgstr "Il tipo di file {} ({}) non è supportato."
+
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:332
+#: passwordsafe/main_window.py:379
 msgid "Choose location for Keepass safe"
 msgstr "Scelta posizione cassaforte Keepass"
 
@@ -1065,21 +1073,21 @@ msgstr "Spostamento completato"
 msgid "Skipped moving group into itself"
 msgstr "Spostamento gruppo in se stesso saltato"
 
-#: passwordsafe/unlock_database.py:213
+#: passwordsafe/unlock_database.py:214
 msgid "Database already opened"
 msgstr "Database già aperto"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:299
+#: passwordsafe/unlock_database.py:300
 msgid "Choose a keyfile"
 msgstr "Scelta file chiave"
 
-#: passwordsafe/unlock_database.py:352 passwordsafe/unlock_database.py:409
+#: passwordsafe/unlock_database.py:353 passwordsafe/unlock_database.py:410
 msgid "Try again"
 msgstr "Prova ancora"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:418
+#: passwordsafe/unlock_database.py:419
 msgid "Choose Keyfile"
 msgstr "Scegli file chiave"
 

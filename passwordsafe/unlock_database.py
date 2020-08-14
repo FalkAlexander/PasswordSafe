@@ -136,7 +136,7 @@ class UnlockDatabase:
         unlock_database_stack_box.show_all()
 
         # Responsive Container
-        self.hdy_page = Handy.Column()
+        self.hdy_page = Handy.Clamp()
         self.hdy_page.set_maximum_width(300)
         self.hdy_page.set_margin_left(15)
         self.hdy_page.set_margin_right(15)

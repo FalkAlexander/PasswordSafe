@@ -242,7 +242,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 self.first_start_grid = builder.get_object("last_opened_grid")
 
                 # Responsive Container
-                hdy = Handy.Column()
+                hdy = Handy.Clamp()
                 hdy.set_maximum_width(400)
                 hdy.props.vexpand = True
                 hdy.add(builder.get_object("select_box"))

@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <requires lib="libhandy" version="0.0"/>
+  <requires lib="libhandy" version="1.0"/>
   <object class="GtkWindow" id="properties_dialog">
     <property name="can_focus">False</property>
     <property name="default_height">120</property>
@@ -16,7 +16,7 @@
       </object>
     </child>
     <child>
-      <object class="HdyColumn">
+      <object class="HdyClamp">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="maximum_width">500</property>

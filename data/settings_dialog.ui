@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <requires lib="libhandy" version="0.0"/>
+  <requires lib="libhandy" version="1.0"/>
   <object class="HdyDialog" id="settings_dialog">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
@@ -33,7 +33,7 @@
                 <property name="can_focus">False</property>
                 <property name="shadow_type">none</property>
                 <child>
-                  <object class="HdyColumn" id="responsive_container">
+                  <object class="HdyClamp" id="responsive_container">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="maximum_width">500</property>

@@ -222,7 +222,7 @@ class UnlockedDatabase:
             scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
             # Responsive Container
-            hdy_page = Handy.Column()
+            hdy_page = Handy.Clamp()
             hdy_page.set_maximum_width(600)
             hdy_page.set_margin_top(18)
             hdy_page.set_margin_bottom(18)
@@ -260,7 +260,7 @@ class UnlockedDatabase:
                 list_box.set_margin_top(18)
                 list_box.set_margin_bottom(18)
 
-                hdy_browser = Handy.Column()
+                hdy_browser = Handy.Clamp()
                 hdy_browser.set_maximum_width(700)
                 hdy_browser.add(list_box)
                 overlay.add(hdy_browser)
@@ -287,7 +287,7 @@ class UnlockedDatabase:
                 scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
                 # Responsive Container
-                hdy_page = Handy.Column()
+                hdy_page = Handy.Clamp()
                 hdy_page.set_maximum_width(600)
                 hdy_page.set_margin_top(18)
                 hdy_page.set_margin_bottom(18)

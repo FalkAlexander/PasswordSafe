@@ -25,8 +25,8 @@ class Application(Gtk.Application):
         GLib.set_application_name('Password Safe')
         GLib.set_prgname("Password Safe")
 
-        # Register LibHandy Responsive Column
-        GObject.type_register(Handy.Column)
+        # Register LibHandy Responsive Clamp
+        GObject.type_register(Handy.Clamp)
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 

@@ -87,7 +87,7 @@ class Search:
             self.search_list_box.set_valign(Gtk.Align.START)
 
             hdy_search = Handy.Clamp()
-            hdy_search.set_maximum_width(700)
+            hdy_search.set_maximum_size(700)
             hdy_search.add(self.search_list_box)
             self.unlocked_database.search_overlay.add(hdy_search)
 

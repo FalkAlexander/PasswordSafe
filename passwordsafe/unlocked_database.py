@@ -223,7 +223,7 @@ class UnlockedDatabase:
 
             # Responsive Container
             hdy_page = Handy.Clamp()
-            hdy_page.set_maximum_width(600)
+            hdy_page.set_maximum_size(600)
             hdy_page.set_margin_top(18)
             hdy_page.set_margin_bottom(18)
             hdy_page.add(scrolled_window.properties_list_box)
@@ -261,7 +261,7 @@ class UnlockedDatabase:
                 list_box.set_margin_bottom(18)
 
                 hdy_browser = Handy.Clamp()
-                hdy_browser.set_maximum_width(700)
+                hdy_browser.set_maximum_size(700)
                 hdy_browser.add(list_box)
                 overlay.add(hdy_browser)
 
@@ -288,7 +288,7 @@ class UnlockedDatabase:
 
                 # Responsive Container
                 hdy_page = Handy.Clamp()
-                hdy_page.set_maximum_width(600)
+                hdy_page.set_maximum_size(600)
                 hdy_page.set_margin_top(18)
                 hdy_page.set_margin_bottom(18)
                 hdy_page.add(scrolled_window.properties_list_box)

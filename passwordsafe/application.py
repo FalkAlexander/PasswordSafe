@@ -2,7 +2,8 @@ import logging
 import gi
 import sys
 gi.require_version('Gtk', '3.0')
-gi.require_version('Handy', '0.0')
+gi.require_version('Handy', '1')
+
 from gi.repository import GObject, GLib, Gio, Gtk, Handy
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
@@ -26,7 +27,6 @@ class Application(Gtk.Application):
 
         # Register LibHandy Responsive Column
         GObject.type_register(Handy.Column)
-
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 

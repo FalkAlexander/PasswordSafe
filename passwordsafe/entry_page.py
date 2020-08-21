@@ -693,7 +693,7 @@ class EntryPage:
         stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
         stream.close()
         self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
-        subprocess.call("xdg-open " + file.get_path(), shell=True)
+        subprocess.run(["xdg-open", file.get_path()])
 
     def on_warning_dialog_back_button_clicked(self, button, dialog):
         dialog.close()

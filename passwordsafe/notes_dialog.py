@@ -117,7 +117,7 @@ class NotesDialog():
         )
 
         start = notes_buffer.get_start_iter()
-        if entry.get_text() is not "":
+        if entry.get_text():
             self.do_search(notes_buffer, entry.get_text(), start)
 
     def on_search_stopped(self, entry):

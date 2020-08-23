@@ -75,7 +75,7 @@ class EntryPage:
                 scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
                 properties_list_box.add(scrolled_page.name_property_row)
                 scrolled_page.name_property_value_entry.grab_focus()
-            elif scrolled_page.name_property_row is not "":
+            elif scrolled_page.name_property_row:
                 value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)
@@ -99,7 +99,7 @@ class EntryPage:
                 scrolled_page.username_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
-            elif scrolled_page.username_property_row is not "":
+            elif scrolled_page.username_property_row:
                 value = self.unlocked_database.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
                     scrolled_page.username_property_value_entry.set_text(value)
@@ -142,7 +142,7 @@ class EntryPage:
                 self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
 
                 properties_list_box.add(scrolled_page.password_property_row)
-            elif scrolled_page.password_property_row is not "":
+            elif scrolled_page.password_property_row:
                 value = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
                     scrolled_page.password_property_value_entry.set_text(value)
@@ -167,7 +167,7 @@ class EntryPage:
                 scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
-            elif scrolled_page.url_property_row is not "":
+            elif scrolled_page.url_property_row:
                 value = self.unlocked_database.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
                     scrolled_page.url_property_value_entry.set_text(value)
@@ -194,7 +194,7 @@ class EntryPage:
                     buffer.set_text("")
                 buffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
-            elif scrolled_page.notes_property_row is not "":
+            elif scrolled_page.notes_property_row:
                 value = self.unlocked_database.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
                 buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:

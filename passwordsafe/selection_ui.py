@@ -263,7 +263,7 @@ class SelectionUI:
         list_box = column.get_children()[0]
 
         for row in list_box:
-            if selection_type is "all":
+            if selection_type == "all":
                 row.selection_checkbox.set_active(True)
             else:
                 row.selection_checkbox.set_active(False)

@@ -57,7 +57,7 @@ class SettingsDialog():
         settings_clear_button = self.builder.get_object("settings_clear_button")
         settings_clear_button.connect("clicked", self.on_settings_clear_recents_clicked)
 
-        if len(passwordsafe.config_manager.get_last_opened_list()) is 0:
+        if passwordsafe.config_manager.get_last_opened_list():
             settings_clear_button.set_sensitive(False)
 
         settings_remember_switch = self.builder.get_object("settings_remember_switch")
@@ -108,7 +108,7 @@ class SettingsDialog():
 
     def on_settings_clear_recents_clicked(self, widget):
         passwordsafe.config_manager.set_last_opened_list([])
-        if self.window.container is not NotImplemented and self.window.container.get_n_pages() is 0 or self.window.container is NotImplemented:
+        if self.window.container is NotImplemented or not self.window.container.get_n_pages():
             builder = Gtk.Builder()
             builder.add_from_resource(
                 "/org/gnome/PasswordSafe/main_window.ui")

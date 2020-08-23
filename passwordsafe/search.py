@@ -97,12 +97,12 @@ class Search:
             scrolled_page.add(viewport)
             scrolled_page.show_all()
             self.unlocked_database.stack.add_named(scrolled_page, "search")
-            if len(self.search_list_box.get_children()) is 0:
+            if self.search_list_box.get_children():
+                self.search_list_box.show()
+            else:
                 info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
                 self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
                 self.search_list_box.hide()
-            else:
-                self.search_list_box.show()
 
         self.unlocked_database.stack.set_visible_child(self.unlocked_database.stack.get_child_by_name("search"))
 
@@ -125,7 +125,7 @@ class Search:
         GLib.idle_add(self.search_overlay_creation, widget, result_list, empty_search_overlay, info_search_overlay)
 
     def search_overlay_creation(self, widget, result_list, empty_search_overlay, info_search_overlay):
-        if widget.get_text() is not "":
+        if widget.get_text():
             if empty_search_overlay in self.unlocked_database.search_overlay:
                 self.unlocked_database.search_overlay.remove(empty_search_overlay)
 
@@ -189,11 +189,11 @@ class Search:
 
         self.search_list_box.show()
 
-        if len(self.search_list_box.get_children()) is 0:
+        if self.search_list_box.get_children():
+            self.search_list_box.show()
+        else:
             self.unlocked_database.search_overlay.add_overlay(empty_search_overlay)
             self.search_list_box.hide()
-        else:
-            self.search_list_box.show()
 
     #
     # Events
@@ -253,21 +253,21 @@ class Search:
 
     def on_headerbar_search_entry_enter_pressed(self, widget):
         self.unlocked_database.start_database_lock_timer()
-        if widget.get_text() is not "":
+        if widget.get_text():
             uuid = NotImplemented
             first_row = NotImplemented
 
             if len(self.search_list_box.get_children()) != 0:
                 selected_row = self.search_list_box.get_selected_row()
                 if selected_row is None:
-                    if self.search_list_box.get_children()[0].type is "GroupRow":
+                    if self.search_list_box.get_children()[0].type == "GroupRow":
                         uuid = self.search_list_box.get_children()[0].get_uuid()
                         first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
                     else:
                         uuid = self.search_list_box.get_children()[0].get_uuid()
                         first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
                 else:
-                    if selected_row.type is "GroupRow":
+                    if selected_row.type == "GroupRow":
                         uuid = selected_row.get_uuid()
                         first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
                     else:

@@ -432,14 +432,14 @@ class UnlockedDatabase:
         for entry_row in sorted_list:
             list_box.add(entry_row)
 
-        if len(list_box.get_children()) is 0:
+        if list_box.get_children():
+            list_box.show()
+        else:
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             empty_group_overlay = builder.get_object("empty_group_overlay")
             overlay.add_overlay(empty_group_overlay)
             list_box.hide()
-        else:
-            list_box.show()
 
     def rebuild_all_pages(self):
         for page in self.stack.get_children():
@@ -849,7 +849,7 @@ class UnlockedDatabase:
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
-        if clear_clipboard_time is not 0:
+        if clear_clipboard_time:
             self.clipboard.clear()
 
     def start_database_lock_timer(self):
@@ -859,7 +859,7 @@ class UnlockedDatabase:
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
         timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60
-        if timeout is not 0:
+        if timeout:
             self.database_lock_timer = Timer(timeout, GLib.idle_add, args=[self.lock_timeout_database])
             self.database_lock_timer.start()
 

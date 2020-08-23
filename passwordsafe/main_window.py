@@ -182,10 +182,10 @@ class MainWindow(Gtk.ApplicationWindow):
     def first_start_screen(self):
         filepath = Gio.File.new_for_uri(passwordsafe.config_manager.get_last_opened_database()).get_path()
 
-        if len(self.get_application().file_list) is not 0:
+        if self.get_application().file_list:
             for g_file in self.get_application().file_list:
                 self.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
-        elif passwordsafe.config_manager.get_first_start_screen() is True and filepath is not "" and filepath is not None and os.path.exists(filepath) is True:
+        elif passwordsafe.config_manager.get_first_start_screen() and filepath and os.path.exists(filepath):
             self.logging_manager.debug("Found last opened database (" + filepath + ")")
             tab_title = ntpath.basename(filepath)
             self.start_database_opening_routine(tab_title, filepath)
@@ -201,7 +201,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
 
-        if len(passwordsafe.config_manager.get_last_opened_list()) is not 0:
+        if passwordsafe.config_manager.get_last_opened_list():
             last_opened_list_box = builder.get_object("last_opened_list_box")
             last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
 
@@ -467,7 +467,7 @@ class MainWindow(Gtk.ApplicationWindow):
         else:
             self.container.set_show_tabs(False)
 
-        if self.container.get_n_pages() is 0:
+        if not self.container.get_n_pages():
             self.container.hide()
             self.remove(self.container)
 

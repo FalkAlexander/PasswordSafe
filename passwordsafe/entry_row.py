@@ -58,14 +58,14 @@ class EntryRow(Gtk.ListBoxRow):
             entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
 
         # Title/Name
-        if self.database_manager.has_entry_name(self.entry_uuid) is True and self.label is not "":
+        if self.database_manager.has_entry_name(self.entry_uuid) and self.label:
             entry_name_label.set_text(self.label)
         else:
             entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
 
         # Subtitle
         subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
-        if (self.database_manager.has_entry_username(self.entry_uuid) is True and subtitle is not ""):
+        if (self.database_manager.has_entry_username(self.entry_uuid) and subtitle):
             username = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
             if username.startswith("{REF:U"):
                 entry_subtitle_label.set_text(self.database_manager.get_entry_username_from_entry_uuid(u.UUID(self.unlocked_database.reference_to_hex_uuid(username))))

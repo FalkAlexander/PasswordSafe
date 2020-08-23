@@ -22,11 +22,11 @@ class ResponsiveUI:
     def action_bar(self):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
         if self.unlocked_database.window.mobile_width is True:
-            if len(self.unlocked_database.pathbar.viewport.get_children()) is not 0:
+            if self.unlocked_database.pathbar.viewport.get_children():
                 self.unlocked_database.pathbar.viewport.remove(self.unlocked_database.pathbar)
                 self.unlocked_database.pathbar.pathbar_box.hide()
 
-            if len(self.unlocked_database.action_bar_box.get_children()) is 0:
+            if self.unlocked_database.action_bar_box.get_children():
                 self.unlocked_database.action_bar_box.add(self.unlocked_database.pathbar)
 
             if scrolled_page.edit_page is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
@@ -36,17 +36,17 @@ class ResponsiveUI:
         else:
             self.unlocked_database.revealer.set_reveal_child(False)
 
-            if len(self.unlocked_database.action_bar_box.get_children()) is not 0:
+            if self.unlocked_database.action_bar_box.get_children():
                 self.unlocked_database.action_bar_box.remove(self.unlocked_database.pathbar)
 
-            if len(self.unlocked_database.pathbar.viewport.get_children()) is 0:
+            if self.unlocked_database.pathbar.viewport.get_children():
                 self.unlocked_database.pathbar.viewport.add(self.unlocked_database.pathbar)
                 self.unlocked_database.pathbar.pathbar_box.show()
 
     def headerbar_title(self):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
         if self.unlocked_database.window.mobile_width is True and self.unlocked_database.selection_ui.selection_mode_active is False:
-            if len(self.unlocked_database.builder.get_object("title_box").get_children()) is not 0:
+            if self.unlocked_database.builder.get_object("title_box").get_children():
                 return
 
             filename_label = self.unlocked_database.builder.get_object("filename_label")
@@ -60,7 +60,7 @@ class ResponsiveUI:
 
             self.unlocked_database.builder.get_object("title_box").add(filename_label)
         else:
-            if len(self.unlocked_database.builder.get_object("title_box").get_children()) is 0:
+            if self.unlocked_database.builder.get_object("title_box").get_children():
                 return
 
             self.unlocked_database.builder.get_object("title_box").remove(self.unlocked_database.builder.get_object("filename_label"))

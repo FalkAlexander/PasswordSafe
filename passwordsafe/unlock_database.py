@@ -1,7 +1,15 @@
 from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
-from pykeepass.exceptions import CredentialsIntegrityError
+try:
+    # These were introduced in pykeepass 3.2.1
+    from pykeepass.exceptions import CredentialsError, PayloadChecksumError, HeaderChecksumError
+except ImportError as e:
+    # fall back to earlier versions. This needs to be removed once we
+    # rely on pykeepass 3.2.1 as a minimum
+    from pykeepass.exceptions import CredentialsIntegrityError
+    CredentialsError =  PayloadChecksumError = HeaderChecksumError =\
+        CredentialsIntegrityError
 import passwordsafe.config_manager
 import ntpath
 import os
@@ -264,7 +272,8 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=self.password_only, keyfile=None, logging_manager=self.window.logging_manager)
             GLib.idle_add(self.password_unlock_success)
-        except(OSError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
+        except(OSError, ValueError, AttributeError, core.ChecksumError,
+               CredentialsError, PayloadChecksumError, HeaderChecksumError):
             GLib.idle_add(self.password_unlock_failure)
 
     def password_unlock_success(self):

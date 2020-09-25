@@ -1,30 +1,12 @@
-stages:
-  - flatpak
-
-variables:
-  BUNDLE: "org.gnome.PasswordSafeDevel.flatpak"
-
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
 flatpak:
     image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
-    stage: flatpak
     variables:
+        APP_ID: org.gnome.PasswordSafeDevel
         MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.json"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
+        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         FLATPAK_MODULE: "passwordsafe"
         MESON_ARGS: "-Dprofile=development"
-    script:
-        - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
-        - flatpak build app meson --prefix=/app ${MESON_ARGS} _build
-        - flatpak build app ninja -C _build install
-        - flatpak-builder --finish-only --repo=repo app ${MANIFEST_PATH}
-        - flatpak build-export repo app
-        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} org.gnome.PasswordSafeDevel
-    artifacts:
-        paths:
-            - ${BUNDLE}
-            - _build/meson-logs/meson-log.txt
-        expire_in: 30 days
-    cache:
-        paths:
-             - .flatpak-builder/cache
+        BUNDLE: "org.gnome.PasswordSafeDevel.flatpak"
+    extends: .flatpak

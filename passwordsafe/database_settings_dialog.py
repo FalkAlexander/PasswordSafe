@@ -107,43 +107,41 @@ class DatabaseSettingsDialog:
     # Password Section
     #
 
-    def on_password_entry_changed(self, entry):
+    def on_password_entry_changed(self, entry: Gtk.Entry) -> None:
+        """CB if password entry (existing or new) has changed"""
+
         self.unlocked_database.start_database_lock_timer()
 
         current_password = self.builder.get_object("current_password_entry").get_text()
-        new_password = self.builder.get_object("new_password_entry").get_text()
-        confirm_password = self.builder.get_object("confirm_password_entry").get_text()
+        new_password_entry = self.builder.get_object("new_password_entry")
+        new_password = new_password_entry.get_text()
+        conf_password_entry = self.builder.get_object("confirm_password_entry")
+        conf_password = conf_password_entry.get_text()
 
         self.new_password = NotImplemented
 
-        if entry.get_name() == "new_entry":
+        # Update the quality level bar
+        if entry.get_name() == "new_entry" and new_password:
             level = passwordsafe.password_generator.strength(new_password)
-            self.builder.get_object("password_level_bar").set_value(float(level))
+            self.builder.get_object("password_level_bar").set_value(level or 0)
 
-        if self.database_manager.password == "" or self.database_manager.password is None:
-            if new_password == "" or confirm_password == "":
-                self.auth_apply_button.set_sensitive(False)
-                return
-        else:
-            if current_password == "" or new_password == "" or confirm_password == "":
-                self.auth_apply_button.set_sensitive(False)
-                return
-
-        if new_password != confirm_password:
+        if new_password != conf_password:
             self.auth_apply_button.set_sensitive(False)
-            self.builder.get_object("new_password_entry").get_style_context().add_class("error")
-            self.builder.get_object("confirm_password_entry").get_style_context().add_class("error")
+            new_password_entry.get_style_context().add_class("error")
+            conf_password_entry.get_style_context().add_class("error")
             return
+        new_password_entry.get_style_context().remove_class("error")
+        conf_password_entry.get_style_context().remove_class("error")
 
-        self.builder.get_object("new_password_entry").get_style_context().remove_class("error")
-        self.builder.get_object("confirm_password_entry").get_style_context().remove_class("error")
-
-        if current_password != self.database_manager.password and self.database_manager.password != "" and self.database_manager.password is not None:
+        if (self.database_manager.password != current_password
+           or (not new_password or not conf_password)):
+            # 1) existing db password != current one entered
+            # 2) Nothing entered for new and/or confirmed password
             self.auth_apply_button.set_sensitive(False)
             return
 
         self.auth_apply_button.set_sensitive(True)
-        self.new_password = confirm_password
+        self.new_password = new_password
 
     def on_generate_password(self, _widget, _position, _eventbutton):
         new_password_entry = self.builder.get_object("new_password_entry")

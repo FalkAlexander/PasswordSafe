@@ -3,7 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libhandy" version="1.0"/>
-  <object class="HdyDialog" id="database_settings_dialog">
+  <object class="GtkDialog" id="database_settings_dialog">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <property name="default_height">400</property>

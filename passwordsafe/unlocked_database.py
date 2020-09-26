@@ -668,7 +668,7 @@ class UnlockedDatabase:
 
         self.show_database_action_revealer(_("Copied to clipboard"))
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
-        self.clipboard_timer = Timer(clear_clipboard_time, self.clear_clipboard)
+        self.clipboard_timer = Timer(clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard])
         self.clipboard_timer.start()
 
     def on_database_settings_entry_clicked(self, action, param):

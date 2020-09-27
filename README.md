@@ -67,7 +67,7 @@ flatpak install org.gnome.PasswordSafeDevel.flatpak
 * gtk >= 3.24.1
 * libhandy >= 0.90
 * libpwquality >= 1.4.0
-* meson >= 0.46.0
+* meson >= 0.50.0
 * git
 
 ```

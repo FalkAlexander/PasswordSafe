@@ -761,8 +761,12 @@ class DatabaseManager():
         else:
             return self.parent_checker(current_group.parentgroup, moved_group)
 
-    def get_database_encryption(self):
+    @property
+    def encryption(self):
+        """returns the encryption algorithm"""
         return self.db.encryption_algorithm
 
-    def get_database_derivation(self):
+    @property
+    def version(self):
+        """returns the database version"""
         return self.db.version

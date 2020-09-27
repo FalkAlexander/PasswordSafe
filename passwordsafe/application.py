@@ -63,6 +63,7 @@ class Application(Gtk.Application):
 
         quit_action = Gio.SimpleAction.new("quit", None)
         quit_action.connect("activate", self.on_quit_menu_clicked)
+        self.set_accels_for_action("app.quit", ["<Control>q"])
 
         shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
         shortcuts_action.connect("activate", self.on_shortcuts_menu_clicked)

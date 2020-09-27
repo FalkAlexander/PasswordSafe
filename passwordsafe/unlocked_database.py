@@ -490,8 +490,8 @@ class UnlockedDatabase:
 
     def on_lock_button_clicked(self, widget):
         # shows save dialog if required
-        # it also locks the dabase if needed
         self.show_save_dialog()
+        self.lock_database()
 
     def on_add_entry_button_clicked(self, widget):
         self.builder.get_object("menubutton_popover").popdown()
@@ -711,7 +711,6 @@ class UnlockedDatabase:
         else:
             assert False, "Unknown Dialog Response!"
 
-        self.lock_database()
         return True
 
     def show_references_dialog(self, action, param):

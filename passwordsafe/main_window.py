@@ -548,23 +548,6 @@ class MainWindow(Gtk.ApplicationWindow):
         else:
             self.databases_to_save.remove(db)
 
-    def on_back_button_clicked(self, button):
-        self.databases_to_save.clear()
-        self.quit_dialog.destroy()
-
-    def on_quit_button_clicked(self, button):
-        for db in self.opened_databases:
-            db.cancel_timers()
-            db.unregister_dbus_signal()
-            db.clipboard.clear()
-
-        if len(self.databases_to_save) > 0:
-            save_thread = threading.Thread(target=self.threaded_database_saving)
-            save_thread.daemon = False
-            save_thread.start()
-        else:
-            self.application.quit()
-
     #
     # Application Quit Dialog
     #
@@ -584,9 +567,11 @@ class MainWindow(Gtk.ApplicationWindow):
         """Clean up unsaved databases, and shutdown
 
         This function is invoked by the application.quit method
-        :returns: True if shutdown should proceed, False to abort the shutdown
+        :returns: True if handled (don't quit), False if shutdown
         """
         unsaved_databases_list = []
+        self.databases_to_save.clear()
+
         for db in self.opened_databases:
             if db.database_manager.changes \
                and not db.database_manager.save_running:
@@ -598,18 +583,17 @@ class MainWindow(Gtk.ApplicationWindow):
                 else:
                     unsaved_databases_list.append(db)
 
-        if unsaved_databases_list.__len__() > 1:
+        if len(unsaved_databases_list) == 1:
+            res = db.show_save_dialog() # This will also save it
+            if not res:
+                return True # User Canceled, don't quit
+        elif len(unsaved_databases_list) > 1:
+            # Multiple unsaved files, ask which to save
             builder = Gtk.Builder()
             builder.add_from_resource(
                 "/org/gnome/PasswordSafe/quit_dialog.ui")
             self.quit_dialog = builder.get_object("quit_dialog")
             self.quit_dialog.set_transient_for(self)
-
-            back_button = builder.get_object("back_button")
-            quit_button = builder.get_object("quit_button")
-
-            back_button.connect("clicked", self.on_back_button_clicked)
-            quit_button.connect("clicked", self.on_quit_button_clicked)
 
             unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
 
@@ -626,32 +610,32 @@ class MainWindow(Gtk.ApplicationWindow):
                 unsaved_database_row.show_all()
                 unsaved_databases_list_box.add(unsaved_database_row)
 
-                for tmpfile in db.scheduled_tmpfiles_deletion:
-                    try:
-                        tmpfile.delete()
-                    except Exception:
-                        self.logging_manager.warning("Skipping deletion of tmpfile...")
-
-            self.quit_dialog.present()
-            return(True)
-
-        # We should only really have max. 1 unsaved database here
-        assert (len(unsaved_databases_list) <= 1), \
-            "Expected only 1 unsaved database."
-        for db in unsaved_databases_list:
-            res = db.show_save_dialog()
-            if not res:
-                return False # User Canceled, don't quit
-            self.close_tab(db.parent_widget)
-            for db2 in self.opened_databases:
-                if db.database_manager.database_path == db2.database_manager.database_path:
-                    self.opened_databases.remove(db)
+            res = self.quit_dialog.run()
+            self.quit_dialog.destroy()
+            if res == Gtk.ResponseType.CANCEL:
+                self.databases_to_save.clear()
+                return True
+            elif res == Gtk.ResponseType.OK:
+                pass # Do noting, go on...
 
         for db in self.opened_databases:
             db.cancel_timers()
             db.unregister_dbus_signal()
             db.clipboard.clear()
-        return True
+            for tmpfile in db.scheduled_tmpfiles_deletion:
+                try:
+                    tmpfile.delete()
+                except Exception:
+                    self.logging_manager.warning("Skipping deletion of tmpfile...")
+
+        self.save_window_size()
+        if self.databases_to_save:
+            # This will invoke application.quit() when done...
+            save_thread = threading.Thread(target=self.threaded_database_saving)
+            save_thread.daemon = False
+            save_thread.start()
+            return True
+        return False # caller should quit() the app
     #
     # Gio Actions
     #
@@ -822,11 +806,10 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def threaded_database_saving(self):
+        """Saves all databases and calls quit()
+
+        Suitable to be called from a separate thread"""
         for db in self.databases_to_save:
             db.database_manager.save_database()
+        GLib.idle_add(self.application.quit)
 
-        GLib.idle_add(self.quit_gtkwindow)
-
-    def quit_gtkwindow(self):
-        self.quit_dialog.destroy()
-        self.application.quit()

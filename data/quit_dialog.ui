@@ -21,10 +21,11 @@
             <property name="layout_style">expand</property>
             <child>
               <object class="GtkButton" id="back_button">
-                <property name="label" translatable="yes">Back</property>
+                <property name="label">gtk-cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -102,5 +103,9 @@
         </child>
       </object>
     </child>
+    <action-widgets>
+      <action-widget response="-6">back_button</action-widget>
+      <action-widget response="-8">quit_button</action-widget>
+    </action-widgets>
   </object>
 </interface>

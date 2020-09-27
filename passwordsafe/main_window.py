@@ -48,7 +48,6 @@ class MainWindow(Gtk.ApplicationWindow):
         self.create_headerbar()
         self.first_start_screen()
 
-        self.connect("delete-event", self.on_application_quit)
         self.connect("check-resize", self.responsive_listener)
 
         self.custom_css()
@@ -574,7 +573,7 @@ class MainWindow(Gtk.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def on_application_quit(self, window, event):
+    def do_delete_event(self, window, event):
         unsaved_databases_list = []
         for db in self.opened_databases:
             if db.database_manager.changes is True and db.database_manager.save_running is False:

@@ -511,11 +511,7 @@ class UnlockedDatabase:
         if tab_close is True:
             self.window.close_tab(self.parent_widget)
 
-        if quit is True:
-            self.window.save_window_size()
-            self.window.application.quit()
-
-    def on_save_dialog_discard_button_clicked(self, widget, save_dialog, tab_close, timeout, quit):
+    def on_save_dialog_discard_button_clicked(self, widget, save_dialog, tab_close, timeout):
         save_dialog.destroy()
         self.lock_database()
 
@@ -527,10 +523,6 @@ class UnlockedDatabase:
 
         if tab_close is True:
             self.window.close_tab(self.parent_widget)
-
-        if quit is True:
-            self.window.save_window_size()
-            self.window.application.quit()
 
     def on_add_entry_button_clicked(self, widget):
         self.builder.get_object("menubutton_popover").popdown()
@@ -719,7 +711,7 @@ class UnlockedDatabase:
     # Dialog Creator
     #
 
-    def show_save_dialog(self, tab_close=None, timeout=None, quit=None):
+    def show_save_dialog(self, tab_close=None, timeout=None):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
 
@@ -730,8 +722,8 @@ class UnlockedDatabase:
         discard_button = builder.get_object("discard_button")
         save_button = builder.get_object("save_button")
 
-        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog, tab_close, timeout, quit)
-        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close, timeout, quit)
+        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog, tab_close, timeout)
+        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close, timeout)
 
         save_dialog.present()
 

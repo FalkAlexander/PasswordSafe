@@ -563,7 +563,7 @@ class MainWindow(Gtk.ApplicationWindow):
             save_thread.daemon = False
             save_thread.start()
         else:
-            self.quit_gtkwindow()
+            self.application.quit()
 
     #
     # Application Quit Dialog
@@ -633,8 +633,6 @@ class MainWindow(Gtk.ApplicationWindow):
                 db.clipboard.clear()
                 return(True)
         else:
-            self.save_window_size()
-
             for db in self.opened_databases:
                 db.cancel_timers()
                 db.clipboard.clear()
@@ -816,5 +814,4 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def quit_gtkwindow(self):
         self.quit_dialog.destroy()
-        self.save_window_size()
         self.application.quit()

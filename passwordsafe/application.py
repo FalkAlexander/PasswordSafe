@@ -87,6 +87,11 @@ class Application(Gtk.Application):
 
     def on_quit_menu_clicked(self, action, param):
         self.quit()
+        
+    def quit(self):
+        print("QUIT")
+        self.window.save_window_size()
+        super().quit()
 
     def on_shortcuts_menu_clicked(self, action, param):
         builder = Gtk.Builder()

@@ -603,9 +603,6 @@ class MainWindow(Gtk.ApplicationWindow):
             builder.add_from_resource(
                 "/org/gnome/PasswordSafe/quit_dialog.ui")
             self.quit_dialog = builder.get_object("quit_dialog")
-
-            self.quit_dialog.set_destroy_with_parent(True)
-            self.quit_dialog.set_modal(True)
             self.quit_dialog.set_transient_for(self)
 
             back_button = builder.get_object("back_button")

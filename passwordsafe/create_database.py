@@ -165,12 +165,10 @@ class CreateDatabase:
 
     def on_password_check_button_clicked(self, _widget):
         password_check_input = self.builder.get_object("password_check_input")
-        self.database_manager.set_password_check(
-            password_check_input.get_text())
+        password_check = password_check_input.get_text()
 
-        if self.database_manager.compare_passwords():
-            self.database_manager.set_database_password(
-                password_check_input.get_text())
+        if self.database_manager.compare_passwords(password_check):
+            self.database_manager.set_database_password(password_check)
 
             save_thread = threading.Thread(target=self.save_pwc_database_thread)
             save_thread.daemon = True

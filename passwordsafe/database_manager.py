@@ -23,7 +23,6 @@ class DatabaseManager():
     db = NotImplemented
     database_path = ""
     password_try = ""
-    password_check = ""
     password = ""
     keyfile_hash = NotImplemented
     is_dirty = False  # Does the database need saving?
@@ -725,22 +724,18 @@ class DatabaseManager():
     def set_password_try(self, password):
         self.password_try = password
 
-    # Set the second password entered by the user (for comparing reasons)
-    def set_password_check(self, password):
-        self.password_check = password
+    def compare_passwords(self, password2: str) -> bool:
+        """Compare the first password entered by the user with the second one
 
-    # Compare the first password entered by the user with the second one
-    def compare_passwords(self):
-        if self.password_try == self.password_check:
-            if self.password_try == "" and self.password_check == "":
-                return False
-            else:
-                return True
-        else:
-            return False
+        It also does not allow empty passwords.
+        :returns: True if passwords match and are non-empty.
+        """
+        if password2 and self.password_try == password2:
+            return True
+        return False
 
-    # Create keyfile hash
     def create_keyfile_hash(self, keyfile_path):
+        """Create keyfile hash and returns it"""
         hasher = hashlib.sha512()
         with open(keyfile_path, 'rb') as file:
             buffer = 0

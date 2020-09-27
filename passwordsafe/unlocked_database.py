@@ -489,40 +489,9 @@ class UnlockedDatabase:
             self.show_database_action_revealer(_("No changes made"))
 
     def on_lock_button_clicked(self, widget):
-        if self.database_manager.made_database_changes() is True:
-            self.show_save_dialog()
-        else:
-            self.lock_database()
-
-    def on_save_dialog_save_button_clicked(self, widget, save_dialog, tab_close, timeout, quit):
-        save_thread = threading.Thread(target=self.database_manager.save_database)
-        save_thread.daemon = False
-        save_thread.start()
-
-        save_dialog.destroy()
-        self.lock_database()
-
-        if timeout is True:
-            for db in self.window.opened_databases:
-                if db.database_manager.database_path == self.database_manager.database_path:
-                    self.window.opened_databases.remove(db)
-            self.window.close_tab(self.parent_widget)
-
-        if tab_close is True:
-            self.window.close_tab(self.parent_widget)
-
-    def on_save_dialog_discard_button_clicked(self, widget, save_dialog, tab_close, timeout):
-        save_dialog.destroy()
-        self.lock_database()
-
-        if timeout is True:
-            for db in self.window.opened_databases:
-                if db.database_manager.database_path == self.database_manager.database_path:
-                    self.window.opened_databases.remove(db)
-            self.window.close_tab(self.parent_widget)
-
-        if tab_close is True:
-            self.window.close_tab(self.parent_widget)
+        # shows save dialog if required
+        # it also locks the dabase if needed
+        self.show_save_dialog()
 
     def on_add_entry_button_clicked(self, widget):
         self.builder.get_object("menubutton_popover").popdown()
@@ -711,21 +680,39 @@ class UnlockedDatabase:
     # Dialog Creator
     #
 
-    def show_save_dialog(self, tab_close=None, timeout=None):
+    def show_save_dialog(self) -> bool:
+        """ Show the save confirmation dialog
+
+        Saves the db and closes the tab.
+        :returns: True if we saved, False if the whole thing should be aborted
+        """
+        if not self.database_manager.made_database_changes() \
+           or self.database_manager.save_running:
+            return True # no dirty db, do nothing.
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
-
         save_dialog = builder.get_object("save_dialog")
-        save_dialog.set_destroy_with_parent(True)
         save_dialog.set_transient_for(self.window)
 
-        discard_button = builder.get_object("discard_button")
-        save_button = builder.get_object("save_button")
+        res = save_dialog.run()
+        save_dialog.destroy()
+        if res == Gtk.ResponseType.NONE:
+            # Cancel everything, don't quit
+            return False
+        elif res == Gtk.ResponseType.NO:
+            # clicked 'Discard'. Close, but don't save
+            pass # We are done with this db.
+        elif res == Gtk.ResponseType.YES:
+            # "clicked save". Save changes
+            save_thread = threading.Thread(
+                target=self.database_manager.save_database)
+            save_thread.daemon = False
+            save_thread.start()
+        else:
+            assert False, "Unknown Dialog Response!"
 
-        discard_button.connect("clicked", self.on_save_dialog_discard_button_clicked, save_dialog, tab_close, timeout)
-        save_button.connect("clicked", self.on_save_dialog_save_button_clicked, save_dialog, tab_close, timeout)
-
-        save_dialog.present()
+        self.lock_database()
+        return True
 
     def show_references_dialog(self, action, param):
         ReferencesDialog(self)

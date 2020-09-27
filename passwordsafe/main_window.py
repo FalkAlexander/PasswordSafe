@@ -515,7 +515,7 @@ class MainWindow(Gtk.ApplicationWindow):
                         save_thread.daemon = False
                         save_thread.start()
                     else:
-                        db.show_save_dialog(True)
+                        db.show_save_dialog()
                 else:
                     self.container.remove_page(page_num)
                     self.update_tab_bar_visibility()
@@ -573,10 +573,23 @@ class MainWindow(Gtk.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, window, event):
+    def do_delete_event(self, window) ->bool:
+        """invoked when we hit the window close button"""
+        # Just invoke the app.quit action, it cleans up stuff
+        # and will invoke the on_application_shutdown()
+        self.application.activate_action("quit")
+        return True # we handled event, don't call destroy
+
+    def on_application_shutdown(self) ->bool:
+        """Clean up unsaved databases, and shutdown
+
+        This function is invoked by the application.quit method
+        :returns: True if shutdown should proceed, False to abort the shutdown
+        """
         unsaved_databases_list = []
         for db in self.opened_databases:
-            if db.database_manager.changes is True and db.database_manager.save_running is False:
+            if db.database_manager.changes \
+               and not db.database_manager.save_running:
                 if passwordsafe.config_manager.get_save_automatically() is True:
                     db.stop_save_loop()
                     save_thread = threading.Thread(target=db.database_manager.save_database)
@@ -623,20 +636,25 @@ class MainWindow(Gtk.ApplicationWindow):
                         self.logging_manager.warning("Skipping deletion of tmpfile...")
 
             self.quit_dialog.present()
-
             return(True)
-        elif unsaved_databases_list.__len__() == 1:
-            for db in unsaved_databases_list:
-                db.cancel_timers()
-                db.unregister_dbus_signal()
-                db.show_save_dialog(True, False, True)
-                db.clipboard.clear()
-                return(True)
-        else:
-            for db in self.opened_databases:
-                db.cancel_timers()
-                db.clipboard.clear()
 
+        # We should only really have max. 1 unsaved database here
+        assert (len(unsaved_databases_list) <= 1), \
+            "Expected only 1 unsaved database."
+        for db in unsaved_databases_list:
+            res = db.show_save_dialog()
+            if not res:
+                return False # User Canceled, don't quit
+            self.close_tab(db.parent_widget)
+            for db2 in self.opened_databases:
+                if db.database_manager.database_path == db2.database_manager.database_path:
+                    self.opened_databases.remove(db)
+
+        for db in self.opened_databases:
+            db.cancel_timers()
+            db.unregister_dbus_signal()
+            db.clipboard.clear()
+        return True
     #
     # Gio Actions
     #

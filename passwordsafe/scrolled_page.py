@@ -3,7 +3,7 @@ from gi.repository import Gtk
 
 class ScrolledPage(Gtk.ScrolledWindow):
     edit_page = False
-    made_database_changes = False
+    is_dirty = False # Whether the database needs saving
 
     all_properties_revealed = False
     show_all_properties_button = NotImplemented
@@ -70,9 +70,3 @@ class ScrolledPage(Gtk.ScrolledWindow):
 
     def check_is_edit_page(self):
         return self.edit_page
-
-    def get_made_database_changes(self):
-        return self.made_database_changes
-
-    def set_made_database_changes(self, bool):
-        self.made_database_changes = bool

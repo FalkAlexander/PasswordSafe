@@ -509,7 +509,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 db.stop_save_loop()
                 db.clipboard.clear()
                 is_contained = True
-                if db.database_manager.made_database_changes() is True:
+                if db.database_manager.is_dirty:
                     if passwordsafe.config_manager.get_save_automatically() is True:
                         save_thread = threading.Thread(target=db.database_manager.save_database)
                         save_thread.daemon = False
@@ -573,7 +573,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.databases_to_save.clear()
 
         for db in self.opened_databases:
-            if db.database_manager.changes \
+            if db.database_manager.is_dirty \
                and not db.database_manager.save_running:
                 if passwordsafe.config_manager.get_save_automatically() is True:
                     db.stop_save_loop()

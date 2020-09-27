@@ -3,6 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkMessageDialog" id="save_dialog">
+    <property name="modal">True</property>
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
     <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes. ">Unsaved Changes</property>

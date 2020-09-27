@@ -725,7 +725,6 @@ class UnlockedDatabase:
 
         save_dialog = builder.get_object("save_dialog")
         save_dialog.set_destroy_with_parent(True)
-        save_dialog.set_modal(True)
         save_dialog.set_transient_for(self.window)
 
         discard_button = builder.get_object("discard_button")

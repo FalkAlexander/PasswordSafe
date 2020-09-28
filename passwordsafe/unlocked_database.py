@@ -215,21 +215,13 @@ class UnlockedDatabase:
 
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
-
             scrolled_window = ScrolledPage(True)
-
-            viewport = Gtk.Viewport()
             scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
             # Responsive Container
             hdy_page = Handy.Clamp()
-            hdy_page.set_maximum_size(600)
-            hdy_page.set_margin_top(18)
-            hdy_page.set_margin_bottom(18)
             hdy_page.add(scrolled_window.properties_list_box)
-            viewport.add(hdy_page)
-
-            scrolled_window.add(viewport)
+            scrolled_window.add(hdy_page)
             scrolled_window.show_all()
 
             stack_page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)

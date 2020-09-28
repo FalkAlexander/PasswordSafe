@@ -253,30 +253,26 @@ class Search:
 
     def on_headerbar_search_entry_enter_pressed(self, widget):
         self.unlocked_database.start_database_lock_timer()
-        if widget.get_text():
-            uuid = NotImplemented
-            first_row = NotImplemented
 
-            if len(self.search_list_box.get_children()) != 0:
-                selected_row = self.search_list_box.get_selected_row()
-                if selected_row is None:
-                    if self.search_list_box.get_children()[0].type == "GroupRow":
-                        uuid = self.search_list_box.get_children()[0].get_uuid()
-                        first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
-                    else:
-                        uuid = self.search_list_box.get_children()[0].get_uuid()
-                        first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
-                else:
-                    if selected_row.type == "GroupRow":
-                        uuid = selected_row.get_uuid()
-                        first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
-                    else:
-                        uuid = selected_row.get_uuid()
-                        first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
+        # Do nothing on empty search terms or no search results
+        if not widget.get_text(): return
+        if len(self.search_list_box.get_children()) == 0: return
 
-                self.unlocked_database.current_group = first_row
-                self.unlocked_database.pathbar.add_pathbar_button_to_pathbar(uuid)
-                self.unlocked_database.show_page_of_new_directory(False, False)
+        uuid = NotImplemented
+        first_row = NotImplemented
+        selected_row = self.search_list_box.get_selected_row()
+
+        if selected_row is None:
+            selected_row = self.search_list_box.get_children()[0]
+        uuid = selected_row.get_uuid()
+        if selected_row.type == "GroupRow":
+            first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
+        else:
+            first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
+
+        self.unlocked_database.current_group = first_row
+        self.unlocked_database.pathbar.add_pathbar_button_to_pathbar(uuid)
+        self.unlocked_database.show_page_of_new_directory(False, False)
 
 
     def on_search_filter_switch_toggled(self, switch_button, gparam):

@@ -526,7 +526,7 @@ class UnlockedDatabase:
             self.database_manager.delete_entry_from_database(element_to_delete)
 
         # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-        if self.pathbar.is_pathbar_button_in_pathbar(uuid) is True:
+        if self.pathbar.uuid_in_pathbar(uuid):
             self.pathbar.rebuild_pathbar(self.current_group)
 
         self.update_current_stack_page()

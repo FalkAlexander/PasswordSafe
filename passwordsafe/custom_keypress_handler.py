@@ -87,45 +87,46 @@ class CustomKeypressHandler:
             else:
                 return self.iterate_parents(child.get_parent())
 
-    def on_special_key_released(self, _window, eventkey):
-        group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
+    def on_special_key_released(self, window, eventkey):
+        current_group = self.unlocked_database.current_group
+        if (self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) != self.unlocked_database.window.container.get_current_page()
+                or self.unlocked_database.database_locked
+                or (self.unlocked_database.database_manager.check_is_group_object(current_group)
+                    and self.unlocked_database.database_manager.check_is_root_group(current_group))
+                or self.unlocked_database.selection_ui.selection_mode_active
+                or self.unlocked_database.stack.get_visible_child() is self.unlocked_database.stack.get_child_by_name("search")):
+            return
 
-        if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
-            if self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.database_manager.check_is_group(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)) and scrolled_page.edit_page is False:
-                if self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
-                    if eventkey.keyval == Gdk.KEY_BackSpace:
-                        uuid = self.unlocked_database.stack.get_visible_child_name()
-                        if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.current_group) is False:
-                            if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(u.UUID(uuid))) is True:
-                                self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
-                            else:
-                                for button in self.unlocked_database.pathbar:
-                                    if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
-                                        if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(u.UUID(uuid))):
-                                            self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
-            elif self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
-                if eventkey.keyval == Gdk.KEY_Escape:
-                    uuid = u.UUID(self.unlocked_database.stack.get_visible_child_name())
-                    if self.unlocked_database.database_manager.check_is_group(uuid):
-                        scrolled_page = self.unlocked_database.stack.get_child_by_name(uuid.urn)
-                        if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)) is True:
-                            self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
-                        else:
-                            if scrolled_page.edit_page is True:
-                                for button in self.unlocked_database.pathbar:
-                                    if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
-                                        if self.unlocked_database.database_manager.get_group(uuid) is None:
-                                            return
-                                        if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)):
-                                            self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
-                    else:
-                        if self.unlocked_database.database_manager.check_is_root_group(self.unlocked_database.database_manager.get_entry_parent_group_from_uuid(uuid)) is True:
-                            self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
-                        else:
-                            for button in self.unlocked_database.pathbar:
-                                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
-                                    if self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid) is None:
-                                        return
-                                    if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_entry_parent_group_from_uuid(uuid)):
-                                        self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
+        group_uuid = self.unlocked_database.current_group.uuid
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
+        uuid = u.UUID(self.unlocked_database.stack.get_visible_child_name())
+        if (eventkey.keyval == Gdk.KEY_BackSpace
+                and self.unlocked_database.database_manager.check_is_group(group_uuid)
+                and not scrolled_page.edit_page):
+            parent_group = self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)
+            if self.unlocked_database.database_manager.check_is_root_group(parent_group):
+                self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
+            else:
+                for button in self.unlocked_database.pathbar:
+                    if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                        if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(parent_group):
+                            self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
+        elif (eventkey.keyval == Gdk.KEY_Escape
+              and scrolled_page.edit_page):
+            if self.unlocked_database.database_manager.check_is_group(uuid):
+                parent_group = self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)
+                if self.unlocked_database.database_manager.check_is_root_group(parent_group):
+                    self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
+                elif self.unlocked_database.database_manager.get_group(uuid):
+                    for button in self.unlocked_database.pathbar:
+                        if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                            if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(parent_group):
+                                self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
+            else:
+                parent_group = self.unlocked_database.database_manager.get_entry_parent_group_from_uuid(uuid)
+                if self.unlocked_database.database_manager.check_is_root_group(parent_group):
+                    self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
+                for button in self.unlocked_database.pathbar:
+                    if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                        if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(parent_group):
+                            self.unlocked_database.pathbar.on_pathbar_button_clicked(button)

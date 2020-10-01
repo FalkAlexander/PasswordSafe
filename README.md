@@ -2,8 +2,10 @@
 Password Safe is a password manager which makes use of the KeePass v.4 format.
 It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
-![Screenshot](https://terminal.run/stuff/overview.png)
-![Mobile](https://terminal.run/stuff/passwordsafe-librem5.gif)
+<a href="https://open.lbry.com/Runs-on-Librem-5,-Day-10---Password-Safe">
+<img src="https://spee.ch/b/cbc1343f4c91cda5.png" width="480px" />
+</a>
+<iframe id="lbry-iframe" width="560" height="315" src="https://lbry.tv/$/embed/Runs-on-Librem-5,-Day-10---Password-Safe/4f60c8c59658e699de74d233ac507122472998ce" allowfullscreen></iframe>
 
 ## Features:
 * ⭐ Create or import a KeePass v.4 safe
@@ -20,8 +22,14 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 * 📲 Responsive UI for both desktop and mobile
 
 # Installation
+## Packaging status
+[![Packaging status](https://repology.org/badge/vertical-allrepos/gnome-passwordsafe.svg)](https://repology.org/project/gnome-passwordsafe/versions)
+
 ## Stable Version Available on Flathub
-[![](https://terminal.run/stuff/flathub_download_badge.png)](https://flathub.org/apps/details/org.gnome.PasswordSafe)
+
+<a href="https://flathub.org/apps/details/org.gnome.PasswordSafe">
+<img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" />
+</a>
 
 ## Development Flatpak
 Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak) and extract it.  

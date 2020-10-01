@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
+<!-- Generated with glade 3.22.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libhandy" version="1.0"/>
@@ -132,27 +132,12 @@
             <property name="can_focus">False</property>
             <property name="valign">end</property>
             <child>
-              <object class="GtkScrolledWindow">
+              <object class="GtkBox" id="actionbar_box">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="vscrollbar_policy">never</property>
-                <property name="propagate_natural_width">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
                 <child>
-                  <object class="GtkViewport">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="shadow_type">none</property>
-                    <child>
-                      <object class="GtkBox" id="action_bar_box">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="valign">center</property>
-                        <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
@@ -560,6 +545,77 @@
             <property name="pack_type">end</property>
             <property name="position">3</property>
           </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkHeaderBar" id="headerbar_search">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="show_close_button">True</property>
+    <child>
+      <object class="GtkButton" id="headerbar_search_box_close_button">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">go-previous-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child type="title">
+      <object class="HdyClamp">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="maximum_size">600</property>
+        <child>
+          <object class="GtkBox" id="headerbar_search_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkSearchEntry" id="headerbar_search_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="primary_icon_name">edit-find-symbolic</property>
+                <property name="primary_icon_activatable">False</property>
+                <property name="primary_icon_sensitive">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="headerbar_search_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="popover">search_settings_popover</property>
+                <child>
+                  <object class="GtkImage" id="headerbar_search_button_image">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">pan-down-symbolic</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <style>
+              <class name="linked"/>
+            </style>
+          </object>
         </child>
       </object>
     </child>
@@ -1090,77 +1146,6 @@
       </packing>
     </child>
   </object>
-  <object class="GtkHeaderBar" id="headerbar_search">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="show_close_button">True</property>
-    <child>
-      <object class="GtkButton" id="headerbar_search_box_close_button">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">go-previous-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child type="title">
-      <object class="HdyClamp">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="hexpand">True</property>
-        <property name="maximum_size">600</property>
-        <child>
-          <object class="GtkBox" id="headerbar_search_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkSearchEntry" id="headerbar_search_entry">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hexpand">True</property>
-                <property name="primary_icon_name">edit-find-symbolic</property>
-                <property name="primary_icon_activatable">False</property>
-                <property name="primary_icon_sensitive">False</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkMenuButton" id="headerbar_search_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="popover">search_settings_popover</property>
-                <child>
-                  <object class="GtkImage" id="headerbar_search_button_image">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">pan-down-symbolic</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
   <object class="GtkPopoverMenu" id="secondary_menubutton_popover">
     <property name="can_focus">False</property>
     <child>
@@ -1251,7 +1236,7 @@
     <property name="can_focus">False</property>
     <property name="show_close_button">True</property>
     <child>
-      <object class="GtkBox" id="pathbar_box">
+      <object class="GtkBox" id="headerbar_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>

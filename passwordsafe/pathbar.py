@@ -6,20 +6,15 @@ class Pathbar(Gtk.HBox):
     unlocked_database = NotImplemented
     database_manager = NotImplemented
     path = NotImplemented
-    headerbar = NotImplemented
-    scrolled_window = NotImplemented
-    viewport = NotImplemented
-    pathbar_box = NotImplemented
     builder = NotImplemented
     home_button = NotImplemented
 
-    def __init__(self, unlocked_database, dbm, path, headerbar):
+    def __init__(self, unlocked_database, dbm, path):
         Gtk.HBox.__init__(self)
         self.set_name("Pathbar")
         self.unlocked_database = unlocked_database
         self.database_manager = dbm
         self.path = path
-        self.headerbar = headerbar
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(
@@ -33,25 +28,8 @@ class Pathbar(Gtk.HBox):
 
     def assemble_pathbar(self):
         self.first_appearance()
-        self.show_all()
-
-        self.set_hexpand(False)
-        self.set_vexpand(False)
         self.set_halign(Gtk.Align.START)
-
-        self.scrolled_window = Gtk.ScrolledWindow()
-        self.scrolled_window.set_propagate_natural_width(True)
-        self.scrolled_window.set_propagate_natural_height(True)
-        self.scrolled_window.set_max_content_width(600)
-
-        self.viewport = Gtk.Viewport()
-        self.viewport.add(self)
-        self.scrolled_window.add(self.viewport)
-
-        self.pathbar_box = self.headerbar.get_children()[0]
-        self.pathbar_box.add(self.scrolled_window)
-
-        self.scrolled_window.show_all()
+        self.show_all()
 
     def first_appearance(self):
         self.home_button = self.builder.get_object("home_button")
@@ -89,7 +67,6 @@ class Pathbar(Gtk.HBox):
     #
     # Pathbar Modifications
     #
-
     def add_pathbar_button_to_pathbar(self, uuid):
         self.clear_pathbar()
         pathbar_button_active = self.create_pathbar_button(uuid)

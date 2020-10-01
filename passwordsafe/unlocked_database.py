@@ -40,11 +40,12 @@ class UnlockedDatabase:
     parent_widget = NotImplemented
     headerbar = NotImplemented
     headerbar_search = NotImplemented
+    headerbar_box = NotImplemented
     scrolled_window = NotImplemented
     stack = NotImplemented
     divider = NotImplemented
     revealer = NotImplemented
-    action_bar_box = NotImplemented
+    actionbar_box = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
     search_overlay = NotImplemented
@@ -91,7 +92,6 @@ class UnlockedDatabase:
         self.register_dbus_signal()
 
         # Responsive UI
-        self.responsive_ui.action_bar()
         self.responsive_ui.headerbar_title()
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
@@ -120,7 +120,8 @@ class UnlockedDatabase:
         self.stack = self.builder.get_object("list_stack")
         self.divider = self.builder.get_object("divider")
         self.revealer = self.builder.get_object("revealer")
-        self.action_bar_box = self.builder.get_object("action_bar_box")
+        self.headerbar_box = self.builder.get_object("headerbar_box")
+        self.actionbar_box = self.builder.get_object("actionbar_box")
         self.revealer.set_reveal_child(False)
         self.divider.pack_start(self.stack, True, True, 0)
         self.overlay.add(self.divider)
@@ -171,8 +172,7 @@ class UnlockedDatabase:
 
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)
-
-        self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group(), self.headerbar)
+        self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group())
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
@@ -215,21 +215,13 @@ class UnlockedDatabase:
 
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
-
             scrolled_window = ScrolledPage(True)
-
-            viewport = Gtk.Viewport()
             scrolled_window.properties_list_box = builder.get_object("properties_list_box")
 
             # Responsive Container
             hdy_page = Handy.Clamp()
-            hdy_page.set_maximum_size(600)
-            hdy_page.set_margin_top(18)
-            hdy_page.set_margin_bottom(18)
             hdy_page.add(scrolled_window.properties_list_box)
-            viewport.add(hdy_page)
-
-            scrolled_window.add(viewport)
+            scrolled_window.add(hdy_page)
             scrolled_window.show_all()
 
             stack_page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)

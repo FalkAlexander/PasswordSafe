@@ -20,28 +20,27 @@ class ResponsiveUI:
     #
 
     def action_bar(self):
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
-        if self.unlocked_database.window.mobile_width is True:
-            if self.unlocked_database.pathbar.viewport.get_children():
-                self.unlocked_database.pathbar.viewport.remove(self.unlocked_database.pathbar)
-                self.unlocked_database.pathbar.pathbar_box.hide()
+        db = self.unlocked_database
+        scrolled_page = db.stack.get_child_by_name(db.database_manager.get_group_uuid_from_group_object(db.current_group).urn)
 
-            if self.unlocked_database.action_bar_box.get_children():
-                self.unlocked_database.action_bar_box.add(self.unlocked_database.pathbar)
+        if db.window.mobile_width is True:
+            ## Hide pathbar in header (if it is in there)
+            db.headerbar_box.remove(self.unlocked_database.pathbar)
+            db.headerbar_box.hide()
+            ## and put it in the bottom Action bar instead
+            db.actionbar_box.add(self.unlocked_database.pathbar)
+            db.actionbar_box.show()
 
-            if scrolled_page.edit_page is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
-                self.unlocked_database.revealer.set_reveal_child(True)
+            if not scrolled_page.edit_page and \
+               db.stack.get_visible_child() != db.stack.get_child_by_name("search"):
+                db.revealer.set_reveal_child(True)
             else:
-                self.unlocked_database.revealer.set_reveal_child(False)
+                db.revealer.set_reveal_child(False)
         else:
-            self.unlocked_database.revealer.set_reveal_child(False)
-
-            if self.unlocked_database.action_bar_box.get_children():
-                self.unlocked_database.action_bar_box.remove(self.unlocked_database.pathbar)
-
-            if self.unlocked_database.pathbar.viewport.get_children():
-                self.unlocked_database.pathbar.viewport.add(self.unlocked_database.pathbar)
-                self.unlocked_database.pathbar.pathbar_box.show()
+            db.revealer.set_reveal_child(False)
+            db.actionbar_box.remove(self.unlocked_database.pathbar)
+            db.headerbar_box.add(self.unlocked_database.pathbar)
+            db.headerbar_box.show()
 
     def headerbar_title(self):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)

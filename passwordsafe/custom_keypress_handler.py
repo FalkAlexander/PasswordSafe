@@ -22,9 +22,10 @@ class CustomKeypressHandler:
     # Special Keys (e.g. type-to-search)
     #
 
-    def register_custom_keys(self):
+    def register_custom_events(self):
         self.unlocked_database.window.connect("key-press-event", self.on_special_key_pressed)
         self.unlocked_database.window.connect("key-release-event", self.on_special_key_released)
+        self.unlocked_database.window.connect("button-release-event", self._on_button_released)
 
     def on_special_key_pressed(self, _window, eventkey):
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
@@ -127,3 +128,25 @@ class CustomKeypressHandler:
         elif (eventkey.keyval == Gdk.KEY_Escape
               and scrolled_page.edit_page):
             self._goto_parent_group()
+
+    def _on_button_released(self, widget, event):
+        """Go to the parent group with the back button.
+
+        :param Gtk.Widget widget: the main window
+        :param Gtk.Event event: the event
+        """
+        # Mouse button 8 is the back button.
+        if event.button != 8:
+            return False
+
+        current_group = self.unlocked_database.current_group
+        if (self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) != self.unlocked_database.window.container.get_current_page()
+                or self.unlocked_database.database_locked
+                or (self.unlocked_database.database_manager.check_is_group_object(current_group)
+                    and self.unlocked_database.database_manager.check_is_root_group(current_group))
+                or self.unlocked_database.selection_ui.selection_mode_active
+                or self.unlocked_database.stack.get_visible_child() is self.unlocked_database.stack.get_child_by_name("search")):
+            return False
+
+        self._goto_parent_group()
+        return True

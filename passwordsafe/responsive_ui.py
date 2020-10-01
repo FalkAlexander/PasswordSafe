@@ -24,12 +24,12 @@ class ResponsiveUI:
         scrolled_page = db.stack.get_child_by_name(db.database_manager.get_group_uuid_from_group_object(db.current_group).urn)
 
         if db.window.mobile_width is True:
-            # Hide pathbar in header
-            if db.pathbar.viewport.get_children():
-                db.pathbar.viewport.remove(self.unlocked_database.pathbar)
-                db.pathbar.pathbar_box.hide()
-            # and put it in the bottom Action bar instead
-            db.action_bar_box.add(self.unlocked_database.pathbar)
+            ## Hide pathbar in header (if it is in there)
+            db.headerbar_box.remove(self.unlocked_database.pathbar)
+            db.headerbar_box.hide()
+            ## and put it in the bottom Action bar instead
+            db.actionbar_box.add(self.unlocked_database.pathbar)
+            db.actionbar_box.show()
 
             if not scrolled_page.edit_page and \
                db.stack.get_visible_child() != db.stack.get_child_by_name("search"):
@@ -38,11 +38,9 @@ class ResponsiveUI:
                 db.revealer.set_reveal_child(False)
         else:
             db.revealer.set_reveal_child(False)
-            db.action_bar_box.remove(self.unlocked_database.pathbar)
-
-            if db.pathbar.viewport.get_children():
-                db.pathbar.viewport.add(self.unlocked_database.pathbar)
-                db.pathbar.pathbar_box.show()
+            db.actionbar_box.remove(self.unlocked_database.pathbar)
+            db.headerbar_box.add(self.unlocked_database.pathbar)
+            db.headerbar_box.show()
 
     def headerbar_title(self):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)

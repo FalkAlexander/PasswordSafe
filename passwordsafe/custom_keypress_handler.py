@@ -109,14 +109,26 @@ class CustomKeypressHandler:
                     pathbar = self.unlocked_database.pathbar
                     pathbar.on_pathbar_button_clicked(button)
 
-    def on_special_key_released(self, window, eventkey):
+    def _can_goto_parent_group(self):
+        """Check that the current item in the pathbar has a parent."""
         current_group = self.unlocked_database.current_group
-        if (self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) != self.unlocked_database.window.container.get_current_page()
-                or self.unlocked_database.database_locked
-                or (self.unlocked_database.database_manager.check_is_group_object(current_group)
-                    and self.unlocked_database.database_manager.check_is_root_group(current_group))
-                or self.unlocked_database.selection_ui.selection_mode_active
-                or self.unlocked_database.stack.get_visible_child() is self.unlocked_database.stack.get_child_by_name("search")):
+        db_view = self.unlocked_database
+        db_manager = db_view.database_manager
+        container = db_view.window.container
+        current_page = container.get_current_page()
+        search_view = db_view.stack.get_child_by_name("search")
+        if (container.page_num(db_view.parent_widget) != current_page
+                or db_view.database_locked
+                or (db_manager.check_is_group_object(current_group)
+                    and db_manager.check_is_root_group(current_group))
+                or db_view.selection_ui.selection_mode_active
+                or db_view.stack.get_visible_child() is search_view):
+            return False
+
+        return True
+
+    def on_special_key_released(self, window, eventkey):
+        if not self._can_goto_parent_group():
             return
 
         group_uuid = self.unlocked_database.current_group.uuid
@@ -136,16 +148,8 @@ class CustomKeypressHandler:
         :param Gtk.Event event: the event
         """
         # Mouse button 8 is the back button.
-        if event.button != 8:
-            return False
-
-        current_group = self.unlocked_database.current_group
-        if (self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) != self.unlocked_database.window.container.get_current_page()
-                or self.unlocked_database.database_locked
-                or (self.unlocked_database.database_manager.check_is_group_object(current_group)
-                    and self.unlocked_database.database_manager.check_is_root_group(current_group))
-                or self.unlocked_database.selection_ui.selection_mode_active
-                or self.unlocked_database.stack.get_visible_child() is self.unlocked_database.stack.get_child_by_name("search")):
+        if (event.button != 8
+                or not self._can_goto_parent_group()):
             return False
 
         self._goto_parent_group()

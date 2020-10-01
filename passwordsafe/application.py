@@ -1,6 +1,7 @@
 import logging
 import gi
 import sys
+from typing import Optional
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 
@@ -62,7 +63,8 @@ class Application(Gtk.Application):
         about_action.connect("activate", self.on_about_menu_clicked)
 
         quit_action = Gio.SimpleAction.new("quit", None)
-        quit_action.connect("activate", self.on_quit_menu_clicked)
+        quit_action.connect("activate", self.on_quit)
+        self.set_accels_for_action("app.quit", ["<Control>q"])
 
         shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
         shortcuts_action.connect("activate", self.on_shortcuts_menu_clicked)
@@ -84,8 +86,11 @@ class Application(Gtk.Application):
             about_dialog.set_transient_for(self.window)
         about_dialog.present()
 
-    def on_quit_menu_clicked(self, action, param):
-        self.quit()
+    def on_quit(self, action:Optional[Gio.SimpleAction]=None,
+                data=None) -> None:
+        # Perform cleanups, this calls application.quit() itself if `handled`
+        handled = self.window.on_application_shutdown()
+        if not handled: self.quit()
 
     def on_shortcuts_menu_clicked(self, action, param):
         builder = Gtk.Builder()

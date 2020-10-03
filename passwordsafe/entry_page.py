@@ -400,7 +400,7 @@ class EntryPage:
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
 
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
-        scrolled_page.set_made_database_changes(True)
+        scrolled_page.is_dirty = True
 
         if type == "name":
             self.unlocked_database.database_manager.set_entry_name(entry_uuid, widget.get_text())
@@ -433,7 +433,7 @@ class EntryPage:
         if str(self.unlocked_database.database_manager.get_entry_icon_from_entry_uuid(entry_uuid)) == button.get_name():
             return
 
-        scrolled_page.set_made_database_changes(True)
+        scrolled_page.is_dirty = True
         self.unlocked_database.database_manager.set_entry_icon(entry_uuid, button.get_name())
 
     def on_entry_color_button_toggled(self, button):
@@ -458,7 +458,7 @@ class EntryPage:
             btn.get_children()[0].hide()
 
         button.get_children()[0].show_all()
-        scrolled_page.set_made_database_changes(True)
+        scrolled_page.is_dirty = True
         self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
 
     def on_link_secondary_button_clicked(self, widget, position, eventbutton):
@@ -520,7 +520,7 @@ class EntryPage:
 
         self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, value)
         self.add_attribute_property_row(key, value)
-        scrolled_page.set_made_database_changes(True)
+        scrolled_page.is_dirty = True
 
     def on_attribute_remove_button_clicked(self, button):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)

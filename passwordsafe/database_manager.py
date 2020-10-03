@@ -15,7 +15,7 @@ class DatabaseManager:
     password_check = ""
     password = ""
     keyfile_hash = NotImplemented
-    changes = False
+    is_dirty = False # Does the database need saving?
     save_running = False
     scheduled_saves = 0
     database_file_descriptor = NotImplemented
@@ -335,7 +335,7 @@ class DatabaseManager:
     # Add new group to database
     def add_group_to_database(self, name, icon, notes, parent_group):
         group = self.db.add_group(parent_group, name, icon=icon, notes=notes)
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(parent_group)
 
         return group
@@ -343,7 +343,7 @@ class DatabaseManager:
     # Delete a group
     def delete_group_from_database(self, group):
         self.db.delete_group(group)
-        self.changes = True
+        self.is_dirty = True
         if group.parentgroup is not None:
             self.set_element_mtime(group.parentgroup)
 
@@ -354,7 +354,7 @@ class DatabaseManager:
         entry = self.db.add_entry(
             destination_group, name, username, password, url=url, notes=notes,
             expiry_time=None, tags=None, icon=icon, force_creation=self.check_entry_in_group_exists("", destination_group))
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(destination_group)
 
         return entry
@@ -362,7 +362,7 @@ class DatabaseManager:
     # Delete an entry
     def delete_entry_from_database(self, entry):
         self.db.delete_entry(entry)
-        self.changes = True
+        self.is_dirty = True
         if entry.parentgroup is not None:
             self.set_element_mtime(entry.parentgroup)
 
@@ -390,19 +390,19 @@ class DatabaseManager:
                 value = ""
             clone_entry.set_custom_property(key, value)
 
-        self.changes = True
+        self.is_dirty = True
         if entry.parentgroup is not None:
             self.set_element_mtime(entry.parentgroup)
 
     # Write all changes to database
     def save_database(self):
-        if self.save_running is False and self.changes is True:
+        if self.save_running is False and self.is_dirty:
             self.save_running = True
 
             try:
                 self.db.save()
                 self.logging_manager.debug("Saved database")
-                self.changes = False
+                self.is_dirty = False
             except Exception:
                 self.logging_manager.error("Error occured while saving database")
 
@@ -415,12 +415,12 @@ class DatabaseManager:
     # Set database password
     def set_database_password(self, new_password):
         self.db.password = new_password
-        self.changes = True
+        self.is_dirty = True
 
     # Set database keyfile
     def set_database_keyfile(self, new_keyfile):
         self.db.keyfile = new_keyfile
-        self.changes = True
+        self.is_dirty = True
 
     #
     # Entry Modifications
@@ -429,69 +429,69 @@ class DatabaseManager:
     def set_entry_name(self, uuid, name):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.title = name
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_username(self, uuid, username):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.username = username
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_password(self, uuid, password):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.password = password
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_url(self, uuid, url):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.url = url
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_notes(self, uuid, notes):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.notes = notes
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_icon(self, uuid, icon):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.icon = icon
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_expiry_date(self, uuid, date):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.expiry_time = date
         entry.expires
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_color(self, uuid, color):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.set_custom_property("color_prop_LcljUMJZ9X", color)
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def set_entry_attribute(self, uuid, key, value):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.set_custom_property(key, value)
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def delete_entry_attribute(self, uuid, key):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.delete_custom_property(key)
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(entry)
 
     def add_entry_attachment(self, uuid, bytes, filename):
         entry = self.db.find_entries(uuid=uuid, first=True)
         attachment_id = self.db.add_binary(bytes)
         attachment = entry.add_attachment(attachment_id, filename)
-        self.changes = True
+        self.is_dirty = True
         return attachment
 
     def delete_entry_attachment(self, uuid, attachment):
@@ -501,7 +501,7 @@ class DatabaseManager:
             entry.delete_attachment(attachment)
         except Exception:
             self.logging_manager.warning("Skipping attachment handling...")
-        self.changes = True
+        self.is_dirty = True
 
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
@@ -527,19 +527,19 @@ class DatabaseManager:
     def set_group_name(self, uuid, name):
         group = self.db.find_groups(uuid=uuid, first=True)
         group.name = name
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(group)
 
     def set_group_notes(self, uuid, notes):
         group = self.db.find_groups(uuid=uuid, first=True)
         group.notes = notes
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(group)
 
     def set_group_icon(self, uuid, icon):
         group = self.db.find_groups(uuid=uuid, first=True)
         group.icon = icon
-        self.changes = True
+        self.is_dirty = True
         self.set_element_mtime(group)
 
     # Move an group
@@ -757,10 +757,6 @@ class DatabaseManager:
     # Set keyfile hash
     def set_keyfile_hash(self, keyfile_path):
         self.keyfile_hash = self.create_keyfile_hash(keyfile_path)
-
-    # Get changes
-    def made_database_changes(self):
-        return self.changes
 
     def parent_checker(self, current_group, moved_group):
         if current_group.is_root_group:

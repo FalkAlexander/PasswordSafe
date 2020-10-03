@@ -209,17 +209,16 @@ class Pathbar(Gtk.HBox):
         return edit_page
 
     def check_update_needed(self):
+        """Returns True if the pathbar needs updating"""
         current_group = self.unlocked_database.get_current_group()
         scrolled_page = NotImplemented
-        made_database_changes = NotImplemented
 
         if self.check_is_edit_page_from_group() is True:
             scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group).urn)
         else:
             scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group).urn)
 
-        made_database_changes = scrolled_page.get_made_database_changes()
-        return made_database_changes
+        return scrolled_page.is_dirty
 
     def check_is_edit_page_from_group(self):
         current_group = self.unlocked_database.get_current_group()

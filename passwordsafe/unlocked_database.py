@@ -678,7 +678,7 @@ class UnlockedDatabase:
         Saves the db and closes the tab.
         :returns: True if we saved, False if the whole thing should be aborted
         """
-        if not self.database_manager.made_database_changes() \
+        if not self.database_manager.is_dirty \
            or self.database_manager.save_running:
             return True # no dirty db, do nothing.
         builder = Gtk.Builder()

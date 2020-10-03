@@ -270,7 +270,7 @@ class Pathbar(Gtk.HBox):
         else:
             scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group).urn)
 
-        scrolled_page.set_made_database_changes(False)
+        scrolled_page.is_dirty = False
 
     # Check all values of the group/entry - if all are blank we delete the entry/group and return true (prevents crash)
     def check_values_of_edit_page(self, pathbar_button):

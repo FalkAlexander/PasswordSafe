@@ -90,7 +90,7 @@ class GroupPage:
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
-        scrolled_page.set_made_database_changes(True)
+        scrolled_page.is_dirty = True
 
         if type == "name":
             self.unlocked_database.database_manager.set_group_name(group_uuid, widget.get_text())

@@ -43,8 +43,6 @@ class UnlockDatabase:
     overlay = NotImplemented
     timeout = NotImplemented
     unlocked_database = NotImplemented
-    original_group = NotImplemented
-    original_group_edit_page = NotImplemented
     password_composite = NotImplemented
     password_only = NotImplemented
     unlock_thread = NotImplemented
@@ -55,11 +53,9 @@ class UnlockDatabase:
         self.database_filepath = filepath
         self.unlock_database()
 
-    def unlock_database(self, timeout=None, unlocked_database=None, original_group=NotImplemented, original_group_edit_page=False):
+    def unlock_database(self, timeout=None, unlocked_database=None):
         self.timeout = timeout
         self.unlocked_database = unlocked_database
-        self.original_group = original_group
-        self.original_group_edit_page = original_group_edit_page
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
@@ -249,12 +245,6 @@ class UnlockDatabase:
                     self.unlocked_database.start_save_loop()
                     self.unlocked_database.overlay.show()
                     self.unlocked_database.database_locked = False
-                    if self.original_group is not NotImplemented:
-                        self.unlocked_database.current_group = self.original_group
-                        if self.original_group_edit_page is True:
-                            self.unlocked_database.show_page_of_new_directory(True, False)
-                        else:
-                            self.unlocked_database.show_page_of_new_directory(False, False)
 
                     self.unlocked_database.start_database_lock_timer()
                 else:
@@ -355,12 +345,6 @@ class UnlockDatabase:
                 self.unlocked_database.start_save_loop()
                 self.unlocked_database.overlay.show()
                 self.unlocked_database.database_locked = False
-                if self.original_group is not NotImplemented:
-                    self.unlocked_database.current_group = self.original_group
-                    if self.original_group_edit_page is True:
-                        self.unlocked_database.show_page_of_new_directory(True, False)
-                    else:
-                        self.unlocked_database.show_page_of_new_directory(False, False)
 
                 self.unlocked_database.start_database_lock_timer()
             else:
@@ -472,12 +456,6 @@ class UnlockDatabase:
                 self.unlocked_database.start_save_loop()
                 self.unlocked_database.overlay.show()
                 self.unlocked_database.database_locked = False
-                if self.original_group is not NotImplemented:
-                    self.unlocked_database.current_group = self.original_group
-                    if self.original_group_edit_page is True:
-                        self.unlocked_database.show_page_of_new_directory(True, False)
-                    else:
-                        self.unlocked_database.show_page_of_new_directory(False, False)
 
                 self.unlocked_database.start_database_lock_timer()
             else:

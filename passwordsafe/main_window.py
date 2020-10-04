@@ -129,7 +129,7 @@ class MainWindow(Gtk.ApplicationWindow):
         """Switches all open databases between mobile/desktop layout"""
         for db in self.opened_databases:  # pylint: disable=C0103
             # Do Nothing on Lock Screen
-            if db.database_locked is True:
+            if db.props.database_locked:
                 return
 
             # Do nothing for Search View
@@ -503,7 +503,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         for db in self.opened_databases:  # pylint: disable=C0103
             if db.window.container.page_num(db.parent_widget) == page_num:
-                db.database_locked = True
+                db.props.database_locked = True
                 db.stop_save_loop()
                 db.clipboard.clear()
                 is_contained = True
@@ -735,7 +735,7 @@ class MainWindow(Gtk.ApplicationWindow):
         elif name == "lock":
             action_db.on_lock_button_clicked(None)
         elif name == "add_action":
-            if action_db.database_locked is True:
+            if action_db.props.database_locked:
                 return
 
             if action_db.selection_ui.selection_mode_active is True:

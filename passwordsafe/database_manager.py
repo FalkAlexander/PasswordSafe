@@ -31,6 +31,9 @@ class DatabaseManager(GObject.GObject):
     scheduled_saves = 0
     database_file_descriptor = NotImplemented
 
+    locked = GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+
     def __init__(self, database_path, password=None, keyfile=None):
         super().__init__()
 

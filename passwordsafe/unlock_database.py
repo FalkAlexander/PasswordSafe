@@ -235,18 +235,7 @@ class UnlockDatabase:
             if self.timeout is True:
                 if password_unlock_entry.get_text() == self.unlocked_database.database_manager.password and self.unlocked_database.database_manager.keyfile_hash is NotImplemented:
                     self.parent_widget.remove(self.hdy_page)
-                    if self.unlocked_database.search.search_active is True:
-                        self.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
-                        self.window.set_titlebar(self.unlocked_database.headerbar_search)
-                    else:
-                        self.parent_widget.set_headerbar(self.unlocked_database.headerbar)
-                        self.window.set_titlebar(self.unlocked_database.headerbar)
-
-                    self.unlocked_database.start_save_loop()
-                    self.unlocked_database.overlay.show()
-                    self.unlocked_database.database_locked = False
-
-                    self.unlocked_database.start_database_lock_timer()
+                    self.unlocked_database.database_manager.props.locked = False
                 else:
                     self.show_unlock_failed_revealer()
                     password_unlock_entry.grab_focus()
@@ -335,18 +324,7 @@ class UnlockDatabase:
             if self.keyfile_path is not NotImplemented and self.unlocked_database.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path):
                 self.parent_widget.remove(self.hdy_page)
                 self.keyfile_path = NotImplemented
-                if self.unlocked_database.search.search_active is True:
-                    self.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
-                    self.window.set_titlebar(self.unlocked_database.headerbar_search)
-                else:
-                    self.parent_widget.set_headerbar(self.unlocked_database.headerbar)
-                    self.window.set_titlebar(self.unlocked_database.headerbar)
-
-                self.unlocked_database.start_save_loop()
-                self.unlocked_database.overlay.show()
-                self.unlocked_database.database_locked = False
-
-                self.unlocked_database.start_database_lock_timer()
+                self.unlocked_database.database_manager.props.locked = False
             else:
                 self.show_unlock_failed_revealer()
 
@@ -446,18 +424,7 @@ class UnlockDatabase:
         if self.timeout is True:
             if (self.composite_keyfile_path is not NotImplemented) and (self.unlocked_database.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.composite_keyfile_path)) and (composite_unlock_entry.get_text() == self.unlocked_database.database_manager.password):
                 self.parent_widget.remove(self.hdy_page)
-                if self.unlocked_database.search.search_active is True:
-                    self.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
-                    self.window.set_titlebar(self.unlocked_database.headerbar_search)
-                else:
-                    self.parent_widget.set_headerbar(self.unlocked_database.headerbar)
-                    self.window.set_titlebar(self.unlocked_database.headerbar)
-
-                self.unlocked_database.start_save_loop()
-                self.unlocked_database.overlay.show()
-                self.unlocked_database.database_locked = False
-
-                self.unlocked_database.start_database_lock_timer()
+                self.unlocked_database.database_manager.props.locked = False
             else:
                 self.show_unlock_failed_revealer()
 

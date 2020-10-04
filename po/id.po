@@ -8,20 +8,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-01-23 21:05+0000\n"
-"PO-Revision-Date: 2020-02-04 14:46+0700\n"
-"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
+"POT-Creation-Date: 2020-10-01 09:15+0000\n"
+"PO-Revision-Date: 2020-10-04 17:09+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
-#: data/org.gnome.PasswordSafe.desktop.in.in:4
-msgid "A password manager for GNOME"
-msgstr "Manajer kata sandi untuk GNOME"
+msgid "Manage your passwords"
+msgstr "Kelola kata sandi Anda"
 
 #: data/about_dialog.ui.in:13
 msgid "Learn more about Password Safe"
@@ -31,7 +30,7 @@ msgstr "Pelajari lebih lanjut tentang Password Safe"
 #: data/about_dialog.ui.in:15
 msgid "translator-credits"
 msgstr ""
-"Andika Triwidada <andika@gmail.com>, 2018, 2019.\n"
+"Andika Triwidada <andika@gmail.com>, 2018-2020.\n"
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020."
 
 #. Dialog title which informs the user about unsaved changes.
@@ -50,8 +49,7 @@ msgstr ""
 
 #. Discard all the changes which the user have made to his keepass safe
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
-#: data/unlocked_database.ui:1274
+#: data/attachment_warning_dialog.ui:23 data/unlocked_database.ui:1274
 msgid "Back"
 msgstr "Mundur"
 
@@ -63,7 +61,7 @@ msgstr "Lanjutkan"
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
 #: data/entry_page.ui:1563 data/entry_page.ui:1699
 #: data/references_dialog.ui:155 data/references_dialog.ui:263
-#: passwordsafe/unlock_database.py:94
+#: passwordsafe/unlock_database.py:102
 msgid "Password"
 msgstr "Kata Sandi"
 
@@ -76,8 +74,8 @@ msgstr "Menggunakan sebuah kata sandi untuk mengamankan brankas Anda"
 #: passwordsafe/database_settings_dialog.py:184
 #: passwordsafe/database_settings_dialog.py:219
 #: passwordsafe/database_settings_dialog.py:224
-#: passwordsafe/unlock_database.py:97 passwordsafe/unlock_database.py:302
-#: passwordsafe/unlock_database.py:424
+#: passwordsafe/unlock_database.py:105 passwordsafe/unlock_database.py:310
+#: passwordsafe/unlock_database.py:432
 msgid "Keyfile"
 msgstr "Berkas Kunci"
 
@@ -86,7 +84,7 @@ msgid "Use a keyfile to secure your safe"
 msgstr "Menggunakan sebuah berkas kunci untuk mengamankan brankas Anda"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:240 passwordsafe/unlock_database.py:101
+#: data/create_database.ui:240 passwordsafe/unlock_database.py:109
 msgid "Composite"
 msgstr "Komposit"
 
@@ -231,7 +229,8 @@ msgstr "Kata Sandi"
 msgid "Number of Entries"
 msgstr "Cacah Entri"
 
-#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:55
+#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:14
+#: data/settings_dialog.ui:19
 msgid "General"
 msgstr "Umum"
 
@@ -425,16 +424,20 @@ msgstr ""
 "v.4. Ini terintegrasi sempurna dengan desktop GNOME dan menyediakan sebuah "
 "antarmuka yang mudah dan rapi untuk manajemen basis data kata sandi."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:90
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:99
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
+
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "Manajer kata sandi untuk GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;enkripsi;aman;"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:121
+#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:67
 msgid "Use dark GTK+ theme"
 msgstr "Gunakan tema GTK+ gelap"
 
@@ -458,7 +461,7 @@ msgstr ""
 "Secara otomatis membuka layar basis data yang terakhir dibuka, bila tidak "
 "tampilkan layar selamat datang."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:326
+#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:256
 msgid "Save every change automatically"
 msgstr "Simpan setiap perubahan secara otomatis"
 
@@ -483,7 +486,7 @@ msgstr ""
 "Otomatis mengunci basis data Anda setelah sekian menit untuk meningkatkan "
 "keamanan."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:737
+#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:634
 msgid "Clear clipboard after X seconds"
 msgstr "Bersihkan papan klip setelah X detik"
 
@@ -492,7 +495,7 @@ msgid "After copying the password clear the clipboard for security reasons."
 msgstr ""
 "Setelah menyalin kata sandi bersihkan papan klip untuk alasan keamanan."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:821
+#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:716
 msgid "Display passwords in plain text"
 msgstr "Tampilkan kata sandi dalam teks polos"
 
@@ -661,117 +664,101 @@ msgstr ""
 "Hal ini dapat ditemukan di properti dari entri."
 
 #. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:8
+#: data/quit_dialog.ui:10
 msgid "Do you want to save all safes with unsaved changes?"
 msgstr ""
 "Apakah Anda ingin menyimpan semua brankas dengan perubahan yang belum "
 "disimpan?"
 
 #. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:9
+#: data/quit_dialog.ui:11
 msgid "Select the safes you want to save."
 msgstr "Pilih brankas yang Anda ingin simpan."
 
-#: data/quit_dialog.ui:35
+#: data/quit_dialog.ui:38
 msgid "Quit"
 msgstr "Keluar"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:8
+#: data/save_dialog.ui:13
 msgid "Unsaved Changes"
 msgstr "Perubahan Belum Tersimpan"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:9
+#: data/save_dialog.ui:14
 msgid "Do you want to write all changes to the safe?"
 msgstr "Apakah Anda ingin menulis semua perubahan ke brankas?"
 
-#. Discard all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:22
-msgid "Discard"
-msgstr "Buang"
-
-#. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:380
-msgid "Save"
-msgstr "Simpan"
-
-#. Title of the settings dialog
-#: data/settings_dialog.ui:15
-msgid "Settings"
-msgstr "Pengaturan"
-
-#: data/settings_dialog.ui:104
+#: data/settings_dialog.ui:50
 msgid "Dark Theme"
 msgstr "Tema Gelap"
 
-#: data/settings_dialog.ui:187
+#: data/settings_dialog.ui:137
 msgid "Hide First Start Screen"
 msgstr "Sembunyikan Layar Pertama Mulai"
 
-#: data/settings_dialog.ui:204
+#: data/settings_dialog.ui:154
 msgid "Reopen last opened safe"
 msgstr "Buka kembali brankas yang terakhir dibuka"
 
-#: data/settings_dialog.ui:260 data/unlocked_database.ui:860
-#: passwordsafe/main_window.py:382
+#: data/settings_dialog.ui:205 data/unlocked_database.ui:860
+#: passwordsafe/main_window.py:381
 msgid "Safe"
 msgstr "Brankas"
 
-#: data/settings_dialog.ui:309
+#: data/settings_dialog.ui:239
 msgid "Save automatically"
 msgstr "Simpan secara otomatis"
 
-#: data/settings_dialog.ui:382 data/unlock_database.ui:84
+#: data/settings_dialog.ui:309 data/unlock_database.ui:84
 #: data/unlock_database.ui:226 data/unlock_database.ui:468
 msgid "Unlock"
 msgstr "Buka Kunci"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:431
+#: data/settings_dialog.ui:343
 msgid "Remember Composite Key"
 msgstr "Ingat Kunci Komposit"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:448
+#: data/settings_dialog.ui:360
 msgid "Remember last used composite key"
 msgstr "Ingat kunci komposit yang terakhir digunakan"
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:514
+#: data/settings_dialog.ui:424
 msgid "Remember Unlock Method"
 msgstr "Ingat Metode Buka Kunci"
 
-#: data/settings_dialog.ui:531
+#: data/settings_dialog.ui:441
 msgid "Enable faster unlocking"
 msgstr "Fungsikan buka kunci lebih cepat"
 
-#: data/settings_dialog.ui:587
+#: data/settings_dialog.ui:496 data/settings_dialog.ui:501
 msgid "Security"
 msgstr "Keamanan"
 
-#: data/settings_dialog.ui:636
+#: data/settings_dialog.ui:535
 msgid "Safe Lock Timeout"
 msgstr "Tenggang Waktu Mengunci Brankas"
 
-#: data/settings_dialog.ui:653
+#: data/settings_dialog.ui:552
 msgid "Lock safe on idle after X minutes"
 msgstr "Kunci brankas ketika menganggur setelah X menit"
 
-#: data/settings_dialog.ui:720
+#: data/settings_dialog.ui:617
 msgid "Clear Clipboard"
 msgstr "Bersihkan Papan Klip"
 
-#: data/settings_dialog.ui:804
+#: data/settings_dialog.ui:699
 msgid "Show Password Fields"
 msgstr "Tampilkan Ruas Kata Sandi"
 
-#: data/settings_dialog.ui:887
+#: data/settings_dialog.ui:780
 msgid "Clear Recent List"
 msgstr "Hapus Daftar Baru-baru Ini"
 
-#: data/settings_dialog.ui:904
+#: data/settings_dialog.ui:797
 msgid "Clear the recently opened safes list"
 msgstr "Bersihkan daftar brankas yang baru-baru ini dibuka"
 
@@ -911,6 +898,11 @@ msgstr "Z-A"
 msgid "Last Added"
 msgstr "Terakhir Ditambahkan"
 
+#: data/unlocked_database.ui:761 passwordsafe/entry_page.py:652
+#: passwordsafe/main_window.py:379
+msgid "Save"
+msgstr "Simpan"
+
 #: data/unlocked_database.ui:783
 msgid "Lock"
 msgstr "Kunci"
@@ -1015,29 +1007,29 @@ msgstr "ChaCha20 256-bit"
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:512 passwordsafe/entry_page.py:575
+#: passwordsafe/entry_page.py:513 passwordsafe/entry_page.py:576
 msgid "Attribute key already exists"
 msgstr "Kunci atribut sudah ada"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:603
+#: passwordsafe/entry_page.py:604
 msgid "Select attachment"
 msgstr "Pilih lampiran"
 
-#: passwordsafe/entry_page.py:604
+#: passwordsafe/entry_page.py:605
 msgid "Add"
 msgstr "Tambah"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:650
+#: passwordsafe/entry_page.py:651
 msgid "Save attachment"
 msgstr "Simpan Lampiran"
 
-#: passwordsafe/entry_row.py:63
+#: passwordsafe/entry_row.py:64
 msgid "Title not specified"
 msgstr "Judul tidak ditentukan"
 
-#: passwordsafe/entry_row.py:74
+#: passwordsafe/entry_row.py:75
 msgid "No username specified"
 msgstr "Tidak ada nama pengguna yang ditentukan"
 
@@ -1046,25 +1038,25 @@ msgid "No group title specified"
 msgstr "Judul kelompok tidak ditentukan"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:296
 msgid "Choose a Keepass safe"
 msgstr "Pilih sebuah brankas Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:307 passwordsafe/main_window.py:388
+#: passwordsafe/main_window.py:306 passwordsafe/main_window.py:387
 msgid "KeePass 3.1/4 Database"
 msgstr "Basis Data KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:336
+#: passwordsafe/main_window.py:335
 msgid "Unable to open file \"{}\"."
 msgstr "Tidak dapat membuka berkas \"{}\"."
 
-#: passwordsafe/main_window.py:339
+#: passwordsafe/main_window.py:338
 msgid "File type {} ({}) is not supported."
 msgstr "Jenis berkas {} ({}) tidak didukung."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:379
+#: passwordsafe/main_window.py:378
 msgid "Choose location for Keepass safe"
 msgstr "Pilih lokasi untuk brankas Keepass"
 
@@ -1080,48 +1072,48 @@ msgstr "Pemindahan selesai"
 msgid "Skipped moving group into itself"
 msgstr "Melewatkan memindah grup ke dalam dirinya sendiri"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:221
 msgid "Database already opened"
 msgstr "Basis database sudah terbuka"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:300
+#: passwordsafe/unlock_database.py:308
 msgid "Choose a keyfile"
 msgstr "Pilih sebuah berkas kunci"
 
-#: passwordsafe/unlock_database.py:353 passwordsafe/unlock_database.py:410
+#: passwordsafe/unlock_database.py:361 passwordsafe/unlock_database.py:418
 msgid "Try again"
 msgstr "Coba lagi"
 
 #. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:419
+#: passwordsafe/unlock_database.py:427
 msgid "Choose Keyfile"
 msgstr "Pilih Berkas Kunci"
 
-#: passwordsafe/unlocked_database.py:482
+#: passwordsafe/unlocked_database.py:483
 msgid "Database saved"
 msgstr "Basis data telah disimpan"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:485
+#: passwordsafe/unlocked_database.py:486
 msgid "Please wait. Another save is running."
 msgstr "Harap tunggu. Penyimpanan lain sedang berjalan."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:488
+#: passwordsafe/unlocked_database.py:489
 msgid "No changes made"
 msgstr "Tidak ada perubahan yang dibuat"
 
-#: passwordsafe/unlocked_database.py:667
+#: passwordsafe/unlocked_database.py:630
 msgid "Copied to clipboard"
 msgstr "Disalin ke papan klip"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:822
+#: passwordsafe/unlocked_database.py:801
 #, python-format
 msgid "%s locked"
 msgstr "%s terkunci"
 
-#: passwordsafe/unlocked_database.py:822
+#: passwordsafe/unlocked_database.py:801
 msgid "Keepass safe locked due to inactivity"
 msgstr "Brankas KeePass dikunci karena tidak ada aktivitas"

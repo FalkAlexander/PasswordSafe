@@ -10,3 +10,23 @@ flatpak:
         MESON_ARGS: "-Dprofile=development"
         BUNDLE: "org.gnome.PasswordSafeDevel.flatpak"
     extends: .flatpak
+
+debian:
+    image: debian:sid
+    script:
+        - apt-get -qq update
+        - apt-get -qq install -y git git-buildpackage appstream-util debhelper-compat dh-python libgirepository1.0-dev libglib2.0-dev libgtk-3-dev libhandy-1-dev libpwquality-dev meson python-gi-dev python3-all python3-construct python3-dateutil python3-pycryptodome python3-pykeepass
+        - git remote add debian https://salsa.debian.org/python-team/packages/gnome-passwordsafe.git
+        - git fetch debian
+        - git checkout debian/master
+        - gbp import-ref -uHEAD --upstream-branch=master --upstream-tag=origin/master
+        - git rm debian/patches -rf
+        - sed -i "s/libhandy-0.0/libhandy-1/g" debian/control # remove after release
+        - gbp dch -S --since=HEAD
+        - sed -i "2iDEB_CONFIGURE_EXTRA_FLAGS = -Dprofile=development" debian/rules
+        - echo -e "\noverride_dh_auto_configure:\n\tdh_auto_configure -- -Dprofile=development" >> debian/rules
+        - dpkg-buildpackage -us -uc -b
+        - mv ../gnome-passwordsafe*.deb ./
+    artifacts:
+        paths:
+                - "gnome-passwordsafe*.deb"

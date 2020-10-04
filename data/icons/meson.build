@@ -2,7 +2,7 @@ datadir = join_paths('share', 'icons')
 icondir = join_paths('hicolor', 'scalable', 'apps')
 if get_option('profile') == 'development'
 install_data (
-    join_paths(icondir, 'org.gnome.PasswordSafe.svg'),
+    join_paths(icondir, 'org.gnome.PasswordSafe.Devel.svg'),
     install_dir: join_paths(datadir, icondir),
     rename: 'org.gnome.PasswordSafeDevel.svg'
 )

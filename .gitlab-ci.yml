@@ -19,7 +19,7 @@ debian:
         - git remote add debian https://salsa.debian.org/python-team/packages/gnome-passwordsafe.git
         - git fetch debian
         - git checkout debian/master
-        - gbp import-ref -uHEAD --upstream-branch=master --upstream-tag=origin/master
+        - gbp import-ref -uHEAD --upstream-branch=$CI_COMMIT_BRANCH --upstream-tag=origin/$CI_COMMIT_BRANCH
         - git rm debian/patches -rf
         - sed -i "s/libhandy-0.0/libhandy-1/g" debian/control # remove after release
         - gbp dch -S --since=HEAD

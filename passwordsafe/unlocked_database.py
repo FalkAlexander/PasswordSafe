@@ -467,7 +467,7 @@ class UnlockedDatabase:
         if widget is not None:
             self.builder.get_object("menubutton_popover").popdown()
 
-        if self.database_manager.changes is True:
+        if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
                 save_thread = threading.Thread(target=self.database_manager.save_database)
                 save_thread.daemon = False

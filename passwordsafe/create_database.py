@@ -127,7 +127,6 @@ class CreateDatabase:
             self.window.close_tab(self.parent_widget)
             self.window.set_headerbar()
 
-
     def on_auth_chooser_row_activated(self, widget, row):
         self.parent_widget.remove(self.builder.get_object("authentification_method_chooser"))
 

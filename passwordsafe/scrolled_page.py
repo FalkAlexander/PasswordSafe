@@ -3,7 +3,7 @@ from gi.repository import Gtk
 
 class ScrolledPage(Gtk.ScrolledWindow):
     edit_page = False
-    is_dirty = False # Whether the database needs saving
+    is_dirty = False  # Whether the database needs saving
 
     all_properties_revealed = False
     show_all_properties_button = NotImplemented

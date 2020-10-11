@@ -148,4 +148,3 @@ class EntryRow(Gtk.ListBoxRow):
 
     def get_color(self):
         return self.color
-

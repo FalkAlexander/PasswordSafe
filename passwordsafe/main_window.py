@@ -556,14 +556,14 @@ class MainWindow(Gtk.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, window) ->bool:
+    def do_delete_event(self, window) -> bool:
         """invoked when we hit the window close button"""
         # Just invoke the app.quit action, it cleans up stuff
         # and will invoke the on_application_shutdown()
         self.application.activate_action("quit")
-        return True # we handled event, don't call destroy
+        return True  # we handled event, don't call destroy
 
-    def on_application_shutdown(self) ->bool:
+    def on_application_shutdown(self) -> bool:
         """Clean up unsaved databases, and shutdown
 
         This function is invoked by the application.quit method
@@ -584,9 +584,9 @@ class MainWindow(Gtk.ApplicationWindow):
                     unsaved_databases_list.append(db)
 
         if len(unsaved_databases_list) == 1:
-            res = db.show_save_dialog() # This will also save it
+            res = db.show_save_dialog()  # This will also save it
             if not res:
-                return True # User Canceled, don't quit
+                return True  # User Canceled, don't quit
         elif len(unsaved_databases_list) > 1:
             # Multiple unsaved files, ask which to save
             builder = Gtk.Builder()
@@ -616,7 +616,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 self.databases_to_save.clear()
                 return True
             elif res == Gtk.ResponseType.OK:
-                pass # Do noting, go on...
+                pass  # Do noting, go on...
 
         for db in self.opened_databases:
             db.cancel_timers()
@@ -635,7 +635,7 @@ class MainWindow(Gtk.ApplicationWindow):
             save_thread.daemon = False
             save_thread.start()
             return True
-        return False # caller should quit() the app
+        return False  # caller should quit() the app
     #
     # Gio Actions
     #
@@ -812,4 +812,3 @@ class MainWindow(Gtk.ApplicationWindow):
         for db in self.databases_to_save:
             db.database_manager.save_database()
         GLib.idle_add(self.application.quit)
-

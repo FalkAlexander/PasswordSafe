@@ -496,4 +496,3 @@ class DatabaseSettingsDialog:
 
     def on_dialog_quit(self, window, event):
         self.unlocked_database.database_settings_dialog = NotImplemented
-

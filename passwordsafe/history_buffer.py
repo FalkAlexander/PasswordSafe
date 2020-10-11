@@ -50,7 +50,7 @@ class Logic():
     def do_undo(self):
         op = False
         if self.index is NotImplemented:
-            self.index = len(self.history)-1
+            self.index = len(self.history) - 1
             op = True
 
         if self.index <= 0 or self.index > len(self.history):
@@ -60,14 +60,12 @@ class Logic():
         if op is False:
             self.index -= 1
         self.history.append(self.history[self.index])
-        return self.history[self.index-1]
-
+        return self.history[self.index - 1]
 
     def do_redo(self):
-        if self.index == len(self.history) or self.index is NotImplemented or self.index+2 > len(self.history) or self.index+1 < 0:
+        if self.index == len(self.history) or self.index is NotImplemented or self.index + 2 > len(self.history) or self.index + 1 < 0:
             return
 
         self.increase = False
         self.index += 1
         return self.history[self.index]
-

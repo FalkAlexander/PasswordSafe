@@ -32,5 +32,4 @@ def strength(password):
     except Exception:
         score = 0
 
-    return score/20
-
+    return score / 20

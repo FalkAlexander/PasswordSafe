@@ -14,7 +14,6 @@ from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
 from threading import Timer
-import codecs
 import ntpath
 import os
 import passwordsafe.config_manager
@@ -680,7 +679,7 @@ class UnlockedDatabase:
         """
         if not self.database_manager.is_dirty \
            or self.database_manager.save_running:
-            return True # no dirty db, do nothing.
+            return True  # no dirty db, do nothing.
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
         save_dialog = builder.get_object("save_dialog")
@@ -693,7 +692,7 @@ class UnlockedDatabase:
             return False
         elif res == Gtk.ResponseType.NO:
             # clicked 'Discard'. Close, but don't save
-            pass # We are done with this db.
+            pass  # We are done with this db.
         elif res == Gtk.ResponseType.YES:
             # "clicked save". Save changes
             save_thread = threading.Thread(
@@ -752,7 +751,6 @@ class UnlockedDatabase:
                 tmpfile.delete()
             except Exception:
                 self.window.logging_manager.warning("Skipping deletion of tmpfile...")
-
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)

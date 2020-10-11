@@ -42,7 +42,6 @@ class CustomKeypressHandler:
                     if eventkey.string.isalpha() or eventkey.string.isnumeric():
                         self.unlocked_database.search.set_search_headerbar(self.unlocked_database.builder.get_object("search_button"))
 
-
     def tab_to_next_input_entry(self, scrolled_page):
         focus_widget = self.unlocked_database.window.get_focus()
         focus_widget_index = focus_widget.get_parent().get_children().index(focus_widget)

@@ -15,7 +15,7 @@ class DatabaseManager:
     password_check = ""
     password = ""
     keyfile_hash = NotImplemented
-    is_dirty = False # Does the database need saving?
+    is_dirty = False  # Does the database need saving?
     save_running = False
     scheduled_saves = 0
     database_file_descriptor = NotImplemented
@@ -771,4 +771,3 @@ class DatabaseManager:
 
     def get_database_derivation(self):
         return self.db.version
-

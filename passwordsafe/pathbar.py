@@ -88,7 +88,7 @@ class Pathbar(Gtk.HBox):
             self.pack_end(self.create_pathbar_button(
                 self.database_manager.get_group_uuid_from_group_object(
                     parent_group)),
-                    True, True, 0)
+                True, True, 0)
             self.add_seperator_label()
             parent_group = self.database_manager.get_group_parent_group_from_uuid(
                 self.database_manager.get_group_uuid_from_group_object(
@@ -311,7 +311,7 @@ class Pathbar(Gtk.HBox):
         for button in self.get_children():
             if button.get_name() == "PathbarButtonDynamic" and \
                button.get_uuid() == uuid:
-                    return True
+                return True
         return False
 
     def get_pathbar_button(self, uuid):

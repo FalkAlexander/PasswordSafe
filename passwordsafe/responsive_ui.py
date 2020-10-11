@@ -24,10 +24,10 @@ class ResponsiveUI:
         scrolled_page = db.stack.get_child_by_name(db.database_manager.get_group_uuid_from_group_object(db.current_group).urn)
 
         if db.window.mobile_width is True:
-            ## Hide pathbar in header (if it is in there)
+            # Hide pathbar in header (if it is in there)
             db.headerbar_box.remove(self.unlocked_database.pathbar)
             db.headerbar_box.hide()
-            ## and put it in the bottom Action bar instead
+            # and put it in the bottom Action bar instead
             db.actionbar_box.add(self.unlocked_database.pathbar)
             db.actionbar_box.show()
 

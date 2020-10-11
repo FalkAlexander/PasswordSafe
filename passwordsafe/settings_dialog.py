@@ -135,4 +135,3 @@ class SettingsDialog():
         else:
             passwordsafe.config_manager.set_remember_unlock_method(False)
             passwordsafe.config_manager.set_unlock_method("password")
-

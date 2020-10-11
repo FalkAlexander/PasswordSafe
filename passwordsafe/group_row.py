@@ -84,4 +84,3 @@ class GroupRow(Gtk.ListBoxRow):
             self.unlocked_database.selection_ui.groups_cut.clear()
             self.unlocked_database.builder.get_object("selection_cut_button").get_children()[0].set_from_icon_name("edit-cut-symbolic", Gtk.IconSize.BUTTON)
             self.unlocked_database.selection_ui.cut_mode is True
-

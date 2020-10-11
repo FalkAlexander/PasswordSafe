@@ -8,7 +8,7 @@ except ImportError as e:
     # fall back to earlier versions. This needs to be removed once we
     # rely on pykeepass 3.2.1 as a minimum
     from pykeepass.exceptions import CredentialsIntegrityError
-    CredentialsError =  PayloadChecksumError = HeaderChecksumError =\
+    CredentialsError = PayloadChecksumError = HeaderChecksumError =\
         CredentialsIntegrityError
 import passwordsafe.config_manager
 import ntpath
@@ -412,7 +412,7 @@ class UnlockDatabase:
         self.show_unlock_failed_revealer()
 
         if self.database_manager is not NotImplemented:
-                self.database_manager.keyfile_hash = NotImplemented
+            self.database_manager.keyfile_hash = NotImplemented
 
         keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
         keyfile_unlock_select_button.set_label(_("Try again"))

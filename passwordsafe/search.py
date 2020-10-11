@@ -157,7 +157,7 @@ class Search:
 
             if search_height < window_height or load_all is True:
                 if self.unlocked_database.database_manager.check_is_group(uuid):
-                    search_height+=group_row_height
+                    search_height += group_row_height
 
                     if skip is False:
                         row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group_object_from_uuid(uuid))
@@ -168,7 +168,7 @@ class Search:
 
                     last_row = row
                 else:
-                    search_height+=entry_row_height
+                    search_height += entry_row_height
 
                     if skip is False:
                         row = EntryRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid))
@@ -255,8 +255,10 @@ class Search:
         self.unlocked_database.start_database_lock_timer()
 
         # Do nothing on empty search terms or no search results
-        if not widget.get_text(): return
-        if len(self.search_list_box.get_children()) == 0: return
+        if not widget.get_text():
+            return
+        if len(self.search_list_box.get_children()) == 0:
+            return
 
         uuid = NotImplemented
         first_row = NotImplemented
@@ -274,7 +276,6 @@ class Search:
         self.unlocked_database.pathbar.add_pathbar_button_to_pathbar(uuid)
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-
     def on_search_filter_switch_toggled(self, switch_button, gparam):
         self.on_headerbar_search_entry_changed(
             self.unlocked_database.builder.get_object("headerbar_search_entry"),
@@ -290,4 +291,3 @@ class Search:
             return
 
         entry.grab_focus()
-

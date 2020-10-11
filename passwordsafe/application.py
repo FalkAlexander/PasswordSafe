@@ -86,11 +86,12 @@ class Application(Gtk.Application):
             about_dialog.set_transient_for(self.window)
         about_dialog.present()
 
-    def on_quit(self, action:Optional[Gio.SimpleAction]=None,
+    def on_quit(self, action: Optional[Gio.SimpleAction]=None,
                 data=None) -> None:
         # Perform cleanups, this calls application.quit() itself if `handled`
         handled = self.window.on_application_shutdown()
-        if not handled: self.quit()
+        if not handled:
+            self.quit()
 
     def on_shortcuts_menu_clicked(self, action, param):
         builder = Gtk.Builder()

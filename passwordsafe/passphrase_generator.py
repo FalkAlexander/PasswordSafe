@@ -21,7 +21,7 @@ def generate(words, separator):
 
     for i in range(words):
         passphrase += get_word(dice())
-        if i+1 < words:
+        if i + 1 < words:
             passphrase += separator
 
     return passphrase
@@ -33,4 +33,3 @@ def dice():
 
 def get_word(number):
     return word_dict[number]
-

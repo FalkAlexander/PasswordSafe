@@ -5,8 +5,7 @@ from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
-import threading
-import subprocess, os
+import subprocess
 import uuid as u
 
 
@@ -630,7 +629,7 @@ class EntryPage:
         builder.get_object("attachment_download_button").connect("clicked", self.on_attachment_download_button_clicked, attachment)
         builder.get_object("attachment_delete_button").connect("clicked", self.on_attachment_delete_button_clicked, entry_uuid, attachment, attachment_row)
 
-        scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box)-1)
+        scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box) - 1)
 
     def on_attachment_row_clicked(self, attachment):
         builder = Gtk.Builder()

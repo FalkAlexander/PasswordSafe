@@ -91,7 +91,7 @@ class NotesDialog():
                 scrolled_page.notes_dialog_value_entry.get_buffer().get_start_iter(),
                 scrolled_page.notes_dialog_value_entry.get_buffer().get_end_iter(),
                 False)
-            )
+        )
 
     def on_close_button_clicked(self, button):
         self.dialog.destroy()
@@ -142,4 +142,3 @@ class NotesDialog():
         self.unlocked_database.notes_dialog = NotImplemented
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
         scrolled_page.notes_dialog_value_entry = NotImplemented
-

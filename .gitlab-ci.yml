@@ -1,6 +1,28 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
+stages:
+  - Static Analysis
+  - Build
+
+flake8:
+    stage: Static Analysis
+    allow_failure: true
+    image: python:3.9
+    script:
+        - apt-get update
+        - apt-get -q -y install flake8
+        - flake8 --max-line-length=350 passwordsafe/
+
+pylint:
+    stage: Static Analysis
+    allow_failure: true
+    image: python:3.9
+    script:
+        - apt-get update
+        - apt-get -q -y install pylint
+        - pylint --max-line-length=350 passwordsafe/*.py
 flatpak:
+    stage: Build
     image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
     variables:
         APP_ID: org.gnome.PasswordSafeDevel
@@ -12,6 +34,7 @@ flatpak:
     extends: .flatpak
 
 debian:
+    stage: Build
     image: debian:sid
     script:
         - apt-get -qq update

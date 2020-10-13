@@ -135,11 +135,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             page_uuid = db.database_manager.get_group_uuid_from_group_object(db.current_group)
-            group_page = NotImplemented
-            if db.database_manager.check_is_group(page_uuid) is True:
-                group_page = True
-            else:
-                group_page = False
+            group_page = db.database_manager.check_is_group(page_uuid)
             scrolled_page = db.stack.get_child_by_name(page_uuid.urn)
 
             # For Group/Entry Edit Page

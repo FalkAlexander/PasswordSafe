@@ -222,12 +222,7 @@ class Pathbar(Gtk.HBox):
 
     def check_is_edit_page_from_group(self):
         current_group = self.unlocked_database.get_current_group()
-        from_group = NotImplemented
-
-        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(current_group)) is True:
-            from_group = True
-        else:
-            from_group = False
+        from_group = self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(current_group))
 
         return from_group
 

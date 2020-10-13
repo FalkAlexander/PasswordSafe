@@ -792,10 +792,10 @@ class UnlockedDatabase:
     #
 
     def undo_redo_receiver(self, action):
-        if type(self.window.get_focus()) is not Gtk.Entry and type(self.window.get_focus()) is not Gtk.TextView:
+        if not isinstance(self.window.get_focus(), Gtk.Entry) and not isinstance(self.window.get_focus(), Gtk.TextView):
             return
 
-        if type(self.window.get_focus().get_buffer()) is not passwordsafe.history_buffer.HistoryTextBuffer and type(self.window.get_focus().get_buffer()) is not passwordsafe.history_buffer.HistoryEntryBuffer:
+        if not isinstance(self.window.get_focus().get_buffer(), passwordsafe.history_buffer.HistoryTextBuffer) and not isinstance(self.window.get_focus().get_buffer(), passwordsafe.history_buffer.HistoryEntryBuffer):
             return
 
         if "TabBox" not in self.window.get_focus().get_name():

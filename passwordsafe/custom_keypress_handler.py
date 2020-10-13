@@ -82,7 +82,7 @@ class CustomKeypressHandler:
         if isinstance(child, Gtk.ListBoxRow):
             return child
         elif hasattr(child, "get_parent"):
-            if type(child.get_parent()) is Gtk.ListBoxRow:
+            if isinstance(child.get_parent(), Gtk.ListBoxRow):
                 return child.get_parent()
             else:
                 return self.iterate_parents(child.get_parent())

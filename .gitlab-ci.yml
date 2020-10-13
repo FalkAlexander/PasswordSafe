@@ -6,7 +6,6 @@ stages:
 
 flake8:
     stage: Static Analysis
-    allow_failure: true
     image: python:3.9
     script:
         - apt-get update

@@ -1,16 +1,3 @@
-from gi.repository import Gio, Gtk, GLib, Handy, Pango
-from passwordsafe.database_manager import DatabaseManager
-from passwordsafe.unlocked_database import UnlockedDatabase
-try:
-    # These were introduced in pykeepass 3.2.1
-    from pykeepass.exceptions import CredentialsError, PayloadChecksumError, HeaderChecksumError
-except ImportError as e:
-    # fall back to earlier versions. This needs to be removed once we
-    # rely on pykeepass 3.2.1 as a minimum
-    from pykeepass.exceptions import CredentialsIntegrityError
-    CredentialsError = PayloadChecksumError = HeaderChecksumError =\
-        CredentialsIntegrityError
-import passwordsafe.config_manager
 import ntpath
 import os
 import threading
@@ -19,6 +6,20 @@ import datetime
 from gettext import gettext as _
 from construct import core
 from pathlib import Path
+
+from gi.repository import Gio, Gtk, GLib, Handy, Pango
+from passwordsafe.database_manager import DatabaseManager
+from passwordsafe.unlocked_database import UnlockedDatabase
+try:
+    # These were introduced in pykeepass 3.2.1
+    from pykeepass.exceptions import CredentialsError, PayloadChecksumError, HeaderChecksumError
+except ImportError:
+    # fall back to earlier versions. This needs to be removed once we
+    # rely on pykeepass 3.2.1 as a minimum
+    from pykeepass.exceptions import CredentialsIntegrityError
+    CredentialsError = PayloadChecksumError = HeaderChecksumError =\
+        CredentialsIntegrityError
+import passwordsafe.config_manager
 
 
 class UnlockDatabase:
@@ -177,7 +178,7 @@ class UnlockDatabase:
     # Events
     #
 
-    def on_headerbar_back_button_clicked(self, widget):
+    def on_headerbar_back_button_clicked(self, _widget):
         if self.timeout is True:
             for db in self.window.opened_databases:
                 if db.database_manager.database_path == self.database_manager.database_path:
@@ -196,14 +197,14 @@ class UnlockDatabase:
 
     # Password Unlock
 
-    def on_password_unlock_entry_secondary_clicked(self, widget, position, eventbutton):
+    def on_password_unlock_entry_secondary_clicked(self, widget, _position, _eventbutton):
         if widget.get_visibility():
             widget.set_invisible_char("●")
             widget.set_visibility(False)
         else:
             widget.set_visibility(True)
 
-    def on_password_unlock_button_clicked(self, widget):
+    def on_password_unlock_button_clicked(self, _widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
 
         database_already_opened = False
@@ -303,7 +304,7 @@ class UnlockDatabase:
 
     # Keyfile Unlock
 
-    def on_keyfile_unlock_select_button_clicked(self, widget):
+    def on_keyfile_unlock_select_button_clicked(self, _widget):
         # NOTE: Keyfile filechooser title
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None)
         filter_text = Gtk.FileFilter()
@@ -329,7 +330,7 @@ class UnlockDatabase:
         elif response == Gtk.ResponseType.CANCEL:
             self.window.logging_manager.debug("File selection canceled")
 
-    def on_keyfile_unlock_button_clicked(self, widget):
+    def on_keyfile_unlock_button_clicked(self, _widget):
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
 
         if self.timeout is True:
@@ -421,7 +422,7 @@ class UnlockDatabase:
 
     # Composite Unlock
 
-    def on_composite_unlock_select_button_clicked(self, widget):
+    def on_composite_unlock_select_button_clicked(self, _widget):
         filechooser_opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Keyfile filechooser title
             _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
@@ -453,7 +454,7 @@ class UnlockDatabase:
         elif response == Gtk.ResponseType.CANCEL:
             self.window.logging_manager.debug("File selection cancelled")
 
-    def on_composite_unlock_button_clicked(self, widget):
+    def on_composite_unlock_button_clicked(self, _widget):
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
 
@@ -595,21 +596,21 @@ class UnlockDatabase:
                 self.window.logging_manager.warning("Could not copy database file to backup location. This most likely happened because the database is located on a network drive, and Password Safe doesn't have network permission. Either disable development-backup-mode or if PasswordSafe runs as Flatpak grant network permission")
 
         already_added = False
-        list = []
+        path_listh = []
         for path in passwordsafe.config_manager.get_last_opened_list():
-            list.append(path)
+            path_listh.append(path)
             if path == Gio.File.new_for_path(self.database_filepath).get_uri():
                 already_added = True
 
         if already_added is False:
-            list.append(Gio.File.new_for_path(self.database_filepath).get_uri())
+            path_listh.append(Gio.File.new_for_path(self.database_filepath).get_uri())
         else:
-            list.sort(key=Gio.File.new_for_path(self.database_filepath).get_uri().__eq__)
+            path_listh.sort(key=Gio.File.new_for_path(self.database_filepath).get_uri().__eq__)
 
-        if len(list) > 10:
-            list.pop(0)
+        if len(path_listh) > 10:
+            path_listh.pop(0)
 
-        passwordsafe.config_manager.set_last_opened_list(list)
+        passwordsafe.config_manager.set_last_opened_list(path_listh)
 
         self.hdy_page.destroy()
         UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)
@@ -625,7 +626,7 @@ class UnlockDatabase:
         composite_unlock_entry.set_text("")
 
     def show_unlock_failed_revealer(self):
-        unlock_failed_box = self.builder.get_object("unlock_failed_box")
+        self.builder.get_object("unlock_failed_box")
 
         unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
         unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())

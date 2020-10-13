@@ -83,7 +83,7 @@ class NotesDialog():
             widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False)
         )
 
-    def on_copy_button_clicked(self, button):
+    def on_copy_button_clicked(self, _button):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
 
         self.unlocked_database.send_to_clipboard(
@@ -93,10 +93,10 @@ class NotesDialog():
                 False)
         )
 
-    def on_close_button_clicked(self, button):
+    def on_close_button_clicked(self, _button):
         self.dialog.destroy()
 
-    def on_search_button_toggled(self, button):
+    def on_search_button_toggled(self, _button):
         if self.search_stopped is True:
             return
         self.toggle_search_bar()
@@ -120,7 +120,7 @@ class NotesDialog():
         if entry.get_text():
             self.do_search(notes_buffer, entry.get_text(), start)
 
-    def on_search_stopped(self, entry):
+    def on_search_stopped(self, _entry):
         self.search_stopped = True
         self.search_button.set_active(False)
         self.search_stopped = False
@@ -138,7 +138,7 @@ class NotesDialog():
             notes_buffer.apply_tag(self.tag, match_start, match_end)
             self.do_search(notes_buffer, keyword, match_end)
 
-    def on_dialog_quit(self, window, event):
+    def on_dialog_quit(self, _window, _event):
         self.unlocked_database.notes_dialog = NotImplemented
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
         scrolled_page.notes_dialog_value_entry = NotImplemented

@@ -222,12 +222,7 @@ class Pathbar(Gtk.HBox):
 
     def check_is_edit_page_from_group(self):
         current_group = self.unlocked_database.get_current_group()
-        from_group = NotImplemented
-
-        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(current_group)) is True:
-            from_group = True
-        else:
-            from_group = False
+        from_group = self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(current_group))
 
         return from_group
 
@@ -286,8 +281,7 @@ class Pathbar(Gtk.HBox):
                 self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
                 return True
-            else:
-                return False
+            return False
         else:
             entry_title = self.database_manager.get_entry_name_from_entry_object(current_group)
             entry_username = self.database_manager.get_entry_username_from_entry_object(current_group)
@@ -303,8 +297,7 @@ class Pathbar(Gtk.HBox):
                 self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(self.database_manager.get_group_uuid_from_group_object(parent_group))
                 return True
-            else:
-                return False
+            return False
 
     def uuid_in_pathbar(self, uuid):
         """Return True if the uuid entry is visible in the bar"""

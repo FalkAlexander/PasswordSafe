@@ -45,5 +45,5 @@ class PropertiesDialog:
     # Tools
     #
 
-    def on_dialog_quit(self, window, event):
+    def on_dialog_quit(self, _window, _event):
         self.unlocked_database.properties_dialog = NotImplemented

@@ -1,6 +1,7 @@
+import uuid as u
+
 from gi.repository import Gtk, Gdk
 import passwordsafe.pathbar_button
-import uuid as u
 
 
 class CustomKeypressHandler:
@@ -25,7 +26,7 @@ class CustomKeypressHandler:
         self.unlocked_database.window.connect("key-press-event", self.on_special_key_pressed)
         self.unlocked_database.window.connect("key-release-event", self.on_special_key_released)
 
-    def on_special_key_pressed(self, window, eventkey):
+    def on_special_key_pressed(self, _window, eventkey):
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
@@ -37,7 +38,7 @@ class CustomKeypressHandler:
                             return
                         if "TabBox" in self.unlocked_database.window.get_focus().get_name():
                             self.tab_to_next_input_entry(scrolled_page)
-                            return(True)
+                            return True
                 else:
                     if eventkey.string.isalpha() or eventkey.string.isnumeric():
                         self.unlocked_database.search.set_search_headerbar(self.unlocked_database.builder.get_object("search_button"))
@@ -78,15 +79,15 @@ class CustomKeypressHandler:
                     self.interate_to_next_input(child)
 
     def iterate_parents(self, child):
-        if type(child) is Gtk.ListBoxRow:
+        if isinstance(child, Gtk.ListBoxRow):
             return child
         elif hasattr(child, "get_parent"):
-            if type(child.get_parent()) is Gtk.ListBoxRow:
+            if isinstance(child.get_parent(), Gtk.ListBoxRow):
                 return child.get_parent()
             else:
                 return self.iterate_parents(child.get_parent())
 
-    def on_special_key_released(self, window, eventkey):
+    def on_special_key_released(self, _window, eventkey):
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
@@ -100,7 +101,7 @@ class CustomKeypressHandler:
                                 self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
                             else:
                                 for button in self.unlocked_database.pathbar:
-                                    if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                    if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                                         if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(u.UUID(uuid))):
                                             self.unlocked_database.pathbar.on_pathbar_button_clicked(button)
             elif self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
@@ -113,7 +114,7 @@ class CustomKeypressHandler:
                         else:
                             if scrolled_page.edit_page is True:
                                 for button in self.unlocked_database.pathbar:
-                                    if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                    if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                                         if self.unlocked_database.database_manager.get_group_object_from_uuid(uuid) is None:
                                             return
                                         if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)):
@@ -123,7 +124,7 @@ class CustomKeypressHandler:
                             self.unlocked_database.pathbar.on_home_button_clicked(self.unlocked_database.pathbar.home_button)
                         else:
                             for button in self.unlocked_database.pathbar:
-                                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                                     if self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid) is None:
                                         return
                                     if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_entry_parent_group_from_uuid(uuid)):

@@ -1,7 +1,8 @@
 from gi.repository import Gtk, GLib
-from passwordsafe.created_database import CreatedDatabase
 from gettext import gettext as _
 import threading
+
+from passwordsafe.created_database import CreatedDatabase
 import passwordsafe.keyfile_generator
 
 
@@ -111,7 +112,7 @@ class CreateDatabase:
     # Events
     #
 
-    def on_headerbar_back_button_clicked(self, widget):
+    def on_headerbar_back_button_clicked(self, _widget):
         if self.stack.get_visible_child_name() == "page0":
             self.window.set_headerbar()
             self.window.close_tab(self.parent_widget)
@@ -127,7 +128,7 @@ class CreateDatabase:
             self.window.close_tab(self.parent_widget)
             self.window.set_headerbar()
 
-    def on_auth_chooser_row_activated(self, widget, row):
+    def on_auth_chooser_row_activated(self, _widget, row):
         self.parent_widget.remove(self.builder.get_object("authentification_method_chooser"))
 
         if row.get_name() == "password":
@@ -138,7 +139,7 @@ class CreateDatabase:
             self.composite = True
             self.password_creation()
 
-    def on_password_creation_button_clicked(self, widget):
+    def on_password_creation_button_clicked(self, _widget):
         password_creation_input = self.builder.get_object(
             "password_creation_input")
         self.database_manager.set_password_try(
@@ -161,7 +162,7 @@ class CreateDatabase:
         password_check_input.connect(
             "activate", self.on_password_check_button_clicked)
 
-    def on_password_check_button_clicked(self, widget):
+    def on_password_check_button_clicked(self, _widget):
         password_check_input = self.builder.get_object("password_check_input")
         self.database_manager.set_password_check(
             password_check_input.get_text())
@@ -176,7 +177,7 @@ class CreateDatabase:
         else:
             self.repeat_page()
 
-    def on_password_repeat_button_clicked(self, widget):
+    def on_password_repeat_button_clicked(self, _widget):
         password_repeat_input1 = self.builder.get_object(
             "password_repeat_input1")
         password_repeat_input2 = self.builder.get_object(
@@ -232,7 +233,7 @@ class CreateDatabase:
         self.builder.get_object("password_repeat_input1").set_sensitive(False)
         self.builder.get_object("password_repeat_input2").set_sensitive(False)
 
-    def on_generate_keyfile_button_clicked(self, widget):
+    def on_generate_keyfile_button_clicked(self, _widget):
         filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
             _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,

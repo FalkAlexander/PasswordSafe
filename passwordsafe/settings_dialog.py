@@ -12,7 +12,7 @@ class SettingsDialog():
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/settings_dialog.ui")
 
-    def on_settings_menu_clicked(self, action, param):
+    def on_settings_menu_clicked(self, _action, _param):
         settings_dialog = self.builder.get_object("settings_dialog")
 
         settings_dialog.set_modal(True)
@@ -70,7 +70,7 @@ class SettingsDialog():
         settings_remember_method_switch_value = passwordsafe.config_manager.get_remember_unlock_method()
         settings_remember_method_switch.set_active(settings_remember_method_switch_value)
 
-    def on_settings_theme_switch_switched(self, switch_button, gparam):
+    def on_settings_theme_switch_switched(self, switch_button, _gparam):
         gtk_settings = Gtk.Settings.get_default()
 
         if switch_button.get_active():
@@ -80,13 +80,13 @@ class SettingsDialog():
             passwordsafe.config_manager.set_dark_theme(False)
             gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
 
-    def on_settings_fstart_switch_switched(self, switch_button, gparam):
+    def on_settings_fstart_switch_switched(self, switch_button, _gparam):
         if switch_button.get_active():
             passwordsafe.config_manager.set_first_start_screen(True)
         else:
             passwordsafe.config_manager.set_first_start_screen(False)
 
-    def on_settings_save_switch_switched(self, switch_button, gparam):
+    def on_settings_save_switch_switched(self, switch_button, _gparam):
         if switch_button.get_active():
             passwordsafe.config_manager.set_save_automatically(True)
         else:
@@ -100,7 +100,7 @@ class SettingsDialog():
     def on_settings_clearcb_spin_button_changed(self, spin_button):
         passwordsafe.config_manager.set_clear_clipboard(spin_button.get_value())
 
-    def on_settings_showpw_switch_switched(self, switch_button, gparam):
+    def on_settings_showpw_switch_switched(self, switch_button, _gparam):
         if switch_button.get_active():
             passwordsafe.config_manager.set_show_password_fields(True)
         else:
@@ -122,14 +122,14 @@ class SettingsDialog():
             self.window.add(self.window.first_start_grid)
         widget.set_sensitive(False)
 
-    def on_settings_remember_switch_switched(self, switch_button, gparam):
+    def on_settings_remember_switch_switched(self, switch_button, _gparam):
         if switch_button.get_active():
             passwordsafe.config_manager.set_remember_composite_key(True)
         else:
             passwordsafe.config_manager.set_remember_composite_key(False)
             passwordsafe.config_manager.set_last_used_composite_key("")
 
-    def on_settings_remember_method_switch_switched(self, switch_button, gparam):
+    def on_settings_remember_method_switch_switched(self, switch_button, _gparam):
         if switch_button.get_active():
             passwordsafe.config_manager.set_remember_unlock_method(True)
         else:

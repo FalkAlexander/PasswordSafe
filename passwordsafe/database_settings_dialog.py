@@ -1,13 +1,14 @@
 from gettext import gettext as _
-from gi.repository import Gtk, GLib
 from random import randint
 import ntpath
-import passwordsafe.config_manager
-import passwordsafe.keyfile_generator
-import passwordsafe.password_generator
 import threading
 import time
 import os
+
+from gi.repository import Gtk, GLib
+import passwordsafe.config_manager
+import passwordsafe.keyfile_generator
+import passwordsafe.password_generator
 
 
 class DatabaseSettingsDialog:
@@ -144,7 +145,7 @@ class DatabaseSettingsDialog:
         self.auth_apply_button.set_sensitive(True)
         self.new_password = confirm_password
 
-    def on_generate_password(self, widget, position, eventbutton):
+    def on_generate_password(self, _widget, _position, _eventbutton):
         new_password_entry = self.builder.get_object("new_password_entry")
         confirm_password_entry = self.builder.get_object("confirm_password_entry")
 
@@ -156,7 +157,7 @@ class DatabaseSettingsDialog:
         new_password_entry.set_visibility(True)
         confirm_password_entry.set_visibility(True)
 
-    def on_show_password(self, widget, position, eventbutton):
+    def on_show_password(self, _widget, _position, _eventbutton):
         new_password_entry = self.builder.get_object("new_password_entry")
         confirm_password_entry = self.builder.get_object("confirm_password_entry")
 
@@ -209,7 +210,7 @@ class DatabaseSettingsDialog:
                 button.add(Gtk.Image.new_from_icon_name("edit-delete-symbolic", Gtk.IconSize.BUTTON))
                 button.show_all()
 
-    def on_keyfile_generator_button_clicked(self, button):
+    def on_keyfile_generator_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
@@ -335,7 +336,7 @@ class DatabaseSettingsDialog:
         self.auth_apply_button.set_label(_("Apply Changes"))
         self.auth_apply_button.set_sensitive(False)
 
-    def on_encryption_apply_button_clicked(self, button):
+    def on_encryption_apply_button_clicked(self, _button):
         if self.new_encryption_algorithm is not NotImplemented:
             self.database_manager.db.encryption_algorithm = self.new_encryption_algorithm
 
@@ -449,7 +450,7 @@ class DatabaseSettingsDialog:
         enc_alg_list.connect("row-activated", self.on_encryption_changed)
         der_alg_list.connect("row-activated", self.on_derivation_changed)
 
-    def on_encryption_changed(self, list_box, row):
+    def on_encryption_changed(self, _list_box, row):
         self.new_encryption_algorithm = NotImplemented
 
         if row.get_name() != "chacha20" and row.get_name() != "twofish" and row.get_name() != "aes256":
@@ -467,7 +468,7 @@ class DatabaseSettingsDialog:
         else:
             self.encryption_apply_button.set_sensitive(True)
 
-    def on_derivation_changed(self, list_box, row):
+    def on_derivation_changed(self, _list_box, row):
         self.new_derivation_algorithm = NotImplemented
 
         if row.get_name() != "argon2" and row.get_name() != "aeskdf":
@@ -494,5 +495,5 @@ class DatabaseSettingsDialog:
     # Tools
     #
 
-    def on_dialog_quit(self, window, event):
+    def on_dialog_quit(self, _window, _event):
         self.unlocked_database.database_settings_dialog = NotImplemented

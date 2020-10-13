@@ -1,13 +1,14 @@
 import logging
-import gi
 import sys
 from typing import Optional
+
+import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 
-from gi.repository import GObject, GLib, Gio, Gtk, Handy
-from passwordsafe.main_window import MainWindow
-from passwordsafe.settings_dialog import SettingsDialog
+from gi.repository import GObject, GLib, Gio, Gtk, Handy  # pylint: disable=wrong-import-position
+from passwordsafe.main_window import MainWindow  # pylint: disable=wrong-import-position
+from passwordsafe.settings_dialog import SettingsDialog  # pylint: disable=wrong-import-position
 
 
 class Application(Gtk.Application):
@@ -16,7 +17,7 @@ class Application(Gtk.Application):
     development_mode = False
     application_id = "org.gnome.PasswordSafe"
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **_kwargs):
         super().__init__(
             *args, application_id=self.application_id, flags=Gio.ApplicationFlags.HANDLES_OPEN)
         self.window = None
@@ -77,7 +78,7 @@ class Application(Gtk.Application):
     def on_settings_menu_clicked(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)
 
-    def on_about_menu_clicked(self, action, param):
+    def on_about_menu_clicked(self, _action, _param):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/about_dialog.ui")
         about_dialog = builder.get_object("about_dialog")
@@ -86,14 +87,14 @@ class Application(Gtk.Application):
             about_dialog.set_transient_for(self.window)
         about_dialog.present()
 
-    def on_quit(self, action: Optional[Gio.SimpleAction]=None,
-                data=None) -> None:
+    def on_quit(self, _action: Optional[Gio.SimpleAction] = None,
+                _data=None) -> None:
         # Perform cleanups, this calls application.quit() itself if `handled`
         handled = self.window.on_application_shutdown()
         if not handled:
             self.quit()
 
-    def on_shortcuts_menu_clicked(self, action, param):
+    def on_shortcuts_menu_clicked(self, _action, _param):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/shortcuts_overview.ui")
         shortcuts_overview = builder.get_object("shortcuts_overview")
@@ -110,7 +111,7 @@ class Application(Gtk.Application):
         open_action.connect("activate", self.window.open_filechooser)
         self.add_action(open_action)
 
-    def file_open_handler(self, app, g_file_list, amount, ukwn):
+    def file_open_handler(self, _application, g_file_list, _amount, _ukwn):
         for g_file in g_file_list:
             self.file_list.append(g_file)
             if self.window is not None:

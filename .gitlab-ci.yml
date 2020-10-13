@@ -11,7 +11,7 @@ flake8:
     script:
         - apt-get update
         - apt-get -q -y install flake8
-        - flake8 --max-line-length=350 passwordsafe/
+        - flake8 --max-line-length=350 --ignore=E402 passwordsafe/
 
 pylint:
     stage: Static Analysis
@@ -20,7 +20,7 @@ pylint:
     script:
         - apt-get update
         - apt-get -q -y install pylint
-        - pylint --max-line-length=350 passwordsafe/*.py
+        - pylint --max-line-length=350 --disable=missing-docstring passwordsafe/*.py
 flatpak:
     stage: Build
     image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master

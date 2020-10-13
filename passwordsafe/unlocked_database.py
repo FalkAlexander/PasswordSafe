@@ -1,4 +1,11 @@
 from gettext import gettext as _
+import ntpath
+import os
+import re
+import time
+import threading
+import uuid as u
+
 from gi.repository import Gio, Gdk, Gtk, GLib, Handy
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
@@ -14,13 +21,7 @@ from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
 from threading import Timer
-import ntpath
-import os
 import passwordsafe.config_manager
-import re
-import time
-import threading
-import uuid as u
 
 
 class UnlockedDatabase:
@@ -443,7 +444,7 @@ class UnlockedDatabase:
     # Events
     #
 
-    def on_list_box_row_activated(self, widget, list_box_row):
+    def on_list_box_row_activated(self, _widget, list_box_row):
         self.start_database_lock_timer()
 
         if list_box_row.get_name() == "LoadMoreRow":
@@ -479,12 +480,12 @@ class UnlockedDatabase:
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
             self.show_database_action_revealer(_("No changes made"))
 
-    def on_lock_button_clicked(self, widget):
+    def on_lock_button_clicked(self, _widget):
         # shows save dialog if required
         self.show_save_dialog()
         self.lock_database()
 
-    def on_add_entry_button_clicked(self, widget):
+    def on_add_entry_button_clicked(self, _widget):
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
@@ -493,7 +494,7 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)
 
-    def on_add_group_button_clicked(self, widget):
+    def on_add_group_button_clicked(self, _widget):
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
@@ -510,7 +511,7 @@ class UnlockedDatabase:
             else:
                 self.selection_ui.row_selection_toggled(widget.get_parent())
 
-    def on_element_delete_menu_button_clicked(self, action, param):
+    def on_element_delete_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
         element_to_delete = self.current_group
@@ -531,7 +532,7 @@ class UnlockedDatabase:
         self.update_current_stack_page()
         self.show_page_of_new_directory(False, False)
 
-    def on_entry_duplicate_menu_button_clicked(self, action, param):
+    def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
         self.database_manager.duplicate_entry(self.current_group)
@@ -541,7 +542,7 @@ class UnlockedDatabase:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
         else:
             for button in self.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                     if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent_group):
                         self.pathbar.on_pathbar_button_clicked(button)
 
@@ -566,7 +567,7 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True, False)
 
-    def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
+    def on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.send_to_clipboard(widget.get_text())
 
     def send_to_clipboard(self, text):
@@ -581,7 +582,7 @@ class UnlockedDatabase:
 
             try:
                 uuid = u.UUID(self.reference_to_hex_uuid(ref.group()))
-            except(Exception):
+            except Exception:
                 not_valid = True
 
             value = NotImplemented
@@ -590,28 +591,28 @@ class UnlockedDatabase:
                 if code == "T":
                     try:
                         value = self.database_manager.get_entry_name_from_entry_uuid(uuid)
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
                 elif code == "U":
                     try:
                         value = self.database_manager.get_entry_username_from_entry_uuid(uuid)
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
                 elif code == "P":
                     try:
                         value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
-                    except(AttributeError):
+                    except AttributeError:
                         print("FAIL")
                         value = ref.group()
                 elif code == "A":
                     try:
                         value = str(self.database_manager.get_entry_url_from_entry_uuid(uuid))
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
                 elif code == "N":
                     try:
                         value = str(self.database_manager.get_entry_notes_from_entry_uuid(uuid))
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
 
                 replace_string = replace_string.replace(ref.group(), value)
@@ -623,27 +624,23 @@ class UnlockedDatabase:
         self.clipboard_timer = Timer(clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard])
         self.clipboard_timer.start()
 
-    def on_database_settings_entry_clicked(self, action, param):
+    def on_database_settings_entry_clicked(self, _action, _param):
         DatabaseSettingsDialog(self)
 
-    def on_sort_menu_button_entry_clicked(self, action, param, sorting):
+    def on_sort_menu_button_entry_clicked(self, _action, _param, sorting):
         self.start_database_lock_timer()
         passwordsafe.config_manager.set_sort_order(sorting)
         self.list_box_sorting = sorting
         self.rebuild_all_pages()
 
-    def on_session_lock(self, connection, unique_name, object_path, interface, signal, state):
+    def on_session_lock(self, _connection, _unique_name, _object_path, _interface, _signal, state):
         if state[0] is True and self.database_locked is False:
             self.lock_timeout_database()
 
     def on_back_button_mobile_clicked(self, button):
         page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(page_uuid.urn)
-
-        if self.database_manager.check_is_group(page_uuid) is True:
-            group_page = True
-        else:
-            group_page = False
+        group_page = self.database_manager.check_is_group(page_uuid)
 
         parent = NotImplemented
 
@@ -663,7 +660,7 @@ class UnlockedDatabase:
             return
 
         for button in self.pathbar:
-            if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+            if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                 if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent):
                     self.pathbar.on_pathbar_button_clicked(button)
 
@@ -704,10 +701,10 @@ class UnlockedDatabase:
 
         return True
 
-    def show_references_dialog(self, action, param):
+    def show_references_dialog(self, _action, _param):
         ReferencesDialog(self)
 
-    def show_properties_dialog(self, action, param):
+    def show_properties_dialog(self, _action, _param):
         PropertiesDialog(self)
 
     #
@@ -795,10 +792,10 @@ class UnlockedDatabase:
     #
 
     def undo_redo_receiver(self, action):
-        if type(self.window.get_focus()) is not Gtk.Entry and type(self.window.get_focus()) is not Gtk.TextView:
+        if not isinstance(self.window.get_focus(), Gtk.Entry) and not isinstance(self.window.get_focus(), Gtk.TextView):
             return
 
-        if type(self.window.get_focus().get_buffer()) is not passwordsafe.history_buffer.HistoryTextBuffer and type(self.window.get_focus().get_buffer()) is not passwordsafe.history_buffer.HistoryEntryBuffer:
+        if not isinstance(self.window.get_focus().get_buffer(), passwordsafe.history_buffer.HistoryTextBuffer) and not isinstance(self.window.get_focus().get_buffer(), passwordsafe.history_buffer.HistoryEntryBuffer):
             return
 
         if "TabBox" not in self.window.get_focus().get_name():
@@ -876,7 +873,7 @@ class UnlockedDatabase:
         remove_loading_indicator_thread.start()
 
     def remove_loading_indicator_thread(self, list_box, overlay, spinner):
-        while(list_box.is_visible() is False):
+        while list_box.is_visible() is False:
             continue
         else:
             GLib.idle_add(self.remove_loading_indicator, overlay, spinner)

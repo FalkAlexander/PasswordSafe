@@ -1,10 +1,11 @@
 from datetime import datetime
 from dateutil import tz
 from gettext import gettext as _
+import hashlib
+
 from gi.repository import Gio, GLib
 from pykeepass.kdbx_parsing.kdbx import KDBX
 from pykeepass import PyKeePass
-import hashlib
 
 
 class DatabaseManager:
@@ -226,43 +227,37 @@ class DatabaseManager:
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.title is None:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_username(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.username is None:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_password(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.password is None:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_url(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.url is None:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_notes(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.notes is None:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_icon(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.icon is None:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_expiry_date(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
@@ -272,36 +267,31 @@ class DatabaseManager:
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.expired is False:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_color(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.get_custom_property("color_prop_LcljUMJZ9X") is None or entry.get_custom_property("color_prop_LcljUMJZ9X") == "NoneColorButton":
             return False
-        else:
-            return True
+        return True
 
     def has_entry_attributes(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if len(entry.custom_properties) == 0:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_attribute(self, uuid, key):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.get_custom_property(key) is None:
             return False
-        else:
-            return True
+        return True
 
     def has_entry_attachments(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if len(entry.attachments) == 0:
             return False
-        else:
-            return True
+        return True
 
     #
     # Group Checks
@@ -311,22 +301,19 @@ class DatabaseManager:
         group = self.db.find_groups(uuid=uuid, first=True)
         if group.name is None:
             return False
-        else:
-            return True
+        return True
 
     def has_group_notes(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
         if group.notes is None:
             return False
-        else:
-            return True
+        return True
 
     def has_group_icon(self, uuid):
         group = self.db.find_groups(uuid=uuid, first=True)
         if group.icon is None:
             return False
-        else:
-            return True
+        return True
 
     #
     # Database Modifications
@@ -465,7 +452,7 @@ class DatabaseManager:
     def set_entry_expiry_date(self, uuid, date):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.expiry_time = date
-        entry.expires
+        # entry.expires
         self.is_dirty = True
         self.set_element_mtime(entry)
 
@@ -487,9 +474,9 @@ class DatabaseManager:
         self.is_dirty = True
         self.set_element_mtime(entry)
 
-    def add_entry_attachment(self, uuid, bytes, filename):
+    def add_entry_attachment(self, uuid, byte_buffer, filename):
         entry = self.db.find_entries(uuid=uuid, first=True)
-        attachment_id = self.db.add_binary(bytes)
+        attachment_id = self.db.add_binary(byte_buffer)
         attachment = entry.add_attachment(attachment_id, filename)
         self.is_dirty = True
         return attachment
@@ -577,18 +564,14 @@ class DatabaseManager:
 
     # Check if root group
     def check_is_root_group(self, group):
-        if group.is_root_group:
-            return True
-        else:
-            return False
+        return group.is_root_group
 
     # Check if entry with title in group exists
     def check_entry_in_group_exists(self, title, group):
         entry = self.db.find_entries(title=title, group=group, recursive=False, history=False, first=True)
         if entry is None:
             return False
-        else:
-            return True
+        return True
 
     # Search for an entry or a group
     def search(self, string, fulltext, global_search=True, path=None):
@@ -668,8 +651,7 @@ class DatabaseManager:
     def check_is_group(self, uuid):
         if self.get_group_object_from_uuid(uuid) is None:
             return False
-        else:
-            return True
+        return True
 
     def check_is_group_object(self, group):
         return hasattr(group, "name")

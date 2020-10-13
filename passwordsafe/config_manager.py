@@ -79,8 +79,8 @@ def get_window_size():
     return setting.get_value(window_size)
 
 
-def set_window_size(list):
-    g_variant = GLib.Variant('ai', list)
+def set_window_size(lis):
+    g_variant = GLib.Variant('ai', lis)
     setting.set_value(window_size, g_variant)
 
 
@@ -107,8 +107,8 @@ def get_last_opened_list():
     return setting.get_value(last_opened_list)
 
 
-def set_last_opened_list(list):
-    g_variant = GLib.Variant('as', list)
+def set_last_opened_list(opened_list):
+    g_variant = GLib.Variant('as', opened_list)
     setting.set_value(last_opened_list, g_variant)
 
 

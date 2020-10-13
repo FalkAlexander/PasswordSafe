@@ -42,7 +42,7 @@ class SelectionUI:
     #
 
     # Selection headerbar
-    def set_selection_headerbar(self, widget, select_row=None):
+    def set_selection_headerbar(self, _widget, select_row=None):
         self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
@@ -134,11 +134,11 @@ class SelectionUI:
     # Events
     #
 
-    def on_selection_cancel_button_clicked(self, widget):
+    def on_selection_cancel_button_clicked(self, _widget):
         self.remove_selection_headerbar()
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-    def on_selection_delete_button_clicked(self, widget):
+    def on_selection_delete_button_clicked(self, _widget):
         rebuild_pathbar = False
         reset_stack_page = False
         group = None
@@ -196,7 +196,7 @@ class SelectionUI:
 
             rebuild = False
             for button in self.unlocked_database.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                     for group_row in self.groups_cut:
                         if button.uuid == group_row.get_uuid():
                             rebuild = True
@@ -253,7 +253,7 @@ class SelectionUI:
         # It is more efficient to do this here and not in the database manager loop
         self.unlocked_database.database_manager.changes = True
 
-    def on_selection_popover_button_clicked(self, action, param, selection_type):
+    def on_selection_popover_button_clicked(self, _action, _param, selection_type):
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
         viewport = scrolled_page.get_children()[0]
         overlay = viewport.get_children()[0]

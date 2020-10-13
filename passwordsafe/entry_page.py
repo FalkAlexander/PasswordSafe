@@ -1,12 +1,13 @@
-from gi.repository import Gtk, Gio, GLib
 from gettext import gettext as _
+import subprocess
+import uuid as u
+
+from gi.repository import Gtk, Gio, GLib
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
-import subprocess
-import uuid as u
 
 
 class EntryPage:
@@ -345,7 +346,13 @@ class EntryPage:
                 if key != "color_prop_LcljUMJZ9X" and key != "Notes":
                     self.add_attribute_property_row(key, attributes[key])
 
-        if scrolled_page.color_property_row is not NotImplemented and scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented and scrolled_page.attributes_property_row is not NotImplemented:
+        if scrolled_page.color_property_row is not NotImplemented and \
+           scrolled_page.name_property_row is not NotImplemented and \
+           scrolled_page.username_property_row is not NotImplemented and \
+           scrolled_page.password_property_row is not NotImplemented and \
+           scrolled_page.url_property_row is not NotImplemented and \
+           scrolled_page.notes_property_row is not NotImplemented and \
+           scrolled_page.attributes_property_row is not NotImplemented:
             scrolled_page.all_properties_revealed = True
         else:
             scrolled_page.show_all_row = builder.get_object("show_all_row")
@@ -384,7 +391,7 @@ class EntryPage:
     # Events
     #
 
-    def on_show_all_properties_button_clicked(self, widget):
+    def on_show_all_properties_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
@@ -394,30 +401,30 @@ class EntryPage:
 
         self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
 
-    def on_property_value_entry_changed(self, widget, type):
+    def on_property_value_entry_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
 
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
         scrolled_page.is_dirty = True
 
-        if type == "name":
+        if type_name == "name":
             self.unlocked_database.database_manager.set_entry_name(entry_uuid, widget.get_text())
 
             pathbar_button = self.unlocked_database.pathbar.get_pathbar_button(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
             pathbar_button.set_label(widget.get_text())
 
-        elif type == "username":
+        elif type_name == "username":
             self.unlocked_database.database_manager.set_entry_username(entry_uuid, widget.get_text())
-        elif type == "password":
+        elif type_name == "password":
             self.unlocked_database.database_manager.set_entry_password(entry_uuid, widget.get_text())
             self.set_password_level_bar(scrolled_page)
-        elif type == "url":
+        elif type_name == "url":
             self.unlocked_database.database_manager.set_entry_url(entry_uuid, widget.get_text())
-        elif type == "notes":
+        elif type_name == "notes":
             self.unlocked_database.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
-    def on_notes_detach_button_clicked(self, button):
+    def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         NotesDialog(self.unlocked_database)
 
@@ -460,11 +467,11 @@ class EntryPage:
         scrolled_page.is_dirty = True
         self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
 
-    def on_link_secondary_button_clicked(self, widget, position, eventbutton):
+    def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()
         Gtk.show_uri_on_window(self.unlocked_database.window, widget.get_text(), Gtk.get_current_event_time())
 
-    def on_generate_button_clicked(self, button, builder, entry):
+    def on_generate_button_clicked(self, _button, builder, entry):
         self.unlocked_database.start_database_lock_timer()
         pass_text = NotImplemented
 
@@ -485,7 +492,7 @@ class EntryPage:
 
         entry.set_text(pass_text)
 
-    def on_show_password_button_toggled(self, toggle_button, entry):
+    def on_show_password_button_toggled(self, _toggle_button, entry):
         self.unlocked_database.start_database_lock_timer()
         if entry.get_visibility() is True:
             entry.set_visibility(False)
@@ -496,7 +503,7 @@ class EntryPage:
     # Additional Attributes
     #
 
-    def on_attributes_add_button_clicked(self, widget):
+    def on_attributes_add_button_clicked(self, _widget):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
 
@@ -590,7 +597,7 @@ class EntryPage:
     # Attachment Handling
     #
 
-    def on_attachment_list_box_activated(self, widget, list_box_row):
+    def on_attachment_list_box_activated(self, _widget, list_box_row):
         if list_box_row.get_name() == "AddAttachmentRow":
             self.on_add_attachment_row_clicked()
         else:
@@ -612,9 +619,9 @@ class EntryPage:
             entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
             for uri in select_dialog.get_uris():
                 attachment = Gio.File.new_for_uri(uri)
-                bytes = attachment.load_bytes()[0].get_data()
+                byte_buffer = attachment.load_bytes()[0].get_data()
                 filename = attachment.get_basename()
-                self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, filename))
+                self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, byte_buffer, filename))
 
     def add_attachment_row(self, attachment):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
@@ -644,7 +651,7 @@ class EntryPage:
 
         warning_dialog.present()
 
-    def on_attachment_download_button_clicked(self, button, attachment):
+    def on_attachment_download_button_clicked(self, _button, attachment):
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for downloading an attachment
             _("Save attachment"), self.unlocked_database.window, Gtk.FileChooserAction.SAVE,
@@ -657,10 +664,10 @@ class EntryPage:
         response = save_dialog.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            bytes = self.unlocked_database.database_manager.db.binaries[attachment.id]
-            self.save_to_disk(save_dialog.get_filename(), bytes)
+            bytes_buffer = self.unlocked_database.database_manager.db.binaries[attachment.id]
+            self.save_to_disk(save_dialog.get_filename(), bytes_buffer)
 
-    def on_attachment_delete_button_clicked(self, button, entry_uuid, attachment, attachment_row):
+    def on_attachment_delete_button_clicked(self, _button, entry_uuid, attachment, attachment_row):
         self.unlocked_database.database_manager.delete_entry_attachment(entry_uuid, attachment)
         attachment_row.destroy()
 
@@ -681,23 +688,23 @@ class EntryPage:
     # Helper
     #
 
-    def save_to_disk(self, filepath, bytes):
+    def save_to_disk(self, filepath, byte_buffer):
         file = Gio.File.new_for_path(filepath)
         stream = Gio.File.create(file, Gio.FileCreateFlags.PRIVATE, None)
-        file_buffer = Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes), None)
+        Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(byte_buffer), None)
         stream.close()
 
-    def open_tmp_file(self, bytes, filename):
+    def open_tmp_file(self, bytes_buffer, filename):
         (file, stream) = Gio.File.new_tmp(filename + ".XXXXXX")
-        stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
+        stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes_buffer))
         stream.close()
         self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
-        subprocess.run(["xdg-open", file.get_path()])
+        subprocess.run(["xdg-open", file.get_path()], check=True)
 
-    def on_warning_dialog_back_button_clicked(self, button, dialog):
+    def on_warning_dialog_back_button_clicked(self, _button, dialog):
         dialog.close()
 
-    def on_warning_dialog_proceed_button_clicked(self, button, dialog, attachment):
+    def on_warning_dialog_proceed_button_clicked(self, _button, dialog, attachment):
         dialog.close()
         self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id], attachment.filename)
 
@@ -716,7 +723,7 @@ class EntryPage:
         if scrolled_page.password_property_value_entry.get_text().startswith("{REF:P"):
             try:
                 password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(u.UUID(self.unlocked_database.reference_to_hex_uuid(scrolled_page.password_property_value_entry.get_text())))
-            except(Exception):
+            except Exception:
                 password = scrolled_page.password_property_value_entry.get_text()
         else:
             password = scrolled_page.password_property_value_entry.get_text()

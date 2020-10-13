@@ -4,8 +4,8 @@ from Crypto.Random import get_random_bytes
 import secrets
 
 
-def create_random_data(bytes):
-    return secrets.token_bytes(bytes)
+def create_random_data(bytes_buffer):
+    return secrets.token_bytes(bytes_buffer)
 
 
 def generate_keyfile(filepath, database_creation, instance, composite):

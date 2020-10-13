@@ -596,21 +596,21 @@ class UnlockDatabase:
                 self.window.logging_manager.warning("Could not copy database file to backup location. This most likely happened because the database is located on a network drive, and Password Safe doesn't have network permission. Either disable development-backup-mode or if PasswordSafe runs as Flatpak grant network permission")
 
         already_added = False
-        list = []
+        path_listh = []
         for path in passwordsafe.config_manager.get_last_opened_list():
-            list.append(path)
+            path_listh.append(path)
             if path == Gio.File.new_for_path(self.database_filepath).get_uri():
                 already_added = True
 
         if already_added is False:
-            list.append(Gio.File.new_for_path(self.database_filepath).get_uri())
+            path_listh.append(Gio.File.new_for_path(self.database_filepath).get_uri())
         else:
-            list.sort(key=Gio.File.new_for_path(self.database_filepath).get_uri().__eq__)
+            path_listh.sort(key=Gio.File.new_for_path(self.database_filepath).get_uri().__eq__)
 
-        if len(list) > 10:
-            list.pop(0)
+        if len(path_listh) > 10:
+            path_listh.pop(0)
 
-        passwordsafe.config_manager.set_last_opened_list(list)
+        passwordsafe.config_manager.set_last_opened_list(path_listh)
 
         self.hdy_page.destroy()
         UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)

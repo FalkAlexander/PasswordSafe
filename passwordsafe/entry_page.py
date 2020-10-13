@@ -658,8 +658,8 @@ class EntryPage:
         response = save_dialog.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            bytes = self.unlocked_database.database_manager.db.binaries[attachment.id]
-            self.save_to_disk(save_dialog.get_filename(), bytes)
+            bytes_buffer = self.unlocked_database.database_manager.db.binaries[attachment.id]
+            self.save_to_disk(save_dialog.get_filename(), bytes_buffer)
 
     def on_attachment_delete_button_clicked(self, _button, entry_uuid, attachment, attachment_row):
         self.unlocked_database.database_manager.delete_entry_attachment(entry_uuid, attachment)
@@ -688,9 +688,9 @@ class EntryPage:
         Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(byte_buffer), None)
         stream.close()
 
-    def open_tmp_file(self, bytes, filename):
+    def open_tmp_file(self, bytes_buffer, filename):
         (file, stream) = Gio.File.new_tmp(filename + ".XXXXXX")
-        stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes))
+        stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes_buffer))
         stream.close()
         self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
         subprocess.run(["xdg-open", file.get_path()])

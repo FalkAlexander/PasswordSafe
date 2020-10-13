@@ -113,8 +113,8 @@ class EntryRow(Gtk.ListBoxRow):
     def get_type(self):
         return self.type
 
-    def set_changed(self, bool):
-        self.changed = bool
+    def set_changed(self, boolean):
+        self.changed = boolean
 
     def get_changed(self):
         return self.changed

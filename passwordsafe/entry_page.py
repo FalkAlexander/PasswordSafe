@@ -346,7 +346,13 @@ class EntryPage:
                 if key != "color_prop_LcljUMJZ9X" and key != "Notes":
                     self.add_attribute_property_row(key, attributes[key])
 
-        if scrolled_page.color_property_row is not NotImplemented and scrolled_page.name_property_row is not NotImplemented and scrolled_page.username_property_row is not NotImplemented and scrolled_page.password_property_row is not NotImplemented and scrolled_page.url_property_row is not NotImplemented and scrolled_page.notes_property_row is not NotImplemented and scrolled_page.attributes_property_row is not NotImplemented:
+        if scrolled_page.color_property_row is not NotImplemented and \
+           scrolled_page.name_property_row is not NotImplemented and \
+           scrolled_page.username_property_row is not NotImplemented and \
+           scrolled_page.password_property_row is not NotImplemented and \
+           scrolled_page.url_property_row is not NotImplemented and \
+           scrolled_page.notes_property_row is not NotImplemented and \
+           scrolled_page.attributes_property_row is not NotImplemented:
             scrolled_page.all_properties_revealed = True
         else:
             scrolled_page.show_all_row = builder.get_object("show_all_row")

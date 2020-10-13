@@ -10,6 +10,7 @@ import passwordsafe.config_manager
 import passwordsafe.keyfile_generator
 import passwordsafe.password_generator
 
+
 class DatabaseSettingsDialog:
     dialog = NotImplemented
 

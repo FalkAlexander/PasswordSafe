@@ -684,7 +684,7 @@ class EntryPage:
     def save_to_disk(self, filepath, bytes):
         file = Gio.File.new_for_path(filepath)
         stream = Gio.File.create(file, Gio.FileCreateFlags.PRIVATE, None)
-        file_buffer = Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes), None)
+        Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes), None)
         stream.close()
 
     def open_tmp_file(self, bytes, filename):

@@ -474,7 +474,7 @@ class MainWindow(Gtk.ApplicationWindow):
             builder.add_from_resource(
                 "/org/gnome/PasswordSafe/main_window.ui")
 
-            pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
+            Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
 
             self.assemble_first_start_screen()
         else:

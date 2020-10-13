@@ -4,7 +4,7 @@ from passwordsafe.unlocked_database import UnlockedDatabase
 try:
     # These were introduced in pykeepass 3.2.1
     from pykeepass.exceptions import CredentialsError, PayloadChecksumError, HeaderChecksumError
-except ImportError as e:
+except ImportError:
     # fall back to earlier versions. This needs to be removed once we
     # rely on pykeepass 3.2.1 as a minimum
     from pykeepass.exceptions import CredentialsIntegrityError
@@ -625,7 +625,7 @@ class UnlockDatabase:
         composite_unlock_entry.set_text("")
 
     def show_unlock_failed_revealer(self):
-        unlock_failed_box = self.builder.get_object("unlock_failed_box")
+        self.builder.get_object("unlock_failed_box")
 
         unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
         unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())

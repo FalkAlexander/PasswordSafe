@@ -1,3 +1,12 @@
+import ntpath
+import os
+import threading
+import time
+import datetime
+from gettext import gettext as _
+from construct import core
+from pathlib import Path
+
 from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
@@ -11,14 +20,6 @@ except ImportError:
     CredentialsError = PayloadChecksumError = HeaderChecksumError =\
         CredentialsIntegrityError
 import passwordsafe.config_manager
-import ntpath
-import os
-import threading
-import time
-import datetime
-from gettext import gettext as _
-from construct import core
-from pathlib import Path
 
 
 class UnlockDatabase:

@@ -1,12 +1,13 @@
-from gi.repository import Gtk, Gio, GLib
 from gettext import gettext as _
+import subprocess
+import uuid as u
+
+from gi.repository import Gtk, Gio, GLib
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
-import subprocess
-import uuid as u
 
 
 class EntryPage:
@@ -394,27 +395,27 @@ class EntryPage:
 
         self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
 
-    def on_property_value_entry_changed(self, widget, type):
+    def on_property_value_entry_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
 
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
         scrolled_page.is_dirty = True
 
-        if type == "name":
+        if type_name == "name":
             self.unlocked_database.database_manager.set_entry_name(entry_uuid, widget.get_text())
 
             pathbar_button = self.unlocked_database.pathbar.get_pathbar_button(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
             pathbar_button.set_label(widget.get_text())
 
-        elif type == "username":
+        elif type_name == "username":
             self.unlocked_database.database_manager.set_entry_username(entry_uuid, widget.get_text())
-        elif type == "password":
+        elif type_name == "password":
             self.unlocked_database.database_manager.set_entry_password(entry_uuid, widget.get_text())
             self.set_password_level_bar(scrolled_page)
-        elif type == "url":
+        elif type_name == "url":
             self.unlocked_database.database_manager.set_entry_url(entry_uuid, widget.get_text())
-        elif type == "notes":
+        elif type_name == "notes":
             self.unlocked_database.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
     def on_notes_detach_button_clicked(self, _button):
@@ -612,9 +613,9 @@ class EntryPage:
             entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
             for uri in select_dialog.get_uris():
                 attachment = Gio.File.new_for_uri(uri)
-                bytes = attachment.load_bytes()[0].get_data()
+                byte_buffer = attachment.load_bytes()[0].get_data()
                 filename = attachment.get_basename()
-                self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, bytes, filename))
+                self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, byte_buffer, filename))
 
     def add_attachment_row(self, attachment):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
@@ -681,10 +682,10 @@ class EntryPage:
     # Helper
     #
 
-    def save_to_disk(self, filepath, bytes):
+    def save_to_disk(self, filepath, byte_buffer):
         file = Gio.File.new_for_path(filepath)
         stream = Gio.File.create(file, Gio.FileCreateFlags.PRIVATE, None)
-        Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes), None)
+        Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(byte_buffer), None)
         stream.close()
 
     def open_tmp_file(self, bytes, filename):
@@ -716,7 +717,7 @@ class EntryPage:
         if scrolled_page.password_property_value_entry.get_text().startswith("{REF:P"):
             try:
                 password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(u.UUID(self.unlocked_database.reference_to_hex_uuid(scrolled_page.password_property_value_entry.get_text())))
-            except(Exception):
+            except Exception:
                 password = scrolled_page.password_property_value_entry.get_text()
         else:
             password = scrolled_page.password_property_value_entry.get_text()

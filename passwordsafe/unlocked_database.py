@@ -1,4 +1,11 @@
 from gettext import gettext as _
+import ntpath
+import os
+import re
+import time
+import threading
+import uuid as u
+
 from gi.repository import Gio, Gdk, Gtk, GLib, Handy
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
@@ -14,13 +21,7 @@ from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
 from threading import Timer
-import ntpath
-import os
 import passwordsafe.config_manager
-import re
-import time
-import threading
-import uuid as u
 
 
 class UnlockedDatabase:
@@ -541,7 +542,7 @@ class UnlockedDatabase:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
         else:
             for button in self.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                     if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent_group):
                         self.pathbar.on_pathbar_button_clicked(button)
 
@@ -581,7 +582,7 @@ class UnlockedDatabase:
 
             try:
                 uuid = u.UUID(self.reference_to_hex_uuid(ref.group()))
-            except(Exception):
+            except Exception:
                 not_valid = True
 
             value = NotImplemented
@@ -590,28 +591,28 @@ class UnlockedDatabase:
                 if code == "T":
                     try:
                         value = self.database_manager.get_entry_name_from_entry_uuid(uuid)
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
                 elif code == "U":
                     try:
                         value = self.database_manager.get_entry_username_from_entry_uuid(uuid)
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
                 elif code == "P":
                     try:
                         value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
-                    except(AttributeError):
+                    except AttributeError:
                         print("FAIL")
                         value = ref.group()
                 elif code == "A":
                     try:
                         value = str(self.database_manager.get_entry_url_from_entry_uuid(uuid))
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
                 elif code == "N":
                     try:
                         value = str(self.database_manager.get_entry_notes_from_entry_uuid(uuid))
-                    except(AttributeError):
+                    except AttributeError:
                         value = ref.group()
 
                 replace_string = replace_string.replace(ref.group(), value)
@@ -639,11 +640,7 @@ class UnlockedDatabase:
     def on_back_button_mobile_clicked(self, button):
         page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
         scrolled_page = self.stack.get_child_by_name(page_uuid.urn)
-
-        if self.database_manager.check_is_group(page_uuid) is True:
-            group_page = True
-        else:
-            group_page = False
+        group_page = self.database_manager.check_is_group(page_uuid)
 
         parent = NotImplemented
 
@@ -663,7 +660,7 @@ class UnlockedDatabase:
             return
 
         for button in self.pathbar:
-            if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+            if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                 if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent):
                     self.pathbar.on_pathbar_button_clicked(button)
 
@@ -876,7 +873,7 @@ class UnlockedDatabase:
         remove_loading_indicator_thread.start()
 
     def remove_loading_indicator_thread(self, list_box, overlay, spinner):
-        while(list_box.is_visible() is False):
+        while list_box.is_visible() is False:
             continue
         else:
             GLib.idle_add(self.remove_loading_indicator, overlay, spinner)

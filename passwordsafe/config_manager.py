@@ -107,8 +107,8 @@ def get_last_opened_list():
     return setting.get_value(last_opened_list)
 
 
-def set_last_opened_list(list):
-    g_variant = GLib.Variant('as', list)
+def set_last_opened_list(opened_list):
+    g_variant = GLib.Variant('as', opened_list)
     setting.set_value(last_opened_list, g_variant)
 
 

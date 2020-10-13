@@ -85,19 +85,19 @@ class GroupPage:
     # Events
     #
 
-    def on_property_value_group_changed(self, widget, type):
+    def on_property_value_group_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
         scrolled_page.is_dirty = True
 
-        if type == "name":
+        if type_name == "name":
             self.unlocked_database.database_manager.set_group_name(group_uuid, widget.get_text())
 
             for pathbar_button in self.unlocked_database.pathbar.get_children():
                 if pathbar_button.get_name() == "PathbarButtonDynamic":
                     if pathbar_button.get_uuid() == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group):
                         pathbar_button.set_label(widget.get_text())
-        elif type == "notes":
+        elif type_name == "notes":
             self.unlocked_database.database_manager.set_group_notes(group_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))

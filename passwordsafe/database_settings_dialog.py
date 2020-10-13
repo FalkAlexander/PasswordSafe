@@ -1,14 +1,14 @@
 from gettext import gettext as _
-from gi.repository import Gtk, GLib
 from random import randint
 import ntpath
-import passwordsafe.config_manager
-import passwordsafe.keyfile_generator
-import passwordsafe.password_generator
 import threading
 import time
 import os
 
+from gi.repository import Gtk, GLib
+import passwordsafe.config_manager
+import passwordsafe.keyfile_generator
+import passwordsafe.password_generator
 
 class DatabaseSettingsDialog:
     dialog = NotImplemented

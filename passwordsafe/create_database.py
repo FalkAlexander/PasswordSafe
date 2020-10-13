@@ -1,7 +1,8 @@
 from gi.repository import Gtk, GLib
-from passwordsafe.created_database import CreatedDatabase
 from gettext import gettext as _
 import threading
+
+from passwordsafe.created_database import CreatedDatabase
 import passwordsafe.keyfile_generator
 
 

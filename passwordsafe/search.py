@@ -1,8 +1,9 @@
+import threading
+
 from gi.repository import Gdk, GLib, Gtk, Handy
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
-import threading
 
 
 class Search:

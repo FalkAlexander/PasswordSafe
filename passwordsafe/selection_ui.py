@@ -196,7 +196,7 @@ class SelectionUI:
 
             rebuild = False
             for button in self.unlocked_database.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and type(button) is passwordsafe.pathbar_button.PathbarButton:
+                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
                     for group_row in self.groups_cut:
                         if button.uuid == group_row.get_uuid():
                             rebuild = True

@@ -1,6 +1,7 @@
-from gi.repository import Gio
 import re
 import secrets
+
+from gi.repository import Gio
 
 word_dict = {}
 

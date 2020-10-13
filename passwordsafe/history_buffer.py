@@ -31,7 +31,7 @@ class Logic():
         self.buffer = buffer
         self.history = history
 
-    def on_buffer_changed(self, buffer, position, chars, n_chars):
+    def on_buffer_changed(self, buffer, _position, _chars, _n_chars):
         if self.increase is True:
             self.index = NotImplemented
             if type(buffer) is HistoryEntryBuffer:

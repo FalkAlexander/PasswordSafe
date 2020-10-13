@@ -384,7 +384,7 @@ class EntryPage:
     # Events
     #
 
-    def on_show_all_properties_button_clicked(self, widget):
+    def on_show_all_properties_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
@@ -417,7 +417,7 @@ class EntryPage:
         elif type == "notes":
             self.unlocked_database.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
 
-    def on_notes_detach_button_clicked(self, button):
+    def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         NotesDialog(self.unlocked_database)
 
@@ -460,11 +460,11 @@ class EntryPage:
         scrolled_page.is_dirty = True
         self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
 
-    def on_link_secondary_button_clicked(self, widget, position, eventbutton):
+    def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()
         Gtk.show_uri_on_window(self.unlocked_database.window, widget.get_text(), Gtk.get_current_event_time())
 
-    def on_generate_button_clicked(self, button, builder, entry):
+    def on_generate_button_clicked(self, _button, builder, entry):
         self.unlocked_database.start_database_lock_timer()
         pass_text = NotImplemented
 
@@ -485,7 +485,7 @@ class EntryPage:
 
         entry.set_text(pass_text)
 
-    def on_show_password_button_toggled(self, toggle_button, entry):
+    def on_show_password_button_toggled(self, _toggle_button, entry):
         self.unlocked_database.start_database_lock_timer()
         if entry.get_visibility() is True:
             entry.set_visibility(False)
@@ -496,7 +496,7 @@ class EntryPage:
     # Additional Attributes
     #
 
-    def on_attributes_add_button_clicked(self, widget):
+    def on_attributes_add_button_clicked(self, _widget):
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
 
@@ -590,7 +590,7 @@ class EntryPage:
     # Attachment Handling
     #
 
-    def on_attachment_list_box_activated(self, widget, list_box_row):
+    def on_attachment_list_box_activated(self, _widget, list_box_row):
         if list_box_row.get_name() == "AddAttachmentRow":
             self.on_add_attachment_row_clicked()
         else:
@@ -644,7 +644,7 @@ class EntryPage:
 
         warning_dialog.present()
 
-    def on_attachment_download_button_clicked(self, button, attachment):
+    def on_attachment_download_button_clicked(self, _button, attachment):
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for downloading an attachment
             _("Save attachment"), self.unlocked_database.window, Gtk.FileChooserAction.SAVE,
@@ -660,7 +660,7 @@ class EntryPage:
             bytes = self.unlocked_database.database_manager.db.binaries[attachment.id]
             self.save_to_disk(save_dialog.get_filename(), bytes)
 
-    def on_attachment_delete_button_clicked(self, button, entry_uuid, attachment, attachment_row):
+    def on_attachment_delete_button_clicked(self, _button, entry_uuid, attachment, attachment_row):
         self.unlocked_database.database_manager.delete_entry_attachment(entry_uuid, attachment)
         attachment_row.destroy()
 
@@ -694,10 +694,10 @@ class EntryPage:
         self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
         subprocess.run(["xdg-open", file.get_path()])
 
-    def on_warning_dialog_back_button_clicked(self, button, dialog):
+    def on_warning_dialog_back_button_clicked(self, _button, dialog):
         dialog.close()
 
-    def on_warning_dialog_proceed_button_clicked(self, button, dialog, attachment):
+    def on_warning_dialog_proceed_button_clicked(self, _button, dialog, attachment):
         dialog.close()
         self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id], attachment.filename)
 

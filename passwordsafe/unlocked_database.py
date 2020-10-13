@@ -443,7 +443,7 @@ class UnlockedDatabase:
     # Events
     #
 
-    def on_list_box_row_activated(self, widget, list_box_row):
+    def on_list_box_row_activated(self, _widget, list_box_row):
         self.start_database_lock_timer()
 
         if list_box_row.get_name() == "LoadMoreRow":
@@ -479,12 +479,12 @@ class UnlockedDatabase:
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
             self.show_database_action_revealer(_("No changes made"))
 
-    def on_lock_button_clicked(self, widget):
+    def on_lock_button_clicked(self, _widget):
         # shows save dialog if required
         self.show_save_dialog()
         self.lock_database()
 
-    def on_add_entry_button_clicked(self, widget):
+    def on_add_entry_button_clicked(self, _widget):
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
@@ -493,7 +493,7 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)
 
-    def on_add_group_button_clicked(self, widget):
+    def on_add_group_button_clicked(self, _widget):
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
@@ -510,7 +510,7 @@ class UnlockedDatabase:
             else:
                 self.selection_ui.row_selection_toggled(widget.get_parent())
 
-    def on_element_delete_menu_button_clicked(self, action, param):
+    def on_element_delete_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
         element_to_delete = self.current_group
@@ -531,7 +531,7 @@ class UnlockedDatabase:
         self.update_current_stack_page()
         self.show_page_of_new_directory(False, False)
 
-    def on_entry_duplicate_menu_button_clicked(self, action, param):
+    def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
         self.database_manager.duplicate_entry(self.current_group)
@@ -566,7 +566,7 @@ class UnlockedDatabase:
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True, False)
 
-    def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
+    def on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.send_to_clipboard(widget.get_text())
 
     def send_to_clipboard(self, text):
@@ -623,16 +623,16 @@ class UnlockedDatabase:
         self.clipboard_timer = Timer(clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard])
         self.clipboard_timer.start()
 
-    def on_database_settings_entry_clicked(self, action, param):
+    def on_database_settings_entry_clicked(self, _action, _param):
         DatabaseSettingsDialog(self)
 
-    def on_sort_menu_button_entry_clicked(self, action, param, sorting):
+    def on_sort_menu_button_entry_clicked(self, _action, _param, sorting):
         self.start_database_lock_timer()
         passwordsafe.config_manager.set_sort_order(sorting)
         self.list_box_sorting = sorting
         self.rebuild_all_pages()
 
-    def on_session_lock(self, connection, unique_name, object_path, interface, signal, state):
+    def on_session_lock(self, _connection, _unique_name, _object_path, _interface, _signal, state):
         if state[0] is True and self.database_locked is False:
             self.lock_timeout_database()
 
@@ -704,10 +704,10 @@ class UnlockedDatabase:
 
         return True
 
-    def show_references_dialog(self, action, param):
+    def show_references_dialog(self, _action, _param):
         ReferencesDialog(self)
 
-    def show_properties_dialog(self, action, param):
+    def show_properties_dialog(self, _action, _param):
         PropertiesDialog(self)
 
     #

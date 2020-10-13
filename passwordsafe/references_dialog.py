@@ -60,19 +60,19 @@ class ReferencesDialog():
     # Events
     #
 
-    def on_copy_secondary_button_clicked(self, widget, position, eventbutton):
+    def on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.clipboard.set_text(widget.get_text(), -1)
 
     def on_property_model_button_clicked(self, widget):
         self.property = widget.get_name()
         self.update_reference_entry()
 
-    def open_codes_popover(self, widget, label):
+    def open_codes_popover(self, widget, _label):
         codes_popover = self.builder.get_object("codes_popover")
         codes_popover.set_relative_to(widget)
         codes_popover.popup()
 
-    def open_uuid_popover(self, widget, label):
+    def open_uuid_popover(self, widget, _label):
         uuid_popover = self.builder.get_object("uuid_popover")
         uuid_popover.set_relative_to(widget)
         uuid_popover.popup()
@@ -81,5 +81,5 @@ class ReferencesDialog():
     # Tools
     #
 
-    def on_dialog_quit(self, window, event):
+    def on_dialog_quit(self, _window, _event):
         self.unlocked_database.references_dialog = NotImplemented

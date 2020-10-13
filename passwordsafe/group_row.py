@@ -64,7 +64,7 @@ class GroupRow(Gtk.ListBoxRow):
     def get_type(self):
         return self.type
 
-    def on_selection_checkbox_toggled(self, widget):
+    def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active() is True:
             if self not in self.unlocked_database.selection_ui.groups_selected:
                 self.unlocked_database.selection_ui.groups_selected.append(self)

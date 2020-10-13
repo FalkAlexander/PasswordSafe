@@ -112,7 +112,7 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def responsive_listener(self, window):
+    def responsive_listener(self, _window):
         if self.get_allocation().width < 700:
             if self.mobile_width is True:
                 return
@@ -281,13 +281,13 @@ class MainWindow(Gtk.ApplicationWindow):
     # Open Database Methods
     #
 
-    def _on_info_bar_response(self, info_bar=None, response_id=None):
+    def _on_info_bar_response(self, _info_bar=None, _response_id=None):
         self._info_bar.hide()
         self._info_bar.disconnect(self._info_bar_response_id)
         self._info_bar = None
         self._info_bar_response_id = None
 
-    def open_filechooser(self, widget, none):
+    def open_filechooser(self, _widget, _none):
         if self._info_bar is not None:
             self._on_info_bar_response()
 
@@ -372,7 +372,7 @@ class MainWindow(Gtk.ApplicationWindow):
     # Create Database Methods
     #
 
-    def create_filechooser(self, widget, none):
+    def create_filechooser(self, _widget, _none):
         self.filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"), self, Gtk.FileChooserAction.SAVE,
@@ -495,11 +495,11 @@ class MainWindow(Gtk.ApplicationWindow):
     # Events
     #
 
-    def on_last_opened_list_box_activated(self, widget, list_box_row):
+    def on_last_opened_list_box_activated(self, _widget, list_box_row):
         path = list_box_row.get_name()
         self.start_database_opening_routine(ntpath.basename(path), Gio.File.new_for_uri(path).get_path())
 
-    def on_tab_close_button_clicked(self, sender, widget):
+    def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)
         is_contained = False
 
@@ -525,11 +525,11 @@ class MainWindow(Gtk.ApplicationWindow):
             self.container.remove_page(page_num)
             self.update_tab_bar_visibility()
 
-    def on_cancel_button_clicked(self, widget):
+    def on_cancel_button_clicked(self, _widget):
         self.override_dialog.destroy()
         self.filechooser_creation_dialog.destroy()
 
-    def on_override_button_clicked(self, widget):
+    def on_override_button_clicked(self, _widget):
         self.copy_database_file()
 
         tab_title = self.create_tab_title_from_filepath(
@@ -538,7 +538,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.override_dialog.destroy()
 
-    def on_tab_switch(self, notebook, tab, pagenum):
+    def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
 
@@ -556,7 +556,7 @@ class MainWindow(Gtk.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, window) -> bool:
+    def do_delete_event(self, _window) -> bool:
         """invoked when we hit the window close button"""
         # Just invoke the app.quit action, it cleans up stuff
         # and will invoke the on_application_shutdown()
@@ -772,7 +772,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.application.add_action(redo_action)
 
     # Accelerator Action Handler
-    def execute_accel_action(self, action, param, name, arg=None):
+    def execute_accel_action(self, _action, _param, name, arg=None):
         action_db = self.find_action_db()
         if action_db is NotImplemented:
             return

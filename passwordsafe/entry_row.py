@@ -119,7 +119,7 @@ class EntryRow(Gtk.ListBoxRow):
     def get_changed(self):
         return self.changed
 
-    def on_selection_checkbox_toggled(self, widget):
+    def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active() is True:
             if self not in self.unlocked_database.selection_ui.entries_selected:
                 self.unlocked_database.selection_ui.entries_selected.append(self)
@@ -140,7 +140,7 @@ class EntryRow(Gtk.ListBoxRow):
             self.unlocked_database.builder.get_object("selection_cut_button").get_children()[0].set_from_icon_name("edit-cut-symbolic", Gtk.IconSize.BUTTON)
             self.unlocked_database.selection_ui.cut_mode is True
 
-    def on_entry_copy_button_clicked(self, button):
+    def on_entry_copy_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid))
 
     def update_color(self, color):

@@ -37,7 +37,7 @@ class CreatedDatabase:
     # Events
     #
 
-    def on_finish_button_clicked(self, widget):
+    def on_finish_button_clicked(self, _widget):
         self.stack.destroy()
         UnlockDatabase(
             self.window, self.parent_widget,

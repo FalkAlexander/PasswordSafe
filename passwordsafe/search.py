@@ -45,7 +45,7 @@ class Search:
     #
 
     # Search headerbar
-    def set_search_headerbar(self, widget):
+    def set_search_headerbar(self, _widget):
         self.unlocked_database.headerbar_search = self.unlocked_database.builder.get_object("headerbar_search")
         self.unlocked_database.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
         self.unlocked_database.window.set_titlebar(self.unlocked_database.headerbar_search)
@@ -60,7 +60,7 @@ class Search:
         self.prepare_search_page()
         self.unlocked_database.responsive_ui.action_bar()
 
-    def remove_search_headerbar(self, widget):
+    def remove_search_headerbar(self, _widget):
         self.unlocked_database.parent_widget.set_headerbar(self.unlocked_database.headerbar)
         self.unlocked_database.window.set_titlebar(self.unlocked_database.headerbar)
         self.search_active = False
@@ -199,12 +199,12 @@ class Search:
     # Events
     #
 
-    def on_headerbar_search_close_button_clicked(self, widget):
+    def on_headerbar_search_close_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
         self.remove_search_headerbar(None)
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-    def on_search_entry_navigation(self, widget, event, data=None):
+    def on_search_entry_navigation(self, _widget, event, _data=None):
         self.unlocked_database.start_database_lock_timer()
         if event.keyval == Gdk.KEY_Escape:
             self.remove_search_headerbar(None)
@@ -276,7 +276,7 @@ class Search:
         self.unlocked_database.pathbar.add_pathbar_button_to_pathbar(uuid)
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-    def on_search_filter_switch_toggled(self, switch_button, gparam):
+    def on_search_filter_switch_toggled(self, _switch_button, _gparam):
         self.on_headerbar_search_entry_changed(
             self.unlocked_database.builder.get_object("headerbar_search_entry"),
             self.unlocked_database.builder.get_object("search_local_switch"),

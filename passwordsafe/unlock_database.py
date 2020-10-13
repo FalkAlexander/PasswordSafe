@@ -177,7 +177,7 @@ class UnlockDatabase:
     # Events
     #
 
-    def on_headerbar_back_button_clicked(self, widget):
+    def on_headerbar_back_button_clicked(self, _widget):
         if self.timeout is True:
             for db in self.window.opened_databases:
                 if db.database_manager.database_path == self.database_manager.database_path:
@@ -196,14 +196,14 @@ class UnlockDatabase:
 
     # Password Unlock
 
-    def on_password_unlock_entry_secondary_clicked(self, widget, position, eventbutton):
+    def on_password_unlock_entry_secondary_clicked(self, widget, _position, _eventbutton):
         if widget.get_visibility():
             widget.set_invisible_char("●")
             widget.set_visibility(False)
         else:
             widget.set_visibility(True)
 
-    def on_password_unlock_button_clicked(self, widget):
+    def on_password_unlock_button_clicked(self, _widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
 
         database_already_opened = False
@@ -303,7 +303,7 @@ class UnlockDatabase:
 
     # Keyfile Unlock
 
-    def on_keyfile_unlock_select_button_clicked(self, widget):
+    def on_keyfile_unlock_select_button_clicked(self, _widget):
         # NOTE: Keyfile filechooser title
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None)
         filter_text = Gtk.FileFilter()
@@ -329,7 +329,7 @@ class UnlockDatabase:
         elif response == Gtk.ResponseType.CANCEL:
             self.window.logging_manager.debug("File selection canceled")
 
-    def on_keyfile_unlock_button_clicked(self, widget):
+    def on_keyfile_unlock_button_clicked(self, _widget):
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
 
         if self.timeout is True:
@@ -421,7 +421,7 @@ class UnlockDatabase:
 
     # Composite Unlock
 
-    def on_composite_unlock_select_button_clicked(self, widget):
+    def on_composite_unlock_select_button_clicked(self, _widget):
         filechooser_opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Keyfile filechooser title
             _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
@@ -453,7 +453,7 @@ class UnlockDatabase:
         elif response == Gtk.ResponseType.CANCEL:
             self.window.logging_manager.debug("File selection cancelled")
 
-    def on_composite_unlock_button_clicked(self, widget):
+    def on_composite_unlock_button_clicked(self, _widget):
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
 

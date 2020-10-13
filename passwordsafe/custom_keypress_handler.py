@@ -25,7 +25,7 @@ class CustomKeypressHandler:
         self.unlocked_database.window.connect("key-press-event", self.on_special_key_pressed)
         self.unlocked_database.window.connect("key-release-event", self.on_special_key_released)
 
-    def on_special_key_pressed(self, window, eventkey):
+    def on_special_key_pressed(self, _window, eventkey):
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
@@ -86,7 +86,7 @@ class CustomKeypressHandler:
             else:
                 return self.iterate_parents(child.get_parent())
 
-    def on_special_key_released(self, window, eventkey):
+    def on_special_key_released(self, _window, eventkey):
         group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
 
         if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():

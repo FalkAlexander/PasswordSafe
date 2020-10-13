@@ -138,7 +138,7 @@ class EntryRow(Gtk.ListBoxRow):
             self.unlocked_database.selection_ui.entries_cut.clear()
             self.unlocked_database.selection_ui.groups_cut.clear()
             self.unlocked_database.builder.get_object("selection_cut_button").get_children()[0].set_from_icon_name("edit-cut-symbolic", Gtk.IconSize.BUTTON)
-            self.unlocked_database.selection_ui.cut_mode is True
+            # self.unlocked_database.selection_ui.cut_mode is True
 
     def on_entry_copy_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid))

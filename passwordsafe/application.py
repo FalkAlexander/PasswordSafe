@@ -5,9 +5,9 @@ from typing import Optional
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 
-from gi.repository import GObject, GLib, Gio, Gtk, Handy
-from passwordsafe.main_window import MainWindow
-from passwordsafe.settings_dialog import SettingsDialog
+from gi.repository import GObject, GLib, Gio, Gtk, Handy  # pylint: disable=wrong-import-position
+from passwordsafe.main_window import MainWindow  # pylint: disable=wrong-import-position
+from passwordsafe.settings_dialog import SettingsDialog  # pylint: disable=wrong-import-position
 
 
 class Application(Gtk.Application):

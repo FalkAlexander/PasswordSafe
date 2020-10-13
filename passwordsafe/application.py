@@ -111,7 +111,7 @@ class Application(Gtk.Application):
         open_action.connect("activate", self.window.open_filechooser)
         self.add_action(open_action)
 
-    def file_open_handler(self, app, g_file_list, amount, ukwn):
+    def file_open_handler(self, application, g_file_list, amount, ukwn):
         for g_file in g_file_list:
             self.file_list.append(g_file)
             if self.window is not None:

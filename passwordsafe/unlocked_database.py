@@ -677,7 +677,6 @@ class UnlockedDatabase:
         if not self.database_manager.is_dirty \
            or self.database_manager.save_running:
             return True  # no dirty db, do nothing.
-
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
         save_dialog = builder.get_object("save_dialog")
@@ -685,8 +684,11 @@ class UnlockedDatabase:
 
         res = save_dialog.run()
         save_dialog.destroy()
-        if res == Gtk.ResponseType.CANCEL or res == Gtk.ResponseType.NONE:
-            # Cancel everything, don't quit
+        if (
+                res == Gtk.ResponseType.CANCEL
+                or res == Gtk.ResponseType.DELETE_EVENT
+        ):
+            # Cancel everything, don't quit. Also activated when pressing escape
             return False
         elif res == Gtk.ResponseType.NO:
             # clicked 'Discard'. Close, but don't save

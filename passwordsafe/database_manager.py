@@ -650,6 +650,12 @@ class DatabaseManager:
                         else:
                             if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
                                 uuid_list.append(entry.uuid)
+                    elif string.lower() in self.get_entry_url_from_entry_object(entry).lower():
+                        if global_search is True:
+                            uuid_list.append(entry.uuid)
+                        else:
+                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                                uuid_list.append(entry.uuid)
 
         return uuid_list
 

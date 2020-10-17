@@ -10,7 +10,7 @@ flake8:
     script:
         - apt-get update
         - apt-get -q -y install flake8
-        - flake8 --max-line-length=350 --ignore=E402 passwordsafe/
+        - flake8 --max-line-length=350 --ignore=E402,W503 passwordsafe/
 
 pylint:
     stage: Static Analysis

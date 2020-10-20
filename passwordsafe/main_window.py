@@ -112,15 +112,14 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def responsive_listener(self, _window):
+    def responsive_listener(self, win:Gtk.ApplicationWindow):
+        """invoked on check-resize events"""
         if self.get_allocation().width < 700:
-            if self.mobile_width is True:
-                return
-
-            self.mobile_width = True
-            self.change_layout()
+            if not self.mobile_width:
+                self.mobile_width = True
+                self.change_layout()
         else:
-            if self.mobile_width is True:
+            if self.mobile_width:
                 self.mobile_width = False
                 self.change_layout()
 

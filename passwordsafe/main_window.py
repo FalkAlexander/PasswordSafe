@@ -127,24 +127,29 @@ class MainWindow(Gtk.ApplicationWindow):
                 self.change_layout()
 
     def change_layout(self):
+        """Switches all open databases between mobile/desktop layout"""
         for db in self.opened_databases:
             # Do Nothing on Lock Screen
             if db.database_locked is True:
                 return
 
-            # For Search View
+            # Do nothing for Search View
             if db.stack.get_visible_child() is db.stack.get_child_by_name("search"):
                 return
 
             page_uuid = db.current_group.uuid
             scrolled_page = db.stack.get_child_by_name(page_uuid.urn)
 
-            # For Entry/Group Browser, Edit Page and Selection Mode
             db.responsive_ui.action_bar()
             db.responsive_ui.headerbar_title()
             db.responsive_ui.headerbar_back_button()
-            if not scrolled_page.edit_page:
-                db.responsive_ui.headerbar_selection_button()
+
+            # For Group/Entry Edit Page
+            if scrolled_page.edit_page:
+                return
+
+            # For Entry/Group Browser and Selection Mode
+            db.responsive_ui.headerbar_selection_button()
 
         if self.container is NotImplemented \
            or self.container.get_n_pages() == 0:

@@ -175,10 +175,10 @@ class Pathbar(Gtk.HBox):
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
 
-                if self.check_values_of_edit_page(self.database_manager.get_group_object_from_uuid(pathbar_button_uuid)) is False:
+                if not self.check_values_of_edit_page(self.database_manager.get_group(pathbar_button_uuid)):
                     self.query_page_update()
 
-                self.unlocked_database.set_current_group(self.database_manager.get_group_object_from_uuid(pathbar_button.get_uuid()))
+                self.unlocked_database.set_current_group(self.database_manager.get_group(pathbar_button.get_uuid()))
                 self.unlocked_database.switch_stack_page()
             elif pathbar_button.get_is_group() is False and self.unlocked_database.selection_ui.selection_mode_active is False:
                 self.remove_active_style()
@@ -196,17 +196,13 @@ class Pathbar(Gtk.HBox):
     #
 
     def check_is_edit_page(self):
-        current_group = self.unlocked_database.get_current_group()
-        scrolled_page = NotImplemented
-        edit_page = NotImplemented
+        """Return if the current page is an 'edit page'
 
-        if self.check_is_edit_page_from_group() is True:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(current_group).urn)
-        else:
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(current_group).urn)
-
-        edit_page = scrolled_page.check_is_edit_page()
-        return edit_page
+        OBS! current_group can also be an entry and not a group!
+        """
+        uuid = self.unlocked_database.current_group.uuid
+        page = self.unlocked_database.stack.get_child_by_name(uuid.urn)
+        return page.check_is_edit_page()
 
     def check_update_needed(self):
         """Returns True if the pathbar needs updating"""

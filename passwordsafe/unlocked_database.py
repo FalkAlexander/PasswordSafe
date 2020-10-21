@@ -458,7 +458,7 @@ class UnlockedDatabase:
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
         elif list_box_row.get_type() == "GroupRow":
-            self.set_current_group(self.database_manager.get_group_object_from_uuid(list_box_row.get_uuid()))
+            self.set_current_group(self.database_manager.get_group(list_box_row.get_uuid()))
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
 
@@ -561,7 +561,7 @@ class UnlockedDatabase:
     def on_group_edit_button_clicked(self, button):
         self.start_database_lock_timer()
         group_uuid = button.get_parent().get_parent().get_parent().get_parent().get_uuid()
-        group_object = self.database_manager.get_group_object_from_uuid(group_uuid)
+        group_object = self.database_manager.get_group(group_uuid)
 
         self.set_current_group(group_object)
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)

@@ -151,7 +151,7 @@ class SelectionUI:
                 rebuild_pathbar = True
 
         for group_row in self.groups_selected:
-            group = self.unlocked_database.database_manager.get_group_object_from_uuid(group_row.get_uuid())
+            group = self.unlocked_database.database_manager.get_group(group_row.get_uuid())
             self.unlocked_database.database_manager.delete_group_from_database(group)
             # If the deleted group is in the pathbar, we need to rebuild the pathbar
             if self.unlocked_database.pathbar.uuid_in_pathbar(group_row.get_uuid()) is True:
@@ -221,7 +221,7 @@ class SelectionUI:
 
         for group_row in self.groups_cut:
             group_uuid = group_row.get_uuid()
-            if self.unlocked_database.database_manager.parent_checker(self.unlocked_database.current_group, self.unlocked_database.database_manager.get_group_object_from_uuid(group_uuid)) is False:
+            if not self.unlocked_database.database_manager.parent_checker(self.unlocked_database.current_group, self.unlocked_database.database_manager.get_group(group_uuid)):
                 self.unlocked_database.database_manager.move_group(group_uuid, self.unlocked_database.current_group)
             else:
                 move_conflict = True

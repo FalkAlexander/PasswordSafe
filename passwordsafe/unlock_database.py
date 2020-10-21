@@ -1,21 +1,21 @@
+import datetime
 import logging
 import ntpath
 import os
 import threading
 import time
-import datetime
 from gettext import gettext as _
-from construct import core
 from pathlib import Path
 
-from gi.repository import Gio, Gtk, GLib, Handy, Pango
-from passwordsafe.database_manager import DatabaseManager
-from passwordsafe.unlocked_database import UnlockedDatabase
+from construct import core
+from gi.repository import Gio, GLib, Gtk, Handy, Pango
 
 from pykeepass.exceptions import (
-    CredentialsError, PayloadChecksumError, HeaderChecksumError)
+    CredentialsError, HeaderChecksumError, PayloadChecksumError)
 
 import passwordsafe.config_manager
+from passwordsafe.database_manager import DatabaseManager
+from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class UnlockDatabase:

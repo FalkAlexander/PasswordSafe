@@ -16,8 +16,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.set_name("GroupRow")
 
         self.unlocked_database = unlocked_database
-
-        self.group_uuid = dbm.get_group_uuid_from_group_object(group)
+        self.group_uuid = group.uuid
         self.label = dbm.get_group_name_from_group_object(group)
 
         self.assemble_group_row()

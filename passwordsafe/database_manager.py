@@ -12,7 +12,14 @@ from pykeepass.group import Group
 from pykeepass import PyKeePass
 
 
-class DatabaseManager:
+class DatabaseManager():
+    """Implements database functionality that is independent of the UI
+
+    Group objects are of type `pykeepass.group.Group`
+    Entry objects are of type `pykeepass.entry.Entry`
+    Instances of both have useful attributes:
+    .uuid: a `uuid.UUID` object
+    """
     db = NotImplemented
     database_path = ""
     password_try = ""
@@ -59,10 +66,6 @@ class DatabaseManager:
     # Return the path for a group object
     def get_group_path_from_group_object(self, group):
         return group.path
-
-    # Return the belonging group uuid for a group object
-    def get_group_uuid_from_group_object(self, group):
-        return group.uuid
 
     # Return the belonging name for a group object
     def get_group_name_from_group_object(self, group):

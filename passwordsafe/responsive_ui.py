@@ -1,7 +1,7 @@
 import ntpath
 
 
-class ResponsiveUI:
+class ResponsiveUI():
     #
     # Global Variables
     #
@@ -23,7 +23,7 @@ class ResponsiveUI:
         db = self.unlocked_database
         scrolled_page = db.stack.get_child_by_name(db.database_manager.get_group_uuid_from_group_object(db.current_group).urn)
 
-        if db.window.mobile_width is True:
+        if db.window.mobile_width and not db.actionbar_box.get_children():
             # Hide pathbar in header (if it is in there)
             db.headerbar_box.remove(self.unlocked_database.pathbar)
             db.headerbar_box.hide()
@@ -36,7 +36,8 @@ class ResponsiveUI:
                 db.revealer.set_reveal_child(True)
             else:
                 db.revealer.set_reveal_child(False)
-        else:
+        elif db.actionbar_box.get_children():
+            # Desktop width AND pathbar is in actionbar
             db.revealer.set_reveal_child(False)
             db.actionbar_box.remove(self.unlocked_database.pathbar)
             db.headerbar_box.add(self.unlocked_database.pathbar)

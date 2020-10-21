@@ -112,15 +112,14 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def responsive_listener(self, _window):
+    def responsive_listener(self, win: Gtk.ApplicationWindow):
+        """invoked on check-resize events"""
         if self.get_allocation().width < 700:
-            if self.mobile_width is True:
-                return
-
-            self.mobile_width = True
-            self.change_layout()
+            if not self.mobile_width:
+                self.mobile_width = True
+                self.change_layout()
         else:
-            if self.mobile_width is True:
+            if self.mobile_width:
                 self.mobile_width = False
                 self.change_layout()
 
@@ -135,28 +134,17 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             page_uuid = db.database_manager.get_group_uuid_from_group_object(db.current_group)
-            group_page = db.database_manager.check_is_group(page_uuid)
             scrolled_page = db.stack.get_child_by_name(page_uuid.urn)
 
-            # For Group/Entry Edit Page
-            if scrolled_page.edit_page is True and group_page is True:
-                db.responsive_ui.action_bar()
-                db.responsive_ui.headerbar_title()
-                db.responsive_ui.headerbar_back_button()
-                return
-            elif scrolled_page.edit_page is True and group_page is False:
-                db.responsive_ui.action_bar()
-                db.responsive_ui.headerbar_title()
-                db.responsive_ui.headerbar_back_button()
-                return
-
-            # For Entry/Group Browser and Selection Mode
+            # For Entry/Group Browser, Edit Page and Selection Mode
             db.responsive_ui.action_bar()
             db.responsive_ui.headerbar_title()
             db.responsive_ui.headerbar_back_button()
-            db.responsive_ui.headerbar_selection_button()
+            if not scrolled_page.edit_page:
+                db.responsive_ui.headerbar_selection_button()
 
-        if self.container is NotImplemented or self.container.get_n_pages() == 0:
+        if self.container is NotImplemented \
+           or self.container.get_n_pages() == 0:
             self.set_headerbar_button_layout()
 
     def set_headerbar_button_layout(self):

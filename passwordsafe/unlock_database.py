@@ -547,7 +547,7 @@ class UnlockDatabase:
         passwordsafe.config_manager.set_last_opened_list(path_listh)
 
         self.hdy_page.destroy()
-        UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)
+        UnlockedDatabase(self.window, self.parent_widget, self.database_manager)
         self.database_manager.connect(
             "notify::locked", self._on_database_locked_changed)
 

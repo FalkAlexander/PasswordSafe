@@ -36,7 +36,6 @@ class UnlockedDatabase(GObject.GObject):
     # Instances
     window = NotImplemented
     database_manager = NotImplemented
-    unlock_database = NotImplemented
     responsive_ui = NotImplemented
     selection_ui = NotImplemented
     search = NotImplemented
@@ -75,14 +74,13 @@ class UnlockedDatabase(GObject.GObject):
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
-    def __init__(self, window, widget, dbm, unlock_database):
+    def __init__(self, window, widget, dbm):
         super().__init__()
 
         # Instances
         self.window = window
         self.parent_widget = widget
         self.database_manager = dbm
-        self.unlock_database = unlock_database
         self.responsive_ui = ResponsiveUI(self)
         self.selection_ui = SelectionUI(self)
         self.search = Search(self)

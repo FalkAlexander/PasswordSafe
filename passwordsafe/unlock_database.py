@@ -216,49 +216,50 @@ class UnlockDatabase:
     def on_password_unlock_button_clicked(self, _widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
 
-        database_already_opened = False
-
         for db in self.window.opened_databases:  # pylint: disable=C0103
             if (
                 db.database_manager.database_path == self.database_filepath
                 and self.timeout is not True
             ):
-                database_already_opened = True
                 page_num = self.window.container.page_num(db.parent_widget)
                 self.window.container.set_current_page(page_num)
                 self.window.close_tab(self.parent_widget)
 
                 db.show_database_action_revealer(_("Database already opened"))
+                return
 
-        if password_unlock_entry.get_text() != "" and database_already_opened is False:
-            if self.timeout is True:
-                if password_unlock_entry.get_text() == self._unlocked_db_manager.password and self._unlocked_db_manager.keyfile_hash is NotImplemented:
-                    self.parent_widget.remove(self.hdy_page)
-                    self._unlocked_db_manager.props.locked = False
-                else:
-                    self.show_unlock_failed_revealer()
-                    password_unlock_entry.grab_focus()
-                    password_unlock_entry.get_style_context().add_class("error")
-                    self.clear_input_fields()
-                    logging.debug("Could not open database, wrong password")
+        entered_pwd = password_unlock_entry.get_text()
+        if not entered_pwd:
+            return
+
+        if self.timeout is True:
+            if entered_pwd == self._unlocked_db_manager.password and self._unlocked_db_manager.keyfile_hash is NotImplemented:
+                self.parent_widget.remove(self.hdy_page)
+                self._unlocked_db_manager.props.locked = False
             else:
-                password_unlock_button = self.builder.get_object("password_unlock_button")
-                password_unlock_button_image = password_unlock_button.get_children()[0]
-                password_unlock_entry.set_sensitive(False)
-                password_unlock_button.set_sensitive(False)
-                self.unlock_database_stack_switcher.set_sensitive(False)
+                self.show_unlock_failed_revealer()
+                password_unlock_entry.grab_focus()
+                password_unlock_entry.get_style_context().add_class("error")
+                self.clear_input_fields()
+                logging.debug("Could not open database, wrong password")
+        else:
+            password_unlock_button = self.builder.get_object("password_unlock_button")
+            password_unlock_button_image = password_unlock_button.get_children()[0]
+            password_unlock_entry.set_sensitive(False)
+            password_unlock_button.set_sensitive(False)
+            self.unlock_database_stack_switcher.set_sensitive(False)
 
-                spinner = Gtk.Spinner()
-                spinner.show()
-                spinner.start()
+            spinner = Gtk.Spinner()
+            spinner.show()
+            spinner.start()
 
-                password_unlock_button.remove(password_unlock_button_image)
-                password_unlock_button.add(spinner)
+            password_unlock_button.remove(password_unlock_button_image)
+            password_unlock_button.add(spinner)
 
-                self.password_only = password_unlock_entry.get_text()
-                self.unlock_thread = threading.Thread(target=self.password_unlock_process)
-                self.unlock_thread.daemon = True
-                self.unlock_thread.start()
+            self.password_only = entered_pwd
+            self.unlock_thread = threading.Thread(target=self.password_unlock_process)
+            self.unlock_thread.daemon = True
+            self.unlock_thread.start()
 
     def password_unlock_process(self):
         try:

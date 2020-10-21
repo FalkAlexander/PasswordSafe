@@ -6,7 +6,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 
-from gi.repository import GObject, GLib, Gio, Gtk, Handy  # pylint: disable=wrong-import-position
+from gi.repository import GLib, Gio, Gtk, Handy  # pylint: disable=wrong-import-position
 from passwordsafe.main_window import MainWindow  # pylint: disable=wrong-import-position
 from passwordsafe.settings_dialog import SettingsDialog  # pylint: disable=wrong-import-position
 
@@ -27,8 +27,7 @@ class Application(Gtk.Application):
         GLib.set_application_name('Password Safe')
         GLib.set_prgname("Password Safe")
 
-        # Register LibHandy Responsive Clamp
-        GObject.type_register(Handy.Clamp)
+        Handy.init()
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 

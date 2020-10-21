@@ -49,14 +49,7 @@ class UnlockDatabase:
         self.parent_widget = widget
         self.database_filepath = filepath
         self.database_manager = None
-        self.unlock_database()
-
-    def unlock_database(self):
-        self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
-
-        self.set_headerbar()
-        self.assemble_stack()
+        self._on_database_locked_changed()
 
     #
     # Headerbar
@@ -555,6 +548,8 @@ class UnlockDatabase:
 
         self.hdy_page.destroy()
         UnlockedDatabase(self.window, self.parent_widget, self.database_manager, self)
+        self.database_manager.connect(
+            "notify::locked", self._on_database_locked_changed)
 
     #
     # Helper Functions
@@ -581,3 +576,14 @@ class UnlockDatabase:
     def set_last_used_unlock_method(self, method):
         if passwordsafe.config_manager.get_remember_unlock_method() is True:
             passwordsafe.config_manager.set_unlock_method(method)
+
+    def _on_database_locked_changed(self, database_manager=None, value=None):
+        if (not self.database_manager
+            or (self.database_manager
+                and self.database_manager.props.locked)):
+            self.builder = Gtk.Builder()
+            self.builder.add_from_resource(
+                "/org/gnome/PasswordSafe/unlock_database.ui")
+
+            self.set_headerbar()
+            self.assemble_stack()

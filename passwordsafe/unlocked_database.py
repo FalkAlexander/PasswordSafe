@@ -772,7 +772,6 @@ class UnlockedDatabase(GObject.GObject):
                     save_thread.start()
 
             self.overlay.hide()
-            self.unlock_database.unlock_database(True, self)
         else:
             if self.search.search_active:
                 self.parent_widget.set_headerbar(self.headerbar_search)

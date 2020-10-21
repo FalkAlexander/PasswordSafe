@@ -112,7 +112,7 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def responsive_listener(self, win:Gtk.ApplicationWindow):
+    def responsive_listener(self, win: Gtk.ApplicationWindow):
         """invoked on check-resize events"""
         if self.get_allocation().width < 700:
             if not self.mobile_width:
@@ -134,7 +134,6 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             page_uuid = db.database_manager.get_group_uuid_from_group_object(db.current_group)
-            group_page = db.database_manager.check_is_group(page_uuid)
             scrolled_page = db.stack.get_child_by_name(page_uuid.urn)
 
             # For Entry/Group Browser, Edit Page and Selection Mode

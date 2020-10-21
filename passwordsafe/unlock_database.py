@@ -11,15 +11,10 @@ from pathlib import Path
 from gi.repository import Gio, Gtk, GLib, Handy, Pango
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
-try:
-    # These were introduced in pykeepass 3.2.1
-    from pykeepass.exceptions import CredentialsError, PayloadChecksumError, HeaderChecksumError
-except ImportError:
-    # fall back to earlier versions. This needs to be removed once we
-    # rely on pykeepass 3.2.1 as a minimum
-    from pykeepass.exceptions import CredentialsIntegrityError
-    CredentialsError = PayloadChecksumError = HeaderChecksumError =\
-        CredentialsIntegrityError
+
+from pykeepass.exceptions import (
+    CredentialsError, PayloadChecksumError, HeaderChecksumError)
+
 import passwordsafe.config_manager
 
 

@@ -11,7 +11,7 @@ import time
 import threading
 import typing
 
-from gi.repository import Gio, Gdk, Gtk, GLib, Handy
+from gi.repository import Gio, GObject, Gdk, Gtk, GLib, Handy
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.entry_page import EntryPage
@@ -32,7 +32,7 @@ if typing.TYPE_CHECKING:
 import passwordsafe.config_manager
 
 
-class UnlockedDatabase:
+class UnlockedDatabase(GObject.GObject):
     # Instances
     window = NotImplemented
     database_manager = NotImplemented
@@ -77,6 +77,8 @@ class UnlockedDatabase:
     listbox_insert_thread = NotImplemented
 
     def __init__(self, window, widget, dbm, unlock_database):
+        super().__init__()
+
         # Instances
         self.window = window
         self.parent_widget = widget

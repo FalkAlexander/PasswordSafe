@@ -161,7 +161,7 @@ class Search:
                     search_height += group_row_height
 
                     if skip is False:
-                        row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group_object_from_uuid(uuid))
+                        row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group(uuid))
                         self.search_list_box.add(row)
                         self.cached_rows.append(row)
                     else:
@@ -269,7 +269,7 @@ class Search:
             selected_row = self.search_list_box.get_children()[0]
         uuid = selected_row.get_uuid()
         if selected_row.type == "GroupRow":
-            first_row = self.unlocked_database.database_manager.get_group_object_from_uuid(uuid)
+            first_row = self.unlocked_database.database_manager.get_group(uuid)
         else:
             first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
 

@@ -115,7 +115,7 @@ class CustomKeypressHandler:
                             if scrolled_page.edit_page is True:
                                 for button in self.unlocked_database.pathbar:
                                     if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
-                                        if self.unlocked_database.database_manager.get_group_object_from_uuid(uuid) is None:
+                                        if self.unlocked_database.database_manager.get_group(uuid) is None:
                                             return
                                         if button.uuid == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.database_manager.get_group_parent_group_from_uuid(uuid)):
                                             self.unlocked_database.pathbar.on_pathbar_button_clicked(button)

@@ -2,9 +2,12 @@ from datetime import datetime
 from dateutil import tz
 from gettext import gettext as _
 import hashlib
+from typing import Optional
+from uuid import UUID
 
 from gi.repository import Gio, GLib
 from pykeepass.kdbx_parsing.kdbx import KDBX
+from pykeepass.group import Group
 from pykeepass import PyKeePass
 
 
@@ -41,8 +44,12 @@ class DatabaseManager:
     def get_group_parent_group_from_object(self, group):
         return group.parentgroup
 
-    # Return the belonging group object for a group uuid
-    def get_group_object_from_uuid(self, uuid):
+    def get_group(self, uuid: UUID) -> Optional[Group]:
+        """Return the group object for a group uuid
+
+        :returns: a `pykeepass.group.Group` object or None if it does not exist
+        """
+        assert type(uuid) == UUID, "uuid needs to be of type UUID"
         return self.db.find_groups(uuid=uuid, first=True)
 
     # Return the belonging group name for a group uuid
@@ -337,7 +344,7 @@ class DatabaseManager:
     # Add new entry to database
     def add_entry_to_database(
             self, name, username, password, url, notes, icon, group_uuid):
-        destination_group = self.get_group_object_from_uuid(group_uuid)
+        destination_group = self.get_group(group_uuid)
         entry = self.db.add_entry(
             destination_group, name, username, password, url=url, notes=notes,
             expiry_time=None, tags=None, icon=icon, force_creation=self.check_entry_in_group_exists("", destination_group))
@@ -544,14 +551,14 @@ class DatabaseManager:
     def get_groups_in_root(self):
         return self.db.root_group.subgroups
 
-    # Return list of all groups in folder
     def get_groups_in_folder(self, uuid):
-        folder = self.get_group_object_from_uuid(uuid)
+        """Return list of all subgroups in a group"""
+        folder = self.get_group(uuid)
         return folder.subgroups
 
-    # Return list of all entries in folder
     def get_entries_in_folder(self, uuid):
-        parent_group = self.get_group_object_from_uuid(uuid)
+        """Return list of all entries in a group"""
+        parent_group = self.get_group(uuid)
         return parent_group.entries
 
     # Return the database filesystem path
@@ -647,11 +654,9 @@ class DatabaseManager:
 
         return uuid_list
 
-    # Check if object is group
     def check_is_group(self, uuid):
-        if self.get_group_object_from_uuid(uuid) is None:
-            return False
-        return True
+        """Whether uuid is a group uuid"""
+        return self.get_group(uuid) is not None
 
     def check_is_group_object(self, group):
         return hasattr(group, "name")

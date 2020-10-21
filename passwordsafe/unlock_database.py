@@ -52,9 +52,8 @@ class UnlockDatabase:
         self.database_filepath = filepath
         self.unlock_database()
 
-    def unlock_database(self, timeout=None, unlocked_database=None):
+    def unlock_database(self, timeout=None):
         self.timeout = timeout
-        self._unlocked_db_manager = unlocked_database
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
@@ -231,9 +230,10 @@ class UnlockDatabase:
             return
 
         if self.timeout is True:
-            if entered_pwd == self._unlocked_db_manager.password and self._unlocked_db_manager.keyfile_hash is NotImplemented:
+            if (entered_pwd == self.database_manager.password
+                    and self.database_manager.keyfile_hash is NotImplemented):
                 self.parent_widget.remove(self.hdy_page)
-                self._unlocked_db_manager.props.locked = False
+                self.database_manager.props.locked = False
             else:
                 self.show_unlock_failed_revealer()
                 password_unlock_entry.grab_focus()
@@ -319,10 +319,11 @@ class UnlockDatabase:
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
 
         if self.timeout is True:
-            if self.keyfile_path is not NotImplemented and self._unlocked_db_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path):
+            if (self.keyfile_path is not NotImplemented
+                    and self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path)):
                 self.parent_widget.remove(self.hdy_page)
                 self.keyfile_path = NotImplemented
-                self._unlocked_db_manager.props.locked = False
+                self.database_manager.props.locked = False
             else:
                 self.show_unlock_failed_revealer()
 
@@ -420,9 +421,11 @@ class UnlockDatabase:
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
 
         if self.timeout is True:
-            if (self.composite_keyfile_path is not NotImplemented) and (self._unlocked_db_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.composite_keyfile_path)) and (composite_unlock_entry.get_text() == self._unlocked_db_manager.password):
+            if ((self.composite_keyfile_path is not NotImplemented)
+                    and (self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.composite_keyfile_path))
+                    and (composite_unlock_entry.get_text() == self.database_manager.password)):
                 self.parent_widget.remove(self.hdy_page)
-                self._unlocked_db_manager.props.locked = False
+                self.database_manager.props.locked = False
             else:
                 self.show_unlock_failed_revealer()
 

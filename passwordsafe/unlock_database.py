@@ -386,7 +386,9 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
             GLib.idle_add(self.keyfile_unlock_success)
-        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
+        except(OSError, IndexError, ValueError, AttributeError,
+               core.ChecksumError, CredentialsError, PayloadChecksumError,
+               HeaderChecksumError):
             GLib.idle_add(self.keyfile_unlock_failure)
 
     def keyfile_unlock_success(self):
@@ -518,7 +520,9 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=self.password_composite, keyfile=self.composite_keyfile_path)
             GLib.idle_add(self.composite_unlock_success)
-        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
+        except(OSError, IndexError, ValueError, AttributeError,
+               core.ChecksumError, CredentialsError, PayloadChecksumError,
+               HeaderChecksumError):
             GLib.idle_add(self.composite_unlock_failure)
 
     def composite_unlock_success(self):

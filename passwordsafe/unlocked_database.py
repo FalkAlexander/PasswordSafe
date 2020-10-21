@@ -1,4 +1,5 @@
 from gettext import gettext as _
+from threading import Timer
 import ntpath
 import os
 import re
@@ -20,7 +21,6 @@ from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
-from threading import Timer
 import passwordsafe.config_manager
 
 
@@ -684,8 +684,11 @@ class UnlockedDatabase:
 
         res = save_dialog.run()
         save_dialog.destroy()
-        if res == Gtk.ResponseType.NONE:
-            # Cancel everything, don't quit
+        if (
+                res == Gtk.ResponseType.CANCEL
+                or res == Gtk.ResponseType.DELETE_EVENT
+        ):
+            # Cancel everything, don't quit. Also activated when pressing escape
             return False
         elif res == Gtk.ResponseType.NO:
             # clicked 'Discard'. Close, but don't save

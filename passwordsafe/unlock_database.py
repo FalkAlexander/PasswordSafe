@@ -35,13 +35,11 @@ class UnlockDatabase:
     parent_widget = NotImplemented
     window = NotImplemented
     database_filepath = NotImplemented
-    database_manager = NotImplemented
     hdy_page = NotImplemented
     unlock_database_stack_switcher = NotImplemented
     keyfile_path = NotImplemented
     composite_keyfile_path = NotImplemented
     overlay = NotImplemented
-    timeout = NotImplemented
     password_composite = NotImplemented
     password_only = NotImplemented
     unlock_thread = NotImplemented
@@ -50,11 +48,10 @@ class UnlockDatabase:
         self.window = window
         self.parent_widget = widget
         self.database_filepath = filepath
+        self.database_manager = None
         self.unlock_database()
 
-    def unlock_database(self, timeout=None):
-        self.timeout = timeout
-
+    def unlock_database(self):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
 
@@ -180,13 +177,10 @@ class UnlockDatabase:
     #
 
     def on_headerbar_back_button_clicked(self, _widget):
-        database = None
-        if self.timeout is True:
+        if self.database_manager:
             for db in self.window.opened_databases:  # pylint: disable=C0103
-                if (
-                    db.database_manager.database_path
-                    == self.database_manager.database_path
-                ):
+                db_path = db.database_manager.database_path
+                if db_path == self.database_manager.database_path:
                     db.unregister_dbus_signal()
                     db.cancel_timers()
 
@@ -214,10 +208,8 @@ class UnlockDatabase:
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
 
         for db in self.window.opened_databases:  # pylint: disable=C0103
-            if (
-                db.database_manager.database_path == self.database_filepath
-                and self.timeout is not True
-            ):
+            if (db.database_manager.database_path == self.database_filepath
+                    and not db.database_locked):
                 page_num = self.window.container.page_num(db.parent_widget)
                 self.window.container.set_current_page(page_num)
                 self.window.close_tab(self.parent_widget)
@@ -229,7 +221,7 @@ class UnlockDatabase:
         if not entered_pwd:
             return
 
-        if self.timeout is True:
+        if self.database_manager:
             if (entered_pwd == self.database_manager.password
                     and self.database_manager.keyfile_hash is NotImplemented):
                 self.parent_widget.remove(self.hdy_page)
@@ -318,7 +310,7 @@ class UnlockDatabase:
     def on_keyfile_unlock_button_clicked(self, _widget):
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
 
-        if self.timeout is True:
+        if self.database_manager:
             if (self.keyfile_path is not NotImplemented
                     and self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path)):
                 self.parent_widget.remove(self.hdy_page)
@@ -383,7 +375,7 @@ class UnlockDatabase:
 
         self.show_unlock_failed_revealer()
 
-        if self.database_manager is not NotImplemented:
+        if self.database_manager:
             self.database_manager.keyfile_hash = NotImplemented
 
         keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
@@ -420,7 +412,7 @@ class UnlockDatabase:
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
 
-        if self.timeout is True:
+        if self.database_manager:
             if ((self.composite_keyfile_path is not NotImplemented)
                     and (self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.composite_keyfile_path))
                     and (composite_unlock_entry.get_text() == self.database_manager.password)):
@@ -513,7 +505,7 @@ class UnlockDatabase:
 
         self.show_unlock_failed_revealer()
 
-        if self.database_manager is not NotImplemented:
+        if self.database_manager:
             self.database_manager.keyfile_hash = NotImplemented
 
         composite_unlock_entry.grab_focus()

@@ -431,14 +431,14 @@ class UnlockDatabase:
 
     def open_database_page(self):
         self.clear_input_fields()
-        passwordsafe.config_manager.set_last_opened_database(Gio.File.new_for_path(self.database_filepath).get_uri())
+        opened = Gio.File.new_for_path(self.database_filepath)
+        passwordsafe.config_manager.set_last_opened_database(opened.get_uri())
 
         if passwordsafe.config_manager.get_development_backup_mode() is True:
             cache_dir = os.path.expanduser("~") + "/.cache/passwordsafe/backup"
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 
-            opened = Gio.File.new_for_path(self.database_filepath)
             backup = Gio.File.new_for_path(cache_dir + "/" + os.path.splitext(ntpath.basename(self.database_filepath))[0] + "_backup_" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S') + ".kdbx")
             try:
                 opened.copy(backup, Gio.FileCopyFlags.NONE)
@@ -449,13 +449,13 @@ class UnlockDatabase:
         path_listh = []
         for path in passwordsafe.config_manager.get_last_opened_list():
             path_listh.append(path)
-            if path == Gio.File.new_for_path(self.database_filepath).get_uri():
+            if path == opened.get_uri():
                 already_added = True
 
-        if already_added is False:
-            path_listh.append(Gio.File.new_for_path(self.database_filepath).get_uri())
+        if not already_added:
+            path_listh.append(opened.get_uri())
         else:
-            path_listh.sort(key=Gio.File.new_for_path(self.database_filepath).get_uri().__eq__)
+            path_listh.sort(key=opened.get_uri().__eq__)
 
         if len(path_listh) > 10:
             path_listh.pop(0)

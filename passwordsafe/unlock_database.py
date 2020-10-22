@@ -310,12 +310,7 @@ class UnlockDatabase:
                 self.keyfile_path = NotImplemented
                 self.database_manager.props.locked = False
             else:
-                self.show_unlock_failed_revealer()
-
-                keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
-                keyfile_unlock_select_button.set_label(_("Try again"))
-
-                logging.debug("Invalid keyfile chosen")
+                self._keyfile_unlock_failed()
         elif self.keyfile_path is not NotImplemented:
             keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
             keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
@@ -366,15 +361,7 @@ class UnlockDatabase:
         keyfile_unlock_button.set_sensitive(True)
         self.unlock_database_stack_switcher.set_sensitive(True)
 
-        self.show_unlock_failed_revealer()
-
-        if self.database_manager:
-            self.database_manager.keyfile_hash = NotImplemented
-
-        keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
-        keyfile_unlock_select_button.set_label(_("Try again"))
-
-        logging.debug("Invalid keyfile chosen")
+        self._keyfile_unlock_failed()
 
     # Composite Unlock
 
@@ -588,3 +575,17 @@ class UnlockDatabase:
         self.clear_input_fields()
 
         logging.debug("Could not open database, wrong password")
+
+    def _keyfile_unlock_failed(self):
+        self.show_unlock_failed_revealer()
+
+        if self.database_manager:
+            self.database_manager.keyfile_hash = NotImplemented
+
+        keyfile_unlock_select_button = self.builder.get_object(
+            "keyfile_unlock_select_button")
+        keyfile_unlock_select_button.get_style_context().add_class(
+            Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
+        keyfile_unlock_select_button.set_label(_("Try again"))
+
+        logging.debug("Invalid keyfile chosen")

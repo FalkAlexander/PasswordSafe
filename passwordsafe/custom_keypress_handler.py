@@ -36,7 +36,7 @@ class CustomKeypressHandler:
         if scrolled_page.edit_page is True:
             if eventkey.keyval == Gdk.KEY_Tab:
                 if self.unlocked_database.window.get_focus() is None:
-                    return
+                    return False
                 if "TabBox" in self.unlocked_database.window.get_focus().get_name():
                     self.tab_to_next_input_entry(scrolled_page)
                     return True
@@ -142,7 +142,7 @@ class CustomKeypressHandler:
 
     def on_special_key_released(self, window, eventkey):
         if not self._can_goto_parent_group():
-            return
+            return False
 
         group_uuid = self.unlocked_database.current_group.uuid
         scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)

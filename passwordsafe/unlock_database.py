@@ -220,11 +220,7 @@ class UnlockDatabase:
                 self.parent_widget.remove(self.hdy_page)
                 self.database_manager.props.locked = False
             else:
-                self.show_unlock_failed_revealer()
-                password_unlock_entry.grab_focus()
-                password_unlock_entry.get_style_context().add_class("error")
-                self.clear_input_fields()
-                logging.debug("Could not open database, wrong password")
+                self._password_unlock_failed()
         else:
             password_unlock_button = self.builder.get_object("password_unlock_button")
             password_unlock_button_image = password_unlock_button.get_children()[0]
@@ -271,12 +267,7 @@ class UnlockDatabase:
         self.unlock_database_stack_switcher.set_sensitive(True)
         password_unlock_button.set_sensitive(True)
 
-        self.show_unlock_failed_revealer()
-
-        password_unlock_entry.grab_focus()
-        password_unlock_entry.get_style_context().add_class("error")
-        self.clear_input_fields()
-        logging.debug("Could not open database, wrong password")
+        self._password_unlock_failed()
 
     # Keyfile Unlock
 
@@ -589,3 +580,14 @@ class UnlockDatabase:
         keyfile_unlock_select_button.set_label(_("Try again"))
 
         logging.debug("Invalid keyfile chosen")
+
+    def _password_unlock_failed(self):
+        self.show_unlock_failed_revealer()
+
+        password_unlock_entry = self.builder.get_object(
+            "password_unlock_entry")
+        password_unlock_entry.grab_focus()
+        password_unlock_entry.get_style_context().add_class("error")
+        self.clear_input_fields()
+
+        logging.debug("Could not open database, wrong password")

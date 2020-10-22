@@ -565,13 +565,13 @@ class UnlockDatabase:
         self.builder.get_object("unlock_failed_box")
 
         unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
-        unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())
+        unlock_failed_revealer.set_reveal_child(True)
         revealer_timer = threading.Timer(3.0, GLib.idle_add, args=[self.hide_unlock_failed_revealer])
         revealer_timer.start()
 
     def hide_unlock_failed_revealer(self):
         unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
-        unlock_failed_revealer.set_reveal_child(not unlock_failed_revealer.get_reveal_child())
+        unlock_failed_revealer.set_reveal_child(False)
 
     def set_last_used_unlock_method(self, method):
         if passwordsafe.config_manager.get_remember_unlock_method() is True:

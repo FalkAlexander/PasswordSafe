@@ -150,10 +150,13 @@ class CustomKeypressHandler:
         if not self._can_goto_parent_group():
             return False
 
-        group_uuid = self.unlocked_database.current_group.uuid
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
+        db_manager = self.unlocked_database.database_manager
+        group_uuid = db_manager.get_group_uuid_from_group_object(
+            self.unlocked_database.current_group)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(
+            group_uuid.urn)
         if (eventkey.keyval == Gdk.KEY_BackSpace
-                and self.unlocked_database.database_manager.check_is_group(group_uuid)
+                and db_manager.check_is_group(group_uuid)
                 and not scrolled_page.edit_page):
             self._goto_parent_group()
         elif (eventkey.keyval == Gdk.KEY_Escape

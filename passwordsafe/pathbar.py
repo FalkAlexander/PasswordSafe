@@ -205,15 +205,10 @@ class Pathbar(Gtk.HBox):
             parent_group = self.database_manager.get_parent_group(current_ele)
             page_uuid = parent_group.uuid
             self.unlocked_database.schedule_stack_page_for_destroy(page_uuid)
-            self.page_update_queried()
+            self.is_dirty = False
 
         # Destroy edited page so we rebuild when needed
         self.unlocked_database.schedule_stack_page_for_destroy(current_ele.uuid)
-
-    def page_update_queried(self):
-        """Marks the curent page as not dirty"""
-        page = self.unlocked_database.get_current_page()
-        page.is_dirty = False
 
     def check_values_of_edit_page(self, parent_group: Group) -> bool:
         """Check all values of the current group/entry which we finished editing

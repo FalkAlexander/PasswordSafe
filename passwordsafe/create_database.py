@@ -3,6 +3,7 @@ from gettext import gettext as _
 import threading
 
 from passwordsafe.created_database import CreatedDatabase
+from passwordsafe.unlock_database import KeyFileFilter
 import passwordsafe.keyfile_generator
 
 
@@ -242,14 +243,7 @@ class CreateDatabase:
         filechooser_creation_dialog.set_current_name(_("Keyfile"))
         filechooser_creation_dialog.set_modal(True)
         filechooser_creation_dialog.set_local_only(False)
-
-        filter_text = Gtk.FileFilter()
-        filter_text.set_name(_("Keyfile"))
-        filter_text.add_mime_type("application/octet-stream")
-        filter_text.add_mime_type("application/x-keepass2")
-        filter_text.add_mime_type("text/plain")
-        filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
-        filechooser_creation_dialog.add_filter(filter_text)
+        filechooser_creation_dialog.add_filter(KeyFileFilter())
 
         response = filechooser_creation_dialog.run()
 

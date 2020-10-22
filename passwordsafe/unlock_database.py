@@ -18,6 +18,18 @@ from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
 
 
+class KeyFileFilter(Gtk.FileFilter):
+    """Filter out Keyfiles in the file chooser dialog"""
+
+    def __init__(self):
+        super().__init__()
+        self.set_name(_("Keyfile"))
+        self.add_mime_type("application/octet-stream")
+        self.add_mime_type("application/x-keepass2")
+        self.add_mime_type("text/plain")
+        self.add_mime_type("application/x-iwork-keynote-sffkey")
+
+
 class UnlockDatabase:
     builder = NotImplemented
     parent_widget = NotImplemented
@@ -301,15 +313,9 @@ class UnlockDatabase:
     # Keyfile Unlock
 
     def on_keyfile_unlock_select_button_clicked(self, _widget):
-        # NOTE: Keyfile filechooser title
+        """cb invoked when we unlock a database via keyfile"""
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None)
-        filter_text = Gtk.FileFilter()
-        filter_text.set_name(_("Keyfile"))
-        filter_text.add_mime_type("application/octet-stream")
-        filter_text.add_mime_type("application/x-keepass2")
-        filter_text.add_mime_type("text/plain")
-        filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
-        keyfile_chooser_dialog.add_filter(filter_text)
+        keyfile_chooser_dialog.add_filter(KeyFileFilter())
         keyfile_chooser_dialog.set_local_only(False)
 
         response = keyfile_chooser_dialog.run()
@@ -422,25 +428,16 @@ class UnlockDatabase:
 
     def on_composite_unlock_select_button_clicked(self, _widget):
         filechooser_opening_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Keyfile filechooser title
             _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
             None, None)
         composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
-
-        filter_text = Gtk.FileFilter()
-        filter_text.set_name(_("Keyfile"))
-        filter_text.add_mime_type("application/octet-stream")
-        filter_text.add_mime_type("application/x-keepass2")
-        filter_text.add_mime_type("text/plain")
-        filter_text.add_mime_type("application/x-iwork-keynote-sffkey")
-        filechooser_opening_dialog.add_filter(filter_text)
+        filechooser_opening_dialog.add_filter(KeyFileFilter())
         filechooser_opening_dialog.set_local_only(False)
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
             logging.debug("File selected: %s", filechooser_opening_dialog.get_filename())
             file_path = filechooser_opening_dialog.get_filename()
-
             label = Gtk.Label()
             label.set_text(ntpath.basename(file_path))
             label.set_ellipsize(Pango.EllipsizeMode.END)

@@ -412,15 +412,7 @@ class UnlockDatabase:
                 self.parent_widget.remove(self.hdy_page)
                 self.database_manager.props.locked = False
             else:
-                self.show_unlock_failed_revealer()
-
-                composite_unlock_entry.grab_focus()
-                composite_unlock_entry.get_style_context().add_class("error")
-                composite_unlock_select_button.get_style_context().remove_class("suggested-action")
-                composite_unlock_select_button.get_style_context().add_class("destructive-action")
-                self.clear_input_fields()
-
-                logging.debug("Could not open database, wrong password")
+                self._composite_unlock_failed()
         else:
             if composite_unlock_entry.get_text() and self.composite_keyfile_path is not NotImplemented:
                 composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
@@ -496,18 +488,7 @@ class UnlockDatabase:
         composite_unlock_entry.set_sensitive(True)
         self.unlock_database_stack_switcher.set_sensitive(True)
 
-        self.show_unlock_failed_revealer()
-
-        if self.database_manager:
-            self.database_manager.keyfile_hash = NotImplemented
-
-        composite_unlock_entry.grab_focus()
-        composite_unlock_entry.get_style_context().add_class("error")
-        composite_unlock_select_button.get_style_context().remove_class("suggested-action")
-        composite_unlock_select_button.get_style_context().add_class("destructive-action")
-        self.clear_input_fields()
-
-        logging.debug("Could not open database, wrong password")
+        self._composite_unlock_failed()
 
     #
     # Open Database
@@ -587,3 +568,23 @@ class UnlockDatabase:
 
             self.set_headerbar()
             self.assemble_stack()
+
+    def _composite_unlock_failed(self):
+        self.show_unlock_failed_revealer()
+
+        if self.database_manager:
+            self.database_manager.keyfile_hash = NotImplemented
+
+        composite_unlock_select_button = self.builder.get_object(
+            "composite_unlock_select_button")
+        composite_unlock_entry = self.builder.get_object(
+            "composite_unlock_entry")
+        composite_unlock_entry.grab_focus()
+        composite_unlock_entry.get_style_context().add_class("error")
+        composite_unlock_select_button.get_style_context().remove_class(
+            "suggested-action")
+        composite_unlock_select_button.get_style_context().add_class(
+            "destructive-action")
+        self.clear_input_fields()
+
+        logging.debug("Could not open database, wrong password")

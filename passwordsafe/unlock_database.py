@@ -14,6 +14,7 @@ from pykeepass.exceptions import (
     CredentialsError, HeaderChecksumError, PayloadChecksumError)
 
 import passwordsafe.config_manager
+from passwordsafe.config_manager import UnlockMethod
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
 
@@ -254,7 +255,7 @@ class UnlockDatabase:
             return
 
         self.password_only = NotImplemented
-        self.set_last_used_unlock_method("password")
+        self.set_last_used_unlock_method(UnlockMethod.PASSWORD)
         logging.debug("Opening of database was successfull")
         self.open_database_page()
 
@@ -337,7 +338,7 @@ class UnlockDatabase:
             self.keyfile_unlock_failure()
             return
 
-        self.set_last_used_unlock_method("keyfile")
+        self.set_last_used_unlock_method(UnlockMethod.KEYFILE)
         logging.debug("Database successfully opened with keyfile")
         self.keyfile_path = NotImplemented
         self.open_database_page()
@@ -450,7 +451,7 @@ class UnlockDatabase:
                 pair_array.append([uri, self.composite_keyfile_path])
             passwordsafe.config_manager.set_last_used_composite_key(pair_array)
 
-        self.set_last_used_unlock_method("composite")
+        self.set_last_used_unlock_method(UnlockMethod.COMPOSITE)
         logging.debug("Opening of database was successfull")
         self.composite_keyfile_path = NotImplemented
         self.open_database_page()

@@ -1,3 +1,5 @@
+from enum import IntEnum
+
 from gi.repository import GLib, Gio
 
 setting = Gio.Settings.new("org.gnome.PasswordSafe")
@@ -17,6 +19,13 @@ LAST_USED_COMPOSITE_KEY = "last-used-composite-key"
 REMEMBER_UNLOCK_METHOD = "remember-unlock-method"
 UNLOCK_METHOD = "unlock-method"
 DEV_BACKUP_MODE = "development-backup-mode"
+
+
+class UnlockMethod(IntEnum):
+    """Enum for database unlock methods"""
+    PASSWORD = 0
+    KEYFILE = 1
+    COMPOSITE = 2
 
 
 def get_clear_clipboard():
@@ -138,22 +147,26 @@ def set_remember_unlock_method(value):
 
 
 def get_unlock_method():
+    """Get unlock method
+
+    :returns: last unlock method used
+    :rtype: UnlockMethod
+    """
     value = setting.get_enum(UNLOCK_METHOD)
-    if value == 0:
+    if value == UnlockMethod.PASSWORD:
         return "password"
-    elif value == 1:
+    elif value == UnlockMethod.KEYFILE:
         return "keyfile"
-    elif value == 2:
+    elif value == UnlockMethod.COMPOSITE:
         return "composite"
 
 
 def set_unlock_method(value):
-    if value == "password":
-        setting.set_enum(UNLOCK_METHOD, 0)
-    elif value == "keyfile":
-        setting.set_enum(UNLOCK_METHOD, 1)
-    elif value == "composite":
-        setting.set_enum(UNLOCK_METHOD, 2)
+    """Set Unlock Method
+
+    :param UnlockMethod value: unlock method used
+    """
+    setting.set_enum(UNLOCK_METHOD, value)
 
 
 def get_development_backup_mode():

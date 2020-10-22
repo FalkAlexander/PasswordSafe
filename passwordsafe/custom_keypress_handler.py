@@ -28,21 +28,21 @@ class CustomKeypressHandler:
         self.unlocked_database.window.connect("button-release-event", self._on_button_released)
 
     def on_special_key_pressed(self, _window, eventkey):
-        group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
+        if not self._current_view_accessible():
+            return False
 
-        if self.unlocked_database.window.container.page_num(self.unlocked_database.parent_widget) == self.unlocked_database.window.container.get_current_page():
-            scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
-            if self.unlocked_database.database_locked is False and self.unlocked_database.selection_ui.selection_mode_active is False and self.unlocked_database.stack.get_visible_child() is not self.unlocked_database.stack.get_child_by_name("search"):
-                if scrolled_page.edit_page is True:
-                    if eventkey.keyval == Gdk.KEY_Tab:
-                        if self.unlocked_database.window.get_focus() is None:
-                            return
-                        if "TabBox" in self.unlocked_database.window.get_focus().get_name():
-                            self.tab_to_next_input_entry(scrolled_page)
-                            return True
-                else:
-                    if eventkey.string.isalpha() or eventkey.string.isnumeric():
-                        self.unlocked_database.search.set_search_headerbar(self.unlocked_database.builder.get_object("search_button"))
+        group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
+        if scrolled_page.edit_page is True:
+            if eventkey.keyval == Gdk.KEY_Tab:
+                if self.unlocked_database.window.get_focus() is None:
+                    return
+                if "TabBox" in self.unlocked_database.window.get_focus().get_name():
+                    self.tab_to_next_input_entry(scrolled_page)
+                    return True
+        else:
+            if eventkey.string.isalpha() or eventkey.string.isnumeric():
+                self.unlocked_database.search.set_search_headerbar(self.unlocked_database.builder.get_object("search_button"))
 
     def tab_to_next_input_entry(self, scrolled_page):
         focus_widget = self.unlocked_database.window.get_focus()
@@ -109,20 +109,33 @@ class CustomKeypressHandler:
                     pathbar = self.unlocked_database.pathbar
                     pathbar.on_pathbar_button_clicked(button)
 
-    def _can_goto_parent_group(self):
-        """Check that the current item in the pathbar has a parent."""
-        current_group = self.unlocked_database.current_group
+    def _current_view_accessible(self):
+        """Check that the current view is accessible:
+         * selection mode is not active
+         * search mode is not active
+         * current database is not locked
+        """
         db_view = self.unlocked_database
-        db_manager = db_view.database_manager
         container = db_view.window.container
         current_page = container.get_current_page()
         search_view = db_view.stack.get_child_by_name("search")
+
         if (container.page_num(db_view.parent_widget) != current_page
                 or db_view.database_locked
-                or (db_manager.check_is_group_object(current_group)
-                    and db_manager.check_is_root_group(current_group))
                 or db_view.selection_ui.selection_mode_active
                 or db_view.stack.get_visible_child() is search_view):
+            return False
+
+        return True
+
+    def _can_goto_parent_group(self):
+        """Check that the current item in the pathbar has a parent."""
+        current_group = self.unlocked_database.current_group
+        db_manager = self.unlocked_database.database_manager
+
+        if (not self._current_view_accessible()
+            or (db_manager.check_is_group_object(current_group)
+                and db_manager.check_is_root_group(current_group))):
             return False
 
         return True

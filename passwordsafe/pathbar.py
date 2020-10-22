@@ -181,12 +181,6 @@ class Pathbar(Gtk.HBox):
     #
     # Helper Methods
     #
-
-    def check_is_edit_page(self):
-        """Return if the current page is an 'edit page'"""
-        page = self.unlocked_database.get_current_page()
-        return page.check_is_edit_page()
-
     def check_update_needed(self):
         """Returns True if the pathbar needs updating"""
         page = self.unlocked_database.get_current_page()
@@ -198,7 +192,9 @@ class Pathbar(Gtk.HBox):
         return is_group
 
     def query_page_update(self):
-        if self.check_is_edit_page() is True:
+        page = self.unlocked_database.get_current_page()
+
+        if page.check_is_edit_page():
             if self.check_update_needed() is True:
                 edit_page = self.unlocked_database.current_element
                 update_group = NotImplemented

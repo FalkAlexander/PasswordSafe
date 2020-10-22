@@ -31,18 +31,24 @@ class CustomKeypressHandler:
         if not self._current_view_accessible():
             return False
 
-        group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(group_uuid.urn)
-        if scrolled_page.edit_page is True:
-            if eventkey.keyval == Gdk.KEY_Tab:
-                if self.unlocked_database.window.get_focus() is None:
-                    return False
-                if "TabBox" in self.unlocked_database.window.get_focus().get_name():
-                    self.tab_to_next_input_entry(scrolled_page)
-                    return True
-        else:
-            if eventkey.string.isalpha() or eventkey.string.isnumeric():
-                self.unlocked_database.search.set_search_headerbar(self.unlocked_database.builder.get_object("search_button"))
+        group_uuid = self.unlocked_database.current_group.uuid
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(
+            group_uuid.urn)
+        if (scrolled_page.edit_page
+                and eventkey.keyval == Gdk.KEY_Tab):
+            focused_entry = self.unlocked_database.window.get_focus()
+            if (focused_entry is None
+                    and "TabBox" in focused_entry.get_name()):
+                self.tab_to_next_input_entry(scrolled_page)
+                return True
+        elif (not scrolled_page.edit_page
+              and (eventkey.string.isalpha() or eventkey.string.isnumeric())):
+            search_btn = self.unlocked_database.builder.get_object(
+                "search_button")
+            self.unlocked_database.search.set_search_headerbar(search_btn)
+            return True
+
+        return False
 
     def tab_to_next_input_entry(self, scrolled_page):
         focus_widget = self.unlocked_database.window.get_focus()

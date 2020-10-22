@@ -742,7 +742,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if action_db.props.database_locked:
                 return
 
-            if action_db.selection_ui.selection_mode_active is True:
+            if action_db.props.selection_mode:
                 return
 
             scrolled_page = action_db.get_current_page()

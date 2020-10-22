@@ -52,7 +52,7 @@ class GroupRow(Gtk.ListBoxRow):
         # Selection Mode Checkboxes
         self.selection_checkbox = builder.get_object("selection_checkbox_group")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
-        if self.unlocked_database.selection_ui.selection_mode_active is True:
+        if self.unlocked_database.props.selection_mode:
             self.selection_checkbox.show()
 
         # Edit Button

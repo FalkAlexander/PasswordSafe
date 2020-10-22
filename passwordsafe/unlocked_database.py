@@ -75,6 +75,9 @@ class UnlockedDatabase(GObject.GObject):
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
+    selection_mode = GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+
     def __init__(self, window, widget, dbm):
         super().__init__()
 
@@ -530,7 +533,7 @@ class UnlockedDatabase(GObject.GObject):
         # pylint: disable=too-many-arguments
         self.start_database_lock_timer()
 
-        if self.selection_ui.selection_mode_active:
+        if self.props.selection_mode:
             self.selection_ui.row_selection_toggled(entry_row)
             return True
 
@@ -600,6 +603,10 @@ class UnlockedDatabase(GObject.GObject):
         # pylint: disable=too-many-arguments
         self.start_database_lock_timer()
 
+        if self.props.selection_mode:
+            self.selection_ui.row_selection_toggled(group_row)
+            return True
+
         button: int = gesture.get_current_button()
         if button == 1:
             group_uuid = group_row.get_uuid()
@@ -610,7 +617,7 @@ class UnlockedDatabase(GObject.GObject):
 
         if (button == 3
                 and not self.props.search_active):
-            if self.selection_ui.selection_mode_active:
+            if self.props.selection_mode:
                 self.selection_ui.row_selection_toggled(group_row)
             else:
                 self.selection_ui.set_selection_headerbar(None, group_row)
@@ -725,7 +732,7 @@ class UnlockedDatabase(GObject.GObject):
         elif scrolled_page.edit_page is True and group_page is False:
             parent = self.database_manager.get_parent_group(page_uuid)
         elif (not scrolled_page.edit_page
-              and not self.selection_ui.selection_mode_active
+              and not self.props.selection_mode
               and not self.props.search_active):
             if self.database_manager.check_is_root_group(self.current_element) is True:
                 self.on_lock_button_clicked(None)

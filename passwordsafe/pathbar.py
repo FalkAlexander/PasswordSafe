@@ -46,7 +46,7 @@ class Pathbar(Gtk.HBox):
         seperator_label.set_text("/")
         seperator_label.set_name("SeperatorLabel")
         context = seperator_label.get_style_context()
-        if self.unlocked_database.selection_ui.selection_mode_active is False:
+        if not self.unlocked_database.props.selection_mode:
             context.add_class('SeperatorLabel')
         else:
             context.add_class('SeperatorLabelSelectedMode')
@@ -63,7 +63,7 @@ class Pathbar(Gtk.HBox):
         seperator_label.set_text("/")
         seperator_label.set_name("SeperatorLabel")
         context = seperator_label.get_style_context()
-        if self.unlocked_database.selection_ui.selection_mode_active is False:
+        if not self.unlocked_database.props.selection_mode:
             context.add_class('SeperatorLabel')
         else:
             context.add_class('SeperatorLabelSelectedMode')
@@ -171,7 +171,8 @@ class Pathbar(Gtk.HBox):
                 group = self.database_manager.get_group(
                     pathbar_button.uuid)
                 self.unlocked_database.switch_page(group)
-            elif pathbar_button.get_is_group() is False and self.unlocked_database.selection_ui.selection_mode_active is False:
+            elif (not pathbar_button.get_is_group()
+                  and not self.unlocked_database.props.selection_mode):
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
                 entry = self.database_manager.get_entry_object_from_uuid(

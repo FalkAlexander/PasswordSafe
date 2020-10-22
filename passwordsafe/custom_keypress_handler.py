@@ -152,7 +152,7 @@ class CustomKeypressHandler:
         db_view = self.unlocked_database
         if (not db_view.window.tab_visible(db_view.parent_widget)
                 or db_view.props.database_locked
-                or db_view.selection_ui.selection_mode_active
+                or db_view.props.selection_mode
                 or db_view.search_active):
             return False
 

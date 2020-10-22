@@ -434,16 +434,28 @@ class UnlockDatabase:
         opened = Gio.File.new_for_path(self.database_filepath)
         passwordsafe.config_manager.set_last_opened_database(opened.get_uri())
 
-        if passwordsafe.config_manager.get_development_backup_mode() is True:
+        if passwordsafe.config_manager.get_development_backup_mode():
             cache_dir = os.path.expanduser("~") + "/.cache/passwordsafe/backup"
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 
-            backup = Gio.File.new_for_path(cache_dir + "/" + os.path.splitext(ntpath.basename(self.database_filepath))[0] + "_backup_" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H:%M:%S') + ".kdbx")
+            current_time = datetime.datetime.fromtimestamp(time.time())
+            current_time_str = current_time.strftime('%Y-%m-%d_%H:%M:%S')
+            basename = os.path.splitext(
+                ntpath.basename(self.database_filepath))[0]
+            backup_name = basename + "_backup_" + current_time_str + ".kdbx"
+            backup = Gio.File.new_for_path(
+                os.path.join(cache_dir, backup_name))
             try:
                 opened.copy(backup, Gio.FileCopyFlags.NONE)
             except GLib.Error:
-                logging.warning("Could not copy database file to backup location. This most likely happened because the database is located on a network drive, and Password Safe doesn't have network permission. Either disable development-backup-mode or if PasswordSafe runs as Flatpak grant network permission")
+                warning_msg = (
+                    "Could not copy database file to backup location. This "
+                    "most likely happened because the database is located on "
+                    "a network drive, and Password Safe doesn't have network "
+                    "permission. Either disable development-backup-mode or if "
+                    "PasswordSafe runs as Flatpak grant network permission.")
+                logging.warning(warning_msg)
 
         already_added = False
         path_listh = []
@@ -463,7 +475,8 @@ class UnlockDatabase:
         passwordsafe.config_manager.set_last_opened_list(path_listh)
 
         self.hdy_page.destroy()
-        UnlockedDatabase(self.window, self.parent_widget, self.database_manager)
+        UnlockedDatabase(
+            self.window, self.parent_widget, self.database_manager)
         self.database_manager.connect(
             "notify::locked", self._on_database_locked_changed)
 

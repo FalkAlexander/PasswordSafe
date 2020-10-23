@@ -199,7 +199,8 @@ class EntryPage:
 
                 scrolled_page.notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
                 buffer = scrolled_page.notes_property_value_entry.get_buffer()
-                value = self.unlocked_database.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_notes(
+                    entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
                     buffer.set_text(value)
                 else:
@@ -207,7 +208,8 @@ class EntryPage:
                 buffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
             elif scrolled_page.notes_property_row:
-                value = self.unlocked_database.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_notes(
+                    entry_uuid)
                 buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
                     buffer.set_text(value)

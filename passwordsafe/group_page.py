@@ -63,7 +63,8 @@ class GroupPage:
         buffer = notes_property_value_entry.get_buffer()
 
         name_value = self.unlocked_database.database_manager.get_group_name(group_uuid)
-        notes_value = self.unlocked_database.database_manager.get_group_notes_from_group_uuid(group_uuid)
+        notes_value = self.unlocked_database.database_manager.get_notes(
+            group_uuid)
 
         if self.unlocked_database.database_manager.has_group_name(group_uuid) is True:
             name_property_value_entry.set_text(name_value)

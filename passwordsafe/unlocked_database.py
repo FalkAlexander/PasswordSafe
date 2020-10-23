@@ -601,7 +601,7 @@ class UnlockedDatabase:
                         value = ref.group()
                 elif code == "N":
                     try:
-                        value = str(self.database_manager.get_entry_notes_from_entry_uuid(uuid))
+                        value = str(self.database_manager.get_notes(uuid))
                     except AttributeError:
                         value = ref.group()
 

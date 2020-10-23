@@ -99,21 +99,37 @@ class DatabaseManager():
 
         return group.name or ""
 
-    # Return the belonging notes for a group object
-    def get_group_notes_from_group_object(self, group):
-        if group.notes is None:
-            return ""
-        else:
-            return group.notes
-
     # Return the belonging icon for a group object
     def get_group_icon_from_group_object(self, group):
         return group.icon
 
-    # Return the belonging notes for a group uuid
-    def get_group_notes_from_group_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return self.get_group_notes_from_group_object(group)
+    def get_notes(self, data: Union[Entry, Group, UUID]) -> str:
+        """Get notes from an entry, a group or an uuid
+
+        :param data: a group or an uuid
+        :returns: notes or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            if self.check_is_group(data):
+                value: Union[Entry, Group] = self.db.find_groups(
+                    uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
+            else:
+                value = self.db.find_entries(uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
+        else:
+            value = data
+
+        return value.notes or ""
 
     # Return path for group uuid
     def get_group_path_from_group_uuid(self, uuid):
@@ -195,18 +211,6 @@ class DatabaseManager():
             return ""
         else:
             return entry.url
-
-    # Return the belonging notes for an entry uuid
-    def get_entry_notes_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.notes
-
-    # Return the belonging notes for an entry object
-    def get_entry_notes_from_entry_object(self, entry):
-        if entry.notes is None:
-            return ""
-        else:
-            return entry.notes
 
     # Return the belonging color for an entry uuid
     def get_entry_color_from_entry_uuid(self, uuid):
@@ -610,7 +614,7 @@ class DatabaseManager():
         # else:
         #     for group in self.db.groups:
         #         if group.is_root_group is False and group.uuid not in uuid_list:
-        #             if string.lower() in self.get_group_notes_from_group_object(group):
+        #             if string.lower() in self.get_notes(group):
         #                 uuid_list.append(group.uuid)
 
         # if fulltext is False:
@@ -621,7 +625,7 @@ class DatabaseManager():
         #         if entry.uuid not in uuid_list:
         #             if string.lower() in self.get_entry_username_from_entry_object(entry):
         #                 uuid_list.append(entry.uuid)
-        #             elif string.lower() in self.get_entry_notes_from_entry_object(entry):
+        #             elif string.lower() in self.get_notes(entry):
         #                 uuid_list.append(entry.uuid)
 
         # Workaround
@@ -638,7 +642,7 @@ class DatabaseManager():
         else:
             for group in self.db.groups:
                 if group.is_root_group is False and group.uuid not in uuid_list:
-                    if string.lower() in self.get_group_notes_from_group_object(group).lower():
+                    if string.lower() in self.get_notes(group).lower():
                         if global_search is True:
                             uuid_list.append(group.uuid)
                         else:
@@ -664,7 +668,7 @@ class DatabaseManager():
                         else:
                             if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
                                 uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_entry_notes_from_entry_object(entry).lower():
+                    elif string.lower() in self.get_notes(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:

@@ -305,3 +305,35 @@ class SelectionUI:
             row.selection_checkbox.set_active(False)
         else:
             row.selection_checkbox.set_active(True)
+
+    def add_entry(self, entry: EntryRow) -> None:
+        """Add an entry to selection
+
+        :param EntryRow group: entry_row to add
+        """
+        self.entries_selected.append(entry)
+        self._update_selection()
+
+    def remove_entry(self, entry: EntryRow) -> None:
+        """Remove an entry from selection
+
+        :param EntryRow group: entry_row to remove
+        """
+        self.entries_selected.remove(entry)
+        self._update_selection()
+
+    def _update_selection(self) -> None:
+        selection_cut_button = self.unlocked_database.builder.get_object(
+            "selection_cut_button")
+        selection_delete_button = self.unlocked_database.builder.get_object(
+            "selection_delete_button")
+
+        non_empty_selection = self.entries_selected or self.groups_selected
+        selection_cut_button.set_sensitive(non_empty_selection)
+        selection_delete_button.set_sensitive(non_empty_selection)
+
+        if not self.cut_mode:
+            self.entries_cut.clear()
+            self.groups_cut.clear()
+            selection_cut_button.get_children()[0].set_from_icon_name(
+                "edit-cut-symbolic", Gtk.IconSize.BUTTON)

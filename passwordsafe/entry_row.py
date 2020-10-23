@@ -128,26 +128,10 @@ class EntryRow(Gtk.ListBoxRow):
         return self.type
 
     def on_selection_checkbox_toggled(self, _widget):
-        if self.selection_checkbox.get_active() is True:
-            if self not in self.unlocked_database.selection_ui.entries_selected:
-                self.unlocked_database.selection_ui.entries_selected.append(self)
+        if self.selection_checkbox.props.active:
+            self.unlocked_database.selection_ui.add_entry(self)
         else:
-            if self in self.unlocked_database.selection_ui.entries_selected:
-                self.unlocked_database.selection_ui.entries_selected.remove(self)
-
-        if (self.unlocked_database.selection_ui.entries_selected
-                or self.unlocked_database.selection_ui.groups_selected):
-            self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(True)
-            self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(True)
-        else:
-            self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
-            self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
-
-        if self.unlocked_database.selection_ui.cut_mode is False:
-            self.unlocked_database.selection_ui.entries_cut.clear()
-            self.unlocked_database.selection_ui.groups_cut.clear()
-            self.unlocked_database.builder.get_object("selection_cut_button").get_children()[0].set_from_icon_name("edit-cut-symbolic", Gtk.IconSize.BUTTON)
-            # self.unlocked_database.selection_ui.cut_mode is True
+            self.unlocked_database.selection_ui.remove_entry(self)
 
     def on_entry_copy_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(

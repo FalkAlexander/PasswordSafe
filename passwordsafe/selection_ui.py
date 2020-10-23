@@ -68,7 +68,6 @@ class SelectionUI:
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
         selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
-        selection_button_box = self.unlocked_database.builder.get_object("selection_button_box")
 
         title_box = self.unlocked_database.builder.get_object("title_box")
         headerbar_right_box = self.unlocked_database.builder.get_object("headerbar_right_box")
@@ -76,7 +75,6 @@ class SelectionUI:
         linkedbox_right = self.unlocked_database.builder.get_object("linkedbox_right")
 
         headerbar_right_box.remove(linkedbox_right)
-        headerbar_right_box.add(selection_button_box)
         title_box.add(selection_options_button)
 
         context = self.unlocked_database.headerbar.get_style_context()
@@ -103,14 +101,12 @@ class SelectionUI:
                         row.edit_button.show_all()
 
         selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
-        selection_button_box = self.unlocked_database.builder.get_object("selection_button_box")
 
         title_box = self.unlocked_database.builder.get_object("title_box")
         headerbar_right_box = self.unlocked_database.builder.get_object("headerbar_right_box")
 
         linkedbox_right = self.unlocked_database.builder.get_object("linkedbox_right")
 
-        headerbar_right_box.remove(selection_button_box)
         headerbar_right_box.add(linkedbox_right)
         title_box.remove(selection_options_button)
         self.unlocked_database.headerbar.set_show_close_button(True)

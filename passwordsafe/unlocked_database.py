@@ -94,6 +94,8 @@ class UnlockedDatabase(GObject.GObject):
 
         self._current_element: Optional[Union[Entry, Group]] = None
 
+        self._selection_button_box: Optional[Gtk.Box] = None
+
         # Declare database as opened
         self.window.opened_databases.append(self)
 
@@ -186,6 +188,12 @@ class UnlockedDatabase(GObject.GObject):
 
         # Selection UI
         self.selection_ui.initialize()
+
+        self._selection_button_box = self.builder.get_object(
+            "selection_button_box")
+        self.bind_property(
+            "selection-mode", self._selection_button_box, "visible",
+            GObject.BindingFlags.SYNC_CREATE)
 
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)

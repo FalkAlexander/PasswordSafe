@@ -266,7 +266,7 @@ class Pathbar(Gtk.HBox):
             entry_url = self.database_manager.get_entry_url(current_group)
             entry_notes = self.database_manager.get_notes(current_group)
             entry_icon = self.database_manager.get_icon(current_group)
-            entry_attributes = len(self.database_manager.get_entry_attributes_from_entry_object(current_group))
+            entry_attributes = len(self.database_manager.get_entry_attributes(current_group))
 
             if (entry_title is None or entry_title == "") and (entry_username is None or entry_username == "") and (entry_password is None or entry_password == "") and (entry_url is None or entry_url == "") and (entry_notes is None or entry_notes == "") and (entry_icon == "0") and (entry_attributes == 0):
                 parent_group = self.database_manager.get_parent_group(current_group)

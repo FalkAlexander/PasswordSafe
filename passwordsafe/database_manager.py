@@ -3,7 +3,7 @@ from dateutil import tz
 from gettext import gettext as _
 import hashlib
 import logging
-from typing import Optional, Union
+from typing import Dict, Optional, Union
 from uuid import UUID
 
 from gi.repository import Gio, GLib
@@ -259,13 +259,25 @@ class DatabaseManager():
         else:
             return entry.get_custom_property(key)
 
-    # Return all attributes for an entry uuid
-    def get_entry_attributes_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.custom_properties
+    def get_entry_attributes(self, data: Union[Entry, UUID]) -> Dict[str, str]:
+        """Get an entry attributes from an entry or an uuid
 
-    # Return all attributes for an entry object
-    def get_entry_attributes_from_entry_object(self, entry):
+        Returns an empty dict if the entry does not have any attribute.
+
+        :param data: entry or uuid
+        :returns: entry attributes
+        :rtype: dict[str, str]
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return {}
+        else:
+            entry = data
+
         return entry.custom_properties
 
     # Return all attachments for an entry uuid

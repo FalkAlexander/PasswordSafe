@@ -46,7 +46,7 @@ class UnlockedDatabase:
     stack = NotImplemented
     divider = NotImplemented
     revealer = NotImplemented
-    actionbar_box = NotImplemented
+    action_bar = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
     search_overlay = NotImplemented
@@ -122,7 +122,7 @@ class UnlockedDatabase:
         self.divider = self.builder.get_object("divider")
         self.revealer = self.builder.get_object("revealer")
         self.headerbar_box = self.builder.get_object("headerbar_box")
-        self.actionbar_box = self.builder.get_object("actionbar_box")
+        self.action_bar = self.builder.get_object("action_bar")
         self.revealer.set_reveal_child(False)
         self.divider.pack_start(self.stack, True, True, 0)
         self.overlay.add(self.divider)

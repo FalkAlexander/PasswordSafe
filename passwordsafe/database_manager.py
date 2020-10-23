@@ -208,15 +208,6 @@ class DatabaseManager():
         else:
             return entry.notes
 
-    # Return the beloging expiry date for an entry uuid
-    def get_entry_expiry_date_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.expiry_time
-
-    # Return the beloging expiry date for an entry object
-    def get_entry_expiry_date_from_entry_object(self, entry):
-        return entry.expiry_time
-
     # Return the belonging color for an entry uuid
     def get_entry_color_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)

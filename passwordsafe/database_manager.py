@@ -3,7 +3,7 @@ from dateutil import tz
 from gettext import gettext as _
 import hashlib
 import logging
-from typing import Optional
+from typing import Optional, Union
 from uuid import UUID
 
 from gi.repository import Gio, GLib
@@ -43,14 +43,34 @@ class DatabaseManager():
     # Group Transformation Methods
     #
 
-    # Return the parent group object from the child group uuid
-    def get_group_parent_group_from_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return group.parentgroup
+    def get_parent_group(
+            self, data: Union[Entry, Group, UUID]) -> Optional[Group]:
+        """Get parent group from an entry, a group or an uuid
 
-    # Return the parent group object from the child group object
-    def get_group_parent_group_from_object(self, group):
-        return group.parentgroup
+        :param data: UUID, Entry or Group
+        :returns: parent group
+        :rtype: Group
+        """
+        if isinstance(data, UUID):
+            if self.check_is_group(data):
+                value: Union[Group, Entry] = self.db.find_groups(
+                    uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return None
+            else:
+                value = self.db.find_entries(uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return None
+        else:
+            value = data
+
+        return value.parentgroup
 
     def get_group(self, uuid: UUID) -> Optional[Group]:
         """Return the group object for a group uuid
@@ -108,15 +128,6 @@ class DatabaseManager():
     # Return entry uuid from entry object
     def get_entry_uuid_from_entry_object(self, entry):
         return entry.uuid
-
-    # Return parent group from entry uuid
-    def get_entry_parent_group_from_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.parentgroup
-
-    # Return parent group from entry object
-    def get_entry_parent_group_from_entry_object(self, entry):
-        return entry.parentgroup
 
     # Return the belonging name for an entry object
     def get_entry_name_from_entry_object(self, entry):

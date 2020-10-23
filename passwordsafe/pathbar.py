@@ -77,21 +77,14 @@ class Pathbar(Gtk.HBox):
 
         self.add_seperator_label()
 
-        parent_group = NotImplemented
-
-        if self.database_manager.check_is_group(uuid) is True:
-            parent_group = self.database_manager.get_group_parent_group_from_uuid(uuid)
-        else:
-            parent_group = self.database_manager.get_entry_parent_group_from_uuid(uuid)
-
+        parent_group = self.database_manager.get_parent_group(uuid)
         while not parent_group.is_root_group:
             self.pack_end(
                 self.create_pathbar_button(parent_group.uuid),
                 True, True, 0)
             self.add_seperator_label()
-            parent_group = \
-                self.database_manager.get_group_parent_group_from_uuid(
-                    parent_group.uuid)
+            parent_group = self.database_manager.get_parent_group(
+                parent_group.uuid)
 
         self.add_home_button()
         self.show_all()
@@ -218,14 +211,15 @@ class Pathbar(Gtk.HBox):
                 update_group = NotImplemented
 
                 if self.check_is_edit_page_from_group() is True:
-                    update_group = self.database_manager.get_group_parent_group_from_object(edit_page)
+                    update_group = self.database_manager.get_parent_group(
+                        edit_page)
 
                     if self.database_manager.check_is_root_group(update_group) is True:
                         update_group = self.database_manager.get_root_group()
 
                     self.unlocked_database.schedule_stack_page_for_destroy(edit_page.uuid)
                 else:
-                    update_group = self.database_manager.get_entry_parent_group_from_entry_object(edit_page)
+                    update_group = self.database_manager.get_parent_group(edit_page)
 
                     if self.database_manager.check_is_root_group(update_group) is True:
                         update_group = self.database_manager.get_root_group()
@@ -256,7 +250,8 @@ class Pathbar(Gtk.HBox):
             group_icon = self.database_manager.get_group_icon_from_group_object(current_group)
 
             if (group_name is None or group_name == "") and (group_notes is None or group_notes == "") and (group_icon == "0"):
-                parent_group = self.database_manager.get_group_parent_group_from_object(current_group)
+                parent_group = self.database_manager.get_parent_group(
+                    current_group)
                 self.database_manager.delete_group_from_database(current_group)
                 self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
@@ -272,7 +267,7 @@ class Pathbar(Gtk.HBox):
             entry_attributes = len(self.database_manager.get_entry_attributes_from_entry_object(current_group))
 
             if (entry_title is None or entry_title == "") and (entry_username is None or entry_username == "") and (entry_password is None or entry_password == "") and (entry_url is None or entry_url == "") and (entry_notes is None or entry_notes == "") and (entry_icon == "0") and (entry_attributes == 0):
-                parent_group = self.database_manager.get_entry_parent_group_from_entry_object(current_group)
+                parent_group = self.database_manager.get_parent_group(current_group)
                 self.database_manager.delete_entry_from_database(current_group)
                 self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)

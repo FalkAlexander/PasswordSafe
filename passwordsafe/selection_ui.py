@@ -277,12 +277,6 @@ class SelectionUI:
     # Helper
     #
 
-    def row_selection_toggled(self, row):
-        if row.selection_checkbox.get_active():
-            row.selection_checkbox.set_active(False)
-        else:
-            row.selection_checkbox.set_active(True)
-
     def add_entry(self, entry: EntryRow) -> None:
         """Add an entry to selection
 

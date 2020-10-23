@@ -97,7 +97,8 @@ class EntryRow(Gtk.ListBoxRow):
         db_view.start_database_lock_timer()
 
         if db_view.props.selection_mode:
-            db_view.selection_ui.row_selection_toggled(self)
+            active = self.selection_checkbox.props.active
+            self.selection_checkbox.props.active = not active
             return True
 
         button: int = gesture.get_current_button()

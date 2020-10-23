@@ -1,5 +1,6 @@
 from gettext import gettext as _
 from threading import Timer
+import logging
 import ntpath
 import os
 import re
@@ -750,7 +751,7 @@ class UnlockedDatabase:
             try:
                 tmpfile.delete()
             except Exception:
-                self.window.logging_manager.warning("Skipping deletion of tmpfile...")
+                logging.warning("Skipping deletion of tmpfile...")
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)

@@ -2,6 +2,7 @@ from datetime import datetime
 from dateutil import tz
 from gettext import gettext as _
 import hashlib
+import logging
 from typing import Optional
 from uuid import UUID
 
@@ -12,7 +13,6 @@ from pykeepass import PyKeePass
 
 
 class DatabaseManager:
-    logging_manager = NotImplemented
     db = NotImplemented
     database_path = ""
     password_try = ""
@@ -24,8 +24,7 @@ class DatabaseManager:
     scheduled_saves = 0
     database_file_descriptor = NotImplemented
 
-    def __init__(self, database_path, password=None, keyfile=None, logging_manager=None):
-        self.logging_manager = logging_manager
+    def __init__(self, database_path, password=None, keyfile=None):
         self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
         self.database_file_descriptor = Gio.File.new_for_path(database_path)
@@ -395,10 +394,10 @@ class DatabaseManager:
 
             try:
                 self.db.save()
-                self.logging_manager.debug("Saved database")
+                logging.debug("Saved database")
                 self.is_dirty = False
             except Exception:
-                self.logging_manager.error("Error occured while saving database")
+                logging.error("Error occured while saving database")
 
             # Workaround
             # Fix created and proposed: https://github.com/pschmitt/pykeepass/pull/102
@@ -494,7 +493,7 @@ class DatabaseManager:
             self.db.delete_binary(attachment.id)
             entry.delete_attachment(attachment)
         except Exception:
-            self.logging_manager.warning("Skipping attachment handling...")
+            logging.warning("Skipping attachment handling...")
         self.is_dirty = True
 
     # Move an entry to another group

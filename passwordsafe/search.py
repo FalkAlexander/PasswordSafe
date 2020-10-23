@@ -182,7 +182,7 @@ class Search:
             else:
                 self.skipped_rows.append(uuid)
 
-        if last_row is not NotImplemented and len(self.skipped_rows) != 0:
+        if last_row is not NotImplemented and self.skipped_rows:
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
             load_more_row = builder.get_object("load_more_row")
@@ -258,7 +258,7 @@ class Search:
         # Do nothing on empty search terms or no search results
         if not widget.get_text():
             return
-        if len(self.search_list_box.get_children()) == 0:
+        if not self.search_list_box.get_children():
             return
 
         uuid = NotImplemented

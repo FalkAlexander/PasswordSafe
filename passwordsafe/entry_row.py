@@ -127,7 +127,8 @@ class EntryRow(Gtk.ListBoxRow):
             if self in self.unlocked_database.selection_ui.entries_selected:
                 self.unlocked_database.selection_ui.entries_selected.remove(self)
 
-        if len(self.unlocked_database.selection_ui.entries_selected) > 0 or len(self.unlocked_database.selection_ui.groups_selected) > 0:
+        if (self.unlocked_database.selection_ui.entries_selected
+                or self.unlocked_database.selection_ui.groups_selected):
             self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(True)
             self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(True)
         else:

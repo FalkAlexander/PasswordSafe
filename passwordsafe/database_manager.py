@@ -99,10 +99,6 @@ class DatabaseManager():
 
         return group.name or ""
 
-    # Return the belonging icon for a group object
-    def get_group_icon_from_group_object(self, group):
-        return group.icon
-
     def get_notes(self, data: Union[Entry, Group, UUID]) -> str:
         """Get notes from an entry, a group or an uuid
 
@@ -130,6 +126,34 @@ class DatabaseManager():
             value = data
 
         return value.notes or ""
+
+    def get_icon(self, data: Union[Entry, Group, UUID]) -> str:
+        """Get an entry icon from an entry, a group or an uuid
+
+        :param data: entry, group or uuid
+        :returns: the icon number of the entry as a string
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            if self.check_is_group(data):
+                value: Union[Entry, Group] = self.db.find_groups(
+                    uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
+            else:
+                value = self.db.find_entries(uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
+        else:
+            value = data
+
+        return value.icon
 
     # Return path for group uuid
     def get_group_path_from_group_uuid(self, uuid):
@@ -166,15 +190,6 @@ class DatabaseManager():
             entry = data
 
         return entry.title or ""
-
-    # Return the belonging icon for an entry object
-    def get_entry_icon_from_entry_object(self, entry):
-        return entry.icon
-
-    # Return entry icon from entry uuid
-    def get_entry_icon_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.icon
 
     # Return the belonging username for an entry object
     def get_entry_username_from_entry_object(self, entry):

@@ -247,7 +247,7 @@ class Pathbar(Gtk.HBox):
         if self.check_is_edit_page_from_group() is True:
             group_name = self.database_manager.get_group_name(current_group)
             group_notes = self.database_manager.get_notes(current_group)
-            group_icon = self.database_manager.get_group_icon_from_group_object(current_group)
+            group_icon = self.database_manager.get_icon(current_group)
 
             if (group_name is None or group_name == "") and (group_notes is None or group_notes == "") and (group_icon == "0"):
                 parent_group = self.database_manager.get_parent_group(
@@ -263,7 +263,7 @@ class Pathbar(Gtk.HBox):
             entry_password = self.database_manager.get_entry_password_from_entry_object(current_group)
             entry_url = self.database_manager.get_entry_url_from_entry_object(current_group)
             entry_notes = self.database_manager.get_notes(current_group)
-            entry_icon = self.database_manager.get_entry_icon_from_entry_object(current_group)
+            entry_icon = self.database_manager.get_icon(current_group)
             entry_attributes = len(self.database_manager.get_entry_attributes_from_entry_object(current_group))
 
             if (entry_title is None or entry_title == "") and (entry_username is None or entry_username == "") and (entry_password is None or entry_password == "") and (entry_url is None or entry_url == "") and (entry_notes is None or entry_notes == "") and (entry_icon == "0") and (entry_attributes == 0):

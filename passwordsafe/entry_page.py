@@ -244,7 +244,8 @@ class EntryPage:
                 scrolled_page.wifi_icon_button = builder.get_object("12")
                 scrolled_page.desktop_icon_button = builder.get_object("23")
 
-                entry_icon = self.unlocked_database.database_manager.get_entry_icon_from_entry_uuid(entry_uuid)
+                entry_icon = self.unlocked_database.database_manager.get_icon(
+                    entry_uuid)
                 if entry_icon == "19":
                     scrolled_page.mail_icon_button.set_active(True)
                 if entry_icon == "9":
@@ -403,7 +404,7 @@ class EntryPage:
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
 
-        if str(self.unlocked_database.database_manager.get_entry_icon_from_entry_uuid(entry_uuid)) == button.get_name():
+        if str(self.unlocked_database.database_manager.get_icon(entry_uuid)) == button.get_name():
             return
 
         scrolled_page.is_dirty = True

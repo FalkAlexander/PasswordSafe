@@ -1,8 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-only
+import typing
 from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import Gtk
+
+if typing.TYPE_CHECKING:
+    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class GroupRow(Gtk.ListBoxRow):
@@ -36,8 +40,7 @@ class GroupRow(Gtk.ListBoxRow):
         self._entry_box_gesture.props.propagation_phase = Gtk.PropagationPhase.CAPTURE
 
         self._entry_box_gesture.connect(
-            "pressed", self.unlocked_database.on_group_row_button_pressed,
-            self)
+            "pressed", self._on_group_row_button_pressed)
 
         group_name_label = builder.get_object("group_name_label")
 
@@ -58,6 +61,32 @@ class GroupRow(Gtk.ListBoxRow):
         # Edit Button
         self.edit_button = builder.get_object("group_edit_button")
         self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
+
+    def _on_group_row_button_pressed(
+            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
+            event_y: float) -> bool:
+        # pylint: disable=unused-argument
+        # pylint: disable=too-many-arguments
+        db_view: UnlockedDatabase = self.unlocked_database
+        db_view.start_database_lock_timer()
+
+        button: int = gesture.get_current_button()
+        if button == 1:
+            group_uuid = self.get_uuid()
+            db_view.current_element = db_view.database_manager.get_group(
+                group_uuid)
+            db_view.pathbar.add_pathbar_button_to_pathbar(group_uuid)
+            db_view.show_page_of_new_directory(False, False)
+            return True
+
+        if (button == 3
+                and not db_view.props.search_active):
+            if db_view.selection_ui.props.selection_mode:
+                db_view.selection_ui.row_selection_toggled(self)
+            else:
+                db_view.selection_ui.set_selection_headerbar(None, self)
+
+        return True
 
     def get_uuid(self):
         return self.group_uuid

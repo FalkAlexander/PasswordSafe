@@ -46,7 +46,7 @@ class EntryRow(Gtk.ListBoxRow):
 
         self._entry_box_gesture = self.builder.get_object("entry_box_gesture")
         self._entry_box_gesture.connect(
-            "pressed", self.unlocked_database.on_entry_row_button_pressed, self)
+            "pressed", self._on_entry_row_button_pressed)
 
         entry_icon = self.builder.get_object("entry_icon")
         entry_name_label = self.builder.get_object("entry_name_label")
@@ -87,6 +87,32 @@ class EntryRow(Gtk.ListBoxRow):
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
         if self.unlocked_database.props.selection_mode:
             self.selection_checkbox.show()
+
+    def _on_entry_row_button_pressed(
+            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
+            event_y: float) -> bool:
+        # pylint: disable=unused-argument
+        # pylint: disable=too-many-arguments
+        db_view: UnlockedDatabase = self.unlocked_database
+        db_view.start_database_lock_timer()
+
+        if db_view.props.selection_mode:
+            db_view.selection_ui.row_selection_toggled(self)
+            return True
+
+        button: int = gesture.get_current_button()
+        if (button == 3
+                and not db_view.props.search_active):
+            db_view.selection_ui.set_selection_headerbar(None, self)
+        elif button == 1:
+            entry_uuid = self.get_uuid()
+            entry = db_view.database_manager.get_entry_object_from_uuid(
+                entry_uuid)
+            db_view.current_element = entry
+            db_view.pathbar.add_pathbar_button_to_pathbar(entry_uuid)
+            db_view.show_page_of_new_directory(False, False)
+
+        return True
 
     def get_uuid(self):
         return self.entry_uuid

@@ -526,30 +526,6 @@ class UnlockedDatabase(GObject.GObject):
         self.pathbar.add_pathbar_button_to_pathbar(self.current_element.uuid)
         self.show_page_of_new_directory(True, False)
 
-    def on_entry_row_button_pressed(
-            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
-            event_y: float, entry_row: EntryRow) -> bool:
-        # pylint: disable=unused-argument
-        # pylint: disable=too-many-arguments
-        self.start_database_lock_timer()
-
-        if self.props.selection_mode:
-            self.selection_ui.row_selection_toggled(entry_row)
-            return True
-
-        button: int = gesture.get_current_button()
-        if (button == 3
-                and not self.props.search_active):
-            self.selection_ui.set_selection_headerbar(
-                None, select_row=entry_row)
-        elif button == 1:
-            entry_uuid = entry_row.get_uuid()
-            self.current_element = self.database_manager.get_entry_object_from_uuid(entry_uuid)
-            self.pathbar.add_pathbar_button_to_pathbar(entry_uuid)
-            self.show_page_of_new_directory(False, False)
-
-        return True
-
     def on_element_delete_menu_button_clicked(
             self, _action: Gio.SimpleAction, _param: None) -> None:
         """Delete the visible entry from the menu."""

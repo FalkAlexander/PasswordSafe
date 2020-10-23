@@ -12,7 +12,7 @@ from passwordsafe.settings_dialog import SettingsDialog  # pylint: disable=wrong
 
 
 class Application(Gtk.Application):
-    window = NotImplemented
+    window = None
     file_list = []
     development_mode = False
     application_id = "org.gnome.PasswordSafe"
@@ -20,7 +20,6 @@ class Application(Gtk.Application):
     def __init__(self, *args, **_kwargs):
         super().__init__(
             *args, application_id=self.application_id, flags=Gio.ApplicationFlags.HANDLES_OPEN)
-        self.window = None
 
         loglevel = logging.INFO
         if self.development_mode:
@@ -38,18 +37,22 @@ class Application(Gtk.Application):
         self.assemble_application_menu()
 
     def do_activate(self):
-        if not self.window:
-            self.window = MainWindow(
-                application=self, title="Password Safe",
-                icon_name=self.application_id)
+        if self.window:
+            # Window exists already eg if we invoke us a 2nd time.
+            # Just present the existing one.
+            self.window.present()
+            return
+        self.window = MainWindow(
+            application=self, title="Password Safe",
+            icon_name=self.application_id)
 
-            self.window.application = self
+        self.window.application = self
 
-            self.add_menubutton_popover_actions()
-            self.window.add_row_popover_actions()
-            self.window.add_database_menubutton_popover_actions()
-            self.window.add_selection_actions()
-            self.add_global_accelerators()
+        self.add_menubutton_popover_actions()
+        self.window.add_row_popover_actions()
+        self.window.add_database_menubutton_popover_actions()
+        self.window.add_selection_actions()
+        self.add_global_accelerators()
 
         self.window.present()
 

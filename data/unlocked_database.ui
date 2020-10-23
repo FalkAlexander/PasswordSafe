@@ -1034,6 +1034,45 @@
           <placeholder/>
         </child>
       </object>
+      <object class="GtkMenuButton" id="selection_options_button">
+	<property name="visible">False</property>
+	<property name="can_focus">True</property>
+	<property name="receives_default">True</property>
+	<property name="relief">none</property>
+	<property name="popover">selection_options_popover</property>
+	<child>
+	  <object class="GtkBox" id="selection_options_button_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkLabel" id="selection_options_button_label">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="label" translatable="yes">Click on a checkbox to select</property>
+		<property name="ellipsize">middle</property>
+              </object>
+              <packing>
+		<property name="expand">False</property>
+		<property name="fill">True</property>
+		<property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="selection_options_button_labe">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="icon_name">pan-down-symbolic</property>
+              </object>
+              <packing>
+		<property name="expand">False</property>
+		<property name="fill">True</property>
+		<property name="position">1</property>
+              </packing>
+            </child>
+	  </object>
+	</child>
+      </object>
       <packing>
         <property name="position">3</property>
       </packing>
@@ -1226,45 +1265,6 @@
         <property name="submenu">main</property>
         <property name="position">1</property>
       </packing>
-    </child>
-  </object>
-  <object class="GtkMenuButton" id="selection_options_button">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="receives_default">True</property>
-    <property name="relief">none</property>
-    <property name="popover">selection_options_popover</property>
-    <child>
-      <object class="GtkBox" id="selection_options_button_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkLabel" id="selection_options_button_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Click on a checkbox to select</property>
-            <property name="ellipsize">middle</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="selection_options_button_labe">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">pan-down-symbolic</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-      </object>
     </child>
   </object>
 </interface>

@@ -67,12 +67,6 @@ class SelectionUI:
         self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
-        selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
-
-        title_box = self.unlocked_database.builder.get_object("title_box")
-
-        title_box.add(selection_options_button)
-
         context = self.unlocked_database.headerbar.get_style_context()
         context.add_class('selection-mode')
 
@@ -96,11 +90,6 @@ class SelectionUI:
                     if hasattr(row, "edit_button") is True:
                         row.edit_button.show_all()
 
-        selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
-
-        title_box = self.unlocked_database.builder.get_object("title_box")
-
-        title_box.remove(selection_options_button)
         self.unlocked_database.headerbar.set_show_close_button(True)
 
         context = self.unlocked_database.headerbar.get_style_context()

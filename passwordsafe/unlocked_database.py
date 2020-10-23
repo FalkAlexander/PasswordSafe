@@ -96,6 +96,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self._linkedbox_right: Optional[Gtk.Box] = None
         self._selection_button_box: Optional[Gtk.Box] = None
+        self._selection_options_button: Optional[Gtk.MenuButton] = None
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -201,6 +202,12 @@ class UnlockedDatabase(GObject.GObject):
             "selection-mode", self._linkedbox_right, "visible",
             GObject.BindingFlags.INVERT_BOOLEAN
             | GObject.BindingFlags.SYNC_CREATE)
+
+        self._selection_options_button = self.builder.get_object(
+            "selection_options_button")
+        self.bind_property(
+            "selection-mode", self._selection_options_button, "visible",
+            GObject.BindingFlags.SYNC_CREATE)
 
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)

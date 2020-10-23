@@ -322,6 +322,24 @@ class SelectionUI:
         self.entries_selected.remove(entry)
         self._update_selection()
 
+    def add_group(self, group: GroupRow) -> None:
+        """Add a group to selection
+
+        :param GroupRow group: group_row to add
+        """
+        if group not in self.groups_selected:
+            self.groups_selected.append(group)
+            self._update_selection()
+
+    def remove_group(self, group: GroupRow) -> None:
+        """Remove a group from selection
+
+        :param GroupRow group: group_row to remove
+        """
+        if group in self.groups_selected:
+            self.groups_selected.remove(group)
+            self._update_selection()
+
     def _update_selection(self) -> None:
         selection_cut_button = self.unlocked_database.builder.get_object(
             "selection_cut_button")

@@ -155,11 +155,6 @@ class DatabaseManager():
 
         return value.icon
 
-    # Return path for group uuid
-    def get_group_path_from_group_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return group.path
-
     #
     # Entry Transformation Methods
     #

@@ -66,13 +66,13 @@ class EntryRow(Gtk.ListBoxRow):
             entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
 
         # Subtitle
-        subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+        subtitle = self.database_manager.get_entry_username(self.entry_uuid)
         if (self.database_manager.has_entry_username(self.entry_uuid) and subtitle):
-            username = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+            username = self.database_manager.get_entry_username(self.entry_uuid)
             if username.startswith("{REF:U"):
                 uuid = UUID(
                     self.unlocked_database.reference_to_hex_uuid(username))
-                username = self.database_manager.get_entry_username_from_entry_uuid(uuid)
+                username = self.database_manager.get_entry_username(uuid)
                 entry_subtitle_label.set_text(username)
             else:
                 entry_subtitle_label.set_text(username)

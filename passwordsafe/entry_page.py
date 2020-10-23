@@ -96,7 +96,7 @@ class EntryPage:
                 scrolled_page.username_property_row = builder.get_object("username_property_row")
                 scrolled_page.username_property_value_entry = builder.get_object("username_property_value_entry")
                 scrolled_page.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_username(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
                     scrolled_page.username_property_value_entry.set_text(value)
                 else:
@@ -106,7 +106,7 @@ class EntryPage:
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row:
-                value = self.unlocked_database.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_username(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
                     scrolled_page.username_property_value_entry.set_text(value)
                 else:

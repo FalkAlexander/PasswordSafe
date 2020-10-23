@@ -585,7 +585,7 @@ class UnlockedDatabase:
                         value = ref.group()
                 elif code == "U":
                     try:
-                        value = self.database_manager.get_entry_username_from_entry_uuid(uuid)
+                        value = self.database_manager.get_entry_username(uuid)
                     except AttributeError:
                         value = ref.group()
                 elif code == "P":

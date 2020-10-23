@@ -2,90 +2,90 @@ from gi.repository import GLib, Gio
 
 setting = Gio.Settings.new("org.gnome.PasswordSafe")
 
-clear_clipboard = "clear-clipboard"
-dark_theme = "dark-theme"
-database_lock_timeout = "database-lock-timeout"
-first_start_screen = "first-start-screen"
-last_opened_database = "last-opened-database"
-save_automatically = "save-automatically"
-show_password_fields = "show-password-fields"
-window_size = "window-size"
-sort_order = "sort-order"
-last_opened_list = "last-opened-list"
-remember_composite_key = "remember-composite-key"
-last_used_composite_key = "last-used-composite-key"
-remember_unlock_method = "remember-unlock-method"
-unlock_method = "unlock-method"
-development_backup_mode = "development-backup-mode"
+CLEAR_CLIPBOARD = "clear-clipboard"
+DARK_THEME = "dark-theme"
+DB_LOCK_TIMEOUT = "database-lock-timeout"
+SHOW_START_SCREEN = "first-start-screen"
+LAST_OPENED_DB = "last-opened-database"
+SAVE_AUTOMATICALLY = "save-automatically"
+SHOW_PASSWORDS = "show-password-fields"
+WINDOW_SIZE = "window-size"
+SORT_ORDER = "sort-order"
+LAST_OPENED_LIST = "last-opened-list"
+REMEMBER_COMPOSITE_KEY = "remember-composite-key"
+LAST_USED_COMPOSITE_KEY = "last-used-composite-key"
+REMEMBER_UNLOCK_METHOD = "remember-unlock-method"
+UNLOCK_METHOD = "unlock-method"
+DEV_BACKUP_MODE = "development-backup-mode"
 
 
 def get_clear_clipboard():
-    return setting.get_int(clear_clipboard)
+    return setting.get_int(CLEAR_CLIPBOARD)
 
 
 def set_clear_clipboard(value):
-    setting.set_int(clear_clipboard, value)
+    setting.set_int(CLEAR_CLIPBOARD, value)
 
 
 def get_dark_theme():
-    return setting.get_boolean(dark_theme)
+    return setting.get_boolean(DARK_THEME)
 
 
 def set_dark_theme(value):
-    setting.set_boolean(dark_theme, value)
+    setting.set_boolean(DARK_THEME, value)
 
 
 def get_database_lock_timeout():
-    return setting.get_int(database_lock_timeout)
+    return setting.get_int(DB_LOCK_TIMEOUT)
 
 
 def set_database_lock_timeout(value):
-    setting.set_int(database_lock_timeout, value)
+    setting.set_int(DB_LOCK_TIMEOUT, value)
 
 
 def get_first_start_screen():
-    return setting.get_boolean(first_start_screen)
+    return setting.get_boolean(SHOW_START_SCREEN)
 
 
 def set_first_start_screen(value):
-    setting.set_boolean(first_start_screen, value)
+    setting.set_boolean(SHOW_START_SCREEN, value)
 
 
 def get_last_opened_database():
-    return setting.get_string(last_opened_database)
+    return setting.get_string(LAST_OPENED_DB)
 
 
 def set_last_opened_database(value):
-    setting.set_string(last_opened_database, value)
+    setting.set_string(LAST_OPENED_DB, value)
 
 
 def get_save_automatically():
-    return setting.get_boolean(save_automatically)
+    return setting.get_boolean(SAVE_AUTOMATICALLY)
 
 
 def set_save_automatically(value):
-    setting.set_boolean(save_automatically, value)
+    setting.set_boolean(SAVE_AUTOMATICALLY, value)
 
 
 def get_show_password_fields():
-    return setting.get_boolean(show_password_fields)
+    return setting.get_boolean(SHOW_PASSWORDS)
 
 
 def set_show_password_fields(value):
-    setting.set_boolean(show_password_fields, value)
+    setting.set_boolean(SHOW_PASSWORDS, value)
 
 
 def get_window_size():
-    return setting.get_value(window_size)
+    return setting.get_value(WINDOW_SIZE)
 
 
 def set_window_size(lis):
     g_variant = GLib.Variant('ai', lis)
-    setting.set_value(window_size, g_variant)
+    setting.set_value(WINDOW_SIZE, g_variant)
 
 
 def get_sort_order():
-    value = setting.get_enum(sort_order)
+    value = setting.get_enum(SORT_ORDER)
     if value == 0:
         return "A-Z"
     elif value == 1:
@@ -96,49 +96,49 @@ def get_sort_order():
 
 def set_sort_order(value):
     if value == "A-Z":
-        setting.set_enum(sort_order, 0)
+        setting.set_enum(SORT_ORDER, 0)
     elif value == "Z-A":
-        setting.set_enum(sort_order, 1)
+        setting.set_enum(SORT_ORDER, 1)
     elif value == "last_added":
-        setting.set_enum(sort_order, 2)
+        setting.set_enum(SORT_ORDER, 2)
 
 
 def get_last_opened_list():
-    return setting.get_value(last_opened_list)
+    return setting.get_value(LAST_OPENED_LIST)
 
 
 def set_last_opened_list(opened_list):
     g_variant = GLib.Variant('as', opened_list)
-    setting.set_value(last_opened_list, g_variant)
+    setting.set_value(LAST_OPENED_LIST, g_variant)
 
 
 def get_remember_composite_key():
-    return setting.get_boolean(remember_composite_key)
+    return setting.get_boolean(REMEMBER_COMPOSITE_KEY)
 
 
 def set_remember_composite_key(value):
-    setting.set_boolean(remember_composite_key, value)
+    setting.set_boolean(REMEMBER_COMPOSITE_KEY, value)
 
 
 def get_last_used_composite_key():
-    return setting.get_value(last_used_composite_key)
+    return setting.get_value(LAST_USED_COMPOSITE_KEY)
 
 
 def set_last_used_composite_key(list):
     g_variant = GLib.Variant('aas', list)
-    setting.set_value(last_used_composite_key, g_variant)
+    setting.set_value(LAST_USED_COMPOSITE_KEY, g_variant)
 
 
 def get_remember_unlock_method():
-    return setting.get_boolean(remember_unlock_method)
+    return setting.get_boolean(REMEMBER_UNLOCK_METHOD)
 
 
 def set_remember_unlock_method(value):
-    setting.set_boolean(remember_unlock_method, value)
+    setting.set_boolean(REMEMBER_UNLOCK_METHOD, value)
 
 
 def get_unlock_method():
-    value = setting.get_enum(unlock_method)
+    value = setting.get_enum(UNLOCK_METHOD)
     if value == 0:
         return "password"
     elif value == 1:
@@ -149,16 +149,16 @@ def get_unlock_method():
 
 def set_unlock_method(value):
     if value == "password":
-        setting.set_enum(unlock_method, 0)
+        setting.set_enum(UNLOCK_METHOD, 0)
     elif value == "keyfile":
-        setting.set_enum(unlock_method, 1)
+        setting.set_enum(UNLOCK_METHOD, 1)
     elif value == "composite":
-        setting.set_enum(unlock_method, 2)
+        setting.set_enum(UNLOCK_METHOD, 2)
 
 
 def get_development_backup_mode():
-    return setting.get_boolean(development_backup_mode)
+    return setting.get_boolean(DEV_BACKUP_MODE)
 
 
 def set_development_backup_mode(value):
-    setting.set_boolean(development_backup_mode, value)
+    setting.set_boolean(DEV_BACKUP_MODE, value)

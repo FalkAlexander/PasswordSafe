@@ -173,6 +173,8 @@ class UnlockedDatabase:
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group())
+        # Put pathbar in action_bar by default, will be moved up on desktop
+        self.action_bar.add(self.pathbar)
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):

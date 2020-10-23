@@ -81,10 +81,11 @@ class GroupRow(Gtk.ListBoxRow):
 
         if (button == 3
                 and not db_view.props.search_active):
-            if db_view.selection_ui.props.selection_mode:
+            if db_view.props.selection_mode:
                 db_view.selection_ui.row_selection_toggled(self)
             else:
-                db_view.selection_ui.set_selection_headerbar(None, self)
+                self.selection_checkbox.props.active = True
+                db_view.props.selection_mode = True
 
         return True
 

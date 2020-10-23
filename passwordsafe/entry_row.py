@@ -103,7 +103,8 @@ class EntryRow(Gtk.ListBoxRow):
         button: int = gesture.get_current_button()
         if (button == 3
                 and not db_view.props.search_active):
-            db_view.selection_ui.set_selection_headerbar(None, self)
+            self.selection_checkbox.props.active = True
+            db_view.props.selection_mode = True
         elif button == 1:
             entry_uuid = self.get_uuid()
             entry = db_view.database_manager.get_entry_object_from_uuid(

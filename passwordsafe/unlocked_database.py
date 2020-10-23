@@ -173,9 +173,10 @@ class UnlockedDatabase(GObject.GObject):
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
-        selection_button.connect("clicked", self.selection_ui.set_selection_headerbar)
+        selection_button.connect("clicked", self._on_selection_button_clicked)
         selection_button_mobile = self.builder.get_object("selection_button_mobile")
-        selection_button_mobile.connect("clicked", self.selection_ui.set_selection_headerbar)
+        selection_button_mobile.connect(
+            "clicked", self._on_selection_button_clicked)
 
         back_button_mobile = self.builder.get_object("back_button_mobile")
         back_button_mobile.connect("clicked", self.on_back_button_mobile_clicked)
@@ -656,6 +657,10 @@ class UnlockedDatabase(GObject.GObject):
     def on_session_lock(self, _connection, _unique_name, _object_path, _interface, _signal, state):
         if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
+
+    def _on_selection_button_clicked(self, button: Gtk.Button) -> None:
+        # pylint: disable=unused-argument
+        self.props.selection_mode = True
 
     def on_back_button_mobile_clicked(self, button):
         """Update the view when the back button is clicked.

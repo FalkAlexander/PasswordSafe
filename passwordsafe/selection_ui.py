@@ -1,11 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
+import typing
 from gettext import gettext as _
 from typing import List
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 import passwordsafe.pathbar_button
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
+if typing.TYPE_CHECKING:
+    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class SelectionUI:
@@ -30,6 +35,9 @@ class SelectionUI:
     def __init__(self, u_d):
         self.unlocked_database = u_d
 
+        self.unlocked_database.connect(
+            "notify::selection-mode", self._on_selection_mode_changed)
+
     def initialize(self):
         # Selection Headerbar
         selection_cancel_button = self.unlocked_database.builder.get_object("selection_cancel_button")
@@ -41,12 +49,21 @@ class SelectionUI:
         selection_cut_button = self.unlocked_database.builder.get_object("selection_cut_button")
         selection_cut_button.connect("clicked", self.on_selection_cut_button_clicked)
 
+    def _on_selection_mode_changed(
+            self, unlocked_database: UnlockedDatabase,
+            value: GObject.ParamSpec) -> None:
+        # pylint: disable=unused-argument
+        if self.unlocked_database.selection_mode:
+            self._enter_selection_mode()
+        else:
+            self._exit_selection_mode()
+
     #
     # Selection Mode
     #
 
     # Selection headerbar
-    def set_selection_headerbar(self, _widget, select_row=None):
+    def _enter_selection_mode(self):
         self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
@@ -70,12 +87,10 @@ class SelectionUI:
         self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
         self.unlocked_database.builder.get_object("pathbar_button_back_revealer").set_reveal_child(False)
 
-        self.unlocked_database.props.selection_mode = True
-
-        self.prepare_selection_page(select_row)
+        self.prepare_selection_page()
         self.unlocked_database.responsive_ui.headerbar_title()
 
-    def remove_selection_headerbar(self):
+    def _exit_selection_mode(self):
         for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
@@ -113,7 +128,6 @@ class SelectionUI:
                 el_context.remove_class('SeperatorLabelSelectedMode')
                 el_context.add_class('SeperatorLabel')
 
-        self.unlocked_database.props.selection_mode = False
         self.unlocked_database.show_page_of_new_directory(False, False)
 
         self.unlocked_database.responsive_ui.headerbar_back_button()
@@ -121,7 +135,7 @@ class SelectionUI:
         self.unlocked_database.responsive_ui.action_bar()
         self.unlocked_database.responsive_ui.headerbar_title()
 
-    def prepare_selection_page(self, select_row=None):
+    def prepare_selection_page(self):
         for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
@@ -131,15 +145,12 @@ class SelectionUI:
                     if hasattr(row, "edit_button") is True:
                         row.edit_button.hide()
 
-        if select_row is not None:
-            select_row.selection_checkbox.set_active(True)
-
     #
     # Events
     #
 
     def on_selection_cancel_button_clicked(self, _widget):
-        self.remove_selection_headerbar()
+        self.unlocked_database.props.selection_mode = False
         self.unlocked_database.show_page_of_new_directory(False, False)
 
     def on_selection_delete_button_clicked(self, _widget):

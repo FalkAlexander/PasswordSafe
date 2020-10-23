@@ -119,12 +119,11 @@ class UnlockedDatabase:
         self.current_group = self.database_manager.get_root_group()
 
         self.stack = self.builder.get_object("list_stack")
+        # contains the "main page" with the stack and the revealer inside
         self.divider = self.builder.get_object("divider")
         self.revealer = self.builder.get_object("revealer")
         self.headerbar_box = self.builder.get_object("headerbar_box")
         self.action_bar = self.builder.get_object("action_bar")
-        self.revealer.set_reveal_child(False)
-        self.divider.pack_start(self.stack, True, True, 0)
         self.overlay.add(self.divider)
         self.overlay.show_all()
 

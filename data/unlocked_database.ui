@@ -117,7 +117,18 @@
     <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
     <child>
-      <placeholder/>
+      <object class="GtkStack" id="list_stack">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
     </child>
     <child>
       <object class="GtkRevealer" id="revealer">
@@ -132,17 +143,7 @@
             <property name="can_focus">False</property>
             <property name="valign">end</property>
             <child>
-              <object class="GtkBox" id="actionbar_box">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="valign">center</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-              <packing>
-                <property name="position">0</property>
-              </packing>
+              <placeholder/>
             </child>
           </object>
         </child>
@@ -150,7 +151,6 @@
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="pack_type">end</property>
         <property name="position">1</property>
       </packing>
     </child>
@@ -697,13 +697,6 @@
     <property name="can_focus">False</property>
     <property name="valign">start</property>
     <property name="selection_mode">none</property>
-  </object>
-  <object class="GtkStack" id="list_stack">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <child>
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkListBoxRow" id="load_more_row">
     <property name="name">LoadMoreRow</property>

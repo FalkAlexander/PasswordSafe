@@ -596,7 +596,7 @@ class UnlockedDatabase:
                         value = ref.group()
                 elif code == "A":
                     try:
-                        value = str(self.database_manager.get_entry_url_from_entry_uuid(uuid))
+                        value = str(self.database_manager.get_entry_url(uuid))
                     except AttributeError:
                         value = ref.group()
                 elif code == "N":

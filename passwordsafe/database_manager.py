@@ -229,17 +229,24 @@ class DatabaseManager():
 
         return entry.password or ""
 
-    # Return the belonging url for an entry uuid
-    def get_entry_url_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return self.get_entry_url_from_entry_object(entry)
+    def get_entry_url(self, data: Union[Entry, UUID]) -> str:
+        """Get an entry url from an entry or an uuid
 
-    # Return the belonging url for an entry object
-    def get_entry_url_from_entry_object(self, entry):
-        if entry.url is None:
-            return ""
+        :param data: UUID or Entry
+        :returns: entry url or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return ""
         else:
-            return entry.url
+            entry = data
+
+        return entry.url or ""
 
     # Return the belonging color for an entry uuid
     def get_entry_color_from_entry_uuid(self, uuid):
@@ -703,7 +710,7 @@ class DatabaseManager():
                         else:
                             if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
                                 uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_entry_url_from_entry_object(entry).lower():
+                    elif string.lower() in self.get_entry_url(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:

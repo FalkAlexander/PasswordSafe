@@ -170,7 +170,8 @@ class EntryPage:
                 scrolled_page.url_property_row = builder.get_object("url_property_row")
                 scrolled_page.url_property_value_entry = builder.get_object("url_property_value_entry")
                 scrolled_page.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_url(
+                    entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
                     scrolled_page.url_property_value_entry.set_text(value)
                 else:
@@ -180,7 +181,7 @@ class EntryPage:
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
             elif scrolled_page.url_property_row:
-                value = self.unlocked_database.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_url(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
                     scrolled_page.url_property_value_entry.set_text(value)
                 else:

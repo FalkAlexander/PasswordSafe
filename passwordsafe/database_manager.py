@@ -99,10 +99,6 @@ class DatabaseManager():
 
         return group.name or ""
 
-    # Return the path for a group object
-    def get_group_path_from_group_object(self, group):
-        return group.path
-
     # Return the belonging notes for a group object
     def get_group_notes_from_group_object(self, group):
         if group.notes is None:

@@ -1,26 +1,21 @@
+import datetime
 import logging
 import ntpath
 import os
 import threading
 import time
-import datetime
 from gettext import gettext as _
-from construct import core
 from pathlib import Path
 
-from gi.repository import Gio, Gtk, GLib, Handy, Pango
+from construct import core
+from gi.repository import Gio, GLib, Gtk, Handy, Pango
+
+from pykeepass.exceptions import (
+    CredentialsError, HeaderChecksumError, PayloadChecksumError)
+
+import passwordsafe.config_manager
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
-try:
-    # These were introduced in pykeepass 3.2.1
-    from pykeepass.exceptions import CredentialsError, PayloadChecksumError, HeaderChecksumError
-except ImportError:
-    # fall back to earlier versions. This needs to be removed once we
-    # rely on pykeepass 3.2.1 as a minimum
-    from pykeepass.exceptions import CredentialsIntegrityError
-    CredentialsError = PayloadChecksumError = HeaderChecksumError =\
-        CredentialsIntegrityError
-import passwordsafe.config_manager
 
 
 class UnlockDatabase:
@@ -386,7 +381,9 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
             GLib.idle_add(self.keyfile_unlock_success)
-        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
+        except(OSError, IndexError, ValueError, AttributeError,
+               core.ChecksumError, CredentialsError, PayloadChecksumError,
+               HeaderChecksumError):
             GLib.idle_add(self.keyfile_unlock_failure)
 
     def keyfile_unlock_success(self):
@@ -518,7 +515,9 @@ class UnlockDatabase:
         try:
             self.database_manager = DatabaseManager(self.database_filepath, password=self.password_composite, keyfile=self.composite_keyfile_path)
             GLib.idle_add(self.composite_unlock_success)
-        except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
+        except(OSError, IndexError, ValueError, AttributeError,
+               core.ChecksumError, CredentialsError, PayloadChecksumError,
+               HeaderChecksumError):
             GLib.idle_add(self.composite_unlock_failure)
 
     def composite_unlock_success(self):

@@ -22,6 +22,12 @@ class Application(Gtk.Application):
             *args, application_id=self.application_id, flags=Gio.ApplicationFlags.HANDLES_OPEN)
         self.window = None
 
+        loglevel = logging.INFO
+        if self.development_mode:
+            loglevel = logging.DEBUG
+        logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s",
+                            datefmt='%d-%m-%y %H:%M:%S', level=loglevel)
+
     def do_startup(self):
         Gtk.Application.do_startup(self)
         GLib.set_application_name('Password Safe')
@@ -46,14 +52,6 @@ class Application(Gtk.Application):
             self.add_global_accelerators()
 
         self.window.present()
-
-    def get_logger(self):
-        logger = logging.getLogger()
-        if self.development_mode is True:
-            logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s", datefmt='%d-%m-%y %H:%M:%S', level=logging.DEBUG)
-        else:
-            logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s", datefmt='%d-%m-%y %H:%M:%S', level=logging.INFO)
-        return logger
 
     def assemble_application_menu(self):
         settings_action = Gio.SimpleAction.new("settings", None)

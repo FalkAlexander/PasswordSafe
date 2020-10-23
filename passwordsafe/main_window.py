@@ -7,6 +7,8 @@ from passwordsafe.container_page import ContainerPage
 from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.unlock_database import UnlockDatabase
 import passwordsafe.config_manager
+
+import logging
 import os
 import ntpath
 import threading
@@ -15,7 +17,6 @@ import threading
 class MainWindow(Gtk.ApplicationWindow):
     application = NotImplemented
     database_manager = NotImplemented
-    logging_manager = NotImplemented
     container = NotImplemented
     quit_dialog = NotImplemented
     filechooser_creation_dialog = NotImplemented
@@ -31,7 +32,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.logging_manager = kwargs['application'].get_logger()
 
         self._info_bar = None
         self._info_bar_response_id = None
@@ -169,12 +169,11 @@ class MainWindow(Gtk.ApplicationWindow):
             for g_file in self.get_application().file_list:
                 self.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
         elif passwordsafe.config_manager.get_first_start_screen() and filepath and os.path.exists(filepath):
-            self.logging_manager.debug("Found last opened database (" + filepath + ")")
+            logging.debug("Found last opened database: %s", filepath)
             tab_title = ntpath.basename(filepath)
             self.start_database_opening_routine(tab_title, filepath)
         else:
-            self.logging_manager.debug(
-                "No / Not valid last opened database found.")
+            self.logging.debug("No / Not valid last opened database found.")
             self.assemble_first_start_screen()
 
     def assemble_first_start_screen(self):
@@ -297,7 +296,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         if response == Gtk.ResponseType.ACCEPT:
             db_filename = filechooser_opening_dialog.get_filename()
-            self.logging_manager.debug("File selected: " + db_filename)
+            logging.debug("File selected: %s", db_filename)
 
             db_gfile = Gio.File.new_for_path(db_filename)
             try:
@@ -305,15 +304,14 @@ class MainWindow(Gtk.ApplicationWindow):
                     "standard::content-type", Gio.FileQueryInfoFlags.NONE,
                     None)
             except GLib.Error as e:
-                self.logging_manager.debug(
-                    "Unable to query info for file {}: {}".format(
-                        db_filename, e.message))
+                logging.debug("Unable to query info for file {}: {}".format(
+                    db_filename, e.message))
                 return
 
             file_content_type = db_file_info.get_content_type()
             file_mime_type = Gio.content_type_get_mime_type(file_content_type)
             if file_mime_type not in supported_mime_types:
-                self.logging_manager.debug(
+                logging.debug(
                     "Unsupported mime type {}".format(file_mime_type))
                 main_message = _(
                     'Unable to open file "{}".'.format(db_filename))
@@ -342,7 +340,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 tab_title = self.create_tab_title_from_filepath(db_filename)
                 self.start_database_opening_routine(tab_title, db_filename)
         elif response == Gtk.ResponseType.CANCEL:
-            self.logging_manager.debug("File selection canceled")
+            logging.debug("File selection canceled")
 
     def start_database_opening_routine(self, tab_title, filepath):
         builder = Gtk.Builder()
@@ -398,7 +396,7 @@ class MainWindow(Gtk.ApplicationWindow):
         stock_database.copy(new_database, Gio.FileCopyFlags.OVERWRITE)
 
     def create_new_database_instance(self, tab_title):
-        self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe", logging_manager=self.logging_manager)
+        self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
@@ -610,7 +608,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 try:
                     tmpfile.delete()
                 except Exception:
-                    self.logging_manager.warning("Skipping deletion of tmpfile...")
+                    logging.warning("Skipping deletion of tmpfile...")
 
         self.save_window_size()
         if self.databases_to_save:

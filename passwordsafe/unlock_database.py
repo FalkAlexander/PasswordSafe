@@ -1,3 +1,4 @@
+import logging
 import ntpath
 import os
 import threading
@@ -248,7 +249,7 @@ class UnlockDatabase:
                     password_unlock_entry.grab_focus()
                     password_unlock_entry.get_style_context().add_class("error")
                     self.clear_input_fields()
-                    self.window.logging_manager.debug("Could not open database, wrong password")
+                    logging.debug("Could not open database, wrong password")
             else:
                 password_unlock_button = self.builder.get_object("password_unlock_button")
                 password_unlock_button_image = password_unlock_button.get_children()[0]
@@ -270,7 +271,7 @@ class UnlockDatabase:
 
     def password_unlock_process(self):
         try:
-            self.database_manager = DatabaseManager(self.database_filepath, password=self.password_only, keyfile=None, logging_manager=self.window.logging_manager)
+            self.database_manager = DatabaseManager(self.database_filepath, password=self.password_only, keyfile=None)
             GLib.idle_add(self.password_unlock_success)
         except(OSError, ValueError, AttributeError, core.ChecksumError,
                CredentialsError, PayloadChecksumError, HeaderChecksumError):
@@ -283,7 +284,7 @@ class UnlockDatabase:
 
         self.password_only = NotImplemented
         self.set_last_used_unlock_method("password")
-        self.window.logging_manager.debug("Opening of database was successfull")
+        logging.debug("Opening of database was successfull")
         self.open_database_page()
 
     def password_unlock_failure(self):
@@ -300,7 +301,7 @@ class UnlockDatabase:
         password_unlock_entry.grab_focus()
         password_unlock_entry.get_style_context().add_class("error")
         self.clear_input_fields()
-        self.window.logging_manager.debug("Could not open database, wrong password")
+        logging.debug("Could not open database, wrong password")
 
     # Keyfile Unlock
 
@@ -318,7 +319,7 @@ class UnlockDatabase:
 
         response = keyfile_chooser_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
-            self.window.logging_manager.debug("File selected: " + keyfile_chooser_dialog.get_filename())
+            logging.debug("File selected: %s", keyfile_chooser_dialog.get_filename())
 
             keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
             keyfile_unlock_select_button.get_style_context().remove_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
@@ -328,7 +329,7 @@ class UnlockDatabase:
             self.keyfile_path = keyfile_chooser_dialog.get_filename()
 
         elif response == Gtk.ResponseType.CANCEL:
-            self.window.logging_manager.debug("File selection canceled")
+            logging.debug("File selection canceled")
 
     def on_keyfile_unlock_button_clicked(self, _widget):
         keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
@@ -361,7 +362,7 @@ class UnlockDatabase:
                 keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
                 keyfile_unlock_select_button.set_label(_("Try again"))
 
-                self.window.logging_manager.debug("Invalid keyfile chosen")
+                logging.debug("Invalid keyfile chosen")
         elif self.keyfile_path is not NotImplemented:
             keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
             keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
@@ -383,7 +384,7 @@ class UnlockDatabase:
 
     def keyfile_unlock_process(self):
         try:
-            self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path, logging_manager=self.window.logging_manager)
+            self.database_manager = DatabaseManager(self.database_filepath, password=None, keyfile=self.keyfile_path)
             GLib.idle_add(self.keyfile_unlock_success)
         except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
             GLib.idle_add(self.keyfile_unlock_failure)
@@ -396,7 +397,7 @@ class UnlockDatabase:
             return
 
         self.set_last_used_unlock_method("keyfile")
-        self.window.logging_manager.debug("Database successfully opened with keyfile")
+        logging.debug("Database successfully opened with keyfile")
         self.keyfile_path = NotImplemented
         self.open_database_page()
 
@@ -418,7 +419,7 @@ class UnlockDatabase:
         keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
         keyfile_unlock_select_button.set_label(_("Try again"))
 
-        self.window.logging_manager.debug("Invalid keyfile chosen")
+        logging.debug("Invalid keyfile chosen")
 
     # Composite Unlock
 
@@ -440,7 +441,7 @@ class UnlockDatabase:
 
         response = filechooser_opening_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
-            self.window.logging_manager.debug("File selected: " + filechooser_opening_dialog.get_filename())
+            logging.debug("File selected: %s", filechooser_opening_dialog.get_filename())
             file_path = filechooser_opening_dialog.get_filename()
 
             label = Gtk.Label()
@@ -452,7 +453,7 @@ class UnlockDatabase:
 
             self.composite_keyfile_path = file_path
         elif response == Gtk.ResponseType.CANCEL:
-            self.window.logging_manager.debug("File selection cancelled")
+            logging.debug("File selection cancelled")
 
     def on_composite_unlock_button_clicked(self, _widget):
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
@@ -488,7 +489,7 @@ class UnlockDatabase:
                 composite_unlock_select_button.get_style_context().add_class("destructive-action")
                 self.clear_input_fields()
 
-                self.window.logging_manager.debug("Could not open database, wrong password")
+                logging.debug("Could not open database, wrong password")
         else:
             if composite_unlock_entry.get_text() and self.composite_keyfile_path is not NotImplemented:
                 composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
@@ -515,7 +516,7 @@ class UnlockDatabase:
 
     def composite_unlock_process(self):
         try:
-            self.database_manager = DatabaseManager(self.database_filepath, password=self.password_composite, keyfile=self.composite_keyfile_path, logging_manager=self.window.logging_manager)
+            self.database_manager = DatabaseManager(self.database_filepath, password=self.password_composite, keyfile=self.composite_keyfile_path)
             GLib.idle_add(self.composite_unlock_success)
         except(OSError, IndexError, ValueError, AttributeError, core.ChecksumError, CredentialsIntegrityError):
             GLib.idle_add(self.composite_unlock_failure)
@@ -547,7 +548,7 @@ class UnlockDatabase:
             passwordsafe.config_manager.set_last_used_composite_key(pair_array)
 
         self.set_last_used_unlock_method("composite")
-        self.window.logging_manager.debug("Opening of database was successfull")
+        logging.debug("Opening of database was successfull")
         self.composite_keyfile_path = NotImplemented
         self.open_database_page()
 
@@ -573,7 +574,7 @@ class UnlockDatabase:
         composite_unlock_select_button.get_style_context().add_class("destructive-action")
         self.clear_input_fields()
 
-        self.window.logging_manager.debug("Could not open database, wrong password")
+        logging.debug("Could not open database, wrong password")
 
     #
     # Open Database
@@ -593,7 +594,7 @@ class UnlockDatabase:
             try:
                 opened.copy(backup, Gio.FileCopyFlags.NONE)
             except GLib.Error:
-                self.window.logging_manager.warning("Could not copy database file to backup location. This most likely happened because the database is located on a network drive, and Password Safe doesn't have network permission. Either disable development-backup-mode or if PasswordSafe runs as Flatpak grant network permission")
+                logging.warning("Could not copy database file to backup location. This most likely happened because the database is located on a network drive, and Password Safe doesn't have network permission. Either disable development-backup-mode or if PasswordSafe runs as Flatpak grant network permission")
 
         already_added = False
         path_listh = []

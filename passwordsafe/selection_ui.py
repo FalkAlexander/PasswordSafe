@@ -70,11 +70,7 @@ class SelectionUI:
         selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
 
         title_box = self.unlocked_database.builder.get_object("title_box")
-        headerbar_right_box = self.unlocked_database.builder.get_object("headerbar_right_box")
 
-        linkedbox_right = self.unlocked_database.builder.get_object("linkedbox_right")
-
-        headerbar_right_box.remove(linkedbox_right)
         title_box.add(selection_options_button)
 
         context = self.unlocked_database.headerbar.get_style_context()
@@ -103,11 +99,7 @@ class SelectionUI:
         selection_options_button = self.unlocked_database.builder.get_object("selection_options_button")
 
         title_box = self.unlocked_database.builder.get_object("title_box")
-        headerbar_right_box = self.unlocked_database.builder.get_object("headerbar_right_box")
 
-        linkedbox_right = self.unlocked_database.builder.get_object("linkedbox_right")
-
-        headerbar_right_box.add(linkedbox_right)
         title_box.remove(selection_options_button)
         self.unlocked_database.headerbar.set_show_close_button(True)
 

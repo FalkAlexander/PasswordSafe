@@ -94,6 +94,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self._current_element: Optional[Union[Entry, Group]] = None
 
+        self._linkedbox_right: Optional[Gtk.Box] = None
         self._selection_button_box: Optional[Gtk.Box] = None
 
         # Declare database as opened
@@ -195,6 +196,12 @@ class UnlockedDatabase(GObject.GObject):
             "selection-mode", self._selection_button_box, "visible",
             GObject.BindingFlags.SYNC_CREATE)
 
+        self._linkedbox_right = self.builder.get_object("linkedbox_right")
+        self.bind_property(
+            "selection-mode", self._linkedbox_right, "visible",
+            GObject.BindingFlags.INVERT_BOOLEAN
+            | GObject.BindingFlags.SYNC_CREATE)
+
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group())
@@ -203,8 +210,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
-        self.builder.get_object("linkedbox_right").show_all()
-
         filename_label = self.builder.get_object("filename_label")
         filename_label.set_text(ntpath.basename(self.database_manager.database_path))
 

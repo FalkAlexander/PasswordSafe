@@ -32,7 +32,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.entry_uuid = dbm.get_entry_uuid_from_entry_object(entry)
         self.icon = dbm.get_icon(entry)
         self.label = dbm.get_entry_name(entry)
-        self.password = dbm.get_entry_password_from_entry_object(entry)
+        self.password = dbm.get_entry_password(entry)
         self.color = dbm.get_entry_color_from_entry_uuid(self.entry_uuid)
 
         self.assemble_entry_row()
@@ -147,7 +147,7 @@ class EntryRow(Gtk.ListBoxRow):
             # self.unlocked_database.selection_ui.cut_mode is True
 
     def on_entry_copy_button_clicked(self, _button):
-        self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid))
+        self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password(self.entry_uuid))
 
     def update_color(self, color):
         self.color = color

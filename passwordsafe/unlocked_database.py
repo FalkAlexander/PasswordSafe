@@ -590,7 +590,7 @@ class UnlockedDatabase:
                         value = ref.group()
                 elif code == "P":
                     try:
-                        value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
+                        value = self.database_manager.get_entry_password(uuid)
                     except AttributeError:
                         print("FAIL")
                         value = ref.group()

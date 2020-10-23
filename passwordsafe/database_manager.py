@@ -210,17 +210,24 @@ class DatabaseManager():
 
         return entry.username or ""
 
-    # Return the belonging password for an entry object
-    def get_entry_password_from_entry_object(self, entry):
-        if entry.password is None:
-            return ""
-        else:
-            return entry.password
+    def get_entry_password(self, data: Union[Entry, UUID]) -> str:
+        """Get an entry password from an entry or an uuid
 
-    # Return the belonging password for an entry uuid
-    def get_entry_password_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return self.get_entry_password_from_entry_object(entry)
+        :param data: entry or uuid
+        :returns: entry password or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s , this should "
+                    "never happen", data)
+                return ""
+        else:
+            entry = data
+
+        return entry.password or ""
 
     # Return the belonging url for an entry uuid
     def get_entry_url_from_entry_uuid(self, uuid):

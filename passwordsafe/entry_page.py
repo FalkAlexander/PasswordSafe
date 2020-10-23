@@ -123,7 +123,7 @@ class EntryPage:
                 scrolled_page.show_password_button = builder.get_object("show_password_button")
                 scrolled_page.generate_password_button = builder.get_object("generate_password_button")
                 scrolled_page.password_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_password(entry_uuid)
 
                 if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
                     scrolled_page.password_property_value_entry.set_text(value)
@@ -155,7 +155,7 @@ class EntryPage:
 
                 properties_list_box.add(scrolled_page.password_property_row)
             elif scrolled_page.password_property_row:
-                value = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_password(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
                     scrolled_page.password_property_value_entry.set_text(value)
                 else:
@@ -646,7 +646,7 @@ class EntryPage:
             try:
                 uuid = UUID(self.unlocked_database.reference_to_hex_uuid(
                     scrolled_page.password_property_value_entry.get_text()))
-                password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(uuid)
+                password = self.unlocked_database.database_manager.get_entry_password(uuid)
             except Exception:
                 password = scrolled_page.password_property_value_entry.get_text()
         else:

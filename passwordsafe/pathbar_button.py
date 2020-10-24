@@ -1,14 +1,19 @@
+from uuid import UUID
 from gi.repository import Gtk
 
 
 class PathbarButton(Gtk.Button):
-    uuid = NotImplemented
+    """Gtk.Button representing a path element in the pathbar
+
+    notable instance variables are:
+    .uuid: the UUID of the group or entry
+    """
     is_group = NotImplemented
 
-    def __init__(self, uuid):
+    def __init__(self, uuid: UUID):
         Gtk.Button.__init__(self)
         self.set_name("PathbarButtonDynamic")
-        self.uuid = uuid
+        self.uuid: UUID = uuid
 
     def set_is_group(self):
         self.is_group = True
@@ -16,8 +21,8 @@ class PathbarButton(Gtk.Button):
     def set_is_entry(self):
         self.is_group = False
 
-    def get_is_group(self):
+    def get_is_group(self) -> bool:
         return self.is_group
 
-    def get_uuid(self):
+    def get_uuid(self) -> UUID:
         return self.uuid

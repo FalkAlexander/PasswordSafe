@@ -1,5 +1,6 @@
 from gettext import gettext as _
 from threading import Timer
+from typing import List
 from uuid import UUID
 import logging
 import ntpath
@@ -59,8 +60,8 @@ class UnlockedDatabase:
     builder = NotImplemented
     current_group = NotImplemented
     accelerators = NotImplemented
-    scheduled_page_destroy = []
-    scheduled_tmpfiles_deletion = []
+    scheduled_page_destroy: List[UUID] = []
+    scheduled_tmpfiles_deletion: List[Gio.File] = []
     clipboard = NotImplemented
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented

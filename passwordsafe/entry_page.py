@@ -4,6 +4,7 @@ from gettext import gettext as _
 import subprocess
 
 from gi.repository import Gtk, Gio, GLib
+from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
@@ -214,55 +215,8 @@ class EntryPage:
 
         if self.unlocked_database.database_manager.has_entry_color(entry_uuid) is True or add_all is True:
             if scrolled_page.color_property_row is NotImplemented:
-                scrolled_page.color_property_row = builder.get_object("color_property_row")
-
-                scrolled_page.none_button = builder.get_object("none_button")
-                scrolled_page.orange_button = builder.get_object("orange_button")
-                scrolled_page.green_button = builder.get_object("green_button")
-                scrolled_page.blue_button = builder.get_object("blue_button")
-                scrolled_page.red_button = builder.get_object("red_button")
-                scrolled_page.purple_button = builder.get_object("purple_button")
-                scrolled_page.brown_button = builder.get_object("brown_button")
-
-                scrolled_page.none_button.connect("clicked", self.on_entry_color_button_toggled)
-                scrolled_page.orange_button.connect("clicked", self.on_entry_color_button_toggled)
-                scrolled_page.green_button.connect("clicked", self.on_entry_color_button_toggled)
-                scrolled_page.blue_button.connect("clicked", self.on_entry_color_button_toggled)
-                scrolled_page.red_button.connect("clicked", self.on_entry_color_button_toggled)
-                scrolled_page.purple_button.connect("clicked", self.on_entry_color_button_toggled)
-                scrolled_page.brown_button.connect("clicked", self.on_entry_color_button_toggled)
-
-                scrolled_page.none_button.get_children()[0].hide()
-                scrolled_page.orange_button.get_children()[0].hide()
-                scrolled_page.green_button.get_children()[0].hide()
-                scrolled_page.blue_button.get_children()[0].hide()
-                scrolled_page.red_button.get_children()[0].hide()
-                scrolled_page.purple_button.get_children()[0].hide()
-                scrolled_page.brown_button.get_children()[0].hide()
-
-                color = self.unlocked_database.database_manager.get_entry_color_from_entry_uuid(entry_uuid)
-
-                if color == "NoneColorButton":
-                    scrolled_page.none_button.set_active(True)
-                    scrolled_page.none_button.get_children()[0].show_all()
-                if color == "BlueColorButton":
-                    scrolled_page.blue_button.set_active(True)
-                    scrolled_page.blue_button.get_children()[0].show_all()
-                if color == "GreenColorButton":
-                    scrolled_page.green_button.set_active(True)
-                    scrolled_page.green_button.get_children()[0].show_all()
-                if color == "OrangeColorButton":
-                    scrolled_page.orange_button.set_active(True)
-                    scrolled_page.orange_button.get_children()[0].show_all()
-                if color == "RedColorButton":
-                    scrolled_page.red_button.set_active(True)
-                    scrolled_page.red_button.get_children()[0].show_all()
-                if color == "PurpleColorButton":
-                    scrolled_page.purple_button.set_active(True)
-                    scrolled_page.purple_button.get_children()[0].show_all()
-                if color == "BrownColorButton":
-                    scrolled_page.brown_button.set_active(True)
-                    scrolled_page.brown_button.get_children()[0].show_all()
+                scrolled_page.color_property_row = ColorEntryRow(
+                    self.unlocked_database, scrolled_page, entry_uuid)
 
                 properties_list_box.add(scrolled_page.color_property_row)
             elif scrolled_page.color_property_row is not NotImplemented:
@@ -449,33 +403,6 @@ class EntryPage:
 
         scrolled_page.is_dirty = True
         self.unlocked_database.database_manager.set_entry_icon(entry_uuid, button.get_name())
-
-    def on_entry_color_button_toggled(self, button):
-        if button.get_active() is False:
-            return
-
-        self.unlocked_database.start_database_lock_timer()
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
-
-        image = button.get_children()[0]
-        image_style = image.get_style_context()
-        if button.get_name() != "NoneColorButton":
-            if not image.has_class("BrightIcon"):
-                image_style.add_class("BrightIcon")
-        else:
-            if not image.has_class("DarkIcon"):
-                image_style.add_class("DarkIcon")
-
-        if self.unlocked_database.database_manager.get_entry_color_from_entry_uuid(entry_uuid) == button.get_name():
-            return
-
-        for btn in button.get_parent().get_children():
-            btn.get_children()[0].hide()
-
-        button.get_children()[0].show_all()
-        scrolled_page.is_dirty = True
-        self.unlocked_database.database_manager.set_entry_color(entry_uuid, button.get_name())
 
     def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()

@@ -101,7 +101,7 @@ class GroupPage:
 
             for pathbar_button in self.unlocked_database.pathbar.get_children():
                 if pathbar_button.get_name() == "PathbarButtonDynamic":
-                    if pathbar_button.get_uuid() == ele_uuid:
+                    if pathbar_button.uuid == ele_uuid:
                         pathbar_button.set_label(widget.get_text())
         elif type_name == "notes":
             self.unlocked_database.database_manager.set_group_notes(ele_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))

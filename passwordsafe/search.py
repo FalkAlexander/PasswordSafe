@@ -1,3 +1,5 @@
+from typing import List
+from uuid import UUID
 import threading
 
 from gi.repository import Gdk, GLib, Gtk, Handy
@@ -14,8 +16,8 @@ class Search:
     unlocked_database = NotImplemented
     search_active = False
     search_list_box = NotImplemented
-    cached_rows = []
-    skipped_rows = []
+    cached_rows: List[GroupRow] = []
+    skipped_rows: List[UUID] = []
 
     #
     # Init

@@ -36,7 +36,9 @@ class EntryPage:
         self.unlocked_database.builder.get_object("linkedbox_right").hide()
 
         filename_label = self.unlocked_database.builder.get_object("filename_label")
-        filename_label.set_text(self.unlocked_database.database_manager.get_entry_name_from_entry_object(self.unlocked_database.current_group))
+        name = self.unlocked_database.database_manager.get_entry_name(
+            self.unlocked_database.current_group)
+        filename_label.set_text(name)
 
         secondary_menupopover_button = self.unlocked_database.builder.get_object("secondary_menupopover_button")
         secondary_menupopover_button.show_all()
@@ -69,7 +71,7 @@ class EntryPage:
                 scrolled_page.name_property_row = builder.get_object("name_property_row")
                 scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
                 scrolled_page.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_name(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)
                 else:
@@ -79,7 +81,8 @@ class EntryPage:
                 properties_list_box.add(scrolled_page.name_property_row)
                 scrolled_page.name_property_value_entry.grab_focus()
             elif scrolled_page.name_property_row:
-                value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_name(
+                    entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)
                 else:

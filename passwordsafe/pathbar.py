@@ -98,7 +98,7 @@ class Pathbar(Gtk.HBox):
             pathbar_button_name = self.database_manager.get_group_name(uuid)
             pathbar_button.set_is_group()
         else:
-            pathbar_button_name = self.database_manager.get_entry_name_from_entry_uuid(uuid)
+            pathbar_button_name = self.database_manager.get_entry_name(uuid)
             pathbar_button.set_is_entry()
 
         if pathbar_button_name is not None:
@@ -258,7 +258,7 @@ class Pathbar(Gtk.HBox):
                 return True
             return False
         else:
-            entry_title = self.database_manager.get_entry_name_from_entry_object(current_group)
+            entry_title = self.database_manager.get_entry_name(current_group)
             entry_username = self.database_manager.get_entry_username_from_entry_object(current_group)
             entry_password = self.database_manager.get_entry_password_from_entry_object(current_group)
             entry_url = self.database_manager.get_entry_url_from_entry_object(current_group)

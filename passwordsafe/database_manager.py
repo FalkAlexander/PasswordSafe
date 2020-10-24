@@ -136,17 +136,24 @@ class DatabaseManager():
     def get_entry_uuid_from_entry_object(self, entry):
         return entry.uuid
 
-    # Return the belonging name for an entry object
-    def get_entry_name_from_entry_object(self, entry):
-        if entry.title is None:
-            return ""
-        else:
-            return entry.title
+    def get_entry_name(self, data: Union[Entry, UUID]) -> str:
+        """Get entry name from an uuid or an entry
 
-    # Return entry name from entry uuid
-    def get_entry_name_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return self.get_entry_name_from_entry_object(entry)
+        :param data: UUID or Entry
+        :returns: entry name or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return ""
+        else:
+            entry = data
+
+        return entry.title or ""
 
     # Return the belonging icon for an entry object
     def get_entry_icon_from_entry_object(self, entry):

@@ -580,7 +580,7 @@ class UnlockedDatabase:
             if not_valid is False:
                 if code == "T":
                     try:
-                        value = self.database_manager.get_entry_name_from_entry_uuid(uuid)
+                        value = self.database_manager.get_entry_name(uuid)
                     except AttributeError:
                         value = ref.group()
                 elif code == "U":

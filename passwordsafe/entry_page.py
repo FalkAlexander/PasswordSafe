@@ -458,12 +458,14 @@ class EntryPage:
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
 
+        image = button.get_children()[0]
+        image_style = image.get_style_context()
         if button.get_name() != "NoneColorButton":
-            image = button.get_children()[0]
-            image.set_name("BrightIcon")
+            if not image.has_class("BrightIcon"):
+                image_style.add_class("BrightIcon")
         else:
-            image = button.get_children()[0]
-            image.set_name("DarkIcon")
+            if not image.has_class("DarkIcon"):
+                image_style.add_class("DarkIcon")
 
         if self.unlocked_database.database_manager.get_entry_color_from_entry_uuid(entry_uuid) == button.get_name():
             return

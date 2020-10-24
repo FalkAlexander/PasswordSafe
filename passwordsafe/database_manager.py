@@ -348,12 +348,6 @@ class DatabaseManager():
             return False
         return True
 
-    def has_entry_attributes(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if len(entry.custom_properties) == 0:
-            return False
-        return True
-
     def has_entry_attribute(self, uuid, key):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.get_custom_property(key) is None:

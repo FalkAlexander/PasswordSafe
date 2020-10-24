@@ -309,11 +309,10 @@ class EntryPage:
         elif scrolled_page.attributes_property_row is not NotImplemented:
             properties_list_box.add(scrolled_page.attributes_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_attributes(entry_uuid) is True:
-            attributes = self.unlocked_database.database_manager.get_entry_attributes(entry_uuid)
-            for key in attributes:
-                if key != "color_prop_LcljUMJZ9X" and key != "Notes":
-                    self.add_attribute_property_row(key, attributes[key])
+        attributes = self.unlocked_database.database_manager.get_entry_attributes(entry_uuid)
+        for key in attributes:
+            if key != "color_prop_LcljUMJZ9X" and key != "Notes":
+                self.add_attribute_property_row(key, attributes[key])
 
         if scrolled_page.color_property_row is not NotImplemented and \
            scrolled_page.name_property_row is not NotImplemented and \

@@ -2,6 +2,7 @@ from gettext import gettext as _
 from gi.repository import Gtk
 from uuid import UUID
 
+from passwordsafe.color_widget import Color
 import passwordsafe.config_manager
 import passwordsafe.icon
 
@@ -84,7 +85,7 @@ class EntryRow(Gtk.ListBoxRow):
         entry_color_button.set_name(self.color + "List")
         image = entry_color_button.get_children()[0]
         image_style = image.get_style_context()
-        if self.color != "NoneColorButton":
+        if self.color != Color.NONE.value:
             image_style.add_class("BrightIcon")
         else:
             image_style.add_class("DarkIcon")

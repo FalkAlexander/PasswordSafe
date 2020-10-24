@@ -8,8 +8,11 @@ from uuid import UUID
 
 from gi.repository import Gio, GLib
 from pykeepass.kdbx_parsing.kdbx import KDBX
+from pykeepass.entry import Entry
 from pykeepass.group import Group
 from pykeepass import PyKeePass
+
+from passwordsafe.color_widget import Color
 
 
 class DatabaseManager():
@@ -197,7 +200,7 @@ class DatabaseManager():
     def get_entry_color_from_entry_uuid(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.get_custom_property("color_prop_LcljUMJZ9X") is None:
-            return "NoneColorButton"
+            return Color.NONE.value
         else:
             return entry.get_custom_property("color_prop_LcljUMJZ9X")
 
@@ -277,9 +280,12 @@ class DatabaseManager():
             return False
         return True
 
-    def has_entry_color(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.get_custom_property("color_prop_LcljUMJZ9X") is None or entry.get_custom_property("color_prop_LcljUMJZ9X") == "NoneColorButton":
+    def has_entry_color(self, uuid: UUID) -> bool:
+        entry: Entry = self.db.find_entries(uuid=uuid, first=True)
+        color_property: Optional[str] = entry.get_custom_property(
+            "color_prop_LcljUMJZ9X")
+        if (not color_property
+                or color_property == Color.NONE.value):
             return False
         return True
 

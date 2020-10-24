@@ -44,13 +44,6 @@ class ScrolledPage(Gtk.ScrolledWindow):
     desktop_icon_button = NotImplemented
 
     color_property_row = NotImplemented
-    none_button = NotImplemented
-    orange_button = NotImplemented
-    green_button = NotImplemented
-    blue_button = NotImplemented
-    red_button = NotImplemented
-    purple_button = NotImplemented
-    brown_button = NotImplemented
 
     attributes_property_row = NotImplemented
     attributes_key_entry = NotImplemented

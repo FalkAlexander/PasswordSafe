@@ -23,6 +23,3 @@ class PathbarButton(Gtk.Button):
 
     def get_is_group(self) -> bool:
         return self.is_group
-
-    def get_uuid(self) -> UUID:
-        return self.uuid

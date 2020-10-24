@@ -1,5 +1,10 @@
+from typing import List
+
 from gettext import gettext as _
 from gi.repository import Gtk
+
+from passwordsafe.entry_row import EntryRow
+from passwordsafe.group_row import GroupRow
 import passwordsafe.pathbar_button
 
 
@@ -13,11 +18,11 @@ class SelectionUI:
 
     cut_mode = True
 
-    entries_selected = []
-    groups_selected = []
+    entries_selected: List[EntryRow] = []
+    groups_selected: List[GroupRow] = []
 
-    entries_cut = []
-    groups_cut = []
+    entries_cut: List[EntryRow] = []
+    groups_cut: List[GroupRow] = []
 
     #
     # Init

@@ -80,21 +80,28 @@ class DatabaseManager():
         assert type(uuid) == UUID, "uuid needs to be of type UUID"
         return self.db.find_groups(uuid=uuid, first=True)
 
-    # Return the belonging group name for a group uuid
-    def get_group_name_from_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return self.get_group_name_from_group_object(group)
+    def get_group_name(self, data: Union[Group, UUID]) -> str:
+        """Get group name from a group or an uuid
+
+        :param data: a group or an uuid
+        :returns: group name or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            group: Group = self.db.find_groups(uuid=data, first=True)
+            if not group:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return ""
+        else:
+            group = data
+
+        return group.name or ""
 
     # Return the path for a group object
     def get_group_path_from_group_object(self, group):
         return group.path
-
-    # Return the belonging name for a group object
-    def get_group_name_from_group_object(self, group):
-        if group.name is None:
-            return ""
-        else:
-            return group.name
 
     # Return the belonging notes for a group object
     def get_group_notes_from_group_object(self, group):

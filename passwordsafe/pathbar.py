@@ -95,7 +95,7 @@ class Pathbar(Gtk.HBox):
         pathbar_button_name = NotImplemented
 
         if self.database_manager.check_is_group(uuid) is True:
-            pathbar_button_name = self.database_manager.get_group_name_from_uuid(uuid)
+            pathbar_button_name = self.database_manager.get_group_name(uuid)
             pathbar_button.set_is_group()
         else:
             pathbar_button_name = self.database_manager.get_entry_name_from_entry_uuid(uuid)
@@ -245,7 +245,7 @@ class Pathbar(Gtk.HBox):
     def check_values_of_edit_page(self, pathbar_button):
         current_group = self.unlocked_database.get_current_group()
         if self.check_is_edit_page_from_group() is True:
-            group_name = self.database_manager.get_group_name_from_group_object(current_group)
+            group_name = self.database_manager.get_group_name(current_group)
             group_notes = self.database_manager.get_group_notes_from_group_object(current_group)
             group_icon = self.database_manager.get_group_icon_from_group_object(current_group)
 

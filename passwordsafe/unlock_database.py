@@ -229,10 +229,7 @@ class UnlockDatabase:
                 database_already_opened = True
                 page_num = self.window.container.page_num(db.parent_widget)
                 self.window.container.set_current_page(page_num)
-
-                current_page_num = self.window.container.page_num(self.parent_widget)
-                self.window.container.remove_page(current_page_num)
-                self.window.update_tab_bar_visibility()
+                self.window.close_tab(self.parent_widget)
 
                 db.show_database_action_revealer(_("Database already opened"))
 

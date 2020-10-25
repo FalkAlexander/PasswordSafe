@@ -638,29 +638,20 @@ class MainWindow(Gtk.ApplicationWindow):
 
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):
-        db_add_entry_action = Gio.SimpleAction.new("db.add_entry", None)
-        db_add_entry_action.connect("activate", self.execute_gio_action, "on_database_add_entry_clicked")
-        self.application.add_action(db_add_entry_action)
+        actions = [
+            ("db.add_entry", "on_database_add_entry_clicked", None),
+            ("db.add_group", "on_database_add_group_clicked", None),
+            ("db.settings", "on_database_settings_entry_clicked", None),
+            ("sort.az", "on_sort_menu_button_entry_clicked", "A-Z"),
+            ("sort.za", "on_sort_menu_button_entry_clicked", "Z-A"),
+            ("sort.last_added", "on_sort_menu_button_entry_clicked", "last_added"),
+        ]
 
-        db_add_group_action = Gio.SimpleAction.new("db.add_group", None)
-        db_add_group_action.connect("activate", self.execute_gio_action, "on_database_add_group_clicked")
-        self.application.add_action(db_add_group_action)
-
-        db_settings_action = Gio.SimpleAction.new("db.settings", None)
-        db_settings_action.connect("activate", self.execute_gio_action, "on_database_settings_entry_clicked")
-        self.application.add_action(db_settings_action)
-
-        az_button_action = Gio.SimpleAction.new("sort.az", None)
-        az_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "A-Z")
-        self.application.add_action(az_button_action)
-
-        za_button_action = Gio.SimpleAction.new("sort.za", None)
-        za_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "Z-A")
-        self.application.add_action(za_button_action)
-
-        last_added_button_action = Gio.SimpleAction.new("sort.last_added", None)
-        last_added_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "last_added")
-        self.application.add_action(last_added_button_action)
+        for action, name, arg in actions:
+            simple_action = Gio.SimpleAction.new(action, None)
+            simple_action.connect(
+                "activate", self.execute_gio_action, name, arg)
+            self.application.add_action(simple_action)
 
     # Selection Mode Actions
     def add_selection_actions(self):

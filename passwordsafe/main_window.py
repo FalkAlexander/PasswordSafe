@@ -510,19 +510,6 @@ class MainWindow(Gtk.ApplicationWindow):
             self.container.remove_page(page_num)
             self.update_tab_bar_visibility()
 
-    def on_cancel_button_clicked(self, _widget):
-        self.override_dialog.destroy()
-        self.filechooser_creation_dialog.destroy()
-
-    def on_override_button_clicked(self, _widget):
-        self.copy_database_file()
-
-        tab_title = self.create_tab_title_from_filepath(
-            self.filechooser_creation_dialog.get_current_name())
-        self.start_database_creation_routine(tab_title)
-
-        self.override_dialog.destroy()
-
     def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)

@@ -35,7 +35,7 @@ class ResponsiveUI():
             db.action_bar.show()
 
             if (not page.edit_page
-                    and db.stack.get_visible_child() != db.stack.get_child_by_name("search")):
+                    and not db.search_active):
                 # Don't show pathbar on edit or search pages
                 db.revealer.set_reveal_child(True)
             else:

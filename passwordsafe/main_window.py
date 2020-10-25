@@ -133,7 +133,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             # Do nothing for Search View
-            if db.stack.get_visible_child() is db.stack.get_child_by_name("search"):
+            if db.search_active:
                 return
 
             page_uuid = db.current_group.uuid
@@ -766,7 +766,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if scrolled_page.edit_page:
                 return
 
-            if action_db.stack.get_visible_child() is action_db.stack.get_child_by_name("search"):
+            if action_db.search_active:
                 return
 
             if arg == "entry":

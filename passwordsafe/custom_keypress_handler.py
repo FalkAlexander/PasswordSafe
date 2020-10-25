@@ -122,12 +122,11 @@ class CustomKeypressHandler:
         db_view = self.unlocked_database
         container = db_view.window.container
         current_page = container.get_current_page()
-        search_view = db_view.stack.get_child_by_name("search")
 
         if (container.page_num(db_view.parent_widget) != current_page
                 or db_view.database_locked
                 or db_view.selection_ui.selection_mode_active
-                or db_view.stack.get_visible_child() is search_view):
+                or db_view.search_active):
             return False
 
         return True

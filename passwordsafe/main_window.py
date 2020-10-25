@@ -265,9 +265,6 @@ class MainWindow(Gtk.ApplicationWindow):
         self.add(self.container)
         self.show_all()
 
-    def destroy_container(self):
-        self.container.destroy()
-
     #
     # Open Database Methods
     #

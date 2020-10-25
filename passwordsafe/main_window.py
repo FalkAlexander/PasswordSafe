@@ -116,14 +116,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def responsive_listener(self, win: Gtk.ApplicationWindow) -> None:
         """invoked on check-resize events"""
-        if self.get_allocation().width < 700:
-            if not self.mobile_width:
-                self.mobile_width = True
-                self.change_layout()
-        else:
-            if self.mobile_width:
-                self.mobile_width = False
-                self.change_layout()
+        self.mobile_width = (self.get_allocation().width < 700)
+        self.change_layout()
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""

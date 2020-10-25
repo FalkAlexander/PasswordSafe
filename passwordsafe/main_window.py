@@ -459,13 +459,6 @@ class MainWindow(Gtk.ApplicationWindow):
         if not self.container.get_n_pages():
             self.container.hide()
             self.remove(self.container)
-
-            builder = Gtk.Builder()
-            builder.add_from_resource(
-                "/org/gnome/PasswordSafe/main_window.ui")
-
-            Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
-
             self.assemble_first_start_screen()
         else:
             if not self.container.is_visible():

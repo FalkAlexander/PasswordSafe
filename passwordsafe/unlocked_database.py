@@ -89,7 +89,7 @@ class UnlockedDatabase:
         # Browser Mode
         self.assemble_listbox()
         self.start_save_loop()
-        self.custom_keypress_handler.register_custom_keys()
+        self.custom_keypress_handler.register_custom_events()
         self.register_dbus_signal()
 
         # Responsive UI

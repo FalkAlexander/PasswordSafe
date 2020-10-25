@@ -22,7 +22,7 @@
               <object class="HdyPreferencesRow" id="settings_theme">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="title">Select theme</property>
+                <property name="title">Dark Theme</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkListBoxRow" id="settings_theme_row">
@@ -113,6 +113,7 @@
               <object class="HdyPreferencesRow">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="title">First Start</property>
                 <child>
                   <object class="GtkListBoxRow" id="settings_fstart_row">
                     <property name="width_request">100</property>
@@ -211,6 +212,7 @@
             <child>
               <object class="HdyPreferencesRow">
                 <property name="visible">True</property>
+                <property name="title">Safe Settings</property>
                 <property name="can_focus">True</property>
                 <child>
                   <object class="GtkListBoxRow" id="settings_database_row">
@@ -311,6 +313,7 @@
               <object class="HdyPreferencesRow">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="title">Remember Composite Key</property>
                     <child>
                       <object class="GtkListBoxRow" id="settings_remember_composite_key">
                         <property name="width_request">100</property>
@@ -400,6 +403,7 @@
               <object class="HdyPreferencesRow">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="title">Remember Unlock Method</property>
                     <child>
                       <object class="GtkListBoxRow" id="settings_remember_unlock_method">
                         <property name="width_request">100</property>
@@ -504,6 +508,7 @@
               <object class="HdyPreferencesRow">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="title">Timeout</property>
                 <child>
                   <object class="GtkListBoxRow" id="settings_lockdb_row">
                     <property name="margin_start">12</property>
@@ -592,6 +597,7 @@
             </child>
             <child>
               <object class="HdyPreferencesRow">
+                <property name="title">Clear Clipboard</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <child>
@@ -682,6 +688,7 @@
             </child>
             <child>
               <object class="HdyPreferencesRow">
+                <property name="title">Show Password Fields</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <child>
@@ -771,6 +778,7 @@
             </child>
             <child>
               <object class="HdyPreferencesRow">
+                <property name="title">Clear Recent List</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <child>

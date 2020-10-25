@@ -2,12 +2,13 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <requires lib="libhandy" version="1.0"/>
   <object class="GtkDialog" id="notes_detached_dialog">
     <property name="can_focus">False</property>
     <property name="default_width">500</property>
     <property name="default_height">450</property>
     <child type="titlebar">
-      <object class="GtkHeaderBar">
+      <object class="HdyHeaderBar">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>

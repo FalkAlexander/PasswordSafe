@@ -189,8 +189,6 @@ class MainWindow(Gtk.ApplicationWindow):
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/main_window.ui")
 
-        pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
-
         if passwordsafe.config_manager.get_last_opened_list():
             last_opened_list_box = builder.get_object("last_opened_list_box")
             last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
@@ -221,10 +219,7 @@ class MainWindow(Gtk.ApplicationWindow):
                     invalid = invalid + 1
 
             if entries == invalid:
-                app_logo = builder.get_object("app_logo")
-                app_logo.set_from_pixbuf(pix)
-                self.first_start_grid = builder.get_object("first_start_grid")
-                self.add(self.first_start_grid)
+                self.display_welcome_page()
             else:
                 for row in reversed(entry_list):
                     last_opened_list_box.add(row)
@@ -242,10 +237,19 @@ class MainWindow(Gtk.ApplicationWindow):
 
                 self.add(self.first_start_grid)
         else:
-            app_logo = builder.get_object("app_logo")
-            app_logo.set_from_pixbuf(pix)
-            self.first_start_grid = builder.get_object("first_start_grid")
-            self.add(self.first_start_grid)
+            self.display_welcome_page()
+
+    def display_welcome_page(self):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+
+        pix = Pixbuf.new_from_resource_at_scale(
+            "/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
+
+        app_logo = builder.get_object("app_logo")
+        app_logo.set_from_pixbuf(pix)
+        self.first_start_grid = builder.get_object("first_start_grid")
+        self.add(self.first_start_grid)
 
     #
     # Container Methods (Gtk Notebook holds tabs)

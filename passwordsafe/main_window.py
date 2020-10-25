@@ -622,29 +622,19 @@ class MainWindow(Gtk.ApplicationWindow):
 
     # Entry/Group Row Popover Actions
     def add_row_popover_actions(self):
-        delete_element_action = Gio.SimpleAction.new("element.delete", None)
-        delete_element_action.connect("activate", self.execute_gio_action, "on_element_delete_menu_button_clicked")
-        self.application.add_action(delete_element_action)
+        actions = [
+            ("element.delete", "on_element_delete_menu_button_clicked"),
+            ("entry.duplicate", "on_entry_duplicate_menu_button_clicked"),
+            ("entry.references", "on_entry_references_menu_button_clicked"),
+            ("element.properties", "on_element_properties_menu_button_clicked"),
+            ("group.edit", "on_group_edit_menu_button_clicked"),
+            ("group.delete", "on_group_delete_menu_button_clicked")
+        ]
 
-        duplicate_entry_action = Gio.SimpleAction.new("entry.duplicate", None)
-        duplicate_entry_action.connect("activate", self.execute_gio_action, "on_entry_duplicate_menu_button_clicked")
-        self.application.add_action(duplicate_entry_action)
-
-        references_entry_action = Gio.SimpleAction.new("entry.references", None)
-        references_entry_action.connect("activate", self.execute_gio_action, "on_entry_references_menu_button_clicked")
-        self.application.add_action(references_entry_action)
-
-        properties_element_action = Gio.SimpleAction.new("element.properties", None)
-        properties_element_action.connect("activate", self.execute_gio_action, "on_element_properties_menu_button_clicked")
-        self.application.add_action(properties_element_action)
-
-        edit_group_action = Gio.SimpleAction.new("group.edit", None)
-        edit_group_action.connect("activate", self.execute_gio_action, "on_group_edit_menu_button_clicked")
-        self.application.add_action(edit_group_action)
-
-        delete_group_action = Gio.SimpleAction.new("group.delete", None)
-        delete_group_action.connect("activate", self.execute_gio_action, "on_group_delete_menu_button_clicked")
-        self.application.add_action(delete_group_action)
+        for action, name in actions:
+            simple_action = Gio.SimpleAction.new(action, None)
+            simple_action.connect("activate", self.execute_gio_action, name)
+            self.application.add_action(simple_action)
 
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):

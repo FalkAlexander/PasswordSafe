@@ -615,10 +615,7 @@ class MainWindow(Gtk.ApplicationWindow):
         action_db = NotImplemented
 
         for db in self.opened_databases:  # pylint: disable=C0103
-            if (
-                db.window.container.page_num(db.parent_widget)
-                == self.container.get_current_page()
-            ):
+            if self.tab_visible(db.parent_widget):
                 action_db = db
 
         return action_db
@@ -785,3 +782,12 @@ class MainWindow(Gtk.ApplicationWindow):
         for db in self.databases_to_save:  # pylint: disable=C0103
             db.database_manager.save_database()
         GLib.idle_add(self.application.quit)
+
+    def tab_visible(self, tab):
+        """Checks that the tab is visible
+
+        :returns: True if the tab is visible
+        :rtype: bool
+        """
+        current_page = self.container.get_current_page()
+        return self.container.page_num(tab) == current_page

@@ -79,7 +79,7 @@ class UnlockDatabase:
         else:
             headerbar.set_subtitle(Gio.File.new_for_path(self.database_filepath).get_uri())
 
-        if self.timeout is True and self.window.container.get_current_page() == self.window.container.page_num(self.parent_widget):
+        if self.timeout and self.window.tab_visible(self.parent_widget):
             self.window.set_titlebar(headerbar)
         elif self.timeout is not True:
             self.window.set_titlebar(headerbar)

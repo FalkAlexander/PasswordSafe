@@ -3,7 +3,7 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libhandy" version="1.0"/>
-  <object class="GtkPopoverMenu" id="codes_popover">
+  <object class="GtkPopover" id="codes_popover">
     <property name="can_focus">False</property>
     <property name="position">bottom</property>
     <child>
@@ -209,13 +209,9 @@
           </packing>
         </child>
       </object>
-      <packing>
-        <property name="submenu">main</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
-  <object class="GtkPopoverMenu" id="prop_selection_popover">
+  <object class="GtkPopover" id="prop_selection_popover">
     <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
@@ -297,10 +293,6 @@
           </packing>
         </child>
       </object>
-      <packing>
-        <property name="submenu">main</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
   <object class="HdyWindow" id="references_dialog">
@@ -615,7 +607,7 @@
       </object>
     </child>
   </object>
-  <object class="GtkPopoverMenu" id="uuid_popover">
+  <object class="GtkPopover" id="uuid_popover">
     <property name="can_focus">False</property>
     <property name="position">bottom</property>
     <child>
@@ -638,14 +630,9 @@ It can be found in the properties of the entry.</property>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="position">0</property>
           </packing>
         </child>
       </object>
-      <packing>
-        <property name="submenu">main</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
 </interface>

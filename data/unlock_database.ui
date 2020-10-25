@@ -2,6 +2,7 @@
 <!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <requires lib="libhandy" version="1.0"/>
   <object class="GtkGrid" id="composite_unlock_stack_page">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -248,133 +249,53 @@
       </packing>
     </child>
   </object>
-  <object class="GtkPopover" id="menubutton_popover">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox" id="menubutton_popover_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">5</property>
-        <property name="margin_right">5</property>
-        <property name="margin_top">5</property>
-        <property name="margin_bottom">5</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_new_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.new</property>
-            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe creation process">New Safe</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_open_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.open</property>
-            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe opening process (for existing safe)">Open Safe</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_settings_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.settings</property>
-            <property name="text" translatable="yes">Preferences</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_about_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.about</property>
-            <property name="text" translatable="yes" comments="&quot;Password Safe&quot; is the application name">About Password Safe</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">5</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkHeaderBar" id="headerbar">
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe creation process">_New Safe</attribute>
+        <attribute name="action">app.new</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe opening process (for existing safe)">_Open Safe</attribute>
+        <attribute name="action">app.open</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.settings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">app.shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes" comments="&quot;Password Safe&quot; is the application name">About Password Safe</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+  <object class="HdyHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
     <property name="subtitle" translatable="yes" comments="Headerbar subtitle for the keepass safe unlock screen.">Open Safe</property>
     <property name="show_close_button">True</property>
     <child>
-      <object class="GtkBox" id="headerbarbuttonbox">
+      <object class="GtkBox" id="linkedbox_left">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <child>
-          <object class="GtkBox" id="linkedbox_left">
+          <object class="GtkButton" id="back_button">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
             <child>
-              <object class="GtkButton" id="back_button">
+              <object class="GtkImage" id="back_icon">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <child>
-                  <object class="GtkImage" id="back_icon">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">go-next-symbolic-rtl</property>
-                  </object>
-                </child>
+                <property name="can_focus">False</property>
+                <property name="icon_name">go-next-symbolic-rtl</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
           </object>
           <packing>
@@ -386,33 +307,21 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox" id="linkedbox_right">
+      <object class="GtkMenuButton" id="menupopover_button">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="menu_model">primary_menu</property>
         <child>
-          <object class="GtkMenuButton" id="menupopover_button">
+          <object class="GtkImage">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="popover">menubutton_popover</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">open-menu-symbolic</property>
-              </object>
-            </child>
+            <property name="can_focus">False</property>
+            <property name="icon_name">open-menu-symbolic</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
       <packing>
         <property name="pack_type">end</property>
-        <property name="position">1</property>
       </packing>
     </child>
   </object>

@@ -510,13 +510,11 @@ class MainWindow(Gtk.ApplicationWindow):
                     else:
                         db.show_save_dialog()
                 else:
-                    self.container.remove_page(page_num)
-                    self.update_tab_bar_visibility()
+                    self.close_tab(widget)
                     self.opened_databases.remove(db)
 
         if is_contained is False:
-            self.container.remove_page(page_num)
-            self.update_tab_bar_visibility()
+            self.close_tab(widget)
 
     def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()

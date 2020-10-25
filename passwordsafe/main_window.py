@@ -106,10 +106,9 @@ class MainWindow(Gtk.ApplicationWindow):
     def apply_theme(self):
         gtk_settings = Gtk.Settings.get_default()
 
-        if passwordsafe.config_manager.get_dark_theme() is True:
-            gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
-        else:
-            gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
+        gtk_settings.set_property(
+            "gtk-application-prefer-dark-theme",
+            passwordsafe.config_manager.get_dark_theme())
 
     #
     # Responsive Listener

@@ -176,7 +176,7 @@ class MainWindow(Gtk.ApplicationWindow):
             tab_title = ntpath.basename(filepath)
             self.start_database_opening_routine(tab_title, filepath)
         else:
-            self.logging.debug("No / Not valid last opened database found.")
+            logging.debug("No / Not valid last opened database found.")
             self.assemble_first_start_screen()
 
     def assemble_first_start_screen(self):

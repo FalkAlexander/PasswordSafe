@@ -695,7 +695,7 @@ class UnlockedDatabase:
         """Show a Group/Entry property dialog
 
         Invoked by the app.element.properties action"""
-        PropertiesDialog(self)
+        PropertiesDialog(self).present()
 
     #
     # Utils

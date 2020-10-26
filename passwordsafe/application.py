@@ -18,14 +18,17 @@ class Application(Gtk.Application):
     application_id = "org.gnome.PasswordSafe"
 
     def __init__(self, *args, **_kwargs):
+        app_flags = (Gio.ApplicationFlags.HANDLES_OPEN
+                     | Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
         super().__init__(
-            *args, application_id=self.application_id, flags=Gio.ApplicationFlags.HANDLES_OPEN)
+            *args, application_id=self.application_id,
+            flags=app_flags)
 
-        loglevel = logging.INFO
-        if self.development_mode:
-            loglevel = logging.DEBUG
-        logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s",
-                            datefmt='%d-%m-%y %H:%M:%S', level=loglevel)
+        # debug level logging option
+        self.add_main_option("debug", ord("d"), GLib.OptionFlags.NONE,
+                             GLib.OptionArg.NONE,
+                             "Enable debug logging",
+                             None)
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
@@ -35,6 +38,21 @@ class Application(Gtk.Application):
         Handy.init()
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
+
+    def do_command_line(self, cmd_line):
+        options = cmd_line.get_options_dict()
+        # convert GVariantDict -> GVariant -> dict
+        options = options.end().unpack()
+
+        # set up logging depending on the verbosity level
+        loglevel = logging.INFO
+        if self.development_mode or 'debug' in options:
+            loglevel = logging.DEBUG
+        logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s",
+                            datefmt='%d-%m-%y %H:%M:%S', level=loglevel)
+
+        self.activate()
+        return 0
 
     def do_activate(self):
         if self.window:

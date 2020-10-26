@@ -691,7 +691,10 @@ class UnlockedDatabase:
     def show_references_dialog(self, _action, _param):
         ReferencesDialog(self)
 
-    def show_properties_dialog(self, _action, _param):
+    def show_properties_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
+        """Show a Group/Entry property dialog
+
+        Invoked by the app.element.properties action"""
         PropertiesDialog(self)
 
     #

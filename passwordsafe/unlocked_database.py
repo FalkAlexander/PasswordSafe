@@ -54,7 +54,6 @@ class UnlockedDatabase:
     database_settings_dialog = NotImplemented
     references_dialog = NotImplemented
     notes_dialog = NotImplemented
-    properties_dialog = NotImplemented
 
     # Objects
     builder = NotImplemented
@@ -728,9 +727,6 @@ class UnlockedDatabase:
         if self.references_dialog is not NotImplemented:
             self.references_dialog.close()
 
-        if self.properties_dialog is not NotImplemented:
-            self.properties.close()
-
         for tmpfile in self.scheduled_tmpfiles_deletion:
             try:
                 tmpfile.delete()
@@ -760,9 +756,6 @@ class UnlockedDatabase:
 
         if self.references_dialog is not NotImplemented:
             self.references_dialog.close()
-
-        if self.properties_dialog is not NotImplemented:
-            self.properties.close()
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)

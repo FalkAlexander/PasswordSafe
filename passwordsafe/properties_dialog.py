@@ -37,9 +37,3 @@ class PropertiesDialog:
         self.builder.get_object("label_accessed").set_text(self.database_manager.get_element_acessed_date(element))
         self.builder.get_object("label_modified").set_text(self.database_manager.get_element_modified_date(element))
         self.builder.get_object("label_created").set_text(self.database_manager.get_element_creation_date(element))
-    #
-    # Tools
-    #
-
-    def on_dialog_quit(self, _window, _event):
-        self.unlocked_database.properties_dialog = NotImplemented

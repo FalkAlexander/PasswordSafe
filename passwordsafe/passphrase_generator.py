@@ -1,24 +1,35 @@
+from typing import List
 import re
 import secrets
 
-from gi.repository import Gio
+from gi.repository import Gio, GLib
 
 word_dict = {}
 
 
-def generate(words, separator):
-    words_file = Gio.File.new_for_uri("resource:///org/gnome/PasswordSafe/crypto/eff_large_wordlist.txt")
-    file_buffer = Gio.InputStream.read_bytes(words_file.read(), 108800)
-    unicode_str = file_buffer.get_data().decode("utf-8", "ignore")
+def generate(words: int, separator: str) -> str:
+    """Generate a passphrase.
 
-    word_list = unicode_str.split("\n")
+    :param int words: number of words requested
+    :param str separator: separator
+    :returns: a passphrase
+    :rtype: str
+
+    """
+    words_file: Gio.File = Gio.File.new_for_uri(
+        "resource:///org/gnome/PasswordSafe/crypto/eff_large_wordlist.txt")
+    file_buffer: GLib.Bytes = Gio.InputStream.read_bytes(
+        words_file.read(), 108800)
+    unicode_str: str = file_buffer.get_data().decode("utf-8", "ignore")
+
+    word_list: List[str] = unicode_str.split("\n")
     for line in word_list:
-        split = re.split(r'\t+', line)
+        split: List[str] = re.split(r'\t+', line)
 
         if split != ['']:
             word_dict[split[0]] = split[1]
 
-    passphrase = ""
+    passphrase: str = ""
 
     for i in range(words):
         passphrase += get_word(dice())

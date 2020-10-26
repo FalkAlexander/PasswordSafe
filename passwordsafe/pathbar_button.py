@@ -10,9 +10,6 @@ class PathbarButton(Gtk.Button):
         self.set_name("PathbarButtonDynamic")
         self.uuid = uuid
 
-    def set_uuid(self, uuid):
-        self.group_uuid = uuid
-
     def set_is_group(self):
         self.is_group = True
 

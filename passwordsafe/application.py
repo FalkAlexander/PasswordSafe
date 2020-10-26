@@ -1,6 +1,6 @@
 import logging
 import sys
-from typing import Optional
+from typing import Any, List, Optional
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -12,8 +12,8 @@ from passwordsafe.settings_dialog import SettingsDialog  # pylint: disable=wrong
 
 
 class Application(Gtk.Application):
-    window = None
-    file_list = []
+    window: MainWindow = None
+    file_list: List[Gio.File] = []
     development_mode = False
     application_id = "org.gnome.PasswordSafe"
 
@@ -88,9 +88,9 @@ class Application(Gtk.Application):
         about_dialog.present()
 
     def on_quit(self, _action: Optional[Gio.SimpleAction] = None,
-                _data=None) -> None:
+                _data: Any = None) -> None:
         # Perform cleanups, this calls application.quit() itself if `handled`
-        handled = self.window.on_application_shutdown()
+        handled: bool = self.window.on_application_shutdown()
         if not handled:
             self.quit()
 

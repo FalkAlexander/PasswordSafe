@@ -1,3 +1,5 @@
+from typing import List
+
 from gettext import gettext as _
 from gi.repository import Gio, GLib, Gdk, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
@@ -6,6 +8,7 @@ from passwordsafe.create_database import CreateDatabase
 from passwordsafe.container_page import ContainerPage
 from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.unlock_database import UnlockDatabase
+from passwordsafe.unlocked_database import UnlockedDatabase
 import passwordsafe.config_manager
 
 import logging
@@ -24,8 +27,8 @@ class MainWindow(Gtk.ApplicationWindow):
     file_open_button = NotImplemented
     file_new_button = NotImplemented
     first_start_grid = NotImplemented
-    opened_databases = []
-    databases_to_save = []
+    opened_databases: List[UnlockedDatabase] = []
+    databases_to_save: List[UnlockedDatabase] = []
     spinner = NotImplemented
 
     mobile_width = False
@@ -112,7 +115,7 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def responsive_listener(self, win: Gtk.ApplicationWindow):
+    def responsive_listener(self, win: Gtk.ApplicationWindow) -> None:
         """invoked on check-resize events"""
         if self.get_allocation().width < 700:
             if not self.mobile_width:
@@ -538,7 +541,7 @@ class MainWindow(Gtk.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, _window) -> bool:
+    def do_delete_event(self, _window: Gtk.ApplicationWindow) -> bool:
         """invoked when we hit the window close button"""
         # Just invoke the app.quit action, it cleans up stuff
         # and will invoke the on_application_shutdown()

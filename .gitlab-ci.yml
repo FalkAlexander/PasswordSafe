@@ -20,6 +20,15 @@ pylint:
         - apt-get update
         - apt-get -q -y install pylint
         - pylint --max-line-length=350 --disable=missing-docstring passwordsafe/*.py
+
+mypy:
+    stage: Static Analysis
+    image: python:3.9
+    script:
+        - apt-get update
+        - apt-get -q -y install mypy
+        - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
+
 flatpak:
     stage: Build
     image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master

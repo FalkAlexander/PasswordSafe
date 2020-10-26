@@ -1,3 +1,5 @@
+from typing import List
+
 from gi.repository import Gtk
 
 
@@ -54,7 +56,7 @@ class ScrolledPage(Gtk.ScrolledWindow):
     attributes_key_entry = NotImplemented
     attributes_value_entry = NotImplemented
     attributes_add_button = NotImplemented
-    attribute_property_row_list = []
+    attribute_property_row_list: List[Gtk.ListBoxRow] = []
 
     attachment_property_row = NotImplemented
     attachment_list_box = NotImplemented

@@ -178,59 +178,60 @@ class MainWindow(Gtk.ApplicationWindow):
             self.assemble_first_start_screen()
 
     def assemble_first_start_screen(self):
+        if not passwordsafe.config_manager.get_last_opened_list():
+            self.display_welcome_page()
+            return
+
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/main_window.ui")
 
-        if passwordsafe.config_manager.get_last_opened_list():
-            last_opened_list_box = builder.get_object("last_opened_list_box")
-            last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
+        last_opened_list_box = builder.get_object("last_opened_list_box")
+        last_opened_list_box.connect(
+            "row-activated", self.on_last_opened_list_box_activated)
 
-            entry_list = []
-            entries = 0
-            invalid = 0
+        entry_list = []
+        for path in passwordsafe.config_manager.get_last_opened_list():
+            if Gio.File.query_exists(Gio.File.new_for_uri(path)):
+                pbuilder = Gtk.Builder()
+                pbuilder.add_from_resource(
+                    "/org/gnome/PasswordSafe/main_window.ui")
 
-            for path in passwordsafe.config_manager.get_last_opened_list():
-                entries = entries + 1
-                if Gio.File.query_exists(Gio.File.new_for_uri(path)):
-                    pbuilder = Gtk.Builder()
-                    pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+                last_opened_row = pbuilder.get_object("last_opened_row")
+                filename_label = pbuilder.get_object("filename_label")
+                path_label = pbuilder.get_object("path_label")
 
-                    last_opened_row = pbuilder.get_object("last_opened_row")
-                    filename_label = pbuilder.get_object("filename_label")
-                    path_label = pbuilder.get_object("path_label")
-
-                    filename_label.set_text(os.path.splitext(ntpath.basename(path))[0])
-                    if "/home/" in path:
-                        path_label.set_text("~/" + os.path.relpath(Gio.File.new_for_uri(path).get_path()))
-                    else:
-                        path_label.set_text(path)
-                    last_opened_row.set_name(path)
-
-                    entry_list.append(last_opened_row)
+                filename_label.set_text(
+                    os.path.splitext(ntpath.basename(path))[0])
+                if "/home/" in path:
+                    relpath = os.path.relpath(
+                        Gio.File.new_for_uri(path).get_path())
+                    path_label.set_text("~/" + relpath)
                 else:
-                    invalid = invalid + 1
+                    path_label.set_text(path)
+                last_opened_row.set_name(path)
 
-            if entries == invalid:
-                self.display_welcome_page()
-            else:
-                for row in reversed(entry_list):
-                    last_opened_list_box.add(row)
+                entry_list.append(last_opened_row)
 
-                self.first_start_grid = builder.get_object("last_opened_grid")
-
-                # Responsive Container
-                hdy = Handy.Clamp()
-                hdy.set_maximum_size(400)
-                hdy.props.vexpand = True
-                hdy.add(builder.get_object("select_box"))
-
-                self.first_start_grid.add(hdy)
-                self.first_start_grid.show_all()
-
-                self.add(self.first_start_grid)
-        else:
+        if not entry_list:
             self.display_welcome_page()
+            return
+
+        for row in reversed(entry_list):
+            last_opened_list_box.add(row)
+
+        self.first_start_grid = builder.get_object("last_opened_grid")
+
+        # Responsive Container
+        hdy = Handy.Clamp()
+        hdy.set_maximum_size(400)
+        hdy.props.vexpand = True
+        hdy.add(builder.get_object("select_box"))
+
+        self.first_start_grid.add(hdy)
+        self.first_start_grid.show_all()
+
+        self.add(self.first_start_grid)
 
     def display_welcome_page(self):
         builder = Gtk.Builder()

@@ -741,8 +741,7 @@ class UnlockedDatabase:
             save_thread.daemon = False
             save_thread.start()
 
-        self.window.opened_databases.remove(self)
-        self.window.close_tab(self.parent_widget)
+        self.window.close_tab(self.parent_widget, self)
 
         self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
 

@@ -188,6 +188,7 @@ class UnlockDatabase:
     #
 
     def on_headerbar_back_button_clicked(self, _widget):
+        database = None
         if self.timeout is True:
             for db in self.window.opened_databases:  # pylint: disable=C0103
                 if (
@@ -203,9 +204,10 @@ class UnlockDatabase:
                         save_thread.start()
 
                     db.stop_save_loop()
-                    self.window.opened_databases.remove(db)
+                    database = db
+
         self.window.set_headerbar()
-        self.window.close_tab(self.parent_widget)
+        self.window.close_tab(self.parent_widget, database)
 
     # Password Unlock
 

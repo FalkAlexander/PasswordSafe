@@ -466,10 +466,21 @@ class MainWindow(Gtk.ApplicationWindow):
     def create_tab_title_from_filepath(self, filepath):
         return ntpath.basename(filepath)
 
-    def close_tab(self, child_widget):
+    def close_tab(self, child_widget, database=None):
+        """Remove a tab from the container.
+
+        If database is defined, it is removed from the list of
+        opened_databases
+
+        :param GtkWidget child_widget: tab to close
+        :param UnlockedDatabase database: database to remove
+        """
         page_num = self.container.page_num(child_widget)
         self.container.remove_page(page_num)
         self.update_tab_bar_visibility()
+
+        if database:
+            self.opened_databases.remove(database)
 
     #
     # Events
@@ -497,8 +508,7 @@ class MainWindow(Gtk.ApplicationWindow):
                     else:
                         db.show_save_dialog()
                 else:
-                    self.close_tab(widget)
-                    self.opened_databases.remove(db)
+                    self.close_tab(widget, db)
 
         if is_contained is False:
             self.close_tab(widget)

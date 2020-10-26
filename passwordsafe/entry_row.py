@@ -1,8 +1,9 @@
 from gettext import gettext as _
 from gi.repository import Gtk
+from uuid import UUID
+
 import passwordsafe.config_manager
 import passwordsafe.icon
-import uuid as u
 
 
 class EntryRow(Gtk.ListBoxRow):
@@ -68,7 +69,10 @@ class EntryRow(Gtk.ListBoxRow):
         if (self.database_manager.has_entry_username(self.entry_uuid) and subtitle):
             username = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
             if username.startswith("{REF:U"):
-                entry_subtitle_label.set_text(self.database_manager.get_entry_username_from_entry_uuid(u.UUID(self.unlocked_database.reference_to_hex_uuid(username))))
+                uuid = UUID(
+                    self.unlocked_database.reference_to_hex_uuid(username))
+                username = self.database_manager.get_entry_username_from_entry_uuid(uuid)
+                entry_subtitle_label.set_text(username)
             else:
                 entry_subtitle_label.set_text(username)
         else:

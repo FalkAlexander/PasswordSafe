@@ -1,6 +1,7 @@
+from uuid import UUID
+
 from gettext import gettext as _
 import subprocess
-import uuid as u
 
 from gi.repository import Gtk, Gio, GLib
 from passwordsafe.notes_dialog import NotesDialog
@@ -722,7 +723,9 @@ class EntryPage:
 
         if scrolled_page.password_property_value_entry.get_text().startswith("{REF:P"):
             try:
-                password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(u.UUID(self.unlocked_database.reference_to_hex_uuid(scrolled_page.password_property_value_entry.get_text())))
+                uuid = UUID(self.unlocked_database.reference_to_hex_uuid(
+                    scrolled_page.password_property_value_entry.get_text()))
+                password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(uuid)
             except Exception:
                 password = scrolled_page.password_property_value_entry.get_text()
         else:

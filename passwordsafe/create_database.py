@@ -234,7 +234,8 @@ class CreateDatabase:
         self.builder.get_object("password_repeat_input1").set_sensitive(False)
         self.builder.get_object("password_repeat_input2").set_sensitive(False)
 
-    def on_generate_keyfile_button_clicked(self, _widget):
+    def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
+        """cb invoked when we create a new keyfile for a newly created Safe"""
         filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
             _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,

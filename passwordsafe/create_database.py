@@ -1,6 +1,7 @@
-from gi.repository import Gtk, GLib
+""" GUI Page and function in order to create a new Safe"""
 from gettext import gettext as _
 import threading
+from gi.repository import Gtk, GLib
 
 from passwordsafe.created_database import CreatedDatabase
 from passwordsafe.unlock_database import KeyFileFilter

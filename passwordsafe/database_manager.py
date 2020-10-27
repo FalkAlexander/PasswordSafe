@@ -747,19 +747,12 @@ class DatabaseManager():
             return ""
         return element.atime.strftime("%x %X")
 
-    def get_element_modified_date(self, element):
-        if element.mtime is not None:
-            local_timestamp = element.mtime.astimezone(tz.tzlocal())
-            timestamp = GLib.DateTime.new_local(
-                int(datetime.strftime(local_timestamp, "%Y")),
-                int(datetime.strftime(local_timestamp, "%m")),
-                int(datetime.strftime(local_timestamp, "%d")),
-                int(datetime.strftime(local_timestamp, "%H")),
-                int(datetime.strftime(local_timestamp, "%M")),
-                float(datetime.strftime(local_timestamp, "%S")))
-            return timestamp.format("%c")
-        else:
-            return "-"
+    def get_element_modified_date(self, element: Union[Entry, Group]) -> str:
+        """Returns a string of the Entry|Groups modification time or ''"""
+        if element.mtime is None:
+            return ""
+        return element.mtime.strftime("%x %X")
+
     #
     # Database creation methods
     #

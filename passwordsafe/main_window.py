@@ -46,10 +46,9 @@ class MainWindow(Gtk.ApplicationWindow):
         self.set_default_size(window_size[0], window_size[1])
 
         self.create_headerbar()
-        self.first_start_screen()
-
         self.load_custom_css()
         self.apply_theme()
+        self.invoke_initial_screen()
 
     #
     # Headerbar
@@ -167,7 +166,15 @@ class MainWindow(Gtk.ApplicationWindow):
     # First Start Screen
     #
 
-    def first_start_screen(self):
+    def invoke_initial_screen(self) -> None:
+        """Present the first start screen if required or autoload files
+
+        If the configuration is set to automatically load the last
+        opened safe, this function does that. If it is not set to
+        autoload, it presents a list of recently loaded files (or
+        displays the empty welcome page if there are no recently
+        loaded files).
+        """
         filepath = Gio.File.new_for_uri(passwordsafe.config_manager.get_last_opened_database()).get_path()
 
         if self.get_application().file_list:

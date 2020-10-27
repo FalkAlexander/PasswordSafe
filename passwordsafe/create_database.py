@@ -17,7 +17,6 @@ class CreateDatabase:
     switched = False
 
     composite = False
-    keyfile_path = NotImplemented
 
     def __init__(self, window, widget, dbm):
         self.database_manager = dbm
@@ -252,12 +251,12 @@ class CreateDatabase:
                 "generate_keyfile_button")
             generate_keyfile_button.set_sensitive(False)
             generate_keyfile_button.set_label(_("Generating…"))
-            self.keyfile_path = keyfile_dlg.get_filename()
-            logging.debug("New keyfile location: %s", self.keyfile_path)
+            keyfile_path = keyfile_dlg.get_filename()
+            logging.debug("New keyfile location: %s", keyfile_path)
 
             generator_thread = threading.Thread(
                 target=passwordsafe.keyfile_generator.generate_keyfile,
-                args=(self.keyfile_path, True, self, self.composite))
+                args=(keyfile_path, True, self, self.composite))
             generator_thread.daemon = True
             generator_thread.start()
 

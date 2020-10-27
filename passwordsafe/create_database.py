@@ -10,6 +10,7 @@ import passwordsafe.keyfile_generator
 
 
 class CreateDatabase:
+    """Creates a new Safe when invoked"""
     builder = NotImplemented
     database_manager = NotImplemented
     parent_widget = NotImplemented

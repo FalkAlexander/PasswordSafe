@@ -177,8 +177,8 @@ class MainWindow(Gtk.ApplicationWindow):
         """
         filepath = Gio.File.new_for_uri(passwordsafe.config_manager.get_last_opened_database()).get_path()
 
-        if self.get_application().file_list:
-            for g_file in self.get_application().file_list:
+        if self.application.file_list:
+            for g_file in self.application.file_list:
                 self.start_database_opening_routine(g_file.get_path())
         elif passwordsafe.config_manager.get_first_start_screen() and filepath and os.path.exists(filepath):
             logging.debug("Found last opened database: %s", filepath)

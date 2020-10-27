@@ -264,7 +264,8 @@ class CreateDatabase:
     # Helper Functions
     #
 
-    def clear_input_fields(self):
+    def clear_input_fields(self) -> None:
+        """Empty all Entry textfields"""
         password_creation_input = self.builder.get_object(
             "password_creation_input")
         password_check_input = self.builder.get_object(

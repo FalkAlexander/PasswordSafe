@@ -1,5 +1,6 @@
 """ GUI Page and function in order to create a new Safe"""
 from gettext import gettext as _
+import logging
 import threading
 from gi.repository import Gtk, GLib
 
@@ -236,24 +237,23 @@ class CreateDatabase:
 
     def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
         """cb invoked when we create a new keyfile for a newly created Safe"""
-        filechooser_creation_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for generating a new keyfile
-            _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,
+        keyfile_dlg = Gtk.FileChooserNative.new(
+            _("Choose location for keyfile"),
+            self.window, Gtk.FileChooserAction.SAVE,
             _("Generate"), None)
-        filechooser_creation_dialog.set_do_overwrite_confirmation(True)
-        filechooser_creation_dialog.set_current_name(_("Keyfile"))
-        filechooser_creation_dialog.set_modal(True)
-        filechooser_creation_dialog.set_local_only(False)
-        filechooser_creation_dialog.add_filter(KeyFileFilter())
-
-        response = filechooser_creation_dialog.run()
+        keyfile_dlg.set_do_overwrite_confirmation(True)
+        keyfile_dlg.set_modal(True)
+        keyfile_dlg.set_local_only(False)
+        keyfile_dlg.add_filter(KeyFileFilter())
+        response = keyfile_dlg.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
+            generate_keyfile_button = self.builder.get_object(
+                "generate_keyfile_button")
             generate_keyfile_button.set_sensitive(False)
             generate_keyfile_button.set_label(_("Generating…"))
-
-            self.keyfile_path = filechooser_creation_dialog.get_filename()
+            self.keyfile_path = keyfile_dlg.get_filename()
+            logging.debug("New keyfile location: %s", self.keyfile_path)
 
             generator_thread = threading.Thread(
                 target=passwordsafe.keyfile_generator.generate_keyfile,

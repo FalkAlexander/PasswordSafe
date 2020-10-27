@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-10-25 09:59+0000\n"
-"PO-Revision-Date: 2020-10-26 11:29+0200\n"
+"POT-Creation-Date: 2020-10-26 20:00+0000\n"
+"PO-Revision-Date: 2020-10-27 13:07+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -459,7 +459,7 @@ msgstr ""
 "Автоматично відкривати екран відмикання для останньої відкритої бази даних. "
 "Якщо не вказано, буде показано вікно вітання."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:258
+#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:260
 msgid "Save every change automatically"
 msgstr "Зберігати усі зміни автоматично"
 
@@ -484,7 +484,7 @@ msgstr ""
 "Автоматично замикати вашу базу даних, якщо з нею не виконуватиметься ніяких "
 "дій протягом вказаної кількості хвилин, для вашої безпеки."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:640
+#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:646
 msgid "Clear clipboard after X seconds"
 msgstr "Спорожняти буфер обміну за вказану кількість секунд"
 
@@ -493,7 +493,7 @@ msgid "After copying the password clear the clipboard for security reasons."
 msgstr ""
 "Після копіювання пароля спорожняти буфер обміну даними з міркувань захисту."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:730
+#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:737
 msgid "Display passwords in plain text"
 msgstr "Показувати паролі у форматі звичайного тексту"
 
@@ -586,24 +586,6 @@ msgstr ""
 "Використовується для зберігання останнього використаного способу відмикання "
 "і вмикання швидшого процесу відмикання."
 
-#: data/override_dialog.ui:8
-msgid "File already exists"
-msgstr "Файл вже існує"
-
-#: data/override_dialog.ui:9
-msgid "Do you want to override it?"
-msgstr "Хочете перезаписати його?"
-
-#. Cancel exiting the program
-#: data/override_dialog.ui:22 data/save_dialog.ui:36
-#: data/unlocked_database.ui:1420
-msgid "Cancel"
-msgstr "Скасувати"
-
-#: data/override_dialog.ui:35
-msgid "Override"
-msgstr "Перезаписати"
-
 #: data/properties_dialog.ui:13 data/unlocked_database.ui:1177
 msgid "Properties"
 msgstr "Властивості"
@@ -694,82 +676,101 @@ msgstr "Хочете записати усі зміни до сейфа?"
 msgid "Discard"
 msgstr "Відкинути"
 
+#. Cancel exiting the program
+#: data/save_dialog.ui:36 data/unlocked_database.ui:1420
+msgid "Cancel"
+msgstr "Скасувати"
+
 #. Save all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:44 data/unlocked_database.ui:810
-#: passwordsafe/entry_page.py:658 passwordsafe/main_window.py:361
+#: passwordsafe/entry_page.py:658 passwordsafe/main_window.py:364
 msgid "Save"
 msgstr "Зберегти"
 
-#: data/settings_dialog.ui:53
+#: data/settings_dialog.ui:25 data/settings_dialog.ui:53
 msgid "Dark Theme"
 msgstr "Темна тема"
 
-#: data/settings_dialog.ui:142
+#: data/settings_dialog.ui:116
+#| msgid "Hide First Start Screen"
+msgid "First Start"
+msgstr "Перший запуск"
+
+#: data/settings_dialog.ui:143
 msgid "Hide First Start Screen"
 msgstr "Приховати перший початковий екран"
 
-#: data/settings_dialog.ui:159
+#: data/settings_dialog.ui:160
 msgid "Reopen last opened safe"
 msgstr "Повторно відкрити останній відкритий сейф"
 
-#: data/settings_dialog.ui:210 data/unlocked_database.ui:909
-#: passwordsafe/main_window.py:363
+#: data/settings_dialog.ui:211 data/unlocked_database.ui:909
+#: passwordsafe/main_window.py:366
 msgid "Safe"
 msgstr "Безпечний"
 
-#: data/settings_dialog.ui:241
+#. Open settings for safe (e.g. password changing)
+#: data/settings_dialog.ui:215 data/unlocked_database.ui:1000
+msgid "Safe Settings"
+msgstr "Параметри сейфа"
+
+#: data/settings_dialog.ui:243
 msgid "Save automatically"
 msgstr "Зберігати автоматично"
 
-#: data/settings_dialog.ui:309 data/unlock_database.ui:84
+#: data/settings_dialog.ui:311 data/unlock_database.ui:84
 #: data/unlock_database.ui:226 data/unlock_database.ui:471
 msgid "Unlock"
 msgstr "Відімкнути"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:340
+#: data/settings_dialog.ui:316 data/settings_dialog.ui:343
 msgid "Remember Composite Key"
 msgstr "Запам'ятати суміщений ключ"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:357
+#: data/settings_dialog.ui:360
 msgid "Remember last used composite key"
 msgstr "Запам'ятати останній використаний суміщений ключ"
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:429
+#: data/settings_dialog.ui:406 data/settings_dialog.ui:433
 msgid "Remember Unlock Method"
 msgstr "Запам'ятати спосіб відмикання"
 
-#: data/settings_dialog.ui:446
+#: data/settings_dialog.ui:450
 msgid "Enable faster unlocking"
 msgstr "Увімкнути швидке розблокування"
 
-#: data/settings_dialog.ui:497 data/settings_dialog.ui:502
+#: data/settings_dialog.ui:501 data/settings_dialog.ui:506
 msgid "Security"
 msgstr "Безпека"
 
-#: data/settings_dialog.ui:533
+#: data/settings_dialog.ui:511
+msgid "Timeout"
+msgstr "Час очікування"
+
+#: data/settings_dialog.ui:538
 msgid "Safe Lock Timeout"
 msgstr "Час очікування на замикання сейфа"
 
-#: data/settings_dialog.ui:550
+#: data/settings_dialog.ui:555
 msgid "Lock safe on idle after X minutes"
 msgstr "Замикати бездіяльний сейф за вказану кількість хвилин"
 
-#: data/settings_dialog.ui:623
+#: data/settings_dialog.ui:600 data/settings_dialog.ui:629
 msgid "Clear Clipboard"
 msgstr "Спорожнити буфер обміну"
 
-#: data/settings_dialog.ui:713
+#: data/settings_dialog.ui:691 data/settings_dialog.ui:720
 msgid "Show Password Fields"
 msgstr "Показувати поля паролів"
 
-#: data/settings_dialog.ui:802
+#: data/settings_dialog.ui:781 data/settings_dialog.ui:810
 msgid "Clear Recent List"
 msgstr "Спорожнити список нещодавніх сейфів"
 
-#: data/settings_dialog.ui:819
+#: data/settings_dialog.ui:827
 msgid "Clear the recently opened safes list"
 msgstr "Спорожнити список нещодавно відкритих сейфів"
 
@@ -926,11 +927,6 @@ msgstr "Новий запис"
 msgid "New Group"
 msgstr "Нова група"
 
-#. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:1000
-msgid "Safe Settings"
-msgstr "Параметри сейфа"
-
 #: data/unlocked_database.ui:1105
 msgid "Local"
 msgstr "Локальна"
@@ -1049,37 +1045,37 @@ msgid "No group title specified"
 msgstr "Не вказано назви групи"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:279
+#: passwordsafe/main_window.py:282
 msgid "Choose a Keepass safe"
 msgstr "Виберіть сейф Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:289 passwordsafe/main_window.py:369
+#: passwordsafe/main_window.py:292 passwordsafe/main_window.py:372
 msgid "KeePass 3.1/4 Database"
 msgstr "база даних KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:317
+#: passwordsafe/main_window.py:320
 msgid "Unable to open file \"{}\"."
 msgstr "Не вдалося відкрити файл «{}»."
 
-#: passwordsafe/main_window.py:320
+#: passwordsafe/main_window.py:323
 msgid "File type {} ({}) is not supported."
 msgstr "Підтримки типів файлів {} ({}) не передбачено."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:360
+#: passwordsafe/main_window.py:363
 msgid "Choose location for Keepass safe"
 msgstr "Виберіть розташування сейфа Keepass"
 
-#: passwordsafe/selection_ui.py:175
+#: passwordsafe/selection_ui.py:180
 msgid "Deletion completed"
 msgstr "Вилучення завершено"
 
-#: passwordsafe/selection_ui.py:242
+#: passwordsafe/selection_ui.py:247
 msgid "Move completed"
 msgstr "Пересування завершено"
 
-#: passwordsafe/selection_ui.py:244
+#: passwordsafe/selection_ui.py:249
 msgid "Skipped moving group into itself"
 msgstr "Пропущено пересування групи до самої себе"
 
@@ -1099,33 +1095,42 @@ msgstr "Спробувати ще раз"
 msgid "Choose Keyfile"
 msgstr "Виберіть файл ключа"
 
-#: passwordsafe/unlocked_database.py:477
+#: passwordsafe/unlocked_database.py:478
 msgid "Database saved"
 msgstr "Базу даних збережено"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:480
+#: passwordsafe/unlocked_database.py:481
 msgid "Please wait. Another save is running."
 msgstr "Будь ласка, зачекайте. Виконуємо зберігання інших даних."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:483
+#: passwordsafe/unlocked_database.py:484
 msgid "No changes made"
 msgstr "Не було внесено жодних змін"
 
-#: passwordsafe/unlocked_database.py:624
+#: passwordsafe/unlocked_database.py:625
 msgid "Copied to clipboard"
 msgstr "Скопійовано до буфера обміну"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:793
+#: passwordsafe/unlocked_database.py:794
 #, python-format
 msgid "%s locked"
 msgstr "%s замкнено"
 
-#: passwordsafe/unlocked_database.py:793
+#: passwordsafe/unlocked_database.py:794
 msgid "Keepass safe locked due to inactivity"
 msgstr "Сейф Keepass замкнено через неактивність"
+
+#~ msgid "File already exists"
+#~ msgstr "Файл вже існує"
+
+#~ msgid "Do you want to override it?"
+#~ msgstr "Хочете перезаписати його?"
+
+#~ msgid "Override"
+#~ msgstr "Перезаписати"
 
 #~ msgid "Settings"
 #~ msgstr "Параметри"

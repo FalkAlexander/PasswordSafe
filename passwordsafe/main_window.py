@@ -17,7 +17,6 @@ from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class MainWindow(Gtk.ApplicationWindow):
-    application = NotImplemented
     database_manager = NotImplemented
     container = NotImplemented
     headerbar = NotImplemented
@@ -32,7 +31,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.application = self.get_application()
         self._info_bar = None
         self._info_bar_response_id = None
 

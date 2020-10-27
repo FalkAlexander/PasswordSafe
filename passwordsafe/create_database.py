@@ -92,7 +92,8 @@ class CreateDatabase:
         if self.composite is False:
             self.parent_widget.add(self.stack)
 
-        self.builder.get_object("generate_keyfile_button").connect("clicked", self.on_generate_keyfile_button_clicked)
+        self.builder.get_object("generate_keyfile_button").connect(
+            "clicked", self.on_generate_keyfile_button_clicked)
 
     def set_database_keyfile(self):
         self.parent_widget.remove(self.stack)
@@ -253,7 +254,9 @@ class CreateDatabase:
 
             self.keyfile_path = filechooser_creation_dialog.get_filename()
 
-            generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.keyfile_path, True, self, self.composite))
+            generator_thread = threading.Thread(
+                target=passwordsafe.keyfile_generator.generate_keyfile,
+                args=(self.keyfile_path, True, self, self.composite))
             generator_thread.daemon = True
             generator_thread.start()
 

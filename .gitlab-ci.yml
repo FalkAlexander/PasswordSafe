@@ -22,7 +22,8 @@ pylint:
     image: python:3.9
     script:
         - apt-get update
-        - apt-get -q -y install ${DEPS_DEV} pylint
+        - apt-get -q -y install ${DEPS_DEV}
+        - pip3 install pylint
         - pylint --max-line-length=350 --disable=missing-docstring passwordsafe/*.py
 
 mypy:

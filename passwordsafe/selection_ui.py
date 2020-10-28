@@ -204,7 +204,9 @@ class SelectionUI:
 
             rebuild = False
             for button in self.unlocked_database.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
+                if button.get_name() == "PathbarButtonDynamic" and isinstance(
+                    button, passwordsafe.pathbar_button.PathbarButton
+                ):
                     for group_row in self.groups_cut:
                         if button.uuid == group_row.get_uuid():
                             rebuild = True
@@ -214,9 +216,11 @@ class SelectionUI:
 
             self.cut_mode = False
             return
-        else:
-            widget.get_children()[0].set_from_icon_name("edit-cut-symbolic", Gtk.IconSize.BUTTON)
-            self.cut_mode = True
+
+        widget.get_children()[0].set_from_icon_name(
+            "edit-cut-symbolic", Gtk.IconSize.BUTTON
+        )
+        self.cut_mode = True
 
         for entry_row in self.entries_cut:
             entry_uuid = entry_row.get_uuid()

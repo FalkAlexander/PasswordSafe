@@ -1,3 +1,4 @@
+"""Responsible for displaying the Entry/Group Properties"""
 from gi.repository import Gtk
 
 
@@ -14,9 +15,11 @@ class PropertiesDialog:
         self.update_properties()
 
     def present(self):
+        """Present the dialog"""
         self.dialog.present()
 
     def update_properties(self) -> None:
+        """Construct dialog content with the attributes of the Entry|Group"""
         element = self._database.current_group
         hex_uuid = element.uuid.hex.upper()
         self.builder.get_object("label_uuid").set_text(hex_uuid)

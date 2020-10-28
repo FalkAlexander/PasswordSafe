@@ -45,6 +45,7 @@ class UnlockDatabase:
     unlocked_database = NotImplemented
     original_group = NotImplemented
     original_group_edit_page = NotImplemented
+    password_composite = NotImplemented
     password_only = NotImplemented
     unlock_thread = NotImplemented
 

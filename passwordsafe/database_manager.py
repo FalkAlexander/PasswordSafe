@@ -77,7 +77,7 @@ class DatabaseManager():
 
         :returns: a `pykeepass.group.Group` object or None if it does not exist
         """
-        assert type(uuid) == UUID, "uuid needs to be of type UUID"
+        assert isinstance(uuid, UUID), "uuid needs to be of type UUID"
         return self.db.find_groups(uuid=uuid, first=True)
 
     def get_group_name(self, data: Union[Group, UUID]) -> str:

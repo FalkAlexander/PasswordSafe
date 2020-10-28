@@ -24,7 +24,7 @@ pylint:
         - apt-get update
         - apt-get -q -y install ${DEPS_DEV}
         - pip3 install pylint
-        - pylint --max-line-length=350 --disable=missing-docstring passwordsafe/*.py
+        - pylint --max-line-length=350 --disable=missing-docstring --init-hook="import sys; sys.path.insert(0, '.')" passwordsafe/*.py
 
 mypy:
     stage: Static Analysis

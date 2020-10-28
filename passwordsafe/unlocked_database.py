@@ -504,15 +504,10 @@ class UnlockedDatabase:
     def on_element_delete_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
-        element_to_delete = self.current_group
         ele_uuid = self.current_group.uuid
-        if self.database_manager.check_is_group_object(self.current_group):
-            self.current_group = self.database_manager.get_group_parent_group_from_object(self.current_group)
-            self.database_manager.delete_group_from_database(element_to_delete)
-        else:
-            # current_group is an `Entry`
-            self.current_group = self.database_manager.get_entry_parent_group_from_entry_object(self.current_group)
-            self.database_manager.delete_entry_from_database(element_to_delete)
+        self.current_group = self.database_manager.get_parent_group(
+            self.current_group)
+        self.database_manager.delete_from_database(self.current_group)
 
         # If the deleted entry is in the pathbar, we need to rebuild the pathbar
         if self.pathbar.uuid_in_pathbar(ele_uuid):
@@ -525,7 +520,8 @@ class UnlockedDatabase:
         self.start_database_lock_timer()
 
         self.database_manager.duplicate_entry(self.current_group)
-        parent_group = self.database_manager.get_entry_parent_group_from_entry_object(self.current_group)
+        parent_group = self.database_manager.get_parent_group(
+            self.current_group)
 
         if self.database_manager.check_is_root_group(parent_group) is True:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
@@ -579,28 +575,28 @@ class UnlockedDatabase:
             if not_valid is False:
                 if code == "T":
                     try:
-                        value = self.database_manager.get_entry_name_from_entry_uuid(uuid)
+                        value = self.database_manager.get_entry_name(uuid)
                     except AttributeError:
                         value = ref.group()
                 elif code == "U":
                     try:
-                        value = self.database_manager.get_entry_username_from_entry_uuid(uuid)
+                        value = self.database_manager.get_entry_username(uuid)
                     except AttributeError:
                         value = ref.group()
                 elif code == "P":
                     try:
-                        value = self.database_manager.get_entry_password_from_entry_uuid(uuid)
+                        value = self.database_manager.get_entry_password(uuid)
                     except AttributeError:
                         print("FAIL")
                         value = ref.group()
                 elif code == "A":
                     try:
-                        value = str(self.database_manager.get_entry_url_from_entry_uuid(uuid))
+                        value = str(self.database_manager.get_entry_url(uuid))
                     except AttributeError:
                         value = ref.group()
                 elif code == "N":
                     try:
-                        value = str(self.database_manager.get_entry_notes_from_entry_uuid(uuid))
+                        value = str(self.database_manager.get_notes(uuid))
                     except AttributeError:
                         value = ref.group()
 
@@ -634,15 +630,15 @@ class UnlockedDatabase:
         parent = NotImplemented
 
         if scrolled_page.edit_page is True and group_page is True:
-            parent = self.database_manager.get_group_parent_group_from_uuid(page_uuid)
+            parent = self.database_manager.get_parent_group(page_uuid)
         elif scrolled_page.edit_page is True and group_page is False:
-            parent = self.database_manager.get_entry_parent_group_from_uuid(page_uuid)
+            parent = self.database_manager.get_parent_group(page_uuid)
         elif scrolled_page.edit_page is False and self.selection_ui.selection_mode_active is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
             if self.database_manager.check_is_root_group(self.current_group) is True:
                 self.on_lock_button_clicked(None)
                 return
 
-            parent = self.database_manager.get_group_parent_group_from_uuid(page_uuid)
+            parent = self.database_manager.get_parent_group(page_uuid)
 
         if self.database_manager.check_is_root_group(parent) is True:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)

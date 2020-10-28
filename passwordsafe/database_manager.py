@@ -1,10 +1,10 @@
+from gettext import gettext as _
 from datetime import datetime
 from dateutil import tz
-from gettext import gettext as _
+from typing import Dict, Optional, Union
+from uuid import UUID
 import hashlib
 import logging
-from typing import Optional
-from uuid import UUID
 
 from gi.repository import Gio, GLib
 from pykeepass.kdbx_parsing.kdbx import KDBX
@@ -43,59 +43,117 @@ class DatabaseManager():
     # Group Transformation Methods
     #
 
-    # Return the parent group object from the child group uuid
-    def get_group_parent_group_from_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return group.parentgroup
+    def get_parent_group(
+            self, data: Union[Entry, Group, UUID]) -> Optional[Group]:
+        """Get parent group from an entry, a group or an uuid
 
-    # Return the parent group object from the child group object
-    def get_group_parent_group_from_object(self, group):
-        return group.parentgroup
+        :param data: UUID, Entry or Group
+        :returns: parent group
+        :rtype: Group
+        """
+        if isinstance(data, UUID):
+            if self.check_is_group(data):
+                value: Union[Group, Entry] = self.db.find_groups(
+                    uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return None
+            else:
+                value = self.db.find_entries(uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return None
+        else:
+            value = data
+
+        return value.parentgroup
 
     def get_group(self, uuid: UUID) -> Optional[Group]:
         """Return the group object for a group uuid
 
         :returns: a `pykeepass.group.Group` object or None if it does not exist
         """
-        assert type(uuid) == UUID, "uuid needs to be of type UUID"
+        assert isinstance(uuid, UUID), "uuid needs to be of type UUID"
         return self.db.find_groups(uuid=uuid, first=True)
 
-    # Return the belonging group name for a group uuid
-    def get_group_name_from_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return self.get_group_name_from_group_object(group)
+    def get_group_name(self, data: Union[Group, UUID]) -> str:
+        """Get group name from a group or an uuid
 
-    # Return the path for a group object
-    def get_group_path_from_group_object(self, group):
-        return group.path
-
-    # Return the belonging name for a group object
-    def get_group_name_from_group_object(self, group):
-        if group.name is None:
-            return ""
+        :param data: a group or an uuid
+        :returns: group name or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            group: Group = self.db.find_groups(uuid=data, first=True)
+            if not group:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return ""
         else:
-            return group.name
+            group = data
 
-    # Return the belonging notes for a group object
-    def get_group_notes_from_group_object(self, group):
-        if group.notes is None:
-            return ""
+        return group.name or ""
+
+    def get_notes(self, data: Union[Entry, Group, UUID]) -> str:
+        """Get notes from an entry, a group or an uuid
+
+        :param data: a group or an uuid
+        :returns: notes or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            if self.check_is_group(data):
+                value: Union[Entry, Group] = self.db.find_groups(
+                    uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
+            else:
+                value = self.db.find_entries(uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
         else:
-            return group.notes
+            value = data
 
-    # Return the belonging icon for a group object
-    def get_group_icon_from_group_object(self, group):
-        return group.icon
+        return value.notes or ""
 
-    # Return the belonging notes for a group uuid
-    def get_group_notes_from_group_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return self.get_group_notes_from_group_object(group)
+    def get_icon(self, data: Union[Entry, Group, UUID]) -> str:
+        """Get an entry icon from an entry, a group or an uuid
 
-    # Return path for group uuid
-    def get_group_path_from_group_uuid(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        return group.path
+        :param data: entry, group or uuid
+        :returns: the icon number of the entry as a string
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            if self.check_is_group(data):
+                value: Union[Entry, Group] = self.db.find_groups(
+                    uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
+            else:
+                value = self.db.find_entries(uuid=data, first=True)
+                if not value:
+                    logging.warning(
+                        "Trying to look up a non-existing UUID %s, this "
+                        "should never happen", data)
+                    return ""
+        else:
+            value = data
+
+        return value.icon
 
     #
     # Entry Transformation Methods
@@ -109,92 +167,81 @@ class DatabaseManager():
     def get_entry_uuid_from_entry_object(self, entry):
         return entry.uuid
 
-    # Return parent group from entry uuid
-    def get_entry_parent_group_from_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.parentgroup
+    def get_entry_name(self, data: Union[Entry, UUID]) -> str:
+        """Get entry name from an uuid or an entry
 
-    # Return parent group from entry object
-    def get_entry_parent_group_from_entry_object(self, entry):
-        return entry.parentgroup
-
-    # Return the belonging name for an entry object
-    def get_entry_name_from_entry_object(self, entry):
-        if entry.title is None:
-            return ""
+        :param data: UUID or Entry
+        :returns: entry name or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return ""
         else:
-            return entry.title
+            entry = data
 
-    # Return entry name from entry uuid
-    def get_entry_name_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return self.get_entry_name_from_entry_object(entry)
+        return entry.title or ""
 
-    # Return the belonging icon for an entry object
-    def get_entry_icon_from_entry_object(self, entry):
-        return entry.icon
+    def get_entry_username(self, data: Union[Entry, UUID]) -> str:
+        """Get an entry username from an entry or an uuid
 
-    # Return entry icon from entry uuid
-    def get_entry_icon_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.icon
-
-    # Return the belonging username for an entry object
-    def get_entry_username_from_entry_object(self, entry):
-        if entry.username is None:
-            return ""
+        :param data: entry or uuid
+        :returns: entry username or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return ""
         else:
-            return entry.username
+            entry = data
 
-    # Return the belonging username for an entry uuid
-    def get_entry_username_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return self.get_entry_username_from_entry_object(entry)
+        return entry.username or ""
 
-    # Return the belonging password for an entry object
-    def get_entry_password_from_entry_object(self, entry):
-        if entry.password is None:
-            return ""
+    def get_entry_password(self, data: Union[Entry, UUID]) -> str:
+        """Get an entry password from an entry or an uuid
+
+        :param data: entry or uuid
+        :returns: entry password or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s , this should "
+                    "never happen", data)
+                return ""
         else:
-            return entry.password
+            entry = data
 
-    # Return the belonging password for an entry uuid
-    def get_entry_password_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return self.get_entry_password_from_entry_object(entry)
+        return entry.password or ""
 
-    # Return the belonging url for an entry uuid
-    def get_entry_url_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return self.get_entry_url_from_entry_object(entry)
+    def get_entry_url(self, data: Union[Entry, UUID]) -> str:
+        """Get an entry url from an entry or an uuid
 
-    # Return the belonging url for an entry object
-    def get_entry_url_from_entry_object(self, entry):
-        if entry.url is None:
-            return ""
+        :param data: UUID or Entry
+        :returns: entry url or an empty string if it does not exist
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return ""
         else:
-            return entry.url
+            entry = data
 
-    # Return the belonging notes for an entry uuid
-    def get_entry_notes_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.notes
-
-    # Return the belonging notes for an entry object
-    def get_entry_notes_from_entry_object(self, entry):
-        if entry.notes is None:
-            return ""
-        else:
-            return entry.notes
-
-    # Return the beloging expiry date for an entry uuid
-    def get_entry_expiry_date_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.expiry_time
-
-    # Return the beloging expiry date for an entry object
-    def get_entry_expiry_date_from_entry_object(self, entry):
-        return entry.expiry_time
+        return entry.url or ""
 
     # Return the belonging color for an entry uuid
     def get_entry_color_from_entry_uuid(self, uuid):
@@ -212,13 +259,25 @@ class DatabaseManager():
         else:
             return entry.get_custom_property(key)
 
-    # Return all attributes for an entry uuid
-    def get_entry_attributes_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.custom_properties
+    def get_entry_attributes(self, data: Union[Entry, UUID]) -> Dict[str, str]:
+        """Get an entry attributes from an entry or an uuid
 
-    # Return all attributes for an entry object
-    def get_entry_attributes_from_entry_object(self, entry):
+        Returns an empty dict if the entry does not have any attribute.
+
+        :param data: entry or uuid
+        :returns: entry attributes
+        :rtype: dict[str, str]
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen", data)
+                return {}
+        else:
+            entry = data
+
         return entry.custom_properties
 
     # Return all attachments for an entry uuid
@@ -289,12 +348,6 @@ class DatabaseManager():
             return False
         return True
 
-    def has_entry_attributes(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if len(entry.custom_properties) == 0:
-            return False
-        return True
-
     def has_entry_attribute(self, uuid, key):
         entry = self.db.find_entries(uuid=uuid, first=True)
         if entry.get_custom_property(key) is None:
@@ -341,13 +394,6 @@ class DatabaseManager():
 
         return group
 
-    # Delete a group
-    def delete_group_from_database(self, group):
-        self.db.delete_group(group)
-        self.is_dirty = True
-        if group.parentgroup is not None:
-            self.set_element_mtime(group.parentgroup)
-
     # Add new entry to database
     def add_entry_to_database(
             self, name, username, password, url, notes, icon, group_uuid):
@@ -361,11 +407,19 @@ class DatabaseManager():
         return entry
 
     # Delete an entry
-    def delete_entry_from_database(self, entry):
-        self.db.delete_entry(entry)
+    def delete_from_database(self, entity: Union[Entry, Group]) -> None:
+        """Delete an Entry or a Group from the database.
+
+        :param entity: Entity or Group to delete
+        """
+        if isinstance(entity, Entry):
+            self.db.delete_entry(entity)
+        else:
+            self.db.delete_group(entity)
+
         self.is_dirty = True
-        if entry.parentgroup is not None:
-            self.set_element_mtime(entry.parentgroup)
+        if entity.parentgroup is not None:
+            self.set_element_mtime(entity.parentgroup)
 
     # Duplicate an entry
     def duplicate_entry(self, entry):
@@ -598,7 +652,7 @@ class DatabaseManager():
         # else:
         #     for group in self.db.groups:
         #         if group.is_root_group is False and group.uuid not in uuid_list:
-        #             if string.lower() in self.get_group_notes_from_group_object(group):
+        #             if string.lower() in self.get_notes(group):
         #                 uuid_list.append(group.uuid)
 
         # if fulltext is False:
@@ -607,9 +661,9 @@ class DatabaseManager():
         # else:
         #     for entry in self.db.entries:
         #         if entry.uuid not in uuid_list:
-        #             if string.lower() in self.get_entry_username_from_entry_object(entry):
+        #             if string.lower() in self.get_entry_username(entry):
         #                 uuid_list.append(entry.uuid)
-        #             elif string.lower() in self.get_entry_notes_from_entry_object(entry):
+        #             elif string.lower() in self.get_notes(entry):
         #                 uuid_list.append(entry.uuid)
 
         # Workaround
@@ -626,7 +680,7 @@ class DatabaseManager():
         else:
             for group in self.db.groups:
                 if group.is_root_group is False and group.uuid not in uuid_list:
-                    if string.lower() in self.get_group_notes_from_group_object(group).lower():
+                    if string.lower() in self.get_notes(group).lower():
                         if global_search is True:
                             uuid_list.append(group.uuid)
                         else:
@@ -646,19 +700,19 @@ class DatabaseManager():
         else:
             for entry in self.db.entries:
                 if entry.uuid not in uuid_list:
-                    if string.lower() in self.get_entry_username_from_entry_object(entry).lower():
+                    if string.lower() in self.get_entry_username(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:
                             if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
                                 uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_entry_notes_from_entry_object(entry).lower():
+                    elif string.lower() in self.get_notes(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:
                             if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
                                 uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_entry_url_from_entry_object(entry).lower():
+                    elif string.lower() in self.get_entry_url(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:

@@ -36,7 +36,9 @@ class EntryPage:
         self.unlocked_database.builder.get_object("linkedbox_right").hide()
 
         filename_label = self.unlocked_database.builder.get_object("filename_label")
-        filename_label.set_text(self.unlocked_database.database_manager.get_entry_name_from_entry_object(self.unlocked_database.current_group))
+        name = self.unlocked_database.database_manager.get_entry_name(
+            self.unlocked_database.current_group)
+        filename_label.set_text(name)
 
         secondary_menupopover_button = self.unlocked_database.builder.get_object("secondary_menupopover_button")
         secondary_menupopover_button.show_all()
@@ -69,7 +71,7 @@ class EntryPage:
                 scrolled_page.name_property_row = builder.get_object("name_property_row")
                 scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
                 scrolled_page.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_name(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)
                 else:
@@ -79,7 +81,8 @@ class EntryPage:
                 properties_list_box.add(scrolled_page.name_property_row)
                 scrolled_page.name_property_value_entry.grab_focus()
             elif scrolled_page.name_property_row:
-                value = self.unlocked_database.database_manager.get_entry_name_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_name(
+                    entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
                     scrolled_page.name_property_value_entry.set_text(value)
                 else:
@@ -93,7 +96,7 @@ class EntryPage:
                 scrolled_page.username_property_row = builder.get_object("username_property_row")
                 scrolled_page.username_property_value_entry = builder.get_object("username_property_value_entry")
                 scrolled_page.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_username(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
                     scrolled_page.username_property_value_entry.set_text(value)
                 else:
@@ -103,7 +106,7 @@ class EntryPage:
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row:
-                value = self.unlocked_database.database_manager.get_entry_username_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_username(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
                     scrolled_page.username_property_value_entry.set_text(value)
                 else:
@@ -120,7 +123,7 @@ class EntryPage:
                 scrolled_page.show_password_button = builder.get_object("show_password_button")
                 scrolled_page.generate_password_button = builder.get_object("generate_password_button")
                 scrolled_page.password_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_password(entry_uuid)
 
                 if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
                     scrolled_page.password_property_value_entry.set_text(value)
@@ -152,7 +155,7 @@ class EntryPage:
 
                 properties_list_box.add(scrolled_page.password_property_row)
             elif scrolled_page.password_property_row:
-                value = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_password(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
                     scrolled_page.password_property_value_entry.set_text(value)
                 else:
@@ -167,7 +170,8 @@ class EntryPage:
                 scrolled_page.url_property_row = builder.get_object("url_property_row")
                 scrolled_page.url_property_value_entry = builder.get_object("url_property_value_entry")
                 scrolled_page.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_url(
+                    entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
                     scrolled_page.url_property_value_entry.set_text(value)
                 else:
@@ -177,7 +181,7 @@ class EntryPage:
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
             elif scrolled_page.url_property_row:
-                value = self.unlocked_database.database_manager.get_entry_url_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_entry_url(entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
                     scrolled_page.url_property_value_entry.set_text(value)
                 else:
@@ -196,7 +200,8 @@ class EntryPage:
 
                 scrolled_page.notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
                 buffer = scrolled_page.notes_property_value_entry.get_buffer()
-                value = self.unlocked_database.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_notes(
+                    entry_uuid)
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
                     buffer.set_text(value)
                 else:
@@ -204,7 +209,8 @@ class EntryPage:
                 buffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
             elif scrolled_page.notes_property_row:
-                value = self.unlocked_database.database_manager.get_entry_notes_from_entry_uuid(entry_uuid)
+                value = self.unlocked_database.database_manager.get_notes(
+                    entry_uuid)
                 buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
                     buffer.set_text(value)
@@ -239,7 +245,8 @@ class EntryPage:
                 scrolled_page.wifi_icon_button = builder.get_object("12")
                 scrolled_page.desktop_icon_button = builder.get_object("23")
 
-                entry_icon = self.unlocked_database.database_manager.get_entry_icon_from_entry_uuid(entry_uuid)
+                entry_icon = self.unlocked_database.database_manager.get_icon(
+                    entry_uuid)
                 if entry_icon == "19":
                     scrolled_page.mail_icon_button.set_active(True)
                 if entry_icon == "9":
@@ -302,11 +309,10 @@ class EntryPage:
         elif scrolled_page.attributes_property_row is not NotImplemented:
             properties_list_box.add(scrolled_page.attributes_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_attributes(entry_uuid) is True:
-            attributes = self.unlocked_database.database_manager.get_entry_attributes_from_entry_uuid(entry_uuid)
-            for key in attributes:
-                if key != "color_prop_LcljUMJZ9X" and key != "Notes":
-                    self.add_attribute_property_row(key, attributes[key])
+        attributes = self.unlocked_database.database_manager.get_entry_attributes(entry_uuid)
+        for key in attributes:
+            if key != "color_prop_LcljUMJZ9X" and key != "Notes":
+                self.add_attribute_property_row(key, attributes[key])
 
         if scrolled_page.color_property_row is not NotImplemented and \
            scrolled_page.name_property_row is not NotImplemented and \
@@ -398,7 +404,7 @@ class EntryPage:
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
 
-        if str(self.unlocked_database.database_manager.get_entry_icon_from_entry_uuid(entry_uuid)) == button.get_name():
+        if str(self.unlocked_database.database_manager.get_icon(entry_uuid)) == button.get_name():
             return
 
         scrolled_page.is_dirty = True
@@ -640,7 +646,7 @@ class EntryPage:
             try:
                 uuid = UUID(self.unlocked_database.reference_to_hex_uuid(
                     scrolled_page.password_property_value_entry.get_text()))
-                password = self.unlocked_database.database_manager.get_entry_password_from_entry_uuid(uuid)
+                password = self.unlocked_database.database_manager.get_entry_password(uuid)
             except Exception:
                 password = scrolled_page.password_property_value_entry.get_text()
         else:

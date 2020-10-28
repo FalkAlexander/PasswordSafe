@@ -98,10 +98,7 @@ class CustomKeypressHandler:
         """Go to the parent group of the pathbar."""
         uuid = UUID(self.unlocked_database.stack.get_visible_child_name())
         db_manager = self.unlocked_database.database_manager
-        if self.unlocked_database.database_manager.check_is_group(uuid):
-            parent_group = db_manager.get_group_parent_group_from_uuid(uuid)
-        else:
-            parent_group = db_manager.get_entry_parent_group_from_uuid(uuid)
+        parent_group = db_manager.get_parent_group(uuid)
 
         if db_manager.check_is_root_group(parent_group):
             pathbar = self.unlocked_database.pathbar

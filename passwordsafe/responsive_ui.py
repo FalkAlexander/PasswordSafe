@@ -59,9 +59,15 @@ class ResponsiveUI():
                 filename_label.set_text(ntpath.basename(self.unlocked_database.database_manager.database_path))
             else:
                 if self.unlocked_database.database_manager.check_is_group_object(self.unlocked_database.current_group) is False:
-                    filename_label.set_text(self.unlocked_database.database_manager.get_entry_name_from_entry_object(self.unlocked_database.current_group))
+                    db_manager = self.unlocked_database.database_manager
+                    entry_name = db_manager.get_entry_name(
+                        self.unlocked_database.current_group)
+                    filename_label.set_text(entry_name)
                 else:
-                    filename_label.set_text(self.unlocked_database.database_manager.get_group_name_from_group_object(self.unlocked_database.current_group))
+                    db_manager = self.unlocked_database.database_manager
+                    group_name = db_manager.get_group_name(
+                        self.unlocked_database.current_group)
+                    filename_label.set_text(group_name)
 
             self.unlocked_database.builder.get_object("title_box").add(filename_label)
         else:

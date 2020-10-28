@@ -25,7 +25,8 @@ class GroupPage:
         self.unlocked_database.builder.get_object("linkedbox_right").hide()
 
         filename_label = self.unlocked_database.builder.get_object("filename_label")
-        filename_label.set_text(self.unlocked_database.database_manager.get_group_name_from_group_object(self.unlocked_database.current_group))
+        group_name = self.unlocked_database.database_manager.get_group_name(self.unlocked_database.current_group)
+        filename_label.set_text(group_name)
 
         secondary_menupopover_button = self.unlocked_database.builder.get_object("secondary_menupopover_button")
         secondary_menupopover_button.show_all()
@@ -61,8 +62,9 @@ class GroupPage:
         notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
         buffer = notes_property_value_entry.get_buffer()
 
-        name_value = self.unlocked_database.database_manager.get_group_name_from_uuid(group_uuid)
-        notes_value = self.unlocked_database.database_manager.get_group_notes_from_group_uuid(group_uuid)
+        name_value = self.unlocked_database.database_manager.get_group_name(group_uuid)
+        notes_value = self.unlocked_database.database_manager.get_notes(
+            group_uuid)
 
         if self.unlocked_database.database_manager.has_group_name(group_uuid) is True:
             name_property_value_entry.set_text(name_value)

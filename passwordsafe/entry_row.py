@@ -30,9 +30,9 @@ class EntryRow(Gtk.ListBoxRow):
         self.database_manager = dbm
 
         self.entry_uuid = dbm.get_entry_uuid_from_entry_object(entry)
-        self.icon = dbm.get_entry_icon_from_entry_object(entry)
-        self.label = dbm.get_entry_name_from_entry_object(entry)
-        self.password = dbm.get_entry_password_from_entry_object(entry)
+        self.icon = dbm.get_icon(entry)
+        self.label = dbm.get_entry_name(entry)
+        self.password = dbm.get_entry_password(entry)
         self.color = dbm.get_entry_color_from_entry_uuid(self.entry_uuid)
 
         self.assemble_entry_row()
@@ -66,13 +66,13 @@ class EntryRow(Gtk.ListBoxRow):
             entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
 
         # Subtitle
-        subtitle = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+        subtitle = self.database_manager.get_entry_username(self.entry_uuid)
         if (self.database_manager.has_entry_username(self.entry_uuid) and subtitle):
-            username = self.database_manager.get_entry_username_from_entry_uuid(self.entry_uuid)
+            username = self.database_manager.get_entry_username(self.entry_uuid)
             if username.startswith("{REF:U"):
                 uuid = UUID(
                     self.unlocked_database.reference_to_hex_uuid(username))
-                username = self.database_manager.get_entry_username_from_entry_uuid(uuid)
+                username = self.database_manager.get_entry_username(uuid)
                 entry_subtitle_label.set_text(username)
             else:
                 entry_subtitle_label.set_text(username)
@@ -147,7 +147,7 @@ class EntryRow(Gtk.ListBoxRow):
             # self.unlocked_database.selection_ui.cut_mode is True
 
     def on_entry_copy_button_clicked(self, _button):
-        self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password_from_entry_uuid(self.entry_uuid))
+        self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password(self.entry_uuid))
 
     def update_color(self, color):
         self.color = color

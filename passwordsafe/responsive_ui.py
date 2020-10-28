@@ -22,7 +22,7 @@ class ResponsiveUI():
     def action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""
 
-        db = self.unlocked_database
+        db = self.unlocked_database  # pylint: disable=C0103
         page_name = db.current_group.uuid.urn
         page = db.stack.get_child_by_name(page_name)
 

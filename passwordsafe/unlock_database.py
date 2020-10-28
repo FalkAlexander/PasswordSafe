@@ -45,6 +45,7 @@ class UnlockDatabase:
     unlocked_database = NotImplemented
     original_group = NotImplemented
     original_group_edit_page = NotImplemented
+    password_composite = NotImplemented
     password_only = NotImplemented
     unlock_thread = NotImplemented
 
@@ -188,8 +189,11 @@ class UnlockDatabase:
 
     def on_headerbar_back_button_clicked(self, _widget):
         if self.timeout is True:
-            for db in self.window.opened_databases:
-                if db.database_manager.database_path == self.database_manager.database_path:
+            for db in self.window.opened_databases:  # pylint: disable=C0103
+                if (
+                    db.database_manager.database_path
+                    == self.database_manager.database_path
+                ):
                     db.unregister_dbus_signal()
                     db.cancel_timers()
 
@@ -217,8 +221,11 @@ class UnlockDatabase:
 
         database_already_opened = False
 
-        for db in self.window.opened_databases:
-            if db.database_manager.database_path == self.database_filepath and self.timeout is not True:
+        for db in self.window.opened_databases:  # pylint: disable=C0103
+            if (
+                db.database_manager.database_path == self.database_filepath
+                and self.timeout is not True
+            ):
                 database_already_opened = True
                 page_num = self.window.container.page_num(db.parent_widget)
                 self.window.container.set_current_page(page_num)

@@ -668,13 +668,11 @@ class UnlockedDatabase:
 
         res = save_dialog.run()
         save_dialog.destroy()
-        if (
-                res == Gtk.ResponseType.CANCEL
-                or res == Gtk.ResponseType.DELETE_EVENT
-        ):
+        if res in (Gtk.ResponseType.CANCEL, Gtk.ResponseType.DELETE_EVENT):
             # Cancel everything, don't quit. Also activated when pressing escape
             return False
-        elif res == Gtk.ResponseType.NO:
+
+        if res == Gtk.ResponseType.NO:
             # clicked 'Discard'. Close, but don't save
             pass  # We are done with this db.
         elif res == Gtk.ResponseType.YES:
@@ -741,7 +739,7 @@ class UnlockedDatabase:
             save_thread.daemon = False
             save_thread.start()
 
-        for db in self.window.opened_databases:
+        for db in self.window.opened_databases:  # pylint: disable=C0103
             if db.database_manager.database_path == self.database_manager.database_path:
                 self.window.opened_databases.remove(db)
         self.window.close_tab(self.parent_widget)

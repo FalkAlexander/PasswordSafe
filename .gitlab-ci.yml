@@ -1,8 +1,9 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
 variables:
-    DEPS_DEV: "libgirepository1.0-dev libglib2.0-dev libgtk-3-dev libpwquality-dev python-gi-dev python3-all python3-construct python3-dateutil python3-pycryptodome" # FIXME python3-pykeepass libhandy-1-dev
-    DEPS_DEB: "git git-buildpackage appstream-util debhelper-compat dh-python meson"
+  DEBIAN_FRONTEND: noninteractive
+  DEPS_DEV: "libgirepository1.0-dev libglib2.0-dev libgtk-3-dev libpwquality-dev python-gi-dev python3-all python3-construct python3-dateutil python3-pycryptodome" # FIXME python3-pykeepass libhandy-1-dev
+  DEPS_DEB: "git git-buildpackage appstream-util debhelper-compat dh-python meson"
 
 stages:
   - Static Analysis
@@ -12,8 +13,8 @@ flake8:
     stage: Static Analysis
     image: python:3.9
     script:
-        - apt-get update
-        - apt-get -q -y install flake8
+        - apt-get -qq update
+        - apt-get -qq -y install -o=Dpkg::Use-Pty=0 flake8 > /dev/null
         - flake8 --max-line-length=350 --ignore=E402,W503 --show-source passwordsafe/
 
 pylint:
@@ -21,17 +22,17 @@ pylint:
     allow_failure: true
     image: python:3.9
     script:
-        - apt-get update
-        - apt-get -q -y install ${DEPS_DEV}
-        - pip3 install pylint
+        - apt-get -qq update
+        - apt-get -qq -y install ${DEPS_DEV} > /dev/null
+        - pip3 -q install pylint
         - pylint --max-line-length=350 --disable=missing-docstring --init-hook="import sys; sys.path.insert(0, '.')" passwordsafe/*.py
 
 mypy:
     stage: Static Analysis
     image: python:3.9
     script:
-        - apt-get update
-        - apt-get -q -y install mypy
+        - apt-get -qq update
+        - apt-get -qq -y install mypy > /dev/null
         - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
 
 flatpak:
@@ -51,7 +52,7 @@ debian:
     image: debian:sid
     script:
         - apt-get -qq update
-        - apt-get -qq install -y ${DEPS_DEB} ${DEPS_DEV} python3-pykeepass libhandy-1-dev
+        - apt-get -qq install -y -o=Dpkg::Use-Pty=0 ${DEPS_DEB} ${DEPS_DEV} python3-pykeepass libhandy-1-dev
         - git remote add debian https://salsa.debian.org/python-team/packages/gnome-passwordsafe.git
         - git fetch debian
         - git checkout debian/master

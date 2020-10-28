@@ -1,3 +1,4 @@
+"""Gtk.Button representing a path element in the pathbar"""
 from uuid import UUID
 from gi.repository import Gtk
 

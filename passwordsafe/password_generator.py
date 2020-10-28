@@ -3,8 +3,20 @@ import string
 import pwquality
 
 
-def generate(digits, high_letter, low_letter, numbers, special):
-    characters = ""
+def generate(
+        digits: int, high_letter: bool, low_letter: bool, numbers: bool,
+        special: bool) -> str:
+    """Generate a password based on some criteria.
+
+    :param int digits: password number of characters
+    :param bool high_letter: password must contain uppercase letters
+    :param bool low_letter: password must contain low letters
+    :param bool numbers: password must contain digits
+    :param bool special: password must contain special characters
+    :returns: a password
+    :rtype: str
+    """
+    characters: str = ""
 
     if high_letter is True:
         characters += string.ascii_uppercase
@@ -24,11 +36,17 @@ def generate(digits, high_letter, low_letter, numbers, special):
     return "".join([secrets.choice(characters) for _ in range(0, digits)])
 
 
-def strength(password):
-    score = NotImplemented
+def strength(password: str) -> float:
+    """Get strength of a password between 0 and 5.
 
+    The higher the score is, the more secure the password is.
+
+    :param str password: password to test
+    :returns: strength of password
+    :rtype: float
+    """
     try:
-        score = pwquality.PWQSettings().check(password)
+        score: int = pwquality.PWQSettings().check(password)
     except Exception:
         score = 0
 

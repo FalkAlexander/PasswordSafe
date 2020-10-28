@@ -3,7 +3,6 @@ import sys
 from typing import Any, List, Optional
 
 import gi
-gi.require_version('Gtk', '3.0')
 gi.require_version('Handy', '1')
 
 from gi.repository import GLib, Gio, Gtk, Handy  # pylint: disable=wrong-import-position

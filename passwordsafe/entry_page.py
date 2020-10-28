@@ -96,7 +96,8 @@ class EntryPage:
                 else:
                     scrolled_page.username_property_value_entry.set_text("")
 
-                scrolled_page.username_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+                scrolled_page.username_property_value_entry.connect(
+                    "icon-press", self._on_copy_secondary_button_clicked)
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row:
@@ -106,7 +107,8 @@ class EntryPage:
                 else:
                     scrolled_page.username_property_value_entry.set_text("")
 
-                scrolled_page.username_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+                scrolled_page.username_property_value_entry.connect(
+                    "icon-press", self._on_copy_secondary_button_clicked)
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
 
@@ -132,8 +134,10 @@ class EntryPage:
                 scrolled_page.generate_password_button.set_popover(
                     self._pwd_popover)
 
-                scrolled_page.password_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
-                scrolled_page.password_property_value_entry.connect("copy-clipboard", self.unlocked_database.on_copy_secondary_button_clicked, None, None)
+                scrolled_page.password_property_value_entry.connect(
+                    "icon-press", self._on_copy_secondary_button_clicked)
+                scrolled_page.password_property_value_entry.connect(
+                    "copy-clipboard", self._on_copy_secondary_button_clicked)
                 self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, scrolled_page.password_property_value_entry, "<Control><Shift>c", signal="copy-clipboard")
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
 
@@ -155,7 +159,8 @@ class EntryPage:
                 else:
                     scrolled_page.password_property_value_entry.set_text("")
 
-                scrolled_page.password_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+                scrolled_page.password_property_value_entry.connect(
+                    "icon-press", self._on_copy_secondary_button_clicked)
                 scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
                 properties_list_box.add(scrolled_page.password_property_row)
 
@@ -673,3 +678,7 @@ class EntryPage:
         strength = passwordsafe.password_generator.strength(password)
         if strength is not None:
             scrolled_page.password_level_bar.set_value(strength)
+
+    def _on_copy_secondary_button_clicked(
+            self, widget, _position=None, _eventbutton=None):
+        self.unlocked_database.send_to_clipboard(widget.get_text())

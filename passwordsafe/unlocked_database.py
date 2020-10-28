@@ -617,9 +617,6 @@ class UnlockedDatabase(GObject.GObject):
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True, False)
 
-    def on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
-        self.send_to_clipboard(widget.get_text())
-
     def send_to_clipboard(self, text):
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:

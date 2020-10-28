@@ -1,16 +1,14 @@
-from gettext import gettext as _
-from datetime import datetime
-from dateutil import tz
-from typing import Dict, Optional, Union
-from uuid import UUID
 import hashlib
 import logging
-
-from gi.repository import Gio, GLib
-from pykeepass.kdbx_parsing.kdbx import KDBX
+from gettext import gettext as _
+from datetime import datetime
+from typing import Dict, Optional, Union
+from uuid import UUID
+from gi.repository import Gio
+from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
-from pykeepass import PyKeePass
+from pykeepass.kdbx_parsing.kdbx import KDBX
 
 from passwordsafe.color_widget import Color
 
@@ -735,47 +733,24 @@ class DatabaseManager():
     # Properties
     #
 
-    def get_element_creation_date(self, element):
-        if element.ctime is not None:
-            local_timestamp = element.ctime.astimezone(tz.tzlocal())
-            timestamp = GLib.DateTime.new_local(
-                int(datetime.strftime(local_timestamp, "%Y")),
-                int(datetime.strftime(local_timestamp, "%m")),
-                int(datetime.strftime(local_timestamp, "%d")),
-                int(datetime.strftime(local_timestamp, "%H")),
-                int(datetime.strftime(local_timestamp, "%M")),
-                float(datetime.strftime(local_timestamp, "%S")))
-            return timestamp.format("%c")
-        else:
-            return "-"
+    def get_element_creation_date(self, element: Union[Entry, Group]) -> str:
+        """Returns a string of the Entry|Groups creation time or ''"""
+        if element.ctime is None:
+            return ""
+        return element.ctime.strftime("%x %X")
 
-    def get_element_acessed_date(self, element):
-        if element.atime is not None:
-            local_timestamp = element.atime.astimezone(tz.tzlocal())
-            timestamp = GLib.DateTime.new_local(
-                int(datetime.strftime(local_timestamp, "%Y")),
-                int(datetime.strftime(local_timestamp, "%m")),
-                int(datetime.strftime(local_timestamp, "%d")),
-                int(datetime.strftime(local_timestamp, "%H")),
-                int(datetime.strftime(local_timestamp, "%M")),
-                float(datetime.strftime(local_timestamp, "%S")))
-            return timestamp.format("%c")
-        else:
-            return "-"
+    def get_element_acessed_date(self, element: Union[Entry, Group]) -> str:
+        """Returns a string of the Entry|Groups access time or ''"""
+        if element.atime is None:
+            return ""
+        return element.atime.strftime("%x %X")
 
-    def get_element_modified_date(self, element):
-        if element.mtime is not None:
-            local_timestamp = element.mtime.astimezone(tz.tzlocal())
-            timestamp = GLib.DateTime.new_local(
-                int(datetime.strftime(local_timestamp, "%Y")),
-                int(datetime.strftime(local_timestamp, "%m")),
-                int(datetime.strftime(local_timestamp, "%d")),
-                int(datetime.strftime(local_timestamp, "%H")),
-                int(datetime.strftime(local_timestamp, "%M")),
-                float(datetime.strftime(local_timestamp, "%S")))
-            return timestamp.format("%c")
-        else:
-            return "-"
+    def get_element_modified_date(self, element: Union[Entry, Group]) -> str:
+        """Returns a string of the Entry|Groups modification time or ''"""
+        if element.mtime is None:
+            return ""
+        return element.mtime.strftime("%x %X")
+
     #
     # Database creation methods
     #

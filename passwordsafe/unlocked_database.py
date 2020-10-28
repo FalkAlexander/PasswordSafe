@@ -54,7 +54,6 @@ class UnlockedDatabase:
     database_settings_dialog = NotImplemented
     references_dialog = NotImplemented
     notes_dialog = NotImplemented
-    properties_dialog = NotImplemented
 
     # Objects
     builder = NotImplemented
@@ -692,8 +691,11 @@ class UnlockedDatabase:
     def show_references_dialog(self, _action, _param):
         ReferencesDialog(self)
 
-    def show_properties_dialog(self, _action, _param):
-        PropertiesDialog(self)
+    def show_properties_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
+        """Show a Group/Entry property dialog
+
+        Invoked by the app.element.properties action"""
+        PropertiesDialog(self).present()
 
     #
     # Utils
@@ -728,9 +730,6 @@ class UnlockedDatabase:
         if self.references_dialog is not NotImplemented:
             self.references_dialog.close()
 
-        if self.properties_dialog is not NotImplemented:
-            self.properties.close()
-
         for tmpfile in self.scheduled_tmpfiles_deletion:
             try:
                 tmpfile.delete()
@@ -760,9 +759,6 @@ class UnlockedDatabase:
 
         if self.references_dialog is not NotImplemented:
             self.references_dialog.close()
-
-        if self.properties_dialog is not NotImplemented:
-            self.properties.close()
 
         if passwordsafe.config_manager.get_save_automatically() is True:
             save_thread = threading.Thread(target=self.database_manager.save_database)

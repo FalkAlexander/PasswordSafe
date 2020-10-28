@@ -269,7 +269,7 @@ class Pathbar(Gtk.HBox):
 
             return False
 
-    def uuid_in_pathbar(self, uuid: UUID):
+    def uuid_in_pathbar(self, uuid: UUID) -> bool:
         """Return True if the uuid entry is visible in the bar"""
         for button in self.get_children():
             if button.get_name() == "PathbarButtonDynamic" and \
@@ -277,7 +277,7 @@ class Pathbar(Gtk.HBox):
                 return True
         return False
 
-    def get_pathbar_button(self, uuid: UUID):
+    def get_pathbar_button(self, uuid: UUID) -> 'PathbarButton':
         for pathbar_button in self.get_children():
             if pathbar_button.get_name() == "PathbarButtonDynamic":
                 if pathbar_button.uuid == uuid:

@@ -32,7 +32,7 @@ class DatabaseManager():
     database_file_descriptor = NotImplemented
 
     def __init__(self, database_path, password=None, keyfile=None):
-        self.db = PyKeePass(database_path, password, keyfile)
+        self.db = PyKeePass(database_path, password, keyfile)  # pylint: disable=C0103
         self.database_path = database_path
         self.database_file_descriptor = Gio.File.new_for_path(database_path)
         self.password = password

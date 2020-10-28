@@ -739,7 +739,7 @@ class UnlockedDatabase:
             save_thread.daemon = False
             save_thread.start()
 
-        for db in self.window.opened_databases:
+        for db in self.window.opened_databases:  # pylint: disable=C0103
             if db.database_manager.database_path == self.database_manager.database_path:
                 self.window.opened_databases.remove(db)
         self.window.close_tab(self.parent_widget)

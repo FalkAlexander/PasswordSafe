@@ -128,7 +128,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""
-        for db in self.opened_databases:
+        for db in self.opened_databases:  # pylint: disable=C0103
             # Do Nothing on Lock Screen
             if db.database_locked is True:
                 return
@@ -309,11 +309,14 @@ class MainWindow(Gtk.ApplicationWindow):
             db_gfile = Gio.File.new_for_path(db_filename)
             try:
                 db_file_info = db_gfile.query_info(
-                    "standard::content-type", Gio.FileQueryInfoFlags.NONE,
-                    None)
-            except GLib.Error as e:
-                logging.debug("Unable to query info for file {}: {}".format(
-                    db_filename, e.message))
+                    "standard::content-type", Gio.FileQueryInfoFlags.NONE, None
+                )
+            except GLib.Error as e:  # pylint: disable=C0103
+                logging.debug(
+                    "Unable to query info for file {}: {}".format(
+                        db_filename, e.message
+                    )
+                )
                 return
 
             file_content_type = db_file_info.get_content_type()
@@ -337,7 +340,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
             database_already_opened = False
 
-            for db in self.opened_databases:
+            for db in self.opened_databases:  # pylint: disable=C0103
                 if db.database_manager.database_path == db_filename:
                     database_already_opened = True
                     page_num = self.container.page_num(db.parent_widget)
@@ -493,7 +496,7 @@ class MainWindow(Gtk.ApplicationWindow):
         page_num = self.container.page_num(widget)
         is_contained = False
 
-        for db in self.opened_databases:
+        for db in self.opened_databases:  # pylint: disable=C0103
             if db.window.container.page_num(db.parent_widget) == page_num:
                 db.database_locked = True
                 db.stop_save_loop()
@@ -519,7 +522,7 @@ class MainWindow(Gtk.ApplicationWindow):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
 
-    def on_save_check_button_toggled(self, check_button, db):
+    def on_save_check_button_toggled(self, check_button, db):  # pylint: disable=C0103
         if check_button.get_active():
             self.databases_to_save.append(db)
         else:
@@ -549,9 +552,8 @@ class MainWindow(Gtk.ApplicationWindow):
         unsaved_databases_list = []
         self.databases_to_save.clear()
 
-        for db in self.opened_databases:
-            if db.database_manager.is_dirty \
-               and not db.database_manager.save_running:
+        for db in self.opened_databases:  # pylint: disable=C0103
+            if db.database_manager.is_dirty and not db.database_manager.save_running:
                 if passwordsafe.config_manager.get_save_automatically() is True:
                     db.stop_save_loop()
                     save_thread = threading.Thread(target=db.database_manager.save_database)
@@ -574,7 +576,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
             unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
 
-            for db in unsaved_databases_list:
+            for db in unsaved_databases_list:  # pylint: disable=C0103
                 unsaved_database_row = Gtk.ListBoxRow()
                 check_button = Gtk.CheckButton()
                 if "/home/" in db.database_manager.database_path:
@@ -595,7 +597,7 @@ class MainWindow(Gtk.ApplicationWindow):
             elif res == Gtk.ResponseType.OK:
                 pass  # Do noting, go on...
 
-        for db in self.opened_databases:
+        for db in self.opened_databases:  # pylint: disable=C0103
             db.cancel_timers()
             db.unregister_dbus_signal()
             db.clipboard.clear()
@@ -621,8 +623,11 @@ class MainWindow(Gtk.ApplicationWindow):
     def find_action_db(self):
         action_db = NotImplemented
 
-        for db in self.opened_databases:
-            if db.window.container.page_num(db.parent_widget) == self.container.get_current_page():
+        for db in self.opened_databases:  # pylint: disable=C0103
+            if (
+                db.window.container.page_num(db.parent_widget)
+                == self.container.get_current_page()
+            ):
                 action_db = db
 
         return action_db
@@ -786,6 +791,6 @@ class MainWindow(Gtk.ApplicationWindow):
         """Saves all databases and calls quit()
 
         Suitable to be called from a separate thread"""
-        for db in self.databases_to_save:
+        for db in self.databases_to_save:  # pylint: disable=C0103
             db.database_manager.save_database()
         GLib.idle_add(self.application.quit)

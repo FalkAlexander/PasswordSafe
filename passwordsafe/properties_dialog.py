@@ -31,11 +31,7 @@ class PropertiesDialog:
 
     def update_properties(self):
         element = self.unlocked_database.current_group
-
-        if self.database_manager.check_is_group_object(self.unlocked_database.current_group) is True:
-            encoded_uuid = self.database_manager.get_group_uuid_from_group_object(element).hex.upper()
-        else:
-            encoded_uuid = self.database_manager.get_entry_uuid_from_entry_object(element).hex.upper()
+        encoded_uuid = element.uuid.hex.upper()
 
         self.builder.get_object("label_uuid").set_text(encoded_uuid)
         self.builder.get_object("label_accessed").set_text(self.database_manager.get_element_acessed_date(element))

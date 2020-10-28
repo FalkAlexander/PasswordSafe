@@ -46,7 +46,8 @@ class GroupPage:
     #
 
     def insert_group_properties_into_listbox(self, properties_list_box):
-        group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
+        # FIXME: current_group can be an Entry too!
+        group_uuid = self.unlocked_database.current_group.uuid
 
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
@@ -87,17 +88,17 @@ class GroupPage:
 
     def on_property_value_group_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
-        group_uuid = self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group)
+        ele_uuid = self.unlocked_database.current_group.uuid
 
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group).urn)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(ele_uuid.urn)
         scrolled_page.is_dirty = True
 
         if type_name == "name":
-            self.unlocked_database.database_manager.set_group_name(group_uuid, widget.get_text())
+            self.unlocked_database.database_manager.set_group_name(ele_uuid, widget.get_text())
 
             for pathbar_button in self.unlocked_database.pathbar.get_children():
                 if pathbar_button.get_name() == "PathbarButtonDynamic":
-                    if pathbar_button.get_uuid() == self.unlocked_database.database_manager.get_group_uuid_from_group_object(self.unlocked_database.current_group):
+                    if pathbar_button.get_uuid() == ele_uuid:
                         pathbar_button.set_label(widget.get_text())
         elif type_name == "notes":
-            self.unlocked_database.database_manager.set_group_notes(group_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
+            self.unlocked_database.database_manager.set_group_notes(ele_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))

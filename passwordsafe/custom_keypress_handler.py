@@ -111,7 +111,7 @@ class CustomKeypressHandler:
         for button in self.unlocked_database.pathbar:
             if (button.get_name() == "PathbarButtonDynamic"
                     and type(button) is pathbar_btn_type):
-                if button.uuid == db_manager.get_group_uuid_from_group_object(parent_group):
+                if button.uuid == parent_group.uuid:
                     pathbar = self.unlocked_database.pathbar
                     pathbar.on_pathbar_button_clicked(button)
 
@@ -151,8 +151,7 @@ class CustomKeypressHandler:
             return False
 
         db_manager = self.unlocked_database.database_manager
-        group_uuid = db_manager.get_group_uuid_from_group_object(
-            self.unlocked_database.current_group)
+        group_uuid = self.unlocked_database.current_group.uuid
         scrolled_page = self.unlocked_database.stack.get_child_by_name(
             group_uuid.urn)
         if (eventkey.keyval == Gdk.KEY_BackSpace

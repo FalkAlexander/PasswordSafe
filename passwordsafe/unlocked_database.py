@@ -227,7 +227,7 @@ class UnlockedDatabase:
             scrolled_window.add(hdy_page)
             scrolled_window.show_all()
 
-            stack_page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+            stack_page_uuid = self.current_group.uuid
             if self.stack.get_child_by_name(stack_page_uuid.urn) is not None:
                 stack_page = self.stack.get_child_by_name(stack_page_uuid.urn)
                 stack_page.destroy()
@@ -236,10 +236,11 @@ class UnlockedDatabase:
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
-        elif self.stack.get_child_by_name(self.database_manager.get_group_uuid_from_group_object(self.current_group).urn) is None and self.stack.get_child_by_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_group).urn) is None and edit_group is False:
+        elif (not self.stack.get_child_by_name(self.current_group.uuid.urn)
+              and not edit_group):
             self.database_manager.set_element_atime(self.current_group)
             # Create not existing stack page for group
-            if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
+            if self.database_manager.check_is_group(self.current_group.uuid):
                 builder = Gtk.Builder()
                 builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
                 list_box = builder.get_object("list_box")
@@ -301,8 +302,8 @@ class UnlockedDatabase:
         else:
             self.database_manager.set_element_atime(self.current_group)
             # For group
-            if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-                self.stack.set_visible_child_name(self.database_manager.get_group_uuid_from_group_object(self.current_group).urn)
+            if self.database_manager.check_is_group(self.current_group.uuid):
+                self.stack.set_visible_child_name(self.current_group.uuid.urn)
                 self.set_browser_headerbar()
             # For entry
             else:
@@ -310,27 +311,16 @@ class UnlockedDatabase:
                 self.entry_page.set_entry_page_headerbar()
 
     def add_stack_page(self, scrolled_window):
-        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-            self.stack.add_named(scrolled_window, self.database_manager.get_group_uuid_from_group_object(self.current_group).urn)
-        else:
-            self.stack.add_named(scrolled_window, self.database_manager.get_entry_uuid_from_entry_object(self.current_group).urn)
-
+        self.stack.add_named(scrolled_window, self.current_group.uuid.urn)
         self.switch_stack_page()
 
     def switch_stack_page(self):
-        page_uuid = NotImplemented
         group_page = NotImplemented
-
-        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-            page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-            group_page = True
-        else:
-            page_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
-            group_page = False
+        page_uuid = self.current_group.uuid
+        group_page = self.database_manager.check_is_group(page_uuid)
 
         if page_uuid in self.scheduled_page_destroy:
             stack_page = self.stack.get_child_by_name(page_uuid.urn)
-
             if stack_page is not None:
                 stack_page.destroy()
 
@@ -342,13 +332,13 @@ class UnlockedDatabase:
         else:
             self.stack.set_visible_child_name(page_uuid.urn)
 
-        if group_page is True:
+        if group_page:
             self.set_browser_headerbar()
         else:
             self.entry_page.set_entry_page_headerbar()
 
     def update_current_stack_page(self):
-        stack_page_name = self.database_manager.get_group_uuid_from_group_object(self.current_group).urn
+        stack_page_name = self.current_group.uuid.urn
         stack_page = self.stack.get_child_by_name(stack_page_name)
         stack_page.destroy()
         self.show_page_of_new_directory(False, False)
@@ -363,11 +353,8 @@ class UnlockedDatabase:
         self.scheduled_page_destroy.append(page_name)
 
     def destroy_scheduled_stack_page(self):
-        page_uuid = NotImplemented
-        if self.database_manager.check_is_group(self.database_manager.get_group_uuid_from_group_object(self.current_group)) is True:
-            page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
-        else:
-            page_uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+        # FIXME: current_group can confusingly also contain an `Entry`
+        page_uuid = self.current_group.uuid
 
         if page_uuid in self.scheduled_page_destroy:
             stack_page_name = self.stack.get_child_by_name(page_uuid.urn)
@@ -389,14 +376,14 @@ class UnlockedDatabase:
         if self.current_group.is_root_group:
             groups = self.database_manager.get_groups_in_root()
         else:
-            groups = self.database_manager.get_groups_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+            groups = self.database_manager.get_groups_in_folder(self.current_group.uuid)
 
         GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
 
         self.insert_entries_into_listbox(list_box, overlay)
 
     def insert_entries_into_listbox(self, list_box, overlay):
-        entries = self.database_manager.get_entries_in_folder(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        entries = self.database_manager.get_entries_in_folder(self.current_group.uuid)
         sorted_list = []
 
         GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries, overlay)
@@ -492,7 +479,7 @@ class UnlockedDatabase:
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.changes = True
-        entry = self.database_manager.add_entry_to_database("", "", "", None, None, "0", self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        entry = self.database_manager.add_entry_to_database("", "", "", None, None, "0", self.current_group.uuid)
         self.current_group = entry
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)
@@ -503,7 +490,7 @@ class UnlockedDatabase:
         self.database_manager.changes = True
         group = self.database_manager.add_group_to_database("", "0", "", self.current_group)
         self.current_group = group
-        self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_group_uuid_from_group_object(self.current_group))
+        self.pathbar.add_pathbar_button_to_pathbar(self.current_group.uuid)
         self.show_page_of_new_directory(True, False)
 
     def on_entry_row_button_pressed(self, widget, event):
@@ -518,18 +505,17 @@ class UnlockedDatabase:
         self.start_database_lock_timer()
 
         element_to_delete = self.current_group
-        uuid = NotImplemented
-        if self.database_manager.check_is_group_object(self.current_group) is True:
-            uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        ele_uuid = self.current_group.uuid
+        if self.database_manager.check_is_group_object(self.current_group):
             self.current_group = self.database_manager.get_group_parent_group_from_object(self.current_group)
             self.database_manager.delete_group_from_database(element_to_delete)
         else:
-            uuid = self.database_manager.get_entry_uuid_from_entry_object(self.current_group)
+            # current_group is an `Entry`
             self.current_group = self.database_manager.get_entry_parent_group_from_entry_object(self.current_group)
             self.database_manager.delete_entry_from_database(element_to_delete)
 
         # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-        if self.pathbar.uuid_in_pathbar(uuid):
+        if self.pathbar.uuid_in_pathbar(ele_uuid):
             self.pathbar.rebuild_pathbar(self.current_group)
 
         self.update_current_stack_page()
@@ -546,7 +532,7 @@ class UnlockedDatabase:
         else:
             for button in self.pathbar:
                 if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
-                    if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent_group):
+                    if button.uuid == parent_group.uuid:
                         self.pathbar.on_pathbar_button_clicked(button)
 
         self.current_group = parent_group
@@ -641,7 +627,7 @@ class UnlockedDatabase:
             self.lock_timeout_database()
 
     def on_back_button_mobile_clicked(self, button):
-        page_uuid = self.database_manager.get_group_uuid_from_group_object(self.current_group)
+        page_uuid = self.current_group.uuid
         scrolled_page = self.stack.get_child_by_name(page_uuid.urn)
         group_page = self.database_manager.check_is_group(page_uuid)
 
@@ -664,7 +650,7 @@ class UnlockedDatabase:
 
         for button in self.pathbar:
             if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
-                if button.uuid == self.database_manager.get_group_uuid_from_group_object(parent):
+                if button.uuid == parent.uuid:
                     self.pathbar.on_pathbar_button_clicked(button)
 
     #

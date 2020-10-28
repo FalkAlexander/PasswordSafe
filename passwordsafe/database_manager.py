@@ -1,10 +1,10 @@
+from gettext import gettext as _
 from datetime import datetime
 from dateutil import tz
-from gettext import gettext as _
-import hashlib
-import logging
 from typing import Dict, Optional, Union
 from uuid import UUID
+import hashlib
+import logging
 
 from gi.repository import Gio, GLib
 from pykeepass.kdbx_parsing.kdbx import KDBX

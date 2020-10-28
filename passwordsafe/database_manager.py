@@ -394,13 +394,6 @@ class DatabaseManager():
 
         return group
 
-    # Delete a group
-    def delete_group_from_database(self, group):
-        self.db.delete_group(group)
-        self.is_dirty = True
-        if group.parentgroup is not None:
-            self.set_element_mtime(group.parentgroup)
-
     # Add new entry to database
     def add_entry_to_database(
             self, name, username, password, url, notes, icon, group_uuid):
@@ -414,11 +407,19 @@ class DatabaseManager():
         return entry
 
     # Delete an entry
-    def delete_entry_from_database(self, entry):
-        self.db.delete_entry(entry)
+    def delete_from_database(self, entity: Union[Entry, Group]) -> None:
+        """Delete an Entry or a Group from the database.
+
+        :param entity: Entity or Group to delete
+        """
+        if isinstance(entity, Entry):
+            self.db.delete_entry(entity)
+        else:
+            self.db.delete_group(entity)
+
         self.is_dirty = True
-        if entry.parentgroup is not None:
-            self.set_element_mtime(entry.parentgroup)
+        if entity.parentgroup is not None:
+            self.set_element_mtime(entity.parentgroup)
 
     # Duplicate an entry
     def duplicate_entry(self, entry):

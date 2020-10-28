@@ -252,7 +252,7 @@ class Pathbar(Gtk.HBox):
             if (group_name is None or group_name == "") and (group_notes is None or group_notes == "") and (group_icon == "0"):
                 parent_group = self.database_manager.get_parent_group(
                     current_group)
-                self.database_manager.delete_group_from_database(current_group)
+                self.database_manager.delete_from_database(current_group)
                 self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
                 return True
@@ -270,7 +270,7 @@ class Pathbar(Gtk.HBox):
 
             if (entry_title is None or entry_title == "") and (entry_username is None or entry_username == "") and (entry_password is None or entry_password == "") and (entry_url is None or entry_url == "") and (entry_notes is None or entry_notes == "") and (entry_icon == "0") and (entry_attributes == 0):
                 parent_group = self.database_manager.get_parent_group(current_group)
-                self.database_manager.delete_entry_from_database(current_group)
+                self.database_manager.delete_from_database(current_group)
                 self.rebuild_pathbar(pathbar_button)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
                 return True

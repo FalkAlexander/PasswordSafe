@@ -150,14 +150,14 @@ class SelectionUI:
 
         for entry_row in self.entries_selected:
             entry = self.unlocked_database.database_manager.get_entry_object_from_uuid(entry_row.get_uuid())
-            self.unlocked_database.database_manager.delete_entry_from_database(entry)
+            self.unlocked_database.database_manager.delete_from_database(entry)
             # If the deleted entry is in the pathbar, we need to rebuild the pathbar
             if self.unlocked_database.pathbar.uuid_in_pathbar(entry_row.get_uuid()) is True:
                 rebuild_pathbar = True
 
         for group_row in self.groups_selected:
             group = self.unlocked_database.database_manager.get_group(group_row.get_uuid())
-            self.unlocked_database.database_manager.delete_group_from_database(group)
+            self.unlocked_database.database_manager.delete_from_database(group)
             # If the deleted group is in the pathbar, we need to rebuild the pathbar
             if self.unlocked_database.pathbar.uuid_in_pathbar(group_row.get_uuid()) is True:
                 rebuild_pathbar = True

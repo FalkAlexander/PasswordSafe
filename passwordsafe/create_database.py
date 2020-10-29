@@ -1,6 +1,8 @@
-from gi.repository import Gtk, GLib
+""" GUI Page and function in order to create a new Safe"""
 from gettext import gettext as _
+import logging
 import threading
+from gi.repository import Gtk, GLib
 
 from passwordsafe.created_database import CreatedDatabase
 from passwordsafe.unlock_database import KeyFileFilter
@@ -8,6 +10,7 @@ import passwordsafe.keyfile_generator
 
 
 class CreateDatabase:
+    """Creates a new Safe when invoked"""
     builder = NotImplemented
     database_manager = NotImplemented
     parent_widget = NotImplemented
@@ -15,7 +18,6 @@ class CreateDatabase:
     switched = False
 
     composite = False
-    keyfile_path = NotImplemented
 
     def __init__(self, window, widget, dbm):
         self.database_manager = dbm
@@ -91,7 +93,8 @@ class CreateDatabase:
         if self.composite is False:
             self.parent_widget.add(self.stack)
 
-        self.builder.get_object("generate_keyfile_button").connect("clicked", self.on_generate_keyfile_button_clicked)
+        self.builder.get_object("generate_keyfile_button").connect(
+            "clicked", self.on_generate_keyfile_button_clicked)
 
     def set_database_keyfile(self):
         self.parent_widget.remove(self.stack)
@@ -232,27 +235,29 @@ class CreateDatabase:
         self.builder.get_object("password_repeat_input1").set_sensitive(False)
         self.builder.get_object("password_repeat_input2").set_sensitive(False)
 
-    def on_generate_keyfile_button_clicked(self, _widget):
-        filechooser_creation_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for generating a new keyfile
-            _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,
+    def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
+        """cb invoked when we create a new keyfile for a newly created Safe"""
+        keyfile_dlg = Gtk.FileChooserNative.new(
+            _("Choose location for keyfile"),
+            self.window, Gtk.FileChooserAction.SAVE,
             _("Generate"), None)
-        filechooser_creation_dialog.set_do_overwrite_confirmation(True)
-        filechooser_creation_dialog.set_current_name(_("Keyfile"))
-        filechooser_creation_dialog.set_modal(True)
-        filechooser_creation_dialog.set_local_only(False)
-        filechooser_creation_dialog.add_filter(KeyFileFilter())
-
-        response = filechooser_creation_dialog.run()
+        keyfile_dlg.set_do_overwrite_confirmation(True)
+        keyfile_dlg.set_modal(True)
+        keyfile_dlg.set_local_only(False)
+        keyfile_dlg.add_filter(KeyFileFilter())
+        response = keyfile_dlg.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
+            generate_keyfile_button = self.builder.get_object(
+                "generate_keyfile_button")
             generate_keyfile_button.set_sensitive(False)
             generate_keyfile_button.set_label(_("Generating…"))
+            keyfile_path = keyfile_dlg.get_filename()
+            logging.debug("New keyfile location: %s", keyfile_path)
 
-            self.keyfile_path = filechooser_creation_dialog.get_filename()
-
-            generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.keyfile_path, True, self, self.composite))
+            generator_thread = threading.Thread(
+                target=passwordsafe.keyfile_generator.generate_keyfile,
+                args=(keyfile_path, True, self, self.composite))
             generator_thread.daemon = True
             generator_thread.start()
 
@@ -260,7 +265,8 @@ class CreateDatabase:
     # Helper Functions
     #
 
-    def clear_input_fields(self):
+    def clear_input_fields(self) -> None:
+        """Empty all Entry textfields"""
         password_creation_input = self.builder.get_object(
             "password_creation_input")
         password_check_input = self.builder.get_object(

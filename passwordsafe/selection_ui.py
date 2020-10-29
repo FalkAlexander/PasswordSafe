@@ -188,7 +188,7 @@ class SelectionUI:
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
         # It is more efficient to do this here and not in the database manager loop
-        self.unlocked_database.database_manager.changes = True
+        self.unlocked_database.database_manager.is_dirty = True
 
     def on_selection_cut_button_clicked(self, widget):
         rebuild_pathbar = False
@@ -263,7 +263,7 @@ class SelectionUI:
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
 
         # It is more efficient to do this here and not in the database manager loop
-        self.unlocked_database.database_manager.changes = True
+        self.unlocked_database.database_manager.is_dirty = True
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
         page_name = self.unlocked_database.current_group.uuid.urn

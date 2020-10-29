@@ -475,18 +475,20 @@ class UnlockedDatabase:
         self.lock_database()
 
     def on_add_entry_button_clicked(self, _widget):
+        """CB when the Add Entry menu was clicked"""
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
-        self.database_manager.changes = True
+        self.database_manager.is_dirty = True
         entry = self.database_manager.add_entry_to_database("", "", "", None, None, "0", self.current_group.uuid)
         self.current_group = entry
         self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_group))
         self.show_page_of_new_directory(False, True)
 
-    def on_add_group_button_clicked(self, _widget):
+    def on_add_group_button_clicked(self, _param: None) -> None:
+        """CB when menu entry Add Group is clicked"""
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
-        self.database_manager.changes = True
+        self.database_manager.is_dirty = True
         group = self.database_manager.add_group_to_database("", "0", "", self.current_group)
         self.current_group = group
         self.pathbar.add_pathbar_button_to_pathbar(self.current_group.uuid)

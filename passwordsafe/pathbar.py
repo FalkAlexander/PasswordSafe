@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+from pykeepass.group import Group
 from passwordsafe.pathbar_button import PathbarButton
 
 
@@ -126,8 +127,9 @@ class Pathbar(Gtk.HBox):
             context = pathbar_button.get_style_context()
             context.remove_class('PathbarButtonActive')
 
-    def rebuild_pathbar(self, group):
-        if self.database_manager.check_is_root_group(group) is True:
+    def rebuild_pathbar(self, group: Group) -> None:
+        """Rebuild the pathbar up to a certain group"""
+        if self.database_manager.check_is_root_group(group):
             self.clear_pathbar()
             self.first_appearance()
             self.show_all()

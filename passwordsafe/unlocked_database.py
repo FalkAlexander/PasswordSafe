@@ -505,14 +505,9 @@ class UnlockedDatabase:
     def on_element_delete_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
-        ele_uuid = self.current_group.uuid
         parent_group = self.database_manager.get_parent_group(
             self.current_group)
         self.database_manager.delete_from_database(self.current_group)
-
-        # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-        if self.pathbar.uuid_in_pathbar(ele_uuid):
-            self.pathbar.rebuild_pathbar(parent_group)
 
         self.current_group = parent_group
         self.update_current_stack_page()

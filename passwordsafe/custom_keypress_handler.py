@@ -37,8 +37,7 @@ class CustomKeypressHandler:
         if (scrolled_page.edit_page
                 and eventkey.keyval == Gdk.KEY_Tab):
             focused_entry = self.unlocked_database.window.get_focus()
-            if (focused_entry is None
-                    and "TabBox" in focused_entry.get_name()):
+            if focused_entry and "TabBox" in focused_entry.get_name():
                 self.tab_to_next_input_entry(scrolled_page)
                 return True
         elif (not scrolled_page.edit_page

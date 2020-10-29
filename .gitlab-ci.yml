@@ -11,7 +11,7 @@ stages:
 
 flake8:
     stage: Static Analysis
-    image: python:3.9
+    image: debian:bullseye
     script:
         - apt-get -qq update
         - apt-get -qq -y install -o=Dpkg::Use-Pty=0 flake8 > /dev/null
@@ -20,16 +20,15 @@ flake8:
 pylint:
     stage: Static Analysis
     allow_failure: true
-    image: python:3.9
+    image: debian:bullseye
     script:
         - apt-get -qq update
-        - apt-get -qq -y install ${DEPS_DEV} > /dev/null
-        - pip3 -q install pylint
+        - apt-get -qq -y install ${DEPS_DEV} pylint > /dev/null
         - pylint --max-line-length=350 --disable=missing-docstring --init-hook="import sys; sys.path.insert(0, '.')" passwordsafe/*.py
 
 mypy:
     stage: Static Analysis
-    image: python:3.9
+    image: debian:bullseye
     script:
         - apt-get -qq update
         - apt-get -qq -y install mypy > /dev/null

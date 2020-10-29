@@ -502,7 +502,9 @@ class UnlockedDatabase:
             else:
                 self.selection_ui.row_selection_toggled(widget.get_parent())
 
-    def on_element_delete_menu_button_clicked(self, _action, _param):
+    def on_element_delete_menu_button_clicked(
+            self, _action: Gio.SimpleAction, _param: None) -> None:
+        """Delete the visible entry from the menu."""
         self.start_database_lock_timer()
 
         parent_group = self.database_manager.get_parent_group(

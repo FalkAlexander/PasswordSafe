@@ -37,8 +37,7 @@ class CustomKeypressHandler:
         if (scrolled_page.edit_page
                 and eventkey.keyval == Gdk.KEY_Tab):
             focused_entry = self.unlocked_database.window.get_focus()
-            if (focused_entry is None
-                    and "TabBox" in focused_entry.get_name()):
+            if focused_entry and "TabBox" in focused_entry.get_name():
                 self.tab_to_next_input_entry(scrolled_page)
                 return True
         elif (not scrolled_page.edit_page
@@ -86,13 +85,15 @@ class CustomKeypressHandler:
                     self.interate_to_next_input(child)
 
     def iterate_parents(self, child):
+        """Return `child` or the first parent of it which is a Gtk.ListBoxRow
+
+        :returns: `child` or the first parent of it which is a Gtk.ListBoxRow
+                  or `None` if nothing matches."""
         if isinstance(child, Gtk.ListBoxRow):
             return child
-        elif hasattr(child, "get_parent"):
-            if isinstance(child.get_parent(), Gtk.ListBoxRow):
-                return child.get_parent()
-            else:
-                return self.iterate_parents(child.get_parent())
+        if hasattr(child, "get_parent"):
+            return self.iterate_parents(child.get_parent())
+        return None
 
     def _goto_parent_group(self):
         """Go to the parent group of the pathbar."""

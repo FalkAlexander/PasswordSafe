@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+from pykeepass.group import Group
 from passwordsafe.pathbar_button import PathbarButton
 
 
@@ -126,8 +127,9 @@ class Pathbar(Gtk.HBox):
             context = pathbar_button.get_style_context()
             context.remove_class('PathbarButtonActive')
 
-    def rebuild_pathbar(self, group):
-        if self.database_manager.check_is_root_group(group) is True:
+    def rebuild_pathbar(self, group: Group) -> None:
+        """Rebuild the pathbar up to a certain group"""
+        if self.database_manager.check_is_root_group(group):
             self.clear_pathbar()
             self.first_appearance()
             self.show_all()
@@ -241,8 +243,8 @@ class Pathbar(Gtk.HBox):
         page = self.unlocked_database.stack.get_child_by_name(page_name)
         page.is_dirty = False
 
-    # Check all values of the group/entry - if all are blank we delete the entry/group and return true (prevents crash)
-    def check_values_of_edit_page(self, pathbar_button):
+    def check_values_of_edit_page(self, parent_group: Group) -> bool:
+        """Check all values of the group/entry - if all are blank we delete the entry/group and return true"""
         current_group = self.unlocked_database.get_current_group()
         notes = self.database_manager.get_notes(current_group)
         icon = self.database_manager.get_icon(current_group)
@@ -253,7 +255,7 @@ class Pathbar(Gtk.HBox):
                 parent_group = self.database_manager.get_parent_group(
                     current_group)
                 self.database_manager.delete_from_database(current_group)
-                self.rebuild_pathbar(pathbar_button)
+                self.rebuild_pathbar(parent_group)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
                 return True
 
@@ -273,7 +275,7 @@ class Pathbar(Gtk.HBox):
                 parent_group = self.database_manager.get_parent_group(
                     current_group)
                 self.database_manager.delete_from_database(current_group)
-                self.rebuild_pathbar(pathbar_button)
+                self.rebuild_pathbar(parent_group)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
                 return True
 

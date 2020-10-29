@@ -106,10 +106,9 @@ class MainWindow(Gtk.ApplicationWindow):
     def apply_theme(self):
         gtk_settings = Gtk.Settings.get_default()
 
-        if passwordsafe.config_manager.get_dark_theme() is True:
-            gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
-        else:
-            gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
+        gtk_settings.set_property(
+            "gtk-application-prefer-dark-theme",
+            passwordsafe.config_manager.get_dark_theme())
 
     #
     # Responsive Listener
@@ -117,14 +116,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def responsive_listener(self, win: Gtk.ApplicationWindow) -> None:
         """invoked on check-resize events"""
-        if self.get_allocation().width < 700:
-            if not self.mobile_width:
-                self.mobile_width = True
-                self.change_layout()
-        else:
-            if self.mobile_width:
-                self.mobile_width = False
-                self.change_layout()
+        self.mobile_width = (self.get_allocation().width < 700)
+        self.change_layout()
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""
@@ -134,7 +127,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             # Do nothing for Search View
-            if db.stack.get_visible_child() is db.stack.get_child_by_name("search"):
+            if db.search_active:
                 return
 
             page_uuid = db.current_group.uuid
@@ -185,67 +178,72 @@ class MainWindow(Gtk.ApplicationWindow):
             self.assemble_first_start_screen()
 
     def assemble_first_start_screen(self):
+        if not passwordsafe.config_manager.get_last_opened_list():
+            self.display_welcome_page()
+            return
+
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/main_window.ui")
 
-        pix = Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
+        last_opened_list_box = builder.get_object("last_opened_list_box")
+        last_opened_list_box.connect(
+            "row-activated", self.on_last_opened_list_box_activated)
 
-        if passwordsafe.config_manager.get_last_opened_list():
-            last_opened_list_box = builder.get_object("last_opened_list_box")
-            last_opened_list_box.connect("row-activated", self.on_last_opened_list_box_activated)
+        entry_list = []
+        for path in passwordsafe.config_manager.get_last_opened_list():
+            if Gio.File.query_exists(Gio.File.new_for_uri(path)):
+                pbuilder = Gtk.Builder()
+                pbuilder.add_from_resource(
+                    "/org/gnome/PasswordSafe/main_window.ui")
 
-            entry_list = []
-            entries = 0
-            invalid = 0
+                last_opened_row = pbuilder.get_object("last_opened_row")
+                filename_label = pbuilder.get_object("filename_label")
+                path_label = pbuilder.get_object("path_label")
 
-            for path in passwordsafe.config_manager.get_last_opened_list():
-                entries = entries + 1
-                if Gio.File.query_exists(Gio.File.new_for_uri(path)):
-                    pbuilder = Gtk.Builder()
-                    pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-
-                    last_opened_row = pbuilder.get_object("last_opened_row")
-                    filename_label = pbuilder.get_object("filename_label")
-                    path_label = pbuilder.get_object("path_label")
-
-                    filename_label.set_text(os.path.splitext(ntpath.basename(path))[0])
-                    if "/home/" in path:
-                        path_label.set_text("~/" + os.path.relpath(Gio.File.new_for_uri(path).get_path()))
-                    else:
-                        path_label.set_text(path)
-                    last_opened_row.set_name(path)
-
-                    entry_list.append(last_opened_row)
+                filename_label.set_text(
+                    os.path.splitext(ntpath.basename(path))[0])
+                if "/home/" in path:
+                    relpath = os.path.relpath(
+                        Gio.File.new_for_uri(path).get_path())
+                    path_label.set_text("~/" + relpath)
                 else:
-                    invalid = invalid + 1
+                    path_label.set_text(path)
+                last_opened_row.set_name(path)
 
-            if entries == invalid:
-                app_logo = builder.get_object("app_logo")
-                app_logo.set_from_pixbuf(pix)
-                self.first_start_grid = builder.get_object("first_start_grid")
-                self.add(self.first_start_grid)
-            else:
-                for row in reversed(entry_list):
-                    last_opened_list_box.add(row)
+                entry_list.append(last_opened_row)
 
-                self.first_start_grid = builder.get_object("last_opened_grid")
+        if not entry_list:
+            self.display_welcome_page()
+            return
 
-                # Responsive Container
-                hdy = Handy.Clamp()
-                hdy.set_maximum_size(400)
-                hdy.props.vexpand = True
-                hdy.add(builder.get_object("select_box"))
+        for row in reversed(entry_list):
+            last_opened_list_box.add(row)
 
-                self.first_start_grid.add(hdy)
-                self.first_start_grid.show_all()
+        self.first_start_grid = builder.get_object("last_opened_grid")
 
-                self.add(self.first_start_grid)
-        else:
-            app_logo = builder.get_object("app_logo")
-            app_logo.set_from_pixbuf(pix)
-            self.first_start_grid = builder.get_object("first_start_grid")
-            self.add(self.first_start_grid)
+        # Responsive Container
+        hdy = Handy.Clamp()
+        hdy.set_maximum_size(400)
+        hdy.props.vexpand = True
+        hdy.add(builder.get_object("select_box"))
+
+        self.first_start_grid.add(hdy)
+        self.first_start_grid.show_all()
+
+        self.add(self.first_start_grid)
+
+    def display_welcome_page(self):
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+
+        pix = Pixbuf.new_from_resource_at_scale(
+            "/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
+
+        app_logo = builder.get_object("app_logo")
+        app_logo.set_from_pixbuf(pix)
+        self.first_start_grid = builder.get_object("first_start_grid")
+        self.add(self.first_start_grid)
 
     #
     # Container Methods (Gtk Notebook holds tabs)
@@ -264,9 +262,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.add(self.container)
         self.show_all()
-
-    def destroy_container(self):
-        self.container.destroy()
 
     #
     # Open Database Methods
@@ -462,13 +457,6 @@ class MainWindow(Gtk.ApplicationWindow):
         if not self.container.get_n_pages():
             self.container.hide()
             self.remove(self.container)
-
-            builder = Gtk.Builder()
-            builder.add_from_resource(
-                "/org/gnome/PasswordSafe/main_window.ui")
-
-            Pixbuf.new_from_resource_at_scale("/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
-
             self.assemble_first_start_screen()
         else:
             if not self.container.is_visible():
@@ -479,10 +467,21 @@ class MainWindow(Gtk.ApplicationWindow):
     def create_tab_title_from_filepath(self, filepath):
         return ntpath.basename(filepath)
 
-    def close_tab(self, child_widget):
+    def close_tab(self, child_widget, database=None):
+        """Remove a tab from the container.
+
+        If database is defined, it is removed from the list of
+        opened_databases
+
+        :param GtkWidget child_widget: tab to close
+        :param UnlockedDatabase database: database to remove
+        """
         page_num = self.container.page_num(child_widget)
         self.container.remove_page(page_num)
         self.update_tab_bar_visibility()
+
+        if database:
+            self.opened_databases.remove(database)
 
     #
     # Events
@@ -510,13 +509,10 @@ class MainWindow(Gtk.ApplicationWindow):
                     else:
                         db.show_save_dialog()
                 else:
-                    self.container.remove_page(page_num)
-                    self.update_tab_bar_visibility()
-                    self.opened_databases.remove(db)
+                    self.close_tab(widget, db)
 
         if is_contained is False:
-            self.container.remove_page(page_num)
-            self.update_tab_bar_visibility()
+            self.close_tab(widget)
 
     def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()
@@ -624,65 +620,43 @@ class MainWindow(Gtk.ApplicationWindow):
         action_db = NotImplemented
 
         for db in self.opened_databases:  # pylint: disable=C0103
-            if (
-                db.window.container.page_num(db.parent_widget)
-                == self.container.get_current_page()
-            ):
+            if self.tab_visible(db.parent_widget):
                 action_db = db
 
         return action_db
 
     # Entry/Group Row Popover Actions
     def add_row_popover_actions(self):
-        delete_element_action = Gio.SimpleAction.new("element.delete", None)
-        delete_element_action.connect("activate", self.execute_gio_action, "on_element_delete_menu_button_clicked")
-        self.application.add_action(delete_element_action)
+        actions = [
+            ("element.delete", "on_element_delete_menu_button_clicked"),
+            ("entry.duplicate", "on_entry_duplicate_menu_button_clicked"),
+            ("entry.references", "on_entry_references_menu_button_clicked"),
+            ("element.properties", "on_element_properties_menu_button_clicked"),
+            ("group.edit", "on_group_edit_menu_button_clicked"),
+            ("group.delete", "on_group_delete_menu_button_clicked")
+        ]
 
-        duplicate_entry_action = Gio.SimpleAction.new("entry.duplicate", None)
-        duplicate_entry_action.connect("activate", self.execute_gio_action, "on_entry_duplicate_menu_button_clicked")
-        self.application.add_action(duplicate_entry_action)
-
-        references_entry_action = Gio.SimpleAction.new("entry.references", None)
-        references_entry_action.connect("activate", self.execute_gio_action, "on_entry_references_menu_button_clicked")
-        self.application.add_action(references_entry_action)
-
-        properties_element_action = Gio.SimpleAction.new("element.properties", None)
-        properties_element_action.connect("activate", self.execute_gio_action, "on_element_properties_menu_button_clicked")
-        self.application.add_action(properties_element_action)
-
-        edit_group_action = Gio.SimpleAction.new("group.edit", None)
-        edit_group_action.connect("activate", self.execute_gio_action, "on_group_edit_menu_button_clicked")
-        self.application.add_action(edit_group_action)
-
-        delete_group_action = Gio.SimpleAction.new("group.delete", None)
-        delete_group_action.connect("activate", self.execute_gio_action, "on_group_delete_menu_button_clicked")
-        self.application.add_action(delete_group_action)
+        for action, name in actions:
+            simple_action = Gio.SimpleAction.new(action, None)
+            simple_action.connect("activate", self.execute_gio_action, name)
+            self.application.add_action(simple_action)
 
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):
-        db_add_entry_action = Gio.SimpleAction.new("db.add_entry", None)
-        db_add_entry_action.connect("activate", self.execute_gio_action, "on_database_add_entry_clicked")
-        self.application.add_action(db_add_entry_action)
+        actions = [
+            ("db.add_entry", "on_database_add_entry_clicked", None),
+            ("db.add_group", "on_database_add_group_clicked", None),
+            ("db.settings", "on_database_settings_entry_clicked", None),
+            ("sort.az", "on_sort_menu_button_entry_clicked", "A-Z"),
+            ("sort.za", "on_sort_menu_button_entry_clicked", "Z-A"),
+            ("sort.last_added", "on_sort_menu_button_entry_clicked", "last_added"),
+        ]
 
-        db_add_group_action = Gio.SimpleAction.new("db.add_group", None)
-        db_add_group_action.connect("activate", self.execute_gio_action, "on_database_add_group_clicked")
-        self.application.add_action(db_add_group_action)
-
-        db_settings_action = Gio.SimpleAction.new("db.settings", None)
-        db_settings_action.connect("activate", self.execute_gio_action, "on_database_settings_entry_clicked")
-        self.application.add_action(db_settings_action)
-
-        az_button_action = Gio.SimpleAction.new("sort.az", None)
-        az_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "A-Z")
-        self.application.add_action(az_button_action)
-
-        za_button_action = Gio.SimpleAction.new("sort.za", None)
-        za_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "Z-A")
-        self.application.add_action(za_button_action)
-
-        last_added_button_action = Gio.SimpleAction.new("sort.last_added", None)
-        last_added_button_action.connect("activate", self.execute_gio_action, "on_sort_menu_button_entry_clicked", "last_added")
-        self.application.add_action(last_added_button_action)
+        for action, name, arg in actions:
+            simple_action = Gio.SimpleAction.new(action, None)
+            simple_action.connect(
+                "activate", self.execute_gio_action, name, arg)
+            self.application.add_action(simple_action)
 
     # Selection Mode Actions
     def add_selection_actions(self):
@@ -729,29 +703,20 @@ class MainWindow(Gtk.ApplicationWindow):
 
     # Add Global Accelerator Actions
     def add_global_accelerator_actions(self):
-        save_action = Gio.SimpleAction.new("db.save", None)
-        save_action.connect("activate", self.execute_accel_action, "save")
-        self.application.add_action(save_action)
+        actions = [
+            ("db.save", "save", None),
+            ("db.lock", "lock", None),
+            ("db.add_entry", "add_action", "entry"),
+            ("db.add_group", "add_action", "group"),
+            ("undo", "on_edit_undo", "undo"),
+            ("redo", "on_edit_redo", "redo"),
+        ]
 
-        lock_action = Gio.SimpleAction.new("db.lock", None)
-        lock_action.connect("activate", self.execute_accel_action, "lock")
-        self.application.add_action(lock_action)
-
-        add_entry_action = Gio.SimpleAction.new("db.add_entry", None)
-        add_entry_action.connect("activate", self.execute_accel_action, "add_action", "entry")
-        self.application.add_action(add_entry_action)
-
-        add_group_action = Gio.SimpleAction.new("db.add_group", None)
-        add_group_action.connect("activate", self.execute_accel_action, "add_action", "group")
-        self.application.add_action(add_group_action)
-
-        undo_action = Gio.SimpleAction.new("undo")
-        undo_action.connect("activate", self.execute_gio_action, "on_edit_undo", "undo")
-        self.application.add_action(undo_action)
-
-        redo_action = Gio.SimpleAction.new("redo")
-        redo_action.connect("activate", self.execute_gio_action, "on_edit_redo", "redo")
-        self.application.add_action(redo_action)
+        for action, name, arg in actions:
+            simple_action = Gio.SimpleAction.new(action, None)
+            simple_action.connect(
+                "activate", self.execute_accel_action, name, arg)
+            self.application.add_action(simple_action)
 
     # Accelerator Action Handler
     def execute_accel_action(self, _action, _param, name, arg=None):
@@ -775,7 +740,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if scrolled_page.edit_page:
                 return
 
-            if action_db.stack.get_visible_child() is action_db.stack.get_child_by_name("search"):
+            if action_db.search_active:
                 return
 
             if arg == "entry":
@@ -794,3 +759,12 @@ class MainWindow(Gtk.ApplicationWindow):
         for db in self.databases_to_save:  # pylint: disable=C0103
             db.database_manager.save_database()
         GLib.idle_add(self.application.quit)
+
+    def tab_visible(self, tab):
+        """Checks that the tab is visible
+
+        :returns: True if the tab is visible
+        :rtype: bool
+        """
+        current_page = self.container.get_current_page()
+        return self.container.page_num(tab) == current_page

@@ -632,7 +632,9 @@ class UnlockedDatabase:
             parent = self.database_manager.get_parent_group(page_uuid)
         elif scrolled_page.edit_page is True and group_page is False:
             parent = self.database_manager.get_parent_group(page_uuid)
-        elif scrolled_page.edit_page is False and self.selection_ui.selection_mode_active is False and self.stack.get_visible_child() is not self.stack.get_child_by_name("search"):
+        elif (not scrolled_page.edit_page
+              and not self.selection_ui.selection_mode_active
+              and not self.search_active):
             if self.database_manager.check_is_root_group(self.current_group) is True:
                 self.on_lock_button_clicked(None)
                 return
@@ -739,10 +741,7 @@ class UnlockedDatabase:
             save_thread.daemon = False
             save_thread.start()
 
-        for db in self.window.opened_databases:  # pylint: disable=C0103
-            if db.database_manager.database_path == self.database_manager.database_path:
-                self.window.opened_databases.remove(db)
-        self.window.close_tab(self.parent_widget)
+        self.window.close_tab(self.parent_widget, self)
 
         self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
 
@@ -877,3 +876,13 @@ class UnlockedDatabase:
     def unregister_dbus_signal(self):
         app = Gio.Application.get_default
         app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
+
+    @property
+    def search_active(self):
+        """Property to know if search is active
+
+        :returns: True is search view is visible
+        :rtype: bool
+        """
+        search_view = self.stack.get_child_by_name("search")
+        return self.stack.get_visible_child() is search_view

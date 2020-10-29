@@ -79,7 +79,7 @@ class UnlockDatabase:
         else:
             headerbar.set_subtitle(Gio.File.new_for_path(self.database_filepath).get_uri())
 
-        if self.timeout is True and self.window.container.get_current_page() == self.window.container.page_num(self.parent_widget):
+        if self.timeout and self.window.tab_visible(self.parent_widget):
             self.window.set_titlebar(headerbar)
         elif self.timeout is not True:
             self.window.set_titlebar(headerbar)
@@ -188,6 +188,7 @@ class UnlockDatabase:
     #
 
     def on_headerbar_back_button_clicked(self, _widget):
+        database = None
         if self.timeout is True:
             for db in self.window.opened_databases:  # pylint: disable=C0103
                 if (
@@ -203,9 +204,10 @@ class UnlockDatabase:
                         save_thread.start()
 
                     db.stop_save_loop()
-                    self.window.opened_databases.remove(db)
+                    database = db
+
         self.window.set_headerbar()
-        self.window.close_tab(self.parent_widget)
+        self.window.close_tab(self.parent_widget, database)
 
     # Password Unlock
 
@@ -229,10 +231,7 @@ class UnlockDatabase:
                 database_already_opened = True
                 page_num = self.window.container.page_num(db.parent_widget)
                 self.window.container.set_current_page(page_num)
-
-                current_page_num = self.window.container.page_num(self.parent_widget)
-                self.window.container.remove_page(current_page_num)
-                self.window.update_tab_bar_visibility()
+                self.window.close_tab(self.parent_widget)
 
                 db.show_database_action_revealer(_("Database already opened"))
 

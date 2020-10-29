@@ -9,30 +9,32 @@ stages:
   - Static Analysis
   - Build
 
-flake8:
+cache:
+    paths:
+        - .apt
+
+.before_script_template: &basic-deps
+    before_script:
+        - rm -f /etc/apt/apt.conf.d/docker-clean
+        - mkdir -p .apt
+        - apt-get -o dir::cache::archives=".apt" -qq update
+        - apt-get -o dir::cache::archives=".apt" -qq install -y --no-install-recommends ${DEPS_DEV} -o=Dpkg::Use-Pty=0 flake8 pylint mypy > /dev/null
+
+static_check:
     stage: Static Analysis
+    <<: *basic-deps
     image: debian:bullseye
     script:
-        - apt-get -qq update
-        - apt-get -qq -y install -o=Dpkg::Use-Pty=0 flake8 > /dev/null
         - flake8 --max-line-length=350 --ignore=E402,W503 --show-source passwordsafe/
+        - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
 
 pylint:
     stage: Static Analysis
+    <<: *basic-deps
     allow_failure: true
     image: debian:bullseye
     script:
-        - apt-get -qq update
-        - apt-get -qq -y install ${DEPS_DEV} pylint > /dev/null
         - pylint --max-line-length=350 --disable=missing-docstring --init-hook="import sys; sys.path.insert(0, '.')" passwordsafe/*.py
-
-mypy:
-    stage: Static Analysis
-    image: debian:bullseye
-    script:
-        - apt-get -qq update
-        - apt-get -qq -y install mypy > /dev/null
-        - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
 
 flatpak:
     stage: Build
@@ -48,10 +50,12 @@ flatpak:
 
 debian:
     stage: Build
+    <<: *basic-deps
     image: debian:sid
     script:
-        - apt-get -qq update
-        - apt-get -qq install -y -o=Dpkg::Use-Pty=0 ${DEPS_DEB} ${DEPS_DEV}
+        - apt-get -qq install -y --no-install-recommends -o dir::cache::archives=".apt" -o=Dpkg::Use-Pty=0 ${DEPS_DEB} > /dev/null
+        - git config --global user.email "gitlab-ci@buildbot.org"
+        - git config --global user.name "BuildBot @ gitlab-ci"
         - git remote add debian https://salsa.debian.org/python-team/packages/gnome-passwordsafe.git
         - git fetch debian
         - git checkout debian/master

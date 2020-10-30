@@ -531,7 +531,6 @@ class UnlockedDatabase:
 
         self.current_group = parent_group
         self.update_current_stack_page()
-        self.show_page_of_new_directory(False, False)
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()

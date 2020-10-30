@@ -625,10 +625,6 @@ class DatabaseManager(GObject.GObject):
         parent_group = self.get_group(uuid)
         return parent_group.entries
 
-    # Return the database filesystem path
-    def get_database(self):
-        return self.database_path
-
     # Return the root group of the database instance
     def get_root_group(self):
         return self.db.root_group

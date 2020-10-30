@@ -383,8 +383,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
         response = self.filechooser_creation_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
+            filepath = self.filechooser_creation_dialog.get_filename()
             self.copy_database_file()
-            tab_title = self.create_tab_title_from_filepath(self.filechooser_creation_dialog.get_current_name())
+            tab_title = self.create_tab_title_from_filepath(filepath)
 
             creation_thread = threading.Thread(target=self.create_new_database_instance, args=[tab_title])
             creation_thread.daemon = True

@@ -612,7 +612,10 @@ class EntryPage:
 
     def save_to_disk(self, filepath, byte_buffer):
         file = Gio.File.new_for_path(filepath)
-        stream = Gio.File.create(file, Gio.FileCreateFlags.PRIVATE, None)
+        stream = Gio.File.replace(
+            file, None, False,
+            Gio.FileCreateFlags.PRIVATE
+            | Gio.FileCreateFlags.REPLACE_DESTINATION, None)
         Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(byte_buffer), None)
         stream.close()
 

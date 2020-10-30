@@ -231,8 +231,8 @@ class MainWindow(Gtk.ApplicationWindow):
             self.display_welcome_page()
             return
 
-        for row in reversed(entry_list):
-            last_opened_list_box.add(row)
+        for row in entry_list:
+            last_opened_list_box.insert(row, 0)
 
         first_start_grid = builder.get_object("last_opened_grid")
 

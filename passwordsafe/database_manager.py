@@ -27,7 +27,6 @@ class DatabaseManager(GObject.GObject):
 
     # self.db contains a `PyKeePass` database
     password_try = ""
-    password = ""
     keyfile_hash = NotImplemented
     is_dirty = False  # Does the database need saving?
     save_running = False
@@ -44,9 +43,9 @@ class DatabaseManager(GObject.GObject):
     ) -> None:
         super().__init__()
 
+        # password remains accessible as self.db.password
         self.db = PyKeePass(database_path, password, keyfile)  # pylint: disable=C0103
         self.database_path = database_path
-        self.password = password
 
     #
     # Group Transformation Methods
@@ -476,8 +475,14 @@ class DatabaseManager(GObject.GObject):
 
             self.save_running = False
 
-    # Set database password
-    def set_database_password(self, new_password):
+    @property
+    def password(self) -> str:
+        """Get the current password or '' if not set"""
+        return self.db.password or ""
+
+    @password.setter
+    def password(self, new_password: Optional[str]) -> None:
+        """Set database password (None if a keyfile is used)"""
         self.db.password = new_password
         self.is_dirty = True
 

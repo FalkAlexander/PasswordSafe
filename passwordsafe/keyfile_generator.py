@@ -19,7 +19,7 @@ def generate_keyfile(filepath, database_creation, instance, composite):
 
     if database_creation is True:
         if composite is False:
-            instance.database_manager.set_database_password(None)
+            instance.database_manager.password = None
 
         instance.database_manager.set_database_keyfile(str(filepath))
         instance.database_manager.save_database()

@@ -267,13 +267,11 @@ class DatabaseSettingsDialog:
                 self.database_manager.set_database_keyfile(None)
                 self.database_manager.keyfile_hash = NotImplemented
 
-            self.database_manager.set_database_password(self.new_password)
             self.database_manager.password = self.new_password
 
         if self.new_keyfile_path is not NotImplemented:
             if self.new_password is NotImplemented:
-                self.database_manager.set_database_password(None)
-                self.database_manager.password = ""
+                self.database_manager.password = None
 
             self.database_manager.set_database_keyfile(str(self.new_keyfile_path))
             self.database_manager.keyfile_hash = self.database_manager.create_keyfile_hash(str(self.new_keyfile_path))

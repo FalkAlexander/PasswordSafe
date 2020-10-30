@@ -171,7 +171,7 @@ class CreateDatabase:
         password_check = password_check_input.get_text()
 
         if self.database_manager.compare_passwords(password_check):
-            self.database_manager.set_database_password(password_check)
+            self.database_manager.password = password_check
 
             save_thread = threading.Thread(target=self.save_pwc_database_thread)
             save_thread.daemon = True
@@ -191,8 +191,7 @@ class CreateDatabase:
             password_repeat_input2.get_text())
 
         if self.database_manager.compare_passwords():
-            self.database_manager.set_database_password(
-                password_repeat_input2.get_text())
+            self.database_manager.password = password_repeat_input2.get_text()
 
             save_thread = threading.Thread(target=self.save_pwr_database_thread)
             save_thread.daemon = True

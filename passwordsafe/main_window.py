@@ -51,8 +51,6 @@ class MainWindow(Gtk.ApplicationWindow):
         self.create_headerbar()
         self.first_start_screen()
 
-        self.connect("check-resize", self.responsive_listener)
-
         self.custom_css()
         self.apply_theme()
 
@@ -114,12 +112,18 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def responsive_listener(self, win: Gtk.ApplicationWindow) -> None:
-        """invoked on check-resize events"""
+    def do_size_allocate(self, event: Gdk.Event) -> None:
+        """Handler for resizing event. It is used to check if
+        the layout needs to be updated.
+
+        :param GdkEvent event: event
+        """
         previous_mobile_width = self.mobile_width
         self.mobile_width = (self.get_allocation().width < 700)
         if previous_mobile_width != self.mobile_width:
             self.change_layout()
+
+        Gtk.ApplicationWindow.do_size_allocate(self, event)
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""

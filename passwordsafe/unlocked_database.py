@@ -528,6 +528,7 @@ class UnlockedDatabase:
         # again to the stack.
         self._remove_stack_page(parent_group)
         self.show_page_of_new_directory(False, False)
+        self.pathbar.rebuild_pathbar(self.current_group)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()

@@ -502,20 +502,17 @@ class UnlockedDatabase:
             else:
                 self.selection_ui.row_selection_toggled(widget.get_parent())
 
-    def on_element_delete_menu_button_clicked(self, _action, _param):
+    def on_element_delete_menu_button_clicked(
+            self, _action: Gio.SimpleAction, _param: None) -> None:
+        """Delete the visible entry from the menu."""
         self.start_database_lock_timer()
 
-        ele_uuid = self.current_group.uuid
-        self.current_group = self.database_manager.get_parent_group(
+        parent_group = self.database_manager.get_parent_group(
             self.current_group)
         self.database_manager.delete_from_database(self.current_group)
 
-        # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-        if self.pathbar.uuid_in_pathbar(ele_uuid):
-            self.pathbar.rebuild_pathbar(self.current_group)
-
+        self.current_group = parent_group
         self.update_current_stack_page()
-        self.show_page_of_new_directory(False, False)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()

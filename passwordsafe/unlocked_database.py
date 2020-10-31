@@ -1,6 +1,7 @@
+from __future__ import annotations
 from gettext import gettext as _
 from threading import Timer
-from typing import List
+from typing import List, Union
 from uuid import UUID
 import logging
 import ntpath
@@ -8,6 +9,7 @@ import os
 import re
 import time
 import threading
+import typing
 
 from gi.repository import Gio, Gdk, Gtk, GLib, Handy
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
@@ -23,6 +25,10 @@ from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
+if typing.TYPE_CHECKING:
+    from pykeepass.entry import Entry
+    from pykeepass.group import Group
+
 import passwordsafe.config_manager
 
 
@@ -336,11 +342,12 @@ class UnlockedDatabase:
         else:
             self.entry_page.set_entry_page_headerbar()
 
-    def update_current_stack_page(self):
-        stack_page_name = self.current_group.uuid.urn
+    def _remove_stack_page(self, element: Union[Entry, Group]) -> None:
+        """Remove an element (Entry, Group) from the stack if present."""
+        stack_page_name = element.uuid.urn
         stack_page = self.stack.get_child_by_name(stack_page_name)
-        stack_page.destroy()
-        self.show_page_of_new_directory(False, False)
+        if stack_page:
+            stack_page.destroy()
 
     def set_current_group(self, group):
         self.current_group = group
@@ -511,8 +518,17 @@ class UnlockedDatabase:
             self.current_group)
         self.database_manager.delete_from_database(self.current_group)
 
+        self._remove_stack_page(self.current_group)
         self.current_group = parent_group
-        self.update_current_stack_page()
+        # Remove the parent group from the stack and add it again with
+        # a show_page_of_new_directory call to force a full refresh of
+        # teh group view.
+        # FIXME: This operation is not efficient, it should be possible
+        # to update the group view without removing it and adding it
+        # again to the stack.
+        self._remove_stack_page(parent_group)
+        self.show_page_of_new_directory(False, False)
+        self.pathbar.rebuild_pathbar(self.current_group)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
@@ -529,8 +545,14 @@ class UnlockedDatabase:
                     if button.uuid == parent_group.uuid:
                         self.pathbar.on_pathbar_button_clicked(button)
 
+        # Remove the parent group from the stack and add it again with
+        # a show_page_of_new_directory call to force a full refresh of
+        # teh group view.
+        # FIXME: This operation is not efficient, it should be possible
+        # to update the group view without removing it and adding it
+        # again to the stack.
+        self._remove_stack_page(parent_group)
         self.current_group = parent_group
-        self.update_current_stack_page()
         self.show_page_of_new_directory(False, False)
 
     def on_group_row_button_pressed(self, widget, event):

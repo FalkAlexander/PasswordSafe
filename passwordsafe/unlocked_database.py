@@ -691,7 +691,11 @@ class UnlockedDatabase:
 
         res = save_dialog.run()
         save_dialog.destroy()
-        if res in (Gtk.ResponseType.CANCEL, Gtk.ResponseType.DELETE_EVENT):
+        if res in (
+            Gtk.ResponseType.CANCEL,
+            Gtk.ResponseType.NONE,
+            Gtk.ResponseType.DELETE_EVENT,
+        ):
             # Cancel everything, don't quit. Also activated when pressing escape
             return False
 

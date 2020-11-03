@@ -51,11 +51,12 @@ class EntryRow(Gtk.ListBoxRow):
         entry_color_button = builder.get_object("entry_color_button")
 
         # Icon
-        if self.icon is not None:
-            if int(self.icon) >= 0 and int(self.icon) <= 68 and self.icon:
-                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
-            else:
-                entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
+        if (
+            self.icon
+            and int(self.icon) >= 0
+            and int(self.icon) <= 68
+        ):
+            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
         else:
             entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
 

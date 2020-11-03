@@ -1,6 +1,7 @@
 from uuid import UUID
 
 from gettext import gettext as _
+import logging
 import subprocess
 
 from gi.repository import Gtk, Gio, GLib
@@ -8,6 +9,7 @@ from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
+from passwordsafe.scrolled_page import ScrolledPage
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
 import passwordsafe.config_manager
@@ -642,18 +644,23 @@ class EntryPage:
             toggle_button.toggled()
             entry.set_visibility(True)
 
-    def set_password_level_bar(self, scrolled_page):
-        password = NotImplemented
+    def set_password_level_bar(self, scrolled_page: ScrolledPage) -> None:
+        """ Displays the strength of the password in the level bar. """
 
-        if scrolled_page.password_property_value_entry.get_text().startswith("{REF:P"):
+        password = scrolled_page.password_property_value_entry.get_text()
+
+        # If our password is a just a reference, get the real password
+        if password.startswith("{REF:P"):
             try:
                 uuid = UUID(self.unlocked_database.reference_to_hex_uuid(
                     scrolled_page.password_property_value_entry.get_text()))
                 password = self.unlocked_database.database_manager.get_entry_password(uuid)
-            except Exception:
-                password = scrolled_page.password_property_value_entry.get_text()
-        else:
-            password = scrolled_page.password_property_value_entry.get_text()
+            except(Exception):
+                logging.warning(
+                    "Failed to look up password for reference '%s'", password)
+                return None
 
-        if password is not NotImplemented:
-            scrolled_page.password_level_bar.set_value(float(passwordsafe.password_generator.strength(password)))
+        # strength() returns None on error.
+        strength = passwordsafe.password_generator.strength(password)
+        if strength is not None:
+            scrolled_page.password_level_bar.set_value(strength)

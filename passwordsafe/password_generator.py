@@ -1,6 +1,7 @@
 import secrets
 import string
 import pwquality
+from typing import Optional
 
 
 def generate(
@@ -36,18 +37,21 @@ def generate(
     return "".join([secrets.choice(characters) for _ in range(0, digits)])
 
 
-def strength(password: str) -> float:
+def strength(password: str) -> Optional[float]:
     """Get strength of a password between 0 and 5.
 
     The higher the score is, the more secure the password is.
 
     :param str password: password to test
-    :returns: strength of password
+    :returns: strength of password or None on pwquality error
     :rtype: float
     """
     try:
-        score: int = pwquality.PWQSettings().check(password)
-    except Exception:
-        score = 0
+        if password:
+            score = pwquality.PWQSettings().check(password)
+        else:
+            score = 0
+    except pwquality.PWQError:
+        return None
 
     return score / 20

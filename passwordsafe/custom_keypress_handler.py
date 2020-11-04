@@ -107,11 +107,12 @@ class CustomKeypressHandler:
 
         pathbar_btn_type = passwordsafe.pathbar_button.PathbarButton
         for button in self.unlocked_database.pathbar:
-            if (button.get_name() == "PathbarButtonDynamic"
-                    and type(button) is pathbar_btn_type):
-                if button.uuid == parent_group.uuid:
-                    pathbar = self.unlocked_database.pathbar
-                    pathbar.on_pathbar_button_clicked(button)
+            if (
+                isinstance(button, pathbar_btn_type)
+                and button.uuid == parent_group.uuid
+            ):
+                pathbar = self.unlocked_database.pathbar
+                pathbar.on_pathbar_button_clicked(button)
 
     def _current_view_accessible(self):
         """Check that the current view is accessible:

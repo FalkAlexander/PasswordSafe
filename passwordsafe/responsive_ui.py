@@ -84,6 +84,7 @@ class ResponsiveUI():
             self.unlocked_database.builder.get_object("pathbar_button_back_revealer").set_reveal_child(False)
 
     def headerbar_selection_button(self):
+        """Update the visibility of the headerbar buttons."""
         page_name = self.unlocked_database.current_element.uuid.urn
         scrolled_page = self.unlocked_database.stack.get_child_by_name(page_name)
         if self.unlocked_database.selection_ui.selection_mode_active:

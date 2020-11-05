@@ -43,6 +43,8 @@ class Search:
         headerbar_search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
 
         self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, headerbar_search_entry, "<Control>f", signal="stop-search")
+
+        self._prepare_search_page()
     #
     # Search
     #
@@ -60,7 +62,8 @@ class Search:
         else:
             self.unlocked_database.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_navigation)
 
-        self.prepare_search_page()
+        self.unlocked_database.stack.set_visible_child(
+            self.unlocked_database.stack.get_child_by_name("search"))
         self.unlocked_database.responsive_ui.action_bar()
 
     def remove_search_headerbar(self, _widget):
@@ -73,41 +76,38 @@ class Search:
     #
 
     # Set Search stack page
-    def prepare_search_page(self):
-        if self.unlocked_database.stack.get_child_by_name("search") is None:
-            scrolled_page = ScrolledPage(False)
-            viewport = Gtk.Viewport()
-            viewport.set_name("BGPlatform")
-            self.unlocked_database.search_overlay = Gtk.Overlay()
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-            self.search_list_box = builder.get_object("list_box")
+    def _prepare_search_page(self):
+        scrolled_page = ScrolledPage(False)
+        viewport = Gtk.Viewport()
+        viewport.set_name("BGPlatform")
+        self.unlocked_database.search_overlay = Gtk.Overlay()
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+        self.search_list_box = builder.get_object("list_box")
 
-            # Responsive Container
-            self.search_list_box.set_name("BrowserListBox")
-            self.search_list_box.set_margin_top(18)
-            self.search_list_box.set_margin_bottom(18)
-            self.search_list_box.set_valign(Gtk.Align.START)
+        # Responsive Container
+        self.search_list_box.set_name("BrowserListBox")
+        self.search_list_box.set_margin_top(18)
+        self.search_list_box.set_margin_bottom(18)
+        self.search_list_box.set_valign(Gtk.Align.START)
 
-            hdy_search = Handy.Clamp()
-            hdy_search.set_maximum_size(700)
-            hdy_search.add(self.search_list_box)
-            self.unlocked_database.search_overlay.add(hdy_search)
+        hdy_search = Handy.Clamp()
+        hdy_search.set_maximum_size(700)
+        hdy_search.add(self.search_list_box)
+        self.unlocked_database.search_overlay.add(hdy_search)
 
-            self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
-            viewport.add(self.unlocked_database.search_overlay)
+        self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
+        viewport.add(self.unlocked_database.search_overlay)
 
-            scrolled_page.add(viewport)
-            scrolled_page.show_all()
-            self.unlocked_database.add_page(scrolled_page, "search")
-            if self.search_list_box.get_children():
-                self.search_list_box.show()
-            else:
-                info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
-                self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
-                self.search_list_box.hide()
-
-        self.unlocked_database.stack.set_visible_child(self.unlocked_database.stack.get_child_by_name("search"))
+        scrolled_page.add(viewport)
+        scrolled_page.show_all()
+        self.unlocked_database.add_page(scrolled_page, "search")
+        if self.search_list_box.get_children():
+            self.search_list_box.show()
+        else:
+            info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
+            self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
+            self.search_list_box.hide()
 
     #
     # Utils

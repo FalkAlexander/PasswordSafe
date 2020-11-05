@@ -329,7 +329,11 @@ class UnlockedDatabase(GObject.GObject):
         """
         self.stack.add_named(scrolled_window, name)
 
-    def switch_page(self, element):
+    def switch_page(self, element: Union[Entry, Group]) -> None:
+        """Set the current element and display it
+
+        :param element: Entry or Group
+        """
         self.current_element = element
 
         page_uuid = self.current_element.uuid

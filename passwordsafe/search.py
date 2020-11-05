@@ -18,7 +18,6 @@ class Search:
     #
 
     unlocked_database = NotImplemented
-    search_active = False
     search_list_box = NotImplemented
     cached_rows: List[GroupRow] = []
     skipped_rows: List[UUID] = []
@@ -76,7 +75,6 @@ class Search:
                 headerbar_search)
             self.unlocked_database.window.set_titlebar(headerbar_search)
             search_entry.grab_focus()
-            self.search_active = True
             if self.search_list_box is not NotImplemented:
                 self.search_list_box.select_row(
                     self.search_list_box.get_row_at_index(0))
@@ -92,7 +90,6 @@ class Search:
                 self.unlocked_database.headerbar)
             self.unlocked_database.window.set_titlebar(
                 self.unlocked_database.headerbar)
-            self.search_active = False
 
     #
     # Stack

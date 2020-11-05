@@ -537,7 +537,9 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.search.search_active is False:
+        if (event.type == Gdk.EventType.BUTTON_PRESS
+                and event.button == 3
+                and not self.props.search_active):
             if self.selection_ui.selection_mode_active is False:
                 self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
             else:
@@ -591,7 +593,9 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.search.search_active is False:
+        if (event.type == Gdk.EventType.BUTTON_PRESS
+                and event.button == 3
+                and not self.props.search_active):
             if self.selection_ui.selection_mode_active is False:
                 self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
             else:
@@ -814,7 +818,7 @@ class UnlockedDatabase(GObject.GObject):
 
             self.overlay.hide()
         else:
-            if self.search.search_active:
+            if self.props.search_active:
                 self.parent_widget.set_headerbar(self.headerbar_search)
                 self.window.set_titlebar(self.headerbar_search)
             else:

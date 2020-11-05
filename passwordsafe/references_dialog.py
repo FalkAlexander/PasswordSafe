@@ -49,6 +49,7 @@ class ReferencesDialog():
         self.update_reference_entry()
 
     def update_reference_entry(self):
+        """Update the reference entry and selected label text."""
         uuid = self.database_manager.get_entry_uuid_from_entry_object(
             self.unlocked_database.current_element)
         encoded_uuid = uuid.hex.upper()

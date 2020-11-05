@@ -1,5 +1,6 @@
 from gi.repository import Gtk
 import passwordsafe.config_manager
+from passwordsafe.config_manager import UnlockMethod
 
 
 class SettingsDialog():
@@ -124,4 +125,5 @@ class SettingsDialog():
             passwordsafe.config_manager.set_remember_unlock_method(True)
         else:
             passwordsafe.config_manager.set_remember_unlock_method(False)
-            passwordsafe.config_manager.set_unlock_method("password")
+            passwordsafe.config_manager.set_unlock_method(
+                UnlockMethod.PASSWORD)

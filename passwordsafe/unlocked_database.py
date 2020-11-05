@@ -11,7 +11,7 @@ import time
 import threading
 import typing
 
-from gi.repository import Gio, Gdk, Gtk, GLib, Handy
+from gi.repository import Gio, GObject, Gdk, Gtk, GLib, Handy
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.entry_page import EntryPage
@@ -32,11 +32,10 @@ if typing.TYPE_CHECKING:
 import passwordsafe.config_manager
 
 
-class UnlockedDatabase:
+class UnlockedDatabase(GObject.GObject):
     # Instances
     window = NotImplemented
     database_manager = NotImplemented
-    unlock_database = NotImplemented
     responsive_ui = NotImplemented
     selection_ui = NotImplemented
     search = NotImplemented
@@ -71,17 +70,17 @@ class UnlockedDatabase:
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
-    database_locked = False
     save_loop = NotImplemented
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
-    def __init__(self, window, widget, dbm, unlock_database):
+    def __init__(self, window, widget, dbm):
+        super().__init__()
+
         # Instances
         self.window = window
         self.parent_widget = widget
         self.database_manager = dbm
-        self.unlock_database = unlock_database
         self.responsive_ui = ResponsiveUI(self)
         self.selection_ui = SelectionUI(self)
         self.search = Search(self)
@@ -102,6 +101,9 @@ class UnlockedDatabase:
         self.responsive_ui.headerbar_title()
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
+
+        self.database_manager.connect(
+            "notify::locked", self._on_database_lock_changed)
 
     #
     # Stack Pages
@@ -479,7 +481,7 @@ class UnlockedDatabase:
     def on_lock_button_clicked(self, _widget):
         # shows save dialog if required
         self.show_save_dialog()
-        self.lock_database()
+        self.database_manager.props.locked = True
 
     def on_add_entry_button_clicked(self, _widget):
         """CB when the Add Entry menu was clicked"""
@@ -639,7 +641,7 @@ class UnlockedDatabase:
         self.rebuild_all_pages()
 
     def on_session_lock(self, _connection, _unique_name, _object_path, _interface, _signal, state):
-        if state[0] is True and self.database_locked is False:
+        if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
 
     def on_back_button_mobile_clicked(self, button):
@@ -739,56 +741,49 @@ class UnlockedDatabase:
         database_action_revealer = self.builder.get_object("database_action_revealer")
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
 
-    def lock_database(self):
-        self.cancel_timers()
-        self.clipboard.clear()
-        self.database_locked = True
-        self.unregister_dbus_signal()
-        self.stop_save_loop()
+    def _on_database_lock_changed(self, database_manager, value):
+        locked = self.database_manager.props.locked
+        if locked:
+            self.cancel_timers()
+            self.clipboard.clear()
+            self.unregister_dbus_signal()
+            self.stop_save_loop()
 
-        if self.database_settings_dialog is not NotImplemented:
-            self.database_settings_dialog.close()
+            if self.database_settings_dialog is not NotImplemented:
+                self.database_settings_dialog.close()
 
-        if self.notes_dialog is not NotImplemented:
-            self.notes_dialog.close()
+            if self.notes_dialog is not NotImplemented:
+                self.notes_dialog.close()
 
-        if self.references_dialog is not NotImplemented:
-            self.references_dialog.close()
+            if self.references_dialog is not NotImplemented:
+                self.references_dialog.close()
 
-        for tmpfile in self.scheduled_tmpfiles_deletion:
-            try:
-                tmpfile.delete()
-            except Exception:
-                logging.warning("Skipping deletion of tmpfile...")
+            for tmpfile in self.scheduled_tmpfiles_deletion:
+                try:
+                    tmpfile.delete()
+                except Exception:
+                    logging.warning("Skipping deletion of tmpfile...")
 
-        if passwordsafe.config_manager.get_save_automatically() is True:
-            save_thread = threading.Thread(target=self.database_manager.save_database)
-            save_thread.daemon = False
-            save_thread.start()
+                if passwordsafe.config_manager.get_save_automatically():
+                    save_thread = threading.Thread(target=self.database_manager.save_database)
+                    save_thread.daemon = False
+                    save_thread.start()
 
-        self.window.close_tab(self.parent_widget, self)
+            self.overlay.hide()
+        else:
+            if self.search.search_active:
+                self.parent_widget.set_headerbar(self.headerbar_search)
+                self.window.set_titlebar(self.headerbar_search)
+            else:
+                self.parent_widget.set_headerbar(self.headerbar)
+                self.window.set_titlebar(self.headerbar)
 
-        self.window.start_database_opening_routine(ntpath.basename(self.database_manager.database_path), self.database_manager.database_path)
+            self.start_save_loop()
+            self.overlay.show()
+            self.start_database_lock_timer()
 
     def lock_timeout_database(self):
-        self.cancel_timers()
-        self.database_locked = True
-        self.stop_save_loop()
-        self.clipboard.clear()
-
-        if self.database_settings_dialog is not NotImplemented:
-            self.database_settings_dialog.close()
-
-        if self.references_dialog is not NotImplemented:
-            self.references_dialog.close()
-
-        if passwordsafe.config_manager.get_save_automatically() is True:
-            save_thread = threading.Thread(target=self.database_manager.save_database)
-            save_thread.daemon = False
-            save_thread.start()
-
-        self.overlay.hide()
-        self.unlock_database.unlock_database(timeout=True, unlocked_database=self)
+        self.database_manager.props.locked = True
 
         # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
         self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"))
@@ -823,7 +818,7 @@ class UnlockedDatabase:
             self.clipboard.clear()
 
     def start_database_lock_timer(self):
-        if self.database_locked is True:
+        if self.database_manager.props.locked:
             return
 
         if self.database_lock_timer is not NotImplemented:
@@ -911,3 +906,13 @@ class UnlockedDatabase:
         """
         search_view = self.stack.get_child_by_name("search")
         return self.stack.get_visible_child() is search_view
+
+    @GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    def database_locked(self):
+        """Get database lock status
+
+        :returns: True if the database is locked
+        :rtype: bool
+        """
+        return self.database_manager.props.locked

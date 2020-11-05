@@ -4,7 +4,7 @@ from gettext import gettext as _
 from datetime import datetime
 from typing import Dict, Optional, Union
 from uuid import UUID
-from gi.repository import Gio
+from gi.repository import Gio, GObject
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
@@ -13,7 +13,7 @@ from pykeepass.kdbx_parsing.kdbx import KDBX
 from passwordsafe.color_widget import Color
 
 
-class DatabaseManager():
+class DatabaseManager(GObject.GObject):
     """Implements database functionality that is independent of the UI
 
     Group objects are of type `pykeepass.group.Group`
@@ -31,7 +31,12 @@ class DatabaseManager():
     scheduled_saves = 0
     database_file_descriptor = NotImplemented
 
+    locked = GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+
     def __init__(self, database_path, password=None, keyfile=None):
+        super().__init__()
+
         self.db = PyKeePass(database_path, password, keyfile)  # pylint: disable=C0103
         self.database_path = database_path
         self.database_file_descriptor = Gio.File.new_for_path(database_path)

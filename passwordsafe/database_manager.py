@@ -171,10 +171,6 @@ class DatabaseManager(GObject.GObject):
     def get_entry_object_from_uuid(self, uuid):
         return self.db.find_entries(uuid=uuid, first=True)
 
-    # Return entry uuid from entry object
-    def get_entry_uuid_from_entry_object(self, entry):
-        return entry.uuid
-
     def get_entry_name(self, data: Union[Entry, UUID]) -> str:
         """Get entry name from an uuid or an entry
 

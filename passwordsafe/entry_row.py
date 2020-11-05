@@ -29,7 +29,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.unlocked_database = unlocked_database
         self.database_manager = dbm
 
-        self.entry_uuid = dbm.get_entry_uuid_from_entry_object(entry)
+        self.entry_uuid = entry.uuid
         self.icon = dbm.get_icon(entry)
         self.label = dbm.get_entry_name(entry)
         self.password = dbm.get_entry_password(entry)

@@ -50,8 +50,7 @@ class ReferencesDialog():
 
     def update_reference_entry(self):
         """Update the reference entry and selected label text."""
-        uuid = self.database_manager.get_entry_uuid_from_entry_object(
-            self.unlocked_database.current_element)
+        uuid = self.unlocked_database.current_element.uuid
         encoded_uuid = uuid.hex.upper()
 
         self.builder.get_object("selected_property_label").set_text(self.property)

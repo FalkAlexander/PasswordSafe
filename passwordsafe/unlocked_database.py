@@ -240,7 +240,7 @@ class UnlockedDatabase(GObject.GObject):
                 stack_page = self.stack.get_child_by_name(stack_page_uuid.urn)
                 stack_page.destroy()
 
-            self.add_stack_page(scrolled_window)
+            self.add_stack_page(scrolled_window, self.current_element.uuid.urn)
             self.switch_stack_page(self.current_element)
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
             self.group_page.set_group_edit_page_headerbar()
@@ -274,7 +274,8 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 
-                self.add_stack_page(scrolled_window)
+                self.add_stack_page(
+                    scrolled_window, self.current_element.uuid.urn)
                 self.switch_stack_page(self.current_element)
 
                 list_box.hide()
@@ -303,7 +304,8 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 
-                self.add_stack_page(scrolled_window)
+                self.add_stack_page(
+                    scrolled_window, self.current_element.uuid.urn)
                 self.switch_stack_page(self.current_element)
                 if new_entry is True:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, True)
@@ -321,8 +323,8 @@ class UnlockedDatabase(GObject.GObject):
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_element).urn)
                 self.entry_page.set_entry_page_headerbar()
 
-    def add_stack_page(self, scrolled_window):
-        self.stack.add_named(scrolled_window, self.current_element.uuid.urn)
+    def add_stack_page(self, scrolled_window, name):
+        self.stack.add_named(scrolled_window, name)
 
     def switch_stack_page(self, element):
         self.current_element = element

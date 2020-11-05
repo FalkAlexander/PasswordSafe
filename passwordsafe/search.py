@@ -99,7 +99,7 @@ class Search:
 
             scrolled_page.add(viewport)
             scrolled_page.show_all()
-            self.unlocked_database.stack.add_named(scrolled_page, "search")
+            self.unlocked_database.add_stack_page(scrolled_page, "search")
             if self.search_list_box.get_children():
                 self.search_list_box.show()
             else:

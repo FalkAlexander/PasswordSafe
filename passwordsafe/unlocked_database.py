@@ -164,7 +164,7 @@ class UnlockedDatabase(GObject.GObject):
         mod_box.add(browser_buttons_box)
 
         search_button = self.builder.get_object("search_button")
-        search_button.connect("clicked", self._on_set_search_headerbar)
+        search_button.connect("clicked", self._on_search_button_clicked)
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
@@ -471,7 +471,7 @@ class UnlockedDatabase(GObject.GObject):
     # Events
     #
 
-    def _on_set_search_headerbar(self, btn):
+    def _on_search_button_clicked(self, btn):
         self.props.search_active = True
 
     def on_list_box_row_activated(self, _widget, list_box_row):

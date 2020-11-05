@@ -1,7 +1,7 @@
 from __future__ import annotations
 from gettext import gettext as _
 from threading import Timer
-from typing import List, Union
+from typing import List, Optional, Union
 from uuid import UUID
 import logging
 import ntpath
@@ -62,7 +62,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Objects
     builder = NotImplemented
-    current_group = NotImplemented
     accelerators = NotImplemented
     scheduled_page_destroy: List[UUID] = []
     scheduled_tmpfiles_deletion: List[Gio.File] = []
@@ -87,6 +86,8 @@ class UnlockedDatabase(GObject.GObject):
         self.entry_page = EntryPage(self)
         self.group_page = GroupPage(self)
         self.custom_keypress_handler = CustomKeypressHandler(self)
+
+        self._current_group: Optional[Union[Entry, Group]] = None
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -351,11 +352,13 @@ class UnlockedDatabase(GObject.GObject):
         if stack_page:
             stack_page.destroy()
 
-    def set_current_group(self, group):
-        self.current_group = group
+    @property
+    def current_group(self) -> Union[Entry, Group]:
+        return self._current_group
 
-    def get_current_group(self):
-        return self.current_group
+    @current_group.setter
+    def current_group(self, element: Union[Entry, Group]) -> None:
+        self._current_group = element
 
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)
@@ -452,11 +455,11 @@ class UnlockedDatabase(GObject.GObject):
         if list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is True:
             self.selection_ui.row_selection_toggled(list_box_row)
         elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is False:
-            self.set_current_group(self.database_manager.get_entry_object_from_uuid(list_box_row.get_uuid()))
+            self.current_group = self.database_manager.get_entry_object_from_uuid(list_box_row.get_uuid())
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
         elif list_box_row.get_type() == "GroupRow":
-            self.set_current_group(self.database_manager.get_group(list_box_row.get_uuid()))
+            self.current_group = self.database_manager.get_group(list_box_row.get_uuid())
             self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
             self.show_page_of_new_directory(False, False)
 
@@ -570,7 +573,7 @@ class UnlockedDatabase(GObject.GObject):
         group_uuid = button.get_parent().get_parent().get_parent().get_parent().get_uuid()
         group_object = self.database_manager.get_group(group_uuid)
 
-        self.set_current_group(group_object)
+        self.current_group = group_object
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True, False)
 

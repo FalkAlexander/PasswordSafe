@@ -321,7 +321,12 @@ class UnlockedDatabase(GObject.GObject):
                 self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_element).urn)
                 self.entry_page.set_entry_page_headerbar()
 
-    def add_page(self, scrolled_window, name):
+    def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
+        """Add a new page to the stack
+
+        :param ScrolledPage scrolled_window: scrolled_page to add
+        :param str name: name of the page
+        """
         self.stack.add_named(scrolled_window, name)
 
     def switch_page(self, element):

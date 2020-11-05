@@ -320,9 +320,11 @@ class UnlockedDatabase(GObject.GObject):
 
     def add_stack_page(self, scrolled_window):
         self.stack.add_named(scrolled_window, self.current_element.uuid.urn)
-        self.switch_stack_page()
+        self.switch_stack_page(self.current_element)
 
-    def switch_stack_page(self):
+    def switch_stack_page(self, element):
+        self.current_element = element
+
         group_page = NotImplemented
         page_uuid = self.current_element.uuid
         group_page = self.database_manager.check_is_group(page_uuid)

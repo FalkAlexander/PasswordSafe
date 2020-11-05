@@ -327,7 +327,6 @@ class UnlockedDatabase(GObject.GObject):
     def switch_page(self, element):
         self.current_element = element
 
-        group_page = NotImplemented
         page_uuid = self.current_element.uuid
         group_page = self.database_manager.check_is_group(page_uuid)
 

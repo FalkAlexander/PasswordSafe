@@ -241,6 +241,7 @@ class UnlockedDatabase(GObject.GObject):
                 stack_page.destroy()
 
             self.add_stack_page(scrolled_window)
+            self.switch_stack_page(self.current_element)
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
@@ -274,6 +275,7 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
+                self.switch_stack_page(self.current_element)
 
                 list_box.hide()
 
@@ -302,6 +304,7 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window.show_all()
 
                 self.add_stack_page(scrolled_window)
+                self.switch_stack_page(self.current_element)
                 if new_entry is True:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, True)
                 else:
@@ -320,7 +323,6 @@ class UnlockedDatabase(GObject.GObject):
 
     def add_stack_page(self, scrolled_window):
         self.stack.add_named(scrolled_window, self.current_element.uuid.urn)
-        self.switch_stack_page(self.current_element)
 
     def switch_stack_page(self, element):
         self.current_element = element

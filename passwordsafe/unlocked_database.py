@@ -647,6 +647,17 @@ class UnlockedDatabase(GObject.GObject):
             self.lock_timeout_database()
 
     def on_back_button_mobile_clicked(self, button):
+        """Update the view when the back button is clicked.
+
+        This button is only visible in the mobile mode.
+
+        * if an Entry or a Group in edit mode was visible the parent
+          group is displayed
+        * if the visible group was the parent group, the database is
+          locked.
+
+        :param Gtk.Button button: clicked button
+        """
         page_uuid = self.current_element.uuid
         scrolled_page = self.stack.get_child_by_name(page_uuid.urn)
         group_page = self.database_manager.check_is_group(page_uuid)

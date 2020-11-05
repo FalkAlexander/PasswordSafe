@@ -348,7 +348,7 @@ class UnlockedDatabase(GObject.GObject):
         else:
             self.entry_page.set_entry_page_headerbar()
 
-    def _remove_stack_page(self, element: Union[Entry, Group]) -> None:
+    def _remove_page(self, element: Union[Entry, Group]) -> None:
         """Remove an element (Entry, Group) from the stack if present."""
         stack_page_name = element.uuid.urn
         stack_page = self.stack.get_child_by_name(stack_page_name)
@@ -542,7 +542,7 @@ class UnlockedDatabase(GObject.GObject):
             self.current_element)
         self.database_manager.delete_from_database(self.current_element)
 
-        self._remove_stack_page(self.current_element)
+        self._remove_page(self.current_element)
         self.current_element = parent_group
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
@@ -550,7 +550,7 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
-        self._remove_stack_page(parent_group)
+        self._remove_page(parent_group)
         self.show_page_of_new_directory(False, False)
         self.pathbar.rebuild_pathbar(self.current_element)
 
@@ -575,7 +575,7 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
-        self._remove_stack_page(parent_group)
+        self._remove_page(parent_group)
         self.current_element = parent_group
         self.show_page_of_new_directory(False, False)
 

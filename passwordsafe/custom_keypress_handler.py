@@ -31,7 +31,7 @@ class CustomKeypressHandler:
         if not self._current_view_accessible():
             return False
 
-        group_uuid = self.unlocked_database.current_group.uuid
+        group_uuid = self.unlocked_database.current_element.uuid
         scrolled_page = self.unlocked_database.stack.get_child_by_name(
             group_uuid.urn)
         if (scrolled_page.edit_page
@@ -131,12 +131,12 @@ class CustomKeypressHandler:
 
     def _can_goto_parent_group(self):
         """Check that the current item in the pathbar has a parent."""
-        current_group = self.unlocked_database.current_group
+        current_element = self.unlocked_database.current_element
         db_manager = self.unlocked_database.database_manager
 
         if (not self._current_view_accessible()
-            or (db_manager.check_is_group_object(current_group)
-                and db_manager.check_is_root_group(current_group))):
+            or (db_manager.check_is_group_object(current_element)
+                and db_manager.check_is_root_group(current_element))):
             return False
 
         return True
@@ -146,11 +146,11 @@ class CustomKeypressHandler:
             return False
 
         db_manager = self.unlocked_database.database_manager
-        group_uuid = self.unlocked_database.current_group.uuid
+        element_uuid = self.unlocked_database.current_element.uuid
         scrolled_page = self.unlocked_database.stack.get_child_by_name(
-            group_uuid.urn)
+            element_uuid.urn)
         if (eventkey.keyval == Gdk.KEY_BackSpace
-                and db_manager.check_is_group(group_uuid)
+                and db_manager.check_is_group(element_uuid)
                 and not scrolled_page.edit_page):
             self._goto_parent_group()
         elif (eventkey.keyval == Gdk.KEY_Escape

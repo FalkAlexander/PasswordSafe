@@ -148,8 +148,8 @@ class Pathbar(Gtk.HBox):
         if self.check_values_of_edit_page(self.database_manager.get_root_group()) is False:
             self.query_page_update()
 
-        self.unlocked_database.current_group = self.database_manager.get_root_group()
-        page_name = self.unlocked_database.current_group.uuid.urn
+        self.unlocked_database.current_element = self.database_manager.get_root_group()
+        page_name = self.unlocked_database.current_element.uuid.urn
         if self.unlocked_database.stack.get_child_by_name(page_name):
             self.unlocked_database.switch_stack_page()
         else:
@@ -158,7 +158,7 @@ class Pathbar(Gtk.HBox):
     def on_pathbar_button_clicked(self, pathbar_button):
         self.unlocked_database.start_database_lock_timer()
         pathbar_button_uuid = pathbar_button.get_uuid()
-        current_uuid = self.unlocked_database.current_group.uuid
+        current_uuid = self.unlocked_database.current_element.uuid
 
         if pathbar_button_uuid != current_uuid:
             if pathbar_button.get_is_group() is True:
@@ -168,13 +168,13 @@ class Pathbar(Gtk.HBox):
                 if not self.check_values_of_edit_page(self.database_manager.get_group(pathbar_button_uuid)):
                     self.query_page_update()
 
-                self.unlocked_database.current_group = self.database_manager.get_group(pathbar_button.get_uuid())
+                self.unlocked_database.current_element = self.database_manager.get_group(pathbar_button.get_uuid())
                 self.unlocked_database.switch_stack_page()
             elif pathbar_button.get_is_group() is False and self.unlocked_database.selection_ui.selection_mode_active is False:
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
                 entry = self.database_manager.get_entry_object_from_uuid(pathbar_button.get_uuid())
-                self.unlocked_database.current_group = entry
+                self.unlocked_database.current_element = entry
                 if self.unlocked_database.stack.get_child_by_name(pathbar_button_uuid.urn) is not None:
                     self.unlocked_database.switch_stack_page()
                 else:
@@ -185,30 +185,26 @@ class Pathbar(Gtk.HBox):
     #
 
     def check_is_edit_page(self):
-        """Return if the current page is an 'edit page'
-
-        FIXME: current_group can also be an entry and not a group!
-        """
-        page_name = self.unlocked_database.current_group.uuid.urn
+        """Return if the current page is an 'edit page'"""
+        page_name = self.unlocked_database.current_element.uuid.urn
         page = self.unlocked_database.stack.get_child_by_name(page_name)
         return page.check_is_edit_page()
 
     def check_update_needed(self):
         """Returns True if the pathbar needs updating"""
-        page_name = self.unlocked_database.current_group.uuid.urn
+        page_name = self.unlocked_database.current_element.uuid.urn
         page = self.unlocked_database.stack.get_child_by_name(page_name)
         return page.is_dirty
 
     def check_is_edit_page_from_group(self):
-        # FIXME: current_group can be an Entry too!
-        ele_uuid = self.unlocked_database.current_group.uuid
+        ele_uuid = self.unlocked_database.current_element.uuid
         is_group = self.database_manager.check_is_group(ele_uuid)
         return is_group
 
     def query_page_update(self):
         if self.check_is_edit_page() is True:
             if self.check_update_needed() is True:
-                edit_page = self.unlocked_database.current_group
+                edit_page = self.unlocked_database.current_element
                 update_group = NotImplemented
 
                 if self.check_is_edit_page_from_group() is True:
@@ -233,47 +229,47 @@ class Pathbar(Gtk.HBox):
                 if self.check_is_edit_page_from_group() is False:
                     return
 
-                edit_page = self.unlocked_database.current_group
+                edit_page = self.unlocked_database.current_element
                 self.unlocked_database.schedule_stack_page_for_destroy(edit_page.uuid)
 
     def page_update_queried(self):
         """Marks the curent page as not dirty"""
-        page_name = self.unlocked_database.current_group.uuid.urn
+        page_name = self.unlocked_database.current_element.uuid.urn
         page = self.unlocked_database.stack.get_child_by_name(page_name)
         page.is_dirty = False
 
     def check_values_of_edit_page(self, parent_group: Group) -> bool:
         """Check all values of the group/entry - if all are blank we delete the entry/group and return true"""
-        current_group = self.unlocked_database.current_group
-        notes = self.database_manager.get_notes(current_group)
-        icon = self.database_manager.get_icon(current_group)
+        current_elt = self.unlocked_database.current_element
+        notes = self.database_manager.get_notes(current_elt)
+        icon = self.database_manager.get_icon(current_elt)
 
-        if self.database_manager.check_is_group_object(current_group):
-            group_name = self.database_manager.get_group_name(current_group)
+        if self.database_manager.check_is_group_object(current_elt):
+            group_name = self.database_manager.get_group_name(current_elt)
             if not (group_name or notes or (icon != "0")):
                 parent_group = self.database_manager.get_parent_group(
-                    current_group)
-                self.database_manager.delete_from_database(current_group)
+                    current_elt)
+                self.database_manager.delete_from_database(current_elt)
                 self.rebuild_pathbar(parent_group)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
                 return True
 
             return False
         else:
-            entry_title = self.database_manager.get_entry_name(current_group)
+            entry_title = self.database_manager.get_entry_name(current_elt)
             entry_username = self.database_manager.get_entry_username(
-                current_group)
+                current_elt)
             entry_password = self.database_manager.get_entry_password(
-                current_group)
-            entry_url = self.database_manager.get_entry_url(current_group)
+                current_elt)
+            entry_url = self.database_manager.get_entry_url(current_elt)
             entry_attributes = self.database_manager.get_entry_attributes(
-                current_group)
+                current_elt)
             if not (entry_title or entry_username or entry_password
                     or entry_url or notes or (icon != "0")
                     or entry_attributes):
                 parent_group = self.database_manager.get_parent_group(
-                    current_group)
-                self.database_manager.delete_from_database(current_group)
+                    current_elt)
+                self.database_manager.delete_from_database(current_elt)
                 self.rebuild_pathbar(parent_group)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
                 return True

@@ -39,7 +39,7 @@ class EntryPage:
 
         filename_label = self.unlocked_database.builder.get_object("filename_label")
         name = self.unlocked_database.database_manager.get_entry_name(
-            self.unlocked_database.current_group)
+            self.unlocked_database.current_element)
         filename_label.set_text(name)
 
         secondary_menupopover_button = self.unlocked_database.builder.get_object("secondary_menupopover_button")
@@ -65,7 +65,7 @@ class EntryPage:
 
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
 
         if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True or add_all is True:
@@ -331,7 +331,8 @@ class EntryPage:
             properties_list_box.add(scrolled_page.show_all_row)
 
     def add_attribute_property_row(self, key, value):
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
 
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
@@ -363,7 +364,7 @@ class EntryPage:
 
     def on_show_all_properties_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
 
         for row in scrolled_page.properties_list_box.get_children():
@@ -373,15 +374,15 @@ class EntryPage:
 
     def on_property_value_entry_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
 
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element).urn)
         scrolled_page.is_dirty = True
 
         if type_name == "name":
             self.unlocked_database.database_manager.set_entry_name(entry_uuid, widget.get_text())
 
-            pathbar_button = self.unlocked_database.pathbar.get_pathbar_button(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group))
+            pathbar_button = self.unlocked_database.pathbar.get_pathbar_button(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element))
             pathbar_button.set_label(widget.get_text())
 
         elif type_name == "username":
@@ -403,8 +404,8 @@ class EntryPage:
             return
 
         self.unlocked_database.start_database_lock_timer()
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
 
         if str(self.unlocked_database.database_manager.get_icon(entry_uuid)) == button.get_name():
             return
@@ -428,8 +429,9 @@ class EntryPage:
     #
 
     def on_attributes_add_button_clicked(self, _widget):
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(
+            entry_uuid.urn)
 
         key = scrolled_page.attributes_key_entry.get_text()
         value = scrolled_page.attributes_value_entry.get_text()
@@ -453,8 +455,9 @@ class EntryPage:
         scrolled_page.is_dirty = True
 
     def on_attribute_remove_button_clicked(self, button):
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group).urn)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
+        scrolled_page = self.unlocked_database.stack.get_child_by_name(
+            entry_uuid.urn)
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -463,7 +466,7 @@ class EntryPage:
         scrolled_page.properties_list_box.remove(parent)
 
     def on_attributes_value_entry_changed(self, widget):
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
 
         parent = widget.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -471,7 +474,7 @@ class EntryPage:
         self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, widget.get_text())
 
     def on_attribute_key_edit_button_clicked(self, button):
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -540,7 +543,7 @@ class EntryPage:
         response = select_dialog.run()
 
         if response == Gtk.ResponseType.ACCEPT:
-            entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+            entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
             for uri in select_dialog.get_uris():
                 attachment = Gio.File.new_for_uri(uri)
                 byte_buffer = attachment.load_bytes()[0].get_data()
@@ -548,7 +551,7 @@ class EntryPage:
                 self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, byte_buffer, filename))
 
     def add_attachment_row(self, attachment):
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
 
         builder = Gtk.Builder()
@@ -598,7 +601,7 @@ class EntryPage:
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
-        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_group)
+        entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
 
         for row in scrolled_page.attachment_list_box.get_children():

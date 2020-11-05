@@ -25,7 +25,8 @@ class GroupPage:
         self.unlocked_database.builder.get_object("linkedbox_right").hide()
 
         filename_label = self.unlocked_database.builder.get_object("filename_label")
-        group_name = self.unlocked_database.database_manager.get_group_name(self.unlocked_database.current_group)
+        group_name = self.unlocked_database.database_manager.get_group_name(
+            self.unlocked_database.current_element)
         filename_label.set_text(group_name)
 
         secondary_menupopover_button = self.unlocked_database.builder.get_object("secondary_menupopover_button")
@@ -47,8 +48,7 @@ class GroupPage:
     #
 
     def insert_group_properties_into_listbox(self, properties_list_box):
-        # FIXME: current_group can be an Entry too!
-        group_uuid = self.unlocked_database.current_group.uuid
+        elt_uuid = self.unlocked_database.current_element.uuid
 
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
@@ -62,16 +62,17 @@ class GroupPage:
         notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
         buffer = notes_property_value_entry.get_buffer()
 
-        name_value = self.unlocked_database.database_manager.get_group_name(group_uuid)
+        name_value = self.unlocked_database.database_manager.get_group_name(
+            elt_uuid)
         notes_value = self.unlocked_database.database_manager.get_notes(
-            group_uuid)
+            elt_uuid)
 
-        if self.unlocked_database.database_manager.has_group_name(group_uuid) is True:
+        if self.unlocked_database.database_manager.has_group_name(elt_uuid) is True:
             name_property_value_entry.set_text(name_value)
         else:
             name_property_value_entry.set_text("")
 
-        if self.unlocked_database.database_manager.has_group_notes(group_uuid) is True:
+        if self.unlocked_database.database_manager.has_group_notes(elt_uuid) is True:
             buffer.set_text(notes_value)
         else:
             buffer.set_text("")
@@ -90,7 +91,7 @@ class GroupPage:
 
     def on_property_value_group_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
-        ele_uuid = self.unlocked_database.current_group.uuid
+        ele_uuid = self.unlocked_database.current_element.uuid
 
         scrolled_page = self.unlocked_database.stack.get_child_by_name(ele_uuid.urn)
         scrolled_page.is_dirty = True

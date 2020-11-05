@@ -23,7 +23,7 @@ class ResponsiveUI():
         """Move pathbar between top headerbar and bottom actionbar if needed"""
 
         db = self.unlocked_database  # pylint: disable=C0103
-        page_name = db.current_group.uuid.urn
+        page_name = db.current_element.uuid.urn
         page = db.stack.get_child_by_name(page_name)
 
         if db.window.mobile_width and not db.action_bar.get_children():
@@ -48,7 +48,7 @@ class ResponsiveUI():
             db.headerbar_box.show()
 
     def headerbar_title(self):
-        page_name = self.unlocked_database.current_group.uuid.urn
+        page_name = self.unlocked_database.current_element.uuid.urn
         scrolled_page = self.unlocked_database.stack.get_child_by_name(page_name)
         if self.unlocked_database.window.mobile_width and not self.unlocked_database.selection_ui.selection_mode_active:
             if self.unlocked_database.builder.get_object("title_box").get_children():
@@ -58,15 +58,15 @@ class ResponsiveUI():
             if scrolled_page.edit_page is False:
                 filename_label.set_text(ntpath.basename(self.unlocked_database.database_manager.database_path))
             else:
-                if self.unlocked_database.database_manager.check_is_group_object(self.unlocked_database.current_group) is False:
+                if self.unlocked_database.database_manager.check_is_group_object(self.unlocked_database.current_element) is False:
                     db_manager = self.unlocked_database.database_manager
                     entry_name = db_manager.get_entry_name(
-                        self.unlocked_database.current_group)
+                        self.unlocked_database.current_element)
                     filename_label.set_text(entry_name)
                 else:
                     db_manager = self.unlocked_database.database_manager
                     group_name = db_manager.get_group_name(
-                        self.unlocked_database.current_group)
+                        self.unlocked_database.current_element)
                     filename_label.set_text(group_name)
 
             self.unlocked_database.builder.get_object("title_box").add(filename_label)
@@ -84,7 +84,7 @@ class ResponsiveUI():
             self.unlocked_database.builder.get_object("pathbar_button_back_revealer").set_reveal_child(False)
 
     def headerbar_selection_button(self):
-        page_name = self.unlocked_database.current_group.uuid.urn
+        page_name = self.unlocked_database.current_element.uuid.urn
         scrolled_page = self.unlocked_database.stack.get_child_by_name(page_name)
         if self.unlocked_database.selection_ui.selection_mode_active:
             return

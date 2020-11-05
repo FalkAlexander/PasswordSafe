@@ -133,7 +133,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             # Do nothing for Search View
-            if db.search_active:
+            if db.props.search_active:
                 return
 
             scrolled_page = db.get_current_page()
@@ -744,7 +744,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if scrolled_page.edit_page:
                 return
 
-            if action_db.search_active:
+            if action_db.props.search_active:
                 return
 
             if arg == "entry":

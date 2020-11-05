@@ -92,6 +92,8 @@ class UnlockedDatabase(GObject.GObject):
         # Declare database as opened
         self.window.opened_databases.append(self)
 
+        self._search_active = False
+
         # Browser Mode
         self.assemble_listbox()
         self.start_save_loop()
@@ -162,7 +164,7 @@ class UnlockedDatabase(GObject.GObject):
         mod_box.add(browser_buttons_box)
 
         search_button = self.builder.get_object("search_button")
-        search_button.connect("clicked", self.search.set_search_headerbar)
+        search_button.connect("clicked", self._on_set_search_headerbar)
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
@@ -215,10 +217,6 @@ class UnlockedDatabase(GObject.GObject):
     def show_page_of_new_directory(self, edit_group, new_entry):
         # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_scheduled_stack_page()
-
-        # Check if we need to remove the search headerbar
-        if self.parent_widget.get_headerbar() is not self.headerbar:
-            self.search.remove_search_headerbar(None)
 
         # Creation of group edit page
         if edit_group is True:
@@ -473,6 +471,9 @@ class UnlockedDatabase(GObject.GObject):
     # Events
     #
 
+    def _on_set_search_headerbar(self, btn):
+        self.props.search_active = True
+
     def on_list_box_row_activated(self, _widget, list_box_row):
         self.start_database_lock_timer()
 
@@ -699,7 +700,7 @@ class UnlockedDatabase(GObject.GObject):
             parent = self.database_manager.get_parent_group(page_uuid)
         elif (not scrolled_page.edit_page
               and not self.selection_ui.selection_mode_active
-              and not self.search_active):
+              and not self.props.search_active):
             if self.database_manager.check_is_root_group(self.current_element) is True:
                 self.on_lock_button_clicked(None)
                 return
@@ -939,15 +940,31 @@ class UnlockedDatabase(GObject.GObject):
         app = Gio.Application.get_default
         app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
 
-    @property
-    def search_active(self):
-        """Property to know if search is active
+    @GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    def search_active(self) -> bool:
+        """Property to know if search is active.
 
-        :returns: True is search view is visible
+        It is used by Search to update the widgets (mainly the
+        headerbar) accordingly.
+
+        :returns: True is search is active
         :rtype: bool
         """
-        search_view = self.stack.get_child_by_name("search")
-        return self.stack.get_visible_child() is search_view
+        return self._search_active
+
+    @search_active.setter  # type: ignore
+    def search_active(self, value: bool) -> None:
+        """Set the search mode
+
+        :param value: new search_active
+        """
+        self._search_active = value
+        if self._search_active:
+            self.stack.set_visible_child(
+                self.stack.get_child_by_name("search"))
+        else:
+            self.show_page_of_new_directory(False, False)
 
     @GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)

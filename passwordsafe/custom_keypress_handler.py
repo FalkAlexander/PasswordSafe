@@ -38,9 +38,7 @@ class CustomKeypressHandler:
                 return True
         elif (not scrolled_page.edit_page
               and (eventkey.string.isalpha() or eventkey.string.isnumeric())):
-            search_btn = self.unlocked_database.builder.get_object(
-                "search_button")
-            self.unlocked_database.search.set_search_headerbar(search_btn)
+            self.unlocked_database.props.search_active = True
             return True
 
         return False

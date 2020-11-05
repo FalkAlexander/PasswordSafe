@@ -77,7 +77,7 @@ class SelectionUI:
         self.unlocked_database.responsive_ui.headerbar_title()
 
     def remove_selection_headerbar(self):
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
                 for row in list_box:
@@ -123,7 +123,7 @@ class SelectionUI:
         self.unlocked_database.responsive_ui.headerbar_title()
 
     def prepare_selection_page(self, select_row=None):
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
                 for row in list_box:
@@ -168,7 +168,7 @@ class SelectionUI:
                 rebuild_pathbar = True
                 reset_stack_page = True
 
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 
@@ -246,7 +246,7 @@ class SelectionUI:
             if self.unlocked_database.pathbar.uuid_in_pathbar(group_row.get_uuid()) is True:
                 rebuild_pathbar = True
 
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 

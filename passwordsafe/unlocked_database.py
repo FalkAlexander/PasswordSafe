@@ -369,6 +369,13 @@ class UnlockedDatabase(GObject.GObject):
         element_uuid = self.current_element.uuid
         return self.stack.get_child_by_name(element_uuid.urn)
 
+    def get_pages(self) -> List[ScrolledPage]:
+        """Returns all the children of the stack.
+
+        :returns: All the children of the stack.
+        :rtype: list
+        """
+        return self.stack.get_children()
 
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)

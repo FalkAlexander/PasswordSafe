@@ -272,8 +272,7 @@ class SelectionUI:
         self.unlocked_database.database_manager.is_dirty = True
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
-        page_name = self.unlocked_database.current_element.uuid.urn
-        page = self.unlocked_database.stack.get_child_by_name(page_name)
+        page = self.unlocked_database.get_current_page()
         viewport = page.get_children()[0]
         overlay = viewport.get_children()[0]
         list_box = NotImplemented

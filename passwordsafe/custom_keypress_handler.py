@@ -29,9 +29,7 @@ class CustomKeypressHandler:
         if not self._current_view_accessible():
             return False
 
-        group_uuid = self.unlocked_database.current_element.uuid
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(
-            group_uuid.urn)
+        scrolled_page = self.unlocked_database.get_current_page()
         if (scrolled_page.edit_page
                 and eventkey.keyval == Gdk.KEY_Tab):
             focused_entry = self.unlocked_database.window.get_focus()
@@ -145,8 +143,7 @@ class CustomKeypressHandler:
 
         db_manager = self.unlocked_database.database_manager
         element_uuid = self.unlocked_database.current_element.uuid
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(
-            element_uuid.urn)
+        scrolled_page = self.unlocked_database.get_current_page()
         if (eventkey.keyval == Gdk.KEY_BackSpace
                 and db_manager.check_is_group(element_uuid)
                 and not scrolled_page.edit_page):

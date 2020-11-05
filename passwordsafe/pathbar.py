@@ -149,8 +149,7 @@ class Pathbar(Gtk.HBox):
             self.query_page_update()
 
         self.unlocked_database.current_element = self.database_manager.get_root_group()
-        page_name = self.unlocked_database.current_element.uuid.urn
-        if self.unlocked_database.stack.get_child_by_name(page_name):
+        if self.unlocked_database.get_current_page():
             self.unlocked_database.switch_stack_page()
         else:
             self.unlocked_database.show_page_of_new_directory(False, False)
@@ -186,14 +185,12 @@ class Pathbar(Gtk.HBox):
 
     def check_is_edit_page(self):
         """Return if the current page is an 'edit page'"""
-        page_name = self.unlocked_database.current_element.uuid.urn
-        page = self.unlocked_database.stack.get_child_by_name(page_name)
+        page = self.unlocked_database.get_current_page()
         return page.check_is_edit_page()
 
     def check_update_needed(self):
         """Returns True if the pathbar needs updating"""
-        page_name = self.unlocked_database.current_element.uuid.urn
-        page = self.unlocked_database.stack.get_child_by_name(page_name)
+        page = self.unlocked_database.get_current_page()
         return page.is_dirty
 
     def check_is_edit_page_from_group(self):
@@ -234,8 +231,7 @@ class Pathbar(Gtk.HBox):
 
     def page_update_queried(self):
         """Marks the curent page as not dirty"""
-        page_name = self.unlocked_database.current_element.uuid.urn
-        page = self.unlocked_database.stack.get_child_by_name(page_name)
+        page = self.unlocked_database.get_current_page()
         page.is_dirty = False
 
     def check_values_of_edit_page(self, parent_group: Group) -> bool:

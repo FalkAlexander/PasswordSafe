@@ -360,6 +360,16 @@ class UnlockedDatabase(GObject.GObject):
     def current_element(self, element: Union[Entry, Group]) -> None:
         self._current_element = element
 
+    def get_current_page(self) -> ScrolledPage:
+        """Returns the page associated with current_element.
+
+        :returns: current page
+        :rtype: Gtk.Widget
+        """
+        element_uuid = self.current_element.uuid
+        return self.stack.get_child_by_name(element_uuid.urn)
+
+
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)
 

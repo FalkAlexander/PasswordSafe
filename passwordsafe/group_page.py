@@ -93,7 +93,7 @@ class GroupPage:
         self.unlocked_database.start_database_lock_timer()
         ele_uuid = self.unlocked_database.current_element.uuid
 
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(ele_uuid.urn)
+        scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.is_dirty = True
 
         if type_name == "name":

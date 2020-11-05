@@ -148,7 +148,7 @@ class Pathbar(Gtk.HBox):
         if self.check_values_of_edit_page(self.database_manager.get_root_group()) is False:
             self.query_page_update()
 
-        self.unlocked_database.switch_stack_page(
+        self.unlocked_database.switch_page(
             self.database_manager.get_root_group())
 
     def on_pathbar_button_clicked(self, pathbar_button):
@@ -166,13 +166,13 @@ class Pathbar(Gtk.HBox):
 
                 group = self.database_manager.get_group(
                     pathbar_button.get_uuid())
-                self.unlocked_database.switch_stack_page(group)
+                self.unlocked_database.switch_page(group)
             elif pathbar_button.get_is_group() is False and self.unlocked_database.selection_ui.selection_mode_active is False:
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
                 entry = self.database_manager.get_entry_object_from_uuid(
                     pathbar_button.get_uuid())
-                self.unlocked_database.switch_stack_page(entry)
+                self.unlocked_database.switch_page(entry)
     #
     # Helper Methods
     #

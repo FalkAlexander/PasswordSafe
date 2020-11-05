@@ -1,5 +1,3 @@
-from uuid import UUID
-
 from gi.repository import Gtk, Gdk
 import passwordsafe.pathbar_button
 
@@ -97,9 +95,9 @@ class CustomKeypressHandler:
 
     def _goto_parent_group(self):
         """Go to the parent group of the pathbar."""
-        uuid = UUID(self.unlocked_database.stack.get_visible_child_name())
         db_manager = self.unlocked_database.database_manager
-        parent_group = db_manager.get_parent_group(uuid)
+        parent_group = db_manager.get_parent_group(
+            self.unlocked_database.current_element)
 
         if db_manager.check_is_root_group(parent_group):
             pathbar = self.unlocked_database.pathbar

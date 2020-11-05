@@ -331,6 +331,11 @@ class EntryPage:
             properties_list_box.add(scrolled_page.show_all_row)
 
     def add_attribute_property_row(self, key, value):
+        """Add an attribute to the attributes list view.
+
+        :param str key: property name
+        :param str value: property value
+        """
         entry_uuid = self.unlocked_database.database_manager.get_entry_uuid_from_entry_object(self.unlocked_database.current_element)
         scrolled_page = self.unlocked_database.stack.get_child_by_name(entry_uuid.urn)
 

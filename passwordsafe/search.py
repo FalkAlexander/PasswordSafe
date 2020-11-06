@@ -63,6 +63,7 @@ class Search:
         :param UnlockedDatabase db_view: unlocked_database view
         :param GObject.ParamSpecBoolean value: new value as GParamSpec
         """
+        # pylint: disable=unused-argument
         search_active = self.unlocked_database.props.search_active
 
         if search_active:

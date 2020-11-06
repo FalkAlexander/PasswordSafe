@@ -315,7 +315,7 @@ class UnlockedDatabase(GObject.GObject):
                 self.set_browser_headerbar()
             # For entry
             else:
-                self._stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_element).urn)
+                self._stack.set_visible_child_name(self.current_element.uuid.urn)
                 self.entry_page.set_entry_page_headerbar()
 
     def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
@@ -520,9 +520,11 @@ class UnlockedDatabase(GObject.GObject):
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True
-        entry = self.database_manager.add_entry_to_database("", "", "", None, None, "0", self.current_element.uuid)
+        elt_uuid = self.current_element.uuid
+        entry = self.database_manager.add_entry_to_database(
+            "", "", "", None, None, "0", elt_uuid)
         self.current_element = entry
-        self.pathbar.add_pathbar_button_to_pathbar(self.database_manager.get_entry_uuid_from_entry_object(self.current_element))
+        self.pathbar.add_pathbar_button_to_pathbar(elt_uuid)
         self.show_page_of_new_directory(False, True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:

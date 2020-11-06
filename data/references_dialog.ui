@@ -3,15 +3,15 @@
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libhandy" version="1.0"/>
-  <object class="GtkPopoverMenu" id="codes_popover">
+  <object class="GtkPopover" id="codes_popover">
     <property name="can_focus">False</property>
     <property name="position">bottom</property>
     <child>
       <object class="GtkGrid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">8</property>
-        <property name="margin_right">8</property>
+        <property name="margin_start">8</property>
+        <property name="margin_end">8</property>
         <property name="margin_top">8</property>
         <property name="margin_bottom">8</property>
         <property name="row_spacing">6</property>
@@ -209,20 +209,16 @@
           </packing>
         </child>
       </object>
-      <packing>
-        <property name="submenu">main</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
-  <object class="GtkPopoverMenu" id="prop_selection_popover">
+  <object class="GtkPopover" id="prop_selection_popover">
     <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">8</property>
-        <property name="margin_right">8</property>
+        <property name="margin_start">8</property>
+        <property name="margin_end">8</property>
         <property name="margin_top">8</property>
         <property name="margin_bottom">8</property>
         <property name="orientation">vertical</property>
@@ -297,92 +293,53 @@
           </packing>
         </child>
       </object>
-      <packing>
-        <property name="submenu">main</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
-  <object class="GtkDialog" id="references_dialog">
-    <property name="can_focus">False</property>
+  <object class="HdyWindow" id="references_dialog">
     <property name="default_width">440</property>
     <property name="default_height">200</property>
-    <child type="titlebar">
-      <object class="GtkHeaderBar">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="title" translatable="yes">References</property>
-        <property name="has_subtitle">False</property>
-        <property name="show_close_button">True</property>
-      </object>
-    </child>
-    <child internal-child="vbox">
+    <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="expand">True</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="HdyClamp">
+          <object class="HdyHeaderBar">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="valign">start</property>
-            <property name="maximum_size">500</property>
+            <property name="show-close-button">True</property>
+            <property name="title" translatable="yes">References</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="expand">True</property>
             <child>
-              <object class="GtkBox">
+              <object class="HdyClamp">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">10</property>
-                <property name="margin_right">10</property>
-                <property name="margin_top">10</property>
-                <property name="margin_bottom">10</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkLabel" id="section_label_ref_syntax">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="valign">start</property>
-                    <property name="margin_top">5</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Syntax</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">The placeholder syntax for field references is the following:</property>
-                    <property name="wrap">True</property>
-                    <property name="xalign">0</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
+                <property name="valign">start</property>
+                <property name="maximum_size">500</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="margin_start">12</property>
+                    <property name="margin_end">12</property>
+                    <property name="margin_top">12</property>
+                    <property name="margin_bottom">12</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="section_label_ref_syntax">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label">{REF:&lt;</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="margin_top">6</property>
+                        <property name="margin_bottom">6</property>
+                        <property name="label" translatable="yes">Syntax</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -391,22 +348,15 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEventBox" id="property_label">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="name">LinkLabel</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">Show Field Codes</property>
-                            <property name="label" translatable="yes">Property</property>
-                            <property name="ellipsize">end</property>
-                            <attributes>
-                              <attribute name="underline" value="True"/>
-                            </attributes>
-                          </object>
-                        </child>
+                        <property name="label" translatable="yes">The placeholder syntax for field references is the following:</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -415,13 +365,140 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label">&gt;@&lt;</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label">{REF:&lt;</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEventBox" id="property_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="name">LinkLabel</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">Show Field Codes</property>
+                                <property name="label" translatable="yes">Property</property>
+                                <property name="ellipsize">end</property>
+                                <attributes>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label">&gt;@&lt;</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEventBox" id="identifier_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="name">LinkLabel</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="tooltip_text" translatable="yes">Show Field Codes</property>
+                                <property name="label" translatable="yes">Identifier</property>
+                                <property name="ellipsize">end</property>
+                                <attributes>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label">&gt;:&lt;</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEventBox" id="uuid_label">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="name">LinkLabel</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="label">UUID</property>
+                                <property name="ellipsize">end</property>
+                                <attributes>
+                                  <attribute name="underline" value="True"/>
+                                </attributes>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">5</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label">&gt;}</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">6</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -430,22 +507,17 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEventBox" id="identifier_label">
+                      <object class="GtkLabel" id="section_label_reference">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="name">LinkLabel</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="tooltip_text" translatable="yes">Show Field Codes</property>
-                            <property name="label" translatable="yes">Identifier</property>
-                            <property name="ellipsize">end</property>
-                            <attributes>
-                              <attribute name="underline" value="True"/>
-                            </attributes>
-                          </object>
-                        </child>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="margin_top">30</property>
+                        <property name="margin_bottom">6</property>
+                        <property name="label" translatable="yes">Reference</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -454,12 +526,70 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label">&gt;:&lt;</property>
+                        <child>
+                          <object class="GtkMenuButton" id="property_popover_button">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
+                            <property name="popover">prop_selection_popover</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="spacing">2</property>
+                                <child>
+                                  <object class="GtkLabel" id="selected_property_label">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="label" translatable="yes">Property</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="icon_name">pan-down-symbolic</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">True</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="reference_entry">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="hexpand">True</property>
+                            <property name="editable">False</property>
+                            <property name="caps_lock_warning">False</property>
+                            <property name="secondary_icon_name">edit-copy-symbolic</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                         <style>
-                          <class name="dim-label"/>
+                          <class name="linked"/>
                         </style>
                       </object>
                       <packing>
@@ -468,142 +598,7 @@
                         <property name="position">4</property>
                       </packing>
                     </child>
-                    <child>
-                      <object class="GtkEventBox" id="uuid_label">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="name">LinkLabel</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label">UUID</property>
-                            <property name="ellipsize">end</property>
-                            <attributes>
-                              <attribute name="underline" value="True"/>
-                            </attributes>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label">&gt;}</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">6</property>
-                      </packing>
-                    </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="section_label_reference">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">start</property>
-                    <property name="valign">start</property>
-                    <property name="margin_top">30</property>
-                    <property name="margin_bottom">5</property>
-                    <property name="label" translatable="yes">Reference</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkMenuButton" id="property_popover_button">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="popover">prop_selection_popover</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="spacing">2</property>
-                            <child>
-                              <object class="GtkLabel" id="selected_property_label">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">Property</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_name">pan-down-symbolic</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="reference_entry">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hexpand">True</property>
-                        <property name="editable">False</property>
-                        <property name="caps_lock_warning">False</property>
-                        <property name="secondary_icon_name">edit-copy-symbolic</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <style>
-                      <class name="linked"/>
-                    </style>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">4</property>
-                  </packing>
                 </child>
               </object>
             </child>
@@ -612,15 +607,15 @@
       </object>
     </child>
   </object>
-  <object class="GtkPopoverMenu" id="uuid_popover">
+  <object class="GtkPopover" id="uuid_popover">
     <property name="can_focus">False</property>
     <property name="position">bottom</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_left">8</property>
-        <property name="margin_right">8</property>
+        <property name="margin_start">8</property>
+        <property name="margin_end">8</property>
         <property name="margin_top">8</property>
         <property name="margin_bottom">8</property>
         <property name="orientation">vertical</property>
@@ -635,14 +630,9 @@ It can be found in the properties of the entry.</property>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="position">0</property>
           </packing>
         </child>
       </object>
-      <packing>
-        <property name="submenu">main</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
 </interface>

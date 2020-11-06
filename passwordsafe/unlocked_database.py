@@ -520,11 +520,10 @@ class UnlockedDatabase(GObject.GObject):
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True
-        elt_uuid = self.current_element.uuid
         new_entry: Entry = self.database_manager.add_entry_to_database(
-            "", "", "", None, None, "0", elt_uuid)
+            "", "", "", None, None, "0", self.current_element.uuid)
         self.current_element = new_entry
-        self.pathbar.add_pathbar_button_to_pathbar(elt_uuid)
+        self.pathbar.add_pathbar_button_to_pathbar(new_entry.uuid)
         self.show_page_of_new_directory(False, True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:

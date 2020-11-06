@@ -5,7 +5,7 @@ from typing import List
 from gi.repository import Gio, GLib
 
 
-def generate(num_words: int, separator: str) -> str:
+def generate(num_words: int, separator: str = "-") -> str:
     """Generate a passphrase.
 
     :param int num_words: number of words requested

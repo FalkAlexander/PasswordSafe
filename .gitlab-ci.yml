@@ -34,7 +34,7 @@ pylint:
     allow_failure: true
     image: debian:sid
     script:
-        - pylint --rcfile=.pylintrc --max-line-length=350 --disable=missing-docstring --init-hook="import sys; sys.path.insert(0, '.')" passwordsafe/*.py
+        - pylint --rcfile=.pylintrc passwordsafe/*.py
 
 flatpak:
     stage: Build

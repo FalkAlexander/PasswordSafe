@@ -471,6 +471,7 @@ class UnlockedDatabase(GObject.GObject):
     #
 
     def _on_search_button_clicked(self, btn):
+        # pylint: disable=unused-argument
         self.props.search_active = True
 
     def on_list_box_row_activated(self, _widget, list_box_row):
@@ -788,6 +789,7 @@ class UnlockedDatabase(GObject.GObject):
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
 
     def _on_database_lock_changed(self, database_manager, value):
+        # pylint: disable=unused-argument
         locked = self.database_manager.props.locked
         if locked:
             self.cancel_timers()

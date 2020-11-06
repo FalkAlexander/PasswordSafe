@@ -56,12 +56,11 @@ debian:
         - apt-get -qq install -y --no-install-recommends -o dir::cache::archives=".apt" -o=Dpkg::Use-Pty=0 ${DEPS_DEB} > /dev/null
         - git config --global user.email "gitlab-ci@buildbot.org"
         - git config --global user.name "BuildBot @ gitlab-ci"
-        - git remote add debian https://salsa.debian.org/python-team/packages/gnome-passwordsafe.git
-        - git fetch debian
+        - git remote add debianx https://salsa.debian.org/python-team/packages/gnome-passwordsafe.git
+        - git fetch debianx
         - git checkout debian/master
         - gbp import-ref -uHEAD --upstream-branch=$CI_COMMIT_BRANCH --upstream-tag=origin/$CI_COMMIT_BRANCH
         - git rm debian/patches -rf
-        - sed -i "s/libhandy-0.0/libhandy-1/g" debian/control # remove after release
         - gbp dch -S --since=HEAD
         - sed -i "2iDEB_CONFIGURE_EXTRA_FLAGS = -Dprofile=development" debian/rules
         - echo -e "\noverride_dh_auto_configure:\n\tdh_auto_configure -- -Dprofile=development" >> debian/rules

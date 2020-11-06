@@ -603,12 +603,18 @@ class UnlockedDatabase(GObject.GObject):
             else:
                 self.selection_ui.row_selection_toggled(widget.get_parent())
 
-    def on_group_edit_button_clicked(self, button):
-        self.start_database_lock_timer()
-        group_uuid = button.get_parent().get_parent().get_parent().get_parent().uuid
-        group_object = self.database_manager.get_group(group_uuid)
+    def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
+        """Edit button in a GroupRow was clicked
 
-        self.current_element = group_object
+        button: The edit button in the GroupRow"""
+        self.start_database_lock_timer()  # Reset the lock timer
+        widget = button
+        # Get the ancestor GroupRow object
+        while not isinstance(widget, GroupRow):
+            widget = widget.get_parent()
+        group_uuid = widget.get_uuid()
+
+        self.current_element = self.database_manager.get_group(group_uuid)
         self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
         self.show_page_of_new_directory(True, False)
 

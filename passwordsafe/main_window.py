@@ -712,10 +712,6 @@ class MainWindow(Gtk.ApplicationWindow):
             action_db.on_sort_menu_button_entry_clicked(action, param, arg)
         elif name == "on_selection_popover_button_clicked":
             action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
-        elif name == "on_edit_undo":
-            action_db.undo_redo_receiver(arg)
-        elif name == "on_edit_redo":
-            action_db.undo_redo_receiver(arg)
 
     # Add Global Accelerator Actions
     def add_global_accelerator_actions(self):
@@ -724,8 +720,6 @@ class MainWindow(Gtk.ApplicationWindow):
             ("db.lock", "lock", None),
             ("db.add_entry", "add_action", "entry"),
             ("db.add_group", "add_action", "group"),
-            ("undo", "on_edit_undo", "undo"),
-            ("redo", "on_edit_redo", "redo"),
         ]
 
         for action, name, arg in actions:

@@ -1,9 +1,12 @@
+from uuid import UUID
 from gi.repository import Gtk
 from pykeepass.group import Group
+
 from passwordsafe.pathbar_button import PathbarButton
 
 
 class Pathbar(Gtk.HBox):
+    """Pathbar provides a breadcrumb-style Box with the current hierarchy"""
     unlocked_database = NotImplemented
     database_manager = NotImplemented
     path = NotImplemented
@@ -153,7 +156,7 @@ class Pathbar(Gtk.HBox):
 
     def on_pathbar_button_clicked(self, pathbar_button):
         self.unlocked_database.start_database_lock_timer()
-        pathbar_button_uuid = pathbar_button.get_uuid()
+        pathbar_button_uuid = pathbar_button.uuid
         current_uuid = self.unlocked_database.current_element.uuid
 
         if pathbar_button_uuid != current_uuid:
@@ -165,13 +168,13 @@ class Pathbar(Gtk.HBox):
                     self.query_page_update()
 
                 group = self.database_manager.get_group(
-                    pathbar_button.get_uuid())
+                    pathbar_button.uuid)
                 self.unlocked_database.switch_page(group)
             elif pathbar_button.get_is_group() is False and self.unlocked_database.selection_ui.selection_mode_active is False:
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
                 entry = self.database_manager.get_entry_object_from_uuid(
-                    pathbar_button.get_uuid())
+                    pathbar_button.uuid)
                 self.unlocked_database.switch_page(entry)
     #
     # Helper Methods
@@ -266,16 +269,16 @@ class Pathbar(Gtk.HBox):
 
             return False
 
-    def uuid_in_pathbar(self, uuid):
+    def uuid_in_pathbar(self, uuid: UUID) -> bool:
         """Return True if the uuid entry is visible in the bar"""
         for button in self.get_children():
             if button.get_name() == "PathbarButtonDynamic" and \
-               button.get_uuid() == uuid:
+               button.uuid == uuid:
                 return True
         return False
 
-    def get_pathbar_button(self, uuid):
+    def get_pathbar_button(self, uuid: UUID) -> 'PathbarButton':
         for pathbar_button in self.get_children():
             if pathbar_button.get_name() == "PathbarButtonDynamic":
-                if pathbar_button.get_uuid() == uuid:
+                if pathbar_button.uuid == uuid:
                     return pathbar_button

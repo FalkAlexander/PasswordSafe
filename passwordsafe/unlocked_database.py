@@ -603,7 +603,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_group_edit_button_clicked(self, button):
         self.start_database_lock_timer()
-        group_uuid = button.get_parent().get_parent().get_parent().get_parent().get_uuid()
+        group_uuid = button.get_parent().get_parent().get_parent().get_parent().uuid
         group_object = self.database_manager.get_group(group_uuid)
 
         self.current_element = group_object

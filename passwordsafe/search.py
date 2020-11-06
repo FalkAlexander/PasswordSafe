@@ -118,7 +118,7 @@ class Search:
             result_list = self.unlocked_database.database_manager.search(widget.get_text(),
                                                                          fulltext,
                                                                          global_search=False,
-                                                                         path=self.unlocked_database.current_group.path + "/")
+                                                                         path=self.unlocked_database.current_element.path + "/")
         else:
             result_list = self.unlocked_database.database_manager.search(widget.get_text(),
                                                                          fulltext,
@@ -275,7 +275,7 @@ class Search:
         else:
             first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
 
-        self.unlocked_database.current_group = first_row
+        self.unlocked_database.current_element = first_row
         self.unlocked_database.pathbar.add_pathbar_button_to_pathbar(uuid)
         self.unlocked_database.show_page_of_new_directory(False, False)
 

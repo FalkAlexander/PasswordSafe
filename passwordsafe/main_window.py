@@ -136,7 +136,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if db.search_active:
                 return
 
-            page_uuid = db.current_group.uuid
+            page_uuid = db.current_element.uuid
             scrolled_page = db.stack.get_child_by_name(page_uuid.urn)
 
             db.responsive_ui.action_bar()
@@ -741,7 +741,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if action_db.selection_ui.selection_mode_active is True:
                 return
 
-            page_name = action_db.current_group.uuid.urn
+            page_name = action_db.current_element.uuid.urn
             scrolled_page = action_db.stack.get_child_by_name(page_name)
             if scrolled_page.edit_page:
                 return

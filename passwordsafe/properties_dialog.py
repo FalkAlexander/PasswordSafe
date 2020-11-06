@@ -20,7 +20,7 @@ class PropertiesDialog:
 
     def update_properties(self) -> None:
         """Construct dialog content with the attributes of the Entry|Group"""
-        element = self._database.current_group
+        element = self._database.current_element
         hex_uuid = element.uuid.hex.upper()
         self.builder.get_object("label_uuid").set_text(hex_uuid)
         self.builder.get_object("label_accessed").set_text(

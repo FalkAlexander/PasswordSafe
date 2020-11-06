@@ -163,7 +163,7 @@ class SelectionUI:
                 rebuild_pathbar = True
 
             group_uuid = group.uuid
-            current_uuid = self.unlocked_database.current_group.uuid
+            current_uuid = self.unlocked_database.current_element.uuid
             if group_uuid == current_uuid:
                 rebuild_pathbar = True
                 reset_stack_page = True
@@ -175,10 +175,12 @@ class SelectionUI:
         self.unlocked_database.show_page_of_new_directory(False, False)
 
         if rebuild_pathbar is True:
-            self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
+            self.unlocked_database.pathbar.rebuild_pathbar(
+                self.unlocked_database.current_element)
 
         if reset_stack_page is True:
-            self.unlocked_database.current_group = self.unlocked_database.database_manager.get_root_group()
+            root_group = self.unlocked_database.database_manager.get_root_group()
+            self.unlocked_database.current_element = root_group
 
         self.unlocked_database.show_database_action_revealer(_("Deletion completed"))
 
@@ -212,7 +214,8 @@ class SelectionUI:
                             rebuild = True
 
             if rebuild is True:
-                self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
+                self.unlocked_database.pathbar.rebuild_pathbar(
+                    self.unlocked_database.current_element)
 
             self.cut_mode = False
             return
@@ -224,7 +227,8 @@ class SelectionUI:
 
         for entry_row in self.entries_cut:
             entry_uuid = entry_row.get_uuid()
-            self.unlocked_database.database_manager.move_entry(entry_uuid, self.unlocked_database.current_group)
+            self.unlocked_database.database_manager.move_entry(
+                entry_uuid, self.unlocked_database.current_element)
             # If the moved entry is in the pathbar, we need to rebuild the pathbar
             if self.unlocked_database.pathbar.uuid_in_pathbar(entry_row.get_uuid()) is True:
                 rebuild_pathbar = True
@@ -233,8 +237,9 @@ class SelectionUI:
 
         for group_row in self.groups_cut:
             group_uuid = group_row.get_uuid()
-            if not self.unlocked_database.database_manager.parent_checker(self.unlocked_database.current_group, self.unlocked_database.database_manager.get_group(group_uuid)):
-                self.unlocked_database.database_manager.move_group(group_uuid, self.unlocked_database.current_group)
+            current_element = self.unlocked_database.current_element
+            if not self.unlocked_database.database_manager.parent_checker(current_element, self.unlocked_database.database_manager.get_group(group_uuid)):
+                self.unlocked_database.database_manager.move_group(group_uuid, current_element)
             else:
                 move_conflict = True
             # If the moved group is in the pathbar, we need to rebuild the pathbar
@@ -248,7 +253,8 @@ class SelectionUI:
         self.unlocked_database.show_page_of_new_directory(False, False)
 
         if rebuild_pathbar is True:
-            self.unlocked_database.pathbar.rebuild_pathbar(self.unlocked_database.current_group)
+            self.unlocked_database.pathbar.rebuild_pathbar(
+                self.unlocked_database.current_element)
 
         if move_conflict is False:
             self.unlocked_database.show_database_action_revealer(_("Move completed"))
@@ -266,7 +272,7 @@ class SelectionUI:
         self.unlocked_database.database_manager.is_dirty = True
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
-        page_name = self.unlocked_database.current_group.uuid.urn
+        page_name = self.unlocked_database.current_element.uuid.urn
         page = self.unlocked_database.stack.get_child_by_name(page_name)
         viewport = page.get_children()[0]
         overlay = viewport.get_children()[0]

@@ -77,7 +77,7 @@ class SelectionUI:
         self.unlocked_database.responsive_ui.headerbar_title()
 
     def remove_selection_headerbar(self):
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
                 for row in list_box:
@@ -123,7 +123,7 @@ class SelectionUI:
         self.unlocked_database.responsive_ui.headerbar_title()
 
     def prepare_selection_page(self, select_row=None):
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
                 for row in list_box:
@@ -168,7 +168,7 @@ class SelectionUI:
                 rebuild_pathbar = True
                 reset_stack_page = True
 
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 
@@ -246,7 +246,7 @@ class SelectionUI:
             if self.unlocked_database.pathbar.uuid_in_pathbar(group_row.get_uuid()) is True:
                 rebuild_pathbar = True
 
-        for stack_page in self.unlocked_database.stack.get_children():
+        for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:
                 stack_page.destroy()
 
@@ -272,8 +272,7 @@ class SelectionUI:
         self.unlocked_database.database_manager.is_dirty = True
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
-        page_name = self.unlocked_database.current_element.uuid.urn
-        page = self.unlocked_database.stack.get_child_by_name(page_name)
+        page = self.unlocked_database.get_current_page()
         viewport = page.get_children()[0]
         overlay = viewport.get_children()[0]
         list_box = NotImplemented

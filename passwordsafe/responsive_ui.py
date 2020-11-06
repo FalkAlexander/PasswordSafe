@@ -23,8 +23,7 @@ class ResponsiveUI():
         """Move pathbar between top headerbar and bottom actionbar if needed"""
 
         db = self.unlocked_database  # pylint: disable=C0103
-        page_name = db.current_element.uuid.urn
-        page = db.stack.get_child_by_name(page_name)
+        page = db.get_current_page()
 
         if db.window.mobile_width and not db.action_bar.get_children():
             # mobile width: hide pathbar in header
@@ -35,7 +34,7 @@ class ResponsiveUI():
             db.action_bar.show()
 
             if (not page.edit_page
-                    and not db.search_active):
+                    and not db.props.search_active):
                 # Don't show pathbar on edit or search pages
                 db.revealer.set_reveal_child(True)
             else:
@@ -48,8 +47,7 @@ class ResponsiveUI():
             db.headerbar_box.show()
 
     def headerbar_title(self):
-        page_name = self.unlocked_database.current_element.uuid.urn
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(page_name)
+        scrolled_page = self.unlocked_database.get_current_page()
         if self.unlocked_database.window.mobile_width and not self.unlocked_database.selection_ui.selection_mode_active:
             if self.unlocked_database.builder.get_object("title_box").get_children():
                 return
@@ -85,8 +83,7 @@ class ResponsiveUI():
 
     def headerbar_selection_button(self):
         """Update the visibility of the headerbar buttons."""
-        page_name = self.unlocked_database.current_element.uuid.urn
-        scrolled_page = self.unlocked_database.stack.get_child_by_name(page_name)
+        scrolled_page = self.unlocked_database.get_current_page()
         if self.unlocked_database.selection_ui.selection_mode_active:
             return
 

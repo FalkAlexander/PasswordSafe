@@ -133,11 +133,10 @@ class MainWindow(Gtk.ApplicationWindow):
                 return
 
             # Do nothing for Search View
-            if db.search_active:
+            if db.props.search_active:
                 return
 
-            page_uuid = db.current_element.uuid
-            scrolled_page = db.stack.get_child_by_name(page_uuid.urn)
+            scrolled_page = db.get_current_page()
 
             db.responsive_ui.action_bar()
             db.responsive_ui.headerbar_title()
@@ -741,12 +740,11 @@ class MainWindow(Gtk.ApplicationWindow):
             if action_db.selection_ui.selection_mode_active is True:
                 return
 
-            page_name = action_db.current_element.uuid.urn
-            scrolled_page = action_db.stack.get_child_by_name(page_name)
+            scrolled_page = action_db.get_current_page()
             if scrolled_page.edit_page:
                 return
 
-            if action_db.search_active:
+            if action_db.props.search_active:
                 return
 
             if arg == "entry":

@@ -1,11 +1,15 @@
+from __future__ import annotations
 from typing import List
 from uuid import UUID
 import threading
+import typing
 
-from gi.repository import Gdk, GLib, Gtk, Handy
+from gi.repository import Gdk, GLib, GObject, Gtk, Handy
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
+if typing.TYPE_CHECKING:
+    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class Search:
@@ -14,7 +18,6 @@ class Search:
     #
 
     unlocked_database = NotImplemented
-    search_active = False
     search_list_box = NotImplemented
     cached_rows: List[GroupRow] = []
     skipped_rows: List[UUID] = []
@@ -43,71 +46,89 @@ class Search:
         headerbar_search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
 
         self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, headerbar_search_entry, "<Control>f", signal="stop-search")
+        self.unlocked_database.connect(
+            "notify::search-active", self._on_search_active)
+        self._prepare_search_page()
     #
     # Search
     #
 
     # Search headerbar
-    def set_search_headerbar(self, _widget):
-        self.unlocked_database.headerbar_search = self.unlocked_database.builder.get_object("headerbar_search")
-        self.unlocked_database.parent_widget.set_headerbar(self.unlocked_database.headerbar_search)
-        self.unlocked_database.window.set_titlebar(self.unlocked_database.headerbar_search)
-        self.unlocked_database.builder.get_object("headerbar_search_entry").grab_focus()
-        self.search_active = True
-        if self.search_list_box is not NotImplemented:
-            self.search_list_box.select_row(self.search_list_box.get_row_at_index(0))
-            self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+    def _on_search_active(
+            self, db_view: UnlockedDatabase,
+            value: GObject.ParamSpecBoolean) -> None:
+        """Update the view when the search view is activated or
+        deactivated.
+
+        :param UnlockedDatabase db_view: unlocked_database view
+        :param GObject.ParamSpecBoolean value: new value as GParamSpec
+        """
+        # pylint: disable=unused-argument
+        search_active = self.unlocked_database.props.search_active
+
+        if search_active:
+            headerbar_search = self.unlocked_database.builder.get_object(
+                "headerbar_search")
+            search_entry = self.unlocked_database.builder.get_object(
+                "headerbar_search_entry")
+            self.unlocked_database.headerbar_search = headerbar_search
+            self.unlocked_database.parent_widget.set_headerbar(
+                headerbar_search)
+            self.unlocked_database.window.set_titlebar(headerbar_search)
+            search_entry.grab_focus()
+            if self.search_list_box is not NotImplemented:
+                self.search_list_box.select_row(
+                    self.search_list_box.get_row_at_index(0))
+                self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+            else:
+                search_entry.connect(
+                    "key-release-event", self.on_search_entry_navigation)
+
+            self.unlocked_database.responsive_ui.action_bar()
+
         else:
-            self.unlocked_database.builder.get_object("headerbar_search_entry").connect("key-release-event", self.on_search_entry_navigation)
-
-        self.prepare_search_page()
-        self.unlocked_database.responsive_ui.action_bar()
-
-    def remove_search_headerbar(self, _widget):
-        self.unlocked_database.parent_widget.set_headerbar(self.unlocked_database.headerbar)
-        self.unlocked_database.window.set_titlebar(self.unlocked_database.headerbar)
-        self.search_active = False
+            self.unlocked_database.parent_widget.set_headerbar(
+                self.unlocked_database.headerbar)
+            self.unlocked_database.window.set_titlebar(
+                self.unlocked_database.headerbar)
 
     #
     # Stack
     #
 
     # Set Search stack page
-    def prepare_search_page(self):
-        if self.unlocked_database.stack.get_child_by_name("search") is None:
-            scrolled_page = ScrolledPage(False)
-            viewport = Gtk.Viewport()
-            viewport.set_name("BGPlatform")
-            self.unlocked_database.search_overlay = Gtk.Overlay()
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-            self.search_list_box = builder.get_object("list_box")
+    def _prepare_search_page(self):
+        scrolled_page = ScrolledPage(False)
+        viewport = Gtk.Viewport()
+        viewport.set_name("BGPlatform")
+        self.unlocked_database.search_overlay = Gtk.Overlay()
+        builder = Gtk.Builder()
+        builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+        self.search_list_box = builder.get_object("list_box")
 
-            # Responsive Container
-            self.search_list_box.set_name("BrowserListBox")
-            self.search_list_box.set_margin_top(18)
-            self.search_list_box.set_margin_bottom(18)
-            self.search_list_box.set_valign(Gtk.Align.START)
+        # Responsive Container
+        self.search_list_box.set_name("BrowserListBox")
+        self.search_list_box.set_margin_top(18)
+        self.search_list_box.set_margin_bottom(18)
+        self.search_list_box.set_valign(Gtk.Align.START)
 
-            hdy_search = Handy.Clamp()
-            hdy_search.set_maximum_size(700)
-            hdy_search.add(self.search_list_box)
-            self.unlocked_database.search_overlay.add(hdy_search)
+        hdy_search = Handy.Clamp()
+        hdy_search.set_maximum_size(700)
+        hdy_search.add(self.search_list_box)
+        self.unlocked_database.search_overlay.add(hdy_search)
 
-            self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
-            viewport.add(self.unlocked_database.search_overlay)
+        self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
+        viewport.add(self.unlocked_database.search_overlay)
 
-            scrolled_page.add(viewport)
-            scrolled_page.show_all()
-            self.unlocked_database.stack.add_named(scrolled_page, "search")
-            if self.search_list_box.get_children():
-                self.search_list_box.show()
-            else:
-                info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
-                self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
-                self.search_list_box.hide()
-
-        self.unlocked_database.stack.set_visible_child(self.unlocked_database.stack.get_child_by_name("search"))
+        scrolled_page.add(viewport)
+        scrolled_page.show_all()
+        self.unlocked_database.add_page(scrolled_page, "search")
+        if self.search_list_box.get_children():
+            self.search_list_box.show()
+        else:
+            info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
+            self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
+            self.search_list_box.hide()
 
     #
     # Utils
@@ -204,14 +225,12 @@ class Search:
 
     def on_headerbar_search_close_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
-        self.remove_search_headerbar(None)
-        self.unlocked_database.show_page_of_new_directory(False, False)
+        self.unlocked_database.props.search_active = False
 
     def on_search_entry_navigation(self, _widget, event, _data=None):
         self.unlocked_database.start_database_lock_timer()
         if event.keyval == Gdk.KEY_Escape:
-            self.remove_search_headerbar(None)
-            self.unlocked_database.show_page_of_new_directory(False, False)
+            self.unlocked_database.props.search_active = False
         elif event.keyval == Gdk.KEY_Up:
             self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
             selected_row = self.search_list_box.get_selected_row()

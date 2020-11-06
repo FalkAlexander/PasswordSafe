@@ -49,7 +49,6 @@ class UnlockedDatabase(GObject.GObject):
     headerbar_search = NotImplemented
     headerbar_box = NotImplemented
     scrolled_window = NotImplemented
-    stack = NotImplemented
     divider = NotImplemented
     revealer = NotImplemented
     action_bar = NotImplemented
@@ -92,6 +91,8 @@ class UnlockedDatabase(GObject.GObject):
         # Declare database as opened
         self.window.opened_databases.append(self)
 
+        self._search_active = False
+
         # Browser Mode
         self.assemble_listbox()
         self.start_save_loop()
@@ -127,7 +128,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.current_element = self.database_manager.get_root_group()
 
-        self.stack = self.builder.get_object("list_stack")
+        self._stack = self.builder.get_object("list_stack")
         # contains the "main page" with the stack and the revealer inside
         self.divider = self.builder.get_object("divider")
         self.revealer = self.builder.get_object("revealer")
@@ -162,7 +163,7 @@ class UnlockedDatabase(GObject.GObject):
         mod_box.add(browser_buttons_box)
 
         search_button = self.builder.get_object("search_button")
-        search_button.connect("clicked", self.search.set_search_headerbar)
+        search_button.connect("clicked", self._on_search_button_clicked)
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
@@ -216,10 +217,6 @@ class UnlockedDatabase(GObject.GObject):
         # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_scheduled_stack_page()
 
-        # Check if we need to remove the search headerbar
-        if self.parent_widget.get_headerbar() is not self.headerbar:
-            self.search.remove_search_headerbar(None)
-
         # Creation of group edit page
         if edit_group is True:
             self.destroy_scheduled_stack_page()
@@ -236,15 +233,16 @@ class UnlockedDatabase(GObject.GObject):
             scrolled_window.show_all()
 
             stack_page_uuid = self.current_element.uuid
-            if self.stack.get_child_by_name(stack_page_uuid.urn) is not None:
-                stack_page = self.stack.get_child_by_name(stack_page_uuid.urn)
+            if self._stack.get_child_by_name(stack_page_uuid.urn) is not None:
+                stack_page = self._stack.get_child_by_name(stack_page_uuid.urn)
                 stack_page.destroy()
 
-            self.add_stack_page(scrolled_window)
+            self.add_page(scrolled_window, self.current_element.uuid.urn)
+            self.switch_page(self.current_element)
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
-        elif (not self.stack.get_child_by_name(self.current_element.uuid.urn)
+        elif (not self._stack.get_child_by_name(self.current_element.uuid.urn)
               and not edit_group):
             self.database_manager.set_element_atime(self.current_element)
             # Create not existing stack page for group
@@ -273,7 +271,8 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 
-                self.add_stack_page(scrolled_window)
+                self.add_page(scrolled_window, self.current_element.uuid.urn)
+                self.switch_page(self.current_element)
 
                 list_box.hide()
 
@@ -301,7 +300,8 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window.add(viewport)
                 scrolled_window.show_all()
 
-                self.add_stack_page(scrolled_window)
+                self.add_page(scrolled_window, self.current_element.uuid.urn)
+                self.switch_page(self.current_element)
                 if new_entry is True:
                     self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, True)
                 else:
@@ -311,44 +311,53 @@ class UnlockedDatabase(GObject.GObject):
             self.database_manager.set_element_atime(self.current_element)
             # For group
             if self.database_manager.check_is_group(self.current_element.uuid):
-                self.stack.set_visible_child_name(self.current_element.uuid.urn)
+                self._stack.set_visible_child_name(self.current_element.uuid.urn)
                 self.set_browser_headerbar()
             # For entry
             else:
-                self.stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_element).urn)
+                self._stack.set_visible_child_name(self.database_manager.get_entry_uuid_from_entry_object(self.current_element).urn)
                 self.entry_page.set_entry_page_headerbar()
 
-    def add_stack_page(self, scrolled_window):
-        self.stack.add_named(scrolled_window, self.current_element.uuid.urn)
-        self.switch_stack_page()
+    def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
+        """Add a new page to the stack
 
-    def switch_stack_page(self):
-        group_page = NotImplemented
+        :param ScrolledPage scrolled_window: scrolled_page to add
+        :param str name: name of the page
+        """
+        self._stack.add_named(scrolled_window, name)
+
+    def switch_page(self, element: Union[Entry, Group]) -> None:
+        """Set the current element and display it
+
+        :param element: Entry or Group
+        """
+        self.current_element = element
+
         page_uuid = self.current_element.uuid
         group_page = self.database_manager.check_is_group(page_uuid)
 
         if page_uuid in self.scheduled_page_destroy:
-            stack_page = self.stack.get_child_by_name(page_uuid.urn)
+            stack_page = self._stack.get_child_by_name(page_uuid.urn)
             if stack_page is not None:
                 stack_page.destroy()
 
             self.scheduled_page_destroy.remove(page_uuid)
             self.show_page_of_new_directory(False, False)
 
-        if self.stack.get_child_by_name(page_uuid.urn) is None:
+        if self._stack.get_child_by_name(page_uuid.urn) is None:
             self.show_page_of_new_directory(False, False)
         else:
-            self.stack.set_visible_child_name(page_uuid.urn)
+            self._stack.set_visible_child_name(page_uuid.urn)
 
         if group_page:
             self.set_browser_headerbar()
         else:
             self.entry_page.set_entry_page_headerbar()
 
-    def _remove_stack_page(self, element: Union[Entry, Group]) -> None:
+    def _remove_page(self, element: Union[Entry, Group]) -> None:
         """Remove an element (Entry, Group) from the stack if present."""
         stack_page_name = element.uuid.urn
-        stack_page = self.stack.get_child_by_name(stack_page_name)
+        stack_page = self._stack.get_child_by_name(stack_page_name)
         if stack_page:
             stack_page.destroy()
 
@@ -360,6 +369,23 @@ class UnlockedDatabase(GObject.GObject):
     def current_element(self, element: Union[Entry, Group]) -> None:
         self._current_element = element
 
+    def get_current_page(self) -> ScrolledPage:
+        """Returns the page associated with current_element.
+
+        :returns: current page
+        :rtype: Gtk.Widget
+        """
+        element_uuid = self.current_element.uuid
+        return self._stack.get_child_by_name(element_uuid.urn)
+
+    def get_pages(self) -> List[ScrolledPage]:
+        """Returns all the children of the stack.
+
+        :returns: All the children of the stack.
+        :rtype: list
+        """
+        return self._stack.get_children()
+
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)
 
@@ -367,7 +393,7 @@ class UnlockedDatabase(GObject.GObject):
         page_uuid = self.current_element.uuid
 
         if page_uuid in self.scheduled_page_destroy:
-            stack_page_name = self.stack.get_child_by_name(page_uuid.urn)
+            stack_page_name = self._stack.get_child_by_name(page_uuid.urn)
             if stack_page_name is not None:
                 stack_page_name.destroy()
             self.scheduled_page_destroy.remove(page_uuid)
@@ -434,7 +460,7 @@ class UnlockedDatabase(GObject.GObject):
             list_box.hide()
 
     def rebuild_all_pages(self):
-        for page in self.stack.get_children():
+        for page in self._stack.get_children():
             if page.check_is_edit_page() is False:
                 page.destroy()
 
@@ -443,6 +469,10 @@ class UnlockedDatabase(GObject.GObject):
     #
     # Events
     #
+
+    def _on_search_button_clicked(self, btn):
+        # pylint: disable=unused-argument
+        self.props.search_active = True
 
     def on_list_box_row_activated(self, _widget, list_box_row):
         self.start_database_lock_timer()
@@ -507,7 +537,9 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_entry_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.search.search_active is False:
+        if (event.type == Gdk.EventType.BUTTON_PRESS
+                and event.button == 3
+                and not self.props.search_active):
             if self.selection_ui.selection_mode_active is False:
                 self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
             else:
@@ -522,7 +554,7 @@ class UnlockedDatabase(GObject.GObject):
             self.current_element)
         self.database_manager.delete_from_database(self.current_element)
 
-        self._remove_stack_page(self.current_element)
+        self._remove_page(self.current_element)
         self.current_element = parent_group
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
@@ -530,7 +562,7 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
-        self._remove_stack_page(parent_group)
+        self._remove_page(parent_group)
         self.show_page_of_new_directory(False, False)
         self.pathbar.rebuild_pathbar(self.current_element)
 
@@ -555,13 +587,15 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
-        self._remove_stack_page(parent_group)
+        self._remove_page(parent_group)
         self.current_element = parent_group
         self.show_page_of_new_directory(False, False)
 
     def on_group_row_button_pressed(self, widget, event):
         self.start_database_lock_timer()
-        if event.type == Gdk.EventType.BUTTON_PRESS and event.button == 3 and self.search.search_active is False:
+        if (event.type == Gdk.EventType.BUTTON_PRESS
+                and event.button == 3
+                and not self.props.search_active):
             if self.selection_ui.selection_mode_active is False:
                 self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
             else:
@@ -659,7 +693,7 @@ class UnlockedDatabase(GObject.GObject):
         :param Gtk.Button button: clicked button
         """
         page_uuid = self.current_element.uuid
-        scrolled_page = self.stack.get_child_by_name(page_uuid.urn)
+        scrolled_page = self._stack.get_child_by_name(page_uuid.urn)
         group_page = self.database_manager.check_is_group(page_uuid)
 
         parent = NotImplemented
@@ -670,7 +704,7 @@ class UnlockedDatabase(GObject.GObject):
             parent = self.database_manager.get_parent_group(page_uuid)
         elif (not scrolled_page.edit_page
               and not self.selection_ui.selection_mode_active
-              and not self.search_active):
+              and not self.props.search_active):
             if self.database_manager.check_is_root_group(self.current_element) is True:
                 self.on_lock_button_clicked(None)
                 return
@@ -755,6 +789,7 @@ class UnlockedDatabase(GObject.GObject):
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
 
     def _on_database_lock_changed(self, database_manager, value):
+        # pylint: disable=unused-argument
         locked = self.database_manager.props.locked
         if locked:
             self.cancel_timers()
@@ -784,7 +819,7 @@ class UnlockedDatabase(GObject.GObject):
 
             self.overlay.hide()
         else:
-            if self.search.search_active:
+            if self.props.search_active:
                 self.parent_widget.set_headerbar(self.headerbar_search)
                 self.window.set_titlebar(self.headerbar_search)
             else:
@@ -910,15 +945,31 @@ class UnlockedDatabase(GObject.GObject):
         app = Gio.Application.get_default
         app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
 
-    @property
-    def search_active(self):
-        """Property to know if search is active
+    @GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    def search_active(self) -> bool:
+        """Property to know if search is active.
 
-        :returns: True is search view is visible
+        It is used by Search to update the widgets (mainly the
+        headerbar) accordingly.
+
+        :returns: True is search is active
         :rtype: bool
         """
-        search_view = self.stack.get_child_by_name("search")
-        return self.stack.get_visible_child() is search_view
+        return self._search_active
+
+    @search_active.setter  # type: ignore
+    def search_active(self, value: bool) -> None:
+        """Set the search mode
+
+        :param value: new search_active
+        """
+        self._search_active = value
+        if self._search_active:
+            self._stack.set_visible_child(
+                self._stack.get_child_by_name("search"))
+        else:
+            self.show_page_of_new_directory(False, False)
 
     @GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)

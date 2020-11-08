@@ -412,22 +412,25 @@ class DatabaseManager(GObject.GObject):
         if entity.parentgroup is not None:
             self.set_element_mtime(entity.parentgroup)
 
-    # Duplicate an entry
-    def duplicate_entry(self, entry):
-        title = entry.title or ""
-        username = entry.username or ""
-        password = entry.password or ""
+    def duplicate_entry(self, entry: Entry) -> None:
+        """Duplicate an entry
+
+        :param Entry entry: entry to duplicate
+        """
+        title: str = entry.title or ""
+        username: str = entry.username or ""
+        password: str = entry.password or ""
 
         # NOTE: With clone is meant a duplicated object, not the process
         # of cloning/duplication; "the" clone
-        clone_entry = self.db.add_entry(
+        clone_entry: Entry = self.db.add_entry(
             entry.parentgroup, title + " - " + _("Clone"), username, password,
             url=entry.url, notes=entry.notes, expiry_time=entry.expiry_time,
             tags=entry.tags, icon=entry.icon, force_creation=True)
 
         # Add custom properties
         for key in entry.custom_properties:
-            value = entry.custom_properties[key] or ""
+            value: str = entry.custom_properties[key] or ""
             clone_entry.set_custom_property(key, value)
 
         self.is_dirty = True

@@ -414,26 +414,20 @@ class DatabaseManager(GObject.GObject):
 
     # Duplicate an entry
     def duplicate_entry(self, entry):
-        title = entry.title
-        if title is None:
-            title = ""
+        title = entry.title or ""
+        username = entry.username or ""
+        password = entry.password or ""
 
-        username = entry.username
-        if username is None:
-            username = ""
-
-        password = entry.password
-        if password is None:
-            password = ""
-
-        # NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-        clone_entry = self.db.add_entry(entry.parentgroup, title + " - " + _("Clone"), username, password, url=entry.url, notes=entry.notes, expiry_time=entry.expiry_time, tags=entry.tags, icon=entry.icon, force_creation=True)
+        # NOTE: With clone is meant a duplicated object, not the process
+        # of cloning/duplication; "the" clone
+        clone_entry = self.db.add_entry(
+            entry.parentgroup, title + " - " + _("Clone"), username, password,
+            url=entry.url, notes=entry.notes, expiry_time=entry.expiry_time,
+            tags=entry.tags, icon=entry.icon, force_creation=True)
 
         # Add custom properties
         for key in entry.custom_properties:
-            value = entry.custom_properties[key]
-            if value is None:
-                value = ""
+            value = entry.custom_properties[key] or ""
             clone_entry.set_custom_property(key, value)
 
         self.is_dirty = True

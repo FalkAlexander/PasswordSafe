@@ -6,6 +6,7 @@ import threading
 import time
 from gettext import gettext as _
 from pathlib import Path
+from typing import Optional
 
 from construct import core
 from gi.repository import Gio, GLib, Gtk, Handy, Pango
@@ -180,10 +181,11 @@ class UnlockDatabase:
     # Events
     #
 
-    def _on_headerbar_back_button_clicked(self, _widget):
+    def _on_headerbar_back_button_clicked(self, _widget: Gtk.Button) -> None:
+        database: Optional[UnlockedDatabase] = None
         if self.database_manager:
             for db in self.window.opened_databases:  # pylint: disable=C0103
-                db_path = db.database_manager.database_path
+                db_path: str = db.database_manager.database_path
                 if db_path == self.database_manager.database_path:
                     db.unregister_dbus_signal()
                     db.cancel_timers()

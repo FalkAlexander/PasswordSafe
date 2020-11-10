@@ -31,7 +31,7 @@ static_check:
 pylint:
     stage: Static Analysis
     <<: *basic-deps
-    allow_failure: true
+    allow_failure: false
     image: debian:sid
     script:
         - pylint --rcfile=.pylintrc passwordsafe/*.py

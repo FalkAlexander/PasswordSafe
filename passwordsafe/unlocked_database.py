@@ -262,8 +262,6 @@ class UnlockedDatabase(GObject.GObject):
                 # Responsive Container
                 list_box.set_name("BrowserListBox")
                 list_box.set_valign(Gtk.Align.START)
-                list_box.set_margin_top(18)
-                list_box.set_margin_bottom(18)
 
                 hdy_browser = Handy.Clamp()
                 hdy_browser.set_maximum_size(700)

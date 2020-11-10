@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 """Responsible for displaying the Entry/Group Properties"""
 from gi.repository import Gtk
 

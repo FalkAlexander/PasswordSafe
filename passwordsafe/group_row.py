@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 from gettext import gettext as _
 from gi.repository import Gtk
 

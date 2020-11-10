@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 from uuid import UUID
 from gi.repository import Gtk
 from pykeepass.group import Group

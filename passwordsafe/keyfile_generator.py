@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 import secrets
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes

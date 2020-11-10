@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 icon_list = {"0": "dialog-password-symbolic",
              "1": "network-wired-symbolic",
              "2": "dialog-warning-symbolic",

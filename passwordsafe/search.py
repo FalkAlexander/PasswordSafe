@@ -80,7 +80,6 @@ class Search:
                 self.search_list_box.select_row(
                     self.search_list_box.get_row_at_index(0))
                 self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
-            else:
                 search_entry.connect(
                     "key-release-event", self.on_search_entry_navigation)
 
@@ -247,6 +246,13 @@ class Search:
                     self.search_list_box.select_row(row)
 
     def on_headerbar_search_entry_changed(self, widget):
+        # Reset the select row position.
+        # Weird bugs, where multiple entries would be selected at the same
+        # time, or it is not possible to move selection appear without this.
+        self.search_list_box.select_row(
+            self.search_list_box.get_row_at_index(0))
+        self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+
         self.search_list_box.hide()
         result_list = []
 

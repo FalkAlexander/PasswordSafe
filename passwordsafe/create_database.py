@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 """ GUI Page and function in order to create a new Safe"""
 import logging
 import threading

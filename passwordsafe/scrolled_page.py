@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 from typing import List
 
 from gi.repository import Gtk

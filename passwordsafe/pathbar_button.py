@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: GPL-3.0-only
 """Gtk.Button representing a path element in the pathbar"""
 from uuid import UUID
 from gi.repository import Gtk

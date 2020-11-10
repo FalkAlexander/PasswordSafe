@@ -1,13 +1,10 @@
 import logging
 import sys
 from typing import Any, List, Optional
+from gi.repository import Gio, GLib, Gtk, Handy
 
-import gi
-gi.require_version('Handy', '1')
-
-from gi.repository import GLib, Gio, Gtk, Handy  # pylint: disable=wrong-import-position
-from passwordsafe.main_window import MainWindow  # pylint: disable=wrong-import-position
-from passwordsafe.settings_dialog import SettingsDialog  # pylint: disable=wrong-import-position
+from passwordsafe.main_window import MainWindow
+from passwordsafe.settings_dialog import SettingsDialog
 
 
 class Application(Gtk.Application):

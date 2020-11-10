@@ -1,6 +1,6 @@
-from typing import List
 import re
 import secrets
+from typing import List
 
 from gi.repository import Gio, GLib
 

@@ -1,17 +1,18 @@
 from __future__ import annotations
-from gettext import gettext as _
-from threading import Timer
-from typing import List, Optional, Union
-from uuid import UUID
+
 import logging
 import ntpath
 import os
 import re
-import time
 import threading
+import time
 import typing
+from gettext import gettext as _
+from threading import Timer
+from typing import List, Optional, Union
+from uuid import UUID
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 
-from gi.repository import Gio, GObject, Gdk, Gtk, GLib, Handy
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.entry_page import EntryPage
@@ -23,8 +24,9 @@ from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.scrolled_page import ScrolledPage
-from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.search import Search
+from passwordsafe.selection_ui import SelectionUI
+
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
     from pykeepass.group import Group

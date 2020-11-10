@@ -1,10 +1,11 @@
 from __future__ import annotations
-import typing
 
+import typing
 from gi.repository import GObject, Gtk
 
-from passwordsafe.password_generator import generate as generate_pwd
 from passwordsafe.passphrase_generator import generate as generate_phrase
+from passwordsafe.password_generator import generate as generate_pwd
+
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 

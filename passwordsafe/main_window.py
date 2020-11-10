@@ -1,20 +1,19 @@
-from typing import List
-
+import logging
+import ntpath
+import os
+import threading
 from gettext import gettext as _
-from gi.repository import Gio, GLib, Gdk, Gtk, Handy
+from typing import List
+from gi.repository import Gdk, Gio, GLib, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
-from passwordsafe.database_manager import DatabaseManager
-from passwordsafe.create_database import CreateDatabase
+
+import passwordsafe.config_manager
 from passwordsafe.container_page import ContainerPage
+from passwordsafe.create_database import CreateDatabase
+from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
-import passwordsafe.config_manager
-
-import logging
-import os
-import ntpath
-import threading
 
 
 class MainWindow(Gtk.ApplicationWindow):

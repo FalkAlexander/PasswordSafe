@@ -1,12 +1,12 @@
 """ GUI Page and function in order to create a new Safe"""
-from gettext import gettext as _
 import logging
 import threading
-from gi.repository import Gtk, GLib
+from gettext import gettext as _
+from gi.repository import GLib, Gtk
 
+import passwordsafe.keyfile_generator
 from passwordsafe.created_database import CreatedDatabase
 from passwordsafe.unlock_database import KeyFileFilter
-import passwordsafe.keyfile_generator
 
 
 class CreateDatabase:

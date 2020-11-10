@@ -1,13 +1,14 @@
 from __future__ import annotations
-from typing import List
-from uuid import UUID
+
 import threading
 import typing
-
+from typing import List
+from uuid import UUID
 from gi.repository import Gdk, GLib, GObject, Gtk, Handy
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
+
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 

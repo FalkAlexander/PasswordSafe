@@ -1,5 +1,5 @@
-from gi.repository import Gtk
 from gettext import gettext as _
+from gi.repository import Gtk
 
 
 class GroupRow(Gtk.ListBoxRow):

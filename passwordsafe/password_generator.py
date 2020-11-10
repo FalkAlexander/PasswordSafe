@@ -1,7 +1,7 @@
 import secrets
 import string
-import pwquality
 from typing import Optional
+import pwquality
 
 
 def generate(

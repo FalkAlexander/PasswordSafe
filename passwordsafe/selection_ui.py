@@ -1,11 +1,10 @@
-from typing import List
-
 from gettext import gettext as _
+from typing import List
 from gi.repository import Gtk
 
+import passwordsafe.pathbar_button
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
-import passwordsafe.pathbar_button
 
 
 class SelectionUI:

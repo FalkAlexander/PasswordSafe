@@ -135,8 +135,8 @@ def get_last_used_composite_key():
     return setting.get_value(LAST_USED_COMPOSITE_KEY)
 
 
-def set_last_used_composite_key(list):
-    g_variant = GLib.Variant('aas', list)
+def set_last_used_composite_key(composite_list):
+    g_variant = GLib.Variant("aas", composite_list)
     setting.set_value(LAST_USED_COMPOSITE_KEY, g_variant)
 
 

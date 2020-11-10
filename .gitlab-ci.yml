@@ -2,11 +2,11 @@ include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
 
 variables:
   DEBIAN_FRONTEND: noninteractive
-  DEPS_DEV: "libgirepository1.0-dev libglib2.0-dev libgtk-3-dev libpwquality-dev python-gi-dev python3-all python3-construct python3-dateutil python3-pycryptodome python3-pykeepass libhandy-1-dev"
+  DEPS_DEV: "libgirepository1.0-dev libglib2.0-dev libgtk-3-dev python-gi-dev libpwquality-dev python3-all python3-construct python3-dateutil python3-pycryptodome python3-pykeepass libhandy-1-dev python3-pwquality"
   DEPS_DEB: "git git-buildpackage appstream-util debhelper-compat dh-python meson"
 
 stages:
-  - Static Analysis
+  - Code Analysis
   - Build
 
 cache:
@@ -20,20 +20,13 @@ cache:
         - apt-get -o dir::cache::archives=".apt" -qq update
         - apt-get -o dir::cache::archives=".apt" -qq install -y --no-install-recommends ${DEPS_DEV} -o=Dpkg::Use-Pty=0 flake8 pylint mypy > /dev/null
 
-static_check:
-    stage: Static Analysis
+code_analysis:
+    stage: Code Analysis
     <<: *basic-deps
     image: debian:sid
     script:
-        - flake8 --max-line-length=350 --ignore=E402,W503 --show-source passwordsafe/
+        - flake8 --max-line-length=250 --ignore=E402,W503 --show-source passwordsafe/
         - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
-
-pylint:
-    stage: Static Analysis
-    <<: *basic-deps
-    allow_failure: true
-    image: debian:sid
-    script:
         - pylint --rcfile=.pylintrc passwordsafe/*.py
 
 flatpak:

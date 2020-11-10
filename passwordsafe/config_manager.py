@@ -1,5 +1,5 @@
+import logging
 from enum import IntEnum
-
 from gi.repository import GLib, Gio
 
 setting = Gio.Settings.new("org.gnome.PasswordSafe")
@@ -97,10 +97,12 @@ def get_sort_order():
     value = setting.get_enum(SORT_ORDER)
     if value == 0:
         return "A-Z"
-    elif value == 1:
+    if value == 1:
         return "Z-A"
-    elif value == 2:
+    if value == 2:
         return "last_added"
+    logging.warning("Retrieving unknown sort order")
+    return None
 
 
 def set_sort_order(value):
@@ -133,8 +135,8 @@ def get_last_used_composite_key():
     return setting.get_value(LAST_USED_COMPOSITE_KEY)
 
 
-def set_last_used_composite_key(list):
-    g_variant = GLib.Variant('aas', list)
+def set_last_used_composite_key(composite_list):
+    g_variant = GLib.Variant("aas", composite_list)
     setting.set_value(LAST_USED_COMPOSITE_KEY, g_variant)
 
 
@@ -155,10 +157,12 @@ def get_unlock_method():
     value = setting.get_enum(UNLOCK_METHOD)
     if value == UnlockMethod.PASSWORD:
         return "password"
-    elif value == UnlockMethod.KEYFILE:
+    if value == UnlockMethod.KEYFILE:
         return "keyfile"
-    elif value == UnlockMethod.COMPOSITE:
+    if value == UnlockMethod.COMPOSITE:
         return "composite"
+    logging.warning("Retrieving unknown unlock method.")
+    return None
 
 
 def set_unlock_method(value):

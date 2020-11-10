@@ -25,7 +25,7 @@ static_check:
     <<: *basic-deps
     image: debian:sid
     script:
-        - flake8 --max-line-length=350 --ignore=E402,W503 --show-source passwordsafe/
+        - flake8 --max-line-length=250 --ignore=E402,W503 --show-source passwordsafe/
         - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
 
 pylint:

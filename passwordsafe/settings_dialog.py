@@ -23,6 +23,7 @@ class SettingsDialog():
         self.set_config_values()
 
     def set_config_values(self):
+        # General
         settings_theme_switch = self.builder.get_object("settings_theme_switch")
         settings_theme_switch.connect("notify::active", self.on_settings_theme_switch_switched)
         settings_theme_switch_value = passwordsafe.config_manager.get_dark_theme()
@@ -33,11 +34,13 @@ class SettingsDialog():
         settings_fstart_switch_value = passwordsafe.config_manager.get_first_start_screen()
         settings_fstart_switch.set_active(settings_fstart_switch_value)
 
+        # Safe
         settings_save_switch = self.builder.get_object("settings_save_switch")
         settings_save_switch.connect("notify::active", self.on_settings_save_switch_switched)
         settings_save_switch_value = passwordsafe.config_manager.get_save_automatically()
         settings_save_switch.set_active(settings_save_switch_value)
 
+        # Security
         settings_lockdb_spin_button = self.builder.get_object("settings_lockdb_spin_button")
         settings_lockdb_spin_button.connect("value-changed", self.on_settings_lockdb_spin_button_changed)
         settings_lockdb_spin_button_value = passwordsafe.config_manager.get_database_lock_timeout()
@@ -61,6 +64,18 @@ class SettingsDialog():
         if passwordsafe.config_manager.get_last_opened_list():
             settings_clear_button.set_sensitive(False)
 
+        # Search
+        settings_full_text_search_switch = self.builder.get_object("settings_full_text_search_switch")
+        settings_full_text_search_switch.connect("notify::active", self.on_settings_full_text_search_switch_switched)
+        settings_full_text_search_switch_value = passwordsafe.config_manager.get_full_text_search()
+        settings_full_text_search_switch.set_active(settings_full_text_search_switch_value)
+
+        settings_local_search_switch = self.builder.get_object("settings_local_search_switch")
+        settings_local_search_switch.connect("notify::active", self.on_settings_local_search_switch_switched)
+        settings_local_search_switch_value = passwordsafe.config_manager.get_local_search()
+        settings_local_search_switch.set_active(settings_local_search_switch_value)
+
+        # Unlock
         settings_remember_switch = self.builder.get_object("settings_remember_switch")
         settings_remember_switch.connect("notify::active", self.on_settings_remember_switch_switched)
         settings_remember_switch_value = passwordsafe.config_manager.get_remember_composite_key()
@@ -70,6 +85,12 @@ class SettingsDialog():
         settings_remember_method_switch.connect("notify::active", self.on_settings_remember_method_switch_switched)
         settings_remember_method_switch_value = passwordsafe.config_manager.get_remember_unlock_method()
         settings_remember_method_switch.set_active(settings_remember_method_switch_value)
+
+    def on_settings_full_text_search_switch_switched(self, switch_button, _gparam):
+        passwordsafe.config_manager.set_full_text_search(switch_button.get_active())
+
+    def on_settings_local_search_switch_switched(self, switch_button, _gparam):
+        passwordsafe.config_manager.set_local_search(switch_button.get_active())
 
     def on_settings_theme_switch_switched(self, switch_button, _gparam):
         gtk_settings = Gtk.Settings.get_default()

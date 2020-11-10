@@ -3,9 +3,13 @@ from __future__ import annotations
 
 import threading
 import typing
+
+import passwordsafe.config_manager
+
 from typing import List
 from uuid import UUID
 from gi.repository import Gdk, GLib, GObject, Gtk, Handy
+
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
@@ -104,8 +108,6 @@ class Search:
 
         # Responsive Container
         self.search_list_box.set_name("BrowserListBox")
-        self.search_list_box.set_margin_top(18)
-        self.search_list_box.set_margin_bottom(18)
         self.search_list_box.set_valign(Gtk.Align.START)
 
         hdy_search = Handy.Clamp()
@@ -131,15 +133,12 @@ class Search:
     #
 
     def search_thread_creation(self, widget, result_list, empty_search_overlay, info_search_overlay):
-        full_text = self.get_full_text()
-        if self.get_local():
+        if passwordsafe.config_manager.get_local_search():
             result_list = self.unlocked_database.database_manager.search(widget.get_text(),
-                                                                         full_text,
                                                                          global_search=False,
                                                                          path=self.unlocked_database.current_element.path + "/")
         else:
             result_list = self.unlocked_database.database_manager.search(widget.get_text(),
-                                                                         full_text,
                                                                          global_search=True,
                                                                          path="/")
 
@@ -300,11 +299,3 @@ class Search:
             return
 
         entry.grab_focus()
-
-    def get_local(self) -> bool:
-        """Determines if the option for full-text search is on"""
-        return False
-
-    def get_full_text(self) -> bool:
-        """Determines if the option for local search is on"""
-        return False

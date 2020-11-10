@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import hashlib
 import logging
+
+import passwordsafe.config_manager
+
 from datetime import datetime
 from gettext import gettext as _
 from typing import Dict, Optional, Union
@@ -633,7 +636,8 @@ class DatabaseManager(GObject.GObject):
         return True
 
     # Search for an entry or a group
-    def search(self, string, fulltext, global_search=True, path=None):
+    def search(self, string, global_search=True, path=None):
+        fulltext = passwordsafe.config_manager.get_full_text_search()
         uuid_list = []
 
         # if fulltext is False:

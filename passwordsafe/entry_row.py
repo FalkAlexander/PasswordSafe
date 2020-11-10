@@ -55,10 +55,10 @@ class EntryRow(Gtk.ListBoxRow):
         # Icon
         if self.icon:
             entry_icon.set_from_icon_name(
-                passwordsafe.icon.get_icon(str(self.icon)), 20
+                passwordsafe.icon.get_icon_name(self.icon), 20
             )
         else:
-            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
+            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon_name(0), 20)
 
         # Title/Name
         if self.database_manager.has_entry_name(self.entry_uuid) and self.label:

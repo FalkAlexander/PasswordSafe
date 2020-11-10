@@ -1,18 +1,17 @@
-from uuid import UUID
-
-from gettext import gettext as _
 import logging
 import subprocess
+from gettext import gettext as _
+from uuid import UUID
+from gi.repository import Gio, GLib, Gtk
 
-from gi.repository import Gtk, Gio, GLib
-from passwordsafe.color_widget import ColorEntryRow
-from passwordsafe.notes_dialog import NotesDialog
-from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
-from passwordsafe.password_generator_popover import PasswordGeneratorPopover
-from passwordsafe.scrolled_page import ScrolledPage
+import passwordsafe.config_manager
 import passwordsafe.passphrase_generator
 import passwordsafe.password_generator
-import passwordsafe.config_manager
+from passwordsafe.color_widget import ColorEntryRow
+from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
+from passwordsafe.notes_dialog import NotesDialog
+from passwordsafe.password_generator_popover import PasswordGeneratorPopover
+from passwordsafe.scrolled_page import ScrolledPage
 
 
 class EntryPage:

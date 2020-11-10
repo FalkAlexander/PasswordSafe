@@ -1,7 +1,7 @@
 import hashlib
 import logging
-from gettext import gettext as _
 from datetime import datetime
+from gettext import gettext as _
 from typing import Dict, Optional, Union
 from uuid import UUID
 from gi.repository import GObject

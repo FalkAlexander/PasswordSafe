@@ -1,7 +1,7 @@
-from gi.repository import GLib
+import secrets
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
-import secrets
+from gi.repository import GLib
 
 
 def create_random_data(bytes_buffer):

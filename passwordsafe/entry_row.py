@@ -1,10 +1,9 @@
 from gettext import gettext as _
-from gi.repository import Gtk
 from uuid import UUID
-
-from passwordsafe.color_widget import Color
+from gi.repository import Gtk
 import passwordsafe.config_manager
 import passwordsafe.icon
+from passwordsafe.color_widget import Color
 
 
 class EntryRow(Gtk.ListBoxRow):

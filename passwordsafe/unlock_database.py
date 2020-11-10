@@ -10,9 +10,11 @@ from typing import Optional
 
 from construct import core
 from gi.repository import Gio, GLib, Gtk, Handy, Pango
-
 from pykeepass.exceptions import (
-    CredentialsError, HeaderChecksumError, PayloadChecksumError)
+    CredentialsError,
+    HeaderChecksumError,
+    PayloadChecksumError,
+)
 
 import passwordsafe.config_manager
 from passwordsafe.config_manager import UnlockMethod

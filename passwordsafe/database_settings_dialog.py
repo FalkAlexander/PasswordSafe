@@ -1,11 +1,11 @@
-from gettext import gettext as _
-from random import randint
 import ntpath
+import os
 import threading
 import time
-import os
+from gettext import gettext as _
+from random import randint
+from gi.repository import GLib, Gtk
 
-from gi.repository import Gtk, GLib
 import passwordsafe.config_manager
 import passwordsafe.keyfile_generator
 import passwordsafe.password_generator

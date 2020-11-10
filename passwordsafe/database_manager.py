@@ -296,30 +296,17 @@ class DatabaseManager(GObject.GObject):
     #
     # Entry Checks
     #
+    def has_entry_name(self, entry: Union[UUID, Entry]) -> bool:
+        return self.get_entry_name(entry) != ""
 
-    def has_entry_name(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.title is None:
-            return False
-        return True
+    def has_entry_username(self, entry: Union[UUID, Entry]) -> bool:
+        return self.get_entry_username(entry) != ""
 
-    def has_entry_username(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.username is None:
-            return False
-        return True
+    def has_entry_password(self, entry: Union[UUID, Entry]) -> bool:
+        return self.get_entry_password(entry) != ""
 
-    def has_entry_password(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.password is None:
-            return False
-        return True
-
-    def has_entry_url(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.url is None:
-            return False
-        return True
+    def has_entry_url(self, entry: Union[UUID, Entry]) -> bool:
+        return self.get_entry_url(entry) != ""
 
     def has_entry_notes(self, uuid):
         entry = self.db.find_entries(uuid=uuid, first=True)

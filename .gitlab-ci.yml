@@ -6,7 +6,7 @@ variables:
   DEPS_DEB: "git git-buildpackage appstream-util debhelper-compat dh-python meson"
 
 stages:
-  - Static Analysis
+  - Code Analysis
   - Build
 
 cache:
@@ -20,20 +20,13 @@ cache:
         - apt-get -o dir::cache::archives=".apt" -qq update
         - apt-get -o dir::cache::archives=".apt" -qq install -y --no-install-recommends ${DEPS_DEV} -o=Dpkg::Use-Pty=0 flake8 pylint mypy > /dev/null
 
-static_check:
-    stage: Static Analysis
+code_analysis:
+    stage: Code Analysis
     <<: *basic-deps
     image: debian:sid
     script:
         - flake8 --max-line-length=250 --ignore=E402,W503 --show-source passwordsafe/
         - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
-
-pylint:
-    stage: Static Analysis
-    <<: *basic-deps
-    allow_failure: false
-    image: debian:sid
-    script:
         - pylint --rcfile=.pylintrc passwordsafe/*.py
 
 flatpak:

@@ -151,6 +151,8 @@ class CustomKeypressHandler:
               and scrolled_page.edit_page):
             self._goto_parent_group()
 
+        return True
+
     def _on_button_released(self, widget, event):
         """Go to the parent group with the back button.
 

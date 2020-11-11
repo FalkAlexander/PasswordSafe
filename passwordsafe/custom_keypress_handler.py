@@ -1,6 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
+import typing
+from uuid import UUID
+
 from gi.repository import Gdk, Gtk
+
 import passwordsafe.pathbar_button
+if typing.TYPE_CHECKING:
+    from passwordsafe.database_manager import DatabaseManager
+    from passwordsafe.main_window import MainWindow
+    from passwordsafe.scrolled_page import ScrolledPage
 
 
 class CustomKeypressHandler:
@@ -136,13 +146,19 @@ class CustomKeypressHandler:
 
         return True
 
-    def on_special_key_released(self, window, eventkey):
+    def on_special_key_released(
+            self, window: MainWindow, eventkey: Gtk.Event) -> bool:
+        """Go to the parent group on Escape or BackSpace key.
+
+        :param MainWindow window: the main window
+        :param Gtk.Event eventkey: the event
+        """
         if not self._can_goto_parent_group():
             return False
 
-        db_manager = self.unlocked_database.database_manager
-        element_uuid = self.unlocked_database.current_element.uuid
-        scrolled_page = self.unlocked_database.get_current_page()
+        db_manager: DatabaseManager = self.unlocked_database.database_manager
+        element_uuid: UUID = self.unlocked_database.current_element.uuid
+        scrolled_page: ScrolledPage = self.unlocked_database.get_current_page()
         if (eventkey.keyval == Gdk.KEY_BackSpace
                 and db_manager.check_is_group(element_uuid)
                 and not scrolled_page.edit_page):

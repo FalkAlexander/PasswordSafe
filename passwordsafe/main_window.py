@@ -310,9 +310,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 )
             except GLib.Error as e:  # pylint: disable=C0103
                 logging.debug(
-                    "Unable to query info for file {}: {}".format(
-                        db_filename, e.message
-                    )
+                    "Unable to query info for file %s: %s", db_filename, e.message
                 )
                 return
 
@@ -320,7 +318,7 @@ class MainWindow(Gtk.ApplicationWindow):
             file_mime_type = Gio.content_type_get_mime_type(file_content_type)
             if file_mime_type not in supported_mime_types:
                 logging.debug(
-                    "Unsupported mime type {}".format(file_mime_type))
+                    "Unsupported mime type: %s", file_mime_type)
                 main_message = _(
                     'Unable to open file "{}".'.format(db_filename))
                 mime_desc = Gio.content_type_get_description(file_content_type)

@@ -384,9 +384,10 @@ class MainWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.ACCEPT:
             filepath = self.filechooser_creation_dialog.get_filename()
             self.copy_database_file()
-            tab_title: str = os.path.basename(filepath)
 
-            creation_thread = threading.Thread(target=self.create_new_database_instance, args=[tab_title])
+            creation_thread = threading.Thread(
+                target=self.create_new_database_instance, args=[filepath]
+            )
             creation_thread.daemon = True
             creation_thread.start()
 
@@ -406,8 +407,10 @@ class MainWindow(Gtk.ApplicationWindow):
 
         stock_database.copy(new_database, Gio.FileCopyFlags.OVERWRITE)
 
-    def create_new_database_instance(self, tab_title):
-        self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
+    def create_new_database_instance(self, filepath: str) -> None:
+        """invoked in a separate thread to create a new safe."""
+        self.filechooser_creation_dialog.get_filename()
+        self.database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):

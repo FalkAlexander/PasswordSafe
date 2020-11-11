@@ -636,32 +636,14 @@ class DatabaseManager(GObject.GObject):
         return True
 
     # Search for an entry or a group
-    def search(self, string, global_search=True, path=None):
+    def search(self, string, path=None):
+        # TODO For some reason path is given with `//` is this Ok?
+        path = path.replace("//", "/")
         fulltext = passwordsafe.config_manager.get_full_text_search()
+        global_search = not passwordsafe.config_manager.get_local_search()
+
         uuid_list = []
 
-        # if fulltext is False:
-        #     for group in self.db.find_groups(name="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
-        #         if group.is_root_group is False:
-        #             uuid_list.append(group.uuid)
-        # else:
-        #     for group in self.db.groups:
-        #         if group.is_root_group is False and group.uuid not in uuid_list:
-        #             if string.lower() in self.get_notes(group):
-        #                 uuid_list.append(group.uuid)
-
-        # if fulltext is False:
-        #     for entry in self.db.find_entries(title="(?i)" + string.replace(" ", ".*"), recursive=global_search, path=path, regex=True):
-        #         uuid_list.append(entry.uuid)
-        # else:
-        #     for entry in self.db.entries:
-        #         if entry.uuid not in uuid_list:
-        #             if string.lower() in self.get_entry_username(entry):
-        #                 uuid_list.append(entry.uuid)
-        #             elif string.lower() in self.get_notes(entry):
-        #                 uuid_list.append(entry.uuid)
-
-        # Workaround
         if fulltext is False:
             for group in self.db.groups:
                 if group.is_root_group is False and group.uuid not in uuid_list:
@@ -670,7 +652,7 @@ class DatabaseManager(GObject.GObject):
                             if global_search is True:
                                 uuid_list.append(group.uuid)
                             else:
-                                if group.path[:-1].rsplit("/", 1)[0] == path.replace("//", ""):
+                                if self.get_parent_group(group).path == path:
                                     uuid_list.append(group.uuid)
         else:
             for group in self.db.groups:
@@ -679,8 +661,15 @@ class DatabaseManager(GObject.GObject):
                         if global_search is True:
                             uuid_list.append(group.uuid)
                         else:
-                            if group.path[:-1].rsplit("/", 1)[0] == path.replace("//", ""):
+                            if self.get_parent_group(group).path == path:
                                 uuid_list.append(group.uuid)
+                    elif group.name is not None:
+                        if string.lower() in self.get_group_name(group).lower():
+                            if global_search is True:
+                                uuid_list.append(group.uuid)
+                            else:
+                                if self.get_parent_group(group).path == path:
+                                    uuid_list.append(group.uuid)
 
         if fulltext is False:
             for entry in self.db.entries:
@@ -690,28 +679,35 @@ class DatabaseManager(GObject.GObject):
                             if global_search is True:
                                 uuid_list.append(entry.uuid)
                             else:
-                                if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                                if self.get_parent_group(entry).path == path:
                                     uuid_list.append(entry.uuid)
         else:
             for entry in self.db.entries:
                 if entry.uuid not in uuid_list:
-                    if string.lower() in self.get_entry_username(entry).lower():
+                    if entry.title is not None:
+                        if string.lower() in entry.title.lower():
+                            if global_search is True:
+                                uuid_list.append(entry.uuid)
+                            else:
+                                if self.get_parent_group(entry).path == path:
+                                    uuid_list.append(entry.uuid)
+                    elif string.lower() in self.get_entry_username(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:
-                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                            if self.get_parent_group(entry).path == path:
                                 uuid_list.append(entry.uuid)
                     elif string.lower() in self.get_notes(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:
-                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                            if self.get_parent_group(entry).path == path:
                                 uuid_list.append(entry.uuid)
                     elif string.lower() in self.get_entry_url(entry).lower():
                         if global_search is True:
                             uuid_list.append(entry.uuid)
                         else:
-                            if entry.path.rsplit("/", 1)[0] == path.replace("//", ""):
+                            if self.get_parent_group(entry).path == path:
                                 uuid_list.append(entry.uuid)
 
         return uuid_list

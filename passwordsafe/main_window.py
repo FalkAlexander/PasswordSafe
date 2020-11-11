@@ -22,7 +22,6 @@ class MainWindow(Gtk.ApplicationWindow):
     database_manager = NotImplemented
     container = NotImplemented
     quit_dialog = NotImplemented
-    filechooser_creation_dialog = NotImplemented
     headerbar = NotImplemented
     file_open_button = NotImplemented
     file_new_button = NotImplemented
@@ -173,11 +172,10 @@ class MainWindow(Gtk.ApplicationWindow):
 
         if self.get_application().file_list:
             for g_file in self.get_application().file_list:
-                self.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
+                self.start_database_opening_routine(g_file.get_path())
         elif passwordsafe.config_manager.get_first_start_screen() and filepath and os.path.exists(filepath):
             logging.debug("Found last opened database: %s", filepath)
-            tab_title = ntpath.basename(filepath)
-            self.start_database_opening_routine(tab_title, filepath)
+            self.start_database_opening_routine(filepath)
         else:
             logging.debug("No / Not valid last opened database found.")
             self.assemble_first_start_screen()
@@ -348,17 +346,17 @@ class MainWindow(Gtk.ApplicationWindow):
                     db.show_database_action_revealer("Database already opened")
 
             if database_already_opened is False:
-                tab_title = self.create_tab_title_from_filepath(db_filename)
-                self.start_database_opening_routine(tab_title, db_filename)
+                self.start_database_opening_routine(db_filename)
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection canceled")
 
-    def start_database_opening_routine(self, tab_title, filepath):
+    def start_database_opening_routine(self, filepath: str) -> None:
+        """Start opening a safe file"""
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/create_database.ui")
         headerbar = builder.get_object("headerbar")
-
+        tab_title: str = os.path.basename(filepath)
         UnlockDatabase(self, self.create_tab(tab_title, headerbar), filepath)
 
     #
@@ -366,27 +364,32 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def create_filechooser(self, _widget, _none):
-        self.filechooser_creation_dialog = Gtk.FileChooserNative.new(
+        filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
-            _("Choose location for Keepass safe"), self, Gtk.FileChooserAction.SAVE,
-            _("Save"), None)
-        self.filechooser_creation_dialog.set_do_overwrite_confirmation(True)
-        self.filechooser_creation_dialog.set_current_name(_("Safe") + ".kdbx")
-        self.filechooser_creation_dialog.set_modal(True)
-        self.filechooser_creation_dialog.set_local_only(False)
+            _("Choose location for Keepass safe"),
+            self,
+            Gtk.FileChooserAction.SAVE,
+            _("Save"),
+            None,
+        )
+        filechooser_creation_dialog.set_do_overwrite_confirmation(True)
+        filechooser_creation_dialog.set_current_name(_("Safe") + ".kdbx")
+        filechooser_creation_dialog.set_modal(True)
+        filechooser_creation_dialog.set_local_only(False)
 
         filter_text = Gtk.FileFilter()
         # NOTE: KeePass + version number is a proper name, do not translate
         filter_text.set_name(_("KeePass 3.1/4 Database"))
         filter_text.add_mime_type("application/x-keepass2")
-        self.filechooser_creation_dialog.add_filter(filter_text)
+        filechooser_creation_dialog.add_filter(filter_text)
 
-        response = self.filechooser_creation_dialog.run()
+        response = filechooser_creation_dialog.run()
         if response == Gtk.ResponseType.ACCEPT:
-            self.copy_database_file()
-            tab_title = self.create_tab_title_from_filepath(self.filechooser_creation_dialog.get_current_name())
+            filepath = filechooser_creation_dialog.get_filename()
 
-            creation_thread = threading.Thread(target=self.create_new_database_instance, args=[tab_title])
+            creation_thread = threading.Thread(
+                target=self.create_new_database, args=[filepath]
+            )
             creation_thread.daemon = True
             creation_thread.start()
 
@@ -398,16 +401,18 @@ class MainWindow(Gtk.ApplicationWindow):
                 self.spinner = builder.get_object("spinner_grid")
                 self.add(self.spinner)
 
-    def copy_database_file(self):
-        stock_database = Gio.File.new_for_uri(
+    def create_new_database(self, filepath: str) -> None:
+        """invoked in a separate thread to create a new safe."""
+
+        # Copy our stock database file to `filepath`
+        stock_db_file: Gio.File = Gio.File.new_for_uri(
             "resource:///org/gnome/PasswordSafe/database.kdbx")
-        new_database = Gio.File.new_for_path(
-            self.filechooser_creation_dialog.get_filename())
+        new_db_file: Gio.File = Gio.File.new_for_path(filepath)
+        stock_db_file.copy(new_db_file, Gio.FileCopyFlags.OVERWRITE)
 
-        stock_database.copy(new_database, Gio.FileCopyFlags.OVERWRITE)
-
-    def create_new_database_instance(self, tab_title):
-        self.database_manager = DatabaseManager(self.filechooser_creation_dialog.get_filename(), "liufhre86ewoiwejmrcu8owe")
+        tab_title: str = os.path.basename(filepath)
+        self.database_manager = DatabaseManager(filepath,
+                                                "liufhre86ewoiwejmrcu8owe")
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
@@ -469,9 +474,6 @@ class MainWindow(Gtk.ApplicationWindow):
                 self.add(self.container)
                 self.container.show_all()
 
-    def create_tab_title_from_filepath(self, filepath):
-        return ntpath.basename(filepath)
-
     def close_tab(self, child_widget, database=None):
         """Remove a tab from the container.
 
@@ -494,7 +496,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def on_last_opened_list_box_activated(self, _widget, list_box_row):
         path = list_box_row.get_name()
-        self.start_database_opening_routine(ntpath.basename(path), Gio.File.new_for_uri(path).get_path())
+        self.start_database_opening_routine(Gio.File.new_for_uri(path).get_path())
 
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)

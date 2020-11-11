@@ -130,7 +130,7 @@ class Application(Gtk.Application):
         for g_file in g_file_list:
             self.file_list.append(g_file)
             if self.window is not None:
-                self.window.start_database_opening_routine(g_file.get_basename(), g_file.get_path())
+                self.window.start_database_opening_routine(g_file.get_path())
 
         self.do_activate()
 

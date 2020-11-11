@@ -1,20 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import hashlib
 import logging
-
-import passwordsafe.config_manager
-
 from datetime import datetime
 from gettext import gettext as _
-from typing import Dict, Optional, Union
+from typing import Dict, List, Optional, Union
 from uuid import UUID
+
 from gi.repository import GObject
+
+import passwordsafe.config_manager
+from passwordsafe.color_widget import Color
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
 from pykeepass.kdbx_parsing.kdbx import KDBX
-
-from passwordsafe.color_widget import Color
 
 
 class DatabaseManager(GObject.GObject):
@@ -636,79 +635,42 @@ class DatabaseManager(GObject.GObject):
         return True
 
     # Search for an entry or a group
-    def search(self, string, path=None):
+    def search(self, string: str, path=None) -> None:
         # TODO For some reason path is given with `//` is this Ok?
         path = path.replace("//", "/")
-        fulltext = passwordsafe.config_manager.get_full_text_search()
+        full_text_search = passwordsafe.config_manager.get_full_text_search()
         global_search = not passwordsafe.config_manager.get_local_search()
-
         uuid_list = []
 
-        if fulltext is False:
-            for group in self.db.groups:
-                if group.is_root_group is False and group.uuid not in uuid_list:
-                    if group.name is not None:
-                        if string.lower() in group.name.lower():
-                            if global_search is True:
-                                uuid_list.append(group.uuid)
-                            else:
-                                if self.get_parent_group(group).path == path:
-                                    uuid_list.append(group.uuid)
-        else:
-            for group in self.db.groups:
-                if group.is_root_group is False and group.uuid not in uuid_list:
-                    if string.lower() in self.get_notes(group).lower():
-                        if global_search is True:
-                            uuid_list.append(group.uuid)
-                        else:
-                            if self.get_parent_group(group).path == path:
-                                uuid_list.append(group.uuid)
-                    elif group.name is not None:
-                        if string.lower() in self.get_group_name(group).lower():
-                            if global_search is True:
-                                uuid_list.append(group.uuid)
-                            else:
-                                if self.get_parent_group(group).path == path:
-                                    uuid_list.append(group.uuid)
+        def search_entry(entry: Union[Entry, Group], lookfor: List[Union[None, str]]) -> None:
+            """Looks if the querry string appears in any on the items of lookfor.
+            If there is a match adds the entry to the uuid_list.
+            """
+            for term in lookfor:
+                if term is None:
+                    return
+                if string.lower() in term.lower():
+                    if global_search is True:
+                        if entry.uuid not in uuid_list:
+                            uuid_list.append(entry.uuid)
+                    elif self.get_parent_group(entry).path == path:
+                        if entry.uuid not in uuid_list:
+                            uuid_list.append(entry.uuid)
 
-        if fulltext is False:
-            for entry in self.db.entries:
-                if entry.uuid not in uuid_list:
-                    if entry.title is not None:
-                        if string.lower() in entry.title.lower():
-                            if global_search is True:
-                                uuid_list.append(entry.uuid)
-                            else:
-                                if self.get_parent_group(entry).path == path:
-                                    uuid_list.append(entry.uuid)
-        else:
-            for entry in self.db.entries:
-                if entry.uuid not in uuid_list:
-                    if entry.title is not None:
-                        if string.lower() in entry.title.lower():
-                            if global_search is True:
-                                uuid_list.append(entry.uuid)
-                            else:
-                                if self.get_parent_group(entry).path == path:
-                                    uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_entry_username(entry).lower():
-                        if global_search is True:
-                            uuid_list.append(entry.uuid)
-                        else:
-                            if self.get_parent_group(entry).path == path:
-                                uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_notes(entry).lower():
-                        if global_search is True:
-                            uuid_list.append(entry.uuid)
-                        else:
-                            if self.get_parent_group(entry).path == path:
-                                uuid_list.append(entry.uuid)
-                    elif string.lower() in self.get_entry_url(entry).lower():
-                        if global_search is True:
-                            uuid_list.append(entry.uuid)
-                        else:
-                            if self.get_parent_group(entry).path == path:
-                                uuid_list.append(entry.uuid)
+        for group in self.db.groups:
+            if group.is_root_group is False:
+                search_entry(group, [group.name])
+                if full_text_search:
+                    notes = self.get_notes(group).lower()
+                    search_entry(group, [notes])
+
+        for entry in self.db.entries:
+            search_entry(entry, [entry.title])
+            if full_text_search:
+                username = self.get_entry_username(entry)
+                notes = self.get_notes(entry)
+                url = self.get_entry_url(entry)
+                search_entry(entry, [username, notes, url])
 
         return uuid_list
 

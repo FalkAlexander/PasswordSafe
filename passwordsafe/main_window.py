@@ -565,7 +565,8 @@ class MainWindow(Gtk.ApplicationWindow):
                     unsaved_databases_list.append(db)
 
         if len(unsaved_databases_list) == 1:
-            res = db.show_save_dialog()  # This will also save it
+            database = unsaved_databases_list[0]
+            res = database.show_save_dialog()  # This will also save it
             if not res:
                 return True  # User Canceled, don't quit
         elif len(unsaved_databases_list) > 1:

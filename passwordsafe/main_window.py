@@ -49,7 +49,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.create_headerbar()
         self.first_start_screen()
 
-        self.custom_css()
+        self.load_custom_css()
         self.apply_theme()
 
     #
@@ -87,7 +87,8 @@ class MainWindow(Gtk.ApplicationWindow):
     # Styles
     #
 
-    def custom_css(self):
+    def load_custom_css(self) -> None:  # pylint: disable=R0201
+        """Load passwordsafe.css and enable it"""
         screen = Gdk.Screen.get_default()
 
         css_provider = Gtk.CssProvider()
@@ -99,7 +100,8 @@ class MainWindow(Gtk.ApplicationWindow):
         context.add_provider_for_screen(
             screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
-    def apply_theme(self):
+    def apply_theme(self) -> None:  # pylint: disable=R0201
+        """Set the bright/dark theme depending on the configuration"""
         gtk_settings = Gtk.Settings.get_default()
 
         gtk_settings.set_property(

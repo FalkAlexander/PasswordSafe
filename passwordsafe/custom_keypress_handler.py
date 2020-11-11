@@ -153,6 +153,7 @@ class CustomKeypressHandler:
         :param MainWindow window: the main window
         :param Gtk.Event eventkey: the event
         """
+        # pylint: disable=unused-argument
         if not self._can_goto_parent_group():
             return False
 

@@ -147,13 +147,12 @@ class CustomKeypressHandler:
         return True
 
     def on_special_key_released(
-            self, window: MainWindow, eventkey: Gtk.Event) -> bool:
+            self, _window: MainWindow, eventkey: Gtk.Event) -> bool:
         """Go to the parent group on Escape or BackSpace key.
 
         :param MainWindow window: the main window
         :param Gtk.Event eventkey: the event
         """
-        # pylint: disable=unused-argument
         if not self._can_goto_parent_group():
             return False
 
@@ -171,13 +170,12 @@ class CustomKeypressHandler:
         return True
 
     def _on_button_released(
-            self, window: MainWindow, event: Gtk.Event) -> bool:
+            self, _window: MainWindow, event: Gtk.Event) -> bool:
         """Go to the parent group with the back button.
 
         :param Gtk.Widget window: the main window
         :param Gtk.Event event: the event
         """
-        # pylint: disable=unused-argument
         # Mouse button 8 is the back button.
         if (event.button != 8
                 or not self._can_goto_parent_group()):

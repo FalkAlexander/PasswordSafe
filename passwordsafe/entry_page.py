@@ -19,8 +19,8 @@ class EntryPage:
     #
     # Global Variables
     #
-
     unlocked_database = NotImplemented
+    _pwd_popover = NotImplemented
 
     #
     # Init
@@ -313,7 +313,7 @@ class EntryPage:
 
         attributes = self.unlocked_database.database_manager.get_entry_attributes(entry_uuid)
         for key in attributes:
-            if key != "color_prop_LcljUMJZ9X" and key != "Notes":
+            if key not in ("color_prop_LcljUMJZ9X", "Notes"):
                 self.add_attribute_property_row(key, attributes[key])
 
         if scrolled_page.color_property_row is not NotImplemented and \
@@ -659,10 +659,9 @@ class EntryPage:
                 uuid = UUID(self.unlocked_database.reference_to_hex_uuid(
                     scrolled_page.password_property_value_entry.get_text()))
                 password = self.unlocked_database.database_manager.get_entry_password(uuid)
-            except(Exception):
+            except Exception:
                 logging.warning(
                     "Failed to look up password for reference '%s'", password)
-                return None
 
         # strength() returns None on error.
         strength = passwordsafe.password_generator.strength(password)

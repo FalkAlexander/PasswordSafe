@@ -21,7 +21,6 @@ class MainWindow(Gtk.ApplicationWindow):
     application = NotImplemented
     database_manager = NotImplemented
     container = NotImplemented
-    quit_dialog = NotImplemented
     headerbar = NotImplemented
     file_open_button = NotImplemented
     file_new_button = NotImplemented
@@ -574,8 +573,8 @@ class MainWindow(Gtk.ApplicationWindow):
             builder = Gtk.Builder()
             builder.add_from_resource(
                 "/org/gnome/PasswordSafe/quit_dialog.ui")
-            self.quit_dialog = builder.get_object("quit_dialog")
-            self.quit_dialog.set_transient_for(self)
+            quit_dialog = builder.get_object("quit_dialog")
+            quit_dialog.set_transient_for(self)
 
             unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
 
@@ -592,8 +591,8 @@ class MainWindow(Gtk.ApplicationWindow):
                 unsaved_database_row.show_all()
                 unsaved_databases_list_box.add(unsaved_database_row)
 
-            res = self.quit_dialog.run()
-            self.quit_dialog.destroy()
+            res = quit_dialog.run()
+            quit_dialog.destroy()
             if res == Gtk.ResponseType.CANCEL:
                 self.databases_to_save.clear()
                 return True

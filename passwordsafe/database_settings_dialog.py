@@ -4,7 +4,6 @@ import os
 import threading
 import time
 from gettext import gettext as _
-from random import randint
 from gi.repository import GLib, Gtk
 
 import passwordsafe.config_manager
@@ -148,7 +147,7 @@ class DatabaseSettingsDialog:
         new_password_entry = self.builder.get_object("new_password_entry")
         confirm_password_entry = self.builder.get_object("confirm_password_entry")
 
-        generated_password = passwordsafe.password_generator.generate(randint(18, 24), True, True, True, True)
+        generated_password = passwordsafe.password_generator.generate()
 
         new_password_entry.set_text(generated_password)
         confirm_password_entry.set_text(generated_password)

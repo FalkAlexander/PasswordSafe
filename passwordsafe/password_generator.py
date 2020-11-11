@@ -4,38 +4,38 @@ import string
 from typing import Optional
 import pwquality
 
+import passwordsafe.config_manager as config
 
-def generate(
-        digits: int, high_letter: bool, low_letter: bool, numbers: bool,
-        special: bool) -> str:
+
+def generate() -> str:
     """Generate a password based on some criteria.
 
-    :param int digits: password number of characters
-    :param bool high_letter: password must contain uppercase letters
-    :param bool low_letter: password must contain low letters
-    :param bool numbers: password must contain digits
-    :param bool special: password must contain special characters
     :returns: a password
     :rtype: str
     """
+    length = config.get_generator_length()
     characters: str = ""
 
-    if high_letter is True:
+    if config.get_generator_use_uppercase():
         characters += string.ascii_uppercase
 
-    if low_letter is True:
+    if config.get_generator_use_lowercase():
         characters += string.ascii_lowercase
 
-    if numbers is True:
+    if config.get_generator_use_numbers():
         characters += string.digits
 
-    if special is True:
+    if config.get_generator_use_symbols():
         characters += string.punctuation
 
+    # If all options are disabled, generate a password using
+    # arbitrary ASCII characters.
+    # TODO Revisit this. It might be a sane default, but
+    # it is highly un-intuitive.
     if characters == "":
         characters = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation
 
-    return "".join([secrets.choice(characters) for _ in range(0, digits)])
+    return "".join([secrets.choice(characters) for _ in range(0, length)])
 
 
 def strength(password: str) -> Optional[float]:

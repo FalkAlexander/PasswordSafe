@@ -635,9 +635,7 @@ class DatabaseManager(GObject.GObject):
         return True
 
     # Search for an entry or a group
-    def search(self, string: str, path=None) -> None:
-        # TODO For some reason path is given with `//` is this Ok?
-        path = path.replace("//", "/")
+    def search(self, string: str, path: str) -> List[UUID]:
         full_text_search = passwordsafe.config_manager.get_full_text_search()
         global_search = not passwordsafe.config_manager.get_local_search()
         uuid_list = []
@@ -650,11 +648,11 @@ class DatabaseManager(GObject.GObject):
                 if term is None:
                     return
                 if string.lower() in term.lower():
-                    if global_search is True:
-                        if entry.uuid not in uuid_list:
-                            uuid_list.append(entry.uuid)
-                    elif self.get_parent_group(entry).path == path:
-                        if entry.uuid not in uuid_list:
+                    if global_search and entry.uuid not in uuid_list:
+                        uuid_list.append(entry.uuid)
+                    elif self.get_parent_group(entry) is not None:
+                        parent_group: Union[Group, Entry] = self.get_parent_group(entry)
+                        if parent_group.path == path and entry.uuid not in uuid_list:
                             uuid_list.append(entry.uuid)
 
         for group in self.db.groups:

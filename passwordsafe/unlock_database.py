@@ -517,7 +517,7 @@ class UnlockDatabase:
         unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
         unlock_failed_revealer.set_reveal_child(False)
 
-    def _on_database_locked_changed(self, database_manager=None, value=None):
+    def _on_database_locked_changed(self, _database_manager=None, _value=None):
         if (not self.database_manager
             or (self.database_manager
                 and self.database_manager.props.locked)):

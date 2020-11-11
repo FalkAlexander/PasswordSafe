@@ -12,8 +12,10 @@ from gettext import gettext as _
 from threading import Timer
 from typing import List, Optional, Union
 from uuid import UUID
+
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 
+import passwordsafe.config_manager
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.entry_page import EntryPage
@@ -31,8 +33,6 @@ from passwordsafe.selection_ui import SelectionUI
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
     from pykeepass.group import Group
-
-import passwordsafe.config_manager
 
 
 class UnlockedDatabase(GObject.GObject):

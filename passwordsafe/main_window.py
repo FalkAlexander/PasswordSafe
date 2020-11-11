@@ -597,8 +597,7 @@ class MainWindow(Gtk.ApplicationWindow):
             if res == Gtk.ResponseType.CANCEL:
                 self.databases_to_save.clear()
                 return True
-            elif res == Gtk.ResponseType.OK:
-                pass  # Do noting, go on...
+            # Do nothing in other cases e.g.NONE, OK,...
 
         for db in self.opened_databases:  # pylint: disable=C0103
             db.cancel_timers()

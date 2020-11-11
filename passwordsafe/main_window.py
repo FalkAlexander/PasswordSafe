@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import logging
-import ntpath
 import os
 import threading
 from gettext import gettext as _
@@ -195,27 +194,30 @@ class MainWindow(Gtk.ApplicationWindow):
             "row-activated", self.on_last_opened_list_box_activated)
 
         entry_list = []
-        for path in passwordsafe.config_manager.get_last_opened_list():
-            if Gio.File.query_exists(Gio.File.new_for_uri(path)):
-                pbuilder = Gtk.Builder()
-                pbuilder.add_from_resource(
-                    "/org/gnome/PasswordSafe/main_window.ui")
+        pbuilder = Gtk.Builder()
+        user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
+        for path_uri in passwordsafe.config_manager.get_last_opened_list():
+            gio_file: Gio.File = Gio.File.new_for_uri(path_uri)
+            if not gio_file.query_exists():
+                logging.info(
+                    "Ignoring nonexistant recent file: %s", gio_file.get_path()
+                )
+                continue  # only work with existing files
 
-                last_opened_row = pbuilder.get_object("last_opened_row")
-                filename_label = pbuilder.get_object("filename_label")
-                path_label = pbuilder.get_object("path_label")
+            # Retrieve new widgets for next entry
+            pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+            last_opened_row = pbuilder.get_object("last_opened_row")
+            filename_label = pbuilder.get_object("filename_label")
+            path_label = pbuilder.get_object("path_label")
 
-                filename_label.set_text(
-                    os.path.splitext(ntpath.basename(path))[0])
-                if "/home/" in path:
-                    relpath = os.path.relpath(
-                        Gio.File.new_for_uri(path).get_path())
-                    path_label.set_text("~/" + relpath)
-                else:
-                    path_label.set_text(path)
-                last_opened_row.set_name(path)
+            # If path is not relative to user's home, use absolute path
+            path: str = user_home.get_relative_path(gio_file) or gio_file.get_path()
+            base_name: str = os.path.splitext(gio_file.get_basename())[0]
 
-                entry_list.append(last_opened_row)
+            filename_label.set_text(base_name)
+            path_label.set_text(path)
+            last_opened_row.set_name(path)
+            entry_list.append(last_opened_row)
 
         if not entry_list:
             self.display_welcome_page()

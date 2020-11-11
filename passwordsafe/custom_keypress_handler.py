@@ -177,6 +177,7 @@ class CustomKeypressHandler:
         :param Gtk.Widget window: the main window
         :param Gtk.Event event: the event
         """
+        # pylint: disable=unused-argument
         # Mouse button 8 is the back button.
         if (event.button != 8
                 or not self._can_goto_parent_group()):

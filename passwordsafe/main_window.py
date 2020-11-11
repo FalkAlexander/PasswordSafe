@@ -21,7 +21,6 @@ class MainWindow(Gtk.ApplicationWindow):
     application = NotImplemented
     database_manager = NotImplemented
     container = NotImplemented
-    quit_dialog = NotImplemented
     headerbar = NotImplemented
     file_open_button = NotImplemented
     file_new_button = NotImplemented
@@ -50,7 +49,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.create_headerbar()
         self.first_start_screen()
 
-        self.custom_css()
+        self.load_custom_css()
         self.apply_theme()
 
     #
@@ -88,7 +87,8 @@ class MainWindow(Gtk.ApplicationWindow):
     # Styles
     #
 
-    def custom_css(self):
+    def load_custom_css(self) -> None:  # pylint: disable=R0201
+        """Load passwordsafe.css and enable it"""
         screen = Gdk.Screen.get_default()
 
         css_provider = Gtk.CssProvider()
@@ -100,7 +100,8 @@ class MainWindow(Gtk.ApplicationWindow):
         context.add_provider_for_screen(
             screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
-    def apply_theme(self):
+    def apply_theme(self) -> None:  # pylint: disable=R0201
+        """Set the bright/dark theme depending on the configuration"""
         gtk_settings = Gtk.Settings.get_default()
 
         gtk_settings.set_property(
@@ -311,9 +312,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 )
             except GLib.Error as e:  # pylint: disable=C0103
                 logging.debug(
-                    "Unable to query info for file {}: {}".format(
-                        db_filename, e.message
-                    )
+                    "Unable to query info for file %s: %s", db_filename, e.message
                 )
                 return
 
@@ -321,7 +320,7 @@ class MainWindow(Gtk.ApplicationWindow):
             file_mime_type = Gio.content_type_get_mime_type(file_content_type)
             if file_mime_type not in supported_mime_types:
                 logging.debug(
-                    "Unsupported mime type {}".format(file_mime_type))
+                    "Unsupported mime type: %s", file_mime_type)
                 main_message = _(
                     'Unable to open file "{}".'.format(db_filename))
                 mime_desc = Gio.content_type_get_description(file_content_type)
@@ -566,7 +565,8 @@ class MainWindow(Gtk.ApplicationWindow):
                     unsaved_databases_list.append(db)
 
         if len(unsaved_databases_list) == 1:
-            res = db.show_save_dialog()  # This will also save it
+            database = unsaved_databases_list[0]
+            res = database.show_save_dialog()  # This will also save it
             if not res:
                 return True  # User Canceled, don't quit
         elif len(unsaved_databases_list) > 1:
@@ -574,8 +574,8 @@ class MainWindow(Gtk.ApplicationWindow):
             builder = Gtk.Builder()
             builder.add_from_resource(
                 "/org/gnome/PasswordSafe/quit_dialog.ui")
-            self.quit_dialog = builder.get_object("quit_dialog")
-            self.quit_dialog.set_transient_for(self)
+            quit_dialog = builder.get_object("quit_dialog")
+            quit_dialog.set_transient_for(self)
 
             unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
 
@@ -592,13 +592,12 @@ class MainWindow(Gtk.ApplicationWindow):
                 unsaved_database_row.show_all()
                 unsaved_databases_list_box.add(unsaved_database_row)
 
-            res = self.quit_dialog.run()
-            self.quit_dialog.destroy()
+            res = quit_dialog.run()
+            quit_dialog.destroy()
             if res == Gtk.ResponseType.CANCEL:
                 self.databases_to_save.clear()
                 return True
-            elif res == Gtk.ResponseType.OK:
-                pass  # Do noting, go on...
+            # Do nothing in other cases e.g.NONE, OK,...
 
         for db in self.opened_databases:  # pylint: disable=C0103
             db.cancel_timers()

@@ -67,33 +67,23 @@ class EntryPage:
 
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
-        entry_uuid = self.unlocked_database.current_element.uuid
+        cur_entry = self.unlocked_database.current_element
+        entry_uuid = cur_entry.uuid
         scrolled_page = self.unlocked_database.get_current_page()
-
-        if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True or add_all is True:
+        entry_name = self.unlocked_database.database_manager.get_entry_name(cur_entry)
+        if entry_name or add_all:
             if scrolled_page.name_property_row is NotImplemented:
+                # Create the name_property_row
                 scrolled_page.name_property_row = builder.get_object("name_property_row")
                 scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
                 scrolled_page.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_name(entry_uuid)
-                if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
-                    scrolled_page.name_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.name_property_value_entry.set_text("")
 
-                scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
-                properties_list_box.add(scrolled_page.name_property_row)
-                scrolled_page.name_property_value_entry.grab_focus()
-            elif scrolled_page.name_property_row:
-                value = self.unlocked_database.database_manager.get_entry_name(
-                    entry_uuid)
-                if self.unlocked_database.database_manager.has_entry_name(entry_uuid) is True:
-                    scrolled_page.name_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.name_property_value_entry.set_text("")
-
-                scrolled_page.name_property_value_entry.connect("changed", self.on_property_value_entry_changed, "name")
-                properties_list_box.add(scrolled_page.name_property_row)
+            scrolled_page.name_property_value_entry.set_text(entry_name)
+            scrolled_page.name_property_value_entry.connect(
+                "changed", self.on_property_value_entry_changed, "name"
+            )
+            properties_list_box.add(scrolled_page.name_property_row)
+            scrolled_page.name_property_value_entry.grab_focus()
 
         if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True or add_all is True:
             if scrolled_page.username_property_row is NotImplemented:

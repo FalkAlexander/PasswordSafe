@@ -27,11 +27,11 @@ class EntryRow(Gtk.ListBoxRow):
 
         self.entry_uuid = entry.uuid
         self.icon: Optional[int] = dbm.get_icon(entry)
-        self.label = dbm.get_entry_name(entry)
-        self.password = dbm.get_entry_password(entry)
+        self.label: str = entry.title or ""
+        self.password = entry.password # type: Optional[str]
         self.color = dbm.get_entry_color(entry)
-        self.username: Optional[str] = dbm.get_entry_username(entry)
-        if self.username and self.username.startswith("{REF:U"):
+        self.username: str = entry.username or ""
+        if self.username.startswith("{REF:U"):
             # Loopup reference and put in the "real" username
             uuid = UUID(self.unlocked_database.reference_to_hex_uuid(self.username))
             self.username = self.database_manager.get_entry_username(uuid)

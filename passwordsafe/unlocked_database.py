@@ -410,11 +410,7 @@ class UnlockedDatabase(GObject.GObject):
         add_loading_indicator_thread = threading.Thread(target=self.add_loading_indicator_thread, args=(list_box, overlay))
         add_loading_indicator_thread.start()
 
-        if self.current_element.is_root_group:
-            groups = self.database_manager.get_groups_in_root()
-        else:
-            groups = self.database_manager.get_groups_in_folder(self.current_element.uuid)
-
+        groups = self.current_element.subgroups
         GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
 
         self.insert_entries_into_listbox(list_box, overlay)

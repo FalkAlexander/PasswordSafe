@@ -637,14 +637,6 @@ class DatabaseManager(GObject.GObject):
     # Read Database
     #
 
-    def get_groups_in_root(self):
-        return self.db.root_group.subgroups
-
-    def get_groups_in_folder(self, uuid):
-        """Return list of all subgroups in a group"""
-        folder = self.get_group(uuid)
-        return folder.subgroups
-
     # Return the root group of the database instance
     def get_root_group(self):
         return self.db.root_group

@@ -495,9 +495,14 @@ class MainWindow(Gtk.ApplicationWindow):
     # Events
     #
 
-    def on_last_opened_list_box_activated(self, _widget, list_box_row):
-        path = list_box_row.get_name()
-        self.start_database_opening_routine(Gio.File.new_for_uri(path).get_path())
+    def on_last_opened_list_box_activated(
+        self, _widget: Gtk.ListBox, list_box_row: Gtk.ListBoxRow
+    ) -> None:
+        """cb when we click on an entry in the recently opened files list
+
+        Starts opening the database corresponding to the entry."""
+        file_uri: str = list_box_row.get_name()
+        self.start_database_opening_routine(Gio.File.new_for_uri(file_uri).get_path())
 
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)

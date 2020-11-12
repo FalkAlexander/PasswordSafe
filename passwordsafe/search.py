@@ -34,6 +34,7 @@ class Search:
 
     def __init__(self, u_d):
         self.unlocked_database = u_d
+        self._search_event_connection_id = 0
 
     def initialize(self):
         # Search Headerbar
@@ -66,11 +67,13 @@ class Search:
         # pylint: disable=unused-argument
         search_active = self.unlocked_database.props.search_active
 
+        search_entry = self.unlocked_database.builder.get_object(
+            "headerbar_search_entry")
+
+        self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
         if search_active:
             headerbar_search = self.unlocked_database.builder.get_object(
                 "headerbar_search")
-            search_entry = self.unlocked_database.builder.get_object(
-                "headerbar_search_entry")
             self.unlocked_database.headerbar_search = headerbar_search
             self.unlocked_database.parent_widget.set_headerbar(
                 headerbar_search)
@@ -80,8 +83,7 @@ class Search:
                 self.search_list_box.select_row(
                     self.search_list_box.get_row_at_index(0))
                 self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
-            else:
-                search_entry.connect(
+                self._search_event_connection_id = search_entry.connect(
                     "key-release-event", self.on_search_entry_navigation)
 
             self.unlocked_database.responsive_ui.action_bar()
@@ -91,6 +93,8 @@ class Search:
                 self.unlocked_database.headerbar)
             self.unlocked_database.window.set_titlebar(
                 self.unlocked_database.headerbar)
+            search_entry.disconnect(self._search_event_connection_id)
+            self._search_event_connection_id = 0
 
     #
     # Stack
@@ -247,6 +251,13 @@ class Search:
                     self.search_list_box.select_row(row)
 
     def on_headerbar_search_entry_changed(self, widget):
+        # Reset the select row position.
+        # Weird bugs, where multiple entries would be selected at the same
+        # time, or it is not possible to move selection appear without this.
+        self.search_list_box.select_row(
+            self.search_list_box.get_row_at_index(0))
+        self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+
         self.search_list_box.hide()
         result_list = []
 

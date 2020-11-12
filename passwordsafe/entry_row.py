@@ -71,9 +71,8 @@ class EntryRow(Gtk.ListBoxRow):
         image = entry_color_button.get_children()[0]
         image_style = image.get_style_context()
         if self.color != Color.NONE.value:
+            image_style.remove_class("DarkIcon")
             image_style.add_class("BrightIcon")
-        else:
-            image_style.add_class("DarkIcon")
 
         self.add(entry_event_box)
         self.show()

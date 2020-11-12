@@ -4,6 +4,7 @@ from gettext import gettext as _
 from uuid import UUID
 from typing import Optional
 from gi.repository import Gtk
+
 import passwordsafe.config_manager
 import passwordsafe.icon
 from passwordsafe.color_widget import Color
@@ -36,6 +37,11 @@ class EntryRow(Gtk.ListBoxRow):
         self.label = dbm.get_entry_name(entry)
         self.password = dbm.get_entry_password(entry)
         self.color = dbm.get_entry_color(entry)
+        self.username: Optional[str] = dbm.get_entry_username(entry)
+        if self.username and self.username.startswith("{REF:U"):
+            # Loopup reference and put in the "real" username
+            uuid = UUID(self.unlocked_database.reference_to_hex_uuid(self.username))
+            self.username = self.database_manager.get_entry_username(uuid)
 
         self.assemble_entry_row()
 
@@ -62,16 +68,8 @@ class EntryRow(Gtk.ListBoxRow):
             entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
 
         # Subtitle
-        subtitle = self.database_manager.get_entry_username(self.entry_uuid)
-        if (self.database_manager.has_entry_username(self.entry_uuid) and subtitle):
-            username = self.database_manager.get_entry_username(self.entry_uuid)
-            if username.startswith("{REF:U"):
-                uuid = UUID(
-                    self.unlocked_database.reference_to_hex_uuid(username))
-                username = self.database_manager.get_entry_username(uuid)
-                entry_subtitle_label.set_text(username)
-            else:
-                entry_subtitle_label.set_text(username)
+        if self.username:
+            entry_subtitle_label.set_text(self.username)
         else:
             entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
 

@@ -8,7 +8,6 @@ class GroupRow(Gtk.ListBoxRow):
     group_uuid = NotImplemented
     label = NotImplemented
     selection_checkbox = NotImplemented
-    checkbox_box = NotImplemented
     edit_button = NotImplemented
     type = "GroupRow"
 
@@ -38,16 +37,13 @@ class GroupRow(Gtk.ListBoxRow):
             group_name_label.set_markup("<span font-style=\"italic\">" + _("No group title specified") + "</span>")
 
         self.add(group_event_box)
-        self.show_all()
+        self.show()
 
         # Selection Mode Checkboxes
-        self.checkbox_box = builder.get_object("group_checkbox_box")
         self.selection_checkbox = builder.get_object("selection_checkbox_group")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
         if self.unlocked_database.selection_ui.selection_mode_active is True:
-            self.checkbox_box.show_all()
-        else:
-            self.checkbox_box.hide()
+            self.selection_checkbox.show()
 
         # Edit Button
         self.edit_button = builder.get_object("group_edit_button")

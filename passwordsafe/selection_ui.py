@@ -82,8 +82,8 @@ class SelectionUI:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
                 for row in list_box:
                     row.show()
-                    if hasattr(row, "checkbox_box") is True:
-                        row.checkbox_box.hide()
+                    if hasattr(row, "selection_checkbox"):
+                        row.selection_checkbox.hide()
                         row.selection_checkbox.set_active(False)
                     if hasattr(row, "edit_button") is True:
                         row.edit_button.show_all()
@@ -127,8 +127,8 @@ class SelectionUI:
             if stack_page.check_is_edit_page() is False:
                 list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
                 for row in list_box:
-                    if hasattr(row, "checkbox_box") is True:
-                        row.checkbox_box.show()
+                    if hasattr(row, "selection_checkbox"):
+                        row.selection_checkbox.show()
                     if hasattr(row, "edit_button") is True:
                         row.edit_button.hide()
 

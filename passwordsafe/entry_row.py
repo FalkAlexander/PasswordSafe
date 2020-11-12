@@ -11,6 +11,8 @@ from passwordsafe.color_widget import Color
 
 
 class EntryRow(Gtk.ListBoxRow):
+    builder = Gtk.Builder()
+
     selection_checkbox = NotImplemented
     checkbox_box = NotImplemented
     color = NotImplemented
@@ -38,17 +40,15 @@ class EntryRow(Gtk.ListBoxRow):
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_database.ui")
-        entry_event_box = builder.get_object("entry_event_box")
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+        entry_event_box = self.builder.get_object("entry_event_box")
         entry_event_box.connect("button-press-event", self.unlocked_database.on_entry_row_button_pressed)
 
-        entry_icon = builder.get_object("entry_icon")
-        entry_name_label = builder.get_object("entry_name_label")
-        entry_subtitle_label = builder.get_object("entry_subtitle_label")
-        entry_copy_button = builder.get_object("entry_copy_button")
-        entry_color_button = builder.get_object("entry_color_button")
+        entry_icon = self.builder.get_object("entry_icon")
+        entry_name_label = self.builder.get_object("entry_name_label")
+        entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
+        entry_copy_button = self.builder.get_object("entry_copy_button")
+        entry_color_button = self.builder.get_object("entry_color_button")
 
         # Icon
         icon_name: str = passwordsafe.icon.get_icon_name(self.icon)
@@ -80,8 +80,8 @@ class EntryRow(Gtk.ListBoxRow):
         self.show_all()
 
         # Selection Mode Checkboxes
-        self.checkbox_box = builder.get_object("entry_checkbox_box")
-        self.selection_checkbox = builder.get_object("selection_checkbox_entry")
+        self.checkbox_box = self.builder.get_object("entry_checkbox_box")
+        self.selection_checkbox = self.builder.get_object("selection_checkbox_entry")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
         if self.unlocked_database.selection_ui.selection_mode_active is True:
             self.checkbox_box.show_all()

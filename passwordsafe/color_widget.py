@@ -82,8 +82,7 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
         self._scrolled_page: ScrolledPage = scrolled_page
         self._entry_uuid: UUID = entry_uuid
 
-        self._selected_color: str = self._db_manager.get_entry_color_from_entry_uuid(
-            entry_uuid)
+        self._selected_color: str = self._db_manager.get_entry_color(entry_uuid)
 
         for color in Color:
             active: bool = (self._selected_color == color.value)

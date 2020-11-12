@@ -182,6 +182,8 @@ class DatabaseManager(GObject.GObject):
     def get_entry_name(self, data: Union[Entry, UUID]) -> str:
         """Get entry name from an uuid or an entry
 
+        Passing in an Entry is more performant than passing in a UUID
+        as we avoid having to look up the entry.
         :param data: UUID or Entry
         :returns: entry name or an empty string if it does not exist
         :rtype: str
@@ -201,6 +203,8 @@ class DatabaseManager(GObject.GObject):
     def get_entry_username(self, data: Union[Entry, UUID]) -> str:
         """Get an entry username from an entry or an uuid
 
+        Passing in an Entry is more performant than passing in a UUID
+        as we avoid having to look up the entry.
         :param data: entry or uuid
         :returns: entry username or an empty string if it does not exist
         :rtype: str
@@ -220,6 +224,8 @@ class DatabaseManager(GObject.GObject):
     def get_entry_password(self, data: Union[Entry, UUID]) -> str:
         """Get an entry password from an entry or an uuid
 
+        Passing in an Entry is more performant than passing in a UUID
+        as we avoid having to look up the entry.
         :param data: entry or uuid
         :returns: entry password or an empty string if it does not exist
         :rtype: str
@@ -239,6 +245,8 @@ class DatabaseManager(GObject.GObject):
     def get_entry_url(self, data: Union[Entry, UUID]) -> str:
         """Get an entry url from an entry or an uuid
 
+        Passing in an Entry is more performant than passing in a UUID
+        as we avoid having to look up the entry.
         :param data: UUID or Entry
         :returns: entry url or an empty string if it does not exist
         :rtype: str
@@ -255,9 +263,27 @@ class DatabaseManager(GObject.GObject):
 
         return entry.url or ""
 
-    # Return the belonging color for an entry uuid
-    def get_entry_color_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def get_entry_color(self, data: Union[Entry, UUID]) -> Union[str, Color]:
+        """Get an entry color from an entry or an uuid
+
+        Passing in an Entry is more performant than passing in a UUID
+        as we avoid having to look up the entry.
+        :param data: UUID or Entry
+        :returns: entry color as str or Color.NONE.value
+        :rtype: str
+        """
+        if isinstance(data, UUID):
+            entry: Entry = self.db.find_entries(uuid=data, first=True)
+            if not entry:
+                logging.warning(
+                    "Trying to look up a non-existing UUID %s, this should "
+                    "never happen",
+                    data,
+                )
+                return Color.NONE.value
+        else:
+            entry = data
+
         if entry.get_custom_property("color_prop_LcljUMJZ9X") is None:
             return Color.NONE.value
         else:

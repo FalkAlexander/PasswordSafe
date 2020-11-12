@@ -35,7 +35,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.icon: Optional[int] = dbm.get_icon(entry)
         self.label = dbm.get_entry_name(entry)
         self.password = dbm.get_entry_password(entry)
-        self.color = dbm.get_entry_color_from_entry_uuid(self.entry_uuid)
+        self.color = dbm.get_entry_color(entry)
 
         self.assemble_entry_row()
 

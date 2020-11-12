@@ -177,10 +177,12 @@ class MainWindow(Gtk.ApplicationWindow):
             logging.debug("Found last opened database: %s", filepath)
             self.start_database_opening_routine(filepath)
         else:
-            logging.debug("No / Not valid last opened database found.")
-            self.assemble_first_start_screen()
+            self.display_recent_files_list()
 
-    def assemble_first_start_screen(self):
+    def display_recent_files_list(self):
+        """Shows the list of recently opened files
+
+        for the user to pick one (or the welcome screen if there are none)"""
         if not passwordsafe.config_manager.get_last_opened_list():
             self.display_welcome_page()
             return
@@ -216,7 +218,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
             filename_label.set_text(base_name)
             path_label.set_text(path)
-            last_opened_row.set_name(path)
+            # last_opened_row's name will be used as file location
+            last_opened_row.set_name(gio_file.get_uri())
             entry_list.append(last_opened_row)
 
         if not entry_list:
@@ -468,7 +471,7 @@ class MainWindow(Gtk.ApplicationWindow):
         if not self.container.get_n_pages():
             self.container.hide()
             self.remove(self.container)
-            self.assemble_first_start_screen()
+            self.display_recent_files_list()
         else:
             if not self.container.is_visible():
                 self.remove(self.first_start_grid)

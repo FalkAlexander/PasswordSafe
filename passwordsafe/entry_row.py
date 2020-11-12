@@ -14,10 +14,7 @@ class EntryRow(Gtk.ListBoxRow):
     builder = Gtk.Builder()
 
     selection_checkbox = NotImplemented
-    color = NotImplemented
     type = "EntryRow"
-
-    targets = NotImplemented
 
     def __init__(self, unlocked_database, dbm, entry):
         Gtk.ListBoxRow.__init__(self)

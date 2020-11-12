@@ -420,7 +420,7 @@ class UnlockedDatabase(GObject.GObject):
         self.insert_entries_into_listbox(list_box, overlay)
 
     def insert_entries_into_listbox(self, list_box, overlay):
-        entries = self.database_manager.get_entries_in_folder(self.current_element.uuid)
+        entries = self.current_element.entries
         sorted_list = []
 
         GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries, overlay)

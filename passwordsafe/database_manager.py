@@ -645,11 +645,6 @@ class DatabaseManager(GObject.GObject):
         folder = self.get_group(uuid)
         return folder.subgroups
 
-    def get_entries_in_folder(self, uuid):
-        """Return list of all entries in a group"""
-        parent_group = self.get_group(uuid)
-        return parent_group.entries
-
     # Return the root group of the database instance
     def get_root_group(self):
         return self.db.root_group

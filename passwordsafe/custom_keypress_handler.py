@@ -36,7 +36,7 @@ class CustomKeypressHandler:
         self.unlocked_database.window.connect("key-release-event", self.on_special_key_released)
         self.unlocked_database.window.connect("button-release-event", self._on_button_released)
 
-    def on_special_key_pressed(self, _window, eventkey):
+    def on_special_key_pressed(self, _window: MainWindow, eventkey: Gtk.Event) -> bool:
         if not self._current_view_accessible():
             return False
 
@@ -48,9 +48,8 @@ class CustomKeypressHandler:
                 self.tab_to_next_input_entry(scrolled_page)
                 return True
         elif (not scrolled_page.edit_page
-              and (eventkey.string.isalpha() or eventkey.string.isnumeric())):
+              and (eventkey.string.isalnum())):
             self.unlocked_database.props.search_active = True
-            return True
 
         return False
 

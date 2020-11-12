@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
+import typing
 from gettext import gettext as _
 from uuid import UUID
 from typing import Optional
@@ -9,29 +10,32 @@ import passwordsafe.config_manager
 import passwordsafe.icon
 from passwordsafe.color_widget import Color
 
+if typing.TYPE_CHECKING:
+    from pykeepass.entry import Entry
+    from passwordsafe.unlocked_database import UnlockedDatabase
+
 
 class EntryRow(Gtk.ListBoxRow):
     builder = Gtk.Builder()
-
     selection_checkbox = NotImplemented
     type = "EntryRow"
 
-    def __init__(self, unlocked_database, dbm, entry):
+    def __init__(self, database: UnlockedDatabase, entry: Entry) -> None:
         Gtk.ListBoxRow.__init__(self)
         self.set_name("EntryRow")
 
-        self.unlocked_database = unlocked_database
-        self.database_manager = dbm
+        self.unlocked_database = database
+        self.db_manager = database.database_manager
 
         self.entry_uuid = entry.uuid
-        self.icon: Optional[int] = dbm.get_icon(entry)
+        self.icon: Optional[int] = self.db_manager.get_icon(entry)
         self.label: str = entry.title or ""
-        self.color = dbm.get_entry_color(entry)
+        self.color = self.db_manager.get_entry_color(entry)
         self.username: str = entry.username or ""
         if self.username.startswith("{REF:U"):
             # Loopup reference and put in the "real" username
             uuid = UUID(self.unlocked_database.reference_to_hex_uuid(self.username))
-            self.username = self.database_manager.get_entry_username(uuid)
+            self.username = self.db_manager.get_entry_username(uuid)
 
         self.assemble_entry_row()
 
@@ -115,7 +119,9 @@ class EntryRow(Gtk.ListBoxRow):
             # self.unlocked_database.selection_ui.cut_mode is True
 
     def on_entry_copy_button_clicked(self, _button):
-        self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password(self.entry_uuid))
+        self.unlocked_database.send_to_clipboard(
+            self.db_manager.get_entry_password(self.entry_uuid)
+        )
 
     def update_color(self, color):
         self.color = color

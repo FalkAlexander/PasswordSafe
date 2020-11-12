@@ -440,7 +440,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def entry_instance_creation(self, list_box, sorted_list, entries, overlay):
         for entry in entries:
-            entry_row = EntryRow(self, self.database_manager, entry)
+            entry_row = EntryRow(self, entry)
             sorted_list.append(entry_row)
 
         if self.list_box_sorting == "A-Z":

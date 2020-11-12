@@ -11,13 +11,6 @@ from passwordsafe.color_widget import Color
 
 
 class EntryRow(Gtk.ListBoxRow):
-    unlocked_database = NotImplemented
-    database_manager = NotImplemented
-    entry_uuid = NotImplemented
-    icon = NotImplemented
-    label = NotImplemented
-    password = NotImplemented
-    changed = False
     selection_checkbox = NotImplemented
     checkbox_box = NotImplemented
     color = NotImplemented
@@ -111,12 +104,6 @@ class EntryRow(Gtk.ListBoxRow):
 
     def get_type(self):
         return self.type
-
-    def set_changed(self, boolean):
-        self.changed = boolean
-
-    def get_changed(self):
-        return self.changed
 
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active() is True:

@@ -40,6 +40,45 @@ class SettingsDialog():
         settings_save_switch_value = passwordsafe.config_manager.get_save_automatically()
         settings_save_switch.set_active(settings_save_switch_value)
 
+        # Password Generator
+        generator_length_spin_button = self.builder.get_object("generator_length_spin_button")
+        generator_length_spin_button.connect("value-changed", self.on_generator_length_spin_button_changed)
+        generator_length_spin_button_value = passwordsafe.config_manager.get_generator_length()
+        length_adjustment = Gtk.Adjustment(generator_length_spin_button_value, 1, 500, 1, 5)
+        generator_length_spin_button.set_adjustment(length_adjustment)
+
+        generator_use_uppercase_switch = self.builder.get_object("generator_use_uppercase_switch")
+        generator_use_uppercase_switch.connect("notify::active", self.on_generator_use_uppercase_switch_switched)
+        generator_use_uppercase_switch_value = passwordsafe.config_manager.get_generator_use_uppercase()
+        generator_use_uppercase_switch.set_active(generator_use_uppercase_switch_value)
+
+        generator_use_lowercase_switch = self.builder.get_object("generator_use_lowercase_switch")
+        generator_use_lowercase_switch.connect("notify::active", self.on_generator_use_lowercase_switch_switched)
+        generator_use_lowercase_switch_value = passwordsafe.config_manager.get_generator_use_lowercase()
+        generator_use_lowercase_switch.set_active(generator_use_lowercase_switch_value)
+
+        generator_use_numbers_switch = self.builder.get_object("generator_use_numbers_switch")
+        generator_use_numbers_switch.connect("notify::active", self.on_generator_use_numbers_switch_switched)
+        generator_use_numbers_switch_value = passwordsafe.config_manager.get_generator_use_numbers()
+        generator_use_numbers_switch.set_active(generator_use_numbers_switch_value)
+
+        generator_use_symbols_switch = self.builder.get_object("generator_use_symbols_switch")
+        generator_use_symbols_switch.connect("notify::active", self.on_generator_use_symbols_switch_switched)
+        generator_use_symbols_switch_value = passwordsafe.config_manager.get_generator_use_symbols()
+        generator_use_symbols_switch.set_active(generator_use_symbols_switch_value)
+
+        # Passphrase Generation
+        generator_words_spin_button = self.builder.get_object("generator_words_spin_button")
+        generator_words_spin_button.connect("value-changed", self.on_generator_words_spin_button_changed)
+        generator_words_spin_button_value = passwordsafe.config_manager.get_generator_words()
+        generator_words_adjustment = Gtk.Adjustment(generator_words_spin_button_value, 1, 100, 1, 5)
+        generator_words_spin_button.set_adjustment(generator_words_adjustment)
+
+        generator_separator_entry = self.builder.get_object("generator_separator_entry")
+        generator_separator_entry.connect("activate", self.on_generator_separator_entry_changed)
+        generator_separator_entry_value = passwordsafe.config_manager.get_generator_separator()
+        generator_separator_entry.set_text(generator_separator_entry_value)
+
         # Security
         settings_lockdb_spin_button = self.builder.get_object("settings_lockdb_spin_button")
         settings_lockdb_spin_button.connect("value-changed", self.on_settings_lockdb_spin_button_changed)
@@ -85,6 +124,27 @@ class SettingsDialog():
         settings_remember_method_switch.connect("notify::active", self.on_settings_remember_method_switch_switched)
         settings_remember_method_switch_value = passwordsafe.config_manager.get_remember_unlock_method()
         settings_remember_method_switch.set_active(settings_remember_method_switch_value)
+
+    def on_generator_use_uppercase_switch_switched(self, switch: Gtk.Switch, _: None) -> None:
+        passwordsafe.config_manager.set_generator_use_uppercase(switch.get_active())
+
+    def on_generator_use_lowercase_switch_switched(self, switch: Gtk.Switch, _: None) -> None:
+        passwordsafe.config_manager.set_generator_use_lowercase(switch.get_active())
+
+    def on_generator_use_symbols_switch_switched(self, switch: Gtk.Switch, _: None) -> None:
+        passwordsafe.config_manager.set_generator_use_symbols(switch.get_active())
+
+    def on_generator_use_numbers_switch_switched(self, switch: Gtk.Switch, _: None) -> None:
+        passwordsafe.config_manager.set_generator_use_numbers(switch.get_active())
+
+    def on_generator_words_spin_button_changed(self, spin_button: Gtk.SpinButton) -> None:
+        passwordsafe.config_manager.set_generator_words(spin_button.get_value_as_int())
+
+    def on_generator_length_spin_button_changed(self, spin_button: Gtk.SpinButton) -> None:
+        passwordsafe.config_manager.set_generator_length(spin_button.get_value_as_int())
+
+    def on_generator_separator_entry_changed(self, entry: Gtk.Entry) -> None:
+        passwordsafe.config_manager.set_generator_separator(entry.get_text())
 
     def on_settings_full_text_search_switch_switched(self, switch_button, _gparam):
         passwordsafe.config_manager.set_full_text_search(switch_button.get_active())

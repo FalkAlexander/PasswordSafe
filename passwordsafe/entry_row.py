@@ -28,7 +28,6 @@ class EntryRow(Gtk.ListBoxRow):
         self.entry_uuid = entry.uuid
         self.icon: Optional[int] = dbm.get_icon(entry)
         self.label: str = entry.title or ""
-        self.password = entry.password # type: Optional[str]
         self.color = dbm.get_entry_color(entry)
         self.username: str = entry.username or ""
         if self.username.startswith("{REF:U"):
@@ -97,10 +96,6 @@ class EntryRow(Gtk.ListBoxRow):
 
     def set_label(self, label):
         self.label = label
-
-    def update_password(self):
-        self.password = self.database_manager.get_entry_password(
-            self.entry_uuid)
 
     def get_type(self):
         return self.type

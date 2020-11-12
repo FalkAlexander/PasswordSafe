@@ -56,7 +56,7 @@ class EntryRow(Gtk.ListBoxRow):
         icon_name: str = passwordsafe.icon.get_icon_name(self.icon)
         entry_icon.set_from_icon_name(icon_name, 20)
         # Title/Name
-        if self.database_manager.has_entry_name(self.entry_uuid) and self.label:
+        if self.label:
             entry_name_label.set_text(self.label)
         else:
             entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")

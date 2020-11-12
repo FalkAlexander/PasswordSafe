@@ -53,13 +53,8 @@ class EntryRow(Gtk.ListBoxRow):
         entry_color_button = builder.get_object("entry_color_button")
 
         # Icon
-        if self.icon:
-            entry_icon.set_from_icon_name(
-                passwordsafe.icon.get_icon_name(self.icon), 20
-            )
-        else:
-            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon_name(0), 20)
-
+        icon_name: str = passwordsafe.icon.get_icon_name(self.icon)
+        entry_icon.set_from_icon_name(icon_name, 20)
         # Title/Name
         if self.database_manager.has_entry_name(self.entry_uuid) and self.label:
             entry_name_label.set_text(self.label)

@@ -22,6 +22,13 @@ UNLOCK_METHOD = "unlock-method"
 DEV_BACKUP_MODE = "development-backup-mode"
 FULL_TEXT_SEARCH = "full-text-search"
 LOCAL_SEARCH = "local-search"
+GENERATOR_USE_UPPERCASE = "generator-use-uppercase"
+GENERATOR_USE_LOWERCASE = "generator-use-lowercase"
+GENERATOR_USE_NUMBERS = "generator-use-numbers"
+GENERATOR_USE_SYMBOLS = "generator-use-symbols"
+GENERATOR_LENGTH = "generator-length"
+GENERATOR_WORDS = "generator-words"
+GENERATOR_SEPARATOR = "generator-separator"
 
 
 class UnlockMethod(IntEnum):
@@ -29,6 +36,62 @@ class UnlockMethod(IntEnum):
     PASSWORD = 0
     KEYFILE = 1
     COMPOSITE = 2
+
+
+def get_generator_use_uppercase() -> bool:
+    return setting.get_boolean(GENERATOR_USE_UPPERCASE)
+
+
+def set_generator_use_uppercase(value: bool) -> None:
+    setting.set_boolean(GENERATOR_USE_UPPERCASE, value)
+
+
+def get_generator_use_lowercase() -> bool:
+    return setting.get_boolean(GENERATOR_USE_LOWERCASE)
+
+
+def set_generator_use_lowercase(value: bool) -> None:
+    setting.set_boolean(GENERATOR_USE_LOWERCASE, value)
+
+
+def get_generator_use_numbers() -> bool:
+    return setting.get_boolean(GENERATOR_USE_NUMBERS)
+
+
+def set_generator_use_numbers(value: bool) -> None:
+    setting.set_boolean(GENERATOR_USE_NUMBERS, value)
+
+
+def get_generator_use_symbols() -> bool:
+    return setting.get_boolean(GENERATOR_USE_SYMBOLS)
+
+
+def set_generator_use_symbols(value: bool) -> None:
+    setting.set_boolean(GENERATOR_USE_SYMBOLS, value)
+
+
+def get_generator_length() -> int:
+    return setting.get_int(GENERATOR_LENGTH)
+
+
+def set_generator_length(value: int) -> None:
+    setting.set_int(GENERATOR_LENGTH, value)
+
+
+def get_generator_words() -> int:
+    return setting.get_int(GENERATOR_WORDS)
+
+
+def set_generator_words(value: int) -> None:
+    setting.set_int(GENERATOR_WORDS, value)
+
+
+def get_generator_separator() -> str:
+    return setting.get_string(GENERATOR_SEPARATOR)
+
+
+def set_generator_separator(value: str) -> None:
+    setting.set_string(GENERATOR_SEPARATOR, value)
 
 
 def get_clear_clipboard():

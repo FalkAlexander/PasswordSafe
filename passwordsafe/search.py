@@ -4,8 +4,6 @@ from __future__ import annotations
 import threading
 import typing
 
-import passwordsafe.config_manager
-
 from typing import List
 from uuid import UUID
 from gi.repository import Gdk, GLib, GObject, Gtk, Handy
@@ -137,14 +135,9 @@ class Search:
     #
 
     def search_thread_creation(self, widget, result_list, empty_search_overlay, info_search_overlay):
-        if passwordsafe.config_manager.get_local_search():
-            result_list = self.unlocked_database.database_manager.search(widget.get_text(),
-                                                                         global_search=False,
-                                                                         path=self.unlocked_database.current_element.path + "/")
-        else:
-            result_list = self.unlocked_database.database_manager.search(widget.get_text(),
-                                                                         global_search=True,
-                                                                         path="/")
+        path = self.unlocked_database.current_element.path
+        result_list = self.unlocked_database.database_manager.search(widget.get_text(),
+                                                                     path)
 
         GLib.idle_add(self.search_overlay_creation, widget, result_list, empty_search_overlay, info_search_overlay)
 

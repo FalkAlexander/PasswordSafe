@@ -1,22 +1,25 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import re
 import secrets
-from typing import List
 
+from typing import List
 from gi.repository import Gio, GLib
+
+import passwordsafe.config_manager as config
 
 word_dict = {}
 
 
-def generate(words: int, separator: str) -> str:
+def generate() -> str:
     """Generate a passphrase.
 
-    :param int words: number of words requested
-    :param str separator: separator
     :returns: a passphrase
     :rtype: str
 
     """
+    words = config.get_generator_words()
+    separator = config.get_generator_separator()
+
     words_file: Gio.File = Gio.File.new_for_uri(
         "resource:///org/gnome/PasswordSafe/crypto/eff_large_wordlist.txt")
     file_buffer: GLib.Bytes = Gio.InputStream.read_bytes(

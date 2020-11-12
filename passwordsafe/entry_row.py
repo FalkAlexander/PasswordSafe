@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
 from gettext import gettext as _
 from uuid import UUID
+from typing import Optional
 from gi.repository import Gtk
 import passwordsafe.config_manager
 import passwordsafe.icon
@@ -30,7 +32,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.database_manager = dbm
 
         self.entry_uuid = entry.uuid
-        self.icon = dbm.get_icon(entry)
+        self.icon: Optional[int] = dbm.get_icon(entry)
         self.label = dbm.get_entry_name(entry)
         self.password = dbm.get_entry_password(entry)
         self.color = dbm.get_entry_color_from_entry_uuid(self.entry_uuid)
@@ -51,12 +53,10 @@ class EntryRow(Gtk.ListBoxRow):
         entry_color_button = builder.get_object("entry_color_button")
 
         # Icon
-        if (
-            self.icon
-            and int(self.icon) >= 0
-            and int(self.icon) <= 68
-        ):
-            entry_icon.set_from_icon_name(passwordsafe.icon.get_icon(self.icon), 20)
+        if self.icon:
+            entry_icon.set_from_icon_name(
+                passwordsafe.icon.get_icon(str(self.icon)), 20
+            )
         else:
             entry_icon.set_from_icon_name(passwordsafe.icon.get_icon("0"), 20)
 

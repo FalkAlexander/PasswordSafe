@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
 import logging
 import subprocess
 from gettext import gettext as _
+from typing import Optional
 from uuid import UUID
 from gi.repository import Gio, GLib, Gtk
 
@@ -249,27 +251,28 @@ class EntryPage:
                 scrolled_page.wifi_icon_button = builder.get_object("12")
                 scrolled_page.desktop_icon_button = builder.get_object("23")
 
-                entry_icon = self.unlocked_database.database_manager.get_icon(
-                    entry_uuid)
-                if entry_icon == "19":
+                entry_icon: Optional[
+                    int
+                ] = self.unlocked_database.database_manager.get_icon(entry_uuid)
+                if entry_icon == 19:
                     scrolled_page.mail_icon_button.set_active(True)
-                if entry_icon == "9":
+                if entry_icon == 9:
                     scrolled_page.profile_icon_button.set_active(True)
-                if entry_icon == "1":
+                if entry_icon == 1:
                     scrolled_page.network_profile_button.set_active(True)
-                if entry_icon == "0":
+                if entry_icon == 0:
                     scrolled_page.key_button.set_active(True)
-                if entry_icon == "30":
+                if entry_icon == 30:
                     scrolled_page.terminal_icon_button.set_active(True)
-                if entry_icon == "34":
+                if entry_icon == 34:
                     scrolled_page.setting_icon_button.set_active(True)
-                if entry_icon == "48":
+                if entry_icon == 48:
                     scrolled_page.folder_icon_button.set_active(True)
-                if entry_icon == "27":
+                if entry_icon == 27:
                     scrolled_page.harddrive_icon_button.set_active(True)
-                if entry_icon == "12":
+                if entry_icon == 12:
                     scrolled_page.wifi_icon_button.set_active(True)
-                if entry_icon == "23":
+                if entry_icon == 23:
                     scrolled_page.desktop_icon_button.set_active(True)
 
                 scrolled_page.mail_icon_button.connect("toggled", self.on_entry_icon_button_toggled)

@@ -280,7 +280,6 @@
     </attributes>
   </object>
   <object class="GtkEventBox" id="group_event_box">
-    <property name="width_request">1</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="halign">baseline</property>
@@ -297,6 +296,7 @@
             <property name="valign">center</property>
             <property name="vexpand">True</property>
             <property name="draw_indicator">True</property>
+            <property name="margin_start">8</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -336,7 +336,6 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="width_request">1</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="hexpand">True</property>

@@ -646,8 +646,8 @@ class DatabaseManager(GObject.GObject):
             """
             for term in lookfor:
                 if term is None:
-                    return
-                if string.lower() in term.lower():
+                    continue
+                elif string.lower() in term.lower():
                     if global_search and entry.uuid not in uuid_list:
                         uuid_list.append(entry.uuid)
                     elif self.get_parent_group(entry) is not None:
@@ -659,15 +659,15 @@ class DatabaseManager(GObject.GObject):
             if group.is_root_group is False:
                 search_entry(group, [group.name])
                 if full_text_search:
-                    notes = self.get_notes(group).lower()
+                    notes = group.notes
                     search_entry(group, [notes])
 
         for entry in self.db.entries:
             search_entry(entry, [entry.title])
             if full_text_search:
-                username = self.get_entry_username(entry)
-                notes = self.get_notes(entry)
-                url = self.get_entry_url(entry)
+                username = entry.username
+                notes = entry.notes
+                url = entry.url
                 search_entry(entry, [username, notes, url])
 
         return uuid_list

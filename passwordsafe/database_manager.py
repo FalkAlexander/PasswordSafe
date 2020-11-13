@@ -138,12 +138,14 @@ class DatabaseManager(GObject.GObject):
 
         return value.notes or ""
 
-    def get_icon(self, data: Union[Entry, Group, UUID]) -> str:
+    def get_icon(self, data: Union[Entry, Group, UUID]) -> Optional[int]:
         """Get an entry icon from an entry, a group or an uuid
 
         :param data: entry, group or uuid
-        :returns: the icon number of the entry as a string
-        :rtype: str
+        :returns: icon number (int) or None in case of no/invalid icon data.
+                  Note that the number range could still be outside of the
+                  supported number range 0-68.
+        :rtype: Optional[int]
         """
         if isinstance(data, UUID):
             if self.check_is_group(data):
@@ -153,18 +155,21 @@ class DatabaseManager(GObject.GObject):
                     logging.warning(
                         "Trying to look up a non-existing UUID %s, this "
                         "should never happen", data)
-                    return ""
+                    return None
             else:
                 value = self.db.find_entries(uuid=data, first=True)
                 if not value:
                     logging.warning(
                         "Trying to look up a non-existing UUID %s, this "
                         "should never happen", data)
-                    return ""
+                    return None
         else:
             value = data
-
-        return value.icon
+        try:
+            icon = int(value.icon)
+        except TypeError:
+            return None
+        return icon
 
     #
     # Entry Transformation Methods

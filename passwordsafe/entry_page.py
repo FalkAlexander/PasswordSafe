@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
 import logging
 import subprocess
 from gettext import gettext as _
+from typing import Optional
 from uuid import UUID
 from gi.repository import Gio, GLib, Gtk
 
@@ -238,50 +240,62 @@ class EntryPage:
                 for button in builder.get_object("icon_entry_box").get_children():
                     button.get_style_context().add_class("EntryIconButton")
 
-                scrolled_page.mail_icon_button = builder.get_object("19")
-                scrolled_page.profile_icon_button = builder.get_object("9")
-                scrolled_page.network_profile_button = builder.get_object("1")
-                scrolled_page.key_button = builder.get_object("0")
-                scrolled_page.terminal_icon_button = builder.get_object("30")
-                scrolled_page.setting_icon_button = builder.get_object("34")
-                scrolled_page.folder_icon_button = builder.get_object("48")
-                scrolled_page.harddrive_icon_button = builder.get_object("27")
-                scrolled_page.wifi_icon_button = builder.get_object("12")
-                scrolled_page.desktop_icon_button = builder.get_object("23")
+                mail_icon_button = builder.get_object("19")
+                profile_icon_button = builder.get_object("9")
+                network_profile_button = builder.get_object("1")
+                key_button = builder.get_object("0")
+                terminal_icon_button = builder.get_object("30")
+                setting_icon_button = builder.get_object("34")
+                folder_icon_button = builder.get_object("48")
+                harddrive_icon_button = builder.get_object("27")
+                wifi_icon_button = builder.get_object("12")
+                desktop_icon_button = builder.get_object("23")
+                mail_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                profile_icon_button.connect(
+                    "toggled", self.on_entry_icon_button_toggled
+                )
+                network_profile_button.connect(
+                    "toggled", self.on_entry_icon_button_toggled
+                )
+                key_button.connect("toggled", self.on_entry_icon_button_toggled)
+                terminal_icon_button.connect(
+                    "toggled", self.on_entry_icon_button_toggled
+                )
+                setting_icon_button.connect(
+                    "toggled", self.on_entry_icon_button_toggled
+                )
+                folder_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                harddrive_icon_button.connect(
+                    "toggled", self.on_entry_icon_button_toggled
+                )
+                wifi_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                desktop_icon_button.connect(
+                    "toggled", self.on_entry_icon_button_toggled
+                )
 
-                entry_icon = self.unlocked_database.database_manager.get_icon(
-                    entry_uuid)
-                if entry_icon == "19":
-                    scrolled_page.mail_icon_button.set_active(True)
-                if entry_icon == "9":
-                    scrolled_page.profile_icon_button.set_active(True)
-                if entry_icon == "1":
-                    scrolled_page.network_profile_button.set_active(True)
-                if entry_icon == "0":
-                    scrolled_page.key_button.set_active(True)
-                if entry_icon == "30":
-                    scrolled_page.terminal_icon_button.set_active(True)
-                if entry_icon == "34":
-                    scrolled_page.setting_icon_button.set_active(True)
-                if entry_icon == "48":
-                    scrolled_page.folder_icon_button.set_active(True)
-                if entry_icon == "27":
-                    scrolled_page.harddrive_icon_button.set_active(True)
-                if entry_icon == "12":
-                    scrolled_page.wifi_icon_button.set_active(True)
-                if entry_icon == "23":
-                    scrolled_page.desktop_icon_button.set_active(True)
-
-                scrolled_page.mail_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.profile_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.network_profile_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.key_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.terminal_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.setting_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.folder_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.harddrive_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.wifi_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                scrolled_page.desktop_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
+                icon: Optional[int] = self.unlocked_database.database_manager.get_icon(
+                    self.unlocked_database.current_element
+                )
+                if icon == 0:
+                    key_button.set_active(True)
+                elif icon == 19:
+                    mail_icon_button.set_active(True)
+                elif icon == 9:
+                    profile_icon_button.set_active(True)
+                elif icon == 1:
+                    network_profile_button.set_active(True)
+                elif icon == 30:
+                    terminal_icon_button.set_active(True)
+                elif icon == 34:
+                    setting_icon_button.set_active(True)
+                elif icon == 48:
+                    folder_icon_button.set_active(True)
+                elif icon == 27:
+                    harddrive_icon_button.set_active(True)
+                elif icon == 12:
+                    wifi_icon_button.set_active(True)
+                elif icon == 23:
+                    desktop_icon_button.set_active(True)
 
                 properties_list_box.add(scrolled_page.icon_property_row)
             elif scrolled_page.icon_property_row is not NotImplemented:

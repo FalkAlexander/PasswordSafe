@@ -240,7 +240,7 @@ class Pathbar(Gtk.HBox):
 
         if self.database_manager.check_is_group_object(current_elt):
             group_name = self.database_manager.get_group_name(current_elt)
-            if not (group_name or notes or (icon != "0")):
+            if not (group_name or notes or icon):
                 parent_group = self.database_manager.get_parent_group(
                     current_elt)
                 self.database_manager.delete_from_database(current_elt)

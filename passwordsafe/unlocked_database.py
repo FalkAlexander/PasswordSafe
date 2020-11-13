@@ -218,12 +218,10 @@ class UnlockedDatabase(GObject.GObject):
 
     def show_page_of_new_directory(self, edit_group, new_entry):
         # First, remove stack pages which should not exist because they are scheduled for remove
-        self.destroy_scheduled_stack_page()
+        self.destroy_current_page_if_scheduled()
 
         # Creation of group edit page
         if edit_group is True:
-            self.destroy_scheduled_stack_page()
-
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
             scrolled_window = ScrolledPage(True)
@@ -390,7 +388,8 @@ class UnlockedDatabase(GObject.GObject):
     def schedule_stack_page_for_destroy(self, page_name):
         self.scheduled_page_destroy.append(page_name)
 
-    def destroy_scheduled_stack_page(self):
+    def destroy_current_page_if_scheduled(self) -> None:
+        """If the current_element is in self.scheduled_page_destroy, destroy it"""
         page_uuid = self.current_element.uuid
 
         if page_uuid in self.scheduled_page_destroy:

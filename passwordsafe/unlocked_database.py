@@ -385,8 +385,8 @@ class UnlockedDatabase(GObject.GObject):
         """
         return self._stack.get_children()
 
-    def schedule_stack_page_for_destroy(self, page_name):
-        self.scheduled_page_destroy.append(page_name)
+    def schedule_stack_page_for_destroy(self, page_uuid: UUID) -> None:
+        self.scheduled_page_destroy.append(page_uuid)
 
     def destroy_current_page_if_scheduled(self) -> None:
         """If the current_element is in self.scheduled_page_destroy, destroy it"""

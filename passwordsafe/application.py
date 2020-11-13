@@ -45,6 +45,11 @@ class Application(Gtk.Application):
         loglevel = logging.INFO
         if self.development_mode or 'debug' in options:
             loglevel = logging.DEBUG
+            # Don't clutter our log output with debug msg of the
+            # pykeepass module it is very noisy.
+            pykeepass_logger = logging.getLogger("pykeepass")
+            pykeepass_logger.setLevel(logging.INFO)
+
         logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s",
                             datefmt='%d-%m-%y %H:%M:%S', level=loglevel)
 

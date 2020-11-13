@@ -22,7 +22,7 @@ class EntryRow(Gtk.ListBoxRow):
 
     def __init__(self, database: UnlockedDatabase, entry: Entry) -> None:
         Gtk.ListBoxRow.__init__(self)
-        self.set_name("EntryRow")
+        self.get_style_context().add_class("row")
 
         self.unlocked_database = database
         self.db_manager = database.database_manager

@@ -659,7 +659,7 @@ class DatabaseManager(GObject.GObject):
             if group.is_root_group is False:
                 search_entry(group, [group.name])
                 if full_text_search:
-                    notes = self.get_notes(group).lower()
+                    notes = self.get_notes(group)
                     search_entry(group, [notes])
 
         for entry in self.db.entries:

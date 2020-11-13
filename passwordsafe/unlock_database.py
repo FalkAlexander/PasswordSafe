@@ -569,4 +569,4 @@ class UnlockDatabase:
         password_unlock_entry.get_style_context().add_class("error")
         self._clear_input_fields()
 
-        logging.debug("Could not open database, wrong password")
+        logging.info("Could not open database, wrong password")

@@ -40,7 +40,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
-        self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/entry_row.ui")
         entry_event_box = self.builder.get_object("entry_event_box")
         entry_event_box.connect("button-press-event", self.unlocked_database.on_entry_row_button_pressed)
 

@@ -188,7 +188,12 @@ class Search:
                     search_height += entry_row_height
 
                     if skip is False:
-                        row = EntryRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid))
+                        row = EntryRow(
+                            self.unlocked_database,
+                            self.unlocked_database.database_manager.get_entry_object_from_uuid(
+                                uuid
+                            ),
+                        )
                         self.search_list_box.add(row)
                         self.cached_rows.append(row)
                     else:

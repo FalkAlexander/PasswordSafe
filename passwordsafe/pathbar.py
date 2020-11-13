@@ -216,16 +216,16 @@ class Pathbar(Gtk.HBox):
                     if self.database_manager.check_is_root_group(update_group) is True:
                         update_group = self.database_manager.get_root_group()
 
-                page_name = update_group.uuid
-                self.unlocked_database.schedule_stack_page_for_destroy(page_name)
+                page_uuid = update_group.uuid
+                self.unlocked_database.schedule_stack_page_for_destroy(page_uuid)
 
                 self.page_update_queried()
             else:
                 if self.check_is_edit_page_from_group() is False:
                     return
 
-                edit_page = self.unlocked_database.current_element
-                self.unlocked_database.schedule_stack_page_for_destroy(edit_page.uuid)
+            edited_uuid = self.unlocked_database.current_element.uuid
+            self.unlocked_database.schedule_stack_page_for_destroy(edited_uuid)
 
     def page_update_queried(self):
         """Marks the curent page as not dirty"""
@@ -233,7 +233,12 @@ class Pathbar(Gtk.HBox):
         page.is_dirty = False
 
     def check_values_of_edit_page(self, parent_group: Group) -> bool:
-        """Check all values of the group/entry - if all are blank we delete the entry/group and return true"""
+        """Check all values of the current group/entry which we finished editing
+
+        If all are blank we delete the entry/group and return True.
+        It also schedules the parent page for destruction if the
+        Entry/Group has been deleted.
+        """
         current_elt = self.unlocked_database.current_element
         notes = self.database_manager.get_notes(current_elt)
         icon = self.database_manager.get_icon(current_elt)

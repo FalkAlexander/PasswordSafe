@@ -218,12 +218,10 @@ class UnlockedDatabase(GObject.GObject):
 
     def show_page_of_new_directory(self, edit_group, new_entry):
         # First, remove stack pages which should not exist because they are scheduled for remove
-        self.destroy_scheduled_stack_page()
+        self.destroy_current_page_if_scheduled()
 
         # Creation of group edit page
         if edit_group is True:
-            self.destroy_scheduled_stack_page()
-
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
             scrolled_window = ScrolledPage(True)
@@ -387,13 +385,17 @@ class UnlockedDatabase(GObject.GObject):
         """
         return self._stack.get_children()
 
-    def schedule_stack_page_for_destroy(self, page_name):
-        self.scheduled_page_destroy.append(page_name)
+    def schedule_stack_page_for_destroy(self, page_uuid: UUID) -> None:
+        """Add page to the list of pages to be destroyed"""
+        logging.debug("Scheduling page %s for destruction")
+        self.scheduled_page_destroy.append(page_uuid)
 
-    def destroy_scheduled_stack_page(self):
+    def destroy_current_page_if_scheduled(self) -> None:
+        """If the current_element is in self.scheduled_page_destroy, destroy it"""
         page_uuid = self.current_element.uuid
-
+        logging.debug("Test if we should destroy page %s", page_uuid)
         if page_uuid in self.scheduled_page_destroy:
+            logging.debug("Yes, destroying page %s", page_uuid)
             stack_page_name = self._stack.get_child_by_name(page_uuid.urn)
             if stack_page_name is not None:
                 stack_page_name.destroy()
@@ -410,17 +412,13 @@ class UnlockedDatabase(GObject.GObject):
         add_loading_indicator_thread = threading.Thread(target=self.add_loading_indicator_thread, args=(list_box, overlay))
         add_loading_indicator_thread.start()
 
-        if self.current_element.is_root_group:
-            groups = self.database_manager.get_groups_in_root()
-        else:
-            groups = self.database_manager.get_groups_in_folder(self.current_element.uuid)
-
+        groups = self.current_element.subgroups
         GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
 
         self.insert_entries_into_listbox(list_box, overlay)
 
     def insert_entries_into_listbox(self, list_box, overlay):
-        entries = self.database_manager.get_entries_in_folder(self.current_element.uuid)
+        entries = self.current_element.entries
         sorted_list = []
 
         GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries, overlay)
@@ -440,7 +438,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def entry_instance_creation(self, list_box, sorted_list, entries, overlay):
         for entry in entries:
-            entry_row = EntryRow(self, self.database_manager, entry)
+            entry_row = EntryRow(self, entry)
             sorted_list.append(entry_row)
 
         if self.list_box_sorting == "A-Z":

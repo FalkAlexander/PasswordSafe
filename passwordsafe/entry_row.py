@@ -1,77 +1,67 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
+import typing
 from gettext import gettext as _
 from uuid import UUID
 from typing import Optional
 from gi.repository import Gtk
+
 import passwordsafe.config_manager
 import passwordsafe.icon
 from passwordsafe.color_widget import Color
 
+if typing.TYPE_CHECKING:
+    from pykeepass.entry import Entry
+    from passwordsafe.unlocked_database import UnlockedDatabase
+
 
 class EntryRow(Gtk.ListBoxRow):
-    unlocked_database = NotImplemented
-    database_manager = NotImplemented
-    entry_uuid = NotImplemented
-    icon = NotImplemented
-    label = NotImplemented
-    password = NotImplemented
-    changed = False
+    builder = Gtk.Builder()
     selection_checkbox = NotImplemented
-    checkbox_box = NotImplemented
-    color = NotImplemented
     type = "EntryRow"
 
-    targets = NotImplemented
-
-    def __init__(self, unlocked_database, dbm, entry):
+    def __init__(self, database: UnlockedDatabase, entry: Entry) -> None:
         Gtk.ListBoxRow.__init__(self)
         self.set_name("EntryRow")
 
-        self.unlocked_database = unlocked_database
-        self.database_manager = dbm
+        self.unlocked_database = database
+        self.db_manager = database.database_manager
 
         self.entry_uuid = entry.uuid
-        self.icon: Optional[int] = dbm.get_icon(entry)
-        self.label = dbm.get_entry_name(entry)
-        self.password = dbm.get_entry_password(entry)
-        self.color = dbm.get_entry_color_from_entry_uuid(self.entry_uuid)
+        self.icon: Optional[int] = self.db_manager.get_icon(entry)
+        self.label: str = entry.title or ""
+        self.color = self.db_manager.get_entry_color(entry)
+        self.username: str = entry.username or ""
+        if self.username.startswith("{REF:U"):
+            # Loopup reference and put in the "real" username
+            uuid = UUID(self.unlocked_database.reference_to_hex_uuid(self.username))
+            self.username = self.db_manager.get_entry_username(uuid)
 
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_database.ui")
-        entry_event_box = builder.get_object("entry_event_box")
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/entry_row.ui")
+        entry_event_box = self.builder.get_object("entry_event_box")
         entry_event_box.connect("button-press-event", self.unlocked_database.on_entry_row_button_pressed)
 
-        entry_icon = builder.get_object("entry_icon")
-        entry_name_label = builder.get_object("entry_name_label")
-        entry_subtitle_label = builder.get_object("entry_subtitle_label")
-        entry_copy_button = builder.get_object("entry_copy_button")
-        entry_color_button = builder.get_object("entry_color_button")
+        entry_icon = self.builder.get_object("entry_icon")
+        entry_name_label = self.builder.get_object("entry_name_label")
+        entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
+        entry_copy_button = self.builder.get_object("entry_copy_button")
+        entry_color_button = self.builder.get_object("entry_color_button")
 
         # Icon
         icon_name: str = passwordsafe.icon.get_icon_name(self.icon)
         entry_icon.set_from_icon_name(icon_name, 20)
         # Title/Name
-        if self.database_manager.has_entry_name(self.entry_uuid) and self.label:
+        if self.label:
             entry_name_label.set_text(self.label)
         else:
             entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
 
         # Subtitle
-        subtitle = self.database_manager.get_entry_username(self.entry_uuid)
-        if (self.database_manager.has_entry_username(self.entry_uuid) and subtitle):
-            username = self.database_manager.get_entry_username(self.entry_uuid)
-            if username.startswith("{REF:U"):
-                uuid = UUID(
-                    self.unlocked_database.reference_to_hex_uuid(username))
-                username = self.database_manager.get_entry_username(uuid)
-                entry_subtitle_label.set_text(username)
-            else:
-                entry_subtitle_label.set_text(username)
+        if self.username:
+            entry_subtitle_label.set_text(self.username)
         else:
             entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
 
@@ -82,21 +72,17 @@ class EntryRow(Gtk.ListBoxRow):
         image = entry_color_button.get_children()[0]
         image_style = image.get_style_context()
         if self.color != Color.NONE.value:
+            image_style.remove_class("DarkIcon")
             image_style.add_class("BrightIcon")
-        else:
-            image_style.add_class("DarkIcon")
 
         self.add(entry_event_box)
-        self.show_all()
+        self.show()
 
         # Selection Mode Checkboxes
-        self.checkbox_box = builder.get_object("entry_checkbox_box")
-        self.selection_checkbox = builder.get_object("selection_checkbox_entry")
+        self.selection_checkbox = self.builder.get_object("selection_checkbox_entry")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
         if self.unlocked_database.selection_ui.selection_mode_active is True:
-            self.checkbox_box.show_all()
-        else:
-            self.checkbox_box.hide()
+            self.selection_checkbox.show()
 
     def get_uuid(self):
         return self.entry_uuid
@@ -107,18 +93,8 @@ class EntryRow(Gtk.ListBoxRow):
     def set_label(self, label):
         self.label = label
 
-    def update_password(self):
-        self.password = self.database_manager.get_entry_password(
-            self.entry_uuid)
-
     def get_type(self):
         return self.type
-
-    def set_changed(self, boolean):
-        self.changed = boolean
-
-    def get_changed(self):
-        return self.changed
 
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active() is True:
@@ -143,7 +119,9 @@ class EntryRow(Gtk.ListBoxRow):
             # self.unlocked_database.selection_ui.cut_mode is True
 
     def on_entry_copy_button_clicked(self, _button):
-        self.unlocked_database.send_to_clipboard(self.database_manager.get_entry_password(self.entry_uuid))
+        self.unlocked_database.send_to_clipboard(
+            self.db_manager.get_entry_password(self.entry_uuid)
+        )
 
     def update_color(self, color):
         self.color = color

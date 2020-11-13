@@ -36,7 +36,7 @@ class CustomKeypressHandler:
         self.unlocked_database.window.connect("key-release-event", self.on_special_key_released)
         self.unlocked_database.window.connect("button-release-event", self._on_button_released)
 
-    def on_special_key_pressed(self, _window: MainWindow, eventkey: Gtk.Event) -> bool:
+    def on_special_key_pressed(self, window: MainWindow, eventkey: Gtk.Event) -> bool:
         if not self._current_view_accessible():
             return False
 
@@ -47,6 +47,31 @@ class CustomKeypressHandler:
             if focused_entry and "TabBox" in focused_entry.get_name():
                 self.tab_to_next_input_entry(scrolled_page)
                 return True
+
+        # Handle undo and redo on entries.
+        elif (scrolled_page.edit_page
+              and eventkey.state
+              and Gdk.ModifierType.CONTROL_MASK):
+            keyval_name = Gdk.keyval_name(eventkey.keyval)
+            if isinstance(window.get_focus(), Gtk.TextView):
+                textbuffer = window.get_focus().get_buffer()
+                if isinstance(textbuffer, passwordsafe.history_buffer.HistoryTextBuffer):
+                    if keyval_name == 'y':
+                        textbuffer.logic.do_redo()
+                        return True
+                    elif keyval_name == 'z':
+                        textbuffer.logic.do_undo()
+                        return True
+            if isinstance(window.get_focus(), Gtk.Entry):
+                textbuffer = window.get_focus().get_buffer()
+                if isinstance(textbuffer, passwordsafe.history_buffer.HistoryEntryBuffer):
+                    if keyval_name == 'y':
+                        textbuffer.logic.do_redo()
+                        return True
+                    elif keyval_name == 'z':
+                        textbuffer.logic.do_undo()
+                        return True
+
         elif (not scrolled_page.edit_page
               and (eventkey.string.isalnum())):
             self.unlocked_database.props.search_active = True

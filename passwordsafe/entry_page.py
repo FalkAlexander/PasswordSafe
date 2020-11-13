@@ -200,25 +200,27 @@ class EntryPage:
 
                 builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
-                scrolled_page.notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
-                buffer = scrolled_page.notes_property_value_entry.get_buffer()
                 value = self.unlocked_database.database_manager.get_notes(
                     entry_uuid)
+
+                textbuffer = HistoryTextBuffer([])
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
-                    buffer.set_text(value)
+                    textbuffer.set_text(value)
                 else:
-                    buffer.set_text("")
-                buffer.connect("changed", self.on_property_value_entry_changed, "notes")
+                    textbuffer.set_text("")
+                textbuffer.connect("changed", self.on_property_value_entry_changed, "notes")
+                scrolled_page.notes_property_value_entry.set_buffer(textbuffer)
                 properties_list_box.add(scrolled_page.notes_property_row)
             elif scrolled_page.notes_property_row:
                 value = self.unlocked_database.database_manager.get_notes(
                     entry_uuid)
-                buffer = scrolled_page.notes_property_value_entry.get_buffer()
+                textbuffer = scrolled_page.notes_property_value_entry.get_buffer()
                 if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
-                    buffer.set_text(value)
+                    textbuffer.set_text(value)
+                    textbuffer.set_modified(False)
                 else:
-                    buffer.set_text("")
-                buffer.connect("changed", self.on_property_value_entry_changed, "notes")
+                    textbuffer.set_text("")
+                textbuffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
 
         if self.unlocked_database.database_manager.has_entry_color(entry_uuid) is True or add_all is True:

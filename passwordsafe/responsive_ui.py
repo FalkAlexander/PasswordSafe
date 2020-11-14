@@ -47,7 +47,7 @@ class ResponsiveUI():
             db.headerbar_box.add(self.unlocked_database.pathbar)
             db.headerbar_box.show()
 
-    def headerbar_title(self):
+    def headerbar_title(self) -> None:
         scrolled_page = self.unlocked_database.get_current_page()
         if self.unlocked_database.window.mobile_width and not self.unlocked_database.selection_ui.selection_mode_active:
             if self.unlocked_database.builder.get_object("title_box").get_children():
@@ -70,9 +70,6 @@ class ResponsiveUI():
 
             self.unlocked_database.builder.get_object("title_box").add(filename_label)
         else:
-            if self.unlocked_database.builder.get_object("title_box").get_children():
-                return
-
             self.unlocked_database.builder.get_object("title_box").remove(self.unlocked_database.builder.get_object("filename_label"))
 
     def headerbar_back_button(self):

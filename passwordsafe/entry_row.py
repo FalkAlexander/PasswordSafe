@@ -73,7 +73,7 @@ class EntryRow(Gtk.ListBoxRow):
         entry_copy_button.connect("clicked", self.on_entry_copy_button_clicked)
 
         # Color Button
-        entry_color_button.set_name(self.color + "List")
+        entry_color_button.get_style_context().add_class(self.color + "List")
         image = entry_color_button.get_children()[0]
         image_style = image.get_style_context()
         if self.color != Color.NONE.value:

@@ -1,20 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from __future__ import annotations
-import logging
 import subprocess
 from gettext import gettext as _
 from typing import Optional
-from uuid import UUID
+
 from gi.repository import Gio, GLib, Gtk
 
-import passwordsafe.config_manager
-import passwordsafe.passphrase_generator
-import passwordsafe.password_generator
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
-from passwordsafe.password_generator_popover import PasswordGeneratorPopover
-from passwordsafe.scrolled_page import ScrolledPage
+from passwordsafe.password_entry_row import PasswordEntryRow
 
 
 class EntryPage:
@@ -96,7 +90,8 @@ class EntryPage:
                 else:
                     scrolled_page.username_property_value_entry.set_text("")
 
-                scrolled_page.username_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+                scrolled_page.username_property_value_entry.connect(
+                    "icon-press", self._on_copy_secondary_button_clicked)
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row:
@@ -106,57 +101,17 @@ class EntryPage:
                 else:
                     scrolled_page.username_property_value_entry.set_text("")
 
-                scrolled_page.username_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
+                scrolled_page.username_property_value_entry.connect(
+                    "icon-press", self._on_copy_secondary_button_clicked)
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
 
         if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True or add_all is True:
             if scrolled_page.password_property_row is NotImplemented:
-                scrolled_page.password_property_row = builder.get_object("password_property_row")
-                scrolled_page.password_property_value_entry = builder.get_object("password_property_value_entry")
-                scrolled_page.show_password_button = builder.get_object("show_password_button")
-                scrolled_page.generate_password_button = builder.get_object("generate_password_button")
-                scrolled_page.password_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_password(entry_uuid)
-
-                if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
-                    scrolled_page.password_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.password_property_value_entry.set_text("")
-
-                self._pwd_popover = PasswordGeneratorPopover(
+                scrolled_page.password_property_row = PasswordEntryRow(
                     self.unlocked_database)
-                self._pwd_popover.bind_property(
-                    "password", scrolled_page.password_property_value_entry,
-                    "text")
-                scrolled_page.generate_password_button.set_popover(
-                    self._pwd_popover)
-
-                scrolled_page.password_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
-                scrolled_page.password_property_value_entry.connect("copy-clipboard", self.unlocked_database.on_copy_secondary_button_clicked, None, None)
-                self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, scrolled_page.password_property_value_entry, "<Control><Shift>c", signal="copy-clipboard")
-                scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
-
-                scrolled_page.password_level_bar = builder.get_object("password_level_bar")
-                scrolled_page.password_level_bar.add_offset_value("weak", 1.0)
-                scrolled_page.password_level_bar.add_offset_value("medium", 3.0)
-                scrolled_page.password_level_bar.add_offset_value("strong", 4.0)
-                scrolled_page.password_level_bar.add_offset_value("secure", 5.0)
-
-                self.set_password_level_bar(scrolled_page)
-
-                self.change_password_entry_visibility(scrolled_page.password_property_value_entry, scrolled_page.show_password_button)
-
                 properties_list_box.add(scrolled_page.password_property_row)
             elif scrolled_page.password_property_row:
-                value = self.unlocked_database.database_manager.get_entry_password(entry_uuid)
-                if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True:
-                    scrolled_page.password_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.password_property_value_entry.set_text("")
-
-                scrolled_page.password_property_value_entry.connect("icon-press", self.unlocked_database.on_copy_secondary_button_clicked)
-                scrolled_page.password_property_value_entry.connect("changed", self.on_property_value_entry_changed, "password")
                 properties_list_box.add(scrolled_page.password_property_row)
 
         if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True or add_all is True:
@@ -396,9 +351,6 @@ class EntryPage:
 
         elif type_name == "username":
             self.unlocked_database.database_manager.set_entry_username(entry_uuid, widget.get_text())
-        elif type_name == "password":
-            self.unlocked_database.database_manager.set_entry_password(entry_uuid, widget.get_text())
-            self.set_password_level_bar(scrolled_page)
         elif type_name == "url":
             self.unlocked_database.database_manager.set_entry_url(entry_uuid, widget.get_text())
         elif type_name == "notes":
@@ -425,13 +377,6 @@ class EntryPage:
     def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()
         Gtk.show_uri_on_window(self.unlocked_database.window, widget.get_text(), Gtk.get_current_event_time())
-
-    def on_show_password_button_toggled(self, _toggle_button, entry):
-        self.unlocked_database.start_database_lock_timer()
-        if entry.get_visibility() is True:
-            entry.set_visibility(False)
-        else:
-            entry.set_visibility(True)
 
     #
     # Additional Attributes
@@ -645,31 +590,6 @@ class EntryPage:
         dialog.close()
         self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id], attachment.filename)
 
-    def change_password_entry_visibility(self, entry, toggle_button):
-        toggle_button.connect("toggled", self.on_show_password_button_toggled, entry)
-
-        if passwordsafe.config_manager.get_show_password_fields() is False:
-            entry.set_visibility(False)
-        else:
-            toggle_button.toggled()
-            entry.set_visibility(True)
-
-    def set_password_level_bar(self, scrolled_page: ScrolledPage) -> None:
-        """ Displays the strength of the password in the level bar. """
-
-        password = scrolled_page.password_property_value_entry.get_text()
-
-        # If our password is a just a reference, get the real password
-        if password.startswith("{REF:P"):
-            try:
-                uuid = UUID(self.unlocked_database.reference_to_hex_uuid(
-                    scrolled_page.password_property_value_entry.get_text()))
-                password = self.unlocked_database.database_manager.get_entry_password(uuid)
-            except Exception:
-                logging.warning(
-                    "Failed to look up password for reference '%s'", password)
-
-        # strength() returns None on error.
-        strength = passwordsafe.password_generator.strength(password)
-        if strength is not None:
-            scrolled_page.password_level_bar.set_value(strength)
+    def _on_copy_secondary_button_clicked(
+            self, widget, _position=None, _eventbutton=None):
+        self.unlocked_database.send_to_clipboard(widget.get_text())

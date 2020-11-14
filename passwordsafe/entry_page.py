@@ -5,8 +5,6 @@ import subprocess
 import typing
 from gettext import gettext as _
 from typing import Optional
-if typing.TYPE_CHECKING:
-    from uuid import UUID
 
 from gi.repository import Gio, GLib, Gtk
 if typing.TYPE_CHECKING:
@@ -389,7 +387,6 @@ class EntryPage:
 
     def on_attributes_add_button_clicked(self, _widget):
         entry: Entry = self.unlocked_database.current_element
-        entry_uuid: UUID = entry.uuid
         scrolled_page = self.unlocked_database.get_current_page()
 
         key = scrolled_page.attributes_key_entry.get_text()
@@ -399,7 +396,7 @@ class EntryPage:
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
             return
 
-        if self.unlocked_database.database_manager.has_entry_attribute(entry_uuid, key) is True:
+        if self.unlocked_database.database_manager.has_entry_attribute(entry, key):
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
             self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
             return
@@ -468,8 +465,7 @@ class EntryPage:
             return
 
         db_manager = self.unlocked_database.database_manager
-        entry_uuid: UUID = entry.uuid
-        if db_manager.has_entry_attribute(entry_uuid, new_key):
+        if db_manager.has_entry_attribute(entry, new_key):
             widget.get_style_context().add_class("error")
             self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
             return

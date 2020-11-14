@@ -375,8 +375,14 @@ class DatabaseManager(GObject.GObject):
             return False
         return True
 
-    def has_entry_attribute(self, uuid, key):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def has_entry_attribute(self, entry: Entry, key: str) -> bool:
+        """Check if an entry has an attribute name key
+
+        :param entry: entry to check
+        :param key: attribute name to check
+        :returns: True is entry has attribute key
+        :rtype: bool
+        """
         if entry.get_custom_property(key) is None:
             return False
         return True

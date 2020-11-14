@@ -43,6 +43,8 @@ class Search:
         self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
             "info_search_overlay")
 
+        self._result_list: List[UUID] = []
+
     def initialize(self):
         # Search Headerbar
         headerbar_close_button = self._builder.get_object("headerbar_close_button")
@@ -135,20 +137,20 @@ class Search:
     # Utils
     #
 
-    def search_thread_creation(self, widget, result_list):
+    def search_thread_creation(self, widget):
         path = self.unlocked_database.current_element.path
-        result_list = self.unlocked_database.database_manager.search(widget.get_text(),
-                                                                     path)
+        self._result_list = self.unlocked_database.database_manager.search(
+            widget.get_text(), path)
 
-        GLib.idle_add(self.search_overlay_creation, widget, result_list)
+        GLib.idle_add(self.search_overlay_creation, widget)
 
-    def search_overlay_creation(self, widget, result_list):
+    def search_overlay_creation(self, widget):
         if widget.get_text():
             if self._empty_search_overlay in self._overlay:
                 self._overlay.remove(self._empty_search_overlay)
 
             self.search_list_box.show()
-            self.search_instance_creation(result_list)
+            self.search_instance_creation(self._result_list)
         else:
             self._overlay.add_overlay(self._info_search_overlay)
             self.search_list_box.hide()
@@ -161,8 +163,6 @@ class Search:
 
         last_row = NotImplemented
         self.skipped_rows = []
-
-        # result_list = list(set(result_list))
 
         for uuid in results_to_show:
             skip = False
@@ -256,7 +256,7 @@ class Search:
         self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
 
         self.search_list_box.hide()
-        result_list = []
+        self._result_list.clear()
 
         if self._info_search_overlay in self._overlay:
             self._overlay.remove(self._info_search_overlay)
@@ -267,7 +267,7 @@ class Search:
         for row in self.search_list_box.get_children():
             self.search_list_box.remove(row)
 
-        search_thread = threading.Thread(target=self.search_thread_creation, args=(widget, result_list))
+        search_thread = threading.Thread(target=self.search_thread_creation, args=(widget,))
         search_thread.daemon = True
         search_thread.start()
 

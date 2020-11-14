@@ -57,7 +57,6 @@ class UnlockedDatabase(GObject.GObject):
     action_bar = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
-    search_overlay = NotImplemented
     database_settings_dialog = NotImplemented
     references_dialog = NotImplemented
     notes_dialog = NotImplemented

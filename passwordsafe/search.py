@@ -37,6 +37,8 @@ class Search:
         self._builder = Gtk.Builder()
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
 
+        self._overlay: Gtk.Overlay = Gtk.Overlay()
+
     def initialize(self):
         # Search Headerbar
         headerbar_close_button = self._builder.get_object("headerbar_close_button")
@@ -104,7 +106,6 @@ class Search:
         scrolled_page = ScrolledPage(False)
         viewport = Gtk.Viewport()
         viewport.set_name("BGPlatform")
-        self.unlocked_database.search_overlay = Gtk.Overlay()
 
         self.search_list_box = self._builder.get_object("list_box")
 
@@ -112,10 +113,10 @@ class Search:
         hdy_search = Handy.Clamp()
         hdy_search.set_maximum_size(700)
         hdy_search.add(self.search_list_box)
-        self.unlocked_database.search_overlay.add(hdy_search)
+        self._overlay.add(hdy_search)
 
         self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
-        viewport.add(self.unlocked_database.search_overlay)
+        viewport.add(self._overlay)
 
         scrolled_page.add(viewport)
         scrolled_page.show_all()
@@ -124,7 +125,7 @@ class Search:
             self.search_list_box.show()
         else:
             info_search_overlay = self._builder.get_object("info_search_overlay")
-            self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
+            self._overlay.add_overlay(info_search_overlay)
             self.search_list_box.hide()
 
     #
@@ -140,13 +141,13 @@ class Search:
 
     def search_overlay_creation(self, widget, result_list, empty_search_overlay, info_search_overlay):
         if widget.get_text():
-            if empty_search_overlay in self.unlocked_database.search_overlay:
-                self.unlocked_database.search_overlay.remove(empty_search_overlay)
+            if empty_search_overlay in self._overlay:
+                self._overlay.remove(empty_search_overlay)
 
             self.search_list_box.show()
             self.search_instance_creation(result_list, empty_search_overlay)
         else:
-            self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
+            self._overlay.add_overlay(info_search_overlay)
             self.search_list_box.hide()
 
     def search_instance_creation(self, result_list, empty_search_overlay, load_all=False):
@@ -209,7 +210,7 @@ class Search:
         if self.search_list_box.get_children():
             self.search_list_box.show()
         else:
-            self.unlocked_database.search_overlay.add_overlay(empty_search_overlay)
+            self._overlay.add_overlay(empty_search_overlay)
             self.search_list_box.hide()
 
     #
@@ -256,11 +257,11 @@ class Search:
 
         empty_search_overlay = self._builder.get_object("empty_search_overlay")
         info_search_overlay = self._builder.get_object("info_search_overlay")
-        if info_search_overlay in self.unlocked_database.search_overlay:
-            self.unlocked_database.search_overlay.remove(info_search_overlay)
+        if info_search_overlay in self._overlay:
+            self._overlay.remove(info_search_overlay)
 
-        if empty_search_overlay in self.unlocked_database.search_overlay:
-            self.unlocked_database.search_overlay.remove(empty_search_overlay)
+        if empty_search_overlay in self._overlay:
+            self._overlay.remove(empty_search_overlay)
 
         for row in self.search_list_box.get_children():
             self.search_list_box.remove(row)

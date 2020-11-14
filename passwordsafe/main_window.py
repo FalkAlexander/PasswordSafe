@@ -41,7 +41,7 @@ class MainWindow(Gtk.ApplicationWindow):
         if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
 
-    def assemble_window(self):
+    def assemble_window(self) -> None:
         window_size = passwordsafe.config_manager.get_window_size()
         self.set_default_size(window_size[0], window_size[1])
 

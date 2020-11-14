@@ -12,7 +12,7 @@ import passwordsafe.password_generator
 
 
 class DatabaseSettingsDialog:
-    dialog = NotImplemented
+    window = NotImplemented
 
     unlocked_database = NotImplemented
     database_manager = NotImplemented
@@ -41,7 +41,7 @@ class DatabaseSettingsDialog:
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/database_settings_dialog.ui")
 
-        self.assemble_dialog()
+        self.assemble_window()
         # self.assemble_encryption_page()
         self.set_detail_values()
 
@@ -53,8 +53,8 @@ class DatabaseSettingsDialog:
     # Dialog Creation
     #
 
-    def assemble_dialog(self):
-        self.dialog = self.builder.get_object("database_settings_dialog")
+    def assemble_window(self) -> None:
+        self.window = self.builder.get_object("database_settings_window")
         self.stack = self.builder.get_object("dbsd_stack")
 
         self.stack.set_visible_child(self.stack.get_child_by_name("auth_page"))
@@ -96,12 +96,12 @@ class DatabaseSettingsDialog:
         level_bar.add_offset_value("secure", 5.0)
 
         # Dialog
-        self.dialog.set_modal(True)
-        self.dialog.set_transient_for(self.unlocked_database.window)
-        self.dialog.present()
+        self.window.set_modal(True)
+        self.window.set_transient_for(self.unlocked_database.window)
+        self.window.present()
 
-        self.unlocked_database.database_settings_dialog = self.dialog
-        self.dialog.connect("delete-event", self.on_dialog_quit)
+        self.unlocked_database.database_settings_window = self.window
+        self.window.connect("delete-event", self.on_dialog_quit)
 
     #
     # Password Section
@@ -170,11 +170,11 @@ class DatabaseSettingsDialog:
     # Keyfile Section
     #
 
-    def on_keyfile_select_button_clicked(self, button):
+    def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
-            _("Choose current keyfile"), self.dialog, Gtk.FileChooserAction.OPEN,
+            _("Choose current keyfile"), self.window, Gtk.FileChooserAction.OPEN,
             _("Open"), None)
         select_dialog.set_modal(True)
         select_dialog.set_local_only(False)
@@ -208,11 +208,11 @@ class DatabaseSettingsDialog:
                 button.add(Gtk.Image.new_from_icon_name("edit-delete-symbolic", Gtk.IconSize.BUTTON))
                 button.show_all()
 
-    def on_keyfile_generator_button_clicked(self, _button):
+    def on_keyfile_generator_button_clicked(self, _button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
-            _("Choose location for keyfile"), self.dialog, Gtk.FileChooserAction.SAVE,
+            _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,
             _("Generate"), None)
         save_dialog.set_do_overwrite_confirmation(True)
         save_dialog.set_current_name(_("Keyfile"))
@@ -492,4 +492,4 @@ class DatabaseSettingsDialog:
     #
 
     def on_dialog_quit(self, _window, _event):
-        self.unlocked_database.database_settings_dialog = NotImplemented
+        self.unlocked_database.database_settings_window = NotImplemented

@@ -34,12 +34,15 @@ class Search:
         self.unlocked_database = u_d
         self._search_event_connection_id = 0
 
+        self._builder = Gtk.Builder()
+        self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
+
     def initialize(self):
         # Search Headerbar
-        headerbar_search_box_close_button = self.unlocked_database.builder.get_object("headerbar_search_box_close_button")
-        headerbar_search_box_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
+        headerbar_close_button = self._builder.get_object("headerbar_close_button")
+        headerbar_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
 
-        headerbar_search_entry = self.unlocked_database.builder.get_object("headerbar_search_entry")
+        headerbar_search_entry = self._builder.get_object("headerbar_search_entry")
         headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed)
         headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
         headerbar_search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
@@ -65,13 +68,11 @@ class Search:
         # pylint: disable=unused-argument
         search_active = self.unlocked_database.props.search_active
 
-        search_entry = self.unlocked_database.builder.get_object(
-            "headerbar_search_entry")
+        search_entry = self._builder.get_object("headerbar_search_entry")
 
         self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
         if search_active:
-            headerbar_search = self.unlocked_database.builder.get_object(
-                "headerbar_search")
+            headerbar_search = self._builder.get_object("headerbar_search")
             self.unlocked_database.headerbar_search = headerbar_search
             self.unlocked_database.parent_widget.set_headerbar(
                 headerbar_search)
@@ -104,14 +105,10 @@ class Search:
         viewport = Gtk.Viewport()
         viewport.set_name("BGPlatform")
         self.unlocked_database.search_overlay = Gtk.Overlay()
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-        self.search_list_box = builder.get_object("list_box")
+
+        self.search_list_box = self._builder.get_object("list_box")
 
         # Responsive Container
-        self.search_list_box.set_name("BrowserListBox")
-        self.search_list_box.set_valign(Gtk.Align.START)
-
         hdy_search = Handy.Clamp()
         hdy_search.set_maximum_size(700)
         hdy_search.add(self.search_list_box)
@@ -126,7 +123,7 @@ class Search:
         if self.search_list_box.get_children():
             self.search_list_box.show()
         else:
-            info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
+            info_search_overlay = self._builder.get_object("info_search_overlay")
             self.unlocked_database.search_overlay.add_overlay(info_search_overlay)
             self.search_list_box.hide()
 
@@ -204,9 +201,7 @@ class Search:
                 self.skipped_rows.append(uuid)
 
         if last_row is not NotImplemented and self.skipped_rows:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-            load_more_row = builder.get_object("load_more_row")
+            load_more_row = self._builder.get_object("load_more_row")
             self.search_list_box.add(load_more_row)
 
         self.search_list_box.show()
@@ -259,8 +254,8 @@ class Search:
         self.search_list_box.hide()
         result_list = []
 
-        empty_search_overlay = self.unlocked_database.builder.get_object("empty_search_overlay")
-        info_search_overlay = self.unlocked_database.builder.get_object("info_search_overlay")
+        empty_search_overlay = self._builder.get_object("empty_search_overlay")
+        info_search_overlay = self._builder.get_object("info_search_overlay")
         if info_search_overlay in self.unlocked_database.search_overlay:
             self.unlocked_database.search_overlay.remove(info_search_overlay)
 

@@ -80,8 +80,8 @@ class GroupRow(Gtk.ListBoxRow):
                 active = self.selection_checkbox.props.active
                 self.selection_checkbox.props.active = not active
             else:
-                self.selection_checkbox.props.active = True
                 db_view.props.selection_mode = True
+                self.selection_checkbox.props.active = True
 
         return True
 

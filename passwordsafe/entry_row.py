@@ -38,6 +38,7 @@ class EntryRow(Gtk.ListBoxRow):
             self.username = self.db_manager.get_entry_username(uuid)
 
         self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
+        self.props.activatable = False
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
@@ -52,7 +53,6 @@ class EntryRow(Gtk.ListBoxRow):
         entry_name_label = self.builder.get_object("entry_name_label")
         entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
         entry_copy_button = self.builder.get_object("entry_copy_button")
-        entry_color_button = self.builder.get_object("entry_color_button")
 
         # Icon
         icon_name: str = passwordsafe.icon.get_icon_name(self.icon)
@@ -72,9 +72,8 @@ class EntryRow(Gtk.ListBoxRow):
         entry_copy_button.connect("clicked", self.on_entry_copy_button_clicked)
 
         # Color Button
-        entry_color_button.set_name(self.color + "List")
-        image = entry_color_button.get_children()[0]
-        image_style = image.get_style_context()
+        image_style = entry_icon.get_style_context()
+        image_style.add_class(self.color + "List")
         if self.color != Color.NONE.value:
             image_style.remove_class("DarkIcon")
             image_style.add_class("BrightIcon")
@@ -104,8 +103,9 @@ class EntryRow(Gtk.ListBoxRow):
         button: int = gesture.get_current_button()
         if (button == 3
                 and not db_view.props.search_active):
-            self.selection_checkbox.props.active = True
             db_view.props.selection_mode = True
+            self.selection_checkbox.props.active = True
+
         elif button == 1:
             entry = db_view.database_manager.get_entry_object_from_uuid(
                 self.get_uuid())

@@ -27,6 +27,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.label = dbm.get_group_name(group)
 
         self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
+        self.props.activatable = False
         self.assemble_group_row()
 
     def assemble_group_row(self):
@@ -35,10 +36,7 @@ class GroupRow(Gtk.ListBoxRow):
             "/org/gnome/PasswordSafe/group_row.ui")
         group_event_box = builder.get_object("group_event_box")
 
-        self._entry_box_gesture = Gtk.GestureMultiPress.new(group_event_box)
-        self._entry_box_gesture.props.button = 0
-        self._entry_box_gesture.props.propagation_phase = Gtk.PropagationPhase.CAPTURE
-
+        self._entry_box_gesture = builder.get_object("entry_box_gesture")
         self._entry_box_gesture.connect(
             "pressed", self._on_group_row_button_pressed)
 
@@ -82,8 +80,8 @@ class GroupRow(Gtk.ListBoxRow):
                 active = self.selection_checkbox.props.active
                 self.selection_checkbox.props.active = not active
             else:
-                self.selection_checkbox.props.active = True
                 db_view.props.selection_mode = True
+                self.selection_checkbox.props.active = True
 
         return True
 

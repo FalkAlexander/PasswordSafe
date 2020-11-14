@@ -256,10 +256,11 @@ class UnlockDatabase:
             self.keyfile_path = keyfile_chooser_dialog.get_filename()
             logging.debug("Keyfile selected: %s", self.keyfile_path)
 
-            keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
-            keyfile_unlock_select_button.get_style_context().remove_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
-            keyfile_unlock_select_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION)
-            keyfile_unlock_select_button.set_label(os.path.basename(self.keyfile_path))
+            keyfile_button = self.builder.get_object("keyfile_unlock_select_button")
+            style_context = keyfile_button.get_style_context()
+            style_context.remove_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
+            style_context.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION)
+            keyfile_button.set_label(os.path.basename(self.keyfile_path))
 
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection canceled")

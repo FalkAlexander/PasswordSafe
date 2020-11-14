@@ -412,11 +412,11 @@ class UnlockDatabase:
         if self._unlock_method == UnlockMethod.PASSWORD:
             self._password_unlock_failed()
         elif self._unlock_method == UnlockMethod.KEYFILE:
-            if self.database_manager is not NotImplemented:
+            if self.database_manager:
                 self.database_manager.keyfile_hash = NotImplemented
             self._keyfile_unlock_failed()
         else:
-            if self.database_manager is not NotImplemented:
+            if self.database_manager:
                 self.database_manager.keyfile_hash = NotImplemented
             self._composite_unlock_failed()
 

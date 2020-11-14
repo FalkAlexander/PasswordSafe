@@ -2,30 +2,35 @@
 import secrets
 import string
 from typing import Optional
+
 import pwquality
 
-import passwordsafe.config_manager as config
 
-
-def generate() -> str:
+def generate(
+        length: int, use_uppercase: bool, use_lowercase: bool, use_numbers: bool,
+        use_symbols: bool) -> str:
     """Generate a password based on some criteria.
 
+    :param int digits: password number of characters
+    :param bool high_letter: password must contain uppercase letters
+    :param bool low_letter: password must contain low letters
+    :param bool numbers: password must contain digits
+    :param bool special: password must contain special characters
     :returns: a password
     :rtype: str
     """
-    length = config.get_generator_length()
     characters: str = ""
 
-    if config.get_generator_use_uppercase():
+    if use_uppercase:
         characters += string.ascii_uppercase
 
-    if config.get_generator_use_lowercase():
+    if use_lowercase:
         characters += string.ascii_lowercase
 
-    if config.get_generator_use_numbers():
+    if use_numbers:
         characters += string.digits
 
-    if config.get_generator_use_symbols():
+    if use_symbols:
         characters += string.punctuation
 
     # If all options are disabled, generate a password using

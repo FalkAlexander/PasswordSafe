@@ -68,6 +68,18 @@ class PasswordGeneratorPopover(Gtk.Popover):  # pylint: disable=too-few-public-m
         self._db_view.start_database_lock_timer()
 
         if self._stack.get_visible_child_name() == "password":
-            self.props.password = generate_pwd()
+            use_uppercase: bool = self._high_letter_toggle_btn.props.active
+            use_lowercase: bool = self._low_letter_toggle_button.props.active
+            use_numbers: bool = self._number_toggle_button.props.active
+            use_symbols: bool = self._special_toggle_button.props.active
+
+            length: int = self._digit_spin_button.get_value_as_int()
+            pass_text: str = generate_pwd(
+                length, use_uppercase, use_lowercase, use_numbers,
+                use_symbols)
         else:
-            self.props.password = generate_phrase()
+            separator: str = self._separator_entry.props.text
+            words: int = self._words_spin_button.get_value_as_int()
+            pass_text = generate_phrase(words, separator)
+
+        self.props.password = pass_text

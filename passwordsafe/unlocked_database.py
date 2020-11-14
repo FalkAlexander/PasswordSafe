@@ -94,7 +94,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self._current_element: Optional[Union[Entry, Group]] = None
 
-        self._linkedbox_right: Optional[Gtk.Box] = None
+        self._linkedbox_right: Gtk.Box = None
         self._selection_button_box: Optional[Gtk.Box] = None
         self._selection_options_button: Optional[Gtk.MenuButton] = None
 

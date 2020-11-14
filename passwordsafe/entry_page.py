@@ -454,13 +454,16 @@ class EntryPage:
             attribute_entry_box.reorder_child(button, 0)
             return
 
-        if self.unlocked_database.database_manager.has_entry_attribute(entry_uuid, entry.get_text()) is True:
+        db_manager = self.unlocked_database.database_manager
+        if db_manager.has_entry_attribute(entry_uuid, entry.get_text()):
             entry.get_style_context().add_class("error")
             self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
             return
 
-        self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, entry.get_text(), self.unlocked_database.database_manager.get_entry_attribute_value_from_entry_uuid(entry_uuid, key))
-        self.unlocked_database.database_manager.delete_entry_attribute(entry_uuid, key)
+        db_manager.set_entry_attribute(
+            entry_uuid, entry.get_text(),
+            db_manager.get_entry_attribute_value(entry_uuid, key))
+        db_manager.delete_entry_attribute(entry_uuid, key)
 
         button.get_children()[0].set_text(entry.get_text())
         parent.set_name(entry.get_text())

@@ -289,13 +289,23 @@ class DatabaseManager(GObject.GObject):
         else:
             return entry.get_custom_property("color_prop_LcljUMJZ9X")
 
-    # Return the belonging value for an attribute
-    def get_entry_attribute_value_from_entry_uuid(self, uuid, key):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.get_custom_property(key) is None:
+    def get_entry_attribute_value(self, uuid: UUID, key: str) -> str:
+        """Get an attribute value from an entry uuid and the attribute
+        key.
+
+        :param UUID uuid: entry uuid
+        :param key: attribute key
+        :returns: entry attribute value
+        :rtype: str
+        """
+        entry: Entry = self.db.find_entries(uuid=uuid, first=True)
+        if not entry:
+            logging.warning(
+                "Trying to look up a non-existing UUID %s, this should "
+                "never happen", uuid)
             return ""
-        else:
-            return entry.get_custom_property(key)
+
+        return entry.get_custom_property(key) or ""
 
     def get_entry_attributes(self, data: Union[Entry, UUID]) -> Dict[str, str]:
         """Get an entry attributes from an entry or an uuid

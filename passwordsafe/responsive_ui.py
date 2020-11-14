@@ -25,6 +25,17 @@ class ResponsiveUI():
 
         db = self.unlocked_database  # pylint: disable=C0103
         page = db.get_current_page()
+        if page is None:
+            # Initial placement of pathbar before content appeared
+            if db.window.mobile_width and not db.action_bar.get_children():
+                # mobile mode
+                db.action_bar.add(self.unlocked_database.pathbar)
+                db.action_bar.show()
+                db.revealer.set_reveal_child(True)
+            elif not db.window.mobile_width and not db.headerbar_box.get_children():
+                # desktop mode
+                db.headerbar_box.add(self.unlocked_database.pathbar)
+                db.headerbar_box.show()
 
         if db.window.mobile_width and not db.action_bar.get_children():
             # mobile width: hide pathbar in header

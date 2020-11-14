@@ -75,6 +75,9 @@ class UnlockedDatabase(GObject.GObject):
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
+    selection_mode = GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+
     def __init__(self, window, widget, dbm):
         super().__init__()
 
@@ -90,6 +93,10 @@ class UnlockedDatabase(GObject.GObject):
         self.custom_keypress_handler = CustomKeypressHandler(self)
 
         self._current_element: Optional[Union[Entry, Group]] = None
+
+        self._linkedbox_right: Optional[Gtk.Box] = None
+        self._selection_button_box: Optional[Gtk.Box] = None
+        self._selection_options_button: Optional[Gtk.MenuButton] = None
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -170,9 +177,10 @@ class UnlockedDatabase(GObject.GObject):
         self.bind_accelerator(self.accelerators, search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
-        selection_button.connect("clicked", self.selection_ui.set_selection_headerbar)
+        selection_button.connect("clicked", self._on_selection_button_clicked)
         selection_button_mobile = self.builder.get_object("selection_button_mobile")
-        selection_button_mobile.connect("clicked", self.selection_ui.set_selection_headerbar)
+        selection_button_mobile.connect(
+            "clicked", self._on_selection_button_clicked)
 
         back_button_mobile = self.builder.get_object("back_button_mobile")
         back_button_mobile.connect("clicked", self.on_back_button_mobile_clicked)
@@ -183,6 +191,24 @@ class UnlockedDatabase(GObject.GObject):
         # Selection UI
         self.selection_ui.initialize()
 
+        self._selection_button_box = self.builder.get_object(
+            "selection_button_box")
+        self.bind_property(
+            "selection-mode", self._selection_button_box, "visible",
+            GObject.BindingFlags.SYNC_CREATE)
+
+        self._linkedbox_right = self.builder.get_object("linkedbox_right")
+        self.bind_property(
+            "selection-mode", self._linkedbox_right, "visible",
+            GObject.BindingFlags.INVERT_BOOLEAN
+            | GObject.BindingFlags.SYNC_CREATE)
+
+        self._selection_options_button = self.builder.get_object(
+            "selection_options_button")
+        self.bind_property(
+            "selection-mode", self._selection_options_button, "visible",
+            GObject.BindingFlags.SYNC_CREATE)
+
         self.parent_widget.set_headerbar(self.headerbar)
         self.window.set_titlebar(self.headerbar)
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group())
@@ -191,8 +217,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
-        self.builder.get_object("linkedbox_right").show_all()
-
         filename_label = self.builder.get_object("filename_label")
         filename_label.set_text(ntpath.basename(self.database_manager.database_path))
 
@@ -405,6 +429,15 @@ class UnlockedDatabase(GObject.GObject):
     # Create Group & Entry Rows
     #
 
+    def show_element(self, element: Union[Entry, Group]) -> None:
+        """Sets the current element and display it
+
+        :param element: Entry or Group to display
+        """
+        self.current_element = element
+        self.pathbar.add_pathbar_button_to_pathbar(element.uuid)
+        self.show_page_of_new_directory(False, False)
+
     def insert_groups_into_listbox(self, list_box, overlay):
         groups = NotImplemented
         sorted_list = []
@@ -523,30 +556,6 @@ class UnlockedDatabase(GObject.GObject):
         self.pathbar.add_pathbar_button_to_pathbar(self.current_element.uuid)
         self.show_page_of_new_directory(True, False)
 
-    def on_entry_row_button_pressed(
-            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
-            event_y: float, entry_row: EntryRow) -> bool:
-        # pylint: disable=unused-argument
-        # pylint: disable=too-many-arguments
-        self.start_database_lock_timer()
-
-        if self.selection_ui.selection_mode_active:
-            self.selection_ui.row_selection_toggled(entry_row)
-            return True
-
-        button: int = gesture.get_current_button()
-        if (button == 3
-                and not self.props.search_active):
-            self.selection_ui.set_selection_headerbar(
-                None, select_row=entry_row)
-        elif button == 1:
-            entry_uuid = entry_row.get_uuid()
-            self.current_element = self.database_manager.get_entry_object_from_uuid(entry_uuid)
-            self.pathbar.add_pathbar_button_to_pathbar(entry_uuid)
-            self.show_page_of_new_directory(False, False)
-
-        return True
-
     def on_element_delete_menu_button_clicked(
             self, _action: Gio.SimpleAction, _param: None) -> None:
         """Delete the visible entry from the menu."""
@@ -592,30 +601,6 @@ class UnlockedDatabase(GObject.GObject):
         self._remove_page(parent_group)
         self.current_element = parent_group
         self.show_page_of_new_directory(False, False)
-
-    def on_group_row_button_pressed(
-            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
-            event_y: float, group_row: GroupRow) -> bool:
-        # pylint: disable=unused-argument
-        # pylint: disable=too-many-arguments
-        self.start_database_lock_timer()
-
-        button: int = gesture.get_current_button()
-        if button == 1:
-            group_uuid = group_row.get_uuid()
-            self.current_element = self.database_manager.get_group(group_uuid)
-            self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
-            self.show_page_of_new_directory(False, False)
-            return True
-
-        if (button == 3
-                and not self.props.search_active):
-            if self.selection_ui.selection_mode_active:
-                self.selection_ui.row_selection_toggled(group_row)
-            else:
-                self.selection_ui.set_selection_headerbar(None, group_row)
-
-        return True
 
     def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
         """Edit button in a GroupRow was clicked
@@ -702,6 +687,10 @@ class UnlockedDatabase(GObject.GObject):
         if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
 
+    def _on_selection_button_clicked(self, button: Gtk.Button) -> None:
+        # pylint: disable=unused-argument
+        self.props.selection_mode = True
+
     def on_back_button_mobile_clicked(self, button):
         """Update the view when the back button is clicked.
 
@@ -725,7 +714,7 @@ class UnlockedDatabase(GObject.GObject):
         elif scrolled_page.edit_page is True and group_page is False:
             parent = self.database_manager.get_parent_group(page_uuid)
         elif (not scrolled_page.edit_page
-              and not self.selection_ui.selection_mode_active
+              and not self.props.selection_mode
               and not self.props.search_active):
             if self.database_manager.check_is_root_group(self.current_element) is True:
                 self.on_lock_button_clicked(None)

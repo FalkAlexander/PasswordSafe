@@ -295,9 +295,7 @@ class Search:
         else:
             first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
 
-        self.unlocked_database.current_element = first_row
-        self.unlocked_database.pathbar.add_pathbar_button_to_pathbar(uuid)
-        self.unlocked_database.show_page_of_new_directory(False, False)
+        self.unlocked_database.show_element(first_row)
 
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)

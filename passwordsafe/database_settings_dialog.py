@@ -4,9 +4,10 @@ import os
 import threading
 import time
 from gettext import gettext as _
+
 from gi.repository import GLib, Gtk
 
-import passwordsafe.config_manager
+import passwordsafe.config_manager as config
 import passwordsafe.keyfile_generator
 import passwordsafe.password_generator
 
@@ -147,7 +148,13 @@ class DatabaseSettingsDialog:
         new_password_entry = self.builder.get_object("new_password_entry")
         confirm_password_entry = self.builder.get_object("confirm_password_entry")
 
-        generated_password = passwordsafe.password_generator.generate()
+        use_lowercase = config.get_generator_use_lowercase()
+        use_uppercase = config.get_generator_use_uppercase()
+        use_numbers = config.get_generator_use_numbers()
+        use_symbols = config.get_generator_use_symbols()
+        length = config.get_generator_length()
+
+        generated_password = passwordsafe.password_generator.generate(length, use_uppercase, use_lowercase, use_numbers, use_symbols)
 
         new_password_entry.set_text(generated_password)
         confirm_password_entry.set_text(generated_password)
@@ -239,7 +246,6 @@ class DatabaseSettingsDialog:
             self.generate_keyfile_button.show_all()
 
             self.new_keyfile_path = save_dialog.get_filename()
-            generator_thread = NotImplemented
 
             if self.new_password is NotImplemented:
                 generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.new_keyfile_path, False, self, False))

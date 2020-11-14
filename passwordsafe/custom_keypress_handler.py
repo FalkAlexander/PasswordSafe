@@ -173,10 +173,15 @@ class CustomKeypressHandler:
     def on_special_key_released(
             self, _window: MainWindow, eventkey: Gtk.Event) -> bool:
         """Go to the parent group on Escape or BackSpace key.
+           Exit selection mode on Escape key.
 
         :param MainWindow window: the main window
         :param Gtk.Event eventkey: the event
         """
+        if self.unlocked_database.props.selection_mode:
+            self.unlocked_database.props.selection_mode = False
+            return False
+
         if not self._can_goto_parent_group():
             return False
 

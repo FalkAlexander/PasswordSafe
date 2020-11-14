@@ -429,6 +429,15 @@ class UnlockedDatabase(GObject.GObject):
     # Create Group & Entry Rows
     #
 
+    def show_element(self, element: Union[Entry, Group]) -> None:
+        """Sets the current element and display it
+
+        :param element: Entry or Group to display
+        """
+        self.current_element = element
+        self.pathbar.add_pathbar_button_to_pathbar(element.uuid)
+        self.show_page_of_new_directory(False, False)
+
     def insert_groups_into_listbox(self, list_box, overlay):
         groups = NotImplemented
         sorted_list = []

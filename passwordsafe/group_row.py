@@ -72,11 +72,8 @@ class GroupRow(Gtk.ListBoxRow):
 
         button: int = gesture.get_current_button()
         if button == 1:
-            group_uuid = self.get_uuid()
-            db_view.current_element = db_view.database_manager.get_group(
-                group_uuid)
-            db_view.pathbar.add_pathbar_button_to_pathbar(group_uuid)
-            db_view.show_page_of_new_directory(False, False)
+            group = db_view.database_manager.get_group(self.get_uuid())
+            db_view.show_element(group)
             return True
 
         if (button == 3

@@ -107,12 +107,9 @@ class EntryRow(Gtk.ListBoxRow):
             self.selection_checkbox.props.active = True
             db_view.props.selection_mode = True
         elif button == 1:
-            entry_uuid = self.get_uuid()
             entry = db_view.database_manager.get_entry_object_from_uuid(
-                entry_uuid)
-            db_view.current_element = entry
-            db_view.pathbar.add_pathbar_button_to_pathbar(entry_uuid)
-            db_view.show_page_of_new_directory(False, False)
+                self.get_uuid())
+            db_view.show_element(entry)
 
         return True
 

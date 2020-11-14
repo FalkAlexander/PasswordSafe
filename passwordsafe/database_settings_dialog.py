@@ -246,7 +246,6 @@ class DatabaseSettingsDialog:
             self.generate_keyfile_button.show_all()
 
             self.new_keyfile_path = save_dialog.get_filename()
-            generator_thread = NotImplemented
 
             if self.new_password is NotImplemented:
                 generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.new_keyfile_path, False, self, False))

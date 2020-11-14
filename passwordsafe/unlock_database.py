@@ -110,7 +110,7 @@ class UnlockDatabase:
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_filepath).get_uri()
-        if passwordsafe.config_manager.get_remember_composite_key() is True and pairs:
+        if passwordsafe.config_manager.get_remember_composite_key() and pairs:
             keyfile_path = None
 
             for pair in pairs:
@@ -127,7 +127,7 @@ class UnlockDatabase:
 
                 self.composite_keyfile_path = keyfile_path
 
-        if passwordsafe.config_manager.get_remember_unlock_method() is True:
+        if passwordsafe.config_manager.get_remember_unlock_method():
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
 
         self.overlay.add(stack)
@@ -193,7 +193,7 @@ class UnlockDatabase:
                     db.unregister_dbus_signal()
                     db.cancel_timers()
 
-                    if passwordsafe.config_manager.get_save_automatically() is True:
+                    if passwordsafe.config_manager.get_save_automatically():
                         save_thread = threading.Thread(target=db.database_manager.save_database)
                         save_thread.daemon = False
                         save_thread.start()

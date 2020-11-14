@@ -566,8 +566,12 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
         self.set_element_mtime(entry)
 
-    def delete_entry_attribute(self, uuid, key):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def delete_entry_attribute(self, entry: Entry, key: str) -> None:
+        """Delete an entry attribute.
+
+        :param Entry entry: entry to modify
+        :param str key: the attribute key
+        """
         entry.delete_custom_property(key)
         self.is_dirty = True
         self.set_element_mtime(entry)

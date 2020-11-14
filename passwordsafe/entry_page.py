@@ -413,13 +413,13 @@ class EntryPage:
         scrolled_page.is_dirty = True
 
     def on_attribute_remove_button_clicked(self, button):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry: Entry = self.unlocked_database.current_element
         scrolled_page = self.unlocked_database.get_current_page()
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
 
-        self.unlocked_database.database_manager.delete_entry_attribute(entry_uuid, key)
+        self.unlocked_database.database_manager.delete_entry_attribute(entry, key)
         scrolled_page.properties_list_box.remove(parent)
 
     def on_attributes_value_entry_changed(self, widget):
@@ -475,7 +475,7 @@ class EntryPage:
         db_manager.set_entry_attribute(
             entry_uuid, new_key,
             db_manager.get_entry_attribute_value(entry, key))
-        db_manager.delete_entry_attribute(entry_uuid, key)
+        db_manager.delete_entry_attribute(entry, key)
 
         button.get_children()[0].set_text(new_key)
         parent.set_name(new_key)

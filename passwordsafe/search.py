@@ -153,7 +153,7 @@ class Search:
             self._overlay.add_overlay(self._info_search_overlay)
             self.search_list_box.hide()
 
-    def search_instance_creation(self, result_list, load_all=False):
+    def search_instance_creation(self, results_to_show, load_all=False):
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
         group_row_height = 45
         entry_row_height = 60
@@ -164,7 +164,7 @@ class Search:
 
         # result_list = list(set(result_list))
 
-        for uuid in result_list:
+        for uuid in results_to_show:
             skip = False
             row = NotImplemented
 

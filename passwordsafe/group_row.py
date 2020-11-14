@@ -32,7 +32,7 @@ class GroupRow(Gtk.ListBoxRow):
     def assemble_group_row(self):
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_database.ui")
+            "/org/gnome/PasswordSafe/group_row.ui")
         group_event_box = builder.get_object("group_event_box")
 
         self._entry_box_gesture = Gtk.GestureMultiPress.new(group_event_box)

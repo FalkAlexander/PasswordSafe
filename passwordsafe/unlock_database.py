@@ -262,6 +262,10 @@ class UnlockDatabase:
             style_context.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION)
             keyfile_button.set_label(os.path.basename(self.keyfile_path))
 
+            # After selecting a keyfile, simulate a keypress on the unlock button
+            keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
+            keyfile_unlock_button.emit("clicked")
+
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection canceled")
 

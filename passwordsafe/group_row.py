@@ -19,7 +19,7 @@ class GroupRow(Gtk.ListBoxRow):
 
     def __init__(self, unlocked_database, dbm, group):
         Gtk.ListBoxRow.__init__(self)
-        self.set_name("GroupRow")
+        self.get_style_context().add_class("row")
 
         self.unlocked_database = unlocked_database
 

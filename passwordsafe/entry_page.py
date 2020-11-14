@@ -442,34 +442,35 @@ class EntryPage:
         attribute_entry_box.reorder_child(key_entry, 0)
         key_entry.grab_focus()
 
-    def on_key_entry_activated(self, entry, entry_uuid, key, button, parent):
-        if entry.get_text() == "" or entry.get_text is None:
-            entry.get_style_context().add_class("error")
+    def on_key_entry_activated(self, widget, entry_uuid, key, button, parent):
+        new_key: str = widget.props.text
+        if not new_key:
+            widget.get_style_context().add_class("error")
             return
 
-        if entry.get_text() == key:
-            attribute_entry_box = entry.get_parent()
-            attribute_entry_box.remove(entry)
+        if new_key == key:
+            attribute_entry_box = widget.get_parent()
+            attribute_entry_box.remove(widget)
             attribute_entry_box.add(button)
             attribute_entry_box.reorder_child(button, 0)
             return
 
         db_manager = self.unlocked_database.database_manager
-        if db_manager.has_entry_attribute(entry_uuid, entry.get_text()):
-            entry.get_style_context().add_class("error")
+        if db_manager.has_entry_attribute(entry_uuid, new_key):
+            widget.get_style_context().add_class("error")
             self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
             return
 
         db_manager.set_entry_attribute(
-            entry_uuid, entry.get_text(),
+            entry_uuid, new_key,
             db_manager.get_entry_attribute_value(entry_uuid, key))
         db_manager.delete_entry_attribute(entry_uuid, key)
 
-        button.get_children()[0].set_text(entry.get_text())
-        parent.set_name(entry.get_text())
+        button.get_children()[0].set_text(new_key)
+        parent.set_name(new_key)
 
-        attribute_entry_box = entry.get_parent()
-        attribute_entry_box.remove(entry)
+        attribute_entry_box = widget.get_parent()
+        attribute_entry_box.remove(widget)
         attribute_entry_box.add(button)
         attribute_entry_box.reorder_child(button, 0)
 

@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from gettext import gettext as _
+from typing import Optional
+
 from gi.repository import Gtk
 
 
@@ -20,6 +22,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.group_uuid = group.uuid
         self.label = dbm.get_group_name(group)
 
+        self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
         self.assemble_group_row()
 
     def assemble_group_row(self):
@@ -27,9 +30,14 @@ class GroupRow(Gtk.ListBoxRow):
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/unlocked_database.ui")
         group_event_box = builder.get_object("group_event_box")
-        group_event_box.connect(
-            "button-press-event",
-            self.unlocked_database.on_group_row_button_pressed, self)
+
+        self._entry_box_gesture = Gtk.GestureMultiPress.new(group_event_box)
+        self._entry_box_gesture.props.button = 0
+        self._entry_box_gesture.props.propagation_phase = Gtk.PropagationPhase.CAPTURE
+
+        self._entry_box_gesture.connect(
+            "pressed", self.unlocked_database.on_group_row_button_pressed,
+            self)
 
         group_name_label = builder.get_object("group_name_label")
 

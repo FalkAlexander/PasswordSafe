@@ -38,6 +38,7 @@ class EntryRow(Gtk.ListBoxRow):
             self.username = self.db_manager.get_entry_username(uuid)
 
         self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
+        self.props.activatable = False
         self.assemble_entry_row()
 
     def assemble_entry_row(self):

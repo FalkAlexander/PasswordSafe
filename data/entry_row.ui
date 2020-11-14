@@ -24,29 +24,18 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="entry_color_button">
-            <property name="width_request">32</property>
-            <property name="height_request">32</property>
+          <object class="GtkImage" id="entry_icon">
             <property name="visible">True</property>
-            <property name="sensitive">False</property>
             <property name="can_focus">False</property>
-            <property name="focus_on_click">False</property>
-            <property name="receives_default">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="margin_left">10</property>
+            <property name="pixel_size">16</property>
+            <property name="icon_name">application-x-executable-symbolic</property>
+	    <property name="margin_left">10</property>
             <property name="margin_right">10</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage" id="entry_icon">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="pixel_size">16</property>
-                <property name="icon_name">application-x-executable-symbolic</property>
-              </object>
-            </child>
+	    <property name="width_request">32</property>
+	    <property name="height_request">32</property>
+	    <property name="valign">center</property>
             <style>
-              <class name="circular"/>
+	      <class name="circular-icon"/>
               <class name="DarkIcon"/>
             </style>
           </object>

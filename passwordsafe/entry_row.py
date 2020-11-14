@@ -53,7 +53,6 @@ class EntryRow(Gtk.ListBoxRow):
         entry_name_label = self.builder.get_object("entry_name_label")
         entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
         entry_copy_button = self.builder.get_object("entry_copy_button")
-        entry_color_button = self.builder.get_object("entry_color_button")
 
         # Icon
         icon_name: str = passwordsafe.icon.get_icon_name(self.icon)
@@ -73,9 +72,8 @@ class EntryRow(Gtk.ListBoxRow):
         entry_copy_button.connect("clicked", self.on_entry_copy_button_clicked)
 
         # Color Button
-        entry_color_button.get_style_context().add_class(self.color + "List")
-        image = entry_color_button.get_children()[0]
-        image_style = image.get_style_context()
+        image_style = entry_icon.get_style_context()
+        image_style.add_class(self.color + "List")
         if self.color != Color.NONE.value:
             image_style.remove_class("DarkIcon")
             image_style.add_class("BrightIcon")

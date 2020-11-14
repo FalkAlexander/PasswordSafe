@@ -600,20 +600,20 @@ class UnlockedDatabase(GObject.GObject):
         # pylint: disable=too-many-arguments
         self.start_database_lock_timer()
 
-        if self.selection_ui.selection_mode_active:
-            self.selection_ui.row_selection_toggled(group_row)
-            return True
-
         button: int = gesture.get_current_button()
-        if (button == 3
-                and not self.props.search_active):
-            self.selection_ui.set_selection_headerbar(
-                None, select_row=group_row)
-        elif button == 1:
+        if button == 1:
             group_uuid = group_row.get_uuid()
             self.current_element = self.database_manager.get_group(group_uuid)
             self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
             self.show_page_of_new_directory(False, False)
+            return True
+
+        if (button == 3
+                and not self.props.search_active):
+            if self.selection_ui.selection_mode_active:
+                self.selection_ui.row_selection_toggled(group_row)
+            else:
+                self.selection_ui.set_selection_headerbar(None, group_row)
 
         return True
 

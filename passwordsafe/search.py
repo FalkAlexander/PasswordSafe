@@ -40,6 +40,8 @@ class Search:
         self._overlay: Gtk.Overlay = Gtk.Overlay()
         self._empty_search_overlay: Gtk.Overlay = self._builder.get_object(
             "empty_search_overlay")
+        self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
+            "info_search_overlay")
 
     def initialize(self):
         # Search Headerbar
@@ -126,22 +128,21 @@ class Search:
         if self.search_list_box.get_children():
             self.search_list_box.show()
         else:
-            info_search_overlay = self._builder.get_object("info_search_overlay")
-            self._overlay.add_overlay(info_search_overlay)
+            self._overlay.add_overlay(self._info_search_overlay)
             self.search_list_box.hide()
 
     #
     # Utils
     #
 
-    def search_thread_creation(self, widget, result_list, info_search_overlay):
+    def search_thread_creation(self, widget, result_list):
         path = self.unlocked_database.current_element.path
         result_list = self.unlocked_database.database_manager.search(widget.get_text(),
                                                                      path)
 
-        GLib.idle_add(self.search_overlay_creation, widget, result_list, info_search_overlay)
+        GLib.idle_add(self.search_overlay_creation, widget, result_list)
 
-    def search_overlay_creation(self, widget, result_list, info_search_overlay):
+    def search_overlay_creation(self, widget, result_list):
         if widget.get_text():
             if self._empty_search_overlay in self._overlay:
                 self._overlay.remove(self._empty_search_overlay)
@@ -149,7 +150,7 @@ class Search:
             self.search_list_box.show()
             self.search_instance_creation(result_list)
         else:
-            self._overlay.add_overlay(info_search_overlay)
+            self._overlay.add_overlay(self._info_search_overlay)
             self.search_list_box.hide()
 
     def search_instance_creation(self, result_list, load_all=False):
@@ -257,9 +258,8 @@ class Search:
         self.search_list_box.hide()
         result_list = []
 
-        info_search_overlay = self._builder.get_object("info_search_overlay")
-        if info_search_overlay in self._overlay:
-            self._overlay.remove(info_search_overlay)
+        if self._info_search_overlay in self._overlay:
+            self._overlay.remove(self._info_search_overlay)
 
         if self._empty_search_overlay in self._overlay:
             self._overlay.remove(self._empty_search_overlay)
@@ -267,7 +267,7 @@ class Search:
         for row in self.search_list_box.get_children():
             self.search_list_box.remove(row)
 
-        search_thread = threading.Thread(target=self.search_thread_creation, args=(widget, result_list, info_search_overlay))
+        search_thread = threading.Thread(target=self.search_thread_creation, args=(widget, result_list))
         search_thread.daemon = True
         search_thread.start()
 

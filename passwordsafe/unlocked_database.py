@@ -94,7 +94,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self._current_element: Optional[Union[Entry, Group]] = None
 
-        self._linkedbox_right: Optional[Gtk.Box] = None
+        self._linkedbox_right: Gtk.Box = None
         self._selection_button_box: Optional[Gtk.Box] = None
         self._selection_options_button: Optional[Gtk.MenuButton] = None
 
@@ -217,6 +217,8 @@ class UnlockedDatabase(GObject.GObject):
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
+        self._linkedbox_right.show()
+
         filename_label = self.builder.get_object("filename_label")
         filename_label.set_text(ntpath.basename(self.database_manager.database_path))
 
@@ -265,6 +267,7 @@ class UnlockedDatabase(GObject.GObject):
             self.add_page(scrolled_window, self.current_element.uuid.urn)
             self.switch_page(self.current_element)
             self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
+            self._linkedbox_right.hide()
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif (not self._stack.get_child_by_name(self.current_element.uuid.urn)
@@ -339,6 +342,7 @@ class UnlockedDatabase(GObject.GObject):
             # For entry
             else:
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
+                self._linkedbox_right.hide()
                 self.entry_page.set_entry_page_headerbar()
 
     def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
@@ -375,6 +379,7 @@ class UnlockedDatabase(GObject.GObject):
         if group_page:
             self.set_browser_headerbar()
         else:
+            self._linkedbox_right.hide()
             self.entry_page.set_entry_page_headerbar()
 
     def _remove_page(self, element: Union[Entry, Group]) -> None:

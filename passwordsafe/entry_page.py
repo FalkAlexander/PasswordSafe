@@ -31,8 +31,6 @@ class EntryPage:
 
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
-        self.unlocked_database.builder.get_object("linkedbox_right").hide()
-
         filename_label = self.unlocked_database.builder.get_object("filename_label")
         name = self.unlocked_database.database_manager.get_entry_name(
             self.unlocked_database.current_element)

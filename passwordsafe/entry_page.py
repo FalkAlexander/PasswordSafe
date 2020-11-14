@@ -442,7 +442,9 @@ class EntryPage:
         attribute_entry_box.reorder_child(key_entry, 0)
         key_entry.grab_focus()
 
-    def on_key_entry_activated(self, widget, entry_uuid, key, button, parent):
+    def on_key_entry_activated(
+            self, widget: Gtk.Entry, entry_uuid: UUID, key: str,
+            button: Gtk.Button, parent: Gtk.Box) -> None:
         new_key: str = widget.props.text
         if not new_key:
             widget.get_style_context().add_class("error")

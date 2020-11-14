@@ -101,7 +101,7 @@ class SettingsDialog():
         settings_clear_button = self.builder.get_object("settings_clear_button")
         settings_clear_button.connect("clicked", self.on_settings_clear_recents_clicked)
 
-        if config.get_last_opened_list():
+        if not config.get_last_opened_list():
             settings_clear_button.set_sensitive(False)
 
         # Search

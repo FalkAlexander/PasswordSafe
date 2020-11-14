@@ -478,18 +478,6 @@ class UnlockedDatabase(GObject.GObject):
 
         if list_box_row.get_name() == "LoadMoreRow":
             self.search.on_load_more_row_clicked(list_box_row)
-            return
-
-        if list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is True:
-            self.selection_ui.row_selection_toggled(list_box_row)
-        elif list_box_row.get_type() == "EntryRow" and self.selection_ui.selection_mode_active is False:
-            self.current_element = self.database_manager.get_entry_object_from_uuid(list_box_row.get_uuid())
-            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
-            self.show_page_of_new_directory(False, False)
-        elif list_box_row.get_type() == "GroupRow":
-            self.current_element = self.database_manager.get_group(list_box_row.get_uuid())
-            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
-            self.show_page_of_new_directory(False, False)
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
@@ -535,15 +523,29 @@ class UnlockedDatabase(GObject.GObject):
         self.pathbar.add_pathbar_button_to_pathbar(self.current_element.uuid)
         self.show_page_of_new_directory(True, False)
 
-    def on_entry_row_button_pressed(self, widget, event):
+    def on_entry_row_button_pressed(
+            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
+            event_y: float, entry_row: EntryRow) -> bool:
+        # pylint: disable=unused-argument
+        # pylint: disable=too-many-arguments
         self.start_database_lock_timer()
-        if (event.type == Gdk.EventType.BUTTON_PRESS
-                and event.button == 3
+
+        if self.selection_ui.selection_mode_active:
+            self.selection_ui.row_selection_toggled(entry_row)
+            return True
+
+        button: int = gesture.get_current_button()
+        if (button == 3
                 and not self.props.search_active):
-            if self.selection_ui.selection_mode_active is False:
-                self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
-            else:
-                self.selection_ui.row_selection_toggled(widget.get_parent())
+            self.selection_ui.set_selection_headerbar(
+                None, select_row=entry_row)
+        elif button == 1:
+            entry_uuid = entry_row.get_uuid()
+            self.current_element = self.database_manager.get_entry_object_from_uuid(entry_uuid)
+            self.pathbar.add_pathbar_button_to_pathbar(entry_uuid)
+            self.show_page_of_new_directory(False, False)
+
+        return True
 
     def on_element_delete_menu_button_clicked(
             self, _action: Gio.SimpleAction, _param: None) -> None:
@@ -591,15 +593,29 @@ class UnlockedDatabase(GObject.GObject):
         self.current_element = parent_group
         self.show_page_of_new_directory(False, False)
 
-    def on_group_row_button_pressed(self, widget, event):
+    def on_group_row_button_pressed(
+            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
+            event_y: float, group_row: GroupRow) -> bool:
+        # pylint: disable=unused-argument
+        # pylint: disable=too-many-arguments
         self.start_database_lock_timer()
-        if (event.type == Gdk.EventType.BUTTON_PRESS
-                and event.button == 3
+
+        if self.selection_ui.selection_mode_active:
+            self.selection_ui.row_selection_toggled(group_row)
+            return True
+
+        button: int = gesture.get_current_button()
+        if (button == 3
                 and not self.props.search_active):
-            if self.selection_ui.selection_mode_active is False:
-                self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
-            else:
-                self.selection_ui.row_selection_toggled(widget.get_parent())
+            self.selection_ui.set_selection_headerbar(
+                None, select_row=group_row)
+        elif button == 1:
+            group_uuid = group_row.get_uuid()
+            self.current_element = self.database_manager.get_group(group_uuid)
+            self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
+            self.show_page_of_new_directory(False, False)
+
+        return True
 
     def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
         """Edit button in a GroupRow was clicked

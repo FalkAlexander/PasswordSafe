@@ -36,10 +36,7 @@ class GroupRow(Gtk.ListBoxRow):
             "/org/gnome/PasswordSafe/group_row.ui")
         group_event_box = builder.get_object("group_event_box")
 
-        self._entry_box_gesture = Gtk.GestureMultiPress.new(group_event_box)
-        self._entry_box_gesture.props.button = 0
-        self._entry_box_gesture.props.propagation_phase = Gtk.PropagationPhase.BUBBLE
-
+        self._entry_box_gesture = builder.get_object("entry_box_gesture")
         self._entry_box_gesture.connect(
             "pressed", self._on_group_row_button_pressed)
 

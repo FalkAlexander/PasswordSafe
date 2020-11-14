@@ -10,6 +10,8 @@
         <property name="height_request">45</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_start">8</property>
+        <property name="margin_end">8</property>
         <child>
           <object class="GtkCheckButton" id="selection_checkbox_group">
             <property name="can_focus">True</property>
@@ -18,7 +20,6 @@
             <property name="valign">center</property>
             <property name="vexpand">True</property>
             <property name="draw_indicator">True</property>
-            <property name="margin_start">8</property>
           </object>
           <packing>
             <property name="expand">False</property>

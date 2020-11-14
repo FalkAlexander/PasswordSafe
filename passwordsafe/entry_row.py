@@ -37,13 +37,16 @@ class EntryRow(Gtk.ListBoxRow):
             uuid = UUID(self.unlocked_database.reference_to_hex_uuid(self.username))
             self.username = self.db_manager.get_entry_username(uuid)
 
+        self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
         self.builder.add_from_resource("/org/gnome/PasswordSafe/entry_row.ui")
         entry_event_box = self.builder.get_object("entry_event_box")
-        entry_event_box.connect(
-            "button-press-event", self.unlocked_database.on_entry_row_button_pressed, self)
+
+        self._entry_box_gesture = self.builder.get_object("entry_box_gesture")
+        self._entry_box_gesture.connect(
+            "pressed", self.unlocked_database.on_entry_row_button_pressed, self)
 
         entry_icon = self.builder.get_object("entry_icon")
         entry_name_label = self.builder.get_object("entry_name_label")

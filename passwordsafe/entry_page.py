@@ -1,9 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import subprocess
+import typing
 from gettext import gettext as _
 from typing import Optional
+if typing.TYPE_CHECKING:
+    from uuid import UUID
 
 from gi.repository import Gio, GLib, Gtk
+if typing.TYPE_CHECKING:
+    from pykeepass.entry import Entry
 
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
@@ -424,7 +431,7 @@ class EntryPage:
         self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, widget.get_text())
 
     def on_attribute_key_edit_button_clicked(self, button):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry: Entry = self.unlocked_database.current_element
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -433,7 +440,8 @@ class EntryPage:
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
         key_entry = builder.get_object("key_entry")
-        key_entry.connect("activate", self.on_key_entry_activated, entry_uuid, key, button, parent)
+        key_entry.connect(
+            "activate", self.on_key_entry_activated, entry, key, button, parent)
         key_entry.set_text(key)
 
         attribute_entry_box = button.get_parent()
@@ -443,7 +451,7 @@ class EntryPage:
         key_entry.grab_focus()
 
     def on_key_entry_activated(
-            self, widget: Gtk.Entry, entry_uuid: UUID, key: str,
+            self, widget: Gtk.Entry, entry: Entry, key: str,
             button: Gtk.Button, parent: Gtk.Box) -> None:
         new_key: str = widget.props.text
         if not new_key:
@@ -458,6 +466,7 @@ class EntryPage:
             return
 
         db_manager = self.unlocked_database.database_manager
+        entry_uuid: UUID = entry.uuid
         if db_manager.has_entry_attribute(entry_uuid, new_key):
             widget.get_style_context().add_class("error")
             self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
@@ -465,7 +474,7 @@ class EntryPage:
 
         db_manager.set_entry_attribute(
             entry_uuid, new_key,
-            db_manager.get_entry_attribute_value(entry_uuid, key))
+            db_manager.get_entry_attribute_value(entry, key))
         db_manager.delete_entry_attribute(entry_uuid, key)
 
         button.get_children()[0].set_text(new_key)

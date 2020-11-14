@@ -7,8 +7,12 @@ import pwquality
 
 
 def generate(
-        length: int, use_uppercase: bool, use_lowercase: bool, use_numbers: bool,
-        use_symbols: bool) -> str:
+    length: int,
+    use_uppercase: bool,
+    use_lowercase: bool,
+    use_numbers: bool,
+    use_symbols: bool,
+) -> str:
     """Generate a password based on some criteria.
 
     :param int digits: password number of characters
@@ -38,7 +42,12 @@ def generate(
     # TODO Revisit this. It might be a sane default, but
     # it is highly un-intuitive.
     if characters == "":
-        characters = string.ascii_uppercase + string.ascii_lowercase + string.digits + string.punctuation
+        characters = (
+            string.ascii_uppercase
+            + string.ascii_lowercase
+            + string.digits
+            + string.punctuation
+        )
 
     return "".join([secrets.choice(characters) for _ in range(0, length)])
 

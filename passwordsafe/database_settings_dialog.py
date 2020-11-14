@@ -53,7 +53,7 @@ class DatabaseSettingsDialog:
     # Dialog Creation
     #
 
-    def assemble_window(self):
+    def assemble_window(self) -> None:
         self.window = self.builder.get_object("database_settings_window")
         self.stack = self.builder.get_object("dbsd_stack")
 
@@ -170,7 +170,7 @@ class DatabaseSettingsDialog:
     # Keyfile Section
     #
 
-    def on_keyfile_select_button_clicked(self, button):
+    def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
@@ -208,7 +208,7 @@ class DatabaseSettingsDialog:
                 button.add(Gtk.Image.new_from_icon_name("edit-delete-symbolic", Gtk.IconSize.BUTTON))
                 button.show_all()
 
-    def on_keyfile_generator_button_clicked(self, _button):
+    def on_keyfile_generator_button_clicked(self, _button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile

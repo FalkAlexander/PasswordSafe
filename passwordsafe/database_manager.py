@@ -560,8 +560,13 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
         self.set_element_mtime(entry)
 
-    def set_entry_attribute(self, uuid, key, value):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def set_entry_attribute(self, entry: Entry, key: str, value: str) -> None:
+        """Set an entry attribute.
+
+        :param Entry entry: entry to modify
+        :param key: key of the attribute
+        :param value: value of the attribute
+        """
         entry.set_custom_property(key, value)
         self.is_dirty = True
         self.set_element_mtime(entry)

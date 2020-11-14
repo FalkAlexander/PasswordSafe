@@ -388,7 +388,8 @@ class EntryPage:
     #
 
     def on_attributes_add_button_clicked(self, _widget):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry: Entry = self.unlocked_database.current_element
+        entry_uuid: UUID = entry.uuid
         scrolled_page = self.unlocked_database.get_current_page()
 
         key = scrolled_page.attributes_key_entry.get_text()
@@ -408,7 +409,7 @@ class EntryPage:
         scrolled_page.attributes_key_entry.set_text("")
         scrolled_page.attributes_value_entry.set_text("")
 
-        self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, value)
+        self.unlocked_database.database_manager.set_entry_attribute(entry, key, value)
         self.add_attribute_property_row(key, value)
         scrolled_page.is_dirty = True
 
@@ -423,12 +424,13 @@ class EntryPage:
         scrolled_page.properties_list_box.remove(parent)
 
     def on_attributes_value_entry_changed(self, widget):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry = self.unlocked_database.current_element
 
         parent = widget.get_parent().get_parent().get_parent()
         key = parent.get_name()
 
-        self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, widget.get_text())
+        self.unlocked_database.database_manager.set_entry_attribute(
+            entry, key, widget.get_text())
 
     def on_attribute_key_edit_button_clicked(self, button):
         entry: Entry = self.unlocked_database.current_element
@@ -473,7 +475,7 @@ class EntryPage:
             return
 
         db_manager.set_entry_attribute(
-            entry_uuid, new_key,
+            entry, new_key,
             db_manager.get_entry_attribute_value(entry, key))
         db_manager.delete_entry_attribute(entry, key)
 

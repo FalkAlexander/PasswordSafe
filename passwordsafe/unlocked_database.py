@@ -478,11 +478,6 @@ class UnlockedDatabase(GObject.GObject):
 
         if list_box_row.get_name() == "LoadMoreRow":
             self.search.on_load_more_row_clicked(list_box_row)
-            return
-        elif list_box_row.get_type() == "GroupRow":
-            self.current_element = self.database_manager.get_group(list_box_row.get_uuid())
-            self.pathbar.add_pathbar_button_to_pathbar(list_box_row.get_uuid())
-            self.show_page_of_new_directory(False, False)
 
     def on_save_button_clicked(self, widget):
         self.start_database_lock_timer()
@@ -598,15 +593,24 @@ class UnlockedDatabase(GObject.GObject):
         self.current_element = parent_group
         self.show_page_of_new_directory(False, False)
 
-    def on_group_row_button_pressed(self, widget, event):
+    def on_group_row_button_pressed(self, widget, event, group_row: GroupRow) -> bool:
         self.start_database_lock_timer()
-        if (event.type == Gdk.EventType.BUTTON_PRESS
-                and event.button == 3
+
+        if self.selection_ui.selection_mode_active:
+            self.selection_ui.row_selection_toggled(group_row)
+            return True
+
+        if (event.button == 3
                 and not self.props.search_active):
-            if self.selection_ui.selection_mode_active is False:
-                self.selection_ui.set_selection_headerbar(None, select_row=widget.get_parent())
-            else:
-                self.selection_ui.row_selection_toggled(widget.get_parent())
+            self.selection_ui.set_selection_headerbar(
+                None, select_row=group_row)
+        elif event.button == 1:
+            group_uuid = group_row.get_uuid()
+            self.current_element = self.database_manager.get_group(group_uuid)
+            self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
+            self.show_page_of_new_directory(False, False)
+
+        return True
 
     def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
         """Edit button in a GroupRow was clicked

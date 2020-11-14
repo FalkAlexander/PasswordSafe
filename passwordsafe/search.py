@@ -140,22 +140,25 @@ class Search:
     # Utils
     #
 
-    def search_thread_creation(self):
-        path = self.unlocked_database.current_element.path
-        self._result_list = self._db_manager.search(self._search_text, path)
-
-        GLib.idle_add(self.search_overlay_creation)
-
-    def search_overlay_creation(self):
+    def _start_search(self):
         if self._search_text:
             if self._empty_search_overlay in self._overlay:
                 self._overlay.remove(self._empty_search_overlay)
 
             self.search_list_box.show()
-            self.search_instance_creation(self._result_list)
+
+            search_thread = threading.Thread(target=self._perform_search)
+            search_thread.daemon = True
+            search_thread.start()
         else:
             self._overlay.add_overlay(self._info_search_overlay)
             self.search_list_box.hide()
+
+    def _perform_search(self):
+        path = self.unlocked_database.current_element.path
+        self._result_list = self._db_manager.search(self._search_text, path)
+
+        GLib.idle_add(self.search_instance_creation, self._result_list)
 
     def search_instance_creation(self, results_to_show, load_all=False):
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
@@ -270,9 +273,7 @@ class Search:
             self.search_list_box.remove(row)
 
         self._search_text = widget.get_text()
-        search_thread = threading.Thread(target=self.search_thread_creation)
-        search_thread.daemon = True
-        search_thread.start()
+        self._start_search()
 
     def on_headerbar_search_entry_enter_pressed(self, widget_):
         self.unlocked_database.start_database_lock_timer()

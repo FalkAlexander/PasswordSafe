@@ -46,6 +46,7 @@ class Search:
             "info_search_overlay")
 
         self._result_list: List[UUID] = []
+        self._search_text: str = ""
 
     def initialize(self):
         # Search Headerbar
@@ -139,14 +140,14 @@ class Search:
     # Utils
     #
 
-    def search_thread_creation(self, widget):
+    def search_thread_creation(self):
         path = self.unlocked_database.current_element.path
-        self._result_list = self._db_manager.search(widget.get_text(), path)
+        self._result_list = self._db_manager.search(self._search_text, path)
 
-        GLib.idle_add(self.search_overlay_creation, widget)
+        GLib.idle_add(self.search_overlay_creation)
 
-    def search_overlay_creation(self, widget):
-        if widget.get_text():
+    def search_overlay_creation(self):
+        if self._search_text:
             if self._empty_search_overlay in self._overlay:
                 self._overlay.remove(self._empty_search_overlay)
 
@@ -268,15 +269,16 @@ class Search:
         for row in self.search_list_box.get_children():
             self.search_list_box.remove(row)
 
-        search_thread = threading.Thread(target=self.search_thread_creation, args=(widget,))
+        self._search_text = widget.get_text()
+        search_thread = threading.Thread(target=self.search_thread_creation)
         search_thread.daemon = True
         search_thread.start()
 
-    def on_headerbar_search_entry_enter_pressed(self, widget):
+    def on_headerbar_search_entry_enter_pressed(self, widget_):
         self.unlocked_database.start_database_lock_timer()
 
         # Do nothing on empty search terms or no search results
-        if not widget.get_text():
+        if not self._search_text:
             return
         if not self.search_list_box.get_children():
             return

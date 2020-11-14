@@ -38,7 +38,7 @@ class GroupRow(Gtk.ListBoxRow):
 
         self._entry_box_gesture = Gtk.GestureMultiPress.new(group_event_box)
         self._entry_box_gesture.props.button = 0
-        self._entry_box_gesture.props.propagation_phase = Gtk.PropagationPhase.CAPTURE
+        self._entry_box_gesture.props.propagation_phase = Gtk.PropagationPhase.BUBBLE
 
         self._entry_box_gesture.connect(
             "pressed", self._on_group_row_button_pressed)

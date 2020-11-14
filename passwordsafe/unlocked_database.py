@@ -387,7 +387,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def schedule_stack_page_for_destroy(self, page_uuid: UUID) -> None:
         """Add page to the list of pages to be destroyed"""
-        logging.debug("Scheduling page %s for destruction")
+        logging.debug("Scheduling page %s for destruction", page_uuid)
         self.scheduled_page_destroy.append(page_uuid)
 
     def destroy_current_page_if_scheduled(self) -> None:

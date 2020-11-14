@@ -3,10 +3,9 @@ from __future__ import annotations
 
 import typing
 
-import passwordsafe.config_manager as config
-
 from gi.repository import GObject, Gtk
 
+import passwordsafe.config_manager as config
 from passwordsafe.passphrase_generator import generate as generate_phrase
 from passwordsafe.password_generator import generate as generate_pwd
 

@@ -13,6 +13,7 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
 
 if typing.TYPE_CHECKING:
+    from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
@@ -32,6 +33,7 @@ class Search:
 
     def __init__(self, u_d):
         self.unlocked_database = u_d
+        self._db_manager: DatabaseManager = u_d.database_manager
         self._search_event_connection_id = 0
 
         self._builder = Gtk.Builder()
@@ -139,8 +141,7 @@ class Search:
 
     def search_thread_creation(self, widget):
         path = self.unlocked_database.current_element.path
-        self._result_list = self.unlocked_database.database_manager.search(
-            widget.get_text(), path)
+        self._result_list = self._db_manager.search(widget.get_text(), path)
 
         GLib.idle_add(self.search_overlay_creation, widget)
 
@@ -174,11 +175,11 @@ class Search:
                     row = cached
 
             if search_height < window_height or load_all is True:
-                if self.unlocked_database.database_manager.check_is_group(uuid):
+                if self._db_manager.check_is_group(uuid):
                     search_height += group_row_height
 
                     if skip is False:
-                        row = GroupRow(self.unlocked_database, self.unlocked_database.database_manager, self.unlocked_database.database_manager.get_group(uuid))
+                        row = GroupRow(self.unlocked_database, self._db_manager, self._db_manager.get_group(uuid))
                         self.search_list_box.add(row)
                         self.cached_rows.append(row)
                     else:
@@ -191,7 +192,7 @@ class Search:
                     if skip is False:
                         row = EntryRow(
                             self.unlocked_database,
-                            self.unlocked_database.database_manager.get_entry_object_from_uuid(
+                            self._db_manager.get_entry_object_from_uuid(
                                 uuid
                             ),
                         )
@@ -288,9 +289,9 @@ class Search:
             selected_row = self.search_list_box.get_children()[0]
         uuid = selected_row.get_uuid()
         if selected_row.type == "GroupRow":
-            first_row = self.unlocked_database.database_manager.get_group(uuid)
+            first_row = self._db_manager.get_group(uuid)
         else:
-            first_row = self.unlocked_database.database_manager.get_entry_object_from_uuid(uuid)
+            first_row = self._db_manager.get_entry_object_from_uuid(uuid)
 
         self.unlocked_database.show_element(first_row)
 

@@ -88,9 +88,6 @@ class Search:
         search_active = self.unlocked_database.props.search_active
 
         if search_active:
-            self.unlocked_database.parent_widget.set_headerbar(self._headerbar)
-            self.unlocked_database.window.set_titlebar(self._headerbar)
-
             self._search_changed_id = self._search_entry.connect(
                 "search-changed", self._on_search_entry_timeout)
             self._search_entry.grab_focus()
@@ -113,10 +110,6 @@ class Search:
                 self._overlay.remove(self._empty_search_overlay)
 
             self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
-            self.unlocked_database.parent_widget.set_headerbar(
-                self.unlocked_database.headerbar)
-            self.unlocked_database.window.set_titlebar(
-                self.unlocked_database.headerbar)
             self._search_entry.disconnect(self._search_event_connection_id)
             self._search_event_connection_id = 0
 
@@ -344,3 +337,12 @@ class Search:
             return
 
         entry.grab_focus()
+
+    @property
+    def headerbar(self) -> Handy.HeaderBar:
+        """Get the search headerbar.
+
+        :returns: the search headerbar
+        :rtype: Handy.Headerbar
+        """
+        return self._headerbar

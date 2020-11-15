@@ -207,8 +207,7 @@ class UnlockedDatabase(GObject.GObject):
             "selection-mode", self._selection_options_button, "visible",
             GObject.BindingFlags.SYNC_CREATE)
 
-        self.parent_widget.set_headerbar(self.headerbar)
-        self.window.set_titlebar(self.headerbar)
+        self._update_headerbar()
         self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group())
         # Put pathbar in the right place (top or bottom)
         self.responsive_ui.action_bar()
@@ -227,6 +226,15 @@ class UnlockedDatabase(GObject.GObject):
         self.responsive_ui.headerbar_selection_button()
         self.responsive_ui.action_bar()
         self.responsive_ui.headerbar_title()
+
+    def _update_headerbar(self) -> None:
+        """Display the correct headerbar according to search state."""
+        if self.props.search_active:
+            self.parent_widget.set_headerbar(self.search.headerbar)
+            self.window.set_titlebar(self.search.headerbar)
+        else:
+            self.parent_widget.set_headerbar(self.headerbar)
+            self.window.set_titlebar(self.headerbar)
 
     #
     # Keystrokes
@@ -832,13 +840,7 @@ class UnlockedDatabase(GObject.GObject):
 
             self.overlay.hide()
         else:
-            if self.props.search_active:
-                self.parent_widget.set_headerbar(self.headerbar_search)
-                self.window.set_titlebar(self.headerbar_search)
-            else:
-                self.parent_widget.set_headerbar(self.headerbar)
-                self.window.set_titlebar(self.headerbar)
-
+            self._update_headerbar()
             self.start_save_loop()
             self.overlay.show()
             self.start_database_lock_timer()
@@ -963,6 +965,8 @@ class UnlockedDatabase(GObject.GObject):
                 self._stack.get_child_by_name("search"))
         else:
             self.show_page_of_new_directory(False, False)
+
+        self._update_headerbar()
 
     @GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)

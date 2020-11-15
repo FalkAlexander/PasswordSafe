@@ -22,7 +22,6 @@ class Search:
     # Global Variables
     #
 
-    unlocked_database = NotImplemented
     search_list_box = NotImplemented
     cached_rows: List[GroupRow] = []
     skipped_rows: List[UUID] = []
@@ -31,12 +30,12 @@ class Search:
     # Init
     #
 
-    def __init__(self, u_d):
-        self.unlocked_database = u_d
-        self._db_manager: DatabaseManager = u_d.database_manager
-        self._search_event_connection_id = 0
+    def __init__(self, unlocked_database: UnlockedDatabase) -> None:
+        self.unlocked_database: UnlockedDatabase = unlocked_database
+        self._db_manager: DatabaseManager = unlocked_database.database_manager
+        self._search_event_connection_id: int = 0
 
-        self._builder = Gtk.Builder()
+        self._builder: Gtk.Builder = Gtk.Builder()
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
 
         self._overlay: Gtk.Overlay = Gtk.Overlay()

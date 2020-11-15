@@ -6,6 +6,7 @@ from uuid import UUID
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
+
 from gi.repository import Gdk, Gtk
 
 import passwordsafe.pathbar_button

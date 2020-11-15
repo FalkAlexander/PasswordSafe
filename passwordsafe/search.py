@@ -83,7 +83,6 @@ class Search:
 
         search_entry = self._builder.get_object("headerbar_search_entry")
 
-        self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
         if search_active:
             headerbar_search = self._builder.get_object("headerbar_search")
             self.unlocked_database.headerbar_search = headerbar_search
@@ -92,15 +91,14 @@ class Search:
             self.unlocked_database.window.set_titlebar(headerbar_search)
             search_entry.grab_focus()
             if self.search_list_box is not NotImplemented:
-                self.search_list_box.select_row(
-                    self.search_list_box.get_row_at_index(0))
-                self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
+                self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
                 self._search_event_connection_id = search_entry.connect(
                     "key-release-event", self.on_search_entry_navigation)
 
             self.unlocked_database.responsive_ui.action_bar()
 
         else:
+            self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
             self.unlocked_database.parent_widget.set_headerbar(
                 self.unlocked_database.headerbar)
             self.unlocked_database.window.set_titlebar(
@@ -245,14 +243,12 @@ class Search:
         if event.keyval == Gdk.KEY_Escape:
             self.unlocked_database.props.search_active = False
         elif event.keyval == Gdk.KEY_Up:
-            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
             selected_row = self.search_list_box.get_selected_row()
             if selected_row is not None:
                 row = self.search_list_box.get_row_at_index(selected_row.get_index() - 1)
                 if row is not None:
                     self.search_list_box.select_row(row)
         elif event.keyval == Gdk.KEY_Down:
-            self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
             selected_row = self.search_list_box.get_selected_row()
             if selected_row is None:
                 row = self.search_list_box.get_row_at_index(0)
@@ -273,14 +269,8 @@ class Search:
     def _on_search_entry_changed(self, widget):
         self._timeout_search = 0
 
-        # Reset the select row position.
-        # Weird bugs, where multiple entries would be selected at the same
-        # time, or it is not possible to move selection appear without this.
-        self.search_list_box.select_row(
-            self.search_list_box.get_row_at_index(0))
-        self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
-
         self.search_list_box.hide()
+        self.search_list_box.unselect_all()
         self._result_list.clear()
 
         if self._info_search_overlay in self._overlay:

@@ -198,6 +198,11 @@ class CustomKeypressHandler:
             self.unlocked_database.props.selection_mode = False
             return Gdk.EVENT_STOP
 
+        if (eventkey.keyval == Gdk.KEY_Escape
+                and self.unlocked_database.props.search_active):
+            self.unlocked_database.props.search_active = False
+            return Gdk.EVENT_STOP
+
         if not self._can_goto_parent_group():
             return Gdk.EVENT_PROPAGATE
 

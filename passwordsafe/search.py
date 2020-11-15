@@ -46,6 +46,8 @@ class Search:
             "info_search_overlay")
 
         self._search_entry = self._builder.get_object("headerbar_search_entry")
+        self._headerbar: Handy.HeaderBar = self._builder.get_object(
+            "headerbar_search")
 
         self._key_pressed: bool = False
         self._timeout_search: int = 0
@@ -86,11 +88,8 @@ class Search:
         search_active = self.unlocked_database.props.search_active
 
         if search_active:
-            headerbar_search = self._builder.get_object("headerbar_search")
-            self.unlocked_database.headerbar_search = headerbar_search
-            self.unlocked_database.parent_widget.set_headerbar(
-                headerbar_search)
-            self.unlocked_database.window.set_titlebar(headerbar_search)
+            self.unlocked_database.parent_widget.set_headerbar(self._headerbar)
+            self.unlocked_database.window.set_titlebar(self._headerbar)
 
             self._search_changed_id = self._search_entry.connect(
                 "search-changed", self._on_search_entry_timeout)

@@ -49,7 +49,6 @@ class UnlockedDatabase(GObject.GObject):
     # Widgets
     parent_widget = NotImplemented
     headerbar = NotImplemented
-    headerbar_search = NotImplemented
     headerbar_box = NotImplemented
     scrolled_window = NotImplemented
     divider = NotImplemented

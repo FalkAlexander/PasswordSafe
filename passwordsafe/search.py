@@ -234,9 +234,6 @@ class Search:
 
     def on_search_entry_navigation(self, _widget, event, _data=None):
         self.unlocked_database.start_database_lock_timer()
-        if event.keyval == Gdk.KEY_Escape:
-            self.unlocked_database.props.search_active = False
-            return
 
         nr_rows = len(self.search_list_box)
         if nr_rows == 0:

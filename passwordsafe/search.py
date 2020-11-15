@@ -162,9 +162,9 @@ class Search:
         path = self.unlocked_database.current_element.path
         self._result_list = self._db_manager.search(self._search_text, path)
 
-        GLib.idle_add(self.search_instance_creation, self._result_list)
+        GLib.idle_add(self._show_results, self._result_list)
 
-    def search_instance_creation(self, results_to_show, load_all=False):
+    def _show_results(self, results_to_show, load_all=False):
         """Display some results.
 
         :param list results_to_show: results to show
@@ -309,7 +309,7 @@ class Search:
 
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)
-        self.search_instance_creation(self.skipped_rows, True)
+        self._show_results(self.skipped_rows, True)
 
     def on_headerbar_search_entry_focused(self, entry):
         if entry.has_focus() is True:

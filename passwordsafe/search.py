@@ -181,7 +181,6 @@ class Search:
             search_thread.start()
         else:
             self._overlay.add_overlay(self._info_search_overlay)
-            self.search_list_box.hide()
 
     def _perform_search(self):
         """Search for results in the database."""
@@ -190,7 +189,6 @@ class Search:
 
         if not self._result_list:
             self._overlay.add_overlay(self._empty_search_overlay)
-            self.search_list_box.hide()
             return
 
         GLib.idle_add(self._show_results, self._result_list)

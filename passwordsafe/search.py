@@ -179,8 +179,6 @@ class Search:
             if self._empty_search_overlay in self._overlay:
                 self._overlay.remove(self._empty_search_overlay)
 
-            self.search_list_box.show()
-
             search_thread = threading.Thread(target=self._perform_search)
             search_thread.daemon = True
             search_thread.start()
@@ -206,6 +204,7 @@ class Search:
         :param list results_to_show: results to show
         :param bool load_all: True if all the results need to be shown
         """
+        self.search_list_box.show()
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
         group_row_height = 45
         entry_row_height = 60
@@ -257,8 +256,6 @@ class Search:
         if last_row is not NotImplemented and self.skipped_rows:
             load_more_row = self._builder.get_object("load_more_row")
             self.search_list_box.add(load_more_row)
-
-        self.search_list_box.show()
 
     #
     # Events

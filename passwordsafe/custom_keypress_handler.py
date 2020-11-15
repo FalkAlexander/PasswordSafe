@@ -41,7 +41,7 @@ class CustomKeypressHandler:
 
     def on_special_key_pressed(self, window: MainWindow, eventkey: Gtk.Event) -> bool:
         if not self._current_view_accessible():
-            return False
+            return Gdk.EVENT_PROPAGATE
 
         scrolled_page = self.unlocked_database.get_current_page()
         if (scrolled_page.edit_page
@@ -49,7 +49,7 @@ class CustomKeypressHandler:
             focused_entry = self.unlocked_database.window.get_focus()
             if focused_entry and "TabBox" in focused_entry.get_name():
                 self.tab_to_next_input_entry(scrolled_page)
-                return True
+                return Gdk.EVENT_PROPAGATE
 
         # Handle undo and redo on entries.
         elif (scrolled_page.edit_page
@@ -61,19 +61,19 @@ class CustomKeypressHandler:
                 if isinstance(textbuffer, passwordsafe.history_buffer.HistoryTextBuffer):
                     if keyval_name == 'y':
                         textbuffer.logic.do_redo()
-                        return True
+                        return Gdk.EVENT_PROPAGATE
                     elif keyval_name == 'z':
                         textbuffer.logic.do_undo()
-                        return True
+                        return Gdk.EVENT_PROPAGATE
             if isinstance(window.get_focus(), Gtk.Entry):
                 textbuffer = window.get_focus().get_buffer()
                 if isinstance(textbuffer, passwordsafe.history_buffer.HistoryEntryBuffer):
                     if keyval_name == 'y':
                         textbuffer.logic.do_redo()
-                        return True
+                        return Gdk.EVENT_PROPAGATE
                     elif keyval_name == 'z':
                         textbuffer.logic.do_undo()
-                        return True
+                        return Gdk.EVENT_PROPAGATE
         # Handle Return on EntryRow and GroupRow
         elif (eventkey.keyval == Gdk.KEY_Return):
             focused_entry = self.unlocked_database.window.get_focus()
@@ -82,17 +82,17 @@ class CustomKeypressHandler:
                 entry = unlocked_db.database_manager.get_entry_object_from_uuid(
                     focused_entry.get_uuid())
                 unlocked_db.show_element(entry)
-                return True
+                return Gdk.EVENT_PROPAGATE
             if isinstance(focused_entry, GroupRow):
                 entry = unlocked_db.database_manager.get_group(
                     focused_entry.get_uuid())
                 unlocked_db.show_element(entry)
-                return True
+                return Gdk.EVENT_PROPAGATE
         elif (not scrolled_page.edit_page
               and (eventkey.string.isalnum())):
             self.unlocked_database.props.search_active = True
 
-        return False
+        return Gdk.EVENT_PROPAGATE
 
     def tab_to_next_input_entry(self, scrolled_page):
         focus_widget = self.unlocked_database.window.get_focus()
@@ -196,10 +196,10 @@ class CustomKeypressHandler:
         """
         if self.unlocked_database.props.selection_mode:
             self.unlocked_database.props.selection_mode = False
-            return False
+            return Gdk.EVENT_STOP
 
         if not self._can_goto_parent_group():
-            return True
+            return Gdk.EVENT_PROPAGATE
 
         db_manager: DatabaseManager = self.unlocked_database.database_manager
         element_uuid: UUID = self.unlocked_database.current_element.uuid
@@ -212,7 +212,7 @@ class CustomKeypressHandler:
               and scrolled_page.edit_page):
             self._goto_parent_group()
 
-        return True
+        return Gdk.EVENT_PROPAGATE
 
     def _on_button_released(
             self, _window: MainWindow, event: Gtk.Event) -> bool:
@@ -224,7 +224,7 @@ class CustomKeypressHandler:
         # Mouse button 8 is the back button.
         if (event.button != 8
                 or not self._can_goto_parent_group()):
-            return False
+            return Gdk.EVENT_STOP
 
         self._goto_parent_group()
-        return True
+        return Gdk.EVENT_PROPAGATE

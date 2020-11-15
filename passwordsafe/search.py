@@ -44,22 +44,25 @@ class Search:
         self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
             "info_search_overlay")
 
+        self._search_entry = self._builder.get_object("headerbar_search_entry")
+
         self._timeout_search: int = 0
         self._result_list: List[UUID] = []
-        self._search_text: str = ""
+        self._search_text: str = self._search_entry.props.text
 
     def initialize(self):
         # Search Headerbar
         headerbar_close_button = self._builder.get_object("headerbar_close_button")
         headerbar_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
 
-        headerbar_search_entry = self._builder.get_object("headerbar_search_entry")
-        headerbar_search_entry.connect(
+        self._search_entry.connect(
             "search-changed", self._on_search_entry_timeout)
-        headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
-        headerbar_search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
+        self._search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
+        self._search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
 
-        self.unlocked_database.bind_accelerator(self.unlocked_database.accelerators, headerbar_search_entry, "<Control>f", signal="stop-search")
+        self.unlocked_database.bind_accelerator(
+            self.unlocked_database.accelerators,
+            self._search_entry, "<Control>f", signal="stop-search")
         self.unlocked_database.connect(
             "notify::search-active", self._on_search_active)
         self._prepare_search_page()
@@ -80,18 +83,16 @@ class Search:
         # pylint: disable=unused-argument
         search_active = self.unlocked_database.props.search_active
 
-        search_entry = self._builder.get_object("headerbar_search_entry")
-
         if search_active:
             headerbar_search = self._builder.get_object("headerbar_search")
             self.unlocked_database.headerbar_search = headerbar_search
             self.unlocked_database.parent_widget.set_headerbar(
                 headerbar_search)
             self.unlocked_database.window.set_titlebar(headerbar_search)
-            search_entry.grab_focus()
+            self._search_entry.grab_focus()
             if self.search_list_box is not NotImplemented:
                 self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
-                self._search_event_connection_id = search_entry.connect(
+                self._search_event_connection_id = self._search_entry.connect(
                     "key-release-event", self.on_search_entry_navigation)
 
             self.unlocked_database.responsive_ui.action_bar()
@@ -102,7 +103,7 @@ class Search:
                 self.unlocked_database.headerbar)
             self.unlocked_database.window.set_titlebar(
                 self.unlocked_database.headerbar)
-            search_entry.disconnect(self._search_event_connection_id)
+            self._search_entry.disconnect(self._search_event_connection_id)
             self._search_event_connection_id = 0
 
     #

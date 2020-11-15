@@ -107,6 +107,9 @@ class EntryRow(Gtk.ListBoxRow):
             self.selection_checkbox.props.active = True
 
         elif button == 1:
+            if db_view.props.search_active:
+                db_view.props.search_active = False
+
             entry = db_view.database_manager.get_entry_object_from_uuid(
                 self.get_uuid())
             db_view.show_element(entry)

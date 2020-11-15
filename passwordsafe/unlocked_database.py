@@ -376,7 +376,7 @@ class UnlockedDatabase(GObject.GObject):
         else:
             self._stack.set_visible_child_name(page_uuid.urn)
 
-        if group_page:
+        if group_page and not self.props.selection_mode:
             self.set_browser_headerbar()
         else:
             self._linkedbox_right.hide()

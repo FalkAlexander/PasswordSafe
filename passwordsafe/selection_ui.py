@@ -96,8 +96,6 @@ class SelectionUI:
         context.remove_class('selection-mode')
 
         self.cut_mode = True
-        self.entries_selected.clear()
-        self.groups_selected.clear()
 
         for element in self.unlocked_database.pathbar.get_children():
             if element.get_name() == "SeperatorLabel":

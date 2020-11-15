@@ -70,6 +70,13 @@ class PasswordEntryRow(Gtk.ListBoxRow):
 
     @Gtk.Template.Callback()
     def _on_password_value_changed(self, widget: Gtk.Entry) -> None:
+        """Invoked when the password entry has changed
+
+        Take note that this callback is already invoked after the initial
+        population of the entry when nothing has really been changed by
+        the user, so be careful of doing things here that could have unwanted
+        side-effects.
+        """
         self._unlocked_database.start_database_lock_timer()
 
         entry: Entry = self._unlocked_database.current_element

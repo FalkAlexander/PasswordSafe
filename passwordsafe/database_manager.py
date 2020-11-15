@@ -529,8 +529,12 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
         self.set_element_mtime(entry)
 
-    def set_entry_password(self, uuid, password):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def set_entry_password(self, entry: Entry, password: str) -> None:
+        """Change the password and save it.
+
+        :param Entry entry: entry to change
+        :param password: new password
+        """
         entry.password = password
         self.is_dirty = True
         self.set_element_mtime(entry)

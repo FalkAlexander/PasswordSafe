@@ -23,9 +23,6 @@ class Search:
     #
 
     search_list_box = NotImplemented
-    cached_rows: List[GroupRow] = []
-    skipped_rows: List[UUID] = []
-
     #
     # Init
     #
@@ -183,66 +180,49 @@ class Search:
             self._overlay.add_overlay(self._empty_search_overlay)
             return
 
-        GLib.idle_add(self._show_results, self._result_list)
+        self._current_idx = 0
+        GLib.idle_add(self._show_results)
 
-    def _show_results(self, results_to_show, load_all=False):
+    def _show_results(self, load_all=False):
         """Display some results.
 
-        :param list results_to_show: results to show
         :param bool load_all: True if all the results need to be shown
         """
         self.search_list_box.show()
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
         group_row_height = 45
         entry_row_height = 60
-        search_height = 0
+        search_height: int = 0
+        skipped_rows: bool = False
 
-        last_row = NotImplemented
-        self.skipped_rows = []
-
-        for uuid in results_to_show:
-            skip = False
-            row = NotImplemented
-
-            for cached in self.cached_rows:
-                if cached.get_uuid() == uuid:
-                    skip = True
-                    row = cached
-
-            if search_height < window_height or load_all is True:
+        new_idx: int = 0
+        for uuid in self._result_list[self._current_idx:]:
+            if search_height < window_height or load_all:
                 if self._db_manager.check_is_group(uuid):
                     search_height += group_row_height
-
-                    if skip is False:
-                        row = GroupRow(self.unlocked_database, self._db_manager, self._db_manager.get_group(uuid))
-                        self.search_list_box.add(row)
-                        self.cached_rows.append(row)
-                    else:
-                        self.search_list_box.add(row)
-
-                    last_row = row
+                    row = GroupRow(
+                        self.unlocked_database, self._db_manager,
+                        self._db_manager.get_group(uuid))
                 else:
                     search_height += entry_row_height
+                    row = EntryRow(
+                        self.unlocked_database,
+                        self._db_manager.get_entry_object_from_uuid(uuid))
 
-                    if skip is False:
-                        row = EntryRow(
-                            self.unlocked_database,
-                            self._db_manager.get_entry_object_from_uuid(
-                                uuid
-                            ),
-                        )
-                        self.search_list_box.add(row)
-                        self.cached_rows.append(row)
-                    else:
-                        self.search_list_box.add(row)
-
-                    last_row = row
+                self.search_list_box.add(row)
+                new_idx += 1
             else:
-                self.skipped_rows.append(uuid)
+                skipped_rows = True
+                break
 
-        if last_row is not NotImplemented and self.skipped_rows:
+        self._current_idx += new_idx
+
+        if skipped_rows:
             load_more_row = self._builder.get_object("load_more_row")
             self.search_list_box.add(load_more_row)
+
+        self._overlay.queue_draw()
+        return GLib.SOURCE_REMOVE
 
     #
     # Events
@@ -330,7 +310,7 @@ class Search:
 
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)
-        self._show_results(self.skipped_rows, True)
+        self._show_results(True)
 
     def on_headerbar_search_entry_focused(self, entry):
         if entry.has_focus() is True:

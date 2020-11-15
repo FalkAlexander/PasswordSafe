@@ -78,7 +78,7 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         if new_password != current_password:
             page: ScrolledPage = self._unlocked_database.get_current_page()
             page.is_dirty = True
-            self._db_manager.set_entry_password(entry.uuid, new_password)
+            self._db_manager.set_entry_password(entry, new_password)
 
         self._set_password_level_bar()
 

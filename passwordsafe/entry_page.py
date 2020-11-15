@@ -1,9 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import subprocess
+import typing
 from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import Gio, GLib, Gtk
+if typing.TYPE_CHECKING:
+    from pykeepass.entry import Entry
 
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
@@ -381,7 +386,7 @@ class EntryPage:
     #
 
     def on_attributes_add_button_clicked(self, _widget):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry: Entry = self.unlocked_database.current_element
         scrolled_page = self.unlocked_database.get_current_page()
 
         key = scrolled_page.attributes_key_entry.get_text()
@@ -391,7 +396,7 @@ class EntryPage:
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
             return
 
-        if self.unlocked_database.database_manager.has_entry_attribute(entry_uuid, key) is True:
+        if self.unlocked_database.database_manager.has_entry_attribute(entry, key):
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
             self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
             return
@@ -401,30 +406,31 @@ class EntryPage:
         scrolled_page.attributes_key_entry.set_text("")
         scrolled_page.attributes_value_entry.set_text("")
 
-        self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, value)
+        self.unlocked_database.database_manager.set_entry_attribute(entry, key, value)
         self.add_attribute_property_row(key, value)
         scrolled_page.is_dirty = True
 
     def on_attribute_remove_button_clicked(self, button):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry: Entry = self.unlocked_database.current_element
         scrolled_page = self.unlocked_database.get_current_page()
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
 
-        self.unlocked_database.database_manager.delete_entry_attribute(entry_uuid, key)
+        self.unlocked_database.database_manager.delete_entry_attribute(entry, key)
         scrolled_page.properties_list_box.remove(parent)
 
     def on_attributes_value_entry_changed(self, widget):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry = self.unlocked_database.current_element
 
         parent = widget.get_parent().get_parent().get_parent()
         key = parent.get_name()
 
-        self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, key, widget.get_text())
+        self.unlocked_database.database_manager.set_entry_attribute(
+            entry, key, widget.get_text())
 
     def on_attribute_key_edit_button_clicked(self, button):
-        entry_uuid = self.unlocked_database.current_element.uuid
+        entry: Entry = self.unlocked_database.current_element
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -433,7 +439,8 @@ class EntryPage:
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
         key_entry = builder.get_object("key_entry")
-        key_entry.connect("activate", self.on_key_entry_activated, entry_uuid, key, button, parent)
+        key_entry.connect(
+            "activate", self.on_key_entry_activated, entry, key, button, parent)
         key_entry.set_text(key)
 
         attribute_entry_box = button.get_parent()
@@ -442,31 +449,37 @@ class EntryPage:
         attribute_entry_box.reorder_child(key_entry, 0)
         key_entry.grab_focus()
 
-    def on_key_entry_activated(self, entry, entry_uuid, key, button, parent):
-        if entry.get_text() == "" or entry.get_text is None:
-            entry.get_style_context().add_class("error")
+    def on_key_entry_activated(
+            self, widget: Gtk.Entry, entry: Entry, key: str,
+            button: Gtk.Button, parent: Gtk.Box) -> None:
+        new_key: str = widget.props.text
+        if not new_key:
+            widget.get_style_context().add_class("error")
             return
 
-        if entry.get_text() == key:
-            attribute_entry_box = entry.get_parent()
-            attribute_entry_box.remove(entry)
+        if new_key == key:
+            attribute_entry_box = widget.get_parent()
+            attribute_entry_box.remove(widget)
             attribute_entry_box.add(button)
             attribute_entry_box.reorder_child(button, 0)
             return
 
-        if self.unlocked_database.database_manager.has_entry_attribute(entry_uuid, entry.get_text()) is True:
-            entry.get_style_context().add_class("error")
+        db_manager = self.unlocked_database.database_manager
+        if db_manager.has_entry_attribute(entry, new_key):
+            widget.get_style_context().add_class("error")
             self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
             return
 
-        self.unlocked_database.database_manager.set_entry_attribute(entry_uuid, entry.get_text(), self.unlocked_database.database_manager.get_entry_attribute_value_from_entry_uuid(entry_uuid, key))
-        self.unlocked_database.database_manager.delete_entry_attribute(entry_uuid, key)
+        db_manager.set_entry_attribute(
+            entry, new_key,
+            db_manager.get_entry_attribute_value(entry, key))
+        db_manager.delete_entry_attribute(entry, key)
 
-        button.get_children()[0].set_text(entry.get_text())
-        parent.set_name(entry.get_text())
+        button.get_children()[0].set_text(new_key)
+        parent.set_name(new_key)
 
-        attribute_entry_box = entry.get_parent()
-        attribute_entry_box.remove(entry)
+        attribute_entry_box = widget.get_parent()
+        attribute_entry_box.remove(widget)
         attribute_entry_box.add(button)
         attribute_entry_box.reorder_child(button, 0)
 

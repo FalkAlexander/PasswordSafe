@@ -289,13 +289,15 @@ class DatabaseManager(GObject.GObject):
         else:
             return entry.get_custom_property("color_prop_LcljUMJZ9X")
 
-    # Return the belonging value for an attribute
-    def get_entry_attribute_value_from_entry_uuid(self, uuid, key):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.get_custom_property(key) is None:
-            return ""
-        else:
-            return entry.get_custom_property(key)
+    def get_entry_attribute_value(self, entry: Entry, key: str) -> str:
+        """Get an attribute value from an entry and the attribute key.
+
+        :param Entry entry: entry
+        :param key: attribute key
+        :returns: entry attribute value
+        :rtype: str
+        """
+        return entry.get_custom_property(key) or ""
 
     def get_entry_attributes(self, data: Union[Entry, UUID]) -> Dict[str, str]:
         """Get an entry attributes from an entry or an uuid
@@ -373,8 +375,14 @@ class DatabaseManager(GObject.GObject):
             return False
         return True
 
-    def has_entry_attribute(self, uuid, key):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def has_entry_attribute(self, entry: Entry, key: str) -> bool:
+        """Check if an entry has an attribute name key
+
+        :param entry: entry to check
+        :param key: attribute name to check
+        :returns: True is entry has attribute key
+        :rtype: bool
+        """
         if entry.get_custom_property(key) is None:
             return False
         return True
@@ -558,14 +566,23 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
         self.set_element_mtime(entry)
 
-    def set_entry_attribute(self, uuid, key, value):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def set_entry_attribute(self, entry: Entry, key: str, value: str) -> None:
+        """Set an entry attribute.
+
+        :param Entry entry: entry to modify
+        :param key: key of the attribute
+        :param value: value of the attribute
+        """
         entry.set_custom_property(key, value)
         self.is_dirty = True
         self.set_element_mtime(entry)
 
-    def delete_entry_attribute(self, uuid, key):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def delete_entry_attribute(self, entry: Entry, key: str) -> None:
+        """Delete an entry attribute.
+
+        :param Entry entry: entry to modify
+        :param str key: the attribute key
+        """
         entry.delete_custom_property(key)
         self.is_dirty = True
         self.set_element_mtime(entry)

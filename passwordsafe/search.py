@@ -334,6 +334,7 @@ class Search:
             first_row = self._db_manager.get_entry_object_from_uuid(uuid)
 
         self.unlocked_database.show_element(first_row)
+        self.unlocked_database.props.search_active = False
 
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)

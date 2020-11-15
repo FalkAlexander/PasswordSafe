@@ -7,6 +7,7 @@ from typing import Optional
 from uuid import UUID
 
 from gi.repository import Gdk, Gtk
+from pykeepass.entry import Entry
 
 import passwordsafe.config_manager
 import passwordsafe.password_generator as pwd_generator
@@ -71,11 +72,14 @@ class PasswordEntryRow(Gtk.ListBoxRow):
     def _on_password_value_changed(self, widget: Gtk.Entry) -> None:
         self._unlocked_database.start_database_lock_timer()
 
-        page: ScrolledPage = self._unlocked_database.get_current_page()
-        page.is_dirty = True
+        entry: Entry = self._unlocked_database.current_element
+        current_password = self._db_manager.get_entry_password(entry)
+        new_password = widget.props.text
+        if new_password != current_password:
+            page: ScrolledPage = self._unlocked_database.get_current_page()
+            page.is_dirty = True
+            self._db_manager.set_entry_password(entry.uuid, new_password)
 
-        entry_uuid: UUID = self._unlocked_database.current_element.uuid
-        self._db_manager.set_entry_password(entry_uuid, widget.props.text)
         self._set_password_level_bar()
 
     @Gtk.Template.Callback()

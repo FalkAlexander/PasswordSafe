@@ -90,9 +90,7 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         self._set_password_level_bar()
 
     @Gtk.Template.Callback()
-    def _on_show_password_button_toggled(
-            self, widget: Gtk.ToggleButton) -> None:
-        # pylint: disable=unused-argument
+    def _on_show_password_button_toggled(self, _widget: Gtk.ToggleButton) -> None:
         self._unlocked_database.start_database_lock_timer()
         entry_visibility = self._password_value_entry.props.visibility
         self._password_value_entry.props.visibility = not entry_visibility

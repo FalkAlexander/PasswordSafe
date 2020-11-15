@@ -151,7 +151,7 @@ class Search:
 
     def search_instance_creation(self, result_list, empty_search_overlay, load_all=False):
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
-        group_row_height = 40
+        group_row_height = 45
         entry_row_height = 60
         search_height = 0
 

@@ -47,7 +47,10 @@ class Search:
 
         self._search_entry = self._builder.get_object("headerbar_search_entry")
 
+        self._key_pressed: bool = False
         self._timeout_search: int = 0
+
+        self._timeout_info: int = 0
         self._result_list: List[UUID] = []
         self._search_text: str = self._search_entry.props.text
 
@@ -100,6 +103,9 @@ class Search:
 
             self.unlocked_database.responsive_ui.action_bar()
 
+            self._timeout_info = GLib.timeout_add(
+                200, self._display_info_overlay)
+
         else:
             for result in self.search_list_box:
                 self.search_list_box.remove(result)
@@ -118,6 +124,8 @@ class Search:
             self._search_entry.disconnect(self._search_changed_id)
             self._search_changed_id = 0
             self._search_entry.props.text = ""
+            self._key_pressed = False
+            self.search_list_box.hide()
 
     #
     # Stack
@@ -143,11 +151,21 @@ class Search:
         scrolled_page.add(viewport)
         scrolled_page.show_all()
         self.unlocked_database.add_page(scrolled_page, "search")
-        if self.search_list_box.get_children():
-            self.search_list_box.show()
-        else:
+        self.search_list_box.hide()
+
+    def _display_info_overlay(self) -> bool:
+        """When search-mode is activated the search text has not been
+        entered yet. The info_search overlay only needs to be displayed
+        if the search text is empty."""
+        if self._timeout_info > 0:
+            GLib.source_remove(self._timeout_info)
+            self._timeout_info = 0
+
+        if (not self._key_pressed
+                and self._info_search_overlay not in self._overlay):
             self._overlay.add_overlay(self._info_search_overlay)
-            self.search_list_box.hide()
+
+        return GLib.SOURCE_REMOVE
 
     #
     # Utils
@@ -272,6 +290,7 @@ class Search:
                     self.search_list_box.select_row(row)
 
     def _on_search_entry_timeout(self, widget: Gtk.Entry) -> None:
+        self._key_pressed = True
         if self._timeout_search > 0:
             GLib.source_remove(self._timeout_search)
 

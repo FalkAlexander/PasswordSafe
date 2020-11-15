@@ -272,22 +272,24 @@ class Search:
         self.unlocked_database.start_database_lock_timer()
         if event.keyval == Gdk.KEY_Escape:
             self.unlocked_database.props.search_active = False
-        elif event.keyval == Gdk.KEY_Up:
-            selected_row = self.search_list_box.get_selected_row()
-            if selected_row is not None:
-                row = self.search_list_box.get_row_at_index(selected_row.get_index() - 1)
-                if row is not None:
-                    self.search_list_box.select_row(row)
-        elif event.keyval == Gdk.KEY_Down:
-            selected_row = self.search_list_box.get_selected_row()
-            if selected_row is None:
-                row = self.search_list_box.get_row_at_index(0)
-                if row is not None:
-                    self.search_list_box.select_row(row)
-            else:
-                row = self.search_list_box.get_row_at_index(selected_row.get_index() + 1)
-                if row is not None:
-                    self.search_list_box.select_row(row)
+            return
+
+        nr_rows = len(self.search_list_box)
+        if nr_rows == 0:
+            return
+
+        selected_row = self.search_list_box.get_selected_row()
+        if selected_row:
+            idx = selected_row.get_index()
+        else:
+            idx = -1
+
+        if (event.keyval == Gdk.KEY_Up and idx >= 1):
+            self.search_list_box.select_row(
+                self.search_list_box.get_row_at_index(idx - 1))
+        elif (event.keyval == Gdk.KEY_Down and idx < nr_rows - 1):
+            self.search_list_box.select_row(
+                self.search_list_box.get_row_at_index(idx + 1))
 
     def _on_search_entry_timeout(self, widget: Gtk.Entry) -> None:
         self._key_pressed = True

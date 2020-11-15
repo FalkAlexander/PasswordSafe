@@ -183,7 +183,7 @@ class CustomKeypressHandler:
             return False
 
         if not self._can_goto_parent_group():
-            return False
+            return True
 
         db_manager: DatabaseManager = self.unlocked_database.database_manager
         element_uuid: UUID = self.unlocked_database.current_element.uuid

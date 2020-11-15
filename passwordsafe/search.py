@@ -176,9 +176,6 @@ class Search:
         if the search term is not empty.
         """
         if self._search_text:
-            if self._empty_search_overlay in self._overlay:
-                self._overlay.remove(self._empty_search_overlay)
-
             search_thread = threading.Thread(target=self._perform_search)
             search_thread.daemon = True
             search_thread.start()

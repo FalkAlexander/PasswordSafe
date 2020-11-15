@@ -229,7 +229,7 @@ class CustomKeypressHandler:
         # Mouse button 8 is the back button.
         if (event.button != 8
                 or not self._can_goto_parent_group()):
-            return Gdk.EVENT_STOP
+            return Gdk.EVENT_PROPAGATE
 
         self._goto_parent_group()
         return Gdk.EVENT_PROPAGATE

@@ -45,6 +45,7 @@ class Search:
         self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
             "info_search_overlay")
 
+        self._timeout_search: int = 0
         self._result_list: List[UUID] = []
         self._search_text: str = ""
 
@@ -54,7 +55,8 @@ class Search:
         headerbar_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
 
         headerbar_search_entry = self._builder.get_object("headerbar_search_entry")
-        headerbar_search_entry.connect("search-changed", self.on_headerbar_search_entry_changed)
+        headerbar_search_entry.connect(
+            "search-changed", self._on_search_entry_timeout)
         headerbar_search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
         headerbar_search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
 
@@ -261,7 +263,16 @@ class Search:
                 if row is not None:
                     self.search_list_box.select_row(row)
 
-    def on_headerbar_search_entry_changed(self, widget):
+    def _on_search_entry_timeout(self, widget: Gtk.Entry) -> None:
+        if self._timeout_search > 0:
+            GLib.source_remove(self._timeout_search)
+
+        self._timeout_search = GLib.timeout_add(
+            500, self._on_search_entry_changed, widget)
+
+    def _on_search_entry_changed(self, widget):
+        self._timeout_search = 0
+
         # Reset the select row position.
         # Weird bugs, where multiple entries would be selected at the same
         # time, or it is not possible to move selection appear without this.
@@ -283,6 +294,8 @@ class Search:
 
         self._search_text = widget.get_text()
         self._start_search()
+
+        return False
 
     def on_headerbar_search_entry_enter_pressed(self, widget_):
         self.unlocked_database.start_database_lock_timer()

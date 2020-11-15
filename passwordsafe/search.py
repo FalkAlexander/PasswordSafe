@@ -141,6 +141,9 @@ class Search:
     #
 
     def _start_search(self):
+        """Update the overlays and start a search
+        if the search term is not empty.
+        """
         if self._search_text:
             if self._empty_search_overlay in self._overlay:
                 self._overlay.remove(self._empty_search_overlay)
@@ -155,12 +158,18 @@ class Search:
             self.search_list_box.hide()
 
     def _perform_search(self):
+        """Search for results in the database."""
         path = self.unlocked_database.current_element.path
         self._result_list = self._db_manager.search(self._search_text, path)
 
         GLib.idle_add(self.search_instance_creation, self._result_list)
 
     def search_instance_creation(self, results_to_show, load_all=False):
+        """Display some results.
+
+        :param list results_to_show: results to show
+        :param bool load_all: True if all the results need to be shown
+        """
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
         group_row_height = 45
         entry_row_height = 60

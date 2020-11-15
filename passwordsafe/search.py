@@ -34,6 +34,7 @@ class Search:
         self.unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
         self._search_event_connection_id: int = 0
+        self._search_changed_id: int = 0
 
         self._builder: Gtk.Builder = Gtk.Builder()
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
@@ -55,8 +56,6 @@ class Search:
         headerbar_close_button = self._builder.get_object("headerbar_close_button")
         headerbar_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
 
-        self._search_entry.connect(
-            "search-changed", self._on_search_entry_timeout)
         self._search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
         self._search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
 
@@ -89,7 +88,11 @@ class Search:
             self.unlocked_database.parent_widget.set_headerbar(
                 headerbar_search)
             self.unlocked_database.window.set_titlebar(headerbar_search)
+
+            self._search_changed_id = self._search_entry.connect(
+                "search-changed", self._on_search_entry_timeout)
             self._search_entry.grab_focus()
+
             if self.search_list_box is not NotImplemented:
                 self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
                 self._search_event_connection_id = self._search_entry.connect(
@@ -98,9 +101,11 @@ class Search:
             self.unlocked_database.responsive_ui.action_bar()
 
         else:
-            self._search_entry.props.text = ""
             for result in self.search_list_box:
                 self.search_list_box.remove(result)
+
+            if self._empty_search_overlay in self._overlay:
+                self._overlay.remove(self._empty_search_overlay)
 
             self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
             self.unlocked_database.parent_widget.set_headerbar(
@@ -109,6 +114,10 @@ class Search:
                 self.unlocked_database.headerbar)
             self._search_entry.disconnect(self._search_event_connection_id)
             self._search_event_connection_id = 0
+
+            self._search_entry.disconnect(self._search_changed_id)
+            self._search_changed_id = 0
+            self._search_entry.props.text = ""
 
     #
     # Stack

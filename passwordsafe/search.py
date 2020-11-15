@@ -161,6 +161,11 @@ class Search:
         path = self.unlocked_database.current_element.path
         self._result_list = self._db_manager.search(self._search_text, path)
 
+        if not self._result_list:
+            self._overlay.add_overlay(self._empty_search_overlay)
+            self.search_list_box.hide()
+            return
+
         GLib.idle_add(self._show_results, self._result_list)
 
     def _show_results(self, results_to_show, load_all=False):
@@ -222,12 +227,6 @@ class Search:
             self.search_list_box.add(load_more_row)
 
         self.search_list_box.show()
-
-        if self.search_list_box.get_children():
-            self.search_list_box.show()
-        else:
-            self._overlay.add_overlay(self._empty_search_overlay)
-            self.search_list_box.hide()
 
     #
     # Events

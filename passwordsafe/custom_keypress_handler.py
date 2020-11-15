@@ -4,6 +4,8 @@ from __future__ import annotations
 import typing
 from uuid import UUID
 
+from passwordsafe.entry_row import EntryRow
+from passwordsafe.group_row import GroupRow
 from gi.repository import Gdk, Gtk
 
 import passwordsafe.pathbar_button
@@ -71,7 +73,20 @@ class CustomKeypressHandler:
                     elif keyval_name == 'z':
                         textbuffer.logic.do_undo()
                         return True
-
+        # Handle Return on EntryRow and GroupRow
+        elif (eventkey.keyval == Gdk.KEY_Return):
+            focused_entry = self.unlocked_database.window.get_focus()
+            unlocked_db = self.unlocked_database
+            if isinstance(focused_entry, EntryRow):
+                entry = unlocked_db.database_manager.get_entry_object_from_uuid(
+                    focused_entry.get_uuid())
+                unlocked_db.show_element(entry)
+                return True
+            if isinstance(focused_entry, GroupRow):
+                entry = unlocked_db.database_manager.get_group(
+                    focused_entry.get_uuid())
+                unlocked_db.show_element(entry)
+                return True
         elif (not scrolled_page.edit_page
               and (eventkey.string.isalnum())):
             self.unlocked_database.props.search_active = True

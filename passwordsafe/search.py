@@ -98,6 +98,10 @@ class Search:
             self.unlocked_database.responsive_ui.action_bar()
 
         else:
+            self._search_entry.props.text = ""
+            for result in self.search_list_box:
+                self.search_list_box.remove(result)
+
             self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
             self.unlocked_database.parent_widget.set_headerbar(
                 self.unlocked_database.headerbar)

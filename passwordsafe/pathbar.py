@@ -182,56 +182,33 @@ class Pathbar(Gtk.HBox):
     # Helper Methods
     #
 
-    def check_is_edit_page(self):
-        """Return if the current page is an 'edit page'"""
-        page = self.unlocked_database.get_current_page()
-        return page.check_is_edit_page()
-
-    def check_update_needed(self):
-        """Returns True if the pathbar needs updating"""
-        page = self.unlocked_database.get_current_page()
-        return page.is_dirty
-
     def check_is_edit_page_from_group(self):
         ele_uuid = self.unlocked_database.current_element.uuid
         is_group = self.database_manager.check_is_group(ele_uuid)
         return is_group
 
-    def query_page_update(self):
-        if self.check_is_edit_page() is True:
-            if self.check_update_needed() is True:
-                edit_page = self.unlocked_database.current_element
-                update_group = NotImplemented
+    def query_page_update(self) -> None:
+        """When a group/entry was edited, schedule modified page for destruction
 
-                if self.check_is_edit_page_from_group() is True:
-                    update_group = self.database_manager.get_parent_group(
-                        edit_page)
-
-                    if self.database_manager.check_is_root_group(update_group) is True:
-                        update_group = self.database_manager.get_root_group()
-
-                    self.unlocked_database.schedule_stack_page_for_destroy(edit_page.uuid)
-                else:
-                    update_group = self.database_manager.get_parent_group(edit_page)
-
-                    if self.database_manager.check_is_root_group(update_group) is True:
-                        update_group = self.database_manager.get_root_group()
-
-                page_uuid = update_group.uuid
-                self.unlocked_database.schedule_stack_page_for_destroy(page_uuid)
-
-                self.page_update_queried()
-            else:
-                if self.check_is_edit_page_from_group() is False:
-                    return
-
-            edited_uuid = self.unlocked_database.current_element.uuid
-            self.unlocked_database.schedule_stack_page_for_destroy(edited_uuid)
-
-    def page_update_queried(self):
-        """Marks the curent page as not dirty"""
+        When the page was modified, schedule the parent page for
+        destruction, otherwise, just the current one.
+        """
+        current_ele = self.unlocked_database.current_element
         page = self.unlocked_database.get_current_page()
-        page.is_dirty = False
+
+        if not page.check_is_edit_page():
+            # Do nothing on non-edit pages
+            return
+
+        if page.is_dirty:
+            # page is dirty, parent page needs to be rebuild too
+            parent_group = self.database_manager.get_parent_group(current_ele)
+            page_uuid = parent_group.uuid
+            self.unlocked_database.schedule_stack_page_for_destroy(page_uuid)
+            self.is_dirty = False
+
+        # Destroy edited page so we rebuild when needed
+        self.unlocked_database.schedule_stack_page_for_destroy(current_ele.uuid)
 
     def check_values_of_edit_page(self, parent_group: Group) -> bool:
         """Check all values of the current group/entry which we finished editing

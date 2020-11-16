@@ -207,7 +207,7 @@ class Pathbar(Gtk.HBox):
             parent_group = self.database_manager.get_parent_group(current_ele)
             page_uuid = parent_group.uuid
             self.unlocked_database.schedule_stack_page_for_destroy(page_uuid)
-            self.is_dirty = False
+            page.is_dirty = False
 
         # Destroy edited page so we rebuild when needed
         self.unlocked_database.schedule_stack_page_for_destroy(current_ele.uuid)

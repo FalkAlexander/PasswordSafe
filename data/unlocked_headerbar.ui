@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="HdyHeaderBar" id="headerbar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="show_close_button">True</property>
+    <child>
+      <object class="GtkBox" id="headerbar_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="pathbar_button_selection_revealer">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="transition_type">slide-right</property>
+        <child>
+          <object class="GtkButton" id="selection_button_mobile">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+            <child>
+              <object class="GtkImage" id="selection_button_image_mobile">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">emblem-ok-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child type="title">
+      <object class="GtkLabel" id="title_label">
+	<property name="visible">True</property>
+	<property name="can_focus">False</property>
+	<property name="halign">center</property>
+	<property name="valign">center</property>
+	<property name="margin_start">8</property>
+	<property name="margin_end">8</property>
+	<property name="ellipsize">end</property>
+	<attributes>
+	  <attribute name="weight" value="bold"/>
+	</attributes>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuButton" id="selection_options_button">
+	<property name="visible">False</property>
+	<property name="can_focus">True</property>
+	<property name="receives_default">True</property>
+	<property name="relief">none</property>
+	<property name="menu_model">selection_mode_menu</property>
+	<child>
+	  <object class="GtkBox" id="selection_options_button_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkLabel" id="selection_options_button_label">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="label" translatable="yes">Click on a checkbox to select</property>
+		<property name="ellipsize">middle</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="selection_options_button_labe">
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="icon_name">pan-down-symbolic</property>
+              </object>
+            </child>
+	  </object>
+	</child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="headerbar_right_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkBox" id="linkedbox_right">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkBox" id="mod_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+		<child>
+		  <object class="GtkBox" id="browser_buttons_box">
+		    <property name="visible">True</property>
+		    <property name="can_focus">False</property>
+		    <property name="spacing">6</property>
+		    <child>
+		      <object class="GtkRevealer" id="selection_button_revealer">
+			<property name="visible">True</property>
+			<property name="can_focus">False</property>
+			<property name="transition_type">slide-left</property>
+			<property name="reveal_child">True</property>
+			<child>
+			  <object class="GtkButton" id="selection_button">
+			    <property name="visible">True</property>
+			    <property name="can_focus">True</property>
+			    <property name="receives_default">True</property>
+			    <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+			    <child>
+			      <object class="GtkImage" id="selection_button_image">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="icon_name">emblem-ok-symbolic</property>
+			      </object>
+			    </child>
+			  </object>
+			</child>
+		      </object>
+		      <packing>
+			<property name="expand">False</property>
+			<property name="fill">True</property>
+		      </packing>
+		    </child>
+		    <child>
+		      <object class="GtkButton" id="search_button">
+			<property name="visible">True</property>
+			<property name="can_focus">True</property>
+			<property name="receives_default">True</property>
+			<property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
+			<child>
+			  <object class="GtkImage" id="search_button_image">
+			    <property name="visible">True</property>
+			    <property name="can_focus">False</property>
+			    <property name="icon_name">system-search-symbolic</property>
+			  </object>
+			</child>
+		      </object>
+		      <packing>
+			<property name="expand">False</property>
+			<property name="fill">True</property>
+		      </packing>
+		    </child>
+		  </object>
+		</child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="menupopover_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="menu_model">unlocked_database_menu</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">open-menu-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkMenuButton" id="secondary_menu_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="icon_name">view-more-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+	<child>
+	  <object class="GtkBox" id="selection_button_box">
+	    <property name="visible">True</property>
+	    <property name="can_focus">False</property>
+	    <property name="spacing">6</property>
+	    <child>
+	      <object class="GtkButton" id="selection_cut_button">
+		<property name="visible">True</property>
+		<property name="can_focus">True</property>
+		<property name="receives_default">True</property>
+		<property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move selection</property>
+		<child>
+		  <object class="GtkImage" id="selection_cut_button_image">
+		    <property name="visible">True</property>
+		    <property name="can_focus">False</property>
+		    <property name="icon_name">edit-cut-symbolic</property>
+		  </object>
+		</child>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkButton" id="selection_delete_button">
+		<property name="visible">True</property>
+		<property name="can_focus">True</property>
+		<property name="receives_default">True</property>
+		<property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete selection</property>
+		<child>
+		  <object class="GtkImage" id="selection_delete_button_image">
+		    <property name="visible">True</property>
+		    <property name="can_focus">False</property>
+		    <property name="icon_name">user-trash-symbolic</property>
+		  </object>
+		</child>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkButton" id="selection_cancel_button">
+		<property name="label" translatable="yes">Cancel</property>
+		<property name="visible">True</property>
+		<property name="can_focus">True</property>
+		<property name="receives_default">True</property>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+      </object>
+      <packing>
+        <property name="pack_type">end</property>
+      </packing>
+    </child>
+  </object>
+  <menu id="unlocked_database_menu">
+    <section>
+      <attribute name='display-hint'>horizontal-buttons</attribute>
+      <item>
+        <attribute name='verb-icon'>document-save-symbolic</attribute>
+        <attribute name='label' translatable='yes'>_Save</attribute>
+        <attribute name='action'>app.db.save</attribute>
+      </item>
+      <item>
+        <attribute name='verb-icon'>system-lock-screen-symbolic</attribute>
+        <attribute name='action'>app.db.lock</attribute>
+        <attribute name='label' translatable='yes'>_Lock</attribute>
+      </item>
+    </section>
+    <section>
+      <submenu>
+        <attribute name='label' translatable='yes'>_Sorting</attribute>
+        <item>
+          <attribute name='label' translatable='yes'>_A-Z</attribute>
+          <attribute name='action'>app.sort.az</attribute>
+        </item>
+        <item>
+          <attribute name='label' translatable='yes'>_Z-A</attribute>
+          <attribute name='action'>app.sort.za</attribute>
+        </item>
+        <item>
+          <attribute name='label' translatable='yes'>_Last Added</attribute>
+          <attribute name='action'>app.sort.last_added</attribute>
+        </item>
+      </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>_New Entry</attribute>
+        <attribute name='action'>app.db.add_entry</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_New Group</attribute>
+        <attribute name='action'>app.db.add_group</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>_New Safe</attribute>
+        <attribute name='action'>app.new</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_Open Safe</attribute>
+        <attribute name='action'>app.open</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_Safe Settings</attribute>
+        <attribute name='action'>app.db.settings</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>_Preferences</attribute>
+        <attribute name='action'>app.settings</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_Keyboard Shortcuts</attribute>
+        <attribute name='action'>app.shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_About Password Safe</attribute>
+        <attribute name='action'>app.about</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="selection_mode_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Select all</attribute>
+        <attribute name="action">app.selection.all</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Select none</attribute>
+        <attribute name="action">app.selection.none</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="entry_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Duplicate</attribute>
+        <attribute name="action">app.entry.duplicate</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_References</attribute>
+        <attribute name="action">app.entry.references</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Properties</attribute>
+        <attribute name="action">app.element.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Delete</attribute>
+        <attribute name="action">app.element.delete</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="group_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Properties</attribute>
+        <attribute name="action">app.element.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Delete</attribute>
+        <attribute name="action">app.element.delete</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

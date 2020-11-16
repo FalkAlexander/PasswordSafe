@@ -66,7 +66,7 @@ class ResponsiveUI():
         scrolled_page = self.unlocked_database.get_current_page()
         dbm = self.unlocked_database.database_manager
         cur_ele = self.unlocked_database.current_element
-        title_label = self.unlocked_database.builder.get_object("title_label")
+        title_label = self.unlocked_database.headerbar_builder.get_object("title_label")
 
         if is_mobile and not self.unlocked_database.props.selection_mode:
             if not scrolled_page.edit_page:
@@ -91,12 +91,12 @@ class ResponsiveUI():
 
         if (self.unlocked_database.window.mobile_width
                 and not scrolled_page.edit_page):
-            self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(True)
-            self.unlocked_database.builder.get_object("selection_button_revealer").set_reveal_child(False)
+            self.unlocked_database.headerbar_builder.get_object("pathbar_button_selection_revealer").set_reveal_child(True)
+            self.unlocked_database.headerbar_builder.get_object("selection_button_revealer").set_reveal_child(False)
         else:
-            self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
+            self.unlocked_database.headerbar_builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
 
             if self.unlocked_database.window.mobile_width:
                 return
 
-            self.unlocked_database.builder.get_object("selection_button_revealer").set_reveal_child(True)
+            self.unlocked_database.headerbar_builder.get_object("selection_button_revealer").set_reveal_child(True)

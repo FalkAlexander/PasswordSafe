@@ -40,13 +40,13 @@ class SelectionUI:
 
     def initialize(self):
         # Selection Headerbar
-        selection_cancel_button = self.unlocked_database.builder.get_object("selection_cancel_button")
+        selection_cancel_button = self.unlocked_database.headerbar_builder.get_object("selection_cancel_button")
         selection_cancel_button.connect("clicked", self.on_selection_cancel_button_clicked)
 
-        selection_delete_button = self.unlocked_database.builder.get_object("selection_delete_button")
+        selection_delete_button = self.unlocked_database.headerbar_builder.get_object("selection_delete_button")
         selection_delete_button.connect("clicked", self.on_selection_delete_button_clicked)
 
-        selection_cut_button = self.unlocked_database.builder.get_object("selection_cut_button")
+        selection_cut_button = self.unlocked_database.headerbar_builder.get_object("selection_cut_button")
         selection_cut_button.connect("clicked", self.on_selection_cut_button_clicked)
 
     def _on_selection_mode_changed(
@@ -64,15 +64,15 @@ class SelectionUI:
 
     # Selection headerbar
     def _enter_selection_mode(self):
-        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+        self.unlocked_database.headerbar_builder.get_object("selection_delete_button").set_sensitive(False)
+        self.unlocked_database.headerbar_builder.get_object("selection_cut_button").set_sensitive(False)
 
         context = self.unlocked_database.headerbar.get_style_context()
         context.add_class('selection-mode')
 
         self.unlocked_database.headerbar.set_show_close_button(False)
 
-        self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
+        self.unlocked_database.headerbar_builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
 
         self.prepare_selection_page()
         self.unlocked_database.responsive_ui.headerbar_title()
@@ -169,8 +169,8 @@ class SelectionUI:
 
         self.entries_selected.clear()
         self.groups_selected.clear()
-        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+        self.unlocked_database.headerbar_builder.get_object("selection_delete_button").set_sensitive(False)
+        self.unlocked_database.headerbar_builder.get_object("selection_cut_button").set_sensitive(False)
 
         # It is more efficient to do this here and not in the database manager loop
         self.unlocked_database.database_manager.is_dirty = True
@@ -254,8 +254,8 @@ class SelectionUI:
         self.groups_cut.clear()
         self.entries_selected.clear()
         self.groups_selected.clear()
-        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+        self.unlocked_database.headerbar_builder.get_object("selection_delete_button").set_sensitive(False)
+        self.unlocked_database.headerbar_builder.get_object("selection_cut_button").set_sensitive(False)
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
         page = self.unlocked_database.get_current_page()
@@ -311,9 +311,9 @@ class SelectionUI:
             self._update_selection()
 
     def _update_selection(self) -> None:
-        selection_cut_button = self.unlocked_database.builder.get_object(
+        selection_cut_button = self.unlocked_database.headerbar_builder.get_object(
             "selection_cut_button")
-        selection_delete_button = self.unlocked_database.builder.get_object(
+        selection_delete_button = self.unlocked_database.headerbar_builder.get_object(
             "selection_delete_button")
 
         non_empty_selection = self.entries_selected or self.groups_selected

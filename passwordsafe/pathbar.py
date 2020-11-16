@@ -232,26 +232,29 @@ class Pathbar(Gtk.HBox):
                 return True
 
             return False
-        else:
-            entry_title = self.database_manager.get_entry_name(current_elt)
-            entry_username = self.database_manager.get_entry_username(
-                current_elt)
-            entry_password = self.database_manager.get_entry_password(
-                current_elt)
-            entry_url = self.database_manager.get_entry_url(current_elt)
-            entry_attributes = self.database_manager.get_entry_attributes(
-                current_elt)
-            if not (entry_title or entry_username or entry_password
-                    or entry_url or notes or (icon != "0")
-                    or entry_attributes):
-                parent_group = self.database_manager.get_parent_group(
-                    current_elt)
-                self.database_manager.delete_from_database(current_elt)
-                self.rebuild_pathbar(parent_group)
-                self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
-                return True
 
-            return False
+        # current_elt is a Entry...
+        entry_title = self.database_manager.get_entry_name(current_elt)
+        entry_username = self.database_manager.get_entry_username(current_elt)
+        entry_password = self.database_manager.get_entry_password(current_elt)
+        entry_url = self.database_manager.get_entry_url(current_elt)
+        entry_attributes = self.database_manager.get_entry_attributes(current_elt)
+        if not (
+            entry_title
+            or entry_username
+            or entry_password
+            or entry_url
+            or notes
+            or (icon != "0")
+            or entry_attributes
+        ):
+            parent_group = self.database_manager.get_parent_group(current_elt)
+            self.database_manager.delete_from_database(current_elt)
+            self.rebuild_pathbar(parent_group)
+            self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
+            return True
+
+        return False
 
     def uuid_in_pathbar(self, uuid: UUID) -> bool:
         """Return True if the uuid entry is visible in the bar"""

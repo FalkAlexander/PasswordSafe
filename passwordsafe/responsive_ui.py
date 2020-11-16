@@ -27,12 +27,12 @@ class ResponsiveUI():
         page = db.get_current_page()
         if page is None:
             # Initial placement of pathbar before content appeared
-            if db.window.mobile_width and not db.action_bar.get_children():
+            if db.window.props.mobile_width and not db.action_bar.get_children():
                 # mobile mode
                 db.action_bar.add(self.unlocked_database.pathbar)
                 db.action_bar.show()
                 db.revealer.set_reveal_child(True)
-            elif not db.window.mobile_width:
+            elif not db.window.props.mobile_width:
                 # desktop mode
                 db.headerbar.props.show_pathbar = True
             return
@@ -42,13 +42,13 @@ class ResponsiveUI():
             db.revealer.set_reveal_child(False)
             return
 
-        if db.window.mobile_width and not db.action_bar.get_children():
+        if db.window.props.mobile_width and not db.action_bar.get_children():
             # mobile width: hide pathbar in header
             db.headerbar.props.show_pathbar = False
             # and put it in the bottom Action bar instead
             db.action_bar.add(self.unlocked_database.pathbar)
             db.action_bar.show()
-        elif not db.window.mobile_width and db.action_bar.get_children():
+        elif not db.window.props.mobile_width and db.action_bar.get_children():
             # Desktop width AND pathbar is in actionbar
             db.revealer.set_reveal_child(False)
             db.action_bar.remove(self.unlocked_database.pathbar)
@@ -59,7 +59,7 @@ class ResponsiveUI():
             db.revealer.set_reveal_child(True)
 
     def headerbar_title(self) -> None:
-        is_mobile = self.unlocked_database.window.mobile_width
+        is_mobile = self.unlocked_database.window.props.mobile_width
         scrolled_page = self.unlocked_database.get_current_page()
         dbm = self.unlocked_database.database_manager
         cur_ele = self.unlocked_database.current_element
@@ -86,14 +86,14 @@ class ResponsiveUI():
         if self.unlocked_database.props.selection_mode:
             return
 
-        if (self.unlocked_database.window.mobile_width
+        if (self.unlocked_database.window.props.mobile_width
                 and not scrolled_page.edit_page):
             self.unlocked_database.headerbar.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(True)
             self.unlocked_database.headerbar.builder.get_object("selection_button_revealer").set_reveal_child(False)
         else:
             self.unlocked_database.headerbar.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
 
-            if self.unlocked_database.window.mobile_width:
+            if self.unlocked_database.window.props.mobile_width:
                 return
 
             self.unlocked_database.headerbar.builder.get_object("selection_button_revealer").set_reveal_child(True)

@@ -26,7 +26,6 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
-from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
@@ -78,7 +77,6 @@ class UnlockedDatabase(GObject.GObject):
         self.window: MainWindow = window
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
-        self.responsive_ui: ResponsiveUI = ResponsiveUI(self)
         self.selection_ui: SelectionUI = SelectionUI(self)
         self.search: Search = Search(self)
         self.entry_page: EntryPage = EntryPage(self)

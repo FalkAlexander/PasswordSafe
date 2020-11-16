@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-import ntpath
+import os
 
 
 class ResponsiveUI():
@@ -59,30 +59,26 @@ class ResponsiveUI():
             db.headerbar_box.show()
 
     def headerbar_title(self) -> None:
+        is_mobile = self.unlocked_database.window.mobile_width
         scrolled_page = self.unlocked_database.get_current_page()
-        if (self.unlocked_database.window.mobile_width
-                and not self.unlocked_database.props.selection_mode):
-            if self.unlocked_database.builder.get_object("title_box").get_children():
-                return
+        dbm = self.unlocked_database.database_manager
+        cur_ele = self.unlocked_database.current_element
+        title_label = self.unlocked_database.builder.get_object("title_label")
 
-            filename_label = self.unlocked_database.builder.get_object("filename_label")
-            if scrolled_page.edit_page is False:
-                filename_label.set_text(ntpath.basename(self.unlocked_database.database_manager.database_path))
+        if is_mobile and not self.unlocked_database.props.selection_mode:
+            if not scrolled_page.edit_page:
+                # No edit page, show safe filename
+                title = os.path.basename(dbm.database_path)
+            elif dbm.check_is_group_object(cur_ele):
+                # on group edit page, show entry title
+                title = cur_ele.name or ""
             else:
-                if self.unlocked_database.database_manager.check_is_group_object(self.unlocked_database.current_element) is False:
-                    db_manager = self.unlocked_database.database_manager
-                    entry_name = db_manager.get_entry_name(
-                        self.unlocked_database.current_element)
-                    filename_label.set_text(entry_name)
-                else:
-                    db_manager = self.unlocked_database.database_manager
-                    group_name = db_manager.get_group_name(
-                        self.unlocked_database.current_element)
-                    filename_label.set_text(group_name)
+                # on entry edit page, show entry title
+                title = cur_ele.title or ""
+            title_label.set_text(title)
 
-            self.unlocked_database.builder.get_object("title_box").add(filename_label)
-        else:
-            self.unlocked_database.builder.get_object("title_box").remove(self.unlocked_database.builder.get_object("filename_label"))
+        show = is_mobile and not self.unlocked_database.props.selection_mode
+        title_label.set_visible(show)
 
     def headerbar_back_button(self):
         if (self.unlocked_database.window.mobile_width

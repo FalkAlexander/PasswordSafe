@@ -216,9 +216,6 @@ class UnlockedDatabase(GObject.GObject):
     def set_browser_headerbar(self):
         self._linkedbox_right.show()
 
-        filename_label = self.builder.get_object("filename_label")
-        filename_label.set_text(ntpath.basename(self.database_manager.database_path))
-
         secondary_menupopover_button = self.builder.get_object("secondary_menupopover_button")
         secondary_menupopover_button.hide()
 

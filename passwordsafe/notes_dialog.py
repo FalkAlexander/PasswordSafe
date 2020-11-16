@@ -28,8 +28,8 @@ class NotesDialog():
         self.scrolled_page = self.unlocked_database.get_current_page()
         self.accelerators = Gtk.AccelGroup()
 
-        self.value_entry = self.builder.get_object("value_entry")
-        self.tag = self.value_entry.get_buffer().create_tag("found", background="yellow")
+        self.notes_buffer = self.builder.get_object("value_entry").get_buffer()
+        self.tag = self.notes_buffer.create_tag("found", background="yellow")
 
         self.__setup_widgets()
         self.__setup_signals()
@@ -50,9 +50,7 @@ class NotesDialog():
         self.search_entry.connect("search-changed", self.on_search_entry_changed)
         self.search_entry.connect("stop-search", self.on_search_stopped)
 
-        self.value_entry.get_buffer().connect("changed", self.on_value_entry_changed)
-
-        self.dialog.connect("delete-event", self.on_dialog_quit)
+        self.notes_buffer.connect("changed", self.on_value_entry_changed)
 
     def __setup_widgets(self):
         # Dialog
@@ -72,12 +70,13 @@ class NotesDialog():
 
     def update_value_entry(self):
         scrolled_page = self.scrolled_page
+        scrolled_page_buffer = scrolled_page.notes_property_value_entry.get_buffer()
 
-        buffer_text = scrolled_page.notes_property_value_entry.get_buffer().get_text(
-            scrolled_page.notes_property_value_entry.get_buffer().get_start_iter(),
-            scrolled_page.notes_property_value_entry.get_buffer().get_end_iter(),
+        buffer_text = scrolled_page_buffer.get_text(
+            scrolled_page_buffer.get_start_iter(),
+            scrolled_page_buffer.get_end_iter(),
             False)
-        self.value_entry.get_buffer().set_text(buffer_text)
+        self.notes_buffer.set_text(buffer_text)
 
     #
     # Events
@@ -85,19 +84,20 @@ class NotesDialog():
 
     def on_value_entry_changed(self, widget):
         self.unlocked_database.start_database_lock_timer()
-        scrolled_page = self.unlocked_database.get_current_page()
+        scrolled_page = self.scrolled_page
+        scrolled_page_buffer = scrolled_page.notes_property_value_entry.get_buffer()
 
-        scrolled_page.notes_property_value_entry.get_buffer().set_text(
+        scrolled_page_buffer.set_text(
             widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False)
         )
 
     def on_copy_button_clicked(self, _button):
-        scrolled_page = self.unlocked_database.get_current_page()
+        notes_buffer = self.notes_buffer
 
         self.unlocked_database.send_to_clipboard(
-            scrolled_page.notes_dialog_value_entry.get_buffer().get_text(
-                scrolled_page.notes_dialog_value_entry.get_buffer().get_start_iter(),
-                scrolled_page.notes_dialog_value_entry.get_buffer().get_end_iter(),
+            notes_buffer.get_text(
+                notes_buffer.get_start_iter(),
+                notes_buffer.get_end_iter(),
                 False)
         )
 
@@ -113,12 +113,11 @@ class NotesDialog():
             self.search_bar.set_search_mode(True)
 
     def on_search_entry_changed(self, entry):
-        scrolled_page = self.unlocked_database.get_current_page()
-        notes_buffer = scrolled_page.notes_dialog_value_entry.get_buffer()
+        notes_buffer = self.notes_buffer
 
-        scrolled_page.notes_dialog_value_entry.get_buffer().remove_all_tags(
-            scrolled_page.notes_dialog_value_entry.get_buffer().get_start_iter(),
-            scrolled_page.notes_dialog_value_entry.get_buffer().get_end_iter()
+        notes_buffer.remove_all_tags(
+            notes_buffer.get_start_iter(),
+            notes_buffer.get_end_iter()
         )
 
         start = notes_buffer.get_start_iter()
@@ -142,11 +141,6 @@ class NotesDialog():
             match_start, match_end = match
             notes_buffer.apply_tag(self.tag, match_start, match_end)
             self.do_search(notes_buffer, keyword, match_end)
-
-    def on_dialog_quit(self, _window, _event):
-        self.unlocked_database.notes_dialog = NotImplemented
-        scrolled_page = self.unlocked_database.get_current_page()
-        scrolled_page.notes_dialog_value_entry = NotImplemented
 
     def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
         if event.keyval == Gdk.KEY_Escape:

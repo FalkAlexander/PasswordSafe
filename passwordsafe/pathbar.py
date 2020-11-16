@@ -1,4 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
+import logging
+from typing import Optional
 from uuid import UUID
 from gi.repository import Gtk
 from pykeepass.group import Group
@@ -264,8 +266,10 @@ class Pathbar(Gtk.HBox):
                 return True
         return False
 
-    def get_pathbar_button(self, uuid: UUID) -> 'PathbarButton':
+    def get_pathbar_button(self, uuid: UUID) -> Optional["PathbarButton"]:
         for pathbar_button in self.get_children():
             if pathbar_button.get_name() == "PathbarButtonDynamic":
                 if pathbar_button.uuid == uuid:
                     return pathbar_button
+        logging.warning("requested get_pathbar_button on an inexisting uuid")
+        return None

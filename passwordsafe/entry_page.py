@@ -38,10 +38,10 @@ class EntryPage:
 
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
-        secondary_menu_button = self.unlocked_database.headerbar_builder.get_object(
+        secondary_menu_button = self.unlocked_database.headerbar.builder.get_object(
             "secondary_menu_button"
         )
-        entry_menu = self.unlocked_database.headerbar_builder.get_object("entry_menu")
+        entry_menu = self.unlocked_database.headerbar.builder.get_object("entry_menu")
         secondary_menu_button.set_menu_model(entry_menu)
         secondary_menu_button.show_all()
 

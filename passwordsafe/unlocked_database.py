@@ -31,6 +31,7 @@ from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
 from passwordsafe.selection_ui import SelectionUI
+from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
@@ -121,9 +122,7 @@ class UnlockedDatabase(GObject.GObject):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
-        self.headerbar_builder = Gtk.Builder()
-        self.headerbar_builder.add_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_headerbar.ui")
+        self.headerbar = UnlockedHeaderBar()
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
@@ -139,7 +138,7 @@ class UnlockedDatabase(GObject.GObject):
         # contains the "main page" with the stack and the revealer inside
         self.divider = self.builder.get_object("divider")
         self.revealer = self.builder.get_object("revealer")
-        self.headerbar_box = self.headerbar_builder.get_object("headerbar_box")
+        self.headerbar_box = self.headerbar.builder.get_object("headerbar_box")
         self.action_bar = self.builder.get_object("action_bar")
         self.overlay.add(self.divider)
         self.overlay.show_all()
@@ -157,15 +156,13 @@ class UnlockedDatabase(GObject.GObject):
 
     # Assemble headerbar
     def set_headerbar(self):
-        self.headerbar = self.headerbar_builder.get_object("headerbar")
-
-        search_button = self.headerbar_builder.get_object("search_button")
+        search_button = self.headerbar.builder.get_object("search_button")
         search_button.connect("clicked", self._on_search_button_clicked)
         self.bind_accelerator(search_button, "<Control>f")
 
-        selection_button = self.headerbar_builder.get_object("selection_button")
+        selection_button = self.headerbar.builder.get_object("selection_button")
         selection_button.connect("clicked", self._on_selection_button_clicked)
-        selection_button_mobile = self.headerbar_builder.get_object("selection_button_mobile")
+        selection_button_mobile = self.headerbar.builder.get_object("selection_button_mobile")
         selection_button_mobile.connect("clicked", self._on_selection_button_clicked)
 
         # Search UI
@@ -174,7 +171,7 @@ class UnlockedDatabase(GObject.GObject):
         # Selection UI
         self.selection_ui.initialize()
 
-        self._selection_button_box = self.headerbar_builder.get_object(
+        self._selection_button_box = self.headerbar.builder.get_object(
             "selection_button_box")
         self.bind_property(
             "selection-mode",
@@ -183,7 +180,7 @@ class UnlockedDatabase(GObject.GObject):
             GObject.BindingFlags.SYNC_CREATE,
         )
 
-        self._linkedbox_right = self.headerbar_builder.get_object("linkedbox_right")
+        self._linkedbox_right = self.headerbar.builder.get_object("linkedbox_right")
         self.bind_property(
             "selection-mode",
             self._linkedbox_right,
@@ -191,7 +188,7 @@ class UnlockedDatabase(GObject.GObject):
             GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
         )
 
-        self._selection_options_button = self.headerbar_builder.get_object(
+        self._selection_options_button = self.headerbar.builder.get_object(
             "selection_options_button"
         )
         self.bind_property(
@@ -211,7 +208,7 @@ class UnlockedDatabase(GObject.GObject):
         if not self.props.selection_mode:
             self._linkedbox_right.show()
 
-        secondary_menu_button = self.headerbar_builder.get_object(
+        secondary_menu_button = self.headerbar.builder.get_object(
             "secondary_menu_button"
         )
         secondary_menu_button.hide()

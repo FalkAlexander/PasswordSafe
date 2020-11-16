@@ -23,10 +23,10 @@ class GroupPage:
 
     # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
-        secondary_menu_button = self.unlocked_database.headerbar_builder.get_object(
+        secondary_menu_button = self.unlocked_database.headerbar.builder.get_object(
             "secondary_menu_button"
         )
-        group_menu = self.unlocked_database.headerbar_builder.get_object(
+        group_menu = self.unlocked_database.headerbar.builder.get_object(
             "group_menu"
         )
         secondary_menu_button.set_menu_model(group_menu)

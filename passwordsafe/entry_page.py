@@ -12,7 +12,6 @@ from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
-from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
@@ -32,14 +31,6 @@ class EntryPage:
 
     def __init__(self, u_d):
         self.unlocked_database = u_d
-
-    #
-    # Header Bar
-    #
-
-    # Entry creation/editing page headerbar
-    def set_entry_page_headerbar(self):
-        pass
 
     #
     # Create Property Rows

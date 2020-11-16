@@ -296,7 +296,6 @@ class UnlockedDatabase(GObject.GObject):
             else:
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
                 self.headerbar.props.mode = UnlockedHeaderBar.Mode.ENTRY
-                self.entry_page.set_entry_page_headerbar()
 
     def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
         """Add a new page to the stack
@@ -333,7 +332,6 @@ class UnlockedDatabase(GObject.GObject):
             self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
         elif not group_page:
             self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
-            self.entry_page.set_entry_page_headerbar()
 
     def _remove_page(self, element: Union[Entry, Group]) -> None:
         """Remove an element (Entry, Group) from the stack if present."""

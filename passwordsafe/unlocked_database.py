@@ -155,10 +155,6 @@ class UnlockedDatabase(GObject.GObject):
     def set_headerbar(self):
         self.headerbar = self.builder.get_object("headerbar")
 
-        mod_box = self.builder.get_object("mod_box")
-        browser_buttons_box = self.builder.get_object("browser_buttons_box")
-        mod_box.add(browser_buttons_box)
-
         search_button = self.builder.get_object("search_button")
         search_button.connect("clicked", self._on_search_button_clicked)
         self.bind_accelerator(search_button, "<Control>f")

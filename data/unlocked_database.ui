@@ -1,48 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkBox" id="browser_buttons_box">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkRevealer" id="selection_button_revealer">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="transition_type">slide-left</property>
-        <property name="reveal_child">True</property>
-        <child>
-          <object class="GtkButton" id="selection_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
-            <child>
-              <object class="GtkImage" id="selection_button_image">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">emblem-ok-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkButton" id="search_button">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
-        <child>
-          <object class="GtkImage" id="search_button_image">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">system-search-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
   <object class="GtkOverlay" id="database_action_overlay">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -400,6 +357,61 @@
               <object class="GtkBox" id="mod_box">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+		<child>
+		  <object class="GtkBox" id="browser_buttons_box">
+		    <property name="visible">True</property>
+		    <property name="can_focus">False</property>
+		    <property name="spacing">6</property>
+		    <child>
+		      <object class="GtkRevealer" id="selection_button_revealer">
+			<property name="visible">True</property>
+			<property name="can_focus">False</property>
+			<property name="transition_type">slide-left</property>
+			<property name="reveal_child">True</property>
+			<child>
+			  <object class="GtkButton" id="selection_button">
+			    <property name="visible">True</property>
+			    <property name="can_focus">True</property>
+			    <property name="receives_default">True</property>
+			    <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+			    <child>
+			      <object class="GtkImage" id="selection_button_image">
+				<property name="visible">True</property>
+				<property name="can_focus">False</property>
+				<property name="icon_name">emblem-ok-symbolic</property>
+			      </object>
+			    </child>
+			  </object>
+			</child>
+		      </object>
+		      <packing>
+			<property name="expand">False</property>
+			<property name="fill">True</property>
+			<property name="position">0</property>
+		      </packing>
+		    </child>
+		    <child>
+		      <object class="GtkButton" id="search_button">
+			<property name="visible">True</property>
+			<property name="can_focus">True</property>
+			<property name="receives_default">True</property>
+			<property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
+			<child>
+			  <object class="GtkImage" id="search_button_image">
+			    <property name="visible">True</property>
+			    <property name="can_focus">False</property>
+			    <property name="icon_name">system-search-symbolic</property>
+			  </object>
+			</child>
+		      </object>
+		      <packing>
+			<property name="expand">False</property>
+			<property name="fill">True</property>
+			<property name="position">2</property>
+		      </packing>
+		    </child>
+		  </object>
+		</child>
               </object>
             </child>
             <child>

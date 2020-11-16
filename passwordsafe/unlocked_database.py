@@ -94,7 +94,6 @@ class UnlockedDatabase(GObject.GObject):
         self._current_element: Optional[Union[Entry, Group]] = None
 
         self._linkedbox_right: Gtk.Box = None
-        self._selection_button_box: Optional[Gtk.Box] = None
         self._selection_options_button: Optional[Gtk.MenuButton] = None
 
         # Declare database as opened
@@ -122,7 +121,7 @@ class UnlockedDatabase(GObject.GObject):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
-        self.headerbar = UnlockedHeaderBar()
+        self.headerbar = UnlockedHeaderBar(self)
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
@@ -170,15 +169,6 @@ class UnlockedDatabase(GObject.GObject):
 
         # Selection UI
         self.selection_ui.initialize()
-
-        self._selection_button_box = self.headerbar.builder.get_object(
-            "selection_button_box")
-        self.bind_property(
-            "selection-mode",
-            self._selection_button_box,
-            "visible",
-            GObject.BindingFlags.SYNC_CREATE,
-        )
 
         self._linkedbox_right = self.headerbar.builder.get_object("linkedbox_right")
         self.bind_property(

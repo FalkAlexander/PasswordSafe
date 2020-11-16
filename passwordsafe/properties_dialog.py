@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Responsible for displaying the Entry/Group Properties"""
-from gi.repository import Gtk
+from __future__ import annotations
+
+from gi.repository import Gtk, Gdk, Handy
 
 
 class PropertiesDialog:
@@ -14,6 +16,7 @@ class PropertiesDialog:
         self._db_manager = database.database_manager
         self.dialog.set_transient_for(self._database.window)
         self.update_properties()
+        self.connect_signals()
 
     def present(self):
         """Present the dialog"""
@@ -33,3 +36,12 @@ class PropertiesDialog:
         self.builder.get_object("label_created").set_text(
             self._db_manager.get_element_creation_date(element)
         )
+
+    def connect_signals(self) -> None:
+        self.dialog.connect("key-press-event", self._on_key_press_event)
+
+    def _on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
+        if event.keyval == Gdk.KEY_Escape:
+            self.dialog.close()
+            return Gdk.EVENT_STOP
+        return Gdk.EVENT_PROPAGATE

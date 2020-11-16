@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Gtk
+from __future__ import annotations
+
+from gi.repository import Gtk, Gdk, Handy
 
 
 class ReferencesDialog():
@@ -19,6 +21,7 @@ class ReferencesDialog():
         self.builder.add_from_resource("/org/gnome/PasswordSafe/references_dialog.ui")
 
         self.assemble_dialog()
+        self.connect_signals()
 
     def assemble_dialog(self):
         self.dialog = self.builder.get_object("references_dialog")
@@ -85,3 +88,12 @@ class ReferencesDialog():
 
     def on_dialog_quit(self, _window, _event):
         self.unlocked_database.references_dialog = NotImplemented
+
+    def setup_signals(self) -> None:
+        self.dialog.connect("key-press-event", self._on_key_press_event)
+
+    def _on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
+        if event.keyval == Gdk.KEY_Escape:
+            self.dialog.close()
+            return Gdk.EVENT_STOP
+        return Gdk.EVENT_PROPAGATE

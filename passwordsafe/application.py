@@ -37,12 +37,6 @@ class Application(Gtk.Application):
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 
-        go_back_action = Gio.SimpleAction.new("go_back", None)
-        go_back_action.connect("activate", self.__go_back)
-
-        self.add_action(go_back_action)
-        self.set_accels_for_action("app.go_back", ["Escape"])
-
     def do_command_line(self, cmd_line):  # pylint: disable=arguments-differ
         options = cmd_line.get_options_dict()
         # convert GVariantDict -> GVariant -> dict
@@ -100,15 +94,6 @@ class Application(Gtk.Application):
         self.add_action(quit_action)
         self.add_action(shortcuts_action)
 
-    def __go_back(self, _action: Gio.SimpleAction, _: None) -> None:
-        """Go to the parent group on Escape or BackSpace key.
-           Exit selection or select mode on Escape key.
-        """
-        for db in self.window.opened_databases:
-            if db.props.database_locked:
-                continue
-            db.go_back()
-
     def on_settings_menu_clicked(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)
 
@@ -164,6 +149,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.db.add_group", ["<Control>g"])
         self.set_accels_for_action("app.undo", ["<Control>z"])
         self.set_accels_for_action("app.redo", ["<Control>y"])
+        self.set_accels_for_action("app.go_back", ["Escape"])
 
 
 if __name__ == "__main__":

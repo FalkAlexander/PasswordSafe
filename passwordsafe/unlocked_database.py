@@ -969,10 +969,10 @@ class UnlockedDatabase(GObject.GObject):
         if self.props.selection_mode:
             self.props.selection_mode = False
             return
-        elif self.props.search_active:
+        if self.props.search_active:
             self.props.search_active = False
             return
-        elif not self.__can_go_back():
+        if not self.__can_go_back():
             return
 
         parent_group = db_manager.get_parent_group(

@@ -3,12 +3,10 @@ from __future__ import annotations
 
 import typing
 from uuid import UUID
+from gi.repository import Gdk, Gtk
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
-
-from gi.repository import Gdk, Gtk
-
 import passwordsafe.pathbar_button
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -62,7 +60,7 @@ class CustomKeypressHandler:
                     if keyval_name == 'y':
                         textbuffer.logic.do_redo()
                         return Gdk.EVENT_PROPAGATE
-                    elif keyval_name == 'z':
+                    if keyval_name == "z":
                         textbuffer.logic.do_undo()
                         return Gdk.EVENT_PROPAGATE
             if isinstance(window.get_focus(), Gtk.Entry):
@@ -71,11 +69,11 @@ class CustomKeypressHandler:
                     if keyval_name == 'y':
                         textbuffer.logic.do_redo()
                         return Gdk.EVENT_PROPAGATE
-                    elif keyval_name == 'z':
+                    if keyval_name == "z":
                         textbuffer.logic.do_undo()
                         return Gdk.EVENT_PROPAGATE
         # Handle Return on EntryRow and GroupRow
-        elif (eventkey.keyval == Gdk.KEY_Return):
+        elif eventkey.keyval == Gdk.KEY_Return:
             focused_entry = self.unlocked_database.window.get_focus()
             unlocked_db = self.unlocked_database
             if isinstance(focused_entry, EntryRow):

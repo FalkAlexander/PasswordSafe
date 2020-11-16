@@ -11,7 +11,7 @@ import time
 import typing
 from gettext import gettext as _
 from threading import Timer
-from typing import List, Optional, Union
+from typing import List, Union
 from uuid import UUID
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
@@ -90,7 +90,8 @@ class UnlockedDatabase(GObject.GObject):
         self.accelerators: Gtk.AccelGroup = Gtk.AccelGroup()
         self.window.add_accel_group(self.accelerators)
 
-        self._current_element: Optional[Union[Entry, Group]] = None
+        root_group: Group = self.database_manager.get_root_group()
+        self._current_element: Union[Entry, Group] = root_group
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -128,8 +129,6 @@ class UnlockedDatabase(GObject.GObject):
 
         database_action_overlay = self.builder.get_object("database_action_overlay")
         self.overlay.add_overlay(database_action_overlay)
-
-        self.current_element = self.database_manager.get_root_group()
 
         self._stack = self.builder.get_object("list_stack")
         # contains the "main page" with the stack and the revealer inside

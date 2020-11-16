@@ -20,9 +20,16 @@ class NotesDialog():
     search_stopped = False
 
     def __init__(self, unlocked_database):
-        self.unlocked_database = unlocked_database
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/notes_dialog.ui")
+
+        self.unlocked_database = unlocked_database
+        self.dialog = self.builder.get_object("notes_detached_dialog")
+        self.scrolled_page = self.unlocked_database.get_current_page()
+        self.accelerators = Gtk.AccelGroup()
+
+        self.value_entry = self.builder.get_object("value_entry")
+        self.tag = self.value_entry.get_buffer().create_tag("found", background="yellow")
 
         self.__setup_widgets()
         self.__setup_signals()
@@ -32,22 +39,6 @@ class NotesDialog():
 
     def __setup_signals(self):
         self.unlocked_database.database_manager.connect("notify::locked", self.__on_locked)
-
-    def __setup_widgets(self):
-        self.dialog = self.builder.get_object("notes_detached_dialog")
-
-        # Dialog
-        self.dialog.set_modal(True)
-        self.dialog.set_transient_for(self.unlocked_database.window)
-
-        self.unlocked_database.notes_dialog = self.dialog
-        self.dialog.connect("delete-event", self.on_dialog_quit)
-        self.dialog.connect("key-press-event", self.__on_key_press_event)
-
-        scrolled_page = self.unlocked_database.get_current_page()
-        scrolled_page.notes_dialog_value_entry = self.builder.get_object("value_entry")
-        scrolled_page.notes_dialog_value_entry.get_buffer().connect("changed", self.on_value_entry_changed)
-
         self.builder.get_object("copy_button").connect("clicked", self.on_copy_button_clicked)
 
         # Search
@@ -59,28 +50,34 @@ class NotesDialog():
         self.search_entry.connect("search-changed", self.on_search_entry_changed)
         self.search_entry.connect("stop-search", self.on_search_stopped)
 
-        # Tags
-        self.tag = scrolled_page.notes_dialog_value_entry.get_buffer().create_tag("found", background="yellow")
+        self.value_entry.get_buffer().connect("changed", self.on_value_entry_changed)
 
-        # Accelerators
-        self.accelerators = Gtk.AccelGroup()
-        self.dialog.add_accel_group(self.accelerators)
-        self.add_search_accelerator()
+        self.dialog.connect("delete-event", self.on_dialog_quit)
+
+    def __setup_widgets(self):
+        # Dialog
+        self.dialog.set_modal(True)
+        self.dialog.set_transient_for(self.unlocked_database.window)
+        self.dialog.connect("key-press-event", self.__on_key_press_event)
 
         self.update_value_entry()
+
+    def __setup_accelerators(self):
+        self.dialog.add_accel_group(self.accelerators)
+        self.add_search_accelerator()
 
     def add_search_accelerator(self):
         key, mod = Gtk.accelerator_parse("<Control>f")
         self.search_button.add_accelerator("clicked", self.accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
 
     def update_value_entry(self):
-        scrolled_page = self.unlocked_database.get_current_page()
+        scrolled_page = self.scrolled_page
 
         buffer_text = scrolled_page.notes_property_value_entry.get_buffer().get_text(
             scrolled_page.notes_property_value_entry.get_buffer().get_start_iter(),
             scrolled_page.notes_property_value_entry.get_buffer().get_end_iter(),
             False)
-        scrolled_page.notes_dialog_value_entry.get_buffer().set_text(buffer_text)
+        self.value_entry.get_buffer().set_text(buffer_text)
 
     #
     # Events

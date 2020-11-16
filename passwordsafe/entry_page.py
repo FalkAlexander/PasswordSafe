@@ -39,7 +39,7 @@ class EntryPage:
 
     # Entry creation/editing page headerbar
     def set_entry_page_headerbar(self):
-        self.unlocked_database.responsive_ui.action_bar()
+        pass
 
     #
     # Create Property Rows

@@ -103,8 +103,6 @@ class SelectionUI:
 
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-        self.unlocked_database.responsive_ui.action_bar()
-
     def prepare_selection_page(self):
         for stack_page in self.unlocked_database.get_pages():
             if stack_page.check_is_edit_page() is False:

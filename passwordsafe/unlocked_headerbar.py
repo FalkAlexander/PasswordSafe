@@ -35,12 +35,12 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     def finish_initializing(self, builder, unlocked_database):
         self.builder = builder
         self._unlocked_database = unlocked_database
+        self._action_bar = unlocked_database.action_bar
         self._db_manager = unlocked_database.database_manager
         self._pathbar = unlocked_database.pathbar
         self._window = unlocked_database.window
 
         self._headerbar_box = self.builder.get_object("headerbar_box")
-        self._show_pathbar = True
 
         self._search_button = self.builder.get_object("search_button")
         self._search_button.connect("clicked", self._on_search_button_clicked)
@@ -84,9 +84,18 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
         self._unlocked_database.connect(
             "notify::selection-mode", self._on_selection_mode_changed)
+        self._unlocked_database.connect(
+            "notify::search-active", self._on_search_active)
+
+        self._on_mobile_width_changed(None, None)
 
     def _on_search_button_clicked(self, _btn: Gtk.Button) -> None:
         self._unlocked_database.props.search_active = True
+
+    def _on_search_active(
+            self, _unlocked_database: UnlockedDatabase,
+            _value: GObject.ParamSpecBoolean) -> None:
+        self._update_action_bar()
 
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True
@@ -102,6 +111,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_title()
         self._update_selection_buttons()
+        self._update_action_bar()
 
     def _update_title(self):
         is_mobile = self._window.props.mobile_width
@@ -139,19 +149,41 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._pathbar_button_selection_revealer.props.reveal_child = is_mobile
         self._selection_button_revealer.props.reveal_child = not is_mobile
 
-    @GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
-    def show_pathbar(self):
-        return self._show_pathbar
+    def _update_action_bar(self):
+        """Move pathbar between top headerbar and bottom actionbar if needed"""
+        page = self._unlocked_database.get_current_page()
+        is_mobile = self._window.props.mobile_width
 
-    @show_pathbar.setter  # type: ignore
-    def show_pathbar(self, value):
-        self._show_pathbar = value
+        if page is None:
+            # Initial placement of pathbar before content appeared
+            if is_mobile and not self._action_bar.get_children():
+                # mobile mode
+                self._action_bar.add(self._pathbar)
+                self._action_bar.show()
+                self._unlocked_database.revealer.props.reveal_child = True
+            elif not is_mobile:
+                # desktop mode
+                self._headerbar_box.add(self._pathbar)
 
-        if self._show_pathbar:
-            self._headerbar_box.add(self._pathbar)
-        else:
+            return
+
+        if self._unlocked_database.props.search_active:
+            # No pathbar in search mode
+            self._unlocked_database.revealer.props.reveal_child = False
+            return
+
+        if is_mobile and not self._action_bar.get_children():
+            # mobile width: hide pathbar in header
             self._headerbar_box.remove(self._pathbar)
+            # and put it in the bottom Action bar instead
+            self._action_bar.add(self._pathbar)
+            self._action_bar.show()
+        elif not is_mobile and self._action_bar.get_children():
+            # Desktop width and pathbar is in actionbar
+            self._action_bar.remove(self._pathbar)
+            self._headerbar_box.add(self._pathbar)
+
+        self._unlocked_database.revealer.props.reveal_child = is_mobile
 
     @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
     def mode(self) -> int:
@@ -186,4 +218,5 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self._secondary_menu_button.props.visible = False
             self._linkedbox_right.props.visible = False
 
-        self._on_mobile_width_changed(None, None)
+        self._update_title()
+        self._update_selection_buttons()

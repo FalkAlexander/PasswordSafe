@@ -116,6 +116,8 @@ class UnlockedDatabase(GObject.GObject):
 
         self.pathbar = Pathbar(self, self.database_manager)
         self._stack = self.builder.get_object("list_stack")
+        self.revealer = self.builder.get_object("revealer")
+        self.action_bar = self.builder.get_object("action_bar")
 
         self.headerbar = UnlockedHeaderBar(self)
 
@@ -129,8 +131,6 @@ class UnlockedDatabase(GObject.GObject):
 
         # contains the "main page" with the stack and the revealer inside
         self.divider = self.builder.get_object("divider")
-        self.revealer = self.builder.get_object("revealer")
-        self.action_bar = self.builder.get_object("action_bar")
         self.overlay.add(self.divider)
         self.overlay.show_all()
 
@@ -154,12 +154,10 @@ class UnlockedDatabase(GObject.GObject):
         self.selection_ui.initialize()
 
         self._update_headerbar()
-        # Put pathbar in the right place (top or bottom)
-        self.responsive_ui.action_bar()
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
-        self.responsive_ui.action_bar()
+        pass
 
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""

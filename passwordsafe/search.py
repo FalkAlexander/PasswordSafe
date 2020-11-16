@@ -111,8 +111,6 @@ class Search:
             self._search_changed_id = 0
             self._search_entry.props.text = ""
             self._key_pressed = False
-        # Set/hide actionbar as needed
-        self.unlocked_database.responsive_ui.action_bar()
 
     #
     # Stack

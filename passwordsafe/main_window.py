@@ -137,8 +137,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
             scrolled_page = db.get_current_page()
 
-            db.responsive_ui.action_bar()
-
             # For Group/Entry Edit Page
             if scrolled_page.edit_page:
                 return

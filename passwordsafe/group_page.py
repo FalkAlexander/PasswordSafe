@@ -27,7 +27,6 @@ class GroupPage:
         edit_mode = UnlockedHeaderBar.Mode.GROUP_EDIT
         self.unlocked_database.headerbar.props.mode = edit_mode
 
-        self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()
 
     #

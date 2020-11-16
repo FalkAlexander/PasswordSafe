@@ -75,6 +75,11 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._window.connect(
             "notify::mobile-width", self._on_mobile_width_changed)
 
+        self._pathbar_button_selection_revealer = self.builder.get_object(
+            "pathbar_button_selection_revealer")
+        self._selection_button_revealer = self.builder.get_object(
+            "selection_button_revealer")
+
         self._mode: int = UnlockedHeaderBar.Mode.GROUP
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
         self._unlocked_database.connect(
@@ -95,6 +100,10 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     def _on_mobile_width_changed(
             self, _klass: Optional[MainWindow],
             _value: GObject.ParamSpecBoolean) -> None:
+        self._update_title()
+        self._update_selection_buttons()
+
+    def _update_title(self):
         is_mobile = self._window.props.mobile_width
         scrolled_page = self._unlocked_database.get_current_page()
         cur_elt = self._unlocked_database.current_element
@@ -114,6 +123,21 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         show = is_mobile and not self._unlocked_database.props.selection_mode
         self._title_label.props.visible = show
+
+    def _update_selection_buttons(self):
+        """Update the visibility of the headerbar buttons."""
+        if self._unlocked_database.props.selection_mode:
+            return
+
+        scrolled_page = self._unlocked_database.get_current_page()
+        if scrolled_page and scrolled_page.edit_page:
+            self._pathbar_button_selection_revealer.props.reveal_child = False
+            self._selection_button_revealer.props.reveal_child = False
+            return
+
+        is_mobile = self._window.props.mobile_width
+        self._pathbar_button_selection_revealer.props.reveal_child = is_mobile
+        self._selection_button_revealer.props.reveal_child = not is_mobile
 
     @GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)

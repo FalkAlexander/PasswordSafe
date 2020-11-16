@@ -103,7 +103,6 @@ class SelectionUI:
 
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-        self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()
 
     def prepare_selection_page(self):

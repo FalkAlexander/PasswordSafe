@@ -143,9 +143,6 @@ class MainWindow(Gtk.ApplicationWindow):
             if scrolled_page.edit_page:
                 return
 
-            # For Entry/Group Browser and Selection Mode
-            db.responsive_ui.headerbar_selection_button()
-
         if self.container is NotImplemented \
            or self.container.get_n_pages() == 0:
             self.set_headerbar_button_layout()

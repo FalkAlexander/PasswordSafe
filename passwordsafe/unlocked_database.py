@@ -104,9 +104,6 @@ class UnlockedDatabase(GObject.GObject):
         self.custom_keypress_handler.register_custom_events()
         self.register_dbus_signal()
 
-        # Responsive UI
-        self.responsive_ui.headerbar_selection_button()
-
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
 
     #
@@ -162,7 +159,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
-        self.responsive_ui.headerbar_selection_button()
         self.responsive_ui.action_bar()
 
     def _update_headerbar(self) -> None:

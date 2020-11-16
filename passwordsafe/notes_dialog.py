@@ -24,9 +24,13 @@ class NotesDialog():
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/notes_dialog.ui")
 
-        self.assemble_dialog()
+        self.__setup_widgets()
+        self.__setup_signals()
 
-    def assemble_dialog(self):
+    def __setup_signals(self):
+        self.unlocked_database.database_manager.connect("notify::locked", self.__on_locked)
+
+    def __setup_widgets(self):
         self.dialog = self.builder.get_object("notes_detached_dialog")
 
         # Dialog
@@ -151,3 +155,8 @@ class NotesDialog():
                 self.dialog.close()
                 return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE
+
+    def __on_locked(self, database_manager, _value):
+        locked = database_manager.props.locked
+        if locked:
+            self.dialog.close()

@@ -852,11 +852,6 @@ class UnlockedDatabase(GObject.GObject):
         if locked:
             self.cleanup(False)
 
-            try:  # self.notes_dialog might be NotImplemented
-                self.notes_dialog.close()
-            except AttributeError:
-                pass
-
             for tmpfile in self.scheduled_tmpfiles_deletion:
                 try:
                     tmpfile.delete()

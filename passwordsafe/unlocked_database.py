@@ -929,13 +929,20 @@ class UnlockedDatabase(GObject.GObject):
     # DBus
     #
 
-    def register_dbus_signal(self):
-        app = Gio.Application.get_default
-        self.dbus_subscription_id = app().get_dbus_connection().signal_subscribe(None, "org.gnome.ScreenSaver", "ActiveChanged", "/org/gnome/ScreenSaver", None, Gio.DBusSignalFlags.NONE, self.on_session_lock)
+    def register_dbus_signal(self) -> None:
+        """Register a listener so we get notified about screensave kicking in
+
+        In this case we will call self.on_session_lock()"""
+        connection = self.window.application.get_dbus_connection()
+        self.dbus_subscription_id = connection.signal_subscribe(
+            None, "org.gnome.ScreenSaver", "ActiveChanged",
+            "/org/gnome/ScreenSaver", None,
+            Gio.DBusSignalFlags.NONE, self.on_session_lock,)
 
     def unregister_dbus_signal(self):
-        app = Gio.Application.get_default
-        app().get_dbus_connection().signal_unsubscribe(self.dbus_subscription_id)
+        """Do not listen to screensaver kicking in anymore"""
+        connection = self.window.application.get_dbus_connection()
+        connection.signal_unsubscribe(self.dbus_subscription_id)
 
     @GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)

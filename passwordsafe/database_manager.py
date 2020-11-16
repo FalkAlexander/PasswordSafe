@@ -652,7 +652,7 @@ class DatabaseManager(GObject.GObject):
                     if global_search and entry.uuid not in uuid_list:
                         uuid_list.append(entry.uuid)
                     elif self.get_parent_group(entry) is not None:
-                        parent_group: Union[Group, Entry] = self.get_parent_group(entry)
+                        parent_group: Group = self.get_parent_group(entry)
                         if parent_group.path == path and entry.uuid not in uuid_list:
                             uuid_list.append(entry.uuid)
 

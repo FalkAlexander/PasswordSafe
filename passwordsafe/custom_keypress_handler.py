@@ -136,25 +136,6 @@ class CustomKeypressHandler:
             return self.iterate_parents(child.get_parent())
         return None
 
-    def _goto_parent_group(self):
-        """Go to the parent group of the pathbar."""
-        db_manager = self.unlocked_database.database_manager
-        parent_group = db_manager.get_parent_group(
-            self.unlocked_database.current_element)
-
-        if db_manager.check_is_root_group(parent_group):
-            pathbar = self.unlocked_database.pathbar
-            pathbar.on_home_button_clicked(pathbar.home_button)
-
-        pathbar_btn_type = passwordsafe.pathbar_button.PathbarButton
-        for button in self.unlocked_database.pathbar:
-            if (
-                isinstance(button, pathbar_btn_type)
-                and button.uuid == parent_group.uuid
-            ):
-                pathbar = self.unlocked_database.pathbar
-                pathbar.on_pathbar_button_clicked(button)
-
     def _current_view_accessible(self):
         """Check that the current view is accessible:
          * selection mode is not active
@@ -170,29 +151,20 @@ class CustomKeypressHandler:
 
         return True
 
-    def _can_goto_parent_group(self):
-        """Check that the current item in the pathbar has a parent."""
-        current_element = self.unlocked_database.current_element
-        db_manager = self.unlocked_database.database_manager
-
-        if (not self._current_view_accessible()
-            or (db_manager.check_is_group_object(current_element)
-                and db_manager.check_is_root_group(current_element))):
-            return False
-
-        return True
-
     def _on_button_released(
-            self, _window: MainWindow, event: Gtk.Event) -> bool:
+            self, window: MainWindow, event: Gtk.Event) -> bool:
         """Go to the parent group with the back button.
 
         :param Gtk.Widget window: the main window
         :param Gtk.Event event: the event
         """
         # Mouse button 8 is the back button.
-        if (event.button != 8
-                or not self._can_goto_parent_group()):
+        action_db = window.find_action_db()
+        if action_db is NotImplemented:
             return Gdk.EVENT_PROPAGATE
 
-        self._goto_parent_group()
+        if event.button == 8:
+            action_db.go_back()
+            return Gdk.EVENT_STOP
+
         return Gdk.EVENT_PROPAGATE

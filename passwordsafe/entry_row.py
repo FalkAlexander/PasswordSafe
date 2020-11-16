@@ -12,7 +12,7 @@ from passwordsafe.color_widget import Color
 
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
-    from passwordsafe.unlocked_database import UnlockedDatabase
+    from passwordsafe.unlocked_database import UnlockedDatabase  # pylint: disable=C0412
 
 
 class EntryRow(Gtk.ListBoxRow):

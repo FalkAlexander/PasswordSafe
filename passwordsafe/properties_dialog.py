@@ -39,9 +39,13 @@ class PropertiesDialog:
 
     def connect_signals(self) -> None:
         self.dialog.connect("key-press-event", self._on_key_press_event)
+        self._db_manager.connect("notify::locked", self.__on_locked)
 
     def _on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
         if event.keyval == Gdk.KEY_Escape:
             self.dialog.close()
             return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE
+
+    def __on_locked(self, _database_manager, _value):
+        self.dialog.close()

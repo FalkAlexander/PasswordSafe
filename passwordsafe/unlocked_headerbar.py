@@ -18,6 +18,11 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     def finish_initializing(self, builder, unlocked_database):
         self.builder = builder
         self._unlocked_database = unlocked_database
+        self._db_manager = unlocked_database.database_manager
+        self._pathbar = unlocked_database.pathbar
+
+        self._headerbar_box = self.builder.get_object("headerbar_box")
+        self._show_pathbar = True
 
         self._search_button = self.builder.get_object("search_button")
         self._search_button.connect("clicked", self._on_search_button_clicked)
@@ -48,3 +53,17 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True
+
+    @GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    def show_pathbar(self):
+        return self._show_pathbar
+
+    @show_pathbar.setter  # type: ignore
+    def show_pathbar(self, value):
+        self._show_pathbar = value
+
+        if self._show_pathbar:
+            self._headerbar_box.add(self._pathbar)
+        else:
+            self._headerbar_box.remove(self._pathbar)

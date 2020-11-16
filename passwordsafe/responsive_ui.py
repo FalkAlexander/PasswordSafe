@@ -32,10 +32,9 @@ class ResponsiveUI():
                 db.action_bar.add(self.unlocked_database.pathbar)
                 db.action_bar.show()
                 db.revealer.set_reveal_child(True)
-            elif not db.window.mobile_width and not db.headerbar_box.get_children():
+            elif not db.window.mobile_width:
                 # desktop mode
-                db.headerbar_box.add(self.unlocked_database.pathbar)
-                db.headerbar_box.show()
+                db.headerbar.props.show_pathbar = True
             return
 
         if db.props.search_active:
@@ -45,8 +44,7 @@ class ResponsiveUI():
 
         if db.window.mobile_width and not db.action_bar.get_children():
             # mobile width: hide pathbar in header
-            db.headerbar_box.remove(self.unlocked_database.pathbar)
-            db.headerbar_box.hide()
+            db.headerbar.props.show_pathbar = False
             # and put it in the bottom Action bar instead
             db.action_bar.add(self.unlocked_database.pathbar)
             db.action_bar.show()
@@ -54,8 +52,7 @@ class ResponsiveUI():
             # Desktop width AND pathbar is in actionbar
             db.revealer.set_reveal_child(False)
             db.action_bar.remove(self.unlocked_database.pathbar)
-            db.headerbar_box.add(self.unlocked_database.pathbar)
-            db.headerbar_box.show()
+            db.headerbar.props.show_pathbar = True
 
         # In mobile mode show the actionbar, unless we aborted in search
         if db.window.mobile_width and not db.revealer.props.reveal_child:

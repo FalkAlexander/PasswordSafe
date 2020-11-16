@@ -49,7 +49,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Widgets
     headerbar = NotImplemented
-    headerbar_box = NotImplemented
     scrolled_window = NotImplemented
     divider = NotImplemented
     revealer = NotImplemented
@@ -120,6 +119,8 @@ class UnlockedDatabase(GObject.GObject):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
+        self.pathbar = Pathbar(self, self.database_manager)
+
         self.headerbar = UnlockedHeaderBar(self)
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -136,7 +137,6 @@ class UnlockedDatabase(GObject.GObject):
         # contains the "main page" with the stack and the revealer inside
         self.divider = self.builder.get_object("divider")
         self.revealer = self.builder.get_object("revealer")
-        self.headerbar_box = self.headerbar.builder.get_object("headerbar_box")
         self.action_bar = self.builder.get_object("action_bar")
         self.overlay.add(self.divider)
         self.overlay.show_all()
@@ -169,7 +169,6 @@ class UnlockedDatabase(GObject.GObject):
         )
 
         self._update_headerbar()
-        self.pathbar = Pathbar(self, self.database_manager)
         # Put pathbar in the right place (top or bottom)
         self.responsive_ui.action_bar()
 

@@ -29,7 +29,6 @@ class GroupPage:
 
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()
-        self.unlocked_database.responsive_ui.headerbar_title()
 
     #
     # Create Property Rows

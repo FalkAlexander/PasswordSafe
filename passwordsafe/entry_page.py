@@ -41,7 +41,6 @@ class EntryPage:
     def set_entry_page_headerbar(self):
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()
-        self.unlocked_database.responsive_ui.headerbar_title()
 
     #
     # Create Property Rows

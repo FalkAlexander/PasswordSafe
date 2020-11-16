@@ -1,12 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import os
 import typing
 from enum import IntEnum
+from typing import Optional
 
 from gi.repository import GObject, Gtk, Handy
 
 if typing.TYPE_CHECKING:
+    from passwordsafe.main_window import MainWindow
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
@@ -34,6 +37,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._unlocked_database = unlocked_database
         self._db_manager = unlocked_database.database_manager
         self._pathbar = unlocked_database.pathbar
+        self._window = unlocked_database.window
 
         self._headerbar_box = self.builder.get_object("headerbar_box")
         self._show_pathbar = True
@@ -67,6 +71,10 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._group_menu = self.builder.get_object("group_menu")
         self._linkedbox_right = self.builder.get_object("linkedbox_right")
 
+        self._title_label = self.builder.get_object("title_label")
+        self._window.connect(
+            "notify::mobile-width", self._on_mobile_width_changed)
+
         self._mode: int = UnlockedHeaderBar.Mode.GROUP
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
         self._unlocked_database.connect(
@@ -83,6 +91,29 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             _value: GObject.ParamSpecInt) -> None:
         if self._unlocked_database.props.selection_mode:
             self.props.mode = UnlockedHeaderBar.Mode.SELECTION
+
+    def _on_mobile_width_changed(
+            self, _klass: Optional[MainWindow],
+            _value: GObject.ParamSpecBoolean) -> None:
+        is_mobile = self._window.props.mobile_width
+        scrolled_page = self._unlocked_database.get_current_page()
+        cur_elt = self._unlocked_database.current_element
+
+        if is_mobile and not self._unlocked_database.props.selection_mode:
+            if not scrolled_page or not scrolled_page.edit_page:
+                # No edit page, show safe filename
+                title = os.path.basename(self._db_manager.database_path)
+            elif self._db_manager.check_is_group_object(cur_elt):
+                # on group edit page, show entry title
+                title = cur_elt.name or ""
+            else:
+                # on entry edit page, show entry title
+                title = cur_elt.title or ""
+
+            self._title_label.props.label = title
+
+        show = is_mobile and not self._unlocked_database.props.selection_mode
+        self._title_label.props.visible = show
 
     @GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
@@ -130,3 +161,5 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         else:
             self._secondary_menu_button.props.visible = False
             self._linkedbox_right.props.visible = False
+
+        self._on_mobile_width_changed(None, None)

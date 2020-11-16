@@ -105,7 +105,6 @@ class UnlockedDatabase(GObject.GObject):
         self.register_dbus_signal()
 
         # Responsive UI
-        self.responsive_ui.headerbar_title()
         self.responsive_ui.headerbar_selection_button()
 
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
@@ -119,6 +118,7 @@ class UnlockedDatabase(GObject.GObject):
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
         self.pathbar = Pathbar(self, self.database_manager)
+        self._stack = self.builder.get_object("list_stack")
 
         self.headerbar = UnlockedHeaderBar(self)
 
@@ -130,7 +130,6 @@ class UnlockedDatabase(GObject.GObject):
         database_action_overlay = self.builder.get_object("database_action_overlay")
         self.overlay.add_overlay(database_action_overlay)
 
-        self._stack = self.builder.get_object("list_stack")
         # contains the "main page" with the stack and the revealer inside
         self.divider = self.builder.get_object("divider")
         self.revealer = self.builder.get_object("revealer")
@@ -165,7 +164,6 @@ class UnlockedDatabase(GObject.GObject):
     def set_browser_headerbar(self):
         self.responsive_ui.headerbar_selection_button()
         self.responsive_ui.action_bar()
-        self.responsive_ui.headerbar_title()
 
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""

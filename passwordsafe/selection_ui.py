@@ -75,7 +75,6 @@ class SelectionUI:
         self.unlocked_database.headerbar.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
 
         self.prepare_selection_page()
-        self.unlocked_database.responsive_ui.headerbar_title()
 
     def _exit_selection_mode(self):
         for stack_page in self.unlocked_database.get_pages():
@@ -106,7 +105,6 @@ class SelectionUI:
 
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()
-        self.unlocked_database.responsive_ui.headerbar_title()
 
     def prepare_selection_page(self):
         for stack_page in self.unlocked_database.get_pages():

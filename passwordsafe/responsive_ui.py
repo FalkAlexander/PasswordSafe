@@ -58,28 +58,6 @@ class ResponsiveUI():
         if db.window.mobile_width and not db.revealer.props.reveal_child:
             db.revealer.set_reveal_child(True)
 
-    def headerbar_title(self) -> None:
-        is_mobile = self.unlocked_database.window.props.mobile_width
-        scrolled_page = self.unlocked_database.get_current_page()
-        dbm = self.unlocked_database.database_manager
-        cur_ele = self.unlocked_database.current_element
-        title_label = self.unlocked_database.headerbar.builder.get_object("title_label")
-
-        if is_mobile and not self.unlocked_database.props.selection_mode:
-            if not scrolled_page.edit_page:
-                # No edit page, show safe filename
-                title = os.path.basename(dbm.database_path)
-            elif dbm.check_is_group_object(cur_ele):
-                # on group edit page, show entry title
-                title = cur_ele.name or ""
-            else:
-                # on entry edit page, show entry title
-                title = cur_ele.title or ""
-            title_label.set_text(title)
-
-        show = is_mobile and not self.unlocked_database.props.selection_mode
-        title_label.set_visible(show)
-
     def headerbar_selection_button(self):
         """Update the visibility of the headerbar buttons."""
         scrolled_page = self.unlocked_database.get_current_page()

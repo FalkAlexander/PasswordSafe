@@ -39,6 +39,7 @@ class ReferencesDialog():
         self.reference_entry.connect("icon-press", self.__on_copy_secondary_button_clicked)
         self.__connect_model_buttons_signals()
         self.dialog.connect("key-press-event", self.__on_key_press_event)
+        self.database_manager.connect("notify::locked", self.__on_locked)
 
     def __connect_model_buttons_signals(self):
         self.builder.get_object("property_label").connect("button-press-event", self.__open_codes_popover)
@@ -85,3 +86,6 @@ class ReferencesDialog():
     def __on_property_model_button_clicked(self, widget):
         self.property = widget.get_name()
         self.__update_reference_entry()
+
+    def __on_locked(self, _database_manager, _value):
+        self.dialog.close()

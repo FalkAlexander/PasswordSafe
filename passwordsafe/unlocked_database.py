@@ -60,7 +60,6 @@ class UnlockedDatabase(GObject.GObject):
     action_bar = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
-    references_dialog = NotImplemented
     notes_dialog = NotImplemented
 
     # Objects
@@ -871,11 +870,6 @@ class UnlockedDatabase(GObject.GObject):
 
             try:  # self.notes_dialog might be NotImplemented
                 self.notes_dialog.close()
-            except AttributeError:
-                pass
-
-            try:  # self.references_dialog might be NotImplemented
-                self.references_dialog.close()
             except AttributeError:
                 pass
 

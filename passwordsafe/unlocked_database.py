@@ -159,11 +159,6 @@ class UnlockedDatabase(GObject.GObject):
         search_button.connect("clicked", self._on_search_button_clicked)
         self.bind_accelerator(search_button, "<Control>f")
 
-        selection_button = self.headerbar.builder.get_object("selection_button")
-        selection_button.connect("clicked", self._on_selection_button_clicked)
-        selection_button_mobile = self.headerbar.builder.get_object("selection_button_mobile")
-        selection_button_mobile.connect("clicked", self._on_selection_button_clicked)
-
         # Search UI
         self.search.initialize()
 
@@ -704,10 +699,6 @@ class UnlockedDatabase(GObject.GObject):
     ):
         if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
-
-    def _on_selection_button_clicked(self, button: Gtk.Button) -> None:
-        # pylint: disable=unused-argument
-        self.props.selection_mode = True
 
     #
     # Dialog Creator

@@ -20,24 +20,23 @@ class ReferencesDialog():
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/references_dialog.ui")
 
-        self.assemble_dialog()
-        self.connect_signals()
-
-    def assemble_dialog(self):
+        self.reference_entry = self.builder.get_object("reference_entry")
         self.dialog = self.builder.get_object("references_dialog")
 
-        # Dialog
+        self.connect_signals()
+        self.assemble_dialog()
+
+    def assemble_dialog(self):
         self.dialog.set_modal(True)
         self.dialog.set_transient_for(self.unlocked_database.window)
         self.dialog.present()
-
         self.unlocked_database.references_dialog = self.dialog
+
+    def setup_signals(self) -> None:
         self.dialog.connect("delete-event", self.on_dialog_quit)
-
-        self.reference_entry = self.builder.get_object("reference_entry")
         self.reference_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
-
         self.connect_model_buttons_signals()
+        self.dialog.connect("key-press-event", self._on_key_press_event)
 
     def connect_model_buttons_signals(self):
         self.builder.get_object("property_label").connect("button-press-event", self.open_codes_popover)
@@ -61,17 +60,6 @@ class ReferencesDialog():
 
         self.reference_entry.set_text("{REF:" + self.property + "@I:" + encoded_uuid + "}")
 
-    #
-    # Events
-    #
-
-    def on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
-        self.unlocked_database.clipboard.set_text(widget.get_text(), -1)
-
-    def on_property_model_button_clicked(self, widget):
-        self.property = widget.get_name()
-        self.update_reference_entry()
-
     def open_codes_popover(self, widget, _label):
         codes_popover = self.builder.get_object("codes_popover")
         codes_popover.set_relative_to(widget)
@@ -82,18 +70,18 @@ class ReferencesDialog():
         uuid_popover.set_relative_to(widget)
         uuid_popover.popup()
 
-    #
-    # Tools
-    #
-
     def on_dialog_quit(self, _window, _event):
         self.unlocked_database.references_dialog = NotImplemented
-
-    def setup_signals(self) -> None:
-        self.dialog.connect("key-press-event", self._on_key_press_event)
 
     def _on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
         if event.keyval == Gdk.KEY_Escape:
             self.dialog.close()
             return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE
+
+    def on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
+        self.unlocked_database.clipboard.set_text(widget.get_text(), -1)
+
+    def on_property_model_button_clicked(self, widget):
+        self.property = widget.get_name()
+        self.update_reference_entry()

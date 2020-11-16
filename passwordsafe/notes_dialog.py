@@ -33,6 +33,7 @@ class NotesDialog():
 
         self.__setup_widgets()
         self.__setup_signals()
+        self.__setup_accelerators()
 
     def present(self):
         self.dialog.present()
@@ -63,6 +64,7 @@ class NotesDialog():
     def __setup_accelerators(self):
         self.dialog.add_accel_group(self.accelerators)
         self.add_search_accelerator()
+        # TODO Add accelerator for save on "<Control>s"
 
     def add_search_accelerator(self):
         key, mod = Gtk.accelerator_parse("<Control>f")

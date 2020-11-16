@@ -24,14 +24,15 @@ class ReferencesDialog():
         self.dialog = self.builder.get_object("references_dialog")
 
         self.__setup_signals()
-        self.__assemble_dialog()
+        self.__setup_widgets()
 
     def present(self) -> None:
         self.dialog.present()
 
-    def __assemble_dialog(self):
+    def __setup_widgets(self) -> None:
         self.dialog.set_modal(True)
         self.dialog.set_transient_for(self.unlocked_database.window)
+        self.__update_reference_entry()
 
     def __setup_signals(self) -> None:
         self.dialog.connect("delete-event", self.__on_dialog_quit)
@@ -43,14 +44,12 @@ class ReferencesDialog():
         self.builder.get_object("property_label").connect("button-press-event", self.__open_codes_popover)
         self.builder.get_object("identifier_label").connect("button-press-event", self.__open_codes_popover)
         self.builder.get_object("uuid_label").connect("button-press-event", self.__open_uuid_popover)
-
+        # Buttons
         self.builder.get_object("title_button").connect("clicked", self.__on_property_model_button_clicked)
         self.builder.get_object("username_button").connect("clicked", self.__on_property_model_button_clicked)
         self.builder.get_object("password_button").connect("clicked", self.__on_property_model_button_clicked)
         self.builder.get_object("url_button").connect("clicked", self.__on_property_model_button_clicked)
         self.builder.get_object("notes_button").connect("clicked", self.__on_property_model_button_clicked)
-
-        self.__update_reference_entry()
 
     def __update_reference_entry(self):
         """Update the reference entry and selected label text."""

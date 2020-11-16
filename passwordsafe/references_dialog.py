@@ -35,7 +35,6 @@ class ReferencesDialog():
         self.__update_reference_entry()
 
     def __setup_signals(self) -> None:
-        self.dialog.connect("delete-event", self.__on_dialog_quit)
         self.reference_entry.connect("icon-press", self.__on_copy_secondary_button_clicked)
         self.__connect_model_buttons_signals()
         self.dialog.connect("key-press-event", self.__on_key_press_event)
@@ -70,9 +69,6 @@ class ReferencesDialog():
         uuid_popover = self.builder.get_object("uuid_popover")
         uuid_popover.set_relative_to(widget)
         uuid_popover.popup()
-
-    def __on_dialog_quit(self, _window, _event):
-        self.unlocked_database.references_dialog = NotImplemented
 
     def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
         if event.keyval == Gdk.KEY_Escape:

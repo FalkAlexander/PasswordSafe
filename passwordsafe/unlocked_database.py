@@ -503,7 +503,7 @@ class UnlockedDatabase(GObject.GObject):
         """Delete the visible entry from the menu."""
         self.start_database_lock_timer()
 
-        parent_group = self.database_manager.get_parent_group(self.current_element)
+        parent_group = self.current_element.parentgroup
         self.database_manager.delete_from_database(self.current_element)
 
         self._remove_page(self.current_element)
@@ -522,7 +522,7 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
 
         self.database_manager.duplicate_entry(self.current_element)
-        parent_group = self.database_manager.get_parent_group(self.current_element)
+        parent_group = self.current_element.parentgroup
 
         if self.database_manager.check_is_root_group(parent_group) is True:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
@@ -871,7 +871,7 @@ class UnlockedDatabase(GObject.GObject):
         if not self.__can_go_back():
             return
 
-        parent_group = db_manager.get_parent_group(self.current_element)
+        parent_group = self.current_element.parentgroup
 
         if db_manager.check_is_root_group(parent_group):
             pathbar = self.pathbar

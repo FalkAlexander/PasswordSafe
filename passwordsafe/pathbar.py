@@ -88,14 +88,13 @@ class Pathbar(Gtk.Box):
 
         self.add_seperator_label()
 
-        parent_group = self.database_manager.get_parent_group(element)
+        parent_group = element.parentgroup
         while not parent_group.is_root_group:
             self.pack_end(
                 self.create_pathbar_button(parent_group),
                 True, True, 0)
             self.add_seperator_label()
-            parent_group = self.database_manager.get_parent_group(
-                parent_group)
+            parent_group = parent_group.parentgroup
 
         self.add_home_button()
         self.show_all()
@@ -196,7 +195,7 @@ class Pathbar(Gtk.Box):
 
         if page.is_dirty:
             # page is dirty, parent page needs to be rebuild too
-            parent_group = self.database_manager.get_parent_group(current_ele)
+            parent_group = current_ele.parentgroup
             page_uuid = parent_group.uuid
             self.unlocked_database.schedule_stack_page_for_destroy(page_uuid)
             page.is_dirty = False
@@ -218,8 +217,7 @@ class Pathbar(Gtk.Box):
         if self.database_manager.check_is_group_object(current_elt):
             group_name = self.database_manager.get_group_name(current_elt)
             if not (group_name or notes or icon):
-                parent_group = self.database_manager.get_parent_group(
-                    current_elt)
+                parent_group = current_elt.parentgroup
                 self.database_manager.delete_from_database(current_elt)
                 self.rebuild_pathbar(parent_group)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
@@ -242,7 +240,7 @@ class Pathbar(Gtk.Box):
             or (icon != "0")
             or entry_attributes
         ):
-            parent_group = self.database_manager.get_parent_group(current_elt)
+            parent_group = self.database_manager.parentgroup
             self.database_manager.delete_from_database(current_elt)
             self.rebuild_pathbar(parent_group)
             self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)

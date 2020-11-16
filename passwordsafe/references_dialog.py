@@ -26,11 +26,12 @@ class ReferencesDialog():
         self.__setup_signals()
         self.__assemble_dialog()
 
+    def present(self) -> None:
+        self.dialog.present()
+
     def __assemble_dialog(self):
         self.dialog.set_modal(True)
         self.dialog.set_transient_for(self.unlocked_database.window)
-        self.dialog.present()
-        self.unlocked_database.references_dialog = self.dialog
 
     def __setup_signals(self) -> None:
         self.dialog.connect("delete-event", self.__on_dialog_quit)

@@ -154,10 +154,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Assemble headerbar
     def set_headerbar(self):
-        search_button = self.headerbar.builder.get_object("search_button")
-        search_button.connect("clicked", self._on_search_button_clicked)
-        self.bind_accelerator(search_button, "<Control>f")
-
         # Search UI
         self.search.initialize()
 
@@ -504,10 +500,6 @@ class UnlockedDatabase(GObject.GObject):
     #
     # Events
     #
-
-    def _on_search_button_clicked(self, btn):
-        # pylint: disable=unused-argument
-        self.props.search_active = True
 
     def on_list_box_row_activated(self, _widget, list_box_row):
         self.start_database_lock_timer()

@@ -19,6 +19,10 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self.builder = builder
         self._unlocked_database = unlocked_database
 
+        self._search_button = self.builder.get_object("search_button")
+        self._search_button.connect("clicked", self._on_search_button_clicked)
+        self._unlocked_database.bind_accelerator(self._search_button, "<Control>f")
+
         self._selection_button_box = self.builder.get_object(
             "selection_button_box")
         self._unlocked_database.bind_property(
@@ -38,6 +42,9 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._unlocked_database.bind_property(
             "selection-mode", self._selection_options_button, "visible",
             GObject.BindingFlags.SYNC_CREATE)
+
+    def _on_search_button_clicked(self, _btn: Gtk.Button) -> None:
+        self._unlocked_database.props.search_active = True
 
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True

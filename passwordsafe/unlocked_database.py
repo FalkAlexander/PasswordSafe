@@ -212,7 +212,7 @@ class UnlockedDatabase(GObject.GObject):
             self.group_page.insert_group_properties_into_listbox(
                 scrolled_window.properties_list_box
             )
-            self.group_page.set_group_edit_page_headerbar()
+            self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif (
             not self._stack.get_child_by_name(self.current_element.uuid.urn)

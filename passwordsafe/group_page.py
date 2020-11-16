@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from gi.repository import Gtk
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
-from passwordsafe. unlocked_headerbar import UnlockedHeaderBar
 
 
 class GroupPage:
@@ -17,15 +16,6 @@ class GroupPage:
 
     def __init__(self, u_d):
         self.unlocked_database = u_d
-
-    #
-    # Header Bar
-    #
-
-    # Group creation/editing headerbar
-    def set_group_edit_page_headerbar(self):
-        edit_mode = UnlockedHeaderBar.Mode.GROUP_EDIT
-        self.unlocked_database.headerbar.props.mode = edit_mode
 
     #
     # Create Property Rows

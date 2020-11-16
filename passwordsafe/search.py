@@ -52,6 +52,7 @@ class Search:
         self._timeout_info: int = 0
         self._result_list: List[UUID] = []
         self._search_text: str = self._search_entry.props.text
+        self._current_result_idx: int = 0
 
     def initialize(self):
         # Search Headerbar
@@ -180,7 +181,7 @@ class Search:
             self._overlay.add_overlay(self._empty_search_overlay)
             return
 
-        self._current_idx = 0
+        self._current_result_idx = 0
         GLib.idle_add(self._show_results)
 
     def _show_results(self, load_all=False):
@@ -196,7 +197,7 @@ class Search:
         skipped_rows: bool = False
 
         new_idx: int = 0
-        for uuid in self._result_list[self._current_idx:]:
+        for uuid in self._result_list[self._current_result_idx:]:
             if search_height < window_height or load_all:
                 if self._db_manager.check_is_group(uuid):
                     search_height += group_row_height
@@ -215,7 +216,7 @@ class Search:
                 skipped_rows = True
                 break
 
-        self._current_idx += new_idx
+        self._current_result_idx += new_idx
 
         if skipped_rows:
             load_more_row = self._builder.get_object("load_more_row")
@@ -281,7 +282,7 @@ class Search:
 
         return False
 
-    def on_headerbar_search_entry_enter_pressed(self, widget_):
+    def on_headerbar_search_entry_enter_pressed(self, _widget):
         self.unlocked_database.start_database_lock_timer()
 
         # Do nothing on empty search terms or no search results

@@ -27,7 +27,7 @@ class Application(Gtk.Application):
                              "Enable debug logging",
                              None)
 
-    def do_startup(self):
+    def do_startup(self):  # pylint: disable=arguments-differ
         Gtk.Application.do_startup(self)
         GLib.set_application_name('Password Safe')
         GLib.set_prgname("Password Safe")
@@ -36,7 +36,7 @@ class Application(Gtk.Application):
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 
-    def do_command_line(self, cmd_line):
+    def do_command_line(self, cmd_line):  # pylint: disable=arguments-differ
         options = cmd_line.get_options_dict()
         # convert GVariantDict -> GVariant -> dict
         options = options.end().unpack()
@@ -56,7 +56,7 @@ class Application(Gtk.Application):
         self.activate()
         return 0
 
-    def do_activate(self):
+    def do_activate(self):  # pylint: disable=arguments-differ
         if self.window:
             # Window exists already eg if we invoke us a 2nd time.
             # Just present the existing one.

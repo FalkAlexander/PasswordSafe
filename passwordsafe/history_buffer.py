@@ -50,16 +50,17 @@ class Logic():
                 self.buffer_index = 0
 
     def do_undo(self):
-        op = False
+        # whether we are currently in an undo operation, ie self.index exists
+        in_undo = False
         if self.index is NotImplemented:
             self.index = len(self.history) - 1
-            op = True
+            in_undo = True
 
         if self.index <= 0 or self.index > len(self.history):
             return
 
         self.increase = False
-        if op is False:
+        if in_undo is False:
             self.index -= 1
         self.history.append(self.history[self.index])
         text = self.history[self.index - 1]

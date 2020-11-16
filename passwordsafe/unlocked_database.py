@@ -92,8 +92,6 @@ class UnlockedDatabase(GObject.GObject):
 
         self._current_element: Optional[Union[Entry, Group]] = None
 
-        self._linkedbox_right: Gtk.Box = None
-
         # Declare database as opened
         self.window.opened_databases.append(self)
 
@@ -160,28 +158,12 @@ class UnlockedDatabase(GObject.GObject):
         # Selection UI
         self.selection_ui.initialize()
 
-        self._linkedbox_right = self.headerbar.builder.get_object("linkedbox_right")
-        self.bind_property(
-            "selection-mode",
-            self._linkedbox_right,
-            "visible",
-            GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
-        )
-
         self._update_headerbar()
         # Put pathbar in the right place (top or bottom)
         self.responsive_ui.action_bar()
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
-        if not self.props.selection_mode:
-            self._linkedbox_right.show()
-
-        secondary_menu_button = self.headerbar.builder.get_object(
-            "secondary_menu_button"
-        )
-        secondary_menu_button.hide()
-
         self.responsive_ui.headerbar_selection_button()
         self.responsive_ui.action_bar()
         self.responsive_ui.headerbar_title()
@@ -245,7 +227,6 @@ class UnlockedDatabase(GObject.GObject):
             self.group_page.insert_group_properties_into_listbox(
                 scrolled_window.properties_list_box
             )
-            self._linkedbox_right.hide()
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif (
@@ -325,11 +306,12 @@ class UnlockedDatabase(GObject.GObject):
             # For group
             if self.database_manager.check_is_group(self.current_element.uuid):
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
+                self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP
                 self.set_browser_headerbar()
             # For entry
             else:
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
-                self._linkedbox_right.hide()
+                self.headerbar.props.mode = UnlockedHeaderBar.Mode.ENTRY
                 self.entry_page.set_entry_page_headerbar()
 
     def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
@@ -364,9 +346,10 @@ class UnlockedDatabase(GObject.GObject):
             self._stack.set_visible_child_name(page_uuid.urn)
 
         if group_page and not self.props.selection_mode:
+            self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
             self.set_browser_headerbar()
         elif not group_page:
-            self._linkedbox_right.hide()
+            self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
             self.entry_page.set_entry_page_headerbar()
 
     def _remove_page(self, element: Union[Entry, Group]) -> None:

@@ -95,7 +95,7 @@ class Pathbar(Gtk.Box):
                 True, True, 0)
             self.add_seperator_label()
             parent_group = self.database_manager.get_parent_group(
-                parent_group.uuid)
+                parent_group)
 
         self.add_home_button()
         self.show_all()

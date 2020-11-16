@@ -54,34 +54,14 @@ class DatabaseManager(GObject.GObject):
     # Group Transformation Methods
     #
 
-    def get_parent_group(
-            self, data: Union[Entry, Group, UUID]) -> Optional[Group]:
-        """Get parent group from an entry, a group or an uuid
+    def get_parent_group(self, elt: Union[Entry, Group]) -> Optional[Group]:
+        """Get parent group from an entry or a group
 
-        :param data: UUID, Entry or Group
+        :param elt: Entry or Group
         :returns: parent group
         :rtype: Group
         """
-        if isinstance(data, UUID):
-            if self.check_is_group(data):
-                value: Union[Group, Entry] = self.db.find_groups(
-                    uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-            else:
-                value = self.db.find_entries(uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-        else:
-            value = data
-
-        return value.parentgroup
+        return elt.parentgroup
 
     def get_group(self, uuid: UUID) -> Optional[Group]:
         """Return the group object for a group uuid

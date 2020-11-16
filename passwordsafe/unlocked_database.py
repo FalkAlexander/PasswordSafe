@@ -954,6 +954,43 @@ class UnlockedDatabase(GObject.GObject):
         connection = self.window.application.get_dbus_connection()
         connection.signal_unsubscribe(self.dbus_subscription_id)
 
+    def __can_go_back(self):
+        db_manager = self.database_manager
+        current_element = self.current_element
+
+        if (db_manager.check_is_group_object(current_element)
+            and db_manager.check_is_root_group(current_element)):
+            return False
+        return True
+
+    def go_back(self):
+        db_manager = self.database_manager
+
+        if self.props.selection_mode:
+            self.props.selection_mode = False
+            return
+        elif self.props.search_active:
+            self.props.search_active = False
+            return
+        elif not self.__can_go_back():
+            return
+
+        parent_group = db_manager.get_parent_group(
+            self.current_element)
+
+        if db_manager.check_is_root_group(parent_group):
+            pathbar = self.pathbar
+            pathbar.on_home_button_clicked(pathbar.home_button)
+
+        pathbar_btn_type = passwordsafe.pathbar_button.PathbarButton
+        for button in self.pathbar:
+            if (
+                isinstance(button, pathbar_btn_type)
+                and button.uuid == parent_group.uuid
+            ):
+                pathbar = self.pathbar
+                pathbar.on_pathbar_button_clicked(button)
+
     @GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:

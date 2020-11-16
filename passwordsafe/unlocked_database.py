@@ -827,9 +827,11 @@ class UnlockedDatabase(GObject.GObject):
 
         return True
 
-    def show_references_dialog(self, _action, _param):
-        self.references_dialog = ReferencesDialog(self)
-        self.references_dialog.present()
+    def show_references_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
+        """Show a Group/Entry reference dialog
+
+        Invoked by the app.entry.refences action"""
+        ReferencesDialog(self).present()
 
     def show_properties_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Show a Group/Entry property dialog

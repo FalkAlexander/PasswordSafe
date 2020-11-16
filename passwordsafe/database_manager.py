@@ -636,10 +636,10 @@ class DatabaseManager(GObject.GObject):
         return True
 
     # Search for an entry or a group
-    def search(self, string: str, path: str) -> List[UUID]:
+    def search(self, string: str, path: str) -> List[Union[Entry, Group]]:
         full_text_search = passwordsafe.config_manager.get_full_text_search()
         global_search = not passwordsafe.config_manager.get_local_search()
-        uuid_list = []
+        results: List[Union[Entry, Group]] = []
 
         def search_entry(entry: Union[Entry, Group], lookfor: List[Union[None, str]]) -> None:
             """Looks if the querry string appears in any on the items of lookfor.
@@ -649,12 +649,12 @@ class DatabaseManager(GObject.GObject):
                 if term is None:
                     continue
                 if string.lower() in term.lower():
-                    if global_search and entry.uuid not in uuid_list:
-                        uuid_list.append(entry.uuid)
+                    if global_search and entry not in results:
+                        results.append(entry.uuid)
                     elif self.get_parent_group(entry) is not None:
                         parent_group: Group = self.get_parent_group(entry)
-                        if parent_group.path == path and entry.uuid not in uuid_list:
-                            uuid_list.append(entry.uuid)
+                        if parent_group.path == path and entry not in results:
+                            results.append(entry)
 
         for group in self.db.groups:
             if group.is_root_group is False:
@@ -671,7 +671,7 @@ class DatabaseManager(GObject.GObject):
                 url = entry.url
                 search_entry(entry, [username, notes, url])
 
-        return uuid_list
+        return results
 
     def check_is_group(self, uuid):
         """Whether uuid is a group uuid"""

@@ -381,7 +381,7 @@ class UnlockedDatabase(GObject.GObject):
 
         if group_page and not self.props.selection_mode:
             self.set_browser_headerbar()
-        else:
+        elif not group_page:
             self._linkedbox_right.hide()
             self.entry_page.set_entry_page_headerbar()
 

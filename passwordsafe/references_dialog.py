@@ -23,35 +23,35 @@ class ReferencesDialog():
         self.reference_entry = self.builder.get_object("reference_entry")
         self.dialog = self.builder.get_object("references_dialog")
 
-        self.connect_signals()
-        self.assemble_dialog()
+        self.__setup_signals()
+        self.__assemble_dialog()
 
-    def assemble_dialog(self):
+    def __assemble_dialog(self):
         self.dialog.set_modal(True)
         self.dialog.set_transient_for(self.unlocked_database.window)
         self.dialog.present()
         self.unlocked_database.references_dialog = self.dialog
 
-    def setup_signals(self) -> None:
-        self.dialog.connect("delete-event", self.on_dialog_quit)
-        self.reference_entry.connect("icon-press", self.on_copy_secondary_button_clicked)
-        self.connect_model_buttons_signals()
-        self.dialog.connect("key-press-event", self._on_key_press_event)
+    def __setup_signals(self) -> None:
+        self.dialog.connect("delete-event", self.__on_dialog_quit)
+        self.reference_entry.connect("icon-press", self.__on_copy_secondary_button_clicked)
+        self.__connect_model_buttons_signals()
+        self.dialog.connect("key-press-event", self.__on_key_press_event)
 
-    def connect_model_buttons_signals(self):
-        self.builder.get_object("property_label").connect("button-press-event", self.open_codes_popover)
-        self.builder.get_object("identifier_label").connect("button-press-event", self.open_codes_popover)
-        self.builder.get_object("uuid_label").connect("button-press-event", self.open_uuid_popover)
+    def __connect_model_buttons_signals(self):
+        self.builder.get_object("property_label").connect("button-press-event", self.__open_codes_popover)
+        self.builder.get_object("identifier_label").connect("button-press-event", self.__open_codes_popover)
+        self.builder.get_object("uuid_label").connect("button-press-event", self.__open_uuid_popover)
 
-        self.builder.get_object("title_button").connect("clicked", self.on_property_model_button_clicked)
-        self.builder.get_object("username_button").connect("clicked", self.on_property_model_button_clicked)
-        self.builder.get_object("password_button").connect("clicked", self.on_property_model_button_clicked)
-        self.builder.get_object("url_button").connect("clicked", self.on_property_model_button_clicked)
-        self.builder.get_object("notes_button").connect("clicked", self.on_property_model_button_clicked)
+        self.builder.get_object("title_button").connect("clicked", self.__on_property_model_button_clicked)
+        self.builder.get_object("username_button").connect("clicked", self.__on_property_model_button_clicked)
+        self.builder.get_object("password_button").connect("clicked", self.__on_property_model_button_clicked)
+        self.builder.get_object("url_button").connect("clicked", self.__on_property_model_button_clicked)
+        self.builder.get_object("notes_button").connect("clicked", self.__on_property_model_button_clicked)
 
-        self.update_reference_entry()
+        self.__update_reference_entry()
 
-    def update_reference_entry(self):
+    def __update_reference_entry(self):
         """Update the reference entry and selected label text."""
         uuid = self.unlocked_database.current_element.uuid
         encoded_uuid = uuid.hex.upper()
@@ -60,28 +60,28 @@ class ReferencesDialog():
 
         self.reference_entry.set_text("{REF:" + self.property + "@I:" + encoded_uuid + "}")
 
-    def open_codes_popover(self, widget, _label):
+    def __open_codes_popover(self, widget, _label):
         codes_popover = self.builder.get_object("codes_popover")
         codes_popover.set_relative_to(widget)
         codes_popover.popup()
 
-    def open_uuid_popover(self, widget, _label):
+    def __open_uuid_popover(self, widget, _label):
         uuid_popover = self.builder.get_object("uuid_popover")
         uuid_popover.set_relative_to(widget)
         uuid_popover.popup()
 
-    def on_dialog_quit(self, _window, _event):
+    def __on_dialog_quit(self, _window, _event):
         self.unlocked_database.references_dialog = NotImplemented
 
-    def _on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
+    def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
         if event.keyval == Gdk.KEY_Escape:
             self.dialog.close()
             return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE
 
-    def on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
+    def __on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.clipboard.set_text(widget.get_text(), -1)
 
-    def on_property_model_button_clicked(self, widget):
+    def __on_property_model_button_clicked(self, widget):
         self.property = widget.get_name()
-        self.update_reference_entry()
+        self.__update_reference_entry()

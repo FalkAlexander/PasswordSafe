@@ -74,7 +74,8 @@ class UnlockedDatabase(GObject.GObject):
     listbox_insert_thread = NotImplemented
 
     selection_mode = GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(self, window, widget, dbm):
         super().__init__()
@@ -112,8 +113,7 @@ class UnlockedDatabase(GObject.GObject):
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
 
-        self.database_manager.connect(
-            "notify::locked", self._on_database_lock_changed)
+        self.database_manager.connect("notify::locked", self._on_database_lock_changed)
 
     #
     # Stack Pages
@@ -177,8 +177,7 @@ class UnlockedDatabase(GObject.GObject):
         selection_button = self.builder.get_object("selection_button")
         selection_button.connect("clicked", self._on_selection_button_clicked)
         selection_button_mobile = self.builder.get_object("selection_button_mobile")
-        selection_button_mobile.connect(
-            "clicked", self._on_selection_button_clicked)
+        selection_button_mobile.connect("clicked", self._on_selection_button_clicked)
 
         back_button_mobile = self.builder.get_object("back_button_mobile")
         back_button_mobile.connect("clicked", self.on_back_button_mobile_clicked)
@@ -189,26 +188,36 @@ class UnlockedDatabase(GObject.GObject):
         # Selection UI
         self.selection_ui.initialize()
 
-        self._selection_button_box = self.builder.get_object(
-            "selection_button_box")
+        self._selection_button_box = self.builder.get_object("selection_button_box")
         self.bind_property(
-            "selection-mode", self._selection_button_box, "visible",
-            GObject.BindingFlags.SYNC_CREATE)
+            "selection-mode",
+            self._selection_button_box,
+            "visible",
+            GObject.BindingFlags.SYNC_CREATE,
+        )
 
         self._linkedbox_right = self.builder.get_object("linkedbox_right")
         self.bind_property(
-            "selection-mode", self._linkedbox_right, "visible",
-            GObject.BindingFlags.INVERT_BOOLEAN
-            | GObject.BindingFlags.SYNC_CREATE)
+            "selection-mode",
+            self._linkedbox_right,
+            "visible",
+            GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
+        )
 
         self._selection_options_button = self.builder.get_object(
-            "selection_options_button")
+            "selection_options_button"
+        )
         self.bind_property(
-            "selection-mode", self._selection_options_button, "visible",
-            GObject.BindingFlags.SYNC_CREATE)
+            "selection-mode",
+            self._selection_options_button,
+            "visible",
+            GObject.BindingFlags.SYNC_CREATE,
+        )
 
         self._update_headerbar()
-        self.pathbar = Pathbar(self, self.database_manager, self.database_manager.get_root_group())
+        self.pathbar = Pathbar(
+            self, self.database_manager, self.database_manager.get_root_group()
+        )
         # Put pathbar in the right place (top or bottom)
         self.responsive_ui.action_bar()
 
@@ -216,7 +225,9 @@ class UnlockedDatabase(GObject.GObject):
     def set_browser_headerbar(self):
         self._linkedbox_right.show()
 
-        secondary_menupopover_button = self.builder.get_object("secondary_menupopover_button")
+        secondary_menupopover_button = self.builder.get_object(
+            "secondary_menupopover_button"
+        )
         secondary_menupopover_button.hide()
 
         self.responsive_ui.headerbar_back_button()
@@ -254,7 +265,9 @@ class UnlockedDatabase(GObject.GObject):
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
             scrolled_window = ScrolledPage(True)
-            scrolled_window.properties_list_box = builder.get_object("properties_list_box")
+            scrolled_window.properties_list_box = builder.get_object(
+                "properties_list_box"
+            )
 
             # Responsive Container
             hdy_page = Handy.Clamp()
@@ -269,17 +282,23 @@ class UnlockedDatabase(GObject.GObject):
 
             self.add_page(scrolled_window, self.current_element.uuid.urn)
             self.switch_page(self.current_element)
-            self.group_page.insert_group_properties_into_listbox(scrolled_window.properties_list_box)
+            self.group_page.insert_group_properties_into_listbox(
+                scrolled_window.properties_list_box
+            )
             self._linkedbox_right.hide()
             self.group_page.set_group_edit_page_headerbar()
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
-        elif (not self._stack.get_child_by_name(self.current_element.uuid.urn)
-              and not edit_group):
+        elif (
+            not self._stack.get_child_by_name(self.current_element.uuid.urn)
+            and not edit_group
+        ):
             self.database_manager.set_element_atime(self.current_element)
             # Create not existing stack page for group
             if self.database_manager.check_is_group(self.current_element.uuid):
                 builder = Gtk.Builder()
-                builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+                builder.add_from_resource(
+                    "/org/gnome/PasswordSafe/unlocked_database.ui"
+                )
                 list_box = builder.get_object("list_box")
                 list_box.connect("row-activated", self.on_list_box_row_activated)
 
@@ -305,7 +324,9 @@ class UnlockedDatabase(GObject.GObject):
 
                 list_box.hide()
 
-                self.listbox_insert_thread = threading.Thread(target=self.insert_groups_into_listbox, args=(list_box, overlay))
+                self.listbox_insert_thread = threading.Thread(
+                    target=self.insert_groups_into_listbox, args=(list_box, overlay)
+                )
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()
             # Create not existing stack page for entry
@@ -316,7 +337,9 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window = ScrolledPage(True)
 
                 viewport = Gtk.Viewport()
-                scrolled_window.properties_list_box = builder.get_object("properties_list_box")
+                scrolled_window.properties_list_box = builder.get_object(
+                    "properties_list_box"
+                )
 
                 # Responsive Container
                 hdy_page = Handy.Clamp()
@@ -332,9 +355,13 @@ class UnlockedDatabase(GObject.GObject):
                 self.add_page(scrolled_window, self.current_element.uuid.urn)
                 self.switch_page(self.current_element)
                 if new_entry is True:
-                    self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, True)
+                    self.entry_page.insert_entry_properties_into_listbox(
+                        scrolled_window.properties_list_box, True
+                    )
                 else:
-                    self.entry_page.insert_entry_properties_into_listbox(scrolled_window.properties_list_box, False)
+                    self.entry_page.insert_entry_properties_into_listbox(
+                        scrolled_window.properties_list_box, False
+                    )
         # Stack page with current group's uuid already exists, we only need to switch stack page
         else:
             self.database_manager.set_element_atime(self.current_element)
@@ -450,7 +477,9 @@ class UnlockedDatabase(GObject.GObject):
         groups = NotImplemented
         sorted_list = []
 
-        add_loading_indicator_thread = threading.Thread(target=self.add_loading_indicator_thread, args=(list_box, overlay))
+        add_loading_indicator_thread = threading.Thread(
+            target=self.add_loading_indicator_thread, args=(list_box, overlay)
+        )
         add_loading_indicator_thread.start()
 
         groups = self.current_element.subgroups
@@ -462,7 +491,9 @@ class UnlockedDatabase(GObject.GObject):
         entries = self.current_element.entries
         sorted_list = []
 
-        GLib.idle_add(self.entry_instance_creation, list_box, sorted_list, entries, overlay)
+        GLib.idle_add(
+            self.entry_instance_creation, list_box, sorted_list, entries, overlay
+        )
 
     def group_instance_creation(self, list_box, sorted_list, groups):
         for group in groups:
@@ -527,13 +558,17 @@ class UnlockedDatabase(GObject.GObject):
 
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
-                save_thread = threading.Thread(target=self.database_manager.save_database)
+                save_thread = threading.Thread(
+                    target=self.database_manager.save_database
+                )
                 save_thread.daemon = False
                 save_thread.start()
                 self.show_database_action_revealer(_("Database saved"))
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
-                self.show_database_action_revealer(_("Please wait. Another save is running."))
+                self.show_database_action_revealer(
+                    _("Please wait. Another save is running.")
+                )
         else:
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
             self.show_database_action_revealer(_("No changes made"))
@@ -549,7 +584,8 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True
         new_entry: Entry = self.database_manager.add_entry_to_database(
-            "", "", "", None, None, "0", self.current_element.uuid)
+            "", "", "", None, None, "0", self.current_element.uuid
+        )
         self.current_element = new_entry
         self.pathbar.add_pathbar_button_to_pathbar(new_entry.uuid)
         self.show_page_of_new_directory(False, True)
@@ -559,18 +595,20 @@ class UnlockedDatabase(GObject.GObject):
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True
-        group = self.database_manager.add_group_to_database("", "0", "", self.current_element)
+        group = self.database_manager.add_group_to_database(
+            "", "0", "", self.current_element
+        )
         self.current_element = group
         self.pathbar.add_pathbar_button_to_pathbar(self.current_element.uuid)
         self.show_page_of_new_directory(True, False)
 
     def on_element_delete_menu_button_clicked(
-            self, _action: Gio.SimpleAction, _param: None) -> None:
+        self, _action: Gio.SimpleAction, _param: None
+    ) -> None:
         """Delete the visible entry from the menu."""
         self.start_database_lock_timer()
 
-        parent_group = self.database_manager.get_parent_group(
-            self.current_element)
+        parent_group = self.database_manager.get_parent_group(self.current_element)
         self.database_manager.delete_from_database(self.current_element)
 
         self._remove_page(self.current_element)
@@ -589,14 +627,15 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
 
         self.database_manager.duplicate_entry(self.current_element)
-        parent_group = self.database_manager.get_parent_group(
-            self.current_element)
+        parent_group = self.database_manager.get_parent_group(self.current_element)
 
         if self.database_manager.check_is_root_group(parent_group) is True:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
         else:
             for button in self.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
+                if button.get_name() == "PathbarButtonDynamic" and isinstance(
+                    button, passwordsafe.pathbar_button.PathbarButton
+                ):
                     if button.uuid == parent_group.uuid:
                         self.pathbar.on_pathbar_button_clicked(button)
 
@@ -678,7 +717,9 @@ class UnlockedDatabase(GObject.GObject):
 
         self.show_database_action_revealer(_("Copied to clipboard"))
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
-        self.clipboard_timer = Timer(clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard])
+        self.clipboard_timer = Timer(
+            clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard]
+        )
         self.clipboard_timer.start()
 
     def on_database_settings_entry_clicked(self, _action, _param):
@@ -690,7 +731,9 @@ class UnlockedDatabase(GObject.GObject):
         self.list_box_sorting = sorting
         self.rebuild_all_pages()
 
-    def on_session_lock(self, _connection, _unique_name, _object_path, _interface, _signal, state):
+    def on_session_lock(
+        self, _connection, _unique_name, _object_path, _interface, _signal, state
+    ):
         if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
 
@@ -720,9 +763,11 @@ class UnlockedDatabase(GObject.GObject):
             parent = self.database_manager.get_parent_group(page_uuid)
         elif scrolled_page.edit_page is True and group_page is False:
             parent = self.database_manager.get_parent_group(page_uuid)
-        elif (not scrolled_page.edit_page
-              and not self.props.selection_mode
-              and not self.props.search_active):
+        elif (
+            not scrolled_page.edit_page
+            and not self.props.selection_mode
+            and not self.props.search_active
+        ):
             if self.database_manager.check_is_root_group(self.current_element) is True:
                 self.on_lock_button_clicked(None)
                 return
@@ -734,7 +779,9 @@ class UnlockedDatabase(GObject.GObject):
             return
 
         for button in self.pathbar:
-            if button.get_name() == "PathbarButtonDynamic" and isinstance(button, passwordsafe.pathbar_button.PathbarButton):
+            if button.get_name() == "PathbarButtonDynamic" and isinstance(
+                button, passwordsafe.pathbar_button.PathbarButton
+            ):
                 if button.uuid == parent.uuid:
                     self.pathbar.on_pathbar_button_clicked(button)
 
@@ -748,8 +795,7 @@ class UnlockedDatabase(GObject.GObject):
         Saves the db and closes the tab.
         :returns: True if we saved, False if the whole thing should be aborted
         """
-        if not self.database_manager.is_dirty \
-           or self.database_manager.save_running:
+        if not self.database_manager.is_dirty or self.database_manager.save_running:
             return True  # no dirty db, do nothing.
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
@@ -771,8 +817,7 @@ class UnlockedDatabase(GObject.GObject):
             pass  # We are done with this db.
         elif res == Gtk.ResponseType.YES:
             # "clicked save". Save changes
-            save_thread = threading.Thread(
-                target=self.database_manager.save_database)
+            save_thread = threading.Thread(target=self.database_manager.save_database)
             save_thread.daemon = False
             save_thread.start()
         else:
@@ -798,13 +843,19 @@ class UnlockedDatabase(GObject.GObject):
         database_action_label.set_text(message)
 
         database_action_revealer = self.builder.get_object("database_action_revealer")
-        database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
-        revealer_timer = Timer(3.0, GLib.idle_add, args=[self.hide_database_action_revealer])
+        database_action_revealer.set_reveal_child(
+            not database_action_revealer.get_reveal_child()
+        )
+        revealer_timer = Timer(
+            3.0, GLib.idle_add, args=[self.hide_database_action_revealer]
+        )
         revealer_timer.start()
 
     def hide_database_action_revealer(self):
         database_action_revealer = self.builder.get_object("database_action_revealer")
-        database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
+        database_action_revealer.set_reveal_child(
+            not database_action_revealer.get_reveal_child()
+        )
 
     def _on_database_lock_changed(self, _database_manager, _value):
         locked = self.database_manager.props.locked
@@ -840,7 +891,9 @@ class UnlockedDatabase(GObject.GObject):
                     )
 
                 if passwordsafe.config_manager.get_save_automatically():
-                    save_thread = threading.Thread(target=self.database_manager.save_database)
+                    save_thread = threading.Thread(
+                        target=self.database_manager.save_database
+                    )
                     save_thread.daemon = False
                     save_thread.start()
 
@@ -855,7 +908,15 @@ class UnlockedDatabase(GObject.GObject):
         self.database_manager.props.locked = True
 
         # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-        self.send_notification(_("%s locked") % (os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]), _("Keepass safe locked due to inactivity"))
+        self.send_notification(
+            _("%s locked")
+            % (
+                os.path.splitext(ntpath.basename(self.database_manager.database_path))[
+                    0
+                ]
+            ),
+            _("Keepass safe locked due to inactivity"),
+        )
 
     #
     # Helper Methods
@@ -874,7 +935,9 @@ class UnlockedDatabase(GObject.GObject):
             self.database_lock_timer.cancel()
         timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60
         if timeout:
-            self.database_lock_timer = Timer(timeout, GLib.idle_add, args=[self.lock_timeout_database])
+            self.database_lock_timer = Timer(
+                timeout, GLib.idle_add, args=[self.lock_timeout_database]
+            )
             self.database_lock_timer.start()
 
     def cancel_timers(self):
@@ -919,7 +982,10 @@ class UnlockedDatabase(GObject.GObject):
         spinner.start()
         overlay.add_overlay(spinner)
 
-        remove_loading_indicator_thread = threading.Thread(target=self.remove_loading_indicator_thread, args=(list_box, overlay, spinner))
+        remove_loading_indicator_thread = threading.Thread(
+            target=self.remove_loading_indicator_thread,
+            args=(list_box, overlay, spinner),
+        )
         remove_loading_indicator_thread.start()
 
     def remove_loading_indicator_thread(self, list_box, overlay, spinner):
@@ -958,8 +1024,9 @@ class UnlockedDatabase(GObject.GObject):
         db_manager = self.database_manager
         current_element = self.current_element
 
-        if (db_manager.check_is_group_object(current_element)
-            and db_manager.check_is_root_group(current_element)):
+        if db_manager.check_is_group_object(
+            current_element
+        ) and db_manager.check_is_root_group(current_element):
             return False
         return True
 
@@ -975,8 +1042,7 @@ class UnlockedDatabase(GObject.GObject):
         if not self.__can_go_back():
             return
 
-        parent_group = db_manager.get_parent_group(
-            self.current_element)
+        parent_group = db_manager.get_parent_group(self.current_element)
 
         if db_manager.check_is_root_group(parent_group):
             pathbar = self.pathbar
@@ -991,8 +1057,7 @@ class UnlockedDatabase(GObject.GObject):
                 pathbar = self.pathbar
                 pathbar.on_pathbar_button_clicked(button)
 
-    @GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:
         """Property to know if search is active.
 
@@ -1012,15 +1077,13 @@ class UnlockedDatabase(GObject.GObject):
         """
         self._search_active = value
         if self._search_active:
-            self._stack.set_visible_child(
-                self._stack.get_child_by_name("search"))
+            self._stack.set_visible_child(self._stack.get_child_by_name("search"))
         else:
             self.show_page_of_new_directory(False, False)
 
         self._update_headerbar()
 
-    @GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def database_locked(self):
         """Get database lock status
 

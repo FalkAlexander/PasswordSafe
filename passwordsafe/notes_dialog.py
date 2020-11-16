@@ -27,6 +27,9 @@ class NotesDialog():
         self.__setup_widgets()
         self.__setup_signals()
 
+    def present(self):
+        self.dialog.present()
+
     def __setup_signals(self):
         self.unlocked_database.database_manager.connect("notify::locked", self.__on_locked)
 
@@ -36,7 +39,6 @@ class NotesDialog():
         # Dialog
         self.dialog.set_modal(True)
         self.dialog.set_transient_for(self.unlocked_database.window)
-        self.dialog.present()
 
         self.unlocked_database.notes_dialog = self.dialog
         self.dialog.connect("delete-event", self.on_dialog_quit)

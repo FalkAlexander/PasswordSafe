@@ -2,16 +2,15 @@
 from __future__ import annotations
 
 import typing
-from uuid import UUID
+
 from gi.repository import Gdk, Gtk
 
+import passwordsafe.pathbar_button
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
-import passwordsafe.pathbar_button
+
 if typing.TYPE_CHECKING:
-    from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.main_window import MainWindow
-    from passwordsafe.scrolled_page import ScrolledPage
 
 
 class CustomKeypressHandler:
@@ -34,7 +33,6 @@ class CustomKeypressHandler:
 
     def register_custom_events(self):
         self.unlocked_database.window.connect("key-press-event", self.on_special_key_pressed)
-        self.unlocked_database.window.connect("key-release-event", self.on_special_key_released)
         self.unlocked_database.window.connect("button-release-event", self._on_button_released)
 
     def on_special_key_pressed(self, window: MainWindow, eventkey: Gtk.Event) -> bool:
@@ -183,39 +181,6 @@ class CustomKeypressHandler:
             return False
 
         return True
-
-    def on_special_key_released(
-            self, _window: MainWindow, eventkey: Gtk.Event) -> bool:
-        """Go to the parent group on Escape or BackSpace key.
-           Exit selection mode on Escape key.
-
-        :param MainWindow window: the main window
-        :param Gtk.Event eventkey: the event
-        """
-        if self.unlocked_database.props.selection_mode:
-            self.unlocked_database.props.selection_mode = False
-            return Gdk.EVENT_STOP
-
-        if (eventkey.keyval == Gdk.KEY_Escape
-                and self.unlocked_database.props.search_active):
-            self.unlocked_database.props.search_active = False
-            return Gdk.EVENT_STOP
-
-        if not self._can_goto_parent_group():
-            return Gdk.EVENT_PROPAGATE
-
-        db_manager: DatabaseManager = self.unlocked_database.database_manager
-        element_uuid: UUID = self.unlocked_database.current_element.uuid
-        scrolled_page: ScrolledPage = self.unlocked_database.get_current_page()
-        if (eventkey.keyval == Gdk.KEY_BackSpace
-                and db_manager.check_is_group(element_uuid)
-                and not scrolled_page.edit_page):
-            self._goto_parent_group()
-        elif (eventkey.keyval == Gdk.KEY_Escape
-              and scrolled_page.edit_page):
-            self._goto_parent_group()
-
-        return Gdk.EVENT_PROPAGATE
 
     def _on_button_released(
             self, _window: MainWindow, event: Gtk.Event) -> bool:

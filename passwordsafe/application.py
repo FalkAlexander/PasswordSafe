@@ -2,8 +2,10 @@
 import logging
 import sys
 from typing import Any, List, Optional
+
 from gi.repository import Gio, GLib, Gtk, Handy
 
+import passwordsafe.pathbar_button
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
 
@@ -35,6 +37,11 @@ class Application(Gtk.Application):
         Handy.init()
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
+
+        go_back_action = Gio.SimpleAction.new("go_back", None)
+        go_back_action.connect("activate", self._goto_parent_group)
+        self.add_action(go_back_action)
+        self.set_accels_for_action("app.go_back", ["Escape"])
 
     def do_command_line(self, cmd_line):  # pylint: disable=arguments-differ
         options = cmd_line.get_options_dict()
@@ -92,6 +99,49 @@ class Application(Gtk.Application):
         self.add_action(about_action)
         self.add_action(quit_action)
         self.add_action(shortcuts_action)
+
+    def _goto_parent_group(self, _action: Gio.SimpleAction, _: None) -> None:
+        """Go to the parent group of the pathbar."""
+        for db in self.window.opened_databases:
+            if db.props.database_locked:
+                return
+
+            db_manager = db.database_manager
+
+            if db.props.selection_mode:
+                db.props.selection_mode = False
+                return
+
+            if db.props.search_active:
+                db.props.search_active = False
+                return
+
+            def can_go_back():
+                current_element = db.current_element
+
+                if (db_manager.check_is_group_object(current_element)
+                    and db_manager.check_is_root_group(current_element)):
+                    return False
+                return True
+
+            if not can_go_back():
+                return
+
+            parent_group = db_manager.get_parent_group(
+                db.current_element)
+
+            if db_manager.check_is_root_group(parent_group):
+                pathbar = db.pathbar
+                pathbar.on_home_button_clicked(pathbar.home_button)
+
+            pathbar_btn_type = passwordsafe.pathbar_button.PathbarButton
+            for button in db.pathbar:
+                if (
+                    isinstance(button, pathbar_btn_type)
+                    and button.uuid == parent_group.uuid
+                ):
+                    pathbar = db.pathbar
+                    pathbar.on_pathbar_button_clicked(button)
 
     def on_settings_menu_clicked(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)

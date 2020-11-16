@@ -1,8 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
-from typing import Optional
+from typing import Optional, Union
 from uuid import UUID
+
 from gi.repository import Gtk
+from pykeepass.entry import Entry
 from pykeepass.group import Group
 
 from passwordsafe.pathbar_button import PathbarButton
@@ -73,9 +77,10 @@ class Pathbar(Gtk.Box):
     #
     # Pathbar Modifications
     #
-    def add_pathbar_button_to_pathbar(self, uuid):
+    def add_pathbar_button_to_pathbar(
+            self, element: Union[Entry, Group]) -> None:
         self.clear_pathbar()
-        pathbar_button_active = self.create_pathbar_button(uuid)
+        pathbar_button_active = self.create_pathbar_button(element.uuid)
 
         self.remove_active_style()
         self.set_active_style(pathbar_button_active)
@@ -83,7 +88,7 @@ class Pathbar(Gtk.Box):
 
         self.add_seperator_label()
 
-        parent_group = self.database_manager.get_parent_group(uuid)
+        parent_group = self.database_manager.get_parent_group(element)
         while not parent_group.is_root_group:
             self.pack_end(
                 self.create_pathbar_button(parent_group.uuid),
@@ -139,7 +144,7 @@ class Pathbar(Gtk.Box):
             self.first_appearance()
             self.show_all()
         else:
-            self.add_pathbar_button_to_pathbar(group.uuid)
+            self.add_pathbar_button_to_pathbar(group)
 
     #
     # Events

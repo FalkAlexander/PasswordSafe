@@ -87,5 +87,7 @@ class ReferencesDialog():
         self.property = widget.get_name()
         self.__update_reference_entry()
 
-    def __on_locked(self, _database_manager, _value):
-        self.dialog.close()
+    def __on_locked(self, database_manager, _value):
+        locked = database_manager.props.locked
+        if locked:
+            self.__dialog.close()

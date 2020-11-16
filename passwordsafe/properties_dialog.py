@@ -51,5 +51,7 @@ class PropertiesDialog:
             return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE
 
-    def __on_locked(self, _database_manager, _value):
-        self.__dialog.close()
+    def __on_locked(self, database_manager, _value):
+        locked = database_manager.props.locked
+        if locked:
+            self.__dialog.close()

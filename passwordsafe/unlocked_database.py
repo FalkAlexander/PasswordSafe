@@ -94,7 +94,6 @@ class UnlockedDatabase(GObject.GObject):
         self._current_element: Optional[Union[Entry, Group]] = None
 
         self._linkedbox_right: Gtk.Box = None
-        self._selection_options_button: Optional[Gtk.MenuButton] = None
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -171,16 +170,6 @@ class UnlockedDatabase(GObject.GObject):
             self._linkedbox_right,
             "visible",
             GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
-        )
-
-        self._selection_options_button = self.headerbar.builder.get_object(
-            "selection_options_button"
-        )
-        self.bind_property(
-            "selection-mode",
-            self._selection_options_button,
-            "visible",
-            GObject.BindingFlags.SYNC_CREATE,
         )
 
         self._update_headerbar()

@@ -33,5 +33,11 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._selection_button_mobile.connect(
             "clicked", self._on_selection_button_clicked)
 
+        self._selection_options_button = self.builder.get_object(
+            "selection_options_button")
+        self._unlocked_database.bind_property(
+            "selection-mode", self._selection_options_button, "visible",
+            GObject.BindingFlags.SYNC_CREATE)
+
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True

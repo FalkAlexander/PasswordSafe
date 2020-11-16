@@ -1,4 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
+import logging
+from typing import Optional
 from uuid import UUID
 from gi.repository import Gtk
 from pykeepass.group import Group
@@ -232,26 +234,29 @@ class Pathbar(Gtk.HBox):
                 return True
 
             return False
-        else:
-            entry_title = self.database_manager.get_entry_name(current_elt)
-            entry_username = self.database_manager.get_entry_username(
-                current_elt)
-            entry_password = self.database_manager.get_entry_password(
-                current_elt)
-            entry_url = self.database_manager.get_entry_url(current_elt)
-            entry_attributes = self.database_manager.get_entry_attributes(
-                current_elt)
-            if not (entry_title or entry_username or entry_password
-                    or entry_url or notes or (icon != "0")
-                    or entry_attributes):
-                parent_group = self.database_manager.get_parent_group(
-                    current_elt)
-                self.database_manager.delete_from_database(current_elt)
-                self.rebuild_pathbar(parent_group)
-                self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
-                return True
 
-            return False
+        # current_elt is a Entry...
+        entry_title = self.database_manager.get_entry_name(current_elt)
+        entry_username = self.database_manager.get_entry_username(current_elt)
+        entry_password = self.database_manager.get_entry_password(current_elt)
+        entry_url = self.database_manager.get_entry_url(current_elt)
+        entry_attributes = self.database_manager.get_entry_attributes(current_elt)
+        if not (
+            entry_title
+            or entry_username
+            or entry_password
+            or entry_url
+            or notes
+            or (icon != "0")
+            or entry_attributes
+        ):
+            parent_group = self.database_manager.get_parent_group(current_elt)
+            self.database_manager.delete_from_database(current_elt)
+            self.rebuild_pathbar(parent_group)
+            self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
+            return True
+
+        return False
 
     def uuid_in_pathbar(self, uuid: UUID) -> bool:
         """Return True if the uuid entry is visible in the bar"""
@@ -261,8 +266,10 @@ class Pathbar(Gtk.HBox):
                 return True
         return False
 
-    def get_pathbar_button(self, uuid: UUID) -> 'PathbarButton':
+    def get_pathbar_button(self, uuid: UUID) -> Optional["PathbarButton"]:
         for pathbar_button in self.get_children():
             if pathbar_button.get_name() == "PathbarButtonDynamic":
                 if pathbar_button.uuid == uuid:
                     return pathbar_button
+        logging.warning("requested get_pathbar_button on an inexisting uuid")
+        return None

@@ -25,8 +25,6 @@ class DatabaseSettingsDialog:
     generate_keyfile_button = NotImplemented
 
     new_password = NotImplemented
-
-    selected_keyfile_hash = NotImplemented
     new_keyfile_path = NotImplemented
 
     entries_number = NotImplemented
@@ -198,12 +196,17 @@ class DatabaseSettingsDialog:
 
         if response == Gtk.ResponseType.ACCEPT:
             selected_keyfile = select_dialog.get_filename()
-            self.keyfile_hash = self.database_manager.create_keyfile_hash(selected_keyfile)
+            keyfile_hash: str = self.database_manager.create_keyfile_hash(
+                selected_keyfile
+            )
 
-            if self.keyfile_hash == self.database_manager.keyfile_hash or self.database_manager.keyfile_hash is NotImplemented:
+            if (
+                keyfile_hash == self.database_manager.keyfile_hash
+                or self.database_manager.keyfile_hash is NotImplemented
+            ):
                 self.generate_keyfile_button.set_sensitive(True)
 
-                if self.keyfile_hash == self.database_manager.keyfile_hash:
+                if keyfile_hash == self.database_manager.keyfile_hash:
                     self.new_keyfile_path = selected_keyfile
 
                 button.set_sensitive(False)
@@ -332,7 +335,6 @@ class DatabaseSettingsDialog:
         self.generate_keyfile_button.show_all()
 
         self.new_password = NotImplemented
-        self.selected_keyfile_hash = NotImplemented
         self.new_keyfile_path = NotImplemented
 
         self.auth_apply_button.set_label(_("Apply Changes"))

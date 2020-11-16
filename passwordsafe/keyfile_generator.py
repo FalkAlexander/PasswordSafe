@@ -14,9 +14,9 @@ def generate_keyfile(filepath, database_creation, instance, composite):
     cipher = AES.new(key, AES.MODE_EAX)
     ciphertext, tag = cipher.encrypt_and_digest(create_random_data(96))
 
-    keyfile = open(filepath, "wb")
-    [keyfile.write(x) for x in (cipher.nonce, tag, ciphertext)]
-    keyfile.close()
+    with open(filepath, "wb") as keyfile:
+        for x in (cipher.nonce, tag, ciphertext):
+            keyfile.write(x)
 
     if database_creation is True:
         if composite is False:

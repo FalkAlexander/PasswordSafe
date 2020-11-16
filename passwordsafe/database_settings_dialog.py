@@ -25,8 +25,6 @@ class DatabaseSettingsDialog:
     generate_keyfile_button = NotImplemented
 
     new_password = NotImplemented
-
-    selected_keyfile_hash = NotImplemented
     new_keyfile_path = NotImplemented
 
     entries_number = NotImplemented
@@ -332,7 +330,6 @@ class DatabaseSettingsDialog:
         self.generate_keyfile_button.show_all()
 
         self.new_password = NotImplemented
-        self.selected_keyfile_hash = NotImplemented
         self.new_keyfile_path = NotImplemented
 
         self.auth_apply_button.set_label(_("Apply Changes"))

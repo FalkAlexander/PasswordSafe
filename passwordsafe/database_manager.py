@@ -286,8 +286,8 @@ class DatabaseManager(GObject.GObject):
 
         if entry.get_custom_property("color_prop_LcljUMJZ9X") is None:
             return Color.NONE.value
-        else:
-            return entry.get_custom_property("color_prop_LcljUMJZ9X")
+
+        return entry.get_custom_property("color_prop_LcljUMJZ9X")
 
     def get_entry_attribute_value(self, entry: Entry, key: str) -> str:
         """Get an attribute value from an entry and the attribute key.

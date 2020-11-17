@@ -488,13 +488,6 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
         self.set_element_mtime(entry)
 
-    def set_entry_expiry_date(self, uuid, date):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.expiry_time = date
-        # entry.expires
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
     def set_entry_color(self, uuid, color):
         entry = self.db.find_entries(uuid=uuid, first=True)
         entry.set_custom_property("color_prop_LcljUMJZ9X", color)

@@ -139,9 +139,3 @@ class EntryRow(Gtk.ListBoxRow):
         self.unlocked_database.send_to_clipboard(
             self.db_manager.get_entry_password(self.entry_uuid)
         )
-
-    def update_color(self, color):
-        self.color = color
-
-    def get_color(self):
-        return self.color

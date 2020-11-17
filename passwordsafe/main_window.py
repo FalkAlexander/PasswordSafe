@@ -615,7 +615,7 @@ class MainWindow(Gtk.ApplicationWindow):
             for tmpfile in db.scheduled_tmpfiles_deletion:
                 try:
                     tmpfile.delete()
-                except Exception:
+                except Exception:  # pylint: disable=broad-except
                     logging.warning("Skipping deletion of tmpfile...")
 
         self.save_window_size()

@@ -609,8 +609,10 @@ class DatabaseManager(GObject.GObject):
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)
+        # TODO: we will crash if uuid does not exist
         self.db.move_entry(entry, destination_group_object)
-        if entry.parentgroup is not None:
+        # pylint: disable=no-member
+        if entry.parentgroup:
             self.set_element_mtime(entry.parentgroup)
         self.set_element_mtime(destination_group_object)
 

@@ -64,11 +64,7 @@ class UnlockDatabase:
 
     def _set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
-
-        if "/home/" in self.database_filepath:
-            headerbar.set_subtitle("~/" + os.path.relpath(self.database_filepath))
-        else:
-            headerbar.set_subtitle(Gio.File.new_for_path(self.database_filepath).get_uri())
+        headerbar.set_subtitle(os.path.basename(self.database_filepath))
 
         if self.window.tab_visible(self.parent_widget):
             self.window.set_titlebar(headerbar)

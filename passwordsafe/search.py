@@ -42,6 +42,8 @@ class Search:
         self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
             "info_search_overlay")
 
+        self.scrolled_page: ScrolledPage = ScrolledPage(False)
+
         self._search_entry = self._builder.get_object("headerbar_search_entry")
         self._headerbar: Handy.HeaderBar = self._builder.get_object(
             "headerbar_search")
@@ -117,7 +119,6 @@ class Search:
 
     # Set Search stack page
     def _prepare_search_page(self):
-        scrolled_page = ScrolledPage(False)
         viewport = Gtk.Viewport()
         viewport.set_name("BGPlatform")
 
@@ -132,9 +133,9 @@ class Search:
         self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
         viewport.add(self._overlay)
 
-        scrolled_page.add(viewport)
-        scrolled_page.show_all()
-        self.unlocked_database.add_page(scrolled_page, "search")
+        self.scrolled_page.add(viewport)
+        self.scrolled_page.show_all()
+        self.unlocked_database.add_page(self.scrolled_page, "search")
         self.search_list_box.hide()
 
     def _display_info_overlay(self) -> bool:
@@ -235,7 +236,7 @@ class Search:
             load_more_row = self._builder.get_object("load_more_row")
             self.search_list_box.add(load_more_row)
 
-        self._overlay.queue_draw()
+        self.scrolled_page.check_resize()
         return GLib.SOURCE_REMOVE
 
     #

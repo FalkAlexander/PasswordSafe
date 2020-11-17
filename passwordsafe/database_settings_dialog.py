@@ -1,11 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import ntpath
 import os
 import threading
 import time
 from gettext import gettext as _
 
-from gi.repository import GLib, Gtk
+from gi.repository import Gdk, GLib, Gtk, Handy
 
 import passwordsafe.config_manager as config
 import passwordsafe.keyfile_generator
@@ -50,7 +52,10 @@ class DatabaseSettingsDialog:
 
     def __setup_signals(self) -> None:
         self.auth_apply_button.connect("clicked", self.on_auth_apply_button_clicked)
-        self.encryption_apply_button.connect("clicked", self.on_encryption_apply_button_clicked)
+        self.encryption_apply_button.connect(
+            "clicked", self.on_encryption_apply_button_clicked
+        )
+        self.window.connect("key-press-event", self.__on_key_press_event)
 
         # Password Section
         self.builder.get_object("current_password_entry").connect("changed", self.on_password_entry_changed)
@@ -500,3 +505,9 @@ class DatabaseSettingsDialog:
         locked = database_manager.props.locked
         if locked:
             self.window.close()
+
+    def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
+        if event.keyval == Gdk.KEY_Escape:
+            self.window.close()
+            return Gdk.EVENT_STOP
+        return Gdk.EVENT_PROPAGATE

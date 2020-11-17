@@ -686,7 +686,7 @@ class DatabaseManager(GObject.GObject):
             for term in lookfor:
                 if term is None:
                     continue
-                elif string.lower() in term.lower():
+                if string.lower() in term.lower():
                     if global_search and entry.uuid not in uuid_list:
                         uuid_list.append(entry.uuid)
                     elif self.get_parent_group(entry) is not None:

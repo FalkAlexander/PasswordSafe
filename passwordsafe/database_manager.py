@@ -776,12 +776,13 @@ class DatabaseManager(GObject.GObject):
         self.keyfile_hash = self.create_keyfile_hash(keyfile_path)
 
     def parent_checker(self, current_group, moved_group):
+        """Returns True if moved_group is an ancestor of current_group"""
+        # recursively invoke ourself until we reach the root group
         if current_group.is_root_group:
             return False
-        elif current_group.uuid == moved_group.uuid:
+        if current_group.uuid == moved_group.uuid:
             return True
-        else:
-            return self.parent_checker(current_group.parentgroup, moved_group)
+        return self.parent_checker(current_group.parentgroup, moved_group)
 
     @property
     def encryption(self):

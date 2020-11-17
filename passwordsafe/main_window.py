@@ -547,7 +547,7 @@ class MainWindow(Gtk.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, _window: Gtk.ApplicationWindow) -> bool:
+    def do_delete_event(self, _event: Gdk.EventAny) -> bool:  # pylint:disable=W0221
         """invoked when we hit the window close button"""
         # Just invoke the app.quit action, it cleans up stuff
         # and will invoke the on_application_shutdown()

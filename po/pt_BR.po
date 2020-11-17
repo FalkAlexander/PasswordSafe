@@ -3,26 +3,26 @@
 # This file is distributed under the same license as the PasswordSafe package.
 # Yuri Otávio Lopes Gomes <yuriotavio@hotmail.com>, 2018.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2018-2020.
+# Enrico Nicoletto <liverig@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-02-05 11:39+0000\n"
-"PO-Revision-Date: 2020-02-13 10:38-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2020-11-13 19:20+0000\n"
+"PO-Revision-Date: 2020-11-17 11:53-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.32.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
-#: data/org.gnome.PasswordSafe.desktop.in.in:4
-msgid "A password manager for GNOME"
-msgstr "Um gerenciador de senhas para o GNOME"
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Gerencie suas senhas"
 
 #: data/about_dialog.ui.in:13
 msgid "Learn more about Password Safe"
@@ -31,7 +31,10 @@ msgstr "Aprenda mais sobre o Password Safe"
 #. Add your name to the translator credits list
 #: data/about_dialog.ui.in:15
 msgid "translator-credits"
-msgstr "Yuri Otávio Lopes Gomes <yuriotavio@hotmail.com>"
+msgstr ""
+"Yuri Otávio Lopes Gomes <yuriotavio@hotmail.com>\n"
+"Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Enrico Nicoletto <liverig@gmail.com>"
 
 #. Dialog title which informs the user about unsaved changes.
 #: data/attachment_warning_dialog.ui:9
@@ -49,20 +52,19 @@ msgstr ""
 
 #. Discard all the changes which the user have made to his keepass safe
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
-#: data/unlocked_database.ui:1274
+#: data/attachment_warning_dialog.ui:23 data/unlocked_database.ui:1158
 msgid "Back"
 msgstr "Voltar"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:36
+#: data/attachment_warning_dialog.ui:35
 msgid "Proceed"
 msgstr "Proceder"
 
 #: data/create_database.ui:74 data/database_settings_dialog.ui:439
-#: data/entry_page.ui:1563 data/entry_page.ui:1699
-#: data/references_dialog.ui:155 data/references_dialog.ui:263
-#: passwordsafe/unlock_database.py:94
+#: data/entry_page.ui:1106 data/password_generator_popover.ui:178
+#: data/references_dialog.ui:155 data/references_dialog.ui:259
+#: data/settings_dialog.ui:688 passwordsafe/unlock_database.py:101
 msgid "Password"
 msgstr "Senha"
 
@@ -71,12 +73,10 @@ msgid "Use a password to secure your safe"
 msgstr "Use uma senha para proteger seu cofre"
 
 #: data/create_database.ui:157 data/database_settings_dialog.ui:579
-#: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
-#: passwordsafe/database_settings_dialog.py:184
-#: passwordsafe/database_settings_dialog.py:219
-#: passwordsafe/database_settings_dialog.py:224
-#: passwordsafe/unlock_database.py:97 passwordsafe/unlock_database.py:302
-#: passwordsafe/unlock_database.py:424
+#: passwordsafe/database_settings_dialog.py:183
+#: passwordsafe/database_settings_dialog.py:218
+#: passwordsafe/database_settings_dialog.py:223
+#: passwordsafe/unlock_database.py:31 passwordsafe/unlock_database.py:104
 msgid "Keyfile"
 msgstr "Arquivo de chave"
 
@@ -85,7 +85,7 @@ msgid "Use a keyfile to secure your safe"
 msgstr "Usa um arquivo de chave para proteger seu cofre"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:240 passwordsafe/unlock_database.py:101
+#: data/create_database.ui:240 passwordsafe/unlock_database.py:108
 msgid "Composite"
 msgstr "Composto"
 
@@ -123,9 +123,9 @@ msgid "Please try again"
 msgstr "Por favor, tente de novo"
 
 #. Button to generate a password
-#: data/create_database.ui:788 data/entry_page.ui:1650
-#: passwordsafe/create_database.py:240
-#: passwordsafe/database_settings_dialog.py:217
+#: data/create_database.ui:788 data/password_generator_popover.ui:265
+#: passwordsafe/create_database.py:243
+#: passwordsafe/database_settings_dialog.py:216
 msgid "Generate"
 msgstr "Gerar"
 
@@ -137,28 +137,28 @@ msgstr "Define o arquivo de senha para o cofre"
 msgid "Generate Keyfile"
 msgstr "Gerar arquivo de chave"
 
-#: data/create_database.ui:887 data/main_window.ui:200
-#: data/unlock_database.ui:311 data/unlocked_database.ui:976
+#: data/create_database.ui:887 data/main_window.ui:201
+#: data/unlocked_database.ui:1005
 msgid "Preferences"
 msgstr "Preferências"
 
-#: data/create_database.ui:901 data/main_window.ui:214
-#: data/unlock_database.ui:325 data/unlocked_database.ui:990
+#: data/create_database.ui:901 data/main_window.ui:215
+#: data/unlocked_database.ui:1019
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos de teclado"
 
 #. "Password Safe" is the application name
-#: data/create_database.ui:915 data/main_window.ui:228
-#: data/unlock_database.ui:339 data/unlocked_database.ui:1004
+#: data/create_database.ui:915 data/main_window.ui:229
+#: data/unlock_database.ui:273 data/unlocked_database.ui:1033
 msgid "About Password Safe"
 msgstr "Sobre o Password Safe"
 
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:929 data/main_window.ui:355
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:4
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
+#: data/create_database.ui:929 data/main_window.ui:356
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:281
 msgid "Password Safe"
 msgstr "Password Safe"
 
@@ -171,11 +171,10 @@ msgstr "Criar cofre"
 msgid "Safe Successfully Created"
 msgstr "Cofre criado com sucesso"
 
-#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
 #. Headerbar subtitle for the keepass safe unlock screen.
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
-#: data/created_database.ui:50 data/unlock_database.ui:286
-#: data/unlock_database.ui:354 data/unlocked_database.ui:937
+#: data/created_database.ui:50 data/unlock_database.ui:282
+#: data/unlocked_database.ui:966
 msgid "Open Safe"
 msgstr "Abrir cofre"
 
@@ -229,7 +228,8 @@ msgstr "Senhas"
 msgid "Number of Entries"
 msgstr "Número de entradas"
 
-#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:55
+#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:15
+#: data/settings_dialog.ui:20
 msgid "General"
 msgstr "Geral"
 
@@ -261,8 +261,8 @@ msgid "Generate new keyfile"
 msgstr "Gerar novo arquivo de chave"
 
 #: data/database_settings_dialog.ui:741 data/database_settings_dialog.ui:962
-#: passwordsafe/database_settings_dialog.py:335
-#: passwordsafe/database_settings_dialog.py:357
+#: passwordsafe/database_settings_dialog.py:332
+#: passwordsafe/database_settings_dialog.py:354
 msgid "Apply Changes"
 msgstr "Aplicar alterações"
 
@@ -298,94 +298,66 @@ msgstr "Adicionar anexo"
 msgid "Attachments"
 msgstr "Anexos"
 
-#: data/entry_page.ui:163
+#: data/entry_page.ui:165
 msgid "Secret_Photo.png"
 msgstr "Foto_secreta.png"
 
-#: data/entry_page.ui:338
+#: data/entry_page.ui:340
 msgid "Remove attribute"
 msgstr "Remover atributo"
 
-#: data/entry_page.ui:399
+#: data/entry_page.ui:401
 msgid "Attributes"
 msgstr "Atributos"
 
-#: data/entry_page.ui:439
+#: data/entry_page.ui:441
 msgid "Key"
 msgstr "Chave"
 
-#: data/entry_page.ui:453
+#: data/entry_page.ui:455
 msgid "Value"
 msgstr "Valor"
 
-#: data/entry_page.ui:475
+#: data/entry_page.ui:477
 msgid "Add attribute"
 msgstr "Adicionar atributo"
 
-#: data/entry_page.ui:530
-msgid "Color"
-msgstr "Cor"
-
-#: data/entry_page.ui:825
+#: data/entry_page.ui:533
 msgid "Icon"
 msgstr "Ícone"
 
-#: data/entry_page.ui:1197 data/group_page.ui:35 data/references_dialog.ui:65
-#: data/references_dialog.ui:235
+#: data/entry_page.ui:905 data/group_page.ui:35 data/references_dialog.ui:65
+#: data/references_dialog.ui:231
 msgid "Title"
 msgstr "Título"
 
-#: data/entry_page.ui:1282 data/group_page.ui:120 data/references_dialog.ui:185
-#: data/references_dialog.ui:291
+#: data/entry_page.ui:990 data/group_page.ui:120 data/references_dialog.ui:185
+#: data/references_dialog.ui:287
 msgid "Notes"
 msgstr "Notas"
 
-#: data/entry_page.ui:1434
-msgid "Length"
-msgstr "Tamanho"
-
-#: data/entry_page.ui:1468
-msgid "Characters"
-msgstr "Caracteres"
-
-#: data/entry_page.ui:1576
-msgid "Words"
-msgstr "Palavras"
-
-#: data/entry_page.ui:1609
-msgid "Separator"
-msgstr "Separador"
-
-#: data/entry_page.ui:1626
-msgid "Enter character here…"
-msgstr "Insira caractere aqui…"
-
-#: data/entry_page.ui:1637
-msgid "Passphrase"
-msgstr "Frase-passe"
-
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1755
+#: data/entry_page.ui:1165
 msgid "Show/hide password"
 msgstr "Mostra/oculta a senha"
 
-#: data/entry_page.ui:1936 data/references_dialog.ui:170
-#: data/references_dialog.ui:277
+#: data/entry_page.ui:1346 data/references_dialog.ui:170
+#: data/references_dialog.ui:273
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:2023 data/references_dialog.ui:92
-#: data/references_dialog.ui:249
+#: data/entry_page.ui:1433 data/references_dialog.ui:92
+#: data/references_dialog.ui:245
 msgid "Username"
 msgstr "Nome de usuário"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/main_window.ui:43
+#: data/main_window.ui:44
 msgid "Secure password safe"
 msgstr "Proteja seu cofre de senhas"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:62
+#: data/main_window.ui:63
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -393,27 +365,27 @@ msgstr ""
 "Armazene com segurança suas senhas, notas e dados. <b>Crie</b> ou "
 "<b>Importe</b> um novo cofre de Keepass."
 
-#: data/main_window.ui:269
+#: data/main_window.ui:270
 msgid "New…"
 msgstr "Novo…"
 
-#: data/main_window.ui:314
+#: data/main_window.ui:315
 msgid "Open…"
 msgstr "Abrir…"
 
-#: data/main_window.ui:411
+#: data/main_window.ui:412
 msgid "Recent Databases"
 msgstr "Bancos de dados recentes"
 
-#: data/notes_dialog.ui:15
+#: data/notes_dialog.ui:16
 msgid "Copy"
 msgstr "Copiar"
 
-#: data/notes_dialog.ui:52
+#: data/notes_dialog.ui:53
 msgid "Close"
 msgstr "Fechar"
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:11
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
 msgid ""
 "Password Safe is a password manager which makes use of the Keepass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
@@ -423,16 +395,22 @@ msgstr ""
 "Ele se integra perfeitamente ao ambiente GNOME e fornece um interface fácil "
 "e organizada para gerenciar os bancos de dados de senha."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:90
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:113
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
+
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "Um gerenciador de senhas para o GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
-msgstr "keepass;criptografia;seguro;proteger;cofre"
+msgstr ""
+"keepass;criptografia;seguro;proteger;cofre;chave de acesso;senha;passphrase;"
+"frase secreta;"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:121
+#: data/org.gnome.PasswordSafe.gschema.xml:16
 msgid "Use dark GTK+ theme"
 msgstr "Usa o tema escuro GTK+"
 
@@ -456,7 +434,7 @@ msgstr ""
 "Abre automaticamente a tela de desbloqueio no último banco de dados aberto, "
 "do contrário mostra a tela de boas-vindas."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:326
+#: data/org.gnome.PasswordSafe.gschema.xml:26
 msgid "Save every change automatically"
 msgstr "Salva todas as alterações automaticamente"
 
@@ -481,7 +459,7 @@ msgstr ""
 "Bloqueia automaticamente seu banco de dados após uma dada quantidade de "
 "minutos para melhorar a segurança."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:737
+#: data/org.gnome.PasswordSafe.gschema.xml:36
 msgid "Clear clipboard after X seconds"
 msgstr "Limpa área de transferência após X segundos"
 
@@ -491,7 +469,7 @@ msgstr ""
 "Antes de copiar a senha, limpa a área de transferência por motivos de "
 "segurança."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:821
+#: data/org.gnome.PasswordSafe.gschema.xml:41
 msgid "Display passwords in plain text"
 msgstr "Exibe senhas em texto simples"
 
@@ -584,39 +562,120 @@ msgstr ""
 "Usado para armazenar o último método de desbloqueio usado permitir um "
 "processo de desbloqueio mais rápido."
 
-#: data/override_dialog.ui:8
-msgid "File already exists"
-msgstr "O arquivo já existente"
+#: data/org.gnome.PasswordSafe.gschema.xml:91
+msgid "Use full-text search"
+msgstr "Usa pesquisa de texto completo"
 
-#: data/override_dialog.ui:9
-msgid "Do you want to override it?"
-msgstr "Você deseja sobrescrevê-lo?"
+#: data/org.gnome.PasswordSafe.gschema.xml:92 data/settings_dialog.ui:360
+msgid "Performs a search across all values of entries."
+msgstr "Realiza uma pesquisa em todos os valores de entradas."
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1452
-msgid "Cancel"
-msgstr "Cancelar"
+#: data/org.gnome.PasswordSafe.gschema.xml:96
+msgid "Current group search"
+msgstr "Pesquisa do grupo atual"
 
-#: data/override_dialog.ui:35
-msgid "Override"
-msgstr "Sobrescrever"
+#: data/org.gnome.PasswordSafe.gschema.xml:97 data/settings_dialog.ui:450
+msgid "Only search entries in the current group."
+msgstr "Apenas pesquise entradas no grupo atual."
 
-#: data/properties_dialog.ui:13 data/unlocked_database.ui:1209
+#: data/org.gnome.PasswordSafe.gschema.xml:101
+msgid "Use uppercases when generating a password"
+msgstr "Usa maiúsculas ao gerar uma senha"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:102
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Usa caracteres maiúsculos de A-Z ao gerar uma senha aleatória."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:106
+msgid "Use lowercases when generating a password"
+msgstr "Usa caracteres minúsculos ao gerar uma senha"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:107
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Usa caracteres minúsculos de a-z ao gerar uma senha aleatória."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:111
+msgid "Use numbers when generating a password"
+msgstr "Usa números ao gerar uma senha"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:112
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Usa números de 0-9 ao gerar uma senha aleatória."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:116
+msgid "Use symbols when generating a password"
+msgstr "Usa símbolos ao gerar uma senha"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:117
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr "Usa símbolos ASCII não-alfanuméricos ao gerar uma senha aleatória."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:121
+msgid "Password length when generating a password"
+msgstr "Comprimento da senha ao gerá-la"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:737
+msgid "Number of single characters when generating a password."
+msgstr "Número de caracteres únicos ao gerar uma senha."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:126
+msgid "Number of words when generating a passphrase"
+msgstr "Número de palavras ao gerar uma frase secreta"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:1099
+msgid "Number of words to use when generating a passphrase."
+msgstr "Número de palavras a serem usadas quando gera-se uma frase secreta."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:131
+msgid "Separator when generating a passphrase"
+msgstr "Separador ao gerar uma frase secreta"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:1171
+msgid "Word separator to use when generating a passphrase."
+msgstr "Separador de palavras a ser usado ao gerar uma frase secreta."
+
+#: data/password_generator_popover.ui:49
+msgid "Length"
+msgstr "Tamanho"
+
+#: data/password_generator_popover.ui:83
+msgid "Characters"
+msgstr "Caracteres"
+
+#: data/password_generator_popover.ui:191
+msgid "Words"
+msgstr "Palavras"
+
+#: data/password_generator_popover.ui:224 data/settings_dialog.ui:1132
+#: data/settings_dialog.ui:1159
+msgid "Separator"
+msgstr "Separador"
+
+#: data/password_generator_popover.ui:241
+msgid "Enter character here…"
+msgstr "Insira caractere aqui…"
+
+#: data/password_generator_popover.ui:252
+msgid "Passphrase"
+msgstr "Frase secreta"
+
+#: data/properties_dialog.ui:17 data/unlocked_database.ui:1093
 msgid "Properties"
 msgstr "Propriedades"
 
-#: data/properties_dialog.ui:48
-msgid "Accessed"
-msgstr "Acessado"
-
-#: data/properties_dialog.ui:66
-msgid "Modified"
-msgstr "Modificado"
-
-#: data/properties_dialog.ui:85 data/references_dialog.ui:200
+#: data/properties_dialog.ui:46 data/references_dialog.ui:200
 msgid "UUID"
 msgstr "UUID"
 
-#: data/properties_dialog.ui:118
+#: data/properties_dialog.ui:64
+msgid "Accessed"
+msgstr "Acessado"
+
+#: data/properties_dialog.ui:81
+msgid "Modified"
+msgstr "Modificado"
+
+#: data/properties_dialog.ui:112
 msgid "Created"
 msgstr "Criado"
 
@@ -624,36 +683,36 @@ msgstr "Criado"
 msgid "Code"
 msgstr "Código"
 
-#: data/references_dialog.ui:38 data/references_dialog.ui:403
-#: data/references_dialog.ui:554
+#: data/references_dialog.ui:38 data/references_dialog.ui:396
+#: data/references_dialog.ui:547
 msgid "Property"
 msgstr "Propriedade"
 
-#: data/references_dialog.ui:314 data/unlocked_database.ui:1195
+#: data/references_dialog.ui:309 data/unlocked_database.ui:1079
 msgid "References"
 msgstr "Referências"
 
-#: data/references_dialog.ui:346
+#: data/references_dialog.ui:339
 msgid "Syntax"
 msgstr "Sintaxe"
 
-#: data/references_dialog.ui:361
+#: data/references_dialog.ui:354
 msgid "The placeholder syntax for field references is the following:"
 msgstr "A sintaxe de espaço reservado para referências de campo é a seguinte:"
 
-#: data/references_dialog.ui:402 data/references_dialog.ui:441
+#: data/references_dialog.ui:395 data/references_dialog.ui:434
 msgid "Show Field Codes"
 msgstr "Mostrar códigos de campos"
 
-#: data/references_dialog.ui:442
+#: data/references_dialog.ui:435
 msgid "Identifier"
 msgstr "Identificador"
 
-#: data/references_dialog.ui:524
+#: data/references_dialog.ui:517
 msgid "Reference"
 msgstr "Referência"
 
-#: data/references_dialog.ui:631
+#: data/references_dialog.ui:626
 msgid ""
 "Each entry has a unique identifier called UUID.\n"
 "It can be found in the properties of the entry."
@@ -662,117 +721,211 @@ msgstr ""
 "Pode ser encontrado nas propriedades da entrada."
 
 #. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:8
+#: data/quit_dialog.ui:10
 msgid "Do you want to save all safes with unsaved changes?"
 msgstr "Você deseja salvar todos os cofres com as alterações não salvas?"
 
 #. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:9
+#: data/quit_dialog.ui:11
 msgid "Select the safes you want to save."
 msgstr "Selecione os cofres que você deseja salvar."
 
-#: data/quit_dialog.ui:35
+#: data/quit_dialog.ui:38
 msgid "Quit"
 msgstr "Sair"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:8
+#: data/save_dialog.ui:11
 msgid "Unsaved Changes"
 msgstr "Alterações não salvas"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:9
+#: data/save_dialog.ui:12
 msgid "Do you want to write all changes to the safe?"
 msgstr "Você deseja escrever todas as alterações ao cofre?"
 
 #. Discard all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:22
-msgid "Discard"
-msgstr "Descartar"
+#: data/save_dialog.ui:25
+msgid "Quit Without Saving"
+msgstr "Sair sem salvar"
+
+#. Cancel exiting the program
+#: data/save_dialog.ui:35
+msgid "Don't Quit"
+msgstr "Não sair"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/entry_page.py:652 passwordsafe/main_window.py:380
-msgid "Save"
-msgstr "Salvar"
+#: data/save_dialog.ui:42
+msgid "Save and Quit"
+msgstr "Salvar e sair"
 
-#. Title of the settings dialog
-#: data/settings_dialog.ui:15
-msgid "Settings"
-msgstr "Configurações"
-
-#: data/settings_dialog.ui:104
+#: data/settings_dialog.ui:25 data/settings_dialog.ui:53
 msgid "Dark Theme"
 msgstr "Tema escuro"
 
-#: data/settings_dialog.ui:187
+#: data/settings_dialog.ui:70
+msgid "Use dark GTK+ theme."
+msgstr "Usa o tema escuro GTK+."
+
+#: data/settings_dialog.ui:116
+msgid "First Start"
+msgstr "Primeiro início"
+
+#: data/settings_dialog.ui:143
 msgid "Hide First Start Screen"
-msgstr "Ocultar a primeira tela inicial"
+msgstr "Ocultar tela de primeiro início"
 
-#: data/settings_dialog.ui:204
-msgid "Reopen last opened safe"
-msgstr "Reabre o último cofre aberto"
+#: data/settings_dialog.ui:160
+msgid "Reopen last opened safe."
+msgstr "Reabre o último cofre aberto."
 
-#: data/settings_dialog.ui:260 data/unlocked_database.ui:860
-#: passwordsafe/main_window.py:382
+#: data/settings_dialog.ui:211 data/unlocked_database.ui:889
+#: passwordsafe/main_window.py:380
 msgid "Safe"
 msgstr "Cofre"
 
-#: data/settings_dialog.ui:309
-msgid "Save automatically"
+#. Open settings for safe (e.g. password changing)
+#: data/settings_dialog.ui:215 data/unlocked_database.ui:980
+msgid "Safe Settings"
+msgstr "Configurações do cofre"
+
+#: data/settings_dialog.ui:243
+msgid "Save Automatically"
 msgstr "Salvar automaticamente"
 
-#: data/settings_dialog.ui:382 data/unlock_database.ui:84
-#: data/unlock_database.ui:226 data/unlock_database.ui:468
+#: data/settings_dialog.ui:260
+msgid "Save every change automatically."
+msgstr "Salva todas as alterações automaticamente."
+
+#. Button tooltip in headerbar to open search page
+#: data/settings_dialog.ui:311 data/unlocked_database.ui:43
+msgid "Search"
+msgstr "Pesquisar"
+
+#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:316 data/settings_dialog.ui:503
+#: data/settings_dialog.ui:530
+msgid "Remember Composite Key"
+msgstr "Memorizar chave composta"
+
+#: data/settings_dialog.ui:343
+msgid "Full-Text Search"
+msgstr "Pesquisa por texto completo"
+
+#: data/settings_dialog.ui:406 data/settings_dialog.ui:433
+msgid "Current Group Search"
+msgstr "Pesquisa do grupo atual"
+
+#: data/settings_dialog.ui:498 data/unlock_database.ui:83
+#: data/unlock_database.ui:223 data/unlock_database.ui:376
 msgid "Unlock"
 msgstr "Desbloquear"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:431
-msgid "Remember Composite Key"
-msgstr "Memorizar chave composta"
-
-#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:448
-msgid "Remember last used composite key"
-msgstr "Memoriza a última chave composta usada"
+#: data/settings_dialog.ui:547
+msgid "Remember last used composite key."
+msgstr "Memoriza a última chave composta utilizada."
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:514
+#: data/settings_dialog.ui:593 data/settings_dialog.ui:620
 msgid "Remember Unlock Method"
 msgstr "Memorizar método de desbloqueio"
 
-#: data/settings_dialog.ui:531
-msgid "Enable faster unlocking"
-msgstr "Habilita desbloqueio rápido"
+#: data/settings_dialog.ui:637
+msgid "Enable faster unlocking."
+msgstr "Habilita desbloqueio rápido."
 
-#: data/settings_dialog.ui:587
+#: data/settings_dialog.ui:693
+msgid "Password Generation"
+msgstr "Geração de senha"
+
+#: data/settings_dialog.ui:698 data/settings_dialog.ui:725
+msgid "Password Length"
+msgstr "Comprimento da senha"
+
+#: data/settings_dialog.ui:770 data/settings_dialog.ui:797
+msgid "Uppercase Characters"
+msgstr "Caracteres maiúsculos"
+
+#: data/settings_dialog.ui:809
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Usa caracteres maiúsculos de A-Z ao gerar uma senha."
+
+#: data/settings_dialog.ui:840 data/settings_dialog.ui:867
+msgid "Lowercase Characters"
+msgstr "Caracteres minúsculos"
+
+#: data/settings_dialog.ui:879
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Usa caracteres minúsculos de a-z ao gerar uma senha."
+
+#: data/settings_dialog.ui:911 data/settings_dialog.ui:938
+msgid "Numeric Characters"
+msgstr "Caracteres numéricos"
+
+#: data/settings_dialog.ui:950
+msgid "Use numeric characters when generating a password."
+msgstr "Usa caracteres numéricos ao gerar uma senha."
+
+#: data/settings_dialog.ui:982 data/settings_dialog.ui:1009
+msgid "Special Characters"
+msgstr "Caracteres especiais"
+
+#: data/settings_dialog.ui:1021
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr "Usa símbolos ASCII não-alfanuméricos ao gerar uma senha."
+
+#: data/settings_dialog.ui:1054
+msgid "Passphrase Generation"
+msgstr "Gerador de frase secreta"
+
+#: data/settings_dialog.ui:1060 data/settings_dialog.ui:1087
+msgid "Passphrase Length"
+msgstr "Comprimento da frase secreta"
+
+#: data/settings_dialog.ui:1189
+msgid "Enter Character"
+msgstr "Inserir caractere"
+
+#: data/settings_dialog.ui:1208 data/settings_dialog.ui:1213
 msgid "Security"
 msgstr "Segurança"
 
-#: data/settings_dialog.ui:636
+#: data/settings_dialog.ui:1218
+msgid "Timeout"
+msgstr "Tempo limite"
+
+#: data/settings_dialog.ui:1245
 msgid "Safe Lock Timeout"
 msgstr "Tempo limite do bloqueio de cofre"
 
-#: data/settings_dialog.ui:653
-msgid "Lock safe on idle after X minutes"
-msgstr "Bloqueia o cofre quando ocioso após X minutos"
+#: data/settings_dialog.ui:1262
+msgid "Lock safe on idle after X minutes."
+msgstr "Bloqueia o cofre quando ocioso após X minutos."
 
-#: data/settings_dialog.ui:720
+#: data/settings_dialog.ui:1307 data/settings_dialog.ui:1336
 msgid "Clear Clipboard"
 msgstr "Limpar área de transferência"
 
-#: data/settings_dialog.ui:804
+#: data/settings_dialog.ui:1353
+msgid "Clear clipboard after X seconds."
+msgstr "Limpa a área de transferência após X segundos."
+
+#: data/settings_dialog.ui:1398 data/settings_dialog.ui:1427
 msgid "Show Password Fields"
 msgstr "Mostrar campos da senha"
 
-#: data/settings_dialog.ui:887
+#: data/settings_dialog.ui:1444
+msgid "Display passwords in plain text."
+msgstr "Exibe senhas em texto simples."
+
+#: data/settings_dialog.ui:1488 data/settings_dialog.ui:1517
 msgid "Clear Recent List"
 msgstr "Limpar lista recente"
 
-#: data/settings_dialog.ui:904
-msgid "Clear the recently opened safes list"
-msgstr "Limpa a lista de cofres abertos recentemente"
+#: data/settings_dialog.ui:1534
+msgid "Clear the recently opened safes list."
+msgstr "Limpa a lista de cofres abertos recentemente."
 
 #: data/shortcuts_overview.ui:14
 msgctxt "Shortcut window description"
@@ -794,336 +947,373 @@ msgctxt "Shortcut window description"
 msgid "Open preferences"
 msgstr "Abre as preferências"
 
-#: data/shortcuts_overview.ui:41
+#: data/shortcuts_overview.ui:39
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Sair"
+
+#: data/shortcuts_overview.ui:48
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Cofre"
 
-#: data/shortcuts_overview.ui:45
+#: data/shortcuts_overview.ui:52
 msgctxt "Shortcut window description"
 msgid "Lock safe"
 msgstr "Bloqueia o cofre"
 
-#: data/shortcuts_overview.ui:52
+#: data/shortcuts_overview.ui:59
 msgctxt "Shortcut window description"
 msgid "Save safe"
 msgstr "Salva o cofre"
 
-#: data/shortcuts_overview.ui:59
+#: data/shortcuts_overview.ui:66
 msgctxt "Shortcut window description"
 msgid "Open search"
 msgstr "Abre uma pesquisa"
 
-#: data/shortcuts_overview.ui:66
+#: data/shortcuts_overview.ui:73
 msgctxt "Shortcut window description"
 msgid "Create entry"
 msgstr "Cria uma entrada"
 
-#: data/shortcuts_overview.ui:73
+#: data/shortcuts_overview.ui:80
 msgctxt "Shortcut window description"
 msgid "Create group"
 msgstr "Cria um grupo"
 
-#: data/shortcuts_overview.ui:82
+#: data/shortcuts_overview.ui:89
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Entrada"
 
-#: data/shortcuts_overview.ui:86
+#: data/shortcuts_overview.ui:93
 msgctxt "Shortcut window description"
 msgid "Copy password"
 msgstr "Copia uma senha"
 
-#: data/shortcuts_overview.ui:93
+#: data/shortcuts_overview.ui:100
 msgctxt "Shortcut window description"
 msgid "Exit entry page"
 msgstr "Sai da página de entrada"
 
-#: data/unlock_database.ui:27
+#: data/shortcuts_overview.ui:107
+msgctxt "Shortcut window description"
+msgid "Navigate to parent group"
+msgstr "Navega pelo grupo principal"
+
+#: data/unlock_database.ui:28
 msgid "Enter password and select keyfile to unlock"
 msgstr "Insira a senha e selecione o arquivo de chave para desbloquear"
 
-#: data/unlock_database.ui:43 data/unlock_database.ui:175
-#: data/unlock_database.ui:515
+#: data/unlock_database.ui:43 data/unlock_database.ui:173
+#: data/unlock_database.ui:422
 msgid "Safe is Locked"
 msgstr "O cofre está bloqueado"
 
-#: data/unlock_database.ui:159
+#: data/unlock_database.ui:158
 msgid "Select keyfile to unlock"
 msgstr "Selecione o arquivo de chave para desbloquear"
 
-#: data/unlock_database.ui:208
+#: data/unlock_database.ui:205
 msgid "Open Keyfile"
 msgstr "Abrir arquivo de chave"
 
-#. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:272 data/unlocked_database.ui:923
-msgid "New Safe"
-msgstr "Novo cofre"
+#. Menubutton in headerbar for starting the safe creation process
+#: data/unlock_database.ui:255
+msgid "_New Safe"
+msgstr "_Novo cofre"
 
-#: data/unlock_database.ui:499
+#. Menubutton in headerbar for starting the safe opening process (for existing safe)
+#: data/unlock_database.ui:259
+msgid "_Open Safe"
+msgstr "_Abrir cofre"
+
+#: data/unlock_database.ui:265
+msgid "_Preferences"
+msgstr "_Preferências"
+
+#: data/unlock_database.ui:269
+msgid "_Keyboard Shortcuts"
+msgstr "A_talhos de teclado"
+
+#: data/unlock_database.ui:407
 msgid "Enter password to unlock"
 msgstr "Insira a senha para desbloquear"
 
-#: data/unlock_database.ui:590
+#: data/unlock_database.ui:497
 msgid "Failed to unlock safe"
 msgstr "Falha ao desbloquear o cofre"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:21 data/unlocked_database.ui:1299
+#: data/unlocked_database.ui:21 data/unlocked_database.ui:1183
 msgid "Selection Mode"
 msgstr "Modo de seleção"
 
-#. Button tooltip in headerbar to open search page
-#: data/unlocked_database.ui:43
-msgid "Search"
-msgstr "Pesquisar"
-
-#: data/unlocked_database.ui:211
+#: data/unlocked_database.ui:196
 msgid "Empty group"
 msgstr "Grupo vazio"
 
-#: data/unlocked_database.ui:267
+#: data/unlocked_database.ui:252
 msgid "No search results"
 msgstr "Nenhum resultado da pesquisa"
 
-#: data/unlocked_database.ui:620
+#: data/unlocked_database.ui:656
 msgid "Enter search term"
 msgstr "Insira os termos de pesquisa"
 
-#: data/unlocked_database.ui:683 data/unlocked_database.ui:827
+#: data/unlocked_database.ui:712 data/unlocked_database.ui:856
 msgid "Sorting"
 msgstr "Ordem"
 
 #. This string depicts the alphabet from the beginning to the end (first character to last one).
-#: data/unlocked_database.ui:700
+#: data/unlocked_database.ui:729
 msgid "A-Z"
 msgstr "A-Z"
 
 #. This string depicts the alphabet in reversed order, from the end to the start (last character to first one).
-#: data/unlocked_database.ui:714
+#: data/unlocked_database.ui:743
 msgid "Z-A"
 msgstr "Z-A"
 
 #. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:728
+#: data/unlocked_database.ui:757
 msgid "Last Added"
 msgstr "Últimos adicionados"
 
-#: data/unlocked_database.ui:783
+#: data/unlocked_database.ui:790 passwordsafe/entry_page.py:602
+#: passwordsafe/main_window.py:376
+msgid "Save"
+msgstr "Salvar"
+
+#: data/unlocked_database.ui:812
 msgid "Lock"
 msgstr "Bloquear"
 
-#: data/unlocked_database.ui:874
+#: data/unlocked_database.ui:903
 msgid "New Entry"
 msgstr "Nova entrada"
 
-#: data/unlocked_database.ui:888
+#: data/unlocked_database.ui:917
 msgid "New Group"
 msgstr "Novo grupo"
 
-#. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:951
-msgid "Safe Settings"
-msgstr "Configurações do cofre"
+#. Menubutton popover in headerbar for starting the safe creation process
+#: data/unlocked_database.ui:952
+msgid "New Safe"
+msgstr "Novo cofre"
 
-#: data/unlocked_database.ui:1066
-msgid "Local"
-msgstr "Local"
-
-#: data/unlocked_database.ui:1078
-msgid "Full Text"
-msgstr "Texto completo"
-
-#: data/unlocked_database.ui:1181
+#: data/unlocked_database.ui:1065
 msgid "Duplicate"
 msgstr "Duplicar"
 
-#: data/unlocked_database.ui:1234
+#: data/unlocked_database.ui:1118
 msgid "Delete"
 msgstr "Excluir"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1415
+#: data/unlocked_database.ui:1299
 msgid "Move selection"
 msgstr "Mover seleção"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1435
+#: data/unlocked_database.ui:1319
 msgid "Delete selection"
 msgstr "Excluir seleção"
 
-#: data/unlocked_database.ui:1482
+#: data/unlocked_database.ui:1336
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: data/unlocked_database.ui:1366
 msgid "Select all"
 msgstr "Selecionar todos"
 
-#: data/unlocked_database.ui:1496
+#: data/unlocked_database.ui:1380
 msgid "Select none"
 msgstr "Selecionar nenhum"
 
-#: data/unlocked_database.ui:1526
+#: data/unlocked_database.ui:1410
 msgid "Click on a checkbox to select"
 msgstr "Clique na caixa de seleção para selecionar"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:239
-#: passwordsafe/database_settings_dialog.py:216
+#: passwordsafe/create_database.py:241
+#: passwordsafe/database_settings_dialog.py:215
 msgid "Choose location for keyfile"
 msgstr "Selecione a localização do arquivo de chave"
 
-#: passwordsafe/create_database.py:259
+#: passwordsafe/create_database.py:254
 msgid "Generating…"
 msgstr "Gerando…"
 
-#. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-#: passwordsafe/database_manager.py:384
+#: passwordsafe/database_manager.py:435
 msgid "Clone"
 msgstr "Clone"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/database_settings_dialog.py:178
+#: passwordsafe/database_settings_dialog.py:177
 msgid "Choose current keyfile"
 msgstr "Escolha o arquivo de chave atual"
 
-#: passwordsafe/database_settings_dialog.py:179
+#: passwordsafe/database_settings_dialog.py:178
 msgid "Open"
 msgstr "Abrir"
 
-#: passwordsafe/database_settings_dialog.py:290
-#: passwordsafe/database_settings_dialog.py:346
+#: passwordsafe/database_settings_dialog.py:287
+#: passwordsafe/database_settings_dialog.py:343
 msgid "Apply…"
 msgstr "Aplicar…"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:388
+#: passwordsafe/database_settings_dialog.py:385
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:391
+#: passwordsafe/database_settings_dialog.py:388
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:394
+#: passwordsafe/database_settings_dialog.py:391
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:397
+#: passwordsafe/database_settings_dialog.py:394
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:513 passwordsafe/entry_page.py:576
+#: passwordsafe/entry_page.py:463 passwordsafe/entry_page.py:526
 msgid "Attribute key already exists"
 msgstr "A chave de atributo já existente"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:604
+#: passwordsafe/entry_page.py:554
 msgid "Select attachment"
 msgstr "Selecionar anexo"
 
-#: passwordsafe/entry_page.py:605
+#: passwordsafe/entry_page.py:555
 msgid "Add"
 msgstr "Adicionar"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:651
+#: passwordsafe/entry_page.py:601
 msgid "Save attachment"
 msgstr "Salvar anexo"
 
-#: passwordsafe/entry_row.py:64
+#: passwordsafe/entry_row.py:62
 msgid "Title not specified"
 msgstr "Título não especificado"
 
-#: passwordsafe/entry_row.py:75
+#: passwordsafe/entry_row.py:76
 msgid "No username specified"
 msgstr "Nenhum nome de usuário especificado"
 
-#: passwordsafe/group_row.py:37
+#: passwordsafe/group_row.py:38
 msgid "No group title specified"
 msgstr "Nenhum título de grupo especificado"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:291
 msgid "Choose a Keepass safe"
 msgstr "Escolha um cofre de Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:307 passwordsafe/main_window.py:388
+#: passwordsafe/main_window.py:301 passwordsafe/main_window.py:386
 msgid "KeePass 3.1/4 Database"
 msgstr "Banco de dados KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:336
+#: passwordsafe/main_window.py:330
 msgid "Unable to open file \"{}\"."
 msgstr "Não foi possível abrir o arquivo “{}”."
 
-#: passwordsafe/main_window.py:339
+#: passwordsafe/main_window.py:333
 msgid "File type {} ({}) is not supported."
 msgstr "O tipo de arquivo {} ({}) não é suportado."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:379
+#: passwordsafe/main_window.py:373
 msgid "Choose location for Keepass safe"
 msgstr "Escolha a localização do cofre de Keepass"
 
-#: passwordsafe/selection_ui.py:175
+#: passwordsafe/selection_ui.py:185
 msgid "Deletion completed"
 msgstr "Exclusão concluída"
 
-#: passwordsafe/selection_ui.py:242
+#: passwordsafe/selection_ui.py:260
 msgid "Move completed"
 msgstr "Movimentação concluída"
 
-#: passwordsafe/selection_ui.py:244
+#: passwordsafe/selection_ui.py:262
 msgid "Skipped moving group into itself"
 msgstr "Ignorado grupo movendo-se para si mesmo"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:227
 msgid "Database already opened"
 msgstr "O banco de dados já estava aberto"
 
-#. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:300
+#: passwordsafe/unlock_database.py:250
 msgid "Choose a keyfile"
 msgstr "Escolhe um arquivo de chave"
 
-#: passwordsafe/unlock_database.py:353 passwordsafe/unlock_database.py:410
-msgid "Try again"
-msgstr "Tente novamente"
-
-#. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:419
+#: passwordsafe/unlock_database.py:285
 msgid "Choose Keyfile"
 msgstr "Escolher arquivo de chave"
 
-#: passwordsafe/unlocked_database.py:483
+#: passwordsafe/unlock_database.py:561
+msgid "Try again"
+msgstr "Tente novamente"
+
+#: passwordsafe/unlocked_database.py:506
 msgid "Database saved"
 msgstr "Banco de dados salvos"
 
 #. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:486
+#: passwordsafe/unlocked_database.py:509
 msgid "Please wait. Another save is running."
-msgstr "Por favor, aguarde. Outro save está sendo executado."
+msgstr "Por favor, aguarde. Há outro salvamento em progresso."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:489
+#: passwordsafe/unlocked_database.py:512
 msgid "No changes made"
 msgstr "Nenhuma alteração feita"
 
-#: passwordsafe/unlocked_database.py:669
+#: passwordsafe/unlocked_database.py:673
 msgid "Copied to clipboard"
 msgstr "Copiar para a área de transferência"
 
 #. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:824
+#: passwordsafe/unlocked_database.py:845
 #, python-format
 msgid "%s locked"
 msgstr "%s bloqueado"
 
-#: passwordsafe/unlocked_database.py:824
+#: passwordsafe/unlocked_database.py:845
 msgid "Keepass safe locked due to inactivity"
 msgstr "Cofre de Keepass bloqueado por causa de inatividade"
+
+#~ msgid "Color"
+#~ msgstr "Cor"
+
+#~ msgid "File already exists"
+#~ msgstr "O arquivo já existente"
+
+#~ msgid "Do you want to override it?"
+#~ msgstr "Você deseja sobrescrevê-lo?"
+
+#~ msgid "Override"
+#~ msgstr "Sobrescrever"
+
+#~ msgid "Discard"
+#~ msgstr "Descartar"
+
+#~ msgid "Settings"
+#~ msgstr "Configurações"
+
+#~ msgid "Local"
+#~ msgstr "Local"
 
 #~ msgid "@ICON@"
 #~ msgstr "@ICON@"
@@ -1151,9 +1341,6 @@ msgstr "Cofre de Keepass bloqueado por causa de inatividade"
 
 #~ msgid "8"
 #~ msgstr "8"
-
-#~ msgid "Password generator"
-#~ msgstr "Gerador de senha"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Create a new safe"

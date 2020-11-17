@@ -488,7 +488,7 @@ class DatabaseManager(GObject.GObject):
                 self.db.save()
                 logging.debug("Saved database")
                 self.is_dirty = False
-            except Exception:
+            except Exception:  # pylint: disable=broad-except
                 logging.error("Error occured while saving database")
 
             # Workaround
@@ -603,8 +603,8 @@ class DatabaseManager(GObject.GObject):
         try:
             self.db.delete_binary(attachment.id)
             entry.delete_attachment(attachment)
-        except Exception:
-            logging.warning("Skipping attachment handling...")
+        except Exception:  # pylint: disable=broad-except
+            logging.warning("Failed to delete attachment.")
         self.is_dirty = True
 
     # Move an entry to another group

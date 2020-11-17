@@ -3,19 +3,17 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
-from typing import Optional
-
 from gi.repository import Gio, GLib, Gtk
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
-from passwordsafe.color_widget import ColorEntryRow
+from passwordsafe.color_widget import Color, ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
 
 if typing.TYPE_CHECKING:
-    from pykeepass.entry import Entry
     from pykeepass.attachment import Attachment
+    from passwordsafe.safe_entry import SafeEntry
 
 
 class EntryPage:
@@ -46,10 +44,9 @@ class EntryPage:
 
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
-        cur_entry = self.unlocked_database.current_element
-        entry_uuid = cur_entry.uuid
+        safe_entry: SafeEntry = self.unlocked_database.current_element
         scrolled_page = self.unlocked_database.get_current_page()
-        entry_name = self.unlocked_database.database_manager.get_entry_name(cur_entry)
+        entry_name = safe_entry.props.name
         if entry_name or add_all:
             if scrolled_page.name_property_row is NotImplemented:
                 # Create the name_property_row
@@ -64,16 +61,13 @@ class EntryPage:
             properties_list_box.add(scrolled_page.name_property_row)
             scrolled_page.name_property_value_entry.grab_focus()
 
-        if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True or add_all is True:
+        if safe_entry.props.username or add_all:
             if scrolled_page.username_property_row is NotImplemented:
                 scrolled_page.username_property_row = builder.get_object("username_property_row")
                 scrolled_page.username_property_value_entry = builder.get_object("username_property_value_entry")
                 scrolled_page.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_username(entry_uuid)
-                if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
-                    scrolled_page.username_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.username_property_value_entry.set_text("")
+                username = safe_entry.props.username
+                scrolled_page.username_property_value_entry.props.text = username
 
                 self.unlocked_database.bind_accelerator(
                     scrolled_page.username_property_value_entry,
@@ -86,11 +80,8 @@ class EntryPage:
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row:
-                value = self.unlocked_database.database_manager.get_entry_username(entry_uuid)
-                if self.unlocked_database.database_manager.has_entry_username(entry_uuid) is True:
-                    scrolled_page.username_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.username_property_value_entry.set_text("")
+                username = safe_entry.props.username
+                scrolled_page.username_property_value_entry.props.text = username
 
                 scrolled_page.username_property_value_entry.connect(
                     "icon-press", self._on_copy_secondary_button_clicked)
@@ -104,7 +95,7 @@ class EntryPage:
                 scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_password(entry_uuid) is True or add_all is True:
+        if safe_entry.props.password or add_all:
             if scrolled_page.password_property_row is NotImplemented:
                 scrolled_page.password_property_row = PasswordEntryRow(
                     self.unlocked_database)
@@ -112,33 +103,25 @@ class EntryPage:
             elif scrolled_page.password_property_row:
                 properties_list_box.add(scrolled_page.password_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True or add_all is True:
+        if safe_entry.props.url or add_all:
             if scrolled_page.url_property_row is NotImplemented:
                 scrolled_page.url_property_row = builder.get_object("url_property_row")
                 scrolled_page.url_property_value_entry = builder.get_object("url_property_value_entry")
                 scrolled_page.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                value = self.unlocked_database.database_manager.get_entry_url(
-                    entry_uuid)
-                if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
-                    scrolled_page.url_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.url_property_value_entry.set_text("")
+                url = safe_entry.props.url
+                scrolled_page.url_property_value_entry.props.text = url
 
                 scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
             elif scrolled_page.url_property_row:
-                value = self.unlocked_database.database_manager.get_entry_url(entry_uuid)
-                if self.unlocked_database.database_manager.has_entry_url(entry_uuid) is True:
-                    scrolled_page.url_property_value_entry.set_text(value)
-                else:
-                    scrolled_page.url_property_value_entry.set_text("")
+                scrolled_page.url_property_value_entry.props.text = safe_entry.props.url
 
                 scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True or add_all is True:
+        if safe_entry.props.notes or add_all:
             if scrolled_page.notes_property_row is NotImplemented:
                 scrolled_page.notes_property_row = builder.get_object("notes_property_row")
                 scrolled_page.notes_property_value_entry = builder.get_object("notes_property_value_entry")
@@ -146,39 +129,31 @@ class EntryPage:
 
                 builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
-                value = self.unlocked_database.database_manager.get_notes(
-                    entry_uuid)
-
                 textbuffer = HistoryTextBuffer([])
-                if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
-                    textbuffer.set_text(value)
-                else:
-                    textbuffer.set_text("")
+                textbuffer.props.text = safe_entry.props.notes
                 textbuffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 scrolled_page.notes_property_value_entry.set_buffer(textbuffer)
                 properties_list_box.add(scrolled_page.notes_property_row)
             elif scrolled_page.notes_property_row:
-                value = self.unlocked_database.database_manager.get_notes(
-                    entry_uuid)
+                notes = safe_entry.props.notes
                 textbuffer = scrolled_page.notes_property_value_entry.get_buffer()
-                if self.unlocked_database.database_manager.has_entry_notes(entry_uuid) is True:
-                    textbuffer.set_text(value)
-                    textbuffer.set_modified(False)
-                else:
-                    textbuffer.set_text("")
+                textbuffer.props.text = notes
+                if not notes:
+                    textbuffer.props.modified = False
+
                 textbuffer.connect("changed", self.on_property_value_entry_changed, "notes")
                 properties_list_box.add(scrolled_page.notes_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_color(entry_uuid) is True or add_all is True:
+        if safe_entry.props.color != Color.NONE.value or add_all:
             if scrolled_page.color_property_row is NotImplemented:
                 scrolled_page.color_property_row = ColorEntryRow(
-                    self.unlocked_database, scrolled_page, entry_uuid)
+                    self.unlocked_database, scrolled_page, safe_entry)
 
                 properties_list_box.add(scrolled_page.color_property_row)
             elif scrolled_page.color_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.color_property_row)
 
-        if self.unlocked_database.database_manager.has_entry_icon(entry_uuid) is True or add_all is True:
+        if safe_entry.props.icon or add_all:
             if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
                 for button in builder.get_object("icon_entry_box").get_children():
@@ -217,9 +192,7 @@ class EntryPage:
                     "toggled", self.on_entry_icon_button_toggled
                 )
 
-                icon: Optional[int] = self.unlocked_database.database_manager.get_icon(
-                    self.unlocked_database.current_element
-                )
+                icon: int = safe_entry.props.icon
                 if icon == 0:
                     key_button.set_active(True)
                 elif icon == 19:
@@ -248,7 +221,7 @@ class EntryPage:
         if scrolled_page.attachment_property_row is NotImplemented:
             scrolled_page.attachment_property_row = builder.get_object("attachment_property_row")
             scrolled_page.attachment_list_box = builder.get_object("attachment_list_box")
-            for attachment in cur_entry.attachments:
+            for attachment in safe_entry.attachments:
                 self.add_attachment_row(attachment)
 
             scrolled_page.attachment_list_box.add(builder.get_object("add_attachment_row"))
@@ -271,10 +244,8 @@ class EntryPage:
         elif scrolled_page.attributes_property_row is not NotImplemented:
             properties_list_box.add(scrolled_page.attributes_property_row)
 
-        attributes = self.unlocked_database.database_manager.get_entry_attributes(entry_uuid)
-        for key in attributes:
-            if key not in ("color_prop_LcljUMJZ9X", "Notes"):
-                self.add_attribute_property_row(key, attributes[key])
+        for key, value in safe_entry.attributes.items():
+            self.add_attribute_property_row(key, value)
 
         # pylint: disable=too-many-boolean-expressions
         if scrolled_page.color_property_row is not NotImplemented and \
@@ -338,23 +309,23 @@ class EntryPage:
 
     def on_property_value_entry_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
-        entry_uuid = self.unlocked_database.current_element.uuid
+        safe_entry = self.unlocked_database.current_element
 
         scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.is_dirty = True
 
         if type_name == "name":
-            self.unlocked_database.database_manager.set_entry_name(entry_uuid, widget.get_text())
+            safe_entry.props.name = widget.props.text
 
-            pathbar_button = self.unlocked_database.pathbar.get_pathbar_button(entry_uuid)
+            pathbar_button = self.unlocked_database.pathbar.get_pathbar_button(safe_entry.uuid)
             pathbar_button.set_label(widget.get_text())
 
         elif type_name == "username":
-            self.unlocked_database.database_manager.set_entry_username(entry_uuid, widget.get_text())
+            safe_entry.props.username = widget.props.text
         elif type_name == "url":
-            self.unlocked_database.database_manager.set_entry_url(entry_uuid, widget.get_text())
+            safe_entry.props.url = widget.props.text
         elif type_name == "notes":
-            self.unlocked_database.database_manager.set_entry_notes(entry_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
+            safe_entry.props.notes = widget.props.text
 
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
@@ -365,14 +336,12 @@ class EntryPage:
             return
 
         self.unlocked_database.start_database_lock_timer()
-        entry_uuid = self.unlocked_database.current_element.uuid
+        safe_entry = self.unlocked_database.current_element
+        new_icon: str = button.get_name()
+        safe_entry.props.icon = int(new_icon)
+
         scrolled_page = self.unlocked_database.get_current_page()
-
-        if str(self.unlocked_database.database_manager.get_icon(entry_uuid)) == button.get_name():
-            return
-
         scrolled_page.is_dirty = True
-        self.unlocked_database.database_manager.set_entry_icon(entry_uuid, button.get_name())
 
     def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()
@@ -383,7 +352,7 @@ class EntryPage:
     #
 
     def on_attributes_add_button_clicked(self, _widget):
-        entry: Entry = self.unlocked_database.current_element
+        safe_entry: SafeEntry = self.unlocked_database.current_element
         scrolled_page = self.unlocked_database.get_current_page()
 
         key = scrolled_page.attributes_key_entry.get_text()
@@ -393,7 +362,7 @@ class EntryPage:
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
             return
 
-        if self.unlocked_database.database_manager.has_entry_attribute(entry, key):
+        if safe_entry.has_attribute(key):
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
             self.unlocked_database.window.notify(_("Attribute key already exists"))
             return
@@ -403,30 +372,28 @@ class EntryPage:
         scrolled_page.attributes_key_entry.set_text("")
         scrolled_page.attributes_value_entry.set_text("")
 
-        self.unlocked_database.database_manager.set_entry_attribute(entry, key, value)
+        safe_entry.set_attribute(key, value)
         self.add_attribute_property_row(key, value)
 
     def on_attribute_remove_button_clicked(self, button):
-        entry: Entry = self.unlocked_database.current_element
+        safe_entry: SafeEntry = self.unlocked_database.current_element
         scrolled_page = self.unlocked_database.get_current_page()
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
 
-        self.unlocked_database.database_manager.delete_entry_attribute(entry, key)
+        safe_entry.delete_attribute(key)
         scrolled_page.properties_list_box.remove(parent)
 
     def on_attributes_value_entry_changed(self, widget):
-        entry = self.unlocked_database.current_element
+        safe_entry = self.unlocked_database.current_element
 
         parent = widget.get_parent().get_parent().get_parent()
         key = parent.get_name()
-
-        self.unlocked_database.database_manager.set_entry_attribute(
-            entry, key, widget.get_text())
+        safe_entry.set_attribute(key, widget.get_text())
 
     def on_attribute_key_edit_button_clicked(self, button):
-        entry: Entry = self.unlocked_database.current_element
+        safe_entry: SafeEntry = self.unlocked_database.current_element
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
@@ -436,7 +403,7 @@ class EntryPage:
 
         key_entry = builder.get_object("key_entry")
         key_entry.connect(
-            "activate", self.on_key_entry_activated, entry, key, button, parent)
+            "activate", self.on_key_entry_activated, safe_entry, key, button, parent)
         key_entry.set_text(key)
 
         attribute_entry_box = button.get_parent()
@@ -446,7 +413,7 @@ class EntryPage:
         key_entry.grab_focus()
 
     def on_key_entry_activated(
-            self, widget: Gtk.Entry, entry: Entry, key: str,
+            self, widget: Gtk.Entry, safe_entry: SafeEntry, key: str,
             button: Gtk.Button, parent: Gtk.Box) -> None:
         # pylint: disable=too-many-arguments
         new_key: str = widget.props.text
@@ -461,16 +428,13 @@ class EntryPage:
             attribute_entry_box.reorder_child(button, 0)
             return
 
-        db_manager = self.unlocked_database.database_manager
-        if db_manager.has_entry_attribute(entry, new_key):
+        if safe_entry.has_attribute(new_key):
             widget.get_style_context().add_class("error")
             self.unlocked_database.window.notify(_("Attribute key already exists"))
             return
 
-        db_manager.set_entry_attribute(
-            entry, new_key,
-            db_manager.get_entry_attribute_value(entry, key))
-        db_manager.delete_entry_attribute(entry, key)
+        safe_entry.set_attribute(new_key, safe_entry.props.attributes[key])
+        safe_entry.delete_attribute(key)
 
         button.get_children()[0].set_text(new_key)
         parent.set_name(new_key)
@@ -488,7 +452,9 @@ class EntryPage:
         if list_box_row.get_name() == "AddAttachmentRow":
             self.on_add_attachment_row_clicked()
         else:
-            self.on_attachment_row_clicked(self.unlocked_database.database_manager.get_attachment_from_id(list_box_row.get_name()))
+            safe_entry: SafeEntry = self.unlocked_database.current_element
+            attachment = safe_entry.get_attachment(list_box_row.get_name())
+            self.on_attachment_row_clicked(attachment)
 
     def on_add_attachment_row_clicked(self):
         self.unlocked_database.start_database_lock_timer()
@@ -509,13 +475,14 @@ class EntryPage:
                                         response: Gtk.ResponseType) -> None:
         self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
-            entry_uuid = self.unlocked_database.current_element.uuid
+            safe_entry: SafeEntry = self.unlocked_database.current_element
             for attachment in dialog.get_files():
                 uri = attachment.get_uri()
                 attachment = Gio.File.new_for_uri(uri)
                 byte_buffer = attachment.load_bytes()[0].get_data()
                 filename = attachment.get_basename()
-                self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, byte_buffer, filename))
+                new_attachment = safe_entry.add_attachment(byte_buffer, filename)
+                self.add_attachment_row(new_attachment)
 
     def add_attachment_row(self, attachment):
         scrolled_page = self.unlocked_database.get_current_page()
@@ -559,12 +526,14 @@ class EntryPage:
                                       attachment: Attachment) -> None:
         self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
-            bytes_buffer = self.unlocked_database.database_manager.db.binaries[attachment.id]
+            safe_entry: SafeEntry = self.unlocked_database.current_element
+            bytes_buffer = safe_entry.get_attachment_content(attachment)
             self.save_to_disk(dialog.get_file().get_path(), bytes_buffer)
 
-    def on_attachment_delete_button_clicked(self, _button, attachment, attachment_row):
-        entry = self.unlocked_database.current_element
-        self.unlocked_database.database_manager.delete_entry_attachment(attachment)
+    def on_attachment_delete_button_clicked(
+            self, _button, attachment_to_delete, attachment_row):
+        safe_entry: SafeEntry = self.unlocked_database.current_element
+        safe_entry.delete_attachment(attachment_to_delete)
         attachment_row.destroy()
 
         builder = Gtk.Builder()
@@ -575,8 +544,8 @@ class EntryPage:
             if row.get_name() != "AddAttachmentRow":
                 row.destroy()
 
-        for attach in entry.attachments:
-            self.add_attachment_row(attach)
+        for attachment in safe_entry.props.attachments:
+            self.add_attachment_row(attachment)
 
     #
     # Helper

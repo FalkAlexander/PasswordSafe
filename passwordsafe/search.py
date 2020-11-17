@@ -9,6 +9,7 @@ from gi.repository import GLib, GObject, Gtk, Handy
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
+from passwordsafe.safe_entry import SafeEntry
 from passwordsafe.scrolled_page import ScrolledPage
 
 if typing.TYPE_CHECKING:
@@ -193,7 +194,8 @@ class Search:
                         self.unlocked_database, self._db_manager, element)
                 else:
                     search_height += entry_row_height
-                    row = EntryRow(self.unlocked_database, element)
+                    safe_entry = SafeEntry(self._db_manager, element)
+                    row = EntryRow(self.unlocked_database, safe_entry)
 
                 self.search_list_box.add(row)
                 new_idx += 1

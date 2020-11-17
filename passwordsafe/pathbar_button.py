@@ -3,8 +3,9 @@
 from typing import Union
 
 from gi.repository import Gtk
-from pykeepass.entry import Entry
 from pykeepass.group import Group
+
+from passwordsafe.safe_entry import SafeEntry
 
 
 class PathbarButton(Gtk.Button):
@@ -14,17 +15,17 @@ class PathbarButton(Gtk.Button):
     .uuid: the UUID of the group or entry
     """
 
-    def __init__(self, element: Union[Entry, Group]):
+    def __init__(self, element: Union[SafeEntry, Group]):
         Gtk.Button.__init__(self)
         self.set_name("PathbarButtonDynamic")
 
         self._is_group = isinstance(element, Group)
-        self._element: Union[Entry, Group] = element
+        self._element: Union[SafeEntry, Group] = element
 
     @property
     def is_group(self) -> bool:
         return self._is_group
 
     @property
-    def element(self) -> Union[Entry, Group]:
+    def element(self) -> Union[SafeEntry, Group]:
         return self._element

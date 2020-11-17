@@ -109,11 +109,13 @@ class SelectionUI(Gtk.Box):
                 return
 
         for entry_row in self.entries_selected:
-            entry = self.unlocked_database.database_manager.get_entry_object_from_uuid(entry_row.get_uuid())
-            self.unlocked_database.database_manager.delete_from_database(entry)
+            safe_entry = entry_row.safe_entry
             # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(entry_row.get_uuid()) is True:
+            if self.unlocked_database.pathbar.uuid_in_pathbar(safe_entry.uuid):
                 rebuild_pathbar = True
+
+            self.unlocked_database.database_manager.delete_from_database(
+                safe_entry.entry)
 
         for group_row in self.groups_selected:
             group = self.unlocked_database.database_manager.get_group(group_row.get_uuid())
@@ -190,11 +192,11 @@ class SelectionUI(Gtk.Box):
         self.cut_mode = True
 
         for entry_row in self.entries_cut:
-            entry_uuid = entry_row.get_uuid()
+            safe_entry = entry_row.safe_entry
             self.unlocked_database.database_manager.move_entry(
-                entry_uuid, self.unlocked_database.current_element)
+                safe_entry.uuid, self.unlocked_database.current_element)
             # If the moved entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(entry_row.get_uuid()) is True:
+            if self.unlocked_database.pathbar.uuid_in_pathbar(safe_entry.uuid):
                 rebuild_pathbar = True
 
         move_conflict = False

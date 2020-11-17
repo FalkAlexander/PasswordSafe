@@ -813,14 +813,20 @@ class UnlockedDatabase(GObject.GObject):
             self.unregister_dbus_signal()
             self.stop_save_loop()
 
-            if self.database_settings_dialog is not NotImplemented:
+            try:  # self.database_settings_dialog might be NotImplemented
                 self.database_settings_dialog.close()
+            except AttributeError:
+                pass
 
-            if self.notes_dialog is not NotImplemented:
+            try:  # self.notes_dialog might be NotImplemented
                 self.notes_dialog.close()
+            except AttributeError:
+                pass
 
-            if self.references_dialog is not NotImplemented:
+            try:  # self.references_dialog might be NotImplemented
                 self.references_dialog.close()
+            except AttributeError:
+                pass
 
             for tmpfile in self.scheduled_tmpfiles_deletion:
                 try:

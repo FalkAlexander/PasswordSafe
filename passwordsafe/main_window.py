@@ -373,7 +373,7 @@ class MainWindow(Gtk.ApplicationWindow):
             _("Choose location for Keepass safe"),
             self,
             Gtk.FileChooserAction.SAVE,
-            _("Save"),
+            _("Create"),
             None,
         )
         filechooser_creation_dialog.set_do_overwrite_confirmation(True)

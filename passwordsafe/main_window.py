@@ -608,11 +608,11 @@ class MainWindow(Gtk.ApplicationWindow):
                 return True
             # Do nothing in other cases e.g.NONE, OK,...
 
-        for db in self.opened_databases:  # pylint: disable=C0103
-            db.cancel_timers()
-            db.unregister_dbus_signal()
-            db.clipboard.clear()
-            for tmpfile in db.scheduled_tmpfiles_deletion:
+        for database in self.opened_databases:
+            database.cancel_timers()
+            database.unregister_dbus_signal()
+            database.clipboard.clear()
+            for tmpfile in database.scheduled_tmpfiles_deletion:
                 try:
                     tmpfile.delete()
                 except Exception:  # pylint: disable=broad-except

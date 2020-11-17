@@ -152,19 +152,15 @@ class CustomKeypressHandler:
         return True
 
     def _on_button_released(
-            self, window: MainWindow, event: Gtk.Event) -> bool:
+            self, _window: MainWindow, event: Gtk.Event) -> bool:
         """Go to the parent group with the back button.
 
         :param Gtk.Widget window: the main window
         :param Gtk.Event event: the event
         """
         # Mouse button 8 is the back button.
-        action_db = window.find_action_db()
-        if action_db is NotImplemented:
-            return Gdk.EVENT_PROPAGATE
-
         if event.button == 8:
-            action_db.go_back()
+            self.unlocked_database.go_back()
             return Gdk.EVENT_STOP
 
         return Gdk.EVENT_PROPAGATE

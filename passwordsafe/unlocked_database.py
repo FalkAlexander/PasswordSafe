@@ -804,8 +804,7 @@ class UnlockedDatabase(GObject.GObject):
         database_action_revealer = self.builder.get_object("database_action_revealer")
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
 
-    def _on_database_lock_changed(self, database_manager, value):
-        # pylint: disable=unused-argument
+    def _on_database_lock_changed(self, _database_manager, _value):
         locked = self.database_manager.props.locked
         if locked:
             self.cancel_timers()

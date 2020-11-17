@@ -696,7 +696,7 @@ class UnlockedDatabase(GObject.GObject):
         # pylint: disable=unused-argument
         self.props.selection_mode = True
 
-    def on_back_button_mobile_clicked(self, button):
+    def on_back_button_mobile_clicked(self, _button: Gtk.Button) -> None:
         """Update the view when the back button is clicked.
 
         This button is only visible in the mobile mode.

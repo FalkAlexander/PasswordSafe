@@ -126,9 +126,6 @@ class EntryRow(Gtk.ListBoxRow):
     def set_label(self, label):
         self.label = label
 
-    def get_type(self):
-        return self.type
-
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.props.active:
             self.unlocked_database.selection_ui.add_entry(self)

@@ -120,12 +120,6 @@ class EntryRow(Gtk.ListBoxRow):
     def get_uuid(self):
         return self.entry_uuid
 
-    def get_label(self):
-        return self.label
-
-    def set_label(self, label):
-        self.label = label
-
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.props.active:
             self.unlocked_database.selection_ui.add_entry(self)

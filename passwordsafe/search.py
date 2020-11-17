@@ -205,8 +205,8 @@ class Search:
         """
         self.search_list_box.show()
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
-        group_row_height = 45
-        entry_row_height = 60
+        group_row_height = 50
+        entry_row_height = 65
         search_height: int = 0
         skipped_rows: bool = False
 
@@ -235,7 +235,14 @@ class Search:
         if skipped_rows:
             load_more_row = self._builder.get_object("load_more_row")
             self.search_list_box.add(load_more_row)
+            search_height += 40
 
+        # FIXME: It should not be necessary to set the height of the list
+        # and a check_resize on the scrolled_page. Without this, the
+        # result list is not always correctly displayed.
+        # The 38 number comes from the margins and the border of the
+        # list.
+        self.search_list_box.props.height_request = search_height + 38
         self.scrolled_page.check_resize()
         return GLib.SOURCE_REMOVE
 

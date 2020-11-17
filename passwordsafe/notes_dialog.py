@@ -4,8 +4,7 @@ from __future__ import annotations
 from gi.repository import Gtk, Gdk, Handy
 
 
-class NotesDialog():
-
+class NotesDialog:
     def __init__(self, unlocked_database):
         self.__builder = Gtk.Builder()
         self.__builder.add_from_resource("/org/gnome/PasswordSafe/notes_dialog.ui")
@@ -57,7 +56,9 @@ class NotesDialog():
 
     def __add_search_accelerator(self):
         key, mod = Gtk.accelerator_parse("<Control>f")
-        self.__search_button.add_accelerator("clicked", self.__accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
+        self.__search_button.add_accelerator(
+            "clicked", self.__accelerators, key, mod, Gtk.AccelFlags.VISIBLE
+        )
 
     def __update_value_entry(self):
         scrolled_page = self.__scrolled_page
@@ -66,7 +67,8 @@ class NotesDialog():
         buffer_text = scrolled_page_buffer.get_text(
             scrolled_page_buffer.get_start_iter(),
             scrolled_page_buffer.get_end_iter(),
-            False)
+            False,
+        )
         self.__notes_buffer.set_text(buffer_text)
 
     #
@@ -87,9 +89,8 @@ class NotesDialog():
 
         self.__unlocked_database.send_to_clipboard(
             notes_buffer.get_text(
-                notes_buffer.get_start_iter(),
-                notes_buffer.get_end_iter(),
-                False)
+                notes_buffer.get_start_iter(), notes_buffer.get_end_iter(), False
+            )
         )
 
     def __on_close_button_clicked(self, _button):
@@ -110,8 +111,7 @@ class NotesDialog():
         notes_buffer = self.__notes_buffer
 
         notes_buffer.remove_all_tags(
-            notes_buffer.get_start_iter(),
-            notes_buffer.get_end_iter()
+            notes_buffer.get_start_iter(), notes_buffer.get_end_iter()
         )
 
         start = notes_buffer.get_start_iter()

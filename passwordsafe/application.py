@@ -2,6 +2,7 @@
 import logging
 import sys
 from typing import Any, List, Optional
+
 from gi.repository import Gio, GLib, Gtk, Handy
 
 from passwordsafe.main_window import MainWindow
@@ -148,6 +149,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.db.add_group", ["<Control>g"])
         self.set_accels_for_action("app.undo", ["<Control>z"])
         self.set_accels_for_action("app.redo", ["<Control>y"])
+        self.set_accels_for_action("app.go_back", ["Escape"])
 
 
 if __name__ == "__main__":

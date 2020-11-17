@@ -719,6 +719,7 @@ class MainWindow(Gtk.ApplicationWindow):
             ("db.lock", "lock", None),
             ("db.add_entry", "add_action", "entry"),
             ("db.add_group", "add_action", "group"),
+            ("go_back", "go_back", None),
         ]
 
         for action, name, arg in actions:
@@ -737,6 +738,8 @@ class MainWindow(Gtk.ApplicationWindow):
             action_db.on_save_button_clicked(None)
         elif name == "lock":
             action_db.on_lock_button_clicked(None)
+        elif name == "go_back":
+            action_db.go_back()
         elif name == "add_action":
             if action_db.props.database_locked:
                 return

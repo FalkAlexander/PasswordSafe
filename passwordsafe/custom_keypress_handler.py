@@ -2,16 +2,15 @@
 from __future__ import annotations
 
 import typing
-from uuid import UUID
+
 from gi.repository import Gdk, Gtk
 
+import passwordsafe.pathbar_button
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
-import passwordsafe.pathbar_button
+
 if typing.TYPE_CHECKING:
-    from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.main_window import MainWindow
-    from passwordsafe.scrolled_page import ScrolledPage
 
 
 class CustomKeypressHandler:
@@ -34,7 +33,6 @@ class CustomKeypressHandler:
 
     def register_custom_events(self):
         self.unlocked_database.window.connect("key-press-event", self.on_special_key_pressed)
-        self.unlocked_database.window.connect("key-release-event", self.on_special_key_released)
         self.unlocked_database.window.connect("button-release-event", self._on_button_released)
 
     def on_special_key_pressed(self, window: MainWindow, eventkey: Gtk.Event) -> bool:
@@ -138,25 +136,6 @@ class CustomKeypressHandler:
             return self.iterate_parents(child.get_parent())
         return None
 
-    def _goto_parent_group(self):
-        """Go to the parent group of the pathbar."""
-        db_manager = self.unlocked_database.database_manager
-        parent_group = db_manager.get_parent_group(
-            self.unlocked_database.current_element)
-
-        if db_manager.check_is_root_group(parent_group):
-            pathbar = self.unlocked_database.pathbar
-            pathbar.on_home_button_clicked(pathbar.home_button)
-
-        pathbar_btn_type = passwordsafe.pathbar_button.PathbarButton
-        for button in self.unlocked_database.pathbar:
-            if (
-                isinstance(button, pathbar_btn_type)
-                and button.uuid == parent_group.uuid
-            ):
-                pathbar = self.unlocked_database.pathbar
-                pathbar.on_pathbar_button_clicked(button)
-
     def _current_view_accessible(self):
         """Check that the current view is accessible:
          * selection mode is not active
@@ -172,51 +151,6 @@ class CustomKeypressHandler:
 
         return True
 
-    def _can_goto_parent_group(self):
-        """Check that the current item in the pathbar has a parent."""
-        current_element = self.unlocked_database.current_element
-        db_manager = self.unlocked_database.database_manager
-
-        if (not self._current_view_accessible()
-            or (db_manager.check_is_group_object(current_element)
-                and db_manager.check_is_root_group(current_element))):
-            return False
-
-        return True
-
-    def on_special_key_released(
-            self, _window: MainWindow, eventkey: Gtk.Event) -> bool:
-        """Go to the parent group on Escape or BackSpace key.
-           Exit selection mode on Escape key.
-
-        :param MainWindow window: the main window
-        :param Gtk.Event eventkey: the event
-        """
-        if self.unlocked_database.props.selection_mode:
-            self.unlocked_database.props.selection_mode = False
-            return Gdk.EVENT_STOP
-
-        if (eventkey.keyval == Gdk.KEY_Escape
-                and self.unlocked_database.props.search_active):
-            self.unlocked_database.props.search_active = False
-            return Gdk.EVENT_STOP
-
-        if not self._can_goto_parent_group():
-            return Gdk.EVENT_PROPAGATE
-
-        db_manager: DatabaseManager = self.unlocked_database.database_manager
-        element_uuid: UUID = self.unlocked_database.current_element.uuid
-        scrolled_page: ScrolledPage = self.unlocked_database.get_current_page()
-        if (eventkey.keyval == Gdk.KEY_BackSpace
-                and db_manager.check_is_group(element_uuid)
-                and not scrolled_page.edit_page):
-            self._goto_parent_group()
-        elif (eventkey.keyval == Gdk.KEY_Escape
-              and scrolled_page.edit_page):
-            self._goto_parent_group()
-
-        return Gdk.EVENT_PROPAGATE
-
     def _on_button_released(
             self, _window: MainWindow, event: Gtk.Event) -> bool:
         """Go to the parent group with the back button.
@@ -225,9 +159,8 @@ class CustomKeypressHandler:
         :param Gtk.Event event: the event
         """
         # Mouse button 8 is the back button.
-        if (event.button != 8
-                or not self._can_goto_parent_group()):
-            return Gdk.EVENT_PROPAGATE
+        if event.button == 8:
+            self.unlocked_database.go_back()
+            return Gdk.EVENT_STOP
 
-        self._goto_parent_group()
         return Gdk.EVENT_PROPAGATE

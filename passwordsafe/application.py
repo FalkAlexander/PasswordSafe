@@ -66,8 +66,6 @@ class Application(Gtk.Application):
             application=self, title="Password Safe",
             icon_name=self.application_id)
 
-        self.window.application = self
-
         self.add_menubutton_popover_actions()
         self.window.add_row_popover_actions()
         self.window.add_database_menubutton_popover_actions()

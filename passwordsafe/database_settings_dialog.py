@@ -490,7 +490,13 @@ class DatabaseSettingsDialog:
 
         self.new_derivation_algorithm = version_tuple
 
-        if self.database_manager.db.encryption_algorithm == self.builder.get_object("enc_alg_list_box").get_selected_row().get_name() and self.database_manager.db.version == version_tuple:
+        enc_alg: str = (
+            self.builder.get_object("enc_alg_list_box").get_selected_row().get_name()
+        )
+        if (
+            self.database_manager.db.encryption_algorithm == enc_alg
+            and self.database_manager.db.version == version_tuple
+        ):
             self.encryption_apply_button.set_sensitive(False)
         else:
             self.encryption_apply_button.set_sensitive(True)

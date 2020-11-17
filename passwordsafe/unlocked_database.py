@@ -637,7 +637,9 @@ class UnlockedDatabase(GObject.GObject):
 
             try:
                 uuid = UUID(self.reference_to_hex_uuid(ref.group()))
-            except Exception:
+            except Exception:  # pylint: disable=broad-except
+                # TODO: find out which Exceptions could
+                # reasonablyoccur and only protect against these.
                 not_valid = True
 
             value = NotImplemented
@@ -696,7 +698,7 @@ class UnlockedDatabase(GObject.GObject):
         # pylint: disable=unused-argument
         self.props.selection_mode = True
 
-    def on_back_button_mobile_clicked(self, button):
+    def on_back_button_mobile_clicked(self, _button: Gtk.Button) -> None:
         """Update the view when the back button is clicked.
 
         This button is only visible in the mobile mode.
@@ -804,8 +806,7 @@ class UnlockedDatabase(GObject.GObject):
         database_action_revealer = self.builder.get_object("database_action_revealer")
         database_action_revealer.set_reveal_child(not database_action_revealer.get_reveal_child())
 
-    def _on_database_lock_changed(self, database_manager, value):
-        # pylint: disable=unused-argument
+    def _on_database_lock_changed(self, _database_manager, _value):
         locked = self.database_manager.props.locked
         if locked:
             self.cancel_timers()
@@ -813,22 +814,30 @@ class UnlockedDatabase(GObject.GObject):
             self.unregister_dbus_signal()
             self.stop_save_loop()
 
-            if self.database_settings_dialog is not NotImplemented:
+            try:  # self.database_settings_dialog might be NotImplemented
                 self.database_settings_dialog.close()
+            except AttributeError:
+                pass
 
-            if self.notes_dialog is not NotImplemented:
+            try:  # self.notes_dialog might be NotImplemented
                 self.notes_dialog.close()
+            except AttributeError:
+                pass
 
-            if self.references_dialog is not NotImplemented:
+            try:  # self.references_dialog might be NotImplemented
                 self.references_dialog.close()
+            except AttributeError:
+                pass
 
             for tmpfile in self.scheduled_tmpfiles_deletion:
                 try:
                     tmpfile.delete()
-                except GLib.Error as e:
+                except GLib.Error as exc:  # pylint: disable=broad-except
                     logging.warning(
                         "Skipping deletion of tmpfile %s: %s",
-                        tmpfile.get_path(), e.message)
+                        tmpfile.get_path(),
+                        exc.message,
+                    )
 
                 if passwordsafe.config_manager.get_save_automatically():
                     save_thread = threading.Thread(target=self.database_manager.save_database)
@@ -914,10 +923,11 @@ class UnlockedDatabase(GObject.GObject):
         remove_loading_indicator_thread.start()
 
     def remove_loading_indicator_thread(self, list_box, overlay, spinner):
+        """Waits until list_box is not visible (anymore and invokes the
+        removal of the spinner"""
         while list_box.is_visible() is False:
-            continue
-        else:
-            GLib.idle_add(self.remove_loading_indicator, overlay, spinner)
+            time.sleep(0.1)
+        GLib.idle_add(self.remove_loading_indicator, overlay, spinner)
 
     def remove_loading_indicator(self, overlay, spinner):
         overlay.remove(spinner)

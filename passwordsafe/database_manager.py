@@ -5,15 +5,14 @@ from datetime import datetime
 from gettext import gettext as _
 from typing import Dict, List, Optional, Union
 from uuid import UUID
-
-from gi.repository import GObject
-
-import passwordsafe.config_manager
-from passwordsafe.color_widget import Color
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
 from pykeepass.kdbx_parsing.kdbx import KDBX
+from gi.repository import GObject
+
+import passwordsafe.config_manager
+from passwordsafe.color_widget import Color
 
 
 class DatabaseManager(GObject.GObject):
@@ -286,8 +285,8 @@ class DatabaseManager(GObject.GObject):
 
         if entry.get_custom_property("color_prop_LcljUMJZ9X") is None:
             return Color.NONE.value
-        else:
-            return entry.get_custom_property("color_prop_LcljUMJZ9X")
+
+        return entry.get_custom_property("color_prop_LcljUMJZ9X")
 
     def get_entry_attribute_value(self, entry: Entry, key: str) -> str:
         """Get an attribute value from an entry and the attribute key.
@@ -488,7 +487,7 @@ class DatabaseManager(GObject.GObject):
                 self.db.save()
                 logging.debug("Saved database")
                 self.is_dirty = False
-            except Exception:
+            except Exception:  # pylint: disable=broad-except
                 logging.error("Error occured while saving database")
 
             # Workaround
@@ -603,15 +602,17 @@ class DatabaseManager(GObject.GObject):
         try:
             self.db.delete_binary(attachment.id)
             entry.delete_attachment(attachment)
-        except Exception:
-            logging.warning("Skipping attachment handling...")
+        except Exception:  # pylint: disable=broad-except
+            logging.warning("Failed to delete attachment.")
         self.is_dirty = True
 
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)
+        # TODO: we will crash if uuid does not exist
         self.db.move_entry(entry, destination_group_object)
-        if entry.parentgroup is not None:
+        # pylint: disable=no-member
+        if entry.parentgroup:
             self.set_element_mtime(entry.parentgroup)
         self.set_element_mtime(destination_group_object)
 
@@ -686,7 +687,7 @@ class DatabaseManager(GObject.GObject):
             for term in lookfor:
                 if term is None:
                     continue
-                elif string.lower() in term.lower():
+                if string.lower() in term.lower():
                     if global_search and entry.uuid not in uuid_list:
                         uuid_list.append(entry.uuid)
                     elif self.get_parent_group(entry) is not None:
@@ -776,12 +777,13 @@ class DatabaseManager(GObject.GObject):
         self.keyfile_hash = self.create_keyfile_hash(keyfile_path)
 
     def parent_checker(self, current_group, moved_group):
+        """Returns True if moved_group is an ancestor of current_group"""
+        # recursively invoke ourself until we reach the root group
         if current_group.is_root_group:
             return False
-        elif current_group.uuid == moved_group.uuid:
+        if current_group.uuid == moved_group.uuid:
             return True
-        else:
-            return self.parent_checker(current_group.parentgroup, moved_group)
+        return self.parent_checker(current_group.parentgroup, moved_group)
 
     @property
     def encryption(self):

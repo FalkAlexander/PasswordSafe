@@ -5,15 +5,15 @@ import subprocess
 import typing
 from gettext import gettext as _
 from typing import Optional
-
 from gi.repository import Gio, GLib, Gtk
-if typing.TYPE_CHECKING:
-    from pykeepass.entry import Entry
 
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
+
+if typing.TYPE_CHECKING:
+    from pykeepass.entry import Entry
 
 
 class EntryPage:
@@ -566,8 +566,12 @@ class EntryPage:
             if row.get_name() != "AddAttachmentRow":
                 row.destroy()
 
-        for attachment in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(entry_uuid):
-            self.add_attachment_row(attachment)
+        for (
+            attach
+        ) in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(
+            entry_uuid
+        ):
+            self.add_attachment_row(attach)
 
     #
     # Helper

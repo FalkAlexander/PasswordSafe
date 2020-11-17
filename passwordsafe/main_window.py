@@ -17,7 +17,6 @@ from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class MainWindow(Gtk.ApplicationWindow):
-    application = NotImplemented
     database_manager = NotImplemented
     container = NotImplemented
     headerbar = NotImplemented
@@ -32,7 +31,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.application = self.get_application()
         self._info_bar = None
         self._info_bar_response_id = None
 
@@ -111,18 +110,18 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def do_size_allocate(self, event: Gdk.Event) -> None:
+    def do_size_allocate(self, allocation: Gdk.Rectangle) -> None:  # pylint: disable=W0221
         """Handler for resizing event. It is used to check if
         the layout needs to be updated.
 
         :param GdkEvent event: event
         """
         previous_mobile_width = self.mobile_width
-        self.mobile_width = (self.get_allocation().width < 700)
+        self.mobile_width = allocation.width < 700
         if previous_mobile_width != self.mobile_width:
             self.change_layout()
 
-        Gtk.ApplicationWindow.do_size_allocate(self, event)
+        Gtk.ApplicationWindow.do_size_allocate(self, allocation)
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""
@@ -548,7 +547,7 @@ class MainWindow(Gtk.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, _window: Gtk.ApplicationWindow) -> bool:
+    def do_delete_event(self, _event: Gdk.EventAny) -> bool:  # pylint:disable=W0221
         """invoked when we hit the window close button"""
         # Just invoke the app.quit action, it cleans up stuff
         # and will invoke the on_application_shutdown()
@@ -609,14 +608,14 @@ class MainWindow(Gtk.ApplicationWindow):
                 return True
             # Do nothing in other cases e.g.NONE, OK,...
 
-        for db in self.opened_databases:  # pylint: disable=C0103
-            db.cancel_timers()
-            db.unregister_dbus_signal()
-            db.clipboard.clear()
-            for tmpfile in db.scheduled_tmpfiles_deletion:
+        for database in self.opened_databases:
+            database.cancel_timers()
+            database.unregister_dbus_signal()
+            database.clipboard.clear()
+            for tmpfile in database.scheduled_tmpfiles_deletion:
                 try:
                     tmpfile.delete()
-                except Exception:
+                except Exception:  # pylint: disable=broad-except
                     logging.warning("Skipping deletion of tmpfile...")
 
         self.save_window_size()

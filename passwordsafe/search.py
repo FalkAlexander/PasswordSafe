@@ -101,12 +101,7 @@ class Search:
                 200, self._display_info_overlay)
 
         else:
-            for result in self.search_list_box:
-                self.search_list_box.remove(result)
-
-            if self._empty_search_overlay in self._overlay:
-                self._overlay.remove(self._empty_search_overlay)
-
+            self._clear_view()
             self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
             self._search_entry.disconnect(self._search_event_connection_id)
             self._search_event_connection_id = 0
@@ -115,7 +110,6 @@ class Search:
             self._search_changed_id = 0
             self._search_entry.props.text = ""
             self._key_pressed = False
-            self.search_list_box.hide()
 
     #
     # Stack
@@ -160,6 +154,25 @@ class Search:
     #
     # Utils
     #
+
+    def _clear_view(self) -> None:
+        """Clear the view when the search mode is activated
+        or when a new search is performed.
+
+        All the overlay are removed and the results list is cleared.
+        """
+        for row in self.search_list_box:
+            self.search_list_box.remove(row)
+
+        self.search_list_box.hide()
+
+        if self._info_search_overlay in self._overlay:
+            self._overlay.remove(self._info_search_overlay)
+
+        if self._empty_search_overlay in self._overlay:
+            self._overlay.remove(self._empty_search_overlay)
+
+        self._result_list.clear()
 
     def _start_search(self):
         """Update the overlays and start a search
@@ -263,19 +276,7 @@ class Search:
 
     def _on_search_entry_changed(self, widget):
         self._timeout_search = 0
-
-        self.search_list_box.hide()
-        self.search_list_box.unselect_all()
-        self._result_list.clear()
-
-        if self._info_search_overlay in self._overlay:
-            self._overlay.remove(self._info_search_overlay)
-
-        if self._empty_search_overlay in self._overlay:
-            self._overlay.remove(self._empty_search_overlay)
-
-        for row in self.search_list_box.get_children():
-            self.search_list_box.remove(row)
+        self._clear_view()
 
         self._search_text = widget.get_text()
         self._start_search()

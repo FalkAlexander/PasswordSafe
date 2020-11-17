@@ -914,10 +914,11 @@ class UnlockedDatabase(GObject.GObject):
         remove_loading_indicator_thread.start()
 
     def remove_loading_indicator_thread(self, list_box, overlay, spinner):
+        """Waits until list_box is not visible (anymore and invokes the
+        removal of the spinner"""
         while list_box.is_visible() is False:
-            continue
-        else:
-            GLib.idle_add(self.remove_loading_indicator, overlay, spinner)
+            time.sleep(0.1)
+        GLib.idle_add(self.remove_loading_indicator, overlay, spinner)
 
     def remove_loading_indicator(self, overlay, spinner):
         overlay.remove(spinner)

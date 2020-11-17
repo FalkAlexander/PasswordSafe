@@ -110,18 +110,18 @@ class MainWindow(Gtk.ApplicationWindow):
     # Responsive Listener
     #
 
-    def do_size_allocate(self, event: Gdk.Event) -> None:
+    def do_size_allocate(self, allocation: Gdk.Rectangle) -> None:  # pylint: disable=W0221
         """Handler for resizing event. It is used to check if
         the layout needs to be updated.
 
         :param GdkEvent event: event
         """
         previous_mobile_width = self.mobile_width
-        self.mobile_width = (self.get_allocation().width < 700)
+        self.mobile_width = allocation.width < 700
         if previous_mobile_width != self.mobile_width:
             self.change_layout()
 
-        Gtk.ApplicationWindow.do_size_allocate(self, event)
+        Gtk.ApplicationWindow.do_size_allocate(self, allocation)
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""

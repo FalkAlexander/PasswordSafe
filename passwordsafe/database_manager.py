@@ -3,12 +3,12 @@ import hashlib
 import logging
 from datetime import datetime
 from gettext import gettext as _
+from typing import Dict, List, Optional, Union
+from uuid import UUID
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
 from pykeepass.kdbx_parsing.kdbx import KDBX
-from typing import Dict, List, Optional, Union
-from uuid import UUID
 from gi.repository import GObject
 
 import passwordsafe.config_manager

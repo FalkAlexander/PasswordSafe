@@ -12,6 +12,7 @@ from gi.repository import GObject
 
 import passwordsafe.config_manager
 from passwordsafe.color_widget import Color
+from passwordsafe.safe_entry import SafeEntry
 
 
 class DatabaseManager(GObject.GObject):
@@ -649,23 +650,38 @@ class DatabaseManager(GObject.GObject):
     # Properties
     #
 
-    def get_element_creation_date(self, element: Union[Entry, Group]) -> str:
+    def get_element_creation_date(self, element: Union[SafeEntry, Group]) -> str:
         """Returns a string of the Entry|Groups creation time or ''"""
-        if element.ctime is None:
-            return ""
-        return element.ctime.strftime("%x %X")
+        if isinstance(element, SafeEntry):
+            elem = element.entry
+        else:
+            elem = element
 
-    def get_element_acessed_date(self, element: Union[Entry, Group]) -> str:
+        if elem.ctime is None:
+            return ""
+        return elem.ctime.strftime("%x %X")
+
+    def get_element_acessed_date(self, element: Union[SafeEntry, Group]) -> str:
         """Returns a string of the Entry|Groups access time or ''"""
-        if element.atime is None:
-            return ""
-        return element.atime.strftime("%x %X")
+        if isinstance(element, SafeEntry):
+            elem = element.entry
+        else:
+            elem = element
 
-    def get_element_modified_date(self, element: Union[Entry, Group]) -> str:
-        """Returns a string of the Entry|Groups modification time or ''"""
-        if element.mtime is None:
+        if elem.atime is None:
             return ""
-        return element.mtime.strftime("%x %X")
+        return elem.atime.strftime("%x %X")
+
+    def get_element_modified_date(self, element: Union[SafeEntry, Group]) -> str:
+        """Returns a string of the Entry|Groups modification time or ''"""
+        if isinstance(element, SafeEntry):
+            elem = element.entry
+        else:
+            elem = element
+
+        if elem.mtime is None:
+            return ""
+        return elem.mtime.strftime("%x %X")
 
     #
     # Database creation methods

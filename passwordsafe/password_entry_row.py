@@ -7,7 +7,6 @@ from typing import Optional
 from uuid import UUID
 
 from gi.repository import Gdk, Gtk
-from pykeepass.entry import Entry
 
 import passwordsafe.config_manager
 import passwordsafe.password_generator as pwd_generator
@@ -15,7 +14,7 @@ from passwordsafe.history_buffer import HistoryEntryBuffer
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
-    from passwordsafe.scrolled_page import ScrolledPage
+    from passwordsafe.safe_entry import SafeEntry
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
@@ -39,10 +38,12 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         self._unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
 
-        entry_uuid: UUID = unlocked_database.current_element.uuid
+        self._safe_entry: SafeEntry = unlocked_database.current_element
         self._password_value_entry.set_buffer(HistoryEntryBuffer([]))
-        pwd_value = self._db_manager.get_entry_password(entry_uuid)
-        self._password_value_entry.props.text = pwd_value
+
+        self._password_value_entry.props.text = self._safe_entry.props.password
+        self._password_value_entry.bind_property("text", self._safe_entry, "password")
+
         show_pwds = passwordsafe.config_manager.get_show_password_fields()
         self._password_value_entry.props.visibility = show_pwds
 
@@ -66,7 +67,7 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         self._unlocked_database.send_to_clipboard(self._password_value_entry.props.text)
 
     @Gtk.Template.Callback()
-    def _on_password_value_changed(self, widget: Gtk.Entry) -> None:
+    def _on_password_value_changed(self, _widget: Gtk.Entry) -> None:
         """Invoked when the password entry has changed
 
         Take note that this callback is already invoked after the initial
@@ -75,15 +76,6 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         side-effects.
         """
         self._unlocked_database.start_database_lock_timer()
-
-        entry: Entry = self._unlocked_database.current_element
-        current_password = self._db_manager.get_entry_password(entry)
-        new_password = widget.props.text
-        if new_password != current_password:
-            page: ScrolledPage = self._unlocked_database.get_current_page()
-            page.is_dirty = True
-            self._db_manager.set_entry_password(entry, new_password)
-
         self._set_password_level_bar()
 
     @Gtk.Template.Callback()

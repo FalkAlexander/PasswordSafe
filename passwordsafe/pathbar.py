@@ -2,14 +2,17 @@
 from __future__ import annotations
 
 import logging
+import typing
 from typing import Optional, Union
 from uuid import UUID
 
 from gi.repository import Gtk
-from pykeepass.entry import Entry
 from pykeepass.group import Group
 
 from passwordsafe.pathbar_button import PathbarButton
+
+if typing.TYPE_CHECKING:
+    from passwordsafe.safe_entry import SafeEntry
 
 
 class Pathbar(Gtk.Box):
@@ -78,7 +81,7 @@ class Pathbar(Gtk.Box):
     # Pathbar Modifications
     #
     def add_pathbar_button_to_pathbar(
-            self, element: Union[Entry, Group]) -> None:
+            self, element: Union[SafeEntry, Group]) -> None:
         self.clear_pathbar()
         pathbar_button_active = self.create_pathbar_button(element)
 
@@ -99,7 +102,7 @@ class Pathbar(Gtk.Box):
         self.add_home_button()
         self.show_all()
 
-    def create_pathbar_button(self, element: Union[Entry, Group]) -> PathbarButton:
+    def create_pathbar_button(self, element: Union[SafeEntry, Group]) -> PathbarButton:
         pathbar_button = PathbarButton(element)
 
         pathbar_button_name = NotImplemented
@@ -107,7 +110,7 @@ class Pathbar(Gtk.Box):
         if self.database_manager.check_is_group_object(element):
             pathbar_button_name = self.database_manager.get_group_name(element)
         else:
-            pathbar_button_name = self.database_manager.get_entry_name(element)
+            pathbar_button_name = element.props.name
 
         if pathbar_button_name is not None:
             pathbar_button.set_label(pathbar_button_name)
@@ -208,14 +211,14 @@ class Pathbar(Gtk.Box):
 
         If all are blank we delete the entry/group and return True.
         It also schedules the parent page for destruction if the
-        Entry/Group has been deleted.
+        SafeEntry/Group has been deleted.
         """
-        current_elt = self.unlocked_database.current_element
-        notes = self.database_manager.get_notes(current_elt)
-        icon = self.database_manager.get_icon(current_elt)
+        current_elt: Union[SafeEntry, Group] = self.unlocked_database.current_element
 
         if self.database_manager.check_is_group_object(current_elt):
             group_name = self.database_manager.get_group_name(current_elt)
+            notes = self.database_manager.get_notes(current_elt)
+            icon = self.database_manager.get_icon(current_elt)
             if not (group_name or notes or icon):
                 parent_group = current_elt.parentgroup
                 self.database_manager.delete_from_database(current_elt)
@@ -225,23 +228,18 @@ class Pathbar(Gtk.Box):
 
             return False
 
-        # current_elt is a Entry...
-        entry_title = self.database_manager.get_entry_name(current_elt)
-        entry_username = self.database_manager.get_entry_username(current_elt)
-        entry_password = self.database_manager.get_entry_password(current_elt)
-        entry_url = self.database_manager.get_entry_url(current_elt)
-        entry_attributes = self.database_manager.get_entry_attributes(current_elt)
+        # current_elt is a SafeEntry
         if not (
-            entry_title
-            or entry_username
-            or entry_password
-            or entry_url
-            or notes
-            or (icon != "0")
-            or entry_attributes
+            current_elt.props.name
+            or current_elt.props.username
+            or current_elt.props.password
+            or current_elt.props.url
+            or current_elt.props.notes
+            or (current_elt.props.icon != 0)
+            or current_elt.props.attributes
         ):
             parent_group = self.database_manager.parentgroup
-            self.database_manager.delete_from_database(current_elt)
+            self.database_manager.delete_from_database(current_elt.entry)
             self.rebuild_pathbar(parent_group)
             self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
             return True

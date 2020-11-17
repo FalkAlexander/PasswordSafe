@@ -16,6 +16,7 @@ if typing.TYPE_CHECKING:
 
 
 class SafeEntry(GObject.GObject):
+    # pylint: disable=too-few-public-methods
     # pylint: disable=too-many-instance-attributes
 
     _color_key = "color_prop_LcljUMJZ9X"

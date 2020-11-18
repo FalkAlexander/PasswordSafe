@@ -367,16 +367,6 @@ class DatabaseManager(GObject.GObject):
         return True
 
     #
-    # Group Checks
-    #
-
-    def has_group_icon(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        if group.icon is None:
-            return False
-        return True
-
-    #
     # Database Modifications
     #
 

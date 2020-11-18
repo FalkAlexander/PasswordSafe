@@ -202,10 +202,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def display_recent_files_list(self) -> None:
         """Shows the list of recently opened files or invokes welcome page"""
-        if not passwordsafe.config_manager.get_last_opened_list():
-            self.display_welcome_page()
-            return
-
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/main_window.ui")

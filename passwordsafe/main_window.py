@@ -175,16 +175,30 @@ class MainWindow(Gtk.ApplicationWindow):
         displays the empty welcome page if there are no recently
         loaded files).
         """
-        filepath = Gio.File.new_for_uri(passwordsafe.config_manager.get_last_opened_database()).get_path()
-
         if self.application.file_list:
+            # file_list is appended to when we invoke the app with
+            # files as cmd line parameters. (it is also appended to
+            # whenever we open a file via app.open action). If it is
+            # populated, simply load those files and don't show any
+            # screens.
             for g_file in self.application.file_list:
                 self.start_database_opening_routine(g_file.get_path())
-        elif passwordsafe.config_manager.get_first_start_screen() and filepath and os.path.exists(filepath):
-            logging.debug("Found last opened database: %s", filepath)
-            self.start_database_opening_routine(filepath)
-        else:
-            self.display_recent_files_list()
+            return
+
+        if passwordsafe.config_manager.get_first_start_screen():
+            # simply load the last opened file
+            filepath = None
+            file: Gio.File = Gio.File.new_for_uri(
+                passwordsafe.config_manager.get_last_opened_database()
+            )
+            if Gio.File.query_exists(file):
+                filepath = file.get_path()
+                logging.debug("Opening last opened database: %s", filepath)
+                self.start_database_opening_routine(filepath)
+                return
+
+        # Display the screen with last opened files (or welcome page)
+        self.display_recent_files_list()
 
     def display_recent_files_list(self) -> None:
         """Shows the list of recently opened files or invokes welcome page"""

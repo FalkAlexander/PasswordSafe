@@ -42,6 +42,8 @@ class Search:
         self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
             "info_search_overlay")
 
+        self.scrolled_page: ScrolledPage = ScrolledPage(False)
+
         self._search_entry = self._builder.get_object("headerbar_search_entry")
         self._headerbar: Handy.HeaderBar = self._builder.get_object(
             "headerbar_search")
@@ -101,12 +103,7 @@ class Search:
                 200, self._display_info_overlay)
 
         else:
-            for result in self.search_list_box:
-                self.search_list_box.remove(result)
-
-            if self._empty_search_overlay in self._overlay:
-                self._overlay.remove(self._empty_search_overlay)
-
+            self._clear_view()
             self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
             self._search_entry.disconnect(self._search_event_connection_id)
             self._search_event_connection_id = 0
@@ -115,7 +112,6 @@ class Search:
             self._search_changed_id = 0
             self._search_entry.props.text = ""
             self._key_pressed = False
-            self.search_list_box.hide()
 
     #
     # Stack
@@ -123,7 +119,6 @@ class Search:
 
     # Set Search stack page
     def _prepare_search_page(self):
-        scrolled_page = ScrolledPage(False)
         viewport = Gtk.Viewport()
         viewport.set_name("BGPlatform")
 
@@ -138,9 +133,9 @@ class Search:
         self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
         viewport.add(self._overlay)
 
-        scrolled_page.add(viewport)
-        scrolled_page.show_all()
-        self.unlocked_database.add_page(scrolled_page, "search")
+        self.scrolled_page.add(viewport)
+        self.scrolled_page.show_all()
+        self.unlocked_database.add_page(self.scrolled_page, "search")
         self.search_list_box.hide()
 
     def _display_info_overlay(self) -> bool:
@@ -160,6 +155,25 @@ class Search:
     #
     # Utils
     #
+
+    def _clear_view(self) -> None:
+        """Clear the view when the search mode is activated
+        or when a new search is performed.
+
+        All the overlay are removed and the results list is cleared.
+        """
+        for row in self.search_list_box:
+            self.search_list_box.remove(row)
+
+        self.search_list_box.hide()
+
+        if self._info_search_overlay in self._overlay:
+            self._overlay.remove(self._info_search_overlay)
+
+        if self._empty_search_overlay in self._overlay:
+            self._overlay.remove(self._empty_search_overlay)
+
+        self._result_list.clear()
 
     def _start_search(self):
         """Update the overlays and start a search
@@ -191,8 +205,8 @@ class Search:
         """
         self.search_list_box.show()
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
-        group_row_height = 45
-        entry_row_height = 60
+        group_row_height = 50
+        entry_row_height = 65
         search_height: int = 0
         skipped_rows: bool = False
 
@@ -221,8 +235,15 @@ class Search:
         if skipped_rows:
             load_more_row = self._builder.get_object("load_more_row")
             self.search_list_box.add(load_more_row)
+            search_height += 40
 
-        self._overlay.queue_draw()
+        # FIXME: It should not be necessary to set the height of the list
+        # and a check_resize on the scrolled_page. Without this, the
+        # result list is not always correctly displayed.
+        # The 38 number comes from the margins and the border of the
+        # list.
+        self.search_list_box.props.height_request = search_height + 38
+        self.scrolled_page.check_resize()
         return GLib.SOURCE_REMOVE
 
     #
@@ -263,19 +284,7 @@ class Search:
 
     def _on_search_entry_changed(self, widget):
         self._timeout_search = 0
-
-        self.search_list_box.hide()
-        self.search_list_box.unselect_all()
-        self._result_list.clear()
-
-        if self._info_search_overlay in self._overlay:
-            self._overlay.remove(self._info_search_overlay)
-
-        if self._empty_search_overlay in self._overlay:
-            self._overlay.remove(self._empty_search_overlay)
-
-        for row in self.search_list_box.get_children():
-            self.search_list_box.remove(row)
+        self._clear_view()
 
         self._search_text = widget.get_text()
         self._start_search()

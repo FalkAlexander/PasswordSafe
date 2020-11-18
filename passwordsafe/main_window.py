@@ -179,10 +179,8 @@ class MainWindow(Gtk.ApplicationWindow):
         else:
             self.display_recent_files_list()
 
-    def display_recent_files_list(self):
-        """Shows the list of recently opened files
-
-        for the user to pick one (or the welcome screen if there are none)"""
+    def display_recent_files_list(self) -> None:
+        """Shows the list of recently opened files or invokes welcome page"""
         if not passwordsafe.config_manager.get_last_opened_list():
             self.display_welcome_page()
             return

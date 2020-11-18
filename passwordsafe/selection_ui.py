@@ -223,13 +223,18 @@ class SelectionUI:
 
         for group_row in self.groups_cut:
             group_uuid = group_row.get_uuid()
+            group = self.unlocked_database.database_manager.get_group(group_uuid)
             current_element = self.unlocked_database.current_element
-            if not self.unlocked_database.database_manager.parent_checker(current_element, self.unlocked_database.database_manager.get_group(group_uuid)):
-                self.unlocked_database.database_manager.move_group(group_uuid, current_element)
+            if not self.unlocked_database.database_manager.parent_checker(
+                current_element, group
+            ):
+                self.unlocked_database.database_manager.move_group(
+                    group, current_element
+                )
             else:
                 move_conflict = True
             # If the moved group is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(group_row.get_uuid()) is True:
+            if self.unlocked_database.pathbar.uuid_in_pathbar(group_uuid):
                 rebuild_pathbar = True
 
         for stack_page in self.unlocked_database.get_pages():
@@ -253,9 +258,6 @@ class SelectionUI:
         self.groups_selected.clear()
         self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
-
-        # It is more efficient to do this here and not in the database manager loop
-        self.unlocked_database.database_manager.is_dirty = True
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
         page = self.unlocked_database.get_current_page()

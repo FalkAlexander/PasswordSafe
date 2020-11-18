@@ -614,12 +614,12 @@ class DatabaseManager(GObject.GObject):
         self.set_element_mtime(group)
 
     # Move an group
-    def move_group(self, uuid, destination_group_object):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        self.db.move_group(group, destination_group_object)
+    def move_group(self, group: Group, dest_group: Group) -> None:
+        self.db.move_group(group, dest_group)
         if group.parentgroup is not None:
             self.set_element_mtime(group.parentgroup)
-        self.set_element_mtime(destination_group_object)
+        self.set_element_mtime(dest_group)
+        self.is_dirty = True
 
     #
     # Read Database

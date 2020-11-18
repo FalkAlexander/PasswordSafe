@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
-import datetime
 import logging
 import ntpath
 import os
 import threading
-import time
+from datetime import datetime
 from gettext import gettext as _
 from pathlib import Path
 from typing import Optional
@@ -453,11 +452,10 @@ class UnlockDatabase:
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 
-            current_time = datetime.datetime.fromtimestamp(time.time())
-            current_time_str = current_time.strftime('%Y-%m-%d_%H:%M:%S')
+            current_time = datetime.now().strftime('%F_%T')
             basename = os.path.splitext(
                 ntpath.basename(self.database_filepath))[0]
-            backup_name = basename + "_backup_" + current_time_str + ".kdbx"
+            backup_name = basename + "_backup_" + current_time + ".kdbx"
             backup = Gio.File.new_for_path(
                 os.path.join(cache_dir, backup_name))
             try:
@@ -571,4 +569,4 @@ class UnlockDatabase:
         password_unlock_entry.get_style_context().add_class("error")
         self._clear_input_fields()
 
-        logging.debug("Could not open database, wrong password")
+        logging.info("Could not open database, wrong password")

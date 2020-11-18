@@ -257,7 +257,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.add(first_start_grid)
 
-    def display_welcome_page(self):
+    def display_welcome_page(self) -> None:
+        """Shown when there is no autoloading and no recent files to display"""
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 

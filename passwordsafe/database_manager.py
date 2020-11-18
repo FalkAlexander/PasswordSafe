@@ -640,7 +640,7 @@ class DatabaseManager(GObject.GObject):
         return self.get_group(uuid) is not None
 
     def check_is_group_object(self, group):
-        return hasattr(group, "name")
+        return isinstance(group, Group)
 
     def get_attachment_from_id(self, attachment_id):
         return self.db.find_attachments(id=attachment_id, first=True)

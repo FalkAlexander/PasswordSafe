@@ -80,7 +80,7 @@ class Pathbar(Gtk.Box):
     def add_pathbar_button_to_pathbar(
             self, element: Union[Entry, Group]) -> None:
         self.clear_pathbar()
-        pathbar_button_active = self.create_pathbar_button(element.uuid)
+        pathbar_button_active = self.create_pathbar_button(element)
 
         self.remove_active_style()
         self.set_active_style(pathbar_button_active)
@@ -91,7 +91,7 @@ class Pathbar(Gtk.Box):
         parent_group = self.database_manager.get_parent_group(element)
         while not parent_group.is_root_group:
             self.pack_end(
-                self.create_pathbar_button(parent_group.uuid),
+                self.create_pathbar_button(parent_group),
                 True, True, 0)
             self.add_seperator_label()
             parent_group = self.database_manager.get_parent_group(
@@ -100,16 +100,16 @@ class Pathbar(Gtk.Box):
         self.add_home_button()
         self.show_all()
 
-    def create_pathbar_button(self, uuid):
-        pathbar_button = PathbarButton(uuid)
+    def create_pathbar_button(self, element: Union[Entry, Group]) -> PathbarButton:
+        pathbar_button = PathbarButton(element.uuid)
 
         pathbar_button_name = NotImplemented
 
-        if self.database_manager.check_is_group(uuid) is True:
-            pathbar_button_name = self.database_manager.get_group_name(uuid)
+        if self.database_manager.check_is_group_object(element):
+            pathbar_button_name = self.database_manager.get_group_name(element)
             pathbar_button.set_is_group()
         else:
-            pathbar_button_name = self.database_manager.get_entry_name(uuid)
+            pathbar_button_name = self.database_manager.get_entry_name(element)
             pathbar_button.set_is_entry()
 
         if pathbar_button_name is not None:

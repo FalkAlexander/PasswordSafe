@@ -126,7 +126,6 @@ class Search:
 
         # Responsive Container
         hdy_search = Handy.Clamp()
-        hdy_search.set_maximum_size(700)
         hdy_search.add(self.search_list_box)
         self._overlay.add(hdy_search)
 

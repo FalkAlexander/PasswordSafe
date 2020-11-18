@@ -40,7 +40,7 @@ class GroupPage:
     #
 
     def insert_group_properties_into_listbox(self, properties_list_box):
-        elt_uuid = self.unlocked_database.current_element.uuid
+        group = self.unlocked_database.current_element
 
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
@@ -55,20 +55,11 @@ class GroupPage:
         notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
         buffer = notes_property_value_entry.get_buffer()
 
-        name_value = self.unlocked_database.database_manager.get_group_name(
-            elt_uuid)
-        notes_value = self.unlocked_database.database_manager.get_notes(
-            elt_uuid)
+        name = self.unlocked_database.database_manager.get_group_name(group)
+        name_property_value_entry.set_text(name)
 
-        if self.unlocked_database.database_manager.has_group_name(elt_uuid) is True:
-            name_property_value_entry.set_text(name_value)
-        else:
-            name_property_value_entry.set_text("")
-
-        if self.unlocked_database.database_manager.has_group_notes(elt_uuid) is True:
-            buffer.set_text(notes_value)
-        else:
-            buffer.set_text("")
+        notes = self.unlocked_database.database_manager.get_notes(group)
+        buffer.set_text(notes)
 
         name_property_value_entry.connect("changed", self.on_property_value_group_changed, "name")
         buffer.connect("changed", self.on_property_value_group_changed, "notes")

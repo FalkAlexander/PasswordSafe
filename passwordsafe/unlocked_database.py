@@ -56,7 +56,6 @@ class UnlockedDatabase(GObject.GObject):
     action_bar = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
-    database_settings_dialog = NotImplemented
     references_dialog = NotImplemented
     notes_dialog = NotImplemented
 
@@ -723,7 +722,7 @@ class UnlockedDatabase(GObject.GObject):
         self.clipboard_timer.start()
 
     def on_database_settings_entry_clicked(self, _action, _param):
-        DatabaseSettingsDialog(self)
+        DatabaseSettingsDialog(self).present()
 
     def on_sort_menu_button_entry_clicked(self, _action, _param, sorting):
         self.start_database_lock_timer()
@@ -864,11 +863,6 @@ class UnlockedDatabase(GObject.GObject):
             self.clipboard.clear()
             self.unregister_dbus_signal()
             self.stop_save_loop()
-
-            try:  # self.database_settings_dialog might be NotImplemented
-                self.database_settings_dialog.close()
-            except AttributeError:
-                pass
 
             try:  # self.notes_dialog might be NotImplemented
                 self.notes_dialog.close()

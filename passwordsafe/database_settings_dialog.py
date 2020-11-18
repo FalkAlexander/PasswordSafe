@@ -1,11 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import ntpath
 import os
 import threading
 import time
 from gettext import gettext as _
 
-from gi.repository import GLib, Gtk
+from gi.repository import Gdk, GLib, Gtk, Handy
 
 import passwordsafe.config_manager as config
 import passwordsafe.keyfile_generator
@@ -13,17 +15,6 @@ import passwordsafe.password_generator
 
 
 class DatabaseSettingsDialog:
-    window = NotImplemented
-
-    unlocked_database = NotImplemented
-    database_manager = NotImplemented
-    builder = NotImplemented
-    stack = NotImplemented
-
-    auth_apply_button = NotImplemented
-    encryption_apply_button = NotImplemented
-    generate_keyfile_button = NotImplemented
-
     new_password = NotImplemented
     new_keyfile_path = NotImplemented
 
@@ -40,32 +31,31 @@ class DatabaseSettingsDialog:
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/database_settings_dialog.ui")
 
-        self.assemble_window()
-        # self.assemble_encryption_page()
-        self.set_detail_values()
+        self.window = self.builder.get_object("database_settings_window")
+        self.auth_apply_button = self.builder.get_object("auth_apply_button")
 
-        stats_thread = threading.Thread(target=self.start_stats_thread)
-        stats_thread.daemon = True
-        stats_thread.start()
+        self.stack = self.builder.get_object("dbsd_stack")
+        self.encryption_apply_button = self.builder.get_object("encryption_apply_button")
+        self.select_keyfile_button = self.builder.get_object("select_keyfile_button")
+        self.generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
+
+        self.__setup_widgets()
+        self.__setup_signals()
+
+        # TODO Implement this feature: Change the encryption algorithm of the Safe
+        # https://gitlab.gnome.org/World/PasswordSafe/-/issues/256
+        # self.assemble_encryption_page()
 
     #
     # Dialog Creation
     #
 
-    def assemble_window(self) -> None:
-        self.window = self.builder.get_object("database_settings_window")
-        self.stack = self.builder.get_object("dbsd_stack")
-
-        self.stack.set_visible_child(self.stack.get_child_by_name("auth_page"))
-
-        # Apply Buttons
-        self.auth_apply_button = self.builder.get_object("auth_apply_button")
+    def __setup_signals(self) -> None:
         self.auth_apply_button.connect("clicked", self.on_auth_apply_button_clicked)
-        self.auth_apply_button.set_sensitive(False)
-
-        self.encryption_apply_button = self.builder.get_object("encryption_apply_button")
-        self.encryption_apply_button.connect("clicked", self.on_encryption_apply_button_clicked)
-        self.encryption_apply_button.set_sensitive(False)
+        self.encryption_apply_button.connect(
+            "clicked", self.on_encryption_apply_button_clicked
+        )
+        self.window.connect("key-press-event", self.__on_key_press_event)
 
         # Password Section
         self.builder.get_object("current_password_entry").connect("changed", self.on_password_entry_changed)
@@ -74,16 +64,21 @@ class DatabaseSettingsDialog:
         self.builder.get_object("confirm_password_entry").connect("changed", self.on_password_entry_changed)
         self.builder.get_object("confirm_password_entry").connect("icon-press", self.on_show_password)
 
-        # Keyfile Section
-        select_keyfile_button = self.builder.get_object("select_keyfile_button")
-        select_keyfile_button.connect("clicked", self.on_keyfile_select_button_clicked)
-
-        self.generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
         self.generate_keyfile_button.connect("clicked", self.on_keyfile_generator_button_clicked)
+        self.select_keyfile_button.connect("clicked", self.on_keyfile_select_button_clicked)
+
+        self.database_manager.connect(
+            "notify::locked", self.__on_locked
+        )
+
+    def __setup_widgets(self) -> None:
+        self.stack.set_visible_child(self.stack.get_child_by_name("auth_page"))
+        self.auth_apply_button.set_sensitive(False)
+        self.encryption_apply_button.set_sensitive(False)
 
         if self.database_manager.keyfile_hash is NotImplemented:
             self.generate_keyfile_button.set_sensitive(True)
-            select_keyfile_button.set_sensitive(False)
+            self.select_keyfile_button.set_sensitive(False)
         else:
             self.generate_keyfile_button.set_sensitive(False)
 
@@ -97,10 +92,15 @@ class DatabaseSettingsDialog:
         # Dialog
         self.window.set_modal(True)
         self.window.set_transient_for(self.unlocked_database.window)
-        self.window.present()
 
-        self.unlocked_database.database_settings_window = self.window
-        self.window.connect("delete-event", self.on_dialog_quit)
+        self.set_detail_values()
+
+        stats_thread = threading.Thread(target=self.start_stats_thread)
+        stats_thread.daemon = True
+        stats_thread.start()
+
+    def present(self):
+        self.window.present()
 
     #
     # Password Section
@@ -501,9 +501,13 @@ class DatabaseSettingsDialog:
         else:
             self.encryption_apply_button.set_sensitive(True)
 
-    #
-    # Tools
-    #
+    def __on_locked(self, database_manager, _value):
+        locked = database_manager.props.locked
+        if locked:
+            self.window.close()
 
-    def on_dialog_quit(self, _window, _event):
-        self.unlocked_database.database_settings_window = NotImplemented
+    def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
+        if event.keyval == Gdk.KEY_Escape:
+            self.window.close()
+            return Gdk.EVENT_STOP
+        return Gdk.EVENT_PROPAGATE

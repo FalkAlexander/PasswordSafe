@@ -28,7 +28,6 @@ class MainWindow(Gtk.ApplicationWindow):
     first_start_grid = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
-    spinner = NotImplemented
 
     mobile_width = False
 
@@ -394,19 +393,19 @@ class MainWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.ACCEPT:
             filepath = filechooser_creation_dialog.get_filename()
 
-            creation_thread = threading.Thread(
-                target=self.create_new_database, args=[filepath]
-            )
-            creation_thread.daemon = True
-            creation_thread.start()
-
             if self.get_children()[0] is self.first_start_grid:
                 self.remove(self.first_start_grid)
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
             if self.get_children()[0] is not self.container:
-                self.spinner = builder.get_object("spinner_grid")
-                self.add(self.spinner)
+                spinner = builder.get_object("spinner")
+                self.add(spinner)
+
+            creation_thread = threading.Thread(
+                target=self.create_new_database, args=[filepath]
+            )
+            creation_thread.daemon = True
+            creation_thread.start()
 
     def create_new_database(self, filepath: str) -> None:
         """invoked in a separate thread to create a new safe."""
@@ -423,8 +422,10 @@ class MainWindow(Gtk.ApplicationWindow):
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
-        if self.get_children()[0] is self.spinner:
-            self.remove(self.spinner)
+        for child in self.get_children():
+            if child.props.name == "spinner":
+                child.destroy()
+                break
 
         builder = Gtk.Builder()
         builder.add_from_resource(

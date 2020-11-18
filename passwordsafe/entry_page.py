@@ -262,7 +262,7 @@ class EntryPage:
         if scrolled_page.attachment_property_row is NotImplemented:
             scrolled_page.attachment_property_row = builder.get_object("attachment_property_row")
             scrolled_page.attachment_list_box = builder.get_object("attachment_list_box")
-            for attachment in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(entry_uuid):
+            for attachment in cur_entry.attachments:
                 self.add_attachment_row(attachment)
 
             scrolled_page.attachment_list_box.add(builder.get_object("add_attachment_row"))
@@ -526,7 +526,6 @@ class EntryPage:
                 self.add_attachment_row(self.unlocked_database.database_manager.add_entry_attachment(entry_uuid, byte_buffer, filename))
 
     def add_attachment_row(self, attachment):
-        entry_uuid = self.unlocked_database.current_element.uuid
         scrolled_page = self.unlocked_database.get_current_page()
 
         builder = Gtk.Builder()
@@ -535,8 +534,15 @@ class EntryPage:
         attachment_row = builder.get_object("attachment_row")
         attachment_row.set_name(str(attachment.id))
         builder.get_object("attachment_label").set_label(attachment.filename)
-        builder.get_object("attachment_download_button").connect("clicked", self.on_attachment_download_button_clicked, attachment)
-        builder.get_object("attachment_delete_button").connect("clicked", self.on_attachment_delete_button_clicked, entry_uuid, attachment, attachment_row)
+        builder.get_object("attachment_download_button").connect(
+            "clicked", self.on_attachment_download_button_clicked, attachment
+        )
+        builder.get_object("attachment_delete_button").connect(
+            "clicked",
+            self.on_attachment_delete_button_clicked,
+            attachment,
+            attachment_row,
+        )
 
         scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box) - 1)
 
@@ -569,25 +575,22 @@ class EntryPage:
             bytes_buffer = self.unlocked_database.database_manager.db.binaries[attachment.id]
             self.save_to_disk(save_dialog.get_filename(), bytes_buffer)
 
-    def on_attachment_delete_button_clicked(self, _button, entry_uuid, attachment, attachment_row):
-        self.unlocked_database.database_manager.delete_entry_attachment(entry_uuid, attachment)
+    def on_attachment_delete_button_clicked(self, _button, attachment, attachment_row):
+        entry = self.unlocked_database.current_element
+        self.unlocked_database.database_manager.delete_entry_attachment(
+            entry.uuid, attachment
+        )
         attachment_row.destroy()
 
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
-
-        entry_uuid = self.unlocked_database.current_element.uuid
         scrolled_page = self.unlocked_database.get_current_page()
 
         for row in scrolled_page.attachment_list_box.get_children():
             if row.get_name() != "AddAttachmentRow":
                 row.destroy()
 
-        for (
-            attach
-        ) in self.unlocked_database.database_manager.get_entry_attachments_from_entry_uuid(
-            entry_uuid
-        ):
+        for attach in entry.attachments:
             self.add_attachment_row(attach)
 
     #

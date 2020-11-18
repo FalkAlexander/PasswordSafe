@@ -321,15 +321,6 @@ class DatabaseManager(GObject.GObject):
 
         return entry.custom_properties
 
-    # Return all attachments for an entry uuid
-    def get_entry_attachments_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.attachments
-
-    # Return all attachments for an entry object
-    def get_entry_attachments_from_entry_object(self, entry):
-        return entry.attachments
-
     #
     # Entry Checks
     #

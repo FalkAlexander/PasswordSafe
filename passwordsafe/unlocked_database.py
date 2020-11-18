@@ -531,7 +531,7 @@ class UnlockedDatabase(GObject.GObject):
                 if button.get_name() == "PathbarButtonDynamic" and isinstance(
                     button, passwordsafe.pathbar_button.PathbarButton
                 ):
-                    if button.uuid == parent_group.uuid:
+                    if button.element.uuid == parent_group.uuid:
                         self.pathbar.on_pathbar_button_clicked(button)
 
         # Remove the parent group from the stack and add it again with
@@ -881,7 +881,7 @@ class UnlockedDatabase(GObject.GObject):
         for button in self.pathbar:
             if (
                 isinstance(button, pathbar_btn_type)
-                and button.uuid == parent_group.uuid
+                and button.element.uuid == parent_group.uuid
             ):
                 pathbar = self.pathbar
                 pathbar.on_pathbar_button_clicked(button)

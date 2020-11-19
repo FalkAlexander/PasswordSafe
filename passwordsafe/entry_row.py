@@ -16,6 +16,8 @@ if typing.TYPE_CHECKING:
 
 
 class EntryRow(Gtk.ListBoxRow):
+    # pylint: disable=too-many-instance-attributes
+
     builder = Gtk.Builder()
     selection_checkbox = NotImplemented
     type = "EntryRow"

@@ -146,6 +146,7 @@ class EntryPage:
             if scrolled_page.notes_property_row is NotImplemented:
                 scrolled_page.notes_property_row = builder.get_object("notes_property_row")
                 scrolled_page.notes_property_value_entry = builder.get_object("notes_property_value_entry")
+                scrolled_page.notes_property_value_entry.get_style_context().add_class("codeview")
 
                 builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 

@@ -137,7 +137,6 @@ class Search:
         self.scrolled_page.add(viewport)
         self.scrolled_page.show_all()
         self.unlocked_database.add_page(self.scrolled_page, "search")
-        self.search_list_box.hide()
 
     def _display_info_overlay(self) -> bool:
         """When search-mode is activated the search text has not been

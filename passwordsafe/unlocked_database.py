@@ -908,6 +908,32 @@ class UnlockedDatabase(GObject.GObject):
     # Helper Methods
     #
 
+    def cleanup(self, delete_tmp_file: bool = True) -> None:
+        """Stop all ongoing operations:
+
+        * stop the save loop
+        * cancel all timers
+        * unregistrer from dbus
+        * delete all temporary file is delete_tmp_file is True
+
+        :param bool show_save_dialog: chooe to delete temporary files
+        """
+        logging.debug("Cleaning database %s", self.database_manager.database_path)
+
+        self.cancel_timers()
+        self.clipboard.clear()
+        self.unregister_dbus_signal()
+        self.stop_save_loop()
+
+        if not delete_tmp_file:
+            return
+
+        for tmpfile in self.scheduled_tmpfiles_deletion:
+            try:
+                tmpfile.delete()
+            except Gio.Error:
+                logging.warning("Skipping deletion of tmpfile...")
+
     def save_database(self, auto_save: bool = False) -> bool:
         """Save the database.
 

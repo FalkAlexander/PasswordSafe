@@ -229,9 +229,15 @@ class Search:
         # FIXME: It should not be necessary to set the height of the list
         # and a check_resize on the scrolled_page. Without this, the
         # result list is not always correctly displayed.
-        # The 38 number comes from the margins and the border of the
-        # list.
-        self.search_list_box.props.height_request = search_height + 38
+        # The 38 = 18 + 18 + 2 number comes from the margins and the border of
+        # the list.
+        # It has to be adjusted for mobile view when there are no margins.
+        if self.unlocked_database.window.mobile_width:
+            margin = 2
+        else:
+            margin = 38
+
+        self.search_list_box.props.height_request = search_height + margin
         self.scrolled_page.check_resize()
         return GLib.SOURCE_REMOVE
 

@@ -25,7 +25,6 @@ class MainWindow(Gtk.ApplicationWindow):
     headerbar = NotImplemented
     file_open_button = NotImplemented
     file_new_button = NotImplemented
-    first_start_grid = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
 
@@ -230,7 +229,7 @@ class MainWindow(Gtk.ApplicationWindow):
         for row in reversed(entry_list):
             last_opened_list_box.add(row)
 
-        self.first_start_grid = builder.get_object("last_opened_grid")
+        first_start_grid = builder.get_object("last_opened_grid")
 
         # Responsive Container
         hdy = Handy.Clamp()
@@ -238,10 +237,10 @@ class MainWindow(Gtk.ApplicationWindow):
         hdy.props.vexpand = True
         hdy.add(builder.get_object("select_box"))
 
-        self.first_start_grid.add(hdy)
-        self.first_start_grid.show_all()
+        first_start_grid.add(hdy)
+        first_start_grid.show_all()
 
-        self.add(self.first_start_grid)
+        self.add(first_start_grid)
 
     def display_welcome_page(self):
         builder = Gtk.Builder()
@@ -252,24 +251,25 @@ class MainWindow(Gtk.ApplicationWindow):
 
         app_logo = builder.get_object("app_logo")
         app_logo.set_from_pixbuf(pix)
-        self.first_start_grid = builder.get_object("first_start_grid")
-        self.add(self.first_start_grid)
+        first_start_grid = builder.get_object("first_start_grid")
+        self.add(first_start_grid)
 
     #
     # Container Methods (Gtk Notebook holds tabs)
     #
 
     def create_container(self):
-        if self.first_start_grid != NotImplemented:
-            self.first_start_grid.destroy()
-
+        # Remove the first_start_grid if still visible
+        for child in self.get_children():
+            if child.props.name == "first_start_grid":
+                child.destroy()
+                break
         self.container = Gtk.Notebook()
 
         self.container.set_border_width(0)
         self.container.set_scrollable(True)
         self.container.set_show_border(False)
         self.container.connect("switch-page", self.on_tab_switch)
-
         self.add(self.container)
         self.show_all()
 
@@ -337,8 +337,15 @@ class MainWindow(Gtk.ApplicationWindow):
                 self._info_bar = ErrorInfoBar(main_message, second_message)
                 self._info_bar_response_id = self._info_bar.connect(
                     "response", self._on_info_bar_response)
-                first_child = self.first_start_grid.get_children()[0]
-                self.first_start_grid.attach_next_to(
+
+                # Get 1st child of  first_start_grid, to attach the info bar
+                first_start_grid = None
+                for child in self.get_children():
+                    if child.props.name == "first_start_grid":
+                        first_start_grid = child
+                        break
+                first_child = first_start_grid.get_children()[0]
+                first_start_grid.attach_next_to(
                     self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
                 return
 
@@ -393,8 +400,11 @@ class MainWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.ACCEPT:
             filepath = filechooser_creation_dialog.get_filename()
 
-            if self.get_children()[0] is self.first_start_grid:
-                self.remove(self.first_start_grid)
+            # Remove first_start_grid and attach the spinner
+            for child in self.get_children():
+                if child.props.name == "first_start_grid":
+                    child.destroy()
+                    break
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
             if self.get_children()[0] is not self.container:
@@ -476,11 +486,13 @@ class MainWindow(Gtk.ApplicationWindow):
             self.container.hide()
             self.remove(self.container)
             self.display_recent_files_list()
-        else:
-            if not self.container.is_visible():
-                self.remove(self.first_start_grid)
-                self.add(self.container)
-                self.container.show_all()
+        elif not self.container.is_visible():
+            for child in self.get_children():
+                if child.props.name == "first_start_grid":
+                    child.destroy()
+                    break
+            self.add(self.container)
+            self.container.show_all()
 
     def close_tab(self, child_widget, database=None):
         """Remove a tab from the container.

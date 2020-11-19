@@ -4,6 +4,7 @@
   <requires lib="gtk+" version="3.20"/>
   <requires lib="libhandy" version="1.0"/>
   <object class="GtkGrid" id="first_start_grid">
+    <property name="name">first_start_grid</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="halign">center</property>
@@ -82,6 +83,7 @@
     </child>
   </object>
   <object class="GtkGrid" id="last_opened_grid">
+    <property name="name">first_start_grid</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="valign">fill</property>

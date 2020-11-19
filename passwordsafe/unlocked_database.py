@@ -917,7 +917,12 @@ class UnlockedDatabase(GObject.GObject):
         """
         logging.debug("Cleaning database %s", self.database_manager.database_path)
 
-        self.cancel_timers()
+        if self.clipboard_timer is not NotImplemented:
+            self.clipboard_timer.cancel()
+
+        if self.database_lock_timer is not NotImplemented:
+            self.database_lock_timer.cancel()
+
         self.clipboard.clear()
         self.unregister_dbus_signal()
         self.stop_save_loop()
@@ -973,13 +978,6 @@ class UnlockedDatabase(GObject.GObject):
                 timeout, GLib.idle_add, args=[self.lock_timeout_database]
             )
             self.database_lock_timer.start()
-
-    def cancel_timers(self):
-        if self.clipboard_timer is not NotImplemented:
-            self.clipboard_timer.cancel()
-
-        if self.database_lock_timer is not NotImplemented:
-            self.database_lock_timer.cancel()
 
     def send_notification(self, title, text):
         notification = Gio.Notification.new(title)

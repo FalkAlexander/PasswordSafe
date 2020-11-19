@@ -310,7 +310,6 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.set_valign(Gtk.Align.START)
 
                 hdy_browser = Handy.Clamp()
-                hdy_browser.set_maximum_size(700)
                 hdy_browser.add(list_box)
                 overlay.add(hdy_browser)
 
@@ -343,8 +342,6 @@ class UnlockedDatabase(GObject.GObject):
                 # Responsive Container
                 hdy_page = Handy.Clamp()
                 hdy_page.set_maximum_size(600)
-                hdy_page.set_margin_top(18)
-                hdy_page.set_margin_bottom(18)
                 hdy_page.add(scrolled_window.properties_list_box)
                 viewport.add(hdy_page)
 

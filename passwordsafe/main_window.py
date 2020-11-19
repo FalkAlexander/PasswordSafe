@@ -232,7 +232,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
         # Responsive Container
         hdy = Handy.Clamp()
-        hdy.set_maximum_size(400)
         hdy.props.vexpand = True
         hdy.add(builder.get_object("select_box"))
 

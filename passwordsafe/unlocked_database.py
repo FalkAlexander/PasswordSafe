@@ -71,7 +71,7 @@ class UnlockedDatabase(GObject.GObject):
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
-    save_loop = NotImplemented
+    save_loop = False  # If True, a thread periodically saves the database
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 

@@ -35,6 +35,9 @@ class KeyFileFilter(Gtk.FileFilter):
 
 
 class UnlockDatabase:
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-few-public-methods
+
     builder = NotImplemented
     parent_widget = NotImplemented
     window = NotImplemented

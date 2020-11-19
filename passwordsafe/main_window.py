@@ -537,12 +537,8 @@ class MainWindow(Gtk.ApplicationWindow):
                 db.clipboard.clear()
                 is_contained = True
                 if db.database_manager.is_dirty:
-                    if passwordsafe.config_manager.get_save_automatically() is True:
-                        save_thread = threading.Thread(target=db.database_manager.save_database)
-                        save_thread.daemon = False
-                        save_thread.start()
-                    else:
-                        db.show_save_dialog()
+                    db.save_database(
+                        passwordsafe.config_manager.get_save_automatically())
                 else:
                     self.close_tab(widget, db)
 
@@ -586,19 +582,17 @@ class MainWindow(Gtk.ApplicationWindow):
 
         for db in self.opened_databases:  # pylint: disable=C0103
             if db.database_manager.is_dirty and not db.database_manager.save_running:
-                if passwordsafe.config_manager.get_save_automatically() is True:
-                    db.stop_save_loop()
-                    save_thread = threading.Thread(target=db.database_manager.save_database)
-                    save_thread.daemon = False
-                    save_thread.start()
+                if passwordsafe.config_manager.get_save_automatically():
+                    db.save_database(True)
                 else:
                     unsaved_databases_list.append(db)
 
         if len(unsaved_databases_list) == 1:
             database = unsaved_databases_list[0]
-            res = database.show_save_dialog()  # This will also save it
-            if not res:
+            saved: bool = database.save_database()
+            if not saved:
                 return True  # User Canceled, don't quit
+
         elif len(unsaved_databases_list) > 1:
             # Multiple unsaved files, ask which to save
             builder = Gtk.Builder()
@@ -641,11 +635,13 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.save_window_size()
         if self.databases_to_save:
-            # This will invoke application.quit() when done...
-            save_thread = threading.Thread(target=self.threaded_database_saving)
-            save_thread.daemon = False
-            save_thread.start()
+            for db_view in self.databases_to_save:
+                db_view.save_database(True)
+
+            GLib.idle_add(self.application.quit)
+
             return True
+
         return False  # caller should quit() the app
     #
     # Gio Actions
@@ -783,15 +779,6 @@ class MainWindow(Gtk.ApplicationWindow):
     #
     # Tools
     #
-
-    def threaded_database_saving(self):
-        """Saves all databases and calls quit()
-
-        Suitable to be called from a separate thread"""
-        for db in self.databases_to_save:  # pylint: disable=C0103
-            db.database_manager.save_database()
-        GLib.idle_add(self.application.quit)
-
     def tab_visible(self, tab):
         """Checks that the tab is visible
 

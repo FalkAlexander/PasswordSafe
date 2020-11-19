@@ -565,11 +565,7 @@ class UnlockedDatabase(GObject.GObject):
 
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
-                save_thread = threading.Thread(
-                    target=self.database_manager.save_database
-                )
-                save_thread.daemon = False
-                save_thread.start()
+                self.save_database(True)
                 self.show_database_action_revealer(_("Database saved"))
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
@@ -820,9 +816,7 @@ class UnlockedDatabase(GObject.GObject):
             pass  # We are done with this db.
         elif res == Gtk.ResponseType.YES:
             # "clicked save". Save changes
-            save_thread = threading.Thread(target=self.database_manager.save_database)
-            save_thread.daemon = False
-            save_thread.start()
+            self.save_database(True)
         else:
             assert False, "Unknown Dialog Response!"
 
@@ -887,11 +881,7 @@ class UnlockedDatabase(GObject.GObject):
                     )
 
                 if passwordsafe.config_manager.get_save_automatically():
-                    save_thread = threading.Thread(
-                        target=self.database_manager.save_database
-                    )
-                    save_thread.daemon = False
-                    save_thread.start()
+                    self.save_database(True)
 
             self.overlay.hide()
         else:

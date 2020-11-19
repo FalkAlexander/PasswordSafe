@@ -194,9 +194,7 @@ class UnlockDatabase:
                     db.cancel_timers()
 
                     if passwordsafe.config_manager.get_save_automatically():
-                        save_thread = threading.Thread(target=db.database_manager.save_database)
-                        save_thread.daemon = False
-                        save_thread.start()
+                        db.save_database(True)
 
                     db.stop_save_loop()
                     database = db

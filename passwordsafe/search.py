@@ -39,10 +39,10 @@ class Search:
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
 
         self._overlay: Gtk.Overlay = self._builder.get_object("overlay")
-        self._empty_search_overlay: Gtk.Overlay = self._builder.get_object(
-            "empty_search_overlay")
-        self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
-            "info_search_overlay")
+        self._empty_search_box: Gtk.Box = self._builder.get_object(
+            "empty_search_box")
+        self._info_search_box: Gtk.Box = self._builder.get_object(
+            "info_search_box")
 
         self.scrolled_page: ScrolledPage = ScrolledPage(False)
 
@@ -141,7 +141,7 @@ class Search:
             self._timeout_info = 0
 
         if not self._key_pressed:
-            self._info_search_overlay.show()
+            self._info_search_box.show()
 
         return GLib.SOURCE_REMOVE
 
@@ -159,8 +159,8 @@ class Search:
             self.search_list_box.remove(row)
 
         self.search_list_box.hide()
-        self._info_search_overlay.hide()
-        self._empty_search_overlay.hide()
+        self._info_search_box.hide()
+        self._empty_search_box.hide()
 
         self._result_list.clear()
 
@@ -173,7 +173,7 @@ class Search:
             search_thread.daemon = True
             search_thread.start()
         else:
-            self._info_search_overlay.show()
+            self._info_search_box.show()
 
     def _perform_search(self):
         """Search for results in the database."""
@@ -181,7 +181,7 @@ class Search:
         self._result_list = self._db_manager.search(self._search_text, path)
 
         if not self._result_list:
-            self._empty_search_overlay.show()
+            self._empty_search_box.show()
             return
 
         self._current_result_idx = 0

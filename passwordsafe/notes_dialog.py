@@ -32,7 +32,7 @@ class NotesDialog():
         self.dialog.set_transient_for(self.unlocked_database.window)
         self.dialog.present()
 
-        self.unlocked_database.references_dialog = self.dialog
+        self.unlocked_database.notes_dialog = self.dialog
         self.dialog.connect("delete-event", self.on_dialog_quit)
 
         scrolled_page = self.unlocked_database.get_current_page()

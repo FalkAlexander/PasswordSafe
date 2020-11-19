@@ -60,7 +60,6 @@ class UnlockedDatabase(GObject.GObject):
     action_bar = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
-    references_dialog = NotImplemented
     notes_dialog = NotImplemented
 
     # Objects
@@ -828,8 +827,11 @@ class UnlockedDatabase(GObject.GObject):
 
         return True
 
-    def show_references_dialog(self, _action, _param):
-        ReferencesDialog(self)
+    def show_references_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
+        """Show a Group/Entry reference dialog
+
+        Invoked by the app.entry.refences action"""
+        ReferencesDialog(self).present()
 
     def show_properties_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Show a Group/Entry property dialog
@@ -870,11 +872,6 @@ class UnlockedDatabase(GObject.GObject):
 
             try:  # self.notes_dialog might be NotImplemented
                 self.notes_dialog.close()
-            except AttributeError:
-                pass
-
-            try:  # self.references_dialog might be NotImplemented
-                self.references_dialog.close()
             except AttributeError:
                 pass
 

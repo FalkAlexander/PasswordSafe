@@ -918,6 +918,31 @@ class UnlockedDatabase(GObject.GObject):
     # Helper Methods
     #
 
+    def save_database(self, auto_save: bool = False) -> bool:
+        """Save the database.
+
+        If auto_save is False, a dialog asking for confirmation
+        will be displayed.
+
+        :param bool auto_save: ask for confirmation before saving
+        """
+        if not self.database_manager.is_dirty or self.database_manager.save_running:
+            return False
+
+        database_saved = False
+        if auto_save:
+            save_thread = threading.Thread(target=self.database_manager.save_database)
+            save_thread.daemon = False
+            save_thread.start()
+            database_saved = True
+        else:
+            database_saved = self.show_save_dialog()
+
+        if database_saved:
+            logging.debug("Saving database %s", self.database_manager.database_path)
+
+        return database_saved
+
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         if clear_clipboard_time:

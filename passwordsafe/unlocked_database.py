@@ -300,7 +300,6 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.connect("row-activated", self.on_list_box_row_activated)
 
                 scrolled_window = ScrolledPage(False)
-                viewport = Gtk.Viewport()
                 overlay = Gtk.Overlay()
 
                 # Responsive Container
@@ -311,8 +310,7 @@ class UnlockedDatabase(GObject.GObject):
                 hdy_browser.add(list_box)
                 overlay.add(hdy_browser)
 
-                viewport.add(overlay)
-                scrolled_window.add(viewport)
+                scrolled_window.add(overlay)
                 scrolled_window.show_all()
 
                 self.add_page(scrolled_window, self.current_element.uuid.urn)

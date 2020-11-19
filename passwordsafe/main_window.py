@@ -533,8 +533,11 @@ class MainWindow(Gtk.ApplicationWindow):
         for db in self.opened_databases:  # pylint: disable=C0103
             if db.window.container.page_num(db.parent_widget) == page_num:
                 if db.database_manager.is_dirty:
-                    db.save_database(
+                    saved: bool = db.save_database(
                         passwordsafe.config_manager.get_save_automatically())
+                    # operation has been canceled
+                    if not saved:
+                        return
 
                 db.cleanup()
                 current_db = db

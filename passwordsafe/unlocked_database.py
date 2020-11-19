@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
+# pylint: disable=too-many-lines
 from __future__ import annotations
 
 import logging
@@ -36,6 +37,9 @@ if typing.TYPE_CHECKING:
 
 
 class UnlockedDatabase(GObject.GObject):
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-public-methods
+
     # Instances
     window = NotImplemented
     database_manager = NotImplemented
@@ -256,6 +260,8 @@ class UnlockedDatabase(GObject.GObject):
     #
 
     def show_page_of_new_directory(self, edit_group, new_entry):
+        # pylint: disable=too-many-statements
+
         # First, remove stack pages which should not exist because they are scheduled for remove
         self.destroy_current_page_if_scheduled()
 
@@ -661,6 +667,7 @@ class UnlockedDatabase(GObject.GObject):
         self.show_page_of_new_directory(True, False)
 
     def send_to_clipboard(self, text):
+        # pylint: disable=too-many-branches
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()

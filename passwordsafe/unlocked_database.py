@@ -923,8 +923,11 @@ class UnlockedDatabase(GObject.GObject):
         if self.database_lock_timer is not NotImplemented:
             self.database_lock_timer.cancel()
 
+        # Do not listen to screensaver kicking in anymore
+        connection = self.window.application.get_dbus_connection()
+        connection.signal_unsubscribe(self.dbus_subscription_id)
+
         self.clipboard.clear()
-        self.unregister_dbus_signal()
         self.stop_save_loop()
 
         if not delete_tmp_file:
@@ -1046,11 +1049,6 @@ class UnlockedDatabase(GObject.GObject):
             None, "org.gnome.ScreenSaver", "ActiveChanged",
             "/org/gnome/ScreenSaver", None,
             Gio.DBusSignalFlags.NONE, self.on_session_lock,)
-
-    def unregister_dbus_signal(self):
-        """Do not listen to screensaver kicking in anymore"""
-        connection = self.window.application.get_dbus_connection()
-        connection.signal_unsubscribe(self.dbus_subscription_id)
 
     def __can_go_back(self):
         db_manager = self.database_manager

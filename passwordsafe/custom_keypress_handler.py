@@ -36,6 +36,8 @@ class CustomKeypressHandler:
         self.unlocked_database.window.connect("button-release-event", self._on_button_released)
 
     def on_special_key_pressed(self, window: MainWindow, eventkey: Gtk.Event) -> bool:
+        # pylint: disable=too-many-return-statements
+        # pylint: disable=too-many-branches
         if not self._current_view_accessible():
             return Gdk.EVENT_PROPAGATE
 

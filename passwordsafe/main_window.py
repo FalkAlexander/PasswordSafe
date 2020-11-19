@@ -17,6 +17,9 @@ from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class MainWindow(Gtk.ApplicationWindow):
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-public-methods
+
     database_manager = NotImplemented
     container = NotImplemented
     headerbar = NotImplemented
@@ -281,6 +284,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self._info_bar_response_id = None
 
     def open_filechooser(self, _widget, _none):
+        # pylint: disable=too-many-locals
         if self._info_bar is not None:
             self._on_info_bar_response()
 
@@ -559,6 +563,7 @@ class MainWindow(Gtk.ApplicationWindow):
         This function is invoked by the application.quit method
         :returns: True if handled (don't quit), False if shutdown
         """
+        # pylint: disable=too-many-branches
         unsaved_databases_list = []
         self.databases_to_save.clear()
 

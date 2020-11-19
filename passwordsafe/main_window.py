@@ -344,7 +344,12 @@ class MainWindow(Gtk.ApplicationWindow):
                     if child.props.name == "first_start_grid":
                         first_start_grid = child
                         break
-                first_child = first_start_grid.get_children()[0]
+                # FIXME: we should open the error in the info bar,
+                # but there is no first_start_grid to attach it to. At
+                # least don't crash now, this needs better fixing.
+                if first_start_grid is None:
+                    return
+                first_child = self.get_children()[0]
                 first_start_grid.attach_next_to(
                     self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
                 return

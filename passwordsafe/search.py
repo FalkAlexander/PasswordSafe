@@ -99,8 +99,6 @@ class Search:
                 self._search_event_connection_id = self._search_entry.connect(
                     "key-release-event", self.on_search_entry_navigation)
 
-            self.unlocked_database.responsive_ui.action_bar()
-
             self._timeout_info = GLib.timeout_add(
                 200, self._display_info_overlay)
 
@@ -114,6 +112,8 @@ class Search:
             self._search_changed_id = 0
             self._search_entry.props.text = ""
             self._key_pressed = False
+        # Set/hide actionbar as needed
+        self.unlocked_database.responsive_ui.action_bar()
 
     #
     # Stack

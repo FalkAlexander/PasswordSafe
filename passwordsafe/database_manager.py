@@ -16,6 +16,8 @@ from passwordsafe.color_widget import Color
 
 
 class DatabaseManager(GObject.GObject):
+    # pylint: disable=too-many-public-methods
+
     """Implements database functionality that is independent of the UI
 
     Useful attributes:
@@ -429,6 +431,7 @@ class DatabaseManager(GObject.GObject):
     # Add new entry to database
     def add_entry_to_database(
             self, name, username, password, url, notes, icon, group_uuid):
+        # pytlint: disable=too-many-arguments
         destination_group = self.get_group(group_uuid)
         entry = self.db.add_entry(
             destination_group, name, username, password, url=url, notes=notes,

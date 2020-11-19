@@ -927,8 +927,12 @@ class UnlockedDatabase(GObject.GObject):
         connection = self.window.application.get_dbus_connection()
         connection.signal_unsubscribe(self.dbus_subscription_id)
 
+        # stop the save loop
+        self.builder.get_object("save_button").props.sensitive = False
+        if self.save_loop:
+            self.save_loop = False
+
         self.clipboard.clear()
-        self.stop_save_loop()
 
         if not delete_tmp_file:
             return
@@ -1001,10 +1005,6 @@ class UnlockedDatabase(GObject.GObject):
             else:
                 self.builder.get_object("save_button").set_sensitive(True)
             time.sleep(30)
-
-    def stop_save_loop(self):
-        self.builder.get_object("save_button").set_sensitive(True)
-        self.save_loop = False
 
     def add_loading_indicator_thread(self, list_box, overlay):
         time.sleep(1)

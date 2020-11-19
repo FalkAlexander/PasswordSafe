@@ -788,7 +788,7 @@ class UnlockedDatabase(GObject.GObject):
     # Dialog Creator
     #
 
-    def show_save_dialog(self) -> bool:
+    def _show_save_dialog(self) -> bool:
         """ Show the save confirmation dialog
 
         Saves the db and closes the tab.
@@ -926,7 +926,7 @@ class UnlockedDatabase(GObject.GObject):
             save_thread.start()
             database_saved = True
         else:
-            database_saved = self.show_save_dialog()
+            database_saved = self._show_save_dialog()
 
         if database_saved:
             logging.debug("Saving database %s", self.database_manager.database_path)

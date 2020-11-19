@@ -3,6 +3,8 @@ from gi.repository import Gtk
 
 
 class NotesDialog():
+    # pylint: disable=too-many-instance-attributes
+
     dialog = NotImplemented
 
     unlocked_database = NotImplemented

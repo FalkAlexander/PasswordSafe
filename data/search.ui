@@ -54,125 +54,135 @@
       </packing>
     </child>
   </object>
-  <object class="GtkOverlay" id="empty_search_overlay">
+  <object class="GtkOverlay" id="overlay">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
-    <child>
-      <object class="GtkBox" id="empty_search_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">8</property>
-        <child>
-          <object class="GtkImage">
-            <property name="name">empty_group_image</property>
+    <child type="overlay">
+      <object class="GtkOverlay" id="empty_search_overlay">
+	<property name="visible">False</property>
+	<property name="no-show-all">True</property>
+	<property name="can_focus">False</property>
+	<property name="hexpand">True</property>
+	<property name="vexpand">True</property>
+	<child>
+	  <object class="GtkBox" id="empty_search_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="valign">end</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="pixel_size">70</property>
-            <property name="icon_name">folder-saved-search-symbolic</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="name">empty_group_label</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="valign">start</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="label" translatable="yes">No search results</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-              <attribute name="size" value="15000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
+            <property name="orientation">vertical</property>
+            <property name="spacing">8</property>
+            <child>
+              <object class="GtkImage">
+		<property name="name">empty_group_image</property>
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="valign">end</property>
+		<property name="hexpand">True</property>
+		<property name="vexpand">True</property>
+		<property name="pixel_size">70</property>
+		<property name="icon_name">folder-saved-search-symbolic</property>
+              </object>
+              <packing>
+		<property name="expand">False</property>
+		<property name="fill">True</property>
+		<property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+		<property name="name">empty_group_label</property>
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="valign">start</property>
+		<property name="hexpand">True</property>
+		<property name="vexpand">True</property>
+		<property name="label" translatable="yes">No search results</property>
+		<attributes>
+		  <attribute name="weight" value="bold"/>
+		  <attribute name="size" value="15000"/>
+		</attributes>
+              </object>
+              <packing>
+		<property name="expand">False</property>
+		<property name="fill">True</property>
+		<property name="position">1</property>
+              </packing>
+            </child>
+	  </object>
+	</child>
       </object>
-      <packing>
-        <property name="index">-1</property>
-      </packing>
     </child>
-  </object>
-  <object class="GtkOverlay" id="info_search_overlay">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
-    <child>
-      <object class="GtkBox" id="info_search_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">8</property>
-        <child>
-          <object class="GtkImage">
-            <property name="name">empty_group_image</property>
+    <child type="overlay">
+      <object class="GtkOverlay" id="info_search_overlay">
+	<property name="visible">False</property>
+	<property name="no-show-all">True</property>
+	<property name="can_focus">False</property>
+	<property name="hexpand">True</property>
+	<property name="vexpand">True</property>
+	<child>
+	  <object class="GtkBox" id="info_search_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="valign">end</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="pixel_size">70</property>
-            <property name="icon_name">folder-saved-search-symbolic</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="name">empty_group_label</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="valign">start</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="label" translatable="yes">Enter search term</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-              <attribute name="size" value="15000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
+            <property name="orientation">vertical</property>
+            <property name="spacing">8</property>
+            <child>
+              <object class="GtkImage">
+		<property name="name">empty_group_image</property>
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="valign">end</property>
+		<property name="hexpand">True</property>
+		<property name="vexpand">True</property>
+		<property name="pixel_size">70</property>
+		<property name="icon_name">folder-saved-search-symbolic</property>
+              </object>
+              <packing>
+		<property name="expand">False</property>
+		<property name="fill">True</property>
+		<property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+		<property name="name">empty_group_label</property>
+		<property name="visible">True</property>
+		<property name="can_focus">False</property>
+		<property name="valign">start</property>
+		<property name="hexpand">True</property>
+		<property name="vexpand">True</property>
+		<property name="label" translatable="yes">Enter search term</property>
+		<attributes>
+		  <attribute name="weight" value="bold"/>
+		  <attribute name="size" value="15000"/>
+		</attributes>
+              </object>
+              <packing>
+		<property name="expand">False</property>
+		<property name="fill">True</property>
+		<property name="position">1</property>
+              </packing>
+            </child>
+	  </object>
+	</child>
       </object>
-      <packing>
-        <property name="index">-1</property>
-      </packing>
     </child>
-  </object>
-  <object class="GtkListBox" id="list_box">
-    <property name="name">BrowserListBox</property>
-    <property name="visible">False</property>
-    <property name="no-show-all">True</property>
-    <property name="can_focus">False</property>
-    <property name="valign">start</property>
-    <property name="selection_mode">none</property>
+    <child>
+      <object class="HdyClamp">
+	<property name="visible">True</property>
+	<child>
+	  <object class="GtkListBox" id="list_box">
+	    <property name="name">BrowserListBox</property>
+	    <property name="visible">False</property>
+	    <property name="no-show-all">True</property>
+	    <property name="can_focus">False</property>
+	    <property name="valign">start</property>
+	    <property name="selection_mode">none</property>
+	  </object>
+	</child>
+      </object>
+    </child>
   </object>
   <object class="GtkListBoxRow" id="load_more_row">
     <property name="name">LoadMoreRow</property>

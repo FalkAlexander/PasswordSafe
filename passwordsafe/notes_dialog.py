@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Gtk
+from __future__ import annotations
+
+from gi.repository import Gtk, Gdk, Handy
 
 
 class NotesDialog():
@@ -34,13 +36,13 @@ class NotesDialog():
 
         self.unlocked_database.notes_dialog = self.dialog
         self.dialog.connect("delete-event", self.on_dialog_quit)
+        self.dialog.connect("key-press-event", self.__on_key_press_event)
 
         scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.notes_dialog_value_entry = self.builder.get_object("value_entry")
         scrolled_page.notes_dialog_value_entry.get_buffer().connect("changed", self.on_value_entry_changed)
 
         self.builder.get_object("copy_button").connect("clicked", self.on_copy_button_clicked)
-        self.builder.get_object("close_button").connect("clicked", self.on_close_button_clicked)
 
         # Search
         self.search_button = self.builder.get_object("search_button")
@@ -96,9 +98,6 @@ class NotesDialog():
                 False)
         )
 
-    def on_close_button_clicked(self, _button):
-        self.dialog.destroy()
-
     def on_search_button_toggled(self, _button):
         if self.search_stopped is True:
             return
@@ -145,3 +144,10 @@ class NotesDialog():
         self.unlocked_database.notes_dialog = NotImplemented
         scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.notes_dialog_value_entry = NotImplemented
+
+    def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
+        if event.keyval == Gdk.KEY_Escape:
+            if not self.search_bar.get_search_mode():
+                self.dialog.close()
+                return Gdk.EVENT_STOP
+        return Gdk.EVENT_PROPAGATE

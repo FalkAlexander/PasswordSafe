@@ -190,13 +190,10 @@ class UnlockDatabase:
             for db in self.window.opened_databases:  # pylint: disable=C0103
                 db_path: str = db.database_manager.database_path
                 if db_path == self.database_manager.database_path:
-                    db.unregister_dbus_signal()
-                    db.cancel_timers()
-
                     if passwordsafe.config_manager.get_save_automatically():
                         db.save_database(True)
 
-                    db.stop_save_loop()
+                    db.cleanup()
                     database = db
 
         self.window.set_headerbar()

@@ -860,10 +860,7 @@ class UnlockedDatabase(GObject.GObject):
     def _on_database_lock_changed(self, _database_manager, _value):
         locked = self.database_manager.props.locked
         if locked:
-            self.cancel_timers()
-            self.clipboard.clear()
-            self.unregister_dbus_signal()
-            self.stop_save_loop()
+            self.cleanup(False)
 
             try:  # self.notes_dialog might be NotImplemented
                 self.notes_dialog.close()

@@ -3,7 +3,7 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from typing import List
+from typing import List, Optional
 from gi.repository import Gdk, Gio, GLib, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
 
@@ -528,22 +528,23 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)
-        is_contained = False
+        current_db: Optional[UnlockedDatabase] = None
 
         for db in self.opened_databases:  # pylint: disable=C0103
             if db.window.container.page_num(db.parent_widget) == page_num:
-                db.props.database_locked = True
-                db.stop_save_loop()
-                db.clipboard.clear()
-                is_contained = True
                 if db.database_manager.is_dirty:
                     db.save_database(
                         passwordsafe.config_manager.get_save_automatically())
-                else:
-                    self.close_tab(widget, db)
 
-        if is_contained is False:
-            self.close_tab(widget)
+                db.cleanup()
+                current_db = db
+                break
+
+        if not current_db:
+            logging.warning(
+                "Closing a tab, but could not find the corresponding database.")
+
+        self.close_tab(widget, current_db)
 
     def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()
@@ -624,14 +625,7 @@ class MainWindow(Gtk.ApplicationWindow):
             # Do nothing in other cases e.g.NONE, OK,...
 
         for database in self.opened_databases:
-            database.cancel_timers()
-            database.unregister_dbus_signal()
-            database.clipboard.clear()
-            for tmpfile in database.scheduled_tmpfiles_deletion:
-                try:
-                    tmpfile.delete()
-                except Exception:  # pylint: disable=broad-except
-                    logging.warning("Skipping deletion of tmpfile...")
+            database.cleanup()
 
         self.save_window_size()
         if self.databases_to_save:

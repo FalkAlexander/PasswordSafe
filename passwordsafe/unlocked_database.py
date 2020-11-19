@@ -331,7 +331,6 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window = ScrolledPage(True)
                 scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
-                viewport = Gtk.Viewport()
                 scrolled_window.properties_list_box = builder.get_object(
                     "properties_list_box"
                 )
@@ -343,9 +342,8 @@ class UnlockedDatabase(GObject.GObject):
                 hdy_page.set_margin_start(12)
                 hdy_page.set_margin_end(12)
                 hdy_page.add(scrolled_window.properties_list_box)
-                viewport.add(hdy_page)
 
-                scrolled_window.add(viewport)
+                scrolled_window.add(hdy_page)
                 scrolled_window.show_all()
 
                 self.add_page(scrolled_window, self.current_element.uuid.urn)

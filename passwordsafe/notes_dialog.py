@@ -40,7 +40,6 @@ class NotesDialog():
         scrolled_page.notes_dialog_value_entry.get_buffer().connect("changed", self.on_value_entry_changed)
 
         self.builder.get_object("copy_button").connect("clicked", self.on_copy_button_clicked)
-        self.builder.get_object("close_button").connect("clicked", self.on_close_button_clicked)
 
         # Search
         self.search_button = self.builder.get_object("search_button")
@@ -95,9 +94,6 @@ class NotesDialog():
                 scrolled_page.notes_dialog_value_entry.get_buffer().get_end_iter(),
                 False)
         )
-
-    def on_close_button_clicked(self, _button):
-        self.dialog.destroy()
 
     def on_search_button_toggled(self, _button):
         if self.search_stopped is True:

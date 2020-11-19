@@ -15,6 +15,8 @@ import passwordsafe.password_generator
 
 
 class DatabaseSettingsDialog:
+    # pylint: disable=too-many-instance-attributes
+
     new_password = NotImplemented
     new_keyfile_path = NotImplemented
 

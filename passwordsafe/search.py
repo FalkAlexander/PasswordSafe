@@ -18,6 +18,8 @@ if typing.TYPE_CHECKING:
 
 
 class Search:
+    # pylint: disable=too-many-instance-attributes
+
     #
     # Global Variables
     #

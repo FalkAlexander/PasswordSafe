@@ -178,6 +178,7 @@ class SelectionUI:
         self.unlocked_database.database_manager.is_dirty = True
 
     def on_selection_cut_button_clicked(self, widget):
+        # pylint: disable=too-many-branches
         rebuild_pathbar = False
 
         if self.cut_mode is True:

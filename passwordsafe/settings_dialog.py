@@ -24,6 +24,9 @@ class SettingsDialog():
         self.set_config_values()
 
     def set_config_values(self):
+        # pylint: disable=too-many-locals
+        # pylint: disable=too-many-statements
+
         # General
         settings_theme_switch = self.builder.get_object("settings_theme_switch")
         settings_theme_switch.connect("notify::active", self.on_settings_theme_switch_switched)

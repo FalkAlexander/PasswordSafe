@@ -17,6 +17,7 @@ if typing.TYPE_CHECKING:
 
 
 class EntryPage:
+    # pylint: disable=too-many-public-methods
     #
     # Global Variables
     #
@@ -55,6 +56,9 @@ class EntryPage:
     #
 
     def insert_entry_properties_into_listbox(self, properties_list_box, add_all):
+        # pylint: disable=too-many-locals
+        # pylint: disable=too-many-branches
+        # pylint: disable=too-many-statements
         builder = Gtk.Builder()
 
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
@@ -275,6 +279,7 @@ class EntryPage:
             if key not in ("color_prop_LcljUMJZ9X", "Notes"):
                 self.add_attribute_property_row(key, attributes[key])
 
+        # pylint: disable=too-many-boolean-expressions
         if scrolled_page.color_property_row is not NotImplemented and \
            scrolled_page.name_property_row is not NotImplemented and \
            scrolled_page.username_property_row is not NotImplemented and \
@@ -447,6 +452,7 @@ class EntryPage:
     def on_key_entry_activated(
             self, widget: Gtk.Entry, entry: Entry, key: str,
             button: Gtk.Button, parent: Gtk.Box) -> None:
+        # pylint: disable=too-many-arguments
         new_key: str = widget.props.text
         if not new_key:
             widget.get_style_context().add_class("error")

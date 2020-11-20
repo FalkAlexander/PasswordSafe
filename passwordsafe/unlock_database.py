@@ -134,8 +134,10 @@ class UnlockDatabase:
 
         # Responsive Container
         self.hdy_page = Handy.Clamp()
-        self.hdy_page.set_margin_left(10)
-        self.hdy_page.set_margin_right(10)
+        # TODO Move these to the GtkBox that contains it in the ui file.
+        self.hdy_page.set_margin_start(18)
+        self.hdy_page.set_margin_end(18)
+        self.hdy_page.set_maximum_size(300)
         self.hdy_page.add(unlock_database_stack_box)
         self.hdy_page.show_all()
 

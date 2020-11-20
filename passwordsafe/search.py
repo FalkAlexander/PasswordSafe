@@ -38,11 +38,11 @@ class Search:
         self._builder: Gtk.Builder = Gtk.Builder()
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
 
-        self._overlay: Gtk.Overlay = Gtk.Overlay()
-        self._empty_search_overlay: Gtk.Overlay = self._builder.get_object(
-            "empty_search_overlay")
-        self._info_search_overlay: Gtk.Overlay = self._builder.get_object(
-            "info_search_overlay")
+        self._overlay: Gtk.Overlay = self._builder.get_object("overlay")
+        self._empty_search_box: Gtk.Box = self._builder.get_object(
+            "empty_search_box")
+        self._info_search_box: Gtk.Box = self._builder.get_object(
+            "info_search_box")
 
         self.scrolled_page: ScrolledPage = ScrolledPage(False)
 
@@ -125,19 +125,12 @@ class Search:
         viewport.set_name("BGPlatform")
 
         self.search_list_box = self._builder.get_object("list_box")
-
-        # Responsive Container
-        hdy_search = Handy.Clamp()
-        hdy_search.add(self.search_list_box)
-        self._overlay.add(hdy_search)
-
         self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
         viewport.add(self._overlay)
 
         self.scrolled_page.add(viewport)
         self.scrolled_page.show_all()
         self.unlocked_database.add_page(self.scrolled_page, "search")
-        self.search_list_box.hide()
 
     def _display_info_overlay(self) -> bool:
         """When search-mode is activated the search text has not been
@@ -147,9 +140,8 @@ class Search:
             GLib.source_remove(self._timeout_info)
             self._timeout_info = 0
 
-        if (not self._key_pressed
-                and self._info_search_overlay not in self._overlay):
-            self._overlay.add_overlay(self._info_search_overlay)
+        if not self._key_pressed:
+            self._info_search_box.show()
 
         return GLib.SOURCE_REMOVE
 
@@ -167,12 +159,8 @@ class Search:
             self.search_list_box.remove(row)
 
         self.search_list_box.hide()
-
-        if self._info_search_overlay in self._overlay:
-            self._overlay.remove(self._info_search_overlay)
-
-        if self._empty_search_overlay in self._overlay:
-            self._overlay.remove(self._empty_search_overlay)
+        self._info_search_box.hide()
+        self._empty_search_box.hide()
 
         self._result_list.clear()
 
@@ -185,7 +173,7 @@ class Search:
             search_thread.daemon = True
             search_thread.start()
         else:
-            self._overlay.add_overlay(self._info_search_overlay)
+            self._info_search_box.show()
 
     def _perform_search(self):
         """Search for results in the database."""
@@ -193,7 +181,7 @@ class Search:
         self._result_list = self._db_manager.search(self._search_text, path)
 
         if not self._result_list:
-            self._overlay.add_overlay(self._empty_search_overlay)
+            self._empty_search_box.show()
             return
 
         self._current_result_idx = 0
@@ -241,9 +229,15 @@ class Search:
         # FIXME: It should not be necessary to set the height of the list
         # and a check_resize on the scrolled_page. Without this, the
         # result list is not always correctly displayed.
-        # The 38 number comes from the margins and the border of the
-        # list.
-        self.search_list_box.props.height_request = search_height + 38
+        # The 38 = 18 + 18 + 2 number comes from the margins and the border of
+        # the list.
+        # It has to be adjusted for mobile view when there are no margins.
+        if self.unlocked_database.window.mobile_width:
+            margin = 2
+        else:
+            margin = 38
+
+        self.search_list_box.props.height_request = search_height + margin
         self.scrolled_page.check_resize()
         return GLib.SOURCE_REMOVE
 

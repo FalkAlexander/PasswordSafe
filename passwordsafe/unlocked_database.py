@@ -162,7 +162,7 @@ class UnlockedDatabase(GObject.GObject):
 
         search_button = self.builder.get_object("search_button")
         search_button.connect("clicked", self._on_search_button_clicked)
-        self.bind_accelerator(self.accelerators, search_button, "<Control>f")
+        self.bind_accelerator(search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
         selection_button.connect("clicked", self._on_selection_button_clicked)
@@ -236,11 +236,12 @@ class UnlockedDatabase(GObject.GObject):
     # Keystrokes
     #
 
-    def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
-        """"""
+    def bind_accelerator(self, widget, accelerator, signal="clicked"):
         """bind accelerators to self, aka this `UnlockedDatabase`"""
         key, mod = Gtk.accelerator_parse(accelerator)
-        widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
+        widget.add_accelerator(
+            signal, self.accelerators, key, mod, Gtk.AccelFlags.VISIBLE
+        )
 
     #
     # Group and Entry Management

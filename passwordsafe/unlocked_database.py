@@ -35,23 +35,17 @@ if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
     from pykeepass.group import Group
 
+    # pylint: disable=ungrouped-imports
+    from passwordsafe.main_window import MainWindow
+    from passwordsafe.container_page import ContainerPage
+    from passwordsafe.database_manager import DatabaseManager
+
 
 class UnlockedDatabase(GObject.GObject):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
 
-    # Instances
-    window = NotImplemented
-    database_manager = NotImplemented
-    responsive_ui = NotImplemented
-    selection_ui = NotImplemented
-    search = NotImplemented
-    entry_page = NotImplemented
-    group_page = NotImplemented
-    custom_keypress_handler = NotImplemented
-
     # Widgets
-    parent_widget = NotImplemented
     headerbar = NotImplemented
     headerbar_box = NotImplemented
     scrolled_window = NotImplemented
@@ -78,19 +72,20 @@ class UnlockedDatabase(GObject.GObject):
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE
     )
 
-    def __init__(self, window, widget, dbm):
+    def __init__(self, window: MainWindow, widget: ContainerPage, dbm: DatabaseManager):
         super().__init__()
-
         # Instances
-        self.window = window
-        self.parent_widget = widget
-        self.database_manager = dbm
-        self.responsive_ui = ResponsiveUI(self)
-        self.selection_ui = SelectionUI(self)
-        self.search = Search(self)
-        self.entry_page = EntryPage(self)
-        self.group_page = GroupPage(self)
-        self.custom_keypress_handler = CustomKeypressHandler(self)
+        self.window: MainWindow = window
+        self.parent_widget: ContainerPage = widget
+        self.database_manager: DatabaseManager = dbm
+        self.responsive_ui: ResponsiveUI = ResponsiveUI(self)
+        self.selection_ui: SelectionUI = SelectionUI(self)
+        self.search: Search = Search(self)
+        self.entry_page: EntryPage = EntryPage(self)
+        self.group_page: GroupPage = GroupPage(self)
+        self.custom_keypress_handler: CustomKeypressHandler = CustomKeypressHandler(
+            self
+        )
         # UnlockedDatabase-specific key accelerators
         self.accelerators: Gtk.AccelGroup = Gtk.AccelGroup()
         self.window.add_accel_group(self.accelerators)

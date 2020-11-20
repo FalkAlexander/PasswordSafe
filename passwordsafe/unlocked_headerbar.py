@@ -136,11 +136,9 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
     def _update_selection_buttons(self):
         """Update the visibility of the headerbar buttons."""
-        if self._unlocked_database.props.selection_mode:
-            return
-
         scrolled_page = self._unlocked_database.get_current_page()
-        if scrolled_page and scrolled_page.edit_page:
+        if ((scrolled_page and scrolled_page.edit_page)
+                or self._unlocked_database.props.selection_mode):
             self._pathbar_button_selection_revealer.props.reveal_child = False
             self._selection_button_revealer.props.reveal_child = False
             return

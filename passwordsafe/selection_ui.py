@@ -72,8 +72,6 @@ class SelectionUI:
 
         self.unlocked_database.headerbar.set_show_close_button(False)
 
-        self.unlocked_database.headerbar.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
-
         self.prepare_selection_page()
 
     def _exit_selection_mode(self):

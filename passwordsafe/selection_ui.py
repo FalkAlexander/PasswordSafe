@@ -67,7 +67,14 @@ class SelectionUI:
         self.unlocked_database.headerbar.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.headerbar.builder.get_object("selection_cut_button").set_sensitive(False)
 
-        self.prepare_selection_page()
+        for stack_page in self.unlocked_database.get_pages():
+            if not stack_page.check_is_edit_page():
+                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
+                for row in list_box:
+                    if hasattr(row, "selection_checkbox"):
+                        row.selection_checkbox.show()
+                    if hasattr(row, "edit_button"):
+                        row.edit_button.hide()
 
     def _exit_selection_mode(self):
         for stack_page in self.unlocked_database.get_pages():
@@ -90,16 +97,6 @@ class SelectionUI:
                 el_context.add_class('SeperatorLabel')
 
         self.unlocked_database.show_page_of_new_directory(False, False)
-
-    def prepare_selection_page(self):
-        for stack_page in self.unlocked_database.get_pages():
-            if stack_page.check_is_edit_page() is False:
-                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
-                for row in list_box:
-                    if hasattr(row, "selection_checkbox"):
-                        row.selection_checkbox.show()
-                    if hasattr(row, "edit_button") is True:
-                        row.edit_button.hide()
 
     #
     # Events

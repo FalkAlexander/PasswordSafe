@@ -575,8 +575,6 @@ class UnlockedDatabase(GObject.GObject):
             self.show_database_action_revealer(_("No changes made"))
 
     def on_lock_button_clicked(self, _widget):
-        # shows save dialog if required
-        self.show_save_dialog()
         self.database_manager.props.locked = True
 
     def on_add_entry_button_clicked(self, _widget):

@@ -8,6 +8,7 @@ from typing import Optional
 
 from gi.repository import GObject, Gtk, Handy
 
+from passwordsafe.selection_ui import SelectionUI
 if typing.TYPE_CHECKING:
     from passwordsafe.main_window import MainWindow
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -42,15 +43,14 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         self._headerbar_box = self.builder.get_object("headerbar_box")
 
+        self._headerbar_right_box = self.builder.get_object("headerbar_right_box")
+        self._selection_ui = SelectionUI(self._unlocked_database)
+        self._selection_ui.initialize()
+        self._headerbar_right_box.add(self._selection_ui.container)
+
         self._search_button = self.builder.get_object("search_button")
         self._search_button.connect("clicked", self._on_search_button_clicked)
         self._unlocked_database.bind_accelerator(self._search_button, "<Control>f")
-
-        self._selection_button_box = self.builder.get_object(
-            "selection_button_box")
-        self._unlocked_database.bind_property(
-            "selection-mode", self._selection_button_box, "visible",
-            GObject.BindingFlags.SYNC_CREATE)
 
         self._selection_button = self.builder.get_object("selection_button")
         self._selection_button.connect(
@@ -190,6 +190,15 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self._headerbar_box.add(self._pathbar)
 
         self._unlocked_database.revealer.props.reveal_child = is_mobile
+
+    @property
+    def selection_ui(self) -> SelectionUI:
+        """SelectionUI getter
+
+        :returns: selection box
+        :rtype: SelectionUI
+        """
+        return self._selection_ui
 
     @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
     def mode(self) -> int:

@@ -29,7 +29,6 @@ from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
-from passwordsafe.selection_ui import SelectionUI
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
@@ -77,7 +76,6 @@ class UnlockedDatabase(GObject.GObject):
         self.window: MainWindow = window
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
-        self.selection_ui: SelectionUI = SelectionUI(self)
         self.search: Search = Search(self)
         self.entry_page: EntryPage = EntryPage(self)
         self.group_page: GroupPage = GroupPage(self)
@@ -118,6 +116,7 @@ class UnlockedDatabase(GObject.GObject):
         self.action_bar = self.builder.get_object("action_bar")
 
         self.headerbar = UnlockedHeaderBar(self)
+        self.selection_ui = self.headerbar.selection_ui
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
@@ -147,9 +146,6 @@ class UnlockedDatabase(GObject.GObject):
     def set_headerbar(self):
         # Search UI
         self.search.initialize()
-
-        # Selection UI
-        self.selection_ui.initialize()
 
         self._update_headerbar()
 

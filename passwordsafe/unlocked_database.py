@@ -64,7 +64,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Objects
     builder = NotImplemented
-    accelerators = NotImplemented
     scheduled_page_destroy: List[UUID] = []
     scheduled_tmpfiles_deletion: List[Gio.File] = []
     clipboard = NotImplemented
@@ -92,6 +91,9 @@ class UnlockedDatabase(GObject.GObject):
         self.entry_page = EntryPage(self)
         self.group_page = GroupPage(self)
         self.custom_keypress_handler = CustomKeypressHandler(self)
+        # UnlockedDatabase-specific key accelerators
+        self.accelerators: Gtk.AccelGroup = Gtk.AccelGroup()
+        self.window.add_accel_group(self.accelerators)
 
         self._current_element: Optional[Union[Entry, Group]] = None
 
@@ -126,9 +128,6 @@ class UnlockedDatabase(GObject.GObject):
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-
-        self.accelerators = Gtk.AccelGroup()
-        self.window.add_accel_group(self.accelerators)
 
         self.overlay = Gtk.Overlay()
         self.parent_widget.add(self.overlay)
@@ -243,6 +242,8 @@ class UnlockedDatabase(GObject.GObject):
     #
 
     def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
+        """"""
+        """bind accelerators to self, aka this `UnlockedDatabase`"""
         key, mod = Gtk.accelerator_parse(accelerator)
         widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
 

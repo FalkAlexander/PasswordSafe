@@ -581,12 +581,13 @@ class MainWindow(Gtk.ApplicationWindow):
         unsaved_databases_list = []
         self.databases_to_save.clear()
 
-        for db in self.opened_databases:  # pylint: disable=C0103
-            if db.database_manager.is_dirty and not db.database_manager.save_running:
+        for db_view in self.opened_databases:
+            if (db_view.database_manager.is_dirty
+                    and not db_view.database_manager.save_running):
                 if passwordsafe.config_manager.get_save_automatically():
-                    db.save_database(True)
+                    db_view.save_database(True)
                 else:
-                    unsaved_databases_list.append(db)
+                    unsaved_databases_list.append(db_view)
 
         if len(unsaved_databases_list) == 1:
             database = unsaved_databases_list[0]

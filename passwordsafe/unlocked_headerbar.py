@@ -75,6 +75,10 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._window.connect(
             "notify::mobile-width", self._on_mobile_width_changed)
 
+        self._unlocked_database.bind_property(
+            "selection-mode", self, "show-close-button",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN)
+
         self._pathbar_button_selection_revealer = self.builder.get_object(
             "pathbar_button_selection_revealer")
         self._selection_button_revealer = self.builder.get_object(
@@ -103,8 +107,12 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     def _on_selection_mode_changed(
             self, _unlocked_database: UnlockedDatabase,
             _value: GObject.ParamSpecInt) -> None:
+        style_context = self.get_style_context()
         if self._unlocked_database.props.selection_mode:
+            style_context.add_class("selection-mode")
             self.props.mode = UnlockedHeaderBar.Mode.SELECTION
+        else:
+            style_context.remove_class("selection-mode")
 
     def _on_mobile_width_changed(
             self, _klass: Optional[MainWindow],

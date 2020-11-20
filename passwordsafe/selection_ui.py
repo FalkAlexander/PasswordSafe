@@ -67,11 +67,6 @@ class SelectionUI:
         self.unlocked_database.headerbar.builder.get_object("selection_delete_button").set_sensitive(False)
         self.unlocked_database.headerbar.builder.get_object("selection_cut_button").set_sensitive(False)
 
-        context = self.unlocked_database.headerbar.get_style_context()
-        context.add_class('selection-mode')
-
-        self.unlocked_database.headerbar.set_show_close_button(False)
-
         self.prepare_selection_page()
 
     def _exit_selection_mode(self):
@@ -85,11 +80,6 @@ class SelectionUI:
                         row.selection_checkbox.set_active(False)
                     if hasattr(row, "edit_button") is True:
                         row.edit_button.show_all()
-
-        self.unlocked_database.headerbar.set_show_close_button(True)
-
-        context = self.unlocked_database.headerbar.get_style_context()
-        context.remove_class('selection-mode')
 
         self.cut_mode = True
 

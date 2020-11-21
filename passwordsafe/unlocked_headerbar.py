@@ -14,6 +14,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/unlocked_headerbar.ui")
 class UnlockedHeaderBar(Handy.HeaderBar):
 
     __gtype_name__ = "UnlockedHeaderBar"
@@ -24,64 +25,46 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         ENTRY = 2
         SELECTION = 3
 
-    def __new__(cls, unlocked_database):
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_headerbar.ui")
+    _entry_menu = Gtk.Template.Child()
+    _group_menu = Gtk.Template.Child()
+    _headerbar_box = Gtk.Template.Child()
+    _headerbar_right_box = Gtk.Template.Child()
+    _linkedbox_right = Gtk.Template.Child()
+    _pathbar_button_selection_revealer = Gtk.Template.Child()
+    _secondary_menu_button = Gtk.Template.Child()
+    _search_button = Gtk.Template.Child()
+    _selection_button_revealer = Gtk.Template.Child()
+    _selection_options_button = Gtk.Template.Child()
+    _title_label = Gtk.Template.Child()
 
-        new_object = builder.get_object("headerbar")
-        new_object.finish_initializing(builder, unlocked_database)
-        return new_object
+    def __init__(self, unlocked_database):
+        """HearderBar of an UnlockedDatabase
 
-    def finish_initializing(self, builder, unlocked_database):
-        self.builder = builder
+        :param UnlockedDatabase unlocked_database: unlocked_database
+        """
+        super().__init__()
+
         self._unlocked_database = unlocked_database
         self._action_bar = unlocked_database.action_bar
         self._db_manager = unlocked_database.database_manager
         self._pathbar = unlocked_database.pathbar
         self._window = unlocked_database.window
 
-        self._headerbar_box = self.builder.get_object("headerbar_box")
-
-        self._headerbar_right_box = self.builder.get_object("headerbar_right_box")
         self._selection_ui = SelectionUI(self._unlocked_database)
         self._headerbar_right_box.add(self._selection_ui)
 
-        self._search_button = self.builder.get_object("search_button")
-        self._search_button.connect("clicked", self._on_search_button_clicked)
         self._unlocked_database.bind_accelerator(self._search_button, "<Control>f")
 
-        self._selection_button = self.builder.get_object("selection_button")
-        self._selection_button.connect(
-            "clicked", self._on_selection_button_clicked)
-
-        self._selection_button_mobile = builder.get_object("selection_button_mobile")
-        self._selection_button_mobile.connect(
-            "clicked", self._on_selection_button_clicked)
-
-        self._selection_options_button = self.builder.get_object(
-            "selection_options_button")
         self._unlocked_database.bind_property(
             "selection-mode", self._selection_options_button, "visible",
             GObject.BindingFlags.SYNC_CREATE)
 
-        self._secondary_menu_button = self.builder.get_object("secondary_menu_button")
-        self._entry_menu = self.builder.get_object("entry_menu")
-        self._group_menu = self.builder.get_object("group_menu")
-        self._linkedbox_right = self.builder.get_object("linkedbox_right")
-
-        self._title_label = self.builder.get_object("title_label")
         self._window.connect(
             "notify::mobile-width", self._on_mobile_width_changed)
 
         self._unlocked_database.bind_property(
             "selection-mode", self, "show-close-button",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN)
-
-        self._pathbar_button_selection_revealer = self.builder.get_object(
-            "pathbar_button_selection_revealer")
-        self._selection_button_revealer = self.builder.get_object(
-            "selection_button_revealer")
 
         self._mode: int = UnlockedHeaderBar.Mode.GROUP
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
@@ -92,14 +75,16 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         self._on_mobile_width_changed(None, None)
 
-    def _on_search_button_clicked(self, _btn: Gtk.Button) -> None:
-        self._unlocked_database.props.search_active = True
-
     def _on_search_active(
             self, _unlocked_database: UnlockedDatabase,
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_action_bar()
 
+    @Gtk.Template.Callback()
+    def _on_search_button_clicked(self, _btn: Gtk.Button) -> None:
+        self._unlocked_database.props.search_active = True
+
+    @Gtk.Template.Callback()
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True
 

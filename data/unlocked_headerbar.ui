@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="UnlockedHeaderBar" id="headerbar">
+  <template class="UnlockedHeaderBar" parent="HdyHeaderBar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="show_close_button">True</property>
     <child>
-      <object class="GtkBox" id="headerbar_box">
+      <object class="GtkBox" id="_headerbar_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
       </object>
     </child>
     <child>
-      <object class="GtkRevealer" id="pathbar_button_selection_revealer">
+      <object class="GtkRevealer" id="_pathbar_button_selection_revealer">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="transition_type">slide-right</property>
@@ -22,6 +22,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+	    <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage" id="selection_button_image_mobile">
                 <property name="visible">True</property>
@@ -34,7 +35,7 @@
       </object>
     </child>
     <child type="title">
-      <object class="GtkLabel" id="title_label">
+      <object class="GtkLabel" id="_title_label">
 	<property name="visible">True</property>
 	<property name="can_focus">False</property>
 	<property name="halign">center</property>
@@ -48,7 +49,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkMenuButton" id="selection_options_button">
+      <object class="GtkMenuButton" id="_selection_options_button">
 	<property name="visible">False</property>
 	<property name="can_focus">True</property>
 	<property name="receives_default">True</property>
@@ -79,12 +80,12 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox" id="headerbar_right_box">
+      <object class="GtkBox" id="_headerbar_right_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">6</property>
         <child>
-          <object class="GtkBox" id="linkedbox_right">
+          <object class="GtkBox" id="_linkedbox_right">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
@@ -98,7 +99,7 @@
 		    <property name="can_focus">False</property>
 		    <property name="spacing">6</property>
 		    <child>
-		      <object class="GtkRevealer" id="selection_button_revealer">
+		      <object class="GtkRevealer" id="_selection_button_revealer">
 			<property name="visible">True</property>
 			<property name="can_focus">False</property>
 			<property name="transition_type">slide-left</property>
@@ -109,6 +110,7 @@
 			    <property name="can_focus">True</property>
 			    <property name="receives_default">True</property>
 			    <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+			    <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
 			    <child>
 			      <object class="GtkImage" id="selection_button_image">
 				<property name="visible">True</property>
@@ -125,11 +127,12 @@
 		      </packing>
 		    </child>
 		    <child>
-		      <object class="GtkButton" id="search_button">
+		      <object class="GtkButton" id="_search_button">
 			<property name="visible">True</property>
 			<property name="can_focus">True</property>
 			<property name="receives_default">True</property>
 			<property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
+			<signal name="clicked" handler="_on_search_button_clicked" swapped="no"/>
 			<child>
 			  <object class="GtkImage" id="search_button_image">
 			    <property name="visible">True</property>
@@ -165,7 +168,7 @@
           </object>
         </child>
         <child>
-          <object class="GtkMenuButton" id="secondary_menu_button">
+	  <object class="GtkMenuButton" id="_secondary_menu_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -183,7 +186,7 @@
         <property name="pack_type">end</property>
       </packing>
     </child>
-  </object>
+  </template>
   <menu id="unlocked_database_menu">
     <section>
       <attribute name='display-hint'>horizontal-buttons</attribute>
@@ -266,7 +269,7 @@
       </item>
     </section>
   </menu>
-  <menu id="entry_menu">
+  <menu id="_entry_menu">
     <section>
       <item>
         <attribute name="label" translatable="yes">_Duplicate</attribute>
@@ -288,7 +291,7 @@
       </item>
     </section>
   </menu>
-  <menu id="group_menu">
+  <menu id="_group_menu">
     <section>
       <item>
         <attribute name="label" translatable="yes">_Properties</attribute>

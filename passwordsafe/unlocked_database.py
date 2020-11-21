@@ -132,8 +132,7 @@ class UnlockedDatabase(GObject.GObject):
         self.overlay.show_all()
 
         self.search.initialize()
-
-        self.set_headerbar()
+        self._update_headerbar()
 
         self.list_box_sorting = passwordsafe.config_manager.get_sort_order()
         self.start_database_lock_timer()
@@ -143,10 +142,6 @@ class UnlockedDatabase(GObject.GObject):
     #
     # Headerbar
     #
-
-    # Assemble headerbar
-    def set_headerbar(self):
-        self._update_headerbar()
 
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""

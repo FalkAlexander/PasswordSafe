@@ -188,15 +188,13 @@ class MainWindow(Gtk.ApplicationWindow):
             return
 
         builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/main_window.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
         last_opened_list_box = builder.get_object("last_opened_list_box")
         last_opened_list_box.connect(
             "row-activated", self.on_last_opened_list_box_activated)
 
         entry_list = []
-        pbuilder = Gtk.Builder()
         user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
         for path_uri in passwordsafe.config_manager.get_last_opened_list():
             gio_file: Gio.File = Gio.File.new_for_uri(path_uri)
@@ -207,10 +205,10 @@ class MainWindow(Gtk.ApplicationWindow):
                 continue  # only work with existing files
 
             # Retrieve new widgets for next entry
-            pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-            last_opened_row = pbuilder.get_object("last_opened_row")
-            filename_label = pbuilder.get_object("filename_label")
-            path_label = pbuilder.get_object("path_label")
+            builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+            last_opened_row = builder.get_object("last_opened_row")
+            filename_label = builder.get_object("filename_label")
+            path_label = builder.get_object("path_label")
 
             # If path is not relative to user's home, use absolute path
             path: str = user_home.get_relative_path(gio_file) or gio_file.get_path()

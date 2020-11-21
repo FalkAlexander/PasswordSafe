@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkMessageDialog" id="warning_dialog">
+  <template class="AttachmentWarningDialog" parent="GtkMessageDialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
     <property name="message_type">warning</property>
@@ -38,5 +38,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

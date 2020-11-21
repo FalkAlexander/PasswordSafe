@@ -29,11 +29,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
     </child>
     <child>
       <object class="GtkButton" id="search_button">
@@ -49,11 +44,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">2</property>
-      </packing>
     </child>
   </object>
   <object class="GtkOverlay" id="database_action_overlay">
@@ -90,11 +80,6 @@
                     <property name="margin_end">15</property>
                     <property name="hexpand">True</property>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
                 </child>
               </object>
             </child>
@@ -124,11 +109,6 @@
           <placeholder/>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
     </child>
     <child>
       <object class="GtkRevealer" id="revealer">
@@ -148,11 +128,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
     </child>
   </object>
   <object class="GtkOverlay" id="empty_group_overlay">
@@ -179,11 +154,6 @@
             <property name="pixel_size">70</property>
             <property name="icon_name">folder-symbolic</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel">
@@ -199,11 +169,6 @@
               <attribute name="size" value="15000"/>
             </attributes>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
       <packing>
@@ -269,11 +234,6 @@
             <property name="inverted">True</property>
             <property name="centered">True</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_a-z_button">
@@ -283,11 +243,6 @@
             <property name="action_name">app.sort.az</property>
             <property name="text" translatable="yes" comments="This string depicts the alphabet from the beginning to the end (first character to last one).">A-Z</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_z-a_button">
@@ -297,11 +252,6 @@
             <property name="action_name">app.sort.za</property>
             <property name="text" translatable="yes" comments="This string depicts the alphabet in reversed order, from the end to the start (last character to first one).">Z-A</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_last_added_button">
@@ -311,11 +261,6 @@
             <property name="action_name">app.sort.last_added</property>
             <property name="text" translatable="yes" comments="This is a modelbutton in a popover to sort entries by last added">Last Added</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
         </child>
       </object>
       <packing>
@@ -352,11 +297,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="lock_button">
@@ -374,21 +314,11 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSeparator">
@@ -397,11 +327,6 @@
             <property name="margin_top">5</property>
             <property name="margin_bottom">5</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_sorting_button">
@@ -411,11 +336,6 @@
             <property name="text" translatable="yes">Sorting</property>
             <property name="menu_name">sorting</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
         </child>
         <child>
           <object class="GtkBox" id="linked_box1">
@@ -429,11 +349,6 @@
                 <property name="margin_top">5</property>
                 <property name="margin_bottom">5</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkModelButton" id="menubutton_popover_label_button">
@@ -443,11 +358,6 @@
                 <property name="action_name">app.db.safe</property>
                 <property name="text" translatable="yes">Safe</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
             </child>
             <child>
               <object class="GtkModelButton" id="menubutton_popover_new_entry_button">
@@ -457,11 +367,6 @@
                 <property name="action_name">app.db.add_entry</property>
                 <property name="text" translatable="yes">New Entry</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">2</property>
-              </packing>
             </child>
             <child>
               <object class="GtkModelButton" id="menubutton_popover_new_group_button">
@@ -471,32 +376,17 @@
                 <property name="action_name">app.db.add_group</property>
                 <property name="text" translatable="yes">New Group</property>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">3</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">8</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">9</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_new_button">
@@ -506,11 +396,6 @@
             <property name="action_name">app.new</property>
             <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe creation process">New Safe</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">10</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_open_button">
@@ -520,11 +405,6 @@
             <property name="action_name">app.open</property>
             <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe opening process (for existing safe)">Open Safe</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">11</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_dbsettings_button">
@@ -534,22 +414,12 @@
             <property name="action_name">app.db.settings</property>
             <property name="text" translatable="yes" comments="Open settings for safe (e.g. password changing)">Safe Settings</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">12</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">15</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_settings_button">
@@ -559,11 +429,6 @@
             <property name="action_name">app.settings</property>
             <property name="text" translatable="yes">Preferences</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">16</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
@@ -573,11 +438,6 @@
             <property name="action_name">app.shortcuts</property>
             <property name="text" translatable="yes">Keyboard Shortcuts</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">17</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_about_button">
@@ -587,11 +447,6 @@
             <property name="action_name">app.about</property>
             <property name="text" translatable="yes" comments="&quot;Password Safe&quot; is the application name">About Password Safe</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">18</property>
-          </packing>
         </child>
       </object>
       <packing>
@@ -619,11 +474,6 @@
             <property name="action_name">app.entry.duplicate</property>
             <property name="text" translatable="yes">Duplicate</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="references_menu_entry">
@@ -633,11 +483,6 @@
             <property name="action_name">app.entry.references</property>
             <property name="text" translatable="yes">References</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="properties_menu_entry">
@@ -647,22 +492,12 @@
             <property name="action_name">app.element.properties</property>
             <property name="text" translatable="yes">Properties</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
         </child>
         <child>
           <object class="GtkSeparator" id="separator">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">3</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="delete_menu_entry">
@@ -672,11 +507,6 @@
             <property name="action_name">app.element.delete</property>
             <property name="text" translatable="yes">Delete</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">4</property>
-          </packing>
         </child>
       </object>
       <packing>
@@ -721,9 +551,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="position">1</property>
-      </packing>
     </child>
     <child>
       <object class="GtkRevealer" id="pathbar_button_selection_revealer">
@@ -746,9 +573,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="position">2</property>
-      </packing>
     </child>
     <child type="title">
       <object class="GtkLabel" id="title_label">
@@ -763,9 +587,6 @@
 	  <attribute name="weight" value="bold"/>
 	</attributes>
       </object>
-      <packing>
-        <property name="position">3</property>
-      </packing>
     </child>
     <child>
       <object class="GtkMenuButton" id="selection_options_button">
@@ -786,11 +607,6 @@
 		<property name="label" translatable="yes">Click on a checkbox to select</property>
 		<property name="ellipsize">middle</property>
               </object>
-              <packing>
-		<property name="expand">False</property>
-		<property name="fill">True</property>
-		<property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkImage" id="selection_options_button_labe">
@@ -798,18 +614,10 @@
 		<property name="can_focus">False</property>
 		<property name="icon_name">pan-down-symbolic</property>
               </object>
-              <packing>
-		<property name="expand">False</property>
-		<property name="fill">True</property>
-		<property name="position">1</property>
-              </packing>
             </child>
 	  </object>
 	</child>
       </object>
-      <packing>
-        <property name="position">4</property>
-      </packing>
     </child>
     <child>
       <object class="GtkBox" id="headerbar_right_box">
@@ -829,11 +637,6 @@
                   <placeholder/>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkMenuButton" id="menupopover_button">
@@ -849,18 +652,8 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">3</property>
-              </packing>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkMenuButton" id="secondary_menupopover_button">
@@ -876,11 +669,6 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
 	<child>
 	  <object class="GtkBox" id="selection_button_box">
@@ -901,11 +689,6 @@
 		  </object>
 		</child>
 	      </object>
-	      <packing>
-		<property name="expand">False</property>
-		<property name="fill">True</property>
-		<property name="position">0</property>
-	      </packing>
 	    </child>
 	    <child>
 	      <object class="GtkButton" id="selection_delete_button">
@@ -921,11 +704,6 @@
 		  </object>
 		</child>
 	      </object>
-	      <packing>
-		<property name="expand">False</property>
-		<property name="fill">True</property>
-		<property name="position">1</property>
-	      </packing>
 	    </child>
 	    <child>
 	      <object class="GtkButton" id="selection_cancel_button">
@@ -934,23 +712,12 @@
 		<property name="can_focus">True</property>
 		<property name="receives_default">True</property>
 	      </object>
-	      <packing>
-		<property name="expand">False</property>
-		<property name="fill">True</property>
-		<property name="position">2</property>
-	      </packing>
 	    </child>
 	  </object>
-	  <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
 	</child>
       </object>
       <packing>
         <property name="pack_type">end</property>
-        <property name="position">5</property>
       </packing>
     </child>
   </object>
@@ -974,11 +741,6 @@
             <property name="action_name">app.selection.all</property>
             <property name="text" translatable="yes">Select all</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="selection_option_none_button">
@@ -988,11 +750,6 @@
             <property name="action_name">app.selection.none</property>
             <property name="text" translatable="yes">Select none</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
       <packing>

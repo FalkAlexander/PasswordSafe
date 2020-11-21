@@ -25,10 +25,8 @@ class MainWindow(Gtk.ApplicationWindow):
     headerbar = NotImplemented
     file_open_button = NotImplemented
     file_new_button = NotImplemented
-    first_start_grid = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
-    spinner = NotImplemented
 
     mobile_width = False
 
@@ -190,15 +188,13 @@ class MainWindow(Gtk.ApplicationWindow):
             return
 
         builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/main_window.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
         last_opened_list_box = builder.get_object("last_opened_list_box")
         last_opened_list_box.connect(
             "row-activated", self.on_last_opened_list_box_activated)
 
         entry_list = []
-        pbuilder = Gtk.Builder()
         user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
         for path_uri in passwordsafe.config_manager.get_last_opened_list():
             gio_file: Gio.File = Gio.File.new_for_uri(path_uri)
@@ -209,10 +205,10 @@ class MainWindow(Gtk.ApplicationWindow):
                 continue  # only work with existing files
 
             # Retrieve new widgets for next entry
-            pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-            last_opened_row = pbuilder.get_object("last_opened_row")
-            filename_label = pbuilder.get_object("filename_label")
-            path_label = pbuilder.get_object("path_label")
+            builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+            last_opened_row = builder.get_object("last_opened_row")
+            filename_label = builder.get_object("filename_label")
+            path_label = builder.get_object("path_label")
 
             # If path is not relative to user's home, use absolute path
             path: str = user_home.get_relative_path(gio_file) or gio_file.get_path()
@@ -231,7 +227,7 @@ class MainWindow(Gtk.ApplicationWindow):
         for row in reversed(entry_list):
             last_opened_list_box.add(row)
 
-        self.first_start_grid = builder.get_object("last_opened_grid")
+        first_start_grid = builder.get_object("last_opened_grid")
 
         # Responsive Container
         hdy = Handy.Clamp()
@@ -239,10 +235,10 @@ class MainWindow(Gtk.ApplicationWindow):
         hdy.props.vexpand = True
         hdy.add(builder.get_object("select_box"))
 
-        self.first_start_grid.add(hdy)
-        self.first_start_grid.show_all()
+        first_start_grid.add(hdy)
+        first_start_grid.show_all()
 
-        self.add(self.first_start_grid)
+        self.add(first_start_grid)
 
     def display_welcome_page(self):
         builder = Gtk.Builder()
@@ -253,24 +249,25 @@ class MainWindow(Gtk.ApplicationWindow):
 
         app_logo = builder.get_object("app_logo")
         app_logo.set_from_pixbuf(pix)
-        self.first_start_grid = builder.get_object("first_start_grid")
-        self.add(self.first_start_grid)
+        first_start_grid = builder.get_object("first_start_grid")
+        self.add(first_start_grid)
 
     #
     # Container Methods (Gtk Notebook holds tabs)
     #
 
     def create_container(self):
-        if self.first_start_grid != NotImplemented:
-            self.first_start_grid.destroy()
-
+        # Remove the first_start_grid if still visible
+        for child in self.get_children():
+            if child.props.name == "first_start_grid":
+                child.destroy()
+                break
         self.container = Gtk.Notebook()
 
         self.container.set_border_width(0)
         self.container.set_scrollable(True)
         self.container.set_show_border(False)
         self.container.connect("switch-page", self.on_tab_switch)
-
         self.add(self.container)
         self.show_all()
 
@@ -338,8 +335,20 @@ class MainWindow(Gtk.ApplicationWindow):
                 self._info_bar = ErrorInfoBar(main_message, second_message)
                 self._info_bar_response_id = self._info_bar.connect(
                     "response", self._on_info_bar_response)
-                first_child = self.first_start_grid.get_children()[0]
-                self.first_start_grid.attach_next_to(
+
+                # Get 1st child of  first_start_grid, to attach the info bar
+                first_start_grid = None
+                for child in self.get_children():
+                    if child.props.name == "first_start_grid":
+                        first_start_grid = child
+                        break
+                # FIXME: we should open the error in the info bar,
+                # but there is no first_start_grid to attach it to. At
+                # least don't crash now, this needs better fixing.
+                if first_start_grid is None:
+                    return
+                first_child = self.get_children()[0]
+                first_start_grid.attach_next_to(
                     self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
                 return
 
@@ -394,19 +403,22 @@ class MainWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.ACCEPT:
             filepath = filechooser_creation_dialog.get_filename()
 
+            # Remove first_start_grid and attach the spinner
+            for child in self.get_children():
+                if child.props.name == "first_start_grid":
+                    child.destroy()
+                    break
+            builder = Gtk.Builder()
+            builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
+            if self.get_children()[0] is not self.container:
+                spinner = builder.get_object("spinner")
+                self.add(spinner)
+
             creation_thread = threading.Thread(
                 target=self.create_new_database, args=[filepath]
             )
             creation_thread.daemon = True
             creation_thread.start()
-
-            if self.get_children()[0] is self.first_start_grid:
-                self.remove(self.first_start_grid)
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-            if self.get_children()[0] is not self.container:
-                self.spinner = builder.get_object("spinner_grid")
-                self.add(self.spinner)
 
     def create_new_database(self, filepath: str) -> None:
         """invoked in a separate thread to create a new safe."""
@@ -423,8 +435,10 @@ class MainWindow(Gtk.ApplicationWindow):
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
-        if self.get_children()[0] is self.spinner:
-            self.remove(self.spinner)
+        for child in self.get_children():
+            if child.props.name == "spinner":
+                child.destroy()
+                break
 
         builder = Gtk.Builder()
         builder.add_from_resource(
@@ -475,11 +489,13 @@ class MainWindow(Gtk.ApplicationWindow):
             self.container.hide()
             self.remove(self.container)
             self.display_recent_files_list()
-        else:
-            if not self.container.is_visible():
-                self.remove(self.first_start_grid)
-                self.add(self.container)
-                self.container.show_all()
+        elif not self.container.is_visible():
+            for child in self.get_children():
+                if child.props.name == "first_start_grid":
+                    child.destroy()
+                    break
+            self.add(self.container)
+            self.container.show_all()
 
     def close_tab(self, child_widget, database=None):
         """Remove a tab from the container.

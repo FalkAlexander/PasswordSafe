@@ -131,6 +131,8 @@ class UnlockedDatabase(GObject.GObject):
         self.overlay.add(self.divider)
         self.overlay.show_all()
 
+        self.search.initialize()
+
         self.set_headerbar()
 
         self.list_box_sorting = passwordsafe.config_manager.get_sort_order()
@@ -144,9 +146,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Assemble headerbar
     def set_headerbar(self):
-        # Search UI
-        self.search.initialize()
-
         self._update_headerbar()
 
     def _update_headerbar(self) -> None:

@@ -430,14 +430,27 @@ class DatabaseManager(GObject.GObject):
 
     # Add new entry to database
     def add_entry_to_database(
-            self, name, username, password, url, notes, icon, group_uuid):
-        # pytlint: disable=too-many-arguments
-        destination_group = self.get_group(group_uuid)
+        self,
+        group: Group,
+        name: Optional[str] = "",
+        username: Optional[str] = "",
+        password: Optional[str] = "",
+    ) -> Entry:
+        force: bool = self.check_entry_in_group_exists("", group)
         entry = self.db.add_entry(
-            destination_group, name, username, password, url=url, notes=notes,
-            expiry_time=None, tags=None, icon=icon, force_creation=self.check_entry_in_group_exists("", destination_group))
+            group,
+            name,
+            username,
+            password,
+            url=None,
+            notes=None,
+            expiry_time=None,
+            tags=None,
+            icon="0",
+            force_creation=force,
+        )
         self.is_dirty = True
-        self.set_element_mtime(destination_group)
+        self.set_element_mtime(group)
 
         return entry
 

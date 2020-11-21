@@ -45,8 +45,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         self._headerbar_right_box = self.builder.get_object("headerbar_right_box")
         self._selection_ui = SelectionUI(self._unlocked_database)
-        self._selection_ui.initialize()
-        self._headerbar_right_box.add(self._selection_ui.container)
+        self._headerbar_right_box.add(self._selection_ui)
 
         self._search_button = self.builder.get_object("search_button")
         self._search_button.connect("clicked", self._on_search_button_clicked)

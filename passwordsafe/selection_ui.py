@@ -13,10 +13,13 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-class SelectionUI:
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/selection_ui.ui")
+class SelectionUI(Gtk.Box):
     #
     # Global Variables
     #
+
+    __gtype_name__ = "SelectionUI"
 
     unlocked_database = NotImplemented
 
@@ -28,35 +31,26 @@ class SelectionUI:
     entries_cut: List[EntryRow] = []
     groups_cut: List[GroupRow] = []
 
+    _cancel_button = Gtk.Template.Child()
+    _cut_paste_button = Gtk.Template.Child()
+    _cut_paste_image = Gtk.Template.Child()
+    _delete_button = Gtk.Template.Child()
+
     #
     # Init
     #
 
     def __init__(self, u_d):
+        super().__init__()
+
         self.unlocked_database = u_d
 
         self.unlocked_database.connect(
             "notify::selection-mode", self._on_selection_mode_changed)
 
-        self._builder = Gtk.Builder()
-        self._builder.add_from_resource(
-            "/org/gnome/PasswordSafe/selection_ui.ui")
-
-        self._box: Gtk.Box = self._builder.get_object("selection_button_box")
         self.unlocked_database.bind_property(
-            "selection-mode", self._box, "visible",
+            "selection-mode", self, "visible",
             GObject.BindingFlags.SYNC_CREATE)
-
-        self._cancel_button = self._builder.get_object("selection_cancel_button")
-        self._cut_paste_button = self._builder.get_object("selection_cut_button")
-        self._cut_paste_image = self._builder.get_object("selection_cut_button_image")
-        self._delete_button = self._builder.get_object("selection_delete_button")
-
-    def initialize(self):
-        # Selection Headerbar
-        self._cancel_button.connect("clicked", self.on_selection_cancel_button_clicked)
-        self._delete_button.connect("clicked", self.on_selection_delete_button_clicked)
-        self._cut_paste_button.connect("clicked", self.on_selection_cut_button_clicked)
 
     def _on_selection_mode_changed(
             self, unlocked_database: UnlockedDatabase,
@@ -111,11 +105,13 @@ class SelectionUI:
     # Events
     #
 
-    def on_selection_cancel_button_clicked(self, _widget):
+    @Gtk.Template.Callback()
+    def _on_cancel_button_clicked(self, _widget):
         self.unlocked_database.props.selection_mode = False
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-    def on_selection_delete_button_clicked(self, _widget):
+    @Gtk.Template.Callback()
+    def _on_delete_button_clicked(self, _widget):
         rebuild_pathbar = False
         reset_stack_page = False
         group = None
@@ -164,7 +160,8 @@ class SelectionUI:
         # It is more efficient to do this here and not in the database manager loop
         self.unlocked_database.database_manager.is_dirty = True
 
-    def on_selection_cut_button_clicked(self, widget):
+    @Gtk.Template.Callback()
+    def _on_cut_paste_button_clicked(self, _widget):
         # pylint: disable=too-many-branches
         rebuild_pathbar = False
 
@@ -309,13 +306,3 @@ class SelectionUI:
             self.groups_cut.clear()
             self._cut_paste_image.set_from_icon_name(
                 "edit-cut-symbolic", Gtk.IconSize.BUTTON)
-
-    @property
-    def container(self) -> Gtk.Box:
-        """ Get the selection container
-
-
-        :returns: current page
-        :rtype: Gtk.Widget
-        """
-        return self._box

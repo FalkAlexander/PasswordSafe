@@ -1,4 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
 import os
 import threading
@@ -17,17 +19,23 @@ from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
 
 
-class MainWindow(Gtk.ApplicationWindow):
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/main_window.ui")
+class MainWindow(Handy.ApplicationWindow):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
+    __gtype_name__ = "MainWindow"
 
     database_manager = NotImplemented
     container = NotImplemented
-    _headerbar = NotImplemented
-    file_open_button = NotImplemented
-    file_new_button = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
+
+    file_new_button = Gtk.Template.Child()
+    file_open_button = Gtk.Template.Child()
+    _headerbar = Gtk.Template.Child()
+    _main_view = Gtk.Template.Child()
+    _spinner = Gtk.Template.Child()
+    _title_stack = Gtk.Template.Child()
 
     mobile_layout = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
@@ -43,9 +51,14 @@ class MainWindow(Gtk.ApplicationWindow):
         if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
 
+    def set_titlebar(self, headerbar: Handy.Headebar) -> None:
+        if headerbar not in self._title_stack.get_children():
+            self._title_stack.add(headerbar)
+        self._title_stack.set_visible_child(headerbar)
+
     def assemble_window(self) -> None:
         window_size = passwordsafe.config_manager.get_window_size()
-        self.set_default_size(window_size[0], window_size[1])
+        self.resize(window_size[0], window_size[1])
 
         self.create_headerbar()
         self.load_custom_css()
@@ -57,19 +70,6 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def create_headerbar(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-
-        self._headerbar = builder.get_object("_headerbar")
-
-        self.file_open_button = builder.get_object("open_button")
-        self.file_open_button.connect("clicked", self.open_filechooser)
-
-        self.file_new_button = builder.get_object("new_button")
-        self.file_new_button.connect("clicked", self.create_filechooser)
-
-        self.set_headerbar_button_layout()
-
         self.set_titlebar(self._headerbar)
 
         if Gio.Application.get_default().development_mode is True:
@@ -77,7 +77,6 @@ class MainWindow(Gtk.ApplicationWindow):
             context.add_class("devel")
 
     def set_headerbar(self):
-        self.set_headerbar_button_layout()
         self.set_titlebar(self._headerbar)
 
     def get_headerbar(self):
@@ -123,7 +122,7 @@ class MainWindow(Gtk.ApplicationWindow):
             self.props.mobile_layout = new_mobile_layout
             self.change_layout()
 
-        Gtk.ApplicationWindow.do_size_allocate(self, allocation)
+        Handy.ApplicationWindow.do_size_allocate(self, allocation)
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""
@@ -142,14 +141,8 @@ class MainWindow(Gtk.ApplicationWindow):
             if scrolled_page.edit_page:
                 return
 
-        if self.container is NotImplemented \
-           or self.container.get_n_pages() == 0:
-            self.set_headerbar_button_layout()
-
-    def set_headerbar_button_layout(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-
+    @Gtk.Template.Callback()
+    def _on_mobile_layout_changed(self, _window, _value):
         if self.props.mobile_layout:
             self.file_open_button.get_children()[0].set_visible_child_name("mobile")
             self.file_new_button.get_children()[0].set_visible_child_name("mobile")
@@ -209,12 +202,12 @@ class MainWindow(Gtk.ApplicationWindow):
             self.display_welcome_page()
             return
 
-        self.add(recent_files_page)
+        self._main_view.add(recent_files_page)
 
     def display_welcome_page(self) -> None:
         """Shown when there is no autoloading and no recent files to display"""
         welcome_page = WelcomePage()
-        self.add(welcome_page)
+        self._main_view.add(welcome_page)
 
     #
     # Container Methods (Gtk Notebook holds tabs)
@@ -222,7 +215,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def create_container(self):
         # Remove the first_start_grid if still visible
-        for child in self.get_children():
+        for child in self._main_view.get_children():
             if child.props.name == "first_start_grid":
                 child.destroy()
                 break
@@ -232,7 +225,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.container.set_scrollable(True)
         self.container.set_show_border(False)
         self.container.connect("switch-page", self.on_tab_switch)
-        self.add(self.container)
+        self._main_view.add(self.container)
         self.show_all()
 
     #
@@ -245,6 +238,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self._info_bar = None
         self._info_bar_response_id = None
 
+    @Gtk.Template.Callback()
     def open_filechooser(self, _widget, _user_data=None):
         """Callback function to open a safe.
         This callback can be called from an action activate event or
@@ -311,7 +305,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
                 # Get 1st child of  first_start_grid, to attach the info bar
                 first_start_grid = None
-                for child in self.get_children():
+                for child in self._main_view.get_children():
                     if child.props.name == "first_start_grid":
                         first_start_grid = child
                         break
@@ -320,7 +314,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 # least don't crash now, this needs better fixing.
                 if first_start_grid is None:
                     return
-                first_child = self.get_children()[0]
+                first_child = self._main_view.get_children()[0]
                 first_start_grid.attach_next_to(
                     self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
                 return
@@ -352,6 +346,7 @@ class MainWindow(Gtk.ApplicationWindow):
     # Create Database Methods
     #
 
+    @Gtk.Template.Callback()
     def create_filechooser(self, _widget, _user_data=None):
         """Callback function to create a new safe.
 
@@ -384,15 +379,16 @@ class MainWindow(Gtk.ApplicationWindow):
             filepath = filechooser_creation_dialog.get_filename()
 
             # Remove first_start_grid and attach the spinner
-            for child in self.get_children():
+            for child in self._main_view.get_children():
                 if child.props.name == "first_start_grid":
                     child.destroy()
                     break
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-            if self.get_children()[0] is not self.container:
-                spinner = builder.get_object("spinner")
-                self.add(spinner)
+
+            if self._main_view.get_children():
+                if self._main_view.get_children()[0] is not self.container:
+                    self._main_view.add(self._spinner)
+            else:
+                self._main_view.add(self._spinner)
 
             creation_thread = threading.Thread(
                 target=self.create_new_database, args=[filepath]
@@ -415,7 +411,7 @@ class MainWindow(Gtk.ApplicationWindow):
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
-        for child in self.get_children():
+        for child in self._main_view.get_children():
             if child.props.name == "spinner":
                 child.destroy()
                 break
@@ -469,14 +465,14 @@ class MainWindow(Gtk.ApplicationWindow):
 
         if not self.container.get_n_pages():
             self.container.hide()
-            self.remove(self.container)
+            self._main_view.remove(self.container)
             self.display_recent_files_list()
         elif not self.container.is_visible():
-            for child in self.get_children():
+            for child in self._main_view.get_children():
                 if child.props.name == "first_start_grid":
                     child.destroy()
                     break
-            self.add(self.container)
+            self._main_view.add(self.container)
             self.container.show_all()
 
     def close_tab(self, child_widget, database=None):

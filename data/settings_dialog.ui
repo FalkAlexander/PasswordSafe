@@ -167,72 +167,19 @@
             <property name="can_focus">False</property>
             <property name="title" translatable="yes">Password Generation</property>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Password Length</property>
+                <property name="subtitle" translatable="yes">Number of single characters when generating a password.</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="margin_start">12</property>
-                    <property name="margin_end">12</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSpinButton" id="generator_length_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Password Length</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Number of single characters when generating a password.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="generator_length_spin_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="valign">center</property>
-                            <property name="max_length">3</property>
-                            <property name="input_purpose">number</property>
-                            <property name="numeric">True</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
+                    <property name="max_length">3</property>
+                    <property name="input_purpose">number</property>
+                    <property name="numeric">True</property>
                   </object>
                 </child>
               </object>
@@ -309,144 +256,37 @@
             <property name="can_focus">False</property>
             <property name="title" translatable="yes">Passphrase Generation</property>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="use_underline">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Passphrase Length</property>
+                <property name="subtitle" translatable="yes">Number of words to use when generating a passphrase.</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSpinButton" id="generator_words_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Passphrase Length</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Number of words to use when generating a passphrase.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="generator_words_spin_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="valign">center</property>
-                            <property name="max_length">3</property>
-                            <property name="input_purpose">number</property>
-                            <property name="numeric">True</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
+                    <property name="max_length">3</property>
+                    <property name="input_purpose">number</property>
+                    <property name="numeric">True</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="use_underline">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Separator</property>
+                <property name="subtitle" translatable="yes">Word separator to use when generating a passphrase.</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkEntry" id="generator_separator_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Separator</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Word separator to use when generating a passphrase.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="generator_separator_entry">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="max_length">1</property>
-                            <property name="width_chars">12</property>
-                            <property name="placeholder_text" translatable="yes">Enter Character</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
+                    <property name="max_length">1</property>
+                    <property name="width_chars">12</property>
+                    <property name="placeholder_text" translatable="yes">Enter Character</property>
                   </object>
                 </child>
               </object>
@@ -457,7 +297,6 @@
     </child>
     <child>
       <object class="HdyPreferencesPage" id="settings_page_security">
-
         <property name="icon_name">security-high-symbolic</property>
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -468,183 +307,37 @@
             <property name="can_focus">False</property>
             <property name="title" translatable="yes">Security</property>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="title" translatable="yes">Timeout</property>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes">Safe Lock Timeout</property>
+                <property name="subtitle" translatable="yes">Lock safe on idle after X minutes.</property>
                 <child>
-                  <object class="GtkListBoxRow" id="settings_lockdb_row">
-                    <property name="margin_start">12</property>
-                    <property name="margin_end">12</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSpinButton" id="settings_lockdb_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox" id="settings_lockdb_box">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="settings_lockdb_label_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="settings_lockdb_name">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Safe Lock Timeout</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="settings_lockdb_description">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Lock safe on idle after X minutes.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="settings_lockdb_spin_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="valign">center</property>
-                            <property name="max_length">2</property>
-                            <property name="input_purpose">number</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
+                    <property name="max_length">2</property>
+                    <property name="input_purpose">number</property>
+                    <property name="numeric">True</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
-                <property name="title" translatable="yes">Clear Clipboard</property>
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes">Clear Clipboard</property>
+                <property name="subtitle" translatable="yes">Clear clipboard after X seconds.</property>
                 <child>
-                  <object class="GtkListBoxRow" id="settings_clearcb_row">
-                    <property name="margin_start">12</property>
-                    <property name="margin_end">12</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSpinButton" id="settings_clearcb_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox" id="settings_clearcb_box">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="settings_clearcb_label_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="settings_clearcb_name">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Clear Clipboard</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="settings_clearcb_description">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Clear clipboard after X seconds.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSpinButton" id="settings_clearcb_spin_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="valign">center</property>
-                            <property name="max_length">4</property>
-                            <property name="input_purpose">number</property>
-                            <property name="numeric">True</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
+                    <property name="max_length">4</property>
+                    <property name="input_purpose">number</property>
+                    <property name="numeric">True</property>
                   </object>
                 </child>
               </object>
@@ -666,107 +359,31 @@
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
-                <property name="title" translatable="yes">Clear Recent List</property>
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes">Clear Recent List</property>
+                <property name="subtitle" translatable="yes">Clear the recently opened safes list.</property>
                 <child>
-                  <object class="GtkListBoxRow" id="settings_clear_row">
-                    <property name="margin_start">12</property>
-                    <property name="margin_end">12</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkButton" id="settings_clear_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">start</property>
+                    <property name="valign">center</property>
                     <child>
-                      <object class="GtkBox" id="settings_clear_box">
+                      <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="settings_clear_label_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="settings_clear_name">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Clear Recent List</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="settings_clear_description">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Clear the recently opened safes list.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="settings_clear_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                            <property name="halign">start</property>
-                            <property name="valign">center</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_name">edit-clear-all-symbolic</property>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="destructive-action"/>
-                            </style>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
+                        <property name="icon_name">edit-clear-all-symbolic</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="destructive-action"/>
+                    </style>
                   </object>
                 </child>
               </object>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
         </child>

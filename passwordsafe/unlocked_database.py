@@ -71,7 +71,7 @@ class UnlockedDatabase(GObject.GObject):
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
-    save_loop = NotImplemented
+    save_loop = False  # If True, a thread periodically saves the database
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
@@ -565,11 +565,7 @@ class UnlockedDatabase(GObject.GObject):
 
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
-                save_thread = threading.Thread(
-                    target=self.database_manager.save_database
-                )
-                save_thread.daemon = False
-                save_thread.start()
+                self.save_database(True)
                 self.show_database_action_revealer(_("Database saved"))
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
@@ -792,7 +788,7 @@ class UnlockedDatabase(GObject.GObject):
     # Dialog Creator
     #
 
-    def show_save_dialog(self) -> bool:
+    def _show_save_dialog(self) -> bool:
         """ Show the save confirmation dialog
 
         Saves the db and closes the tab.
@@ -820,9 +816,7 @@ class UnlockedDatabase(GObject.GObject):
             pass  # We are done with this db.
         elif res == Gtk.ResponseType.YES:
             # "clicked save". Save changes
-            save_thread = threading.Thread(target=self.database_manager.save_database)
-            save_thread.daemon = False
-            save_thread.start()
+            self.save_database(True)
         else:
             assert False, "Unknown Dialog Response!"
 
@@ -866,10 +860,7 @@ class UnlockedDatabase(GObject.GObject):
     def _on_database_lock_changed(self, _database_manager, _value):
         locked = self.database_manager.props.locked
         if locked:
-            self.cancel_timers()
-            self.clipboard.clear()
-            self.unregister_dbus_signal()
-            self.stop_save_loop()
+            self.cleanup(False)
 
             try:  # self.notes_dialog might be NotImplemented
                 self.notes_dialog.close()
@@ -887,11 +878,7 @@ class UnlockedDatabase(GObject.GObject):
                     )
 
                 if passwordsafe.config_manager.get_save_automatically():
-                    save_thread = threading.Thread(
-                        target=self.database_manager.save_database
-                    )
-                    save_thread.daemon = False
-                    save_thread.start()
+                    self.save_database(True)
 
             self.overlay.hide()
         else:
@@ -918,6 +905,69 @@ class UnlockedDatabase(GObject.GObject):
     # Helper Methods
     #
 
+    def cleanup(self, delete_tmp_file: bool = True) -> None:
+        """Stop all ongoing operations:
+
+        * stop the save loop
+        * cancel all timers
+        * unregistrer from dbus
+        * delete all temporary file is delete_tmp_file is True
+
+        :param bool show_save_dialog: chooe to delete temporary files
+        """
+        logging.debug("Cleaning database %s", self.database_manager.database_path)
+
+        if self.clipboard_timer is not NotImplemented:
+            self.clipboard_timer.cancel()
+
+        if self.database_lock_timer is not NotImplemented:
+            self.database_lock_timer.cancel()
+
+        # Do not listen to screensaver kicking in anymore
+        connection = self.window.application.get_dbus_connection()
+        connection.signal_unsubscribe(self.dbus_subscription_id)
+
+        # stop the save loop
+        self.builder.get_object("save_button").props.sensitive = False
+        if self.save_loop:
+            self.save_loop = False
+
+        self.clipboard.clear()
+
+        if not delete_tmp_file:
+            return
+
+        for tmpfile in self.scheduled_tmpfiles_deletion:
+            try:
+                tmpfile.delete()
+            except Gio.Error:
+                logging.warning("Skipping deletion of tmpfile...")
+
+    def save_database(self, auto_save: bool = False) -> bool:
+        """Save the database.
+
+        If auto_save is False, a dialog asking for confirmation
+        will be displayed.
+
+        :param bool auto_save: ask for confirmation before saving
+        """
+        if not self.database_manager.is_dirty or self.database_manager.save_running:
+            return False
+
+        database_saved = False
+        if auto_save:
+            save_thread = threading.Thread(target=self.database_manager.save_database)
+            save_thread.daemon = False
+            save_thread.start()
+            database_saved = True
+        else:
+            database_saved = self._show_save_dialog()
+
+        if database_saved:
+            logging.debug("Saving database %s", self.database_manager.database_path)
+
+        return database_saved
+
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         if clear_clipboard_time:
@@ -935,13 +985,6 @@ class UnlockedDatabase(GObject.GObject):
                 timeout, GLib.idle_add, args=[self.lock_timeout_database]
             )
             self.database_lock_timer.start()
-
-    def cancel_timers(self):
-        if self.clipboard_timer is not NotImplemented:
-            self.clipboard_timer.cancel()
-
-        if self.database_lock_timer is not NotImplemented:
-            self.database_lock_timer.cancel()
 
     def send_notification(self, title, text):
         notification = Gio.Notification.new(title)
@@ -962,10 +1005,6 @@ class UnlockedDatabase(GObject.GObject):
             else:
                 self.builder.get_object("save_button").set_sensitive(True)
             time.sleep(30)
-
-    def stop_save_loop(self):
-        self.builder.get_object("save_button").set_sensitive(True)
-        self.save_loop = False
 
     def add_loading_indicator_thread(self, list_box, overlay):
         time.sleep(1)
@@ -1010,11 +1049,6 @@ class UnlockedDatabase(GObject.GObject):
             None, "org.gnome.ScreenSaver", "ActiveChanged",
             "/org/gnome/ScreenSaver", None,
             Gio.DBusSignalFlags.NONE, self.on_session_lock,)
-
-    def unregister_dbus_signal(self):
-        """Do not listen to screensaver kicking in anymore"""
-        connection = self.window.application.get_dbus_connection()
-        connection.signal_unsubscribe(self.dbus_subscription_id)
 
     def __can_go_back(self):
         db_manager = self.database_manager

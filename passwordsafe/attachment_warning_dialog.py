@@ -6,7 +6,6 @@ import typing
 
 from gi.repository import Gio, GLib, Gtk
 
-
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
     from passwordsafe.entry_page import EntryPage
@@ -17,9 +16,6 @@ class AttachmentWarningDialog(Gtk.MessageDialog):
 
     __gtype_name__ = "AttachmentWarningDialog"
 
-    back_button: Gtk.Button = Gtk.Template.Child()
-    proceed_button: Gtk.Button = Gtk.Template.Child()
-
     def __init__(self, entry_page: EntryPage, attachment: Attachment) -> None:
         """Dialog to confirm opening an attachment
 
@@ -28,24 +24,21 @@ class AttachmentWarningDialog(Gtk.MessageDialog):
         super().__init__()
         self.__entry_page = entry_page
         self.__unlocked_database = entry_page.unlocked_database
+        self.__attachment = attachment
 
         # Setup Widgets
-        self.set_destroy_with_parent(True)
         self.set_modal(True)
         self.set_transient_for(self.__unlocked_database.window)
 
-        # Setup Signals
-        self.back_button.connect("clicked", self.__on_warning_dialog_back_button_clicked)
-        self.proceed_button.connect(
-            "clicked", self.__on_warning_dialog_proceed_button_clicked, attachment
-        )
-
-    def __on_warning_dialog_back_button_clicked(self, _button):
+    @Gtk.Template.Callback()
+    def _on_warning_dialog_back_button_clicked(self, _button):
         self.close()
 
-    def __on_warning_dialog_proceed_button_clicked(self, _button, attachment: Attachment):
-        self.close()
+    @Gtk.Template.Callback()
+    def _on_warning_dialog_proceed_button_clicked(self, _button):
+        attachment = self.__attachment
         u_db = self.__unlocked_database
+        self.close()
         self.__open_tmp_file(
             u_db.database_manager.db.binaries[attachment.id], attachment.filename
         )

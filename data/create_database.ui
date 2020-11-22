@@ -20,7 +20,6 @@
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="hscrollbar_policy">never</property>
-            <property name="shadow_type">in</property>
             <property name="max_content_height">248</property>
             <property name="propagate_natural_height">True</property>
             <child>
@@ -280,6 +279,9 @@
                         </child>
                       </object>
                     </child>
+                    <style>
+                      <class name="content"/>
+                    </style>
                   </object>
                 </child>
               </object>

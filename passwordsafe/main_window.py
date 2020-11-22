@@ -11,6 +11,7 @@ from passwordsafe.container_page import ContainerPage
 from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
+from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
@@ -196,60 +197,19 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def display_recent_files_list(self) -> None:
         """Shows the list of recently opened files or invokes welcome page"""
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/main_window.ui")
-
-        last_opened_list_box = builder.get_object("last_opened_list_box")
-        last_opened_list_box.connect(
-            "row-activated", self.on_last_opened_list_box_activated)
-
-        entry_list = []
-        pbuilder = Gtk.Builder()
-        user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
-        for path_uri in passwordsafe.config_manager.get_last_opened_list():
-            gio_file: Gio.File = Gio.File.new_for_uri(path_uri)
-            if not gio_file.query_exists():
-                logging.info(
-                    "Ignoring nonexistent recent file: %s", gio_file.get_path()
-                )
-                continue  # only work with existing files
-
-            # Retrieve new widgets for next entry
-            pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-            last_opened_row = pbuilder.get_object("last_opened_row")
-            filename_label = pbuilder.get_object("filename_label")
-            path_label = pbuilder.get_object("path_label")
-
-            # If path is not relative to user's home, use absolute path
-            path: str = user_home.get_relative_path(gio_file) or gio_file.get_path()
-            base_name: str = os.path.splitext(gio_file.get_basename())[0]
-
-            filename_label.set_text(base_name)
-            path_label.set_text(path)
-            # last_opened_row's name will be used as file location
-            last_opened_row.set_name(gio_file.get_uri())
-            entry_list.append(last_opened_row)
-
-        if not entry_list:
+        if not passwordsafe.config_manager.get_last_opened_list():
+            logging.debug("No recent files saved")
             self.display_welcome_page()
             return
 
-        for row in entry_list:
-            last_opened_list_box.insert(row, 0)
+        recent_files_page = RecentFilesPage()
 
-        first_start_grid = builder.get_object("last_opened_grid")
+        if recent_files_page.is_empty:
+            logging.debug("No recent files")
+            self.display_welcome_page()
+            return
 
-        # Responsive Container
-        hdy = Handy.Clamp()
-        hdy.set_maximum_size(400)
-        hdy.props.vexpand = True
-        hdy.add(builder.get_object("select_box"))
-
-        first_start_grid.add(hdy)
-        first_start_grid.show_all()
-
-        self.add(first_start_grid)
+        self.add(recent_files_page)
 
     def display_welcome_page(self) -> None:
         """Shown when there is no autoloading and no recent files to display"""
@@ -538,15 +498,6 @@ class MainWindow(Gtk.ApplicationWindow):
     #
     # Events
     #
-
-    def on_last_opened_list_box_activated(
-        self, _widget: Gtk.ListBox, list_box_row: Gtk.ListBoxRow
-    ) -> None:
-        """cb when we click on an entry in the recently opened files list
-
-        Starts opening the database corresponding to the entry."""
-        file_uri: str = list_box_row.get_name()
-        self.start_database_opening_routine(Gio.File.new_for_uri(file_uri).get_path())
 
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)

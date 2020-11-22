@@ -184,11 +184,6 @@ class Pathbar(Gtk.HBox):
     # Helper Methods
     #
 
-    def check_is_edit_page_from_group(self):
-        ele_uuid = self.unlocked_database.current_element.uuid
-        is_group = self.database_manager.check_is_group(ele_uuid)
-        return is_group
-
     def query_page_update(self) -> None:
         """When a group/entry was edited, schedule modified page for destruction
 

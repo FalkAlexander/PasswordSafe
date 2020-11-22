@@ -19,188 +19,36 @@
             <property name="can_focus">False</property>
             <property name="title" translatable="yes">General</property>
             <child>
-              <object class="HdyPreferencesRow" id="settings_theme">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Dark Theme</property>
-                <property name="use_underline">True</property>
+                <property name="subtitle" translatable="yes">Use dark GTK+ theme.</property>
+                <property name="activatable_widget">settings_theme_switch</property>
                 <child>
-                  <object class="GtkListBoxRow" id="settings_theme_row">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="settings_theme_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox" id="settings_theme_box">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="settings_theme_label_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="settings_theme_name">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Dark Theme</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="settings_theme_description">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Use dark GTK+ theme.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="settings_theme_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="title" translatable="yes">First Start</property>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes">Hide First Start Screen</property>
+                <property name="subtitle" translatable="yes">Reopen last opened safe.</property>
+                <property name="activatable_widget">settings_fstart_switch</property>
                 <child>
-                  <object class="GtkListBoxRow" id="settings_fstart_row">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="settings_fstart_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox" id="settings_fstart_box">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="settings_fstart_label_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="settings_fstart_name">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Hide First Start Screen</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="settings_fstart_description">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Reopen last opened safe.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="settings_fstart_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
         </child>
@@ -210,97 +58,20 @@
             <property name="can_focus">False</property>
             <property name="title" translatable="yes">Safe</property>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Safe Settings</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes">Save Automatically</property>
+                <property name="subtitle" translatable="yes">Save every change automatically.</property>
+                <property name="activatable_widget">settings_save_switch</property>
                 <child>
-                  <object class="GtkListBoxRow" id="settings_database_row">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="settings_save_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox" id="settings_save_box">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="settings_save_label_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="settings_save_label">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Save Automatically</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="settings_save_description">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Save every change automatically.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="settings_save_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
-            </child>
-            <child>
-              <placeholder/>
             </child>
           </object>
         </child>
@@ -310,183 +81,35 @@
             <property name="can_focus">False</property>
             <property name="title" translatable="yes">Search</property>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="title" translatable="yes">Remember Composite Key</property>
-                    <child>
-                      <object class="GtkListBoxRow" id="settings_remember_composite_key">
-                        <property name="width_request">100</property>
-                        <property name="height_request">50</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkBox" id="settings_remember_box">
-                            <property name="margin_start">12</property>
-                            <property name="margin_end">12</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="hexpand">True</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">end</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Full-Text Search</property>
-                                    <property name="ellipsize">end</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="name">SubtitleLabel</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Performs a search across all values of entries.</property>
-                                    <property name="ellipsize">end</property>
-                                    <attributes>
-                                      <attribute name="size" value="9500"/>
-                                    </attributes>
-                                    <style>
-                                      <class name="dim-label"/>
-                                    </style>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSwitch" id="settings_full_text_search_switch">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="hexpand">False</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes">Full-Text Search</property>
+                <property name="subtitle" translatable="yes">Performs a search across all values of entries.</property>
+                <property name="activatable_widget">settings_full_text_search_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="settings_full_text_search_switch">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Current Group Search</property>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="width_request">100</property>
-                        <property name="height_request">50</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="margin_start">12</property>
-                            <property name="margin_end">12</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="hexpand">True</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">end</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Current Group Search</property>
-                                    <property name="ellipsize">end</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="name">SubtitleLabel</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Only search entries in the current group.</property>
-                                    <property name="ellipsize">end</property>
-                                    <attributes>
-                                      <attribute name="size" value="9500"/>
-                                    </attributes>
-                                    <style>
-                                      <class name="dim-label"/>
-                                    </style>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSwitch" id="settings_local_search_switch">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="hexpand">False</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                <property name="subtitle" translatable="yes">Only search entries in the current group.</property>
+                <property name="activatable_widget">settings_local_search_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="settings_local_search_switch">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -497,183 +120,35 @@
             <property name="can_focus">False</property>
             <property name="title" translatable="yes">Unlock</property>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="title" translatable="yes">Remember Composite Key</property>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="width_request">100</property>
-                        <property name="height_request">50</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="margin_start">12</property>
-                            <property name="margin_end">12</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkBox" id="settings_remember_label_box">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="hexpand">True</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel" id="settings_remember_label">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">end</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes" comments="A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe">Remember Composite Key</property>
-                                    <property name="ellipsize">end</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="settings_remember_description">
-                                    <property name="name">SubtitleLabel</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes" comments="A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe">Remember last used composite key.</property>
-                                    <property name="ellipsize">end</property>
-                                    <attributes>
-                                      <attribute name="size" value="9500"/>
-                                    </attributes>
-                                    <style>
-                                      <class name="dim-label"/>
-                                    </style>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSwitch" id="settings_remember_switch">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="hexpand">False</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes" comments="A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe">Remember Composite Key</property>
+                <property name="subtitle" translatable="yes" comments="A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe">Remember last used composite key.</property>
+                <property name="activatable_widget">settings_remember_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="settings_remember_switch">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="title" translatable="yes">Remember Unlock Method</property>
-                    <child>
-                      <object class="GtkListBoxRow" id="settings_remember_unlock_method">
-                        <property name="width_request">100</property>
-                        <property name="height_request">50</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkBox" id="settings_remember_method_box">
-                            <property name="margin_start">12</property>
-                            <property name="margin_end">12</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <child>
-                              <object class="GtkBox" id="settings_remember_method_label_box">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="hexpand">True</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel" id="settings_remember_method_label">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">end</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember Unlock Method</property>
-                                    <property name="ellipsize">end</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="settings_remember_method_description">
-                                    <property name="name">SubtitleLabel</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Enable faster unlocking.</property>
-                                    <property name="ellipsize">end</property>
-                                    <attributes>
-                                      <attribute name="size" value="9500"/>
-                                    </attributes>
-                                    <style>
-                                      <class name="dim-label"/>
-                                    </style>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
-                                </child>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkSwitch" id="settings_remember_method_switch">
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="halign">center</property>
-                                <property name="valign">center</property>
-                                <property name="hexpand">False</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember Unlock Method</property>
+                <property name="subtitle" translatable="yes">Enable faster unlocking.</property>
+                <property name="activatable_widget">settings_remember_method_switch</property>
+                <child>
+                  <object class="GtkSwitch" id="settings_remember_method_switch">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -763,284 +238,65 @@
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="use_underline">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Uppercase Characters</property>
+                <property name="subtitle" translatable="yes">Use uppercase characters A-Z when generating a password.</property>
+                <property name="activatable_widget">generator_use_uppercase_switch</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="generator_use_uppercase_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Uppercase Characters</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Use uppercase characters A-Z when generating a password.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="generator_use_uppercase_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Lowercase Characters</property>
+                <property name="subtitle" translatable="yes">Use lowercase characters a-z when generating a password.</property>
+                <property name="activatable_widget">generator_use_lowercase_switch</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="generator_use_lowercase_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Lowercase Characters</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Use lowercase characters a-z when generating a password.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="generator_use_lowercase_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="use_underline">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Numeric Characters</property>
+                <property name="subtitle" translatable="yes">Use numeric characters when generating a password.</property>
+                <property name="activatable_widget">generator_use_numbers_switch</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="generator_use_numbers_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Numeric Characters</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Use numeric characters when generating a password.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="generator_use_numbers_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="use_underline">True</property>
+                <property name="can_focus">False</property>
                 <property name="title" translatable="yes">Special Characters</property>
+                <property name="subtitle" translatable="yes">Use non-alphanumeric ASCII symbols when generating a password.</property>
+                <property name="activatable_widget">generator_use_symbols_switch</property>
                 <child>
-                  <object class="GtkListBoxRow">
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="generator_use_symbols_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="margin_start">12</property>
-                        <property name="margin_end">12</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Special Characters</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Use non-alphanumeric ASCII symbols when generating a password.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="generator_use_symbols_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>
@@ -1394,91 +650,17 @@
               </object>
             </child>
             <child>
-              <object class="HdyPreferencesRow">
-                <property name="title" translatable="yes">Show Password Fields</property>
+              <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can_focus">False</property>
+                <property name="title" translatable="yes">Show Password Fields</property>
+                <property name="subtitle" translatable="yes">Display passwords in plain text.</property>
+                <property name="activatable_widget">settings_showpw_switch</property>
                 <child>
-                  <object class="GtkListBoxRow" id="settings_showpw_row">
-                    <property name="margin_start">12</property>
-                    <property name="margin_end">12</property>
-                    <property name="width_request">100</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkSwitch" id="settings_showpw_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <child>
-                      <object class="GtkBox" id="settings_showpw_box">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkBox" id="settings_showpw_label_box">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="settings_showpw_name">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Show Password Fields</property>
-                                <property name="ellipsize">end</property>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="settings_showpw_description">
-                                <property name="name">SubtitleLabel</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">Display passwords in plain text.</property>
-                                <property name="ellipsize">end</property>
-                                <attributes>
-                                  <attribute name="size" value="9500"/>
-                                </attributes>
-                                <style>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkSwitch" id="settings_showpw_switch">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="halign">center</property>
-                            <property name="valign">center</property>
-                            <property name="hexpand">False</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="valign">center</property>
                   </object>
                 </child>
               </object>

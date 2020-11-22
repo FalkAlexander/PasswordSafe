@@ -587,10 +587,7 @@ class UnlockedDatabase(GObject.GObject):
         """CB when the Add Entry menu was clicked"""
         self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
-        self.database_manager.is_dirty = True
-        new_entry: Entry = self.database_manager.add_entry_to_database(
-            "", "", "", None, None, "0", self.current_element.uuid
-        )
+        new_entry: Entry = self.database_manager.add_entry_to_database(self.current_element)
         self.current_element = new_entry
         self.pathbar.add_pathbar_button_to_pathbar(new_entry.uuid)
         self.show_page_of_new_directory(False, True)

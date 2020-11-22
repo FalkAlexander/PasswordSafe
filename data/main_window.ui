@@ -15,6 +15,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="show_close_button">True</property>
+                <property name="title" translatable="yes" comments="Application name in the headerbar title">Password Safe</property>
                 <child>
                   <object class="GtkBox" id="headerbarbuttonbox">
                     <property name="visible">True</property>
@@ -102,17 +103,6 @@
                         </child>
                       </object>
                     </child>
-                  </object>
-                </child>
-                <child type="title">
-                  <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes" comments="Application name in the headerbar title">Password Safe</property>
-                    <property name="ellipsize">end</property>
-                    <attributes>
-                      <attribute name="weight" value="bold"/>
-                    </attributes>
                   </object>
                 </child>
                 <child>

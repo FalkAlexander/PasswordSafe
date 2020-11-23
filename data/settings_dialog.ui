@@ -164,6 +164,7 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Password Length</property>
                 <property name="subtitle" translatable="yes">Number of single characters when generating a password.</property>
+                <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="generator_length_spin_button">
                     <property name="visible">True</property>
@@ -248,6 +249,7 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Passphrase Length</property>
                 <property name="subtitle" translatable="yes">Number of words to use when generating a passphrase.</property>
+                <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="generator_words_spin_button">
                     <property name="visible">True</property>
@@ -265,6 +267,7 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Separator</property>
                 <property name="subtitle" translatable="yes">Word separator to use when generating a passphrase.</property>
+                <property name="selectable">False</property>
                 <child>
                   <object class="GtkEntry" id="generator_separator_entry">
                     <property name="visible">True</property>
@@ -297,6 +300,7 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Safe Lock Timeout</property>
                 <property name="subtitle" translatable="yes">Lock safe on idle after X minutes.</property>
+                <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="settings_lockdb_spin_button">
                     <property name="visible">True</property>
@@ -314,6 +318,7 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Clear Clipboard</property>
                 <property name="subtitle" translatable="yes">Clear clipboard after X seconds.</property>
+                <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="settings_clearcb_spin_button">
                     <property name="visible">True</property>
@@ -346,6 +351,7 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">Clear Recent List</property>
                 <property name="subtitle" translatable="yes">Clear the recently opened safes list.</property>
+                <property name="selectable">False</property>
                 <child>
                   <object class="GtkButton" id="settings_clear_button">
                     <property name="visible">True</property>

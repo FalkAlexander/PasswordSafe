@@ -275,6 +275,10 @@ class UnlockedDatabase(GObject.GObject):
 
             # Responsive Container
             hdy_page = Handy.Clamp()
+            hdy_page.set_margin_top(18)
+            hdy_page.set_margin_bottom(18)
+            hdy_page.set_margin_start(12)
+            hdy_page.set_margin_end(12)
             hdy_page.add(scrolled_window.properties_list_box)
             scrolled_window.add(hdy_page)
             scrolled_window.show_all()

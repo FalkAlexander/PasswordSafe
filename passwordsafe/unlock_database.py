@@ -8,7 +8,6 @@ from gettext import gettext as _
 from pathlib import Path
 from typing import Optional
 
-from construct import core
 from gi.repository import Gio, GLib, Gtk, Handy, Pango
 from pykeepass.exceptions import (
     CredentialsError,
@@ -399,7 +398,7 @@ class UnlockDatabase:
             self.database_manager = DatabaseManager(
                 self.database_filepath, password, keyfile)
             GLib.idle_add(self._open_database_success)
-        except(OSError, ValueError, AttributeError, core.ChecksumError,
+        except(OSError, ValueError, AttributeError,
                CredentialsError, PayloadChecksumError, HeaderChecksumError):
             GLib.idle_add(self._open_database_failure)
 

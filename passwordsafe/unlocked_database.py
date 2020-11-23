@@ -523,6 +523,7 @@ class UnlockedDatabase(GObject.GObject):
             list_box.add(entry_row)
 
         if list_box.get_children():
+            list_box.get_children()[0].grab_focus()
             list_box.show()
         else:
             builder = Gtk.Builder()

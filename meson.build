@@ -1,4 +1,4 @@
-project('passwordsafe', 'c',
+project('passwordsafe',
   version: '5.alpha',
   meson_version: '>= 0.50.0'
 )

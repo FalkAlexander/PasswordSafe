@@ -235,7 +235,7 @@ class Pathbar(Gtk.Box):
             or current_elt.props.password
             or current_elt.props.url
             or current_elt.props.notes
-            or (current_elt.props.icon != 0)
+            or (current_elt.props.icon != "0")
             or current_elt.props.attributes
         ):
             parent_group = self.database_manager.parentgroup

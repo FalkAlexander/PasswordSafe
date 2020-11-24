@@ -192,26 +192,26 @@ class EntryPage:
                     "toggled", self.on_entry_icon_button_toggled
                 )
 
-                icon: int = safe_entry.props.icon
-                if icon == 0:
+                icon: str = safe_entry.props.icon
+                if icon == "0":
                     key_button.set_active(True)
-                elif icon == 19:
+                elif icon == "19":
                     mail_icon_button.set_active(True)
-                elif icon == 9:
+                elif icon == "9":
                     profile_icon_button.set_active(True)
-                elif icon == 1:
+                elif icon == "1":
                     network_profile_button.set_active(True)
-                elif icon == 30:
+                elif icon == "30":
                     terminal_icon_button.set_active(True)
-                elif icon == 34:
+                elif icon == "34":
                     setting_icon_button.set_active(True)
-                elif icon == 48:
+                elif icon == "48":
                     folder_icon_button.set_active(True)
-                elif icon == 27:
+                elif icon == "27":
                     harddrive_icon_button.set_active(True)
-                elif icon == 12:
+                elif icon == "12":
                     wifi_icon_button.set_active(True)
-                elif icon == 23:
+                elif icon == "23":
                     desktop_icon_button.set_active(True)
 
                 properties_list_box.add(scrolled_page.icon_property_row)
@@ -338,7 +338,7 @@ class EntryPage:
         self.unlocked_database.start_database_lock_timer()
         safe_entry = self.unlocked_database.current_element
         new_icon: str = button.get_name()
-        safe_entry.props.icon = int(new_icon)
+        safe_entry.props.icon = new_icon
 
         scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.is_dirty = True

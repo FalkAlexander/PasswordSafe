@@ -42,7 +42,7 @@ class SafeEntry(GObject.GObject):
         color_value: Color = entry.get_custom_property(self._color_key)
         self._color: str = color_value or Color.NONE.value
 
-        self._icon: int = int(entry.icon)
+        self._icon: str = entry.icon
         self._name: str = entry.title or ""
         self._notes: str = entry.notes or ""
         self._password: str = entry.password or ""
@@ -183,24 +183,24 @@ class SafeEntry(GObject.GObject):
             self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
 
-    @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
-    def icon(self) -> int:
+    @GObject.Property(type=str, default="0", flags=GObject.ParamFlags.READWRITE)
+    def icon(self) -> str:
         """Get icon number
 
-        :returns: icon number or 0 if no icon
-        :rtype: int
+        :returns: icon number or "0" if no icon
+        :rtype: str
         """
         return self._icon
 
     @icon.setter  # type: ignore
-    def icon(self, new_icon: int) -> None:
+    def icon(self, new_icon: str) -> None:
         """Set icon number
 
         :param str new_icon: new icon number
         """
         if new_icon != self._icon:
             self._icon = new_icon
-            self._entry.icon = str(new_icon)
+            self._entry.icon = new_icon
             self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
 

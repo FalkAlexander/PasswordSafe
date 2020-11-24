@@ -29,7 +29,6 @@ class GroupRow(Gtk.ListBoxRow):
         self.label = dbm.get_group_name(group)
 
         self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
-        self.props.activatable = False
         self.assemble_group_row()
 
     def assemble_group_row(self):

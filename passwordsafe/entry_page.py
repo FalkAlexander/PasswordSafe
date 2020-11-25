@@ -315,9 +315,6 @@ class EntryPage:
         if type_name == "name":
             safe_entry.props.name = widget.props.text
 
-            pathbar_button = self.unlocked_database.pathbar.get_pathbar_button(safe_entry.uuid)
-            pathbar_button.set_label(widget.get_text())
-
         elif type_name == "username":
             safe_entry.props.username = widget.props.text
         elif type_name == "url":

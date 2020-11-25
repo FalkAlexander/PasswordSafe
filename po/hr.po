@@ -5,19 +5,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-11-16 10:35+0000\n"
-"PO-Revision-Date: 2020-11-17 23:08+0100\n"
+"POT-Creation-Date: 2020-11-24 11:50+0000\n"
+"PO-Revision-Date: 2020-11-24 13:26+0100\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.2\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"Language: hr\n"
 
 #: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
 msgid "Manage your passwords"
@@ -57,93 +57,93 @@ msgstr "Natrag"
 msgid "Proceed"
 msgstr "Nastavi"
 
-#: data/create_database.ui:74 data/database_settings_dialog.ui:449
+#: data/create_database.ui:72 data/database_settings_dialog.ui:449
 #: data/password_entry_row.ui:33 data/password_generator_popover.ui:178
 #: data/references_dialog.ui:155 data/references_dialog.ui:259
-#: data/settings_dialog.ui:688 passwordsafe/unlock_database.py:101
+#: data/settings_dialog.ui:688 passwordsafe/unlock_database.py:99
 msgid "Password"
 msgstr "Lozinka"
 
-#: data/create_database.ui:94
+#: data/create_database.ui:92
 msgid "Use a password to secure your safe"
 msgstr "Zaštiti trezor pomoću lozinke"
 
-#: data/create_database.ui:157 data/database_settings_dialog.ui:589
+#: data/create_database.ui:155 data/database_settings_dialog.ui:589
 #: passwordsafe/database_settings_dialog.py:190
-#: passwordsafe/database_settings_dialog.py:225
 #: passwordsafe/database_settings_dialog.py:230
-#: passwordsafe/unlock_database.py:31 passwordsafe/unlock_database.py:104
+#: passwordsafe/database_settings_dialog.py:235
+#: passwordsafe/unlock_database.py:30 passwordsafe/unlock_database.py:102
 msgid "Keyfile"
 msgstr "Datoteka ključa"
 
-#: data/create_database.ui:177
+#: data/create_database.ui:175
 msgid "Use a keyfile to secure your safe"
 msgstr "Zaštiti trezor pomoću datoteke ključa"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:240 passwordsafe/unlock_database.py:108
+#: data/create_database.ui:238 passwordsafe/unlock_database.py:106
 msgid "Composite"
 msgstr "Sastavljeno"
 
-#: data/create_database.ui:260
+#: data/create_database.ui:258
 msgid "Use a password in combination with a keyfile to secure your safe"
 msgstr "Zaštiti trezor pomoću kombinacije lozinke i datoteke ključa"
 
-#: data/create_database.ui:303
+#: data/create_database.ui:304
 msgid "Protect your safe"
 msgstr "Zaštiti trezor"
 
-#: data/create_database.ui:415
+#: data/create_database.ui:416
 msgid "Set password for safe"
 msgstr "Postavi lozinku za trezor"
 
-#: data/create_database.ui:430
+#: data/create_database.ui:431
 msgid "Enter Password"
 msgstr "Upiši lozinku"
 
-#: data/create_database.ui:476
+#: data/create_database.ui:477
 msgid "Password Match Check"
 msgstr "Provjera poklapanja lozinki"
 
-#: data/create_database.ui:562
+#: data/create_database.ui:563
 msgid "Repeat password for safe"
 msgstr "Ponovi lozinku za trezor"
 
-#: data/create_database.ui:608
+#: data/create_database.ui:609
 msgid "Match Check Failed"
 msgstr "Neuspjela provjera poklapanja"
 
-#: data/create_database.ui:667
+#: data/create_database.ui:668
 msgid "Please try again"
 msgstr "Pokušaj ponovo"
 
 #. Button to generate a password
-#: data/create_database.ui:788 data/password_generator_popover.ui:265
+#: data/create_database.ui:789 data/password_generator_popover.ui:265
 #: passwordsafe/create_database.py:243
-#: passwordsafe/database_settings_dialog.py:223
+#: passwordsafe/database_settings_dialog.py:228
 msgid "Generate"
 msgstr "Generiraj"
 
-#: data/create_database.ui:817
+#: data/create_database.ui:818
 msgid "Set keyfile for safe"
 msgstr "Postavi datoteku ključa za trezor"
 
-#: data/create_database.ui:832
+#: data/create_database.ui:833
 msgid "Generate Keyfile"
 msgstr "Generiraj datoteku ključa"
 
-#: data/create_database.ui:887 data/main_window.ui:201
+#: data/create_database.ui:888 data/main_window.ui:203
 #: data/unlocked_database.ui:560
 msgid "Preferences"
 msgstr "Postavke"
 
-#: data/create_database.ui:901 data/main_window.ui:215
+#: data/create_database.ui:902 data/main_window.ui:217
 #: data/unlocked_database.ui:574
 msgid "Keyboard Shortcuts"
 msgstr "Tipkovnički prečaci"
 
 #. "Password Safe" is the application name
-#: data/create_database.ui:915 data/main_window.ui:229
+#: data/create_database.ui:916 data/main_window.ui:231
 #: data/unlock_database.ui:273 data/unlocked_database.ui:588
 msgid "About Password Safe"
 msgstr "O programu Trezor za lozinke"
@@ -151,14 +151,14 @@ msgstr "O programu Trezor za lozinke"
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:929 data/main_window.ui:356
+#: data/create_database.ui:930 data/main_window.ui:358
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:281
 msgid "Password Safe"
 msgstr "Trezor za lozinke"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:930
+#: data/create_database.ui:931
 msgid "Create Safe"
 msgstr "Stvori trezor"
 
@@ -192,7 +192,7 @@ msgstr "Ime trezora"
 #. KeePass is a proper noun
 #: data/database_settings_dialog.ui:153
 msgid "KeePass Version"
-msgstr "Keepass verzija"
+msgstr "KeePass verzija"
 
 #: data/database_settings_dialog.ui:170
 msgid "Creation Date"
@@ -256,8 +256,8 @@ msgid "Generate new keyfile"
 msgstr "Generiraj novu datoteku ključa"
 
 #: data/database_settings_dialog.ui:751 data/database_settings_dialog.ui:975
-#: passwordsafe/database_settings_dialog.py:338
-#: passwordsafe/database_settings_dialog.py:360
+#: passwordsafe/database_settings_dialog.py:342
+#: passwordsafe/database_settings_dialog.py:364
 msgid "Apply Changes"
 msgstr "Primijeni promjene"
 
@@ -331,49 +331,45 @@ msgstr "Naziv"
 msgid "Notes"
 msgstr "Bilješke"
 
-#: data/entry_page.ui:1190 data/references_dialog.ui:170
+#: data/entry_page.ui:1189 data/references_dialog.ui:170
 #: data/references_dialog.ui:273
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:1277 data/references_dialog.ui:92
+#: data/entry_page.ui:1276 data/references_dialog.ui:92
 #: data/references_dialog.ui:245
 msgid "Username"
 msgstr "Korisničko ime"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/main_window.ui:44
+#: data/main_window.ui:45
 msgid "Secure password safe"
 msgstr "Siguran trezor za lozinke"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:63
+#: data/main_window.ui:64
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
 "Spremi lozinke, bilješke i podatke na siguran način. <b>Stvori</b> ili "
-"<b>uvezi</b> novi Keepass trezor."
+"<b>uvezi</b> novi KeePass trezor."
 
-#: data/main_window.ui:270
+#: data/main_window.ui:272
 msgid "New…"
 msgstr "Nova …"
 
-#: data/main_window.ui:315
+#: data/main_window.ui:317
 msgid "Open…"
 msgstr "Otvori …"
 
-#: data/main_window.ui:412
+#: data/main_window.ui:416
 msgid "Recent Databases"
 msgstr "Nedavne baze podataka"
 
-#: data/notes_dialog.ui:16
+#: data/notes_dialog.ui:21
 msgid "Copy"
 msgstr "Kopiraj"
-
-#: data/notes_dialog.ui:53
-msgid "Close"
-msgstr "Zatvori"
 
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
 msgid ""
@@ -381,7 +377,7 @@ msgid ""
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
 "and uncluttered interface for the management of password databases."
 msgstr ""
-"„Trezor za lozinke” je program za upravljanje lozinkama koji koristi Keepass "
+"„Trezor za lozinke” je program za upravljanje lozinkama koji koristi KeePass "
 "format v.4. Savršeno se integrira s radnom površinom GNOME i pruža "
 "jednostavno i uredno sučelje za upravljanje bazama podataka za lozinke."
 
@@ -648,23 +644,23 @@ msgstr "Ovdje upiši znak …"
 msgid "Passphrase"
 msgstr "Datoteka lozinke"
 
-#: data/properties_dialog.ui:17 data/unlocked_database.ui:648
+#: data/properties_dialog.ui:16 data/unlocked_database.ui:648
 msgid "Properties"
 msgstr "Svojstva"
 
-#: data/properties_dialog.ui:46 data/references_dialog.ui:200
+#: data/properties_dialog.ui:45 data/references_dialog.ui:200
 msgid "UUID"
 msgstr "UUID"
 
-#: data/properties_dialog.ui:64
+#: data/properties_dialog.ui:63
 msgid "Accessed"
 msgstr "Pristupljeno"
 
-#: data/properties_dialog.ui:81
+#: data/properties_dialog.ui:80
 msgid "Modified"
 msgstr "Promijenjeno"
 
-#: data/properties_dialog.ui:112
+#: data/properties_dialog.ui:111
 msgid "Created"
 msgstr "Stvoreno"
 
@@ -672,8 +668,8 @@ msgstr "Stvoreno"
 msgid "Code"
 msgstr "Kȏd"
 
-#: data/references_dialog.ui:38 data/references_dialog.ui:396
-#: data/references_dialog.ui:547
+#: data/references_dialog.ui:38 data/references_dialog.ui:395
+#: data/references_dialog.ui:546
 msgid "Property"
 msgstr "Svojstvo"
 
@@ -681,27 +677,27 @@ msgstr "Svojstvo"
 msgid "References"
 msgstr "Reference"
 
-#: data/references_dialog.ui:339
+#: data/references_dialog.ui:338
 msgid "Syntax"
 msgstr "Sintaksa"
 
-#: data/references_dialog.ui:354
+#: data/references_dialog.ui:353
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Sintaksa rezerviranog mjesta za reference polja je sljedeća:"
 
-#: data/references_dialog.ui:395 data/references_dialog.ui:434
+#: data/references_dialog.ui:394 data/references_dialog.ui:433
 msgid "Show Field Codes"
 msgstr "Prikaži kodove polja"
 
-#: data/references_dialog.ui:435
+#: data/references_dialog.ui:434
 msgid "Identifier"
 msgstr "Identifikator"
 
-#: data/references_dialog.ui:517
+#: data/references_dialog.ui:516
 msgid "Reference"
 msgstr "Referenca"
 
-#: data/references_dialog.ui:626
+#: data/references_dialog.ui:625
 msgid ""
 "Each entry has a unique identifier called UUID.\n"
 "It can be found in the properties of the entry."
@@ -709,11 +705,11 @@ msgstr ""
 "Svaki zapis ima jedinstveni identifikator, tzv. UUID.\n"
 "Može se pronaći u svojstvima zapisa."
 
-#: data/search.ui:96
+#: data/search.ui:93
 msgid "No search results"
 msgstr "Nema rezultata"
 
-#: data/search.ui:152
+#: data/search.ui:141
 msgid "Enter search term"
 msgstr "Upiši traženi pojam"
 
@@ -777,7 +773,7 @@ msgid "Reopen last opened safe."
 msgstr "Ponovo otvori zadnji otvoreni trezor."
 
 #: data/settings_dialog.ui:211 data/unlocked_database.ui:444
-#: passwordsafe/main_window.py:380
+#: passwordsafe/main_window.py:394
 msgid "Safe"
 msgstr "Trezor"
 
@@ -1070,8 +1066,7 @@ msgstr "Z-A"
 msgid "Last Added"
 msgstr "Zadnji dodani"
 
-#: data/unlocked_database.ui:345 passwordsafe/entry_page.py:543
-#: passwordsafe/main_window.py:376
+#: data/unlocked_database.ui:345 passwordsafe/entry_page.py:550
 msgid "Save"
 msgstr "Spremi"
 
@@ -1128,7 +1123,7 @@ msgstr "Odznači sve"
 
 #. NOTE: Filechooser title for generating a new keyfile
 #: passwordsafe/create_database.py:241
-#: passwordsafe/database_settings_dialog.py:222
+#: passwordsafe/database_settings_dialog.py:227
 msgid "Choose location for keyfile"
 msgstr "Odaberi mjesto datoteke ključa"
 
@@ -1136,7 +1131,7 @@ msgstr "Odaberi mjesto datoteke ključa"
 msgid "Generating…"
 msgstr "Generiranje …"
 
-#: passwordsafe/database_manager.py:469
+#: passwordsafe/database_manager.py:484
 msgid "Clone"
 msgstr "Kloniraj"
 
@@ -1149,136 +1144,138 @@ msgstr "Odaberi trenutačnu datoteku ključa"
 msgid "Open"
 msgstr "Otvori"
 
-#: passwordsafe/database_settings_dialog.py:293
-#: passwordsafe/database_settings_dialog.py:349
+#: passwordsafe/database_settings_dialog.py:298
+#: passwordsafe/database_settings_dialog.py:353
 msgid "Apply…"
 msgstr "Primijeni …"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:391
+#: passwordsafe/database_settings_dialog.py:395
 msgid "Unknown"
 msgstr "Nepoznat"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:394
+#: passwordsafe/database_settings_dialog.py:398
 msgid "AES 256-bit"
 msgstr "AES 256-bitni"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:397
+#: passwordsafe/database_settings_dialog.py:401
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitni"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:400
+#: passwordsafe/database_settings_dialog.py:404
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitni"
 
-#: passwordsafe/entry_page.py:396 passwordsafe/entry_page.py:465
+#: passwordsafe/entry_page.py:402 passwordsafe/entry_page.py:472
 msgid "Attribute key already exists"
 msgstr "Ključ svojstva već postoji"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:495
+#: passwordsafe/entry_page.py:502
 msgid "Select attachment"
 msgstr "Odaberi privitak"
 
-#: passwordsafe/entry_page.py:496
+#: passwordsafe/entry_page.py:503
 msgid "Add"
 msgstr "Dodaj"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:542
+#: passwordsafe/entry_page.py:549
 msgid "Save attachment"
 msgstr "Spremi privitak"
 
-#: passwordsafe/entry_row.py:64
+#: passwordsafe/entry_row.py:66
 msgid "Title not specified"
 msgstr "Naziv nije određen"
 
-#: passwordsafe/entry_row.py:70
+#: passwordsafe/entry_row.py:72
 msgid "No username specified"
 msgstr "Korisničko ime nije određeno"
 
-#: passwordsafe/group_row.py:48
+#: passwordsafe/group_row.py:50
 msgid "No group title specified"
 msgstr "Naziv grupe nije određen"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:291
+#: passwordsafe/main_window.py:293
 msgid "Choose a Keepass safe"
-msgstr "Odaberi jedan Keepass trezor"
+msgstr "Odaberi jedan KeePass trezor"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:301 passwordsafe/main_window.py:386
+#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:400
 msgid "KeePass 3.1/4 Database"
-msgstr "KeePass 3.1/4 baza podataka"
+msgstr "Baza podataka KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:330
+#: passwordsafe/main_window.py:332
 msgid "Unable to open file \"{}\"."
 msgstr "Nije moguće otvoriti datoteku „{}”."
 
-#: passwordsafe/main_window.py:333
+#: passwordsafe/main_window.py:335
 msgid "File type {} ({}) is not supported."
 msgstr "Datotečni format {} ({}) nije podržan."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:373
+#: passwordsafe/main_window.py:387
 msgid "Choose location for Keepass safe"
-msgstr "Odaberi mjesto za Keepass trezor"
+msgstr "Odaberi mjesto za KeePass trezor"
+
+#: passwordsafe/main_window.py:390
+msgid "Create"
+msgstr "Stvori"
 
 #: passwordsafe/selection_ui.py:170
 msgid "Deletion completed"
 msgstr "Brisanje je završeno"
 
-#: passwordsafe/selection_ui.py:245
+#: passwordsafe/selection_ui.py:246
 msgid "Move completed"
 msgstr "Premještanje je završeno"
 
-#: passwordsafe/selection_ui.py:247
+#: passwordsafe/selection_ui.py:248
 msgid "Skipped moving group into itself"
 msgstr "Preskočeno je premještanje grupe u samu sebe"
 
-#: passwordsafe/unlock_database.py:227
+#: passwordsafe/unlock_database.py:222
 msgid "Database already opened"
 msgstr "Baza podataka je već otvorena"
 
-#: passwordsafe/unlock_database.py:250
+#: passwordsafe/unlock_database.py:245
 msgid "Choose a keyfile"
 msgstr "Odaberi datoteku ključa"
 
-#: passwordsafe/unlock_database.py:289
+#: passwordsafe/unlock_database.py:284
 msgid "Choose Keyfile"
 msgstr "Odaberi datoteku ključa"
 
-#: passwordsafe/unlock_database.py:565
+#: passwordsafe/unlock_database.py:559
 msgid "Try again"
 msgstr "Pokušaj ponovo"
 
-#: passwordsafe/unlocked_database.py:533
+#: passwordsafe/unlocked_database.py:569
 msgid "Database saved"
 msgstr "Baza podataka je spremljena"
 
-#. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:536
+#: passwordsafe/unlocked_database.py:573
 msgid "Please wait. Another save is running."
 msgstr "Pričekaj. U tijeku je jedno drugo spremanje."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:539
+#: passwordsafe/unlocked_database.py:577
 msgid "No changes made"
 msgstr "Ništa nije promijenjeno"
 
-#: passwordsafe/unlocked_database.py:677
+#: passwordsafe/unlocked_database.py:717
 msgid "Copied to clipboard"
 msgstr "Kopirano u međuspremnik"
 
-#. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:849
+#: passwordsafe/unlocked_database.py:895
 #, python-format
 msgid "%s locked"
 msgstr "%s je zaključan"
 
-#: passwordsafe/unlocked_database.py:849
+#: passwordsafe/unlocked_database.py:901
 msgid "Keepass safe locked due to inactivity"
-msgstr "Keepass trezor je zaključan zbog neaktivnosti"
+msgstr "KeePass trezor je zaključan zbog neaktivnosti"

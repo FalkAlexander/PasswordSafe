@@ -5,8 +5,6 @@ from gettext import gettext as _
 from typing import Optional
 from gi.repository import Gtk
 
-import passwordsafe.config_manager
-import passwordsafe.icon
 from passwordsafe.color_widget import Color
 
 if typing.TYPE_CHECKING:
@@ -48,9 +46,7 @@ class EntryRow(Gtk.ListBoxRow):
         entry_copy_user_button = self.builder.get_object("entry_copy_user_button")
 
         # Icon
-        icon_name: str = passwordsafe.icon.get_icon_name(
-            self._safe_entry.props.icon)
-        entry_icon.set_from_icon_name(icon_name, 20)
+        entry_icon.set_from_icon_name(self._safe_entry.icon_name, 20)
         # Title/Name
         if self._safe_entry.props.name:
             entry_name_label.set_text(self._safe_entry.props.name)

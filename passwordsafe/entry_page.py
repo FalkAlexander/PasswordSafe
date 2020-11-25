@@ -10,10 +10,10 @@ from passwordsafe.color_widget import Color, ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
+from passwordsafe.safe_entry import SafeEntry
 
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
-    from passwordsafe.safe_entry import SafeEntry
 
 
 class EntryPage:
@@ -168,63 +168,23 @@ class EntryPage:
         if safe_entry.props.icon or add_all:
             if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
-                for button in builder.get_object("icon_entry_box").get_children():
-                    button.get_style_context().add_class("EntryIconButton")
+                icon_entry_box = builder.get_object("icon_entry_box")
 
-                mail_icon_button = builder.get_object("19")
-                profile_icon_button = builder.get_object("9")
-                network_profile_button = builder.get_object("1")
-                key_button = builder.get_object("0")
-                terminal_icon_button = builder.get_object("30")
-                setting_icon_button = builder.get_object("34")
-                folder_icon_button = builder.get_object("48")
-                harddrive_icon_button = builder.get_object("27")
-                wifi_icon_button = builder.get_object("12")
-                desktop_icon_button = builder.get_object("23")
-                mail_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                profile_icon_button.connect(
-                    "toggled", self.on_entry_icon_button_toggled
-                )
-                network_profile_button.connect(
-                    "toggled", self.on_entry_icon_button_toggled
-                )
-                key_button.connect("toggled", self.on_entry_icon_button_toggled)
-                terminal_icon_button.connect(
-                    "toggled", self.on_entry_icon_button_toggled
-                )
-                setting_icon_button.connect(
-                    "toggled", self.on_entry_icon_button_toggled
-                )
-                folder_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                harddrive_icon_button.connect(
-                    "toggled", self.on_entry_icon_button_toggled
-                )
-                wifi_icon_button.connect("toggled", self.on_entry_icon_button_toggled)
-                desktop_icon_button.connect(
-                    "toggled", self.on_entry_icon_button_toggled
-                )
+                icon_builder = Gtk.Builder()
+                first_btn = None
+                for key, icon_name in SafeEntry.ICONS.items():
+                    icon_builder.add_from_resource(
+                        "/org/gnome/PasswordSafe/icon_widget.ui")
+                    btn = icon_builder.get_object("icon_button")
+                    img = btn.get_children()[0]
+                    img.props.icon_name = icon_name
+                    if first_btn is None:
+                        first_btn = btn
 
-                icon: str = safe_entry.props.icon
-                if icon == "0":
-                    key_button.set_active(True)
-                elif icon == "19":
-                    mail_icon_button.set_active(True)
-                elif icon == "9":
-                    profile_icon_button.set_active(True)
-                elif icon == "1":
-                    network_profile_button.set_active(True)
-                elif icon == "30":
-                    terminal_icon_button.set_active(True)
-                elif icon == "34":
-                    setting_icon_button.set_active(True)
-                elif icon == "48":
-                    folder_icon_button.set_active(True)
-                elif icon == "27":
-                    harddrive_icon_button.set_active(True)
-                elif icon == "12":
-                    wifi_icon_button.set_active(True)
-                elif icon == "23":
-                    desktop_icon_button.set_active(True)
+                    btn.props.group = first_btn
+                    btn.props.active = (safe_entry.props.icon == key)
+                    btn.connect("toggled", self.on_entry_icon_button_toggled, key)
+                    icon_entry_box.add(btn)
 
                 properties_list_box.add(scrolled_page.icon_property_row)
             elif scrolled_page.icon_property_row is not NotImplemented:
@@ -329,13 +289,12 @@ class EntryPage:
         self.unlocked_database.start_database_lock_timer()
         NotesDialog(self.unlocked_database).present()
 
-    def on_entry_icon_button_toggled(self, button):
+    def on_entry_icon_button_toggled(self, button, new_icon):
         if button.get_active() is False:
             return
 
         self.unlocked_database.start_database_lock_timer()
         safe_entry = self.unlocked_database.current_element
-        new_icon: str = button.get_name()
         safe_entry.props.icon = new_icon
 
     def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):

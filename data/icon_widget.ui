@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkRadioButton" id="icon_button">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="receives_default">False</property>
+    <property name="hexpand">True</property>
+    <property name="draw_indicator">False</property>
+    <child>
+      <object class="GtkImage">
+	<property name="visible">True</property>
+	<property name="can_focus">False</property>
+      </object>
+    </child>
+    <style>
+      <class name="EntryIconButton"/>
+      <class name="flat"/>
+    </style>
+  </object>
+</interface>

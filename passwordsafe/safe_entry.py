@@ -23,7 +23,7 @@ class SafeEntry(GObject.GObject):
     _color_key = "color_prop_LcljUMJZ9X"
     _note_key = "Notes"
 
-    _icons_list = {
+    ICONS = {
         "0": "dialog-password-symbolic",
         "1": "network-wired-symbolic",
         "9": "mail-send-symbolic",
@@ -228,10 +228,10 @@ class SafeEntry(GObject.GObject):
         :rtype: str
         """
         try:
-            return self._icons_list[self._icon]
+            return self.ICONS[self._icon]
         except KeyError:
             logging.warning("Unknown icon %s", self._icon)
-            return self._icons_list["0"]
+            return self.ICONS["0"]
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)

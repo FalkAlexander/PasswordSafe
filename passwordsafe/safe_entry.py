@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import logging
 import typing
 from typing import Dict, List, Optional
 from uuid import UUID
@@ -22,6 +23,19 @@ class SafeEntry(GObject.GObject):
     _color_key = "color_prop_LcljUMJZ9X"
     _note_key = "Notes"
 
+    _icons_list = {
+        "0": "dialog-password-symbolic",
+        "1": "network-wired-symbolic",
+        "9": "mail-send-symbolic",
+        "12": "network-wireless-signal-excellent-symbolic",
+        "19": "mail-unread-symbolic",
+        "23": "preferences-desktop-remote-desktop-symbolic",
+        "27": "drive-harddisk-symbolic",
+        "30": "utilities-terminal-symbolic",
+        "34": "preferences-system-symbolic",
+        "48": "folder-symbolic"
+    }
+
     def __init__(self, db_manager: DatabaseManager, entry: Entry) -> None:
         """GObject to handle a safe entry.
 
@@ -42,7 +56,7 @@ class SafeEntry(GObject.GObject):
         color_value: Color = entry.get_custom_property(self._color_key)
         self._color: str = color_value or Color.NONE.value
 
-        self._icon: str = entry.icon
+        self._icon: str = entry.icon or "0"
         self._name: str = entry.title or ""
         self._notes: str = entry.notes or ""
         self._password: str = entry.password or ""
@@ -203,6 +217,19 @@ class SafeEntry(GObject.GObject):
             self._entry.icon = new_icon
             self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+
+    @property
+    def icon_name(self) -> str:
+        """Get the icon name
+
+        :returns: icon name or the default icon if undefined
+        :rtype: str
+        """
+        try:
+            return self._icons_list[self._icon]
+        except KeyError:
+            logging.warning("Unknown icon %s", self._icon)
+            return self._icons_list["0"]
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)

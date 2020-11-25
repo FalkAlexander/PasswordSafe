@@ -64,7 +64,7 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
 
     __gtype_name__ = "ColorEntryRow"
 
-    _box = Gtk.Template.Child()
+    _flowbox = Gtk.Template.Child()
 
     def __init__(
             self, unlocked_database: UnlockedDatabase,
@@ -88,14 +88,15 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
             active: bool = (self._selected_color == color.value)
             color_button: ColorButton = ColorButton(color, active)
             color_button.connect("clicked", self._on_color_activated)
-            self._box.add(color_button)
+            self._flowbox.insert(color_button, -1)
 
     def _on_color_activated(self, selected_button: Gtk.Button) -> None:
         self._unlocked_database.start_database_lock_timer()
         if selected_button.props.selected:
             return
 
-        for color_button in self._box.get_children():
+        for child in self._flowbox.get_children():
+            color_button = child.get_children()[0]
             selected: bool = (color_button == selected_button)
             color_button.props.selected = selected
 

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
-from gi.repository import Gio, GLib, Gtk
+from gi.repository import Gio, GLib, GObject, Gtk
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import Color, ColorEntryRow
@@ -54,9 +54,12 @@ class EntryPage:
                 scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
                 scrolled_page.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
-            scrolled_page.name_property_value_entry.set_text(entry_name)
             scrolled_page.name_property_value_entry.connect(
                 "changed", self.on_property_value_entry_changed, "name"
+            )
+            safe_entry.bind_property(
+                "name", scrolled_page.name_property_value_entry, "text",
+                GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
             )
             properties_list_box.add(scrolled_page.name_property_row)
             scrolled_page.name_property_value_entry.grab_focus()
@@ -314,10 +317,7 @@ class EntryPage:
         scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.is_dirty = True
 
-        if type_name == "name":
-            safe_entry.props.name = widget.props.text
-
-        elif type_name == "username":
+        if type_name == "username":
             safe_entry.props.username = widget.props.text
         elif type_name == "url":
             safe_entry.props.url = widget.props.text

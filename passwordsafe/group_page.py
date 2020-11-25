@@ -53,6 +53,7 @@ class GroupPage:
 
         notes_property_row = builder.get_object("notes_property_row")
         notes_property_value_entry = builder.get_object("notes_property_value_entry")
+        notes_property_value_entry.get_style_context().add_class("codeview")
         notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
         buffer = notes_property_value_entry.get_buffer()
 

@@ -12,8 +12,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
@@ -97,8 +95,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
@@ -152,14 +148,13 @@
                 <property name="height_request">180</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="shadow_type">in</property>
                 <child>
                   <object class="GtkTextView" id="notes_property_value_entry">
                     <property name="name">TabBox</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="left_margin">5</property>
-                    <property name="right_margin">5</property>
+                    <property name="left_margin">8</property>
+                    <property name="right_margin">8</property>
                     <property name="top_margin">5</property>
                     <property name="bottom_margin">5</property>
                   </object>

@@ -275,6 +275,10 @@ class UnlockedDatabase(GObject.GObject):
 
             # Responsive Container
             hdy_page = Handy.Clamp()
+            hdy_page.set_margin_top(18)
+            hdy_page.set_margin_bottom(18)
+            hdy_page.set_margin_start(12)
+            hdy_page.set_margin_end(12)
             hdy_page.add(scrolled_window.properties_list_box)
             scrolled_window.add(hdy_page)
             scrolled_window.show_all()
@@ -338,6 +342,7 @@ class UnlockedDatabase(GObject.GObject):
                 builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
                 scrolled_window = ScrolledPage(True)
+                scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
                 viewport = Gtk.Viewport()
                 scrolled_window.properties_list_box = builder.get_object(
@@ -346,7 +351,10 @@ class UnlockedDatabase(GObject.GObject):
 
                 # Responsive Container
                 hdy_page = Handy.Clamp()
-                hdy_page.set_maximum_size(600)
+                hdy_page.set_margin_top(18)
+                hdy_page.set_margin_bottom(18)
+                hdy_page.set_margin_start(12)
+                hdy_page.set_margin_end(12)
                 hdy_page.add(scrolled_window.properties_list_box)
                 viewport.add(hdy_page)
 

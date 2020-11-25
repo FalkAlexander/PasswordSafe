@@ -23,7 +23,7 @@ class Color(Enum):
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/color_button.ui")
-class ColorButton(Gtk.RadioButton):  # pylint: disable=too-few-public-methods
+class ColorButton(Gtk.FlowBoxChild):  # pylint: disable=too-few-public-methods
 
     __gtype_name__ = "ColorButton"
 
@@ -64,7 +64,7 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
 
     __gtype_name__ = "ColorEntryRow"
 
-    _box = Gtk.Template.Child()
+    _flowbox = Gtk.Template.Child()
 
     def __init__(
             self, unlocked_database: UnlockedDatabase,
@@ -87,18 +87,18 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
         for color in Color:
             active: bool = (self._selected_color == color.value)
             color_button: ColorButton = ColorButton(color, active)
-            color_button.connect("clicked", self._on_color_activated)
-            self._box.add(color_button)
+            self._flowbox.insert(color_button, -1)
 
-    def _on_color_activated(self, selected_button: Gtk.Button) -> None:
+    @Gtk.Template.Callback()
+    def _on_color_activated(
+            self, _flowbox: Gtk.FlowBox, selected_child: Gtk.FlowBoxChild) -> None:
         self._unlocked_database.start_database_lock_timer()
-        if selected_button.props.selected:
+        if selected_child.props.selected:
             return
 
-        for color_button in self._box.get_children():
-            selected: bool = (color_button == selected_button)
-            color_button.props.selected = selected
+        for child in self._flowbox.get_children():
+            selected: bool = (child == selected_child)
+            child.props.selected = selected
 
         self._scrolled_page.is_dirty = True
-        self._db_manager.set_entry_color(
-            self._entry_uuid, selected_button.color)
+        self._db_manager.set_entry_color(self._entry_uuid, selected_child.color)

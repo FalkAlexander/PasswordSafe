@@ -12,8 +12,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
-        <property name="margin_start">5</property>
-        <property name="margin_end">5</property>
         <property name="spacing">5</property>
         <child>
           <object class="GtkImage">
@@ -53,8 +51,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
@@ -151,16 +147,14 @@
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="margin_start">10</property>
-        <property name="margin_end">10</property>
+        <property name="margin_start">12</property>
+        <property name="margin_end">12</property>
         <child>
           <object class="GtkLabel" id="attachment_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
             <property name="valign">center</property>
-            <property name="margin_start">5</property>
-            <property name="margin_end">5</property>
             <property name="label" translatable="yes">Secret_Photo.png</property>
             <property name="ellipsize">end</property>
 	    <style>
@@ -249,8 +243,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
@@ -263,7 +255,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">end</property>
-                <property name="margin_start">2</property>
                 <property name="margin_bottom">9</property>
                 <property name="icon_name">error-correct-symbolic</property>
                 <style>
@@ -381,8 +372,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
@@ -424,9 +413,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkGrid" id="attributes_entry_box">
+          <object class="GtkBox" id="attributes_entry_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="spacing">6</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -466,10 +456,6 @@
                   <class name="linked"/>
                 </style>
               </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="attributes_add_button">
@@ -478,7 +464,6 @@
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Add attribute</property>
                 <property name="halign">end</property>
-                <property name="margin_start">5</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
@@ -487,10 +472,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-              </packing>
             </child>
           </object>
           <packing>
@@ -513,8 +494,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
@@ -855,8 +834,6 @@
     <property name="can_focus">True</property>
     <property name="halign">start</property>
     <property name="valign">start</property>
-    <property name="margin_start">4</property>
-    <property name="margin_end">4</property>
     <property name="margin_top">4</property>
     <property name="margin_bottom">4</property>
     <child>
@@ -870,7 +847,6 @@
   <object class="GtkEntry" id="key_entry">
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="margin_start">2</property>
     <property name="width_chars">14</property>
   </object>
   <object class="GtkListBoxRow" id="name_property_row">
@@ -883,8 +859,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
@@ -971,8 +945,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
@@ -1166,8 +1138,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
@@ -1253,8 +1223,6 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_start">4</property>
-        <property name="margin_end">4</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>

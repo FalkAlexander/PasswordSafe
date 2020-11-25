@@ -31,6 +31,8 @@ class EntryRow(Gtk.ListBoxRow):
         self.builder.add_from_resource("/org/gnome/PasswordSafe/entry_row.ui")
 
         self._entry_name_label: Gtk.Label = self.builder.get_object("entry_name_label")
+        self._entry_username_label: Gtk.Label = self.builder.get_object(
+            "entry_subtitle_label")
         self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
         self.assemble_entry_row()
 
@@ -42,7 +44,6 @@ class EntryRow(Gtk.ListBoxRow):
             "pressed", self._on_entry_row_button_pressed)
 
         entry_icon = self.builder.get_object("entry_icon")
-        entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
         entry_copy_pass_button = self.builder.get_object("entry_copy_pass_button")
         entry_copy_user_button = self.builder.get_object("entry_copy_user_button")
 
@@ -51,11 +52,8 @@ class EntryRow(Gtk.ListBoxRow):
         self._safe_entry.connect("notify::name", self._on_entry_name_changed)
         self._on_entry_name_changed(self._safe_entry, None)
 
-        # Subtitle
-        if self._safe_entry.props.username:
-            entry_subtitle_label.set_text(self._safe_entry.props.username)
-        else:
-            entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
+        self._safe_entry.connect("notify::username", self._on_entry_username_changed)
+        self._on_entry_username_changed(self._safe_entry, None)
 
         entry_copy_pass_button.connect("clicked", self.on_entry_copy_pass_button_clicked)
         entry_copy_user_button.connect("clicked", self.on_entry_copy_user_button_clicked)
@@ -136,3 +134,14 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             style_context.add_class("italic")
             self._entry_name_label.props.label = _("Title not specified")
+
+    def _on_entry_username_changed(
+            self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
+        entry_username = self._safe_entry.props.username
+        style_context = self._entry_username_label.get_style_context()
+        if entry_username:
+            style_context.remove_class("italic")
+            self._entry_username_label.props.label = entry_username
+        else:
+            style_context.add_class("italic")
+            self._entry_username_label.props.label = _("Title not specified")

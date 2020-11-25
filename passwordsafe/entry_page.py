@@ -64,9 +64,10 @@ class EntryPage:
                 scrolled_page.username_property_row = builder.get_object("username_property_row")
                 scrolled_page.username_property_value_entry = builder.get_object("username_property_value_entry")
                 scrolled_page.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                username = safe_entry.props.username
-                scrolled_page.username_property_value_entry.props.text = username
-
+                safe_entry.bind_property(
+                    "username", scrolled_page.username_property_value_entry, "text",
+                    GObject.BindingFlags.SYNC_CREATE
+                    | GObject.BindingFlags.BIDIRECTIONAL)
                 self.unlocked_database.bind_accelerator(
                     scrolled_page.username_property_value_entry,
                     "<Control><Shift>b",
@@ -75,11 +76,12 @@ class EntryPage:
 
                 scrolled_page.username_property_value_entry.connect(
                     "icon-press", self._on_copy_secondary_button_clicked)
-                scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row:
-                username = safe_entry.props.username
-                scrolled_page.username_property_value_entry.props.text = username
+                safe_entry.bind_property(
+                    "username", scrolled_page.username_property_value_entry, "text",
+                    GObject.BindingFlags.SYNC_CREATE
+                    | GObject.BindingFlags.BIDIRECTIONAL)
 
                 scrolled_page.username_property_value_entry.connect(
                     "icon-press", self._on_copy_secondary_button_clicked)
@@ -89,8 +91,6 @@ class EntryPage:
                     "<Control><Shift>b",
                     signal="copy-clipboard")
                 scrolled_page.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
-
-                scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
                 properties_list_box.add(scrolled_page.username_property_row)
 
         if safe_entry.props.password or add_all:

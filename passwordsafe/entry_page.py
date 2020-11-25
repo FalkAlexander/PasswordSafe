@@ -311,23 +311,6 @@ class EntryPage:
 
         self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
 
-    def on_property_value_entry_changed(self, widget, type_name):
-        self.unlocked_database.start_database_lock_timer()
-        safe_entry = self.unlocked_database.current_element
-
-        scrolled_page = self.unlocked_database.get_current_page()
-        scrolled_page.is_dirty = True
-
-        if type_name == "name":
-            safe_entry.props.name = widget.props.text
-
-        elif type_name == "username":
-            safe_entry.props.username = widget.props.text
-        elif type_name == "url":
-            safe_entry.props.url = widget.props.text
-        elif type_name == "notes":
-            safe_entry.props.notes = widget.props.text
-
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         NotesDialog(self.unlocked_database).present()

@@ -159,7 +159,7 @@ class EntryPage:
         if safe_entry.props.color != Color.NONE.value or add_all:
             if scrolled_page.color_property_row is NotImplemented:
                 scrolled_page.color_property_row = ColorEntryRow(
-                    self.unlocked_database, scrolled_page, safe_entry)
+                    self.unlocked_database, safe_entry)
 
                 properties_list_box.add(scrolled_page.color_property_row)
             elif scrolled_page.color_property_row is not NotImplemented:

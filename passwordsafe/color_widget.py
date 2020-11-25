@@ -8,7 +8,6 @@ from gi.repository import Gdk, GObject, Gtk
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.safe_entry import SafeEntry
-    from passwordsafe.scrolled_page import ScrolledPage
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
@@ -76,19 +75,16 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
     _flowbox = Gtk.Template.Child()
 
     def __init__(
-            self, unlocked_database: UnlockedDatabase,
-            scrolled_page: ScrolledPage, safe_entry: SafeEntry):
+            self, unlocked_database: UnlockedDatabase, safe_entry: SafeEntry):
         """Widget to select the color of an entry
 
         :param UnlockedDatabase unlocked_database: unlocked database
-        :param ScrolledPage scrolled_page: container of the widget
         :param SafeEntry safe_entry: the safe entry
         """
         super().__init__()
 
         self._unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
-        self._scrolled_page: ScrolledPage = scrolled_page
         self._safe_entry: SafeEntry = safe_entry
 
         for color in Color:
@@ -109,5 +105,4 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
             selected: bool = (child == selected_child)
             child.props.selected = selected
 
-        self._scrolled_page.is_dirty = True
         self._safe_entry.props.color = selected_child.color

@@ -3,7 +3,7 @@ from __future__ import annotations
 import typing
 from gettext import gettext as _
 from typing import Optional
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 from passwordsafe.color_widget import Color
 
@@ -28,11 +28,13 @@ class EntryRow(Gtk.ListBoxRow):
         self.unlocked_database = database
         self.db_manager = database.database_manager
 
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/entry_row.ui")
+
+        self._entry_name_label: Gtk.Label = self.builder.get_object("entry_name_label")
         self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
         self.assemble_entry_row()
 
     def assemble_entry_row(self):
-        self.builder.add_from_resource("/org/gnome/PasswordSafe/entry_row.ui")
         entry_event_box = self.builder.get_object("entry_event_box")
 
         self._entry_box_gesture = self.builder.get_object("entry_box_gesture")
@@ -40,18 +42,14 @@ class EntryRow(Gtk.ListBoxRow):
             "pressed", self._on_entry_row_button_pressed)
 
         entry_icon = self.builder.get_object("entry_icon")
-        entry_name_label = self.builder.get_object("entry_name_label")
         entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
         entry_copy_pass_button = self.builder.get_object("entry_copy_pass_button")
         entry_copy_user_button = self.builder.get_object("entry_copy_user_button")
 
         # Icon
         entry_icon.set_from_icon_name(self._safe_entry.icon_name, 20)
-        # Title/Name
-        if self._safe_entry.props.name:
-            entry_name_label.set_text(self._safe_entry.props.name)
-        else:
-            entry_name_label.set_markup("<span font-style=\"italic\">" + _("Title not specified") + "</span>")
+        self._safe_entry.connect("notify::name", self._on_entry_name_changed)
+        self._on_entry_name_changed(self._safe_entry, None)
 
         # Subtitle
         if self._safe_entry.props.username:
@@ -127,3 +125,14 @@ class EntryRow(Gtk.ListBoxRow):
             self._safe_entry.props.username,
             _("Username copied to clipboard"),
         )
+
+    def _on_entry_name_changed(
+            self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
+        entry_name = self._safe_entry.props.name
+        style_context = self._entry_name_label.get_style_context()
+        if entry_name:
+            style_context.remove_class("italic")
+            self._entry_name_label.props.label = entry_name
+        else:
+            style_context.add_class("italic")
+            self._entry_name_label.props.label = _("Title not specified")

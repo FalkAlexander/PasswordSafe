@@ -341,9 +341,6 @@ class EntryPage:
         new_icon: str = button.get_name()
         safe_entry.props.icon = new_icon
 
-        scrolled_page = self.unlocked_database.get_current_page()
-        scrolled_page.is_dirty = True
-
     def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()
         Gtk.show_uri_on_window(self.unlocked_database.window, widget.get_text(), Gtk.get_current_event_time())

@@ -217,8 +217,10 @@ class SafeEntry(GObject.GObject):
             self._entry.icon = new_icon
             self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+            self.notify("icon-name")
 
-    @property
+    @GObject.Property(
+        type=str, default="", flags=GObject.ParamFlags.READABLE)
     def icon_name(self) -> str:
         """Get the icon name
 

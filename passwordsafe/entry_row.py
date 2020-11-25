@@ -48,8 +48,10 @@ class EntryRow(Gtk.ListBoxRow):
         entry_copy_pass_button = self.builder.get_object("entry_copy_pass_button")
         entry_copy_user_button = self.builder.get_object("entry_copy_user_button")
 
-        # Icon
-        self._entry_icon.set_from_icon_name(self._safe_entry.icon_name, 20)
+        self._safe_entry.bind_property(
+            "icon-name", self._entry_icon, "icon-name",
+            GObject.BindingFlags.SYNC_CREATE)
+
         self._safe_entry.connect("notify::name", self._on_entry_name_changed)
         self._on_entry_name_changed(self._safe_entry, None)
 

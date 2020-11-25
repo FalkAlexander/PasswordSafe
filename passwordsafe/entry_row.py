@@ -30,6 +30,7 @@ class EntryRow(Gtk.ListBoxRow):
 
         self.builder.add_from_resource("/org/gnome/PasswordSafe/entry_row.ui")
 
+        self._entry_icon: Gtk.Image = self.builder.get_object("entry_icon")
         self._entry_name_label: Gtk.Label = self.builder.get_object("entry_name_label")
         self._entry_username_label: Gtk.Label = self.builder.get_object(
             "entry_subtitle_label")
@@ -48,7 +49,7 @@ class EntryRow(Gtk.ListBoxRow):
         entry_copy_user_button = self.builder.get_object("entry_copy_user_button")
 
         # Icon
-        entry_icon.set_from_icon_name(self._safe_entry.icon_name, 20)
+        self._entry_icon.set_from_icon_name(self._safe_entry.icon_name, 20)
         self._safe_entry.connect("notify::name", self._on_entry_name_changed)
         self._on_entry_name_changed(self._safe_entry, None)
 
@@ -57,14 +58,8 @@ class EntryRow(Gtk.ListBoxRow):
 
         entry_copy_pass_button.connect("clicked", self.on_entry_copy_pass_button_clicked)
         entry_copy_user_button.connect("clicked", self.on_entry_copy_user_button_clicked)
-
-        # Color Button
-        color = self._safe_entry.props.color
-        image_style = entry_icon.get_style_context()
-        image_style.add_class(color + "List")
-        if color != Color.NONE.value:
-            image_style.remove_class("DarkIcon")
-            image_style.add_class("BrightIcon")
+        self._safe_entry.connect("notify::color", self._on_entry_color_changed)
+        self._on_entry_color_changed(self._safe_entry, None)
 
         self.add(entry_event_box)
         self.show()
@@ -145,3 +140,12 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             style_context.add_class("italic")
             self._entry_username_label.props.label = _("Title not specified")
+
+    def _on_entry_color_changed(
+            self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
+        color = self._safe_entry.props.color
+        image_style = self._entry_icon.get_style_context()
+        image_style.add_class(color + "List")
+        if color != Color.NONE.value:
+            image_style.remove_class("DarkIcon")
+            image_style.add_class("BrightIcon")

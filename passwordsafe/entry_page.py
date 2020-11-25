@@ -112,14 +112,17 @@ class EntryPage:
                 scrolled_page.url_property_row = builder.get_object("url_property_row")
                 scrolled_page.url_property_value_entry = builder.get_object("url_property_value_entry")
                 scrolled_page.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                url = safe_entry.props.url
-                scrolled_page.url_property_value_entry.props.text = url
-
+                safe_entry.bind_property(
+                    "url", scrolled_page.url_property_value_entry, "text",
+                    GObject.BindingFlags.SYNC_CREATE
+                    | GObject.BindingFlags.BIDIRECTIONAL)
                 scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
-                scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
                 properties_list_box.add(scrolled_page.url_property_row)
             elif scrolled_page.url_property_row:
-                scrolled_page.url_property_value_entry.props.text = safe_entry.props.url
+                safe_entry.bind_property(
+                    "url", scrolled_page.url_property_value_entry, "text",
+                    GObject.BindingFlags.SYNC_CREATE
+                    | GObject.BindingFlags.BIDIRECTIONAL)
 
                 scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
                 scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
@@ -318,9 +321,7 @@ class EntryPage:
         scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.is_dirty = True
 
-        if type_name == "url":
-            safe_entry.props.url = widget.props.text
-        elif type_name == "notes":
+        if type_name == "notes":
             safe_entry.props.notes = widget.props.text
 
     def on_notes_detach_button_clicked(self, _button):

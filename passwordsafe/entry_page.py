@@ -137,18 +137,23 @@ class EntryPage:
                 builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
                 textbuffer = HistoryTextBuffer([])
-                textbuffer.props.text = safe_entry.props.notes
-                textbuffer.connect("changed", self.on_property_value_entry_changed, "notes")
+                safe_entry.bind_property(
+                    "notes", textbuffer, "text",
+                    GObject.BindingFlags.SYNC_CREATE
+                    | GObject.BindingFlags.BIDIRECTIONAL)
                 scrolled_page.notes_property_value_entry.set_buffer(textbuffer)
                 properties_list_box.add(scrolled_page.notes_property_row)
             elif scrolled_page.notes_property_row:
                 notes = safe_entry.props.notes
                 textbuffer = scrolled_page.notes_property_value_entry.get_buffer()
-                textbuffer.props.text = notes
                 if not notes:
                     textbuffer.props.modified = False
 
                 textbuffer.connect("changed", self.on_property_value_entry_changed, "notes")
+                safe_entry.bind_property(
+                    "notes", textbuffer, "text",
+                    GObject.BindingFlags.SYNC_CREATE
+                    | GObject.BindingFlags.BIDIRECTIONAL)
                 properties_list_box.add(scrolled_page.notes_property_row)
 
         if safe_entry.props.color != Color.NONE.value or add_all:
@@ -316,13 +321,9 @@ class EntryPage:
 
     def on_property_value_entry_changed(self, widget, type_name):
         self.unlocked_database.start_database_lock_timer()
-        safe_entry = self.unlocked_database.current_element
 
         scrolled_page = self.unlocked_database.get_current_page()
         scrolled_page.is_dirty = True
-
-        if type_name == "notes":
-            safe_entry.props.notes = widget.props.text
 
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()

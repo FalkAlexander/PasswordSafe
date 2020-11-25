@@ -2,7 +2,7 @@
 """Gtk.Button representing a path element in the pathbar"""
 from typing import Union
 
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 from pykeepass.group import Group
 
 from passwordsafe.safe_entry import SafeEntry
@@ -21,6 +21,10 @@ class PathbarButton(Gtk.Button):
 
         self._is_group = isinstance(element, Group)
         self._element: Union[SafeEntry, Group] = element
+
+        if isinstance(element, SafeEntry):
+            self._element.bind_property(
+                "name", self, "label", GObject.BindingFlags.SYNC_CREATE)
 
     @property
     def is_group(self) -> bool:

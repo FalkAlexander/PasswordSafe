@@ -1,9 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import logging
 import typing
-from typing import Optional, Union
+from typing import Union
 from uuid import UUID
 
 from gi.repository import Gtk
@@ -253,11 +252,3 @@ class Pathbar(Gtk.Box):
                button.element.uuid == uuid:
                 return True
         return False
-
-    def get_pathbar_button(self, uuid: UUID) -> Optional["PathbarButton"]:
-        for pathbar_button in self.get_children():
-            if pathbar_button.get_name() == "PathbarButtonDynamic":
-                if pathbar_button.element.uuid == uuid:
-                    return pathbar_button
-        logging.warning("requested get_pathbar_button on an inexisting uuid")
-        return None

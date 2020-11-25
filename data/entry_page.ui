@@ -413,9 +413,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkGrid" id="attributes_entry_box">
+          <object class="GtkBox" id="attributes_entry_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="spacing">6</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -455,10 +456,6 @@
                   <class name="linked"/>
                 </style>
               </object>
-              <packing>
-                <property name="left_attach">0</property>
-                <property name="top_attach">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="attributes_add_button">
@@ -475,10 +472,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-              </packing>
             </child>
           </object>
           <packing>

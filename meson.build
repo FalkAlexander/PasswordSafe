@@ -79,6 +79,7 @@ subdir('po')
 
 install_subdir(
   'passwordsafe',
+  exclude_directories: ['.mypy_cache', ' __pycache__'],
   install_dir: python_dir
 )
 

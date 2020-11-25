@@ -16,11 +16,8 @@ class Application(Gtk.Application):
     application_id = "org.gnome.PasswordSafe"
 
     def __init__(self, *args, **_kwargs):
-        app_flags = (Gio.ApplicationFlags.HANDLES_OPEN
-                     | Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
-        super().__init__(
-            *args, application_id=self.application_id,
-            flags=app_flags)
+        app_flags = Gio.ApplicationFlags.HANDLES_OPEN
+        super().__init__(*args, application_id=self.application_id, flags=app_flags)
 
         # debug level logging option
         self.add_main_option("debug", ord("d"), GLib.OptionFlags.NONE,
@@ -37,9 +34,14 @@ class Application(Gtk.Application):
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 
-    def do_command_line(self, cmd_line):  # pylint: disable=arguments-differ
-        options = cmd_line.get_options_dict()
-        # convert GVariantDict -> GVariant -> dict
+    def do_handle_local_options(self, options: GLib.VariantDict) -> int:
+        """
+        :returns int: If you have handled your options and want to exit
+            the process, return a non-negative option, 0 for success, and
+            a positive value for failure. To continue, return -1 to let
+            the default option processing continue.
+        """
+        #  convert GVariantDict -> GVariant -> dict
         options = options.end().unpack()
 
         # set up logging depending on the verbosity level
@@ -54,8 +56,7 @@ class Application(Gtk.Application):
         logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s",
                             datefmt='%d-%m-%y %H:%M:%S', level=loglevel)
 
-        self.activate()
-        return 0
+        return -1
 
     def do_activate(self):  # pylint: disable=arguments-differ
         if self.window:

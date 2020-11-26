@@ -30,7 +30,7 @@ dependency('pwquality')
 
 env = environment()
 
-python_dir = join_paths(get_option('prefix'), python_bin.get_install_dir())
+python_dir = python_bin.get_install_dir()
 LIBEXEC_DIR = join_paths(get_option('prefix'), get_option('libexecdir'))
 EXTENSION_DIR = join_paths(get_option('prefix'), get_option('libdir'), meson.project_name())
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())

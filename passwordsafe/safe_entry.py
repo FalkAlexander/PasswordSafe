@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
-from typing import Dict, List, Optional
+from typing import Dict, List, NamedTuple, Optional
 from uuid import UUID
 
 from gi.repository import GObject
@@ -16,6 +16,11 @@ if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
 
 
+class Icon(NamedTuple):
+    name: str
+    visible: bool = False
+
+
 class SafeEntry(GObject.GObject):
     # pylint: disable=too-few-public-methods
     # pylint: disable=too-many-instance-attributes
@@ -24,16 +29,16 @@ class SafeEntry(GObject.GObject):
     _note_key = "Notes"
 
     ICONS = {
-        "0": "dialog-password-symbolic",
-        "1": "network-wired-symbolic",
-        "9": "mail-send-symbolic",
-        "12": "network-wireless-signal-excellent-symbolic",
-        "19": "mail-unread-symbolic",
-        "23": "preferences-desktop-remote-desktop-symbolic",
-        "27": "drive-harddisk-symbolic",
-        "30": "utilities-terminal-symbolic",
-        "34": "preferences-system-symbolic",
-        "48": "folder-symbolic"
+        "0": Icon("dialog-password-symbolic", True),
+        "1": Icon("network-wired-symbolic", True),
+        "9": Icon("mail-send-symbolic", True),
+        "12": Icon("network-wireless-signal-excellent-symbolic", True),
+        "19": Icon("mail-unread-symbolic", True),
+        "23": Icon("preferences-desktop-remote-desktop-symbolic", True),
+        "27": Icon("drive-harddisk-symbolic", True),
+        "30": Icon("utilities-terminal-symbolic", True),
+        "34": Icon("preferences-system-symbolic", True),
+        "48": Icon("folder-symbolic", True)
     }
 
     def __init__(self, db_manager: DatabaseManager, entry: Entry) -> None:
@@ -56,7 +61,7 @@ class SafeEntry(GObject.GObject):
         color_value: Color = entry.get_custom_property(self._color_key)
         self._color: str = color_value or Color.NONE.value
 
-        self._icon: str = entry.icon or "0"
+        self._icon_nr: str = entry.icon or ""
         self._name: str = entry.title or ""
         self._notes: str = entry.notes or ""
         self._password: str = entry.password or ""
@@ -197,27 +202,35 @@ class SafeEntry(GObject.GObject):
             self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
 
-    @GObject.Property(type=str, default="0", flags=GObject.ParamFlags.READWRITE)
-    def icon(self) -> str:
+    @GObject.Property(type=object, flags=GObject.ParamFlags.READWRITE)
+    def icon(self) -> Icon:
         """Get icon number
 
         :returns: icon number or "0" if no icon
         :rtype: str
         """
-        return self._icon
+        try:
+            return self.ICONS[self._icon_nr]
+        except KeyError:
+            logging.warning("Unknown icon %s", self._icon_nr)
+            return self.ICONS["0"]
 
     @icon.setter  # type: ignore
-    def icon(self, new_icon: str) -> None:
+    def icon(self, new_icon_nr: str) -> None:
         """Set icon number
 
-        :param str new_icon: new icon number
+        :param str new_icon_nr: new icon number
         """
-        if new_icon != self._icon:
-            self._icon = new_icon
-            self._entry.icon = new_icon
+        if new_icon_nr != self._icon_nr:
+            self._icon_nr = new_icon_nr
+            self._entry.icon = new_icon_nr
             self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
             self.notify("icon-name")
+
+    @property
+    def icon_handled(self) -> bool:
+        return self._icon_nr in self.ICONS
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READABLE)
@@ -227,11 +240,7 @@ class SafeEntry(GObject.GObject):
         :returns: icon name or the default icon if undefined
         :rtype: str
         """
-        try:
-            return self.ICONS[self._icon]
-        except KeyError:
-            logging.warning("Unknown icon %s", self._icon)
-            return self.ICONS["0"]
+        return self.props.icon.name
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)

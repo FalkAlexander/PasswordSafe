@@ -16,12 +16,11 @@ class Pathbar(Gtk.HBox):
     builder = NotImplemented
     home_button = NotImplemented
 
-    def __init__(self, unlocked_database, dbm, path):
+    def __init__(self, unlocked_database, dbm):
         Gtk.HBox.__init__(self)
         self.set_name("Pathbar")
         self.unlocked_database = unlocked_database
         self.database_manager = dbm
-        self.path = path
 
         self.builder = Gtk.Builder()
         self.builder.add_from_resource(

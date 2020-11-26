@@ -341,8 +341,8 @@ class UnlockDatabase:
                 pair[1] = self.composite_keyfile_path
                 already_added = True
 
-            if not already_added:
-                pair_array.append([uri, self.composite_keyfile_path])
+        if not already_added:
+            pair_array.append([uri, self.composite_keyfile_path])
             passwordsafe.config_manager.set_last_used_composite_key(pair_array)
 
     #

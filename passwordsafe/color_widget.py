@@ -4,7 +4,7 @@ import typing
 from enum import Enum
 from uuid import UUID
 
-from gi.repository import GObject, Gtk
+from gi.repository import Gdk, GObject, Gtk
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -57,6 +57,14 @@ class ColorButton(Gtk.FlowBoxChild):  # pylint: disable=too-few-public-methods
     def color(self) -> str:
         """"Color of the widget."""
         return self._color.value
+
+    @Gtk.Template.Callback()
+    def _on_enter_event(self, _widget: Gtk.EventBox, event: Gdk.Event) -> None:
+        self.set_state_flags(Gtk.StateFlags.PRELIGHT, False)
+
+    @Gtk.Template.Callback()
+    def _on_leave_event(self, _widget: Gtk.EventBox, event: Gdk.Event) -> None:
+        self.unset_state_flags(Gtk.StateFlags.PRELIGHT)
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/color_entry_row.ui")

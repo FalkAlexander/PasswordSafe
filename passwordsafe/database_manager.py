@@ -8,7 +8,6 @@ from uuid import UUID
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
-from pykeepass.kdbx_parsing.kdbx import KDBX
 from gi.repository import GObject
 
 import passwordsafe.config_manager
@@ -455,10 +454,6 @@ class DatabaseManager(GObject.GObject):
                 self.is_dirty = False
             except Exception:  # pylint: disable=broad-except
                 logging.error("Error occurred while saving database")
-
-            # Workaround
-            # Fix created and proposed: https://github.com/pschmitt/pykeepass/pull/102
-            self.db.kdbx = KDBX.parse_file(self.db.filename, password=self.db.password, keyfile=self.db.keyfile, transformed_key=None)
 
             self.save_running = False
 

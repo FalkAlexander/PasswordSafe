@@ -88,6 +88,8 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
             active: bool = (self._selected_color == color.value)
             color_button: ColorButton = ColorButton(color, active)
             self._flowbox.insert(color_button, -1)
+            if active:
+                self._flowbox.select_child(color_button)
 
     @Gtk.Template.Callback()
     def _on_color_activated(

@@ -165,26 +165,42 @@ class EntryPage:
             elif scrolled_page.color_property_row is not NotImplemented:
                 properties_list_box.add(scrolled_page.color_property_row)
 
-        if safe_entry.props.icon or add_all:
+        if safe_entry.icon_handled or add_all:
             if scrolled_page.icon_property_row is NotImplemented:
                 scrolled_page.icon_property_row = builder.get_object("icon_property_row")
                 icon_entry_box = builder.get_object("icon_entry_box")
 
                 icon_builder = Gtk.Builder()
                 first_btn = None
-                for key, icon_name in SafeEntry.ICONS.items():
+                entry_icon = safe_entry.props.icon
+                for icon_nr, icon in SafeEntry.ICONS.items():
+                    if not icon.visible:
+                        continue
+
                     icon_builder.add_from_resource(
                         "/org/gnome/PasswordSafe/icon_widget.ui")
                     btn = icon_builder.get_object("icon_button")
                     img = btn.get_children()[0]
-                    img.props.icon_name = icon_name
+                    img.props.icon_name = icon.name
                     if first_btn is None:
                         first_btn = btn
 
                     btn.props.group = first_btn
-                    btn.props.active = (safe_entry.props.icon == key)
-                    btn.connect("toggled", self.on_entry_icon_button_toggled, key)
+                    btn.props.active = (entry_icon == icon)
+                    btn.connect("toggled", self.on_entry_icon_button_toggled, icon_nr)
                     icon_entry_box.add(btn)
+
+                # The icons are GtkRadioButton, which means that at
+                # least one button needs to be selected. If the icon is
+                # not handled by, a new button is added. This button is
+                # selected and not visible.
+                if not safe_entry.icon_handled or not entry_icon.visible:
+                    icon_builder.add_from_resource(
+                        "/org/gnome/PasswordSafe/icon_widget.ui")
+                    btn = icon_builder.get_object("icon_button")
+                    btn.props.visible = False
+                    btn.props.group = first_btn
+                    btn.props.active = True
 
                 properties_list_box.add(scrolled_page.icon_property_row)
             elif scrolled_page.icon_property_row is not NotImplemented:
@@ -289,13 +305,13 @@ class EntryPage:
         self.unlocked_database.start_database_lock_timer()
         NotesDialog(self.unlocked_database).present()
 
-    def on_entry_icon_button_toggled(self, button, new_icon):
+    def on_entry_icon_button_toggled(self, button, icon):
         if button.get_active() is False:
             return
 
         self.unlocked_database.start_database_lock_timer()
         safe_entry = self.unlocked_database.current_element
-        safe_entry.props.icon = new_icon
+        safe_entry.props.icon = icon
 
     def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()

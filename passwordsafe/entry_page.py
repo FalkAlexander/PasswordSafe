@@ -10,7 +10,10 @@ from passwordsafe.color_widget import Color, ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
-from passwordsafe.safe_entry import SafeEntry
+from passwordsafe.safe_entry import ICONS
+
+if typing.TYPE_CHECKING:
+    from passwordsafe.safe_entry import SafeEntry
 
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
@@ -173,7 +176,7 @@ class EntryPage:
                 icon_builder = Gtk.Builder()
                 first_btn = None
                 entry_icon = safe_entry.props.icon
-                for icon_nr, icon in SafeEntry.ICONS.items():
+                for icon_nr, icon in ICONS.items():
                     if not icon.visible:
                         continue
 

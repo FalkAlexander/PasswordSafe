@@ -53,7 +53,6 @@ debian:
         - git fetch debianx
         - git checkout debian/master
         - gbp import-ref -uHEAD --upstream-branch=$CI_COMMIT_BRANCH --upstream-tag=origin/$CI_COMMIT_BRANCH
-        - git rm debian/patches -rf
         - gbp dch -S --since=HEAD
         - sed -i "2iDEB_CONFIGURE_EXTRA_FLAGS = -Dprofile=development" debian/rules
         - echo -e "\noverride_dh_auto_configure:\n\tdh_auto_configure -- -Dprofile=development" >> debian/rules

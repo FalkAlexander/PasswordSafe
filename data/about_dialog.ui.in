@@ -2,6 +2,7 @@
 <interface>
   <object class="GtkAboutDialog" id="about_dialog">
     <property name="can_focus">False</property>
+    <property name="modal">True</property>
     <property name="type_hint">dialog</property>
     <property name="program_name">Password Safe</property>
     <property name="version">@VERSION@</property>

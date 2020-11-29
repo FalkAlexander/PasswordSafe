@@ -28,7 +28,7 @@ class CreateDatabase:
         self.assemble_auth_chooser()
 
     #
-    # Authentification chooser
+    # Authentication chooser
     #
 
     def assemble_auth_chooser(self):

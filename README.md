@@ -9,7 +9,7 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 
 ## Features:
 * ⭐ Create or import a KeePass v.4 safe
-* 🔐 Password, keyfile and composite key authentification
+* 🔐 Password, keyfile and composite key authentication
 * 📝 Create and edit groups and entries
 * ✨ Assign a color and additional attributes to entries
 * 🗑 Move and delete groups and entries

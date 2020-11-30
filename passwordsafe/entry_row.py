@@ -35,7 +35,7 @@ class EntryRow(Gtk.ListBoxRow):
         self.color = self.db_manager.get_entry_color(entry)
         self.username: str = entry.username or ""
         if self.username.startswith("{REF:U"):
-            # Loopup reference and put in the "real" username
+            # Lookup reference and put in the "real" username
             uuid = UUID(self.unlocked_database.reference_to_hex_uuid(self.username))
             self.username = self.db_manager.get_entry_username(uuid)
 

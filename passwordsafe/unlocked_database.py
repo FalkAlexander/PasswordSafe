@@ -622,7 +622,7 @@ class UnlockedDatabase(GObject.GObject):
         self.current_element = parent_group
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
-        # teh group view.
+        # the group view.
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
@@ -648,7 +648,7 @@ class UnlockedDatabase(GObject.GObject):
 
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
-        # teh group view.
+        # the group view.
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
@@ -834,7 +834,7 @@ class UnlockedDatabase(GObject.GObject):
     def show_references_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Show a Group/Entry reference dialog
 
-        Invoked by the app.entry.refences action"""
+        Invoked by the app.entry.references action"""
         ReferencesDialog(self).present()
 
     def show_properties_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:

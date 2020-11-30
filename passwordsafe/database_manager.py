@@ -504,7 +504,7 @@ class DatabaseManager(GObject.GObject):
                 logging.debug("Saved database")
                 self.is_dirty = False
             except Exception:  # pylint: disable=broad-except
-                logging.error("Error occured while saving database")
+                logging.error("Error occurred while saving database")
 
             # Workaround
             # Fix created and proposed: https://github.com/pschmitt/pykeepass/pull/102

@@ -102,7 +102,7 @@ class UnlockDatabase:
         stack.add_titled(keyfile_unlock_stack_page, "keyfile_unlock", _("Keyfile"))
         stack.child_set_property(keyfile_unlock_stack_page, "icon-name", "mail-attachment-symbolic")
 
-        # NOTE: Composite unlock is a authentification method where both password and keyfile are required
+        # NOTE: Composite unlock is a authentication method where both password and keyfile are required
         stack.add_titled(composite_unlock_stack_page, "composite_unlock", _("Composite"))
         stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
@@ -439,7 +439,7 @@ class UnlockDatabase:
         if passwordsafe.config_manager.get_remember_unlock_method():
             passwordsafe.config_manager.set_unlock_method(self._unlock_method)
 
-        logging.debug("Opening of database was successfull")
+        logging.debug("Opening of database was successful")
         self._open_database_page()
 
     def _open_database_page(self):

@@ -38,8 +38,6 @@ class CreateDatabase(Gtk.Stack):
         self.window = window
         self.parent_widget = widget
 
-        self.set_headerbar()
-
     #
     # Stack Pages
     #
@@ -53,21 +51,6 @@ class CreateDatabase(Gtk.Stack):
             self.set_visible_child_name("keyfile-creation")
         else:
             self.set_visible_child_name("safe-successfully-create")
-
-    #
-    # Headerbar
-    #
-
-    def set_headerbar(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database_headerbar.ui")
-        headerbar = builder.get_object("headerbar")
-        self.window.set_titlebar(headerbar)
-        self.parent_widget.set_headerbar(headerbar)
-
-        back_button = builder.get_object("back_button")
-        back_button.connect("clicked", self.on_headerbar_back_button_clicked)
 
     #
     # Events

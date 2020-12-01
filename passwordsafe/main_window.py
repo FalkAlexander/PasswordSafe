@@ -400,7 +400,11 @@ class MainWindow(Handy.ApplicationWindow):
         create_database = CreateDatabase(
             self, parent_widget,
             self.database_manager)
+        self.set_titlebar(headerbar)
         parent_widget.add(create_database)
+        back_button = builder.get_object("back_button")
+        back_button.connect("clicked",
+                            create_database.on_headerbar_back_button_clicked)
 
     #
     # Tab Manager

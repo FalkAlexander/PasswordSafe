@@ -272,65 +272,42 @@
       </item>
     </section>
   </menu>
-  <object class="GtkPopoverMenu" id="secondary_menubutton_popover">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_start">8</property>
-        <property name="margin_end">8</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton" id="duplicate_menu_entry">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.entry.duplicate</property>
-            <property name="text" translatable="yes">Duplicate</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="references_menu_entry">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.entry.references</property>
-            <property name="text" translatable="yes">References</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="properties_menu_entry">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.element.properties</property>
-            <property name="text" translatable="yes">Properties</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator" id="separator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="delete_menu_entry">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.element.delete</property>
-            <property name="text" translatable="yes">Delete</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="submenu">main</property>
-      </packing>
-    </child>
-  </object>
+  <menu id="entry_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Duplicate</attribute>
+        <attribute name="action">app.entry.duplicate</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_References</attribute>
+        <attribute name="action">app.entry.references</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Properties</attribute>
+        <attribute name="action">app.element.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Delete</attribute>
+        <attribute name="action">app.element.delete</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="group_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Properties</attribute>
+        <attribute name="action">app.element.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Delete</attribute>
+        <attribute name="action">app.element.delete</attribute>
+      </item>
+    </section>
+  </menu>
   <object class="HdyHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -466,11 +443,10 @@
           </object>
         </child>
         <child>
-          <object class="GtkMenuButton" id="secondary_menupopover_button">
+          <object class="GtkMenuButton" id="secondary_menu_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="popover">secondary_menubutton_popover</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>

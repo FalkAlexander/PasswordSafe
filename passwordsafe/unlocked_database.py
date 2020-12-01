@@ -221,10 +221,10 @@ class UnlockedDatabase(GObject.GObject):
     def set_browser_headerbar(self):
         self._linkedbox_right.show()
 
-        secondary_menupopover_button = self.builder.get_object(
-            "secondary_menupopover_button"
+        secondary_menu_button = self.builder.get_object(
+            "secondary_menu_button"
         )
-        secondary_menupopover_button.hide()
+        secondary_menu_button.hide()
 
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()

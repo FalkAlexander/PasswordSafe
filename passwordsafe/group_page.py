@@ -23,14 +23,12 @@ class GroupPage:
 
     # Group creation/editing headerbar
     def set_group_edit_page_headerbar(self):
-        secondary_menupopover_button = self.unlocked_database.builder.get_object("secondary_menupopover_button")
-        secondary_menupopover_button.show_all()
-
-        duplicate_menu_entry = self.unlocked_database.builder.get_object("duplicate_menu_entry")
-        duplicate_menu_entry.hide()
-
-        references_menu_entry = self.unlocked_database.builder.get_object("references_menu_entry")
-        references_menu_entry.hide()
+        secondary_menu_button = self.unlocked_database.builder.get_object("secondary_menu_button")
+        group_menu = self.unlocked_database.builder.get_object(
+            "group_menu"
+        )
+        secondary_menu_button.set_menu_model(group_menu)
+        secondary_menu_button.show_all()
 
         self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()

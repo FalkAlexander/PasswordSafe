@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="HdyClamp" id="authentification_method_chooser">
+  <template class="CreateDatabase" parent="GtkStack">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="transition_type">slide-left</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="margin_start">12</property>
+    <property name="margin_end">12</property>
+    <property name="margin_top">12</property>
+    <property name="margin_bottom">12</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -36,6 +43,7 @@
           <object class="GtkListBox" id="methods_list_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <signal name="row-activated" handler="on_auth_chooser_row_activated" swapped="no"/>
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
@@ -81,11 +89,10 @@
           </object>
         </child>
       </object>
+      <packing>
+        <property name="name">select_auth_method</property>
+      </packing>
     </child>
-  </object>
-  <object class="GtkStack" id="database_creation_stack">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -138,6 +145,7 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
+                <signal name="activate" handler="on_password_creation_button_clicked" swapped="no"/>
               </object>
             </child>
             <child>
@@ -149,6 +157,7 @@
                 <property name="valign">start</property>
                 <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
+                <signal name="clicked" handler="on_password_creation_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="button_image">
                     <property name="visible">True</property>
@@ -165,7 +174,7 @@
         </child>
       </object>
       <packing>
-        <property name="name">page0</property>
+        <property name="name">password-creation</property>
       </packing>
     </child>
     <child>
@@ -198,7 +207,7 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Repeat password for safe</property>
+            <property name="label" translatable="yes">Repeat password for safe.</property>
             <style>
               <class name="dim-label"/>
             </style>
@@ -223,6 +232,7 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
+                <signal name="activate" handler="on_password_check_button_clicked" swapped="no"/>
               </object>
             </child>
             <child>
@@ -233,6 +243,7 @@
                 <property name="halign">start</property>
                 <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
+                <signal name="clicked" handler="on_password_check_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="button_image4">
                     <property name="visible">True</property>
@@ -241,9 +252,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="pack_type">end</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
@@ -252,7 +260,7 @@
         </child>
       </object>
       <packing>
-        <property name="name">page1</property>
+        <property name="name">check-password</property>
       </packing>
     </child>
     <child>
@@ -293,10 +301,8 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">center</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input1">
                 <property name="visible">True</property>
@@ -306,19 +312,14 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
-                <style>
-                  <class name="error"/>
-                </style>
               </object>
             </child>
           </object>
         </child>
         <child>
           <object class="GtkBox">
-            <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">center</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input2">
                 <property name="visible">True</property>
@@ -327,9 +328,6 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
-                <style>
-                  <class name="error"/>
-                </style>
               </object>
             </child>
             <child>
@@ -337,8 +335,9 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="halign">end</property>
+                <property name="halign">start</property>
                 <property name="margin_top">2</property>
+                <signal name="clicked" handler="on_password_repeat_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="button_image5">
                     <property name="visible">True</property>
@@ -347,9 +346,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="pack_type">end</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
@@ -358,7 +354,7 @@
         </child>
       </object>
       <packing>
-        <property name="name">page2</property>
+        <property name="name">passwords-dont-match</property>
       </packing>
     </child>
     <child>
@@ -416,6 +412,7 @@
             <property name="use_underline">True</property>
             <property name="halign">center</property>
             <property name="hexpand">True</property>
+            <signal name="clicked" handler="on_generate_keyfile_button_clicked" swapped="no"/>
             <style>
               <class name="suggested-action"/>
             </style>
@@ -423,8 +420,8 @@
         </child>
       </object>
       <packing>
-        <property name="name">page3</property>
+        <property name="name">keyfile-creation</property>
       </packing>
     </child>
-  </object>
+  </template>
 </interface>

@@ -456,9 +456,11 @@ class MainWindow(Gtk.ApplicationWindow):
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/create_database_headerbar.ui")
         headerbar = builder.get_object("headerbar")
-        CreateDatabase(
-            self, self.create_tab(tab_title, headerbar),
+        parent_widget = self.create_tab(tab_title, headerbar)
+        create_database = CreateDatabase(
+            self, parent_widget,
             self.database_manager)
+        parent_widget.add(create_database)
 
     #
     # Tab Manager

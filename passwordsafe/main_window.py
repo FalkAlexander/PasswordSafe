@@ -138,7 +138,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
             db.responsive_ui.action_bar()
             db.responsive_ui.headerbar_title()
-            db.responsive_ui.headerbar_back_button()
 
             # For Group/Entry Edit Page
             if scrolled_page.edit_page:

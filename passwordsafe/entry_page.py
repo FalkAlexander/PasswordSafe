@@ -43,7 +43,6 @@ class EntryPage:
         secondary_menu_button.set_menu_model(entry_menu)
         secondary_menu_button.show_all()
 
-        self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()
         self.unlocked_database.responsive_ui.headerbar_title()

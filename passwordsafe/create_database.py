@@ -6,8 +6,7 @@ from gettext import gettext as _
 from gi.repository import GLib, Gtk
 
 import passwordsafe.keyfile_generator
-from passwordsafe.created_database import CreatedDatabase
-from passwordsafe.unlock_database import KeyFileFilter
+from passwordsafe.unlock_database import KeyFileFilter, UnlockDatabase
 
 
 @Gtk.Template(
@@ -50,11 +49,9 @@ class CreateDatabase(Gtk.Stack):
         self.password_creation_input.grab_focus()
 
     def success_page(self):
-        # TODO Move created_page here
         self.clear_input_fields()
         if self.composite is False:
-            self.parent_widget.remove(self)
-            CreatedDatabase(self.window, self.parent_widget, self.database_manager)
+            self.set_visible_child_name("safe-successfully-create")
         else:
             self.keyfile_creation()
 
@@ -64,8 +61,7 @@ class CreateDatabase(Gtk.Stack):
         self.set_visible_child_name("keyfile-creation")
 
     def set_database_keyfile(self):
-        self.parent_widget.remove(self)
-        CreatedDatabase(self.window, self.parent_widget, self.database_manager)
+        self.set_visible_child_name("safe-successfully-create")
 
     #
     # Headerbar
@@ -227,3 +223,10 @@ class CreateDatabase(Gtk.Stack):
         self.password_check_input.set_text("")
         self.password_repeat_input1.set_text("")
         self.password_repeat_input2.set_text("")
+
+    @Gtk.Template.Callback()
+    def on_finish_button_clicked(self, _widget):
+        self.destroy()
+        UnlockDatabase(
+            self.window, self.parent_widget,
+            self.database_manager.database_path)

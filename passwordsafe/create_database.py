@@ -83,22 +83,17 @@ class CreateDatabase(Gtk.Stack):
     #
 
     def on_headerbar_back_button_clicked(self, _widget):
+        """Back button: Always goes back to the page in which you select the
+        authentication method. In the case we are already in that page
+        we kill this page."""
         if self.get_visible_child_name() == "select_auth_method":
-            pass
-        if self.get_visible_child_name() == "password-creation":
-            self.set_visible_child_name("select_auth_method")
-        elif self.get_visible_child_name() == "check-password":
-            self.set_transition_type(Gtk.StackTransitionType.SLIDE_RIGHT)
-            self.set_visible_child_name("select_auth_method")
-            self.switched = True
-            self.set_visible_child_name("password-creation")
-            self.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
-        elif self.get_visible_child_name() == "passwords-dont-match":
-            self.window.close_tab(self.parent_widget)
             self.window.set_headerbar()
-        elif self.get_visible_child_name() == "keyfile-creation":
             self.window.close_tab(self.parent_widget)
-            self.window.set_headerbar()
+            self.parent_widget.remove(self)
+        else:
+            self.set_visible_child_name("select_auth_method")
+            self.clear_input_fields()
+            self.composite = False
 
     @Gtk.Template.Callback()
     def on_auth_chooser_row_activated(self, _widget, row):

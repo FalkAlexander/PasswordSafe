@@ -162,12 +162,6 @@ class UnlockedDatabase(GObject.GObject):
     def set_headerbar(self):
         self.headerbar = self.builder.get_object("headerbar")
 
-        save_button = self.builder.get_object("save_button")
-        save_button.connect("clicked", self.on_save_button_clicked)
-
-        lock_button = self.builder.get_object("lock_button")
-        lock_button.connect("clicked", self.on_lock_button_clicked)
-
         mod_box = self.builder.get_object("mod_box")
         browser_buttons_box = self.builder.get_object("browser_buttons_box")
         mod_box.add(browser_buttons_box)
@@ -227,10 +221,10 @@ class UnlockedDatabase(GObject.GObject):
     def set_browser_headerbar(self):
         self._linkedbox_right.show()
 
-        secondary_menupopover_button = self.builder.get_object(
-            "secondary_menupopover_button"
+        secondary_menu_button = self.builder.get_object(
+            "secondary_menu_button"
         )
-        secondary_menupopover_button.hide()
+        secondary_menu_button.hide()
 
         self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
@@ -567,10 +561,8 @@ class UnlockedDatabase(GObject.GObject):
         if list_box_row.get_name() == "LoadMoreRow":
             self.search.on_load_more_row_clicked(list_box_row)
 
-    def on_save_button_clicked(self, widget):
+    def on_save_button_clicked(self, _widget):
         self.start_database_lock_timer()
-        if widget is not None:
-            self.builder.get_object("menubutton_popover").popdown()
 
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
@@ -590,7 +582,6 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_add_entry_button_clicked(self, _widget):
         """CB when the Add Entry menu was clicked"""
-        self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         new_entry: Entry = self.database_manager.add_entry_to_database(self.current_element)
         self.current_element = new_entry
@@ -599,7 +590,6 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_add_group_button_clicked(self, _param: None) -> None:
         """CB when menu entry Add Group is clicked"""
-        self.builder.get_object("menubutton_popover").popdown()
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True
         group = self.database_manager.add_group_to_database(
@@ -937,7 +927,6 @@ class UnlockedDatabase(GObject.GObject):
         connection.signal_unsubscribe(self.dbus_subscription_id)
 
         # stop the save loop
-        self.builder.get_object("save_button").props.sensitive = False
         if self.save_loop:
             self.save_loop = False
 
@@ -1009,10 +998,7 @@ class UnlockedDatabase(GObject.GObject):
     def threaded_save_loop(self):
         while self.save_loop is True:
             if passwordsafe.config_manager.get_save_automatically() is True:
-                self.builder.get_object("save_button").set_sensitive(False)
                 self.database_manager.save_database()
-            else:
-                self.builder.get_object("save_button").set_sensitive(True)
             time.sleep(30)
 
     def add_loading_indicator_thread(self, list_box, overlay):

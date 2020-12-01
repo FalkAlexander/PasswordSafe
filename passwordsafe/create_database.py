@@ -134,6 +134,40 @@ class CreateDatabase(Gtk.Stack):
             self.password_repeat_input1.get_style_context().add_class("error")
             self.password_repeat_input2.get_style_context().add_class("error")
 
+    @Gtk.Template.Callback()
+    def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
+        """cb invoked when we create a new keyfile for a newly created Safe"""
+        keyfile_dlg = Gtk.FileChooserNative.new(
+            _("Choose location for keyfile"),
+            self.window, Gtk.FileChooserAction.SAVE,
+            _("Generate"), None)
+        keyfile_dlg.set_do_overwrite_confirmation(True)
+        keyfile_dlg.set_modal(True)
+        keyfile_dlg.set_local_only(False)
+        keyfile_dlg.add_filter(KeyFileFilter())
+        response = keyfile_dlg.run()
+
+        if response == Gtk.ResponseType.ACCEPT:
+            self.generate_keyfile_button.set_sensitive(False)
+            self.generate_keyfile_button.set_label(_("Generating…"))
+            keyfile_path = keyfile_dlg.get_filename()
+            logging.debug("New keyfile location: %s", keyfile_path)
+
+            generator_thread = threading.Thread(
+                target=passwordsafe.keyfile_generator.generate_keyfile,
+                args=(keyfile_path, True, self, self.composite))
+            generator_thread.daemon = True
+            generator_thread.start()
+
+    @Gtk.Template.Callback()
+    def on_finish_button_clicked(self, _widget):
+        self.parent_widget.remove(self)
+        UnlockDatabase(
+            self.window, self.parent_widget,
+            self.database_manager.database_path)
+
+    # Helper Functions
+
     def save_pwc_database_thread(self):
         GLib.idle_add(self.show_pwc_loading)
         if self.composite is False:
@@ -167,46 +201,9 @@ class CreateDatabase(Gtk.Stack):
         self.password_repeat_input1.set_sensitive(False)
         self.password_repeat_input2.set_sensitive(False)
 
-    @Gtk.Template.Callback()
-    def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
-        """cb invoked when we create a new keyfile for a newly created Safe"""
-        keyfile_dlg = Gtk.FileChooserNative.new(
-            _("Choose location for keyfile"),
-            self.window, Gtk.FileChooserAction.SAVE,
-            _("Generate"), None)
-        keyfile_dlg.set_do_overwrite_confirmation(True)
-        keyfile_dlg.set_modal(True)
-        keyfile_dlg.set_local_only(False)
-        keyfile_dlg.add_filter(KeyFileFilter())
-        response = keyfile_dlg.run()
-
-        if response == Gtk.ResponseType.ACCEPT:
-            self.generate_keyfile_button.set_sensitive(False)
-            self.generate_keyfile_button.set_label(_("Generating…"))
-            keyfile_path = keyfile_dlg.get_filename()
-            logging.debug("New keyfile location: %s", keyfile_path)
-
-            generator_thread = threading.Thread(
-                target=passwordsafe.keyfile_generator.generate_keyfile,
-                args=(keyfile_path, True, self, self.composite))
-            generator_thread.daemon = True
-            generator_thread.start()
-
-    #
-    # Helper Functions
-    #
-
     def clear_input_fields(self) -> None:
         """Empty all Entry textfields"""
         self.password_creation_input.set_text("")
         self.password_check_input.set_text("")
         self.password_repeat_input1.set_text("")
         self.password_repeat_input2.set_text("")
-
-    @Gtk.Template.Callback()
-    def on_finish_button_clicked(self, _widget):
-        self.destroy()
-        self.parent_widget.remove(self)
-        UnlockDatabase(
-            self.window, self.parent_widget,
-            self.database_manager.database_path)

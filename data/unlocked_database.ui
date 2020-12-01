@@ -202,247 +202,76 @@
       </object>
     </child>
   </object>
-  <object class="GtkPopoverMenu" id="menubutton_popover">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox" id="sorting_page_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_start">8</property>
-        <property name="margin_end">8</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_main_button">
-            <property name="height_request">30</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">Sorting</property>
-            <property name="menu_name">main</property>
-            <property name="inverted">True</property>
-            <property name="centered">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_a-z_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.az</property>
-            <property name="text" translatable="yes" comments="This string depicts the alphabet from the beginning to the end (first character to last one).">A-Z</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_z-a_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.za</property>
-            <property name="text" translatable="yes" comments="This string depicts the alphabet in reversed order, from the end to the start (last character to first one).">Z-A</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_last_added_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.sort.last_added</property>
-            <property name="text" translatable="yes" comments="This is a modelbutton in a popover to sort entries by last added">Last Added</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="submenu">sorting</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkBox" id="menubutton_popover_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_start">8</property>
-        <property name="margin_end">8</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkBox" id="linked_box2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkButton" id="save_button">
-                <property name="width_request">70</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Save</property>
-                <property name="hexpand">True</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">document-save-symbolic</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="lock_button">
-                <property name="width_request">70</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Lock</property>
-                <property name="hexpand">True</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">system-lock-screen-symbolic</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">5</property>
-            <property name="margin_bottom">5</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_sorting_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">Sorting</property>
-            <property name="menu_name">sorting</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="linked_box1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkSeparator">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="margin_top">5</property>
-                <property name="margin_bottom">5</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkModelButton" id="menubutton_popover_label_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="action_name">app.db.safe</property>
-                <property name="text" translatable="yes">Safe</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkModelButton" id="menubutton_popover_new_entry_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="action_name">app.db.add_entry</property>
-                <property name="text" translatable="yes">New Entry</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkModelButton" id="menubutton_popover_new_group_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="action_name">app.db.add_group</property>
-                <property name="text" translatable="yes">New Group</property>
-              </object>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_new_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.new</property>
-            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe creation process">New Safe</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_open_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.open</property>
-            <property name="text" translatable="yes" comments="Menubutton popover in headerbar for starting the safe opening process (for existing safe)">Open Safe</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_dbsettings_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.db.settings</property>
-            <property name="text" translatable="yes" comments="Open settings for safe (e.g. password changing)">Safe Settings</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_settings_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.settings</property>
-            <property name="text" translatable="yes">Preferences</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.shortcuts</property>
-            <property name="text" translatable="yes">Keyboard Shortcuts</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="menubutton_popover_about_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="action_name">app.about</property>
-            <property name="text" translatable="yes" comments="&quot;Password Safe&quot; is the application name">About Password Safe</property>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="submenu">main</property>
-      </packing>
-    </child>
-  </object>
+  <menu id="unlocked_database_menu">
+    <section>
+      <attribute name='display-hint'>horizontal-buttons</attribute>
+      <item>
+        <attribute name='verb-icon'>document-save-symbolic</attribute>
+        <attribute name='label' translatable='yes'>_Save</attribute>
+        <attribute name='action'>app.db.save</attribute>
+      </item>
+      <item>
+        <attribute name='verb-icon'>system-lock-screen-symbolic</attribute>
+        <attribute name='action'>app.db.lock</attribute>
+        <attribute name='label' translatable='yes'>_Lock</attribute>
+      </item>
+    </section>
+    <section>
+      <submenu>
+        <attribute name='label' translatable='yes'>_Sorting</attribute>
+        <item>
+          <attribute name='label' translatable='yes'>_A-Z</attribute>
+          <attribute name='action'>app.sort.az</attribute>
+        </item>
+        <item>
+          <attribute name='label' translatable='yes'>_Z-A</attribute>
+          <attribute name='action'>app.sort.za</attribute>
+        </item>
+        <item>
+          <attribute name='label' translatable='yes'>_Last Added</attribute>
+          <attribute name='action'>app.sort.last_added</attribute>
+        </item>
+      </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>_New Entry</attribute>
+        <attribute name='action'>app.db.add_entry</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_New Group</attribute>
+        <attribute name='action'>app.db.add_group</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>_New Safe</attribute>
+        <attribute name='action'>app.new</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_Open Safe</attribute>
+        <attribute name='action'>app.open</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_Safe Settings</attribute>
+        <attribute name='action'>app.db.settings</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>_Preferences</attribute>
+        <attribute name='action'>app.settings</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_Keyboard Shortcuts</attribute>
+        <attribute name='action'>app.shortcuts</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>_About Password Safe</attribute>
+        <attribute name='action'>app.about</attribute>
+      </item>
+    </section>
+  </menu>
   <object class="GtkPopoverMenu" id="secondary_menubutton_popover">
     <property name="can_focus">False</property>
     <child>
@@ -624,7 +453,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="popover">menubutton_popover</property>
+                <property name="menu_model">unlocked_database_menu</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <requires lib="libhandy" version="1.0"/>
   <object class="GtkGrid" id="composite_unlock_stack_page">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -69,11 +66,6 @@
             <property name="invisible_char">●</property>
             <property name="input_purpose">password</property>
           </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton" id="composite_unlock_button">
@@ -90,12 +82,6 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton" id="composite_unlock_select_button">
@@ -115,11 +101,6 @@
               <class name="suggested-action"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
         </child>
         <style>
           <class name="linked"/>
@@ -209,11 +190,6 @@
               <class name="suggested-action"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton" id="keyfile_unlock_button">
@@ -233,11 +209,6 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <style>
           <class name="linked"/>
@@ -298,11 +269,6 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
       </object>
     </child>
@@ -362,11 +328,6 @@
               <class name="passwordEntry"/>
             </style>
           </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton" id="password_unlock_button">
@@ -385,10 +346,7 @@
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
             <property name="pack_type">end</property>
-            <property name="position">1</property>
           </packing>
         </child>
         <style>
@@ -441,9 +399,6 @@
     <property name="margin_bottom">12</property>
     <property name="spacing">25</property>
     <child>
-      <placeholder/>
-    </child>
-    <child>
       <object class="GtkStackSwitcher" id="unlock_database_stack_switcher">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -452,10 +407,7 @@
         <property name="vexpand">True</property>
       </object>
       <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
         <property name="pack_type">end</property>
-        <property name="position">1</property>
       </packing>
     </child>
   </object>
@@ -496,11 +448,6 @@
                     <property name="hexpand">True</property>
                     <property name="label" translatable="yes">Failed to unlock safe</property>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
                 </child>
               </object>
             </child>

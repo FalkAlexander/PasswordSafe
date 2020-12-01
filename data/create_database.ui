@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1 -->
 <interface>
-  <requires lib="gtk+" version="3.20"/>
-  <requires lib="libhandy" version="1.0"/>
   <object class="HdyClamp" id="authentification_method_chooser">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -51,11 +48,6 @@
                                 <property name="pixel_size">22</property>
                                 <property name="icon_name">document-edit-symbolic</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                             <child>
                               <object class="GtkBox">
@@ -76,11 +68,6 @@
                                       <attribute name="weight" value="bold"/>
                                     </attributes>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
@@ -96,18 +83,8 @@
                                       <class name="dim-label"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
                                 </child>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
@@ -134,11 +111,6 @@
                                 <property name="pixel_size">22</property>
                                 <property name="icon_name">dialog-password-symbolic</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                             <child>
                               <object class="GtkBox">
@@ -159,11 +131,6 @@
                                       <attribute name="weight" value="bold"/>
                                     </attributes>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
@@ -179,18 +146,8 @@
                                       <class name="dim-label"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
                                 </child>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
@@ -217,11 +174,6 @@
                                 <property name="pixel_size">22</property>
                                 <property name="icon_name">insert-link-symbolic</property>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">0</property>
-                              </packing>
                             </child>
                             <child>
                               <object class="GtkBox">
@@ -242,11 +194,6 @@
                                       <attribute name="weight" value="bold"/>
                                     </attributes>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">0</property>
-                                  </packing>
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
@@ -262,18 +209,8 @@
                                       <class name="dim-label"/>
                                     </style>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">True</property>
-                                    <property name="position">1</property>
-                                  </packing>
                                 </child>
                               </object>
-                              <packing>
-                                <property name="expand">False</property>
-                                <property name="fill">True</property>
-                                <property name="position">1</property>
-                              </packing>
                             </child>
                           </object>
                         </child>
@@ -313,18 +250,6 @@
             <property name="left_attach">1</property>
             <property name="top_attach">1</property>
           </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
     </child>
@@ -370,11 +295,6 @@
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="password_creation_button">
@@ -393,12 +313,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack_type">end</property>
-                <property name="position">1</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
@@ -439,24 +353,6 @@
             <property name="left_attach">1</property>
             <property name="top_attach">2</property>
           </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
       <packing>
@@ -518,11 +414,6 @@
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="password_check_button">
@@ -541,10 +432,7 @@
                 </child>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
                 <property name="pack_type">end</property>
-                <property name="position">1</property>
               </packing>
             </child>
             <style>
@@ -571,29 +459,10 @@
             <property name="top_attach">3</property>
           </packing>
         </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
       </object>
       <packing>
         <property name="name">page1</property>
         <property name="title">page1</property>
-        <property name="position">1</property>
       </packing>
     </child>
     <child>
@@ -649,11 +518,6 @@
                   <class name="error"/>
                 </style>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
           </object>
           <packing>
@@ -694,11 +558,6 @@
                   <class name="error"/>
                 </style>
               </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="password_repeat_button">
@@ -716,10 +575,7 @@
                 </child>
               </object>
               <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
                 <property name="pack_type">end</property>
-                <property name="position">1</property>
               </packing>
             </child>
             <style>
@@ -731,32 +587,10 @@
             <property name="top_attach">5</property>
           </packing>
         </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
       </object>
       <packing>
         <property name="name">page2</property>
         <property name="title">page2</property>
-        <property name="position">2</property>
       </packing>
     </child>
     <child>
@@ -796,11 +630,6 @@
                   <class name="suggested-action"/>
                 </style>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
@@ -842,29 +671,10 @@
             <property name="top_attach">2</property>
           </packing>
         </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
       </object>
       <packing>
         <property name="name">page3</property>
         <property name="title">page3</property>
-        <property name="position">3</property>
       </packing>
     </child>
   </object>
@@ -887,11 +697,6 @@
             <property name="action_name">app.settings</property>
             <property name="text" translatable="yes">Preferences</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_shortcuts_button">
@@ -901,11 +706,6 @@
             <property name="action_name">app.shortcuts</property>
             <property name="text" translatable="yes">Keyboard Shortcuts</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkModelButton" id="menubutton_popover_about_button">
@@ -915,11 +715,6 @@
             <property name="action_name">app.about</property>
             <property name="text" translatable="yes" comments="&quot;Password Safe&quot; is the application name">About Password Safe</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
         </child>
       </object>
     </child>
@@ -951,21 +746,8 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
         </child>
       </object>
     </child>
@@ -973,9 +755,6 @@
       <object class="GtkBox" id="linkedbox_right">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <child>
-          <placeholder/>
-        </child>
         <child>
           <object class="GtkMenuButton" id="menupopover_button">
             <property name="visible">True</property>
@@ -990,16 +769,10 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
       <packing>
         <property name="pack_type">end</property>
-        <property name="position">1</property>
       </packing>
     </child>
   </object>

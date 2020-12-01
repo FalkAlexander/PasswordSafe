@@ -10,7 +10,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
@@ -39,34 +39,19 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkBox" id="attachment_label_box">
+          <object class="GtkLabel" id="attachment_property_name_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="attachment_property_name_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">Attachments</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
+            <property name="valign">center</property>
+            <property name="label" translatable="yes">Attachments</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
         </child>
         <child>
@@ -182,7 +167,6 @@
   <object class="GtkListBoxRow" id="attribute_property_row">
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="margin_top">5</property>
     <property name="activatable">False</property>
     <property name="selectable">False</property>
     <child>
@@ -288,33 +272,17 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkBox" id="attributes_label_box">
+          <object class="GtkLabel" id="attributes_property_name_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="attributes_property_name_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">Attributes</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
+            <property name="label" translatable="yes">Attributes</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
         </child>
         <child>
@@ -384,33 +352,17 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkBox" id="icon_label_box">
+          <object class="GtkLabel" id="icon_property_name_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="icon_property_name_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">Icon</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
+            <property name="label" translatable="yes">Icon</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
         </child>
         <child>
@@ -683,56 +635,31 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkBox" id="name_label_box">
+          <object class="GtkLabel" id="name_property_name_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
             <property name="valign">end</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="name_property_name_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="valign">end</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">Title</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
+            <property name="label" translatable="yes">Title</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
         </child>
         <child>
-          <object class="GtkBox" id="name_entry_box">
+          <object class="GtkEntry" id="name_property_value_entry">
+            <property name="name">TabBox</property>
+            <property name="height_request">-1</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can_focus">True</property>
+            <property name="valign">center</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkEntry" id="name_property_value_entry">
-                <property name="name">TabBox</property>
-                <property name="height_request">-1</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="valign">center</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="input_purpose">name</property>
-              </object>
-            </child>
+            <property name="input_purpose">name</property>
           </object>
         </child>
       </object>
@@ -748,27 +675,21 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
         <child>
           <object class="GtkBox" id="notes_label_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
             <child>
               <object class="GtkLabel" id="notes_property_name_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
                 <property name="valign">end</property>
-                <property name="margin_bottom">5</property>
-                <property name="vexpand">True</property>
                 <property name="label" translatable="yes">Notes</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -779,8 +700,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="halign">end</property>
-                <property name="valign">center</property>
                 <property name="relief">none</property>
                 <child>
                   <object class="GtkImage">
@@ -795,6 +714,9 @@
                   </object>
                 </child>
               </object>
+              <packing>
+                <property name="pack_type">end</property>
+              </packing>
             </child>
           </object>
         </child>
@@ -836,6 +758,10 @@
     <property name="can_focus">False</property>
     <property name="selection_mode">none</property>
     <property name="activate_on_single_click">False</property>
+    <property name="margin_top">12</property>
+    <style>
+      <class name="properties_listbox"/>
+    </style>
   </object>
   <object class="GtkScrolledWindow" id="scrolled_window">
     <property name="visible">True</property>
@@ -856,7 +782,7 @@
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
           <object class="GtkSeparator">
             <property name="visible">True</property>
@@ -904,34 +830,18 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkBox" id="url_label_box">
+          <object class="GtkLabel" id="url_property_name_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="url_property_name_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">URL</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
+            <property name="label" translatable="yes">URL</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
         </child>
         <child>
@@ -968,34 +878,18 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">5</property>
+        <property name="spacing">6</property>
         <child>
-          <object class="GtkBox" id="username_label_box">
+          <object class="GtkLabel" id="username_property_name_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="username_property_name_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">Username</property>
-                <property name="justify">right</property>
-                <property name="ellipsize">end</property>
-                <property name="width_chars">15</property>
-                <property name="max_width_chars">15</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
+            <property name="label" translatable="yes">Username</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
         </child>
         <child>

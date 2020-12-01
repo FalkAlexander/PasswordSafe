@@ -3,40 +3,23 @@ from gi.repository import Gtk
 from passwordsafe.unlock_database import UnlockDatabase
 
 
-class CreatedDatabase:
-    builder = NotImplemented
-    window = NotImplemented
-    parent_widget = NotImplemented
-    database_manager = NotImplemented
-    box = NotImplemented
+@Gtk.Template(
+    resource_path="/org/gnome/PasswordSafe/created_database.ui")
+class CreatedDatabase(Gtk.Box):
+    """Page to show when a safe has been successfully created."""
+
+    __gtype_name__ = "CreatedDatabase"
 
     def __init__(self, window, widget, dbm):
+        super().__init__()
         self.window = window
         self.parent_widget = widget
         self.database_manager = dbm
-        self.success_page()
+        self.parent_widget.add(self)
 
-    #
-    # Stack Pages
-    #
-
-    def success_page(self):
-        self.builder = Gtk.Builder()
-        self.builder.add_from_resource(
-            "/org/gnome/PasswordSafe/created_database.ui")
-
-        self.box = self.builder.get_object("database_creation_success_box")
-        self.parent_widget.add(self.box)
-
-        finish_button = self.builder.get_object("finish_button")
-        finish_button.connect("clicked", self.on_finish_button_clicked)
-
-    #
-    # Events
-    #
-
+    @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget):
-        self.box.destroy()
+        self.destroy()
         UnlockDatabase(
             self.window, self.parent_widget,
             self.database_manager.database_path)

@@ -35,23 +35,17 @@ if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
     from pykeepass.group import Group
 
+    # pylint: disable=ungrouped-imports
+    from passwordsafe.main_window import MainWindow
+    from passwordsafe.container_page import ContainerPage
+    from passwordsafe.database_manager import DatabaseManager
+
 
 class UnlockedDatabase(GObject.GObject):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
 
-    # Instances
-    window = NotImplemented
-    database_manager = NotImplemented
-    responsive_ui = NotImplemented
-    selection_ui = NotImplemented
-    search = NotImplemented
-    entry_page = NotImplemented
-    group_page = NotImplemented
-    custom_keypress_handler = NotImplemented
-
     # Widgets
-    parent_widget = NotImplemented
     headerbar = NotImplemented
     headerbar_box = NotImplemented
     scrolled_window = NotImplemented
@@ -64,7 +58,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Objects
     builder = NotImplemented
-    accelerators = NotImplemented
     scheduled_page_destroy: List[UUID] = []
     scheduled_tmpfiles_deletion: List[Gio.File] = []
     clipboard = NotImplemented
@@ -79,19 +72,23 @@ class UnlockedDatabase(GObject.GObject):
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE
     )
 
-    def __init__(self, window, widget, dbm):
+    def __init__(self, window: MainWindow, widget: ContainerPage, dbm: DatabaseManager):
         super().__init__()
-
         # Instances
-        self.window = window
-        self.parent_widget = widget
-        self.database_manager = dbm
-        self.responsive_ui = ResponsiveUI(self)
-        self.selection_ui = SelectionUI(self)
-        self.search = Search(self)
-        self.entry_page = EntryPage(self)
-        self.group_page = GroupPage(self)
-        self.custom_keypress_handler = CustomKeypressHandler(self)
+        self.window: MainWindow = window
+        self.parent_widget: ContainerPage = widget
+        self.database_manager: DatabaseManager = dbm
+        self.responsive_ui: ResponsiveUI = ResponsiveUI(self)
+        self.selection_ui: SelectionUI = SelectionUI(self)
+        self.search: Search = Search(self)
+        self.entry_page: EntryPage = EntryPage(self)
+        self.group_page: GroupPage = GroupPage(self)
+        self.custom_keypress_handler: CustomKeypressHandler = CustomKeypressHandler(
+            self
+        )
+        # UnlockedDatabase-specific key accelerators
+        self.accelerators: Gtk.AccelGroup = Gtk.AccelGroup()
+        self.window.add_accel_group(self.accelerators)
 
         self._current_element: Optional[Union[Entry, Group]] = None
 
@@ -126,9 +123,6 @@ class UnlockedDatabase(GObject.GObject):
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
-
-        self.accelerators = Gtk.AccelGroup()
-        self.window.add_accel_group(self.accelerators)
 
         self.overlay = Gtk.Overlay()
         self.parent_widget.add(self.overlay)
@@ -168,7 +162,7 @@ class UnlockedDatabase(GObject.GObject):
 
         search_button = self.builder.get_object("search_button")
         search_button.connect("clicked", self._on_search_button_clicked)
-        self.bind_accelerator(self.accelerators, search_button, "<Control>f")
+        self.bind_accelerator(search_button, "<Control>f")
 
         selection_button = self.builder.get_object("selection_button")
         selection_button.connect("clicked", self._on_selection_button_clicked)
@@ -242,9 +236,12 @@ class UnlockedDatabase(GObject.GObject):
     # Keystrokes
     #
 
-    def bind_accelerator(self, accelerators, widget, accelerator, signal="clicked"):
+    def bind_accelerator(self, widget, accelerator, signal="clicked"):
+        """bind accelerators to self, aka this `UnlockedDatabase`"""
         key, mod = Gtk.accelerator_parse(accelerator)
-        widget.add_accelerator(signal, accelerators, key, mod, Gtk.AccelFlags.VISIBLE)
+        widget.add_accelerator(
+            signal, self.accelerators, key, mod, Gtk.AccelFlags.VISIBLE
+        )
 
     #
     # Group and Entry Management

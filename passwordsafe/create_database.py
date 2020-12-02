@@ -186,13 +186,12 @@ class CreateDatabase:
         password_repeat_input2 = self.builder.get_object(
             "password_repeat_input2")
 
-        self.database_manager.set_password_try(
-            password_repeat_input1.get_text())
-        self.database_manager.set_password_check(
-            password_repeat_input2.get_text())
+        passwd: str = password_repeat_input1.get_text()
+        self.database_manager.set_password_try(passwd)
+        conf_passwd: str = password_repeat_input2.get_text()
 
-        if self.database_manager.compare_passwords():
-            self.database_manager.password = password_repeat_input2.get_text()
+        if self.database_manager.compare_passwords(conf_passwd):
+            self.database_manager.password = conf_passwd
 
             save_thread = threading.Thread(target=self.save_pwr_database_thread)
             save_thread.daemon = True

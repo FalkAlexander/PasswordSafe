@@ -27,7 +27,7 @@ class PasswordEntryRow(Gtk.ListBoxRow):
     _generate_password_button = Gtk.Template.Child()
     _password_level_bar = Gtk.Template.Child()
     _password_value_entry = Gtk.Template.Child()
-    _show_password_button = Gtk.Template.Child()
+    _copy_password_button = Gtk.Template.Child()
 
     def __init__(self, unlocked_database: UnlockedDatabase) -> None:
         """Widget to set the password of an entry
@@ -62,11 +62,8 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         self._set_password_level_bar()
 
     @Gtk.Template.Callback()
-    def _on_copy_secondary_button_clicked(
-            self, widget: Gtk.Entry,
-            _position: Optional[Gtk.EntryIconPosition] = None,
-            _event: Optional[Gdk.Event] = None) -> None:
-        self._unlocked_database.send_to_clipboard(widget.props.text)
+    def _on_copy_password_button_clicked(self, widget: Gtk.ToggleButton) -> None:
+        self._unlocked_database.send_to_clipboard(self._password_value_entry.props.text)
 
     @Gtk.Template.Callback()
     def _on_password_value_changed(self, widget: Gtk.Entry) -> None:
@@ -90,7 +87,12 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         self._set_password_level_bar()
 
     @Gtk.Template.Callback()
-    def _on_show_password_button_toggled(self, _widget: Gtk.ToggleButton) -> None:
+    def _on_show_password_button_toggled(
+        self,
+        _widget: Gtk.Entry,
+        _position: Optional[Gtk.EntryIconPosition] = None,
+        _event: Optional[Gdk.Event] = None,
+    ) -> None:
         self._unlocked_database.start_database_lock_timer()
         entry_visibility = self._password_value_entry.props.visibility
         self._password_value_entry.props.visibility = not entry_visibility

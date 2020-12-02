@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-01 14:39+0000\n"
-"PO-Revision-Date: 2020-12-02 10:04+0200\n"
+"POT-Creation-Date: 2020-12-02 13:41+0000\n"
+"PO-Revision-Date: 2020-12-02 16:15+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -58,9 +58,9 @@ msgid "Proceed"
 msgstr "Продовжити"
 
 #: data/create_database.ui:64 data/database_settings_dialog.ui:426
-#: data/password_entry_row.ui:31 data/password_generator_popover.ui:126
+#: data/password_entry_row.ui:21 data/password_generator_popover.ui:128
 #: data/references_dialog.ui:142 data/references_dialog.ui:232
-#: data/settings_dialog.ui:153 passwordsafe/unlock_database.py:99
+#: data/settings_dialog.ui:153 passwordsafe/unlock_database.py:98
 msgid "Password"
 msgstr "Пароль"
 
@@ -72,7 +72,7 @@ msgstr "Скористатися паролем для захисту вашог
 #: passwordsafe/database_settings_dialog.py:190
 #: passwordsafe/database_settings_dialog.py:230
 #: passwordsafe/database_settings_dialog.py:235
-#: passwordsafe/unlock_database.py:30 passwordsafe/unlock_database.py:102
+#: passwordsafe/unlock_database.py:29 passwordsafe/unlock_database.py:101
 msgid "Keyfile"
 msgstr "Файл ключа"
 
@@ -81,7 +81,7 @@ msgid "Use a keyfile to secure your safe"
 msgstr "Скористатися ключем для захисту вашого сейфа"
 
 #. NOTE: Composite unlock is a authentication method where both password and keyfile are required
-#: data/create_database.ui:186 passwordsafe/unlock_database.py:106
+#: data/create_database.ui:186 passwordsafe/unlock_database.py:105
 msgid "Composite"
 msgstr "Суміщення"
 
@@ -119,32 +119,31 @@ msgid "Please try again"
 msgstr "Будь ласка, повторіть спробу"
 
 #. Button to generate a password
-#: data/create_database.ui:611 data/password_generator_popover.ui:185
-#: passwordsafe/create_database.py:243
-#: passwordsafe/database_settings_dialog.py:228
-msgid "Generate"
-msgstr "Створити"
+#: data/create_database.ui:611 data/password_generator_popover.ui:189
+#| msgid "Generate"
+msgid "_Generate"
+msgstr "С_творити"
 
-#: data/create_database.ui:635
+#: data/create_database.ui:636
 msgid "Set keyfile for safe"
 msgstr "Встановіть файл ключа до сейфа"
 
-#: data/create_database.ui:649
+#: data/create_database.ui:650
 msgid "Generate Keyfile"
 msgstr "Створити файл ключа"
 
-#: data/create_database.ui:670 data/main_window.ui:126
+#: data/create_database.ui:671 data/main_window.ui:126
 #: data/unlock_database.ui:236 data/unlocked_database.ui:262
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: data/create_database.ui:674 data/main_window.ui:130
+#: data/create_database.ui:675 data/main_window.ui:130
 #: data/unlock_database.ui:240 data/unlocked_database.ui:266
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #. "Password Safe" is the application name
-#: data/create_database.ui:678 data/main_window.ui:134
+#: data/create_database.ui:679 data/main_window.ui:134
 #: data/unlock_database.ui:244
 msgid "About Password Safe"
 msgstr "Про «Сейф для паролів»"
@@ -152,14 +151,14 @@ msgstr "Про «Сейф для паролів»"
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:686 data/main_window.ui:238
+#: data/create_database.ui:687 data/main_window.ui:238
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:252
 msgid "Password Safe"
 msgstr "Сейф для паролів"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:687
+#: data/create_database.ui:688
 msgid "Create Safe"
 msgstr "Створення сейфа"
 
@@ -172,7 +171,7 @@ msgstr "Сейф успішно створено"
 msgid "Open Safe"
 msgstr "Відкрити сейф"
 
-#: data/color_entry_row.ui:23
+#: data/color_entry_row.ui:19
 msgid "Color"
 msgstr "Колір"
 
@@ -292,54 +291,54 @@ msgstr "Функція для похідних ключів"
 msgid "Add Attachment"
 msgstr "Додати долучення"
 
-#: data/entry_page.ui:60
+#: data/entry_page.ui:51
 msgid "Attachments"
 msgstr "Долучення"
 
-#: data/entry_page.ui:125
+#: data/entry_page.ui:110
 msgid "Secret_Photo.png"
 msgstr "Секретне_фото.png"
 
-#: data/entry_page.ui:259
+#: data/entry_page.ui:243
 msgid "Remove attribute"
 msgstr "Вилучити атрибут"
 
-#: data/entry_page.ui:308
+#: data/entry_page.ui:282
 msgid "Attributes"
 msgstr "Атрибути"
 
-#: data/entry_page.ui:338
+#: data/entry_page.ui:306
 msgid "Key"
 msgstr "Ключ"
 
-#: data/entry_page.ui:347
+#: data/entry_page.ui:315
 msgid "Value"
 msgstr "Значення"
 
-#: data/entry_page.ui:360
+#: data/entry_page.ui:328
 msgid "Add attribute"
 msgstr "Додати атрибут"
 
-#: data/entry_page.ui:404
+#: data/entry_page.ui:362
 msgid "Icon"
 msgstr "Піктограма"
 
-#: data/entry_page.ui:705 data/group_page.ui:31 data/references_dialog.ui:59
+#: data/entry_page.ui:647 data/group_page.ui:21 data/references_dialog.ui:59
 #: data/references_dialog.ui:214
 msgid "Title"
 msgstr "Заголовок"
 
-#: data/entry_page.ui:767 data/group_page.ui:93 data/references_dialog.ui:170
+#: data/entry_page.ui:692 data/group_page.ui:67 data/references_dialog.ui:170
 #: data/references_dialog.ui:250
 msgid "Notes"
 msgstr "Нотатки"
 
-#: data/entry_page.ui:925 data/references_dialog.ui:156
+#: data/entry_page.ui:841 data/references_dialog.ui:156
 #: data/references_dialog.ui:241
 msgid "URL"
 msgstr "Адреса"
 
-#: data/entry_page.ui:989 data/references_dialog.ui:84
+#: data/entry_page.ui:889 data/references_dialog.ui:84
 #: data/references_dialog.ui:223
 msgid "Username"
 msgstr "Користувач"
@@ -399,7 +398,6 @@ msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;кіпас;шифрування;шифр;безпека;захист;"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:16
-#| msgid "Use dark GTK+ theme"
 msgid "Use dark GTK theme"
 msgstr "Темна тема GTK"
 
@@ -629,31 +627,31 @@ msgid "Word separator to use when generating a passphrase."
 msgstr "Роздільник слів, яким слід скористатися при створенні пароля."
 
 #. Tooltip for button near input field to show or hide the password (clear text)
-#: data/password_entry_row.ui:92
+#: data/password_entry_row.ui:66
 msgid "Show/hide password"
 msgstr "Показати/Сховати пароль"
 
-#: data/password_generator_popover.ui:44
+#: data/password_generator_popover.ui:45
 msgid "Length"
 msgstr "Довжина"
 
-#: data/password_generator_popover.ui:67
+#: data/password_generator_popover.ui:69
 msgid "Characters"
 msgstr "Символи"
 
-#: data/password_generator_popover.ui:139
+#: data/password_generator_popover.ui:142
 msgid "Words"
 msgstr "Слова"
 
-#: data/password_generator_popover.ui:161 data/settings_dialog.ui:265
+#: data/password_generator_popover.ui:165 data/settings_dialog.ui:265
 msgid "Separator"
 msgstr "Роздільник"
 
-#: data/password_generator_popover.ui:172
+#: data/password_generator_popover.ui:176
 msgid "Enter character here…"
 msgstr "Введіть сюди символ…"
 
-#: data/password_generator_popover.ui:178
+#: data/password_generator_popover.ui:182
 msgid "Passphrase"
 msgstr "Пароль"
 
@@ -681,8 +679,8 @@ msgstr "Створено"
 msgid "Code"
 msgstr "Код"
 
-#: data/references_dialog.ui:34 data/references_dialog.ui:337
-#: data/references_dialog.ui:448
+#: data/references_dialog.ui:34 data/references_dialog.ui:338
+#: data/references_dialog.ui:449
 msgid "Property"
 msgstr "Властивість"
 
@@ -694,23 +692,23 @@ msgstr "Посилання"
 msgid "Syntax"
 msgstr "Синтаксис"
 
-#: data/references_dialog.ui:306
+#: data/references_dialog.ui:307
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Синтаксис замінників для посилань на поля є таким:"
 
-#: data/references_dialog.ui:336 data/references_dialog.ui:365
+#: data/references_dialog.ui:337 data/references_dialog.ui:366
 msgid "Show Field Codes"
 msgstr "Показувати коди полів"
 
-#: data/references_dialog.ui:366
+#: data/references_dialog.ui:367
 msgid "Identifier"
 msgstr "Ідентифікатор"
 
-#: data/references_dialog.ui:423
+#: data/references_dialog.ui:424
 msgid "Reference"
 msgstr "Посилання"
 
-#: data/references_dialog.ui:502
+#: data/references_dialog.ui:503
 msgid ""
 "Each entry has a unique identifier called UUID.\n"
 "It can be found in the properties of the entry."
@@ -770,7 +768,6 @@ msgid "Dark Theme"
 msgstr "Темна тема"
 
 #: data/settings_dialog.ui:22
-#| msgid "Use dark GTK+ theme."
 msgid "Use dark GTK theme."
 msgstr "Використовувати темну тему GTK."
 
@@ -986,7 +983,6 @@ msgid "Copy password"
 msgstr "Копіювати пароль"
 
 #: data/shortcuts_overview.ui:99
-#| msgid "Username"
 msgctxt "Shortcut window description"
 msgid "Copy username"
 msgstr "Копіювати ім'я користувача"
@@ -1041,17 +1037,14 @@ msgid "Empty group"
 msgstr "Порожня група"
 
 #: data/unlocked_database.ui:210
-#| msgid "Save"
 msgid "_Save"
 msgstr "З_берегти"
 
 #: data/unlocked_database.ui:216
-#| msgid "Lock"
 msgid "_Lock"
 msgstr "За_мкнути"
 
 #: data/unlocked_database.ui:221
-#| msgid "Sorting"
 msgid "_Sorting"
 msgstr "Вп_орядкування"
 
@@ -1064,47 +1057,38 @@ msgid "_Z-A"
 msgstr "_Я-А"
 
 #: data/unlocked_database.ui:231
-#| msgid "Last Added"
 msgid "_Last Added"
 msgstr "Ос_танні додані"
 
 #: data/unlocked_database.ui:238
-#| msgid "New Entry"
 msgid "_New Entry"
 msgstr "_Новий запис"
 
 #: data/unlocked_database.ui:242
-#| msgid "New Group"
 msgid "_New Group"
 msgstr "_Нова група"
 
 #: data/unlocked_database.ui:256
-#| msgid "Safe Settings"
 msgid "_Safe Settings"
 msgstr "Параметри се_йфа"
 
 #: data/unlocked_database.ui:270
-#| msgid "About Password Safe"
 msgid "_About Password Safe"
 msgstr "_Про «Сейф для паролів»"
 
 #: data/unlocked_database.ui:278
-#| msgid "Duplicate"
 msgid "_Duplicate"
 msgstr "Зд_ублювати"
 
 #: data/unlocked_database.ui:282
-#| msgid "References"
 msgid "_References"
 msgstr "П_осилання"
 
 #: data/unlocked_database.ui:286 data/unlocked_database.ui:300
-#| msgid "Properties"
 msgid "_Properties"
 msgstr "_Властивості"
 
 #: data/unlocked_database.ui:292 data/unlocked_database.ui:306
-#| msgid "Delete"
 msgid "_Delete"
 msgstr "В_илучити"
 
@@ -1127,12 +1111,10 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #: data/unlocked_database.ui:513
-#| msgid "Select all"
 msgid "_Select all"
 msgstr "Позна_чити все"
 
 #: data/unlocked_database.ui:517
-#| msgid "Select none"
 msgid "_Select none"
 msgstr "_Нічого не позначати"
 
@@ -1141,6 +1123,11 @@ msgstr "_Нічого не позначати"
 #: passwordsafe/database_settings_dialog.py:227
 msgid "Choose location for keyfile"
 msgstr "Виберіть розташування файла ключа"
+
+#: passwordsafe/create_database.py:243
+#: passwordsafe/database_settings_dialog.py:228
+msgid "Generate"
+msgstr "Створити"
 
 #: passwordsafe/create_database.py:254
 msgid "Generating…"
@@ -1257,19 +1244,19 @@ msgstr "Пересування завершено"
 msgid "Skipped moving group into itself"
 msgstr "Пропущено пересування групи до самої себе"
 
-#: passwordsafe/unlock_database.py:222
+#: passwordsafe/unlock_database.py:221
 msgid "Database already opened"
 msgstr "Базу даних вже відкрито"
 
-#: passwordsafe/unlock_database.py:245
+#: passwordsafe/unlock_database.py:244
 msgid "Choose a keyfile"
 msgstr "Виберіть файл ключа"
 
-#: passwordsafe/unlock_database.py:284
+#: passwordsafe/unlock_database.py:283
 msgid "Choose Keyfile"
 msgstr "Виберіть файл ключа"
 
-#: passwordsafe/unlock_database.py:559
+#: passwordsafe/unlock_database.py:558
 msgid "Try again"
 msgstr "Спробувати ще раз"
 

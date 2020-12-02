@@ -46,10 +46,9 @@ class MainWindow(Gtk.ApplicationWindow):
         self.set_default_size(window_size[0], window_size[1])
 
         self.create_headerbar()
-        self.first_start_screen()
-
         self.load_custom_css()
         self.apply_theme()
+        self.invoke_initial_screen()
 
     #
     # Headerbar
@@ -167,26 +166,42 @@ class MainWindow(Gtk.ApplicationWindow):
     # First Start Screen
     #
 
-    def first_start_screen(self):
-        filepath = Gio.File.new_for_uri(passwordsafe.config_manager.get_last_opened_database()).get_path()
+    def invoke_initial_screen(self) -> None:
+        """Present the first start screen if required or autoload files
 
-        if self.get_application().file_list:
-            for g_file in self.get_application().file_list:
+        If the configuration is set to automatically load the last
+        opened safe, this function does that. If it is not set to
+        autoload, it presents a list of recently loaded files (or
+        displays the empty welcome page if there are no recently
+        loaded files).
+        """
+        if self.application.file_list:
+            # file_list is appended to when we invoke the app with
+            # files as cmd line parameters. (it is also appended to
+            # whenever we open a file via app.open action). If it is
+            # populated, simply load those files and don't show any
+            # screens.
+            for g_file in self.application.file_list:
                 self.start_database_opening_routine(g_file.get_path())
-        elif passwordsafe.config_manager.get_first_start_screen() and filepath and os.path.exists(filepath):
-            logging.debug("Found last opened database: %s", filepath)
-            self.start_database_opening_routine(filepath)
-        else:
-            self.display_recent_files_list()
-
-    def display_recent_files_list(self):
-        """Shows the list of recently opened files
-
-        for the user to pick one (or the welcome screen if there are none)"""
-        if not passwordsafe.config_manager.get_last_opened_list():
-            self.display_welcome_page()
             return
 
+        if passwordsafe.config_manager.get_first_start_screen():
+            # simply load the last opened file
+            filepath = None
+            file: Gio.File = Gio.File.new_for_uri(
+                passwordsafe.config_manager.get_last_opened_database()
+            )
+            if Gio.File.query_exists(file):
+                filepath = file.get_path()
+                logging.debug("Opening last opened database: %s", filepath)
+                self.start_database_opening_routine(filepath)
+                return
+
+        # Display the screen with last opened files (or welcome page)
+        self.display_recent_files_list()
+
+    def display_recent_files_list(self) -> None:
+        """Shows the list of recently opened files or invokes welcome page"""
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/main_window.ui")
@@ -226,8 +241,8 @@ class MainWindow(Gtk.ApplicationWindow):
             self.display_welcome_page()
             return
 
-        for row in reversed(entry_list):
-            last_opened_list_box.add(row)
+        for row in entry_list:
+            last_opened_list_box.insert(row, 0)
 
         first_start_grid = builder.get_object("last_opened_grid")
 
@@ -242,7 +257,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.add(first_start_grid)
 
-    def display_welcome_page(self):
+    def display_welcome_page(self) -> None:
+        """Shown when there is no autoloading and no recent files to display"""
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 

@@ -1,6 +1,6 @@
-project('passwordsafe', 'c',
+project('passwordsafe',
   version: '5.alpha',
-  meson_version: '>= 0.50.0'
+  meson_version: '>= 0.51.0'
 )
 i18n = import('i18n')
 python = import('python')
@@ -16,7 +16,7 @@ contributors = '\n'.join([
 ])
 
 message('Looking for dependencies')
-python_bin = python.find_installation('python3')
+python_bin = python.find_installation('python3', modules:['pykeepass'])
 if not python_bin.found()
     error('No valid python3 binary found')
 else
@@ -30,23 +30,11 @@ dependency('pwquality')
 
 env = environment()
 
-python_dir = join_paths(get_option('prefix'), python_bin.get_install_dir())
+python_dir = python_bin.get_install_dir()
 LIBEXEC_DIR = join_paths(get_option('prefix'), get_option('libexecdir'))
 EXTENSION_DIR = join_paths(get_option('prefix'), get_option('libdir'), meson.project_name())
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
-
-
-# Python Module Check
-python3_required_modules = ['pykeepass', 'construct']
-
-foreach p : python3_required_modules
-    # Source: https://docs.python.org/3/library/importlib.html#checking-if-a-module-can-be-imported
-    script = 'import importlib.util; import sys; exit(1) if importlib.util.find_spec(\''+ p +'\') is None else exit(0)'
-    if run_command(python_bin, '-c', script).returncode() != 0
-        error('Required Python3 module \'' + p + '\' not found')
-    endif
-endforeach
 
 
 # Profiles

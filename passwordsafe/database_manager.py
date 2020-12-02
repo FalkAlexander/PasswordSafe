@@ -321,21 +321,9 @@ class DatabaseManager(GObject.GObject):
 
         return entry.custom_properties
 
-    # Return all attachments for an entry uuid
-    def get_entry_attachments_from_entry_uuid(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.attachments
-
-    # Return all attachments for an entry object
-    def get_entry_attachments_from_entry_object(self, entry):
-        return entry.attachments
-
     #
     # Entry Checks
     #
-    def has_entry_name(self, entry: Union[UUID, Entry]) -> bool:
-        return self.get_entry_name(entry) != ""
-
     def has_entry_username(self, entry: Union[UUID, Entry]) -> bool:
         return self.get_entry_username(entry) != ""
 
@@ -357,16 +345,6 @@ class DatabaseManager(GObject.GObject):
             return False
         return True
 
-    def has_entry_expiry_date(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        return entry.expires
-
-    def has_entry_expired(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.expired is False:
-            return False
-        return True
-
     def has_entry_color(self, uuid: UUID) -> bool:
         entry: Entry = self.db.find_entries(uuid=uuid, first=True)
         color_property: Optional[str] = entry.get_custom_property(
@@ -385,34 +363,6 @@ class DatabaseManager(GObject.GObject):
         :rtype: bool
         """
         if entry.get_custom_property(key) is None:
-            return False
-        return True
-
-    def has_entry_attachments(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if len(entry.attachments) == 0:
-            return False
-        return True
-
-    #
-    # Group Checks
-    #
-
-    def has_group_name(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        if group.name is None:
-            return False
-        return True
-
-    def has_group_notes(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        if group.notes is None:
-            return False
-        return True
-
-    def has_group_icon(self, uuid):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        if group.icon is None:
             return False
         return True
 

@@ -34,7 +34,9 @@ class Application(Gtk.Application):
         self.connect("open", self.file_open_handler)
         self.assemble_application_menu()
 
-    def do_handle_local_options(self, options: GLib.VariantDict) -> int:
+    def do_handle_local_options(        # pylint: disable=arguments-differ
+        self, options: GLib.VariantDict
+    ) -> int:
         """
         :returns int: If you have handled your options and want to exit
             the process, return a non-negative option, 0 for success, and

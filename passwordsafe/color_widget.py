@@ -59,11 +59,11 @@ class ColorButton(Gtk.FlowBoxChild):  # pylint: disable=too-few-public-methods
         return self._color.value
 
     @Gtk.Template.Callback()
-    def _on_enter_event(self, _widget: Gtk.EventBox, event: Gdk.Event) -> None:
+    def _on_enter_event(self, _widget: Gtk.EventBox, _event: Gdk.Event) -> None:
         self.set_state_flags(Gtk.StateFlags.PRELIGHT, False)
 
     @Gtk.Template.Callback()
-    def _on_leave_event(self, _widget: Gtk.EventBox, event: Gdk.Event) -> None:
+    def _on_leave_event(self, _widget: Gtk.EventBox, _event: Gdk.Event) -> None:
         self.unset_state_flags(Gtk.StateFlags.PRELIGHT)
 
 

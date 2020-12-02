@@ -211,9 +211,7 @@ class UnlockedDatabase(GObject.GObject):
         )
 
         self._update_headerbar()
-        self.pathbar = Pathbar(
-            self, self.database_manager, self.database_manager.get_root_group()
-        )
+        self.pathbar = Pathbar(self, self.database_manager)
         # Put pathbar in the right place (top or bottom)
         self.responsive_ui.action_bar()
 

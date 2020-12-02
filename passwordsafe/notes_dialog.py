@@ -28,7 +28,6 @@ class NotesDialog:
     def __setup_signals(self):
         self.__unlocked_database.database_manager.connect("notify::locked", self.__on_locked)
         self.__builder.get_object("copy_button").connect("clicked", self.__on_copy_button_clicked)
-        self.__builder.get_object("close_button").connect("clicked", self.__on_close_button_clicked)
 
         # Search
         self.__search_button = self.__builder.get_object("search_button")
@@ -92,9 +91,6 @@ class NotesDialog:
                 notes_buffer.get_start_iter(), notes_buffer.get_end_iter(), False
             )
         )
-
-    def __on_close_button_clicked(self, _button):
-        self.__dialog.destroy()
 
     def __on_search_button_toggled(self, _button):
         if self.__search_stopped is True:

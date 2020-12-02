@@ -1,48 +1,42 @@
 # SPDX-License-Identifier: GPL-3.0-only
-import re
-import secrets
-
+"""Generate a passphrase from a list of predefined words."""
+import logging
+from secrets import randbelow
 from typing import List
 from gi.repository import Gio, GLib
 
-word_dict = {}
 
+class Passphrase:
+    """Generate a passphrase from a list of predefined words."""
 
-def generate(words: int, separator: str) -> str:
-    """Generate a passphrase.
+    def __init__(self, password: str = None):
+        """password is the (optional) password to be stored"""
+        self.password = password
 
-    :param int words: number of words requested
-    :param str separator: separator
-    :returns: a passphrase
-    :rtype: str
+    @classmethod
+    def generate(cls, num_words: int, separator: str = "-") -> "Passphrase":
+        """Generate a passphrase.
 
-    """
-    words_file: Gio.File = Gio.File.new_for_uri(
-        "resource:///org/gnome/PasswordSafe/crypto/eff_large_wordlist.txt")
-    file_buffer: GLib.Bytes = Gio.InputStream.read_bytes(
-        words_file.read(), 108800)
-    unicode_str: str = file_buffer.get_data().decode("utf-8", "ignore")
+        :param int num_words: number of words requested
+        :param str separator: separator
+        :returns: a Passphrase() object
+        :rtype: `Passphrase`
+        """
+        word_file: Gio.File = Gio.File.new_for_uri(
+            "resource:///org/gnome/PasswordSafe/crypto/eff_large_wordlist.txt"
+        )
+        f_buffer: GLib.Bytes = Gio.InputStream.read_bytes(word_file.read(),
+                                                          108800)
+        word_str: str = f_buffer.get_data().decode("utf-8")
+        word_list: List[str] = word_str.split("\n")
+        len_words: int = len(word_list)
 
-    word_list: List[str] = unicode_str.split("\n")
-    for line in word_list:
-        split: List[str] = re.split(r'\t+', line)
+        words = [word_list[randbelow(len_words)] for _ in range(0, num_words)]
+        passphrase: str = separator.join(words)
+        logging.debug("Created passphrase with %d words and separator '%s'",
+                      num_words, separator)
+        return cls(passphrase)
 
-        if split != ['']:
-            word_dict[split[0]] = split[1]
-
-    passphrase: str = ""
-
-    for i in range(words):
-        passphrase += get_word(dice())
-        if i + 1 < words:
-            passphrase += separator
-
-    return passphrase
-
-
-def dice():
-    return "".join([secrets.choice("123456") for _ in range(0, 5)])
-
-
-def get_word(number):
-    return word_dict[number]
+    def __str__(self):
+        """String representation of the passphrase"""
+        return self.password or ""

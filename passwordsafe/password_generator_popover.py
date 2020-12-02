@@ -2,12 +2,11 @@
 from __future__ import annotations
 
 import typing
-
 from gi.repository import GObject, Gtk
 
 import passwordsafe.config_manager as config
-from passwordsafe.passphrase_generator import generate as generate_phrase
 from passwordsafe.password_generator import generate as generate_pwd
+from passwordsafe.passphrase_generator import Passphrase
 
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -79,6 +78,6 @@ class PasswordGeneratorPopover(Gtk.Popover):  # pylint: disable=too-few-public-m
         else:
             separator: str = self._separator_entry.props.text
             words: int = self._words_spin_button.get_value_as_int()
-            pass_text = generate_phrase(words, separator)
+            pass_text = str(Passphrase.generate(words, separator))
 
         self.props.password = pass_text

@@ -89,7 +89,6 @@ class EntryPage:
                     scrolled_page.username_property_value_entry.set_text("")
 
                 self.unlocked_database.bind_accelerator(
-                    self.unlocked_database.accelerators,
                     scrolled_page.username_property_value_entry,
                     "<Control><Shift>b",
                     signal="copy-clipboard")
@@ -110,7 +109,7 @@ class EntryPage:
                     "icon-press", self._on_copy_secondary_button_clicked)
 
                 self.unlocked_database.bind_accelerator(
-                    self.unlocked_database.accelerators, scrolled_page.username_property_value_entry,
+                    scrolled_page.username_property_value_entry,
                     "<Control><Shift>b",
                     signal="copy-clipboard")
                 scrolled_page.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)

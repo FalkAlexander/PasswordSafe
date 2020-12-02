@@ -98,14 +98,14 @@ class Application(Gtk.Application):
     def on_settings_menu_clicked(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)
 
-    def on_about_menu_clicked(self, _action, _param):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/about_dialog.ui")
+    def on_about_menu_clicked(self, _action: Gio.SimpleAction, _param: None) -> None:
+        """Invoked when we click "about" in the main menu"""
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/about_dialog.ui"
+        )
         about_dialog = builder.get_object("about_dialog")
-        about_dialog.set_modal(True)
-        if self.window is not NotImplemented:
-            about_dialog.set_transient_for(self.window)
-        about_dialog.present()
+        about_dialog.set_transient_for(self.window)
+        about_dialog.show()
 
     def on_quit(self, _action: Optional[Gio.SimpleAction] = None,
                 _data: Any = None) -> None:
@@ -114,12 +114,15 @@ class Application(Gtk.Application):
         if not handled:
             self.quit()
 
-    def on_shortcuts_menu_clicked(self, _action, _param):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/shortcuts_overview.ui")
+    def on_shortcuts_menu_clicked(
+        self, _action: Gio.SimpleAction, _param: None
+    ) -> None:
+        """Invoked when we click "keyboard shortcuts" in the main menu"""
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/shortcuts_overview.ui"
+        )
         shortcuts_overview = builder.get_object("shortcuts_overview")
-        if self.window is not NotImplemented:
-            shortcuts_overview.set_transient_for(self.window)
+        shortcuts_overview.set_transient_for(self.window)
         shortcuts_overview.show()
 
     def add_menubutton_popover_actions(self):

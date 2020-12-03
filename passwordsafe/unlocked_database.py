@@ -486,11 +486,6 @@ class UnlockedDatabase(GObject.GObject):
         groups = NotImplemented
         sorted_list = []
 
-        add_loading_indicator_thread = threading.Thread(
-            target=self.add_loading_indicator_thread, args=(list_box, overlay)
-        )
-        add_loading_indicator_thread.start()
-
         groups = self.current_element.subgroups
         GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
 
@@ -1014,33 +1009,6 @@ class UnlockedDatabase(GObject.GObject):
             else:
                 self.builder.get_object("save_button").set_sensitive(True)
             time.sleep(30)
-
-    def add_loading_indicator_thread(self, list_box, overlay):
-        time.sleep(1)
-        if list_box.is_visible() is False and len(overlay.get_children()) < 2:
-            GLib.idle_add(self.show_loading_indicator, list_box, overlay)
-
-    def show_loading_indicator(self, list_box, overlay):
-        spinner = Gtk.Spinner()
-        spinner.show()
-        spinner.start()
-        overlay.add_overlay(spinner)
-
-        remove_loading_indicator_thread = threading.Thread(
-            target=self.remove_loading_indicator_thread,
-            args=(list_box, overlay, spinner),
-        )
-        remove_loading_indicator_thread.start()
-
-    def remove_loading_indicator_thread(self, list_box, overlay, spinner):
-        """Waits until list_box is not visible (anymore and invokes the
-        removal of the spinner"""
-        while list_box.is_visible() is False:
-            time.sleep(0.1)
-        GLib.idle_add(self.remove_loading_indicator, overlay, spinner)
-
-    def remove_loading_indicator(self, overlay, spinner):
-        overlay.remove(spinner)
 
     def reference_to_hex_uuid(self, reference_string):
         return reference_string[9:-1].lower()

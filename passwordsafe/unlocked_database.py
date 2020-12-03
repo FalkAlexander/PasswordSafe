@@ -54,7 +54,6 @@ class UnlockedDatabase(GObject.GObject):
     action_bar = NotImplemented
     pathbar = NotImplemented
     overlay = NotImplemented
-    notes_dialog = NotImplemented
 
     # Objects
     builder = NotImplemented
@@ -851,11 +850,6 @@ class UnlockedDatabase(GObject.GObject):
         locked = self.database_manager.props.locked
         if locked:
             self.cleanup(False)
-
-            try:  # self.notes_dialog might be NotImplemented
-                self.notes_dialog.close()
-            except AttributeError:
-                pass
 
             for tmpfile in self.scheduled_tmpfiles_deletion:
                 try:

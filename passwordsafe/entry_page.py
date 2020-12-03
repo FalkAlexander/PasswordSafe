@@ -372,7 +372,7 @@ class EntryPage:
 
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
-        NotesDialog(self.unlocked_database)
+        NotesDialog(self.unlocked_database).present()
 
     def on_entry_icon_button_toggled(self, button):
         if button.get_active() is False:

@@ -22,6 +22,12 @@ install_data(
   install_dir: 'share/glib-2.0/schemas'
 )
 
+# Install mimetype file
+install_data(
+  project_id + '.xml',
+  install_dir: 'share/mime/application'
+)
+
 desktop_conf = configuration_data()
 application_id = 'org.gnome.PasswordSafe'
 if get_option('profile') == 'development'

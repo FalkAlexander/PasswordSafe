@@ -120,14 +120,10 @@ class Search:
 
     # Set Search stack page
     def _prepare_search_page(self):
-        viewport = Gtk.Viewport()
-        viewport.set_name("BGPlatform")
-
         self.search_list_box = self._builder.get_object("list_box")
         self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
-        viewport.add(self._overlay)
 
-        self.scrolled_page.add(viewport)
+        self.scrolled_page.add(self._overlay)
         self.scrolled_page.show_all()
         self.unlocked_database.add_page(self.scrolled_page, "search")
 

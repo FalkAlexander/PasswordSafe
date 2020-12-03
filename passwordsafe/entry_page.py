@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import subprocess
 import typing
 from gettext import gettext as _
 from typing import Optional
+
 from gi.repository import Gio, GLib, Gtk
 
+from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
@@ -546,17 +547,7 @@ class EntryPage:
         scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box) - 1)
 
     def on_attachment_row_clicked(self, attachment):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_warning_dialog.ui")
-        warning_dialog = builder.get_object("warning_dialog")
-        warning_dialog.set_destroy_with_parent(True)
-        warning_dialog.set_modal(True)
-        warning_dialog.set_transient_for(self.unlocked_database.window)
-
-        builder.get_object("back_button").connect("clicked", self.on_warning_dialog_back_button_clicked, warning_dialog)
-        builder.get_object("proceed_button").connect("clicked", self.on_warning_dialog_proceed_button_clicked, warning_dialog, attachment)
-
-        warning_dialog.present()
+        AttachmentWarningDialog(self, attachment).present()
 
     def on_attachment_download_button_clicked(self, _button, attachment):
         save_dialog = Gtk.FileChooserNative.new(
@@ -604,20 +595,6 @@ class EntryPage:
             | Gio.FileCreateFlags.REPLACE_DESTINATION, None)
         Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(byte_buffer), None)
         stream.close()
-
-    def open_tmp_file(self, bytes_buffer, filename):
-        (file, stream) = Gio.File.new_tmp(filename + ".XXXXXX")
-        stream.get_output_stream().write_bytes(GLib.Bytes.new(bytes_buffer))
-        stream.close()
-        self.unlocked_database.scheduled_tmpfiles_deletion.append(file)
-        subprocess.run(["xdg-open", file.get_path()], check=True)
-
-    def on_warning_dialog_back_button_clicked(self, _button, dialog):
-        dialog.close()
-
-    def on_warning_dialog_proceed_button_clicked(self, _button, dialog, attachment):
-        dialog.close()
-        self.open_tmp_file(self.unlocked_database.database_manager.db.binaries[attachment.id], attachment.filename)
 
     def _on_copy_secondary_button_clicked(
             self, widget, _position=None, _eventbutton=None):

@@ -27,6 +27,7 @@ from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.responsive_ui import ResponsiveUI
+from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
 from passwordsafe.selection_ui import SelectionUI
@@ -781,35 +782,21 @@ class UnlockedDatabase(GObject.GObject):
         """ Show the save confirmation dialog
 
         Saves the db and closes the tab.
-        :returns: True if we saved, False if the whole thing should be aborted
+        :returns: True if we want to exit the app
         """
         if not self.database_manager.is_dirty or self.database_manager.save_running:
             return True  # no dirty db, do nothing.
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
-        save_dialog = builder.get_object("save_dialog")
-        save_dialog.set_transient_for(self.window)
 
+        save_dialog = SaveDialog(self.window)
         res = save_dialog.run()
-        save_dialog.destroy()
-        if res in (
-            Gtk.ResponseType.CANCEL,
-            Gtk.ResponseType.NONE,
-            Gtk.ResponseType.DELETE_EVENT,
-        ):
-            # Cancel everything, don't quit. Also activated when pressing escape
-            return False
 
-        if res == Gtk.ResponseType.NO:
-            # clicked 'Discard'. Close, but don't save
-            pass  # We are done with this db.
-        elif res == Gtk.ResponseType.YES:
-            # "clicked save". Save changes
+        if res == SaveDialogResponse.SAVE:
             self.save_database(True)
-        else:
-            assert False, "Unknown Dialog Response!"
+            return True
+        elif res == SaveDialogResponse.DISCARD:
+            return True
 
-        return True
+        return False
 
     def show_references_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Show a Group/Entry reference dialog

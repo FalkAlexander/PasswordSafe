@@ -218,7 +218,7 @@ class UnlockDatabase:
                 self.window.container.set_current_page(page_num)
                 self.window.close_tab(self.parent_widget)
 
-                db.show_database_action_revealer(_("Database already opened"))
+                db.show_database_action_revealer(_("Safe already opened"))
                 return
 
         entered_pwd = password_unlock_entry.get_text()

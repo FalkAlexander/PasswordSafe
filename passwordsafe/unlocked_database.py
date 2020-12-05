@@ -109,7 +109,6 @@ class UnlockedDatabase(GObject.GObject):
 
         # Responsive UI
         self.responsive_ui.headerbar_title()
-        self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
 
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
@@ -169,9 +168,6 @@ class UnlockedDatabase(GObject.GObject):
         selection_button_mobile = self.builder.get_object("selection_button_mobile")
         selection_button_mobile.connect("clicked", self._on_selection_button_clicked)
 
-        back_button_mobile = self.builder.get_object("back_button_mobile")
-        back_button_mobile.connect("clicked", self.on_back_button_mobile_clicked)
-
         # Search UI
         self.search.initialize()
 
@@ -218,7 +214,6 @@ class UnlockedDatabase(GObject.GObject):
         )
         secondary_menu_button.hide()
 
-        self.responsive_ui.headerbar_back_button()
         self.responsive_ui.headerbar_selection_button()
         self.responsive_ui.action_bar()
         self.responsive_ui.headerbar_title()
@@ -724,50 +719,6 @@ class UnlockedDatabase(GObject.GObject):
     def _on_selection_button_clicked(self, button: Gtk.Button) -> None:
         # pylint: disable=unused-argument
         self.props.selection_mode = True
-
-    def on_back_button_mobile_clicked(self, _button: Gtk.Button) -> None:
-        """Update the view when the back button is clicked.
-
-        This button is only visible in the mobile mode.
-
-        * if an Entry or a Group in edit mode was visible the parent
-          group is displayed
-        * if the visible group was the parent group, the database is
-          locked.
-
-        :param Gtk.Button button: clicked button
-        """
-        page_uuid = self.current_element.uuid
-        scrolled_page = self._stack.get_child_by_name(page_uuid.urn)
-        group_page = self.database_manager.check_is_group(page_uuid)
-
-        parent = NotImplemented
-
-        if scrolled_page.edit_page is True and group_page is True:
-            parent = self.database_manager.get_parent_group(page_uuid)
-        elif scrolled_page.edit_page is True and group_page is False:
-            parent = self.database_manager.get_parent_group(page_uuid)
-        elif (
-            not scrolled_page.edit_page
-            and not self.props.selection_mode
-            and not self.props.search_active
-        ):
-            if self.database_manager.check_is_root_group(self.current_element) is True:
-                self.on_lock_button_clicked(None)
-                return
-
-            parent = self.database_manager.get_parent_group(page_uuid)
-
-        if self.database_manager.check_is_root_group(parent) is True:
-            self.pathbar.on_home_button_clicked(self.pathbar.home_button)
-            return
-
-        for button in self.pathbar:
-            if button.get_name() == "PathbarButtonDynamic" and isinstance(
-                button, passwordsafe.pathbar_button.PathbarButton
-            ):
-                if button.uuid == parent.uuid:
-                    self.pathbar.on_pathbar_button_clicked(button)
 
     #
     # Dialog Creator

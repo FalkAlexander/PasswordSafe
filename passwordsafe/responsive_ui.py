@@ -83,13 +83,6 @@ class ResponsiveUI():
         show = is_mobile and not self.unlocked_database.props.selection_mode
         title_label.set_visible(show)
 
-    def headerbar_back_button(self):
-        if (self.unlocked_database.window.mobile_width
-                and not self.unlocked_database.props.selection_mode):
-            self.unlocked_database.builder.get_object("pathbar_button_back_revealer").set_reveal_child(True)
-        else:
-            self.unlocked_database.builder.get_object("pathbar_button_back_revealer").set_reveal_child(False)
-
     def headerbar_selection_button(self):
         """Update the visibility of the headerbar buttons."""
         scrolled_page = self.unlocked_database.get_current_page()

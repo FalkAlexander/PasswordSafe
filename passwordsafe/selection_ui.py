@@ -73,7 +73,6 @@ class SelectionUI:
         self.unlocked_database.headerbar.set_show_close_button(False)
 
         self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
-        self.unlocked_database.builder.get_object("pathbar_button_back_revealer").set_reveal_child(False)
 
         self.prepare_selection_page()
         self.unlocked_database.responsive_ui.headerbar_title()
@@ -105,7 +104,6 @@ class SelectionUI:
 
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-        self.unlocked_database.responsive_ui.headerbar_back_button()
         self.unlocked_database.responsive_ui.headerbar_selection_button()
         self.unlocked_database.responsive_ui.action_bar()
         self.unlocked_database.responsive_ui.headerbar_title()

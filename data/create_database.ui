@@ -223,7 +223,6 @@
                 <property name="width_request">250</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="halign">end</property>
                 <property name="valign">end</property>
@@ -270,6 +269,7 @@
         <property name="halign">center</property>
         <property name="valign">center</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">12</property>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
@@ -279,76 +279,78 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Match Check Failed</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="size" value="18000"/>
-            </attributes>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Please try again</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Match Check Failed</property>
+                <attributes>
+                  <attribute name="weight" value="normal"/>
+                  <attribute name="size" value="18000"/>
+                </attributes>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Please try again.</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
-                <property name="margin_top">10</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
+                <style>
+                  <class name="passwordEntry"/>
+                </style>
               </object>
             </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="margin_top">2</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="password_repeat_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <property name="margin_top">2</property>
-                <signal name="clicked" handler="on_password_repeat_button_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage" id="button_image5">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">object-select-symbolic</property>
-                  </object>
-                </child>
+                <style>
+                  <class name="passwordEntry"/>
+                </style>
               </object>
             </child>
             <style>
               <class name="linked"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="password_repeat_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="label" translatable="yes">_Confirm</property>
+            <property name="use_underline">True</property>
+            <signal name="clicked" handler="on_password_repeat_button_clicked" swapped="no"/>
+            <style>
+              <class name="suggested-action"/>
             </style>
           </object>
         </child>

@@ -475,7 +475,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         page_instance = ContainerPage(headerbar, Gio.Application.get_default().development_mode)
 
-        tab_hbox = Gtk.HBox.new(False, 0)
+        tab_hbox = Gtk.Box.new(False, 0)
         tab_label = Gtk.Label.new(title)
         tab_hbox.pack_start(tab_label, False, False, False)
 

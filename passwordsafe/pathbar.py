@@ -8,7 +8,7 @@ from pykeepass.group import Group
 from passwordsafe.pathbar_button import PathbarButton
 
 
-class Pathbar(Gtk.HBox):
+class Pathbar(Gtk.Box):
     """Pathbar provides a breadcrumb-style Box with the current hierarchy"""
     unlocked_database = NotImplemented
     database_manager = NotImplemented
@@ -17,7 +17,7 @@ class Pathbar(Gtk.HBox):
     home_button = NotImplemented
 
     def __init__(self, unlocked_database, dbm):
-        Gtk.HBox.__init__(self)
+        super().__init__()
         self.set_name("Pathbar")
         self.unlocked_database = unlocked_database
         self.database_manager = dbm

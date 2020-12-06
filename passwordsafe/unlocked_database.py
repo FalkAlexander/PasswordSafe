@@ -549,7 +549,7 @@ class UnlockedDatabase(GObject.GObject):
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
                 self.save_database(True)
-                self.show_database_action_revealer(_("Database saved"))
+                self.show_database_action_revealer(_("Safe saved"))
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
                 self.show_database_action_revealer(

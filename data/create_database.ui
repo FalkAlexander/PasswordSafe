@@ -453,7 +453,7 @@
         </child>
         <child>
           <object class="GtkButton">
-            <property name="label" translatable="yes">Open Safe</property>
+            <property name="label" translatable="yes">_Open Safe</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -461,6 +461,7 @@
             <property name="valign">center</property>
             <property name="margin_top">15</property>
             <signal name="clicked" handler="on_finish_button_clicked" swapped="no"/>
+            <property name="use_underline">True</property>
             <style>
               <class name="suggested-action"/>
             </style>

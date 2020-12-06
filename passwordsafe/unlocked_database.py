@@ -559,7 +559,7 @@ class UnlockedDatabase(GObject.GObject):
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
             self.show_database_action_revealer(_("No changes made"))
 
-    def on_lock_button_clicked(self, _widget):
+    def lock_safe(self):
         self.database_manager.props.locked = True
 
     def on_add_entry_button_clicked(self, _widget):

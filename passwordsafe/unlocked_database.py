@@ -207,7 +207,8 @@ class UnlockedDatabase(GObject.GObject):
 
     # Group and entry browser headerbar
     def set_browser_headerbar(self):
-        self._linkedbox_right.show()
+        if not self.props.selection_mode:
+            self._linkedbox_right.show()
 
         secondary_menu_button = self.builder.get_object(
             "secondary_menu_button"

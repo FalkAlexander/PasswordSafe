@@ -32,11 +32,12 @@ class CreateDatabase(Gtk.Stack):
 
     composite = False
 
-    def __init__(self, window, widget, dbm):
+    def __init__(self, window, widget, dbm, back_button):
         super().__init__()
         self.database_manager = dbm
         self.window = window
         self.parent_widget = widget
+        self.back_button = back_button
 
     #
     # Stack Pages
@@ -51,6 +52,10 @@ class CreateDatabase(Gtk.Stack):
             self.set_visible_child_name("keyfile-creation")
         else:
             self.set_visible_child_name("safe-successfully-create")
+            # TODO This should be improved upon. Widgets should not
+            # modify widgets outside of their scope. And __init__()
+            # should not request a back button either.
+            self.back_button.hide()
 
     #
     # Events

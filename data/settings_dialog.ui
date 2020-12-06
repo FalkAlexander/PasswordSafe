@@ -18,9 +18,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Dark Theme</property>
+                <property name="title" translatable="yes">_Dark Theme</property>
                 <property name="subtitle" translatable="yes">Use dark GTK theme.</property>
                 <property name="activatable_widget">settings_theme_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_theme_switch">
                     <property name="visible">True</property>
@@ -33,9 +34,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Hide First Start Screen</property>
+                <property name="title" translatable="yes">_Hide First Start Screen</property>
                 <property name="subtitle" translatable="yes">Reopen last opened safe.</property>
                 <property name="activatable_widget">settings_fstart_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_fstart_switch">
                     <property name="visible">True</property>
@@ -55,9 +57,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Save Automatically</property>
+                <property name="title" translatable="yes">_Save Automatically</property>
                 <property name="subtitle" translatable="yes">Save every change automatically.</property>
                 <property name="activatable_widget">settings_save_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_save_switch">
                     <property name="visible">True</property>
@@ -77,9 +80,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Full-Text Search</property>
+                <property name="title" translatable="yes">_Full-Text Search</property>
                 <property name="subtitle" translatable="yes">Performs a search across all values of entries.</property>
                 <property name="activatable_widget">settings_full_text_search_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_full_text_search_switch">
                     <property name="visible">True</property>
@@ -92,9 +96,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Current Group Search</property>
+                <property name="title" translatable="yes">_Current Group Search</property>
                 <property name="subtitle" translatable="yes">Only search entries in the current group.</property>
                 <property name="activatable_widget">settings_local_search_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_local_search_switch">
                     <property name="visible">True</property>
@@ -114,9 +119,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes" comments="A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe">Remember Composite Key</property>
+                <property name="title" translatable="yes" comments="A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe">Remember Composite _Key</property>
                 <property name="subtitle" translatable="yes" comments="A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe">Remember last used composite key.</property>
                 <property name="activatable_widget">settings_remember_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_remember_switch">
                     <property name="visible">True</property>
@@ -129,9 +135,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember Unlock Method</property>
+                <property name="title" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember _Unlock Method</property>
                 <property name="subtitle" translatable="yes">Enable faster unlocking.</property>
                 <property name="activatable_widget">settings_remember_method_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_remember_method_switch">
                     <property name="visible">True</property>
@@ -177,9 +184,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Uppercase Characters</property>
+                <property name="title" translatable="yes">_Uppercase Characters</property>
                 <property name="subtitle" translatable="yes">Use uppercase characters A-Z when generating a password.</property>
                 <property name="activatable_widget">generator_use_uppercase_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="generator_use_uppercase_switch">
                     <property name="visible">True</property>
@@ -192,9 +200,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Lowercase Characters</property>
+                <property name="title" translatable="yes">_Lowercase Characters</property>
                 <property name="subtitle" translatable="yes">Use lowercase characters a-z when generating a password.</property>
                 <property name="activatable_widget">generator_use_lowercase_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="generator_use_lowercase_switch">
                     <property name="visible">True</property>
@@ -207,9 +216,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Numeric Characters</property>
+                <property name="title" translatable="yes">_Numeric Characters</property>
                 <property name="subtitle" translatable="yes">Use numeric characters when generating a password.</property>
                 <property name="activatable_widget">generator_use_numbers_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="generator_use_numbers_switch">
                     <property name="visible">True</property>
@@ -222,9 +232,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Special Characters</property>
+                <property name="title" translatable="yes">_Special Characters</property>
                 <property name="subtitle" translatable="yes">Use non-alphanumeric ASCII symbols when generating a password.</property>
                 <property name="activatable_widget">generator_use_symbols_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="generator_use_symbols_switch">
                     <property name="visible">True</property>
@@ -331,9 +342,10 @@
             <child>
               <object class="HdyActionRow">
                 <property name="visible">True</property>
-                <property name="title" translatable="yes">Show Password Fields</property>
+                <property name="title" translatable="yes">_Show Password Fields</property>
                 <property name="subtitle" translatable="yes">Display passwords in plain text.</property>
                 <property name="activatable_widget">settings_showpw_switch</property>
+                <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="settings_showpw_switch">
                     <property name="visible">True</property>

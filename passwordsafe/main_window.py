@@ -767,9 +767,9 @@ class MainWindow(Gtk.ApplicationWindow):
             return
 
         if name == "save":
-            action_db.on_save_button_clicked(None)
+            action_db.save_safe()
         elif name == "lock":
-            action_db.on_lock_button_clicked(None)
+            action_db.lock_safe()
         elif name == "go_back":
             action_db.go_back()
         elif name == "add_action":

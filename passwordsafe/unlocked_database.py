@@ -543,7 +543,7 @@ class UnlockedDatabase(GObject.GObject):
         if list_box_row.get_name() == "LoadMoreRow":
             self.search.on_load_more_row_clicked(list_box_row)
 
-    def on_save_button_clicked(self, _widget):
+    def save_safe(self):
         self.start_database_lock_timer()
 
         if self.database_manager.is_dirty is True:
@@ -559,7 +559,7 @@ class UnlockedDatabase(GObject.GObject):
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
             self.show_database_action_revealer(_("No changes made"))
 
-    def on_lock_button_clicked(self, _widget):
+    def lock_safe(self):
         self.database_manager.props.locked = True
 
     def on_add_entry_button_clicked(self, _widget):

@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: GPL-3.0-only
-# pylint: disable=too-many-lines
 from __future__ import annotations
 
 import logging
@@ -11,7 +10,7 @@ import time
 import typing
 from gettext import gettext as _
 from threading import Timer
-from typing import List, Optional, Union
+from typing import List, Union
 from uuid import UUID
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
@@ -26,11 +25,10 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
-from passwordsafe.responsive_ui import ResponsiveUI
 from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
-from passwordsafe.selection_ui import SelectionUI
+from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
@@ -48,7 +46,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Widgets
     headerbar = NotImplemented
-    headerbar_box = NotImplemented
     scrolled_window = NotImplemented
     divider = NotImplemented
     revealer = NotImplemented
@@ -78,8 +75,6 @@ class UnlockedDatabase(GObject.GObject):
         self.window: MainWindow = window
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
-        self.responsive_ui: ResponsiveUI = ResponsiveUI(self)
-        self.selection_ui: SelectionUI = SelectionUI(self)
         self.search: Search = Search(self)
         self.entry_page: EntryPage = EntryPage(self)
         self.group_page: GroupPage = GroupPage(self)
@@ -90,11 +85,8 @@ class UnlockedDatabase(GObject.GObject):
         self.accelerators: Gtk.AccelGroup = Gtk.AccelGroup()
         self.window.add_accel_group(self.accelerators)
 
-        self._current_element: Optional[Union[Entry, Group]] = None
-
-        self._linkedbox_right: Gtk.Box = None
-        self._selection_button_box: Optional[Gtk.Box] = None
-        self._selection_options_button: Optional[Gtk.MenuButton] = None
+        root_group: Group = self.database_manager.get_root_group()
+        self._current_element: Union[Entry, Group] = root_group
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -107,10 +99,6 @@ class UnlockedDatabase(GObject.GObject):
         self.custom_keypress_handler.register_custom_events()
         self.register_dbus_signal()
 
-        # Responsive UI
-        self.responsive_ui.headerbar_title()
-        self.responsive_ui.headerbar_selection_button()
-
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
 
     #
@@ -121,6 +109,14 @@ class UnlockedDatabase(GObject.GObject):
         self.builder = Gtk.Builder()
         self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
 
+        self.pathbar = Pathbar(self, self.database_manager)
+        self._stack = self.builder.get_object("list_stack")
+        self.revealer = self.builder.get_object("revealer")
+        self.action_bar = self.builder.get_object("action_bar")
+
+        self.headerbar = UnlockedHeaderBar(self)
+        self.selection_ui = self.headerbar.selection_ui
+
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         self.overlay = Gtk.Overlay()
@@ -129,18 +125,13 @@ class UnlockedDatabase(GObject.GObject):
         database_action_overlay = self.builder.get_object("database_action_overlay")
         self.overlay.add_overlay(database_action_overlay)
 
-        self.current_element = self.database_manager.get_root_group()
-
-        self._stack = self.builder.get_object("list_stack")
         # contains the "main page" with the stack and the revealer inside
         self.divider = self.builder.get_object("divider")
-        self.revealer = self.builder.get_object("revealer")
-        self.headerbar_box = self.builder.get_object("headerbar_box")
-        self.action_bar = self.builder.get_object("action_bar")
         self.overlay.add(self.divider)
         self.overlay.show_all()
 
-        self.set_headerbar()
+        self.search.initialize()
+        self._update_headerbar()
 
         self.list_box_sorting = passwordsafe.config_manager.get_sort_order()
         self.start_database_lock_timer()
@@ -150,74 +141,6 @@ class UnlockedDatabase(GObject.GObject):
     #
     # Headerbar
     #
-
-    # Assemble headerbar
-    def set_headerbar(self):
-        self.headerbar = self.builder.get_object("headerbar")
-
-        mod_box = self.builder.get_object("mod_box")
-        browser_buttons_box = self.builder.get_object("browser_buttons_box")
-        mod_box.add(browser_buttons_box)
-
-        search_button = self.builder.get_object("search_button")
-        search_button.connect("clicked", self._on_search_button_clicked)
-        self.bind_accelerator(search_button, "<Control>f")
-
-        selection_button = self.builder.get_object("selection_button")
-        selection_button.connect("clicked", self._on_selection_button_clicked)
-        selection_button_mobile = self.builder.get_object("selection_button_mobile")
-        selection_button_mobile.connect("clicked", self._on_selection_button_clicked)
-
-        # Search UI
-        self.search.initialize()
-
-        # Selection UI
-        self.selection_ui.initialize()
-
-        self._selection_button_box = self.builder.get_object("selection_button_box")
-        self.bind_property(
-            "selection-mode",
-            self._selection_button_box,
-            "visible",
-            GObject.BindingFlags.SYNC_CREATE,
-        )
-
-        self._linkedbox_right = self.builder.get_object("linkedbox_right")
-        self.bind_property(
-            "selection-mode",
-            self._linkedbox_right,
-            "visible",
-            GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
-        )
-
-        self._selection_options_button = self.builder.get_object(
-            "selection_options_button"
-        )
-        self.bind_property(
-            "selection-mode",
-            self._selection_options_button,
-            "visible",
-            GObject.BindingFlags.SYNC_CREATE,
-        )
-
-        self._update_headerbar()
-        self.pathbar = Pathbar(self, self.database_manager)
-        # Put pathbar in the right place (top or bottom)
-        self.responsive_ui.action_bar()
-
-    # Group and entry browser headerbar
-    def set_browser_headerbar(self):
-        if not self.props.selection_mode:
-            self._linkedbox_right.show()
-
-        secondary_menu_button = self.builder.get_object(
-            "secondary_menu_button"
-        )
-        secondary_menu_button.hide()
-
-        self.responsive_ui.headerbar_selection_button()
-        self.responsive_ui.action_bar()
-        self.responsive_ui.headerbar_title()
 
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""
@@ -278,8 +201,7 @@ class UnlockedDatabase(GObject.GObject):
             self.group_page.insert_group_properties_into_listbox(
                 scrolled_window.properties_list_box
             )
-            self._linkedbox_right.hide()
-            self.group_page.set_group_edit_page_headerbar()
+            self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif (
             not self._stack.get_child_by_name(self.current_element.uuid.urn)
@@ -358,12 +280,11 @@ class UnlockedDatabase(GObject.GObject):
             # For group
             if self.database_manager.check_is_group(self.current_element.uuid):
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
-                self.set_browser_headerbar()
+                self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP
             # For entry
             else:
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
-                self._linkedbox_right.hide()
-                self.entry_page.set_entry_page_headerbar()
+                self.headerbar.props.mode = UnlockedHeaderBar.Mode.ENTRY
 
     def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
         """Add a new page to the stack
@@ -397,10 +318,9 @@ class UnlockedDatabase(GObject.GObject):
             self._stack.set_visible_child_name(page_uuid.urn)
 
         if group_page and not self.props.selection_mode:
-            self.set_browser_headerbar()
+            self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
         elif not group_page:
-            self._linkedbox_right.hide()
-            self.entry_page.set_entry_page_headerbar()
+            self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
 
     def _remove_page(self, element: Union[Entry, Group]) -> None:
         """Remove an element (Entry, Group) from the stack if present."""
@@ -532,10 +452,6 @@ class UnlockedDatabase(GObject.GObject):
     #
     # Events
     #
-
-    def _on_search_button_clicked(self, btn):
-        # pylint: disable=unused-argument
-        self.props.search_active = True
 
     def on_list_box_row_activated(self, _widget, list_box_row):
         self.start_database_lock_timer()
@@ -716,10 +632,6 @@ class UnlockedDatabase(GObject.GObject):
     ):
         if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
-
-    def _on_selection_button_clicked(self, button: Gtk.Button) -> None:
-        # pylint: disable=unused-argument
-        self.props.selection_mode = True
 
     #
     # Dialog Creator

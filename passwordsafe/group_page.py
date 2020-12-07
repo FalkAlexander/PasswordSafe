@@ -18,23 +18,6 @@ class GroupPage:
         self.unlocked_database = u_d
 
     #
-    # Header Bar
-    #
-
-    # Group creation/editing headerbar
-    def set_group_edit_page_headerbar(self):
-        secondary_menu_button = self.unlocked_database.builder.get_object("secondary_menu_button")
-        group_menu = self.unlocked_database.builder.get_object(
-            "group_menu"
-        )
-        secondary_menu_button.set_menu_model(group_menu)
-        secondary_menu_button.show_all()
-
-        self.unlocked_database.responsive_ui.headerbar_selection_button()
-        self.unlocked_database.responsive_ui.action_bar()
-        self.unlocked_database.responsive_ui.headerbar_title()
-
-    #
     # Create Property Rows
     #
 

@@ -33,21 +33,6 @@ class EntryPage:
         self.unlocked_database = u_d
 
     #
-    # Header Bar
-    #
-
-    # Entry creation/editing page headerbar
-    def set_entry_page_headerbar(self):
-        secondary_menu_button = self.unlocked_database.builder.get_object("secondary_menu_button")
-        entry_menu = self.unlocked_database.builder.get_object("entry_menu")
-        secondary_menu_button.set_menu_model(entry_menu)
-        secondary_menu_button.show_all()
-
-        self.unlocked_database.responsive_ui.headerbar_selection_button()
-        self.unlocked_database.responsive_ui.action_bar()
-        self.unlocked_database.responsive_ui.headerbar_title()
-
-    #
     # Create Property Rows
     #
 

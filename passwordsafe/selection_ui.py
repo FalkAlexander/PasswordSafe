@@ -13,10 +13,13 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-class SelectionUI:
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/selection_ui.ui")
+class SelectionUI(Gtk.Box):
     #
     # Global Variables
     #
+
+    __gtype_name__ = "SelectionUI"
 
     unlocked_database = NotImplemented
 
@@ -28,26 +31,26 @@ class SelectionUI:
     entries_cut: List[EntryRow] = []
     groups_cut: List[GroupRow] = []
 
+    _cancel_button = Gtk.Template.Child()
+    _cut_paste_button = Gtk.Template.Child()
+    _cut_paste_image = Gtk.Template.Child()
+    _delete_button = Gtk.Template.Child()
+
     #
     # Init
     #
 
     def __init__(self, u_d):
+        super().__init__()
+
         self.unlocked_database = u_d
 
         self.unlocked_database.connect(
             "notify::selection-mode", self._on_selection_mode_changed)
 
-    def initialize(self):
-        # Selection Headerbar
-        selection_cancel_button = self.unlocked_database.builder.get_object("selection_cancel_button")
-        selection_cancel_button.connect("clicked", self.on_selection_cancel_button_clicked)
-
-        selection_delete_button = self.unlocked_database.builder.get_object("selection_delete_button")
-        selection_delete_button.connect("clicked", self.on_selection_delete_button_clicked)
-
-        selection_cut_button = self.unlocked_database.builder.get_object("selection_cut_button")
-        selection_cut_button.connect("clicked", self.on_selection_cut_button_clicked)
+        self.unlocked_database.bind_property(
+            "selection-mode", self, "visible",
+            GObject.BindingFlags.SYNC_CREATE)
 
     def _on_selection_mode_changed(
             self, unlocked_database: UnlockedDatabase,
@@ -64,18 +67,17 @@ class SelectionUI:
 
     # Selection headerbar
     def _enter_selection_mode(self):
-        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+        self._delete_button.set_sensitive(False)
+        self._cut_paste_button.set_sensitive(False)
 
-        context = self.unlocked_database.headerbar.get_style_context()
-        context.add_class('selection-mode')
-
-        self.unlocked_database.headerbar.set_show_close_button(False)
-
-        self.unlocked_database.builder.get_object("pathbar_button_selection_revealer").set_reveal_child(False)
-
-        self.prepare_selection_page()
-        self.unlocked_database.responsive_ui.headerbar_title()
+        for stack_page in self.unlocked_database.get_pages():
+            if not stack_page.check_is_edit_page():
+                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
+                for row in list_box:
+                    if hasattr(row, "selection_checkbox"):
+                        row.selection_checkbox.show()
+                    if hasattr(row, "edit_button"):
+                        row.edit_button.hide()
 
     def _exit_selection_mode(self):
         for stack_page in self.unlocked_database.get_pages():
@@ -89,11 +91,6 @@ class SelectionUI:
                     if hasattr(row, "edit_button") is True:
                         row.edit_button.show_all()
 
-        self.unlocked_database.headerbar.set_show_close_button(True)
-
-        context = self.unlocked_database.headerbar.get_style_context()
-        context.remove_class('selection-mode')
-
         self.cut_mode = True
 
         for element in self.unlocked_database.pathbar.get_children():
@@ -104,29 +101,17 @@ class SelectionUI:
 
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-        self.unlocked_database.responsive_ui.headerbar_selection_button()
-        self.unlocked_database.responsive_ui.action_bar()
-        self.unlocked_database.responsive_ui.headerbar_title()
-
-    def prepare_selection_page(self):
-        for stack_page in self.unlocked_database.get_pages():
-            if stack_page.check_is_edit_page() is False:
-                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
-                for row in list_box:
-                    if hasattr(row, "selection_checkbox"):
-                        row.selection_checkbox.show()
-                    if hasattr(row, "edit_button") is True:
-                        row.edit_button.hide()
-
     #
     # Events
     #
 
-    def on_selection_cancel_button_clicked(self, _widget):
+    @Gtk.Template.Callback()
+    def _on_cancel_button_clicked(self, _widget):
         self.unlocked_database.props.selection_mode = False
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-    def on_selection_delete_button_clicked(self, _widget):
+    @Gtk.Template.Callback()
+    def _on_delete_button_clicked(self, _widget):
         rebuild_pathbar = False
         reset_stack_page = False
         group = None
@@ -169,20 +154,21 @@ class SelectionUI:
 
         self.entries_selected.clear()
         self.groups_selected.clear()
-        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+        self._delete_button.set_sensitive(False)
+        self._cut_paste_button.set_sensitive(False)
 
         # It is more efficient to do this here and not in the database manager loop
         self.unlocked_database.database_manager.is_dirty = True
 
-    def on_selection_cut_button_clicked(self, widget):
+    @Gtk.Template.Callback()
+    def _on_cut_paste_button_clicked(self, _widget):
         # pylint: disable=too-many-branches
         rebuild_pathbar = False
 
         if self.cut_mode is True:
             self.entries_cut = self.entries_selected
             self.groups_cut = self.groups_selected
-            widget.get_children()[0].set_from_icon_name("edit-paste-symbolic", Gtk.IconSize.BUTTON)
+            self._cut_paste_image.set_from_icon_name("edit-paste-symbolic", Gtk.IconSize.BUTTON)
             for group_row in self.groups_selected:
                 group_row.hide()
             for entry_row in self.entries_selected:
@@ -204,7 +190,7 @@ class SelectionUI:
             self.cut_mode = False
             return
 
-        widget.get_children()[0].set_from_icon_name(
+        self._cut_paste_image.set_from_icon_name(
             "edit-cut-symbolic", Gtk.IconSize.BUTTON
         )
         self.cut_mode = True
@@ -254,8 +240,8 @@ class SelectionUI:
         self.groups_cut.clear()
         self.entries_selected.clear()
         self.groups_selected.clear()
-        self.unlocked_database.builder.get_object("selection_delete_button").set_sensitive(False)
-        self.unlocked_database.builder.get_object("selection_cut_button").set_sensitive(False)
+        self._delete_button.set_sensitive(False)
+        self._cut_paste_button.set_sensitive(False)
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
         page = self.unlocked_database.get_current_page()
@@ -311,17 +297,12 @@ class SelectionUI:
             self._update_selection()
 
     def _update_selection(self) -> None:
-        selection_cut_button = self.unlocked_database.builder.get_object(
-            "selection_cut_button")
-        selection_delete_button = self.unlocked_database.builder.get_object(
-            "selection_delete_button")
-
         non_empty_selection = self.entries_selected or self.groups_selected
-        selection_cut_button.set_sensitive(non_empty_selection)
-        selection_delete_button.set_sensitive(non_empty_selection)
+        self._cut_paste_button.set_sensitive(non_empty_selection)
+        self._delete_button.set_sensitive(non_empty_selection)
 
         if not self.cut_mode:
             self.entries_cut.clear()
             self.groups_cut.clear()
-            selection_cut_button.get_children()[0].set_from_icon_name(
+            self._cut_paste_image.set_from_icon_name(
                 "edit-cut-symbolic", Gtk.IconSize.BUTTON)

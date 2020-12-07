@@ -4,7 +4,7 @@ import os
 import threading
 from gettext import gettext as _
 from typing import List, Optional
-from gi.repository import Gdk, Gio, GLib, Gtk, Handy
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 from gi.repository.GdkPixbuf import Pixbuf
 
 import passwordsafe.config_manager
@@ -28,7 +28,8 @@ class MainWindow(Gtk.ApplicationWindow):
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
 
-    mobile_width = False
+    mobile_width = GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -116,9 +117,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
         :param GdkEvent event: event
         """
-        previous_mobile_width = self.mobile_width
-        self.mobile_width = allocation.width < 700
-        if previous_mobile_width != self.mobile_width:
+        new_mobile_width = (self.get_allocation().width < 700)
+        if new_mobile_width != self.props.mobile_width:
+            self.props.mobile_width = new_mobile_width
             self.change_layout()
 
         Gtk.ApplicationWindow.do_size_allocate(self, allocation)
@@ -136,15 +137,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
             scrolled_page = db.get_current_page()
 
-            db.responsive_ui.action_bar()
-            db.responsive_ui.headerbar_title()
-
             # For Group/Entry Edit Page
             if scrolled_page.edit_page:
                 return
-
-            # For Entry/Group Browser and Selection Mode
-            db.responsive_ui.headerbar_selection_button()
 
         if self.container is NotImplemented \
            or self.container.get_n_pages() == 0:
@@ -154,7 +149,7 @@ class MainWindow(Gtk.ApplicationWindow):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
-        if self.mobile_width is True:
+        if self.props.mobile_width:
             self.file_open_button.get_children()[0].set_visible_child_name("mobile")
             self.file_new_button.get_children()[0].set_visible_child_name("mobile")
         else:

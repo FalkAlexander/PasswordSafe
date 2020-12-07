@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-02 13:41+0000\n"
-"PO-Revision-Date: 2020-12-02 16:15+0200\n"
+"POT-Creation-Date: 2020-12-06 22:01+0000\n"
+"PO-Revision-Date: 2020-12-07 11:04+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -19,26 +19,26 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 20.11.70\n"
 
-#: data/about_dialog.ui.in:9 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
+#: data/about_dialog.ui.in:10 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Керування вашими паролями"
 
-#: data/about_dialog.ui.in:11
+#: data/about_dialog.ui.in:12
 msgid "Learn more about Password Safe"
 msgstr "Дізнатися більше про «Сейф з паролями»"
 
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:13
+#: data/about_dialog.ui.in:14
 msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/attachment_warning_dialog.ui:7
+#: data/attachment_warning_dialog.ui:8
 msgid "Safety Info"
 msgstr "Відомості щодо безпеки"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/attachment_warning_dialog.ui:8
+#: data/attachment_warning_dialog.ui:9
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -47,13 +47,12 @@ msgstr ""
 "копію цього файла долучення! Будь ласка, будьте обережні."
 
 #. Discard all the changes which the user have made to his keepass safe
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/attachment_warning_dialog.ui:21 data/unlocked_database.ui:333
+#: data/attachment_warning_dialog.ui:22
 msgid "Back"
 msgstr "Назад"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:28
+#: data/attachment_warning_dialog.ui:30
 msgid "Proceed"
 msgstr "Продовжити"
 
@@ -120,7 +119,6 @@ msgstr "Будь ласка, повторіть спробу"
 
 #. Button to generate a password
 #: data/create_database.ui:611 data/password_generator_popover.ui:189
-#| msgid "Generate"
 msgid "_Generate"
 msgstr "С_творити"
 
@@ -200,7 +198,7 @@ msgstr "Версія KeePass"
 msgid "Creation Date"
 msgstr "Дата створення"
 
-#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:731
+#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:726
 msgid "Encryption Algorithm"
 msgstr "Алгоритм шифрування"
 
@@ -257,7 +255,7 @@ msgstr "Виберіть поточний файл ключа"
 msgid "Generate new keyfile"
 msgstr "Створити файл ключа"
 
-#: data/database_settings_dialog.ui:673 data/database_settings_dialog.ui:870
+#: data/database_settings_dialog.ui:673 data/database_settings_dialog.ui:865
 #: passwordsafe/database_settings_dialog.py:342
 #: passwordsafe/database_settings_dialog.py:364
 msgid "Apply Changes"
@@ -268,22 +266,22 @@ msgid "Authentication"
 msgstr "Розпізнавання"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:758
+#: data/database_settings_dialog.ui:753
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-бітовий"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:775
+#: data/database_settings_dialog.ui:770
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-бітовий"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:792
+#: data/database_settings_dialog.ui:787
 msgid "AES: 256-bit"
 msgstr "AES: 256-бітовий"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:812
+#: data/database_settings_dialog.ui:807
 msgid "Key Derivation Function"
 msgstr "Функція для похідних ключів"
 
@@ -295,50 +293,50 @@ msgstr "Додати долучення"
 msgid "Attachments"
 msgstr "Долучення"
 
-#: data/entry_page.ui:110
+#: data/entry_page.ui:104
 msgid "Secret_Photo.png"
 msgstr "Секретне_фото.png"
 
-#: data/entry_page.ui:243
+#: data/entry_page.ui:237
 msgid "Remove attribute"
 msgstr "Вилучити атрибут"
 
-#: data/entry_page.ui:282
+#: data/entry_page.ui:276
 msgid "Attributes"
 msgstr "Атрибути"
 
-#: data/entry_page.ui:306
+#: data/entry_page.ui:300
 msgid "Key"
 msgstr "Ключ"
 
-#: data/entry_page.ui:315
+#: data/entry_page.ui:309
 msgid "Value"
 msgstr "Значення"
 
-#: data/entry_page.ui:328
+#: data/entry_page.ui:322
 msgid "Add attribute"
 msgstr "Додати атрибут"
 
-#: data/entry_page.ui:362
+#: data/entry_page.ui:356
 msgid "Icon"
 msgstr "Піктограма"
 
-#: data/entry_page.ui:647 data/group_page.ui:21 data/references_dialog.ui:59
+#: data/entry_page.ui:635 data/group_page.ui:21 data/references_dialog.ui:59
 #: data/references_dialog.ui:214
 msgid "Title"
 msgstr "Заголовок"
 
-#: data/entry_page.ui:692 data/group_page.ui:67 data/references_dialog.ui:170
+#: data/entry_page.ui:680 data/group_page.ui:67 data/references_dialog.ui:170
 #: data/references_dialog.ui:250
 msgid "Notes"
 msgstr "Нотатки"
 
-#: data/entry_page.ui:841 data/references_dialog.ui:156
+#: data/entry_page.ui:829 data/references_dialog.ui:156
 #: data/references_dialog.ui:241
 msgid "URL"
 msgstr "Адреса"
 
-#: data/entry_page.ui:889 data/references_dialog.ui:84
+#: data/entry_page.ui:877 data/references_dialog.ui:84
 #: data/references_dialog.ui:223
 msgid "Username"
 msgstr "Користувач"
@@ -366,8 +364,9 @@ msgid "Open…"
 msgstr "Відкрити…"
 
 #: data/main_window.ui:290
-msgid "Recent Databases"
-msgstr "Нещодавні бази даних"
+#| msgid "Recent Databases"
+msgid "Recent Safes"
+msgstr "Нещодавні сейфи"
 
 #: data/notes_dialog.ui:18
 msgid "Copy"
@@ -626,11 +625,6 @@ msgstr "Роздільник при створенні пароля"
 msgid "Word separator to use when generating a passphrase."
 msgstr "Роздільник слів, яким слід скористатися при створенні пароля."
 
-#. Tooltip for button near input field to show or hide the password (clear text)
-#: data/password_entry_row.ui:66
-msgid "Show/hide password"
-msgstr "Показати/Сховати пароль"
-
 #: data/password_generator_popover.ui:45
 msgid "Length"
 msgstr "Довжина"
@@ -779,7 +773,7 @@ msgstr "Приховати перший початковий екран"
 msgid "Reopen last opened safe."
 msgstr "Повторно відкрити останній відкритий сейф."
 
-#: data/settings_dialog.ui:54 passwordsafe/main_window.py:394
+#: data/settings_dialog.ui:54 passwordsafe/main_window.py:409
 msgid "Safe"
 msgstr "Безпечний"
 
@@ -1028,7 +1022,7 @@ msgid "Failed to unlock safe"
 msgstr "Не вдалося відімкнути сейф"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:18 data/unlocked_database.ui:355
+#: data/unlocked_database.ui:18 data/unlocked_database.ui:332
 msgid "Selection Mode"
 msgstr "Режим вибору"
 
@@ -1092,48 +1086,48 @@ msgstr "_Властивості"
 msgid "_Delete"
 msgstr "В_илучити"
 
-#: data/unlocked_database.ui:397
+#: data/unlocked_database.ui:374
 msgid "Click on a checkbox to select"
 msgstr "Клацніть на пункті, щоб позначити"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:469
+#: data/unlocked_database.ui:446
 msgid "Move selection"
 msgstr "Переміщення позначеного"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:484
+#: data/unlocked_database.ui:461
 msgid "Delete selection"
 msgstr "Вилучити позначене"
 
-#: data/unlocked_database.ui:496
+#: data/unlocked_database.ui:473
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: data/unlocked_database.ui:513
+#: data/unlocked_database.ui:490
 msgid "_Select all"
 msgstr "Позна_чити все"
 
-#: data/unlocked_database.ui:517
+#: data/unlocked_database.ui:494
 msgid "_Select none"
 msgstr "_Нічого не позначати"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:241
+#: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:227
 msgid "Choose location for keyfile"
 msgstr "Виберіть розташування файла ключа"
 
-#: passwordsafe/create_database.py:243
+#: passwordsafe/create_database.py:242
 #: passwordsafe/database_settings_dialog.py:228
 msgid "Generate"
 msgstr "Створити"
 
-#: passwordsafe/create_database.py:254
+#: passwordsafe/create_database.py:253
 msgid "Generating…"
 msgstr "Створюємо…"
 
-#: passwordsafe/database_manager.py:484
+#: passwordsafe/database_manager.py:434
 msgid "Clone"
 msgstr "Клонувати"
 
@@ -1171,25 +1165,25 @@ msgstr "ChaCha20, 256-бітовий"
 msgid "Twofish 256-bit"
 msgstr "Twofish, 256-бітовий"
 
-#: passwordsafe/entry_page.py:412 passwordsafe/entry_page.py:482
+#: passwordsafe/entry_page.py:411 passwordsafe/entry_page.py:481
 msgid "Attribute key already exists"
 msgstr "Ключ атрибута вже існує"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:512
+#: passwordsafe/entry_page.py:511
 msgid "Select attachment"
 msgstr "Виберіть долучення"
 
-#: passwordsafe/entry_page.py:513
+#: passwordsafe/entry_page.py:512
 msgid "Add"
 msgstr "Додати"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:559
+#: passwordsafe/entry_page.py:554
 msgid "Save attachment"
 msgstr "Збереження долучення"
 
-#: passwordsafe/entry_page.py:560
+#: passwordsafe/entry_page.py:555
 msgid "Save"
 msgstr "Зберегти"
 
@@ -1206,47 +1200,48 @@ msgid "No group title specified"
 msgstr "Не вказано назви групи"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:293
+#: passwordsafe/main_window.py:308
 msgid "Choose a Keepass safe"
 msgstr "Виберіть сейф Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:400
+#: passwordsafe/main_window.py:318 passwordsafe/main_window.py:415
 msgid "KeePass 3.1/4 Database"
 msgstr "база даних KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:332
+#: passwordsafe/main_window.py:347
 msgid "Unable to open file \"{}\"."
 msgstr "Не вдалося відкрити файл «{}»."
 
-#: passwordsafe/main_window.py:335
+#: passwordsafe/main_window.py:350
 msgid "File type {} ({}) is not supported."
 msgstr "Підтримки типів файлів {} ({}) не передбачено."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:387
+#: passwordsafe/main_window.py:402
 msgid "Choose location for Keepass safe"
 msgstr "Виберіть розташування сейфа Keepass"
 
-#: passwordsafe/main_window.py:390
+#: passwordsafe/main_window.py:405
 msgid "Create"
 msgstr "Створити"
 
-#: passwordsafe/selection_ui.py:170
+#: passwordsafe/selection_ui.py:168
 msgid "Deletion completed"
 msgstr "Вилучення завершено"
 
-#: passwordsafe/selection_ui.py:246
+#: passwordsafe/selection_ui.py:249
 msgid "Move completed"
 msgstr "Пересування завершено"
 
-#: passwordsafe/selection_ui.py:248
+#: passwordsafe/selection_ui.py:251
 msgid "Skipped moving group into itself"
 msgstr "Пропущено пересування групи до самої себе"
 
 #: passwordsafe/unlock_database.py:221
-msgid "Database already opened"
-msgstr "Базу даних вже відкрито"
+#| msgid "Database already opened"
+msgid "Safe already opened"
+msgstr "Сейф вже відкрито"
 
 #: passwordsafe/unlock_database.py:244
 msgid "Choose a keyfile"
@@ -1260,31 +1255,38 @@ msgstr "Виберіть файл ключа"
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
-#: passwordsafe/unlocked_database.py:570
-msgid "Database saved"
-msgstr "Базу даних збережено"
+#: passwordsafe/unlocked_database.py:552
+#| msgid "Safe Name"
+msgid "Safe saved"
+msgstr "Сейф збережено"
 
-#: passwordsafe/unlocked_database.py:574
+#: passwordsafe/unlocked_database.py:556
 msgid "Please wait. Another save is running."
 msgstr "Будь ласка, зачекайте. Виконуємо зберігання інших даних."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:578
+#: passwordsafe/unlocked_database.py:560
 msgid "No changes made"
 msgstr "Не було внесено жодних змін"
 
-#: passwordsafe/unlocked_database.py:716
+#: passwordsafe/unlocked_database.py:698
 msgid "Copied to clipboard"
 msgstr "Скопійовано до буфера обміну"
 
-#: passwordsafe/unlocked_database.py:894
+#: passwordsafe/unlocked_database.py:813
 #, python-format
 msgid "%s locked"
 msgstr "%s замкнено"
 
-#: passwordsafe/unlocked_database.py:900
+#: passwordsafe/unlocked_database.py:819
 msgid "Keepass safe locked due to inactivity"
 msgstr "Сейф Keepass замкнено через неактивність"
+
+#~ msgid "Show/hide password"
+#~ msgstr "Показати/Сховати пароль"
+
+#~ msgid "Database saved"
+#~ msgstr "Базу даних збережено"
 
 #~ msgid "Preferences"
 #~ msgstr "Налаштування"

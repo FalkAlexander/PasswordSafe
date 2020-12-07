@@ -53,27 +53,32 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._selection_ui = SelectionUI(self._unlocked_database)
         self._headerbar_right_box.add(self._selection_ui)
 
-        self._unlocked_database.bind_accelerator(self._search_button, "<Control>f")
+        self._mode: int = UnlockedHeaderBar.Mode.GROUP
+        self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
 
-        self._unlocked_database.bind_property(
-            "selection-mode", self._selection_options_button, "visible",
-            GObject.BindingFlags.SYNC_CREATE)
+        self._setup_signals()
+        self._setup_accelerators()
 
+    def _setup_signals(self):
         self._window.connect(
             "notify::mobile-width", self._on_mobile_width_changed)
 
         self._unlocked_database.bind_property(
+            "selection-mode", self._selection_options_button, "visible",
+            GObject.BindingFlags.SYNC_CREATE)
+        self._unlocked_database.bind_property(
             "selection-mode", self, "show-close-button",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN)
-
-        self._mode: int = UnlockedHeaderBar.Mode.GROUP
-        self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
         self._unlocked_database.connect(
             "notify::selection-mode", self._on_selection_mode_changed)
+
         self._unlocked_database.connect(
             "notify::search-active", self._on_search_active)
 
         self._on_mobile_width_changed(None, None)
+
+    def _setup_accelerators(self):
+        self._unlocked_database.bind_accelerator(self._search_button, "<Control>f")
 
     def _on_search_active(
             self, _unlocked_database: UnlockedDatabase,

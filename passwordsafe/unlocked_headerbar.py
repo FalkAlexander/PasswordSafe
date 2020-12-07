@@ -61,7 +61,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
     def _setup_signals(self):
         self._window.connect(
-            "notify::mobile-width", self._on_mobile_width_changed)
+            "notify::mobile-layout", self._on_mobile_layout_changed)
 
         self._unlocked_database.bind_property(
             "selection-mode", self._selection_options_button, "visible",
@@ -75,7 +75,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._unlocked_database.connect(
             "notify::search-active", self._on_search_active)
 
-        self._on_mobile_width_changed(None, None)
+        self._on_mobile_layout_changed(None, None)
 
     def _setup_accelerators(self):
         self._unlocked_database.bind_accelerator(self._search_button, "<Control>f")
@@ -103,7 +103,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         else:
             style_context.remove_class("selection-mode")
 
-    def _on_mobile_width_changed(
+    def _on_mobile_layout_changed(
             self, _klass: Optional[MainWindow],
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_title()
@@ -111,7 +111,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._update_action_bar()
 
     def _update_title(self):
-        is_mobile = self._window.props.mobile_width
+        is_mobile = self._window.props.mobile_layout
         scrolled_page = self._unlocked_database.get_current_page()
         cur_elt = self._unlocked_database.current_element
 
@@ -140,14 +140,14 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self._selection_button_revealer.props.reveal_child = False
             return
 
-        is_mobile = self._window.props.mobile_width
+        is_mobile = self._window.props.mobile_layout
         self._pathbar_button_selection_revealer.props.reveal_child = is_mobile
         self._selection_button_revealer.props.reveal_child = not is_mobile
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""
         page = self._unlocked_database.get_current_page()
-        is_mobile = self._window.props.mobile_width
+        is_mobile = self._window.props.mobile_layout
 
         if page is None:
             # Initial placement of pathbar before content appeared

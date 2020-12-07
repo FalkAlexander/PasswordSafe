@@ -225,7 +225,7 @@ class Search:
         # The 38 = 18 + 18 + 2 number comes from the margins and the border of
         # the list.
         # It has to be adjusted for mobile view when there are no margins.
-        if self.unlocked_database.window.mobile_width:
+        if self.unlocked_database.window.mobile_layout:
             margin = 2
         else:
             margin = 38

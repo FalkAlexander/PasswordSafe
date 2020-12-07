@@ -28,7 +28,7 @@ class MainWindow(Gtk.ApplicationWindow):
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
 
-    mobile_width = GObject.Property(
+    mobile_layout = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
 
     def __init__(self, *args, **kwargs):
@@ -117,9 +117,9 @@ class MainWindow(Gtk.ApplicationWindow):
 
         :param GdkEvent event: event
         """
-        new_mobile_width = (self.get_allocation().width < 700)
-        if new_mobile_width != self.props.mobile_width:
-            self.props.mobile_width = new_mobile_width
+        new_mobile_layout = (self.get_allocation().width < 700)
+        if new_mobile_layout != self.props.mobile_layout:
+            self.props.mobile_layout = new_mobile_layout
             self.change_layout()
 
         Gtk.ApplicationWindow.do_size_allocate(self, allocation)
@@ -149,7 +149,7 @@ class MainWindow(Gtk.ApplicationWindow):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
-        if self.props.mobile_width:
+        if self.props.mobile_layout:
             self.file_open_button.get_children()[0].set_visible_child_name("mobile")
             self.file_new_button.get_children()[0].set_visible_child_name("mobile")
         else:

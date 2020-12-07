@@ -4,8 +4,7 @@ from __future__ import annotations
 import threading
 import typing
 
-from typing import List
-from uuid import UUID
+from typing import List, Union
 from gi.repository import Gdk, GLib, GObject, Gtk, Handy
 
 from passwordsafe.entry_row import EntryRow
@@ -13,6 +12,9 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.scrolled_page import ScrolledPage
 
 if typing.TYPE_CHECKING:
+    from pykeepass.entry import Entry
+    from pykeepass.group import Group
+
     from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.unlocked_database import UnlockedDatabase
 
@@ -54,7 +56,7 @@ class Search:
         self._timeout_search: int = 0
 
         self._timeout_info: int = 0
-        self._result_list: List[UUID] = []
+        self._result_list: List[Union[Entry, Group]] = []
         self._search_text: str = self._search_entry.props.text
         self._current_result_idx: int = 0
 
@@ -193,18 +195,15 @@ class Search:
         skipped_rows: bool = False
 
         new_idx: int = 0
-        for uuid in self._result_list[self._current_result_idx:]:
+        for element in self._result_list[self._current_result_idx:]:
             if search_height < window_height or load_all:
-                if self._db_manager.check_is_group(uuid):
+                if self._db_manager.check_is_group_object(element):
                     search_height += group_row_height
                     row = GroupRow(
-                        self.unlocked_database, self._db_manager,
-                        self._db_manager.get_group(uuid))
+                        self.unlocked_database, self._db_manager, element)
                 else:
                     search_height += entry_row_height
-                    row = EntryRow(
-                        self.unlocked_database,
-                        self._db_manager.get_entry_object_from_uuid(uuid))
+                    row = EntryRow(self.unlocked_database, element)
 
                 self.search_list_box.add(row)
                 new_idx += 1

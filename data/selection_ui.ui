@@ -6,42 +6,42 @@
     <property name="spacing">6</property>
     <child>
       <object class="GtkButton" id="_cut_paste_button">
-	<property name="visible">True</property>
-	<property name="can_focus">True</property>
-	<property name="receives_default">True</property>
-	<property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move selection</property>
-	<signal name="clicked" handler="_on_cut_paste_button_clicked" swapped="no"/>
-	<child>
-	  <object class="GtkImage" id="_cut_paste_image">
-	    <property name="visible">True</property>
-	    <property name="can_focus">False</property>
-	    <property name="icon_name">edit-cut-symbolic</property>
-	  </object>
-	</child>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move selection</property>
+        <signal name="clicked" handler="_on_cut_paste_button_clicked" swapped="no"/>
+        <child>
+          <object class="GtkImage" id="_cut_paste_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">edit-cut-symbolic</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
       <object class="GtkButton" id="_delete_button">
-	<property name="visible">True</property>
-	<property name="can_focus">True</property>
-	<property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete selection</property>
-	<signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>
-	<child>
-	  <object class="GtkImage" id="selection_delete_button_image">
-	    <property name="visible">True</property>
-	    <property name="can_focus">False</property>
-	    <property name="icon_name">user-trash-symbolic</property>
-	  </object>
-	</child>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete selection</property>
+        <signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>
+        <child>
+          <object class="GtkImage" id="selection_delete_button_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">user-trash-symbolic</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
       <object class="GtkButton" id="_cancel_button">
-	<property name="label" translatable="yes">Cancel</property>
-	<property name="visible">True</property>
-	<property name="can_focus">True</property>
-	<property name="receives_default">True</property>
-	<signal name="clicked" handler="_on_cancel_button_clicked" swapped="no"/>
+        <property name="label" translatable="yes">Cancel</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <signal name="clicked" handler="_on_cancel_button_clicked" swapped="no"/>
       </object>
     </child>
   </template>

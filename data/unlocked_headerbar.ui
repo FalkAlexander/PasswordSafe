@@ -5,6 +5,21 @@
     <property name="can_focus">False</property>
     <property name="show_close_button">True</property>
     <child>
+      <object class="GtkMenuButton" id="_add_button">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="menu_model">_add_button_menu</property>
+        <property name="margin_end">6</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">list-add-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
       <object class="GtkBox" id="_headerbar_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -205,16 +220,6 @@
     </section>
     <section>
       <item>
-        <attribute name='label' translatable='yes'>_New Entry</attribute>
-        <attribute name='action'>app.db.add_entry</attribute>
-      </item>
-      <item>
-        <attribute name='label' translatable='yes'>_New Group</attribute>
-        <attribute name='action'>app.db.add_group</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
         <attribute name='label' translatable='yes'>_New Safe</attribute>
         <attribute name='action'>app.new</attribute>
       </item>
@@ -287,6 +292,18 @@
       <item>
         <attribute name="label" translatable="yes">_Delete</attribute>
         <attribute name="action">app.element.delete</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="_add_button_menu">
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>New _Entry</attribute>
+        <attribute name='action'>app.db.add_entry</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>New _Group</attribute>
+        <attribute name='action'>app.db.add_group</attribute>
       </item>
     </section>
   </menu>

@@ -25,6 +25,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         ENTRY = 2
         SELECTION = 3
 
+    _add_button = Gtk.Template.Child()
     _entry_menu = Gtk.Template.Child()
     _group_menu = Gtk.Template.Child()
     _headerbar_box = Gtk.Template.Child()
@@ -207,18 +208,23 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._mode = new_mode
 
         if new_mode == UnlockedHeaderBar.Mode.GROUP:
+            self._add_button.props.visible = True
             self._secondary_menu_button.props.visible = False
             selection_mode = self._unlocked_database.props.selection_mode
+            self._add_button.props.visible = not selection_mode
             self._linkedbox_right.props.visible = not selection_mode
         elif new_mode == UnlockedHeaderBar.Mode.GROUP_EDIT:
+            self._add_button.props.visible = False
             self._secondary_menu_button.props.menu_model = self._group_menu
             self._secondary_menu_button.props.visible = True
             self._linkedbox_right.props.visible = False
         elif new_mode == UnlockedHeaderBar.Mode.ENTRY:
+            self._add_button.props.visible = False
             self._secondary_menu_button.props.menu_model = self._entry_menu
             self._secondary_menu_button.props.visible = True
             self._linkedbox_right.props.visible = False
         else:
+            self._add_button.props.visible = False
             self._secondary_menu_button.props.visible = False
             self._linkedbox_right.props.visible = False
 

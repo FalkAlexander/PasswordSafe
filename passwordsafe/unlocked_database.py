@@ -153,10 +153,6 @@ class UnlockedDatabase(GObject.GObject):
 
         self._update_headerbar()
 
-    # Group and entry browser headerbar
-    def set_browser_headerbar(self):
-        pass
-
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""
         if self.props.search_active:
@@ -296,7 +292,6 @@ class UnlockedDatabase(GObject.GObject):
             if self.database_manager.check_is_group(self.current_element.uuid):
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
                 self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP
-                self.set_browser_headerbar()
             # For entry
             else:
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
@@ -336,7 +331,6 @@ class UnlockedDatabase(GObject.GObject):
 
         if group_page and not self.props.selection_mode:
             self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
-            self.set_browser_headerbar()
         elif not group_page:
             self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
             self.entry_page.set_entry_page_headerbar()

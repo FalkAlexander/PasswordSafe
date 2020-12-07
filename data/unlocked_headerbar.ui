@@ -26,29 +26,6 @@
         <property name="orientation">vertical</property>
       </object>
     </child>
-    <child>
-      <object class="GtkRevealer" id="_pathbar_button_selection_revealer">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="transition_type">slide-right</property>
-        <child>
-          <object class="GtkButton" id="selection_button_mobile">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
-            <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
-            <child>
-              <object class="GtkImage" id="selection_button_image_mobile">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">emblem-ok-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
     <child type="title">
       <object class="GtkLabel" id="_title_label">
         <property name="visible">True</property>
@@ -105,48 +82,33 @@
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
             <child>
-              <object class="GtkBox" id="browser_buttons_box">
+              <object class="GtkButton" id="_search_button">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="spacing">6</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
+                <signal name="clicked" handler="_on_search_button_clicked" swapped="no"/>
                 <child>
-                  <object class="GtkRevealer" id="_selection_button_revealer">
+                  <object class="GtkImage" id="search_button_image">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="transition_type">slide-left</property>
-                    <property name="reveal_child">True</property>
-                    <child>
-                      <object class="GtkButton" id="selection_button">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
-                        <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
-                        <child>
-                          <object class="GtkImage" id="selection_button_image">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="icon_name">emblem-ok-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    <property name="icon_name">system-search-symbolic</property>
                   </object>
                 </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="selection_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+                <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
                 <child>
-                  <object class="GtkButton" id="_search_button">
+                  <object class="GtkImage" id="selection_button_image">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
-                    <signal name="clicked" handler="_on_search_button_clicked" swapped="no"/>
-                    <child>
-                      <object class="GtkImage" id="search_button_image">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">system-search-symbolic</property>
-                      </object>
-                    </child>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">emblem-ok-symbolic</property>
                   </object>
                 </child>
               </object>

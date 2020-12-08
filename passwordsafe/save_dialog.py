@@ -14,6 +14,7 @@ class SaveDialogResponse(Enum):
 
 
 class SaveDialog():
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, window):
         builder = Gtk.Builder()

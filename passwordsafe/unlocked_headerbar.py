@@ -25,15 +25,14 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         ENTRY = 2
         SELECTION = 3
 
+    _add_button = Gtk.Template.Child()
     _entry_menu = Gtk.Template.Child()
     _group_menu = Gtk.Template.Child()
     _headerbar_box = Gtk.Template.Child()
     _headerbar_right_box = Gtk.Template.Child()
     _linkedbox_right = Gtk.Template.Child()
-    _pathbar_button_selection_revealer = Gtk.Template.Child()
     _secondary_menu_button = Gtk.Template.Child()
     _search_button = Gtk.Template.Child()
-    _selection_button_revealer = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
     _title_label = Gtk.Template.Child()
 
@@ -107,7 +106,6 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self, _klass: Optional[MainWindow],
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_title()
-        self._update_selection_buttons()
         self._update_action_bar()
 
     def _update_title(self):
@@ -130,19 +128,6 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         show = is_mobile and not self._unlocked_database.props.selection_mode
         self._title_label.props.visible = show
-
-    def _update_selection_buttons(self):
-        """Update the visibility of the headerbar buttons."""
-        scrolled_page = self._unlocked_database.get_current_page()
-        if ((scrolled_page and scrolled_page.edit_page)
-                or self._unlocked_database.props.selection_mode):
-            self._pathbar_button_selection_revealer.props.reveal_child = False
-            self._selection_button_revealer.props.reveal_child = False
-            return
-
-        is_mobile = self._window.props.mobile_layout
-        self._pathbar_button_selection_revealer.props.reveal_child = is_mobile
-        self._selection_button_revealer.props.reveal_child = not is_mobile
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""
@@ -209,18 +194,21 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         if new_mode == UnlockedHeaderBar.Mode.GROUP:
             self._secondary_menu_button.props.visible = False
             selection_mode = self._unlocked_database.props.selection_mode
+            self._add_button.props.visible = not selection_mode
             self._linkedbox_right.props.visible = not selection_mode
         elif new_mode == UnlockedHeaderBar.Mode.GROUP_EDIT:
+            self._add_button.props.visible = False
             self._secondary_menu_button.props.menu_model = self._group_menu
             self._secondary_menu_button.props.visible = True
             self._linkedbox_right.props.visible = False
         elif new_mode == UnlockedHeaderBar.Mode.ENTRY:
+            self._add_button.props.visible = False
             self._secondary_menu_button.props.menu_model = self._entry_menu
             self._secondary_menu_button.props.visible = True
             self._linkedbox_right.props.visible = False
         else:
+            self._add_button.props.visible = False
             self._secondary_menu_button.props.visible = False
             self._linkedbox_right.props.visible = False
 
         self._update_title()
-        self._update_selection_buttons()

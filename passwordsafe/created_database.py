@@ -32,8 +32,6 @@ class CreatedDatabase:
         finish_button = self.builder.get_object("finish_button")
         finish_button.connect("clicked", self.on_finish_button_clicked)
 
-        self.set_headerbar()
-
     #
     # Events
     #
@@ -43,12 +41,3 @@ class CreatedDatabase:
         UnlockDatabase(
             self.window, self.parent_widget,
             self.database_manager.database_path)
-
-    #
-    # Headerbar
-    #
-
-    def set_headerbar(self):
-        headerbar = self.window.get_headerbar()
-        self.parent_widget.set_headerbar(headerbar)
-        self.window.set_headerbar()

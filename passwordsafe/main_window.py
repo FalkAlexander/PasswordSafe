@@ -5,7 +5,6 @@ import threading
 from gettext import gettext as _
 from typing import List, Optional
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
-from gi.repository.GdkPixbuf import Pixbuf
 
 import passwordsafe.config_manager
 from passwordsafe.container_page import ContainerPage
@@ -14,6 +13,7 @@ from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
+from passwordsafe.welcome_page import WelcomePage
 
 
 class MainWindow(Gtk.ApplicationWindow):
@@ -253,16 +253,8 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def display_welcome_page(self) -> None:
         """Shown when there is no autoloading and no recent files to display"""
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-
-        pix = Pixbuf.new_from_resource_at_scale(
-            "/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
-
-        app_logo = builder.get_object("app_logo")
-        app_logo.set_from_pixbuf(pix)
-        first_start_grid = builder.get_object("first_start_grid")
-        self.add(first_start_grid)
+        welcome_page = WelcomePage()
+        self.add(welcome_page)
 
     #
     # Container Methods (Gtk Notebook holds tabs)

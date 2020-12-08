@@ -46,16 +46,14 @@ class CreateDatabase(Gtk.Stack):
     # Password
 
     def success_page(self):
-        self.clear_input_fields()
-        if self.composite:
-            self.composite = False
-            self.set_visible_child_name("keyfile-creation")
-        else:
-            self.set_visible_child_name("safe-successfully-create")
-            # TODO This should be improved upon. Widgets should not
-            # modify widgets outside of their scope. And __init__()
-            # should not request a back button either.
-            self.back_button.hide()
+        self.set_visible_child_name("safe-successfully-create")
+        # TODO This should be improved upon. Widgets should not
+        # modify widgets outside of their scope. And __init__()
+        # should not request a back button either.
+        self.back_button.hide()
+
+    def keyfile_generation_page(self):
+        self.set_visible_child_name("keyfile-creation")
 
     #
     # Events
@@ -158,9 +156,11 @@ class CreateDatabase(Gtk.Stack):
 
     def save_pwc_database_thread(self):
         GLib.idle_add(self.show_pwc_loading)
-        if self.composite is False:
+        if self.composite:
+            GLib.idle_add(self.keyfile_generation_page)
+        else:
             self.database_manager.save_database()
-        GLib.idle_add(self.success_page)
+            GLib.idle_add(self.success_page)
 
     def show_pwc_loading(self):
         password_check_button = self.password_check_button
@@ -174,9 +174,11 @@ class CreateDatabase(Gtk.Stack):
 
     def save_pwr_database_thread(self):
         GLib.idle_add(self.show_pwr_loading)
-        if self.composite is False:
+        if self.composite:
+            GLib.idle_add(self.keyfile_generation_page)
+        else:
             self.database_manager.save_database()
-        GLib.idle_add(self.success_page)
+            GLib.idle_add(self.success_page)
 
     def show_pwr_loading(self):
         password_repeat_button = self.password_repeat_button

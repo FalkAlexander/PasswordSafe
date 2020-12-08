@@ -86,15 +86,13 @@
   <object class="GtkStack" id="database_creation_stack">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="transition_type">slide-left</property>
     <child>
       <object class="GtkGrid" id="password_creation_grid">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkImage" id="password_creation_image">
             <property name="visible">True</property>
@@ -102,13 +100,30 @@
             <property name="pixel_size">100</property>
             <property name="icon_name">document-edit-symbolic</property>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="grid1">
+          <object class="GtkLabel" id="password_creation_label1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Enter Password</property>
+            <attributes>
+              <attribute name="weight" value="normal"/>
+              <attribute name="size" value="18000"/>
+            </attributes>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="password_creation_label2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Set password for safe.</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -147,39 +162,6 @@
               <class name="linked"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_creation_label2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Set password for safe</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_creation_label1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Enter Password</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="size" value="18000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
         </child>
       </object>
       <packing>

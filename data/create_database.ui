@@ -175,6 +175,18 @@
         <property name="halign">center</property>
         <property name="valign">center</property>
         <child>
+          <object class="GtkImage" id="password_check_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixel_size">100</property>
+            <property name="icon_name">error-correct-symbolic</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel" id="password_check_label1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -190,15 +202,17 @@
           </packing>
         </child>
         <child>
-          <object class="GtkImage" id="password_check_image">
+          <object class="GtkLabel" id="password_check_label2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixel_size">100</property>
-            <property name="icon_name">error-correct-symbolic</property>
+            <property name="label" translatable="yes">Repeat password for safe</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
           <packing>
             <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
+            <property name="top_attach">3</property>
           </packing>
         </child>
         <child>
@@ -249,20 +263,6 @@
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_check_label2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Repeat password for safe</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
           </packing>
         </child>
       </object>

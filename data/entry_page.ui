@@ -632,7 +632,9 @@
             <property name="can_focus">False</property>
             <property name="halign">start</property>
             <property name="valign">end</property>
-            <property name="label" translatable="yes">Title</property>
+            <property name="label" translatable="yes">_Title</property>
+            <property name="use_underline">True</property>
+            <property name="mnemonic_widget">name_property_value_entry</property>
             <style>
               <class name="dim-label"/>
             </style>
@@ -648,6 +650,7 @@
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="input_purpose">name</property>
+            <property name="receives_default">True</property>
           </object>
         </child>
       </object>
@@ -677,7 +680,9 @@
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
                 <property name="valign">end</property>
-                <property name="label" translatable="yes">Notes</property>
+                <property name="label" translatable="yes">_Notes</property>
+                <property name="use_underline">True</property>
+                <property name="mnemonic_widget">notes_property_value_entry</property>
                 <style>
                   <class name="dim-label"/>
                 </style>
@@ -826,7 +831,9 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="label" translatable="yes">URL</property>
+            <property name="label" translatable="yes">U_RL</property>
+            <property name="use_underline">True</property>
+            <property name="mnemonic_widget">url_property_value_entry</property>
             <style>
               <class name="dim-label"/>
             </style>
@@ -874,7 +881,9 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="label" translatable="yes">Username</property>
+            <property name="label" translatable="yes">_Username</property>
+            <property name="use_underline">True</property>
+            <property name="mnemonic_widget">username_property_value_entry</property>
             <style>
               <class name="dim-label"/>
             </style>

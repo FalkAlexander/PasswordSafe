@@ -1,57 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkStack" id="database_creation_success_stack">
+  <object class="GtkBox" id="password_success_box">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="halign">center</property>
     <property name="valign">center</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
-    <property name="transition_type">slide-left</property>
+    <property name="orientation">vertical</property>
     <child>
-      <object class="GtkBox" id="password_success_box">
+      <object class="GtkImage" id="password_success_image">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="pixel_size">100</property>
+        <property name="icon_name">emblem-default-symbolic</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel" id="password_success_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Safe Successfully Created</property>
+        <attributes>
+          <attribute name="weight" value="normal"/>
+          <attribute name="size" value="18000"/>
+        </attributes>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="finish_button">
+        <property name="label" translatable="yes">Open Safe</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkImage" id="password_success_image">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="pixel_size">100</property>
-            <property name="icon_name">emblem-default-symbolic</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_success_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Safe Successfully Created</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="size" value="18000"/>
-            </attributes>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="finish_button">
-            <property name="label" translatable="yes">Open Safe</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="margin_top">15</property>
-            <style>
-              <class name="suggested-action"/>
-            </style>
-          </object>
-        </child>
+        <property name="margin_top">15</property>
+        <style>
+          <class name="suggested-action"/>
+        </style>
       </object>
-      <packing>
-        <property name="name">page0</property>
-      </packing>
     </child>
   </object>
 </interface>

@@ -8,7 +8,7 @@ class CreatedDatabase:
     window = NotImplemented
     parent_widget = NotImplemented
     database_manager = NotImplemented
-    stack = NotImplemented
+    box = NotImplemented
 
     def __init__(self, window, widget, dbm):
         self.window = window
@@ -25,9 +25,8 @@ class CreatedDatabase:
         self.builder.add_from_resource(
             "/org/gnome/PasswordSafe/created_database.ui")
 
-        self.stack = self.builder.get_object("database_creation_success_stack")
-        self.stack.set_visible_child(self.stack.get_child_by_name("page0"))
-        self.parent_widget.add(self.stack)
+        self.box = self.builder.get_object("database_creation_success_box")
+        self.parent_widget.add(self.box)
 
         finish_button = self.builder.get_object("finish_button")
         finish_button.connect("clicked", self.on_finish_button_clicked)
@@ -37,7 +36,7 @@ class CreatedDatabase:
     #
 
     def on_finish_button_clicked(self, _widget):
-        self.stack.destroy()
+        self.box.destroy()
         UnlockDatabase(
             self.window, self.parent_widget,
             self.database_manager.database_path)

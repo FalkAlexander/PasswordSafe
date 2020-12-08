@@ -1,265 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="HdyClamp" id="authentification_method_chooser">
+  <template class="CreateDatabase" parent="GtkStack">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="transition_type">slide-left</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="margin_start">12</property>
+    <property name="margin_end">12</property>
+    <property name="margin_top">12</property>
+    <property name="margin_bottom">12</property>
     <child>
-      <object class="GtkGrid" id="authentification_method_chooser_grid">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <child>
-          <object class="GtkScrolledWindow" id="methods_scrolled_window">
-            <property name="height_request">62</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="valign">start</property>
-            <property name="margin_bottom">20</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="hscrollbar_policy">never</property>
-            <property name="max_content_height">248</property>
-            <property name="propagate_natural_height">True</property>
-            <child>
-              <object class="GtkViewport" id="methods_viewport">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <object class="GtkListBox" id="methods_list_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkListBoxRow" id="password_row">
-                        <property name="name">password</property>
-                        <property name="height_request">65</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="selectable">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_start">10</property>
-                            <property name="margin_end">10</property>
-                            <property name="spacing">10</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="pixel_size">22</property>
-                                <property name="icon_name">document-edit-symbolic</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">end</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Password</property>
-                                    <property name="ellipsize">end</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Use a password to secure your safe</property>
-                                    <property name="ellipsize">end</property>
-                                    <style>
-                                      <class name="dim-label"/>
-                                    </style>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBoxRow" id="keyfile_row">
-                        <property name="name">keyfile</property>
-                        <property name="height_request">65</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="selectable">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_start">10</property>
-                            <property name="margin_end">10</property>
-                            <property name="spacing">10</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="pixel_size">22</property>
-                                <property name="icon_name">dialog-password-symbolic</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">end</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Keyfile</property>
-                                    <property name="ellipsize">end</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Use a keyfile to secure your safe</property>
-                                    <property name="ellipsize">end</property>
-                                    <style>
-                                      <class name="dim-label"/>
-                                    </style>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBoxRow" id="composite_row">
-                        <property name="name">composite</property>
-                        <property name="height_request">65</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="selectable">False</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="margin_start">10</property>
-                            <property name="margin_end">10</property>
-                            <property name="spacing">10</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="pixel_size">22</property>
-                                <property name="icon_name">insert-link-symbolic</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="orientation">vertical</property>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">end</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Composite</property>
-                                    <property name="ellipsize">end</property>
-                                    <attributes>
-                                      <attribute name="weight" value="bold"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="halign">start</property>
-                                    <property name="valign">start</property>
-                                    <property name="vexpand">True</property>
-                                    <property name="label" translatable="yes">Use a password in combination with a keyfile to secure your safe</property>
-                                    <property name="ellipsize">end</property>
-                                    <style>
-                                      <class name="dim-label"/>
-                                    </style>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <style>
-                      <class name="content"/>
-                    </style>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
-        </child>
+        <property name="orientation">vertical</property>
+        <property name="spacing">20</property>
+        <property name="margin_top">18</property>
+        <property name="margin_bottom">18</property>
+        <property name="margin_start">12</property>
+        <property name="margin_end">12</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
         <child>
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">end</property>
-            <property name="margin_top">20</property>
-            <property name="margin_bottom">20</property>
             <property name="vexpand">True</property>
             <property name="label" translatable="yes">Protect your safe</property>
             <property name="justify">center</property>
-            <property name="wrap">True</property>
             <attributes>
               <attribute name="weight" value="bold"/>
               <attribute name="size" value="21000"/>
             </attributes>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
+        </child>
+        <child>
+          <object class="GtkListBox" id="methods_list_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <signal name="row-activated" handler="on_auth_chooser_row_activated" swapped="no"/>
+            <child>
+              <object class="HdyActionRow">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="name">password</property>
+                <property name="title" translatable="yes">_Password</property>
+                <property name="subtitle" translatable="yes">Use a password to secure your safe.</property>
+                <property name="icon_name">document-edit-symbolic</property>
+                <property name="use_underline">True</property>
+                <property name="activatable">True</property>
+                <property name="selectable">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="HdyActionRow">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="name">keyfile</property>
+                <property name="title" translatable="yes">_Keyfile</property>
+                <property name="subtitle" translatable="yes">Use a keyfile to secure your safe.</property>
+                <property name="icon_name">dialog-password-symbolic</property>
+                <property name="use_underline">True</property>
+                <property name="activatable">True</property>
+                <property name="selectable">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="HdyActionRow">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="name">composite</property>
+                <property name="title" translatable="yes">_Composite</property>
+                <property name="subtitle" translatable="yes">Use a password in combination with a keyfile to secure your safe.</property>
+                <property name="icon_name">insert-link-symbolic</property>
+                <property name="use_underline">True</property>
+                <property name="activatable">True</property>
+                <property name="selectable">False</property>
+              </object>
+            </child>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
         </child>
       </object>
+      <packing>
+        <property name="name">select_auth_method</property>
+      </packing>
     </child>
-  </object>
-  <object class="GtkStack" id="database_creation_stack">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="transition_type">slide-left</property>
     <child>
-      <object class="GtkGrid" id="password_creation_grid">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkImage" id="password_creation_image">
             <property name="visible">True</property>
@@ -267,13 +107,30 @@
             <property name="pixel_size">100</property>
             <property name="icon_name">document-edit-symbolic</property>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="grid1">
+          <object class="GtkLabel" id="password_creation_label1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Enter Password</property>
+            <attributes>
+              <attribute name="weight" value="normal"/>
+              <attribute name="size" value="18000"/>
+            </attributes>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="password_creation_label2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Set password for safe.</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -288,6 +145,7 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
+                <signal name="activate" handler="on_password_creation_button_clicked" swapped="no"/>
               </object>
             </child>
             <child>
@@ -299,6 +157,7 @@
                 <property name="valign">start</property>
                 <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
+                <signal name="clicked" handler="on_password_creation_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="button_image">
                     <property name="visible">True</property>
@@ -312,53 +171,29 @@
               <class name="linked"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_creation_label2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Set password for safe</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_creation_label1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Enter Password</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="size" value="18000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
         </child>
       </object>
       <packing>
-        <property name="name">page0</property>
+        <property name="name">password-creation</property>
       </packing>
     </child>
     <child>
-      <object class="GtkGrid" id="password_check_grid">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel" id="password_check_label1">
+          <object class="GtkImage" id="password_check_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixel_size">100</property>
+            <property name="icon_name">error-correct-symbolic</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Password Match Check</property>
@@ -367,25 +202,19 @@
               <attribute name="size" value="18000"/>
             </attributes>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkImage" id="password_check_image">
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixel_size">100</property>
-            <property name="icon_name">error-correct-symbolic</property>
+            <property name="label" translatable="yes">Repeat password for safe.</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="grid2">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
@@ -403,6 +232,7 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
+                <signal name="activate" handler="on_password_check_button_clicked" swapped="no"/>
               </object>
             </child>
             <child>
@@ -413,6 +243,7 @@
                 <property name="halign">start</property>
                 <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
+                <signal name="clicked" handler="on_password_check_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="button_image4">
                     <property name="visible">True</property>
@@ -421,46 +252,34 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="pack_type">end</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="password_check_label2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Repeat password for safe</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
         </child>
       </object>
       <packing>
-        <property name="name">page1</property>
+        <property name="name">check-password</property>
       </packing>
     </child>
     <child>
-      <object class="GtkGrid" id="password_repeat_grid">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel" id="password_repeat_label1">
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixel_size">100</property>
+            <property name="icon_name">face-sad-symbolic</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Match Check Failed</property>
@@ -469,29 +288,21 @@
               <attribute name="size" value="18000"/>
             </attributes>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkImage" id="password_repeat_image">
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixel_size">100</property>
-            <property name="icon_name">face-sad-symbolic</property>
+            <property name="label" translatable="yes">Please try again</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="grid3">
-            <property name="width_request">250</property>
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">center</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input1">
                 <property name="visible">True</property>
@@ -501,37 +312,14 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
-                <style>
-                  <class name="error"/>
-                </style>
               </object>
             </child>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">4</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="password_repeat_label2">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Please try again</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox" id="grid4">
-            <property name="width_request">250</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">center</property>
             <child>
               <object class="GtkEntry" id="password_repeat_input2">
                 <property name="visible">True</property>
@@ -540,9 +328,6 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
-                <style>
-                  <class name="error"/>
-                </style>
               </object>
             </child>
             <child>
@@ -550,8 +335,9 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="halign">end</property>
+                <property name="halign">start</property>
                 <property name="margin_top">2</property>
+                <signal name="clicked" handler="on_password_repeat_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="button_image5">
                     <property name="visible">True</property>
@@ -560,32 +346,27 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="pack_type">end</property>
-              </packing>
             </child>
             <style>
               <class name="linked"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">5</property>
-          </packing>
         </child>
       </object>
       <packing>
-        <property name="name">page2</property>
+        <property name="name">passwords-dont-match</property>
       </packing>
     </child>
     <child>
-      <object class="GtkGrid" id="keyfile_creation_grid">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">12</property>
         <child>
           <object class="GtkImage" id="keyfile_creation_image">
             <property name="visible">True</property>
@@ -593,145 +374,102 @@
             <property name="pixel_size">100</property>
             <property name="icon_name">dialog-password-symbolic</property>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="grid5">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_top">10</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkButton" id="generate_keyfile_button">
-                <property name="label" translatable="yes">_Generate</property>
+              <object class="GtkLabel" id="keyfile_creation_label1">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
-                <property name="halign">center</property>
-                <property name="hexpand">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Generate Keyfile</property>
+                <attributes>
+                  <attribute name="weight" value="normal"/>
+                  <attribute name="size" value="18000"/>
+                </attributes>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="keyfile_creation_label2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Set keyfile for safe</property>
                 <style>
-                  <class name="suggested-action"/>
+                  <class name="dim-label"/>
                 </style>
               </object>
             </child>
-            <style>
-              <class name="linked"/>
-            </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">4</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="keyfile_creation_label2">
+          <object class="GtkButton" id="generate_keyfile_button">
+            <property name="label" translatable="yes">_Generate</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Set keyfile for safe</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_underline">True</property>
+            <property name="halign">center</property>
+            <property name="hexpand">True</property>
+            <signal name="clicked" handler="on_generate_keyfile_button_clicked" swapped="no"/>
             <style>
-              <class name="dim-label"/>
+              <class name="suggested-action"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
         </child>
+      </object>
+      <packing>
+        <property name="name">keyfile-creation</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkLabel" id="keyfile_creation_label1">
+          <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Generate Keyfile</property>
+            <property name="pixel_size">100</property>
+            <property name="icon_name">emblem-default-symbolic</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Safe Successfully Created</property>
             <attributes>
               <attribute name="weight" value="normal"/>
               <attribute name="size" value="18000"/>
             </attributes>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
         </child>
-      </object>
-      <packing>
-        <property name="name">page3</property>
-      </packing>
-    </child>
-  </object>
-  <menu id="create_safe_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">app.settings</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">app.shortcuts</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes" comments="&quot;Password Safe&quot; is the application name">About Password Safe</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
-  <object class="HdyHeaderBar" id="headerbar">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
-    <property name="subtitle" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Safe</property>
-    <property name="show_close_button">True</property>
-    <child>
-      <object class="GtkBox" id="headerbarbuttonbox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <child>
-          <object class="GtkBox" id="linkedbox_left">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkButton" id="back_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <child>
-                  <object class="GtkImage" id="back_icon">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">go-next-symbolic-rtl</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="linkedbox_right">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child>
-          <object class="GtkMenuButton" id="menupopover_button">
+          <object class="GtkButton">
+            <property name="label" translatable="yes">Open Safe</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="menu_model">create_safe_menu</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">open-menu-symbolic</property>
-              </object>
-            </child>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="margin_top">15</property>
+            <signal name="clicked" handler="on_finish_button_clicked" swapped="no"/>
+            <style>
+              <class name="suggested-action"/>
+            </style>
           </object>
         </child>
       </object>
       <packing>
-        <property name="pack_type">end</property>
+        <property name="name">safe-successfully-create</property>
       </packing>
     </child>
-  </object>
+  </template>
 </interface>

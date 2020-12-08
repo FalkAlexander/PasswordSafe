@@ -650,7 +650,7 @@ class DatabaseManager(GObject.GObject):
                     continue
                 if string.lower() in term.lower():
                     if global_search and entry not in results:
-                        results.append(entry.uuid)
+                        results.append(entry)
                     elif self.get_parent_group(entry) is not None:
                         parent_group: Group = self.get_parent_group(entry)
                         if parent_group.path == path and entry not in results:

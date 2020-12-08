@@ -370,6 +370,7 @@
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">12</property>
         <child>
           <object class="GtkImage" id="keyfile_creation_image">
             <property name="visible">True</property>
@@ -379,24 +380,31 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="keyfile_creation_label1">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Generate Keyfile</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="size" value="18000"/>
-            </attributes>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="keyfile_creation_label2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Set keyfile for safe</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkLabel" id="keyfile_creation_label1">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Generate Keyfile</property>
+                <attributes>
+                  <attribute name="weight" value="normal"/>
+                  <attribute name="size" value="18000"/>
+                </attributes>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="keyfile_creation_label2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Set keyfile for safe</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
         <child>

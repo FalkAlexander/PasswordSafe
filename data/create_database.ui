@@ -256,25 +256,22 @@
       </packing>
     </child>
     <child>
-      <object class="GtkGrid" id="password_repeat_grid">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkImage" id="password_repeat_image">
+          <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="pixel_size">100</property>
             <property name="icon_name">face-sad-symbolic</property>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="password_repeat_label1">
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Match Check Failed</property>
@@ -283,13 +280,9 @@
               <attribute name="size" value="18000"/>
             </attributes>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="password_repeat_label2">
+          <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">Please try again</property>
@@ -297,13 +290,9 @@
               <class name="dim-label"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="grid3">
+          <object class="GtkBox">
             <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -323,13 +312,9 @@
               </object>
             </child>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">4</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkBox" id="grid4">
+          <object class="GtkBox">
             <property name="width_request">250</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -370,10 +355,6 @@
               <class name="linked"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">5</property>
-          </packing>
         </child>
       </object>
       <packing>

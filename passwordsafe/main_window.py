@@ -382,7 +382,7 @@ class MainWindow(Gtk.ApplicationWindow):
         """Start opening a safe file"""
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database.ui")
+            "/org/gnome/PasswordSafe/create_database_headerbar.ui")
         headerbar = builder.get_object("headerbar")
         tab_title: str = os.path.basename(filepath)
         UnlockDatabase(self, self.create_tab(tab_title, headerbar), filepath)
@@ -454,7 +454,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database.ui")
+            "/org/gnome/PasswordSafe/create_database_headerbar.ui")
         headerbar = builder.get_object("headerbar")
         CreateDatabase(
             self, self.create_tab(tab_title, headerbar),

@@ -382,6 +382,35 @@
           </packing>
         </child>
         <child>
+          <object class="GtkLabel" id="keyfile_creation_label1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Generate Keyfile</property>
+            <attributes>
+              <attribute name="weight" value="normal"/>
+              <attribute name="size" value="18000"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="keyfile_creation_label2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Set keyfile for safe</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">3</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkBox" id="grid5">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -407,35 +436,6 @@
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">4</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="keyfile_creation_label2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Set keyfile for safe</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkLabel" id="keyfile_creation_label1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Generate Keyfile</property>
-            <attributes>
-              <attribute name="weight" value="normal"/>
-              <attribute name="size" value="18000"/>
-            </attributes>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
           </packing>
         </child>
       </object>

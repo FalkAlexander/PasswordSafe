@@ -41,9 +41,10 @@ class SaveDialog():
         if response == Gtk.ResponseType.NO:
             # clicked 'Discard'. Close, but don't save.
             return SaveDialogResponse.DISCARD
-        elif response == Gtk.ResponseType.YES:
+
+        if response == Gtk.ResponseType.YES:
             # "clicked save". Save changes.
             return SaveDialogResponse.SAVE
-        else:
-            logging.warn("This should be unreachable!")
-            return SaveDialogResponse.CANCEL
+
+        logging.warn("This should be unreachable!")
+        return SaveDialogResponse.CANCEL

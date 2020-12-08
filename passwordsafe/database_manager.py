@@ -54,35 +54,6 @@ class DatabaseManager(GObject.GObject):
     # Group Transformation Methods
     #
 
-    def get_parent_group(
-            self, data: Union[Entry, Group, UUID]) -> Optional[Group]:
-        """Get parent group from an entry, a group or an uuid
-
-        :param data: UUID, Entry or Group
-        :returns: parent group
-        :rtype: Group
-        """
-        if isinstance(data, UUID):
-            if self.check_is_group(data):
-                value: Union[Group, Entry] = self.db.find_groups(
-                    uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-            else:
-                value = self.db.find_entries(uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-        else:
-            value = data
-
-        return value.parentgroup
-
     def get_group(self, uuid: UUID) -> Optional[Group]:
         """Return the group object for a group uuid
 
@@ -651,8 +622,8 @@ class DatabaseManager(GObject.GObject):
                 if string.lower() in term.lower():
                     if global_search and entry not in results:
                         results.append(entry)
-                    elif self.get_parent_group(entry) is not None:
-                        parent_group: Group = self.get_parent_group(entry)
+                    elif entry.parentgroup is not None:
+                        parent_group: Group = entry.parentgroup
                         if parent_group.path == path and entry not in results:
                             results.append(entry)
 

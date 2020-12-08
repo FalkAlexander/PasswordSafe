@@ -1,8 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
-from typing import Optional
+from typing import Optional, Union
 from uuid import UUID
+
 from gi.repository import Gtk
+from pykeepass.entry import Entry
 from pykeepass.group import Group
 
 from passwordsafe.pathbar_button import PathbarButton
@@ -73,9 +77,10 @@ class Pathbar(Gtk.Box):
     #
     # Pathbar Modifications
     #
-    def add_pathbar_button_to_pathbar(self, uuid):
+    def add_pathbar_button_to_pathbar(
+            self, element: Union[Entry, Group]) -> None:
         self.clear_pathbar()
-        pathbar_button_active = self.create_pathbar_button(uuid)
+        pathbar_button_active = self.create_pathbar_button(element)
 
         self.remove_active_style()
         self.set_active_style(pathbar_button_active)
@@ -83,29 +88,26 @@ class Pathbar(Gtk.Box):
 
         self.add_seperator_label()
 
-        parent_group = self.database_manager.get_parent_group(uuid)
+        parent_group = element.parentgroup
         while not parent_group.is_root_group:
             self.pack_end(
-                self.create_pathbar_button(parent_group.uuid),
+                self.create_pathbar_button(parent_group),
                 True, True, 0)
             self.add_seperator_label()
-            parent_group = self.database_manager.get_parent_group(
-                parent_group.uuid)
+            parent_group = parent_group.parentgroup
 
         self.add_home_button()
         self.show_all()
 
-    def create_pathbar_button(self, uuid):
-        pathbar_button = PathbarButton(uuid)
+    def create_pathbar_button(self, element: Union[Entry, Group]) -> PathbarButton:
+        pathbar_button = PathbarButton(element)
 
         pathbar_button_name = NotImplemented
 
-        if self.database_manager.check_is_group(uuid) is True:
-            pathbar_button_name = self.database_manager.get_group_name(uuid)
-            pathbar_button.set_is_group()
+        if self.database_manager.check_is_group_object(element):
+            pathbar_button_name = self.database_manager.get_group_name(element)
         else:
-            pathbar_button_name = self.database_manager.get_entry_name(uuid)
-            pathbar_button.set_is_entry()
+            pathbar_button_name = self.database_manager.get_entry_name(element)
 
         if pathbar_button_name is not None:
             pathbar_button.set_label(pathbar_button_name)
@@ -139,7 +141,7 @@ class Pathbar(Gtk.Box):
             self.first_appearance()
             self.show_all()
         else:
-            self.add_pathbar_button_to_pathbar(group.uuid)
+            self.add_pathbar_button_to_pathbar(group)
 
     #
     # Events
@@ -158,27 +160,22 @@ class Pathbar(Gtk.Box):
 
     def on_pathbar_button_clicked(self, pathbar_button):
         self.unlocked_database.start_database_lock_timer()
-        pathbar_button_uuid = pathbar_button.uuid
-        current_uuid = self.unlocked_database.current_element.uuid
+        pathbar_button_elem = pathbar_button.element
+        current_elem_uuid = self.unlocked_database.current_element.uuid
 
-        if pathbar_button_uuid != current_uuid:
-            if pathbar_button.get_is_group() is True:
+        if pathbar_button_elem.uuid != current_elem_uuid:
+            is_group = pathbar_button.is_group
+            selection_mode = self.unlocked_database.props.selection_mode
+            if (is_group
+                    or (not is_group and not selection_mode)):
                 self.remove_active_style()
                 self.set_active_style(pathbar_button)
 
-                if not self.check_values_of_edit_page(self.database_manager.get_group(pathbar_button_uuid)):
+                if (is_group
+                        and not self.check_values_of_edit_page(pathbar_button_elem)):
                     self.query_page_update()
 
-                group = self.database_manager.get_group(
-                    pathbar_button.uuid)
-                self.unlocked_database.switch_page(group)
-            elif (not pathbar_button.get_is_group()
-                  and not self.unlocked_database.props.selection_mode):
-                self.remove_active_style()
-                self.set_active_style(pathbar_button)
-                entry = self.database_manager.get_entry_object_from_uuid(
-                    pathbar_button.uuid)
-                self.unlocked_database.switch_page(entry)
+                self.unlocked_database.switch_page(pathbar_button_elem)
     #
     # Helper Methods
     #
@@ -198,7 +195,7 @@ class Pathbar(Gtk.Box):
 
         if page.is_dirty:
             # page is dirty, parent page needs to be rebuild too
-            parent_group = self.database_manager.get_parent_group(current_ele)
+            parent_group = current_ele.parentgroup
             page_uuid = parent_group.uuid
             self.unlocked_database.schedule_stack_page_for_destroy(page_uuid)
             page.is_dirty = False
@@ -220,8 +217,7 @@ class Pathbar(Gtk.Box):
         if self.database_manager.check_is_group_object(current_elt):
             group_name = self.database_manager.get_group_name(current_elt)
             if not (group_name or notes or icon):
-                parent_group = self.database_manager.get_parent_group(
-                    current_elt)
+                parent_group = current_elt.parentgroup
                 self.database_manager.delete_from_database(current_elt)
                 self.rebuild_pathbar(parent_group)
                 self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
@@ -244,7 +240,7 @@ class Pathbar(Gtk.Box):
             or (icon != "0")
             or entry_attributes
         ):
-            parent_group = self.database_manager.get_parent_group(current_elt)
+            parent_group = self.database_manager.parentgroup
             self.database_manager.delete_from_database(current_elt)
             self.rebuild_pathbar(parent_group)
             self.unlocked_database.schedule_stack_page_for_destroy(parent_group.uuid)
@@ -256,14 +252,14 @@ class Pathbar(Gtk.Box):
         """Return True if the uuid entry is visible in the bar"""
         for button in self.get_children():
             if button.get_name() == "PathbarButtonDynamic" and \
-               button.uuid == uuid:
+               button.element.uuid == uuid:
                 return True
         return False
 
     def get_pathbar_button(self, uuid: UUID) -> Optional["PathbarButton"]:
         for pathbar_button in self.get_children():
             if pathbar_button.get_name() == "PathbarButtonDynamic":
-                if pathbar_button.uuid == uuid:
+                if pathbar_button.element.uuid == uuid:
                     return pathbar_button
         logging.warning("requested get_pathbar_button on an inexisting uuid")
         return None

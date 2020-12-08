@@ -180,7 +180,7 @@ class SelectionUI(Gtk.Box):
                     button, passwordsafe.pathbar_button.PathbarButton
                 ):
                     for group_row in self.groups_cut:
-                        if button.uuid == group_row.get_uuid():
+                        if button.element.uuid == group_row.get_uuid():
                             rebuild = True
 
             if rebuild is True:

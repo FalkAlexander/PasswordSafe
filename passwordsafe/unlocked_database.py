@@ -380,7 +380,7 @@ class UnlockedDatabase(GObject.GObject):
         :param element: Entry or Group to display
         """
         self.current_element = element
-        self.pathbar.add_pathbar_button_to_pathbar(element.uuid)
+        self.pathbar.add_pathbar_button_to_pathbar(element)
         self.show_page_of_new_directory(False, False)
 
     def insert_groups_into_listbox(self, list_box, overlay):
@@ -483,7 +483,7 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
         new_entry: Entry = self.database_manager.add_entry_to_database(self.current_element)
         self.current_element = new_entry
-        self.pathbar.add_pathbar_button_to_pathbar(new_entry.uuid)
+        self.pathbar.add_pathbar_button_to_pathbar(new_entry)
         self.show_page_of_new_directory(False, True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:
@@ -494,7 +494,7 @@ class UnlockedDatabase(GObject.GObject):
             "", "0", "", self.current_element
         )
         self.current_element = group
-        self.pathbar.add_pathbar_button_to_pathbar(self.current_element.uuid)
+        self.pathbar.add_pathbar_button_to_pathbar(self.current_element)
         self.show_page_of_new_directory(True, False)
 
     def on_element_delete_menu_button_clicked(
@@ -503,7 +503,7 @@ class UnlockedDatabase(GObject.GObject):
         """Delete the visible entry from the menu."""
         self.start_database_lock_timer()
 
-        parent_group = self.database_manager.get_parent_group(self.current_element)
+        parent_group = self.current_element.parentgroup
         self.database_manager.delete_from_database(self.current_element)
 
         self._remove_page(self.current_element)
@@ -522,7 +522,7 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
 
         self.database_manager.duplicate_entry(self.current_element)
-        parent_group = self.database_manager.get_parent_group(self.current_element)
+        parent_group = self.current_element.parentgroup
 
         if self.database_manager.check_is_root_group(parent_group) is True:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
@@ -531,7 +531,7 @@ class UnlockedDatabase(GObject.GObject):
                 if button.get_name() == "PathbarButtonDynamic" and isinstance(
                     button, passwordsafe.pathbar_button.PathbarButton
                 ):
-                    if button.uuid == parent_group.uuid:
+                    if button.element.uuid == parent_group.uuid:
                         self.pathbar.on_pathbar_button_clicked(button)
 
         # Remove the parent group from the stack and add it again with
@@ -556,7 +556,7 @@ class UnlockedDatabase(GObject.GObject):
         group_uuid = widget.get_uuid()
 
         self.current_element = self.database_manager.get_group(group_uuid)
-        self.pathbar.add_pathbar_button_to_pathbar(group_uuid)
+        self.pathbar.add_pathbar_button_to_pathbar(self.current_element)
         self.show_page_of_new_directory(True, False)
 
     def send_to_clipboard(self, text):
@@ -871,7 +871,7 @@ class UnlockedDatabase(GObject.GObject):
         if not self.__can_go_back():
             return
 
-        parent_group = db_manager.get_parent_group(self.current_element)
+        parent_group = self.current_element.parentgroup
 
         if db_manager.check_is_root_group(parent_group):
             pathbar = self.pathbar
@@ -881,7 +881,7 @@ class UnlockedDatabase(GObject.GObject):
         for button in self.pathbar:
             if (
                 isinstance(button, pathbar_btn_type)
-                and button.uuid == parent_group.uuid
+                and button.element.uuid == parent_group.uuid
             ):
                 pathbar = self.pathbar
                 pathbar.on_pathbar_button_clicked(button)

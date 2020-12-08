@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Gtk.Button representing a path element in the pathbar"""
-from uuid import UUID
+from typing import Union
+
 from gi.repository import Gtk
+from pykeepass.entry import Entry
+from pykeepass.group import Group
 
 
 class PathbarButton(Gtk.Button):
@@ -11,20 +14,17 @@ class PathbarButton(Gtk.Button):
     .uuid: the UUID of the group or entry
     """
 
-    def __init__(self, uuid: UUID, is_group: bool = False):
+    def __init__(self, element: Union[Entry, Group]):
         Gtk.Button.__init__(self)
         self.set_name("PathbarButtonDynamic")
-        self.is_group = is_group
-        self.uuid: UUID = uuid
 
-    def set_is_group(self):
-        """Mark this button corresponding to a `Group` element"""
-        self.is_group = True
+        self._is_group = isinstance(element, Group)
+        self._element: Union[Entry, Group] = element
 
-    def set_is_entry(self):
-        """Mark this button corresponding to a `Entry` element (default)"""
-        self.is_group = False
+    @property
+    def is_group(self) -> bool:
+        return self._is_group
 
-    def get_is_group(self) -> bool:
-        """Whether we represent a `Group` element, false implies `Entry`"""
-        return self.is_group
+    @property
+    def element(self) -> Union[Entry, Group]:
+        return self._element

@@ -9,7 +9,7 @@
     <property name="vexpand">True</property>
     <property name="transition_type">slide-left</property>
     <child>
-      <object class="GtkGrid" id="password_success_grid">
+      <object class="GtkBox" id="password_success_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="halign">center</property>
@@ -22,10 +22,6 @@
             <property name="pixel_size">100</property>
             <property name="icon_name">emblem-default-symbolic</property>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
         <child>
           <object class="GtkLabel" id="password_success_label">
@@ -37,10 +33,6 @@
               <attribute name="size" value="18000"/>
             </attributes>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton" id="finish_button">
@@ -55,10 +47,6 @@
               <class name="suggested-action"/>
             </style>
           </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">3</property>
-          </packing>
         </child>
       </object>
       <packing>

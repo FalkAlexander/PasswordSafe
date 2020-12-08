@@ -14,6 +14,7 @@ class SaveDialogResponse(Enum):
 
 
 class SaveDialog():
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, window):
         builder = Gtk.Builder()
@@ -41,9 +42,10 @@ class SaveDialog():
         if response == Gtk.ResponseType.NO:
             # clicked 'Discard'. Close, but don't save.
             return SaveDialogResponse.DISCARD
-        elif response == Gtk.ResponseType.YES:
+
+        if response == Gtk.ResponseType.YES:
             # "clicked save". Save changes.
             return SaveDialogResponse.SAVE
-        else:
-            logging.warn("This should be unreachable!")
-            return SaveDialogResponse.CANCEL
+
+        logging.warning("This should be unreachable!")
+        return SaveDialogResponse.CANCEL

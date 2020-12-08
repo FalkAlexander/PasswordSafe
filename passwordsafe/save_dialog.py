@@ -46,5 +46,5 @@ class SaveDialog():
             # "clicked save". Save changes.
             return SaveDialogResponse.SAVE
 
-        logging.warn("This should be unreachable!")
+        logging.warning("This should be unreachable!")
         return SaveDialogResponse.CANCEL

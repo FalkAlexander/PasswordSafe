@@ -403,7 +403,6 @@ class EntryPage:
 
         self.unlocked_database.database_manager.set_entry_attribute(entry, key, value)
         self.add_attribute_property_row(key, value)
-        scrolled_page.is_dirty = True
 
     def on_attribute_remove_button_clicked(self, button):
         entry: Entry = self.unlocked_database.current_element

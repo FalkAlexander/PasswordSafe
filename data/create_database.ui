@@ -400,26 +400,16 @@
           </object>
         </child>
         <child>
-          <object class="GtkBox" id="grid5">
+          <object class="GtkButton" id="generate_keyfile_button">
+            <property name="label" translatable="yes">_Generate</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">10</property>
-            <child>
-              <object class="GtkButton" id="generate_keyfile_button">
-                <property name="label" translatable="yes">_Generate</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_underline">True</property>
-                <property name="halign">center</property>
-                <property name="hexpand">True</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="use_underline">True</property>
+            <property name="halign">center</property>
+            <property name="hexpand">True</property>
             <style>
-              <class name="linked"/>
+              <class name="suggested-action"/>
             </style>
           </object>
         </child>

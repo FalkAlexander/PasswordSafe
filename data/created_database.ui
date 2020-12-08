@@ -16,6 +16,18 @@
         <property name="valign">center</property>
         <property name="orientation">vertical</property>
         <child>
+          <object class="GtkImage" id="password_success_image">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixel_size">100</property>
+            <property name="icon_name">emblem-default-symbolic</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel" id="password_success_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -28,18 +40,6 @@
           <packing>
             <property name="left_attach">1</property>
             <property name="top_attach">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkImage" id="password_success_image">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="pixel_size">100</property>
-            <property name="icon_name">emblem-default-symbolic</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
           </packing>
         </child>
         <child>

@@ -652,7 +652,8 @@ class UnlockedDatabase(GObject.GObject):
         if res == SaveDialogResponse.SAVE:
             self.save_database(True)
             return True
-        elif res == SaveDialogResponse.DISCARD:
+
+        if res == SaveDialogResponse.DISCARD:
             return True
 
         return False

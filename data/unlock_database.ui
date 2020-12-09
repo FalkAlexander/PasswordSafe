@@ -354,6 +354,15 @@
     <property name="margin_bottom">12</property>
     <property name="spacing">25</property>
     <child>
+      <object class="GtkOverlay" id="unlock_database_overlay">
+        <child>
+          <object class="GtkStack" id="unlock_database_stack">
+            <property name="transition_type">crossfade</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
       <object class="GtkStackSwitcher" id="unlock_database_stack_switcher">
         <property name="visible">True</property>
         <property name="can_focus">False</property>

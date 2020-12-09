@@ -79,13 +79,12 @@ class UnlockDatabase:
     #
 
     def _assemble_stack(self):
-        self.overlay = Gtk.Overlay()
+        self.overlay = self.builder.get_object("unlock_database_overlay")
 
         unlock_failed_overlay = self.builder.get_object("unlock_failed_overlay")
         self.overlay.add_overlay(unlock_failed_overlay)
 
-        stack = Gtk.Stack()
-        stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+        stack = self.builder.get_object("unlock_database_stack")
 
         unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
@@ -127,8 +126,6 @@ class UnlockDatabase:
         if passwordsafe.config_manager.get_remember_unlock_method():
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
 
-        self.overlay.add(stack)
-        unlock_database_stack_box.add(self.overlay)
         unlock_database_stack_box.show_all()
 
         # Responsive Container

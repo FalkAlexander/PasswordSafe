@@ -26,10 +26,10 @@ class MainWindow(Handy.ApplicationWindow):
     __gtype_name__ = "MainWindow"
 
     database_manager = NotImplemented
-    container = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
 
+    container = Gtk.Template.Child()
     file_new_button = Gtk.Template.Child()
     file_open_button = Gtk.Template.Child()
     _headerbar = Gtk.Template.Child()
@@ -45,6 +45,11 @@ class MainWindow(Handy.ApplicationWindow):
         self.application = self.get_application()
         self._info_bar = None
         self._info_bar_response_id = None
+        self.welcome_page = WelcomePage()
+        self.recent_files_page = RecentFilesPage()
+
+        self._main_view.add(self.welcome_page)
+        self._main_view.add(self.recent_files_page)
 
         self.assemble_window()
 
@@ -202,31 +207,11 @@ class MainWindow(Handy.ApplicationWindow):
             self.display_welcome_page()
             return
 
-        self._main_view.add(recent_files_page)
+        self._main_view.set_visible_child(self.recent_files_page)
 
     def display_welcome_page(self) -> None:
         """Shown when there is no autoloading and no recent files to display"""
-        welcome_page = WelcomePage()
-        self._main_view.add(welcome_page)
-
-    #
-    # Container Methods (Gtk Notebook holds tabs)
-    #
-
-    def create_container(self):
-        # Remove the first_start_grid if still visible
-        for child in self._main_view.get_children():
-            if child.props.name == "first_start_grid":
-                child.destroy()
-                break
-        self.container = Gtk.Notebook()
-
-        self.container.set_border_width(0)
-        self.container.set_scrollable(True)
-        self.container.set_show_border(False)
-        self.container.connect("switch-page", self.on_tab_switch)
-        self._main_view.add(self.container)
-        self.show_all()
+        self._main_view.set_visible_child(self.welcome_page)
 
     #
     # Open Database Methods
@@ -314,7 +299,7 @@ class MainWindow(Handy.ApplicationWindow):
                 # least don't crash now, this needs better fixing.
                 if first_start_grid is None:
                     return
-                first_child = self._main_view.get_children()[0]
+                first_child = self._main_view.get_visible_child()
                 first_start_grid.attach_next_to(
                     self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
                 return
@@ -341,6 +326,7 @@ class MainWindow(Handy.ApplicationWindow):
         headerbar = builder.get_object("headerbar")
         tab_title: str = os.path.basename(filepath)
         UnlockDatabase(self, self.create_tab(tab_title, headerbar), filepath)
+        self._main_view.set_visible_child(self.container)
 
     #
     # Create Database Methods
@@ -378,17 +364,8 @@ class MainWindow(Handy.ApplicationWindow):
         if response == Gtk.ResponseType.ACCEPT:
             filepath = filechooser_creation_dialog.get_filename()
 
-            # Remove first_start_grid and attach the spinner
-            for child in self._main_view.get_children():
-                if child.props.name == "first_start_grid":
-                    child.destroy()
-                    break
-
-            if self._main_view.get_children():
-                if self._main_view.get_children()[0] is not self.container:
-                    self._main_view.add(self._spinner)
-            else:
-                self._main_view.add(self._spinner)
+            self._spinner.start()
+            self._main_view.set_visible_child(self._spinner)
 
             creation_thread = threading.Thread(
                 target=self.create_new_database, args=[filepath]
@@ -411,11 +388,8 @@ class MainWindow(Handy.ApplicationWindow):
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
-        for child in self._main_view.get_children():
-            if child.props.name == "spinner":
-                child.destroy()
-                break
-
+        self._main_view.set_visible_child(self.container)
+        self._spinner.stop()
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/create_database_headerbar.ui")
@@ -431,9 +405,6 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     def create_tab(self, title, headerbar):
-        if self.container == NotImplemented:
-            self.create_container()
-
         page_instance = ContainerPage(headerbar, Gio.Application.get_default().development_mode)
 
         tab_hbox = Gtk.Box.new(False, 0)
@@ -464,16 +435,9 @@ class MainWindow(Handy.ApplicationWindow):
             self.container.set_show_tabs(False)
 
         if not self.container.get_n_pages():
-            self.container.hide()
-            self._main_view.remove(self.container)
             self.display_recent_files_list()
         elif not self.container.is_visible():
-            for child in self._main_view.get_children():
-                if child.props.name == "first_start_grid":
-                    child.destroy()
-                    break
-            self._main_view.add(self.container)
-            self.container.show_all()
+            self._main_view.set_visible_child(self.container)
 
     def close_tab(self, child_widget, database=None):
         """Remove a tab from the container.

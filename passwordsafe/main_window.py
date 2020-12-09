@@ -23,7 +23,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
     database_manager = NotImplemented
     container = NotImplemented
-    headerbar = NotImplemented
+    _headerbar = NotImplemented
     file_open_button = NotImplemented
     file_new_button = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
@@ -60,7 +60,7 @@ class MainWindow(Gtk.ApplicationWindow):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
 
-        self.headerbar = builder.get_object("headerbar")
+        self._headerbar = builder.get_object("_headerbar")
 
         self.file_open_button = builder.get_object("open_button")
         self.file_open_button.connect("clicked", self.open_filechooser)
@@ -70,7 +70,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.set_headerbar_button_layout()
 
-        self.set_titlebar(self.headerbar)
+        self.set_titlebar(self._headerbar)
 
         if Gio.Application.get_default().development_mode is True:
             context = self.get_style_context()
@@ -78,10 +78,10 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def set_headerbar(self):
         self.set_headerbar_button_layout()
-        self.set_titlebar(self.headerbar)
+        self.set_titlebar(self._headerbar)
 
     def get_headerbar(self):
-        return self.headerbar
+        return self._headerbar
 
     #
     # Styles

@@ -130,10 +130,12 @@ class EntryRow(Gtk.ListBoxRow):
 
     def on_entry_copy_pass_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(
-            self.db_manager.get_entry_password(self.entry_uuid)
+            self.db_manager.get_entry_password(self.entry_uuid),
+            _("Password copied to clipboard"),
         )
 
     def on_entry_copy_user_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(
-            self.db_manager.get_entry_username(self.entry_uuid)
+            self.db_manager.get_entry_username(self.entry_uuid),
+            _("Username copied to clipboard"),
         )

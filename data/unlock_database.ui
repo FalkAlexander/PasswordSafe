@@ -280,6 +280,37 @@
       </packing>
     </child>
     <child>
+      <object class="GtkLabel" id="password_unlock_header_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Safe is Locked</property>
+        <property name="ellipsize">middle</property>
+        <attributes>
+          <attribute name="weight" value="normal"/>
+          <attribute name="size" value="18000"/>
+        </attributes>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkLabel" id="password_unlock_description_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Enter password to unlock</property>
+        <property name="wrap">True</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">2</property>
+      </packing>
+    </child>
+    <child>
       <object class="GtkBox" id="password_unlock_input_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
@@ -326,37 +357,6 @@
       <packing>
         <property name="left_attach">0</property>
         <property name="top_attach">3</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="password_unlock_description_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="label" translatable="yes">Enter password to unlock</property>
-        <property name="wrap">True</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-      </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">2</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkLabel" id="password_unlock_header_label">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="label" translatable="yes">Safe is Locked</property>
-        <property name="ellipsize">middle</property>
-        <attributes>
-          <attribute name="weight" value="normal"/>
-          <attribute name="size" value="18000"/>
-        </attributes>
-      </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">1</property>
       </packing>
     </child>
   </object>

@@ -83,9 +83,6 @@ class UnlockDatabase:
     def _assemble_stack(self):
         self.overlay = self.builder.get_object("unlock_database_overlay")
 
-        unlock_failed_overlay = self.builder.get_object("unlock_failed_overlay")
-        self.overlay.add_overlay(unlock_failed_overlay)
-
         stack = self.builder.get_object("unlock_database_stack")
 
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
@@ -487,19 +484,6 @@ class UnlockDatabase:
         password_unlock_entry.set_text("")
         composite_unlock_entry.set_text("")
 
-    def _show_unlock_failed_revealer(self):
-        self.builder.get_object("unlock_failed_box")
-
-        unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
-        unlock_failed_revealer.set_reveal_child(True)
-        revealer_timer = threading.Timer(
-            3.0, GLib.idle_add, args=[self._hide_unlock_failed_revealer])
-        revealer_timer.start()
-
-    def _hide_unlock_failed_revealer(self):
-        unlock_failed_revealer = self.builder.get_object("unlock_failed_revealer")
-        unlock_failed_revealer.set_reveal_child(False)
-
     def _on_database_locked_changed(self, _database_manager=None, _value=None):
         if (not self.database_manager
             or (self.database_manager
@@ -512,7 +496,7 @@ class UnlockDatabase:
             self._assemble_stack()
 
     def _composite_unlock_failed(self):
-        self._show_unlock_failed_revealer()
+        self.window.notify(_("Failed to unlock safe"))
 
         if self.database_manager:
             self.database_manager.keyfile_hash = NotImplemented
@@ -532,7 +516,7 @@ class UnlockDatabase:
         logging.debug("Could not open database, wrong password")
 
     def _keyfile_unlock_failed(self):
-        self._show_unlock_failed_revealer()
+        self.window.notify(_("Failed to unlock safe"))
 
         if self.database_manager:
             self.database_manager.keyfile_hash = NotImplemented
@@ -546,7 +530,7 @@ class UnlockDatabase:
         logging.debug("Invalid keyfile chosen")
 
     def _password_unlock_failed(self):
-        self._show_unlock_failed_revealer()
+        self.window.notify(_("Failed to unlock safe"))
 
         password_unlock_entry = self.builder.get_object(
             "password_unlock_entry")

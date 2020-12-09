@@ -327,7 +327,7 @@ class MainWindow(Handy.ApplicationWindow):
                     database_already_opened = True
                     page_num = self.container.page_num(database.parent_widget)
                     self.container.set_current_page(page_num)
-                    database.show_database_action_revealer("Safe already opened")
+                    self.notify(_("Safe already opened"))
 
             if database_already_opened is False:
                 self.start_database_opening_routine(db_filename)

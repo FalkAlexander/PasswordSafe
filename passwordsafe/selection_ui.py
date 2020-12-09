@@ -150,7 +150,7 @@ class SelectionUI(Gtk.Box):
             root_group = self.unlocked_database.database_manager.get_root_group()
             self.unlocked_database.current_element = root_group
 
-        self.unlocked_database.show_database_action_revealer(_("Deletion completed"))
+        self.unlocked_database.window.notify(_("Deletion completed"))
 
         self.entries_selected.clear()
         self.groups_selected.clear()
@@ -232,9 +232,9 @@ class SelectionUI(Gtk.Box):
                 self.unlocked_database.current_element)
 
         if move_conflict is False:
-            self.unlocked_database.show_database_action_revealer(_("Move completed"))
+            self.unlocked_database.window.notify(_("Move completed"))
         else:
-            self.unlocked_database.show_database_action_revealer(_("Skipped moving group into itself"))
+            self.unlocked_database.window.notify(_("Skipped moving group into itself"))
 
         self.entries_cut.clear()
         self.groups_cut.clear()

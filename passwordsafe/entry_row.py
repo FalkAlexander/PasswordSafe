@@ -53,7 +53,8 @@ class EntryRow(Gtk.ListBoxRow):
         entry_icon = self.builder.get_object("entry_icon")
         entry_name_label = self.builder.get_object("entry_name_label")
         entry_subtitle_label = self.builder.get_object("entry_subtitle_label")
-        entry_copy_button = self.builder.get_object("entry_copy_button")
+        entry_copy_pass_button = self.builder.get_object("entry_copy_pass_button")
+        entry_copy_user_button = self.builder.get_object("entry_copy_user_button")
 
         # Icon
         icon_name: str = passwordsafe.icon.get_icon_name(self.icon)
@@ -70,7 +71,8 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             entry_subtitle_label.set_markup("<span font-style=\"italic\">" + _("No username specified") + "</span>")
 
-        entry_copy_button.connect("clicked", self.on_entry_copy_button_clicked)
+        entry_copy_pass_button.connect("clicked", self.on_entry_copy_pass_button_clicked)
+        entry_copy_user_button.connect("clicked", self.on_entry_copy_user_button_clicked)
 
         # Color Button
         image_style = entry_icon.get_style_context()
@@ -126,7 +128,14 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             self.unlocked_database.selection_ui.remove_entry(self)
 
-    def on_entry_copy_button_clicked(self, _button):
+    def on_entry_copy_pass_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(
-            self.db_manager.get_entry_password(self.entry_uuid)
+            self.db_manager.get_entry_password(self.entry_uuid),
+            _("Password copied to clipboard"),
+        )
+
+    def on_entry_copy_user_button_clicked(self, _button):
+        self.unlocked_database.send_to_clipboard(
+            self.db_manager.get_entry_username(self.entry_uuid),
+            _("Username copied to clipboard"),
         )

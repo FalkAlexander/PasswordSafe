@@ -47,6 +47,8 @@
             <property name="can_focus">False</property>
             <property name="hexpand">True</property>
             <property name="halign">end</property>
+            <property name="margin_start">6</property>
+            <property name="margin_end">6</property>
             <child>
               <object class="GtkButton" id="group_edit_button">
                 <property name="name">ListBoxRowButton</property>
@@ -55,8 +57,6 @@
                 <property name="receives_default">True</property>
                 <property name="halign">end</property>
                 <property name="valign">center</property>
-                <property name="margin_start">5</property>
-                <property name="margin_end">8</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>

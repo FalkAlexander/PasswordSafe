@@ -559,7 +559,7 @@ class UnlockedDatabase(GObject.GObject):
         self.pathbar.add_pathbar_button_to_pathbar(self.current_element)
         self.show_page_of_new_directory(True, False)
 
-    def send_to_clipboard(self, text):
+    def send_to_clipboard(self, text, message=_("Copied to clipboard")):
         # pylint: disable=too-many-branches
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:
@@ -574,7 +574,7 @@ class UnlockedDatabase(GObject.GObject):
                 uuid = UUID(self.reference_to_hex_uuid(ref.group()))
             except Exception:  # pylint: disable=broad-except
                 # TODO: find out which Exceptions could
-                # reasonablyoccur and only protect against these.
+                # reasonably happen and only protect against these.
                 not_valid = True
 
             value = NotImplemented
@@ -611,7 +611,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.clipboard.set_text(replace_string, -1)
 
-        self.show_database_action_revealer(_("Copied to clipboard"))
+        self.show_database_action_revealer(message)
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer = Timer(
             clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard]

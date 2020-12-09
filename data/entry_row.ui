@@ -80,22 +80,44 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="entry_copy_button">
-            <property name="name">ListBoxRowButton</property>
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="halign">end</property>
             <property name="valign">center</property>
-            <property name="margin_start">5</property>
-            <property name="margin_end">8</property>
+            <property name="margin_start">6</property>
+            <property name="margin_end">6</property>
             <child>
-              <object class="GtkImage">
+              <object class="GtkButton" id="entry_copy_user_button">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">edit-copy-symbolic</property>
+                <property name="can_focus">True</property>
+                <property name="tooltip_text" translatable="yes">Copy username to clipboard</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">avatar-default-symbolic</property>
+                  </object>
+                </child>
               </object>
             </child>
+            <child>
+              <object class="GtkButton" id="entry_copy_pass_button">
+                <property name="name">ListBoxRowButton</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="icon_name">dialog-password-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <style>
+              <class name="linked"/>
+            </style>
           </object>
           <packing>
             <property name="pack_type">end</property>

@@ -88,21 +88,6 @@ class UnlockDatabase:
 
         unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
-        self.unlock_database_stack_switcher.set_stack(stack)
-
-        password_unlock_stack_page = self.builder.get_object("password_unlock_stack_page")
-        keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")
-        composite_unlock_stack_page = self.builder.get_object("composite_unlock_stack_page")
-
-        stack.add_titled(password_unlock_stack_page, "password_unlock", _("Password"))
-        stack.child_set_property(password_unlock_stack_page, "icon-name", "input-dialpad-symbolic")
-
-        stack.add_titled(keyfile_unlock_stack_page, "keyfile_unlock", _("Keyfile"))
-        stack.child_set_property(keyfile_unlock_stack_page, "icon-name", "mail-attachment-symbolic")
-
-        # NOTE: Composite unlock is a authentication method where both password and keyfile are required
-        stack.add_titled(composite_unlock_stack_page, "composite_unlock", _("Composite"))
-        stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_filepath).get_uri()
@@ -125,8 +110,6 @@ class UnlockDatabase:
 
         if passwordsafe.config_manager.get_remember_unlock_method():
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
-
-        unlock_database_stack_box.show_all()
 
         # Responsive Container
         self.hdy_page = Handy.Clamp()

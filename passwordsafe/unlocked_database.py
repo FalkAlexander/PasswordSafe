@@ -2,8 +2,6 @@
 from __future__ import annotations
 
 import logging
-import ntpath
-import os
 import re
 import threading
 import time
@@ -676,16 +674,8 @@ class UnlockedDatabase(GObject.GObject):
     def lock_timeout_database(self):
         self.database_manager.props.locked = True
 
-        # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-        self.send_notification(
-            _("%s locked")
-            % (
-                os.path.splitext(ntpath.basename(self.database_manager.database_path))[
-                    0
-                ]
-            ),
-            _("Keepass safe locked due to inactivity"),
-        )
+        # NOTE: Notification that a safe has been locked.
+        self.window.notify(_("Safe locked due to inactivity"))
 
     #
     # Helper Methods
@@ -760,11 +750,6 @@ class UnlockedDatabase(GObject.GObject):
                 timeout, GLib.idle_add, args=[self.lock_timeout_database]
             )
             self.database_lock_timer.start()
-
-    def send_notification(self, title, text):
-        notification = Gio.Notification.new(title)
-        notification.set_body(text)
-        self.window.application.send_notification(None, notification)
 
     def start_save_loop(self):
         self.save_loop = True

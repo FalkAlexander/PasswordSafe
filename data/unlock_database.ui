@@ -262,11 +262,12 @@
       </packing>
     </child>
   </object>
-  <object class="GtkGrid" id="password_unlock_stack_page">
+  <object class="GtkBox" id="password_unlock_stack_page">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="valign">end</property>
     <property name="vexpand">True</property>
+    <property name="orientation">vertical</property>
     <child>
       <object class="GtkImage" id="password_unlock_image">
         <property name="visible">True</property>
@@ -274,10 +275,6 @@
         <property name="pixel_size">100</property>
         <property name="icon_name">dialog-password-symbolic</property>
       </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">0</property>
-      </packing>
     </child>
     <child>
       <object class="GtkLabel" id="password_unlock_header_label">
@@ -290,10 +287,6 @@
           <attribute name="size" value="18000"/>
         </attributes>
       </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">1</property>
-      </packing>
     </child>
     <child>
       <object class="GtkLabel" id="password_unlock_description_label">
@@ -305,10 +298,6 @@
           <class name="dim-label"/>
         </style>
       </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">2</property>
-      </packing>
     </child>
     <child>
       <object class="GtkBox" id="password_unlock_input_box">
@@ -354,10 +343,6 @@
           <class name="linked"/>
         </style>
       </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">3</property>
-      </packing>
     </child>
   </object>
   <object class="GtkBox" id="unlock_database_stack_box">

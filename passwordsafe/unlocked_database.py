@@ -117,15 +117,11 @@ class UnlockedDatabase(GObject.GObject):
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
-        self.overlay = Gtk.Overlay()
-        self.parent_widget.add(self.overlay)
-
-        # contains the "main page" with the stack and the revealer inside
+        # Contains the "main page" with the BrowserListBox.
         self.divider = self.builder.get_object("divider")
-        self.overlay.add(self.divider)
-        self.overlay.show_all()
         self._unlocked_db_stack.add_named(self.search.scrolled_page, "search")
         self.search.scrolled_page.show_all()
+        self.parent_widget.add(self.divider)
 
         self.search.initialize()
         self._update_headerbar()
@@ -664,11 +660,11 @@ class UnlockedDatabase(GObject.GObject):
                 if passwordsafe.config_manager.get_save_automatically():
                     self.save_database()
 
-            self.overlay.hide()
+            self.divider.hide()
         else:
             self._update_headerbar()
             self.start_save_loop()
-            self.overlay.show()
+            self.divider.show()
             self.start_database_lock_timer()
 
     def lock_timeout_database(self):

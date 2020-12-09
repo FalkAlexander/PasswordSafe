@@ -8,7 +8,7 @@ from gettext import gettext as _
 from pathlib import Path
 from typing import Optional
 
-from gi.repository import Gio, GLib, Gtk, Handy, Pango
+from gi.repository import Gio, GLib, Gtk, Pango
 from pykeepass.exceptions import (
     CredentialsError,
     HeaderChecksumError,
@@ -86,7 +86,6 @@ class UnlockDatabase:
 
         stack = self.builder.get_object("unlock_database_stack")
 
-        unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
@@ -112,12 +111,7 @@ class UnlockDatabase:
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
 
         # Responsive Container
-        self.hdy_page = Handy.Clamp()
-        # TODO Move these to the GtkBox that contains it in the ui file.
-        self.hdy_page.set_margin_start(18)
-        self.hdy_page.set_margin_end(18)
-        self.hdy_page.set_maximum_size(300)
-        self.hdy_page.add(unlock_database_stack_box)
+        self.hdy_page = self.builder.get_object("unlock_database_clamp")
         self.hdy_page.show_all()
 
         self.parent_widget.add(self.hdy_page)

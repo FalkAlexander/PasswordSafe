@@ -81,8 +81,6 @@ class UnlockDatabase:
     #
 
     def _assemble_stack(self):
-        self.overlay = self.builder.get_object("unlock_database_overlay")
-
         stack = self.builder.get_object("unlock_database_stack")
 
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")

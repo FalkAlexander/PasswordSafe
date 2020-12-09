@@ -574,7 +574,7 @@ class UnlockedDatabase(GObject.GObject):
                 uuid = UUID(self.reference_to_hex_uuid(ref.group()))
             except Exception:  # pylint: disable=broad-except
                 # TODO: find out which Exceptions could
-                # reasonablyoccur and only protect against these.
+                # reasonably happen and only protect against these.
                 not_valid = True
 
             value = NotImplemented

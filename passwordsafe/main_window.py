@@ -13,6 +13,7 @@ from passwordsafe.container_page import ContainerPage
 from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
+from passwordsafe.notification import Notification
 from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.unlock_database import UnlockDatabase
@@ -30,9 +31,11 @@ class MainWindow(Handy.ApplicationWindow):
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
     _filechooser = None
+    _notification = Notification()
 
     container = Gtk.Template.Child()
     _headerbar = Gtk.Template.Child()
+    _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     new_file_button = Gtk.Template.Child()
     new_file_stack = Gtk.Template.Child()
@@ -54,11 +57,15 @@ class MainWindow(Handy.ApplicationWindow):
 
         self._main_view.add(self.welcome_page)
         self._main_view.add(self.recent_files_page)
+        self._main_overlay.add_overlay(self._notification)
 
         self.assemble_window()
 
         if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
+
+    def notify(self, notification: str) -> None:
+        self._notification.notify(notification)
 
     def set_titlebar(self, headerbar: Handy.Headebar) -> None:
         if headerbar not in self._title_stack.get_children():

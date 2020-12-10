@@ -442,12 +442,8 @@ class UnlockedDatabase(GObject.GObject):
     def rebuild_all_pages(self):
         # FIXME find a more elegant way to do this without
         # obliterating everything.
-        search_page = self._stack.get_child_by_name("search")
         for page in self._stack.get_children():
-            if (
-                    page.check_is_edit_page() is False
-                    and search_page != page
-            ):
+            if page.check_is_edit_page() is False:
                 page.destroy()
 
         self.show_page_of_new_directory(False, False)

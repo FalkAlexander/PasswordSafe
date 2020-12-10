@@ -111,6 +111,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.pathbar = Pathbar(self, self.database_manager)
         self._stack = self.builder.get_object("list_stack")
+        self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
         self.revealer = self.builder.get_object("revealer")
         self.action_bar = self.builder.get_object("action_bar")
 
@@ -129,7 +130,7 @@ class UnlockedDatabase(GObject.GObject):
         self.divider = self.builder.get_object("divider")
         self.overlay.add(self.divider)
         self.overlay.show_all()
-        self.add_page(self.search.scrolled_page, "search")
+        self._unlocked_db_stack.add_named(self.search.scrolled_page, "search")
         self.search.scrolled_page.show_all()
 
         self.search.initialize()
@@ -909,8 +910,9 @@ class UnlockedDatabase(GObject.GObject):
         """
         self._search_active = value
         if self._search_active:
-            self._stack.set_visible_child(self._stack.get_child_by_name("search"))
+            self._unlocked_db_stack.set_visible_child_name("search")
         else:
+            self._unlocked_db_stack.set_visible_child_name("browser")
             self.show_page_of_new_directory(False, False)
 
         self._update_headerbar()

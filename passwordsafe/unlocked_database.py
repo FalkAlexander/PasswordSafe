@@ -129,6 +129,8 @@ class UnlockedDatabase(GObject.GObject):
         self.divider = self.builder.get_object("divider")
         self.overlay.add(self.divider)
         self.overlay.show_all()
+        self.add_page(self.search.scrolled_page, "search")
+        self.search.scrolled_page.show_all()
 
         self.search.initialize()
         self._update_headerbar()

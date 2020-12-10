@@ -124,8 +124,6 @@ class Search:
         self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
 
         self.scrolled_page.add(self._overlay)
-        self.scrolled_page.show_all()
-        self.unlocked_database.add_page(self.scrolled_page, "search")
 
     def _display_info_overlay(self) -> bool:
         """When search-mode is activated the search text has not been

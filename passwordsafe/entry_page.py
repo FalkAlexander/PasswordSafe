@@ -550,9 +550,7 @@ class EntryPage:
 
     def on_attachment_delete_button_clicked(self, _button, attachment, attachment_row):
         entry = self.unlocked_database.current_element
-        self.unlocked_database.database_manager.delete_entry_attachment(
-            entry.uuid, attachment
-        )
+        self.unlocked_database.database_manager.delete_entry_attachment(attachment)
         attachment_row.destroy()
 
         builder = Gtk.Builder()

@@ -522,11 +522,9 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
         return attachment
 
-    def delete_entry_attachment(self, uuid, attachment):
-        entry = self.db.find_entries(uuid=uuid, first=True)
+    def delete_entry_attachment(self, attachment):
         try:
             self.db.delete_binary(attachment.id)
-            entry.delete_attachment(attachment)
         except Exception:  # pylint: disable=broad-except
             logging.warning("Failed to delete attachment.")
         self.is_dirty = True

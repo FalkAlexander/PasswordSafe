@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-11-26 13:24+0000\n"
-"PO-Revision-Date: 2020-11-27 10:36+0100\n"
+"POT-Creation-Date: 2020-12-10 23:51+0000\n"
+"PO-Revision-Date: 2020-12-11 15:07+0100\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -120,7 +120,7 @@ msgstr "Veuillez réessayer"
 
 #. Button to generate a password
 #: data/create_database.ui:789 data/password_generator_popover.ui:265
-#: passwordsafe/create_database.py:243
+#: passwordsafe/create_database.py:242
 #: passwordsafe/database_settings_dialog.py:228
 msgid "Generate"
 msgstr "Générer"
@@ -173,6 +173,10 @@ msgstr "Coffre-fort créé"
 #: data/unlocked_database.ui:521
 msgid "Open Safe"
 msgstr "Ouvrir le coffre-fort"
+
+#: data/color_entry_row.ui:23
+msgid "Color"
+msgstr "Couleur"
 
 #: data/database_settings_dialog.ui:64
 msgid "Details"
@@ -1001,11 +1005,6 @@ msgctxt "Shortcut window description"
 msgid "Exit entry page"
 msgstr "Quitter page d’entrée"
 
-#: data/shortcuts_overview.ui:107
-msgctxt "Shortcut window description"
-msgid "Navigate to parent group"
-msgstr "Se rendre au groupe parent"
-
 #: data/unlock_database.ui:28
 msgid "Enter password and select keyfile to unlock"
 msgstr ""
@@ -1139,12 +1138,12 @@ msgid "Select none"
 msgstr "Ne rien sélectionner"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:241
+#: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:227
 msgid "Choose location for keyfile"
 msgstr "Choisissez l’emplacement du fichier-clé"
 
-#: passwordsafe/create_database.py:254
+#: passwordsafe/create_database.py:253
 msgid "Generating…"
 msgstr "Génération en cours…"
 
@@ -1297,3 +1296,6 @@ msgstr "%s verrouillé"
 msgid "Keepass safe locked due to inactivity"
 msgstr "Le coffre-fort Keepass a été verrouillé par inactivité"
 
+#~ msgctxt "Shortcut window description"
+#~ msgid "Navigate to parent group"
+#~ msgstr "Se rendre au groupe parent"

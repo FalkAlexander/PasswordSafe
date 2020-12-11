@@ -217,8 +217,7 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.set_name("BrowserListBox")
                 list_box.set_valign(Gtk.Align.START)
 
-                hdy_browser = Handy.Clamp()
-                hdy_browser.add(list_box)
+                hdy_browser = builder.get_object("browser_clamp")
                 overlay.add(hdy_browser)
 
                 scrolled_window.add(overlay)

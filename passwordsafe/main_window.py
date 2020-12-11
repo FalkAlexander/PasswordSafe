@@ -325,7 +325,10 @@ class MainWindow(Gtk.ApplicationWindow):
             db_gfile = Gio.File.new_for_path(db_filename)
             try:
                 db_file_info = db_gfile.query_info(
-                    "standard::content-type", Gio.FileQueryInfoFlags.NONE, None
+                    # https://gitlab.gnome.org/GNOME/gvfs/-/issues/529
+                    # we can remove standard::content-type when the fix
+                    # is merged in distros' gvfs version.
+                    "standard::content-type,standard::fast-content-type", Gio.FileQueryInfoFlags.NONE, None
                 )
             except GLib.Error as e:  # pylint: disable=C0103
                 logging.debug(
@@ -333,7 +336,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 )
                 return
 
-            file_content_type = db_file_info.get_content_type()
+            file_content_type = db_file_info.get_attribute_as_string("standard::fast-content-type")
             file_mime_type = Gio.content_type_get_mime_type(file_content_type)
             if file_mime_type not in supported_mime_types:
                 logging.debug(

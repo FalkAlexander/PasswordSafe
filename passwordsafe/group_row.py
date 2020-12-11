@@ -70,11 +70,6 @@ class GroupRow(Gtk.ListBoxRow):
         db_view.start_database_lock_timer()
 
         button: int = gesture.get_current_button()
-        if button == 1:
-            group = db_view.database_manager.get_group(self.get_uuid())
-            db_view.show_element(group)
-            return True
-
         if (button == 3
                 and not db_view.props.search_active):
             if db_view.props.selection_mode:

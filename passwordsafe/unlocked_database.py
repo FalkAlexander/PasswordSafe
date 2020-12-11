@@ -213,10 +213,6 @@ class UnlockedDatabase(GObject.GObject):
                 scrolled_window = ScrolledPage(False)
                 overlay = Gtk.Overlay()
 
-                # Responsive Container
-                list_box.set_name("BrowserListBox")
-                list_box.set_valign(Gtk.Align.START)
-
                 hdy_browser = builder.get_object("browser_clamp")
                 overlay.add(hdy_browser)
 

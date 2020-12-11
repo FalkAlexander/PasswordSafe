@@ -8,55 +8,31 @@ class GroupPage(Gtk.ScrolledWindow):
 
     __gtype_name__ = "GroupPage"
 
-    #
-    # Global Variables
-    #
-
-    unlocked_database = NotImplemented
-
-    #
-    # Init
-    #
     name_property_value_entry = Gtk.Template.Child()
     notes_property_value_entry = Gtk.Template.Child()
 
     edit_page = True
     is_dirty = False
 
-    def __init__(self, u_d):
+    def __init__(self, unlocked_database):
         super().__init__()
 
-        self.unlocked_database = u_d
-        self.insert_group_properties_into_listbox()
+        self.unlocked_database = unlocked_database
 
-    #
-    # Create Property Rows
-    #
-
-    def insert_group_properties_into_listbox(self):
         group = self.unlocked_database.current_element
 
         self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-
-        self.notes_property_value_entry.set_buffer(HistoryTextBuffer([]))
-        buffer = self.notes_property_value_entry.get_buffer()
-
         name = self.unlocked_database.database_manager.get_group_name(group)
         self.name_property_value_entry.set_text(name)
-
         self.name_property_value_entry.grab_focus()
         self.name_property_value_entry.connect(
             "changed", self.on_property_value_group_changed, "name")
 
+        notes_buffer = HistoryTextBuffer([])
+        self.notes_property_value_entry.set_buffer(notes_buffer)
         notes = self.unlocked_database.database_manager.get_notes(group)
-        buffer.set_text(notes)
-        buffer.connect("changed", self.on_property_value_group_changed, "notes")
-
-        self.name_property_value_entry.grab_focus()
-
-    #
-    # Events
-    #
+        notes_buffer.set_text(notes)
+        notes_buffer.connect("changed", self.on_property_value_group_changed, "notes")
 
     def on_property_value_group_changed(self, widget, name):
         self.unlocked_database.start_database_lock_timer()

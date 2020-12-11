@@ -211,12 +211,9 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.connect("row-activated", self.on_list_box_row_activated)
 
                 scrolled_window = ScrolledPage(False)
-                overlay = Gtk.Overlay()
 
-                hdy_browser = builder.get_object("browser_clamp")
-                overlay.add(hdy_browser)
-
-                scrolled_window.add(overlay)
+                hdy_clamp = builder.get_object("browser_clamp")
+                scrolled_window.add(hdy_clamp)
                 scrolled_window.show_all()
 
                 self.add_page(scrolled_window, self.current_element.uuid.urn)
@@ -225,7 +222,7 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.hide()
 
                 self.listbox_insert_thread = threading.Thread(
-                    target=self.insert_groups_into_listbox, args=(list_box, overlay)
+                    target=self.insert_groups_into_listbox, args=(list_box, hdy_clamp)
                 )
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()

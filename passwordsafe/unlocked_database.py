@@ -166,14 +166,7 @@ class UnlockedDatabase(GObject.GObject):
 
         # Creation of group edit page
         if edit_group is True:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
-            scrolled_window = ScrolledPage(True)
-
-            # Responsive Container
-            hdy_page = GroupPage(self)
-            scrolled_window.add(hdy_page)
-            scrolled_window.show_all()
+            scrolled_window = GroupPage(self)
 
             stack_page_uuid = self.current_element.uuid
             if self._stack.get_child_by_name(stack_page_uuid.urn) is not None:

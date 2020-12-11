@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Gtk
+from gi.repository import Gtk, Handy
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
+from passwordsafe.scrolled_page import ScrolledPage
 
 
-class GroupPage:
+class GroupPage(Handy.Clamp):
     #
     # Global Variables
     #
@@ -15,17 +16,27 @@ class GroupPage:
     #
 
     def __init__(self, u_d):
+        super().__init__()
+
         self.unlocked_database = u_d
+        self.insert_group_properties_into_listbox()
 
     #
     # Create Property Rows
     #
 
-    def insert_group_properties_into_listbox(self, properties_list_box):
+    def insert_group_properties_into_listbox(self):
+        self.set_margin_top(18)
+        self.set_margin_bottom(18)
+        self.set_margin_start(12)
+        self.set_margin_end(12)
+
         group = self.unlocked_database.current_element
 
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
+
+        properties_list_box = builder.get_object("properties_list_box")
 
         name_property_row = builder.get_object("name_property_row")
         name_property_value_entry = builder.get_object("name_property_value_entry")
@@ -48,6 +59,8 @@ class GroupPage:
 
         properties_list_box.add(name_property_row)
         properties_list_box.add(notes_property_row)
+
+        self.add(properties_list_box)
 
         name_property_value_entry.grab_focus()
 

@@ -10,7 +10,7 @@ from threading import Timer
 from typing import List, Optional, Union
 from uuid import UUID
 
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 import passwordsafe.config_manager
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
@@ -73,7 +73,6 @@ class UnlockedDatabase(GObject.GObject):
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
         self.search: Search = Search(self)
-        self.group_page: GroupPage = GroupPage(self)
         self.custom_keypress_handler: CustomKeypressHandler = CustomKeypressHandler(
             self
         )
@@ -170,17 +169,9 @@ class UnlockedDatabase(GObject.GObject):
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
             scrolled_window = ScrolledPage(True)
-            scrolled_window.properties_list_box = builder.get_object(
-                "properties_list_box"
-            )
 
             # Responsive Container
-            hdy_page = Handy.Clamp()
-            hdy_page.set_margin_top(18)
-            hdy_page.set_margin_bottom(18)
-            hdy_page.set_margin_start(12)
-            hdy_page.set_margin_end(12)
-            hdy_page.add(scrolled_window.properties_list_box)
+            hdy_page = GroupPage(self)
             scrolled_window.add(hdy_page)
             scrolled_window.show_all()
 
@@ -191,9 +182,6 @@ class UnlockedDatabase(GObject.GObject):
 
             self.add_page(scrolled_window, self.current_element.uuid.urn)
             self.switch_page(self.current_element)
-            self.group_page.insert_group_properties_into_listbox(
-                scrolled_window.properties_list_box
-            )
             self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif (

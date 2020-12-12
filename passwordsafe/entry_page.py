@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
-from gi.repository import Gio, GLib, GObject, Gtk
+from typing import List
+
+from gi.repository import Gio, GLib, GObject, Gtk, Handy
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import Color, ColorEntryRow
@@ -19,7 +21,7 @@ if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
 
-class EntryPage:
+class EntryPage(Gtk.ScrolledWindow):
     # pylint: disable=too-many-public-methods
     #
     # Global Variables
@@ -28,18 +30,78 @@ class EntryPage:
     unlocked_database = NotImplemented
     _pwd_popover = NotImplemented
 
+    is_dirty = False
+    edit_page = True
+
+    all_properties_revealed = False
+    show_all_properties_button = NotImplemented
+
+    properties_list_box = NotImplemented
+
+    name_property_row = NotImplemented
+    name_property_value_entry = NotImplemented
+
+    username_property_row = NotImplemented
+    username_property_value_entry = NotImplemented
+
+    password_property_row = NotImplemented
+
+    url_property_row = NotImplemented
+    url_property_value_entry = NotImplemented
+
+    notes_property_row = NotImplemented
+    notes_property_value_entry = NotImplemented
+
+    icon_property_row = NotImplemented
+    mail_icon_button = NotImplemented
+    profile_icon_button = NotImplemented
+    network_profile_button = NotImplemented
+    key_button = NotImplemented
+    terminal_icon_button = NotImplemented
+    setting_icon_button = NotImplemented
+    folder_icon_button = NotImplemented
+    harddrive_icon_button = NotImplemented
+    wifi_icon_button = NotImplemented
+    desktop_icon_button = NotImplemented
+
+    color_property_row = NotImplemented
+
+    attributes_property_row = NotImplemented
+    attributes_key_entry = NotImplemented
+    attributes_value_entry = NotImplemented
+    attributes_add_button = NotImplemented
+    attribute_property_row_list: List[Gtk.ListBoxRow] = []
+
+    attachment_property_row = NotImplemented
+    attachment_list_box = NotImplemented
+
     #
     # Init
     #
 
-    def __init__(self, u_d):
+    def __init__(self, u_d, add_all):
+        super().__init__()
+
         self.unlocked_database = u_d
 
+        self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        self.insert_entry_properties_into_listbox(add_all)
+
+        # Responsive Container
+        hdy_page = Handy.Clamp()
+        hdy_page.set_margin_top(18)
+        hdy_page.set_margin_bottom(18)
+        hdy_page.set_margin_start(12)
+        hdy_page.set_margin_end(12)
+
+        hdy_page.add(self.properties_list_box)
+        self.add(hdy_page)
+        self.show_all()
     #
     # Create Property Rows
     #
 
-    def insert_entry_properties_into_listbox(self, properties_list_box, add_all):
+    def insert_entry_properties_into_listbox(self, add_all):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
         # pylint: disable=too-many-statements
@@ -47,95 +109,99 @@ class EntryPage:
 
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
+        properties_list_box = builder.get_object(
+            "properties_list_box"
+        )
+        self.properties_list_box = properties_list_box
+
         safe_entry: SafeEntry = self.unlocked_database.current_element
-        scrolled_page = self.unlocked_database.get_current_page()
         entry_name = safe_entry.props.name
         if entry_name or add_all:
-            if scrolled_page.name_property_row is NotImplemented:
+            if self.name_property_row is NotImplemented:
                 # Create the name_property_row
-                scrolled_page.name_property_row = builder.get_object("name_property_row")
-                scrolled_page.name_property_value_entry = builder.get_object("name_property_value_entry")
-                scrolled_page.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
+                self.name_property_row = builder.get_object("name_property_row")
+                self.name_property_value_entry = builder.get_object("name_property_value_entry")
+                self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
-            scrolled_page.name_property_value_entry.connect(
+            self.name_property_value_entry.connect(
                 "changed", self.on_property_value_entry_changed
             )
             safe_entry.bind_property(
-                "name", scrolled_page.name_property_value_entry, "text",
+                "name", self.name_property_value_entry, "text",
                 GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
             )
-            properties_list_box.add(scrolled_page.name_property_row)
-            scrolled_page.name_property_value_entry.grab_focus()
+            properties_list_box.add(self.name_property_row)
+            self.name_property_value_entry.grab_focus()
 
         if safe_entry.props.username or add_all:
-            if scrolled_page.username_property_row is NotImplemented:
-                scrolled_page.username_property_row = builder.get_object("username_property_row")
-                scrolled_page.username_property_value_entry = builder.get_object("username_property_value_entry")
-                scrolled_page.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
+            if self.username_property_row is NotImplemented:
+                self.username_property_row = builder.get_object("username_property_row")
+                self.username_property_value_entry = builder.get_object("username_property_value_entry")
+                self.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
                 safe_entry.bind_property(
-                    "username", scrolled_page.username_property_value_entry, "text",
+                    "username", self.username_property_value_entry, "text",
                     GObject.BindingFlags.SYNC_CREATE
                     | GObject.BindingFlags.BIDIRECTIONAL)
                 self.unlocked_database.bind_accelerator(
-                    scrolled_page.username_property_value_entry,
+                    self.username_property_value_entry,
                     "<primary><Shift>b",
                     signal="copy-clipboard")
-                scrolled_page.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
+                self.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
 
-                scrolled_page.username_property_value_entry.connect(
+                self.username_property_value_entry.connect(
                     "icon-press", self._on_copy_secondary_button_clicked)
-                scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed)
-                properties_list_box.add(scrolled_page.username_property_row)
-            elif scrolled_page.username_property_row:
+                self.username_property_value_entry.connect("changed", self.on_property_value_entry_changed)
+                properties_list_box.add(self.username_property_row)
+            elif self.username_property_row:
                 safe_entry.bind_property(
-                    "username", scrolled_page.username_property_value_entry, "text",
+                    "username", self.username_property_value_entry, "text",
                     GObject.BindingFlags.SYNC_CREATE
                     | GObject.BindingFlags.BIDIRECTIONAL)
 
-                scrolled_page.username_property_value_entry.connect(
+                self.username_property_value_entry.connect(
                     "icon-press", self._on_copy_secondary_button_clicked)
 
                 self.unlocked_database.bind_accelerator(
-                    scrolled_page.username_property_value_entry,
+                    self.username_property_value_entry,
                     "<primary><Shift>b",
                     signal="copy-clipboard")
-                scrolled_page.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
-                properties_list_box.add(scrolled_page.username_property_row)
+                self.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
+                properties_list_box.add(self.username_property_row)
 
         if safe_entry.props.password or add_all:
-            if scrolled_page.password_property_row is NotImplemented:
-                scrolled_page.password_property_row = PasswordEntryRow(
+            if self.password_property_row is NotImplemented:
+                self.password_property_row = PasswordEntryRow(
                     self.unlocked_database)
-                properties_list_box.add(scrolled_page.password_property_row)
-            elif scrolled_page.password_property_row:
-                properties_list_box.add(scrolled_page.password_property_row)
+                properties_list_box.add(self.password_property_row)
+            elif self.password_property_row:
+                properties_list_box.add(self.password_property_row)
 
         if safe_entry.props.url or add_all:
-            if scrolled_page.url_property_row is NotImplemented:
-                scrolled_page.url_property_row = builder.get_object("url_property_row")
-                scrolled_page.url_property_value_entry = builder.get_object("url_property_value_entry")
-                scrolled_page.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
+            if self.url_property_row is NotImplemented:
+                self.url_property_row = builder.get_object("url_property_row")
+                self.url_property_value_entry = builder.get_object("url_property_value_entry")
+                self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
                 safe_entry.bind_property(
-                    "url", scrolled_page.url_property_value_entry, "text",
+                    "url", self.url_property_value_entry, "text",
                     GObject.BindingFlags.SYNC_CREATE
                     | GObject.BindingFlags.BIDIRECTIONAL)
-                scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
-                properties_list_box.add(scrolled_page.url_property_row)
-            elif scrolled_page.url_property_row:
+                self.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
+                properties_list_box.add(self.url_property_row)
+            elif self.url_property_row:
                 safe_entry.bind_property(
-                    "url", scrolled_page.url_property_value_entry, "text",
+                    "url", self.url_property_value_entry, "text",
                     GObject.BindingFlags.SYNC_CREATE
                     | GObject.BindingFlags.BIDIRECTIONAL)
 
-                scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
-                scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed)
-                properties_list_box.add(scrolled_page.url_property_row)
+                self.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
+                self.url_property_value_entry.connect("changed", self.on_property_value_entry_changed)
+                properties_list_box.add(self.url_property_row)
 
         if safe_entry.props.notes or add_all:
-            if scrolled_page.notes_property_row is NotImplemented:
-                scrolled_page.notes_property_row = builder.get_object("notes_property_row")
-                scrolled_page.notes_property_value_entry = builder.get_object("notes_property_value_entry")
-                scrolled_page.notes_property_value_entry.get_style_context().add_class("codeview")
+            if self.notes_property_row is NotImplemented:
+                self.notes_property_row = builder.get_object("notes_property_row")
+                self.notes_property_value_entry = builder.get_object("notes_property_value_entry")
+                self.notes_property_value_entry.get_style_context().add_class("codeview")
 
                 builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
@@ -144,11 +210,11 @@ class EntryPage:
                     "notes", textbuffer, "text",
                     GObject.BindingFlags.SYNC_CREATE
                     | GObject.BindingFlags.BIDIRECTIONAL)
-                scrolled_page.notes_property_value_entry.set_buffer(textbuffer)
-                properties_list_box.add(scrolled_page.notes_property_row)
-            elif scrolled_page.notes_property_row:
+                self.notes_property_value_entry.set_buffer(textbuffer)
+                properties_list_box.add(self.notes_property_row)
+            elif self.notes_property_row:
                 notes = safe_entry.props.notes
-                textbuffer = scrolled_page.notes_property_value_entry.get_buffer()
+                textbuffer = self.notes_property_value_entry.get_buffer()
                 if not notes:
                     textbuffer.props.modified = False
 
@@ -157,20 +223,20 @@ class EntryPage:
                     "notes", textbuffer, "text",
                     GObject.BindingFlags.SYNC_CREATE
                     | GObject.BindingFlags.BIDIRECTIONAL)
-                properties_list_box.add(scrolled_page.notes_property_row)
+                properties_list_box.add(self.notes_property_row)
 
         if safe_entry.props.color != Color.NONE.value or add_all:
-            if scrolled_page.color_property_row is NotImplemented:
-                scrolled_page.color_property_row = ColorEntryRow(
+            if self.color_property_row is NotImplemented:
+                self.color_property_row = ColorEntryRow(
                     self.unlocked_database, safe_entry)
 
-                properties_list_box.add(scrolled_page.color_property_row)
-            elif scrolled_page.color_property_row is not NotImplemented:
-                properties_list_box.add(scrolled_page.color_property_row)
+                properties_list_box.add(self.color_property_row)
+            elif self.color_property_row is not NotImplemented:
+                properties_list_box.add(self.color_property_row)
 
         if safe_entry.icon_handled or add_all:
-            if scrolled_page.icon_property_row is NotImplemented:
-                scrolled_page.icon_property_row = builder.get_object("icon_property_row")
+            if self.icon_property_row is NotImplemented:
+                self.icon_property_row = builder.get_object("icon_property_row")
                 icon_entry_box = builder.get_object("icon_entry_box")
 
                 icon_builder = Gtk.Builder()
@@ -205,53 +271,54 @@ class EntryPage:
                     btn.props.group = first_btn
                     btn.props.active = True
 
-                properties_list_box.add(scrolled_page.icon_property_row)
-            elif scrolled_page.icon_property_row is not NotImplemented:
-                properties_list_box.add(scrolled_page.icon_property_row)
+                properties_list_box.add(self.icon_property_row)
+            elif self.icon_property_row is not NotImplemented:
+                properties_list_box.add(self.icon_property_row)
 
-        if scrolled_page.attachment_property_row is NotImplemented:
-            scrolled_page.attachment_property_row = builder.get_object("attachment_property_row")
-            scrolled_page.attachment_list_box = builder.get_object("attachment_list_box")
+        if self.attachment_property_row is NotImplemented:
+            self.attachment_property_row = builder.get_object("attachment_property_row")
+            self.attachment_list_box = builder.get_object("attachment_list_box")
             for attachment in safe_entry.attachments:
                 self.add_attachment_row(attachment)
 
-            scrolled_page.attachment_list_box.add(builder.get_object("add_attachment_row"))
-            scrolled_page.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
-            properties_list_box.add(scrolled_page.attachment_property_row)
-        elif scrolled_page.attachment_property_row is not NotImplemented:
-            properties_list_box.add(scrolled_page.attachment_property_row)
+            self.attachment_list_box.add(builder.get_object("add_attachment_row"))
+            self.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
+            properties_list_box.add(self.attachment_property_row)
+        elif self.attachment_property_row is not NotImplemented:
+            properties_list_box.add(self.attachment_property_row)
 
-        if scrolled_page.attributes_property_row is NotImplemented:
-            scrolled_page.attributes_property_row = builder.get_object("attributes_property_row")
-            scrolled_page.attributes_key_entry = builder.get_object("attributes_key_entry")
-            scrolled_page.attributes_value_entry = builder.get_object("attributes_value_entry")
-            scrolled_page.attributes_add_button = builder.get_object("attributes_add_button")
+        if self.attributes_property_row is NotImplemented:
+            self.attributes_property_row = builder.get_object("attributes_property_row")
+            self.attributes_key_entry = builder.get_object("attributes_key_entry")
+            self.attributes_value_entry = builder.get_object("attributes_value_entry")
+            self.attributes_add_button = builder.get_object("attributes_add_button")
 
-            scrolled_page.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
-            scrolled_page.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
-            scrolled_page.attributes_value_entry.connect("activate", self.on_attributes_add_button_clicked)
+            self.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
+            self.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
+            self.attributes_value_entry.connect("activate", self.on_attributes_add_button_clicked)
 
-            properties_list_box.add(scrolled_page.attributes_property_row)
-        elif scrolled_page.attributes_property_row is not NotImplemented:
-            properties_list_box.add(scrolled_page.attributes_property_row)
+            properties_list_box.add(self.attributes_property_row)
+        elif self.attributes_property_row is not NotImplemented:
+            properties_list_box.add(self.attributes_property_row)
 
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)
 
         # pylint: disable=too-many-boolean-expressions
-        if scrolled_page.color_property_row is not NotImplemented and \
-           scrolled_page.name_property_row is not NotImplemented and \
-           scrolled_page.username_property_row is not NotImplemented and \
-           scrolled_page.password_property_row is not NotImplemented and \
-           scrolled_page.url_property_row is not NotImplemented and \
-           scrolled_page.notes_property_row is not NotImplemented and \
-           scrolled_page.attributes_property_row is not NotImplemented:
-            scrolled_page.all_properties_revealed = True
+        if self.color_property_row is not NotImplemented and \
+           self.name_property_row is not NotImplemented and \
+           self.username_property_row is not NotImplemented and \
+           self.password_property_row is not NotImplemented and \
+           self.url_property_row is not NotImplemented and \
+           self.notes_property_row is not NotImplemented and \
+           self.attributes_property_row is not NotImplemented:
+            self.all_properties_revealed = True
         else:
-            scrolled_page.show_all_row = builder.get_object("show_all_row")
-            scrolled_page.show_all_properties_button = builder.get_object("show_all_properties_button")
-            scrolled_page.show_all_properties_button.connect("clicked", self.on_show_all_properties_button_clicked)
-            properties_list_box.add(scrolled_page.show_all_row)
+            self.show_all_row = builder.get_object("show_all_row")
+            self.show_all_properties_button = builder.get_object("show_all_properties_button")
+            self.show_all_properties_button.connect("clicked", self.on_show_all_properties_button_clicked)
+            properties_list_box.add(self.show_all_row)
+
 
     def add_attribute_property_row(self, key, value):
         """Add an attribute to the attributes list view.
@@ -259,12 +326,10 @@ class EntryPage:
         :param str key: property name
         :param str value: property value
         """
-        scrolled_page = self.unlocked_database.get_current_page()
-
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
-        index = scrolled_page.attributes_property_row.get_index()
+        index = self.attributes_property_row.get_index()
 
         attribute_property_row = builder.get_object("attribute_property_row")
         attribute_property_name_label = builder.get_object("attribute_property_name_label")
@@ -281,9 +346,9 @@ class EntryPage:
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
         attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
 
-        scrolled_page.properties_list_box.insert(attribute_property_row, index)
+        self.properties_list_box.insert(attribute_property_row, index)
         attribute_property_row.show_all()
-        scrolled_page.attribute_property_row_list.append(attribute_property_row)
+        self.attribute_property_row_list.append(attribute_property_row)
 
     #
     # Events
@@ -291,12 +356,11 @@ class EntryPage:
 
     def on_show_all_properties_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
-        scrolled_page = self.unlocked_database.get_current_page()
 
-        for row in scrolled_page.properties_list_box.get_children():
-            scrolled_page.properties_list_box.remove(row)
+        for row in self.properties_list_box:
+            self.properties_list_box.remove(row)
 
-        self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
+        self.insert_entry_properties_into_listbox(True)
 
     def on_property_value_entry_changed(self, _widget, _data=None):
         self.unlocked_database.start_database_lock_timer()
@@ -326,37 +390,35 @@ class EntryPage:
 
     def on_attributes_add_button_clicked(self, _widget):
         safe_entry: SafeEntry = self.unlocked_database.current_element
-        scrolled_page = self.unlocked_database.get_current_page()
 
-        key = scrolled_page.attributes_key_entry.get_text()
-        value = scrolled_page.attributes_value_entry.get_text()
+        key = self.attributes_key_entry.get_text()
+        value = self.attributes_value_entry.get_text()
 
         if key == "" or key is None:
-            scrolled_page.attributes_key_entry.get_style_context().add_class("error")
+            self.attributes_key_entry.get_style_context().add_class("error")
             return
 
         if safe_entry.has_attribute(key):
-            scrolled_page.attributes_key_entry.get_style_context().add_class("error")
+            self.attributes_key_entry.get_style_context().add_class("error")
             self.unlocked_database.window.notify(_("Attribute key already exists"))
             return
 
-        scrolled_page.attributes_key_entry.get_style_context().remove_class("error")
+        self.attributes_key_entry.get_style_context().remove_class("error")
 
-        scrolled_page.attributes_key_entry.set_text("")
-        scrolled_page.attributes_value_entry.set_text("")
+        self.attributes_key_entry.set_text("")
+        self.attributes_value_entry.set_text("")
 
         safe_entry.set_attribute(key, value)
         self.add_attribute_property_row(key, value)
 
     def on_attribute_remove_button_clicked(self, button):
         safe_entry: SafeEntry = self.unlocked_database.current_element
-        scrolled_page = self.unlocked_database.get_current_page()
 
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
 
         safe_entry.delete_attribute(key)
-        scrolled_page.properties_list_box.remove(parent)
+        self.properties_list_box.remove(parent)
 
     def on_attributes_value_entry_changed(self, widget):
         safe_entry = self.unlocked_database.current_element
@@ -458,8 +520,6 @@ class EntryPage:
                 self.add_attachment_row(new_attachment)
 
     def add_attachment_row(self, attachment):
-        scrolled_page = self.unlocked_database.get_current_page()
-
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
@@ -476,7 +536,7 @@ class EntryPage:
             attachment_row,
         )
 
-        scrolled_page.attachment_list_box.insert(attachment_row, len(scrolled_page.attachment_list_box) - 1)
+        self.attachment_list_box.insert(attachment_row, len(self.attachment_list_box) - 1)
 
     def on_attachment_row_clicked(self, attachment):
         AttachmentWarningDialog(self, attachment).present()
@@ -511,9 +571,8 @@ class EntryPage:
 
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
-        scrolled_page = self.unlocked_database.get_current_page()
 
-        for row in scrolled_page.attachment_list_box.get_children():
+        for row in self.attachment_list_box.get_children():
             if row.get_name() != "AddAttachmentRow":
                 row.destroy()
 

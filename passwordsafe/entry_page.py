@@ -40,9 +40,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
     password_property_row = NotImplemented
 
-    url_property_row = NotImplemented
-    url_property_value_entry = NotImplemented
-
     notes_property_row = NotImplemented
     notes_property_value_entry = NotImplemented
 
@@ -156,26 +153,18 @@ class EntryPage(Gtk.ScrolledWindow):
         non_empty: bool = self.password_property_row.non_empty()
         self.show_row(self.password_property_row, non_empty, add_all)
 
-        if safe_entry.props.url or add_all:
-            if self.url_property_row is NotImplemented:
-                self.url_property_row = builder.get_object("url_property_row")
-                self.url_property_value_entry = builder.get_object("url_property_value_entry")
-                self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                safe_entry.bind_property(
-                    "url", self.url_property_value_entry, "text",
-                    GObject.BindingFlags.SYNC_CREATE
-                    | GObject.BindingFlags.BIDIRECTIONAL)
-                self.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
-                properties_list_box.add(self.url_property_row)
-            elif self.url_property_row:
-                safe_entry.bind_property(
-                    "url", self.url_property_value_entry, "text",
-                    GObject.BindingFlags.SYNC_CREATE
-                    | GObject.BindingFlags.BIDIRECTIONAL)
-
-                self.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
-                self.url_property_value_entry.connect("changed", self.on_property_value_entry_changed)
-                properties_list_box.add(self.url_property_row)
+        # Url
+        self.url_property_row = builder.get_object("url_property_row")
+        self.url_property_value_entry = builder.get_object("url_property_value_entry")
+        self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
+        safe_entry.bind_property(
+            "url", self.url_property_value_entry, "text",
+            GObject.BindingFlags.SYNC_CREATE
+            | GObject.BindingFlags.BIDIRECTIONAL)
+        self.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
+        self.url_property_value_entry.connect("changed", self.on_property_value_entry_changed)
+        properties_list_box.add(self.url_property_row)
+        self.show_row(self.url_property_row, safe_entry.url, add_all)
 
         if safe_entry.props.notes or add_all:
             if self.notes_property_row is NotImplemented:

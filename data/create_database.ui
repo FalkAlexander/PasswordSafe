@@ -330,6 +330,7 @@
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
                 <property name="input_purpose">password</property>
+                <signal name="activate" handler="on_password_repeat_input_activate" swapped="no"/>
                 <style>
                   <class name="passwordEntry"/>
                 </style>

@@ -142,6 +142,10 @@ class CreateDatabase(Gtk.Stack):
             self.window, self.parent_widget,
             self.database_manager.database_path)
 
+    @Gtk.Template.Callback()
+    def on_password_repeat_input_activate(self, _widget):
+        self.password_repeat_button.clicked()
+
     def save_pwc_database_thread(self):
         GLib.idle_add(self.show_pwc_loading)
         if self.composite:

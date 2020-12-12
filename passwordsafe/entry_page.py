@@ -149,13 +149,12 @@ class EntryPage(Gtk.ScrolledWindow):
         value = safe_entry.username != ""
         self.show_row(self.username_property_row, value, add_all)
 
-        if safe_entry.props.password or add_all:
-            if self.password_property_row is NotImplemented:
-                self.password_property_row = PasswordEntryRow(
-                    self.unlocked_database)
-                properties_list_box.add(self.password_property_row)
-            elif self.password_property_row:
-                properties_list_box.add(self.password_property_row)
+        # Password
+        self.password_property_row = PasswordEntryRow(
+            self.unlocked_database)
+        properties_list_box.add(self.password_property_row)
+        non_empty: bool = self.password_property_row.non_empty()
+        self.show_row(self.password_property_row, non_empty, add_all)
 
         if safe_entry.props.url or add_all:
             if self.url_property_row is NotImplemented:

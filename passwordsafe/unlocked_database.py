@@ -410,7 +410,7 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME find a more elegant way to do this without
         # obliterating everything.
         for page in self._stack.get_children():
-            if page.check_is_edit_page() is False:
+            if page.edit_page is False:
                 page.destroy()
 
         self.show_page_of_new_directory(False, False)

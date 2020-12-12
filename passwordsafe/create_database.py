@@ -46,24 +46,13 @@ class CreateDatabase(Gtk.Stack):
 
     # Password
 
-    def password_creation(self):
-        self.set_visible_child_name("password-creation")
-        self.password_creation_input.grab_focus()
-
     def success_page(self):
         self.clear_input_fields()
-        if self.composite is False:
-            self.set_visible_child_name("safe-successfully-create")
+        if self.composite:
+            self.composite = False
+            self.set_visible_child_name("keyfile-creation")
         else:
-            self.keyfile_creation()
-
-    # Keyfile
-
-    def keyfile_creation(self):
-        self.set_visible_child_name("keyfile-creation")
-
-    def set_database_keyfile(self):
-        self.set_visible_child_name("safe-successfully-create")
+            self.set_visible_child_name("safe-successfully-create")
 
     #
     # Headerbar
@@ -100,12 +89,12 @@ class CreateDatabase(Gtk.Stack):
     @Gtk.Template.Callback()
     def on_auth_chooser_row_activated(self, _widget, row):
         if row.get_name() == "password":
-            self.password_creation()
+            self.set_visible_child_name("password-creation")
         elif row.get_name() == "keyfile":
-            self.keyfile_creation()
+            self.set_visible_child_name("keyfile-creation")
         elif row.get_name() == "composite":
             self.composite = True
-            self.password_creation()
+            self.set_visible_child_name("password-creation")
 
     @Gtk.Template.Callback()
     def on_password_creation_button_clicked(self, _widget):

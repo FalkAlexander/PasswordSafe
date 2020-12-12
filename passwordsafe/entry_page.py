@@ -40,9 +40,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
     password_property_row = NotImplemented
 
-    notes_property_row = NotImplemented
-    notes_property_value_entry = NotImplemented
-
     icon_property_row = NotImplemented
     mail_icon_button = NotImplemented
     profile_icon_button = NotImplemented
@@ -166,33 +163,22 @@ class EntryPage(Gtk.ScrolledWindow):
         properties_list_box.add(self.url_property_row)
         self.show_row(self.url_property_row, safe_entry.url, add_all)
 
-        if safe_entry.props.notes or add_all:
-            if self.notes_property_row is NotImplemented:
-                self.notes_property_row = builder.get_object("notes_property_row")
-                self.notes_property_value_entry = builder.get_object("notes_property_value_entry")
-                self.notes_property_value_entry.get_style_context().add_class("codeview")
+        # Notes
+        self.notes_property_row = builder.get_object("notes_property_row")
+        self.notes_property_value_entry = builder.get_object("notes_property_value_entry")
+        self.notes_property_value_entry.get_style_context().add_class("codeview")
 
-                builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
+        builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
-                textbuffer = HistoryTextBuffer([])
-                safe_entry.bind_property(
-                    "notes", textbuffer, "text",
-                    GObject.BindingFlags.SYNC_CREATE
-                    | GObject.BindingFlags.BIDIRECTIONAL)
-                self.notes_property_value_entry.set_buffer(textbuffer)
-                properties_list_box.add(self.notes_property_row)
-            elif self.notes_property_row:
-                notes = safe_entry.props.notes
-                textbuffer = self.notes_property_value_entry.get_buffer()
-                if not notes:
-                    textbuffer.props.modified = False
-
-                textbuffer.connect("changed", self.on_property_value_entry_changed)
-                safe_entry.bind_property(
-                    "notes", textbuffer, "text",
-                    GObject.BindingFlags.SYNC_CREATE
-                    | GObject.BindingFlags.BIDIRECTIONAL)
-                properties_list_box.add(self.notes_property_row)
+        textbuffer = HistoryTextBuffer([])
+        safe_entry.bind_property(
+            "notes", textbuffer, "text",
+            GObject.BindingFlags.SYNC_CREATE
+            | GObject.BindingFlags.BIDIRECTIONAL)
+        textbuffer.connect("changed", self.on_property_value_entry_changed)
+        self.notes_property_value_entry.set_buffer(textbuffer)
+        properties_list_box.add(self.notes_property_row)
+        self.show_row(self.notes_property_row, safe_entry.notes, add_all)
 
         if safe_entry.props.color != Color.NONE.value or add_all:
             if self.color_property_row is NotImplemented:

@@ -128,7 +128,7 @@ class SelectionUI(Gtk.Box):
                 reset_stack_page = True
 
         for stack_page in self.unlocked_database.get_pages():
-            if stack_page.check_is_edit_page() is False:
+            if stack_page.edit_page is False:
                 stack_page.destroy()
 
         self.unlocked_database.show_page_of_new_directory(False, False)
@@ -218,7 +218,7 @@ class SelectionUI(Gtk.Box):
                 rebuild_pathbar = True
 
         for stack_page in self.unlocked_database.get_pages():
-            if stack_page.check_is_edit_page() is False:
+            if stack_page.edit_page is False:
                 stack_page.destroy()
 
         self.unlocked_database.show_page_of_new_directory(False, False)

@@ -20,18 +20,22 @@ class GroupPage(Gtk.ScrolledWindow):
         self.unlocked_database = unlocked_database
 
         group = self.unlocked_database.current_element
-
-        self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         name = self.unlocked_database.database_manager.get_group_name(group)
+        notes = self.unlocked_database.database_manager.get_notes(group)
+        notes_buffer = HistoryTextBuffer([])
+
+        # Setup Widgets
+        notes_buffer.set_text(notes)
+        self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         self.name_property_value_entry.set_text(name)
         self.name_property_value_entry.grab_focus()
+
+        self.notes_property_value_entry.set_buffer(notes_buffer)
+        notes_buffer.set_text(notes)
+
+        # Connect Signals
         self.name_property_value_entry.connect(
             "changed", self.on_property_value_group_changed, "name")
-
-        notes_buffer = HistoryTextBuffer([])
-        self.notes_property_value_entry.set_buffer(notes_buffer)
-        notes = self.unlocked_database.database_manager.get_notes(group)
-        notes_buffer.set_text(notes)
         notes_buffer.connect("changed", self.on_property_value_group_changed, "notes")
 
     def on_property_value_group_changed(self, widget, name):

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-10 23:51+0000\n"
-"PO-Revision-Date: 2020-12-11 15:07+0100\n"
+"POT-Creation-Date: 2020-12-11 14:29+0000\n"
+"PO-Revision-Date: 2020-12-12 09:58+0100\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
@@ -387,7 +387,7 @@ msgstr ""
 "interface simple et épurée pour la gestion des bases de données de mots de "
 "passe."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:125
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:140
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -792,7 +792,7 @@ msgid "Reopen last opened safe."
 msgstr "Rouvrir le dernier coffre-fort ouvert."
 
 #: data/settings_dialog.ui:57 data/unlocked_database.ui:444
-#: passwordsafe/main_window.py:394
+#: passwordsafe/main_window.py:397
 msgid "Safe"
 msgstr "Coffre"
 
@@ -1201,7 +1201,7 @@ msgstr "Ajouter"
 #. NOTE: Filechooser title for downloading an attachment
 #: passwordsafe/entry_page.py:549
 msgid "Save attachment"
-msgstr "Sauvegarder la pièce jointe"
+msgstr "Enregistrer la pièce jointe"
 
 #: passwordsafe/entry_row.py:65
 msgid "Title not specified"
@@ -1213,7 +1213,7 @@ msgstr "Aucun nom d’utilisateur indiqué"
 
 #: passwordsafe/group_row.py:49
 msgid "No group title specified"
-msgstr "Aucun groupe indiqué"
+msgstr "Aucun titre de groupe indiqué"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
 #: passwordsafe/main_window.py:293
@@ -1221,24 +1221,24 @@ msgid "Choose a Keepass safe"
 msgstr "Choisissez un coffre-fort Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:400
+#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:403
 msgid "KeePass 3.1/4 Database"
 msgstr "Base de données KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:332
+#: passwordsafe/main_window.py:335
 msgid "Unable to open file \"{}\"."
 msgstr "Impossible d’ouvrir le fichier « {} »."
 
-#: passwordsafe/main_window.py:335
+#: passwordsafe/main_window.py:338
 msgid "File type {} ({}) is not supported."
 msgstr "Le type de fichier {} ({}) n’est pas pris en charge."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:387
+#: passwordsafe/main_window.py:390
 msgid "Choose location for Keepass safe"
 msgstr "Choisissez un emplacement pour le coffre-fort Keepass"
 
-#: passwordsafe/main_window.py:390
+#: passwordsafe/main_window.py:393
 msgid "Create"
 msgstr "Créer"
 
@@ -1270,29 +1270,29 @@ msgstr "Choisir un fichier-clé"
 msgid "Try again"
 msgstr "Réessayer"
 
-#: passwordsafe/unlocked_database.py:578
+#: passwordsafe/unlocked_database.py:574
 msgid "Database saved"
 msgstr "Base de données enregistrée"
 
-#: passwordsafe/unlocked_database.py:582
+#: passwordsafe/unlocked_database.py:578
 msgid "Please wait. Another save is running."
-msgstr "Veuillez patienter. Une autre sauvegarde est en cours."
+msgstr "Veuillez patienter. Un autre enregistrement est en cours."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:586
+#: passwordsafe/unlocked_database.py:582
 msgid "No changes made"
 msgstr "Aucun changement effectué"
 
-#: passwordsafe/unlocked_database.py:726
+#: passwordsafe/unlocked_database.py:722
 msgid "Copied to clipboard"
 msgstr "Copié dans le presse-papiers"
 
-#: passwordsafe/unlocked_database.py:904
+#: passwordsafe/unlocked_database.py:900
 #, python-format
 msgid "%s locked"
 msgstr "%s verrouillé"
 
-#: passwordsafe/unlocked_database.py:910
+#: passwordsafe/unlocked_database.py:906
 msgid "Keepass safe locked due to inactivity"
 msgstr "Le coffre-fort Keepass a été verrouillé par inactivité"
 

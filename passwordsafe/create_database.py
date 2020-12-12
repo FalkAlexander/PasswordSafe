@@ -39,12 +39,6 @@ class CreateDatabase(Gtk.Stack):
         self.parent_widget = widget
         self.back_button = back_button
 
-    #
-    # Stack Pages
-    #
-
-    # Password
-
     def success_page(self):
         self.set_visible_child_name("safe-successfully-create")
         # TODO This should be improved upon. Widgets should not
@@ -54,10 +48,6 @@ class CreateDatabase(Gtk.Stack):
 
     def keyfile_generation_page(self):
         self.set_visible_child_name("keyfile-creation")
-
-    #
-    # Events
-    #
 
     def on_headerbar_back_button_clicked(self, _widget):
         """Back button: Always goes back to the page in which you select the
@@ -151,8 +141,6 @@ class CreateDatabase(Gtk.Stack):
         UnlockDatabase(
             self.window, self.parent_widget,
             self.database_manager.database_path)
-
-    # Helper Functions
 
     def save_pwc_database_thread(self):
         GLib.idle_add(self.show_pwc_loading)

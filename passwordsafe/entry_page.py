@@ -38,9 +38,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
     properties_list_box = NotImplemented
 
-    username_property_row = NotImplemented
-    username_property_value_entry = NotImplemented
-
     password_property_row = NotImplemented
 
     url_property_row = NotImplemented
@@ -131,40 +128,26 @@ class EntryPage(Gtk.ScrolledWindow):
         self.name_property_value_entry.grab_focus()
         self.show_row(self.name_property_row, entry_name, add_all)
 
-        if safe_entry.props.username or add_all:
-            if self.username_property_row is NotImplemented:
-                self.username_property_row = builder.get_object("username_property_row")
-                self.username_property_value_entry = builder.get_object("username_property_value_entry")
-                self.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-                safe_entry.bind_property(
-                    "username", self.username_property_value_entry, "text",
-                    GObject.BindingFlags.SYNC_CREATE
-                    | GObject.BindingFlags.BIDIRECTIONAL)
-                self.unlocked_database.bind_accelerator(
-                    self.username_property_value_entry,
-                    "<primary><Shift>b",
-                    signal="copy-clipboard")
-                self.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
+        # Username
+        self.username_property_row = builder.get_object("username_property_row")
+        self.username_property_value_entry = builder.get_object("username_property_value_entry")
+        self.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
+        safe_entry.bind_property(
+            "username", self.username_property_value_entry, "text",
+            GObject.BindingFlags.SYNC_CREATE
+            | GObject.BindingFlags.BIDIRECTIONAL)
+        self.unlocked_database.bind_accelerator(
+            self.username_property_value_entry,
+            "<primary><Shift>b",
+            signal="copy-clipboard")
+        self.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
 
-                self.username_property_value_entry.connect(
-                    "icon-press", self._on_copy_secondary_button_clicked)
-                self.username_property_value_entry.connect("changed", self.on_property_value_entry_changed)
-                properties_list_box.add(self.username_property_row)
-            elif self.username_property_row:
-                safe_entry.bind_property(
-                    "username", self.username_property_value_entry, "text",
-                    GObject.BindingFlags.SYNC_CREATE
-                    | GObject.BindingFlags.BIDIRECTIONAL)
-
-                self.username_property_value_entry.connect(
-                    "icon-press", self._on_copy_secondary_button_clicked)
-
-                self.unlocked_database.bind_accelerator(
-                    self.username_property_value_entry,
-                    "<primary><Shift>b",
-                    signal="copy-clipboard")
-                self.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
-                properties_list_box.add(self.username_property_row)
+        self.username_property_value_entry.connect(
+            "icon-press", self._on_copy_secondary_button_clicked)
+        self.username_property_value_entry.connect("changed", self.on_property_value_entry_changed)
+        properties_list_box.add(self.username_property_row)
+        value = safe_entry.username != ""
+        self.show_row(self.username_property_row, value, add_all)
 
         if safe_entry.props.password or add_all:
             if self.password_property_row is NotImplemented:

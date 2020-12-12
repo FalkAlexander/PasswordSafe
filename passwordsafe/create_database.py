@@ -13,6 +13,9 @@ from passwordsafe.unlock_database import KeyFileFilter, UnlockDatabase
     resource_path="/org/gnome/PasswordSafe/create_database.ui")
 class CreateDatabase(Gtk.Stack):
     """Creates a new Safe when invoked"""
+    # TODO Add an accelerator for Escape that
+    # calls on_headerbar_back_button_clicked().
+    # Can be done on GTK 4 with GtkShortcutController.
 
     __gtype_name__ = "CreateDatabase"
 

@@ -89,6 +89,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         # Responsive Container
         hdy_page = Handy.Clamp()
+        hdy_page.set_visible(True)
         hdy_page.set_margin_top(18)
         hdy_page.set_margin_bottom(18)
         hdy_page.set_margin_start(12)
@@ -96,7 +97,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         hdy_page.add(self.properties_list_box)
         self.add(hdy_page)
-        self.show_all()
+        self.set_visible(True)
     #
     # Create Property Rows
     #
@@ -318,7 +319,7 @@ class EntryPage(Gtk.ScrolledWindow):
             self.show_all_properties_button = builder.get_object("show_all_properties_button")
             self.show_all_properties_button.connect("clicked", self.on_show_all_properties_button_clicked)
             properties_list_box.add(self.show_all_row)
-
+            self.show_row(self.show_all_row, False, not add_all)
 
     def add_attribute_property_row(self, key, value):
         """Add an attribute to the attributes list view.
@@ -358,9 +359,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.unlocked_database.start_database_lock_timer()
 
         for row in self.properties_list_box:
-            self.properties_list_box.remove(row)
-
-        self.insert_entry_properties_into_listbox(True)
+            row.set_visible(True)
 
     def on_property_value_entry_changed(self, _widget, _data=None):
         self.unlocked_database.start_database_lock_timer()
@@ -595,3 +594,9 @@ class EntryPage(Gtk.ScrolledWindow):
     def _on_copy_secondary_button_clicked(
             self, widget, _position=None, _eventbutton=None):
         self.unlocked_database.send_to_clipboard(widget.get_text())
+
+    def show_row(self, row: Gtk.ListBoxRow, non_empty: bool, add_all: bool) -> None:
+        if non_empty or add_all:
+            row.set_visible(True)
+        else:
+            row.set_visible(False)

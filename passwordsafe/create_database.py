@@ -30,6 +30,8 @@ class CreateDatabase(Gtk.Stack):
 
     generate_keyfile_button = Gtk.Template.Child()
 
+    open_safe_button = Gtk.Template.Child()
+
     composite = False
 
     def __init__(self, window, widget, dbm, back_button):
@@ -45,6 +47,7 @@ class CreateDatabase(Gtk.Stack):
         # modify widgets outside of their scope. And __init__()
         # should not request a back button either.
         self.back_button.hide()
+        self.open_safe_button.grab_focus()
 
     def keyfile_generation_page(self):
         self.set_visible_child_name("keyfile-creation")

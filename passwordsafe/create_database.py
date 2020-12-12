@@ -30,7 +30,6 @@ class CreateDatabase(Gtk.Stack):
 
     generate_keyfile_button = Gtk.Template.Child()
 
-    switched = False
     composite = False
 
     def __init__(self, window, widget, dbm):
@@ -112,13 +111,6 @@ class CreateDatabase(Gtk.Stack):
     def on_password_creation_button_clicked(self, _widget):
         self.database_manager.set_password_try(
             self.password_creation_input.get_text())
-
-        if self.switched:
-            self.set_visible_child_name("check-password")
-        else:
-            self.check_password_page()
-
-    def check_password_page(self):
         self.set_visible_child_name("check-password")
 
     @Gtk.Template.Callback()

@@ -38,9 +38,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
     properties_list_box = NotImplemented
 
-    name_property_row = NotImplemented
-    name_property_value_entry = NotImplemented
-
     username_property_row = NotImplemented
     username_property_value_entry = NotImplemented
 
@@ -117,22 +114,22 @@ class EntryPage(Gtk.ScrolledWindow):
 
         safe_entry: SafeEntry = self.unlocked_database.current_element
         entry_name = safe_entry.props.name
-        if entry_name or add_all:
-            if self.name_property_row is NotImplemented:
-                # Create the name_property_row
-                self.name_property_row = builder.get_object("name_property_row")
-                self.name_property_value_entry = builder.get_object("name_property_value_entry")
-                self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
-            self.name_property_value_entry.connect(
-                "changed", self.on_property_value_entry_changed
-            )
-            safe_entry.bind_property(
-                "name", self.name_property_value_entry, "text",
-                GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
-            )
-            properties_list_box.add(self.name_property_row)
-            self.name_property_value_entry.grab_focus()
+        # Create the name_property_row
+        self.name_property_row = builder.get_object("name_property_row")
+        self.name_property_value_entry = builder.get_object("name_property_value_entry")
+        self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
+
+        self.name_property_value_entry.connect(
+            "changed", self.on_property_value_entry_changed
+        )
+        safe_entry.bind_property(
+            "name", self.name_property_value_entry, "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
+        )
+        properties_list_box.add(self.name_property_row)
+        self.name_property_value_entry.grab_focus()
+        self.show_row(self.name_property_row, entry_name, add_all)
 
         if safe_entry.props.username or add_all:
             if self.username_property_row is NotImplemented:
@@ -364,8 +361,7 @@ class EntryPage(Gtk.ScrolledWindow):
     def on_property_value_entry_changed(self, _widget, _data=None):
         self.unlocked_database.start_database_lock_timer()
 
-        scrolled_page = self.unlocked_database.get_current_page()
-        scrolled_page.is_dirty = True
+        self.is_dirty = True
 
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()

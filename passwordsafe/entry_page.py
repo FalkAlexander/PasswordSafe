@@ -46,9 +46,6 @@ class EntryPage(Gtk.ScrolledWindow):
     attributes_add_button = NotImplemented
     attribute_property_row_list: List[Gtk.ListBoxRow] = []
 
-    attachment_property_row = NotImplemented
-    attachment_list_box = NotImplemented
-
     #
     # Init
     #
@@ -214,17 +211,16 @@ class EntryPage(Gtk.ScrolledWindow):
         non_default = safe_entry.icon != ICONS["0"]
         self.show_row(self.icon_property_row, non_default, add_all)
 
-        if self.attachment_property_row is NotImplemented:
-            self.attachment_property_row = builder.get_object("attachment_property_row")
-            self.attachment_list_box = builder.get_object("attachment_list_box")
-            for attachment in safe_entry.attachments:
-                self.add_attachment_row(attachment)
+        # Attachments
+        self.attachment_property_row = builder.get_object("attachment_property_row")
+        self.attachment_list_box = builder.get_object("attachment_list_box")
+        for attachment in safe_entry.attachments:
+            self.add_attachment_row(attachment)
 
-            self.attachment_list_box.add(builder.get_object("add_attachment_row"))
-            self.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
-            properties_list_box.add(self.attachment_property_row)
-        elif self.attachment_property_row is not NotImplemented:
-            properties_list_box.add(self.attachment_property_row)
+        self.attachment_list_box.add(builder.get_object("add_attachment_row"))
+        self.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
+        properties_list_box.add(self.attachment_property_row)
+        self.show_row(self.attachment_property_row, safe_entry.attachments, add_all)
 
         if self.attributes_property_row is NotImplemented:
             self.attributes_property_row = builder.get_object("attributes_property_row")

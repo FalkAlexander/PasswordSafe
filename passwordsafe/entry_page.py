@@ -8,7 +8,7 @@ from typing import List
 from gi.repository import Gio, GLib, GObject, Gtk, Handy
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
-from passwordsafe.color_widget import Color, ColorEntryRow
+from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
@@ -51,8 +51,6 @@ class EntryPage(Gtk.ScrolledWindow):
     harddrive_icon_button = NotImplemented
     wifi_icon_button = NotImplemented
     desktop_icon_button = NotImplemented
-
-    color_property_row = NotImplemented
 
     attributes_property_row = NotImplemented
     attributes_key_entry = NotImplemented
@@ -180,14 +178,13 @@ class EntryPage(Gtk.ScrolledWindow):
         properties_list_box.add(self.notes_property_row)
         self.show_row(self.notes_property_row, safe_entry.notes, add_all)
 
-        if safe_entry.props.color != Color.NONE.value or add_all:
-            if self.color_property_row is NotImplemented:
-                self.color_property_row = ColorEntryRow(
-                    self.unlocked_database, safe_entry)
+        # Color
+        self.color_property_row = ColorEntryRow(
+            self.unlocked_database, safe_entry)
 
-                properties_list_box.add(self.color_property_row)
-            elif self.color_property_row is not NotImplemented:
-                properties_list_box.add(self.color_property_row)
+        properties_list_box.add(self.color_property_row)
+        non_default = safe_entry.color != "NoneColorButton"
+        self.show_row(self.color_property_row, non_default, add_all)
 
         if safe_entry.icon_handled or add_all:
             if self.icon_property_row is NotImplemented:

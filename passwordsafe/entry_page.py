@@ -33,9 +33,6 @@ class EntryPage(Gtk.ScrolledWindow):
     is_dirty = False
     edit_page = True
 
-    all_properties_revealed = False
-    show_all_properties_button = NotImplemented
-
     properties_list_box = NotImplemented
 
     password_property_row = NotImplemented
@@ -233,21 +230,15 @@ class EntryPage(Gtk.ScrolledWindow):
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)
 
-        # pylint: disable=too-many-boolean-expressions
-        if self.color_property_row is not NotImplemented and \
-           self.name_property_row is not NotImplemented and \
-           self.username_property_row is not NotImplemented and \
-           self.password_property_row is not NotImplemented and \
-           self.url_property_row is not NotImplemented and \
-           self.notes_property_row is not NotImplemented and \
-           self.attributes_property_row is not NotImplemented:
-            self.all_properties_revealed = True
-        else:
-            self.show_all_row = builder.get_object("show_all_row")
-            self.show_all_properties_button = builder.get_object("show_all_properties_button")
-            self.show_all_properties_button.connect("clicked", self.on_show_all_properties_button_clicked)
-            properties_list_box.add(self.show_all_row)
-            self.show_row(self.show_all_row, False, not add_all)
+        self.show_all_row = builder.get_object("show_all_row")
+        self.show_all_properties_button = builder.get_object("show_all_properties_button")
+        self.show_all_properties_button.connect("clicked", self.on_show_all_properties_button_clicked)
+        properties_list_box.add(self.show_all_row)
+
+        for row in self.properties_list_box:
+            if not row.get_visible():
+                self.show_all_row.set_visible(True)
+                break
 
     def add_attribute_property_row(self, key, value):
         """Add an attribute to the attributes list view.

@@ -23,24 +23,12 @@ if typing.TYPE_CHECKING:
 
 class EntryPage(Gtk.ScrolledWindow):
     # pylint: disable=too-many-public-methods
-    #
-    # Global Variables
-    #
-    _filechooser = None
-    unlocked_database = NotImplemented
-    _pwd_popover = NotImplemented
 
+    _filechooser = None
     is_dirty = False
     edit_page = True
 
-    properties_list_box = NotImplemented
-
-    password_property_row = NotImplemented
-
     attribute_property_row_list: List[Gtk.ListBoxRow] = []
-    #
-    # Init
-    #
 
     def __init__(self, u_d, add_all):
         super().__init__()

@@ -40,12 +40,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
     password_property_row = NotImplemented
 
-    attributes_property_row = NotImplemented
-    attributes_key_entry = NotImplemented
-    attributes_value_entry = NotImplemented
-    attributes_add_button = NotImplemented
     attribute_property_row_list: List[Gtk.ListBoxRow] = []
-
     #
     # Init
     #
@@ -222,19 +217,18 @@ class EntryPage(Gtk.ScrolledWindow):
         properties_list_box.add(self.attachment_property_row)
         self.show_row(self.attachment_property_row, safe_entry.attachments, add_all)
 
-        if self.attributes_property_row is NotImplemented:
-            self.attributes_property_row = builder.get_object("attributes_property_row")
-            self.attributes_key_entry = builder.get_object("attributes_key_entry")
-            self.attributes_value_entry = builder.get_object("attributes_value_entry")
-            self.attributes_add_button = builder.get_object("attributes_add_button")
+        # Attributes
+        self.attributes_property_row = builder.get_object("attributes_property_row")
+        self.attributes_key_entry = builder.get_object("attributes_key_entry")
+        self.attributes_value_entry = builder.get_object("attributes_value_entry")
+        self.attributes_add_button = builder.get_object("attributes_add_button")
 
-            self.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
-            self.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
-            self.attributes_value_entry.connect("activate", self.on_attributes_add_button_clicked)
+        self.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
+        self.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
+        self.attributes_value_entry.connect("activate", self.on_attributes_add_button_clicked)
 
-            properties_list_box.add(self.attributes_property_row)
-        elif self.attributes_property_row is not NotImplemented:
-            properties_list_box.add(self.attributes_property_row)
+        properties_list_box.add(self.attributes_property_row)
+        self.show_row(self.attributes_property_row, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)

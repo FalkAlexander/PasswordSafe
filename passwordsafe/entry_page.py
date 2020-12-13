@@ -209,7 +209,6 @@ class EntryPage(Gtk.ScrolledWindow):
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
 
-        self.attachment_list_box.add(builder.get_object("add_attachment_row"))
         self.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
         properties_list_box.add(self.attachment_property_row)
         self.show_row(self.attachment_property_row, safe_entry.attachments, add_all)

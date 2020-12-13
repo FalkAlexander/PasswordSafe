@@ -724,4 +724,11 @@ class DatabaseManager(GObject.GObject):
 
     @is_dirty.setter
     def is_dirty(self, value: bool) -> None:
+        """
+        Enables the save_dirty action whenever the Safe is in a
+        dirty state. This makes the save menu button sensitive.
+        """
+        app = Gio.Application.get_default()
+        save_action = app.lookup_action("db.save_dirty")
+        save_action.set_enabled(value)
         self._is_dirty = value

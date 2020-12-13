@@ -212,7 +212,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         properties_list_box.add(self.icon_property_row)
         non_default = safe_entry.icon != ICONS["0"]
-        self.show_row(self.notes_property_row, non_default, add_all)
+        self.show_row(self.icon_property_row, non_default, add_all)
 
         if self.attachment_property_row is NotImplemented:
             self.attachment_property_row = builder.get_object("attachment_property_row")

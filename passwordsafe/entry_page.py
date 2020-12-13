@@ -40,18 +40,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
     password_property_row = NotImplemented
 
-    icon_property_row = NotImplemented
-    mail_icon_button = NotImplemented
-    profile_icon_button = NotImplemented
-    network_profile_button = NotImplemented
-    key_button = NotImplemented
-    terminal_icon_button = NotImplemented
-    setting_icon_button = NotImplemented
-    folder_icon_button = NotImplemented
-    harddrive_icon_button = NotImplemented
-    wifi_icon_button = NotImplemented
-    desktop_icon_button = NotImplemented
-
     attributes_property_row = NotImplemented
     attributes_key_entry = NotImplemented
     attributes_value_entry = NotImplemented
@@ -186,46 +174,45 @@ class EntryPage(Gtk.ScrolledWindow):
         non_default = safe_entry.color != "NoneColorButton"
         self.show_row(self.color_property_row, non_default, add_all)
 
-        if safe_entry.icon_handled or add_all:
-            if self.icon_property_row is NotImplemented:
-                self.icon_property_row = builder.get_object("icon_property_row")
-                icon_entry_box = builder.get_object("icon_entry_box")
+        # Icons
+        self.icon_property_row = builder.get_object("icon_property_row")
+        icon_entry_box = builder.get_object("icon_entry_box")
 
-                icon_builder = Gtk.Builder()
-                first_btn = None
-                entry_icon = safe_entry.props.icon
-                for icon_nr, icon in ICONS.items():
-                    if not icon.visible:
-                        continue
+        icon_builder = Gtk.Builder()
+        first_btn = None
+        entry_icon = safe_entry.props.icon
+        for icon_nr, icon in ICONS.items():
+            if not icon.visible:
+                continue
 
-                    icon_builder.add_from_resource(
-                        "/org/gnome/PasswordSafe/icon_widget.ui")
-                    btn = icon_builder.get_object("icon_button")
-                    img = btn.get_children()[0]
-                    img.props.icon_name = icon.name
-                    if first_btn is None:
-                        first_btn = btn
+            icon_builder.add_from_resource(
+                "/org/gnome/PasswordSafe/icon_widget.ui")
+            btn = icon_builder.get_object("icon_button")
+            img = btn.get_children()[0]
+            img.props.icon_name = icon.name
+            if first_btn is None:
+                first_btn = btn
 
-                    btn.props.group = first_btn
-                    btn.props.active = (entry_icon == icon)
-                    btn.connect("toggled", self.on_entry_icon_button_toggled, icon_nr)
-                    icon_entry_box.add(btn)
+            btn.props.group = first_btn
+            btn.props.active = (entry_icon == icon)
+            btn.connect("toggled", self.on_entry_icon_button_toggled, icon_nr)
+            icon_entry_box.add(btn)
 
-                # The icons are GtkRadioButton, which means that at
-                # least one button needs to be selected. If the icon is
-                # not handled by, a new button is added. This button is
-                # selected and not visible.
-                if not safe_entry.icon_handled or not entry_icon.visible:
-                    icon_builder.add_from_resource(
-                        "/org/gnome/PasswordSafe/icon_widget.ui")
-                    btn = icon_builder.get_object("icon_button")
-                    btn.props.visible = False
-                    btn.props.group = first_btn
-                    btn.props.active = True
+        # The icons are GtkRadioButton, which means that at
+        # least one button needs to be selected. If the icon is
+        # not handled by, a new button is added. This button is
+        # selected and not visible.
+        if not safe_entry.icon_handled or not entry_icon.visible:
+            icon_builder.add_from_resource(
+                "/org/gnome/PasswordSafe/icon_widget.ui")
+            btn = icon_builder.get_object("icon_button")
+            btn.props.visible = False
+            btn.props.group = first_btn
+            btn.props.active = True
 
-                properties_list_box.add(self.icon_property_row)
-            elif self.icon_property_row is not NotImplemented:
-                properties_list_box.add(self.icon_property_row)
+        properties_list_box.add(self.icon_property_row)
+        non_default = safe_entry.icon != ICONS["0"]
+        self.show_row(self.notes_property_row, non_default, add_all)
 
         if self.attachment_property_row is NotImplemented:
             self.attachment_property_row = builder.get_object("attachment_property_row")

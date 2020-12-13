@@ -350,10 +350,10 @@ class EntryPage(Gtk.ScrolledWindow):
         parent = button.get_parent().get_parent().get_parent()
         key = parent.get_name()
 
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        key_entry = Gtk.Entry()
+        key_entry.set_visible(True)
+        key_entry.can_focus(True)
 
-        key_entry = builder.get_object("key_entry")
         key_entry.connect(
             "activate", self.on_key_entry_activated, safe_entry, key, button, parent)
         key_entry.set_text(key)

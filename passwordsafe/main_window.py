@@ -452,7 +452,7 @@ class MainWindow(Handy.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, _event: Gdk.EventAny) -> bool:
+    def do_delete_event(self, _event: Gdk.Event) -> bool:
         # pylint:disable=arguments-differ
         """This is invoked when the window close button is pressed.
 

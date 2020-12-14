@@ -30,12 +30,12 @@ class MainWindow(Handy.ApplicationWindow):
     databases_to_save: List[UnlockedDatabase] = []
 
     container = Gtk.Template.Child()
-    file_new_button = Gtk.Template.Child()
-    file_open_button = Gtk.Template.Child()
     _headerbar = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
-    new_button_stack = Gtk.Template.Child()
-    open_button_stack = Gtk.Template.Child()
+    new_file_button = Gtk.Template.Child()
+    new_file_stack = Gtk.Template.Child()
+    open_file_button = Gtk.Template.Child()
+    open_file_stack = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
     _title_stack = Gtk.Template.Child()
 
@@ -151,11 +151,11 @@ class MainWindow(Handy.ApplicationWindow):
     @Gtk.Template.Callback()
     def _on_mobile_layout_changed(self, _window, _value):
         if self.props.mobile_layout:
-            self.open_button_stack.set_visible_child_name("mobile")
-            self.new_button_stack.set_visible_child_name("mobile")
+            self.open_file_stack.set_visible_child_name("mobile")
+            self.new_file_stack.set_visible_child_name("mobile")
         else:
-            self.open_button_stack.set_visible_child_name("desktop")
-            self.new_button_stack.set_visible_child_name("desktop")
+            self.open_file_stack.set_visible_child_name("desktop")
+            self.new_file_stack.set_visible_child_name("desktop")
 
     #
     # First Start Screen

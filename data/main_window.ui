@@ -22,14 +22,14 @@
                     <property name="can_focus">False</property>
                     <property name="spacing">6</property>
                     <child>
-                      <object class="GtkButton" id="file_new_button">
+                      <object class="GtkButton" id="new_file_button">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="halign">start</property>
                         <signal name="clicked" handler="create_filechooser" swapped="no"/>
                         <child>
-                          <object class="GtkStack" id="new_button_stack">
+                          <object class="GtkStack" id="new_file_stack">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="hhomogeneous">False</property>
@@ -61,14 +61,14 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkButton" id="file_open_button">
+                      <object class="GtkButton" id="open_file_button">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="halign">start</property>
                         <signal name="clicked" handler="open_filechooser" swapped="no"/>
                         <child>
-                          <object class="GtkStack" id="open_button_stack">
+                          <object class="GtkStack" id="open_file_stack">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="hhomogeneous">False</property>

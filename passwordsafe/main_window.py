@@ -34,6 +34,8 @@ class MainWindow(Handy.ApplicationWindow):
     file_open_button = Gtk.Template.Child()
     _headerbar = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
+    new_button_stack = Gtk.Template.Child()
+    open_button_stack = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
     _title_stack = Gtk.Template.Child()
 
@@ -149,11 +151,11 @@ class MainWindow(Handy.ApplicationWindow):
     @Gtk.Template.Callback()
     def _on_mobile_layout_changed(self, _window, _value):
         if self.props.mobile_layout:
-            self.file_open_button.get_children()[0].set_visible_child_name("mobile")
-            self.file_new_button.get_children()[0].set_visible_child_name("mobile")
+            self.open_button_stack.set_visible_child_name("mobile")
+            self.new_button_stack.set_visible_child_name("mobile")
         else:
-            self.file_open_button.get_children()[0].set_visible_child_name("desktop")
-            self.file_new_button.get_children()[0].set_visible_child_name("desktop")
+            self.open_button_stack.set_visible_child_name("desktop")
+            self.new_button_stack.set_visible_child_name("desktop")
 
     #
     # First Start Screen

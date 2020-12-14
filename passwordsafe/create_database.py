@@ -66,7 +66,9 @@ class CreateDatabase(Gtk.Stack):
             self.composite = False
 
     @Gtk.Template.Callback()
-    def on_auth_chooser_row_activated(self, _widget, row):
+    def on_auth_chooser_row_activated(
+        self, _widget: Gtk.ListBox, row: Gtk.ListBoxRow
+    ) -> None:
         if row.get_name() == "password":
             self.set_visible_child_name("password-creation")
         elif row.get_name() == "keyfile":
@@ -76,13 +78,13 @@ class CreateDatabase(Gtk.Stack):
             self.set_visible_child_name("password-creation")
 
     @Gtk.Template.Callback()
-    def on_password_creation_button_clicked(self, _widget):
+    def on_password_creation_button_clicked(self, _widget: Gtk.Button) -> None:
         self.database_manager.set_password_try(
             self.password_creation_input.get_text())
         self.set_visible_child_name("check-password")
 
     @Gtk.Template.Callback()
-    def on_password_check_button_clicked(self, _widget):
+    def on_password_check_button_clicked(self, _widget: Gtk.Button) -> None:
         password_check = self.password_check_input.get_text()
 
         if self.database_manager.compare_passwords(password_check):
@@ -95,7 +97,7 @@ class CreateDatabase(Gtk.Stack):
             self.set_visible_child_name("passwords-dont-match")
 
     @Gtk.Template.Callback()
-    def on_password_repeat_button_clicked(self, _widget):
+    def on_password_repeat_button_clicked(self, _widget: Gtk.Button) -> None:
 
         passwd: str = self.password_repeat_input1.get_text()
         self.database_manager.set_password_try(passwd)
@@ -139,14 +141,14 @@ class CreateDatabase(Gtk.Stack):
             generator_thread.start()
 
     @Gtk.Template.Callback()
-    def on_finish_button_clicked(self, _widget):
+    def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:
         self.parent_widget.remove(self)
         UnlockDatabase(
             self.window, self.parent_widget,
             self.database_manager.database_path)
 
     @Gtk.Template.Callback()
-    def on_password_repeat_input_activate(self, _widget):
+    def on_password_repeat_input_activate(self, _widget: Gtk.Entry) -> None:
         self.password_repeat_button.clicked()
 
     def save_pwc_database_thread(self):

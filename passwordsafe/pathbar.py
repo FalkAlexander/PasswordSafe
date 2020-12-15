@@ -55,7 +55,6 @@ class Pathbar(Gtk.Box):
                 self.add_separator_label()
 
         self.buttons[-1].set_active_style()
-        self.show_all()
 
     def add_separator_label(self):
         separator_label = PathbarSeparator(self.unlocked_database)

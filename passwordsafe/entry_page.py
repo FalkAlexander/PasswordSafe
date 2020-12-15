@@ -216,7 +216,6 @@ class EntryPage(Gtk.ScrolledWindow):
         attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed, key)
 
         self.attribute_list_box.add(attribute_row)
-        attribute_row.show_all()
         self.attribute_property_row_list.append(attribute_row)
 
     #

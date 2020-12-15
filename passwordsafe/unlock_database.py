@@ -107,7 +107,6 @@ class UnlockDatabase:
 
         # Responsive Container
         self.hdy_page = self.builder.get_object("unlock_database_clamp")
-        self.hdy_page.show_all()
 
         self.parent_widget.add(self.hdy_page)
 
@@ -277,7 +276,6 @@ class UnlockDatabase:
             logging.debug("File selected: %s", dialog.get_file().get_path)
             file_path = dialog.get_file().get_path()
             composite_unlock_select_button.set_label(ntpath.basename(file_path))
-            composite_unlock_select_button.show_all()
             self.composite_keyfile_path = file_path
 
         elif response == Gtk.ResponseType.CANCEL:

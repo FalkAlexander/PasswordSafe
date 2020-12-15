@@ -36,7 +36,6 @@ class QuitDialog(Gtk.MessageDialog):
             )
             check_button.set_active(True)
             unsaved_database_row.add(check_button)
-            unsaved_database_row.show_all()
             self.unsaved_databases_list_box.add(unsaved_database_row)
 
     def on_save_check_button_toggled(self, check_button, args):

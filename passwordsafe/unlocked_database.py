@@ -74,9 +74,6 @@ class UnlockedDatabase(GObject.GObject):
         self.custom_keypress_handler: CustomKeypressHandler = CustomKeypressHandler(
             self
         )
-        # UnlockedDatabase-specific key accelerators
-        self.accelerators: Gtk.AccelGroup = Gtk.AccelGroup()
-        self.window.add_accel_group(self.accelerators)
 
         root_group = SafeGroup.get_root(dbm)
         self.props.current_element = root_group
@@ -363,10 +360,10 @@ class UnlockedDatabase(GObject.GObject):
 
     def bind_accelerator(self, widget, accelerator, signal="clicked"):
         """bind accelerators to self, aka this `UnlockedDatabase`"""
-        key, mod = Gtk.accelerator_parse(accelerator)
-        widget.add_accelerator(
-            signal, self.accelerators, key, mod, Gtk.AccelFlags.VISIBLE
-        )
+        _, key, mod = Gtk.accelerator_parse(accelerator)
+        trigger = Gtk.KeyvalTrigger.new(key, mod)
+        action = Gtk.SignalAction.new(signal)
+        Gtk.Shortcut.new(trigger, action)
 
     #
     # Group and Entry Management

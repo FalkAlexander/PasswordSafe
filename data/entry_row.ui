@@ -3,7 +3,7 @@
   <template class="EntryRow" parent="GtkListBoxRow">
     <property name="visible">True</property>
     <child>
-      <object class="GtkGestureMultiPress" id="_entry_box_gesture">
+      <object class="GtkGestureClick" id="_entry_box_gesture">
         <property name="button">3</property>
       </object>
     </child>

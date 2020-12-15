@@ -59,7 +59,7 @@ class GroupRow(Gtk.ListBoxRow):
         )
 
     def _on_group_row_button_pressed(
-            self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,
+            self, _gesture: Gtk.GestureClick, _n_press: int, _event_x: float,
             _event_y: float) -> None:
         # pylint: disable=too-many-arguments
         db_view: UnlockedDatabase = self.unlocked_database

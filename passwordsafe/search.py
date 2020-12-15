@@ -207,10 +207,10 @@ class Search:
         # Do nothing on empty search terms or no search results
         if not self._search_text:
             return
-        if not self.search_list_box.get_children():
+        if not self.search_list_box.get_first_child():
             return
 
-        first_row = self.search_list_box.get_children()[0]
+        first_row = self.search_list_box.get_first_child()
         first_row.activate()
 
     @property

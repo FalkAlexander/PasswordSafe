@@ -100,7 +100,7 @@ class ColorEntryRow(Gtk.Box):
         if selected_child.props.selected:
             return
 
-        for child in self._flowbox.get_children():
+        for child in self._flowbox:
             selected: bool = (child == selected_child)
             child.props.selected = selected
 

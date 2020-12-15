@@ -68,8 +68,8 @@ class Pathbar(Gtk.Box):
 
     def clear_pathbar(self):
         self.buttons.remove_all()
-        for widget in self.get_children():
-            self.remove(widget)
+        while self.get_first_child():
+            self.remove(self.get_first_child())
 
     def on_pathbar_button_clicked(self, pathbar_button):
         self.unlocked_database.start_database_lock_timer()

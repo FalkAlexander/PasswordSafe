@@ -151,12 +151,12 @@ class SelectionUI(Gtk.Box):
 
         selection_type = param.get_string()
         page = self.unlocked_database.get_current_page()
-        viewport = page.get_children()[0]
-        overlay = viewport.get_children()[0]
+        viewport = page.get_first_child()
+        overlay = viewport.get_first_child()
         list_box = NotImplemented
 
-        column = overlay.get_children()[0]
-        list_box = column.get_children()[0]
+        column = overlay.get_first_child()
+        list_box = column.get_first_child()
 
         for row in list_box:
             if selection_type == "all":

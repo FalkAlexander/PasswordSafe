@@ -64,7 +64,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     def _setup_widgets(self):
         is_mobile = self._window.props.mobile_layout
 
-        if is_mobile and not self._action_bar.get_children():
+        if is_mobile and not self._action_bar.get_first_child():
             # mobile mode
             self._action_bar.append(self._pathbar)
             self._action_bar.show()
@@ -143,13 +143,13 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self._unlocked_database.revealer.props.reveal_child = False
             return
 
-        if is_mobile and not self._action_bar.get_children():
+        if is_mobile and not self._action_bar.get_first_child():
             # mobile width: hide pathbar in header
             self._headerbar_box.remove(self._pathbar)
             # and put it in the bottom Action bar instead
             self._action_bar.append(self._pathbar)
             self._action_bar.show()
-        elif not is_mobile and self._action_bar.get_children():
+        elif not is_mobile and self._action_bar.get_first_child():
             # Desktop width and pathbar is in actionbar
             self._action_bar.remove(self._pathbar)
             self._headerbar_box.append(self._pathbar)

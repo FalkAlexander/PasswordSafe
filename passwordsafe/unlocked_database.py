@@ -138,7 +138,7 @@ class UnlockedDatabase(GObject.GObject):
         self.headerbar = UnlockedHeaderBar(self)
         self.selection_ui = self.headerbar.selection_ui
 
-        self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        self.clipboard = Gdk.Display.get_default().get_clipboard()
 
         # Contains the "main page" with the BrowserListBox.
         self.divider = self.builder.get_object("divider")
@@ -477,7 +477,7 @@ class UnlockedDatabase(GObject.GObject):
             GLib.source_remove(self.clipboard_timer_handler)
             self.clipboard_timer_handler = None
 
-        self.clipboard.set_text(text, -1)
+        self.clipboard.set(text)
 
         self.window.send_notification(message)
 
@@ -485,7 +485,7 @@ class UnlockedDatabase(GObject.GObject):
 
         def callback():
             self.clipboard_timer_handler = None
-            self.clipboard.clear()
+            self.clipboard.set_content(None)
 
         self.clipboard_timer_handler = GLib.timeout_add_seconds(
             clear_clipboard_time, callback
@@ -565,7 +565,7 @@ class UnlockedDatabase(GObject.GObject):
         if self.clipboard_timer_handler:
             GLib.source_remove(self.clipboard_timer_handler)
             self.clipboard_timer_handler = None
-            self.clipboard.clear()
+            self.clipboard.set_content(None)
 
         if self._lock_timer_handler:
             GLib.source_remove(self._lock_timer_handler)

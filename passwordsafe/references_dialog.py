@@ -72,7 +72,7 @@ class ReferencesDialog():
 
     def __on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.__unlocked_database.start_database_lock_timer()
-        self.__unlocked_database.clipboard.set_text(widget.get_text(), -1)
+        self.__unlocked_database.clipboard.set(widget.get_text())
 
     def __on_property_model_button_clicked(self, widget):
         self.__unlocked_database.start_database_lock_timer()

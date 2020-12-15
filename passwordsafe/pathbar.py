@@ -50,7 +50,7 @@ class Pathbar(Gtk.Box):
 
     def build_pathbar(self):
         for button in self.buttons:
-            self.add(button)
+            self.append(button)
             if not button == self.buttons[-1]:
                 self.add_separator_label()
 
@@ -59,7 +59,7 @@ class Pathbar(Gtk.Box):
 
     def add_separator_label(self):
         separator_label = PathbarSeparator(self.unlocked_database)
-        self.add(separator_label)
+        self.append(separator_label)
 
     def add_button(self, element: SafeElement) -> PathbarButton:
         pathbar_button = PathbarButton(element)

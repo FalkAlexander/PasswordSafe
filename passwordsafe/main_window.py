@@ -348,7 +348,7 @@ class MainWindow(Handy.ApplicationWindow):
             self.database_manager,
             back_button)
         self.set_headerbar(headerbar)
-        parent_widget.add(create_database)
+        parent_widget.append(create_database)
         back_button.connect("clicked",
                             create_database.on_headerbar_back_button_clicked)
 

@@ -97,8 +97,7 @@ class UnlockDatabase:
                 label = Gtk.Label()
                 label.set_text(ntpath.basename(keyfile_path))
                 label.set_ellipsize(Pango.EllipsizeMode.END)
-                composite_unlock_select_button.remove(composite_unlock_select_button.get_children()[0])
-                composite_unlock_select_button.add(label)
+                composite_unlock_select_button.set_label(label)
 
                 self.composite_keyfile_path = keyfile_path
 
@@ -108,7 +107,7 @@ class UnlockDatabase:
         # Responsive Container
         self.hdy_page = self.builder.get_object("unlock_database_clamp")
 
-        self.parent_widget.add(self.hdy_page)
+        self.parent_widget.append(self.hdy_page)
 
         self._connect_events(stack)
 
@@ -385,8 +384,7 @@ class UnlockDatabase:
 
     def _open_database_failure(self):
         button, image = self._open_database_update_entries(True)
-        button.remove(button.get_children()[0])
-        button.add(image)
+        button.set_icon_name(image)
 
         if self._unlock_method == UnlockMethod.PASSWORD:
             self._password_unlock_failed()

@@ -52,7 +52,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._window = unlocked_database.window
 
         self._selection_ui = SelectionUI(self._unlocked_database)
-        self._headerbar_right_box.add(self._selection_ui)
+        self._headerbar_right_box.append(self._selection_ui)
 
         self._mode: int = UnlockedHeaderBar.Mode.GROUP
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
@@ -66,12 +66,12 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         if is_mobile and not self._action_bar.get_children():
             # mobile mode
-            self._action_bar.add(self._pathbar)
+            self._action_bar.append(self._pathbar)
             self._action_bar.show()
             self._unlocked_database.revealer.props.reveal_child = True
         elif not is_mobile:
             # desktop mode
-            self._headerbar_box.add(self._pathbar)
+            self._headerbar_box.append(self._pathbar)
 
     def _setup_signals(self):
         self._window.connect(
@@ -147,12 +147,12 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             # mobile width: hide pathbar in header
             self._headerbar_box.remove(self._pathbar)
             # and put it in the bottom Action bar instead
-            self._action_bar.add(self._pathbar)
+            self._action_bar.append(self._pathbar)
             self._action_bar.show()
         elif not is_mobile and self._action_bar.get_children():
             # Desktop width and pathbar is in actionbar
             self._action_bar.remove(self._pathbar)
-            self._headerbar_box.add(self._pathbar)
+            self._headerbar_box.append(self._pathbar)
 
         self._unlocked_database.revealer.props.reveal_child = is_mobile
 

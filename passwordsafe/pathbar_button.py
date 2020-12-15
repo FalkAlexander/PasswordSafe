@@ -28,7 +28,7 @@ class PathbarButton(Gtk.Button):
             home_button_image = Gtk.Image.new_from_icon_name(
                 "go-home-symbolic", Gtk.IconSize.BUTTON
             )
-            self.add(home_button_image)
+            self.set_child(home_button_image)
             return
 
         self.element.bind_property(

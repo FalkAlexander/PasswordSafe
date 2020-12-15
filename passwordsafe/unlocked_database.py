@@ -143,7 +143,7 @@ class UnlockedDatabase(GObject.GObject):
         # Contains the "main page" with the BrowserListBox.
         self.divider = self.builder.get_object("divider")
         self._unlocked_db_stack.add_named(self.search.scrolled_page, "search")
-        self.parent_widget.add(self.divider)
+        self.parent_widget.append(self.divider)
 
         self.search.initialize()
         self._update_headerbar()
@@ -175,7 +175,7 @@ class UnlockedDatabase(GObject.GObject):
         while page_box.get_children():
             page_box.remove(page_box.get_children()[0])
 
-        page_box.add(page)
+        page_box.append(page)
         self._unlocked_db_deck.set_visible_child(self._edit_page_box)
 
     def show_browser_page(self, group: SafeGroup) -> None:
@@ -332,7 +332,7 @@ class UnlockedDatabase(GObject.GObject):
 
         scrolled_window = Gtk.ScrolledWindow.new()
         scrolled_window.props.visible = True
-        scrolled_window.add(browser_stack)
+        scrolled_window.set_child(browser_stack)
 
         return scrolled_window
 

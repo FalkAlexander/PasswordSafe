@@ -108,7 +108,7 @@ class EntryPage(Gtk.ScrolledWindow):
         value = safe_entry.username != ""
 
         # Password
-        self.password_property_box.add(PasswordEntryRow(
+        self.password_property_box.append(PasswordEntryRow(
             self.unlocked_database))
 
         # OTP (token)
@@ -145,7 +145,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
         # Color
-        self.color_property_box.add(ColorEntryRow(
+        self.color_property_box.append(ColorEntryRow(
             self.unlocked_database, safe_entry))
 
         # Icons
@@ -165,7 +165,7 @@ class EntryPage(Gtk.ScrolledWindow):
                 self.icon_entry_box.select_child(btn)
 
             btn.set_name(icon_nr)
-            self.icon_entry_box.add(btn)
+            self.icon_entry_box.insert(btn, -1)
 
         self.icon_entry_box.connect(
             "selected-children-changed", self.on_entry_icon_button_toggled
@@ -215,7 +215,7 @@ class EntryPage(Gtk.ScrolledWindow):
         attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
         attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed, key)
 
-        self.attribute_list_box.add(attribute_row)
+        self.attribute_list_box.append(attribute_row)
         self.attribute_property_row_list.append(attribute_row)
 
     #
@@ -322,8 +322,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         attribute_entry_box = button.get_parent()
         attribute_entry_box.remove(button)
-        attribute_entry_box.add(key_entry)
-        attribute_entry_box.reorder_child(key_entry, 0)
+        attribute_entry_box.append(key_entry)
         key_entry.grab_focus()
 
     def on_key_entry_activated(
@@ -338,8 +337,7 @@ class EntryPage(Gtk.ScrolledWindow):
         if new_key == key:
             attribute_entry_box = widget.get_parent()
             attribute_entry_box.remove(widget)
-            attribute_entry_box.add(button)
-            attribute_entry_box.reorder_child(button, 0)
+            attribute_entry_box.append(button)
             return
 
         if safe_entry.has_attribute(new_key):
@@ -356,8 +354,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         attribute_entry_box = widget.get_parent()
         attribute_entry_box.remove(widget)
-        attribute_entry_box.add(button)
-        attribute_entry_box.reorder_child(button, 0)
+        attribute_entry_box.append(button)
 
     #
     # Attachment Handling

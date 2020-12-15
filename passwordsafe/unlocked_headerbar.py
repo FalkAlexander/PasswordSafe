@@ -131,7 +131,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
                 "{} Selected entry", "{} Selected entries",
                 new_number).format(new_number)
 
-        self.selection_options_button_label.props.label = label
+        self._selection_options_button.props.label = label
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""

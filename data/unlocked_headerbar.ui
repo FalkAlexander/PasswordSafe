@@ -47,25 +47,7 @@
         <property name="receives_default">True</property>
         <property name="has_frame">False</property>
         <property name="menu_model">selection_mode_menu</property>
-        <child>
-          <object class="GtkBox" id="selection_options_button_box">
-            <property name="visible">True</property>
-            <property name="spacing">6</property>
-            <child>
-              <object class="GtkLabel" id="selection_options_button_label">
-                <property name="visible">True</property>
-                <property name="label" translatable="yes">Click on a checkbox to select</property>
-                <property name="ellipsize">middle</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkImage" id="selection_options_button_labe">
-                <property name="visible">True</property>
-                <property name="icon_name">pan-down-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
+        <property name="label" translatable="yes">Click on a checkbox to select</property>
       </object>
     </child>
     <child type="end">

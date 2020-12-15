@@ -51,7 +51,7 @@ class ReferencesDialog():
         uuid = self.__unlocked_database.current_element.uuid
         encoded_uuid = uuid.hex.upper()
 
-        self.__builder.get_object("selected_property_label").set_text(self.__property)
+        self.__builder.get_object("property_popover_button").set_label(self.__property)
 
         self.__reference_entry.set_text("{REF:" + self.__property + "@I:" + encoded_uuid + "}")
 

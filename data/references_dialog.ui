@@ -437,27 +437,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="popover">prop_selection_popover</property>
-                            <child>
-                              <object class="GtkBox">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="spacing">2</property>
-                                <child>
-                                  <object class="GtkLabel" id="selected_property_label">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="label" translatable="yes">Property</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkImage">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
-                                    <property name="icon_name">pan-down-symbolic</property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
+                            <property name="label" translatable="yes">Property</property>
                           </object>
                         </child>
                         <child>

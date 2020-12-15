@@ -96,7 +96,7 @@ class SelectionUI(Gtk.Box):
         if self.cut_mode is True:
             self.entries_cut = self.entries_selected
             self.groups_cut = self.groups_selected
-            self._cut_paste_image.set_from_icon_name("edit-paste-symbolic", Gtk.IconSize.BUTTON)
+            self._cut_paste_image.set_from_icon_name("edit-paste-symbolic")
             for group_row in self.groups_selected:
                 group_row.hide()
                 self.hidden_rows.append(group_row)
@@ -113,7 +113,7 @@ class SelectionUI(Gtk.Box):
             return
 
         self._cut_paste_image.set_from_icon_name(
-            "edit-cut-symbolic", Gtk.IconSize.BUTTON
+            "edit-cut-symbolic"
         )
         self.cut_mode = True
 
@@ -223,7 +223,7 @@ class SelectionUI(Gtk.Box):
         self._delete_button.set_sensitive(False)
         self._cut_paste_button.set_sensitive(False)
         self._cut_paste_image.set_from_icon_name(
-            "edit-cut-symbolic", Gtk.IconSize.BUTTON
+            "edit-cut-symbolic"
         )
         for row in self.hidden_rows:
             row.show()

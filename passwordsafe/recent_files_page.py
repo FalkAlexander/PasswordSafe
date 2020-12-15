@@ -23,6 +23,7 @@ class RecentFilesPage(Gtk.Box):
         super().__init__()
 
         user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
+        self.list_model = Gio.ListStore.new(RecentFileRow)
 
         for path_uri in config.get_last_opened_list():
             gio_file: Gio.File = Gio.File.new_for_uri(path_uri)
@@ -38,13 +39,15 @@ class RecentFilesPage(Gtk.Box):
             name: str = gio_file.get_uri()
 
             recent_file_row = RecentFileRow(filename, path, name)
-            self._last_opened_listbox.prepend(recent_file_row)
+            self.list_model.insert(0, recent_file_row)
+
+        self._last_opened_listbox.bind_model(self.list_model, (lambda item: item))
 
     @property
     def is_empty(self) -> bool:
         """Return True is there are no recent files.
         """
-        return len(self._last_opened_listbox.get_children()) == 0
+        return self.list_model.get_n_items() == 0
 
     @Gtk.Template.Callback()
     def _on_last_opened_listbox_activated(

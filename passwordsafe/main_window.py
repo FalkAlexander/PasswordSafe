@@ -71,7 +71,7 @@ class MainWindow(Handy.ApplicationWindow):
 
     def assemble_window(self) -> None:
         window_size = passwordsafe.config_manager.get_window_size()
-        self.resize(window_size[0], window_size[1])
+        self.set_default_size(window_size[0], window_size[1])
 
         self.create_headerbar()
         self.load_custom_css()

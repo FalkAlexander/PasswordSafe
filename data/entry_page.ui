@@ -232,17 +232,10 @@
                       <object class="GtkButton" id="notes_detach_button">
                         <property name="visible">True</property>
                         <property name="receives_default">True</property>
+                        <property name="icon_name">focus-windows-symbolic</property>
                         <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="icon_name">focus-windows-symbolic</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
                         <style>
+                          <class name="dim-label"/>
                           <class name="flat"/>
                         </style>
                       </object>
@@ -431,13 +424,8 @@
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Add attribute</property>
                         <property name="halign">end</property>
+                        <property name="icon_name">list-add-symbolic</property>
                         <signal name="clicked" handler="on_attributes_add_button_clicked" swapped="no"/>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="icon_name">list-add-symbolic</property>
-                          </object>
-                        </child>
                       </object>
                     </child>
                   </object>
@@ -470,12 +458,7 @@
                     <property name="visible">True</property>
                     <property name="receives_default">True</property>
                     <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="icon_name">pan-down-symbolic</property>
-                      </object>
-                    </child>
+                    <property name="icon_name">pan-down-symbolic</property>
                     <style>
                       <class name="circular"/>
                       <class name="flat"/>

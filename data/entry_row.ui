@@ -92,13 +92,8 @@
               <object class="GtkButton" id="_entry_copy_user_button">
                 <property name="visible">True</property>
                 <property name="tooltip_text" translatable="yes">Copy username to clipboard</property>
+                <property name="icon_name">avatar-default-symbolic</property>
                 <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon_name">avatar-default-symbolic</property>
-                  </object>
-                </child>
               </object>
             </child>
             <child>
@@ -107,13 +102,8 @@
                 <property name="visible">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
+                <property name="icon_name">dialog-password-symbolic</property>
                 <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon_name">dialog-password-symbolic</property>
-                  </object>
-                </child>
               </object>
             </child>
             <style>

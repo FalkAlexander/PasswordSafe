@@ -11,24 +11,14 @@
             <property name="visible">True</property>
             <property name="receives_default">True</property>
             <property name="action_name">app.go_back</property>
-            <child>
-              <object class="GtkImage" id="back_icon">
-                <property name="visible">True</property>
-                <property name="icon_name">go-previous-symbolic</property>
-              </object>
-            </child>
+            <property name="icon_name">go-previous-symbolic</property>
           </object>
         </child>
         <child>
           <object class="GtkMenuButton" id="_add_button">
             <property name="visible">True</property>
             <property name="menu_model">_add_button_menu</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="icon_name">list-add-symbolic</property>
-              </object>
-            </child>
+            <property name="icon_name">list-add-symbolic</property>
           </object>
         </child>
       </object>
@@ -91,13 +81,8 @@
                 <property name="visible">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
+                <property name="icon_name">system-search-symbolic</property>
                 <signal name="clicked" handler="_on_search_button_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage" id="search_button_image">
-                    <property name="visible">True</property>
-                    <property name="icon_name">system-search-symbolic</property>
-                  </object>
-                </child>
               </object>
             </child>
             <child>
@@ -105,25 +90,15 @@
                 <property name="visible">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+                <property name="icon_name">emblem-ok-symbolic</property>
                 <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage" id="selection_button_image">
-                    <property name="visible">True</property>
-                    <property name="icon_name">emblem-ok-symbolic</property>
-                  </object>
-                </child>
               </object>
             </child>
             <child>
               <object class="GtkMenuButton" id="menupopover_button">
                 <property name="visible">True</property>
                 <property name="menu_model">unlocked_database_menu</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon_name">open-menu-symbolic</property>
-                  </object>
-                </child>
+                <property name="icon_name">open-menu-symbolic</property>
               </object>
             </child>
           </object>
@@ -132,12 +107,7 @@
           <object class="GtkMenuButton" id="_secondary_menu_button">
             <property name="visible">True</property>
             <property name="receives_default">True</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="icon_name">view-more-symbolic</property>
-              </object>
-            </child>
+            <property name="icon_name">view-more-symbolic</property>
           </object>
         </child>
       </object>

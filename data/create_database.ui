@@ -156,14 +156,8 @@
                 <property name="valign">start</property>
                 <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
+                <property name="icon_name">go-next-symbolic</property>
                 <signal name="clicked" handler="on_password_creation_button_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage" id="button_image">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">go-next-symbolic</property>
-                  </object>
-                </child>
               </object>
             </child>
             <style>
@@ -241,13 +235,7 @@
                 <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
                 <signal name="clicked" handler="on_password_check_button_clicked" swapped="no"/>
-                <child>
-                  <object class="GtkImage" id="button_image4">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">object-select-symbolic</property>
-                  </object>
-                </child>
+                <property name="icon_name">object-select-symbolic</property>
               </object>
             </child>
             <style>

@@ -35,7 +35,6 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     _secondary_menu_button = Gtk.Template.Child()
     _search_button = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
-    selection_options_button_label = Gtk.Template.Child()
     _title_label = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):

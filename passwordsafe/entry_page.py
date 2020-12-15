@@ -202,13 +202,12 @@ class EntryPage(Gtk.ScrolledWindow):
         builder.add_from_resource("/org/gnome/PasswordSafe/attribute_entry_row.ui")
 
         attribute_row = builder.get_object("attribute_row")
-        attribute_property_name_label = builder.get_object("attribute_property_name_label")
         attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
         attribute_value_entry = builder.get_object("attribute_value_entry")
         attribute_value_entry.set_buffer(HistoryEntryBuffer([]))
         attribute_remove_button = builder.get_object("attribute_remove_button")
 
-        attribute_property_name_label.set_text(key)
+        attribute_key_edit_button.set_label(key)
         if value is not None:
             attribute_value_entry.set_text(value)
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked, key)

@@ -35,13 +35,7 @@
       <object class="GtkButton" id="back_button">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <child>
-          <object class="GtkImage" id="back_icon">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">go-previous-symbolic</property>
-          </object>
-        </child>
+        <property name="icon_name">go-previous-symbolic</property>
       </object>
     </child>
     <child type="end">
@@ -49,13 +43,7 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="menu_model">create_safe_menu</property>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">open-menu-symbolic</property>
-          </object>
-        </child>
+        <property name="icon_name">open-menu-symbolic</property>
       </object>
     </child>
   </object>

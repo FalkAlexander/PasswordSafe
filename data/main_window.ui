@@ -24,13 +24,8 @@
                           <object class="GtkButton" id="new_file_button">
                             <property name="visible">True</property>
                             <property name="tooltip_text" translatable="yes">New…</property>
+                            <property name="icon_name">list-add-symbolic</property>
                             <property name="action_name">app.new_database</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="icon_name">list-add-symbolic</property>
-                              </object>
-                            </child>
                           </object>
                         </child>
                         <child>
@@ -38,12 +33,7 @@
                             <property name="visible">True</property>
                             <property name="tooltip_text" translatable="yes">Open…</property>
                             <property name="action_name">app.open_database</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="icon_name">document-open-symbolic</property>
-                              </object>
-                            </child>
+                            <property name="icon_name">document-open-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -53,13 +43,7 @@
                         <property name="visible">True</property>
                         <property name="receives_default">True</property>
                         <property name="menu_model">recent_files_menu</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="icon_name">open-menu-symbolic</property>
-                          </object>
-                        </child>
+                        <property name="icon_name">open-menu-symbolic</property>
                       </object>
                     </child>
                   </object>

@@ -360,17 +360,15 @@ class MainWindow(Handy.ApplicationWindow):
 
         tab_hbox = Gtk.Box.new(False, 0)
         tab_label = Gtk.Label.new(title)
-        tab_hbox.add(tab_label)
+        tab_hbox.prepend(tab_label)
 
-        close_image = Gtk.Image.new_from_icon_name("window-close-symbolic", Gtk.IconSize.BUTTON)
-        close_button = Gtk.Button()
-        close_button.set_relief(Gtk.ReliefStyle.NONE)
+        close_button = Gtk.Button.new_from_icon_name("window-close-symbolic")
+
+        close_button.set_has_frame(False)
         close_button.set_focus_on_click(False)
         close_button.connect("clicked", self.on_tab_close_button_clicked, page_instance)
-        close_button.add(close_image)
 
-        tab_hbox.add(close_button)
-        tab_hbox.show_all()
+        tab_hbox.append(close_button)
 
         self.container.append_page(page_instance, tab_hbox)
         self.container.set_current_page(self.container.page_num(page_instance))

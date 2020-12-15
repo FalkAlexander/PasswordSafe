@@ -359,8 +359,7 @@ class UnlockDatabase:
         spinner.show()
         spinner.start()
 
-        button.remove(image)
-        button.add(spinner)
+        button.set_child(spinner)
 
         self.unlock_thread = threading.Thread(
             target=self._open_database_process)

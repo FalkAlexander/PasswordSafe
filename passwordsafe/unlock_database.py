@@ -472,7 +472,7 @@ class UnlockDatabase:
 
         passwordsafe.config_manager.set_last_opened_list(path_listh)
 
-        self.hdy_page.destroy()
+        self.parent_widget.remove(self.hdy_page)
         UnlockedDatabase(
             self.window, self.parent_widget, self.database_manager)
         self.database_manager.connect(

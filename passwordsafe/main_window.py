@@ -95,14 +95,14 @@ class MainWindow(Handy.ApplicationWindow):
 
     def load_custom_css(self) -> None:
         """Load passwordsafe.css and enable it"""
-        screen = Gdk.Screen.get_default()
+        display = Gdk.Display.get_default()
 
         css_provider = Gtk.CssProvider()
         css_provider.load_from_resource("org/gnome/PasswordSafe/passwordsafe.css")
 
         context = self.get_style_context()
-        context.add_provider_for_screen(
-            screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
+        context.add_provider_for_display(
+            display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
     def apply_theme(self) -> None:
         """Set the bright/dark theme depending on the configuration"""

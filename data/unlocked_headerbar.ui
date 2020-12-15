@@ -78,7 +78,7 @@
         </child>
       </object>
     </child>
-    <child>
+    <child type="end">
       <object class="GtkBox" id="_headerbar_right_box">
         <property name="visible">True</property>
         <property name="spacing">6</property>
@@ -141,9 +141,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack_type">end</property>
-      </packing>
     </child>
   </template>
   <menu id="unlocked_database_menu">

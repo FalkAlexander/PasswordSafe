@@ -18,7 +18,7 @@
         </child>
       </object>
     </child>
-    <child>
+    <child type="end">
       <object class="GtkMenuButton" id="menupopover_button">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
@@ -31,9 +31,6 @@
           </object>
         </child>
       </object>
-      <packing>
-        <property name="pack_type">end</property>
-      </packing>
     </child>
   </object>
   <menu id="create_safe_menu">

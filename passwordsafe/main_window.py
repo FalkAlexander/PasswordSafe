@@ -47,8 +47,8 @@ class MainWindow(Handy.ApplicationWindow):
         self.welcome_page = WelcomePage()
         self.recent_files_page = RecentFilesPage()
 
-        self._main_view.add(self.welcome_page)
-        self._main_view.add(self.recent_files_page)
+        self._main_view.add_child(self.welcome_page)
+        self._main_view.add_child(self.recent_files_page)
         self._main_overlay.add_overlay(self._notification)
 
         self.assemble_window()
@@ -65,8 +65,9 @@ class MainWindow(Handy.ApplicationWindow):
             self._title_stack.set_visible_child(self._headerbar)
             return
 
-        if headerbar not in self._title_stack.get_children():
-            self._title_stack.add(headerbar)
+        if not self._title_stack.get_page(headerbar):
+            self._title_stack.add_child(headerbar)
+
         self._title_stack.set_visible_child(headerbar)
 
     def assemble_window(self) -> None:

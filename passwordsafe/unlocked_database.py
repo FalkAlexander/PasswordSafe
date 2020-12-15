@@ -172,8 +172,8 @@ class UnlockedDatabase(GObject.GObject):
         page_box = self._edit_page_box
 
         # TODO Use the set_child api in GTK 4 with a StackPage.
-        while page_box.get_children():
-            page_box.remove(page_box.get_children()[0])
+        while page_box.get_first_child():
+            page_box.remove(page_box.get_first_child())
 
         page_box.append(page)
         self._unlocked_db_deck.set_visible_child(self._edit_page_box)

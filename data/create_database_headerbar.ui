@@ -3,8 +3,34 @@
   <object class="HdyHeaderBar" id="headerbar">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
-    <property name="subtitle" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Safe</property>
+    <property name="title-widget">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
+            <property name="single-line-mode">True</property>
+            <property name="ellipsize">end</property>
+            <property name="width-chars">5</property>
+            <style>
+              <class name="title"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="label" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Safe</property>
+            <property name="single-line-mode">True</property>
+            <property name="ellipsize">end</property>
+            <property name="width-chars">5</property>
+            <style>
+              <class name="subtitle"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </property>
     <child>
       <object class="GtkButton" id="back_button">
         <property name="visible">True</property>

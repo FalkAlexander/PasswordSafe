@@ -418,8 +418,7 @@ class MainWindow(Handy.ApplicationWindow):
         tab_label = Gtk.Label.new(title)
         tab_hbox.add(tab_label)
 
-        icon = Gio.ThemedIcon(name="window-close-symbolic")
-        close_image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+        close_image = Gtk.Image.new_from_icon_name("window-close-symbolic", Gtk.IconSize.BUTTON)
         close_button = Gtk.Button()
         close_button.set_relief(Gtk.ReliefStyle.NONE)
         close_button.set_focus_on_click(False)

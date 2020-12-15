@@ -311,7 +311,7 @@ class EntryPage(Gtk.ScrolledWindow):
         parent = button.get_parent()
 
         parent = button.get_parent().get_parent().get_parent()
-        key = button.get_children()[0].get_label()
+        key = button.get_label()
 
         key_entry = Gtk.Entry()
         key_entry.set_visible(True)
@@ -349,7 +349,7 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry.set_attribute(new_key, safe_entry.props.attributes[key])
         safe_entry.delete_attribute(key)
 
-        button.get_children()[0].set_text(new_key)
+        button.set_label(new_key)
         parent.set_name(new_key)
 
         attribute_entry_box = widget.get_parent()

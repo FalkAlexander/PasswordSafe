@@ -3,130 +3,125 @@
   <template class="EntryRow" parent="GtkListBoxRow">
     <property name="visible">True</property>
     <child>
-      <object class="GtkEventBox" id="entry_event_box">
+      <object class="GtkGestureMultiPress" id="_entry_box_gesture">
+        <property name="button">3</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="entry_box">
+        <property name="height_request">60</property>
         <property name="visible">True</property>
-        <property name="halign">baseline</property>
+        <property name="margin_start">8</property>
+        <property name="margin_end">8</property>
         <child>
-          <object class="GtkBox" id="entry_box">
-            <property name="height_request">60</property>
+          <object class="GtkCheckButton" id="selection_checkbox">
+            <property name="receives_default">False</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="vexpand">True</property>
+            <property name="draw_indicator">True</property>
+            <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage" id="_entry_icon">
             <property name="visible">True</property>
-            <property name="margin_start">8</property>
-            <property name="margin_end">8</property>
+            <property name="icon_name">application-x-executable-symbolic</property>
+            <property name="margin_start">10</property>
+            <property name="margin_end">10</property>
+            <property name="width_request">32</property>
+            <property name="height_request">32</property>
+            <property name="valign">center</property>
+            <style>
+              <class name="circular-icon"/>
+              <class name="DarkIcon"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="description_box">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <property name="hexpand">True</property>
             <child>
-              <object class="GtkCheckButton" id="selection_checkbox">
-                <property name="receives_default">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
-                <property name="draw_indicator">True</property>
-                <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkImage" id="_entry_icon">
+              <object class="GtkLabel" id="_entry_name_label">
+                <property name="name">name_label</property>
                 <property name="visible">True</property>
-                <property name="icon_name">application-x-executable-symbolic</property>
-                <property name="margin_start">10</property>
-                <property name="margin_end">10</property>
-                <property name="width_request">32</property>
-                <property name="height_request">32</property>
-                <property name="valign">center</property>
+                <property name="halign">start</property>
+                <property name="valign">end</property>
+                <property name="hexpand">False</property>
+                <property name="vexpand">True</property>
+                <property name="label">Title not specified</property>
+                <property name="ellipsize">end</property>
                 <style>
-                  <class name="circular-icon"/>
-                  <class name="DarkIcon"/>
+                  <class name="italic"/>
                 </style>
               </object>
             </child>
             <child>
-              <object class="GtkBox" id="description_box">
+              <object class="GtkBox" id="subtitle_label_box">
                 <property name="visible">True</property>
+                <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
-                <property name="hexpand">True</property>
                 <child>
-                  <object class="GtkLabel" id="_entry_name_label">
-                    <property name="name">name_label</property>
+                  <object class="GtkLabel" id="_entry_username_label">
+                    <property name="name">entry_subtitle_label</property>
                     <property name="visible">True</property>
                     <property name="halign">start</property>
-                    <property name="valign">end</property>
+                    <property name="valign">start</property>
                     <property name="hexpand">False</property>
                     <property name="vexpand">True</property>
-                    <property name="label">Title not specified</property>
+                    <property name="label">No username specified</property>
                     <property name="ellipsize">end</property>
                     <style>
                       <class name="italic"/>
                     </style>
                   </object>
                 </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="margin_start">6</property>
+            <property name="margin_end">6</property>
+            <child>
+              <object class="GtkButton" id="_entry_copy_user_button">
+                <property name="visible">True</property>
+                <property name="tooltip_text" translatable="yes">Copy username to clipboard</property>
+                <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
                 <child>
-                  <object class="GtkBox" id="subtitle_label_box">
+                  <object class="GtkImage">
                     <property name="visible">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkLabel" id="_entry_username_label">
-                        <property name="name">entry_subtitle_label</property>
-                        <property name="visible">True</property>
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="hexpand">False</property>
-                        <property name="vexpand">True</property>
-                        <property name="label">No username specified</property>
-                        <property name="ellipsize">end</property>
-                        <style>
-                          <class name="italic"/>
-                        </style>
-                      </object>
-                    </child>
+                    <property name="icon_name">avatar-default-symbolic</property>
                   </object>
                 </child>
               </object>
             </child>
             <child>
-              <object class="GtkBox">
+              <object class="GtkButton" id="_entry_copy_pass_button">
+                <property name="name">ListBoxRowButton</property>
                 <property name="visible">True</property>
-                <property name="valign">center</property>
-                <property name="margin_start">6</property>
-                <property name="margin_end">6</property>
+                <property name="receives_default">True</property>
+                <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
+                <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>
                 <child>
-                  <object class="GtkButton" id="_entry_copy_user_button">
+                  <object class="GtkImage">
                     <property name="visible">True</property>
-                    <property name="tooltip_text" translatable="yes">Copy username to clipboard</property>
-                    <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="icon_name">avatar-default-symbolic</property>
-                      </object>
-                    </child>
+                    <property name="icon_name">dialog-password-symbolic</property>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkButton" id="_entry_copy_pass_button">
-                    <property name="name">ListBoxRowButton</property>
-                    <property name="visible">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
-                    <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="icon_name">dialog-password-symbolic</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <style>
-                  <class name="linked"/>
-                </style>
               </object>
             </child>
+            <style>
+              <class name="linked"/>
+            </style>
           </object>
         </child>
       </object>
     </child>
   </template>
-  <object class="GtkGestureMultiPress" id="_entry_box_gesture">
-    <property name="widget">entry_event_box</property>
-    <property name="button">3</property>
-  </object>
 </interface>

@@ -117,18 +117,18 @@ class MainWindow(Handy.ApplicationWindow):
     # Responsive Listener
     #
 
-    def do_size_allocate(self, allocation: Gdk.Rectangle) -> None:
+    def do_size_allocate(self, width: int, height: int, baseline: int) -> None:
         # pylint: disable=arguments-differ
         """Handler for resizing event. It is used to check if
         the layout needs to be updated.
 
         :param GdkEvent event: event
         """
-        new_mobile_layout = allocation.width < 700
+        new_mobile_layout = width < 700
         if new_mobile_layout != self.props.mobile_layout:
             self.props.mobile_layout = new_mobile_layout
 
-        Handy.ApplicationWindow.do_size_allocate(self, allocation)
+        Handy.ApplicationWindow.do_size_allocate(self, width, height, baseline)
 
     #
     # First Start Screen

@@ -216,9 +216,9 @@ class DatabaseSettingsDialog:
                     self.new_keyfile_path = selected_keyfile
 
                 button.set_sensitive(False)
-                button.set_child(Gtk.Image.new_from_icon_name("object-select-symbolic", Gtk.IconSize.BUTTON))
+                button.set_child(Gtk.Image.new_from_icon_name("object-select-symbolic"))
             else:
-                button.set_child(Gtk.Image.new_from_icon_name("edit-delete-symbolic", Gtk.IconSize.BUTTON))
+                button.set_child(Gtk.Image.new_from_icon_name("edit-delete-symbolic"))
 
     def on_keyfile_generator_button_clicked(self, _button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
@@ -266,7 +266,7 @@ class DatabaseSettingsDialog:
             GLib.idle_add(generate_keyfile, keyfile, callback)
 
     def keyfile_generated(self):
-        self.generate_keyfile_button.set_child(Gtk.Image.new_from_icon_name("object-select-symbolic", Gtk.IconSize.BUTTON))
+        self.generate_keyfile_button.set_child(Gtk.Image.new_from_icon_name("object-select-symbolic"))
         self.generate_keyfile_button.set_sensitive(True)
 
         self.auth_apply_button.set_sensitive(True)

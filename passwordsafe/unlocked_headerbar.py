@@ -80,9 +80,6 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._unlocked_database.bind_property(
             "selection-mode", self._selection_options_button, "visible",
             GObject.BindingFlags.SYNC_CREATE)
-        self._unlocked_database.bind_property(
-            "selection-mode", self, "show-close-button",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN)
         self._unlocked_database.connect(
             "notify::selection-mode", self._on_selection_mode_changed)
 

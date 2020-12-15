@@ -100,7 +100,7 @@ class MainWindow(Handy.ApplicationWindow):
         css_provider = Gtk.CssProvider()
         css_provider.load_from_resource("org/gnome/PasswordSafe/passwordsafe.css")
 
-        context = Gtk.StyleContext()
+        context = self.get_style_context()
         context.add_provider_for_screen(
             screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 

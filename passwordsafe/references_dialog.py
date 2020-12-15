@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Gtk, Gdk, Handy
+from gi.repository import Gtk, Gdk
 
 
 class ReferencesDialog():
@@ -30,7 +30,9 @@ class ReferencesDialog():
     def __setup_signals(self) -> None:
         self.__reference_entry.connect("icon-press", self.__on_copy_secondary_button_clicked)
         self.__connect_model_buttons_signals()
-        self.__dialog.connect("key-press-event", self.__on_key_press_event)
+        controller = Gtk.EventControllerKey()
+        controller.connect("key-pressed", self.__on_key_press_event)
+        self.__dialog.add_controller(controller)
         self.__database_manager.connect("notify::locked", self.__on_locked)
 
     def __connect_model_buttons_signals(self):
@@ -63,9 +65,9 @@ class ReferencesDialog():
         uuid_popover.set_relative_to(widget)
         uuid_popover.popup()
 
-    def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
-        if event.keyval == Gdk.KEY_Escape:
-            self.__unlocked_database.start_database_lock_timer()
+    def __on_key_press_event(self, _controller, keyval, _keycode, _state, _gdata=None):
+        self.__unlocked_database.start_database_lock_timer()
+        if keyval == Gdk.KEY_Escape:
             self.__dialog.close()
             return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE

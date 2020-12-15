@@ -50,7 +50,9 @@ class NotesDialog:
         # Dialog
         self.__dialog.set_modal(True)
         self.__dialog.set_transient_for(self.__unlocked_database.window)
-        self.__dialog.connect("key-press-event", self.__on_key_press_event)
+        controller = Gtk.EventControllerKey()
+        controller.connect("key-pressed", self.__on_key_press_event)
+        self.__dialog.add_controller(controller)
 
     def __setup_accelerators(self):
         self.__dialog.add_accel_group(self.__accelerators)
@@ -120,8 +122,8 @@ class NotesDialog:
             notes_buffer.apply_tag(self.__tag, match_start, match_end)
             self.__do_search(notes_buffer, keyword, match_end)
 
-    def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
-        if event.keyval == Gdk.KEY_Escape:
+    def __on_key_press_event(self, _controller, keyval, _keycode, _state, _gdata=None):
+        if keyval == Gdk.KEY_Escape:
             if not self.__search_bar.get_search_mode():
                 self.__unlocked_database.start_database_lock_timer()
 

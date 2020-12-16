@@ -194,65 +194,30 @@
       </object>
     </child>
   </object>
-  <object class="GtkPopover" id="prop_selection_popover">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_start">8</property>
-        <property name="margin_end">8</property>
-        <property name="margin_top">8</property>
-        <property name="margin_bottom">8</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkModelButton" id="title_button">
-            <property name="name">T</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">Title</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="username_button">
-            <property name="name">U</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">Username</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="password_button">
-            <property name="name">P</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">Password</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="url_button">
-            <property name="name">A</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">URL</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkModelButton" id="notes_button">
-            <property name="name">N</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="text" translatable="yes">Notes</property>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
+  <menu id="prop_selection_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Title</attribute>
+        <attribute name="action">reference.T</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Username</attribute>
+        <attribute name="action">reference.U</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Password</attribute>
+        <attribute name="action">reference.P</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_URL</attribute>
+        <attribute name="action">reference.A</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Notes</attribute>
+        <attribute name="action">reference.N</attribute>
+      </item>
+    </section>
+  </menu>
   <object class="HdyWindow" id="references_dialog">
     <property name="default_width">440</property>
     <property name="default_height">200</property>
@@ -442,7 +407,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="popover">prop_selection_popover</property>
+                            <property name="menu_model">prop_selection_menu</property>
                             <property name="label" translatable="yes">Property</property>
                           </object>
                         </child>

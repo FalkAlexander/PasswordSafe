@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Gtk, Gdk
+from typing import Any
+
+from gi.repository import Gdk, Gio, Gtk
 
 
 class ReferencesDialog():
@@ -16,6 +18,7 @@ class ReferencesDialog():
         self.__reference_entry = self.__builder.get_object("reference_entry")
         self.__dialog = self.__builder.get_object("references_dialog")
 
+        self.__setup_actions()
         self.__setup_signals()
         self.__setup_widgets()
 
@@ -35,16 +38,19 @@ class ReferencesDialog():
         self.__dialog.add_controller(controller)
         self.__database_manager.connect("notify::locked", self.__on_locked)
 
+    def __setup_actions(self) -> None:
+        action_group = Gio.SimpleActionGroup.new()
+        for label in ["U", "N", "A", "P", "T"]:
+            simple_action = Gio.SimpleAction.new(label, None)
+            simple_action.connect("activate", self.__on_property_model_button_clicked)
+            action_group.insert(simple_action)
+        self.__dialog.insert_action_group("reference", action_group)
+
     def __connect_model_buttons_signals(self):
-        self.__builder.get_object("property_label_gesture").connect("pressed", self.__open_codes_popover)
+        self.__builder.get_object("property_label_gesture").connect(
+            "pressed", self.__open_codes_popover)
         self.__builder.get_object("identifier_label_gesture").connect("pressed", self.__open_codes_popover)
         self.__builder.get_object("uuid_label_gesture").connect("pressed", self.__open_uuid_popover)
-        # Buttons
-        self.__builder.get_object("title_button").connect("clicked", self.__on_property_model_button_clicked)
-        self.__builder.get_object("username_button").connect("clicked", self.__on_property_model_button_clicked)
-        self.__builder.get_object("password_button").connect("clicked", self.__on_property_model_button_clicked)
-        self.__builder.get_object("url_button").connect("clicked", self.__on_property_model_button_clicked)
-        self.__builder.get_object("notes_button").connect("clicked", self.__on_property_model_button_clicked)
 
         uuid_popover = self.__builder.get_object("uuid_popover")
         uuid_popover.set_parent(self.__builder.get_object("uuid_label"))
@@ -80,9 +86,9 @@ class ReferencesDialog():
         self.__unlocked_database.start_database_lock_timer()
         self.__unlocked_database.clipboard.set(widget.get_text())
 
-    def __on_property_model_button_clicked(self, widget):
+    def __on_property_model_button_clicked(self, action: Gio.SimpleAction, _data: Any = None) -> None:
         self.__unlocked_database.start_database_lock_timer()
-        self.__property = widget.get_name()
+        self.__property = action.props.name
         self.__update_reference_entry()
 
     def __on_locked(self, database_manager, _value):

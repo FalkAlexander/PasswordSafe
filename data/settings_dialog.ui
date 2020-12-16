@@ -122,9 +122,14 @@
                   <object class="GtkSpinButton" id="_generator_length_spin_button">
                     <property name="visible">True</property>
                     <property name="valign">center</property>
-                    <property name="max_length">3</property>
-                    <property name="input_purpose">number</property>
                     <property name="numeric">True</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                       <property name="lower">1</property>
+                       <property name="upper">500</property>
+                       <property name="step_increment">1</property>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>
@@ -205,9 +210,14 @@
                   <object class="GtkSpinButton" id="_generator_words_spin_button">
                     <property name="visible">True</property>
                     <property name="valign">center</property>
-                    <property name="max_length">3</property>
-                    <property name="input_purpose">number</property>
                     <property name="numeric">True</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                       <property name="lower">1</property>
+                       <property name="upper">99</property>
+                       <property name="step_increment">1</property>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>
@@ -252,9 +262,14 @@
                   <object class="GtkSpinButton" id="_lockdb_spin_button">
                     <property name="visible">True</property>
                     <property name="valign">center</property>
-                    <property name="max_length">2</property>
-                    <property name="input_purpose">number</property>
                     <property name="numeric">True</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                       <property name="lower">1</property>
+                       <property name="upper">60</property>
+                       <property name="step_increment">1</property>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>
@@ -269,9 +284,14 @@
                   <object class="GtkSpinButton" id="_clearcb_spin_button">
                     <property name="visible">True</property>
                     <property name="valign">center</property>
-                    <property name="max_length">4</property>
-                    <property name="input_purpose">number</property>
                     <property name="numeric">True</property>
+                    <property name="adjustment">
+                      <object class="GtkAdjustment">
+                       <property name="lower">1</property>
+                       <property name="upper">300</property>
+                       <property name="step_increment">1</property>
+                      </object>
+                    </property>
                   </object>
                 </child>
               </object>

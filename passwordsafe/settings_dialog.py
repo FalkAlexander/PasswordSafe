@@ -57,8 +57,7 @@ class SettingsDialog(Handy.PreferencesWindow):
 
         # Password Generator
         generator_length = config.get_generator_length()
-        length_adjustment = Gtk.Adjustment(generator_length, 1, 500, 1, 5)
-        self._generator_length_spin_button.props.adjustment = length_adjustment
+        self._generator_length_spin_button.props.adjustment.props.value = generator_length
         self._generator_length_spin_button.connect(
             "value-changed", self._on_generator_length_spin_button_changed
         )
@@ -89,8 +88,7 @@ class SettingsDialog(Handy.PreferencesWindow):
 
         # Passphrase Generation
         generator_words_value = config.get_generator_words()
-        words_adjustment = Gtk.Adjustment(generator_words_value, 1, 100, 1, 5)
-        self._generator_words_spin_button.props.adjustment = words_adjustment
+        self._generator_words_spin_button.props.adjustment.props.value = generator_words_value
         self._generator_words_spin_button.connect(
             "value-changed", self._on_generator_words_spin_button_changed
         )
@@ -103,15 +101,13 @@ class SettingsDialog(Handy.PreferencesWindow):
 
         # Security
         lockdb_value = config.get_database_lock_timeout()
-        lockdb_adjustment = Gtk.Adjustment(lockdb_value, 1, 60, 1, 5)
-        self._lockdb_spin_button.props.adjustment = lockdb_adjustment
+        self._lockdb_spin_button.props.adjustment.props.value = lockdb_value
         self._lockdb_spin_button.connect(
             "value-changed", self._on_settings_lockdb_spin_button_changed
         )
 
         clear_cb_value = config.get_clear_clipboard()
-        clear_adjustment = Gtk.Adjustment(clear_cb_value, 1, 300, 1, 5)
-        self._clearcb_spin_button.props.adjustment = clear_adjustment
+        self._clearcb_spin_button.props.adjustment.props.value = clear_cb_value
         self._clearcb_spin_button.connect(
             "value-changed", self._on_settings_clearcb_spin_button_changed
         )

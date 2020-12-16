@@ -231,8 +231,8 @@ class UnlockDatabase:
 
             keyfile_button = self.builder.get_object("keyfile_unlock_select_button")
             style_context = keyfile_button.get_style_context()
-            style_context.remove_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
-            style_context.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION)
+            style_context.remove_class("destructive-action")
+            style_context.add_class("suggested-action")
             keyfile_button.set_label(os.path.basename(self.keyfile_path))
 
             # After selecting a keyfile, simulate a keypress on the unlock button
@@ -529,7 +529,7 @@ class UnlockDatabase:
         keyfile_unlock_select_button = self.builder.get_object(
             "keyfile_unlock_select_button")
         keyfile_unlock_select_button.get_style_context().add_class(
-            Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION)
+            "destructive-action")
         keyfile_unlock_select_button.set_label(_("Try again"))
 
         logging.debug("Invalid keyfile chosen")

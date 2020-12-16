@@ -22,16 +22,18 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 * 📲 Responsive UI for both desktop and mobile
 
 # Installation
-## Packaging status
+## Install via distribution package manager
+In distribution package manager, you can find Password Safe under name `gnome-passwordsafe`.
 [![Packaging status](https://repology.org/badge/vertical-allrepos/gnome-passwordsafe.svg)](https://repology.org/project/gnome-passwordsafe/versions)
 
-## Stable Version Available on Flathub
+
+## Install via Flathub
 
 <a href="https://flathub.org/apps/details/org.gnome.PasswordSafe">
 <img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" />
 </a>
 
-## Development Flatpak
+## Install Development Flatpak
 Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak) and extract it.  
 To install, open the flatpak package with GNOME Software and install it.  
 If you don't have GNOME Software then run
@@ -71,7 +73,7 @@ flatpak install org.gnome.PasswordSafeDevel.flatpak
 #### Option 3: with Meson
 ##### Prerequisites:
 * python >= 3.6.5
-* pykeepass >= 3.2.1
+* [pykeepass](https://github.com/libkeepass/pykeepass) >= 3.2.1
 * gtk >= 3.24.1
 * libhandy >= 0.90
 * libpwquality >= 1.4.0
@@ -85,10 +87,6 @@ meson . _build --prefix=/usr
 ninja -C _build
 sudo ninja -C _build install
 ```
-
-## Install via distribution package manager
-* Arch Linux: [gnome-passwordsafe](https://www.archlinux.org/packages/community/any/gnome-passwordsafe/)
-* Fedora: [gnome-passwordsafe](https://apps.fedoraproject.org/packages/gnome-passwordsafe)
 
 # Translations
 Helping to translate Password Safe or add support to a new language is very welcome.  
@@ -112,10 +110,7 @@ Development versions create a backup of your database on unlocking by default. T
 gsettings set org.gnome.PasswordSafe development-backup-mode false
 ```
 
-# Libraries
-* [pykeepass](https://github.com/pschmitt/pykeepass)
-
 # Contact
 You can contact the project through [Matrix](https://matrix.org). The room is
-[#keepassgtk:disroot.org](https://matrix.to/#/#keepassgtk:disroot.org). You can
-join through [any application on this list](https://matrix.org/docs/projects/try-matrix-now.html).
+[#gnome-passwordsafe:disroot.org](https://matrix.to/#/#gnome-passwordsafe:disroot.org). You can
+join through [any application on this list](https://matrix.org/docs/projects/try-matrix-now/).

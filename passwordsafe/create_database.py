@@ -52,6 +52,7 @@ class CreateDatabase(Gtk.Stack):
 
     def keyfile_generation_page(self):
         self.set_visible_child_name("keyfile-creation")
+        self.generate_keyfile_button.grab_focus()
 
     def on_headerbar_back_button_clicked(self, _widget):
         """Back button: Always goes back to the page in which you select the
@@ -72,17 +73,20 @@ class CreateDatabase(Gtk.Stack):
     ) -> None:
         if row.get_name() == "password":
             self.set_visible_child_name("password-creation")
+            self.password_creation_input.grab_focus()
         elif row.get_name() == "keyfile":
-            self.set_visible_child_name("keyfile-creation")
+            self.keyfile_generation_page()
         elif row.get_name() == "composite":
             self.composite = True
             self.set_visible_child_name("password-creation")
+            self.password_creation_input.grab_focus()
 
     @Gtk.Template.Callback()
     def on_password_creation_button_clicked(self, _widget: Gtk.Button) -> None:
         self.database_manager.set_password_try(
             self.password_creation_input.get_text())
         self.set_visible_child_name("check-password")
+        self.password_check_input.grab_focus()
 
     @Gtk.Template.Callback()
     def on_password_check_button_clicked(self, _widget: Gtk.Button) -> None:
@@ -96,6 +100,7 @@ class CreateDatabase(Gtk.Stack):
             save_thread.start()
         else:
             self.set_visible_child_name("passwords-dont-match")
+            self.password_repeat_input1.grab_focus()
 
     @Gtk.Template.Callback()
     def on_password_repeat_button_clicked(self, _widget: Gtk.Button) -> None:

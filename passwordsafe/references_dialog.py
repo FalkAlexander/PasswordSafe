@@ -36,15 +36,21 @@ class ReferencesDialog():
         self.__database_manager.connect("notify::locked", self.__on_locked)
 
     def __connect_model_buttons_signals(self):
-        self.__builder.get_object("property_label").connect("button-press-event", self.__open_codes_popover)
-        self.__builder.get_object("identifier_label").connect("button-press-event", self.__open_codes_popover)
-        self.__builder.get_object("uuid_label").connect("button-press-event", self.__open_uuid_popover)
+        self.__builder.get_object("property_label_gesture").connect("pressed", self.__open_codes_popover)
+        self.__builder.get_object("identifier_label_gesture").connect("pressed", self.__open_codes_popover)
+        self.__builder.get_object("uuid_label_gesture").connect("pressed", self.__open_uuid_popover)
         # Buttons
         self.__builder.get_object("title_button").connect("clicked", self.__on_property_model_button_clicked)
         self.__builder.get_object("username_button").connect("clicked", self.__on_property_model_button_clicked)
         self.__builder.get_object("password_button").connect("clicked", self.__on_property_model_button_clicked)
         self.__builder.get_object("url_button").connect("clicked", self.__on_property_model_button_clicked)
         self.__builder.get_object("notes_button").connect("clicked", self.__on_property_model_button_clicked)
+
+        uuid_popover = self.__builder.get_object("uuid_popover")
+        uuid_popover.set_parent(self.__builder.get_object("uuid_label"))
+
+        codes_popover = self.__builder.get_object("codes_popover")
+        codes_popover.set_parent(self.__builder.get_object("property_label"))
 
     def __update_reference_entry(self):
         """Update the reference entry and selected label text."""
@@ -55,14 +61,12 @@ class ReferencesDialog():
 
         self.__reference_entry.set_text("{REF:" + self.__property + "@I:" + encoded_uuid + "}")
 
-    def __open_codes_popover(self, widget, _label):
+    def __open_codes_popover(self, gesture, _n_points, _x, _y, data=None):
         codes_popover = self.__builder.get_object("codes_popover")
-        codes_popover.set_relative_to(widget)
         codes_popover.popup()
 
-    def __open_uuid_popover(self, widget, _label):
+    def __open_uuid_popover(self, gesture, _n_points, _x, _y, data=None):
         uuid_popover = self.__builder.get_object("uuid_popover")
-        uuid_popover.set_relative_to(widget)
         uuid_popover.popup()
 
     def __on_key_press_event(self, _controller, keyval, _keycode, _state, _gdata=None):

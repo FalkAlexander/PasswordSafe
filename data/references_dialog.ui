@@ -345,6 +345,11 @@
                             <attributes>
                               <attribute name="underline" value="True"/>
                             </attributes>
+                            <child>
+                              <object class="GtkGestureClick" id="property_label_gesture">
+                                <property name="button">1</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>
@@ -368,6 +373,11 @@
                             <attributes>
                               <attribute name="underline" value="True"/>
                             </attributes>
+                            <child>
+                              <object class="GtkGestureClick" id="identifier_label_gesture">
+                                <property name="button">1</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>
@@ -390,6 +400,11 @@
                             <attributes>
                               <attribute name="underline" value="True"/>
                             </attributes>
+                            <child>
+                              <object class="GtkGestureClick" id="uuid_label_gesture">
+                                <property name="button">1</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>

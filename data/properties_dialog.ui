@@ -54,11 +54,11 @@
                         <style>
                           <class name="dim-label"/>
                         </style>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="row">0</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">0</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel">
@@ -71,11 +71,11 @@
                         <style>
                           <class name="dim-label"/>
                         </style>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="row">1</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">1</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel">
@@ -87,11 +87,11 @@
                         <style>
                           <class name="dim-label"/>
                         </style>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="row">2</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">2</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label_uuid">
@@ -101,11 +101,11 @@
                         <property name="wrap">True</property>
                         <property name="wrap_mode">char</property>
                         <property name="selectable">True</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="row">0</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">0</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel">
@@ -117,11 +117,11 @@
                         <style>
                           <class name="dim-label"/>
                         </style>
+                        <layout>
+                          <property name="column">0</property>
+                          <property name="row">3</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">0</property>
-                        <property name="top_attach">3</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label_accessed">
@@ -129,11 +129,11 @@
                         <property name="halign">start</property>
                         <property name="label">-</property>
                         <property name="ellipsize">end</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="row">1</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">1</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label_modified">
@@ -141,11 +141,11 @@
                         <property name="halign">start</property>
                         <property name="label">-</property>
                         <property name="ellipsize">end</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="row">2</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">2</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkLabel" id="label_created">
@@ -153,11 +153,11 @@
                         <property name="halign">start</property>
                         <property name="label">-</property>
                         <property name="ellipsize">end</property>
+                        <layout>
+                          <property name="column">1</property>
+                          <property name="row">3</property>
+                        </layout>
                       </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">3</property>
-                      </packing>
                     </child>
                   </object>
                 </child>

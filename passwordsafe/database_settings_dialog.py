@@ -62,7 +62,6 @@ class DatabaseSettingsDialog:
         self.builder.get_object("new_password_entry").connect("changed", self.on_password_entry_changed)
         self.builder.get_object("new_password_entry").connect("icon-press", self.on_generate_password)
         self.builder.get_object("confirm_password_entry").connect("changed", self.on_password_entry_changed)
-        self.builder.get_object("confirm_password_entry").connect("icon-press", self.on_show_password)
 
         self.generate_keyfile_button.connect("clicked", self.on_keyfile_generator_button_clicked)
         self.select_keyfile_button.connect("clicked", self.on_keyfile_select_button_clicked)
@@ -159,17 +158,6 @@ class DatabaseSettingsDialog:
 
         new_password_entry.set_visibility(True)
         confirm_password_entry.set_visibility(True)
-
-    def on_show_password(self, _widget, _position, _eventbutton):
-        new_password_entry = self.builder.get_object("new_password_entry")
-        confirm_password_entry = self.builder.get_object("confirm_password_entry")
-
-        if new_password_entry.get_visibility() is True:
-            new_password_entry.set_visibility(False)
-            confirm_password_entry.set_visibility(False)
-        else:
-            new_password_entry.set_visibility(True)
-            confirm_password_entry.set_visibility(True)
 
     #
     # Keyfile Section

@@ -6,22 +6,18 @@
     <child>
       <object class="HdyPreferencesPage">
         <property name="icon_name">applications-system-symbolic</property>
-        <property name="visible">True</property>
         <property name="title" translatable="yes">General</property>
         <child>
           <object class="HdyPreferencesGroup" id="section_label_security">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">General</property>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Dark Theme</property>
                 <property name="subtitle" translatable="yes">Use dark GTK theme.</property>
                 <property name="activatable_widget">_theme_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_theme_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -29,14 +25,12 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Hide First Start Screen</property>
                 <property name="subtitle" translatable="yes">Reopen last opened safe.</property>
                 <property name="activatable_widget">_fstart_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_fstart_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -46,18 +40,15 @@
         </child>
         <child>
           <object class="HdyPreferencesGroup" id="section_general">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Safe</property>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Save Automatically</property>
                 <property name="subtitle" translatable="yes">Save every change automatically.</property>
                 <property name="activatable_widget">_save_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_save_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -67,18 +58,15 @@
         </child>
         <child>
           <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Unlock</property>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" comments="A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe">Remember Composite _Key</property>
                 <property name="subtitle" translatable="yes" comments="A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe">Remember last used composite key.</property>
                 <property name="activatable_widget">_remember_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_remember_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -86,14 +74,12 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember _Unlock Method</property>
                 <property name="subtitle" translatable="yes">Enable faster unlocking.</property>
                 <property name="activatable_widget">_remember_method_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_remember_method_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -106,21 +92,17 @@
     <child>
       <object class="HdyPreferencesPage">
         <property name="icon_name">dialog-password-symbolic</property>
-        <property name="visible">True</property>
         <property name="title" translatable="yes">Password</property>
         <child>
           <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Password Generation</property>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">Password Length</property>
                 <property name="subtitle" translatable="yes">Number of characters when generating a password.</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="_generator_length_spin_button">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                     <property name="numeric">True</property>
                     <property name="adjustment">
@@ -136,14 +118,12 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Uppercase Characters</property>
                 <property name="subtitle" translatable="yes">Use uppercase characters A-Z when generating a password.</property>
                 <property name="activatable_widget">_generator_use_uppercase_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_generator_use_uppercase_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -151,14 +131,12 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Lowercase Characters</property>
                 <property name="subtitle" translatable="yes">Use lowercase characters a-z when generating a password.</property>
                 <property name="activatable_widget">_generator_use_lowercase_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_generator_use_lowercase_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -166,14 +144,12 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Numeric Characters</property>
                 <property name="subtitle" translatable="yes">Use numeric characters when generating a password.</property>
                 <property name="activatable_widget">_generator_use_numbers_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_generator_use_numbers_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -181,14 +157,12 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Special Characters</property>
                 <property name="subtitle" translatable="yes">Use non-alphanumeric ASCII symbols when generating a password.</property>
                 <property name="activatable_widget">_generator_use_symbols_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_generator_use_symbols_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -198,17 +172,14 @@
         </child>
         <child>
           <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Passphrase Generation</property>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">Passphrase Length</property>
                 <property name="subtitle" translatable="yes">Number of words to use when generating a passphrase.</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="_generator_words_spin_button">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                     <property name="numeric">True</property>
                     <property name="adjustment">
@@ -224,13 +195,11 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">Separator</property>
                 <property name="subtitle" translatable="yes">Word separator to use when generating a passphrase.</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkEntry" id="_generator_separator_entry">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                     <property name="max_length">1</property>
                     <property name="width_chars">12</property>
@@ -246,21 +215,17 @@
     <child>
       <object class="HdyPreferencesPage" id="settings_page_security">
         <property name="icon_name">security-high-symbolic</property>
-        <property name="visible">True</property>
         <property name="title" translatable="yes">Security</property>
         <child>
           <object class="HdyPreferencesGroup" id="settings_section_security">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Security</property>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">Safe Lock Timeout</property>
                 <property name="subtitle" translatable="yes">Lock safe on idle after X minutes.</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="_lockdb_spin_button">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                     <property name="numeric">True</property>
                     <property name="adjustment">
@@ -276,13 +241,11 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">Clear Clipboard</property>
                 <property name="subtitle" translatable="yes">Clear clipboard after X seconds.</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkSpinButton" id="_clearcb_spin_button">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                     <property name="numeric">True</property>
                     <property name="adjustment">
@@ -298,14 +261,12 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">_Show Password Fields</property>
                 <property name="subtitle" translatable="yes">Display passwords in plain text.</property>
                 <property name="activatable_widget">_showpw_switch</property>
                 <property name="use_underline">True</property>
                 <child>
                   <object class="GtkSwitch" id="_showpw_switch">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -313,13 +274,11 @@
             </child>
             <child>
               <object class="HdyActionRow">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes">Clear Recent List</property>
                 <property name="subtitle" translatable="yes">Clear the recently opened safes list.</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkButton" id="_clear_button">
-                    <property name="visible">True</property>
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="valign">center</property>

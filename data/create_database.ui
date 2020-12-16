@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="CreateDatabase" parent="GtkStack">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
     <property name="transition_type">slide-left</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
@@ -15,8 +13,6 @@
         <property name="name">select_auth_method</property>
         <property name="child">
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <property name="spacing">20</property>
             <property name="margin_top">18</property>
@@ -29,8 +25,6 @@
             <property name="valign">center</property>
             <child>
               <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="valign">end</property>
                 <property name="vexpand">True</property>
@@ -44,13 +38,9 @@
             </child>
             <child>
               <object class="GtkListBox" id="methods_list_box">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <signal name="row-activated" handler="on_auth_chooser_row_activated" swapped="no"/>
                 <child>
                   <object class="HdyActionRow">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="name">password</property>
                     <property name="title" translatable="yes">_Password</property>
                     <property name="subtitle" translatable="yes">Use a password to secure your safe.</property>
@@ -62,8 +52,6 @@
                 </child>
                 <child>
                   <object class="HdyActionRow">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="name">keyfile</property>
                     <property name="title" translatable="yes">_Keyfile</property>
                     <property name="subtitle" translatable="yes">Use a keyfile to secure your safe.</property>
@@ -75,8 +63,6 @@
                 </child>
                 <child>
                   <object class="HdyActionRow">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="name">composite</property>
                     <property name="title" translatable="yes">_Composite</property>
                     <property name="subtitle" translatable="yes">Use a password in combination with a keyfile to secure your safe.</property>
@@ -100,23 +86,17 @@
         <property name="name">password-creation</property>
         <property name="child">
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="password_creation_image">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="pixel_size">100</property>
                 <property name="icon_name">document-edit-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkLabel" id="password_creation_label1">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Enter Password</property>
                 <attributes>
                   <attribute name="weight" value="normal"/>
@@ -126,8 +106,6 @@
             </child>
             <child>
               <object class="GtkLabel" id="password_creation_label2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Set password for safe.</property>
                 <style>
                   <class name="dim-label"/>
@@ -136,8 +114,6 @@
             </child>
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="margin_top">10</property>
                 <child>
                   <object class="GtkPasswordEntry" id="password_creation_input">
@@ -150,8 +126,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="password_creation_button">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
@@ -174,23 +148,17 @@
         <property name="name">check-password</property>
         <property name="child">
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage" id="password_check_image">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="pixel_size">100</property>
                 <property name="icon_name">error-correct-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Password Match Check</property>
                 <attributes>
                   <attribute name="weight" value="normal"/>
@@ -200,8 +168,6 @@
             </child>
             <child>
               <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Repeat password for safe.</property>
                 <style>
                   <class name="dim-label"/>
@@ -210,8 +176,6 @@
             </child>
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="halign">center</property>
                 <property name="margin_top">10</property>
                 <child>
@@ -226,8 +190,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="password_check_button">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="hexpand">True</property>
@@ -249,29 +211,21 @@
         <property name="name">passwords-dont-match</property>
         <property name="child">
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="orientation">vertical</property>
             <property name="spacing">12</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="pixel_size">100</property>
                 <property name="icon_name">face-sad-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Match Check Failed</property>
                     <attributes>
                       <attribute name="weight" value="normal"/>
@@ -281,8 +235,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Please try again.</property>
                     <style>
                       <class name="dim-label"/>
@@ -293,8 +245,6 @@
             </child>
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkPasswordEntry" id="password_repeat_input1">
@@ -314,8 +264,6 @@
             </child>
             <child>
               <object class="GtkButton" id="password_repeat_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">center</property>
                 <property name="label" translatable="yes">_Confirm</property>
@@ -335,8 +283,6 @@
         <property name="name">keyfile-creation</property>
         <property name="child">
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
@@ -345,21 +291,15 @@
             <property name="spacing">12</property>
             <child>
               <object class="GtkImage" id="keyfile_creation_image">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="pixel_size">100</property>
                 <property name="icon_name">dialog-password-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel" id="keyfile_creation_label1">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Generate Keyfile</property>
                     <attributes>
                       <attribute name="weight" value="normal"/>
@@ -369,8 +309,6 @@
                 </child>
                 <child>
                   <object class="GtkLabel" id="keyfile_creation_label2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Set keyfile for safe</property>
                     <style>
                       <class name="dim-label"/>
@@ -382,8 +320,6 @@
             <child>
               <object class="GtkButton" id="generate_keyfile_button">
                 <property name="label" translatable="yes">_Generate</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_underline">True</property>
                 <property name="halign">center</property>
@@ -403,8 +339,6 @@
         <property name="name">safe-successfully-create</property>
         <property name="child">
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
@@ -412,16 +346,12 @@
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="pixel_size">100</property>
                 <property name="icon_name">emblem-default-symbolic</property>
               </object>
             </child>
             <child>
               <object class="GtkLabel">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Safe Successfully Created</property>
                 <attributes>
                   <attribute name="weight" value="normal"/>
@@ -432,8 +362,6 @@
             <child>
               <object class="GtkButton" id="open_safe_button">
                 <property name="label" translatable="yes">_Open Safe</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>

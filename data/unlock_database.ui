@@ -117,17 +117,8 @@
                     <property name="hexpand">True</property>
                     <property name="margin_top">10</property>
                     <child>
-                      <object class="GtkEntry" id="password_unlock_entry">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="hexpand">True</property>
-                        <property name="visibility">False</property>
-                        <property name="invisible_char">●</property>
-                        <property name="secondary_icon_name">user-not-tracked-symbolic</property>
-                        <property name="input_purpose">password</property>
-                        <style>
-                          <class name="passwordEntry"/>
-                        </style>
+                      <object class="GtkPasswordEntry" id="password_unlock_entry">
+                        <property name="show-peek-icon">True</property>
                       </object>
                     </child>
                     <child>
@@ -287,16 +278,8 @@
                     <property name="hexpand">True</property>
                     <property name="margin_top">10</property>
                     <child>
-                      <object class="GtkEntry" id="composite_unlock_entry">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="valign">end</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="visibility">False</property>
-                        <property name="invisible_char">●</property>
-                        <property name="input_purpose">password</property>
-                        <property name="secondary_icon_name">user-not-tracked-symbolic</property>
+                      <object class="GtkPasswordEntry" id="composite_unlock_entry">
+                        <property name="show-peek-icon">True</property>
                       </object>
                     </child>
                     <child>

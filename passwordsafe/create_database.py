@@ -166,7 +166,7 @@ class CreateDatabase(Gtk.Stack):
 
     @Gtk.Template.Callback()
     def on_password_repeat_input_activate(self, _widget: Gtk.Entry) -> None:
-        self.password_repeat_button.clicked()
+        self.password_repeat_button.activate()
 
     def save_pwc_database_thread(self):
         GLib.idle_add(self.show_pwc_loading)

@@ -60,7 +60,7 @@ class DatabaseSettingsDialog:
         # Password Section
         self.builder.get_object("current_password_entry").connect("changed", self.on_password_entry_changed)
         self.builder.get_object("new_password_entry").connect("changed", self.on_password_entry_changed)
-        self.builder.get_object("new_password_entry").connect("icon-press", self.on_generate_password)
+        self.builder.get_object("new_password_generate_button").connect("clicked", self.on_generate_password)
         self.builder.get_object("confirm_password_entry").connect("changed", self.on_password_entry_changed)
 
         self.generate_keyfile_button.connect("clicked", self.on_keyfile_generator_button_clicked)
@@ -141,7 +141,7 @@ class DatabaseSettingsDialog:
         self.auth_apply_button.set_sensitive(True)
         self.new_password = new_password
 
-    def on_generate_password(self, _widget, _position, _eventbutton):
+    def on_generate_password(self, _button: Gtk.Button) -> None:
         new_password_entry = self.builder.get_object("new_password_entry")
         confirm_password_entry = self.builder.get_object("confirm_password_entry")
 
@@ -155,9 +155,6 @@ class DatabaseSettingsDialog:
 
         new_password_entry.set_text(generated_password)
         confirm_password_entry.set_text(generated_password)
-
-        new_password_entry.set_visibility(True)
-        confirm_password_entry.set_visibility(True)
 
     #
     # Keyfile Section

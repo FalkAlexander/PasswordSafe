@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Gdk, GObject, Gtk, Handy
+from gi.repository import Gdk, GObject, Gtk
 
 
 class NotesDialog:
@@ -14,7 +14,6 @@ class NotesDialog:
         self.__unlocked_database = unlocked_database
         self.__safe_entry = safe_entry
         self.__dialog = self.__builder.get_object("notes_detached_dialog")
-        self.__accelerators = Gtk.AccelGroup()
         self.__search_stopped = False
 
         self.__notes_buffer = self.__builder.get_object("value_entry").get_buffer()
@@ -22,7 +21,6 @@ class NotesDialog:
 
         self.__setup_widgets()
         self.__setup_signals()
-        self.__setup_accelerators()
 
     def present(self):
         self.__dialog.present()
@@ -53,17 +51,6 @@ class NotesDialog:
         controller = Gtk.EventControllerKey()
         controller.connect("key-pressed", self.__on_key_press_event)
         self.__dialog.add_controller(controller)
-
-    def __setup_accelerators(self):
-        self.__dialog.add_accel_group(self.__accelerators)
-        self.__add_search_accelerator()
-        # TODO Add accelerator for save on "<primary>s"
-
-    def __add_search_accelerator(self):
-        key, mod = Gtk.accelerator_parse("<primary>f")
-        self.__search_button.add_accelerator(
-            "clicked", self.__accelerators, key, mod, Gtk.AccelFlags.VISIBLE
-        )
 
     #
     # Events

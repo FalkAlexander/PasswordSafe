@@ -31,6 +31,17 @@
                 <property name="receives_default">True</property>
                 <property name="halign">end</property>
                 <property name="icon_name">system-search-symbolic</property>
+                <child>
+                  <object class='GtkShortcutController'>
+                    <property name='scope'>managed</property>
+                    <child>
+                      <object class='GtkShortcut'>
+                        <property name='trigger'>&lt;Control&gt;f</property>
+                        <property name='action'>activate</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

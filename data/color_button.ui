@@ -9,17 +9,16 @@
     <property name="halign">center</property>
     <property name="hexpand">True</property>
     <child>
-      <object class="GtkEventBox">
-        <property name="visible">True</property>
-        <signal name="enter-notify-event" handler="_on_enter_event" swapped="no"/>
-        <signal name="leave-notify-event" handler="_on_leave_event" swapped="no"/>
-        <child>
-          <object class="GtkImage" id="_selected_image">
-            <property name="visible">False</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">emblem-ok-symbolic</property>
-          </object>
-        </child>
+      <object class="GtkEventControllerMotion" id="_gesture">
+        <signal name="enter" handler="_on_enter_event" swapped="no"/>
+        <signal name="leave" handler="_on_leave_event" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImage" id="_selected_image">
+        <property name="visible">False</property>
+        <property name="can_focus">False</property>
+        <property name="icon_name">emblem-ok-symbolic</property>
       </object>
     </child>
     <style>

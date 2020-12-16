@@ -3,7 +3,7 @@ from __future__ import annotations
 import typing
 from enum import Enum
 
-from gi.repository import Gdk, GObject, Gtk
+from gi.repository import GObject, Gtk
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -59,11 +59,11 @@ class ColorButton(Gtk.FlowBoxChild):
         return self._color.value
 
     @Gtk.Template.Callback()
-    def _on_enter_event(self, _widget: Gtk.EventBox, _event: Gdk.Event) -> None:
+    def _on_enter_event(self, _gesture: Gtk.EventControllerMotion, _x: int, _y: int) -> None:
         self.set_state_flags(Gtk.StateFlags.PRELIGHT, False)
 
     @Gtk.Template.Callback()
-    def _on_leave_event(self, _widget: Gtk.EventBox, _event: Gdk.Event) -> None:
+    def _on_leave_event(self, _gesture: Gtk.EventControllerMotion) -> None:
         self.unset_state_flags(Gtk.StateFlags.PRELIGHT)
 
 

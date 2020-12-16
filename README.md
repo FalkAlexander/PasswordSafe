@@ -28,10 +28,10 @@ In distribution package manager, you can find Password Safe under name `gnome-pa
 
 
 ## Install via Flathub
-
-<a href="https://flathub.org/apps/details/org.gnome.PasswordSafe">
-<img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" />
-</a>
+```
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub org.gnome.PasswordSafe
+```
 
 ## Install Development Flatpak
 Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak) and extract it.  

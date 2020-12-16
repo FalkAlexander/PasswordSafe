@@ -173,7 +173,6 @@ class CreateDatabase(Gtk.Stack):
 
     def show_pwc_loading(self):
         password_check_button = self.password_check_button
-        password_check_button.remove(password_check_button.get_first_child())
         spinner = Gtk.Spinner()
         spinner.start()
         spinner.show()
@@ -191,7 +190,6 @@ class CreateDatabase(Gtk.Stack):
 
     def show_pwr_loading(self):
         password_repeat_button = self.password_repeat_button
-        password_repeat_button.remove(password_repeat_button.get_first_child())
         spinner = Gtk.Spinner()
         spinner.start()
         spinner.show()

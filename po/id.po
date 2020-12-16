@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe release_4.x\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-01 15:02+0000\n"
-"PO-Revision-Date: 2020-12-04 16:24+0700\n"
+"POT-Creation-Date: 2020-12-12 06:44+0000\n"
+"PO-Revision-Date: 2020-12-16 09:51+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -123,7 +123,7 @@ msgstr "Silakan coba lagi"
 
 #. Button to generate a password
 #: data/create_database.ui:789 data/password_generator_popover.ui:265
-#: passwordsafe/create_database.py:243
+#: passwordsafe/create_database.py:242
 #: passwordsafe/database_settings_dialog.py:228
 msgid "Generate"
 msgstr "Buat"
@@ -176,6 +176,10 @@ msgstr "Brankas Berhasil Dibuat"
 #: data/unlocked_database.ui:521
 msgid "Open Safe"
 msgstr "Buka Brankas"
+
+#: data/color_entry_row.ui:23
+msgid "Color"
+msgstr "Warna"
 
 #: data/database_settings_dialog.ui:64
 msgid "Details"
@@ -385,7 +389,7 @@ msgstr ""
 "v.4. Ini terintegrasi sempurna dengan desktop GNOME dan menyediakan sebuah "
 "antarmuka yang mudah dan rapi untuk manajemen basis data kata sandi."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:125
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:140
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -776,7 +780,7 @@ msgid "Reopen last opened safe."
 msgstr "Buka kembali brankas yang terakhir dibuka."
 
 #: data/settings_dialog.ui:57 data/unlocked_database.ui:444
-#: passwordsafe/main_window.py:394
+#: passwordsafe/main_window.py:397
 msgid "Safe"
 msgstr "Brankas"
 
@@ -1116,12 +1120,12 @@ msgid "Select none"
 msgstr "Pilih tak satupun"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:241
+#: passwordsafe/create_database.py:240
 #: passwordsafe/database_settings_dialog.py:227
 msgid "Choose location for keyfile"
 msgstr "Pilih lokasi untuk berkas kunci"
 
-#: passwordsafe/create_database.py:254
+#: passwordsafe/create_database.py:253
 msgid "Generating…"
 msgstr "Membuat…"
 
@@ -1199,24 +1203,24 @@ msgid "Choose a Keepass safe"
 msgstr "Pilih sebuah brankas Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:400
+#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:403
 msgid "KeePass 3.1/4 Database"
 msgstr "Basis Data KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:332
+#: passwordsafe/main_window.py:335
 msgid "Unable to open file \"{}\"."
 msgstr "Tidak dapat membuka berkas \"{}\"."
 
-#: passwordsafe/main_window.py:335
+#: passwordsafe/main_window.py:338
 msgid "File type {} ({}) is not supported."
 msgstr "Jenis berkas {} ({}) tidak didukung."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:387
+#: passwordsafe/main_window.py:390
 msgid "Choose location for Keepass safe"
 msgstr "Pilih lokasi untuk brankas Keepass"
 
-#: passwordsafe/main_window.py:390
+#: passwordsafe/main_window.py:393
 msgid "Create"
 msgstr "Buat"
 
@@ -1248,28 +1252,28 @@ msgstr "Pilih Berkas Kunci"
 msgid "Try again"
 msgstr "Coba lagi"
 
-#: passwordsafe/unlocked_database.py:578
+#: passwordsafe/unlocked_database.py:574
 msgid "Database saved"
 msgstr "Basis data telah disimpan"
 
-#: passwordsafe/unlocked_database.py:582
+#: passwordsafe/unlocked_database.py:578
 msgid "Please wait. Another save is running."
 msgstr "Harap tunggu. Penyimpanan lain sedang berjalan."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:586
+#: passwordsafe/unlocked_database.py:582
 msgid "No changes made"
 msgstr "Tidak ada perubahan yang dibuat"
 
-#: passwordsafe/unlocked_database.py:726
+#: passwordsafe/unlocked_database.py:722
 msgid "Copied to clipboard"
 msgstr "Disalin ke papan klip"
 
-#: passwordsafe/unlocked_database.py:904
+#: passwordsafe/unlocked_database.py:900
 #, python-format
 msgid "%s locked"
 msgstr "%s terkunci"
 
-#: passwordsafe/unlocked_database.py:910
+#: passwordsafe/unlocked_database.py:906
 msgid "Keepass safe locked due to inactivity"
 msgstr "Brankas KeePass dikunci karena tidak ada aktivitas"

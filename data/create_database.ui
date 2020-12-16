@@ -133,13 +133,13 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_top">10</property>
             <child>
               <object class="GtkEntry" id="password_creation_input">
                 <property name="width_request">250</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="halign">end</property>
-                <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
@@ -154,7 +154,6 @@
                 <property name="receives_default">True</property>
                 <property name="halign">start</property>
                 <property name="valign">start</property>
-                <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
                 <property name="icon_name">go-next-symbolic</property>
                 <signal name="clicked" handler="on_password_creation_button_clicked" swapped="no"/>
@@ -211,6 +210,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
+            <property name="margin_top">10</property>
             <child>
               <object class="GtkEntry" id="password_check_input">
                 <property name="width_request">250</property>
@@ -218,7 +218,6 @@
                 <property name="can_focus">True</property>
                 <property name="halign">end</property>
                 <property name="valign">end</property>
-                <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
                 <property name="visibility">False</property>
                 <property name="invisible_char">●</property>
@@ -232,7 +231,6 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="halign">start</property>
-                <property name="margin_top">10</property>
                 <property name="hexpand">True</property>
                 <signal name="clicked" handler="on_password_check_button_clicked" swapped="no"/>
                 <property name="icon_name">object-select-symbolic</property>

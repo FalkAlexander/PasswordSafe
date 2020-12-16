@@ -135,15 +135,11 @@
             <property name="can_focus">False</property>
             <property name="margin_top">10</property>
             <child>
-              <object class="GtkEntry" id="password_creation_input">
+              <object class="GtkPasswordEntry" id="password_creation_input">
                 <property name="width_request">250</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="halign">end</property>
                 <property name="hexpand">True</property>
-                <property name="visibility">False</property>
-                <property name="invisible_char">●</property>
-                <property name="input_purpose">password</property>
+                <property name="show-peek-icon">True</property>
                 <signal name="activate" handler="on_password_creation_button_clicked" swapped="no"/>
               </object>
             </child>
@@ -212,16 +208,12 @@
             <property name="halign">center</property>
             <property name="margin_top">10</property>
             <child>
-              <object class="GtkEntry" id="password_check_input">
+              <object class="GtkPasswordEntry" id="password_check_input">
                 <property name="width_request">250</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="halign">end</property>
                 <property name="valign">end</property>
                 <property name="hexpand">True</property>
-                <property name="visibility">False</property>
-                <property name="invisible_char">●</property>
-                <property name="input_purpose">password</property>
+                <property name="show-peek-icon">True</property>
                 <signal name="activate" handler="on_password_check_button_clicked" swapped="no"/>
               </object>
             </child>
@@ -296,28 +288,14 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkEntry" id="password_repeat_input1">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="visibility">False</property>
-                <property name="invisible_char">●</property>
-                <property name="input_purpose">password</property>
-                <style>
-                  <class name="passwordEntry"/>
-                </style>
+              <object class="GtkPasswordEntry" id="password_repeat_input1">
+                <property name="show-peek-icon">True</property>
               </object>
             </child>
             <child>
-              <object class="GtkEntry" id="password_repeat_input2">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="visibility">False</property>
-                <property name="invisible_char">●</property>
-                <property name="input_purpose">password</property>
+              <object class="GtkPasswordEntry" id="password_repeat_input2">
+                <property name="show-peek-icon">True</property>
                 <signal name="activate" handler="on_password_repeat_input_activate" swapped="no"/>
-                <style>
-                  <class name="passwordEntry"/>
-                </style>
               </object>
             </child>
             <style>

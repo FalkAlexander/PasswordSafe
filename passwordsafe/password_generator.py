@@ -62,6 +62,10 @@ def strength(password: str) -> float:
     :returns: strength of password or None on pwquality error
     :rtype: float
     """
+    # TODO The settings should be set so the strenght of the
+    # password is still being computed on certain errors.
+    # For the list of error codes see:
+    # https://github.com/libpwquality/libpwquality/blob/master/src/pwquality.h
     try:
         if password:
             score = pwquality.PWQSettings().check(password)

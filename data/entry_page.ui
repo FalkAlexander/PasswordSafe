@@ -231,6 +231,7 @@
                     <child>
                       <object class="GtkButton" id="notes_detach_button">
                         <property name="visible">True</property>
+                        <property name="halign">end</property>
                         <property name="receives_default">True</property>
                         <property name="icon_name">focus-windows-symbolic</property>
                         <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>

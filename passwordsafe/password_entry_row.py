@@ -40,6 +40,7 @@ class PasswordEntryRow(Gtk.Box):
 
         self._password_value_entry.props.text = self._safe_entry.props.password
         self._password_value_entry.bind_property("text", self._safe_entry, "password")
+        self._password_value_entry.props.enable_undo = True
 
         self._pwd_popover = PasswordGeneratorPopover()
         self._pwd_popover.bind_property(

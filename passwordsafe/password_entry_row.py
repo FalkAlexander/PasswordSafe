@@ -5,7 +5,7 @@ import logging
 import typing
 from gettext import gettext as _
 
-from gi.repository import Gdk, Gtk
+from gi.repository import Gtk
 
 import passwordsafe.config_manager
 import passwordsafe.password_generator as pwd_generator
@@ -79,17 +79,6 @@ class PasswordEntryRow(Gtk.Box):
         """
         self._unlocked_database.start_database_lock_timer()
         self._set_password_level_bar()
-
-    @Gtk.Template.Callback()
-    def _on_show_password_button_toggled(
-        self,
-        _widget: Gtk.Entry,
-        _position: Gtk.EntryIconPosition | None = None,
-        _event: Gdk.Event | None = None,
-    ) -> None:
-        self._unlocked_database.start_database_lock_timer()
-        entry_visibility = self._password_value_entry.props.visibility
-        self._password_value_entry.props.visibility = not entry_visibility
 
     def _set_password_level_bar(self) -> None:
         pwd_text: str = self._password_value_entry.props.text

@@ -5,7 +5,7 @@ import typing
 from gettext import gettext as _
 from logging import warning
 
-from gi.repository import Gio, GLib, GObject, Gtk
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 from passwordsafe import config_manager
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
@@ -247,9 +247,9 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry.props.icon = icon
 
     @Gtk.Template.Callback()
-    def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
+    def on_link_secondary_button_clicked(self, widget, _position, _data=None):
         self.unlocked_database.start_database_lock_timer()
-        Gtk.show_uri_on_window(self.unlocked_database.window, widget.get_text(), Gtk.get_current_event_time())
+        Gtk.show_uri(self.unlocked_database.window, widget.get_text(), Gdk.CURRENT_TIME)
 
     @Gtk.Template.Callback()
     def on_otp_copy_button_clicked(self, _button):

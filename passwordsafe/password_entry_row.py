@@ -88,6 +88,5 @@ class PasswordEntryRow(Gtk.Box):
         else:
             password = pwd_text
 
-        password_strength: float | None = pwd_generator.strength(password)
-        if password_strength is not None:
-            self._password_level_bar.props.value = password_strength
+        password_strength: float = pwd_generator.strength(password)
+        self._password_level_bar.props.value = password_strength

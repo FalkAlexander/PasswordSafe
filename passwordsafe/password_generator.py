@@ -53,7 +53,7 @@ def generate(
     return "".join([secrets.choice(characters) for _ in range(0, length)])
 
 
-def strength(password: str) -> float | None:
+def strength(password: str) -> float:
     """Get strength of a password between 0 and 5.
 
     The higher the score is, the more secure the password is.
@@ -68,6 +68,6 @@ def strength(password: str) -> float | None:
         else:
             score = 0
     except pwquality.PWQError:
-        return None
+        score = 0
 
     return score / 20

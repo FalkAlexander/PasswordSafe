@@ -7,9 +7,7 @@ from gettext import gettext as _
 
 from gi.repository import Gtk
 
-import passwordsafe.config_manager
 import passwordsafe.password_generator as pwd_generator
-from passwordsafe.history_buffer import HistoryEntryBuffer
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
 
 if typing.TYPE_CHECKING:
@@ -39,13 +37,9 @@ class PasswordEntryRow(Gtk.Box):
         self._db_manager: DatabaseManager = unlocked_database.database_manager
 
         self._safe_entry: SafeEntry = unlocked_database.current_element
-        self._password_value_entry.set_buffer(HistoryEntryBuffer([]))
 
         self._password_value_entry.props.text = self._safe_entry.props.password
         self._password_value_entry.bind_property("text", self._safe_entry, "password")
-
-        show_pwds = passwordsafe.config_manager.get_show_password_fields()
-        self._password_value_entry.props.visibility = show_pwds
 
         self._pwd_popover = PasswordGeneratorPopover()
         self._pwd_popover.bind_property(

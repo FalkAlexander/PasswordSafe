@@ -137,8 +137,6 @@ class UnlockDatabase:
             password_unlock_entry.grab_focus()
         password_unlock_entry.connect(
             "activate", self._on_password_unlock_button_clicked)
-        password_unlock_entry.connect(
-            "icon-press", self._on_password_unlock_entry_secondary_clicked)
 
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         composite_unlock_entry.connect(
@@ -166,14 +164,6 @@ class UnlockDatabase:
         self.window.close_tab(self.parent_widget, database)
 
     # Password Unlock
-
-    def _on_password_unlock_entry_secondary_clicked(
-            self, widget, _position, _eventbutton):
-        if widget.get_visibility():
-            widget.set_invisible_char("●")
-            widget.set_visibility(False)
-        else:
-            widget.set_visibility(True)
 
     def _on_password_unlock_button_clicked(self, _widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")

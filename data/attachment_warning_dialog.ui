@@ -3,12 +3,10 @@
   <template class="AttachmentWarningDialog" parent="GtkMessageDialog">
     <property name="can_focus">False</property>
     <property name="message_type">warning</property>
-    <property name="destroy_with_parent">True</property>
     <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Safety Info</property>
     <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">It is possible that external applications will create unencrypted hidden or temporary copies of this attachment file! Please proceed with caution.</property>
     <child type="action">
       <object class="GtkButton" id="back_button">
-        <property name="visible">True</property>
         <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">_Back</property>
         <property name="use_underline">True</property>
         <signal name="clicked" handler="_on_warning_dialog_back_button_clicked" swapped="no"/>
@@ -16,7 +14,6 @@
     </child>
     <child type="action">
       <object class="GtkButton" id="proceed_button">
-        <property name="visible">True</property>
         <property name="can_default">True</property>
         <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">_Proceed</property>
         <property name="use_underline">True</property>

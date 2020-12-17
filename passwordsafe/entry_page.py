@@ -267,6 +267,8 @@ class EntryPage(Gtk.ScrolledWindow):
         for row in self.properties_list_box:
             row.set_visible(True)
 
+        self.show_all_row.set_visible(False)
+
     def on_property_value_entry_changed(self, _widget, _data=None):
         self.unlocked_database.start_database_lock_timer()
 

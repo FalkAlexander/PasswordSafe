@@ -416,7 +416,7 @@ class EntryPage(Gtk.ScrolledWindow):
             attachment_row,
         )
 
-        self.attachment_list_box.insert(attachment_row, len(self.attachment_list_box) - 1)
+        self.attachment_list_box.prepend(attachment_row)
 
     def on_attachment_row_clicked(self, attachment):
         AttachmentWarningDialog(self, attachment).present()

@@ -447,9 +447,10 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     def save_window_size(self):
-        logging.debug("Saving window geometry.")
-        window_size = [self.get_size().width, self.get_size().height]
-        passwordsafe.config_manager.set_window_size(window_size)
+        width = self.get_width()
+        height = self.get_height()
+        logging.debug("Saving window geometry: (%s, %s)", width, height)
+        passwordsafe.config_manager.set_window_size([width, height])
 
     def do_delete_event(self, _event: Gdk.Event) -> bool:
         # pylint:disable=arguments-differ

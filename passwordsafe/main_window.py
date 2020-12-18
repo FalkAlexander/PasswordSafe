@@ -397,10 +397,15 @@ class MainWindow(Handy.ApplicationWindow):
             "/org/gnome/PasswordSafe/create_database_headerbar.ui")
         headerbar = builder.get_object("headerbar")
         parent_widget = self.create_tab(tab_title, headerbar)
+        back_button = builder.get_object("back_button")
         create_database = CreateDatabase(
             self, parent_widget,
-            self.database_manager)
+            self.database_manager,
+            back_button)
+        self.set_titlebar(headerbar)
         parent_widget.add(create_database)
+        back_button.connect("clicked",
+                            create_database.on_headerbar_back_button_clicked)
 
     #
     # Tab Manager

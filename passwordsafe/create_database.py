@@ -13,6 +13,9 @@ from passwordsafe.unlock_database import KeyFileFilter, UnlockDatabase
     resource_path="/org/gnome/PasswordSafe/create_database.ui")
 class CreateDatabase(Gtk.Stack):
     """Creates a new Safe when invoked"""
+    # TODO Add an accelerator for Escape that
+    # calls on_headerbar_back_button_clicked().
+    # Can be done on GTK 4 with GtkShortcutController.
 
     __gtype_name__ = "CreateDatabase"
 
@@ -27,104 +30,61 @@ class CreateDatabase(Gtk.Stack):
 
     generate_keyfile_button = Gtk.Template.Child()
 
-    switched = False
+    open_safe_button = Gtk.Template.Child()
+
     composite = False
 
-    def __init__(self, window, widget, dbm):
+    def __init__(self, window, widget, dbm, back_button):
         super().__init__()
         self.database_manager = dbm
         self.window = window
         self.parent_widget = widget
-
-        self.set_headerbar()
-
-    #
-    # Stack Pages
-    #
-
-    # Password
-
-    def password_creation(self):
-        self.set_visible_child_name("password-creation")
-        self.password_creation_input.grab_focus()
+        self.back_button = back_button
 
     def success_page(self):
-        self.clear_input_fields()
-        if self.composite is False:
-            self.set_visible_child_name("safe-successfully-create")
-        else:
-            self.keyfile_creation()
+        self.set_visible_child_name("safe-successfully-create")
+        # TODO This should be improved upon. Widgets should not
+        # modify widgets outside of their scope. And __init__()
+        # should not request a back button either.
+        self.back_button.hide()
+        self.open_safe_button.grab_focus()
 
-    # Keyfile
-
-    def keyfile_creation(self):
+    def keyfile_generation_page(self):
         self.set_visible_child_name("keyfile-creation")
 
-    def set_database_keyfile(self):
-        self.set_visible_child_name("safe-successfully-create")
-
-    #
-    # Headerbar
-    #
-
-    def set_headerbar(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database_headerbar.ui")
-        headerbar = builder.get_object("headerbar")
-        self.window.set_titlebar(headerbar)
-        self.parent_widget.set_headerbar(headerbar)
-
-        back_button = builder.get_object("back_button")
-        back_button.connect("clicked", self.on_headerbar_back_button_clicked)
-
-    #
-    # Events
-    #
-
     def on_headerbar_back_button_clicked(self, _widget):
+        """Back button: Always goes back to the page in which you select the
+        authentication method. In the case we are already in that page
+        we kill this page."""
         if self.get_visible_child_name() == "select_auth_method":
-            pass
-        if self.get_visible_child_name() == "password-creation":
-            self.set_visible_child_name("select_auth_method")
-        elif self.get_visible_child_name() == "check-password":
-            self.set_transition_type(Gtk.StackTransitionType.SLIDE_RIGHT)
-            self.set_visible_child_name("select_auth_method")
-            self.switched = True
-            self.set_visible_child_name("password-creation")
-            self.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
-        elif self.get_visible_child_name() == "passwords-dont-match":
-            self.window.close_tab(self.parent_widget)
             self.window.set_headerbar()
-        elif self.get_visible_child_name() == "keyfile-creation":
             self.window.close_tab(self.parent_widget)
-            self.window.set_headerbar()
+            self.parent_widget.remove(self)
+        else:
+            self.set_visible_child_name("select_auth_method")
+            self.clear_input_fields()
+            self.composite = False
 
     @Gtk.Template.Callback()
-    def on_auth_chooser_row_activated(self, _widget, row):
+    def on_auth_chooser_row_activated(
+        self, _widget: Gtk.ListBox, row: Gtk.ListBoxRow
+    ) -> None:
         if row.get_name() == "password":
-            self.password_creation()
+            self.set_visible_child_name("password-creation")
         elif row.get_name() == "keyfile":
-            self.keyfile_creation()
+            self.set_visible_child_name("keyfile-creation")
         elif row.get_name() == "composite":
             self.composite = True
-            self.password_creation()
+            self.set_visible_child_name("password-creation")
 
     @Gtk.Template.Callback()
-    def on_password_creation_button_clicked(self, _widget):
+    def on_password_creation_button_clicked(self, _widget: Gtk.Button) -> None:
         self.database_manager.set_password_try(
             self.password_creation_input.get_text())
-
-        if self.switched:
-            self.set_visible_child_name("check-password")
-        else:
-            self.check_password_page()
-
-    def check_password_page(self):
         self.set_visible_child_name("check-password")
 
     @Gtk.Template.Callback()
-    def on_password_check_button_clicked(self, _widget):
+    def on_password_check_button_clicked(self, _widget: Gtk.Button) -> None:
         password_check = self.password_check_input.get_text()
 
         if self.database_manager.compare_passwords(password_check):
@@ -137,7 +97,7 @@ class CreateDatabase(Gtk.Stack):
             self.set_visible_child_name("passwords-dont-match")
 
     @Gtk.Template.Callback()
-    def on_password_repeat_button_clicked(self, _widget):
+    def on_password_repeat_button_clicked(self, _widget: Gtk.Button) -> None:
 
         passwd: str = self.password_repeat_input1.get_text()
         self.database_manager.set_password_try(passwd)
@@ -154,39 +114,6 @@ class CreateDatabase(Gtk.Stack):
             self.clear_input_fields()
             self.password_repeat_input1.get_style_context().add_class("error")
             self.password_repeat_input2.get_style_context().add_class("error")
-
-    def save_pwc_database_thread(self):
-        GLib.idle_add(self.show_pwc_loading)
-        if self.composite is False:
-            self.database_manager.save_database()
-        GLib.idle_add(self.success_page)
-
-    def show_pwc_loading(self):
-        password_check_button = self.password_check_button
-        password_check_button.remove(password_check_button.get_children()[0])
-        spinner = Gtk.Spinner()
-        spinner.start()
-        spinner.show()
-        password_check_button.add(spinner)
-        password_check_button.set_sensitive(False)
-        self.password_check_input.set_sensitive(False)
-
-    def save_pwr_database_thread(self):
-        GLib.idle_add(self.show_pwr_loading)
-        if self.composite is False:
-            self.database_manager.save_database()
-        GLib.idle_add(self.success_page)
-
-    def show_pwr_loading(self):
-        password_repeat_button = self.password_repeat_button
-        password_repeat_button.remove(password_repeat_button.get_children()[0])
-        spinner = Gtk.Spinner()
-        spinner.start()
-        spinner.show()
-        password_repeat_button.add(spinner)
-        password_repeat_button.set_sensitive(False)
-        self.password_repeat_input1.set_sensitive(False)
-        self.password_repeat_input2.set_sensitive(False)
 
     @Gtk.Template.Callback()
     def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
@@ -213,9 +140,53 @@ class CreateDatabase(Gtk.Stack):
             generator_thread.daemon = True
             generator_thread.start()
 
-    #
-    # Helper Functions
-    #
+    @Gtk.Template.Callback()
+    def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:
+        self.parent_widget.remove(self)
+        UnlockDatabase(
+            self.window, self.parent_widget,
+            self.database_manager.database_path)
+
+    @Gtk.Template.Callback()
+    def on_password_repeat_input_activate(self, _widget: Gtk.Entry) -> None:
+        self.password_repeat_button.clicked()
+
+    def save_pwc_database_thread(self):
+        GLib.idle_add(self.show_pwc_loading)
+        if self.composite:
+            GLib.idle_add(self.keyfile_generation_page)
+        else:
+            self.database_manager.save_database()
+            GLib.idle_add(self.success_page)
+
+    def show_pwc_loading(self):
+        password_check_button = self.password_check_button
+        password_check_button.remove(password_check_button.get_children()[0])
+        spinner = Gtk.Spinner()
+        spinner.start()
+        spinner.show()
+        password_check_button.add(spinner)
+        password_check_button.set_sensitive(False)
+        self.password_check_input.set_sensitive(False)
+
+    def save_pwr_database_thread(self):
+        GLib.idle_add(self.show_pwr_loading)
+        if self.composite:
+            GLib.idle_add(self.keyfile_generation_page)
+        else:
+            self.database_manager.save_database()
+            GLib.idle_add(self.success_page)
+
+    def show_pwr_loading(self):
+        password_repeat_button = self.password_repeat_button
+        password_repeat_button.remove(password_repeat_button.get_children()[0])
+        spinner = Gtk.Spinner()
+        spinner.start()
+        spinner.show()
+        password_repeat_button.add(spinner)
+        password_repeat_button.set_sensitive(False)
+        self.password_repeat_input1.set_sensitive(False)
+        self.password_repeat_input2.set_sensitive(False)
 
     def clear_input_fields(self) -> None:
         """Empty all Entry textfields"""
@@ -223,10 +194,3 @@ class CreateDatabase(Gtk.Stack):
         self.password_check_input.set_text("")
         self.password_repeat_input1.set_text("")
         self.password_repeat_input2.set_text("")
-
-    @Gtk.Template.Callback()
-    def on_finish_button_clicked(self, _widget):
-        self.destroy()
-        UnlockDatabase(
-            self.window, self.parent_widget,
-            self.database_manager.database_path)

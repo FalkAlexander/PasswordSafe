@@ -8,7 +8,7 @@ from gettext import gettext as _
 from pathlib import Path
 from typing import Optional
 
-from gi.repository import Gio, GLib, Gtk, Handy, Pango
+from gi.repository import Gio, GLib, Gtk, Pango
 from pykeepass.exceptions import (
     CredentialsError,
     HeaderChecksumError,
@@ -79,31 +79,14 @@ class UnlockDatabase:
     #
 
     def _assemble_stack(self):
-        self.overlay = Gtk.Overlay()
+        self.overlay = self.builder.get_object("unlock_database_overlay")
 
         unlock_failed_overlay = self.builder.get_object("unlock_failed_overlay")
         self.overlay.add_overlay(unlock_failed_overlay)
 
-        stack = Gtk.Stack()
-        stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+        stack = self.builder.get_object("unlock_database_stack")
 
-        unlock_database_stack_box = self.builder.get_object("unlock_database_stack_box")
         self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
-        self.unlock_database_stack_switcher.set_stack(stack)
-
-        password_unlock_stack_page = self.builder.get_object("password_unlock_stack_page")
-        keyfile_unlock_stack_page = self.builder.get_object("keyfile_unlock_stack_page")
-        composite_unlock_stack_page = self.builder.get_object("composite_unlock_stack_page")
-
-        stack.add_titled(password_unlock_stack_page, "password_unlock", _("Password"))
-        stack.child_set_property(password_unlock_stack_page, "icon-name", "input-dialpad-symbolic")
-
-        stack.add_titled(keyfile_unlock_stack_page, "keyfile_unlock", _("Keyfile"))
-        stack.child_set_property(keyfile_unlock_stack_page, "icon-name", "mail-attachment-symbolic")
-
-        # NOTE: Composite unlock is a authentication method where both password and keyfile are required
-        stack.add_titled(composite_unlock_stack_page, "composite_unlock", _("Composite"))
-        stack.child_set_property(composite_unlock_stack_page, "icon-name", "insert-link-symbolic")
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_filepath).get_uri()
@@ -127,17 +110,8 @@ class UnlockDatabase:
         if passwordsafe.config_manager.get_remember_unlock_method():
             stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
 
-        self.overlay.add(stack)
-        unlock_database_stack_box.add(self.overlay)
-        unlock_database_stack_box.show_all()
-
         # Responsive Container
-        self.hdy_page = Handy.Clamp()
-        # TODO Move these to the GtkBox that contains it in the ui file.
-        self.hdy_page.set_margin_start(18)
-        self.hdy_page.set_margin_end(18)
-        self.hdy_page.set_maximum_size(300)
-        self.hdy_page.add(unlock_database_stack_box)
+        self.hdy_page = self.builder.get_object("unlock_database_clamp")
         self.hdy_page.show_all()
 
         self.parent_widget.add(self.hdy_page)

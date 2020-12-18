@@ -1,125 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkGrid" id="first_start_grid">
-    <property name="name">first_start_grid</property>
+  <template class="MainWindow" parent="HdyApplicationWindow">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="halign">center</property>
-    <property name="valign">center</property>
-    <child>
-      <object class="GtkBox" id="welcome_box">
-        <property name="width_request">300</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="halign">center</property>
-        <property name="valign">center</property>
-        <property name="margin_start">25</property>
-        <property name="margin_end">25</property>
-        <property name="margin_top">25</property>
-        <property name="margin_bottom">25</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkImage" id="app_logo">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="hexpand">False</property>
-            <property name="vexpand">False</property>
-            <property name="pixel_size">140</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">12</property>
-            <property name="label" translatable="yes" comments="The umbrella sentence of the application on the first start screen">Secure password safe</property>
-            <property name="justify">center</property>
-            <property name="wrap">True</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-              <attribute name="size" value="21000"/>
-            </attributes>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="subtitle_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">10</property>
-            <property name="label" translatable="yes" comments="The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.">Securely store your passwords, notes and data. &lt;b&gt;Create&lt;/b&gt; or &lt;b&gt;import&lt;/b&gt; a new Keepass safe.</property>
-            <property name="use_markup">True</property>
-            <property name="wrap">True</property>
-            <property name="track_visited_links">False</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="left_attach">0</property>
-        <property name="top_attach">0</property>
-      </packing>
-    </child>
-  </object>
-  <object class="GtkGrid" id="last_opened_grid">
-    <property name="name">first_start_grid</property>
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="valign">fill</property>
-  </object>
-  <object class="GtkListBoxRow" id="last_opened_row">
-    <property name="width_request">100</property>
-    <property name="height_request">60</property>
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="selectable">False</property>
+    <signal name="notify::mobile-layout" handler="_on_mobile_layout_changed" swapped="no"/>
     <child>
       <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="spacing">30</property>
         <child>
-          <object class="GtkBox">
+          <object class="GtkStack" id="_title_stack">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="margin_start">10</property>
-            <property name="margin_end">10</property>
-            <property name="hexpand">True</property>
-            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="filename_label">
+              <object class="HdyHeaderBar" id="_headerbar">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="label">Safe Name</property>
-                <property name="ellipsize">end</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
+                <property name="show_close_button">True</property>
+                <property name="title" translatable="yes" comments="Application name in the headerbar title">Password Safe</property>
+                <child>
+                  <object class="GtkBox" id="linkedbox_left">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkButton" id="new_file_button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="halign">start</property>
+                        <signal name="clicked" handler="create_filechooser" swapped="no"/>
+                        <child>
+                          <object class="GtkStack" id="new_file_stack">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="hhomogeneous">False</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_start">6</property>
+                                <property name="margin_end">6</property>
+                                <property name="use_underline">True</property>
+                                <property name="label" translatable="yes">_New…</property>
+                              </object>
+                              <packing>
+                                <property name="name">desktop</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="icon_name">list-add-symbolic</property>
+                              </object>
+                              <packing>
+                                <property name="name">mobile</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="open_file_button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="halign">start</property>
+                        <signal name="clicked" handler="open_filechooser" swapped="no"/>
+                        <child>
+                          <object class="GtkStack" id="open_file_stack">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="hhomogeneous">False</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="margin_start">6</property>
+                                <property name="margin_end">6</property>
+                                <property name="use_underline">True</property>
+                                <property name="label" translatable="yes">_Open…</property>
+                              </object>
+                              <packing>
+                                <property name="name">desktop</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="icon_name">document-open-symbolic</property>
+                              </object>
+                              <packing>
+                                <property name="name">mobile</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkMenuButton" id="menupopover_button">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="menu_model">recent_files_menu</property>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="icon_name">open-menu-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="pack_type">end</property>
+                  </packing>
+                </child>
               </object>
             </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkStack" id="_main_view">
+            <property name="visible">True</property>
             <child>
-              <object class="GtkLabel" id="path_label">
+              <object class="GtkNotebook" id="container">
+                <property name="visible">True</property>
+                <property name="border_width">0</property>
+                <property name="scrollable">True</property>
+                <property name="show_border">False</property>
+                <property name="show_border">False</property>
+                <property name="visible">True</property>
+                <signal name="switch-page" handler="on_tab_switch" swapped="no"/>
+              </object>
+              <packing>
+                <property name="name">container</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSpinner" id="_spinner">
+                <property name="name">spinner</property>
+                <property name="width_request">50</property>
+                <property name="height_request">50</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="label">/path/to/database.kdbx</property>
-                <property name="ellipsize">start</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
               </object>
+              <packing>
+                <property name="name">spinner</property>
+              </packing>
             </child>
           </object>
         </child>
       </object>
     </child>
-  </object>
+  </template>
   <menu id="recent_files_menu">
     <section>
       <item>
@@ -136,204 +177,4 @@
       </item>
     </section>
   </menu>
-  <object class="HdyHeaderBar" id="headerbar">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="show_close_button">True</property>
-    <child>
-      <object class="GtkBox" id="headerbarbuttonbox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child>
-          <object class="GtkBox" id="linkedbox_left">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="spacing">6</property>
-            <child>
-              <object class="GtkButton" id="new_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <child>
-                  <object class="GtkStack" id="new_button_stack">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="hhomogeneous">False</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_start">6</property>
-                        <property name="margin_end">6</property>
-                        <property name="label" translatable="yes">New…</property>
-                      </object>
-                      <packing>
-                        <property name="name">desktop</property>
-                        <property name="title">desktop</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">list-add-symbolic</property>
-                      </object>
-                      <packing>
-                        <property name="name">mobile</property>
-                        <property name="title">mobile</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="open_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">start</property>
-                <child>
-                  <object class="GtkStack" id="open_button_stack">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="hhomogeneous">False</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="margin_start">6</property>
-                        <property name="margin_end">6</property>
-                        <property name="label" translatable="yes">Open…</property>
-                      </object>
-                      <packing>
-                        <property name="name">desktop</property>
-                        <property name="title">desktop</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">document-open-symbolic</property>
-                      </object>
-                      <packing>
-                        <property name="name">mobile</property>
-                        <property name="title">mobile</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child type="title">
-      <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="label" translatable="yes" comments="Application name in the headerbar title">Password Safe</property>
-        <property name="ellipsize">end</property>
-        <attributes>
-          <attribute name="weight" value="bold"/>
-        </attributes>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="menubuttonbox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkMenuButton" id="menupopover_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="menu_model">recent_files_menu</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">open-menu-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="pack_type">end</property>
-      </packing>
-    </child>
-  </object>
-  <object class="GtkBox" id="select_box">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="orientation">vertical</property>
-    <property name="margin_start">18</property>
-    <property name="margin_end">18</property>
-    <child>
-      <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">end</property>
-            <property name="hexpand">True</property>
-            <property name="label" translatable="yes">Recent Safes</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkScrolledWindow" id="last_opened_scrolled_window">
-        <property name="height_request">62</property>
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="margin_top">5</property>
-        <property name="hexpand">True</property>
-        <property name="hscrollbar_policy">never</property>
-        <property name="max_content_height">248</property>
-        <property name="propagate_natural_height">True</property>
-        <child>
-          <object class="GtkViewport" id="last_opened_viewport">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <child>
-              <object class="GtkListBox" id="last_opened_list_box">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <style>
-                  <class name="content"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkSpinner" id="spinner">
-    <property name="name">spinner</property>
-    <property name="width_request">50</property>
-    <property name="height_request">50</property>
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="halign">center</property>
-    <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
-    <property name="active">True</property>
-  </object>
 </interface>

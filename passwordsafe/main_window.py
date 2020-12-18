@@ -1,32 +1,43 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
 import os
 import threading
 from gettext import gettext as _
 from typing import List, Optional
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
-from gi.repository.GdkPixbuf import Pixbuf
 
 import passwordsafe.config_manager
 from passwordsafe.container_page import ContainerPage
 from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
+from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
+from passwordsafe.welcome_page import WelcomePage
 
 
-class MainWindow(Gtk.ApplicationWindow):
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/main_window.ui")
+class MainWindow(Handy.ApplicationWindow):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
+    __gtype_name__ = "MainWindow"
 
     database_manager = NotImplemented
-    container = NotImplemented
-    headerbar = NotImplemented
-    file_open_button = NotImplemented
-    file_new_button = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
+
+    container = Gtk.Template.Child()
+    _headerbar = Gtk.Template.Child()
+    _main_view = Gtk.Template.Child()
+    new_file_button = Gtk.Template.Child()
+    new_file_stack = Gtk.Template.Child()
+    open_file_button = Gtk.Template.Child()
+    open_file_stack = Gtk.Template.Child()
+    _spinner = Gtk.Template.Child()
+    _title_stack = Gtk.Template.Child()
 
     mobile_layout = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
@@ -36,15 +47,25 @@ class MainWindow(Gtk.ApplicationWindow):
         self.application = self.get_application()
         self._info_bar = None
         self._info_bar_response_id = None
+        self.welcome_page = WelcomePage()
+        self.recent_files_page = RecentFilesPage()
+
+        self._main_view.add(self.welcome_page)
+        self._main_view.add(self.recent_files_page)
 
         self.assemble_window()
 
         if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
 
+    def set_titlebar(self, headerbar: Handy.Headebar) -> None:
+        if headerbar not in self._title_stack.get_children():
+            self._title_stack.add(headerbar)
+        self._title_stack.set_visible_child(headerbar)
+
     def assemble_window(self) -> None:
         window_size = passwordsafe.config_manager.get_window_size()
-        self.set_default_size(window_size[0], window_size[1])
+        self.resize(window_size[0], window_size[1])
 
         self.create_headerbar()
         self.load_custom_css()
@@ -56,31 +77,17 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def create_headerbar(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-
-        self.headerbar = builder.get_object("headerbar")
-
-        self.file_open_button = builder.get_object("open_button")
-        self.file_open_button.connect("clicked", self.open_filechooser, None)
-
-        self.file_new_button = builder.get_object("new_button")
-        self.file_new_button.connect("clicked", self.create_filechooser, None)
-
-        self.set_headerbar_button_layout()
-
-        self.set_titlebar(self.headerbar)
+        self.set_titlebar(self._headerbar)
 
         if Gio.Application.get_default().development_mode is True:
             context = self.get_style_context()
             context.add_class("devel")
 
     def set_headerbar(self):
-        self.set_headerbar_button_layout()
-        self.set_titlebar(self.headerbar)
+        self.set_titlebar(self._headerbar)
 
     def get_headerbar(self):
-        return self.headerbar
+        return self._headerbar
 
     #
     # Styles
@@ -122,7 +129,7 @@ class MainWindow(Gtk.ApplicationWindow):
             self.props.mobile_layout = new_mobile_layout
             self.change_layout()
 
-        Gtk.ApplicationWindow.do_size_allocate(self, allocation)
+        Handy.ApplicationWindow.do_size_allocate(self, allocation)
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""
@@ -141,20 +148,14 @@ class MainWindow(Gtk.ApplicationWindow):
             if scrolled_page.edit_page:
                 return
 
-        if self.container is NotImplemented \
-           or self.container.get_n_pages() == 0:
-            self.set_headerbar_button_layout()
-
-    def set_headerbar_button_layout(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-
+    @Gtk.Template.Callback()
+    def _on_mobile_layout_changed(self, _window, _value):
         if self.props.mobile_layout:
-            self.file_open_button.get_children()[0].set_visible_child_name("mobile")
-            self.file_new_button.get_children()[0].set_visible_child_name("mobile")
+            self.open_file_stack.set_visible_child_name("mobile")
+            self.new_file_stack.set_visible_child_name("mobile")
         else:
-            self.file_open_button.get_children()[0].set_visible_child_name("desktop")
-            self.file_new_button.get_children()[0].set_visible_child_name("desktop")
+            self.open_file_stack.set_visible_child_name("desktop")
+            self.new_file_stack.set_visible_child_name("desktop")
 
     #
     # First Start Screen
@@ -196,92 +197,23 @@ class MainWindow(Gtk.ApplicationWindow):
 
     def display_recent_files_list(self) -> None:
         """Shows the list of recently opened files or invokes welcome page"""
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/main_window.ui")
-
-        last_opened_list_box = builder.get_object("last_opened_list_box")
-        last_opened_list_box.connect(
-            "row-activated", self.on_last_opened_list_box_activated)
-
-        entry_list = []
-        pbuilder = Gtk.Builder()
-        user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
-        for path_uri in passwordsafe.config_manager.get_last_opened_list():
-            gio_file: Gio.File = Gio.File.new_for_uri(path_uri)
-            if not gio_file.query_exists():
-                logging.info(
-                    "Ignoring nonexistent recent file: %s", gio_file.get_path()
-                )
-                continue  # only work with existing files
-
-            # Retrieve new widgets for next entry
-            pbuilder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-            last_opened_row = pbuilder.get_object("last_opened_row")
-            filename_label = pbuilder.get_object("filename_label")
-            path_label = pbuilder.get_object("path_label")
-
-            # If path is not relative to user's home, use absolute path
-            path: str = user_home.get_relative_path(gio_file) or gio_file.get_path()
-            base_name: str = os.path.splitext(gio_file.get_basename())[0]
-
-            filename_label.set_text(base_name)
-            path_label.set_text(path)
-            # last_opened_row's name will be used as file location
-            last_opened_row.set_name(gio_file.get_uri())
-            entry_list.append(last_opened_row)
-
-        if not entry_list:
+        if not passwordsafe.config_manager.get_last_opened_list():
+            logging.debug("No recent files saved")
             self.display_welcome_page()
             return
 
-        for row in entry_list:
-            last_opened_list_box.insert(row, 0)
+        recent_files_page = RecentFilesPage()
 
-        first_start_grid = builder.get_object("last_opened_grid")
+        if recent_files_page.is_empty:
+            logging.debug("No recent files")
+            self.display_welcome_page()
+            return
 
-        # Responsive Container
-        hdy = Handy.Clamp()
-        hdy.set_maximum_size(400)
-        hdy.props.vexpand = True
-        hdy.add(builder.get_object("select_box"))
-
-        first_start_grid.add(hdy)
-        first_start_grid.show_all()
-
-        self.add(first_start_grid)
+        self._main_view.set_visible_child(self.recent_files_page)
 
     def display_welcome_page(self) -> None:
         """Shown when there is no autoloading and no recent files to display"""
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-
-        pix = Pixbuf.new_from_resource_at_scale(
-            "/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
-
-        app_logo = builder.get_object("app_logo")
-        app_logo.set_from_pixbuf(pix)
-        first_start_grid = builder.get_object("first_start_grid")
-        self.add(first_start_grid)
-
-    #
-    # Container Methods (Gtk Notebook holds tabs)
-    #
-
-    def create_container(self):
-        # Remove the first_start_grid if still visible
-        for child in self.get_children():
-            if child.props.name == "first_start_grid":
-                child.destroy()
-                break
-        self.container = Gtk.Notebook()
-
-        self.container.set_border_width(0)
-        self.container.set_scrollable(True)
-        self.container.set_show_border(False)
-        self.container.connect("switch-page", self.on_tab_switch)
-        self.add(self.container)
-        self.show_all()
+        self._main_view.set_visible_child(self.welcome_page)
 
     #
     # Open Database Methods
@@ -293,7 +225,14 @@ class MainWindow(Gtk.ApplicationWindow):
         self._info_bar = None
         self._info_bar_response_id = None
 
-    def open_filechooser(self, _widget, _none):
+    @Gtk.Template.Callback()
+    def open_filechooser(self, _widget, _user_data=None):
+        """Callback function to open a safe.
+        This callback can be called from an action activate event or
+        a clicked event from a button. In the latter case, no user_data
+        is set. Having None as a default value allows to handle both
+        events reliably.
+        """
         # pylint: disable=too-many-locals
         if self._info_bar is not None:
             self._on_info_bar_response()
@@ -353,7 +292,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
                 # Get 1st child of  first_start_grid, to attach the info bar
                 first_start_grid = None
-                for child in self.get_children():
+                for child in self._main_view.get_children():
                     if child.props.name == "first_start_grid":
                         first_start_grid = child
                         break
@@ -362,7 +301,7 @@ class MainWindow(Gtk.ApplicationWindow):
                 # least don't crash now, this needs better fixing.
                 if first_start_grid is None:
                     return
-                first_child = self.get_children()[0]
+                first_child = self._main_view.get_visible_child()
                 first_start_grid.attach_next_to(
                     self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
                 return
@@ -389,12 +328,21 @@ class MainWindow(Gtk.ApplicationWindow):
         headerbar = builder.get_object("headerbar")
         tab_title: str = os.path.basename(filepath)
         UnlockDatabase(self, self.create_tab(tab_title, headerbar), filepath)
+        self._main_view.set_visible_child(self.container)
 
     #
     # Create Database Methods
     #
 
-    def create_filechooser(self, _widget, _none):
+    @Gtk.Template.Callback()
+    def create_filechooser(self, _widget, _user_data=None):
+        """Callback function to create a new safe.
+
+        This callback can be called from an action activate event or
+        a clicked event from a button. In the latter case, no user_data
+        is set. Having None as a default value allows to handle both
+        events reliably.
+        """
         filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"),
@@ -418,16 +366,8 @@ class MainWindow(Gtk.ApplicationWindow):
         if response == Gtk.ResponseType.ACCEPT:
             filepath = filechooser_creation_dialog.get_filename()
 
-            # Remove first_start_grid and attach the spinner
-            for child in self.get_children():
-                if child.props.name == "first_start_grid":
-                    child.destroy()
-                    break
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/main_window.ui")
-            if self.get_children()[0] is not self.container:
-                spinner = builder.get_object("spinner")
-                self.add(spinner)
+            self._spinner.start()
+            self._main_view.set_visible_child(self._spinner)
 
             creation_thread = threading.Thread(
                 target=self.create_new_database, args=[filepath]
@@ -450,11 +390,8 @@ class MainWindow(Gtk.ApplicationWindow):
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
-        for child in self.get_children():
-            if child.props.name == "spinner":
-                child.destroy()
-                break
-
+        self._main_view.set_visible_child(self.container)
+        self._spinner.stop()
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/create_database_headerbar.ui")
@@ -470,9 +407,6 @@ class MainWindow(Gtk.ApplicationWindow):
     #
 
     def create_tab(self, title, headerbar):
-        if self.container == NotImplemented:
-            self.create_container()
-
         page_instance = ContainerPage(headerbar, Gio.Application.get_default().development_mode)
 
         tab_hbox = Gtk.Box.new(False, 0)
@@ -503,16 +437,9 @@ class MainWindow(Gtk.ApplicationWindow):
             self.container.set_show_tabs(False)
 
         if not self.container.get_n_pages():
-            self.container.hide()
-            self.remove(self.container)
             self.display_recent_files_list()
         elif not self.container.is_visible():
-            for child in self.get_children():
-                if child.props.name == "first_start_grid":
-                    child.destroy()
-                    break
-            self.add(self.container)
-            self.container.show_all()
+            self._main_view.set_visible_child(self.container)
 
     def close_tab(self, child_widget, database=None):
         """Remove a tab from the container.
@@ -533,15 +460,6 @@ class MainWindow(Gtk.ApplicationWindow):
     #
     # Events
     #
-
-    def on_last_opened_list_box_activated(
-        self, _widget: Gtk.ListBox, list_box_row: Gtk.ListBoxRow
-    ) -> None:
-        """cb when we click on an entry in the recently opened files list
-
-        Starts opening the database corresponding to the entry."""
-        file_uri: str = list_box_row.get_name()
-        self.start_database_opening_routine(Gio.File.new_for_uri(file_uri).get_path())
 
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)

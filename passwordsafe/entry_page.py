@@ -495,7 +495,7 @@ class EntryPage:
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for selecting attachment file
             _("Select attachment"), self.unlocked_database.window, Gtk.FileChooserAction.OPEN,
-            _("Add"), None)
+            _("_Add"), None)
         select_dialog.set_modal(True)
         select_dialog.set_select_multiple(True)
 
@@ -546,7 +546,7 @@ class EntryPage:
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for downloading an attachment
             _("Save attachment"), self.unlocked_database.window, Gtk.FileChooserAction.SAVE,
-            _("Save"), None)
+            _("_Save"), None)
         save_dialog.set_current_name(attachment.filename)
         save_dialog.set_modal(True)
 

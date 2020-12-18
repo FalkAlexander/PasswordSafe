@@ -122,7 +122,7 @@ class CreateDatabase(Gtk.Stack):
         keyfile_dlg = Gtk.FileChooserNative.new(
             _("Choose location for keyfile"),
             self.window, Gtk.FileChooserAction.SAVE,
-            _("Generate"), None)
+            _("_Generate"), None)
         keyfile_dlg.set_modal(True)
         keyfile_dlg.add_filter(KeyFileFilter())
 

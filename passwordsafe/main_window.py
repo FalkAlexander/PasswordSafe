@@ -354,7 +354,7 @@ class MainWindow(Handy.ApplicationWindow):
             _("Choose location for Keepass safe"),
             self,
             Gtk.FileChooserAction.SAVE,
-            _("Create"),
+            _("_Create"),
             None,
         )
         filechooser_creation_dialog.set_current_name(_("Safe") + ".kdbx")

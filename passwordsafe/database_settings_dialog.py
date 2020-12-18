@@ -184,7 +184,7 @@ class DatabaseSettingsDialog:
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
             _("Choose current keyfile"), self.window, Gtk.FileChooserAction.OPEN,
-            _("Open"), None)
+            _("_Open"), None)
         select_dialog.set_modal(True)
 
         ffilter = Gtk.FileFilter()
@@ -235,7 +235,7 @@ class DatabaseSettingsDialog:
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
             _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,
-            _("Generate"), None)
+            _("_Generate"), None)
         save_dialog.set_current_name(_("Keyfile"))
         save_dialog.set_modal(True)
 

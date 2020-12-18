@@ -48,6 +48,8 @@ class UnlockDatabase:
     overlay = NotImplemented
     unlock_thread = NotImplemented
 
+    _filechooser = None
+
     def __init__(self, window, widget, filepath):
         self.window = window
         self.parent_widget = widget
@@ -217,11 +219,18 @@ class UnlockDatabase:
         """cb invoked when we unlock a database via keyfile"""
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None)
         keyfile_chooser_dialog.add_filter(KeyFileFilter())
-        keyfile_chooser_dialog.set_local_only(False)
 
-        response = keyfile_chooser_dialog.run()
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = keyfile_chooser_dialog
+        keyfile_chooser_dialog.connect("response", self.on_dialog_response)
+        keyfile_chooser_dialog.show()
+
+    def on_dialog_response(self,
+                           dialog: Gtk.Dialog,
+                           response: Gtk.ResponseType) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
-            self.keyfile_path = keyfile_chooser_dialog.get_filename()
+            self.keyfile_path = dialog.get_file().get_path()
             logging.debug("Keyfile selected: %s", self.keyfile_path)
 
             keyfile_button = self.builder.get_object("keyfile_unlock_select_button")
@@ -238,6 +247,7 @@ class UnlockDatabase:
             logging.debug("File selection canceled")
 
     def _on_keyfile_unlock_button_clicked(self, _widget):
+        self._filechooser = None
         if self.database_manager:
             if (self.keyfile_path is not NotImplemented
                     and self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path)):

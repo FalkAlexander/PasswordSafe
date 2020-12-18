@@ -497,14 +497,21 @@ class EntryPage:
             _("Select attachment"), self.unlocked_database.window, Gtk.FileChooserAction.OPEN,
             _("Add"), None)
         select_dialog.set_modal(True)
-        select_dialog.set_local_only(False)
         select_dialog.set_select_multiple(True)
 
-        response = select_dialog.run()
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = select_dialog
+        select_dialog.connect("response", self._on_select_filechooser_response)
+        select_dialog.show()
 
+    def _on_select_filechooser_response(self,
+                                        dialog: Gtk.Dialog,
+                                        response: Gtk.ResponseType) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
             entry_uuid = self.unlocked_database.current_element.uuid
-            for uri in select_dialog.get_uris():
+            for attachment in dialog.get_files():
+                uri = attachment.get_uri()
                 attachment = Gio.File.new_for_uri(uri)
                 byte_buffer = attachment.load_bytes()[0].get_data()
                 filename = attachment.get_basename()

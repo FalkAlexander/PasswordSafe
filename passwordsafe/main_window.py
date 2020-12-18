@@ -98,11 +98,9 @@ class MainWindow(Handy.ApplicationWindow):
         screen = Gdk.Screen.get_default()
 
         css_provider = Gtk.CssProvider()
-        css_provider_resource = Gio.File.new_for_uri(
-            "resource:///org/gnome/PasswordSafe/passwordsafe.css")
-        css_provider.load_from_file(css_provider_resource)
+        css_provider.load_from_resource("org/gnome/PasswordSafe/passwordsafe.css")
 
-        context = Gtk.StyleContext()
+        context = self.get_style_context()
         context.add_provider_for_screen(
             screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 

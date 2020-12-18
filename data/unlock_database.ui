@@ -147,11 +147,11 @@
                       <object class="GtkBox" id="password_unlock_input_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
                         <property name="margin_top">10</property>
                         <child>
                           <object class="GtkPasswordEntry" id="password_unlock_entry">
                             <property name="show-peek-icon">True</property>
+                            <property name="hexpand">True</property>
                           </object>
                         </child>
                         <child>
@@ -160,7 +160,6 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">Unlock</property>
-                            <property name="halign">end</property>
                             <property name="icon_name">changes-allow-symbolic</property>
                           </object>
                         </child>
@@ -316,6 +315,7 @@
                         <property name="margin_top">10</property>
                         <child>
                           <object class="GtkPasswordEntry" id="composite_unlock_entry">
+                            <property name="hexpand">True</property>
                             <property name="show-peek-icon">True</property>
                           </object>
                         </child>

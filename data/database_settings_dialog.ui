@@ -711,235 +711,168 @@
       </object>
     </child>
   </object>
-  <object class="GtkOverlay" id="overlay2">
+  <object class="GtkBox" id="frame_box2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="margin_top">10</property>
+    <property name="margin_bottom">10</property>
+    <property name="vexpand">True</property>
+    <property name="orientation">vertical</property>
     <child>
-      <object class="GtkScrolledWindow" id="scrolled_window2">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="hscrollbar_policy">never</property>
-        <child>
-          <object class="GtkBox" id="frame_box2">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="margin_top">10</property>
-            <property name="margin_bottom">10</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="section_label_password2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">start</property>
-                <property name="margin_bottom">15</property>
-                <property name="label" translatable="yes">Encryption Algorithm</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-            </child>
-            <child>
-              <object class="GtkFrame">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <object class="GtkListBox" id="enc_alg_list_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="name">chacha20</property>
-                        <property name="width_request">200</property>
-                        <property name="height_request">35</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes" comments="ChaCha20 is a proper name, do not translate">ChaCha20: 256-bit</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="name">twofish</property>
-                        <property name="width_request">200</property>
-                        <property name="height_request">35</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes" comments="Twofish is a proper name, do not translate">Twofish: 256-bit</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="name">aes256</property>
-                        <property name="width_request">200</property>
-                        <property name="height_request">35</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes" comments="AES is a proper name, do not translate">AES: 256-bit</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child type="label_item">
-                  <placeholder/>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel" id="section_label_password6">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">start</property>
-                <property name="margin_top">30</property>
-                <property name="margin_bottom">15</property>
-                <property name="label" translatable="yes" comments="https://en.wikipedia.org/wiki/Key_derivation_function">Key Derivation Function</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                </attributes>
-              </object>
-            </child>
-            <child>
-              <object class="GtkFrame">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <child>
-                  <object class="GtkListBox" id="der_alg_list_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="name">argon2</property>
-                        <property name="width_request">200</property>
-                        <property name="height_request">35</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label">Argon2 (KeePass 4)</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="name">aeskdf</property>
-                        <property name="width_request">200</property>
-                        <property name="height_request">35</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">start</property>
-                            <property name="label">AES-KDF (KeePass 3.1)</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child type="label_item">
-                  <placeholder/>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="encryption_apply_button">
-                <property name="label" translatable="yes">Apply Changes</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">end</property>
-                <property name="valign">end</property>
-                <property name="margin_top">30</property>
-                <property name="vexpand">True</property>
-                <style>
-                  <class name="suggested-action"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="index">-1</property>
-      </packing>
-    </child>
-    <child type="overlay">
-      <object class="GtkOverlay" id="database_action_overlay2">
+      <object class="GtkLabel" id="section_label_password2">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="halign">center</property>
+        <property name="halign">start</property>
         <property name="valign">start</property>
+        <property name="margin_bottom">15</property>
+        <property name="label" translatable="yes">Encryption Algorithm</property>
+        <attributes>
+          <attribute name="weight" value="bold"/>
+        </attributes>
+      </object>
+    </child>
+    <child>
+      <object class="GtkFrame">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <child>
-          <object class="GtkRevealer" id="database_action_revealer2">
+          <object class="GtkListBox" id="enc_alg_list_box">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="hexpand">False</property>
-            <property name="vexpand">False</property>
             <child>
-              <object class="GtkFrame" id="database_action_frame2">
-                <property name="height_request">25</property>
+              <object class="GtkListBoxRow">
+                <property name="name">chacha20</property>
+                <property name="width_request">200</property>
+                <property name="height_request">35</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can_focus">True</property>
                 <child>
-                  <object class="GtkBox" id="database_action_box2">
-                    <property name="name">database_action_box</property>
+                  <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkLabel" id="database_action_label2">
-                        <property name="name">database_action_label</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="hexpand">True</property>
-                      </object>
-                    </child>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes" comments="ChaCha20 is a proper name, do not translate">ChaCha20: 256-bit</property>
                   </object>
                 </child>
-                <child type="label_item">
-                  <placeholder/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkListBoxRow">
+                <property name="name">twofish</property>
+                <property name="width_request">200</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes" comments="Twofish is a proper name, do not translate">Twofish: 256-bit</property>
+                  </object>
                 </child>
-                <style>
-                  <class name="app-notification"/>
-                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkListBoxRow">
+                <property name="name">aes256</property>
+                <property name="width_request">200</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes" comments="AES is a proper name, do not translate">AES: 256-bit</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
-          <packing>
-            <property name="index">-1</property>
-          </packing>
         </child>
+        <child type="label_item">
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel" id="section_label_password6">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">start</property>
+        <property name="valign">start</property>
+        <property name="margin_top">30</property>
+        <property name="margin_bottom">15</property>
+        <property name="label" translatable="yes" comments="https://en.wikipedia.org/wiki/Key_derivation_function">Key Derivation Function</property>
+        <attributes>
+          <attribute name="weight" value="bold"/>
+        </attributes>
+      </object>
+    </child>
+    <child>
+      <object class="GtkFrame">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkListBox" id="der_alg_list_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkListBoxRow">
+                <property name="name">argon2</property>
+                <property name="width_request">200</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label">Argon2 (KeePass 4)</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkListBoxRow">
+                <property name="name">aeskdf</property>
+                <property name="width_request">200</property>
+                <property name="height_request">35</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">start</property>
+                    <property name="label">AES-KDF (KeePass 3.1)</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="label_item">
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="encryption_apply_button">
+        <property name="label" translatable="yes">Apply Changes</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="halign">end</property>
+        <property name="valign">end</property>
+        <property name="margin_top">30</property>
+        <property name="vexpand">True</property>
+        <style>
+          <class name="suggested-action"/>
+        </style>
       </object>
     </child>
   </object>

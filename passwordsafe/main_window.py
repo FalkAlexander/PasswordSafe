@@ -416,17 +416,16 @@ class MainWindow(Handy.ApplicationWindow):
 
         tab_hbox = Gtk.Box.new(False, 0)
         tab_label = Gtk.Label.new(title)
-        tab_hbox.pack_start(tab_label, False, False, False)
+        tab_hbox.add(tab_label)
 
-        icon = Gio.ThemedIcon(name="window-close-symbolic")
-        close_image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+        close_image = Gtk.Image.new_from_icon_name("window-close-symbolic", Gtk.IconSize.BUTTON)
         close_button = Gtk.Button()
         close_button.set_relief(Gtk.ReliefStyle.NONE)
         close_button.set_focus_on_click(False)
         close_button.connect("clicked", self.on_tab_close_button_clicked, page_instance)
         close_button.add(close_image)
 
-        tab_hbox.pack_start(close_button, False, False, False)
+        tab_hbox.add(close_button)
         tab_hbox.show_all()
 
         self.container.append_page(page_instance, tab_hbox)

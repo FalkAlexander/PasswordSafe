@@ -357,10 +357,8 @@ class MainWindow(Handy.ApplicationWindow):
             _("Create"),
             None,
         )
-        filechooser_creation_dialog.set_do_overwrite_confirmation(True)
         filechooser_creation_dialog.set_current_name(_("Safe") + ".kdbx")
         filechooser_creation_dialog.set_modal(True)
-        filechooser_creation_dialog.set_local_only(False)
 
         filter_text = Gtk.FileFilter()
         # NOTE: KeePass + version number is a proper name, do not translate
@@ -368,9 +366,17 @@ class MainWindow(Handy.ApplicationWindow):
         filter_text.add_mime_type("application/x-keepass2")
         filechooser_creation_dialog.add_filter(filter_text)
 
-        response = filechooser_creation_dialog.run()
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = filechooser_creation_dialog
+        filechooser_creation_dialog.connect("response", self._on_create_filechooser_response)
+        filechooser_creation_dialog.show()
+
+    def _on_create_filechooser_response(self,
+                                        dialog: Gtk.Dialog,
+                                        response: Gtk.ResponseType) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
-            filepath = filechooser_creation_dialog.get_filename()
+            filepath = dialog.get_file().get_path()
 
             self._spinner.start()
             self._main_view.set_visible_child(self._spinner)

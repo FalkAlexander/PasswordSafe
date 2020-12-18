@@ -222,6 +222,7 @@ class CreateDatabase(Gtk.Stack):
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget):
         self.destroy()
+        self.parent_widget.remove(self)
         UnlockDatabase(
             self.window, self.parent_widget,
             self.database_manager.database_path)

@@ -1,58 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="GtkMessageDialog" id="save_dialog">
-    <property name="can_focus">False</property>
-    <property name="type">popup</property>
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
-    <property name="type_hint">dialog</property>
     <property name="message_type">question</property>
-    <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes. ">Unsaved Changes</property>
-    <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed. ">Do you want to write all changes to the safe?</property>
-    <child internal-child="vbox">
-      <object class="GtkBox">
-        <property name="can_focus">False</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">2</property>
-        <child internal-child="action_area">
-          <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="homogeneous">True</property>
-            <property name="layout_style">expand</property>
-            <child>
-              <object class="GtkButton" id="discard_button">
-                <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">Quit Without Saving</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <style>
-                  <class name="destructive-action"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="cancel_button">
-                <property name="label" translatable="yes" comments="Cancel exiting the program">Don't Quit</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="save_button">
-                <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">Save and Quit</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
-                <property name="receives_default">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
+    <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Unsaved Changes</property>
+    <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">Do you want to write all changes to the safe?</property>
+    <child type="action">
+      <object class="GtkButton" id="discard_button">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">Quit Without Saving</property>
+        <style>
+          <class name="destructive-action"/>
+        </style>
+      </object>
+    </child>
+    <child type="action">
+      <object class="GtkButton" id="cancel_button">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes" comments="Cancel exiting the program">Don&apos;t Quit</property>
+      </object>
+    </child>
+    <child type="action">
+      <object class="GtkButton" id="save_button">
+        <property name="visible">True</property>
+        <property name="can_default">True</property>
+        <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">Save and Quit</property>
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-9">discard_button</action-widget>
-      <action-widget response="-6">cancel_button</action-widget>
-      <action-widget response="-8">save_button</action-widget>
+      <action-widget response="no">discard_button</action-widget>
+      <action-widget response="cancel">cancel_button</action-widget>
+      <action-widget response="ok" default="true">save_button</action-widget>
     </action-widgets>
   </object>
 </interface>

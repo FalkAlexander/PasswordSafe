@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import os
 import typing
 from enum import IntEnum
 from typing import Optional
@@ -115,8 +114,8 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         if is_mobile and not self._unlocked_database.props.selection_mode:
             if not scrolled_page or not scrolled_page.edit_page:
-                # No edit page, show safe filename
-                title = os.path.basename(self._db_manager.database_path)
+                # Do not show a title on the main browser.
+                title = ""
             elif self._db_manager.check_is_group_object(cur_elt):
                 # on group edit page, show entry title
                 title = cur_elt.name or ""

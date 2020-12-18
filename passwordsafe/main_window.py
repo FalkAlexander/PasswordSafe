@@ -28,6 +28,7 @@ class MainWindow(Handy.ApplicationWindow):
     database_manager = NotImplemented
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
+    _filechooser = None
 
     container = Gtk.Template.Child()
     _headerbar = Gtk.Template.Child()
@@ -251,12 +252,19 @@ class MainWindow(Handy.ApplicationWindow):
         for mime_type in supported_mime_types:
             filter_text.add_mime_type(mime_type)
         filechooser_opening_dialog.add_filter(filter_text)
-        filechooser_opening_dialog.set_local_only(False)
 
-        response = filechooser_opening_dialog.run()
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = filechooser_opening_dialog
+        filechooser_opening_dialog.connect("response", self._on_open_filechooser_response, supported_mime_types)
+        filechooser_opening_dialog.show()
 
+    def _on_open_filechooser_response(self,
+                                      dialog: Gtk.Dialog,
+                                      response: Gtk.ResponseType,
+                                      supported_mime_types: List[str]) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
-            db_filename = filechooser_opening_dialog.get_filename()
+            db_filename = dialog.get_file().get_path()
             logging.debug("File selected: %s", db_filename)
 
             db_gfile = Gio.File.new_for_path(db_filename)

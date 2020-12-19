@@ -91,9 +91,8 @@ class EntryRow(Gtk.ListBoxRow):
             self.selection_checkbox.show()
 
     def _on_entry_row_button_pressed(
-            self, _gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
-            event_y: float) -> bool:
-        # pylint: disable=unused-argument
+            self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,
+            _event_y: float) -> bool:
         # pylint: disable=too-many-arguments
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()

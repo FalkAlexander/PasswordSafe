@@ -55,6 +55,7 @@
                     <property name="visible">True</property>
                     <property name="input_purpose">name</property>
                     <property name="receives_default">True</property>
+                    <property name="enable_undo">False</property>
                   </object>
                 </child>
               </object>
@@ -84,6 +85,7 @@
                       <object class="GtkEntry" id="username_property_value_entry">
                         <property name="visible">True</property>
                         <property name="secondary_icon_name">edit-copy-symbolic</property>
+                        <property name="enable_undo">False</property>
                         <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
                         <signal name="copy-clipboard" handler="_on_copy_secondary_button_clicked" swapped="no"/>
                       </object>
@@ -216,6 +218,7 @@
                       <object class="GtkEntry" id="url_property_value_entry">
                         <property name="visible">True</property>
                         <property name="secondary_icon_name">send-to-symbolic</property>
+                        <property name="enable_undo">False</property>
                         <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
                       </object>
                     </child>

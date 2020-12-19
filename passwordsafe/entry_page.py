@@ -10,7 +10,7 @@ from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 from passwordsafe import config_manager
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
-from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
+from passwordsafe.history_buffer import HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
@@ -96,22 +96,21 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry: SafeEntry = self.unlocked_database.current_element
 
         # Create the name_property_row
-        self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-
         safe_entry.bind_property(
             "name", self.name_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
         )
         self.name_property_value_entry.grab_focus()
+        self.name_property_value_entry.props.enable_undo = True
 
         # Username
-        self.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         safe_entry.bind_property(
             "username", self.username_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
 
         value = safe_entry.username != ""
+        self.username_property_value_entry.props.enable_undo = True
 
         # Password
         self.password_entry_row = PasswordEntryRow(self.unlocked_database)
@@ -123,12 +122,12 @@ class EntryPage(Gtk.ScrolledWindow):
             self.show_row(self.otp_generated_token_box, safe_entry.otp_token, add_all)
 
         # Url
-        self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         safe_entry.bind_property(
             "url", self.url_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
         self.show_row(self.url_property_box, safe_entry.url, add_all)
+        self.url_property_value_entry.props.enable_undo = True
 
         # OTP (secret)
         safe_entry.bind_property(
@@ -210,7 +209,6 @@ class EntryPage(Gtk.ScrolledWindow):
         attribute_row = builder.get_object("attribute_row")
         attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
         attribute_value_entry = builder.get_object("attribute_value_entry")
-        attribute_value_entry.set_buffer(HistoryEntryBuffer([]))
         attribute_remove_button = builder.get_object("attribute_remove_button")
 
         attribute_key_edit_button.set_label(key)

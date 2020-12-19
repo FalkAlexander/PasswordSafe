@@ -13,22 +13,24 @@ class SaveDialogResponse(Enum):
     SAVE = 2
 
 
-class SaveDialog():
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/save_dialog.ui")
+class SaveDialog(Gtk.MessageDialog):
     # pylint: disable=too-few-public-methods
 
-    def __init__(self, window):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/save_dialog.ui")
-        self.dialog = builder.get_object("save_dialog")
-        self.dialog.set_transient_for(window)
+    __gtype_name__ = "SaveDialog"
 
-    def run(self) -> SaveDialogResponse:
+    def __init__(self, window):
+        super().__init__()
+
+        self.set_transient_for(window)
+
+    def start(self) -> SaveDialogResponse:
         """Show the save confirmation dialog.
 
         :returns: The appropiate response from the dialog
         """
-        response = self.dialog.run()
-        self.dialog.destroy()
+        response = self.run()
+        self.destroy()
 
         if response in (
             Gtk.ResponseType.CANCEL,

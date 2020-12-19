@@ -646,7 +646,7 @@ class UnlockedDatabase(GObject.GObject):
             return True  # no dirty db, do nothing.
 
         save_dialog = SaveDialog(self.window)
-        res = save_dialog.run()
+        res = save_dialog.start()
 
         if res == SaveDialogResponse.SAVE:
             self.save_database(True)

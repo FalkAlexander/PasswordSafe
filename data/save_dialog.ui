@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkMessageDialog" id="save_dialog">
+  <template class="SaveDialog" parent="GtkMessageDialog">
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
     <property name="message_type">question</property>
@@ -35,5 +35,5 @@
       <action-widget response="cancel">cancel_button</action-widget>
       <action-widget response="yes" default="true">save_button</action-widget>
     </action-widgets>
-  </object>
+  </template>
 </interface>

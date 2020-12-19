@@ -5,7 +5,7 @@ import typing
 
 from gi.repository import GObject, Gtk
 
-from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
+from passwordsafe.history_buffer import HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 
 if typing.TYPE_CHECKING:
@@ -29,7 +29,6 @@ class GroupPage(Gtk.ScrolledWindow):
         notes_buffer = HistoryTextBuffer([])
 
         # Setup Widgets
-        self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         self.name_property_value_entry.grab_focus()
         self.notes_property_value_entry.set_buffer(notes_buffer)
 
@@ -43,6 +42,9 @@ class GroupPage(Gtk.ScrolledWindow):
             "notes", notes_buffer, "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
         )
+
+        # Enable Undo. Has to be set to true after the name has been set.
+        self.name_property_value_entry.set_enable_undo(True)
 
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):

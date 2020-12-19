@@ -59,9 +59,7 @@ class PasswordEntryRow(Gtk.Box):
 
     @Gtk.Template.Callback()
     def _on_copy_password_button_clicked(self, _widget: Gtk.Button) -> None:
-        self._unlocked_database.send_to_clipboard(
-            self._password_value_entry.props.text, _("Password copied to clipboard")
-        )
+        self.copy_password()
 
     @Gtk.Template.Callback()
     def _on_password_value_changed(self, _widget: Gtk.Entry) -> None:
@@ -90,3 +88,10 @@ class PasswordEntryRow(Gtk.Box):
 
         password_strength: float = pwd_generator.strength(password)
         self._password_level_bar.props.value = password_strength
+
+    def copy_password(self) -> None:
+        password: str = self._password_value_entry.props.text
+        self._unlocked_database.send_to_clipboard(
+            password,
+            _("Password copied to clipboard"),
+        )

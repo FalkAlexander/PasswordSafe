@@ -79,6 +79,16 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         safe_entry.connect("updated", self._on_safe_entry_updated)
 
+        # Setup actions
+        action_group = Gio.SimpleActionGroup.new()
+        copy_user_action = Gio.SimpleAction.new("copy_user", None)
+        copy_user_action.connect("activate", self._on_copy_action)
+        copy_password_action = Gio.SimpleAction.new("copy_password", None)
+        copy_password_action.connect("activate", self._on_copy_action)
+        action_group.insert(copy_user_action)
+        action_group.insert(copy_password_action)
+        self.insert_action_group("entry", action_group)
+
     def insert_entry_properties_into_listbox(self, add_all):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
@@ -100,16 +110,12 @@ class EntryPage(Gtk.ScrolledWindow):
             "username", self.username_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
-        self.unlocked_database.bind_accelerator(
-            self.username_property_value_entry,
-            "<primary><Shift>b",
-            signal="copy-clipboard")
 
         value = safe_entry.username != ""
 
         # Password
-        self.password_property_box.append(PasswordEntryRow(
-            self.unlocked_database))
+        self.password_entry_row = PasswordEntryRow(self.unlocked_database)
+        self.password_property_box.append(self.password_entry_row)
 
         # OTP (token)
         if safe_entry.otp_token():
@@ -220,6 +226,16 @@ class EntryPage(Gtk.ScrolledWindow):
     #
     # Events
     #
+
+    def _on_copy_action(self, action, _data=None):
+        if action.props.name == "copy_user":
+            username = self.username_property_value_entry.get_text()
+            self.unlocked_database.send_to_clipboard(
+                username,
+                _("Username copied to clipboard"),
+            )
+        elif action.props.name == "copy_password":
+            self.password_entry_row.copy_password()
 
     @Gtk.Template.Callback()
     def on_show_all_properties_button_clicked(self, _widget):

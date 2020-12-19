@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-18 14:35+0000\n"
-"PO-Revision-Date: 2020-12-18 19:50+0200\n"
+"POT-Creation-Date: 2020-12-18 20:54+0000\n"
+"PO-Revision-Date: 2020-12-19 09:48+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -106,12 +106,10 @@ msgid "Match Check Failed"
 msgstr "Перевірку відповідності не пройдено"
 
 #: data/create_database.ui:299
-#| msgid "Please try again"
 msgid "Please try again."
 msgstr "Будь ласка, повторіть спробу."
 
 #: data/create_database.ui:348
-#| msgid "C_onfirm"
 msgid "_Confirm"
 msgstr "_Підтвердити"
 
@@ -133,7 +131,7 @@ msgid "Safe Successfully Created"
 msgstr "Сейф успішно створено"
 
 #. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/create_database.ui:457 data/unlock_database.ui:230
+#: data/create_database.ui:457 data/unlock_database.ui:10
 #: data/unlocked_headerbar.ui:189
 msgid "_Open Safe"
 msgstr "_Відкрити сейф"
@@ -143,7 +141,7 @@ msgstr "_Відкрити сейф"
 #. Application title in headerbar.
 #: data/create_database_headerbar.ui:6 data/main_window.ui:18
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:252
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
 msgid "Password Safe"
 msgstr "Сейф для паролів"
 
@@ -152,19 +150,19 @@ msgstr "Сейф для паролів"
 msgid "Create Safe"
 msgstr "Створення сейфа"
 
-#: data/create_database_headerbar.ui:43 data/main_window.ui:167
-#: data/unlock_database.ui:236 data/unlocked_headerbar.ui:199
+#: data/create_database_headerbar.ui:43 data/main_window.ui:165
+#: data/unlock_database.ui:16 data/unlocked_headerbar.ui:199
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: data/create_database_headerbar.ui:47 data/main_window.ui:171
-#: data/unlock_database.ui:240 data/unlocked_headerbar.ui:203
+#: data/create_database_headerbar.ui:47 data/main_window.ui:169
+#: data/unlock_database.ui:20 data/unlocked_headerbar.ui:203
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #. "Password Safe" is the application name
-#: data/create_database_headerbar.ui:51 data/main_window.ui:175
-#: data/unlock_database.ui:244 data/unlocked_headerbar.ui:207
+#: data/create_database_headerbar.ui:51 data/main_window.ui:173
+#: data/unlock_database.ui:24 data/unlocked_headerbar.ui:207
 msgid "_About Password Safe"
 msgstr "_Про «Сейф для паролів»"
 
@@ -197,7 +195,7 @@ msgstr "Версія KeePass"
 msgid "Creation Date"
 msgstr "Дата створення"
 
-#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:737
+#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:725
 msgid "Encryption Algorithm"
 msgstr "Алгоритм шифрування"
 
@@ -229,7 +227,7 @@ msgstr "Загальне"
 
 #: data/database_settings_dialog.ui:426 data/password_generator_popover.ui:128
 #: data/references_dialog.ui:142 data/references_dialog.ui:232
-#: data/settings_dialog.ui:160 passwordsafe/unlock_database.py:98
+#: data/settings_dialog.ui:160 data/unlock_database.ui:176
 msgid "Password"
 msgstr "Пароль"
 
@@ -252,51 +250,51 @@ msgstr "П_ідтвердити"
 msgid "_Current"
 msgstr "_Поточний"
 
-#: data/database_settings_dialog.ui:562
+#: data/database_settings_dialog.ui:559 data/unlock_database.ui:276
 #: passwordsafe/database_settings_dialog.py:190
 #: passwordsafe/database_settings_dialog.py:230
 #: passwordsafe/database_settings_dialog.py:235
-#: passwordsafe/unlock_database.py:29 passwordsafe/unlock_database.py:101
+#: passwordsafe/unlock_database.py:29
 msgid "Keyfile"
 msgstr "Файл ключа"
 
-#: data/database_settings_dialog.ui:605
+#: data/database_settings_dialog.ui:602
 msgid "_Select current keyfile"
 msgstr "Ви_беріть поточний файл ключа"
 
-#: data/database_settings_dialog.ui:663
+#: data/database_settings_dialog.ui:660
 msgid "_Generate new keyfile"
 msgstr "С_творити файл ключа"
 
-#: data/database_settings_dialog.ui:683
+#: data/database_settings_dialog.ui:680
 msgid "_Apply Changes"
 msgstr "З_астосувати зміни"
 
-#: data/database_settings_dialog.ui:700
+#: data/database_settings_dialog.ui:697
 msgid "Authentication"
 msgstr "Розпізнавання"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:763
+#: data/database_settings_dialog.ui:751
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-бітовий"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:780
+#: data/database_settings_dialog.ui:768
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-бітовий"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:797
+#: data/database_settings_dialog.ui:785
 msgid "AES: 256-bit"
 msgstr "AES: 256-бітовий"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:817
+#: data/database_settings_dialog.ui:802
 msgid "Key Derivation Function"
 msgstr "Функція для похідних ключів"
 
-#: data/database_settings_dialog.ui:874
+#: data/database_settings_dialog.ui:856
 #: passwordsafe/database_settings_dialog.py:342
 #: passwordsafe/database_settings_dialog.py:364
 msgid "Apply Changes"
@@ -363,12 +361,10 @@ msgid "Copy password to clipboard"
 msgstr "Копіювати пароль до буфера обміну"
 
 #: data/main_window.ui:43
-#| msgid "New…"
 msgid "_New…"
 msgstr "С_творити…"
 
 #: data/main_window.ui:82
-#| msgid "Open…"
 msgid "_Open…"
 msgstr "_Відкрити…"
 
@@ -723,15 +719,12 @@ msgid "Reference"
 msgstr "Посилання"
 
 #: data/references_dialog.ui:503
-#| msgid ""
-#| "Each entry has a unique identifier called UUID.\n"
-#| "It can be found in the properties of the entry."
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
 msgstr ""
-"У кожного запису є унікальний ідентифікатор, який має назву UUID. Його можна"
-" знайти у властивостях запису."
+"У кожного запису є унікальний ідентифікатор, який має назву UUID. Його можна "
+"знайти у властивостях запису."
 
 #: data/search.ui:79
 msgid "No search results"
@@ -780,7 +773,7 @@ msgid "Don't Quit"
 msgstr "Не виходити"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:28
+#: data/save_dialog.ui:27
 msgid "Save and Quit"
 msgstr "Зберегти та вийти"
 
@@ -810,7 +803,7 @@ msgstr "При_ховати перший початковий екран"
 msgid "Reopen last opened safe."
 msgstr "Повторно відкрити останній відкритий сейф."
 
-#: data/settings_dialog.ui:56 passwordsafe/main_window.py:355
+#: data/settings_dialog.ui:56 passwordsafe/main_window.py:353
 msgid "Safe"
 msgstr "Безпечний"
 
@@ -835,8 +828,8 @@ msgstr "Повно_текстовий пошук"
 msgid "_Current Group Search"
 msgstr "По_шук у поточній групі"
 
-#: data/settings_dialog.ui:118 data/unlock_database.ui:75
-#: data/unlock_database.ui:199 data/unlock_database.ui:337
+#: data/settings_dialog.ui:118 data/unlock_database.ui:157
+#: data/unlock_database.ui:254 data/unlock_database.ui:342
 msgid "Unlock"
 msgstr "Відімкнути"
 
@@ -1027,38 +1020,58 @@ msgstr "Назад"
 msgid "Recent Safes"
 msgstr "Нещодавні сейфи"
 
-#: data/unlock_database.ui:25
-msgid "Enter password and select keyfile to unlock"
-msgstr "Введення пароля і вибір файла ключа для відмикання"
-
-#: data/unlock_database.ui:40 data/unlock_database.ui:154
-#: data/unlock_database.ui:380
-msgid "Safe is Locked"
-msgstr "Сейф замкнено"
-
-#: data/unlock_database.ui:139
-msgid "Select keyfile to unlock"
-msgstr "Виберіть файл ключа для відмикання"
-
-#: data/unlock_database.ui:186
-msgid "Open Keyfile"
-msgstr "Відкрити файл ключа"
-
 #. Menubutton in headerbar for starting the safe creation process
-#: data/unlock_database.ui:226 data/unlocked_headerbar.ui:185
+#: data/unlock_database.ui:6 data/unlocked_headerbar.ui:185
 msgid "_New Safe"
 msgstr "С_творити сейф"
 
 #. Headerbar subtitle for the keepass safe unlock screen.
-#: data/unlock_database.ui:253
+#: data/unlock_database.ui:33
 msgid "Open Safe"
 msgstr "Відкрити сейф"
 
-#: data/unlock_database.ui:365
+#: data/unlock_database.ui:113 data/unlock_database.ui:200
+#: data/unlock_database.ui:300
+msgid "Safe is Locked"
+msgstr "Сейф замкнено"
+
+#: data/unlock_database.ui:125
 msgid "Enter password to unlock"
 msgstr "Введіть пароль для відмикання"
 
-#: data/unlock_database.ui:448
+#: data/unlock_database.ui:175
+#| msgid "Enter password to unlock"
+msgid "password_unlock"
+msgstr "password_unlock"
+
+#: data/unlock_database.ui:214
+msgid "Select keyfile to unlock"
+msgstr "Виберіть файл ключа для відмикання"
+
+#: data/unlock_database.ui:241
+msgid "Open Keyfile"
+msgstr "Відкрити файл ключа"
+
+#: data/unlock_database.ui:275
+#| msgid "Select keyfile to unlock"
+msgid "keyfile_unlock"
+msgstr "keyfile_unlock"
+
+#: data/unlock_database.ui:312
+msgid "Enter password and select keyfile to unlock"
+msgstr "Введення пароля і вибір файла ключа для відмикання"
+
+#: data/unlock_database.ui:378
+#| msgid "Composite"
+msgid "composite_unlock"
+msgstr "composite_unlock"
+
+#. Composite unlock is a authentication method where both password and keyfile are required
+#: data/unlock_database.ui:379
+msgid "Composite"
+msgstr "Суміщення"
+
+#: data/unlock_database.ui:434
 msgid "Failed to unlock safe"
 msgstr "Не вдалося відімкнути сейф"
 
@@ -1137,7 +1150,6 @@ msgstr "Нова _група"
 
 #. The umbrella sentence of the application on the first start screen
 #: data/welcome_page.ui:31
-#| msgid "Secure password safe"
 msgid "Secure Password Safe"
 msgstr "Безпечний сейф для паролів"
 
@@ -1246,29 +1258,29 @@ msgid "No group title specified"
 msgstr "Не вказано назви групи"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:242
+#: passwordsafe/main_window.py:240
 msgid "Choose a Keepass safe"
 msgstr "Виберіть сейф Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:252 passwordsafe/main_window.py:361
+#: passwordsafe/main_window.py:250 passwordsafe/main_window.py:359
 msgid "KeePass 3.1/4 Database"
 msgstr "база даних KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:284
+#: passwordsafe/main_window.py:282
 msgid "Unable to open file \"{}\"."
 msgstr "Не вдалося відкрити файл «{}»."
 
-#: passwordsafe/main_window.py:287
+#: passwordsafe/main_window.py:285
 msgid "File type {} ({}) is not supported."
 msgstr "Підтримки типів файлів {} ({}) не передбачено."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:348
+#: passwordsafe/main_window.py:346
 msgid "Choose location for Keepass safe"
 msgstr "Виберіть розташування сейфа Keepass"
 
-#: passwordsafe/main_window.py:351
+#: passwordsafe/main_window.py:349
 msgid "Create"
 msgstr "Створити"
 
@@ -1284,24 +1296,19 @@ msgstr "Пересування завершено"
 msgid "Skipped moving group into itself"
 msgstr "Пропущено пересування групи до самої себе"
 
-#. NOTE: Composite unlock is a authentication method where both password and keyfile are required
-#: passwordsafe/unlock_database.py:105
-msgid "Composite"
-msgstr "Суміщення"
-
-#: passwordsafe/unlock_database.py:221
+#: passwordsafe/unlock_database.py:195
 msgid "Safe already opened"
 msgstr "Сейф вже відкрито"
 
-#: passwordsafe/unlock_database.py:244
+#: passwordsafe/unlock_database.py:218
 msgid "Choose a keyfile"
 msgstr "Виберіть файл ключа"
 
-#: passwordsafe/unlock_database.py:283
+#: passwordsafe/unlock_database.py:257
 msgid "Choose Keyfile"
 msgstr "Виберіть файл ключа"
 
-#: passwordsafe/unlock_database.py:558
+#: passwordsafe/unlock_database.py:532
 msgid "Try again"
 msgstr "Спробувати ще раз"
 

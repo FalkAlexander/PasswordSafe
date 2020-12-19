@@ -62,9 +62,8 @@ class GroupRow(Gtk.ListBoxRow):
         self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
 
     def _on_group_row_button_pressed(
-            self, _gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
-            event_y: float) -> bool:
-        # pylint: disable=unused-argument
+            self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,
+            _event_y: float) -> bool:
         # pylint: disable=too-many-arguments
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()

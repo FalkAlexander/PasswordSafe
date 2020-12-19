@@ -475,7 +475,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
     @Gtk.Template.Callback()
     def _on_copy_secondary_button_clicked(
-            self, widget, _position=None, _eventbutton=None):
+            self, widget, _icon_pos, _data=None):
         self.unlocked_database.send_to_clipboard(
             widget.get_text(),
             _("Username copied to clipboard"),

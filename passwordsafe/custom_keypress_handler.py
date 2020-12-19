@@ -27,41 +27,15 @@ class CustomKeypressHandler:
         self.unlocked_database.window.add_controller(controller)
 
     def on_special_key_pressed(self, controller, keyval, _keycode, state):
-        # pylint: disable=too-many-return-statements
-        # pylint: disable=too-many-branches
-        window = controller.get_widget()
         if not self._current_view_accessible():
             return Gdk.EVENT_PROPAGATE
 
         edit_page = self.unlocked_database.in_edit_page
 
-        # Handle undo and redo on entries.
         if (
-                edit_page
-                and state & Gdk.ModifierType.CONTROL_MASK == Gdk.ModifierType.CONTROL_MASK
-        ):
-            keyval_name = Gdk.keyval_name(keyval)
-            if isinstance(window.get_focus(), Gtk.TextView):
-                textbuffer = window.get_focus().get_buffer()
-                if isinstance(textbuffer, passwordsafe.history_buffer.HistoryTextBuffer):
-                    if keyval_name == 'y':
-                        textbuffer.logic.do_redo()
-                        return Gdk.EVENT_PROPAGATE
-                    if keyval_name == "z":
-                        textbuffer.logic.do_undo()
-                        return Gdk.EVENT_PROPAGATE
-            if isinstance(window.get_focus(), Gtk.Entry):
-                textbuffer = window.get_focus().get_buffer()
-                if isinstance(textbuffer, passwordsafe.history_buffer.HistoryEntryBuffer):
-                    if keyval_name == 'y':
-                        textbuffer.logic.do_redo()
-                        return Gdk.EVENT_PROPAGATE
-                    if keyval_name == "z":
-                        textbuffer.logic.do_undo()
-                        return Gdk.EVENT_PROPAGATE
-        elif (
                 not edit_page
                 and state & Gdk.ModifierType.MOD1_MASK == 0
+                and Gdk.keyval_to_unicode(keyval) != 0
         ):
             self.unlocked_database.props.search_active = True
 

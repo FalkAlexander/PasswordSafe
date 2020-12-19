@@ -10,7 +10,6 @@ from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 from passwordsafe import config_manager
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
-from passwordsafe.history_buffer import HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
@@ -141,7 +140,7 @@ class EntryPage(Gtk.ScrolledWindow):
         # Notes
         self.notes_property_value_entry.get_style_context().add_class("codeview")
 
-        textbuffer = HistoryTextBuffer([])
+        textbuffer = self.notes_property_value_entry.get_buffer()
         safe_entry.bind_property(
             "notes", textbuffer, "text",
             GObject.BindingFlags.SYNC_CREATE

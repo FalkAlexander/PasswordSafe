@@ -5,7 +5,6 @@ import typing
 
 from gi.repository import GObject, Gtk
 
-from passwordsafe.history_buffer import HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 
 if typing.TYPE_CHECKING:
@@ -26,11 +25,10 @@ class GroupPage(Gtk.ScrolledWindow):
         self.unlocked_database = unlocked_database
 
         safe_group = self.unlocked_database.current_element
-        notes_buffer = HistoryTextBuffer([])
 
         # Setup Widgets
         self.name_property_value_entry.grab_focus()
-        self.notes_property_value_entry.set_buffer(notes_buffer)
+        notes_buffer = self.notes_property_value_entry.get_buffer()
 
         # Connect Signals
         safe_group.connect("updated", self._on_safe_group_updated)

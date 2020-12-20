@@ -452,8 +452,7 @@ class MainWindow(Handy.ApplicationWindow):
         logging.debug("Saving window geometry: (%s, %s)", width, height)
         passwordsafe.config_manager.set_window_size([width, height])
 
-    def do_delete_event(self, _event: Gdk.Event) -> bool:
-        # pylint:disable=arguments-differ
+    def do_close_request(self) -> bool:
         """This is invoked when the window close button is pressed.
 
         Only the app.quit action is called. This action cleans up stuff

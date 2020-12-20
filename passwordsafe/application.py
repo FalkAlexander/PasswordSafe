@@ -8,6 +8,10 @@ from gi.repository import Gio, GLib, Gtk, Handy
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
 
+import passwordsafe.config_manager as config
+from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
+from passwordsafe.quit_dialog import QuitDialog
+
 
 class Application(Gtk.Application):
     window: MainWindow = None
@@ -111,10 +115,47 @@ class Application(Gtk.Application):
 
     def on_quit(self, _action: Optional[Gio.SimpleAction] = None,
                 _data: Any = None) -> None:
-        # Perform cleanups, this calls application.quit() itself if `handled`
-        handled: bool = self.window.on_application_shutdown()
-        if not handled:
-            self.quit()
+        unsaved_databases_list = []
+        self.window.databases_to_save.clear()
+
+        for database in self.window.opened_databases:
+            if (database.database_manager.is_dirty
+                    and not database.database_manager.save_running):
+                if config.get_save_automatically():
+                    database.save_database()
+                else:
+                    unsaved_databases_list.append(database)
+
+        if len(unsaved_databases_list) == 1:
+            database = unsaved_databases_list[0]
+            save_dialog = SaveDialog(self.window)
+            res = save_dialog.start()
+
+            if res == SaveDialogResponse.SAVE:
+                database.database_manager.save_database()
+                self.quit()
+            elif res == SaveDialogResponse.DISCARD:
+                self.quit()
+
+        elif len(unsaved_databases_list) > 1:
+            # Multiple unsaved files, ask which to save
+            quit_dialog = QuitDialog(self.window, unsaved_databases_list)
+
+            res = quit_dialog.run()
+            quit_dialog.destroy()
+            if res == Gtk.ResponseType.CANCEL:
+                self.window.databases_to_save.clear()
+            # Do nothing in other cases e.g.NONE, OK,...
+
+        for database in self.window.opened_databases:
+            database.cleanup()
+
+        self.window.save_window_size()
+        if self.window.databases_to_save:
+            for database in self.window.databases_to_save:
+                database.save_database()
+
+            GLib.idle_add(self.quit)
 
     def on_shortcuts_menu_clicked(
         self, _action: Gio.SimpleAction, _param: None

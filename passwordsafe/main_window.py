@@ -17,7 +17,6 @@ from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
-from passwordsafe.quit_dialog import QuitDialog
 from passwordsafe.welcome_page import WelcomePage
 
 
@@ -512,12 +511,6 @@ class MainWindow(Handy.ApplicationWindow):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
 
-    def on_save_check_button_toggled(self, check_button, db):  # pylint: disable=C0103
-        if check_button.get_active():
-            self.databases_to_save.append(db)
-        else:
-            self.databases_to_save.remove(db)
-
     #
     # Application Quit Dialog
     #
@@ -533,58 +526,6 @@ class MainWindow(Handy.ApplicationWindow):
         self.application.activate_action("quit")
         return True  # we handled event, don't call destroy
 
-    def on_application_shutdown(self) -> bool:
-        """Clean up unsaved databases, and shutdown
-
-        This function is invoked by the application.quit method
-        :returns: True if handled (don't quit), False if shutdown
-        """
-        # pylint: disable=too-many-branches
-        unsaved_databases_list = []
-        self.databases_to_save.clear()
-
-        for db_view in self.opened_databases:
-            if (db_view.database_manager.is_dirty
-                    and not db_view.database_manager.save_running):
-                if passwordsafe.config_manager.get_save_automatically():
-                    db_view.save_database()
-                else:
-                    unsaved_databases_list.append(db_view)
-
-        if len(unsaved_databases_list) == 1:
-            database = unsaved_databases_list[0]
-            save_dialog = SaveDialog(self)
-            res = save_dialog.start()
-
-            if res == SaveDialogResponse.SAVE:
-                database.save_database()
-            elif res != SaveDialogResponse.DISCARD:
-                return True  # User Canceled, don't quit
-
-        elif len(unsaved_databases_list) > 1:
-            # Multiple unsaved files, ask which to save
-            quit_dialog = QuitDialog(self, unsaved_databases_list)
-
-            res = quit_dialog.run()
-            quit_dialog.destroy()
-            if res == Gtk.ResponseType.CANCEL:
-                self.databases_to_save.clear()
-                return True
-            # Do nothing in other cases e.g.NONE, OK,...
-
-        for database in self.opened_databases:
-            database.cleanup()
-
-        self.save_window_size()
-        if self.databases_to_save:
-            for db_view in self.databases_to_save:
-                db_view.save_database()
-
-            GLib.idle_add(self.application.quit)
-
-            return True
-
-        return False  # caller should quit() the app
     #
     # Gio Actions
     #

@@ -25,7 +25,6 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
-from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar

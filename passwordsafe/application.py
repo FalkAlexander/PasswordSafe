@@ -140,22 +140,28 @@ class Application(Gtk.Application):
         elif len(unsaved_databases_list) > 1:
             # Multiple unsaved files, ask which to save
             quit_dialog = QuitDialog(self.window, unsaved_databases_list)
+            quit_dialog.connect("response", self._on_quit_dialog_response)
+            quit_dialog.show()
 
-            res = quit_dialog.run()
-            quit_dialog.destroy()
-            if res == Gtk.ResponseType.CANCEL:
-                self.window.databases_to_save.clear()
-            # Do nothing in other cases e.g.NONE, OK,...
+        else:
+            for database in self.window.opened_databases:
+                database.cleanup()
+            GLib.idle_add(self.quit)
+
+    def _on_quit_dialog_response(self,
+                                 dialog: Gtk.Dialog,
+                                 response: Gtk.ResponseType) -> None:
+        dialog.close()
+        if response != Gtk.ResponseType.OK:
+            self.window.databases_to_save.clear()
+            return
 
         for database in self.window.opened_databases:
             database.cleanup()
-
-        self.window.save_window_size()
-        if self.window.databases_to_save:
-            for database in self.window.databases_to_save:
+            if database in self.window.databases_to_save:
                 database.save_database()
 
-            GLib.idle_add(self.quit)
+        GLib.idle_add(self.quit)
 
     def _on_save_dialog_response(self,
                                  dialog: Gtk.Dialog,

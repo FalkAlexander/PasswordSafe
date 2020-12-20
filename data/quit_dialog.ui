@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkMessageDialog" id="quit_dialog">
+  <template class="QuitDialog" parent="GtkMessageDialog">
     <property name="can_focus">False</property>
     <property name="modal">True</property>
     <property name="text" translatable="yes" comments="Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.">Do you want to save all safes with unsaved changes?</property>
@@ -55,5 +55,5 @@
       <action-widget response="cancel">back_button</action-widget>
       <action-widget response="ok" default="true">quit_button</action-widget>
     </action-widgets>
-  </object>
+  </template>
 </interface>

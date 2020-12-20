@@ -16,6 +16,7 @@ from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
+from passwordsafe.quit_dialog import QuitDialog
 from passwordsafe.welcome_page import WelcomePage
 
 
@@ -551,26 +552,7 @@ class MainWindow(Handy.ApplicationWindow):
 
         elif len(unsaved_databases_list) > 1:
             # Multiple unsaved files, ask which to save
-            builder = Gtk.Builder()
-            builder.add_from_resource(
-                "/org/gnome/PasswordSafe/quit_dialog.ui")
-            quit_dialog = builder.get_object("quit_dialog")
-            quit_dialog.set_transient_for(self)
-
-            unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
-
-            for db in unsaved_databases_list:  # pylint: disable=C0103
-                unsaved_database_row = Gtk.ListBoxRow()
-                check_button = Gtk.CheckButton()
-                if "/home/" in db.database_manager.database_path:
-                    check_button.set_label("~/" + os.path.relpath(db.database_manager.database_path))
-                else:
-                    check_button.set_label(Gio.File.new_for_path(db.database_manager.database_path).get_uri())
-                check_button.connect("toggled", self.on_save_check_button_toggled, db)
-                check_button.set_active(True)
-                unsaved_database_row.add(check_button)
-                unsaved_database_row.show_all()
-                unsaved_databases_list_box.add(unsaved_database_row)
+            quit_dialog = QuitDialog(self, unsaved_databases_list)
 
             res = quit_dialog.run()
             quit_dialog.destroy()

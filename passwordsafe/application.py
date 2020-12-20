@@ -42,7 +42,6 @@ class Application(Gtk.Application):
 
     def do_startup(self):  # pylint: disable=arguments-differ
         Gtk.Application.do_startup(self)
-        GLib.set_prgname(self.application_id)
 
         Handy.init()
         self.connect("open", self.file_open_handler)

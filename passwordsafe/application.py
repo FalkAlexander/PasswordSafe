@@ -230,7 +230,5 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.db.lock", ["<primary>l"])
         self.set_accels_for_action("app.db.add_entry", ["<primary>n"])
         self.set_accels_for_action("app.db.add_group", ["<primary>g"])
-        self.set_accels_for_action("app.undo", ["<primary>z"])
-        self.set_accels_for_action("app.redo", ["<primary>y"])
         self.set_accels_for_action("app.go_back", ["Escape"])
         self.set_accels_for_action("app.quit", ["<primary>q"])

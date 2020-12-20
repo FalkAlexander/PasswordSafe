@@ -14,6 +14,7 @@ from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.recent_files_page import RecentFilesPage
+from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.quit_dialog import QuitDialog
@@ -485,11 +486,17 @@ class MainWindow(Handy.ApplicationWindow):
         for db in self.opened_databases:  # pylint: disable=C0103
             if db.window.container.page_num(db.parent_widget) == page_num:
                 if db.database_manager.is_dirty:
-                    saved: bool = db.save_database(
-                        passwordsafe.config_manager.get_save_automatically())
-                    # operation has been canceled
-                    if not saved:
-                        return
+                    if passwordsafe.config_manager.get_save_automatically():
+                        db.save_database()
+                    else:
+                        save_dialog = SaveDialog(self)
+                        res = save_dialog.start()
+
+                        if res == SaveDialogResponse.SAVE:
+                            db.save_database()
+                        elif res != SaveDialogResponse.DISCARD:
+                            # operation has been canceled
+                            return
 
                 db.cleanup()
                 current_db = db
@@ -540,13 +547,13 @@ class MainWindow(Handy.ApplicationWindow):
             if (db_view.database_manager.is_dirty
                     and not db_view.database_manager.save_running):
                 if passwordsafe.config_manager.get_save_automatically():
-                    db_view.save_database(True)
+                    db_view.save_database()
                 else:
                     unsaved_databases_list.append(db_view)
 
         if len(unsaved_databases_list) == 1:
             database = unsaved_databases_list[0]
-            saved: bool = database.save_database()
+            saved: bool = database.show_save_dialog()
             if not saved:
                 return True  # User Canceled, don't quit
 
@@ -567,7 +574,7 @@ class MainWindow(Handy.ApplicationWindow):
         self.save_window_size()
         if self.databases_to_save:
             for db_view in self.databases_to_save:
-                db_view.save_database(True)
+                db_view.save_database()
 
             GLib.idle_add(self.application.quit)
 

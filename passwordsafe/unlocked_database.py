@@ -463,7 +463,7 @@ class UnlockedDatabase(GObject.GObject):
 
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
-                self.save_database(True)
+                self.save_database()
                 self.show_database_action_revealer(_("Safe saved"))
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
@@ -649,7 +649,7 @@ class UnlockedDatabase(GObject.GObject):
         res = save_dialog.start()
 
         if res == SaveDialogResponse.SAVE:
-            self.save_database(True)
+            self.save_database()
             return True
 
         if res == SaveDialogResponse.DISCARD:
@@ -708,7 +708,7 @@ class UnlockedDatabase(GObject.GObject):
                     )
 
                 if passwordsafe.config_manager.get_save_automatically():
-                    self.save_database(True)
+                    self.save_database()
 
             self.overlay.hide()
         else:
@@ -772,30 +772,20 @@ class UnlockedDatabase(GObject.GObject):
             except Gio.Error:
                 logging.warning("Skipping deletion of tmpfile...")
 
-    def save_database(self, auto_save: bool = False) -> bool:
+    def save_database(self) -> None:
         """Save the database.
 
         If auto_save is False, a dialog asking for confirmation
         will be displayed.
-
-        :param bool auto_save: ask for confirmation before saving
         """
         if not self.database_manager.is_dirty or self.database_manager.save_running:
-            return False
+            return
 
-        database_saved = False
-        if auto_save:
-            save_thread = threading.Thread(target=self.database_manager.save_database)
-            save_thread.daemon = False
-            save_thread.start()
-            database_saved = True
-        else:
-            database_saved = self.show_save_dialog()
+        save_thread = threading.Thread(target=self.database_manager.save_database)
+        save_thread.daemon = False
+        save_thread.start()
 
-        if database_saved:
-            logging.debug("Saving database %s", self.database_manager.database_path)
-
-        return database_saved
+        logging.debug("Saving database %s", self.database_manager.database_path)
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

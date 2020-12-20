@@ -41,6 +41,7 @@ class Application(Gtk.Application):
 
         Handy.init()
         self.connect("open", self.file_open_handler)
+        self.connect("shutdown", self._on_shutdown_action)
         self.assemble_application_menu()
 
     def do_handle_local_options(        # pylint: disable=arguments-differ
@@ -144,8 +145,6 @@ class Application(Gtk.Application):
             quit_dialog.show()
 
         else:
-            for database in self.window.opened_databases:
-                database.cleanup()
             GLib.idle_add(self.quit)
 
     def _on_quit_dialog_response(self,
@@ -156,10 +155,8 @@ class Application(Gtk.Application):
             self.window.databases_to_save.clear()
             return
 
-        for database in self.window.opened_databases:
-            database.cleanup()
-            if database in self.window.databases_to_save:
-                database.save_database()
+        for database in self.window.databases_to_save:
+            database.save_database()
 
         GLib.idle_add(self.quit)
 
@@ -169,12 +166,16 @@ class Application(Gtk.Application):
                                  database: UnlockedDatabase) -> None:
         dialog.close()
         if response == Gtk.ResponseType.YES:  # Save
-            database.cleanup()
             database.database_manager.save_database()
             GLib.idle_add(self.quit)
+
         elif response == Gtk.ResponseType.NO:  # Discard
-            database.cleanup()
             GLib.idle_add(self.quit)
+
+    def _on_shutdown_action(self, _action: Gio.SimpleAction) -> None:
+        """Activated on shutdown signal. Cleans all remaining processes."""
+        for database in self.window.opened_databases:
+            database.cleanup()
 
     def on_shortcuts_menu_clicked(
         self, _action: Gio.SimpleAction, _param: None

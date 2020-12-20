@@ -15,6 +15,7 @@ from passwordsafe.password_entry_row import PasswordEntryRow
 
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
+    from pykeepass.attachment import Attachment
 
 
 class EntryPage:
@@ -22,6 +23,7 @@ class EntryPage:
     #
     # Global Variables
     #
+    _filechooser = None
     unlocked_database = NotImplemented
     _pwd_popover = NotImplemented
 
@@ -493,16 +495,23 @@ class EntryPage:
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for selecting attachment file
             _("Select attachment"), self.unlocked_database.window, Gtk.FileChooserAction.OPEN,
-            _("Add"), None)
+            _("_Add"), None)
         select_dialog.set_modal(True)
-        select_dialog.set_local_only(False)
         select_dialog.set_select_multiple(True)
 
-        response = select_dialog.run()
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = select_dialog
+        select_dialog.connect("response", self._on_select_filechooser_response)
+        select_dialog.show()
 
+    def _on_select_filechooser_response(self,
+                                        dialog: Gtk.Dialog,
+                                        response: Gtk.ResponseType) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
             entry_uuid = self.unlocked_database.current_element.uuid
-            for uri in select_dialog.get_uris():
+            for attachment in dialog.get_files():
+                uri = attachment.get_uri()
                 attachment = Gio.File.new_for_uri(uri)
                 byte_buffer = attachment.load_bytes()[0].get_data()
                 filename = attachment.get_basename()
@@ -533,20 +542,26 @@ class EntryPage:
         AttachmentWarningDialog(self, attachment).present()
 
     def on_attachment_download_button_clicked(self, _button, attachment):
+        print(attachment)
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for downloading an attachment
             _("Save attachment"), self.unlocked_database.window, Gtk.FileChooserAction.SAVE,
-            _("Save"), None)
-        save_dialog.set_do_overwrite_confirmation(True)
+            _("_Save"), None)
         save_dialog.set_current_name(attachment.filename)
         save_dialog.set_modal(True)
-        save_dialog.set_local_only(False)
 
-        response = save_dialog.run()
+        self._filechooser = save_dialog
+        save_dialog.connect("response", self._on_save_filechooser_response, attachment)
+        save_dialog.show()
 
+    def _on_save_filechooser_response(self,
+                                      dialog: Gtk.Dialog,
+                                      response: Gtk.ResponseType,
+                                      attachment: Attachment) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
             bytes_buffer = self.unlocked_database.database_manager.db.binaries[attachment.id]
-            self.save_to_disk(save_dialog.get_filename(), bytes_buffer)
+            self.save_to_disk(dialog.get_file().get_path(), bytes_buffer)
 
     def on_attachment_delete_button_clicked(self, _button, attachment, attachment_row):
         entry = self.unlocked_database.current_element

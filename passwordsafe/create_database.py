@@ -33,6 +33,7 @@ class CreateDatabase(Gtk.Stack):
     open_safe_button = Gtk.Template.Child()
 
     composite = False
+    _filechooser = None
 
     def __init__(self, window, widget, dbm, back_button):
         super().__init__()
@@ -121,17 +122,23 @@ class CreateDatabase(Gtk.Stack):
         keyfile_dlg = Gtk.FileChooserNative.new(
             _("Choose location for keyfile"),
             self.window, Gtk.FileChooserAction.SAVE,
-            _("Generate"), None)
-        keyfile_dlg.set_do_overwrite_confirmation(True)
+            _("_Generate"), None)
         keyfile_dlg.set_modal(True)
-        keyfile_dlg.set_local_only(False)
         keyfile_dlg.add_filter(KeyFileFilter())
-        response = keyfile_dlg.run()
 
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = keyfile_dlg
+        keyfile_dlg.connect("response", self._on_filechooser_response)
+        keyfile_dlg.show()
+
+    def _on_filechooser_response(self,
+                                 dialog: Gtk.Dialog,
+                                 response: Gtk.ResponseType) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
             self.generate_keyfile_button.set_sensitive(False)
             self.generate_keyfile_button.set_label(_("Generating…"))
-            keyfile_path = keyfile_dlg.get_filename()
+            keyfile_path = dialog.get_file().get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
 
             generator_thread = threading.Thread(

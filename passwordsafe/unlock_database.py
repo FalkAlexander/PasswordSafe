@@ -48,6 +48,8 @@ class UnlockDatabase:
     overlay = NotImplemented
     unlock_thread = NotImplemented
 
+    _filechooser = None
+
     def __init__(self, window, widget, filepath):
         self.window = window
         self.parent_widget = widget
@@ -217,11 +219,18 @@ class UnlockDatabase:
         """cb invoked when we unlock a database via keyfile"""
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(_("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None)
         keyfile_chooser_dialog.add_filter(KeyFileFilter())
-        keyfile_chooser_dialog.set_local_only(False)
 
-        response = keyfile_chooser_dialog.run()
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = keyfile_chooser_dialog
+        keyfile_chooser_dialog.connect("response", self.on_dialog_response)
+        keyfile_chooser_dialog.show()
+
+    def on_dialog_response(self,
+                           dialog: Gtk.Dialog,
+                           response: Gtk.ResponseType) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
-            self.keyfile_path = keyfile_chooser_dialog.get_filename()
+            self.keyfile_path = dialog.get_file().get_path()
             logging.debug("Keyfile selected: %s", self.keyfile_path)
 
             keyfile_button = self.builder.get_object("keyfile_unlock_select_button")
@@ -238,6 +247,7 @@ class UnlockDatabase:
             logging.debug("File selection canceled")
 
     def _on_keyfile_unlock_button_clicked(self, _widget):
+        self._filechooser = None
         if self.database_manager:
             if (self.keyfile_path is not NotImplemented
                     and self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path)):
@@ -256,22 +266,25 @@ class UnlockDatabase:
         filechooser_opening_dialog = Gtk.FileChooserNative.new(
             _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
             None, None)
-        composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
         filechooser_opening_dialog.add_filter(KeyFileFilter())
-        filechooser_opening_dialog.set_local_only(False)
 
-        response = filechooser_opening_dialog.run()
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = filechooser_opening_dialog
+        filechooser_opening_dialog.connect("response", self._on_composite_filechooser_response)
+        filechooser_opening_dialog.show()
+
+    def _on_composite_filechooser_response(self,
+                                           dialog: Gtk.Dialog,
+                                           response: Gtk.ResponseType) -> None:
+        self._filechooser = None
+        composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
         if response == Gtk.ResponseType.ACCEPT:
-            logging.debug("File selected: %s", filechooser_opening_dialog.get_filename())
-            file_path = filechooser_opening_dialog.get_filename()
-            label = Gtk.Label()
-            label.set_text(ntpath.basename(file_path))
-            label.set_ellipsize(Pango.EllipsizeMode.END)
-            composite_unlock_select_button.remove(composite_unlock_select_button.get_children()[0])
-            composite_unlock_select_button.add(label)
+            logging.debug("File selected: %s", dialog.get_file().get_path)
+            file_path = dialog.get_file().get_path()
+            composite_unlock_select_button.set_label(ntpath.basename(file_path))
             composite_unlock_select_button.show_all()
-
             self.composite_keyfile_path = file_path
+
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection cancelled")
 

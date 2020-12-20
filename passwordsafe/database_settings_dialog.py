@@ -27,6 +27,8 @@ class DatabaseSettingsDialog:
     new_encryption_algorithm = NotImplemented
     new_derivation_algorithm = NotImplemented
 
+    _filechooser = None
+
     def __init__(self, unlocked_database):
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
@@ -182,9 +184,8 @@ class DatabaseSettingsDialog:
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
             _("Choose current keyfile"), self.window, Gtk.FileChooserAction.OPEN,
-            _("Open"), None)
+            _("_Open"), None)
         select_dialog.set_modal(True)
-        select_dialog.set_local_only(False)
 
         ffilter = Gtk.FileFilter()
         ffilter.set_name(_("Keyfile"))
@@ -194,10 +195,19 @@ class DatabaseSettingsDialog:
         ffilter.add_mime_type("application/x-iwork-keynote-sffkey")
 
         select_dialog.add_filter(ffilter)
-        response = select_dialog.run()
 
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = select_dialog
+        select_dialog.connect("response", self._on_select_filechooser_response, button)
+        select_dialog.show()
+
+    def _on_select_filechooser_response(self,
+                                        select_dialog: Gtk.Dialog,
+                                        response: Gtk.ResponseType,
+                                        button: Gtk.Button) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
-            selected_keyfile = select_dialog.get_filename()
+            selected_keyfile = select_dialog.get_file().get_path()
             keyfile_hash: str = self.database_manager.create_keyfile_hash(
                 selected_keyfile
             )
@@ -225,11 +235,9 @@ class DatabaseSettingsDialog:
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
             _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,
-            _("Generate"), None)
-        save_dialog.set_do_overwrite_confirmation(True)
+            _("_Generate"), None)
         save_dialog.set_current_name(_("Keyfile"))
         save_dialog.set_modal(True)
-        save_dialog.set_local_only(False)
 
         ffilter = Gtk.FileFilter()
         ffilter.set_name(_("Keyfile"))
@@ -238,9 +246,16 @@ class DatabaseSettingsDialog:
         ffilter.add_mime_type("text/plain")
         ffilter.add_mime_type("application/x-iwork-keynote-sffkey")
 
+        # We need to hold a reference, otherwise the app crashes.
+        self._filechooser = save_dialog
         save_dialog.add_filter(ffilter)
-        response = save_dialog.run()
+        save_dialog.connect("response", self._on_filechooser_response)
+        save_dialog.show()
 
+    def _on_filechooser_response(self,
+                                 save_dialog: Gtk.Dialog,
+                                 response: Gtk.ResponseType) -> None:
+        self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
             self.generate_keyfile_button.set_sensitive(False)
 
@@ -250,7 +265,7 @@ class DatabaseSettingsDialog:
             self.generate_keyfile_button.add(spinner)
             self.generate_keyfile_button.show_all()
 
-            self.new_keyfile_path = save_dialog.get_filename()
+            self.new_keyfile_path = save_dialog.get_file().get_path()
 
             if self.new_password is NotImplemented:
                 generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.new_keyfile_path, False, self, False))

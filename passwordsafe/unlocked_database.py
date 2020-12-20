@@ -636,27 +636,6 @@ class UnlockedDatabase(GObject.GObject):
     # Dialog Creator
     #
 
-    def show_save_dialog(self) -> bool:
-        """ Show the save confirmation dialog
-
-        Saves the db and closes the tab.
-        :returns: True if we want to exit the app
-        """
-        if not self.database_manager.is_dirty or self.database_manager.save_running:
-            return True  # no dirty db, do nothing.
-
-        save_dialog = SaveDialog(self.window)
-        res = save_dialog.start()
-
-        if res == SaveDialogResponse.SAVE:
-            self.save_database()
-            return True
-
-        if res == SaveDialogResponse.DISCARD:
-            return True
-
-        return False
-
     def show_references_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Show a Group/Entry reference dialog
 

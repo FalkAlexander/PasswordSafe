@@ -553,8 +553,12 @@ class MainWindow(Handy.ApplicationWindow):
 
         if len(unsaved_databases_list) == 1:
             database = unsaved_databases_list[0]
-            saved: bool = database.show_save_dialog()
-            if not saved:
+            save_dialog = SaveDialog(self)
+            res = save_dialog.start()
+
+            if res == SaveDialogResponse.SAVE:
+                database.save_database()
+            elif res != SaveDialogResponse.DISCARD:
                 return True  # User Canceled, don't quit
 
         elif len(unsaved_databases_list) > 1:

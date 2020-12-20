@@ -133,16 +133,16 @@ class MainWindow(Handy.ApplicationWindow):
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""
-        for db in self.opened_databases:  # pylint: disable=C0103
+        for database in self.opened_databases:
             # Do Nothing on Lock Screen
-            if db.props.database_locked:
+            if database.props.database_locked:
                 return
 
             # Do nothing for Search View
-            if db.props.search_active:
+            if database.props.search_active:
                 return
 
-            scrolled_page = db.get_current_page()
+            scrolled_page = database.get_current_page()
 
             # For Group/Entry Edit Page
             if scrolled_page.edit_page:
@@ -315,12 +315,12 @@ class MainWindow(Handy.ApplicationWindow):
 
             database_already_opened = False
 
-            for db in self.opened_databases:  # pylint: disable=C0103
-                if db.database_manager.database_path == db_filename:
+            for database in self.opened_databases:
+                if database.database_manager.database_path == db_filename:
                     database_already_opened = True
-                    page_num = self.container.page_num(db.parent_widget)
+                    page_num = self.container.page_num(database.parent_widget)
                     self.container.set_current_page(page_num)
-                    db.show_database_action_revealer("Safe already opened")
+                    database.show_database_action_revealer("Safe already opened")
 
             if database_already_opened is False:
                 self.start_database_opening_routine(db_filename)
@@ -481,34 +481,36 @@ class MainWindow(Handy.ApplicationWindow):
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)
 
-        for db in self.opened_databases:  # pylint: disable=C0103
-            if db.window.container.page_num(db.parent_widget) == page_num:
-                if db.database_manager.is_dirty:
+        for database in self.opened_databases:
+            if database.window.container.page_num(database.parent_widget) == page_num:
+                if database.database_manager.is_dirty:
                     if passwordsafe.config_manager.get_save_automatically():
-                        db.cleanup()
-                        db.save_database()
+                        database.cleanup()
+                        database.save_database()
                     else:
                         save_dialog = SaveDialog(self)
-                        save_dialog.connect("response", self._on_save_dialog_response, [widget, db])
+                        save_dialog.connect("response",
+                                            self._on_save_dialog_response,
+                                            [widget, database])
                         save_dialog.show()
                 else:
-                    db.cleanup()
-                    self.close_tab(widget, db)
+                    database.cleanup()
+                    self.close_tab(widget, database)
 
                 return
 
         self.close_tab(widget)
 
     def _on_save_dialog_response(self, dialog, response, args):
-        widget, db = args
+        widget, database = args
         dialog.close()
         if response == Gtk.ResponseType.YES:
-            db.cleanup()
-            self.close_tab(widget, db)
-            db.save_database()
+            database.cleanup()
+            self.close_tab(widget, database)
+            database.save_database()
         elif response == Gtk.ResponseType.NO:
-            db.cleanup()
-            self.close_tab(widget, db)
+            database.cleanup()
+            self.close_tab(widget, database)
 
     def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()
@@ -537,9 +539,9 @@ class MainWindow(Handy.ApplicationWindow):
     def find_action_db(self):
         action_db = NotImplemented
 
-        for db in self.opened_databases:  # pylint: disable=C0103
-            if self.tab_visible(db.parent_widget):
-                action_db = db
+        for database in self.opened_databases:
+            if self.tab_visible(database.parent_widget):
+                action_db = database
 
         return action_db
 

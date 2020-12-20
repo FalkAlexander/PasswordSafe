@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
 import sys
+import typing
 from typing import Any, List, Optional
 
 from gi.repository import Gio, GLib, Gtk, Handy
@@ -9,8 +12,10 @@ from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
 
 import passwordsafe.config_manager as config
-from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
+from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.quit_dialog import QuitDialog
+if typing.TYPE_CHECKING:
+    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class Application(Gtk.Application):
@@ -129,13 +134,8 @@ class Application(Gtk.Application):
         if len(unsaved_databases_list) == 1:
             database = unsaved_databases_list[0]
             save_dialog = SaveDialog(self.window)
-            res = save_dialog.start()
-
-            if res == SaveDialogResponse.SAVE:
-                database.database_manager.save_database()
-                self.quit()
-            elif res == SaveDialogResponse.DISCARD:
-                self.quit()
+            save_dialog.connect("response", self._on_save_dialog_response, database)
+            save_dialog.show()
 
         elif len(unsaved_databases_list) > 1:
             # Multiple unsaved files, ask which to save
@@ -155,6 +155,19 @@ class Application(Gtk.Application):
             for database in self.window.databases_to_save:
                 database.save_database()
 
+            GLib.idle_add(self.quit)
+
+    def _on_save_dialog_response(self,
+                                 dialog: Gtk.Dialog,
+                                 response: Gtk.ResponseType,
+                                 database: UnlockedDatabase) -> None:
+        dialog.close()
+        if response == Gtk.ResponseType.YES:  # Save
+            database.cleanup()
+            database.database_manager.save_database()
+            GLib.idle_add(self.quit)
+        elif response == Gtk.ResponseType.NO:  # Discard
+            database.cleanup()
             GLib.idle_add(self.quit)
 
     def on_shortcuts_menu_clicked(

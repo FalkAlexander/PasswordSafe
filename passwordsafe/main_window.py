@@ -5,7 +5,7 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from typing import List, Optional
+from typing import List
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 
 import passwordsafe.config_manager
@@ -14,7 +14,7 @@ from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.recent_files_page import RecentFilesPage
-from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
+from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
@@ -480,32 +480,35 @@ class MainWindow(Handy.ApplicationWindow):
 
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)
-        current_db: Optional[UnlockedDatabase] = None
 
         for db in self.opened_databases:  # pylint: disable=C0103
             if db.window.container.page_num(db.parent_widget) == page_num:
                 if db.database_manager.is_dirty:
                     if passwordsafe.config_manager.get_save_automatically():
+                        db.cleanup()
                         db.save_database()
                     else:
                         save_dialog = SaveDialog(self)
-                        res = save_dialog.start()
+                        save_dialog.connect("response", self._on_save_dialog_response, [widget, db])
+                        save_dialog.show()
+                else:
+                    db.cleanup()
+                    self.close_tab(widget, db)
 
-                        if res == SaveDialogResponse.SAVE:
-                            db.save_database()
-                        elif res != SaveDialogResponse.DISCARD:
-                            # operation has been canceled
-                            return
+                return
 
-                db.cleanup()
-                current_db = db
-                break
+        self.close_tab(widget)
 
-        if not current_db:
-            logging.warning(
-                "Closing a tab, but could not find the corresponding database.")
-
-        self.close_tab(widget, current_db)
+    def _on_save_dialog_response(self, dialog, response, args):
+        widget, db = args
+        dialog.close()
+        if response == Gtk.ResponseType.YES:
+            db.cleanup()
+            self.close_tab(widget, db)
+            db.save_database()
+        elif response == Gtk.ResponseType.NO:
+            db.cleanup()
+            self.close_tab(widget, db)
 
     def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()

@@ -755,7 +755,7 @@ class UnlockedDatabase(GObject.GObject):
             self.database_lock_timer.cancel()
 
         # Do not listen to screensaver kicking in anymore
-        connection = self.window.application.get_dbus_connection()
+        connection = Gio.Application.get_default().get_dbus_connection()
         connection.signal_unsubscribe(self.dbus_subscription_id)
 
         # stop the save loop
@@ -844,7 +844,7 @@ class UnlockedDatabase(GObject.GObject):
         """Register a listener so we get notified about screensave kicking in
 
         In this case we will call self.on_session_lock()"""
-        connection = self.window.application.get_dbus_connection()
+        connection = Gio.Application.get_default().get_dbus_connection()
         self.dbus_subscription_id = connection.signal_subscribe(
             None, "org.gnome.ScreenSaver", "ActiveChanged",
             "/org/gnome/ScreenSaver", None,

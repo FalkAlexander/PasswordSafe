@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-20 18:26+0000\n"
-"PO-Revision-Date: 2020-12-20 20:55+0200\n"
+"POT-Creation-Date: 2020-12-21 10:22+0000\n"
+"PO-Revision-Date: 2020-12-21 17:34+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -48,13 +48,15 @@ msgstr ""
 
 #. Discard all the changes which the user have made to his keepass safe
 #: data/attachment_warning_dialog.ui:12
-msgid "Back"
-msgstr "Назад"
+#| msgid "Back"
+msgid "_Back"
+msgstr "_Назад"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:20
-msgid "Proceed"
-msgstr "Продовжити"
+#: data/attachment_warning_dialog.ui:21
+#| msgid "Proceed"
+msgid "_Proceed"
+msgstr "П_родовжити"
 
 #: data/create_database.ui:34
 msgid "Protect your safe"
@@ -252,7 +254,7 @@ msgstr "П_ідтвердити"
 msgid "_Current"
 msgstr "_Поточний"
 
-#: data/database_settings_dialog.ui:559 data/unlock_database.ui:276
+#: data/database_settings_dialog.ui:559 data/unlock_database.ui:277
 #: passwordsafe/database_settings_dialog.py:191
 #: passwordsafe/database_settings_dialog.py:239
 #: passwordsafe/database_settings_dialog.py:243
@@ -303,54 +305,55 @@ msgid "Apply Changes"
 msgstr "Застосувати зміни"
 
 #: data/entry_page.ui:25
-msgid "Add Attachment"
-msgstr "Додати долучення"
+#| msgid "Add Attachment"
+msgid "_Add Attachment"
+msgstr "_Додати долучення"
 
-#: data/entry_page.ui:51
+#: data/entry_page.ui:52
 msgid "Attachments"
 msgstr "Долучення"
 
-#: data/entry_page.ui:104
+#: data/entry_page.ui:105
 msgid "Secret_Photo.png"
 msgstr "Секретне_фото.png"
 
-#: data/entry_page.ui:237
+#: data/entry_page.ui:238
 msgid "Remove attribute"
 msgstr "Вилучити атрибут"
 
-#: data/entry_page.ui:276
+#: data/entry_page.ui:277
 msgid "Attributes"
 msgstr "Атрибути"
 
-#: data/entry_page.ui:300
+#: data/entry_page.ui:301
 msgid "Key"
 msgstr "Ключ"
 
-#: data/entry_page.ui:309
+#: data/entry_page.ui:310
 msgid "Value"
 msgstr "Значення"
 
-#: data/entry_page.ui:322
+#: data/entry_page.ui:323
 msgid "Add attribute"
 msgstr "Додати атрибут"
 
-#: data/entry_page.ui:356
+#: data/entry_page.ui:357
 msgid "Icon"
 msgstr "Піктограма"
 
-#: data/entry_page.ui:635 data/group_page.ui:21
+#: data/entry_page.ui:636 data/group_page.ui:21
 msgid "_Title"
 msgstr "За_головок"
 
-#: data/entry_page.ui:683 data/group_page.ui:69
+#: data/entry_page.ui:684 data/group_page.ui:69
 msgid "_Notes"
 msgstr "_Нотатки"
 
-#: data/entry_page.ui:834
+#: data/entry_page.ui:835
 msgid "U_RL"
 msgstr "Ад_реса"
 
-#: data/entry_page.ui:884
+#: data/entry_page.ui:885
 msgid "_Username"
 msgstr "_Користувач"
 
@@ -371,8 +374,9 @@ msgid "_Open…"
 msgstr "_Відкрити…"
 
 #: data/notes_dialog.ui:18
-msgid "Copy"
-msgstr "Копіювати"
+#| msgid "Copy"
+msgid "_Copy"
+msgstr "_Копіювати"
 
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
 msgid ""
@@ -746,13 +750,15 @@ msgstr "Хочете зберегти усі сейфи із незбереже�
 msgid "Select the safes you want to save."
 msgstr "Виберіть сейфи, які ви хочете зберегти."
 
-#: data/quit_dialog.ui:42 data/selection_ui.ui:40
-msgid "Cancel"
-msgstr "Скасувати"
+#: data/quit_dialog.ui:42
+#| msgid "Cancel"
+msgid "_Cancel"
+msgstr "_Скасувати"
 
-#: data/quit_dialog.ui:48
-msgid "Quit"
-msgstr "Вийти"
+#: data/quit_dialog.ui:49
+#| msgid "Quit"
+msgid "_Quit"
+msgstr "Ви_йти"
 
 #. Dialog title which informs the user about unsaved changes.
 #: data/save_dialog.ui:7
@@ -764,20 +770,23 @@ msgstr "Незбережені зміни"
 msgid "Do you want to write all changes to the safe?"
 msgstr "Хочете записати усі зміни до сейфа?"
 
-#. Discard all the changes which the user have made to his keepass safe
+#. _Discard all the changes which the user have made to his keepass safe
 #: data/save_dialog.ui:12
-msgid "Quit Without Saving"
-msgstr "Вийти без збереження"
+#| msgid "Quit Without Saving"
+msgid "_Quit Without Saving"
+msgstr "В_ийти без збереження"
 
-#. Cancel exiting the program
-#: data/save_dialog.ui:21
-msgid "Don't Quit"
-msgstr "Не виходити"
+#. _Cancel exiting the program
+#: data/save_dialog.ui:22
+#| msgid "Don't Quit"
+msgid "_Don't Quit"
+msgstr "_Не виходити"
 
-#. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:27
-msgid "Save and Quit"
-msgstr "Зберегти та вийти"
+#. _Save all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:29
+#| msgid "Save and Quit"
+msgid "_Save and Quit"
+msgstr "З_берегти та вийти"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
 #: data/selection_ui.ui:12
@@ -788,6 +797,10 @@ msgstr "Переміщення позначеного"
 #: data/selection_ui.ui:27
 msgid "Delete selection"
 msgstr "Вилучити позначене"
+
+#: data/selection_ui.ui:40
+msgid "Cancel"
+msgstr "Скасувати"
 
 #: data/settings_dialog.ui:21
 msgid "_Dark Theme"
@@ -831,7 +844,7 @@ msgid "_Current Group Search"
 msgstr "По_шук у поточній групі"
 
 #: data/settings_dialog.ui:118 data/unlock_database.ui:157
-#: data/unlock_database.ui:254 data/unlock_database.ui:342
+#: data/unlock_database.ui:255 data/unlock_database.ui:343
 msgid "Unlock"
 msgstr "Відімкнути"
 
@@ -1033,7 +1046,7 @@ msgid "Open Safe"
 msgstr "Відкрити сейф"
 
 #: data/unlock_database.ui:113 data/unlock_database.ui:200
-#: data/unlock_database.ui:300
+#: data/unlock_database.ui:301
 msgid "Safe is Locked"
 msgstr "Сейф замкнено"
 
@@ -1046,19 +1059,20 @@ msgid "Select keyfile to unlock"
 msgstr "Виберіть файл ключа для відмикання"
 
 #: data/unlock_database.ui:241
-msgid "Open Keyfile"
-msgstr "Відкрити файл ключа"
+#| msgid "Open Keyfile"
+msgid "_Open Keyfile"
+msgstr "_Відкрити файл ключа"
 
-#: data/unlock_database.ui:312
+#: data/unlock_database.ui:313
 msgid "Enter password and select keyfile to unlock"
 msgstr "Введення пароля і вибір файла ключа для відмикання"
 
 #. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:379
+#: data/unlock_database.ui:380
 msgid "Composite"
 msgstr "Суміщення"
 
-#: data/unlock_database.ui:434
+#: data/unlock_database.ui:435
 msgid "Failed to unlock safe"
 msgstr "Не вдалося відімкнути сейф"
 
@@ -1169,7 +1183,6 @@ msgid "Choose current keyfile"
 msgstr "Виберіть поточний файл ключа"
 
 #: passwordsafe/database_settings_dialog.py:187
-#| msgid "Open"
 msgid "_Open"
 msgstr "_Відкрити"
 
@@ -1260,7 +1273,6 @@ msgid "Choose location for Keepass safe"
 msgstr "Виберіть розташування сейфа Keepass"
 
 #: passwordsafe/main_window.py:357
-#| msgid "Create"
 msgid "_Create"
 msgstr "С_творити"
 

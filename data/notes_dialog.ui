@@ -15,10 +15,11 @@
             <property name="show_close_button">True</property>
             <child>
               <object class="GtkButton" id="copy_button">
-                <property name="label" translatable="yes">Copy</property>
+                <property name="label" translatable="yes">_Copy</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="use_underline">True</property>
                 <style>
                   <class name="suggested-action"/>
                 </style>

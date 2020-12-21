@@ -9,7 +9,8 @@
     <child type="action">
       <object class="GtkButton" id="discard_button">
         <property name="visible">True</property>
-        <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">Quit Without Saving</property>
+        <property name="label" translatable="yes" comments="_Discard all the changes which the user have made to his keepass safe">_Quit Without Saving</property>
+        <property name="use_underline">True</property>
         <style>
           <class name="destructive-action"/>
         </style>
@@ -18,13 +19,15 @@
     <child type="action">
       <object class="GtkButton" id="cancel_button">
         <property name="visible">True</property>
-        <property name="label" translatable="yes" comments="Cancel exiting the program">Don&apos;t Quit</property>
+        <property name="label" translatable="yes" comments="_Cancel exiting the program">_Don&apos;t Quit</property>
+        <property name="use_underline">True</property>
       </object>
     </child>
     <child type="action">
       <object class="GtkButton" id="save_button">
         <property name="visible">True</property>
-        <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">Save and Quit</property>
+        <property name="label" translatable="yes" comments="_Save all the changes which the user have made to his keepass safe">_Save and Quit</property>
+        <property name="use_underline">True</property>
       </object>
     </child>
     <action-widgets>

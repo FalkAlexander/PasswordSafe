@@ -111,6 +111,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.pathbar = Pathbar(self, self.database_manager)
         self._stack = self.builder.get_object("list_stack")
+        self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
         self.revealer = self.builder.get_object("revealer")
         self.action_bar = self.builder.get_object("action_bar")
 
@@ -129,6 +130,8 @@ class UnlockedDatabase(GObject.GObject):
         self.divider = self.builder.get_object("divider")
         self.overlay.add(self.divider)
         self.overlay.show_all()
+        self._unlocked_db_stack.add_named(self.search.scrolled_page, "search")
+        self.search.scrolled_page.show_all()
 
         self.search.initialize()
         self._update_headerbar()
@@ -439,12 +442,8 @@ class UnlockedDatabase(GObject.GObject):
     def rebuild_all_pages(self):
         # FIXME find a more elegant way to do this without
         # obliterating everything.
-        search_page = self._stack.get_child_by_name("search")
         for page in self._stack.get_children():
-            if (
-                    page.check_is_edit_page() is False
-                    and search_page != page
-            ):
+            if page.check_is_edit_page() is False:
                 page.destroy()
 
         self.show_page_of_new_directory(False, False)
@@ -907,8 +906,9 @@ class UnlockedDatabase(GObject.GObject):
         """
         self._search_active = value
         if self._search_active:
-            self._stack.set_visible_child(self._stack.get_child_by_name("search"))
+            self._unlocked_db_stack.set_visible_child_name("search")
         else:
+            self._unlocked_db_stack.set_visible_child_name("browser")
             self.show_page_of_new_directory(False, False)
 
         self._update_headerbar()

@@ -39,13 +39,15 @@
     <child type="action">
       <object class="GtkButton" id="back_button">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">Cancel</property>
+        <property name="label" translatable="yes">_Cancel</property>
+        <property name="use_underline">True</property>
       </object>
     </child>
     <child type="action">
       <object class="GtkButton" id="quit_button">
         <property name="visible">True</property>
-        <property name="label" translatable="yes">Quit</property>
+        <property name="label" translatable="yes">_Quit</property>
+        <property name="use_underline">True</property>
       </object>
     </child>
     <action-widgets>

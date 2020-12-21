@@ -14,7 +14,6 @@
     </child>
     <child type="action">
       <object class="GtkButton" id="proceed_button">
-        <property name="can_default">True</property>
         <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">_Proceed</property>
         <property name="use_underline">True</property>
         <signal name="clicked" handler="_on_warning_dialog_proceed_button_clicked" swapped="no"/>

@@ -9,7 +9,8 @@
     <child type="action">
       <object class="GtkButton" id="back_button">
         <property name="visible">True</property>
-        <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">Back</property>
+        <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">_Back</property>
+        <property name="use_underline">True</property>
         <signal name="clicked" handler="_on_warning_dialog_back_button_clicked" swapped="no"/>
       </object>
     </child>
@@ -17,7 +18,8 @@
       <object class="GtkButton" id="proceed_button">
         <property name="visible">True</property>
         <property name="can_default">True</property>
-        <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">Proceed</property>
+        <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">_Proceed</property>
+        <property name="use_underline">True</property>
         <signal name="clicked" handler="_on_warning_dialog_proceed_button_clicked" swapped="no"/>
         <style>
           <class name="destructive-action"/>

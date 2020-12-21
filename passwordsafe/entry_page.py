@@ -62,7 +62,7 @@ class EntryPage(Gtk.ScrolledWindow):
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
         properties_list_box = builder.get_object(
-            "properties_list_box"
+            "properties_box"
         )
         self.properties_list_box = properties_list_box
 
@@ -70,7 +70,7 @@ class EntryPage(Gtk.ScrolledWindow):
         entry_name = safe_entry.props.name
 
         # Create the name_property_row
-        self.name_property_row = builder.get_object("name_property_row")
+        self.name_property_row = builder.get_object("name_property_box")
         self.name_property_value_entry = builder.get_object("name_property_value_entry")
         self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
@@ -86,7 +86,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.name_property_row, entry_name, add_all)
 
         # Username
-        self.username_property_row = builder.get_object("username_property_row")
+        self.username_property_row = builder.get_object("username_property_box")
         self.username_property_value_entry = builder.get_object("username_property_value_entry")
         self.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         safe_entry.bind_property(
@@ -114,7 +114,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.password_property_row, non_empty, add_all)
 
         # Url
-        self.url_property_row = builder.get_object("url_property_row")
+        self.url_property_row = builder.get_object("url_property_box")
         self.url_property_value_entry = builder.get_object("url_property_value_entry")
         self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         safe_entry.bind_property(
@@ -127,7 +127,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.url_property_row, safe_entry.url, add_all)
 
         # Notes
-        self.notes_property_row = builder.get_object("notes_property_row")
+        self.notes_property_row = builder.get_object("notes_property_box")
         self.notes_property_value_entry = builder.get_object("notes_property_value_entry")
         self.notes_property_value_entry.get_style_context().add_class("codeview")
 
@@ -152,7 +152,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.color_property_row, non_default, add_all)
 
         # Icons
-        self.icon_property_row = builder.get_object("icon_property_row")
+        self.icon_property_row = builder.get_object("icon_property_box")
         icon_entry_box = builder.get_object("icon_entry_box")
 
         icon_builder = Gtk.Builder()
@@ -192,7 +192,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.icon_property_row, non_default, add_all)
 
         # Attachments
-        self.attachment_property_row = builder.get_object("attachment_property_row")
+        self.attachment_property_row = builder.get_object("attachment_property_box")
         self.attachment_list_box = builder.get_object("attachment_list_box")
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
@@ -202,7 +202,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.attachment_property_row, safe_entry.attachments, add_all)
 
         # Attributes
-        self.attributes_property_row = builder.get_object("attributes_property_row")
+        self.attributes_property_row = builder.get_object("attributes_property_box")
         self.attributes_key_entry = builder.get_object("attributes_key_entry")
         self.attributes_value_entry = builder.get_object("attributes_value_entry")
         self.attributes_add_button = builder.get_object("attributes_add_button")
@@ -238,7 +238,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         index = self.attributes_property_row.get_index()
 
-        attribute_property_row = builder.get_object("attribute_property_row")
+        attribute_property_row = builder.get_object("attribute_property_box")
         attribute_property_name_label = builder.get_object("attribute_property_name_label")
         attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
         attribute_value_entry = builder.get_object("attribute_value_entry")

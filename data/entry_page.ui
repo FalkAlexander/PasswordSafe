@@ -1,85 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkListBoxRow" id="attachment_property_row">
-    <property name="name">TabBox</property>
+  <object class="GtkBox" id="attachment_property_box">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="hexpand">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
     <child>
-      <object class="GtkBox" id="attachment_property_box">
+      <object class="GtkLabel" id="attachment_property_name_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">start</property>
         <property name="valign">center</property>
+        <property name="label" translatable="yes">Attachments</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="attachment_entry_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
         <child>
-          <object class="GtkLabel" id="attachment_property_name_label">
+          <object class="GtkScrolledWindow" id="attachment_scrolled_window">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="label" translatable="yes">Attachments</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="attachment_entry_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
+            <property name="can_focus">True</property>
+            <property name="hscrollbar_policy">never</property>
+            <property name="vscrollbar_policy">never</property>
+            <property name="propagate_natural_height">True</property>
             <child>
-              <object class="GtkScrolledWindow" id="attachment_scrolled_window">
+              <object class="GtkListBox" id="attachment_list_box">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hscrollbar_policy">never</property>
-                <property name="vscrollbar_policy">never</property>
-                <property name="propagate_natural_height">True</property>
+                <property name="can_focus">False</property>
+                <property name="selection_mode">none</property>
                 <child>
-                  <object class="GtkListBox" id="attachment_list_box">
+                  <object class="GtkListBoxRow" id="add_attachment_row">
+                    <property name="name">AddAttachmentRow</property>
+                    <property name="height_request">50</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="selection_mode">none</property>
+                    <property name="can_focus">True</property>
                     <child>
-                      <object class="GtkListBoxRow" id="add_attachment_row">
-                        <property name="name">AddAttachmentRow</property>
-                        <property name="height_request">50</property>
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">center</property>
+                        <property name="spacing">6</property>
                         <child>
-                          <object class="GtkBox">
+                          <object class="GtkImage">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="halign">center</property>
-                            <property name="spacing">6</property>
-                            <child>
-                              <object class="GtkImage">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="icon_name">list-add-symbolic</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="label" translatable="yes">_Add Attachment</property>
-                                <property name="use_underline">True</property>
-                              </object>
-                            </child>
+                            <property name="icon_name">list-add-symbolic</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">_Add Attachment</property>
+                            <property name="use_underline">True</property>
                           </object>
                         </child>
                       </object>
                     </child>
-                    <style>
-                      <class name="content"/>
-                    </style>
                   </object>
                 </child>
+                <style>
+                  <class name="content"/>
+                </style>
               </object>
             </child>
           </object>
@@ -258,125 +250,70 @@
       </object>
     </child>
   </object>
-  <object class="GtkListBoxRow" id="attributes_property_row">
+  <object class="GtkBox" id="attributes_property_box">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
     <child>
-      <object class="GtkBox" id="attributes_property_box">
+      <object class="GtkLabel" id="attributes_property_name_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="orientation">vertical</property>
+        <property name="halign">start</property>
+        <property name="label" translatable="yes">Attributes</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="attributes_entry_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
         <property name="spacing">6</property>
         <child>
-          <object class="GtkLabel" id="attributes_property_name_label">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Attributes</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="attributes_entry_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="spacing">6</property>
+            <property name="hexpand">True</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkEntry" id="attributes_key_entry">
-                    <property name="name">TabBox</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="width_chars">10</property>
-                    <property name="placeholder_text" translatable="yes">Key</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkEntry" id="attributes_value_entry">
-                    <property name="name">TabBox_Next</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="placeholder_text" translatable="yes">Value</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="linked"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="attributes_add_button">
+              <object class="GtkEntry" id="attributes_key_entry">
+                <property name="name">TabBox</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="tooltip_text" translatable="yes">Add attribute</property>
-                <property name="halign">end</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="icon_name">list-add-symbolic</property>
-                  </object>
-                </child>
+                <property name="hexpand">True</property>
+                <property name="width_chars">10</property>
+                <property name="placeholder_text" translatable="yes">Key</property>
               </object>
             </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListBoxRow" id="icon_property_row">
-    <property name="name">TabBox</property>
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
-    <child>
-      <object class="GtkBox" id="icon_property_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkLabel" id="icon_property_name_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Icon</property>
+            <child>
+              <object class="GtkEntry" id="attributes_value_entry">
+                <property name="name">TabBox_Next</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="placeholder_text" translatable="yes">Value</property>
+              </object>
+            </child>
             <style>
-              <class name="dim-label"/>
+              <class name="linked"/>
             </style>
           </object>
         </child>
         <child>
-          <object class="GtkScrolledWindow">
-            <property name="name">EntryIconScrolled</property>
+          <object class="GtkButton" id="attributes_add_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="vscrollbar_policy">never</property>
-            <property name="shadow_type">in</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Add attribute</property>
+            <property name="halign">end</property>
             <child>
-              <object class="GtkBox" id="icon_entry_box">
+              <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="valign">start</property>
-                <property name="vexpand">True</property>
-                <style>
-                  <class name="linked"/>
-                </style>
+                <property name="icon_name">list-add-symbolic</property>
               </object>
             </child>
           </object>
@@ -384,174 +321,107 @@
       </object>
     </child>
   </object>
-  <object class="GtkListBoxRow" id="name_property_row">
+  <object class="GtkBox" id="icon_property_box">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
     <child>
-      <object class="GtkBox" id="name_property_box">
+      <object class="GtkLabel" id="icon_property_name_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="halign">start</property>
+        <property name="label" translatable="yes">Icon</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="name">EntryIconScrolled</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="vscrollbar_policy">never</property>
+        <property name="shadow_type">in</property>
+        <child>
+          <object class="GtkBox" id="icon_entry_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="valign">start</property>
+            <property name="vexpand">True</property>
+            <style>
+              <class name="linked"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkBox" id="name_property_box">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="hexpand">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
+    <child>
+      <object class="GtkLabel" id="name_property_name_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">start</property>
+        <property name="valign">end</property>
+        <property name="label" translatable="yes">_Title</property>
+        <property name="use_underline">True</property>
+        <property name="mnemonic_widget">name_property_value_entry</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkEntry" id="name_property_value_entry">
+        <property name="name">TabBox</property>
+        <property name="height_request">-1</property>
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
         <property name="valign">center</property>
         <property name="hexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+        <property name="vexpand">True</property>
+        <property name="input_purpose">name</property>
+        <property name="receives_default">True</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkBox" id="notes_property_box">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="hexpand">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
+    <child>
+      <object class="GtkBox" id="notes_label_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
         <child>
-          <object class="GtkLabel" id="name_property_name_label">
+          <object class="GtkLabel" id="notes_property_name_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
             <property name="valign">end</property>
-            <property name="label" translatable="yes">_Title</property>
+            <property name="label" translatable="yes">_Notes</property>
             <property name="use_underline">True</property>
-            <property name="mnemonic_widget">name_property_value_entry</property>
+            <property name="mnemonic_widget">notes_property_value_entry</property>
             <style>
               <class name="dim-label"/>
             </style>
           </object>
         </child>
         <child>
-          <object class="GtkEntry" id="name_property_value_entry">
-            <property name="name">TabBox</property>
-            <property name="height_request">-1</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="input_purpose">name</property>
-            <property name="receives_default">True</property>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListBoxRow" id="notes_property_row">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
-    <child>
-      <object class="GtkBox" id="notes_property_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="hexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkBox" id="notes_label_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <child>
-              <object class="GtkLabel" id="notes_property_name_label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">start</property>
-                <property name="valign">end</property>
-                <property name="label" translatable="yes">_Notes</property>
-                <property name="use_underline">True</property>
-                <property name="mnemonic_widget">notes_property_value_entry</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="notes_detach_button">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="relief">none</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
-                    <property name="icon_name">focus-windows-symbolic</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="pack_type">end</property>
-              </packing>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="notes_entry_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
-                <property name="height_request">100</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hexpand">True</property>
-                <child>
-                  <object class="GtkTextView" id="notes_property_value_entry">
-                    <property name="name">TabBox</property>
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="wrap_mode">word</property>
-                    <property name="left_margin">8</property>
-                    <property name="right_margin">8</property>
-                    <property name="top_margin">5</property>
-                    <property name="bottom_margin">5</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListBox" id="properties_list_box">
-    <property name="name">PropertiesListBox</property>
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="selection_mode">none</property>
-    <property name="activate_on_single_click">False</property>
-    <property name="margin_top">12</property>
-    <style>
-      <class name="properties_listbox"/>
-    </style>
-  </object>
-  <object class="GtkListBoxRow" id="show_all_row">
-    <property name="name">ShowAllRow</property>
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
-    <child>
-      <object class="GtkBox" id="show_all_row_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="margin_top">6</property>
-        <property name="margin_bottom">6</property>
-        <property name="hexpand">True</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkSeparator">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="show_all_properties_button">
+          <object class="GtkButton" id="notes_detach_button">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -560,119 +430,181 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">pan-down-symbolic</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="icon_name">focus-windows-symbolic</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
               </object>
             </child>
-            <style>
-              <class name="circular"/>
-            </style>
+          </object>
+          <packing>
+            <property name="pack_type">end</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="notes_entry_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
+            <property name="height_request">100</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hexpand">True</property>
+            <child>
+              <object class="GtkTextView" id="notes_property_value_entry">
+                <property name="name">TabBox</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="wrap_mode">word</property>
+                <property name="left_margin">8</property>
+                <property name="right_margin">8</property>
+                <property name="top_margin">5</property>
+                <property name="bottom_margin">5</property>
+              </object>
+            </child>
           </object>
         </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkBox" id="properties_box">
+    <property name="name">PropertiesListBox</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="margin_top">12</property>
+    <property name="margin_bottom">12</property>
+    <property name="spacing">12</property>
+    <property name="orientation">vertical</property>
+  </object>
+  <object class="GtkBox" id="show_all_row">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="margin_top">6</property>
+    <property name="margin_bottom">6</property>
+    <property name="hexpand">True</property>
+    <property name="spacing">6</property>
+    <child>
+      <object class="GtkSeparator">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">center</property>
+        <property name="hexpand">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton" id="show_all_properties_button">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="relief">none</property>
         <child>
-          <object class="GtkSeparator">
+          <object class="GtkImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="icon_name">pan-down-symbolic</property>
+          </object>
+        </child>
+        <style>
+          <class name="circular"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">center</property>
+        <property name="hexpand">True</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkBox" id="url_property_box">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="hexpand">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
+    <child>
+      <object class="GtkLabel" id="url_property_name_label">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">start</property>
+        <property name="label" translatable="yes">U_RL</property>
+        <property name="use_underline">True</property>
+        <property name="mnemonic_widget">url_property_value_entry</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="url_entry_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkEntry" id="url_property_value_entry">
+            <property name="name">TabBox</property>
+            <property name="height_request">-1</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
             <property name="valign">center</property>
             <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="secondary_icon_name">send-to-symbolic</property>
           </object>
         </child>
       </object>
     </child>
   </object>
-  <object class="GtkListBoxRow" id="url_property_row">
+  <object class="GtkBox" id="username_property_box">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
+    <property name="can_focus">False</property>
+    <property name="valign">center</property>
+    <property name="hexpand">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">6</property>
     <child>
-      <object class="GtkBox" id="url_property_box">
+      <object class="GtkLabel" id="username_property_name_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="hexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkLabel" id="url_property_name_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">U_RL</property>
-            <property name="use_underline">True</property>
-            <property name="mnemonic_widget">url_property_value_entry</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="url_entry_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkEntry" id="url_property_value_entry">
-                <property name="name">TabBox</property>
-                <property name="height_request">-1</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="valign">center</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="secondary_icon_name">send-to-symbolic</property>
-              </object>
-            </child>
-          </object>
-        </child>
+        <property name="halign">start</property>
+        <property name="label" translatable="yes">_Username</property>
+        <property name="use_underline">True</property>
+        <property name="mnemonic_widget">username_property_value_entry</property>
+        <style>
+          <class name="dim-label"/>
+        </style>
       </object>
     </child>
-  </object>
-  <object class="GtkListBoxRow" id="username_property_row">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
     <child>
-      <object class="GtkBox" id="username_property_box">
+      <object class="GtkBox" id="username_entry_box">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="valign">center</property>
         <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
         <child>
-          <object class="GtkLabel" id="username_property_name_label">
+          <object class="GtkEntry" id="username_property_value_entry">
+            <property name="name">TabBox</property>
+            <property name="height_request">-1</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">_Username</property>
-            <property name="use_underline">True</property>
-            <property name="mnemonic_widget">username_property_value_entry</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="username_entry_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
+            <property name="can_focus">True</property>
+            <property name="valign">center</property>
             <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkEntry" id="username_property_value_entry">
-                <property name="name">TabBox</property>
-                <property name="height_request">-1</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
-                <property name="secondary_icon_name">edit-copy-symbolic</property>
-              </object>
-            </child>
+            <property name="secondary_icon_name">edit-copy-symbolic</property>
           </object>
         </child>
       </object>

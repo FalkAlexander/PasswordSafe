@@ -40,11 +40,13 @@ class Search:
         self._builder: Gtk.Builder = Gtk.Builder()
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
 
-        self._overlay: Gtk.Overlay = self._builder.get_object("overlay")
-        self._empty_search_box: Gtk.Box = self._builder.get_object(
-            "empty_search_box")
-        self._info_search_box: Gtk.Box = self._builder.get_object(
-            "info_search_box")
+        self._stack: Gtk.Stack = self._builder.get_object("stack")
+        self._empty_search_page: Gtk.Box = self._builder.get_object(
+            "empty_search_page")
+        self._info_search_page: Gtk.Box = self._builder.get_object(
+            "info_search_page")
+        self._results_search_page: Gtk.Box = self._builder.get_object(
+            "results_search_page")
 
         self.scrolled_page: ScrolledPage = ScrolledPage(False)
 
@@ -101,7 +103,7 @@ class Search:
                     "key-release-event", self.on_search_entry_navigation)
 
             self._timeout_info = GLib.timeout_add(
-                200, self._display_info_overlay)
+                200, self._display_info_page)
 
         else:
             self._clear_view()
@@ -123,9 +125,9 @@ class Search:
         self.search_list_box = self._builder.get_object("list_box")
         self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
 
-        self.scrolled_page.add(self._overlay)
+        self.scrolled_page.add(self._stack)
 
-    def _display_info_overlay(self) -> bool:
+    def _display_info_page(self) -> bool:
         """When search-mode is activated the search text has not been
         entered yet. The info_search overlay only needs to be displayed
         if the search text is empty."""
@@ -134,7 +136,7 @@ class Search:
             self._timeout_info = 0
 
         if not self._key_pressed:
-            self._info_search_box.show()
+            self._stack.set_visible_child(self._info_search_page)
 
         return GLib.SOURCE_REMOVE
 
@@ -152,8 +154,6 @@ class Search:
             self.search_list_box.remove(row)
 
         self.search_list_box.hide()
-        self._info_search_box.hide()
-        self._empty_search_box.hide()
 
         self._result_list.clear()
 
@@ -166,7 +166,7 @@ class Search:
             search_thread.daemon = True
             search_thread.start()
         else:
-            self._info_search_box.show()
+            self._stack.set_visible_child(self._info_search_page)
 
     def _perform_search(self):
         """Search for results in the database."""
@@ -174,7 +174,7 @@ class Search:
         self._result_list = self._db_manager.search(self._search_text, path)
 
         if not self._result_list:
-            self._empty_search_box.show()
+            self._stack.set_visible_child(self._empty_search_page)
             return
 
         self._current_result_idx = 0
@@ -186,6 +186,7 @@ class Search:
         :param bool load_all: True if all the results need to be shown
         """
         self.search_list_box.show()
+        self._stack.set_visible_child(self._results_search_page)
         window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
         group_row_height = 50
         entry_row_height = 65

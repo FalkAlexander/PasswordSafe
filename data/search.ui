@@ -45,11 +45,11 @@
       </object>
     </child>
   </object>
-  <object class="GtkOverlay" id="overlay">
+  <object class="GtkStack" id="stack">
     <property name="visible">True</property>
-    <child type="overlay">
-      <object class="GtkBox" id="empty_search_box">
-        <property name="visible">False</property>
+    <child>
+      <object class="GtkBox" id="empty_search_page">
+        <property name="visible">True</property>
         <property name="no-show-all">True</property>
         <property name="can_focus">False</property>
         <property name="hexpand">True</property>
@@ -85,9 +85,9 @@
         </child>
       </object>
     </child>
-    <child type="overlay">
-      <object class="GtkBox" id="info_search_box">
-        <property name="visible">False</property>
+    <child>
+      <object class="GtkBox" id="info_search_page">
+        <property name="visible">True</property>
         <property name="no-show-all">True</property>
         <property name="can_focus">False</property>
         <property name="hexpand">True</property>
@@ -124,12 +124,12 @@
       </object>
     </child>
     <child>
-      <object class="HdyClamp">
+      <object class="HdyClamp" id="results_search_page">
         <property name="visible">True</property>
         <child>
           <object class="GtkListBox" id="list_box">
             <property name="name">BrowserListBox</property>
-            <property name="visible">False</property>
+            <property name="visible">True</property>
             <property name="no-show-all">True</property>
             <property name="can_focus">False</property>
             <property name="valign">start</property>

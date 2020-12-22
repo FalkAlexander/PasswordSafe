@@ -339,7 +339,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
         key_entry = Gtk.Entry()
         key_entry.set_visible(True)
-        key_entry.can_focus(True)
 
         key_entry.connect(
             "activate", self.on_key_entry_activated, safe_entry, key, button, parent)

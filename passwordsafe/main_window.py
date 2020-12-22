@@ -618,9 +618,13 @@ class MainWindow(Handy.ApplicationWindow):
             action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
 
     # Add Global Accelerator Actions
+    # The save_dirty action differs to save in that it is set as disabled
+    # by default, and it is used by the main menu to determine if the button
+    # should be set to sensitive.
     def add_global_accelerator_actions(self):
         actions = [
             ("db.save", "save", None),
+            ("db.save_dirty", "save_dirty", None),
             ("db.lock", "lock", None),
             ("db.add_entry", "add_action", "entry"),
             ("db.add_group", "add_action", "group"),
@@ -629,6 +633,8 @@ class MainWindow(Handy.ApplicationWindow):
 
         for action, name, arg in actions:
             simple_action = Gio.SimpleAction.new(action, None)
+            if name == "save_dirty":
+                simple_action.set_enabled(False)
             simple_action.connect(
                 "activate", self.execute_accel_action, name, arg)
             self.application.add_action(simple_action)
@@ -639,7 +645,7 @@ class MainWindow(Handy.ApplicationWindow):
         if action_db is NotImplemented:
             return
 
-        if name == "save":
+        if name in ["save", "save_dirty"]:
             action_db.save_safe()
         elif name == "lock":
             action_db.lock_safe()

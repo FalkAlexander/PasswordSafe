@@ -8,7 +8,7 @@ from uuid import UUID
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
-from gi.repository import GObject
+from gi.repository import Gio, GObject
 
 import passwordsafe.config_manager
 from passwordsafe.color_widget import Color
@@ -31,7 +31,7 @@ class DatabaseManager(GObject.GObject):
     # self.db contains a `PyKeePass` database
     password_try = ""
     keyfile_hash = NotImplemented
-    is_dirty = False  # Does the database need saving?
+    _is_dirty = False  # Does the database need saving?
     save_running = False
     scheduled_saves = 0
 
@@ -717,3 +717,18 @@ class DatabaseManager(GObject.GObject):
     def version(self):
         """returns the database version"""
         return self.db.version
+
+    @property
+    def is_dirty(self) -> bool:
+        return self._is_dirty
+
+    @is_dirty.setter
+    def is_dirty(self, value: bool) -> None:
+        """
+        Enables the save_dirty action whenever the Safe is in a
+        dirty state. This makes the save menu button sensitive.
+        """
+        app = Gio.Application.get_default()
+        save_action = app.lookup_action("db.save_dirty")
+        save_action.set_enabled(value)
+        self._is_dirty = value

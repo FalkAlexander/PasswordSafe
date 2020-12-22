@@ -592,7 +592,7 @@ class UnlockedDatabase(GObject.GObject):
                     try:
                         value = self.database_manager.get_entry_password(uuid)
                     except AttributeError:
-                        print("FAIL")
+                        logging.debug("FAIL")
                         value = ref.group()
                 elif code == "A":
                     try:

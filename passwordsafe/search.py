@@ -5,7 +5,7 @@ import threading
 import typing
 
 from typing import List, Union
-from gi.repository import Gdk, GLib, GObject, Gtk, Handy
+from gi.repository import GLib, GObject, Gtk, Handy
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
@@ -34,7 +34,6 @@ class Search:
     def __init__(self, unlocked_database: UnlockedDatabase) -> None:
         self.unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
-        self._search_event_connection_id: int = 0
         self._search_changed_id: int = 0
 
         self._builder: Gtk.Builder = Gtk.Builder()
@@ -96,17 +95,11 @@ class Search:
                 "search-changed", self._on_search_entry_timeout)
             self._search_entry.grab_focus()
 
-            if self.search_list_box is not NotImplemented:
-                self._search_event_connection_id = self._search_entry.connect(
-                    "key-release-event", self.on_search_entry_navigation)
-
             self._timeout_info = GLib.timeout_add(
                 200, self._display_info_page)
 
         else:
             self._clear_view()
-            self._search_entry.disconnect(self._search_event_connection_id)
-            self._search_event_connection_id = 0
 
             self._search_entry.disconnect(self._search_changed_id)
             self._search_changed_id = 0
@@ -236,26 +229,6 @@ class Search:
     def on_headerbar_search_close_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
         self.unlocked_database.props.search_active = False
-
-    def on_search_entry_navigation(self, _widget, event, _data=None):
-        self.unlocked_database.start_database_lock_timer()
-
-        nr_rows = len(self.search_list_box)
-        if nr_rows == 0:
-            return
-
-        selected_row = self.search_list_box.get_selected_row()
-        if selected_row:
-            idx = selected_row.get_index()
-        else:
-            idx = -1
-
-        if (event.keyval == Gdk.KEY_Up and idx >= 1):
-            self.search_list_box.select_row(
-                self.search_list_box.get_row_at_index(idx - 1))
-        elif (event.keyval == Gdk.KEY_Down and idx < nr_rows - 1):
-            self.search_list_box.select_row(
-                self.search_list_box.get_row_at_index(idx + 1))
 
     def _on_search_entry_timeout(self, widget: Gtk.Entry) -> None:
         self._key_pressed = True

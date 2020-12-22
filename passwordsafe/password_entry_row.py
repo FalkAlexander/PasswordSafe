@@ -19,7 +19,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/password_entry_row.ui")
-class PasswordEntryRow(Gtk.ListBoxRow):
+class PasswordEntryRow(Gtk.Box):
 
     __gtype_name__ = "PasswordEntryRow"
 

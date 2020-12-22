@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="ColorEntryRow" parent="GtkListBoxRow">
+  <template class="ColorEntryRow" parent="GtkBox">
     <property name="name">TabBox</property>
     <property name="visible">True</property>
     <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">True</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>

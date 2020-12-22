@@ -272,6 +272,7 @@ class MainWindow(Handy.ApplicationWindow):
                     "standard::content-type,standard::fast-content-type", Gio.FileQueryInfoFlags.NONE, None
                 )
             except GLib.Error as e:  # pylint: disable=C0103
+                self.notify(_("Could not open file"))
                 logging.debug(
                     "Unable to query info for file %s: %s", db_filename, e.message
                 )

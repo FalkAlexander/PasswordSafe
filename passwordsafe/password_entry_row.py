@@ -107,6 +107,3 @@ class PasswordEntryRow(Gtk.Box):
         password_strength: Optional[float] = pwd_generator.strength(password)
         if password_strength is not None:
             self._password_level_bar.props.value = password_strength
-
-    def non_empty(self) -> bool:
-        return len(self._password_value_entry.get_text()) > 0

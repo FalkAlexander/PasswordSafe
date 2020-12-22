@@ -64,6 +64,12 @@ class EntryPage(Gtk.ScrolledWindow):
         super().__init__()
 
         self.unlocked_database = u_d
+        self.toggeable_widget_list = [self.url_property_box,
+                                      self.notes_property_box,
+                                      self.color_property_box,
+                                      self.icon_property_box,
+                                      self.attachment_property_box,
+                                      self.attributes_property_box]
 
         self.insert_entry_properties_into_listbox(add_all)
 
@@ -74,7 +80,6 @@ class EntryPage(Gtk.ScrolledWindow):
         properties_box = self.properties_box
 
         safe_entry: SafeEntry = self.unlocked_database.current_element
-        entry_name = safe_entry.props.name
 
         # Create the name_property_row
         self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
@@ -85,7 +90,6 @@ class EntryPage(Gtk.ScrolledWindow):
         )
         properties_box.add(self.name_property_box)
         self.name_property_value_entry.grab_focus()
-        self.show_row(self.name_property_box, entry_name, add_all)
 
         # Username
         self.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
@@ -100,14 +104,11 @@ class EntryPage(Gtk.ScrolledWindow):
 
         properties_box.add(self.username_property_box)
         value = safe_entry.username != ""
-        self.show_row(self.username_property_box, value, add_all)
 
         # Password
         self.password_property_row = PasswordEntryRow(
             self.unlocked_database)
         properties_box.add(self.password_property_row)
-        non_empty: bool = self.password_property_row.non_empty()
-        self.show_row(self.password_property_row, non_empty, add_all)
 
         # Url
         self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
@@ -192,8 +193,8 @@ class EntryPage(Gtk.ScrolledWindow):
 
         properties_box.add(self.show_all_row)
 
-        for row in self.properties_box:
-            if not row.get_visible():
+        for widget in self.toggeable_widget_list:
+            if not widget.get_visible():
                 self.show_all_row.set_visible(True)
                 break
 
@@ -231,8 +232,8 @@ class EntryPage(Gtk.ScrolledWindow):
     def on_show_all_properties_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
 
-        for row in self.properties_box:
-            row.set_visible(True)
+        for widget in self.toggeable_widget_list:
+            widget.set_visible(True)
 
         self.show_all_row.set_visible(False)
 

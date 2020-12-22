@@ -206,6 +206,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.attributes_key_entry = builder.get_object("attributes_key_entry")
         self.attributes_value_entry = builder.get_object("attributes_value_entry")
         self.attributes_add_button = builder.get_object("attributes_add_button")
+        self.attribute_list_box = builder.get_object("attribute_list_box")
 
         self.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
         self.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
@@ -236,16 +237,13 @@ class EntryPage(Gtk.ScrolledWindow):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
 
-        index = self.attributes_property_row.get_index()
-
-        attribute_property_row = builder.get_object("attribute_property_box")
+        attribute_row = builder.get_object("attribute_row")
         attribute_property_name_label = builder.get_object("attribute_property_name_label")
         attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
         attribute_value_entry = builder.get_object("attribute_value_entry")
         attribute_value_entry.set_buffer(HistoryEntryBuffer([]))
         attribute_remove_button = builder.get_object("attribute_remove_button")
 
-        attribute_property_row.set_name(key)
         attribute_property_name_label.set_text(key)
         if value is not None:
             attribute_value_entry.set_text(value)
@@ -253,9 +251,9 @@ class EntryPage(Gtk.ScrolledWindow):
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
         attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
 
-        self.properties_list_box.insert(attribute_property_row, index)
-        attribute_property_row.show_all()
-        self.attribute_property_row_list.append(attribute_property_row)
+        self.attribute_list_box.add(attribute_row)
+        attribute_row.show_all()
+        self.attribute_property_row_list.append(attribute_row)
 
     #
     # Events

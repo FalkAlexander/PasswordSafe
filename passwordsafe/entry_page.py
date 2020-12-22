@@ -81,8 +81,6 @@ class EntryPage(Gtk.ScrolledWindow):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
         # pylint: disable=too-many-statements
-        properties_box = self.properties_box
-
         safe_entry: SafeEntry = self.unlocked_database.current_element
 
         # Create the name_property_row
@@ -92,7 +90,6 @@ class EntryPage(Gtk.ScrolledWindow):
             "name", self.name_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
         )
-        properties_box.add(self.name_property_box)
         self.name_property_value_entry.grab_focus()
 
         # Username
@@ -106,13 +103,11 @@ class EntryPage(Gtk.ScrolledWindow):
             "<primary><Shift>b",
             signal="copy-clipboard")
 
-        properties_box.add(self.username_property_box)
         value = safe_entry.username != ""
 
         # Password
         self.password_property_box.add(PasswordEntryRow(
             self.unlocked_database))
-        self.properties_box.add(self.password_property_box)
 
         # Url
         self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
@@ -120,7 +115,6 @@ class EntryPage(Gtk.ScrolledWindow):
             "url", self.url_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
-        properties_box.add(self.url_property_box)
         self.show_row(self.url_property_box, safe_entry.url, add_all)
 
         # Notes
@@ -133,13 +127,11 @@ class EntryPage(Gtk.ScrolledWindow):
             | GObject.BindingFlags.BIDIRECTIONAL)
         textbuffer.connect("changed", self.on_property_value_entry_changed)
         self.notes_property_value_entry.set_buffer(textbuffer)
-        properties_box.add(self.notes_property_box)
         self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
         # Color
         self.color_property_box.add(ColorEntryRow(
             self.unlocked_database, safe_entry))
-        self.properties_box.add(self.color_property_box)
 
         non_default = safe_entry.color != "NoneColorButton"
         self.show_row(self.color_property_box, non_default, add_all)
@@ -177,7 +169,6 @@ class EntryPage(Gtk.ScrolledWindow):
             btn.props.group = first_btn
             btn.props.active = True
 
-        properties_box.add(self.icon_property_box)
         non_default = safe_entry.icon != ICONS["0"]
         self.show_row(self.icon_property_box, non_default, add_all)
 
@@ -185,17 +176,13 @@ class EntryPage(Gtk.ScrolledWindow):
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
 
-        properties_box.add(self.attachment_property_box)
         self.show_row(self.attachment_property_box, safe_entry.attachments, add_all)
 
         # Attributes
-        properties_box.add(self.attributes_property_box)
         self.show_row(self.attributes_property_box, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)
-
-        properties_box.add(self.show_all_row)
 
         for widget in self.toggeable_widget_list:
             if not widget.get_visible():

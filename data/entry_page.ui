@@ -20,413 +20,433 @@
             <property name="margin_bottom">12</property>
             <property name="spacing">12</property>
             <property name="orientation">vertical</property>
-          </object>
-        </child>
-      </object>
-    </child>
-  </template>
-  <object class="GtkBox" id="name_property_box">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkLabel" id="name_property_name_label">
-        <property name="visible">True</property>
-        <property name="halign">start</property>
-        <property name="valign">end</property>
-        <property name="label" translatable="yes">_Title</property>
-        <property name="use_underline">True</property>
-        <property name="mnemonic_widget">name_property_value_entry</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkEntry" id="name_property_value_entry">
-        <property name="name">TabBox</property>
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="input_purpose">name</property>
-        <property name="receives_default">True</property>
-        <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="username_property_box">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkLabel" id="username_property_name_label">
-        <property name="visible">True</property>
-        <property name="halign">start</property>
-        <property name="label" translatable="yes">_Username</property>
-        <property name="use_underline">True</property>
-        <property name="mnemonic_widget">username_property_value_entry</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="username_entry_box">
-        <property name="visible">True</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkEntry" id="username_property_value_entry">
-            <property name="name">TabBox</property>
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="vexpand">True</property>
-            <property name="secondary_icon_name">edit-copy-symbolic</property>
-            <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
-            <signal name="copy-clipboard" handler="_on_copy_secondary_button_clicked" swapped="no"/>
-            <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="password_property_box">
-    <property name="visible">True</property>
-  </object>
-  <object class="GtkBox" id="url_property_box">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkLabel" id="url_property_name_label">
-        <property name="visible">True</property>
-        <property name="halign">start</property>
-        <property name="label" translatable="yes">U_RL</property>
-        <property name="use_underline">True</property>
-        <property name="mnemonic_widget">url_property_value_entry</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="url_entry_box">
-        <property name="visible">True</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkEntry" id="url_property_value_entry">
-            <property name="name">TabBox</property>
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="secondary_icon_name">send-to-symbolic</property>
-            <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="notes_property_box">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkBox" id="notes_label_box">
-        <property name="visible">True</property>
-        <property name="hexpand">True</property>
-        <child>
-          <object class="GtkLabel" id="notes_property_name_label">
-            <property name="visible">True</property>
-            <property name="halign">start</property>
-            <property name="valign">end</property>
-            <property name="label" translatable="yes">_Notes</property>
-            <property name="use_underline">True</property>
-            <property name="mnemonic_widget">notes_property_value_entry</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="notes_detach_button">
-            <property name="visible">True</property>
-            <property name="receives_default">True</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
             <child>
-              <object class="GtkImage">
+              <object class="GtkBox" id="name_property_box">
                 <property name="visible">True</property>
-                <property name="halign">center</property>
                 <property name="valign">center</property>
-                <property name="icon_name">focus-windows-symbolic</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="notes_entry_box">
-        <property name="visible">True</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
-            <property name="height_request">100</property>
-            <property name="visible">True</property>
-            <property name="hexpand">True</property>
-            <child>
-              <object class="GtkTextView" id="notes_property_value_entry">
-                <property name="name">TabBox</property>
-                <property name="visible">True</property>
-                <property name="wrap_mode">word</property>
-                <property name="left_margin">8</property>
-                <property name="right_margin">8</property>
-                <property name="top_margin">5</property>
-                <property name="bottom_margin">5</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="color_property_box">
-    <property name="visible">True</property>
-  </object>
-  <object class="GtkBox" id="icon_property_box">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkLabel" id="icon_property_name_label">
-        <property name="visible">True</property>
-        <property name="halign">start</property>
-        <property name="label" translatable="yes">Icon</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkScrolledWindow">
-        <property name="name">EntryIconScrolled</property>
-        <property name="visible">True</property>
-        <property name="vscrollbar_policy">never</property>
-        <property name="shadow_type">in</property>
-        <child>
-          <object class="GtkBox" id="icon_entry_box">
-            <property name="visible">True</property>
-            <property name="valign">start</property>
-            <property name="vexpand">True</property>
-            <style>
-              <class name="linked"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="attachment_property_box">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="hexpand">True</property>
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkLabel" id="attachment_property_name_label">
-        <property name="visible">True</property>
-        <property name="halign">start</property>
-        <property name="valign">center</property>
-        <property name="label" translatable="yes">Attachments</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="attachment_entry_box">
-        <property name="visible">True</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkScrolledWindow" id="attachment_scrolled_window">
-            <property name="visible">True</property>
-            <property name="hscrollbar_policy">never</property>
-            <property name="vscrollbar_policy">never</property>
-            <property name="propagate_natural_height">True</property>
-            <child>
-              <object class="GtkListBox" id="attachment_list_box">
-                <property name="visible">True</property>
-                <property name="selection_mode">none</property>
-                <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
+                <property name="hexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
                 <child>
-                  <object class="GtkListBoxRow" id="add_attachment_row">
-                    <property name="name">AddAttachmentRow</property>
-                    <property name="height_request">50</property>
+                  <object class="GtkLabel" id="name_property_name_label">
                     <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="valign">end</property>
+                    <property name="label" translatable="yes">_Title</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">name_property_value_entry</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="name_property_value_entry">
+                    <property name="name">TabBox</property>
+                    <property name="visible">True</property>
+                    <property name="valign">center</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="input_purpose">name</property>
+                    <property name="receives_default">True</property>
+                    <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="username_property_box">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="hexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="username_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">_Username</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">username_property_value_entry</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="username_entry_box">
+                    <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkEntry" id="username_property_value_entry">
+                        <property name="name">TabBox</property>
                         <property name="visible">True</property>
-                        <property name="halign">center</property>
-                        <property name="spacing">6</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">True</property>
+                        <property name="secondary_icon_name">edit-copy-symbolic</property>
+                        <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
+                        <signal name="copy-clipboard" handler="_on_copy_secondary_button_clicked" swapped="no"/>
+                        <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="password_property_box">
+                <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="url_property_box">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="hexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="url_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">U_RL</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">url_property_value_entry</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="url_entry_box">
+                    <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkEntry" id="url_property_value_entry">
+                        <property name="name">TabBox</property>
+                        <property name="visible">True</property>
+                        <property name="valign">center</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="secondary_icon_name">send-to-symbolic</property>
+                        <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="notes_property_box">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="hexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkBox" id="notes_label_box">
+                    <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkLabel" id="notes_property_name_label">
+                        <property name="visible">True</property>
+                        <property name="halign">start</property>
+                        <property name="valign">end</property>
+                        <property name="label" translatable="yes">_Notes</property>
+                        <property name="use_underline">True</property>
+                        <property name="mnemonic_widget">notes_property_value_entry</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="notes_detach_button">
+                        <property name="visible">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="relief">none</property>
+                        <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
-                            <property name="icon_name">list-add-symbolic</property>
+                            <property name="halign">center</property>
+                            <property name="valign">center</property>
+                            <property name="icon_name">focus-windows-symbolic</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
                           </object>
                         </child>
+                      </object>
+                      <packing>
+                        <property name="pack_type">end</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="notes_entry_box">
+                    <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
+                        <property name="height_request">100</property>
+                        <property name="visible">True</property>
+                        <property name="hexpand">True</property>
                         <child>
-                          <object class="GtkLabel">
+                          <object class="GtkTextView" id="notes_property_value_entry">
+                            <property name="name">TabBox</property>
                             <property name="visible">True</property>
-                            <property name="label" translatable="yes">_Add Attachment</property>
-                            <property name="use_underline">True</property>
+                            <property name="wrap_mode">word</property>
+                            <property name="left_margin">8</property>
+                            <property name="right_margin">8</property>
+                            <property name="top_margin">5</property>
+                            <property name="bottom_margin">5</property>
                           </object>
                         </child>
                       </object>
                     </child>
                   </object>
                 </child>
-                <style>
-                  <class name="content"/>
-                </style>
               </object>
             </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="attributes_property_box">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="orientation">vertical</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkLabel" id="attributes_property_name_label">
-        <property name="visible">True</property>
-        <property name="halign">start</property>
-        <property name="label" translatable="yes">Attributes</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox" id="attributes_entry_box">
-        <property name="visible">True</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="hexpand">True</property>
-            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkEntry" id="attributes_key_entry">
-                <property name="name">TabBox</property>
+              <object class="GtkBox" id="color_property_box">
                 <property name="visible">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="icon_property_box">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="icon_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Icon</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="name">EntryIconScrolled</property>
+                    <property name="visible">True</property>
+                    <property name="vscrollbar_policy">never</property>
+                    <property name="shadow_type">in</property>
+                    <child>
+                      <object class="GtkBox" id="icon_entry_box">
+                        <property name="visible">True</property>
+                        <property name="valign">start</property>
+                        <property name="vexpand">True</property>
+                        <style>
+                          <class name="linked"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="attachment_property_box">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
                 <property name="hexpand">True</property>
-                <property name="width_chars">10</property>
-                <property name="placeholder_text" translatable="yes">Key</property>
-                <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="attachment_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="valign">center</property>
+                    <property name="label" translatable="yes">Attachments</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="attachment_entry_box">
+                    <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="attachment_scrolled_window">
+                        <property name="visible">True</property>
+                        <property name="hscrollbar_policy">never</property>
+                        <property name="vscrollbar_policy">never</property>
+                        <property name="propagate_natural_height">True</property>
+                        <child>
+                          <object class="GtkListBox" id="attachment_list_box">
+                            <property name="visible">True</property>
+                            <property name="selection_mode">none</property>
+                            <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
+                            <child>
+                              <object class="GtkListBoxRow" id="add_attachment_row">
+                                <property name="name">AddAttachmentRow</property>
+                                <property name="height_request">50</property>
+                                <property name="visible">True</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="visible">True</property>
+                                    <property name="halign">center</property>
+                                    <property name="spacing">6</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="visible">True</property>
+                                        <property name="icon_name">list-add-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">_Add Attachment</property>
+                                        <property name="use_underline">True</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="content"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
             <child>
-              <object class="GtkEntry" id="attributes_value_entry">
-                <property name="name">TabBox_Next</property>
+              <object class="GtkBox" id="attributes_property_box">
                 <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="attributes_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">Attributes</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="attributes_entry_box">
+                    <property name="visible">True</property>
+                    <property name="spacing">6</property>
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkEntry" id="attributes_key_entry">
+                            <property name="name">TabBox</property>
+                            <property name="visible">True</property>
+                            <property name="hexpand">True</property>
+                            <property name="width_chars">10</property>
+                            <property name="placeholder_text" translatable="yes">Key</property>
+                            <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkEntry" id="attributes_value_entry">
+                            <property name="name">TabBox_Next</property>
+                            <property name="visible">True</property>
+                            <property name="hexpand">True</property>
+                            <property name="placeholder_text" translatable="yes">Value</property>
+                            <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="linked"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="attributes_add_button">
+                        <property name="visible">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Add attribute</property>
+                        <property name="halign">end</property>
+                        <signal name="clicked" handler="on_attributes_add_button_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="icon_name">list-add-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="attribute_list_box">
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox" id="show_all_row">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
                 <property name="hexpand">True</property>
-                <property name="placeholder_text" translatable="yes">Value</property>
-                <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="visible">True</property>
+                    <property name="valign">center</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="show_all_properties_button">
+                    <property name="visible">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="relief">none</property>
+                    <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon_name">pan-down-symbolic</property>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <property name="visible">True</property>
+                    <property name="valign">center</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                </child>
               </object>
             </child>
-            <style>
-              <class name="linked"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="attributes_add_button">
-            <property name="visible">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Add attribute</property>
-            <property name="halign">end</property>
-            <signal name="clicked" handler="on_attributes_add_button_clicked" swapped="no"/>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="icon_name">list-add-symbolic</property>
-              </object>
-            </child>
           </object>
         </child>
       </object>
     </child>
-    <child>
-      <object class="GtkBox" id="attribute_list_box">
-        <property name="visible">True</property>
-      </object>
-    </child>
-  </object>
-  <object class="GtkBox" id="show_all_row">
-    <property name="visible">True</property>
-    <property name="valign">center</property>
-    <property name="margin_top">6</property>
-    <property name="margin_bottom">6</property>
-    <property name="hexpand">True</property>
-    <property name="spacing">6</property>
-    <child>
-      <object class="GtkSeparator">
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="hexpand">True</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkButton" id="show_all_properties_button">
-        <property name="visible">True</property>
-        <property name="receives_default">True</property>
-        <property name="relief">none</property>
-        <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="icon_name">pan-down-symbolic</property>
-          </object>
-        </child>
-        <style>
-          <class name="circular"/>
-        </style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkSeparator">
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="hexpand">True</property>
-      </object>
-    </child>
-  </object>
+  </template>
 </interface>

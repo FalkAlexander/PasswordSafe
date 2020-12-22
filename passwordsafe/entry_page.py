@@ -5,7 +5,7 @@ import typing
 from gettext import gettext as _
 from typing import List
 
-from gi.repository import Gio, GLib, GObject, Gtk, Handy
+from gi.repository import Gio, GLib, GObject, Gtk
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
@@ -21,12 +21,44 @@ if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
 
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/entry_page.ui")
 class EntryPage(Gtk.ScrolledWindow):
     # pylint: disable=too-many-public-methods
+
+    __gtype_name__ = "EntryPage"
 
     _filechooser = None
     is_dirty = False
     edit_page = True
+
+    properties_box = Gtk.Template.Child()
+
+    name_property_box = Gtk.Template.Child()
+    name_property_value_entry = Gtk.Template.Child()
+
+    username_property_box = Gtk.Template.Child()
+    username_property_value_entry = Gtk.Template.Child()
+
+    url_property_box = Gtk.Template.Child()
+    url_property_value_entry = Gtk.Template.Child()
+
+    notes_property_box = Gtk.Template.Child()
+    notes_property_value_entry = Gtk.Template.Child()
+
+    icon_entry_box = Gtk.Template.Child()
+    icon_property_box = Gtk.Template.Child()
+
+    attachment_property_box = Gtk.Template.Child()
+    attachment_list_box = Gtk.Template.Child()
+
+    attributes_add_button = Gtk.Template.Child()
+    attributes_key_entry = Gtk.Template.Child()
+    attribute_list_box = Gtk.Template.Child()
+    attributes_property_box = Gtk.Template.Child()
+    attributes_value_entry = Gtk.Template.Child()
+
+    show_all_properties_button = Gtk.Template.Child()
+    show_all_row = Gtk.Template.Child()
 
     attribute_property_row_list: List[Gtk.ListBoxRow] = []
 
@@ -35,43 +67,18 @@ class EntryPage(Gtk.ScrolledWindow):
 
         self.unlocked_database = u_d
 
-        self.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.insert_entry_properties_into_listbox(add_all)
-
-        # Responsive Container
-        hdy_page = Handy.Clamp()
-        hdy_page.set_visible(True)
-        hdy_page.set_margin_top(18)
-        hdy_page.set_margin_bottom(18)
-        hdy_page.set_margin_start(12)
-        hdy_page.set_margin_end(12)
-
-        hdy_page.add(self.properties_list_box)
-        self.add(hdy_page)
-        self.set_visible(True)
-    #
-    # Create Property Rows
-    #
 
     def insert_entry_properties_into_listbox(self, add_all):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
         # pylint: disable=too-many-statements
-        builder = Gtk.Builder()
-
-        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
-
-        properties_list_box = builder.get_object(
-            "properties_box"
-        )
-        self.properties_list_box = properties_list_box
+        properties_box = self.properties_box
 
         safe_entry: SafeEntry = self.unlocked_database.current_element
         entry_name = safe_entry.props.name
 
         # Create the name_property_row
-        self.name_property_row = builder.get_object("name_property_box")
-        self.name_property_value_entry = builder.get_object("name_property_value_entry")
         self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
         self.name_property_value_entry.connect(
@@ -81,13 +88,11 @@ class EntryPage(Gtk.ScrolledWindow):
             "name", self.name_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
         )
-        properties_list_box.add(self.name_property_row)
+        properties_box.add(self.name_property_box)
         self.name_property_value_entry.grab_focus()
-        self.show_row(self.name_property_row, entry_name, add_all)
+        self.show_row(self.name_property_box, entry_name, add_all)
 
         # Username
-        self.username_property_row = builder.get_object("username_property_box")
-        self.username_property_value_entry = builder.get_object("username_property_value_entry")
         self.username_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         safe_entry.bind_property(
             "username", self.username_property_value_entry, "text",
@@ -102,20 +107,18 @@ class EntryPage(Gtk.ScrolledWindow):
         self.username_property_value_entry.connect(
             "icon-press", self._on_copy_secondary_button_clicked)
         self.username_property_value_entry.connect("changed", self.on_property_value_entry_changed)
-        properties_list_box.add(self.username_property_row)
+        properties_box.add(self.username_property_box)
         value = safe_entry.username != ""
-        self.show_row(self.username_property_row, value, add_all)
+        self.show_row(self.username_property_box, value, add_all)
 
         # Password
         self.password_property_row = PasswordEntryRow(
             self.unlocked_database)
-        properties_list_box.add(self.password_property_row)
+        properties_box.add(self.password_property_row)
         non_empty: bool = self.password_property_row.non_empty()
         self.show_row(self.password_property_row, non_empty, add_all)
 
         # Url
-        self.url_property_row = builder.get_object("url_property_box")
-        self.url_property_value_entry = builder.get_object("url_property_value_entry")
         self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         safe_entry.bind_property(
             "url", self.url_property_value_entry, "text",
@@ -123,15 +126,13 @@ class EntryPage(Gtk.ScrolledWindow):
             | GObject.BindingFlags.BIDIRECTIONAL)
         self.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
         self.url_property_value_entry.connect("changed", self.on_property_value_entry_changed)
-        properties_list_box.add(self.url_property_row)
-        self.show_row(self.url_property_row, safe_entry.url, add_all)
+        properties_box.add(self.url_property_box)
+        self.show_row(self.url_property_box, safe_entry.url, add_all)
 
         # Notes
-        self.notes_property_row = builder.get_object("notes_property_box")
-        self.notes_property_value_entry = builder.get_object("notes_property_value_entry")
         self.notes_property_value_entry.get_style_context().add_class("codeview")
 
-        builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
+        # builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
         textbuffer = HistoryTextBuffer([])
         safe_entry.bind_property(
@@ -140,21 +141,18 @@ class EntryPage(Gtk.ScrolledWindow):
             | GObject.BindingFlags.BIDIRECTIONAL)
         textbuffer.connect("changed", self.on_property_value_entry_changed)
         self.notes_property_value_entry.set_buffer(textbuffer)
-        properties_list_box.add(self.notes_property_row)
-        self.show_row(self.notes_property_row, safe_entry.notes, add_all)
+        properties_box.add(self.notes_property_box)
+        self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
         # Color
         self.color_property_row = ColorEntryRow(
             self.unlocked_database, safe_entry)
 
-        properties_list_box.add(self.color_property_row)
+        properties_box.add(self.color_property_row)
         non_default = safe_entry.color != "NoneColorButton"
         self.show_row(self.color_property_row, non_default, add_all)
 
         # Icons
-        self.icon_property_row = builder.get_object("icon_property_box")
-        icon_entry_box = builder.get_object("icon_entry_box")
-
         icon_builder = Gtk.Builder()
         first_btn = None
         entry_icon = safe_entry.props.icon
@@ -173,7 +171,7 @@ class EntryPage(Gtk.ScrolledWindow):
             btn.props.group = first_btn
             btn.props.active = (entry_icon == icon)
             btn.connect("toggled", self.on_entry_icon_button_toggled, icon_nr)
-            icon_entry_box.add(btn)
+            self.icon_entry_box.add(btn)
 
         # The icons are GtkRadioButton, which means that at
         # least one button needs to be selected. If the icon is
@@ -187,43 +185,33 @@ class EntryPage(Gtk.ScrolledWindow):
             btn.props.group = first_btn
             btn.props.active = True
 
-        properties_list_box.add(self.icon_property_row)
+        properties_box.add(self.icon_property_box)
         non_default = safe_entry.icon != ICONS["0"]
-        self.show_row(self.icon_property_row, non_default, add_all)
+        self.show_row(self.icon_property_box, non_default, add_all)
 
         # Attachments
-        self.attachment_property_row = builder.get_object("attachment_property_box")
-        self.attachment_list_box = builder.get_object("attachment_list_box")
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
 
         self.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
-        properties_list_box.add(self.attachment_property_row)
-        self.show_row(self.attachment_property_row, safe_entry.attachments, add_all)
+        properties_box.add(self.attachment_property_box)
+        self.show_row(self.attachment_property_box, safe_entry.attachments, add_all)
 
         # Attributes
-        self.attributes_property_row = builder.get_object("attributes_property_box")
-        self.attributes_key_entry = builder.get_object("attributes_key_entry")
-        self.attributes_value_entry = builder.get_object("attributes_value_entry")
-        self.attributes_add_button = builder.get_object("attributes_add_button")
-        self.attribute_list_box = builder.get_object("attribute_list_box")
-
         self.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
         self.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
         self.attributes_value_entry.connect("activate", self.on_attributes_add_button_clicked)
 
-        properties_list_box.add(self.attributes_property_row)
-        self.show_row(self.attributes_property_row, safe_entry.attributes, add_all)
+        properties_box.add(self.attributes_property_box)
+        self.show_row(self.attributes_property_box, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)
 
-        self.show_all_row = builder.get_object("show_all_row")
-        self.show_all_properties_button = builder.get_object("show_all_properties_button")
         self.show_all_properties_button.connect("clicked", self.on_show_all_properties_button_clicked)
-        properties_list_box.add(self.show_all_row)
+        properties_box.add(self.show_all_row)
 
-        for row in self.properties_list_box:
+        for row in self.properties_box:
             if not row.get_visible():
                 self.show_all_row.set_visible(True)
                 break
@@ -262,7 +250,7 @@ class EntryPage(Gtk.ScrolledWindow):
     def on_show_all_properties_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
 
-        for row in self.properties_list_box:
+        for row in self.properties_box:
             row.set_visible(True)
 
         self.show_all_row.set_visible(False)

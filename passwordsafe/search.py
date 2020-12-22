@@ -68,7 +68,6 @@ class Search:
         headerbar_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
 
         self._search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
-        self._search_entry.connect("stop-search", self.on_headerbar_search_entry_focused)
 
         self.unlocked_database.bind_accelerator(
             self._search_entry, "<Control>f", signal="stop-search")
@@ -98,7 +97,6 @@ class Search:
             self._search_entry.grab_focus()
 
             if self.search_list_box is not NotImplemented:
-                self.search_list_box.set_selection_mode(Gtk.SelectionMode.SINGLE)
                 self._search_event_connection_id = self._search_entry.connect(
                     "key-release-event", self.on_search_entry_navigation)
 
@@ -107,7 +105,6 @@ class Search:
 
         else:
             self._clear_view()
-            self.search_list_box.set_selection_mode(Gtk.SelectionMode.NONE)
             self._search_entry.disconnect(self._search_event_connection_id)
             self._search_event_connection_id = 0
 
@@ -304,12 +301,6 @@ class Search:
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)
         self._show_results(True)
-
-    def on_headerbar_search_entry_focused(self, entry):
-        if entry.has_focus() is True:
-            return
-
-        entry.grab_focus()
 
     @property
     def headerbar(self) -> Handy.HeaderBar:

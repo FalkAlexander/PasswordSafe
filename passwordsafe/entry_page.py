@@ -542,7 +542,6 @@ class EntryPage:
         AttachmentWarningDialog(self, attachment).present()
 
     def on_attachment_download_button_clicked(self, _button, attachment):
-        print(attachment)
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for downloading an attachment
             _("Save attachment"), self.unlocked_database.window, Gtk.FileChooserAction.SAVE,

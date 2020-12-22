@@ -39,11 +39,15 @@ class EntryPage(Gtk.ScrolledWindow):
     username_property_box = Gtk.Template.Child()
     username_property_value_entry = Gtk.Template.Child()
 
+    password_property_box = Gtk.Template.Child()
+
     url_property_box = Gtk.Template.Child()
     url_property_value_entry = Gtk.Template.Child()
 
     notes_property_box = Gtk.Template.Child()
     notes_property_value_entry = Gtk.Template.Child()
+
+    color_property_box = Gtk.Template.Child()
 
     icon_entry_box = Gtk.Template.Child()
     icon_property_box = Gtk.Template.Child()
@@ -106,9 +110,9 @@ class EntryPage(Gtk.ScrolledWindow):
         value = safe_entry.username != ""
 
         # Password
-        self.password_property_row = PasswordEntryRow(
-            self.unlocked_database)
-        properties_box.add(self.password_property_row)
+        self.password_property_box.add(PasswordEntryRow(
+            self.unlocked_database))
+        self.properties_box.add(self.password_property_box)
 
         # Url
         self.url_property_value_entry.set_buffer(HistoryEntryBuffer([]))
@@ -133,12 +137,12 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
         # Color
-        self.color_property_row = ColorEntryRow(
-            self.unlocked_database, safe_entry)
+        self.color_property_box.add(ColorEntryRow(
+            self.unlocked_database, safe_entry))
+        self.properties_box.add(self.color_property_box)
 
-        properties_box.add(self.color_property_row)
         non_default = safe_entry.color != "NoneColorButton"
-        self.show_row(self.color_property_row, non_default, add_all)
+        self.show_row(self.color_property_box, non_default, add_all)
 
         # Icons
         icon_builder = Gtk.Builder()

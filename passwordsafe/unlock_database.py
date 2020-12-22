@@ -166,7 +166,7 @@ class UnlockDatabase:
                 db_path: str = db.database_manager.database_path
                 if db_path == self.database_manager.database_path:
                     if passwordsafe.config_manager.get_save_automatically():
-                        db.save_database(True)
+                        db.save_database()
 
                     db.cleanup()
                     database = db

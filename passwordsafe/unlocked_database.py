@@ -25,7 +25,6 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
-from passwordsafe.save_dialog import SaveDialog, SaveDialogResponse
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
@@ -463,7 +462,7 @@ class UnlockedDatabase(GObject.GObject):
 
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
-                self.save_database(True)
+                self.save_database()
                 self.show_database_action_revealer(_("Safe saved"))
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
@@ -636,27 +635,6 @@ class UnlockedDatabase(GObject.GObject):
     # Dialog Creator
     #
 
-    def _show_save_dialog(self) -> bool:
-        """ Show the save confirmation dialog
-
-        Saves the db and closes the tab.
-        :returns: True if we want to exit the app
-        """
-        if not self.database_manager.is_dirty or self.database_manager.save_running:
-            return True  # no dirty db, do nothing.
-
-        save_dialog = SaveDialog(self.window)
-        res = save_dialog.run()
-
-        if res == SaveDialogResponse.SAVE:
-            self.save_database(True)
-            return True
-
-        if res == SaveDialogResponse.DISCARD:
-            return True
-
-        return False
-
     def show_references_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Show a Group/Entry reference dialog
 
@@ -708,7 +686,7 @@ class UnlockedDatabase(GObject.GObject):
                     )
 
                 if passwordsafe.config_manager.get_save_automatically():
-                    self.save_database(True)
+                    self.save_database()
 
             self.overlay.hide()
         else:
@@ -772,30 +750,20 @@ class UnlockedDatabase(GObject.GObject):
             except Gio.Error:
                 logging.warning("Skipping deletion of tmpfile...")
 
-    def save_database(self, auto_save: bool = False) -> bool:
+    def save_database(self) -> None:
         """Save the database.
 
         If auto_save is False, a dialog asking for confirmation
         will be displayed.
-
-        :param bool auto_save: ask for confirmation before saving
         """
         if not self.database_manager.is_dirty or self.database_manager.save_running:
-            return False
+            return
 
-        database_saved = False
-        if auto_save:
-            save_thread = threading.Thread(target=self.database_manager.save_database)
-            save_thread.daemon = False
-            save_thread.start()
-            database_saved = True
-        else:
-            database_saved = self._show_save_dialog()
+        save_thread = threading.Thread(target=self.database_manager.save_database)
+        save_thread.daemon = False
+        save_thread.start()
 
-        if database_saved:
-            logging.debug("Saving database %s", self.database_manager.database_path)
-
-        return database_saved
+        logging.debug("Saving database %s", self.database_manager.database_path)
 
     def clear_clipboard(self):
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()

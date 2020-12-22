@@ -1,12 +1,21 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
 import sys
+import typing
 from typing import Any, List, Optional
 
 from gi.repository import Gio, GLib, Gtk, Handy
 
 from passwordsafe.main_window import MainWindow
 from passwordsafe.settings_dialog import SettingsDialog
+
+import passwordsafe.config_manager as config
+from passwordsafe.save_dialog import SaveDialog
+from passwordsafe.quit_dialog import QuitDialog
+if typing.TYPE_CHECKING:
+    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class Application(Gtk.Application):
@@ -32,6 +41,7 @@ class Application(Gtk.Application):
 
         Handy.init()
         self.connect("open", self.file_open_handler)
+        self.connect("shutdown", self._on_shutdown_action)
         self.assemble_application_menu()
 
     def do_handle_local_options(        # pylint: disable=arguments-differ
@@ -111,10 +121,61 @@ class Application(Gtk.Application):
 
     def on_quit(self, _action: Optional[Gio.SimpleAction] = None,
                 _data: Any = None) -> None:
-        # Perform cleanups, this calls application.quit() itself if `handled`
-        handled: bool = self.window.on_application_shutdown()
-        if not handled:
-            self.quit()
+        unsaved_databases_list = []
+        self.window.databases_to_save.clear()
+
+        for database in self.window.opened_databases:
+            if (database.database_manager.is_dirty
+                    and not database.database_manager.save_running):
+                if config.get_save_automatically():
+                    database.save_database()
+                else:
+                    unsaved_databases_list.append(database)
+
+        if len(unsaved_databases_list) == 1:
+            database = unsaved_databases_list[0]
+            save_dialog = SaveDialog(self.window)
+            save_dialog.connect("response", self._on_save_dialog_response, database)
+            save_dialog.show()
+
+        elif len(unsaved_databases_list) > 1:
+            # Multiple unsaved files, ask which to save
+            quit_dialog = QuitDialog(self.window, unsaved_databases_list)
+            quit_dialog.connect("response", self._on_quit_dialog_response)
+            quit_dialog.show()
+
+        else:
+            GLib.idle_add(self.quit)
+
+    def _on_quit_dialog_response(self,
+                                 dialog: Gtk.Dialog,
+                                 response: Gtk.ResponseType) -> None:
+        dialog.close()
+        if response != Gtk.ResponseType.OK:
+            self.window.databases_to_save.clear()
+            return
+
+        for database in self.window.databases_to_save:
+            database.save_database()
+
+        GLib.idle_add(self.quit)
+
+    def _on_save_dialog_response(self,
+                                 dialog: Gtk.Dialog,
+                                 response: Gtk.ResponseType,
+                                 database: UnlockedDatabase) -> None:
+        dialog.close()
+        if response == Gtk.ResponseType.YES:  # Save
+            database.database_manager.save_database()
+            GLib.idle_add(self.quit)
+
+        elif response == Gtk.ResponseType.NO:  # Discard
+            GLib.idle_add(self.quit)
+
+    def _on_shutdown_action(self, _action: Gio.SimpleAction) -> None:
+        """Activated on shutdown signal. Cleans all remaining processes."""
+        for database in self.window.opened_databases:
+            database.cleanup()
 
     def on_shortcuts_menu_clicked(
         self, _action: Gio.SimpleAction, _param: None

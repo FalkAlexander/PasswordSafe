@@ -5,7 +5,7 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from typing import List, Optional
+from typing import List
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 
 import passwordsafe.config_manager
@@ -14,6 +14,7 @@ from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.error_info_bar import ErrorInfoBar
 from passwordsafe.recent_files_page import RecentFilesPage
+from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
@@ -132,16 +133,16 @@ class MainWindow(Handy.ApplicationWindow):
 
     def change_layout(self):
         """Switches all open databases between mobile/desktop layout"""
-        for db in self.opened_databases:  # pylint: disable=C0103
+        for database in self.opened_databases:
             # Do Nothing on Lock Screen
-            if db.props.database_locked:
+            if database.props.database_locked:
                 return
 
             # Do nothing for Search View
-            if db.props.search_active:
+            if database.props.search_active:
                 return
 
-            scrolled_page = db.get_current_page()
+            scrolled_page = database.get_current_page()
 
             # For Group/Entry Edit Page
             if scrolled_page.edit_page:
@@ -314,12 +315,12 @@ class MainWindow(Handy.ApplicationWindow):
 
             database_already_opened = False
 
-            for db in self.opened_databases:  # pylint: disable=C0103
-                if db.database_manager.database_path == db_filename:
+            for database in self.opened_databases:
+                if database.database_manager.database_path == db_filename:
                     database_already_opened = True
-                    page_num = self.container.page_num(db.parent_widget)
+                    page_num = self.container.page_num(database.parent_widget)
                     self.container.set_current_page(page_num)
-                    db.show_database_action_revealer("Safe already opened")
+                    database.show_database_action_revealer("Safe already opened")
 
             if database_already_opened is False:
                 self.start_database_opening_routine(db_filename)
@@ -479,36 +480,41 @@ class MainWindow(Handy.ApplicationWindow):
 
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)
-        current_db: Optional[UnlockedDatabase] = None
 
-        for db in self.opened_databases:  # pylint: disable=C0103
-            if db.window.container.page_num(db.parent_widget) == page_num:
-                if db.database_manager.is_dirty:
-                    saved: bool = db.save_database(
-                        passwordsafe.config_manager.get_save_automatically())
-                    # operation has been canceled
-                    if not saved:
-                        return
+        for database in self.opened_databases:
+            if database.window.container.page_num(database.parent_widget) == page_num:
+                if database.database_manager.is_dirty:
+                    if passwordsafe.config_manager.get_save_automatically():
+                        database.cleanup()
+                        database.save_database()
+                    else:
+                        save_dialog = SaveDialog(self)
+                        save_dialog.connect("response",
+                                            self._on_save_dialog_response,
+                                            [widget, database])
+                        save_dialog.show()
+                else:
+                    database.cleanup()
+                    self.close_tab(widget, database)
 
-                db.cleanup()
-                current_db = db
-                break
+                return
 
-        if not current_db:
-            logging.warning(
-                "Closing a tab, but could not find the corresponding database.")
+        self.close_tab(widget)
 
-        self.close_tab(widget, current_db)
+    def _on_save_dialog_response(self, dialog, response, args):
+        widget, database = args
+        dialog.close()
+        if response == Gtk.ResponseType.YES:
+            database.cleanup()
+            self.close_tab(widget, database)
+            database.save_database()
+        elif response == Gtk.ResponseType.NO:
+            database.cleanup()
+            self.close_tab(widget, database)
 
     def on_tab_switch(self, _notebook, tab, _pagenum):
         headerbar = tab.get_headerbar()
         self.set_titlebar(headerbar)
-
-    def on_save_check_button_toggled(self, check_button, db):  # pylint: disable=C0103
-        if check_button.get_active():
-            self.databases_to_save.append(db)
-        else:
-            self.databases_to_save.remove(db)
 
     #
     # Application Quit Dialog
@@ -525,73 +531,6 @@ class MainWindow(Handy.ApplicationWindow):
         self.application.activate_action("quit")
         return True  # we handled event, don't call destroy
 
-    def on_application_shutdown(self) -> bool:
-        """Clean up unsaved databases, and shutdown
-
-        This function is invoked by the application.quit method
-        :returns: True if handled (don't quit), False if shutdown
-        """
-        # pylint: disable=too-many-branches
-        unsaved_databases_list = []
-        self.databases_to_save.clear()
-
-        for db_view in self.opened_databases:
-            if (db_view.database_manager.is_dirty
-                    and not db_view.database_manager.save_running):
-                if passwordsafe.config_manager.get_save_automatically():
-                    db_view.save_database(True)
-                else:
-                    unsaved_databases_list.append(db_view)
-
-        if len(unsaved_databases_list) == 1:
-            database = unsaved_databases_list[0]
-            saved: bool = database.save_database()
-            if not saved:
-                return True  # User Canceled, don't quit
-
-        elif len(unsaved_databases_list) > 1:
-            # Multiple unsaved files, ask which to save
-            builder = Gtk.Builder()
-            builder.add_from_resource(
-                "/org/gnome/PasswordSafe/quit_dialog.ui")
-            quit_dialog = builder.get_object("quit_dialog")
-            quit_dialog.set_transient_for(self)
-
-            unsaved_databases_list_box = builder.get_object("unsaved_databases_list_box")
-
-            for db in unsaved_databases_list:  # pylint: disable=C0103
-                unsaved_database_row = Gtk.ListBoxRow()
-                check_button = Gtk.CheckButton()
-                if "/home/" in db.database_manager.database_path:
-                    check_button.set_label("~/" + os.path.relpath(db.database_manager.database_path))
-                else:
-                    check_button.set_label(Gio.File.new_for_path(db.database_manager.database_path).get_uri())
-                check_button.connect("toggled", self.on_save_check_button_toggled, db)
-                check_button.set_active(True)
-                unsaved_database_row.add(check_button)
-                unsaved_database_row.show_all()
-                unsaved_databases_list_box.add(unsaved_database_row)
-
-            res = quit_dialog.run()
-            quit_dialog.destroy()
-            if res == Gtk.ResponseType.CANCEL:
-                self.databases_to_save.clear()
-                return True
-            # Do nothing in other cases e.g.NONE, OK,...
-
-        for database in self.opened_databases:
-            database.cleanup()
-
-        self.save_window_size()
-        if self.databases_to_save:
-            for db_view in self.databases_to_save:
-                db_view.save_database(True)
-
-            GLib.idle_add(self.application.quit)
-
-            return True
-
-        return False  # caller should quit() the app
     #
     # Gio Actions
     #
@@ -600,9 +539,9 @@ class MainWindow(Handy.ApplicationWindow):
     def find_action_db(self):
         action_db = NotImplemented
 
-        for db in self.opened_databases:  # pylint: disable=C0103
-            if self.tab_visible(db.parent_widget):
-                action_db = db
+        for database in self.opened_databases:
+            if self.tab_visible(database.parent_widget):
+                action_db = database
 
         return action_db
 

@@ -454,7 +454,7 @@ class EntryPage(Gtk.ScrolledWindow):
         builder = Gtk.Builder()
         builder.add_from_resource("/org/gnome/PasswordSafe/attachment_entry_row.ui")
 
-        for row in self.attachment_list_box.get_children():
+        for row in self.attachment_list_box:
             if row.get_name() != "AddAttachmentRow":
                 row.destroy()
 

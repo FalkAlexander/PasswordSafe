@@ -51,13 +51,11 @@ class EntryPage(Gtk.ScrolledWindow):
     attachment_property_box = Gtk.Template.Child()
     attachment_list_box = Gtk.Template.Child()
 
-    attributes_add_button = Gtk.Template.Child()
     attributes_key_entry = Gtk.Template.Child()
     attribute_list_box = Gtk.Template.Child()
     attributes_property_box = Gtk.Template.Child()
     attributes_value_entry = Gtk.Template.Child()
 
-    show_all_properties_button = Gtk.Template.Child()
     show_all_row = Gtk.Template.Child()
 
     attribute_property_row_list: List[Gtk.ListBoxRow] = []
@@ -81,9 +79,6 @@ class EntryPage(Gtk.ScrolledWindow):
         # Create the name_property_row
         self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
-        self.name_property_value_entry.connect(
-            "changed", self.on_property_value_entry_changed
-        )
         safe_entry.bind_property(
             "name", self.name_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
@@ -102,11 +97,7 @@ class EntryPage(Gtk.ScrolledWindow):
             self.username_property_value_entry,
             "<primary><Shift>b",
             signal="copy-clipboard")
-        self.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
 
-        self.username_property_value_entry.connect(
-            "icon-press", self._on_copy_secondary_button_clicked)
-        self.username_property_value_entry.connect("changed", self.on_property_value_entry_changed)
         properties_box.add(self.username_property_box)
         value = safe_entry.username != ""
         self.show_row(self.username_property_box, value, add_all)
@@ -124,15 +115,11 @@ class EntryPage(Gtk.ScrolledWindow):
             "url", self.url_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
-        self.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
-        self.url_property_value_entry.connect("changed", self.on_property_value_entry_changed)
         properties_box.add(self.url_property_box)
         self.show_row(self.url_property_box, safe_entry.url, add_all)
 
         # Notes
         self.notes_property_value_entry.get_style_context().add_class("codeview")
-
-        # builder.get_object("notes_detach_button").connect("clicked", self.on_notes_detach_button_clicked)
 
         textbuffer = HistoryTextBuffer([])
         safe_entry.bind_property(
@@ -193,22 +180,16 @@ class EntryPage(Gtk.ScrolledWindow):
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
 
-        self.attachment_list_box.connect("row-activated", self.on_attachment_list_box_activated)
         properties_box.add(self.attachment_property_box)
         self.show_row(self.attachment_property_box, safe_entry.attachments, add_all)
 
         # Attributes
-        self.attributes_add_button.connect("clicked", self.on_attributes_add_button_clicked)
-        self.attributes_key_entry.connect("activate", self.on_attributes_add_button_clicked)
-        self.attributes_value_entry.connect("activate", self.on_attributes_add_button_clicked)
-
         properties_box.add(self.attributes_property_box)
         self.show_row(self.attributes_property_box, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)
 
-        self.show_all_properties_button.connect("clicked", self.on_show_all_properties_button_clicked)
         properties_box.add(self.show_all_row)
 
         for row in self.properties_box:
@@ -235,7 +216,6 @@ class EntryPage(Gtk.ScrolledWindow):
         attribute_property_name_label.set_text(key)
         if value is not None:
             attribute_value_entry.set_text(value)
-        attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed)
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
         attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
 
@@ -247,6 +227,7 @@ class EntryPage(Gtk.ScrolledWindow):
     # Events
     #
 
+    @Gtk.Template.Callback()
     def on_show_all_properties_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
 
@@ -255,11 +236,13 @@ class EntryPage(Gtk.ScrolledWindow):
 
         self.show_all_row.set_visible(False)
 
+    @Gtk.Template.Callback()
     def on_property_value_entry_changed(self, _widget, _data=None):
         self.unlocked_database.start_database_lock_timer()
 
         self.is_dirty = True
 
+    @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         NotesDialog(self.unlocked_database).present()
@@ -272,6 +255,7 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry = self.unlocked_database.current_element
         safe_entry.props.icon = icon
 
+    @Gtk.Template.Callback()
     def on_link_secondary_button_clicked(self, widget, _position, _eventbutton):
         self.unlocked_database.start_database_lock_timer()
         Gtk.show_uri_on_window(self.unlocked_database.window, widget.get_text(), Gtk.get_current_event_time())
@@ -280,6 +264,7 @@ class EntryPage(Gtk.ScrolledWindow):
     # Additional Attributes
     #
 
+    @Gtk.Template.Callback()
     def on_attributes_add_button_clicked(self, _widget):
         safe_entry: SafeEntry = self.unlocked_database.current_element
 
@@ -374,6 +359,7 @@ class EntryPage(Gtk.ScrolledWindow):
     # Attachment Handling
     #
 
+    @Gtk.Template.Callback()
     def on_attachment_list_box_activated(self, _widget, list_box_row):
         if list_box_row.get_name() == "AddAttachmentRow":
             self.on_add_attachment_row_clicked()
@@ -483,6 +469,7 @@ class EntryPage(Gtk.ScrolledWindow):
         Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(byte_buffer), None)
         stream.close()
 
+    @Gtk.Template.Callback()
     def _on_copy_secondary_button_clicked(
             self, widget, _position=None, _eventbutton=None):
         self.unlocked_database.send_to_clipboard(widget.get_text())

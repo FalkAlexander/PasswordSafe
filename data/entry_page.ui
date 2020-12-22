@@ -53,6 +53,7 @@
         <property name="vexpand">True</property>
         <property name="input_purpose">name</property>
         <property name="receives_default">True</property>
+        <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
       </object>
     </child>
   </object>
@@ -87,6 +88,9 @@
             <property name="valign">center</property>
             <property name="vexpand">True</property>
             <property name="secondary_icon_name">edit-copy-symbolic</property>
+            <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
+            <signal name="copy-clipboard" handler="_on_copy_secondary_button_clicked" swapped="no"/>
+            <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
           </object>
         </child>
       </object>
@@ -124,6 +128,7 @@
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
             <property name="secondary_icon_name">send-to-symbolic</property>
+            <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
           </object>
         </child>
       </object>
@@ -157,6 +162,7 @@
             <property name="visible">True</property>
             <property name="receives_default">True</property>
             <property name="relief">none</property>
+            <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -269,6 +275,7 @@
               <object class="GtkListBox" id="attachment_list_box">
                 <property name="visible">True</property>
                 <property name="selection_mode">none</property>
+                <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
                 <child>
                   <object class="GtkListBoxRow" id="add_attachment_row">
                     <property name="name">AddAttachmentRow</property>
@@ -337,6 +344,7 @@
                 <property name="hexpand">True</property>
                 <property name="width_chars">10</property>
                 <property name="placeholder_text" translatable="yes">Key</property>
+                <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
               </object>
             </child>
             <child>
@@ -345,6 +353,7 @@
                 <property name="visible">True</property>
                 <property name="hexpand">True</property>
                 <property name="placeholder_text" translatable="yes">Value</property>
+                <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
               </object>
             </child>
             <style>
@@ -358,6 +367,7 @@
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Add attribute</property>
             <property name="halign">end</property>
+            <signal name="clicked" handler="on_attributes_add_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -393,6 +403,7 @@
         <property name="visible">True</property>
         <property name="receives_default">True</property>
         <property name="relief">none</property>
+        <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>

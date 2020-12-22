@@ -235,7 +235,7 @@ class EntryPage(Gtk.ScrolledWindow):
         :param str value: property value
         """
         builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
+        builder.add_from_resource("/org/gnome/PasswordSafe/attribute_entry_row.ui")
 
         attribute_row = builder.get_object("attribute_row")
         attribute_property_name_label = builder.get_object("attribute_property_name_label")
@@ -318,11 +318,11 @@ class EntryPage(Gtk.ScrolledWindow):
     def on_attribute_remove_button_clicked(self, button):
         safe_entry: SafeEntry = self.unlocked_database.current_element
 
-        parent = button.get_parent().get_parent().get_parent()
-        key = parent.get_name()
+        attribute_row = button.get_parent().get_parent()
+        key = attribute_row.get_name()
 
         safe_entry.delete_attribute(key)
-        self.properties_list_box.remove(parent)
+        self.attribute_list_box.remove(attribute_row)
 
     def on_attributes_value_entry_changed(self, widget):
         safe_entry = self.unlocked_database.current_element

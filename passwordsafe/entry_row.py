@@ -92,7 +92,7 @@ class EntryRow(Gtk.ListBoxRow):
 
     def _on_entry_row_button_pressed(
             self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,
-            _event_y: float) -> bool:
+            _event_y: float) -> None:
         # pylint: disable=too-many-arguments
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()
@@ -104,8 +104,6 @@ class EntryRow(Gtk.ListBoxRow):
             else:
                 db_view.props.selection_mode = True
                 self.selection_checkbox.props.active = True
-
-        return True
 
     def get_uuid(self):
         return self.entry_uuid

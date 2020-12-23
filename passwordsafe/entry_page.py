@@ -395,7 +395,7 @@ class EntryPage:
 
         if self.unlocked_database.database_manager.has_entry_attribute(entry, key):
             scrolled_page.attributes_key_entry.get_style_context().add_class("error")
-            self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
+            self.unlocked_database.window.notify(_("Attribute key already exists"))
             return
 
         scrolled_page.attributes_key_entry.get_style_context().remove_class("error")
@@ -464,7 +464,7 @@ class EntryPage:
         db_manager = self.unlocked_database.database_manager
         if db_manager.has_entry_attribute(entry, new_key):
             widget.get_style_context().add_class("error")
-            self.unlocked_database.show_database_action_revealer(_("Attribute key already exists"))
+            self.unlocked_database.window.notify(_("Attribute key already exists"))
             return
 
         db_manager.set_entry_attribute(

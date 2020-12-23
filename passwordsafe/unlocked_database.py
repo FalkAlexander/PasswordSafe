@@ -2,8 +2,6 @@
 from __future__ import annotations
 
 import logging
-import ntpath
-import os
 import re
 import threading
 import time
@@ -119,18 +117,11 @@ class UnlockedDatabase(GObject.GObject):
 
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
-        self.overlay = Gtk.Overlay()
-        self.parent_widget.add(self.overlay)
-
-        database_action_overlay = self.builder.get_object("database_action_overlay")
-        self.overlay.add_overlay(database_action_overlay)
-
-        # contains the "main page" with the stack and the revealer inside
+        # Contains the "main page" with the BrowserListBox.
         self.divider = self.builder.get_object("divider")
-        self.overlay.add(self.divider)
-        self.overlay.show_all()
         self._unlocked_db_stack.add_named(self.search.scrolled_page, "search")
         self.search.scrolled_page.show_all()
+        self.parent_widget.add(self.divider)
 
         self.search.initialize()
         self._update_headerbar()
@@ -463,15 +454,15 @@ class UnlockedDatabase(GObject.GObject):
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
                 self.save_database()
-                self.show_database_action_revealer(_("Safe saved"))
+                self.window.notify(_("Safe saved"))
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
-                self.show_database_action_revealer(
+                self.window.notify(
                     _("Please wait. Another save is running.")
                 )
         else:
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-            self.show_database_action_revealer(_("No changes made"))
+            self.window.notify(_("No changes made"))
 
     def lock_safe(self):
         self.database_manager.props.locked = True
@@ -609,7 +600,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.clipboard.set_text(replace_string, -1)
 
-        self.show_database_action_revealer(message)
+        self.window.notify(message)
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer = Timer(
             clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard]
@@ -651,25 +642,6 @@ class UnlockedDatabase(GObject.GObject):
     # Utils
     #
 
-    def show_database_action_revealer(self, message):
-        database_action_label = self.builder.get_object("database_action_label")
-        database_action_label.set_text(message)
-
-        database_action_revealer = self.builder.get_object("database_action_revealer")
-        database_action_revealer.set_reveal_child(
-            not database_action_revealer.get_reveal_child()
-        )
-        revealer_timer = Timer(
-            3.0, GLib.idle_add, args=[self.hide_database_action_revealer]
-        )
-        revealer_timer.start()
-
-    def hide_database_action_revealer(self):
-        database_action_revealer = self.builder.get_object("database_action_revealer")
-        database_action_revealer.set_reveal_child(
-            not database_action_revealer.get_reveal_child()
-        )
-
     def _on_database_lock_changed(self, _database_manager, _value):
         locked = self.database_manager.props.locked
         if locked:
@@ -688,26 +660,18 @@ class UnlockedDatabase(GObject.GObject):
                 if passwordsafe.config_manager.get_save_automatically():
                     self.save_database()
 
-            self.overlay.hide()
+            self.divider.hide()
         else:
             self._update_headerbar()
             self.start_save_loop()
-            self.overlay.show()
+            self.divider.show()
             self.start_database_lock_timer()
 
     def lock_timeout_database(self):
         self.database_manager.props.locked = True
 
-        # NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-        self.send_notification(
-            _("%s locked")
-            % (
-                os.path.splitext(ntpath.basename(self.database_manager.database_path))[
-                    0
-                ]
-            ),
-            _("Keepass safe locked due to inactivity"),
-        )
+        # NOTE: Notification that a safe has been locked.
+        self.window.notify(_("Safe locked due to inactivity"))
 
     #
     # Helper Methods
@@ -782,11 +746,6 @@ class UnlockedDatabase(GObject.GObject):
                 timeout, GLib.idle_add, args=[self.lock_timeout_database]
             )
             self.database_lock_timer.start()
-
-    def send_notification(self, title, text):
-        notification = Gio.Notification.new(title)
-        notification.set_body(text)
-        self.window.application.send_notification(None, notification)
 
     def start_save_loop(self):
         self.save_loop = True

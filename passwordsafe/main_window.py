@@ -12,7 +12,7 @@ import passwordsafe.config_manager
 from passwordsafe.container_page import ContainerPage
 from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
-from passwordsafe.error_info_bar import ErrorInfoBar
+from passwordsafe.notification import Notification
 from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.unlock_database import UnlockDatabase
@@ -30,9 +30,11 @@ class MainWindow(Handy.ApplicationWindow):
     opened_databases: List[UnlockedDatabase] = []
     databases_to_save: List[UnlockedDatabase] = []
     _filechooser = None
+    _notification = Notification()
 
     container = Gtk.Template.Child()
     _headerbar = Gtk.Template.Child()
+    _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     new_file_button = Gtk.Template.Child()
     new_file_stack = Gtk.Template.Child()
@@ -47,18 +49,20 @@ class MainWindow(Handy.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.application = self.get_application()
-        self._info_bar = None
-        self._info_bar_response_id = None
         self.welcome_page = WelcomePage()
         self.recent_files_page = RecentFilesPage()
 
         self._main_view.add(self.welcome_page)
         self._main_view.add(self.recent_files_page)
+        self._main_overlay.add_overlay(self._notification)
 
         self.assemble_window()
 
         if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
+
+    def notify(self, notification: str) -> None:
+        self._notification.notify(notification)
 
     def set_titlebar(self, headerbar: Handy.Headebar) -> None:
         if headerbar not in self._title_stack.get_children():
@@ -219,12 +223,6 @@ class MainWindow(Handy.ApplicationWindow):
     # Open Database Methods
     #
 
-    def _on_info_bar_response(self, _info_bar=None, _response_id=None):
-        self._info_bar.hide()
-        self._info_bar.disconnect(self._info_bar_response_id)
-        self._info_bar = None
-        self._info_bar_response_id = None
-
     @Gtk.Template.Callback()
     def open_filechooser(self, _widget, _user_data=None):
         """Callback function to open a safe.
@@ -234,9 +232,6 @@ class MainWindow(Handy.ApplicationWindow):
         events reliably.
         """
         # pylint: disable=too-many-locals
-        if self._info_bar is not None:
-            self._on_info_bar_response()
-
         filechooser_opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
             _("Choose a Keepass safe"), self, Gtk.FileChooserAction.OPEN,
@@ -277,6 +272,7 @@ class MainWindow(Handy.ApplicationWindow):
                     "standard::content-type,standard::fast-content-type", Gio.FileQueryInfoFlags.NONE, None
                 )
             except GLib.Error as e:  # pylint: disable=C0103
+                self.notify(_("Could not open file"))
                 logging.debug(
                     "Unable to query info for file %s: %s", db_filename, e.message
                 )
@@ -285,32 +281,7 @@ class MainWindow(Handy.ApplicationWindow):
             file_content_type = db_file_info.get_attribute_as_string("standard::fast-content-type")
             file_mime_type = Gio.content_type_get_mime_type(file_content_type)
             if file_mime_type not in supported_mime_types:
-                logging.debug(
-                    "Unsupported mime type: %s", file_mime_type)
-                main_message = _(
-                    'Unable to open file "{}".'.format(db_filename))
-                mime_desc = Gio.content_type_get_description(file_content_type)
-                second_message = _(
-                    "File type {} ({}) is not supported.".format(
-                        mime_desc, file_mime_type))
-                self._info_bar = ErrorInfoBar(main_message, second_message)
-                self._info_bar_response_id = self._info_bar.connect(
-                    "response", self._on_info_bar_response)
-
-                # Get 1st child of  first_start_grid, to attach the info bar
-                first_start_grid = None
-                for child in self._main_view.get_children():
-                    if child.props.name == "first_start_grid":
-                        first_start_grid = child
-                        break
-                # FIXME: we should open the error in the info bar,
-                # but there is no first_start_grid to attach it to. At
-                # least don't crash now, this needs better fixing.
-                if first_start_grid is None:
-                    return
-                first_child = self._main_view.get_visible_child()
-                first_start_grid.attach_next_to(
-                    self._info_bar, first_child, Gtk.PositionType.TOP, 1, 1)
+                self.notify(_("Could not open file: Mime type not supported"))
                 return
 
             database_already_opened = False
@@ -320,7 +291,7 @@ class MainWindow(Handy.ApplicationWindow):
                     database_already_opened = True
                     page_num = self.container.page_num(database.parent_widget)
                     self.container.set_current_page(page_num)
-                    database.show_database_action_revealer("Safe already opened")
+                    self.notify(_("Safe already opened"))
 
             if database_already_opened is False:
                 self.start_database_opening_routine(db_filename)

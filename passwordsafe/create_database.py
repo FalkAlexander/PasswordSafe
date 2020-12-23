@@ -111,7 +111,7 @@ class CreateDatabase(Gtk.Stack):
             save_thread.daemon = True
             save_thread.start()
         else:
-            # TODO Notify the user the passwords don't match.
+            self.window.notify(_("Passwords do not match"))
             self.clear_input_fields()
             self.password_repeat_input1.get_style_context().add_class("error")
             self.password_repeat_input2.get_style_context().add_class("error")

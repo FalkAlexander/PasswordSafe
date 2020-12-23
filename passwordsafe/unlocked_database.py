@@ -830,6 +830,8 @@ class UnlockedDatabase(GObject.GObject):
                 pathbar = self.pathbar
                 pathbar.on_pathbar_button_clicked(button)
 
+        self.pathbar.rebuild_pathbar(parent_group)
+
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:
         """Property to know if search is active.

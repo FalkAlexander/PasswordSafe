@@ -1,11 +1,7 @@
 # Password Safe
-Password Safe is a password manager which makes use of the KeePass v.4 format.
-It integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
+Password Safe is a password manager which integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
-<a href="https://open.lbry.com/Runs-on-Librem-5,-Day-10---Password-Safe">
-<img src="https://spee.ch/b/cbc1343f4c91cda5.png" width="480px" />
-</a>
-<iframe id="lbry-iframe" width="560" height="315" src="https://lbry.tv/$/embed/Runs-on-Librem-5,-Day-10---Password-Safe/4f60c8c59658e699de74d233ac507122472998ce" allowfullscreen></iframe>
+<img src="https://gitlab.gnome.org/World/PasswordSafe/-/wikis/uploads/de508f02b076699243410df1e020262f/PasswordSafe.png" width="800px" />
 
 ## Features:
 * ⭐ Create or import a KeePass v.4 safe
@@ -24,6 +20,7 @@ It integrates perfectly with the GNOME desktop and provides an easy and unclutte
 # Installation
 ## Install via distribution package manager
 In distribution package manager, you can find Password Safe under name `gnome-passwordsafe`.
+
 [![Packaging status](https://repology.org/badge/vertical-allrepos/gnome-passwordsafe.svg)](https://repology.org/project/gnome-passwordsafe/versions)
 
 
@@ -111,6 +108,4 @@ gsettings set org.gnome.PasswordSafe development-backup-mode false
 ```
 
 # Contact
-You can contact the project through [Matrix](https://matrix.org). The room is
-[#gnome-passwordsafe:disroot.org](https://matrix.to/#/#gnome-passwordsafe:disroot.org). You can
-join through [any application on this list](https://matrix.org/docs/projects/try-matrix-now/).
+You can contact through chat (Matrix protocol) on [#passwordsafe:gnome.org](https://matrix.to/#/#passwordsafe:gnome.org) channel.

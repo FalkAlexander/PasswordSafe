@@ -157,6 +157,7 @@ class Pathbar(Gtk.Box):
 
         self.unlocked_database.switch_page(
             self.database_manager.get_root_group())
+        self.rebuild_pathbar(self.database_manager.get_root_group())
 
     def on_pathbar_button_clicked(self, pathbar_button):
         self.unlocked_database.start_database_lock_timer()

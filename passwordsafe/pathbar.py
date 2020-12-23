@@ -176,6 +176,7 @@ class Pathbar(Gtk.Box):
                     self.query_page_update()
 
                 self.unlocked_database.switch_page(pathbar_button_elem)
+                self.rebuild_pathbar(pathbar_button_elem)
     #
     # Helper Methods
     #

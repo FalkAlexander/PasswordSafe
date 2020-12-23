@@ -50,9 +50,11 @@ class CustomKeypressHandler:
                 return Gdk.EVENT_PROPAGATE
 
         # Handle undo and redo on entries.
-        elif (scrolled_page.edit_page
-              and eventkey.state
-              and Gdk.ModifierType.CONTROL_MASK):
+        elif (
+            scrolled_page.edit_page
+            and eventkey.state & Gdk.ModifierType.CONTROL_MASK
+            == Gdk.ModifierType.CONTROL_MASK
+        ):
             keyval_name = Gdk.keyval_name(eventkey.keyval)
             if isinstance(window.get_focus(), Gtk.TextView):
                 textbuffer = window.get_focus().get_buffer()

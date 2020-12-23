@@ -116,6 +116,18 @@ class SelectionUI(Gtk.Box):
         reset_stack_page = False
         group = None
 
+        # Abort the operation if there is a groups which is in the pathbar,
+        # i.e. if it is a parent of the current view.
+        for group_row in self.groups_selected:
+            group_uuid = group_row.get_uuid()
+            group = self.unlocked_database.database_manager.get_group(group_uuid)
+            if self.unlocked_database.database_manager.parent_checker(
+                    self.unlocked_database.current_element,
+                    group
+            ):
+                self.unlocked_database.window.notify(_("Operation aborted: Deleting currently active group"))
+                return
+
         for entry_row in self.entries_selected:
             entry = self.unlocked_database.database_manager.get_entry_object_from_uuid(entry_row.get_uuid())
             self.unlocked_database.database_manager.delete_from_database(entry)
@@ -126,9 +138,6 @@ class SelectionUI(Gtk.Box):
         for group_row in self.groups_selected:
             group = self.unlocked_database.database_manager.get_group(group_row.get_uuid())
             self.unlocked_database.database_manager.delete_from_database(group)
-            # If the deleted group is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(group_row.get_uuid()) is True:
-                rebuild_pathbar = True
 
             group_uuid = group.uuid
             current_uuid = self.unlocked_database.current_element.uuid

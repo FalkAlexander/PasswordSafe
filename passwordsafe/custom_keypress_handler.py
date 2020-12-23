@@ -6,8 +6,6 @@ import typing
 from gi.repository import Gdk, Gtk
 
 import passwordsafe.pathbar_button
-from passwordsafe.entry_row import EntryRow
-from passwordsafe.group_row import GroupRow
 
 if typing.TYPE_CHECKING:
     from passwordsafe.main_window import MainWindow
@@ -71,20 +69,6 @@ class CustomKeypressHandler:
                     if keyval_name == "z":
                         textbuffer.logic.do_undo()
                         return Gdk.EVENT_PROPAGATE
-        # Handle Return on EntryRow and GroupRow
-        elif eventkey.keyval == Gdk.KEY_Return:
-            focused_entry = self.unlocked_database.window.get_focus()
-            unlocked_db = self.unlocked_database
-            if isinstance(focused_entry, EntryRow):
-                entry = unlocked_db.database_manager.get_entry_object_from_uuid(
-                    focused_entry.get_uuid())
-                unlocked_db.show_element(entry)
-                return Gdk.EVENT_PROPAGATE
-            if isinstance(focused_entry, GroupRow):
-                entry = unlocked_db.database_manager.get_group(
-                    focused_entry.get_uuid())
-                unlocked_db.show_element(entry)
-                return Gdk.EVENT_PROPAGATE
         elif (not scrolled_page.edit_page
               # MOD1 usually corresponds to Alt
               and eventkey.state & Gdk.ModifierType.MOD1_MASK == 0

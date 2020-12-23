@@ -62,29 +62,19 @@ class GroupRow(Gtk.ListBoxRow):
         self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
 
     def _on_group_row_button_pressed(
-            self, gesture: Gtk.GestureMultiPress, n_press: int, event_x: float,
-            event_y: float) -> bool:
-        # pylint: disable=unused-argument
+            self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,
+            _event_y: float) -> None:
         # pylint: disable=too-many-arguments
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()
 
-        button: int = gesture.get_current_button()
-        if button == 1:
-            group = db_view.database_manager.get_group(self.get_uuid())
-            db_view.show_element(group)
-            return True
-
-        if (button == 3
-                and not db_view.props.search_active):
+        if not db_view.props.search_active:
             if db_view.props.selection_mode:
                 active = self.selection_checkbox.props.active
                 self.selection_checkbox.props.active = not active
             else:
                 db_view.props.selection_mode = True
                 self.selection_checkbox.props.active = True
-
-        return True
 
     def get_uuid(self):
         return self.group_uuid

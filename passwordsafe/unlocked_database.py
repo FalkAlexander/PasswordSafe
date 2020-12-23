@@ -447,6 +447,23 @@ class UnlockedDatabase(GObject.GObject):
 
         if list_box_row.get_name() == "LoadMoreRow":
             self.search.on_load_more_row_clicked(list_box_row)
+        else:
+            if self.props.search_active:
+                self.props.search_active = False
+
+            if list_box_row.type == "GroupRow":
+                uuid = self.database_manager.get_group(
+                    list_box_row.get_uuid())
+            else:
+                if self.selection_mode:
+                    active = list_box_row.selection_checkbox.props.active
+                    list_box_row.selection_checkbox.props.active = not active
+                    return
+
+                uuid = self.database_manager.get_entry_object_from_uuid(
+                    list_box_row.get_uuid())
+
+            self.show_element(uuid)
 
     def save_safe(self):
         self.start_database_lock_timer()

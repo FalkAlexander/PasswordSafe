@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from gi.repository import Gtk, GLib
-import threading
 
 REVEAL_TIME = 3.0
 
@@ -10,6 +9,7 @@ class Notification(Gtk.Revealer):
 
     __gtype_name__ = "Notification"
 
+    event_id = None
     label = Gtk.Template.Child()
 
     def __init__(self):
@@ -17,10 +17,14 @@ class Notification(Gtk.Revealer):
 
     def notify(self, notification: str) -> None:
         self.label.set_label(notification)
+        if self.event_id is not None:
+            GLib.source_remove(self.event_id)
+            self.event_id = None
+
         self.set_reveal_child(True)
-        reveal_timer = threading.Timer(
-            REVEAL_TIME, GLib.idle_add, args=[self.__hide_notification])
-        reveal_timer.start()
+        self.event_id = GLib.timeout_add_seconds(
+            REVEAL_TIME, self.__hide_notification)
 
     def __hide_notification(self) -> None:
+        self.event_id = None
         self.set_reveal_child(False)

@@ -51,7 +51,7 @@ class CustomKeypressHandler:
 
         # Handle undo and redo on entries.
         elif (scrolled_page.edit_page
-              and eventkey.state == Gdk.ModifierType.CONTROL_MASK):
+              and eventkey.state & Gdk.ModifierType.CONTROL_MASK == Gdk.ModifierType.CONTROL_MASK):
             keyval_name = Gdk.keyval_name(eventkey.keyval)
             if isinstance(window.get_focus(), Gtk.TextView):
                 textbuffer = window.get_focus().get_buffer()
@@ -87,7 +87,7 @@ class CustomKeypressHandler:
                 return Gdk.EVENT_PROPAGATE
         elif (not scrolled_page.edit_page
               # MOD1 usually corresponds to Alt
-              and not eventkey.state == Gdk.ModifierType.MOD1_MASK
+              and eventkey.state & Gdk.ModifierType.MOD1_MASK == 0
               and eventkey.string.isalnum()):
             self.unlocked_database.props.search_active = True
 

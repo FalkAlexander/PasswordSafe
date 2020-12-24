@@ -5,7 +5,7 @@ import typing
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -60,6 +60,12 @@ class GroupRow(Gtk.ListBoxRow):
         # Edit Button
         self.edit_button = builder.get_object("group_edit_button")
         self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
+        self.unlocked_database.bind_property(
+            "selection_mode",
+            self.edit_button,
+            "visible",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
+        )
 
     def _on_group_row_button_pressed(
             self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,

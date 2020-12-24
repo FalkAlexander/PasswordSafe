@@ -76,8 +76,6 @@ class SelectionUI(Gtk.Box):
                 for row in list_box:
                     if hasattr(row, "selection_checkbox"):
                         row.selection_checkbox.show()
-                    if hasattr(row, "edit_button"):
-                        row.edit_button.hide()
 
     def _exit_selection_mode(self):
         for stack_page in self.unlocked_database.get_pages():
@@ -88,8 +86,6 @@ class SelectionUI(Gtk.Box):
                     if hasattr(row, "selection_checkbox"):
                         row.selection_checkbox.hide()
                         row.selection_checkbox.set_active(False)
-                    if hasattr(row, "edit_button") is True:
-                        row.edit_button.show_all()
 
         self.cut_mode = True
 

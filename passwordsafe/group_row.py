@@ -60,6 +60,11 @@ class GroupRow(Gtk.ListBoxRow):
             "visible",
             GObject.BindingFlags.SYNC_CREATE,
         )
+        self.unlocked_database.connect(
+            "notify::selection-mode",
+            self._on_selection_mode_change,
+            self.selection_checkbox,
+        )
 
         # Edit Button
         self.edit_button = builder.get_object("group_edit_button")
@@ -70,6 +75,15 @@ class GroupRow(Gtk.ListBoxRow):
             "visible",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
         )
+
+    def _on_selection_mode_change(
+        self,
+        unlocked_db: UnlockedDatabase,
+        _value: GObject.ParamSpecBoolean,
+        checkbox: Gtk.CheckBox,
+    ) -> None:
+        if not unlocked_db.props.selection_mode:
+            checkbox.set_active(False)
 
     def _on_group_row_button_pressed(
             self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,

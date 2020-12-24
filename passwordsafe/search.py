@@ -79,15 +79,14 @@ class Search:
 
     # Search headerbar
     def _on_search_active(
-            self, db_view: UnlockedDatabase,
-            value: GObject.ParamSpecBoolean) -> None:
+        self, _db_view: UnlockedDatabase, _value: GObject.ParamSpecBoolean
+    ) -> None:
         """Update the view when the search view is activated or
         deactivated.
 
         :param UnlockedDatabase db_view: unlocked_database view
         :param GObject.ParamSpecBoolean value: new value as GParamSpec
         """
-        # pylint: disable=unused-argument
         search_active = self.unlocked_database.props.search_active
 
         if search_active:

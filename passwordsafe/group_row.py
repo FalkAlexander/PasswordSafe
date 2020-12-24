@@ -5,7 +5,7 @@ import typing
 from gettext import gettext as _
 from typing import Optional
 
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -54,12 +54,36 @@ class GroupRow(Gtk.ListBoxRow):
         # Selection Mode Checkboxes
         self.selection_checkbox = builder.get_object("selection_checkbox_group")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
-        if self.unlocked_database.props.selection_mode:
-            self.selection_checkbox.show()
+        self.unlocked_database.bind_property(
+            "selection_mode",
+            self.selection_checkbox,
+            "visible",
+            GObject.BindingFlags.SYNC_CREATE,
+        )
+        self.unlocked_database.connect(
+            "notify::selection-mode",
+            self._on_selection_mode_change,
+            self.selection_checkbox,
+        )
 
         # Edit Button
         self.edit_button = builder.get_object("group_edit_button")
         self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
+        self.unlocked_database.bind_property(
+            "selection_mode",
+            self.edit_button,
+            "visible",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
+        )
+
+    def _on_selection_mode_change(
+        self,
+        unlocked_db: UnlockedDatabase,
+        _value: GObject.ParamSpecBoolean,
+        checkbox: Gtk.CheckBox,
+    ) -> None:
+        if not unlocked_db.props.selection_mode:
+            checkbox.set_active(False)
 
     def _on_group_row_button_pressed(
             self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,

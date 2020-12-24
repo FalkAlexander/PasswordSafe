@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-23 20:17+0000\n"
-"PO-Revision-Date: 2020-12-24 09:24+0200\n"
+"POT-Creation-Date: 2020-12-24 12:00+0000\n"
+"PO-Revision-Date: 2020-12-24 15:31+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1150,7 +1150,6 @@ msgstr ""
 "<b>імпортуйте</b> нове сховище Keepass."
 
 #: passwordsafe/create_database.py:114
-#| msgid "Password Length"
 msgid "Passwords do not match"
 msgstr "Паролі не збігаються"
 
@@ -1228,11 +1227,11 @@ msgstr "Не вказано заголовок"
 msgid "No username specified"
 msgstr "Не вказано імені користувача"
 
-#: passwordsafe/entry_row.py:134
+#: passwordsafe/entry_row.py:120
 msgid "Password copied to clipboard"
 msgstr "Пароль скопійовано до буфера обміну"
 
-#: passwordsafe/entry_row.py:140
+#: passwordsafe/entry_row.py:126
 msgid "Username copied to clipboard"
 msgstr "Ім'я користувача скопійовано до буфера обміну"
 
@@ -1273,15 +1272,19 @@ msgstr "Виберіть розташування сейфа Keepass"
 msgid "_Create"
 msgstr "С_творити"
 
-#: passwordsafe/selection_ui.py:153
+#: passwordsafe/selection_ui.py:128
+msgid "Operation aborted: Deleting currently active group"
+msgstr "Дію перервано: вилучення поточної активної групи"
+
+#: passwordsafe/selection_ui.py:162
 msgid "Deletion completed"
 msgstr "Вилучення завершено"
 
-#: passwordsafe/selection_ui.py:235
+#: passwordsafe/selection_ui.py:249
 msgid "Move completed"
 msgstr "Пересування завершено"
 
-#: passwordsafe/selection_ui.py:237
+#: passwordsafe/selection_ui.py:251
 msgid "Skipped moving group into itself"
 msgstr "Пропущено пересування групи до самої себе"
 
@@ -1302,26 +1305,25 @@ msgstr "Не вдалося відімкнути сейф"
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
-#: passwordsafe/unlocked_database.py:457
+#: passwordsafe/unlocked_database.py:474
 msgid "Safe saved"
 msgstr "Сейф збережено"
 
-#: passwordsafe/unlocked_database.py:461
+#: passwordsafe/unlocked_database.py:478
 msgid "Please wait. Another save is running."
 msgstr "Будь ласка, зачекайте. Виконуємо зберігання інших даних."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:465
+#: passwordsafe/unlocked_database.py:482
 msgid "No changes made"
 msgstr "Не було внесено жодних змін"
 
-#: passwordsafe/unlocked_database.py:551
+#: passwordsafe/unlocked_database.py:568
 msgid "Copied to clipboard"
 msgstr "Скопійовано до буфера обміну"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:674
-#| msgid "Keepass safe locked due to inactivity"
+#: passwordsafe/unlocked_database.py:691
 msgid "Safe locked due to inactivity"
 msgstr "Сейф замкнено через неактивність"
 

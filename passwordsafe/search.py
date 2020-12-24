@@ -4,7 +4,7 @@ from __future__ import annotations
 import threading
 import typing
 
-from typing import List, Union
+from typing import List, Union, Optional
 from gi.repository import GLib, GObject, Gtk, Handy
 
 from passwordsafe.entry_row import EntryRow
@@ -34,7 +34,7 @@ class Search:
     def __init__(self, unlocked_database: UnlockedDatabase) -> None:
         self.unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
-        self._search_changed_id: int = 0
+        self._search_changed_id: Optional[int] = None
 
         self._builder: Gtk.Builder = Gtk.Builder()
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
@@ -101,8 +101,10 @@ class Search:
         else:
             self._clear_view()
 
-            self._search_entry.disconnect(self._search_changed_id)
-            self._search_changed_id = 0
+            if self._search_changed_id is not None:
+                self._search_entry.disconnect(self._search_changed_id)
+                self._search_changed_id = None
+
             self._search_entry.props.text = ""
             self._key_pressed = False
 

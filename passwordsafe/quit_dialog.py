@@ -19,22 +19,30 @@ class QuitDialog(Gtk.MessageDialog):
 
         self.set_transient_for(window)
 
-        for db in unsaved_databases_list:  # pylint: disable=C0103
+        for database in unsaved_databases_list:  # pylint: disable=C0103
             unsaved_database_row = Gtk.ListBoxRow()
             check_button = Gtk.CheckButton()
-            if "/home/" in db.database_manager.database_path:
-                check_button.set_label("~/" + os.path.relpath(db.database_manager.database_path))
+            if "/home/" in database.database_manager.database_path:
+                check_button.set_label(
+                    "~/" + os.path.relpath(database.database_manager.database_path)
+                )
             else:
-                check_button.set_label(Gio.File.new_for_path(db.database_manager.database_path).get_uri())
-            check_button.connect("toggled", self.on_save_check_button_toggled, [db, window])
+                check_button.set_label(
+                    Gio.File.new_for_path(
+                        database.database_manager.database_path
+                    ).get_uri()
+                )
+            check_button.connect(
+                "toggled", self.on_save_check_button_toggled, [database, window]
+            )
             check_button.set_active(True)
             unsaved_database_row.add(check_button)
             unsaved_database_row.show_all()
             self.unsaved_databases_list_box.add(unsaved_database_row)
 
     def on_save_check_button_toggled(self, check_button, args):  # pylint: disable=C0103
-        db, window = args
+        database, window = args
         if check_button.get_active():
-            window.databases_to_save.append(db)
+            window.databases_to_save.append(database)
         else:
-            window.databases_to_save.remove(db)
+            window.databases_to_save.remove(database)

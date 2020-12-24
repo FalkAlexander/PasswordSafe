@@ -12,9 +12,6 @@ class Notification(Gtk.Revealer):
     event_id = None
     label = Gtk.Template.Child()
 
-    def __init__(self):
-        super().__init__()
-
     def notify(self, notification: str) -> None:
         self.label.set_label(notification)
         if self.event_id is not None:

@@ -174,6 +174,11 @@ class SelectionUI(Gtk.Box):
             for entry_row in self.entries_selected:
                 entry_row.hide()
 
+            # Do not allow to delete the entries or rows
+            # that were selected to be cut.
+            if self.entries_selected or self.groups_selected:
+                self._delete_button.set_sensitive(False)
+
             rebuild = False
             for button in self.unlocked_database.pathbar:
                 if button.get_name() == "PathbarButtonDynamic" and isinstance(

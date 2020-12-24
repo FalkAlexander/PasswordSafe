@@ -280,7 +280,9 @@ class SelectionUI(Gtk.Box):
 
         :param EntryRow group: entry_row to remove
         """
-        self.entries_selected.remove(entry)
+        if entry in self.entries_selected:
+            self.entries_selected.remove(entry)
+
         self._update_selection()
 
     def add_group(self, group: GroupRow) -> None:

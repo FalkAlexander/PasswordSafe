@@ -62,7 +62,7 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         self._set_password_level_bar()
 
     @Gtk.Template.Callback()
-    def _on_copy_password_button_clicked(self, widget: Gtk.ToggleButton) -> None:
+    def _on_copy_password_button_clicked(self, _widget: Gtk.ToggleButton) -> None:
         self._unlocked_database.send_to_clipboard(self._password_value_entry.props.text)
 
     @Gtk.Template.Callback()

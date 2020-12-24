@@ -4,7 +4,7 @@ import typing
 from gettext import gettext as _
 from uuid import UUID
 from typing import Optional
-from gi.repository import Gtk
+from gi.repository import GObject, Gtk
 
 import passwordsafe.config_manager
 import passwordsafe.icon
@@ -87,8 +87,12 @@ class EntryRow(Gtk.ListBoxRow):
         # Selection Mode Checkboxes
         self.selection_checkbox = self.builder.get_object("selection_checkbox_entry")
         self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
-        if self.unlocked_database.props.selection_mode:
-            self.selection_checkbox.show()
+        self.unlocked_database.bind_property(
+            "selection_mode",
+            self.selection_checkbox,
+            "visible",
+            GObject.BindingFlags.SYNC_CREATE,
+        )
 
     def _on_entry_row_button_pressed(
             self, _gesture: Gtk.GestureMultiPress, _n_press: int, _event_x: float,

@@ -70,23 +70,7 @@ class SelectionUI(Gtk.Box):
         self._delete_button.set_sensitive(False)
         self._cut_paste_button.set_sensitive(False)
 
-        for stack_page in self.unlocked_database.get_pages():
-            if not stack_page.check_is_edit_page():
-                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
-                for row in list_box:
-                    if hasattr(row, "selection_checkbox"):
-                        row.selection_checkbox.show()
-
     def _exit_selection_mode(self):
-        for stack_page in self.unlocked_database.get_pages():
-            if stack_page.check_is_edit_page() is False:
-                list_box = stack_page.get_children()[0].get_children()[0].get_children()[0].get_children()[0]
-                for row in list_box:
-                    row.show()
-                    if hasattr(row, "selection_checkbox"):
-                        row.selection_checkbox.hide()
-                        row.selection_checkbox.set_active(False)
-
         self.cut_mode = True
 
         for element in self.unlocked_database.pathbar.get_children():

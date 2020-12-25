@@ -407,6 +407,8 @@ class UnlockDatabase:
 
         if Path(self.database_filepath).suffix == ".kdb":
             self._open_database_failure()
+            # NOTE kdb is a an older format for Keepass databases.
+            self.window.notify(_("The kdb format is not supported"))
             return
 
         if self._unlock_method == UnlockMethod.COMPOSITE:

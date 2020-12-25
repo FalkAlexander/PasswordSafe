@@ -5,7 +5,7 @@ import typing
 from typing import Union
 from uuid import UUID
 
-from gi.repository import Gtk
+from gi.repository import Gio, Gtk
 from pykeepass.group import Group
 
 from passwordsafe.pathbar_button import PathbarButton
@@ -24,6 +24,8 @@ class Pathbar(Gtk.Box):
     path = NotImplemented
     builder = NotImplemented
     home_button = NotImplemented
+
+    buttons = Gio.ListStore.new(Gtk.Button)
 
     def __init__(self, unlocked_database, dbm):
         super().__init__()
@@ -51,6 +53,7 @@ class Pathbar(Gtk.Box):
         self.home_button.connect("clicked", self.on_home_button_clicked)
         self.set_active_style(self.home_button)
         self.add(self.home_button)
+        self.buttons.append(self.home_button)
 
         separator_label = PathbarSeparator(self.unlocked_database)
         self.add(separator_label)
@@ -60,6 +63,7 @@ class Pathbar(Gtk.Box):
         self.home_button.connect("clicked", self.on_home_button_clicked)
 
         self.add(self.home_button)
+        self.buttons.append(self.home_button)
 
     def add_separator_label(self):
         separator_label = PathbarSeparator(self.unlocked_database)
@@ -73,22 +77,20 @@ class Pathbar(Gtk.Box):
         self.clear_pathbar()
         parent_group = element.parentgroup
 
-        buttons = []
-
-        self.add_home_button()
-        self.add_separator_label()
+        self.buttons.append(self.home_button)
 
         while not parent_group.is_root_group:
-            buttons.insert(0, self.create_pathbar_button(parent_group))
+            self.buttons.insert(1, self.create_pathbar_button(parent_group))
             parent_group = parent_group.parentgroup
 
-        for button in buttons:
+        for button in self.buttons:
             self.add(button)
             self.add_separator_label()
 
         pathbar_button_active = self.create_pathbar_button(element)
         self.set_active_style(pathbar_button_active)
         self.add(pathbar_button_active)
+        self.buttons.append(pathbar_button_active)
 
         self.show_all()
 
@@ -115,6 +117,7 @@ class Pathbar(Gtk.Box):
 
     def clear_pathbar(self):
         self.remove_active_style()
+        self.buttons.remove_all()
         for widget in self.get_children():
             self.remove(widget)
 
@@ -123,7 +126,7 @@ class Pathbar(Gtk.Box):
         context.add_class('PathbarButtonActive')
 
     def remove_active_style(self):
-        for pathbar_button in self.get_children():
+        for pathbar_button in self.buttons:
             context = pathbar_button.get_style_context()
             context.remove_class('PathbarButtonActive')
 
@@ -240,9 +243,8 @@ class Pathbar(Gtk.Box):
 
     def uuid_in_pathbar(self, uuid: UUID) -> bool:
         """Return True if the uuid entry is visible in the bar"""
-        for button in self.get_children():
-            if button.get_name() == "PathbarButtonDynamic" and \
-               button.element.uuid == uuid:
+        for button in self.buttons:
+            if button.element.uuid == uuid:
                 return True
         return False
 

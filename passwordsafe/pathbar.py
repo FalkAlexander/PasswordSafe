@@ -11,7 +11,10 @@ from pykeepass.group import Group
 from passwordsafe.pathbar_button import PathbarButton
 
 if typing.TYPE_CHECKING:
+    from gi.repository import GObject
+
     from passwordsafe.safe_entry import SafeEntry
+    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class Pathbar(Gtk.Box):
@@ -49,14 +52,7 @@ class Pathbar(Gtk.Box):
         self.set_active_style(self.home_button)
         self.pack_start(self.home_button, True, True, 0)
 
-        seperator_label = Gtk.Label()
-        seperator_label.set_text("/")
-        seperator_label.set_name("SeperatorLabel")
-        context = seperator_label.get_style_context()
-        if not self.unlocked_database.props.selection_mode:
-            context.add_class('SeperatorLabel')
-        else:
-            context.add_class('SeperatorLabelSelectedMode')
+        seperator_label = PathbarSeparator(self.unlocked_database)
         self.pack_end(seperator_label, True, True, 0)
 
     def add_home_button(self):
@@ -66,14 +62,7 @@ class Pathbar(Gtk.Box):
         self.pack_end(self.home_button, True, True, 0)
 
     def add_seperator_label(self):
-        seperator_label = Gtk.Label()
-        seperator_label.set_text("/")
-        seperator_label.set_name("SeperatorLabel")
-        context = seperator_label.get_style_context()
-        if not self.unlocked_database.props.selection_mode:
-            context.add_class('SeperatorLabel')
-        else:
-            context.add_class('SeperatorLabelSelectedMode')
+        seperator_label = PathbarSeparator(self.unlocked_database)
         self.pack_end(seperator_label, True, True, 0)
 
     #
@@ -254,3 +243,32 @@ class Pathbar(Gtk.Box):
                button.element.uuid == uuid:
                 return True
         return False
+
+
+class PathbarSeparator(Gtk.Label):
+    def __init__(self, unlocked_database):
+        super().__init__()
+
+        self.unlocked_database = unlocked_database
+
+        self.set_text("/")
+        self.set_name("SeperatorLabel")
+
+        context = self.get_style_context()
+        if not self.unlocked_database.props.selection_mode:
+            context.add_class("SeperatorLabel")
+        else:
+            context.add_class("SeperatorLabelSelectedMode")
+
+        self.unlocked_database.connect("notify::selection-mode", self._on_selection_mode_changed)
+
+    def _on_selection_mode_changed(
+        self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpecBoolean
+    ) -> None:
+        context = self.get_style_context()
+        if unlocked_database.props.selection_mode:
+            context.add_class("SeperatorLabelSelectedMode")
+            context.remove_class("SeperatorLabel")
+        else:
+            context.add_class("SeperatorLabel")
+            context.remove_class("SeperatorLabelSelectedMode")

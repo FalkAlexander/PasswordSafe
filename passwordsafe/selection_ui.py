@@ -72,13 +72,6 @@ class SelectionUI(Gtk.Box):
 
     def _exit_selection_mode(self):
         self.cut_mode = True
-
-        for element in self.unlocked_database.pathbar.get_children():
-            if element.get_name() == "SeperatorLabel":
-                el_context = element.get_style_context()
-                el_context.remove_class('SeperatorLabelSelectedMode')
-                el_context.add_class('SeperatorLabel')
-
         self.unlocked_database.show_page_of_new_directory(False, False)
 
     #

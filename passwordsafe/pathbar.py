@@ -50,20 +50,20 @@ class Pathbar(Gtk.Box):
         self.home_button = self.builder.get_object("home_button")
         self.home_button.connect("clicked", self.on_home_button_clicked)
         self.set_active_style(self.home_button)
-        self.pack_start(self.home_button, True, True, 0)
+        self.add(self.home_button)
 
         seperator_label = PathbarSeparator(self.unlocked_database)
-        self.pack_end(seperator_label, True, True, 0)
+        self.add(seperator_label)
 
     def add_home_button(self):
         self.home_button = self.builder.get_object("home_button")
         self.home_button.connect("clicked", self.on_home_button_clicked)
 
-        self.pack_end(self.home_button, True, True, 0)
+        self.add(self.home_button)
 
     def add_seperator_label(self):
         seperator_label = PathbarSeparator(self.unlocked_database)
-        self.pack_end(seperator_label, True, True, 0)
+        self.add(seperator_label)
 
     #
     # Pathbar Modifications
@@ -71,23 +71,25 @@ class Pathbar(Gtk.Box):
     def add_pathbar_button_to_pathbar(
             self, element: Union[SafeEntry, Group]) -> None:
         self.clear_pathbar()
-        pathbar_button_active = self.create_pathbar_button(element)
-
-        self.remove_active_style()
-        self.set_active_style(pathbar_button_active)
-        self.pack_end(pathbar_button_active, True, True, 0)
-
-        self.add_seperator_label()
-
         parent_group = element.parentgroup
-        while not parent_group.is_root_group:
-            self.pack_end(
-                self.create_pathbar_button(parent_group),
-                True, True, 0)
-            self.add_seperator_label()
-            parent_group = parent_group.parentgroup
+
+        buttons = []
 
         self.add_home_button()
+        self.add_seperator_label()
+
+        while not parent_group.is_root_group:
+            buttons.insert(0, self.create_pathbar_button(parent_group))
+            parent_group = parent_group.parentgroup
+
+        for button in buttons:
+            self.add(button)
+            self.add_seperator_label()
+
+        pathbar_button_active = self.create_pathbar_button(element)
+        self.set_active_style(pathbar_button_active)
+        self.add(pathbar_button_active)
+
         self.show_all()
 
     def create_pathbar_button(self, element: Union[SafeEntry, Group]) -> PathbarButton:

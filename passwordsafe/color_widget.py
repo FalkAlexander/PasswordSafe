@@ -16,6 +16,7 @@ class Color(Enum):
     NONE = "NoneColorButton"
     BLUE = "BlueColorButton"
     GREEN = "GreenColorButton"
+    YELLOW = "YellowColorButton"
     ORANGE = "OrangeColorButton"
     RED = "RedColorButton"
     PURPLE = "PurpleColorButton"

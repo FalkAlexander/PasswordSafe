@@ -52,8 +52,8 @@ class Pathbar(Gtk.Box):
         self.set_active_style(self.home_button)
         self.add(self.home_button)
 
-        seperator_label = PathbarSeparator(self.unlocked_database)
-        self.add(seperator_label)
+        separator_label = PathbarSeparator(self.unlocked_database)
+        self.add(separator_label)
 
     def add_home_button(self):
         self.home_button = self.builder.get_object("home_button")
@@ -61,9 +61,9 @@ class Pathbar(Gtk.Box):
 
         self.add(self.home_button)
 
-    def add_seperator_label(self):
-        seperator_label = PathbarSeparator(self.unlocked_database)
-        self.add(seperator_label)
+    def add_separator_label(self):
+        separator_label = PathbarSeparator(self.unlocked_database)
+        self.add(separator_label)
 
     #
     # Pathbar Modifications
@@ -76,7 +76,7 @@ class Pathbar(Gtk.Box):
         buttons = []
 
         self.add_home_button()
-        self.add_seperator_label()
+        self.add_separator_label()
 
         while not parent_group.is_root_group:
             buttons.insert(0, self.create_pathbar_button(parent_group))
@@ -84,7 +84,7 @@ class Pathbar(Gtk.Box):
 
         for button in buttons:
             self.add(button)
-            self.add_seperator_label()
+            self.add_separator_label()
 
         pathbar_button_active = self.create_pathbar_button(element)
         self.set_active_style(pathbar_button_active)
@@ -254,13 +254,13 @@ class PathbarSeparator(Gtk.Label):
         self.unlocked_database = unlocked_database
 
         self.set_text("/")
-        self.set_name("SeperatorLabel")
+        self.set_name("SeparatorLabel")
 
         context = self.get_style_context()
         if not self.unlocked_database.props.selection_mode:
-            context.add_class("SeperatorLabel")
+            context.add_class("SeparatorLabel")
         else:
-            context.add_class("SeperatorLabelSelectedMode")
+            context.add_class("SeparatorLabelSelectedMode")
 
         self.unlocked_database.connect("notify::selection-mode", self._on_selection_mode_changed)
 
@@ -269,8 +269,8 @@ class PathbarSeparator(Gtk.Label):
     ) -> None:
         context = self.get_style_context()
         if unlocked_database.props.selection_mode:
-            context.add_class("SeperatorLabelSelectedMode")
-            context.remove_class("SeperatorLabel")
+            context.add_class("SeparatorLabelSelectedMode")
+            context.remove_class("SeparatorLabel")
         else:
-            context.add_class("SeperatorLabel")
-            context.remove_class("SeperatorLabelSelectedMode")
+            context.add_class("SeparatorLabel")
+            context.remove_class("SeparatorLabelSelectedMode")

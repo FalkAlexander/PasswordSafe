@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-24 12:00+0000\n"
-"PO-Revision-Date: 2020-12-24 15:31+0200\n"
+"POT-Creation-Date: 2020-12-25 14:16+0000\n"
+"PO-Revision-Date: 2020-12-25 21:44+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1227,11 +1227,11 @@ msgstr "Не вказано заголовок"
 msgid "No username specified"
 msgstr "Не вказано імені користувача"
 
-#: passwordsafe/entry_row.py:120
+#: passwordsafe/entry_row.py:138
 msgid "Password copied to clipboard"
 msgstr "Пароль скопійовано до буфера обміну"
 
-#: passwordsafe/entry_row.py:126
+#: passwordsafe/entry_row.py:144
 msgid "Username copied to clipboard"
 msgstr "Ім'я користувача скопійовано до буфера обміну"
 
@@ -1272,19 +1272,19 @@ msgstr "Виберіть розташування сейфа Keepass"
 msgid "_Create"
 msgstr "С_творити"
 
-#: passwordsafe/selection_ui.py:128
+#: passwordsafe/selection_ui.py:108
 msgid "Operation aborted: Deleting currently active group"
 msgstr "Дію перервано: вилучення поточної активної групи"
 
-#: passwordsafe/selection_ui.py:162
+#: passwordsafe/selection_ui.py:142
 msgid "Deletion completed"
 msgstr "Вилучення завершено"
 
-#: passwordsafe/selection_ui.py:249
+#: passwordsafe/selection_ui.py:229
 msgid "Move completed"
 msgstr "Пересування завершено"
 
-#: passwordsafe/selection_ui.py:251
+#: passwordsafe/selection_ui.py:231
 msgid "Skipped moving group into itself"
 msgstr "Пропущено пересування групи до самої себе"
 
@@ -1296,12 +1296,18 @@ msgstr "Виберіть файл ключа"
 msgid "Choose Keyfile"
 msgstr "Виберіть файл ключа"
 
-#: passwordsafe/unlock_database.py:497 passwordsafe/unlock_database.py:517
-#: passwordsafe/unlock_database.py:531
+#. NOTE kdb is a an older format for Keepass databases.
+#: passwordsafe/unlock_database.py:411
+#| msgid "File type {} ({}) is not supported."
+msgid "The kdb format is not supported"
+msgstr "Підтримки формату kdb не передбачено"
+
+#: passwordsafe/unlock_database.py:499 passwordsafe/unlock_database.py:519
+#: passwordsafe/unlock_database.py:533
 msgid "Failed to unlock safe"
 msgstr "Не вдалося відімкнути сейф"
 
-#: passwordsafe/unlock_database.py:526
+#: passwordsafe/unlock_database.py:528
 msgid "Try again"
 msgstr "Спробувати ще раз"
 
@@ -1329,9 +1335,6 @@ msgstr "Сейф замкнено через неактивність"
 
 #~ msgid "Unable to open file \"{}\"."
 #~ msgstr "Не вдалося відкрити файл «{}»."
-
-#~ msgid "File type {} ({}) is not supported."
-#~ msgstr "Підтримки типів файлів {} ({}) не передбачено."
 
 #~ msgid "%s locked"
 #~ msgstr "%s замкнено"

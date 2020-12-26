@@ -27,8 +27,9 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="min-children-per-line">4</property>
-            <property name="row-spacing">4</property>
-            <property name="column-spacing">4</property>
+            <property name="max-children-per-line">8</property>
+            <property name="row-spacing">12</property>
+            <property name="column-spacing">6</property>
             <property name="selection-mode">single</property>
             <signal name="child-activated" handler="_on_color_activated" swapped="no"/>
           </object>

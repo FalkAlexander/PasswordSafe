@@ -16,6 +16,7 @@ class Color(Enum):
     NONE = "NoneColorButton"
     BLUE = "BlueColorButton"
     GREEN = "GreenColorButton"
+    YELLOW = "YellowColorButton"
     ORANGE = "OrangeColorButton"
     RED = "RedColorButton"
     PURPLE = "PurpleColorButton"
@@ -43,7 +44,7 @@ class ColorButton(Gtk.FlowBoxChild):  # pylint: disable=too-few-public-methods
         self._color: Color = color
         self.get_style_context().add_class(self._color.value)
 
-        if self._color == Color.NONE:
+        if self._color in [Color.NONE, Color.YELLOW]:
             image_class: str = "DarkIcon"
         else:
             image_class = "BrightIcon"

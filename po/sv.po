@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-24 12:00+0000\n"
-"PO-Revision-Date: 2020-12-25 12:18+0100\n"
+"POT-Creation-Date: 2020-12-25 14:16+0000\n"
+"PO-Revision-Date: 2020-12-26 21:50+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -1223,11 +1223,11 @@ msgstr "Titel inte angiven"
 msgid "No username specified"
 msgstr "Inget användarnamn angivet"
 
-#: passwordsafe/entry_row.py:120
+#: passwordsafe/entry_row.py:138
 msgid "Password copied to clipboard"
 msgstr "Lösenord kopierat till urklipp"
 
-#: passwordsafe/entry_row.py:126
+#: passwordsafe/entry_row.py:144
 msgid "Username copied to clipboard"
 msgstr "Användarnamn kopierat till urklipp"
 
@@ -1267,19 +1267,19 @@ msgstr "Välj plats för Keepass-kassaskåp"
 msgid "_Create"
 msgstr "S_kapa"
 
-#: passwordsafe/selection_ui.py:128
+#: passwordsafe/selection_ui.py:108
 msgid "Operation aborted: Deleting currently active group"
 msgstr "Åtgärden avbröts: tar bort för närvarande aktiv grupp"
 
-#: passwordsafe/selection_ui.py:162
+#: passwordsafe/selection_ui.py:142
 msgid "Deletion completed"
 msgstr "Borttagning slutförd"
 
-#: passwordsafe/selection_ui.py:249
+#: passwordsafe/selection_ui.py:229
 msgid "Move completed"
 msgstr "Flytt slutförd"
 
-#: passwordsafe/selection_ui.py:251
+#: passwordsafe/selection_ui.py:231
 msgid "Skipped moving group into itself"
 msgstr "Hoppade över att flytta in grupp i sig själv"
 
@@ -1291,12 +1291,17 @@ msgstr "Välj en nyckelfil"
 msgid "Choose Keyfile"
 msgstr "Välj nyckelfil"
 
-#: passwordsafe/unlock_database.py:497 passwordsafe/unlock_database.py:517
-#: passwordsafe/unlock_database.py:531
+#. NOTE kdb is a an older format for Keepass databases.
+#: passwordsafe/unlock_database.py:411
+msgid "The kdb format is not supported"
+msgstr "kdb-formatet stöds inte"
+
+#: passwordsafe/unlock_database.py:499 passwordsafe/unlock_database.py:519
+#: passwordsafe/unlock_database.py:533
 msgid "Failed to unlock safe"
 msgstr "Misslyckades med att låsa upp kassaskåp"
 
-#: passwordsafe/unlock_database.py:526
+#: passwordsafe/unlock_database.py:528
 msgid "Try again"
 msgstr "Försök igen"
 
@@ -1333,9 +1338,6 @@ msgstr "Kassaskåp låstes på grund av inaktivitet"
 
 #~ msgid "Unable to open file \"{}\"."
 #~ msgstr "Kan inte öppna filen ”{}”."
-
-#~ msgid "File type {} ({}) is not supported."
-#~ msgstr "Filtypen {} ({}) stöds inte."
 
 #~ msgid "%s locked"
 #~ msgstr "%s låstes"

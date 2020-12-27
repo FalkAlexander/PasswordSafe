@@ -25,7 +25,7 @@ class Pathbar(Gtk.Box):
     builder = NotImplemented
     home_button = NotImplemented
 
-    buttons = Gio.ListStore.new(Gtk.Button)
+    buttons = Gio.ListStore.new(PathbarButton)
 
     def __init__(self, unlocked_database, dbm):
         super().__init__()
@@ -48,9 +48,15 @@ class Pathbar(Gtk.Box):
         self.set_halign(Gtk.Align.START)
         self.show_all()
 
+    def new_home_button(self) -> PathbarButton:
+        home_button = PathbarButton(self.database_manager.get_root_group())
+        home_button.connect("clicked", self.on_home_button_clicked)
+        home_button_image = self.builder.get_object("root_button_picture")
+        home_button.add(home_button_image)
+        return home_button
+
     def first_appearance(self):
-        self.home_button = self.builder.get_object("home_button")
-        self.home_button.connect("clicked", self.on_home_button_clicked)
+        self.home_button = self.new_home_button()
         self.set_active_style(self.home_button)
         self.add(self.home_button)
         self.buttons.append(self.home_button)
@@ -59,7 +65,7 @@ class Pathbar(Gtk.Box):
         self.add(separator_label)
 
     def add_home_button(self):
-        self.home_button = self.builder.get_object("home_button")
+        self.home_button = self.new_home_button()
         self.home_button.connect("clicked", self.on_home_button_clicked)
 
         self.add(self.home_button)

@@ -23,6 +23,7 @@ class EntryRow(Gtk.ListBoxRow):
     _entry_name_label = Gtk.Template.Child()
     _entry_username_label = Gtk.Template.Child()
     _entry_box_gesture = Gtk.Template.Child()
+    _long_press_gesture = Gtk.Template.Child()
 
     type = "EntryRow"
 
@@ -53,6 +54,9 @@ class EntryRow(Gtk.ListBoxRow):
         self._on_entry_color_changed(self._safe_entry, None)
 
         self._entry_box_gesture.connect("pressed", self._on_entry_row_button_pressed)
+        self._long_press_gesture.connect(
+            "pressed", self._on_long_press_gesture_pressed
+        )
 
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
@@ -139,3 +143,7 @@ class EntryRow(Gtk.ListBoxRow):
             image_style.add_class("BrightIcon")
         else:
             image_style.add_class("DarkIcon")
+
+    def _on_long_press_gesture_pressed(self, gesture, _x, _y):
+        self.unlocked_database.props.selection_mode = True
+        self.selection_checkbox.props.active = not self.selection_checkbox.props.active

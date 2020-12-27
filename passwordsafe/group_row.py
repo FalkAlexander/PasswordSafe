@@ -21,6 +21,7 @@ class GroupRow(Gtk.ListBoxRow):
     selection_checkbox = Gtk.Template.Child()
     edit_button = Gtk.Template.Child()
     _entry_box_gesture = Gtk.Template.Child()
+    _long_press_gesture = Gtk.Template.Child()
 
     type = "GroupRow"
 
@@ -37,6 +38,8 @@ class GroupRow(Gtk.ListBoxRow):
     def assemble_group_row(self):
         self._entry_box_gesture.connect(
             "pressed", self._on_group_row_button_pressed)
+        self._long_press_gesture.connect(
+            "pressed", self._on_long_press_gesture_pressed)
 
         # # Name Label
         self.safe_group.connect("notify::name", self._on_group_name_changed)
@@ -99,3 +102,7 @@ class GroupRow(Gtk.ListBoxRow):
         else:
             style_context.add_class("italic")
             self.name_label.props.label = _("Title not specified")
+
+    def _on_long_press_gesture_pressed(self, gesture, _x, _y):
+        self.unlocked_database.props.selection_mode = True
+        self.selection_checkbox.props.active = not self.selection_checkbox.props.active

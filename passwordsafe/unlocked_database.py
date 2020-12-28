@@ -4,11 +4,10 @@ from __future__ import annotations
 import logging
 import re
 import threading
-import time
 import typing
 from gettext import gettext as _
 from threading import Timer
-from typing import List, Union
+from typing import List, Optional, Union
 from uuid import UUID
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
@@ -58,7 +57,7 @@ class UnlockedDatabase(GObject.GObject):
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
     database_lock_timer = NotImplemented
-    save_loop = False  # If True, a thread periodically saves the database
+    save_loop: Optional[int] = None  # If int, a thread periodically saves the database
     dbus_subscription_id = NotImplemented
     listbox_insert_thread = NotImplemented
 
@@ -718,7 +717,8 @@ class UnlockedDatabase(GObject.GObject):
 
         # stop the save loop
         if self.save_loop:
-            self.save_loop = False
+            GLib.source_remove(self.save_loop)
+            self.save_loop = None
 
         self.clipboard.clear()
 
@@ -765,16 +765,14 @@ class UnlockedDatabase(GObject.GObject):
             self.database_lock_timer.start()
 
     def start_save_loop(self):
-        self.save_loop = True
-        save_loop_thread = threading.Thread(target=self.threaded_save_loop)
-        save_loop_thread.daemon = True
-        save_loop_thread.start()
+        self.save_loop = GLib.timeout_add_seconds(30, self.threaded_save_loop)
 
-    def threaded_save_loop(self):
-        while self.save_loop is True:
-            if passwordsafe.config_manager.get_save_automatically() is True:
-                self.database_manager.save_database()
-            time.sleep(30)
+    def threaded_save_loop(self) -> bool:
+        """Saves the safe as long as it returns True."""
+        if passwordsafe.config_manager.get_save_automatically() is True:
+            self.database_manager.save_database()
+
+        return True
 
     def reference_to_hex_uuid(self, reference_string):
         return reference_string[9:-1].lower()

@@ -655,7 +655,10 @@ class MainWindow(Gtk.ApplicationWindow):
         action_db = NotImplemented
 
         for db in self.opened_databases:  # pylint: disable=C0103
-            if self.tab_visible(db.parent_widget):
+            if (
+                self.tab_visible(db.parent_widget)
+                and not db.database_manager.props.locked
+            ):
                 action_db = db
 
         return action_db

@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 import sys
 import typing
+from gettext import gettext as _
 from typing import Any, List, Optional
 
 from gi.repository import Gio, GLib, Gtk, Handy
@@ -23,6 +24,7 @@ class Application(Gtk.Application):
     file_list: List[Gio.File] = []
     development_mode = False
     application_id = "org.gnome.PasswordSafe"
+    save_hanlder_id: Optional[int] = None
 
     def __init__(self, *args, **_kwargs):
         app_flags = Gio.ApplicationFlags.HANDLES_OPEN
@@ -160,14 +162,21 @@ class Application(Gtk.Application):
 
         GLib.idle_add(self.quit)
 
+    def _on_save_dialog_save_notification(self, db_manager, value):
+        self.save_hanlder_id = None
+        if value:
+            GLib.idle_add(self.quit)
+        else:
+            self.window.notify(_("Unable to Quit: Could not save Safe"))
+
     def _on_save_dialog_response(self,
                                  dialog: Gtk.Dialog,
                                  response: Gtk.ResponseType,
                                  database: UnlockedDatabase) -> None:
         dialog.close()
         if response == Gtk.ResponseType.YES:  # Save
-            database.database_manager.save_database()
-            GLib.idle_add(self.quit)
+            self.save_handler_id = database.database_manager.connect("save-notification", self._on_save_dialog_save_notification)
+            database.database_manager.save_database(True)
 
         elif response == Gtk.ResponseType.NO:  # Discard
             GLib.idle_add(self.quit)

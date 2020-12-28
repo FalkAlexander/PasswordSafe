@@ -511,7 +511,10 @@ class MainWindow(Handy.ApplicationWindow):
         action_db = None
 
         for database in self.opened_databases:
-            if self.tab_visible(database.parent_widget):
+            if (
+                    self.tab_visible(database.parent_widget)
+                    and not database.database_manager.props.locked
+            ):
                 action_db = database
 
         return action_db

@@ -22,12 +22,11 @@ if typing.TYPE_CHECKING:
 
 class Application(Gtk.Application):
 
-    _automatic_save_handlers: Dict[UnlockedDatabase, int] = {}
+    _save_handler_ids: Dict[UnlockedDatabase, int] = {}
     window: MainWindow = None
     file_list: List[Gio.File] = []
     development_mode = False
     application_id = "org.gnome.PasswordSafe"
-    save_hanlder_id: Optional[int] = None
 
     def __init__(self, *args, **_kwargs):
         app_flags = Gio.ApplicationFlags.HANDLES_OPEN
@@ -136,9 +135,7 @@ class Application(Gtk.Application):
 
         if config.get_save_automatically():
             for database in unsaved_databases_list:
-                self._automatic_save_handlers[
-                    database
-                ] = database.database_manager.connect(
+                self._save_handler_ids[database] = database.database_manager.connect(
                     "save-notification",
                     self._on_automatic_save_callback,
                     database,
@@ -175,8 +172,9 @@ class Application(Gtk.Application):
 
         GLib.idle_add(self.quit)
 
-    def _on_save_dialog_save_notification(self, db_manager, value):
-        self.save_hanlder_id = None
+    def _on_save_dialog_save_notification(self, db_manager, value, database):
+        database.database_manager.disconnect(self._save_handler_ids[database])
+        self._save_handler_ids.pop(database)
         if value:
             GLib.idle_add(self.quit)
         else:
@@ -188,7 +186,9 @@ class Application(Gtk.Application):
                                  database: UnlockedDatabase) -> None:
         dialog.close()
         if response == Gtk.ResponseType.YES:  # Save
-            self.save_handler_id = database.database_manager.connect("save-notification", self._on_save_dialog_save_notification)
+            self._save_handler_ids[database] = database.database_manager.connect(
+                "save-notification", self._on_save_dialog_save_notification, database
+            )
             database.database_manager.save_database(True)
 
         elif response == Gtk.ResponseType.NO:  # Discard
@@ -203,8 +203,8 @@ class Application(Gtk.Application):
     ) -> None:
         """Makes sure all safes that were scheduled for autmatic save
         are correctly saved. Quits when all safes are saved."""
-        database.database_manager.disconnect(self._automatic_save_handlers[database])
-        self._automatic_save_handlers.pop(database)
+        database.database_manager.disconnect(self._save_handler_ids[database])
+        self._save_handler_ids.pop(database)
         if saved and database in unsaved_database_list:
             unsaved_database_list.remove(database)
 

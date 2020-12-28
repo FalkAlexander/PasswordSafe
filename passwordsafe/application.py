@@ -172,7 +172,9 @@ class Application(Gtk.Application):
 
         GLib.idle_add(self.quit)
 
-    def _on_save_dialog_save_notification(self, db_manager, value, database):
+    def _on_save_dialog_save_notification(
+        self, _db_manager: DatabaseManager, value: bool, database: UnlockedDatabase
+    ) -> None:
         database.database_manager.disconnect(self._save_handler_ids[database])
         self._save_handler_ids.pop(database)
         if value:

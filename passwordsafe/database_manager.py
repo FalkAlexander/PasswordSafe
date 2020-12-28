@@ -418,6 +418,11 @@ class DatabaseManager(GObject.GObject):
     def save_database(self, notification=False):
         if self.save_running is False and self.is_dirty:
             self.save_running = True
+
+            # TODO This could be simplified a lot
+            # if a copy of the keyfile was stored in memory.
+            # This would require careful checks for functionality that
+            # modifies the keyfile.
             if self.db.keyfile:
                 gfile = Gio.File.new_for_path(self.db.keyfile)
                 exists = gfile.query_exists()

@@ -9,7 +9,7 @@ from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
 from pykeepass.kdbx_parsing.kdbx import KDBX
-from gi.repository import GObject
+from gi.repository import Gio, GObject
 
 import passwordsafe.config_manager
 from passwordsafe.color_widget import Color
@@ -498,6 +498,14 @@ class DatabaseManager(GObject.GObject):
     def save_database(self):
         if self.save_running is False and self.is_dirty:
             self.save_running = True
+            if self.db.keyfile:
+                gfile = Gio.File.new_for_path(self.db.keyfile)
+                exists = gfile.query_exists()
+                if not exists:
+                    self.save_running = False
+                    logging.error("Could not find keyfile")
+
+                    return
 
             try:
                 self.db.save()

@@ -418,6 +418,16 @@ class DatabaseManager(GObject.GObject):
     def save_database(self, notification=False):
         if self.save_running is False and self.is_dirty:
             self.save_running = True
+            if self.db.keyfile:
+                gfile = Gio.File.new_for_path(self.db.keyfile)
+                exists = gfile.query_exists()
+                self.save_running = False
+                if not exists:
+                    logging.error("Could not find keyfile")
+                    if notification:
+                        self.emit("save-notification", False)
+
+                    return
 
             try:
                 self.db.save()

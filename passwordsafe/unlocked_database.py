@@ -96,6 +96,7 @@ class UnlockedDatabase(GObject.GObject):
         self.register_dbus_signal()
 
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
+        self.database_manager.connect("save-notification", self.on_database_save_notification)
 
     #
     # Stack Pages
@@ -464,13 +465,18 @@ class UnlockedDatabase(GObject.GObject):
 
             self.show_element(uuid)
 
+    def on_database_save_notification(self, _database_manager: DatabaseManager, saved: bool) -> None:
+        if saved:
+            self.window.notify(_("Safe saved"))
+        else:
+            self.window.notify(_("Could not save Safe"))
+
     def save_safe(self):
         self.start_database_lock_timer()
 
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
-                self.save_database()
-                self.window.notify(_("Safe saved"))
+                self.save_database(notification=True)
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
                 self.window.notify(
@@ -731,7 +737,7 @@ class UnlockedDatabase(GObject.GObject):
             except Gio.Error:
                 logging.warning("Skipping deletion of tmpfile...")
 
-    def save_database(self) -> None:
+    def save_database(self, notification: bool = False) -> None:
         """Save the database.
 
         If auto_save is False, a dialog asking for confirmation
@@ -740,7 +746,7 @@ class UnlockedDatabase(GObject.GObject):
         if not self.database_manager.is_dirty or self.database_manager.save_running:
             return
 
-        save_thread = threading.Thread(target=self.database_manager.save_database)
+        save_thread = threading.Thread(target=self.database_manager.save_database, args=[notification])
         save_thread.daemon = False
         save_thread.start()
 

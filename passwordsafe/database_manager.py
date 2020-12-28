@@ -415,7 +415,7 @@ class DatabaseManager(GObject.GObject):
             self.set_element_mtime(entry.parentgroup)
 
     # Write all changes to database
-    def save_database(self):
+    def save_database(self, notification=False):
         if self.save_running is False and self.is_dirty:
             self.save_running = True
 
@@ -425,6 +425,9 @@ class DatabaseManager(GObject.GObject):
                 self.is_dirty = False
             except Exception:  # pylint: disable=broad-except
                 logging.error("Error occurred while saving database")
+
+            if notification:
+                self.emit("save-notification", not self.is_dirty)
 
             self.save_running = False
 
@@ -732,3 +735,7 @@ class DatabaseManager(GObject.GObject):
         save_action = app.lookup_action("db.save_dirty")
         save_action.set_enabled(value)
         self._is_dirty = value
+
+    @GObject.Signal(arg_types=(bool,))
+    def save_notification(self, _saved):
+        return

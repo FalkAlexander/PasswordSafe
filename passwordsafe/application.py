@@ -9,12 +9,12 @@ from typing import Any, Dict, List, Optional
 
 from gi.repository import Gio, GLib, Gtk, Handy
 
+import passwordsafe.config_manager as config
 from passwordsafe.main_window import MainWindow
+from passwordsafe.quit_dialog import QuitDialog
+from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.settings_dialog import SettingsDialog
 
-import passwordsafe.config_manager as config
-from passwordsafe.save_dialog import SaveDialog
-from passwordsafe.quit_dialog import QuitDialog
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
     from passwordsafe.database_manager import DatabaseManager

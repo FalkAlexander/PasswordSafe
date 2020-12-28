@@ -5,7 +5,7 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from typing import List
+from typing import List, Optional
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 
 import passwordsafe.config_manager
@@ -507,8 +507,8 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     # Find current displayed tab for executing the action
-    def find_action_db(self):
-        action_db = NotImplemented
+    def find_action_db(self) -> Optional[UnlockedDatabase]:
+        action_db = None
 
         for database in self.opened_databases:
             if self.tab_visible(database.parent_widget):
@@ -562,7 +562,7 @@ class MainWindow(Handy.ApplicationWindow):
     # Gio Action Handler
     def execute_gio_action(self, action, param, name, arg=None):
         action_db = self.find_action_db()
-        if action_db is NotImplemented:
+        if action_db is None:
             return
 
         if name == "on_element_delete_menu_button_clicked":
@@ -613,7 +613,7 @@ class MainWindow(Handy.ApplicationWindow):
     # Accelerator Action Handler
     def execute_accel_action(self, _action, _param, name, arg=None):
         action_db = self.find_action_db()
-        if action_db is NotImplemented:
+        if action_db is None:
             return
 
         if name in ["save", "save_dirty"]:

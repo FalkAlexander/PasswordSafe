@@ -51,7 +51,9 @@ class Pathbar(Gtk.Box):
     def new_home_button(self) -> PathbarButton:
         home_button = PathbarButton(self.database_manager.get_root_group())
         home_button.connect("clicked", self.on_home_button_clicked)
-        home_button_image = self.builder.get_object("root_button_picture")
+        home_button_image = Gtk.Image.new_from_icon_name(
+            "go-home-symbolic", Gtk.IconSize.BUTTON
+        )
         home_button.add(home_button_image)
         return home_button
 
@@ -115,7 +117,6 @@ class Pathbar(Gtk.Box):
         else:
             pathbar_button.set_label("Noname")
 
-        pathbar_button.set_relief(Gtk.ReliefStyle.NONE)
         pathbar_button.activate()
         pathbar_button.connect("clicked", self.on_pathbar_button_clicked)
 

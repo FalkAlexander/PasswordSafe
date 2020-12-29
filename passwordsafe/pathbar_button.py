@@ -18,6 +18,7 @@ class PathbarButton(Gtk.Button):
     def __init__(self, element: Union[SafeEntry, Group]):
         Gtk.Button.__init__(self)
         self.set_name("PathbarButtonDynamic")
+        self.set_relief(Gtk.ReliefStyle.NONE)
 
         self._is_group = isinstance(element, Group)
         self._element: Union[SafeEntry, Group] = element

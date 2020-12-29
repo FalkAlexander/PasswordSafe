@@ -108,14 +108,14 @@ class SettingsDialog(Handy.PreferencesWindow):
 
         # Security
         lockdb_value = config.get_database_lock_timeout()
-        lockdb_adjustment = Gtk.Adjustment(lockdb_value, 0, 60, 1, 5)
+        lockdb_adjustment = Gtk.Adjustment(lockdb_value, 1, 60, 1, 5)
         self._lockdb_spin_button.props.adjustment = lockdb_adjustment
         self._lockdb_spin_button.connect(
             "value-changed", self._on_settings_lockdb_spin_button_changed
         )
 
         clear_cb_value = config.get_clear_clipboard()
-        clear_adjustment = Gtk.Adjustment(clear_cb_value, 0, 300, 1, 5)
+        clear_adjustment = Gtk.Adjustment(clear_cb_value, 1, 300, 1, 5)
         self._clearcb_spin_button.props.adjustment = clear_adjustment
         self._clearcb_spin_button.connect(
             "value-changed", self._on_settings_clearcb_spin_button_changed

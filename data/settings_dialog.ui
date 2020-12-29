@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="SettingsDialog" parent="HdyPreferencesWindow">
-    <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <property name="can_swipe_back">True</property>
     <property name="modal">True</property>
@@ -9,12 +8,10 @@
       <object class="HdyPreferencesPage">
         <property name="icon_name">applications-system-symbolic</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="title" translatable="yes">General</property>
         <child>
           <object class="HdyPreferencesGroup" id="section_label_security">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="title" translatable="yes">General</property>
             <child>
               <object class="HdyActionRow">
@@ -26,7 +23,6 @@
                 <child>
                   <object class="GtkSwitch" id="_theme_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -42,7 +38,6 @@
                 <child>
                   <object class="GtkSwitch" id="_fstart_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -53,7 +48,6 @@
         <child>
           <object class="HdyPreferencesGroup" id="section_general">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="title" translatable="yes">Safe</property>
             <child>
               <object class="HdyActionRow">
@@ -65,7 +59,6 @@
                 <child>
                   <object class="GtkSwitch" id="_save_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -76,7 +69,6 @@
         <child>
           <object class="HdyPreferencesGroup">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="title" translatable="yes">Search</property>
             <child>
               <object class="HdyActionRow">
@@ -88,7 +80,6 @@
                 <child>
                   <object class="GtkSwitch" id="_full_text_search_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -104,7 +95,6 @@
                 <child>
                   <object class="GtkSwitch" id="_local_search_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -115,7 +105,6 @@
         <child>
           <object class="HdyPreferencesGroup">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="title" translatable="yes">Unlock</property>
             <child>
               <object class="HdyActionRow">
@@ -127,7 +116,6 @@
                 <child>
                   <object class="GtkSwitch" id="_remember_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -143,7 +131,6 @@
                 <child>
                   <object class="GtkSwitch" id="_remember_method_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -157,12 +144,10 @@
       <object class="HdyPreferencesPage">
         <property name="icon_name">dialog-password-symbolic</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="title" translatable="yes">Password</property>
         <child>
           <object class="HdyPreferencesGroup">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="title" translatable="yes">Password Generation</property>
             <child>
               <object class="HdyActionRow">
@@ -173,7 +158,6 @@
                 <child>
                   <object class="GtkSpinButton" id="_generator_length_spin_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                     <property name="max_length">3</property>
                     <property name="input_purpose">number</property>
@@ -192,7 +176,6 @@
                 <child>
                   <object class="GtkSwitch" id="_generator_use_uppercase_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -208,7 +191,6 @@
                 <child>
                   <object class="GtkSwitch" id="_generator_use_lowercase_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -224,7 +206,6 @@
                 <child>
                   <object class="GtkSwitch" id="_generator_use_numbers_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -240,7 +221,6 @@
                 <child>
                   <object class="GtkSwitch" id="_generator_use_symbols_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -251,7 +231,6 @@
         <child>
           <object class="HdyPreferencesGroup">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="title" translatable="yes">Passphrase Generation</property>
             <child>
               <object class="HdyActionRow">
@@ -262,7 +241,6 @@
                 <child>
                   <object class="GtkSpinButton" id="_generator_words_spin_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                     <property name="max_length">3</property>
                     <property name="input_purpose">number</property>
@@ -280,7 +258,6 @@
                 <child>
                   <object class="GtkEntry" id="_generator_separator_entry">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                     <property name="max_length">1</property>
                     <property name="width_chars">12</property>
@@ -297,12 +274,10 @@
       <object class="HdyPreferencesPage" id="settings_page_security">
         <property name="icon_name">security-high-symbolic</property>
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="title" translatable="yes">Security</property>
         <child>
           <object class="HdyPreferencesGroup" id="settings_section_security">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="title" translatable="yes">Security</property>
             <child>
               <object class="HdyActionRow">
@@ -313,7 +288,6 @@
                 <child>
                   <object class="GtkSpinButton" id="_lockdb_spin_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                     <property name="max_length">2</property>
                     <property name="input_purpose">number</property>
@@ -331,7 +305,6 @@
                 <child>
                   <object class="GtkSpinButton" id="_clearcb_spin_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                     <property name="max_length">4</property>
                     <property name="input_purpose">number</property>
@@ -350,7 +323,6 @@
                 <child>
                   <object class="GtkSwitch" id="_showpw_switch">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="valign">center</property>
                   </object>
                 </child>
@@ -365,14 +337,12 @@
                 <child>
                   <object class="GtkButton" id="_clear_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="halign">start</property>
                     <property name="valign">center</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="icon_name">edit-clear-all-symbolic</property>
                       </object>
                     </child>

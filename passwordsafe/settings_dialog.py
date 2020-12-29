@@ -196,25 +196,15 @@ class SettingsDialog(Handy.PreferencesWindow):
 
     def _on_settings_theme_switch_switched(self, switch_button, _gparam):
         gtk_settings = Gtk.Settings.get_default()
-
-        if switch_button.get_active():
-            config.set_dark_theme(True)
-            gtk_settings.set_property("gtk-application-prefer-dark-theme", True)
-        else:
-            config.set_dark_theme(False)
-            gtk_settings.set_property("gtk-application-prefer-dark-theme", False)
+        value = switch_button.get_active()
+        config.set_dark_theme(value)
+        gtk_settings.set_property("gtk-application-prefer-dark-theme", value)
 
     def _on_settings_fstart_switch_switched(self, switch_button, _gparam):
-        if switch_button.get_active():
-            config.set_first_start_screen(True)
-        else:
-            config.set_first_start_screen(False)
+        config.set_first_start_screen(switch_button.get_active())
 
     def _on_settings_save_switch_switched(self, switch_button, _gparam):
-        if switch_button.get_active():
-            config.set_save_automatically(True)
-        else:
-            config.set_save_automatically(False)
+        config.set_save_automatically(switch_button.get_active())
 
     def _on_settings_lockdb_spin_button_changed(self, spin_button):
         config.set_database_lock_timeout(spin_button.get_value())
@@ -225,10 +215,7 @@ class SettingsDialog(Handy.PreferencesWindow):
         config.set_clear_clipboard(spin_button.get_value())
 
     def _on_settings_showpw_switch_switched(self, switch_button, _gparam):
-        if switch_button.get_active():
-            config.set_show_password_fields(True)
-        else:
-            config.set_show_password_fields(False)
+        config.set_show_password_fields(switch_button.get_active())
 
     def _on_settings_clear_recents_clicked(self, widget):
         config.set_last_opened_list([])

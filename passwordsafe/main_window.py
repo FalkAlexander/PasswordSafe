@@ -207,6 +207,7 @@ class MainWindow(Handy.ApplicationWindow):
     def display_welcome_page(self) -> None:
         """Shown when there is no autoloading and no recent files to display"""
         self._main_view.set_visible_child(self.welcome_page)
+        self._title_stack.set_visible_child_name("recent_files_headerbar")
 
     #
     # Open Database Methods

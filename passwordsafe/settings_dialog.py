@@ -220,7 +220,7 @@ class SettingsDialog(Handy.PreferencesWindow):
     def _on_settings_clear_recents_clicked(self, widget):
         config.set_last_opened_list([])
         config.set_last_opened_database("")
-        if self.window.container is NotImplemented or not self.window.container.get_n_pages():
+        if not self.window.opened_databases or not self.window.container.get_n_pages():
             self.window.display_welcome_page()
 
         widget.set_sensitive(False)

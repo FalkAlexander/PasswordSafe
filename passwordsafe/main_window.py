@@ -37,9 +37,7 @@ class MainWindow(Handy.ApplicationWindow):
     _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     new_file_button = Gtk.Template.Child()
-    new_file_stack = Gtk.Template.Child()
     open_file_button = Gtk.Template.Child()
-    open_file_stack = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
     _title_stack = Gtk.Template.Child()
 
@@ -151,15 +149,6 @@ class MainWindow(Handy.ApplicationWindow):
             # For Group/Entry Edit Page
             if scrolled_page.edit_page:
                 return
-
-    @Gtk.Template.Callback()
-    def _on_mobile_layout_changed(self, _window, _value):
-        if self.props.mobile_layout:
-            self.open_file_stack.set_visible_child_name("mobile")
-            self.new_file_stack.set_visible_child_name("mobile")
-        else:
-            self.open_file_stack.set_visible_child_name("desktop")
-            self.new_file_stack.set_visible_child_name("desktop")
 
     #
     # First Start Screen

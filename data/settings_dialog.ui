@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="HdyPreferencesWindow" id="settings_dialog">
+  <template class="SettingsDialog" parent="HdyPreferencesWindow">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <property name="can_swipe_back">True</property>
+    <property name="modal">True</property>
     <child>
       <object class="HdyPreferencesPage">
         <property name="icon_name">applications-system-symbolic</property>
@@ -20,10 +21,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Dark Theme</property>
                 <property name="subtitle" translatable="yes">Use dark GTK theme.</property>
-                <property name="activatable_widget">settings_theme_switch</property>
+                <property name="activatable_widget">_theme_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_theme_switch">
+                  <object class="GtkSwitch" id="_theme_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -36,10 +37,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Hide First Start Screen</property>
                 <property name="subtitle" translatable="yes">Reopen last opened safe.</property>
-                <property name="activatable_widget">settings_fstart_switch</property>
+                <property name="activatable_widget">_fstart_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_fstart_switch">
+                  <object class="GtkSwitch" id="_fstart_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -59,10 +60,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Save Automatically</property>
                 <property name="subtitle" translatable="yes">Save every change automatically.</property>
-                <property name="activatable_widget">settings_save_switch</property>
+                <property name="activatable_widget">_save_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_save_switch">
+                  <object class="GtkSwitch" id="_save_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -82,10 +83,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Full-Text Search</property>
                 <property name="subtitle" translatable="yes">Performs a search across all values of entries.</property>
-                <property name="activatable_widget">settings_full_text_search_switch</property>
+                <property name="activatable_widget">_full_text_search_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_full_text_search_switch">
+                  <object class="GtkSwitch" id="_full_text_search_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -98,10 +99,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Current Group Search</property>
                 <property name="subtitle" translatable="yes">Only search entries in the current group.</property>
-                <property name="activatable_widget">settings_local_search_switch</property>
+                <property name="activatable_widget">_local_search_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_local_search_switch">
+                  <object class="GtkSwitch" id="_local_search_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -121,10 +122,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" comments="A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe">Remember Composite _Key</property>
                 <property name="subtitle" translatable="yes" comments="A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe">Remember last used composite key.</property>
-                <property name="activatable_widget">settings_remember_switch</property>
+                <property name="activatable_widget">_remember_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_remember_switch">
+                  <object class="GtkSwitch" id="_remember_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -137,10 +138,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember _Unlock Method</property>
                 <property name="subtitle" translatable="yes">Enable faster unlocking.</property>
-                <property name="activatable_widget">settings_remember_method_switch</property>
+                <property name="activatable_widget">_remember_method_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_remember_method_switch">
+                  <object class="GtkSwitch" id="_remember_method_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -170,7 +171,7 @@
                 <property name="subtitle" translatable="yes">Number of single characters when generating a password.</property>
                 <property name="selectable">False</property>
                 <child>
-                  <object class="GtkSpinButton" id="generator_length_spin_button">
+                  <object class="GtkSpinButton" id="_generator_length_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -186,10 +187,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Uppercase Characters</property>
                 <property name="subtitle" translatable="yes">Use uppercase characters A-Z when generating a password.</property>
-                <property name="activatable_widget">generator_use_uppercase_switch</property>
+                <property name="activatable_widget">_generator_use_uppercase_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="generator_use_uppercase_switch">
+                  <object class="GtkSwitch" id="_generator_use_uppercase_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -202,10 +203,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Lowercase Characters</property>
                 <property name="subtitle" translatable="yes">Use lowercase characters a-z when generating a password.</property>
-                <property name="activatable_widget">generator_use_lowercase_switch</property>
+                <property name="activatable_widget">_generator_use_lowercase_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="generator_use_lowercase_switch">
+                  <object class="GtkSwitch" id="_generator_use_lowercase_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -218,10 +219,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Numeric Characters</property>
                 <property name="subtitle" translatable="yes">Use numeric characters when generating a password.</property>
-                <property name="activatable_widget">generator_use_numbers_switch</property>
+                <property name="activatable_widget">_generator_use_numbers_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="generator_use_numbers_switch">
+                  <object class="GtkSwitch" id="_generator_use_numbers_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -234,10 +235,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Special Characters</property>
                 <property name="subtitle" translatable="yes">Use non-alphanumeric ASCII symbols when generating a password.</property>
-                <property name="activatable_widget">generator_use_symbols_switch</property>
+                <property name="activatable_widget">_generator_use_symbols_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="generator_use_symbols_switch">
+                  <object class="GtkSwitch" id="_generator_use_symbols_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -259,7 +260,7 @@
                 <property name="subtitle" translatable="yes">Number of words to use when generating a passphrase.</property>
                 <property name="selectable">False</property>
                 <child>
-                  <object class="GtkSpinButton" id="generator_words_spin_button">
+                  <object class="GtkSpinButton" id="_generator_words_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -277,7 +278,7 @@
                 <property name="subtitle" translatable="yes">Word separator to use when generating a passphrase.</property>
                 <property name="selectable">False</property>
                 <child>
-                  <object class="GtkEntry" id="generator_separator_entry">
+                  <object class="GtkEntry" id="_generator_separator_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -310,7 +311,7 @@
                 <property name="subtitle" translatable="yes">Lock safe on idle after X minutes.</property>
                 <property name="selectable">False</property>
                 <child>
-                  <object class="GtkSpinButton" id="settings_lockdb_spin_button">
+                  <object class="GtkSpinButton" id="_lockdb_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -328,7 +329,7 @@
                 <property name="subtitle" translatable="yes">Clear clipboard after X seconds.</property>
                 <property name="selectable">False</property>
                 <child>
-                  <object class="GtkSpinButton" id="settings_clearcb_spin_button">
+                  <object class="GtkSpinButton" id="_clearcb_spin_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -344,10 +345,10 @@
                 <property name="visible">True</property>
                 <property name="title" translatable="yes">_Show Password Fields</property>
                 <property name="subtitle" translatable="yes">Display passwords in plain text.</property>
-                <property name="activatable_widget">settings_showpw_switch</property>
+                <property name="activatable_widget">_showpw_switch</property>
                 <property name="use_underline">True</property>
                 <child>
-                  <object class="GtkSwitch" id="settings_showpw_switch">
+                  <object class="GtkSwitch" id="_showpw_switch">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="valign">center</property>
@@ -362,7 +363,7 @@
                 <property name="subtitle" translatable="yes">Clear the recently opened safes list.</property>
                 <property name="selectable">False</property>
                 <child>
-                  <object class="GtkButton" id="settings_clear_button">
+                  <object class="GtkButton" id="_clear_button">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
@@ -386,5 +387,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

@@ -104,29 +104,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     def _on_mobile_layout_changed(
             self, _klass: Optional[MainWindow],
             _value: GObject.ParamSpecBoolean) -> None:
-        self._update_title()
         self._update_action_bar()
-
-    def _update_title(self):
-        is_mobile = self._window.props.mobile_layout
-        scrolled_page = self._unlocked_database.get_current_page()
-        cur_elt = self._unlocked_database.current_element
-
-        if is_mobile and not self._unlocked_database.props.selection_mode:
-            if not scrolled_page or not scrolled_page.edit_page:
-                # Do not show a title on the main browser.
-                title = ""
-            elif self._db_manager.check_is_group_object(cur_elt):
-                # on group edit page, show entry title
-                title = cur_elt.name or ""
-            else:
-                # on entry edit page, show entry title
-                title = cur_elt.title or ""
-
-            self._title_label.props.label = title
-
-        show = is_mobile and not self._unlocked_database.props.selection_mode
-        self._title_label.props.visible = show
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""
@@ -209,5 +187,3 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self._add_button.props.visible = False
             self._secondary_menu_button.props.visible = False
             self._linkedbox_right.props.visible = False
-
-        self._update_title()

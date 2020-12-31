@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-28 20:24+0000\n"
-"PO-Revision-Date: 2020-12-30 16:39-0300\n"
+"POT-Creation-Date: 2020-12-30 21:07+0000\n"
+"PO-Revision-Date: 2020-12-31 17:51-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -145,7 +145,7 @@ msgstr "_Abrir cofre"
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database_headerbar.ui:6 data/main_window.ui:18
+#: data/create_database_headerbar.ui:6 data/main_window.ui:17
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
 msgid "Password Safe"
@@ -156,18 +156,18 @@ msgstr "Password Safe"
 msgid "Create Safe"
 msgstr "Criar cofre"
 
-#: data/create_database_headerbar.ui:43 data/main_window.ui:170
+#: data/create_database_headerbar.ui:43 data/main_window.ui:116
 #: data/unlock_database.ui:16 data/unlocked_headerbar.ui:199
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: data/create_database_headerbar.ui:47 data/main_window.ui:174
+#: data/create_database_headerbar.ui:47 data/main_window.ui:120
 #: data/unlock_database.ui:20 data/unlocked_headerbar.ui:203
 msgid "_Keyboard Shortcuts"
 msgstr "A_talhos de teclado"
 
 #. "Password Safe" is the application name
-#: data/create_database_headerbar.ui:51 data/main_window.ui:178
+#: data/create_database_headerbar.ui:51 data/main_window.ui:124
 #: data/unlock_database.ui:24 data/unlocked_headerbar.ui:207
 msgid "_About Password Safe"
 msgstr "_Sobre o Password Safe"
@@ -366,13 +366,13 @@ msgstr "Copiar nome de usuário para área de transferência"
 msgid "Copy password to clipboard"
 msgstr "Copiar senha para área de transferência"
 
-#: data/main_window.ui:43
-msgid "_New…"
-msgstr "_Novo…"
+#: data/main_window.ui:25
+msgid "New…"
+msgstr "Novo…"
 
-#: data/main_window.ui:82
-msgid "_Open…"
-msgstr "_Abrir…"
+#: data/main_window.ui:38
+msgid "Open…"
+msgstr "Abrir…"
 
 #: data/notes_dialog.ui:18
 msgid "_Copy"
@@ -809,7 +809,7 @@ msgstr "_Ocultar tela de primeiro início"
 msgid "Reopen last opened safe."
 msgstr "Reabre o último cofre aberto."
 
-#: data/settings_dialog.ui:56 passwordsafe/main_window.py:332
+#: data/settings_dialog.ui:56 passwordsafe/main_window.py:321
 msgid "Safe"
 msgstr "Cofre"
 
@@ -1239,34 +1239,34 @@ msgid "No group title specified"
 msgstr "Nenhum título de grupo especificado"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:237
+#: passwordsafe/main_window.py:226
 msgid "Choose a Keepass safe"
 msgstr "Escolha um cofre de Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:247 passwordsafe/main_window.py:337
+#: passwordsafe/main_window.py:236 passwordsafe/main_window.py:326
 msgid "KeePass 3.1/4 Database"
 msgstr "Banco de dados KeePass 3.1/4"
 
 #. pylint: disable=C0103
-#: passwordsafe/main_window.py:275
+#: passwordsafe/main_window.py:264
 msgid "Could not open file"
 msgstr "Não foi possível abrir arquivo"
 
-#: passwordsafe/main_window.py:284
+#: passwordsafe/main_window.py:273
 msgid "Could not open file: Mime type not supported"
 msgstr "Não foi possível abrir arquivo: não há suporte ao tipo Mime"
 
-#: passwordsafe/main_window.py:294 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:283 passwordsafe/unlock_database.py:191
 msgid "Safe already opened"
 msgstr "Cofre já está aberto"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:326
+#: passwordsafe/main_window.py:315
 msgid "Choose location for Keepass safe"
 msgstr "Escolha a localização do cofre de Keepass"
 
-#: passwordsafe/main_window.py:329
+#: passwordsafe/main_window.py:318
 msgid "_Create"
 msgstr "_Criar"
 

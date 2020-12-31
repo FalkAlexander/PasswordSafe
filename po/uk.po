@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-12-25 14:16+0000\n"
-"PO-Revision-Date: 2020-12-25 21:44+0200\n"
+"POT-Creation-Date: 2020-12-30 21:07+0000\n"
+"PO-Revision-Date: 2020-12-31 09:14+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -141,7 +141,7 @@ msgstr "_Відкрити сейф"
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database_headerbar.ui:6 data/main_window.ui:18
+#: data/create_database_headerbar.ui:6 data/main_window.ui:17
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
 #: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
 msgid "Password Safe"
@@ -152,18 +152,18 @@ msgstr "Сейф для паролів"
 msgid "Create Safe"
 msgstr "Створення сейфа"
 
-#: data/create_database_headerbar.ui:43 data/main_window.ui:170
+#: data/create_database_headerbar.ui:43 data/main_window.ui:116
 #: data/unlock_database.ui:16 data/unlocked_headerbar.ui:199
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: data/create_database_headerbar.ui:47 data/main_window.ui:174
+#: data/create_database_headerbar.ui:47 data/main_window.ui:120
 #: data/unlock_database.ui:20 data/unlocked_headerbar.ui:203
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #. "Password Safe" is the application name
-#: data/create_database_headerbar.ui:51 data/main_window.ui:178
+#: data/create_database_headerbar.ui:51 data/main_window.ui:124
 #: data/unlock_database.ui:24 data/unlocked_headerbar.ui:207
 msgid "_About Password Safe"
 msgstr "_Про «Сейф для паролів»"
@@ -362,13 +362,15 @@ msgstr "Копіювати ім'я користувача до буфера об
 msgid "Copy password to clipboard"
 msgstr "Копіювати пароль до буфера обміну"
 
-#: data/main_window.ui:43
-msgid "_New…"
-msgstr "С_творити…"
+#: data/main_window.ui:25
+#| msgid "_New…"
+msgid "New…"
+msgstr "Створити…"
 
-#: data/main_window.ui:82
-msgid "_Open…"
-msgstr "_Відкрити…"
+#: data/main_window.ui:38
+#| msgid "_Open…"
+msgid "Open…"
+msgstr "Відкрити…"
 
 #: data/notes_dialog.ui:18
 msgid "_Copy"
@@ -809,7 +811,7 @@ msgstr "При_ховати перший початковий екран"
 msgid "Reopen last opened safe."
 msgstr "Повторно відкрити останній відкритий сейф."
 
-#: data/settings_dialog.ui:56 passwordsafe/main_window.py:332
+#: data/settings_dialog.ui:56 passwordsafe/main_window.py:321
 msgid "Safe"
 msgstr "Безпечний"
 
@@ -1240,35 +1242,35 @@ msgid "No group title specified"
 msgstr "Не вказано назви групи"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:237
+#: passwordsafe/main_window.py:226
 msgid "Choose a Keepass safe"
 msgstr "Виберіть сейф Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:247 passwordsafe/main_window.py:337
+#: passwordsafe/main_window.py:236 passwordsafe/main_window.py:326
 msgid "KeePass 3.1/4 Database"
 msgstr "база даних KeePass 3.1/4"
 
 #. pylint: disable=C0103
-#: passwordsafe/main_window.py:275
+#: passwordsafe/main_window.py:264
 msgid "Could not open file"
 msgstr "Не вдалося відкрити файл"
 
-#: passwordsafe/main_window.py:284
+#: passwordsafe/main_window.py:273
 msgid "Could not open file: Mime type not supported"
 msgstr ""
 "Не вдалося відкрити файл: не передбачено підтримки відповідного типу MIME"
 
-#: passwordsafe/main_window.py:294 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:283 passwordsafe/unlock_database.py:191
 msgid "Safe already opened"
 msgstr "Сейф вже відкрито"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:326
+#: passwordsafe/main_window.py:315
 msgid "Choose location for Keepass safe"
 msgstr "Виберіть розташування сейфа Keepass"
 
-#: passwordsafe/main_window.py:329
+#: passwordsafe/main_window.py:318
 msgid "_Create"
 msgstr "С_творити"
 
@@ -1298,7 +1300,6 @@ msgstr "Виберіть файл ключа"
 
 #. NOTE kdb is a an older format for Keepass databases.
 #: passwordsafe/unlock_database.py:411
-#| msgid "File type {} ({}) is not supported."
 msgid "The kdb format is not supported"
 msgstr "Підтримки формату kdb не передбачено"
 

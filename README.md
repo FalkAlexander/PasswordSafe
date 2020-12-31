@@ -1,7 +1,7 @@
 # Password Safe
 Password Safe is a password manager which integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
-<img src="https://gitlab.gnome.org/World/PasswordSafe/-/wikis/uploads/de508f02b076699243410df1e020262f/PasswordSafe.png" width="800px" />
+<img src="https://gitlab.gnome.org/World/PasswordSafe/-/raw/master/screenshots/browser.png" width="800px" />
 
 ## Features:
 * ⭐ Create or import a KeePass v.4 safe

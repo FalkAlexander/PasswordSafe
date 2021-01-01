@@ -4,21 +4,25 @@ from __future__ import annotations
 import logging
 import sys
 import typing
-from typing import Any, List, Optional
+from gettext import gettext as _
+from typing import Any, Dict, List, Optional
 
 from gi.repository import Gio, GLib, Gtk, Handy
 
+import passwordsafe.config_manager as config
 from passwordsafe.main_window import MainWindow
+from passwordsafe.quit_dialog import QuitDialog
+from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.settings_dialog import SettingsDialog
 
-import passwordsafe.config_manager as config
-from passwordsafe.save_dialog import SaveDialog
-from passwordsafe.quit_dialog import QuitDialog
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
+    from passwordsafe.database_manager import DatabaseManager
 
 
 class Application(Gtk.Application):
+
+    _save_handler_ids: Dict[UnlockedDatabase, int] = {}
     window: MainWindow = None
     file_list: List[Gio.File] = []
     development_mode = False
@@ -127,10 +131,18 @@ class Application(Gtk.Application):
         for database in self.window.opened_databases:
             if (database.database_manager.is_dirty
                     and not database.database_manager.save_running):
-                if config.get_save_automatically():
-                    database.save_database()
-                else:
-                    unsaved_databases_list.append(database)
+                unsaved_databases_list.append(database)
+
+        if config.get_save_automatically():
+            for database in unsaved_databases_list:
+                self._save_handler_ids[database] = database.database_manager.connect(
+                    "save-notification",
+                    self._on_automatic_save_callback,
+                    database,
+                    unsaved_databases_list,
+                )
+                database.save_database(True)
+            return
 
         if len(unsaved_databases_list) == 1:
             database = unsaved_databases_list[0]
@@ -160,16 +172,45 @@ class Application(Gtk.Application):
 
         GLib.idle_add(self.quit)
 
+    def _on_save_dialog_save_notification(
+        self, _db_manager: DatabaseManager, value: bool, database: UnlockedDatabase
+    ) -> None:
+        database.database_manager.disconnect(self._save_handler_ids[database])
+        self._save_handler_ids.pop(database)
+        if value:
+            GLib.idle_add(self.quit)
+        else:
+            self.window.notify(_("Unable to Quit: Could not save Safe"))
+
     def _on_save_dialog_response(self,
                                  dialog: Gtk.Dialog,
                                  response: Gtk.ResponseType,
                                  database: UnlockedDatabase) -> None:
         dialog.close()
         if response == Gtk.ResponseType.YES:  # Save
-            database.database_manager.save_database()
-            GLib.idle_add(self.quit)
+            self._save_handler_ids[database] = database.database_manager.connect(
+                "save-notification", self._on_save_dialog_save_notification, database
+            )
+            database.database_manager.save_database(True)
 
         elif response == Gtk.ResponseType.NO:  # Discard
+            GLib.idle_add(self.quit)
+
+    def _on_automatic_save_callback(
+        self,
+        _db_manager: DatabaseManager,
+        saved: bool,
+        database: UnlockedDatabase,
+        unsaved_database_list: List[UnlockedDatabase],
+    ) -> None:
+        """Makes sure all safes that were scheduled for autmatic save
+        are correctly saved. Quits when all safes are saved."""
+        database.database_manager.disconnect(self._save_handler_ids[database])
+        self._save_handler_ids.pop(database)
+        if saved and database in unsaved_database_list:
+            unsaved_database_list.remove(database)
+
+        if not unsaved_database_list:
             GLib.idle_add(self.quit)
 
     def _on_shutdown_action(self, _action: Gio.SimpleAction) -> None:

@@ -415,9 +415,24 @@ class DatabaseManager(GObject.GObject):
             self.set_element_mtime(entry.parentgroup)
 
     # Write all changes to database
-    def save_database(self):
+    def save_database(self, notification=False):
         if self.save_running is False and self.is_dirty:
             self.save_running = True
+
+            # TODO This could be simplified a lot
+            # if a copy of the keyfile was stored in memory.
+            # This would require careful checks for functionality that
+            # modifies the keyfile.
+            if self.db.keyfile:
+                gfile = Gio.File.new_for_path(self.db.keyfile)
+                exists = gfile.query_exists()
+                self.save_running = False
+                if not exists:
+                    logging.error("Could not find keyfile")
+                    if notification:
+                        self.emit("save-notification", False)
+
+                    return
 
             try:
                 self.db.save()
@@ -425,6 +440,9 @@ class DatabaseManager(GObject.GObject):
                 self.is_dirty = False
             except Exception:  # pylint: disable=broad-except
                 logging.error("Error occurred while saving database")
+
+            if notification:
+                self.emit("save-notification", not self.is_dirty)
 
             self.save_running = False
 
@@ -732,3 +750,7 @@ class DatabaseManager(GObject.GObject):
         save_action = app.lookup_action("db.save_dirty")
         save_action.set_enabled(value)
         self._is_dirty = value
+
+    @GObject.Signal(arg_types=(bool,))
+    def save_notification(self, _saved):
+        return

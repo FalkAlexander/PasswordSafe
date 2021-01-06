@@ -40,27 +40,3 @@ flatpak:
         MESON_ARGS: "-Dprofile=development"
         BUNDLE: "org.gnome.PasswordSafeDevel.flatpak"
     extends: .flatpak
-
-debian:
-    stage: Build
-    <<: *basic-deps
-    image: debian:sid
-    script:
-        - apt-get -qq install -y --no-install-recommends -o dir::cache::archives=".apt" -o=Dpkg::Use-Pty=0 ${DEPS_DEB} > /dev/null
-        - git config --global user.email "gitlab-ci@buildbot.org"
-        - git config --global user.name "BuildBot @ gitlab-ci"
-        - git remote add debianx https://salsa.debian.org/python-team/packages/gnome-passwordsafe.git
-        - git fetch debianx
-        - git checkout debian/master
-        - gbp import-ref -uHEAD --upstream-branch=$CI_COMMIT_BRANCH --upstream-tag=origin/$CI_COMMIT_BRANCH
-        - gbp dch -S --since=HEAD
-        - sed -i "2iDEB_CONFIGURE_EXTRA_FLAGS = -Dprofile=development" debian/rules
-        - echo -e "\noverride_dh_auto_configure:\n\tdh_auto_configure -- -Dprofile=development" >> debian/rules
-        - dpkg-buildpackage -us -uc -b
-        - mv ../gnome-passwordsafe*.deb ./gnome-passwordsafe_devel_${CI_COMMIT_TIMESTAMP}_git${CI_COMMIT_SHORT_SHA}_all.deb
-    artifacts:
-        name: 'DEB package artifacts'
-        expose_as: 'Get Debian package here'
-        when: 'always'
-        paths:
-                - "gnome-passwordsafe_devel_${CI_COMMIT_TIMESTAMP}_git${CI_COMMIT_SHORT_SHA}_all.deb"

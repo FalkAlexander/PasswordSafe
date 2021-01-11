@@ -58,7 +58,7 @@ class EntryPage:
                 scrolled_page.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
 
             scrolled_page.name_property_value_entry.connect(
-                "changed", self.on_property_value_entry_changed, "name"
+                "changed", self.on_property_value_entry_changed
             )
             safe_entry.bind_property(
                 "name", scrolled_page.name_property_value_entry, "text",
@@ -84,7 +84,7 @@ class EntryPage:
 
                 scrolled_page.username_property_value_entry.connect(
                     "icon-press", self._on_copy_secondary_button_clicked)
-                scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed, "username")
+                scrolled_page.username_property_value_entry.connect("changed", self.on_property_value_entry_changed)
                 properties_list_box.add(scrolled_page.username_property_row)
             elif scrolled_page.username_property_row:
                 safe_entry.bind_property(
@@ -128,7 +128,7 @@ class EntryPage:
                     | GObject.BindingFlags.BIDIRECTIONAL)
 
                 scrolled_page.url_property_value_entry.connect("icon-press", self.on_link_secondary_button_clicked)
-                scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed, "url")
+                scrolled_page.url_property_value_entry.connect("changed", self.on_property_value_entry_changed)
                 properties_list_box.add(scrolled_page.url_property_row)
 
         if safe_entry.props.notes or add_all:
@@ -152,7 +152,7 @@ class EntryPage:
                 if not notes:
                     textbuffer.props.modified = False
 
-                textbuffer.connect("changed", self.on_property_value_entry_changed, "notes")
+                textbuffer.connect("changed", self.on_property_value_entry_changed)
                 safe_entry.bind_property(
                     "notes", textbuffer, "text",
                     GObject.BindingFlags.SYNC_CREATE
@@ -298,7 +298,7 @@ class EntryPage:
 
         self.insert_entry_properties_into_listbox(scrolled_page.properties_list_box, True)
 
-    def on_property_value_entry_changed(self, widget, type_name):
+    def on_property_value_entry_changed(self, _widget, _data=None):
         self.unlocked_database.start_database_lock_timer()
 
         scrolled_page = self.unlocked_database.get_current_page()

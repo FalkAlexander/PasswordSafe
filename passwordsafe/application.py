@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-import sys
 import typing
 from gettext import gettext as _
 from typing import Any, Dict, List, Optional
@@ -245,8 +244,3 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.go_back", ["Escape"])
         self.set_accels_for_action("app.quit", ["<primary>q"])
         self.set_accels_for_action("win.show-help-overlay", ["<primary>question"])
-
-
-if __name__ == "__main__":
-    app = Application()
-    app.run(sys.argv)

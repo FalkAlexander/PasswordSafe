@@ -12,25 +12,18 @@
           <object class="GtkLabel" id="attachment_label">
             <property name="visible">True</property>
             <property name="halign">start</property>
-            <property name="valign">center</property>
-            <property name="label" translatable="yes">Secret_Photo.png</property>
             <property name="ellipsize">end</property>
-            <style>
-              <class name="row"/>
-            </style>
+            <property name="hexpand">True</property>
           </object>
         </child>
         <child>
           <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="halign">end</property>
-            <property name="hexpand">True</property>
             <child>
               <object class="GtkButton" id="attachment_download_button">
                 <property name="name">AttachmentDownloadButton</property>
                 <property name="visible">True</property>
                 <property name="receives_default">True</property>
-                <property name="halign">center</property>
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkImage">

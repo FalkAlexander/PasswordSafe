@@ -36,8 +36,6 @@ class MainWindow(Handy.ApplicationWindow):
     _headerbar = Gtk.Template.Child()
     _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
-    new_file_button = Gtk.Template.Child()
-    open_file_button = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
     _title_stack = Gtk.Template.Child()
 

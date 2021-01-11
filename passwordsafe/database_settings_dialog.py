@@ -46,10 +46,6 @@ class DatabaseSettingsDialog:
         self.__setup_widgets()
         self.__setup_signals()
 
-        # TODO Implement this feature: Change the encryption algorithm of the Safe
-        # https://gitlab.gnome.org/World/PasswordSafe/-/issues/256
-        # self.assemble_encryption_page()
-
     #
     # Dialog Creation
     #
@@ -450,73 +446,6 @@ class DatabaseSettingsDialog:
     #
     # Encryption Section
     #
-
-    def assemble_encryption_page(self):
-        enc_alg_list = self.builder.get_object("enc_alg_list_box")
-
-        if self.database_manager.db.encryption_algorithm == "chacha20":
-            enc_alg_list.select_row(enc_alg_list.get_row_at_index(0))
-        elif self.database_manager.db.encryption_algorithm == "twofish":
-            enc_alg_list.select_row(enc_alg_list.get_row_at_index(1))
-        elif self.database_manager.db.encryption_algorithm == "aes256":
-            enc_alg_list.select_row(enc_alg_list.get_row_at_index(2))
-
-        der_alg_list = self.builder.get_object("der_alg_list_box")
-
-        if self.database_manager.db.version == (4, 0):
-            der_alg_list.select_row(der_alg_list.get_row_at_index(0))
-        elif self.database_manager.db.version == (3, 1):
-            der_alg_list.select_row(der_alg_list.get_row_at_index(1))
-
-        enc_alg_list.connect("row-activated", self.on_encryption_changed)
-        der_alg_list.connect("row-activated", self.on_derivation_changed)
-
-    def on_encryption_changed(self, _list_box, row):
-        self.new_encryption_algorithm = NotImplemented
-
-        if row.get_name() != "chacha20" and row.get_name() != "twofish" and row.get_name() != "aes256":
-            return
-
-        self.new_encryption_algorithm = row.get_name()
-
-        if self.builder.get_object("der_alg_list_box").get_selected_row().get_name() == "argon2":
-            version_tuple = (4, 0)
-        elif self.builder.get_object("der_alg_list_box").get_selected_row().get_name() == "aeskdf":
-            version_tuple = (3, 1)
-
-        if self.database_manager.db.encryption_algorithm == row.get_name() and self.database_manager.db.version == version_tuple:
-            self.encryption_apply_button.set_sensitive(False)
-        else:
-            self.encryption_apply_button.set_sensitive(True)
-
-    def on_derivation_changed(self, _list_box, row):
-        self.new_derivation_algorithm = NotImplemented
-
-        if row.get_name() != "argon2" and row.get_name() != "aeskdf":
-            return
-
-        version_tuple = NotImplemented
-
-        if row.get_name() == "argon2":
-            version_tuple = (4, 0)
-        elif row.get_name() == "aeskdf":
-            version_tuple = (3, 1)
-
-        if version_tuple == NotImplemented:
-            return
-
-        self.new_derivation_algorithm = version_tuple
-
-        enc_alg: str = (
-            self.builder.get_object("enc_alg_list_box").get_selected_row().get_name()
-        )
-        if (
-            self.database_manager.db.encryption_algorithm == enc_alg
-            and self.database_manager.db.version == version_tuple
-        ):
-            self.encryption_apply_button.set_sensitive(False)
-        else:
-            self.encryption_apply_button.set_sensitive(True)
 
     def __on_locked(self, database_manager, _value):
         locked = database_manager.props.locked

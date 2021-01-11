@@ -87,7 +87,7 @@ sudo ninja -C _build install
 
 # Translations
 Helping to translate Password Safe or add support to a new language is very welcome.  
-You can find everything you need at: https://l10n.gnome.org/module/PasswordSafe/
+You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https://l10n.gnome.org/module/PasswordSafe/)
 
 # Supported encryption algorithms
 ### Encryption algorithms:

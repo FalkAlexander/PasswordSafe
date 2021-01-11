@@ -215,6 +215,7 @@ class Application(Gtk.Application):
 
     def _on_shutdown_action(self, _action: Gio.SimpleAction) -> None:
         """Activated on shutdown signal. Cleans all remaining processes."""
+        self.window.save_window_size()
         for database in self.window.opened_databases:
             database.cleanup()
 

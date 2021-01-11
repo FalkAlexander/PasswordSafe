@@ -175,7 +175,7 @@ class SafeEntry(GObject.GObject):
         attachment_id = self._db_manager.db.add_binary(byte_buffer)
         attachment = self._entry.add_attachment(attachment_id, filename)
         self._attachments.append(attachment)
-        self._db_manager.is_dirty = True
+        self.emit("updated")
 
         return attachment
 
@@ -186,7 +186,7 @@ class SafeEntry(GObject.GObject):
         """
         self._db_manager.db.delete_binary(attachment.id)
         self._attachments.remove(attachment)
-        self._db_manager.is_dirty = True
+        self.emit("updated")
 
     def get_attachment(self, id_: str) -> Optional[Attachment]:
         """Get an attachment from its id.
@@ -228,8 +228,8 @@ class SafeEntry(GObject.GObject):
         """
         self._entry.set_custom_property(key, value)
         self._attributes[key] = value
-        self._db_manager.is_dirty = True
         self._db_manager.set_element_mtime(self._entry)
+        self.emit("updated")
 
     def delete_attribute(self, key: str) -> None:
         """Delete an attribute
@@ -241,8 +241,8 @@ class SafeEntry(GObject.GObject):
 
         self._entry.delete_custom_property(key)
         self._attributes.pop(key)
-        self._db_manager.is_dirty = True
         self._db_manager.set_element_mtime(self._entry)
+        self.emit("updated")
 
     @GObject.Property(
         type=str, flags=GObject.ParamFlags.READWRITE)
@@ -263,8 +263,8 @@ class SafeEntry(GObject.GObject):
         if new_color != self._color:
             self._color = new_color
             self._entry.set_custom_property(self._color_key, new_color)
-            self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+            self.emit("updated")
 
     @GObject.Property(type=object, flags=GObject.ParamFlags.READWRITE)
     def icon(self) -> Icon:
@@ -288,9 +288,9 @@ class SafeEntry(GObject.GObject):
         if new_icon_nr != self._icon_nr:
             self._icon_nr = new_icon_nr
             self._entry.icon = new_icon_nr
-            self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
             self.notify("icon-name")
+            self.emit("updated")
 
     @property
     def icon_handled(self) -> bool:
@@ -330,8 +330,8 @@ class SafeEntry(GObject.GObject):
         if new_name != self._name:
             self._name = new_name
             self._entry.title = new_name
-            self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+            self.emit("updated")
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)
@@ -352,8 +352,8 @@ class SafeEntry(GObject.GObject):
         if new_notes != self._notes:
             self._notes = new_notes
             self._entry.notes = new_notes
-            self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+            self.emit("updated")
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)
@@ -374,8 +374,8 @@ class SafeEntry(GObject.GObject):
         if new_password != self._password:
             self._password = new_password
             self._entry.password = new_password
-            self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+            self.emit("updated")
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)
@@ -396,8 +396,8 @@ class SafeEntry(GObject.GObject):
         if new_url != self._url:
             self._url = new_url
             self._entry.url = new_url
-            self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+            self.emit("updated")
 
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)
@@ -418,5 +418,12 @@ class SafeEntry(GObject.GObject):
         if new_username != self._username:
             self._username = new_username
             self._entry.username = new_username
-            self._db_manager.is_dirty = True
             self._db_manager.set_element_mtime(self._entry)
+            self.emit("updated")
+
+    @GObject.Signal()
+    def updated(self):
+        """Signal used to tell whenever there have been any changed that should
+        be reflected on the main list box."""
+        self._db_manager.is_dirty = True
+        logging.debug("Safe entry updated")

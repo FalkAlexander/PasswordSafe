@@ -77,6 +77,9 @@ class EntryPage(Gtk.ScrolledWindow):
 
         self.insert_entry_properties_into_listbox(add_all)
 
+        safe_entry: SafeEntry = self.unlocked_database.current_element
+        safe_entry.connect("updated", self._on_safe_entry_updated)
+
     def insert_entry_properties_into_listbox(self, add_all):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
@@ -208,7 +211,7 @@ class EntryPage(Gtk.ScrolledWindow):
         attribute_property_name_label.set_text(key)
         if value is not None:
             attribute_value_entry.set_text(value)
-        attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
+        attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked, key)
         attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
         attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed, key)
 
@@ -468,3 +471,7 @@ class EntryPage(Gtk.ScrolledWindow):
             row.set_visible(True)
         else:
             row.set_visible(False)
+
+    def _on_safe_entry_updated(self, safe_entry):
+        self.unlocked_database.start_database_lock_timer()
+        self.is_dirty = True

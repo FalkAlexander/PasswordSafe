@@ -33,7 +33,6 @@ class DatabaseManager(GObject.GObject):
     keyfile_hash = NotImplemented
     _is_dirty = False  # Does the database need saving?
     save_running = False
-    scheduled_saves = 0
 
     locked = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
@@ -557,9 +556,6 @@ class DatabaseManager(GObject.GObject):
             self.set_element_mtime(entry.parentgroup)
         self.set_element_mtime(destination_group_object)
 
-    def set_element_ctime(self, element):
-        element.ctime = datetime.utcnow()
-
     def set_element_atime(self, element):
         element.atime = datetime.utcnow()
 
@@ -725,11 +721,6 @@ class DatabaseManager(GObject.GObject):
         if current_group.uuid == moved_group.uuid:
             return True
         return self.parent_checker(current_group.parentgroup, moved_group)
-
-    @property
-    def encryption(self):
-        """returns the encryption algorithm"""
-        return self.db.encryption_algorithm
 
     @property
     def version(self):

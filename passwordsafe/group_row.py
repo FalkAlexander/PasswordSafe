@@ -103,14 +103,8 @@ class GroupRow(Gtk.ListBoxRow):
     def get_uuid(self):
         return self.group_uuid
 
-    def get_label(self):
-        return self.label
-
     def set_label(self, label):
         self.label = label
-
-    def get_type(self):
-        return self.type
 
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active():

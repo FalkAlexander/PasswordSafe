@@ -16,21 +16,18 @@
           <object class="GtkListBox" id="properties_list_box">
             <property name="name">PropertiesListBox</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="selection_mode">none</property>
             <property name="activate_on_single_click">False</property>
             <property name="margin_top">12</property>
             <child>
               <object class="GtkListBoxRow" id="name_property_row">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="activatable">False</property>
                 <property name="selectable">False</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkBox" id="name_property_box">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="valign">center</property>
                     <property name="hexpand">True</property>
                     <property name="orientation">vertical</property>
@@ -38,7 +35,6 @@
                     <child>
                       <object class="GtkLabel" id="name_property_name_label">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">_Title</property>
                         <property name="use_underline">True</property>
@@ -51,16 +47,13 @@
                     <child>
                       <object class="GtkBox" id="name_entry_box">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkEntry" id="name_property_value_entry">
-                            <property name="name">TabBox</property>
                             <property name="height_request">-1</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
                             <property name="valign">center</property>
                             <property name="vexpand">True</property>
                           </object>
@@ -74,13 +67,11 @@
             <child>
               <object class="GtkListBoxRow" id="notes_property_row">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="activatable">False</property>
                 <property name="selectable">False</property>
                 <child>
                   <object class="GtkBox" id="notes_property_box">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="valign">center</property>
                     <property name="hexpand">True</property>
                     <property name="orientation">vertical</property>
@@ -88,7 +79,6 @@
                     <child>
                       <object class="GtkLabel" id="notes_property_name_label">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">_Notes</property>
                         <property name="use_underline">True</property>
@@ -101,7 +91,6 @@
                     <child>
                       <object class="GtkBox" id="notes_entry_box">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
                         <property name="orientation">vertical</property>
@@ -109,12 +98,9 @@
                           <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
                             <property name="height_request">180</property>
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
                             <child>
                               <object class="GtkTextView" id="notes_property_value_entry">
-                                <property name="name">TabBox</property>
                                 <property name="visible">True</property>
-                                <property name="can_focus">True</property>
                                 <property name="left_margin">8</property>
                                 <property name="right_margin">8</property>
                                 <property name="top_margin">5</property>

@@ -15,8 +15,8 @@ from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.settings_dialog import SettingsDialog
 
 if typing.TYPE_CHECKING:
-    from passwordsafe.unlocked_database import UnlockedDatabase
     from passwordsafe.database_manager import DatabaseManager
+    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class Application(Gtk.Application):

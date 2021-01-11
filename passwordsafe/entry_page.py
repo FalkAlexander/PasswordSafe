@@ -210,6 +210,7 @@ class EntryPage(Gtk.ScrolledWindow):
             attribute_value_entry.set_text(value)
         attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked)
         attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
+        attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed, key)
 
         self.attribute_list_box.add(attribute_row)
         attribute_row.show_all()
@@ -280,27 +281,23 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry.set_attribute(key, value)
         self.add_attribute_property_row(key, value)
 
-    def on_attribute_remove_button_clicked(self, button):
+    def on_attribute_remove_button_clicked(self, button, key):
         safe_entry: SafeEntry = self.unlocked_database.current_element
 
         attribute_row = button.get_parent().get_parent()
-        key = attribute_row.get_name()
-
         safe_entry.delete_attribute(key)
         self.attribute_list_box.remove(attribute_row)
 
-    def on_attributes_value_entry_changed(self, widget):
+    def on_attributes_value_entry_changed(self, widget, key):
         safe_entry = self.unlocked_database.current_element
-
-        parent = widget.get_parent().get_parent().get_parent()
-        key = parent.get_name()
         safe_entry.set_attribute(key, widget.get_text())
 
     def on_attribute_key_edit_button_clicked(self, button):
         safe_entry: SafeEntry = self.unlocked_database.current_element
+        parent = button.get_parent()
 
         parent = button.get_parent().get_parent().get_parent()
-        key = parent.get_name()
+        key = button.get_children()[0].get_label()
 
         key_entry = Gtk.Entry()
         key_entry.set_visible(True)

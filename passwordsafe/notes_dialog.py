@@ -51,10 +51,10 @@ class NotesDialog:
     def __setup_accelerators(self):
         self.__dialog.add_accel_group(self.__accelerators)
         self.__add_search_accelerator()
-        # TODO Add accelerator for save on "<Control>s"
+        # TODO Add accelerator for save on "<primary>s"
 
     def __add_search_accelerator(self):
-        key, mod = Gtk.accelerator_parse("<Control>f")
+        key, mod = Gtk.accelerator_parse("<primary>f")
         self.__search_button.add_accelerator(
             "clicked", self.__accelerators, key, mod, Gtk.AccelFlags.VISIBLE
         )

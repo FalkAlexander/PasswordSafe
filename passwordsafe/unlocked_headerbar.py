@@ -76,7 +76,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._on_mobile_layout_changed(None, None)
 
     def _setup_accelerators(self):
-        self._unlocked_database.bind_accelerator(self._search_button, "<Control>f")
+        self._unlocked_database.bind_accelerator(self._search_button, "<primary>f")
 
     def _on_search_active(
             self, _unlocked_database: UnlockedDatabase,

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-01-01 16:41+0000\n"
-"PO-Revision-Date: 2021-01-01 19:34+0200\n"
+"POT-Creation-Date: 2021-01-12 15:16+0000\n"
+"PO-Revision-Date: 2021-01-12 19:27+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -124,7 +124,7 @@ msgstr "Встановіть файл ключа до сейфа"
 #. Button to generate a password
 #: data/create_database.ui:409 data/password_generator_popover.ui:189
 #: passwordsafe/create_database.py:125
-#: passwordsafe/database_settings_dialog.py:238
+#: passwordsafe/database_settings_dialog.py:234
 msgid "_Generate"
 msgstr "С_творити"
 
@@ -253,9 +253,9 @@ msgid "_Current"
 msgstr "_Поточний"
 
 #: data/database_settings_dialog.ui:559 data/unlock_database.ui:275
-#: passwordsafe/database_settings_dialog.py:191
+#: passwordsafe/database_settings_dialog.py:187
+#: passwordsafe/database_settings_dialog.py:235
 #: passwordsafe/database_settings_dialog.py:239
-#: passwordsafe/database_settings_dialog.py:243
 #: passwordsafe/unlock_database.py:29
 msgid "Keyfile"
 msgstr "Файл ключа"
@@ -297,8 +297,8 @@ msgid "Key Derivation Function"
 msgstr "Функція для похідних ключів"
 
 #: data/database_settings_dialog.ui:856
-#: passwordsafe/database_settings_dialog.py:357
-#: passwordsafe/database_settings_dialog.py:379
+#: passwordsafe/database_settings_dialog.py:353
+#: passwordsafe/database_settings_dialog.py:375
 msgid "Apply Changes"
 msgstr "Застосувати зміни"
 
@@ -809,7 +809,7 @@ msgstr "При_ховати перший початковий екран"
 msgid "Reopen last opened safe."
 msgstr "Повторно відкрити останній відкритий сейф."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:322
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:327
 msgid "Safe"
 msgstr "Безпечний"
 
@@ -968,56 +968,62 @@ msgid "Open preferences"
 msgstr "Відкрити налаштування"
 
 #: data/shortcuts_overview.ui:38
+#| msgid "Keyboard Shortcuts"
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Показати скорочення"
+
+#: data/shortcuts_overview.ui:45
 msgctxt "Shortcut window description"
 msgid "Quit"
 msgstr "Вийти"
 
-#: data/shortcuts_overview.ui:47
+#: data/shortcuts_overview.ui:54
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Безпечний"
 
-#: data/shortcuts_overview.ui:51
+#: data/shortcuts_overview.ui:58
 msgctxt "Shortcut window description"
 msgid "Lock safe"
 msgstr "Замкнути сейф"
 
-#: data/shortcuts_overview.ui:58
+#: data/shortcuts_overview.ui:65
 msgctxt "Shortcut window description"
 msgid "Save safe"
 msgstr "Зберегти сейф"
 
-#: data/shortcuts_overview.ui:65
+#: data/shortcuts_overview.ui:72
 msgctxt "Shortcut window description"
 msgid "Open search"
 msgstr "Відкрити пошук"
 
-#: data/shortcuts_overview.ui:72
+#: data/shortcuts_overview.ui:79
 msgctxt "Shortcut window description"
 msgid "Create entry"
 msgstr "Створити запис"
 
-#: data/shortcuts_overview.ui:79
+#: data/shortcuts_overview.ui:86
 msgctxt "Shortcut window description"
 msgid "Create group"
 msgstr "Створити групу"
 
-#: data/shortcuts_overview.ui:88
+#: data/shortcuts_overview.ui:95
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Запис"
 
-#: data/shortcuts_overview.ui:92
+#: data/shortcuts_overview.ui:99
 msgctxt "Shortcut window description"
 msgid "Copy password"
 msgstr "Копіювати пароль"
 
-#: data/shortcuts_overview.ui:99
+#: data/shortcuts_overview.ui:106
 msgctxt "Shortcut window description"
 msgid "Copy username"
 msgstr "Копіювати ім'я користувача"
 
-#: data/shortcuts_overview.ui:106
+#: data/shortcuts_overview.ui:113
 msgctxt "Shortcut window description"
 msgid "Go back"
 msgstr "Назад"
@@ -1149,7 +1155,7 @@ msgstr ""
 "Зберігайте ваші паролі, нотатки і дані безпечно. <b>Створіть</b> або "
 "<b>імпортуйте</b> нове сховище Keepass."
 
-#: passwordsafe/application.py:183
+#: passwordsafe/application.py:178
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Неможливо вийти: не вдалося зберегти сейф"
 
@@ -1159,7 +1165,7 @@ msgstr "Паролі не збігаються"
 
 #. NOTE: Filechooser title for generating a new keyfile
 #: passwordsafe/create_database.py:123
-#: passwordsafe/database_settings_dialog.py:237
+#: passwordsafe/database_settings_dialog.py:233
 msgid "Choose location for keyfile"
 msgstr "Виберіть розташування файла ключа"
 
@@ -1167,41 +1173,41 @@ msgstr "Виберіть розташування файла ключа"
 msgid "Generating…"
 msgstr "Створюємо…"
 
-#: passwordsafe/database_manager.py:404
+#: passwordsafe/database_manager.py:403
 msgid "Clone"
 msgstr "Клонувати"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/database_settings_dialog.py:186
+#: passwordsafe/database_settings_dialog.py:182
 msgid "Choose current keyfile"
 msgstr "Виберіть поточний файл ключа"
 
-#: passwordsafe/database_settings_dialog.py:187
+#: passwordsafe/database_settings_dialog.py:183
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: passwordsafe/database_settings_dialog.py:313
-#: passwordsafe/database_settings_dialog.py:368
+#: passwordsafe/database_settings_dialog.py:309
+#: passwordsafe/database_settings_dialog.py:364
 msgid "Apply…"
 msgstr "Застосувати…"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:410
+#: passwordsafe/database_settings_dialog.py:406
 msgid "Unknown"
 msgstr "Невідомий"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:413
+#: passwordsafe/database_settings_dialog.py:409
 msgid "AES 256-bit"
 msgstr "AES, 256-бітовий"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:416
+#: passwordsafe/database_settings_dialog.py:412
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20, 256-бітовий"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:419
+#: passwordsafe/database_settings_dialog.py:415
 msgid "Twofish 256-bit"
 msgstr "Twofish, 256-бітовий"
 
@@ -1244,35 +1250,35 @@ msgid "No group title specified"
 msgstr "Не вказано назви групи"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:227
+#: passwordsafe/main_window.py:232
 msgid "Choose a Keepass safe"
 msgstr "Виберіть сейф Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:237 passwordsafe/main_window.py:327
+#: passwordsafe/main_window.py:242 passwordsafe/main_window.py:332
 msgid "KeePass 3.1/4 Database"
 msgstr "база даних KeePass 3.1/4"
 
 #. pylint: disable=C0103
-#: passwordsafe/main_window.py:265
+#: passwordsafe/main_window.py:270
 msgid "Could not open file"
 msgstr "Не вдалося відкрити файл"
 
-#: passwordsafe/main_window.py:274
+#: passwordsafe/main_window.py:279
 msgid "Could not open file: Mime type not supported"
 msgstr ""
 "Не вдалося відкрити файл: не передбачено підтримки відповідного типу MIME"
 
-#: passwordsafe/main_window.py:284 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:289 passwordsafe/unlock_database.py:191
 msgid "Safe already opened"
 msgstr "Сейф вже відкрито"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:316
+#: passwordsafe/main_window.py:321
 msgid "Choose location for Keepass safe"
 msgstr "Виберіть розташування сейфа Keepass"
 
-#: passwordsafe/main_window.py:319
+#: passwordsafe/main_window.py:324
 msgid "_Create"
 msgstr "С_творити"
 
@@ -1319,7 +1325,6 @@ msgid "Safe saved"
 msgstr "Сейф збережено"
 
 #: passwordsafe/unlocked_database.py:472
-#| msgid "Could not open file"
 msgid "Could not save Safe"
 msgstr "Не вдалося зберегти сейф"
 
@@ -1382,9 +1387,6 @@ msgstr "Сейф замкнено через неактивність"
 
 #~ msgid "Preferences"
 #~ msgstr "Налаштування"
-
-#~ msgid "Keyboard Shortcuts"
-#~ msgstr "Клавіатурні скорочення"
 
 #~ msgid "Close"
 #~ msgstr "Закрити"

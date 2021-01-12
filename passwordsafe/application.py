@@ -102,13 +102,9 @@ class Application(Gtk.Application):
         quit_action = Gio.SimpleAction.new("quit", None)
         quit_action.connect("activate", self.on_quit)
 
-        shortcuts_action = Gio.SimpleAction.new("shortcuts", None)
-        shortcuts_action.connect("activate", self.on_shortcuts_menu_clicked)
-
         self.add_action(settings_action)
         self.add_action(about_action)
         self.add_action(quit_action)
-        self.add_action(shortcuts_action)
 
     def on_settings_menu_clicked(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)
@@ -218,17 +214,6 @@ class Application(Gtk.Application):
         for database in self.window.opened_databases:
             database.cleanup()
 
-    def on_shortcuts_menu_clicked(
-        self, _action: Gio.SimpleAction, _param: None
-    ) -> None:
-        """Invoked when we click "keyboard shortcuts" in the main menu"""
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/shortcuts_overview.ui"
-        )
-        shortcuts_overview = builder.get_object("shortcuts_overview")
-        shortcuts_overview.set_transient_for(self.window)
-        shortcuts_overview.show()
-
     def add_menubutton_popover_actions(self):
         new_action = Gio.SimpleAction.new("new", None)
         new_action.connect("activate", self.window.create_filechooser)
@@ -258,8 +243,8 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.undo", ["<primary>z"])
         self.set_accels_for_action("app.redo", ["<primary>y"])
         self.set_accels_for_action("app.go_back", ["Escape"])
-        self.set_accels_for_action("app.shortcuts", ["<primary>question"])
         self.set_accels_for_action("app.quit", ["<primary>q"])
+        self.set_accels_for_action("win.show-help-overlay", ["<primary>question"])
 
 
 if __name__ == "__main__":

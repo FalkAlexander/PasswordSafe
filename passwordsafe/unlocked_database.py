@@ -488,12 +488,9 @@ class UnlockedDatabase(GObject.GObject):
         if self.database_manager.check_is_root_group(parent_group) is True:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
         else:
-            for button in self.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and isinstance(
-                    button, passwordsafe.pathbar_button.PathbarButton
-                ):
-                    if button.element.uuid == parent_group.uuid:
-                        self.pathbar.on_pathbar_button_clicked(button)
+            for button in self.pathbar.buttons:
+                if button.element.uuid == parent_group.uuid:
+                    self.pathbar.on_pathbar_button_clicked(button)
 
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of

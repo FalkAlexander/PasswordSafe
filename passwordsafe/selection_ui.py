@@ -6,7 +6,6 @@ from gettext import gettext as _
 from typing import List
 from gi.repository import GObject, Gtk
 
-import passwordsafe.pathbar_button
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
 if typing.TYPE_CHECKING:
@@ -72,13 +71,6 @@ class SelectionUI(Gtk.Box):
 
     def _exit_selection_mode(self):
         self.cut_mode = True
-
-        for element in self.unlocked_database.pathbar.get_children():
-            if element.get_name() == "SeperatorLabel":
-                el_context = element.get_style_context()
-                el_context.remove_class('SeperatorLabelSelectedMode')
-                el_context.add_class('SeperatorLabel')
-
         self.unlocked_database.show_page_of_new_directory(False, False)
 
     #
@@ -171,13 +163,10 @@ class SelectionUI(Gtk.Box):
                 self._delete_button.set_sensitive(False)
 
             rebuild = False
-            for button in self.unlocked_database.pathbar:
-                if button.get_name() == "PathbarButtonDynamic" and isinstance(
-                    button, passwordsafe.pathbar_button.PathbarButton
-                ):
-                    for group_row in self.groups_cut:
-                        if button.element.uuid == group_row.get_uuid():
-                            rebuild = True
+            for button in self.unlocked_database.pathbar.buttons:
+                for group_row in self.groups_cut:
+                    if button.element.uuid == group_row.get_uuid():
+                        rebuild = True
 
             if rebuild is True:
                 self.unlocked_database.pathbar.rebuild_pathbar(

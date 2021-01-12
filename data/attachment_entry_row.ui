@@ -1,60 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkListBoxRow" id="attachment_row">
-    <property name="height_request">50</property>
+  <object class="HdyActionRow" id="attachment_row">
+    <property name="activatable">True</property>
     <property name="visible">True</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="margin_start">12</property>
-        <property name="margin_end">12</property>
         <child>
-          <object class="GtkLabel" id="attachment_label">
+          <object class="GtkButton" id="attachment_download_button">
+            <property name="name">AttachmentDownloadButton</property>
             <property name="visible">True</property>
-            <property name="halign">start</property>
-            <property name="ellipsize">end</property>
-            <property name="hexpand">True</property>
+            <property name="receives_default">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">document-save-as-symbolic</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
-          <object class="GtkBox">
+          <object class="GtkButton" id="attachment_delete_button">
+            <property name="name">AttachmentDeleteButton</property>
             <property name="visible">True</property>
+            <property name="receives_default">True</property>
+            <property name="valign">center</property>
             <child>
-              <object class="GtkButton" id="attachment_download_button">
-                <property name="name">AttachmentDownloadButton</property>
+              <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="receives_default">True</property>
-                <property name="valign">center</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon_name">document-save-as-symbolic</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="attachment_delete_button">
-                <property name="name">AttachmentDeleteButton</property>
-                <property name="visible">True</property>
-                <property name="receives_default">True</property>
-                <property name="valign">center</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="icon_name">user-trash-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="destructive-action"/>
-                </style>
+                <property name="icon_name">user-trash-symbolic</property>
               </object>
             </child>
             <style>
-              <class name="linked"/>
+              <class name="destructive-action"/>
             </style>
           </object>
         </child>
+        <style>
+          <class name="linked"/>
+        </style>
       </object>
     </child>
   </object>

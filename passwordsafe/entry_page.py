@@ -396,7 +396,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         attachment_row = builder.get_object("attachment_row")
         attachment_row.set_name(str(attachment.id))
-        builder.get_object("attachment_label").set_label(attachment.filename)
+        attachment_row.set_title(attachment.filename)
         builder.get_object("attachment_download_button").connect(
             "clicked", self.on_attachment_download_button_clicked, attachment
         )

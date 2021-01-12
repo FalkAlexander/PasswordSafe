@@ -259,6 +259,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.undo", ["<Control>z"])
         self.set_accels_for_action("app.redo", ["<Control>y"])
         self.set_accels_for_action("app.go_back", ["Escape"])
+        self.set_accels_for_action("app.shortcuts", ["<primary>question"])
 
 
 if __name__ == "__main__":

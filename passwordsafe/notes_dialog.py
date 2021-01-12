@@ -1,15 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Gtk, Gdk, Handy
+from gi.repository import Gdk, GObject, Gtk, Handy
 
 
 class NotesDialog:
-    def __init__(self, unlocked_database):
+    def __init__(self, unlocked_database, safe_entry):
         self.__builder = Gtk.Builder()
         self.__builder.add_from_resource("/org/gnome/PasswordSafe/notes_dialog.ui")
 
         self.__unlocked_database = unlocked_database
+        self.__safe_entry = safe_entry
         self.__dialog = self.__builder.get_object("notes_detached_dialog")
         self.__scrolled_page = self.__unlocked_database.get_current_page()
         self.__accelerators = Gtk.AccelGroup()
@@ -38,15 +39,17 @@ class NotesDialog:
         self.__search_entry.connect("search-changed", self.__on_search_entry_changed)
         self.__search_entry.connect("stop-search", self.__on_search_stopped)
 
-        self.__notes_buffer.connect("changed", self.__on_value_entry_changed)
+        # Bind text to the corresponding safe entry.
+        self.__safe_entry.bind_property(
+            "notes", self.__notes_buffer, "text",
+            GObject.BindingFlags.SYNC_CREATE
+            | GObject.BindingFlags.BIDIRECTIONAL)
 
     def __setup_widgets(self):
         # Dialog
         self.__dialog.set_modal(True)
         self.__dialog.set_transient_for(self.__unlocked_database.window)
         self.__dialog.connect("key-press-event", self.__on_key_press_event)
-
-        self.__update_value_entry()
 
     def __setup_accelerators(self):
         self.__dialog.add_accel_group(self.__accelerators)
@@ -59,29 +62,9 @@ class NotesDialog:
             "clicked", self.__accelerators, key, mod, Gtk.AccelFlags.VISIBLE
         )
 
-    def __update_value_entry(self):
-        scrolled_page = self.__scrolled_page
-        scrolled_page_buffer = scrolled_page.notes_property_value_entry.get_buffer()
-
-        buffer_text = scrolled_page_buffer.get_text(
-            scrolled_page_buffer.get_start_iter(),
-            scrolled_page_buffer.get_end_iter(),
-            False,
-        )
-        self.__notes_buffer.set_text(buffer_text)
-
     #
     # Events
     #
-
-    def __on_value_entry_changed(self, widget):
-        self.__unlocked_database.start_database_lock_timer()
-        scrolled_page = self.__scrolled_page
-        scrolled_page_buffer = scrolled_page.notes_property_value_entry.get_buffer()
-
-        scrolled_page_buffer.set_text(
-            widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False)
-        )
 
     def __on_copy_button_clicked(self, _button):
         notes_buffer = self.__notes_buffer

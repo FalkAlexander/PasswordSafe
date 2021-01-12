@@ -241,7 +241,8 @@ class EntryPage(Gtk.ScrolledWindow):
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
-        NotesDialog(self.unlocked_database).present()
+        safe_entry = self.unlocked_database.current_element
+        NotesDialog(self.unlocked_database, safe_entry).present()
 
     def on_entry_icon_button_toggled(self, button, icon):
         if button.get_active() is False:

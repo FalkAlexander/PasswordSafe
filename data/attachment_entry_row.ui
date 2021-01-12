@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="HdyActionRow" id="attachment_row">
+    <property name="activatable">True</property>
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkButton" id="attachment_download_button">
+            <property name="name">AttachmentDownloadButton</property>
+            <property name="visible">True</property>
+            <property name="receives_default">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">document-save-as-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="attachment_delete_button">
+            <property name="name">AttachmentDeleteButton</property>
+            <property name="visible">True</property>
+            <property name="receives_default">True</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">user-trash-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="destructive-action"/>
+            </style>
+          </object>
+        </child>
+        <style>
+          <class name="linked"/>
+        </style>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -193,7 +193,7 @@ class Pathbar(Gtk.Box):
         current_ele = self.unlocked_database.current_element
         page = self.unlocked_database.get_current_page()
 
-        if not page.check_is_edit_page():
+        if not page.edit_page:
             # Do nothing on non-edit pages
             return
 

@@ -73,7 +73,6 @@ class UnlockedDatabase(GObject.GObject):
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
         self.search: Search = Search(self)
-        self.entry_page: EntryPage = EntryPage(self)
         self.group_page: GroupPage = GroupPage(self)
         self.custom_keypress_handler: CustomKeypressHandler = CustomKeypressHandler(
             self
@@ -237,37 +236,13 @@ class UnlockedDatabase(GObject.GObject):
                 self.listbox_insert_thread.start()
             # Create not existing stack page for entry
             else:
-                builder = Gtk.Builder()
-                builder.add_from_resource("/org/gnome/PasswordSafe/entry_page.ui")
-
-                scrolled_window = ScrolledPage(True)
-                scrolled_window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-
-                scrolled_window.properties_list_box = builder.get_object(
-                    "properties_list_box"
-                )
-
-                # Responsive Container
-                hdy_page = Handy.Clamp()
-                hdy_page.set_margin_top(18)
-                hdy_page.set_margin_bottom(18)
-                hdy_page.set_margin_start(12)
-                hdy_page.set_margin_end(12)
-                hdy_page.add(scrolled_window.properties_list_box)
-
-                scrolled_window.add(hdy_page)
-                scrolled_window.show_all()
+                if new_entry:
+                    scrolled_window = EntryPage(self, True)
+                else:
+                    scrolled_window = EntryPage(self, False)
 
                 self.add_page(scrolled_window, self.current_element.uuid.urn)
                 self.switch_page(self.current_element)
-                if new_entry is True:
-                    self.entry_page.insert_entry_properties_into_listbox(
-                        scrolled_window.properties_list_box, True
-                    )
-                else:
-                    self.entry_page.insert_entry_properties_into_listbox(
-                        scrolled_window.properties_list_box, False
-                    )
         # Stack page with current group's uuid already exists, we only need to switch stack page
         else:
             self.database_manager.set_element_atime(self.current_element)

@@ -68,7 +68,7 @@ class ColorButton(Gtk.FlowBoxChild):  # pylint: disable=too-few-public-methods
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/color_entry_row.ui")
-class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
+class ColorEntryRow(Gtk.Box):  # pylint: disable=too-few-public-methods
 
     __gtype_name__ = "ColorEntryRow"
 

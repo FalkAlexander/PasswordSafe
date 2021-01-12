@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkBox" id="attribute_row">
+    <property name="visible">True</property>
+    <property name="margin_bottom">6</property>
+    <property name="hexpand">True</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="margin_bottom">9</property>
+            <property name="icon_name">error-correct-symbolic</property>
+            <style>
+              <class name="dim-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="attribute_key_edit_button">
+            <property name="visible">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">start</property>
+            <property name="valign">end</property>
+            <property name="relief">none</property>
+            <child>
+              <object class="GtkLabel" id="attribute_property_name_label">
+                <property name="visible">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="label">AtrName</property>
+                <property name="justify">right</property>
+                <property name="ellipsize">end</property>
+                <property name="max_width_chars">14</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="attribute_entry_box">
+        <property name="visible">True</property>
+        <property name="hexpand">True</property>
+        <child>
+          <object class="GtkEntry" id="attribute_value_entry">
+            <property name="visible">True</property>
+            <property name="hexpand">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="attribute_remove_button">
+            <property name="visible">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Remove attribute</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon_name">user-trash-symbolic</property>
+              </object>
+            </child>
+            <style>
+              <class name="destructive-action"/>
+            </style>
+          </object>
+        </child>
+        <style>
+          <class name="linked"/>
+        </style>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -2,7 +2,6 @@
 <interface>
   <object class="GtkBox" id="attribute_row">
     <property name="visible">True</property>
-    <property name="valign">center</property>
     <property name="margin_bottom">6</property>
     <property name="hexpand">True</property>
     <property name="orientation">vertical</property>
@@ -12,7 +11,6 @@
         <child>
           <object class="GtkImage">
             <property name="visible">True</property>
-            <property name="valign">end</property>
             <property name="margin_bottom">9</property>
             <property name="icon_name">error-correct-symbolic</property>
             <style>
@@ -32,7 +30,6 @@
                 <property name="visible">True</property>
                 <property name="halign">start</property>
                 <property name="valign">center</property>
-                <property name="vexpand">True</property>
                 <property name="label">AtrName</property>
                 <property name="justify">right</property>
                 <property name="ellipsize">end</property>
@@ -50,7 +47,6 @@
       <object class="GtkBox" id="attribute_entry_box">
         <property name="visible">True</property>
         <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
         <child>
           <object class="GtkEntry" id="attribute_value_entry">
             <property name="visible">True</property>
@@ -62,7 +58,6 @@
             <property name="visible">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Remove attribute</property>
-            <property name="halign">end</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>

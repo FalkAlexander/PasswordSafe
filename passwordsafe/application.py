@@ -248,18 +248,18 @@ class Application(Gtk.Application):
 
     def add_global_accelerators(self):
         self.window.add_global_accelerator_actions()
-        self.set_accels_for_action("app.settings", ["<Control>comma"])
-        self.set_accels_for_action("app.open", ["<Control>o"])
-        self.set_accels_for_action("app.new", ["<Control><Shift>n"])
-        self.set_accels_for_action("app.db.save", ["<Control>s"])
-        self.set_accels_for_action("app.db.lock", ["<Control>l"])
-        self.set_accels_for_action("app.db.add_entry", ["<Control>n"])
-        self.set_accels_for_action("app.db.add_group", ["<Control>g"])
-        self.set_accels_for_action("app.undo", ["<Control>z"])
-        self.set_accels_for_action("app.redo", ["<Control>y"])
+        self.set_accels_for_action("app.settings", ["<primary>comma"])
+        self.set_accels_for_action("app.open", ["<primary>o"])
+        self.set_accels_for_action("app.new", ["<primary><Shift>n"])
+        self.set_accels_for_action("app.db.save", ["<primary>s"])
+        self.set_accels_for_action("app.db.lock", ["<primary>l"])
+        self.set_accels_for_action("app.db.add_entry", ["<primary>n"])
+        self.set_accels_for_action("app.db.add_group", ["<primary>g"])
+        self.set_accels_for_action("app.undo", ["<primary>z"])
+        self.set_accels_for_action("app.redo", ["<primary>y"])
         self.set_accels_for_action("app.go_back", ["Escape"])
         self.set_accels_for_action("app.shortcuts", ["<primary>question"])
-        self.set_accels_for_action("app.quit", ["<Control>q"])
+        self.set_accels_for_action("app.quit", ["<primary>q"])
 
 
 if __name__ == "__main__":

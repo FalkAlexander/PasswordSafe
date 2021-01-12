@@ -77,7 +77,7 @@ class EntryPage:
 
                 self.unlocked_database.bind_accelerator(
                     scrolled_page.username_property_value_entry,
-                    "<Control><Shift>b",
+                    "<primary><Shift>b",
                     signal="copy-clipboard")
                 scrolled_page.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
 
@@ -97,7 +97,7 @@ class EntryPage:
 
                 self.unlocked_database.bind_accelerator(
                     scrolled_page.username_property_value_entry,
-                    "<Control><Shift>b",
+                    "<primary><Shift>b",
                     signal="copy-clipboard")
                 scrolled_page.username_property_value_entry.connect("copy-clipboard", self._on_copy_secondary_button_clicked)
 

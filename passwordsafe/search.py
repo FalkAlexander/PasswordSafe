@@ -69,7 +69,7 @@ class Search:
         self._search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
 
         self.unlocked_database.bind_accelerator(
-            self._search_entry, "<Control>f", signal="stop-search")
+            self._search_entry, "<primary>f", signal="stop-search")
         self.unlocked_database.connect(
             "notify::search-active", self._on_search_active)
         self._prepare_search_page()

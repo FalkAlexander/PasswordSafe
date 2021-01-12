@@ -52,7 +52,7 @@ class PasswordEntryRow(Gtk.ListBoxRow):
         self._generate_password_button.set_popover(self._pwd_popover)
 
         self._unlocked_database.bind_accelerator(
-            self._password_value_entry, "<Control><Shift>c", signal="copy-clipboard"
+            self._password_value_entry, "<primary><Shift>c", signal="copy-clipboard"
         )
 
         self._password_level_bar.add_offset_value("weak", 1.0)

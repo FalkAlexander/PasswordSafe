@@ -1,98 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkListBoxRow" id="name_property_row">
+  <template class="GroupPage" parent="GtkScrolledWindow">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
     <child>
-      <object class="GtkBox" id="name_property_box">
+      <object class="HdyClamp">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="hexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
+        <property name="margin_top">30</property>
+        <property name="margin_bottom">30</property>
+        <property name="margin_start">12</property>
+        <property name="margin_end">12</property>
         <child>
-          <object class="GtkLabel" id="name_property_name_label">
+          <object class="GtkBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">_Title</property>
-            <property name="use_underline">True</property>
-            <property name="mnemonic_widget">name_property_value_entry</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="name_entry_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
             <property name="orientation">vertical</property>
+            <property name="spacing">12</property>
             <child>
-              <object class="GtkEntry" id="name_property_value_entry">
-                <property name="height_request">-1</property>
+              <object class="GtkBox" id="name_property_box">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="valign">center</property>
-                <property name="vexpand">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="name_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">_Title</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">name_property_value_entry</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="name_entry_box">
+                    <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkEntry" id="name_property_value_entry">
+                        <property name="visible">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
-          </object>
-        </child>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListBoxRow" id="notes_property_row">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="activatable">False</property>
-    <property name="selectable">False</property>
-    <child>
-      <object class="GtkBox" id="notes_property_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="valign">center</property>
-        <property name="hexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkLabel" id="notes_property_name_label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">_Notes</property>
-            <property name="use_underline">True</property>
-            <property name="mnemonic_widget">notes_property_value_entry</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox" id="notes_entry_box">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
-                <property name="height_request">180</property>
+              <object class="GtkBox" id="notes_property_box">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
                 <child>
-                  <object class="GtkTextView" id="notes_property_value_entry">
+                  <object class="GtkLabel" id="notes_property_name_label">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="left_margin">8</property>
-                    <property name="right_margin">8</property>
-                    <property name="top_margin">5</property>
-                    <property name="bottom_margin">5</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">_Notes</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">notes_property_value_entry</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="notes_entry_box">
+                    <property name="visible">True</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
+                        <property name="height_request">180</property>
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkTextView" id="notes_property_value_entry">
+                            <property name="visible">True</property>
+                            <property name="left_margin">8</property>
+                            <property name="right_margin">8</property>
+                            <property name="top_margin">5</property>
+                            <property name="bottom_margin">5</property>
+                            <style>
+                              <class name="codeview"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -101,21 +91,5 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkListBox" id="properties_list_box">
-    <property name="name">PropertiesListBox</property>
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="selection_mode">none</property>
-    <property name="activate_on_single_click">False</property>
-    <property name="margin_top">12</property>
-    <style>
-      <class name="properties_listbox"/>
-    </style>
-  </object>
-  <object class="GtkScrolledWindow" id="scrolled_window">
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="hscrollbar_policy">never</property>
-  </object>
+  </template>
 </interface>

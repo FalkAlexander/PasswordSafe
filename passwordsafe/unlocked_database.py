@@ -10,7 +10,7 @@ from threading import Timer
 from typing import List, Optional, Union
 from uuid import UUID
 
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 import passwordsafe.config_manager
 from passwordsafe.custom_keypress_handler import CustomKeypressHandler
@@ -73,7 +73,6 @@ class UnlockedDatabase(GObject.GObject):
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
         self.search: Search = Search(self)
-        self.group_page: GroupPage = GroupPage(self)
         self.custom_keypress_handler: CustomKeypressHandler = CustomKeypressHandler(
             self
         )
@@ -167,22 +166,7 @@ class UnlockedDatabase(GObject.GObject):
 
         # Creation of group edit page
         if edit_group is True:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/group_page.ui")
-            scrolled_window = ScrolledPage(True)
-            scrolled_window.properties_list_box = builder.get_object(
-                "properties_list_box"
-            )
-
-            # Responsive Container
-            hdy_page = Handy.Clamp()
-            hdy_page.set_margin_top(18)
-            hdy_page.set_margin_bottom(18)
-            hdy_page.set_margin_start(12)
-            hdy_page.set_margin_end(12)
-            hdy_page.add(scrolled_window.properties_list_box)
-            scrolled_window.add(hdy_page)
-            scrolled_window.show_all()
+            scrolled_window = GroupPage(self)
 
             stack_page_uuid = self.current_element.uuid
             if self._stack.get_child_by_name(stack_page_uuid.urn) is not None:
@@ -191,9 +175,6 @@ class UnlockedDatabase(GObject.GObject):
 
             self.add_page(scrolled_window, self.current_element.uuid.urn)
             self.switch_page(self.current_element)
-            self.group_page.insert_group_properties_into_listbox(
-                scrolled_window.properties_list_box
-            )
             self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
         # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
         elif (
@@ -211,17 +192,9 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.connect("row-activated", self.on_list_box_row_activated)
 
                 scrolled_window = ScrolledPage(False)
-                overlay = Gtk.Overlay()
 
-                # Responsive Container
-                list_box.set_name("BrowserListBox")
-                list_box.set_valign(Gtk.Align.START)
-
-                hdy_browser = Handy.Clamp()
-                hdy_browser.add(list_box)
-                overlay.add(hdy_browser)
-
-                scrolled_window.add(overlay)
+                hdy_clamp = builder.get_object("browser_clamp")
+                scrolled_window.add(hdy_clamp)
                 scrolled_window.show_all()
 
                 self.add_page(scrolled_window, self.current_element.uuid.urn)
@@ -230,7 +203,7 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.hide()
 
                 self.listbox_insert_thread = threading.Thread(
-                    target=self.insert_groups_into_listbox, args=(list_box, overlay)
+                    target=self.insert_groups_into_listbox, args=(list_box, hdy_clamp)
                 )
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()
@@ -410,7 +383,7 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME find a more elegant way to do this without
         # obliterating everything.
         for page in self._stack.get_children():
-            if page.check_is_edit_page() is False:
+            if page.edit_page is False:
                 page.destroy()
 
         self.show_page_of_new_directory(False, False)

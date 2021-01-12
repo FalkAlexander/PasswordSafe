@@ -97,12 +97,17 @@
       </object>
     </child>
   </object>
-  <object class="GtkListBox" id="list_box">
-    <property name="name">BrowserListBox</property>
+  <object class="HdyClamp" id="browser_clamp">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="valign">start</property>
-    <property name="selection_mode">none</property>
+    <child>
+      <object class="GtkListBox" id="list_box">
+        <property name="name">BrowserListBox</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="valign">start</property>
+        <property name="selection_mode">none</property>
+      </object>
+    </child>
   </object>
   <object class="GtkListBoxRow" id="load_more_row">
     <property name="name">LoadMoreRow</property>

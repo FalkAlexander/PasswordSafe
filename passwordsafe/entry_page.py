@@ -150,12 +150,13 @@ class EntryPage(Gtk.ScrolledWindow):
             icon_builder.add_from_resource(
                 "/org/gnome/PasswordSafe/icon_widget.ui")
             btn = icon_builder.get_object("icon_button")
-            img = btn.get_children()[0]
+            img = icon_builder.get_object("image")
             img.props.icon_name = icon.name
             if first_btn is None:
                 first_btn = btn
+            else:
+                btn.props.group = first_btn
 
-            btn.props.group = first_btn
             btn.props.active = (entry_icon == icon)
             btn.connect("toggled", self.on_entry_icon_button_toggled, icon_nr)
             self.icon_entry_box.add(btn)

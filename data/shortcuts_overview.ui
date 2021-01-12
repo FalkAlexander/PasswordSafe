@@ -15,35 +15,35 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Create safe</property>
-                <property name="accelerator">&lt;ctrl&gt;&lt;Shift&gt;N</property>
+                <property name="action-name">app.new</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Open safe</property>
-                <property name="accelerator">&lt;Primary&gt;O</property>
+                <property name="action-name">app.open</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Open preferences</property>
-                <property name="accelerator">&lt;Primary&gt;comma</property>
+                <property name="action-name">app.settings</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
-                <property name="accelerator">&lt;Primary&gt;question</property>
+                <property name="action-name">win.show-help-overlay</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Quit</property>
-                <property name="accelerator">&lt;Primary&gt;Q</property>
+                <property name="action-name">app.quit</property>
               </object>
             </child>
           </object>
@@ -56,14 +56,14 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Lock safe</property>
-                <property name="accelerator">&lt;Primary&gt;L</property>
+                <property name="action-name">app.db.lock</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Save safe</property>
-                <property name="accelerator">&lt;Primary&gt;S</property>
+                <property name="action-name">app.db.save</property>
               </object>
             </child>
             <child>
@@ -77,14 +77,14 @@
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Create entry</property>
-                <property name="accelerator">&lt;Primary&gt;N</property>
+                <property name="action-name">app.db.add_entry</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Create group</property>
-                <property name="accelerator">&lt;Primary&gt;G</property>
+                <property name="action-name">app.db.add_group</property>
               </object>
             </child>
           </object>

@@ -249,7 +249,7 @@ class Application(Gtk.Application):
 
     def add_global_accelerators(self):
         self.window.add_global_accelerator_actions()
-        self.set_accels_for_action("app.settings", ["<Control>p"])
+        self.set_accels_for_action("app.settings", ["<Control>comma"])
         self.set_accels_for_action("app.open", ["<Control>o"])
         self.set_accels_for_action("app.new", ["<Control><Shift>n"])
         self.set_accels_for_action("app.db.save", ["<Control>s"])

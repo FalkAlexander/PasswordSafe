@@ -25,6 +25,7 @@
           <object class="GtkImage" id="entry_icon">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="icon_size">20</property>
             <property name="pixel_size">16</property>
             <property name="icon_name">application-x-executable-symbolic</property>
             <property name="margin_start">10</property>
@@ -54,6 +55,9 @@
                 <property name="vexpand">True</property>
                 <property name="label">Title not specified</property>
                 <property name="ellipsize">end</property>
+                <style>
+                  <class name="italic"/>
+                </style>
               </object>
             </child>
             <child>
@@ -73,6 +77,9 @@
                     <property name="vexpand">True</property>
                     <property name="label">No username specified</property>
                     <property name="ellipsize">end</property>
+                    <style>
+                      <class name="italic"/>
+                    </style>
                   </object>
                 </child>
               </object>

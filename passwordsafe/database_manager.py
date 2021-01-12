@@ -3,7 +3,7 @@ import hashlib
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from typing import Dict, List, Optional, Union
+from typing import List, Optional, Union
 from uuid import UUID
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
@@ -11,7 +11,7 @@ from pykeepass.group import Group
 from gi.repository import Gio, GObject
 
 import passwordsafe.config_manager
-from passwordsafe.color_widget import Color
+from passwordsafe.safe_entry import SafeEntry
 
 
 class DatabaseManager(GObject.GObject):
@@ -232,108 +232,6 @@ class DatabaseManager(GObject.GObject):
             entry = data
 
         return entry.url or ""
-
-    def get_entry_color(self, data: Union[Entry, UUID]) -> Union[str, Color]:
-        """Get an entry color from an entry or an uuid
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: UUID or Entry
-        :returns: entry color as str or Color.NONE.value
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen",
-                    data,
-                )
-                return Color.NONE.value
-        else:
-            entry = data
-
-        if entry.get_custom_property("color_prop_LcljUMJZ9X") is None:
-            return Color.NONE.value
-
-        return entry.get_custom_property("color_prop_LcljUMJZ9X")
-
-    def get_entry_attribute_value(self, entry: Entry, key: str) -> str:
-        """Get an attribute value from an entry and the attribute key.
-
-        :param Entry entry: entry
-        :param key: attribute key
-        :returns: entry attribute value
-        :rtype: str
-        """
-        return entry.get_custom_property(key) or ""
-
-    def get_entry_attributes(self, data: Union[Entry, UUID]) -> Dict[str, str]:
-        """Get an entry attributes from an entry or an uuid
-
-        Returns an empty dict if the entry does not have any attribute.
-
-        :param data: entry or uuid
-        :returns: entry attributes
-        :rtype: dict[str, str]
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return {}
-        else:
-            entry = data
-
-        return entry.custom_properties
-
-    #
-    # Entry Checks
-    #
-    def has_entry_username(self, entry: Union[UUID, Entry]) -> bool:
-        return self.get_entry_username(entry) != ""
-
-    def has_entry_password(self, entry: Union[UUID, Entry]) -> bool:
-        return self.get_entry_password(entry) != ""
-
-    def has_entry_url(self, entry: Union[UUID, Entry]) -> bool:
-        return self.get_entry_url(entry) != ""
-
-    def has_entry_notes(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.notes is None:
-            return False
-        return True
-
-    def has_entry_icon(self, uuid):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        if entry.icon is None:
-            return False
-        return True
-
-    def has_entry_color(self, uuid: UUID) -> bool:
-        entry: Entry = self.db.find_entries(uuid=uuid, first=True)
-        color_property: Optional[str] = entry.get_custom_property(
-            "color_prop_LcljUMJZ9X")
-        if (not color_property
-                or color_property == Color.NONE.value):
-            return False
-        return True
-
-    def has_entry_attribute(self, entry: Entry, key: str) -> bool:
-        """Check if an entry has an attribute name key
-
-        :param entry: entry to check
-        :param key: attribute name to check
-        :returns: True is entry has attribute key
-        :rtype: bool
-        """
-        if entry.get_custom_property(key) is None:
-            return False
-        return True
 
     #
     # Database Modifications
@@ -654,7 +552,7 @@ class DatabaseManager(GObject.GObject):
         return self.get_group(uuid) is not None
 
     def check_is_group_object(self, group):
-        return hasattr(group, "name")
+        return isinstance(group, Group)
 
     def get_attachment_from_id(self, attachment_id):
         return self.db.find_attachments(id=attachment_id, first=True)
@@ -663,23 +561,38 @@ class DatabaseManager(GObject.GObject):
     # Properties
     #
 
-    def get_element_creation_date(self, element: Union[Entry, Group]) -> str:
+    def get_element_creation_date(self, element: Union[SafeEntry, Group]) -> str:
         """Returns a string of the Entry|Groups creation time or ''"""
-        if element.ctime is None:
-            return ""
-        return element.ctime.strftime("%x %X")
+        if isinstance(element, SafeEntry):
+            elem = element.entry
+        else:
+            elem = element
 
-    def get_element_acessed_date(self, element: Union[Entry, Group]) -> str:
+        if elem.ctime is None:
+            return ""
+        return elem.ctime.strftime("%x %X")
+
+    def get_element_acessed_date(self, element: Union[SafeEntry, Group]) -> str:
         """Returns a string of the Entry|Groups access time or ''"""
-        if element.atime is None:
-            return ""
-        return element.atime.strftime("%x %X")
+        if isinstance(element, SafeEntry):
+            elem = element.entry
+        else:
+            elem = element
 
-    def get_element_modified_date(self, element: Union[Entry, Group]) -> str:
-        """Returns a string of the Entry|Groups modification time or ''"""
-        if element.mtime is None:
+        if elem.atime is None:
             return ""
-        return element.mtime.strftime("%x %X")
+        return elem.atime.strftime("%x %X")
+
+    def get_element_modified_date(self, element: Union[SafeEntry, Group]) -> str:
+        """Returns a string of the Entry|Groups modification time or ''"""
+        if isinstance(element, SafeEntry):
+            elem = element.entry
+        else:
+            elem = element
+
+        if elem.mtime is None:
+            return ""
+        return elem.mtime.strftime("%x %X")
 
     #
     # Database creation methods

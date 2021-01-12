@@ -22,6 +22,7 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
+from passwordsafe.safe_entry import SafeEntry
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
@@ -82,7 +83,7 @@ class UnlockedDatabase(GObject.GObject):
         self.window.add_accel_group(self.accelerators)
 
         root_group: Group = self.database_manager.get_root_group()
-        self._current_element: Union[Entry, Group] = root_group
+        self._current_element: Union[SafeEntry, Group] = root_group
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -287,7 +288,7 @@ class UnlockedDatabase(GObject.GObject):
         """
         self._stack.add_named(scrolled_window, name)
 
-    def switch_page(self, element: Union[Entry, Group]) -> None:
+    def switch_page(self, element: Union[SafeEntry, Group]) -> None:
         """Set the current element and display it
 
         :param element: Entry or Group
@@ -315,19 +316,19 @@ class UnlockedDatabase(GObject.GObject):
         elif not group_page:
             self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
 
-    def _remove_page(self, element: Union[Entry, Group]) -> None:
-        """Remove an element (Entry, Group) from the stack if present."""
+    def _remove_page(self, element: Union[SafeEntry, Group]) -> None:
+        """Remove an element (SafeEntry, Group) from the stack if present."""
         stack_page_name = element.uuid.urn
         stack_page = self._stack.get_child_by_name(stack_page_name)
         if stack_page:
             stack_page.destroy()
 
     @property
-    def current_element(self) -> Union[Entry, Group]:
+    def current_element(self) -> Union[SafeEntry, Group]:
         return self._current_element
 
     @current_element.setter
-    def current_element(self, element: Union[Entry, Group]) -> None:
+    def current_element(self, element: Union[SafeEntry, Group]) -> None:
         self._current_element = element
 
     def get_current_page(self) -> ScrolledPage:
@@ -367,7 +368,7 @@ class UnlockedDatabase(GObject.GObject):
     # Create Group & Entry Rows
     #
 
-    def show_element(self, element: Union[Entry, Group]) -> None:
+    def show_element(self, element: Union[SafeEntry, Group]) -> None:
         """Sets the current element and display it
 
         :param element: Entry or Group to display
@@ -408,13 +409,14 @@ class UnlockedDatabase(GObject.GObject):
 
     def entry_instance_creation(self, list_box, sorted_list, entries, overlay):
         for entry in entries:
-            entry_row = EntryRow(self, entry)
+            safe_entry: SafeEntry = SafeEntry(self.database_manager, entry)
+            entry_row = EntryRow(self, safe_entry)
             sorted_list.append(entry_row)
 
         if self.list_box_sorting == "A-Z":
-            sorted_list.sort(key=lambda entry: str.lower(entry.label), reverse=False)
+            sorted_list.sort(key=lambda entry: str.lower(entry.safe_entry.name), reverse=False)
         elif self.list_box_sorting == "Z-A":
-            sorted_list.sort(key=lambda entry: str.lower(entry.label), reverse=True)
+            sorted_list.sort(key=lambda entry: str.lower(entry.safe_entry.name), reverse=True)
 
         for entry_row in sorted_list:
             list_box.add(entry_row)
@@ -454,16 +456,15 @@ class UnlockedDatabase(GObject.GObject):
             if list_box_row.type == "GroupRow":
                 uuid = self.database_manager.get_group(
                     list_box_row.get_uuid())
+                self.show_element(uuid)
             else:
                 if self.selection_mode:
                     active = list_box_row.selection_checkbox.props.active
                     list_box_row.selection_checkbox.props.active = not active
                     return
 
-                uuid = self.database_manager.get_entry_object_from_uuid(
-                    list_box_row.get_uuid())
-
-            self.show_element(uuid)
+                safe_entry = list_box_row.safe_entry
+                self.show_element(safe_entry)
 
     def on_database_save_notification(self, _database_manager: DatabaseManager, saved: bool) -> None:
         if saved:
@@ -493,8 +494,9 @@ class UnlockedDatabase(GObject.GObject):
         """CB when the Add Entry menu was clicked"""
         self.start_database_lock_timer()
         new_entry: Entry = self.database_manager.add_entry_to_database(self.current_element)
-        self.current_element = new_entry
-        self.pathbar.add_pathbar_button_to_pathbar(new_entry)
+        safe_entry: SafeEntry = SafeEntry(self.database_manager, new_entry)
+        self.current_element = safe_entry
+        self.pathbar.add_pathbar_button_to_pathbar(safe_entry)
         self.show_page_of_new_directory(False, True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:
@@ -515,7 +517,7 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
 
         parent_group = self.current_element.parentgroup
-        self.database_manager.delete_from_database(self.current_element)
+        self.database_manager.delete_from_database(self.current_element.entry)
 
         self._remove_page(self.current_element)
         self.current_element = parent_group
@@ -532,7 +534,7 @@ class UnlockedDatabase(GObject.GObject):
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
-        self.database_manager.duplicate_entry(self.current_element)
+        self.database_manager.duplicate_entry(self.current_element.entry)
         parent_group = self.current_element.parentgroup
 
         if self.database_manager.check_is_root_group(parent_group) is True:

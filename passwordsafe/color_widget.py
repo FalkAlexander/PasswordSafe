@@ -2,13 +2,12 @@
 from __future__ import annotations
 import typing
 from enum import Enum
-from uuid import UUID
 
 from gi.repository import Gdk, GObject, Gtk
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
-    from passwordsafe.scrolled_page import ScrolledPage
+    from passwordsafe.safe_entry import SafeEntry
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
@@ -76,25 +75,20 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
     _flowbox = Gtk.Template.Child()
 
     def __init__(
-            self, unlocked_database: UnlockedDatabase,
-            scrolled_page: ScrolledPage, entry_uuid: UUID):
+            self, unlocked_database: UnlockedDatabase, safe_entry: SafeEntry):
         """Widget to select the color of an entry
 
         :param UnlockedDatabase unlocked_database: unlocked database
-        :param ScrolledPage scrolled_page: container of the widget
-        :param UUID entry_uuid: uuid of the entry
+        :param SafeEntry safe_entry: the safe entry
         """
         super().__init__()
 
         self._unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
-        self._scrolled_page: ScrolledPage = scrolled_page
-        self._entry_uuid: UUID = entry_uuid
-
-        self._selected_color: str = self._db_manager.get_entry_color(entry_uuid)
+        self._safe_entry: SafeEntry = safe_entry
 
         for color in Color:
-            active: bool = (self._selected_color == color.value)
+            active: bool = (safe_entry.props.color == color.value)
             color_button: ColorButton = ColorButton(color, active)
             self._flowbox.insert(color_button, -1)
             if active:
@@ -111,5 +105,4 @@ class ColorEntryRow(Gtk.ListBoxRow):  # pylint: disable=too-few-public-methods
             selected: bool = (child == selected_child)
             child.props.selected = selected
 
-        self._scrolled_page.is_dirty = True
-        self._db_manager.set_entry_color(self._entry_uuid, selected_child.color)
+        self._safe_entry.props.color = selected_child.color

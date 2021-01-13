@@ -740,26 +740,14 @@ class UnlockedDatabase(GObject.GObject):
             "/org/gnome/ScreenSaver", None,
             Gio.DBusSignalFlags.NONE, self.on_session_lock,)
 
-    def __can_go_back(self):
-        db_manager = self.database_manager
-        current_element = self.current_element
-
-        if db_manager.check_is_group_object(
-            current_element
-        ) and db_manager.check_is_root_group(current_element):
-            return False
-        return True
-
     def go_back(self):
-        db_manager = self.database_manager
-
         if self.props.selection_mode:
             self.props.selection_mode = False
             return
         if self.props.search_active:
             self.props.search_active = False
             return
-        if not self.__can_go_back():
+        if self.props.current_element.is_root_group:
             return
 
         buttons = self.pathbar.buttons

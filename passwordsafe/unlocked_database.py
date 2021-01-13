@@ -7,7 +7,6 @@ import typing
 from gettext import gettext as _
 from threading import Timer
 from typing import List, Optional
-from uuid import UUID
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
@@ -47,7 +46,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Objects
     builder = NotImplemented
-    scheduled_page_destroy: List[UUID] = []
     scheduled_tmpfiles_deletion: List[Gio.File] = []
     clipboard = NotImplemented
     list_box_sorting = NotImplemented
@@ -161,8 +159,14 @@ class UnlockedDatabase(GObject.GObject):
     def show_page_of_new_directory(self, edit_group, new_entry):
         # pylint: disable=too-many-statements
 
-        # First, remove stack pages which should not exist because they are scheduled for remove
-        self.destroy_current_page_if_scheduled()
+        # Removes the page if already exists.
+        self.remove_page(self.current_element)
+
+        if self.current_element.is_group and not edit_group:
+            if not self.current_element.subgroups:
+                self._unlocked_db_stack.set_visible_child(self.empty_page)
+        else:
+            self._unlocked_db_stack.set_visible_child(self._stack)
 
         # Creation of group edit page
         if edit_group is True:
@@ -246,14 +250,6 @@ class UnlockedDatabase(GObject.GObject):
         page_uuid = self.props.current_element.uuid
         group_page = element.is_group
 
-        if page_uuid in self.scheduled_page_destroy:
-            stack_page = self._stack.get_child_by_name(page_uuid.urn)
-            if stack_page is not None:
-                stack_page.destroy()
-
-            self.scheduled_page_destroy.remove(page_uuid)
-            self.show_page_of_new_directory(False, False)
-
         if self._stack.get_child_by_name(page_uuid.urn) is None:
             self.show_page_of_new_directory(False, False)
         else:
@@ -266,10 +262,12 @@ class UnlockedDatabase(GObject.GObject):
 
     def remove_page(self, element: SafeElement) -> None:
         """Remove an element (SafeEntry, Group) from the stack if present."""
+        if element.is_root_group:
+            return
         stack_page_name = element.uuid.urn
         stack_page = self._stack.get_child_by_name(stack_page_name)
         if stack_page:
-            stack_page.destroy()
+            self._stack.remove(stack_page)
 
     @GObject.Property(type=SafeElement, flags=GObject.ParamFlags.READWRITE)
     def current_element(self) -> SafeElement:
@@ -295,22 +293,6 @@ class UnlockedDatabase(GObject.GObject):
         :rtype: list
         """
         return self._stack.get_children()
-
-    def schedule_stack_page_for_destroy(self, page_uuid: UUID) -> None:
-        """Add page to the list of pages to be destroyed"""
-        logging.debug("Scheduling page %s for destruction", page_uuid)
-        self.scheduled_page_destroy.append(page_uuid)
-
-    def destroy_current_page_if_scheduled(self) -> None:
-        """If the current_element is in self.scheduled_page_destroy, destroy it"""
-        page_uuid = self.props.current_element.uuid
-        logging.debug("Test if we should destroy page %s", page_uuid)
-        if page_uuid in self.scheduled_page_destroy:
-            logging.debug("Yes, destroying page %s", page_uuid)
-            stack_page_name = self._stack.get_child_by_name(page_uuid.urn)
-            if stack_page_name is not None:
-                stack_page_name.destroy()
-            self.scheduled_page_destroy.remove(page_uuid)
 
     #
     # Create Group & Entry Rows
@@ -464,7 +446,7 @@ class UnlockedDatabase(GObject.GObject):
         parent_group = self.props.current_element.parentgroup
         self.database_manager.delete_from_database(self.props.current_element.entry)
 
-        self._remove_page(self.current_element)
+        self.remove_page(self.current_element)
         self.props.current_element = parent_group
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
@@ -472,7 +454,7 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
-        self._remove_page(parent_group)
+        self.remove_page(parent_group)
         self.show_page_of_new_directory(False, False)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
@@ -489,7 +471,7 @@ class UnlockedDatabase(GObject.GObject):
         # FIXME: This operation is not efficient, it should be possible
         # to update the group view without removing it and adding it
         # again to the stack.
-        self._remove_page(parent_group)
+        self.remove_page(parent_group)
         self.current_element = SafeGroup(self.database_manager, parent_group)
         self.show_page_of_new_directory(False, False)
 
@@ -682,7 +664,8 @@ class UnlockedDatabase(GObject.GObject):
         if self.props.current_element.is_root_group:
             return
 
-        current_page = self.get_current_page()
+        parentgroup = self.current_element.parentgroup
+        self.remove_page(parentgroup)
         buttons = self.pathbar.buttons
         if len(buttons) == 1:
             self.pathbar.on_pathbar_button_clicked(buttons[0])
@@ -690,7 +673,6 @@ class UnlockedDatabase(GObject.GObject):
         else:
             self.pathbar.on_pathbar_button_clicked(buttons[-2])
             self._unlocked_db_stack.set_visible_child(self._stack)
-        self._stack.remove(current_page)
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:

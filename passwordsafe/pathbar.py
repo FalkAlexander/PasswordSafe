@@ -80,6 +80,7 @@ class Pathbar(Gtk.Box):
             selection_mode = self.unlocked_database.props.selection_mode
             if (is_group
                     or (not is_group and not selection_mode)):
+                self.unlocked_database.remove_page(pathbar_button_elem)
                 self.unlocked_database.switch_page(pathbar_button_elem)
 
     def uuid_in_pathbar(self, uuid: UUID) -> bool:

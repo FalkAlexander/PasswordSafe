@@ -3,13 +3,13 @@ from __future__ import annotations
 
 import threading
 import typing
+from typing import List, Optional, Union
 
-from typing import List, Union, Optional
 from gi.repository import GLib, GObject, Gtk, Handy
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
-from passwordsafe.safe_entry import SafeEntry
+from passwordsafe.safe_element import SafeEntry, SafeGroup
 from passwordsafe.scrolled_page import ScrolledPage
 
 if typing.TYPE_CHECKING:
@@ -190,8 +190,9 @@ class Search:
             if search_height < window_height or load_all:
                 if self._db_manager.check_is_group_object(element):
                     search_height += group_row_height
+                    safe_group = SafeGroup(self._db_manager, element)
                     row = GroupRow(
-                        self.unlocked_database, self._db_manager, element)
+                        self.unlocked_database, safe_group)
                 else:
                     search_height += entry_row_height
                     safe_entry = SafeEntry(self._db_manager, element)

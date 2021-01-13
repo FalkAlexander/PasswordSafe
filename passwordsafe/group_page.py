@@ -1,6 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Gtk
+from __future__ import annotations
+
+import typing
+
+from gi.repository import GObject, Gtk
+
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
+
+if typing.TYPE_CHECKING:
+    from passwordsafe.safe_element import SafeGroup
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/group_page.ui")
@@ -19,36 +27,25 @@ class GroupPage(Gtk.ScrolledWindow):
 
         self.unlocked_database = unlocked_database
 
-        group = self.unlocked_database.current_element
-        name = self.unlocked_database.database_manager.get_group_name(group)
-        notes = self.unlocked_database.database_manager.get_notes(group)
+        safe_group = self.unlocked_database.current_element
         notes_buffer = HistoryTextBuffer([])
 
         # Setup Widgets
-        notes_buffer.set_text(notes)
         self.name_property_value_entry.set_buffer(HistoryEntryBuffer([]))
-        self.name_property_value_entry.set_text(name)
         self.name_property_value_entry.grab_focus()
-
         self.notes_property_value_entry.set_buffer(notes_buffer)
-        notes_buffer.set_text(notes)
 
         # Connect Signals
-        self.name_property_value_entry.connect(
-            "changed", self.on_property_value_group_changed, "name")
-        notes_buffer.connect("changed", self.on_property_value_group_changed, "notes")
+        safe_group.connect("updated", self._on_safe_group_updated)
+        safe_group.bind_property(
+            "name", self.name_property_value_entry, "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
+        )
+        safe_group.bind_property(
+            "notes", notes_buffer, "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
+        )
 
-    def on_property_value_group_changed(self, widget, name):
+    def _on_safe_group_updated(self, _safe_group: SafeGroup) -> None:
         self.unlocked_database.start_database_lock_timer()
-        ele_uuid = self.unlocked_database.current_element.uuid
-
         self.is_dirty = True
-
-        if name == "notes":
-            self.unlocked_database.database_manager.set_group_notes(ele_uuid, widget.get_text(widget.get_start_iter(), widget.get_end_iter(), False))
-        elif name == "name":
-            self.unlocked_database.database_manager.set_group_name(ele_uuid, widget.get_text())
-            for pathbar_button in self.unlocked_database.pathbar.get_children():
-                if pathbar_button.get_name() == "PathbarButtonDynamic":
-                    if pathbar_button.element.uuid == ele_uuid:
-                        pathbar_button.set_label(widget.get_text())

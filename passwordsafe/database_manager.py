@@ -5,13 +5,14 @@ from datetime import datetime
 from gettext import gettext as _
 from typing import List, Optional, Union
 from uuid import UUID
+
+from gi.repository import Gio, GObject
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
-from gi.repository import Gio, GObject
 
 import passwordsafe.config_manager
-from passwordsafe.safe_entry import SafeEntry
+from passwordsafe.safe_element import SafeElement, SafeEntry
 
 
 class DatabaseManager(GObject.GObject):
@@ -252,7 +253,7 @@ class DatabaseManager(GObject.GObject):
         name: Optional[str] = "",
         username: Optional[str] = "",
         password: Optional[str] = "",
-    ) -> Entry:
+    ) -> SafeEntry:
         force: bool = self.check_entry_in_group_exists("", group)
         entry = self.db.add_entry(
             group,
@@ -269,7 +270,7 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
         self.set_element_mtime(group)
 
-        return entry
+        return safe_entry
 
     # Delete an entry
     def delete_from_database(self, entity: Union[Entry, Group]) -> None:
@@ -561,34 +562,34 @@ class DatabaseManager(GObject.GObject):
     # Properties
     #
 
-    def get_element_creation_date(self, element: Union[SafeEntry, Group]) -> str:
+    def get_element_creation_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups creation time or ''"""
         if isinstance(element, SafeEntry):
             elem = element.entry
         else:
-            elem = element
+            elem = element.group
 
         if elem.ctime is None:
             return ""
         return elem.ctime.strftime("%x %X")
 
-    def get_element_acessed_date(self, element: Union[SafeEntry, Group]) -> str:
+    def get_element_acessed_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups access time or ''"""
         if isinstance(element, SafeEntry):
             elem = element.entry
         else:
-            elem = element
+            elem = element.group
 
         if elem.atime is None:
             return ""
         return elem.atime.strftime("%x %X")
 
-    def get_element_modified_date(self, element: Union[SafeEntry, Group]) -> str:
+    def get_element_modified_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups modification time or ''"""
         if isinstance(element, SafeEntry):
             elem = element.entry
         else:
-            elem = element
+            elem = element.group
 
         if elem.mtime is None:
             return ""

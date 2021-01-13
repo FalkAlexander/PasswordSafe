@@ -7,7 +7,7 @@ from gi.repository import Gdk, GObject, Gtk
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
-    from passwordsafe.safe_entry import SafeEntry
+    from passwordsafe.safe_element import SafeEntry
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 

@@ -1,11 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Gtk.Button representing a path element in the pathbar"""
-from typing import Union
-
 from gi.repository import GObject, Gtk
-from pykeepass.group import Group
 
-from passwordsafe.safe_entry import SafeEntry
+from passwordsafe.safe_element import SafeElement
 
 
 class PathbarButton(Gtk.Button):
@@ -15,22 +12,27 @@ class PathbarButton(Gtk.Button):
     .uuid: the UUID of the group or entry
     """
 
-    def __init__(self, element: Union[SafeEntry, Group]):
-        Gtk.Button.__init__(self)
+    def __init__(self, element: SafeElement):
+        super().__init__()
+
+        assert isinstance(element, SafeElement)
+
         self.set_name("PathbarButtonDynamic")
         self.set_relief(Gtk.ReliefStyle.NONE)
 
-        self._is_group = isinstance(element, Group)
-        self._element: Union[SafeEntry, Group] = element
+        self.is_group = element.is_group
+        self.element: SafeElement = element
 
-        if isinstance(element, SafeEntry):
-            self._element.bind_property(
-                "name", self, "label", GObject.BindingFlags.SYNC_CREATE)
+        if element.is_root_group:
+            home_button_image = Gtk.Image.new_from_icon_name(
+                "go-home-symbolic", Gtk.IconSize.BUTTON
+            )
+            self.add(home_button_image)
+            return
 
-    @property
-    def is_group(self) -> bool:
-        return self._is_group
+        self.element.bind_property(
+            "name", self, "label", GObject.BindingFlags.SYNC_CREATE)
 
-    @property
-    def element(self) -> Union[SafeEntry, Group]:
-        return self._element
+    def set_active_style(self):
+        context = self.get_style_context()
+        context.add_class('PathbarButtonActive')

@@ -6,6 +6,7 @@ from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import GObject, Gtk
+from passwordsafe.safe_element import SafeGroup
 
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -19,14 +20,16 @@ class GroupRow(Gtk.ListBoxRow):
     edit_button = NotImplemented
     type = "GroupRow"
 
-    def __init__(self, unlocked_database, dbm, group):
+    def __init__(self, unlocked_database, safe_group):
         Gtk.ListBoxRow.__init__(self)
         self.get_style_context().add_class("row")
 
+        assert isinstance(safe_group, SafeGroup)
         self.unlocked_database = unlocked_database
 
-        self.group_uuid = group.uuid
-        self.label = dbm.get_group_name(group)
+        self.group_uuid = safe_group.uuid
+        self.label = safe_group.name
+        self.safe_group = safe_group
 
         self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
         self.assemble_group_row()

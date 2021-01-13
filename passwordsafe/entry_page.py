@@ -12,10 +12,10 @@ from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
-from passwordsafe.safe_entry import ICONS
+from passwordsafe.safe_element import ICONS
 
 if typing.TYPE_CHECKING:
-    from passwordsafe.safe_entry import SafeEntry
+    from passwordsafe.safe_element import SafeEntry
 
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment

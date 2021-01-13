@@ -14,7 +14,7 @@ from passwordsafe.history_buffer import HistoryEntryBuffer
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
-    from passwordsafe.safe_entry import SafeEntry
+    from passwordsafe.safe_element import SafeEntry
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 

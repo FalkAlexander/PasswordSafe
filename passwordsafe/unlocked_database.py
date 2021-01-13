@@ -7,7 +7,7 @@ import threading
 import typing
 from gettext import gettext as _
 from threading import Timer
-from typing import List, Optional, Union
+from typing import List, Optional
 from uuid import UUID
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
@@ -22,19 +22,16 @@ from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
-from passwordsafe.safe_entry import SafeEntry
+from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
-    from pykeepass.entry import Entry
-    from pykeepass.group import Group
-
-    # pylint: disable=ungrouped-imports
-    from passwordsafe.main_window import MainWindow
     from passwordsafe.container_page import ContainerPage
     from passwordsafe.database_manager import DatabaseManager
+    # pylint: disable=ungrouped-imports
+    from passwordsafe.main_window import MainWindow
 
 
 class UnlockedDatabase(GObject.GObject):
@@ -57,6 +54,7 @@ class UnlockedDatabase(GObject.GObject):
     clipboard = NotImplemented
     list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
+    _current_element: Optional[SafeElement] = None
     database_lock_timer = NotImplemented
     save_loop: Optional[int] = None  # If int, a thread periodically saves the database
     dbus_subscription_id = NotImplemented
@@ -69,6 +67,9 @@ class UnlockedDatabase(GObject.GObject):
     def __init__(self, window: MainWindow, widget: ContainerPage, dbm: DatabaseManager):
         super().__init__()
         # Instances
+        self.builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/unlocked_database.ui"
+        )
         self.window: MainWindow = window
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
@@ -80,8 +81,8 @@ class UnlockedDatabase(GObject.GObject):
         self.accelerators: Gtk.AccelGroup = Gtk.AccelGroup()
         self.window.add_accel_group(self.accelerators)
 
-        root_group: Group = self.database_manager.get_root_group()
-        self._current_element: Union[SafeEntry, Group] = root_group
+        root_group = SafeGroup.get_root(dbm)
+        self.props.current_element = root_group
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -183,7 +184,7 @@ class UnlockedDatabase(GObject.GObject):
         ):
             self.database_manager.set_element_atime(self.current_element)
             # Create not existing stack page for group
-            if self.database_manager.check_is_group(self.current_element.uuid):
+            if self.current_element.is_group:
                 builder = Gtk.Builder()
                 builder.add_from_resource(
                     "/org/gnome/PasswordSafe/unlocked_database.ui"
@@ -220,7 +221,7 @@ class UnlockedDatabase(GObject.GObject):
         else:
             self.database_manager.set_element_atime(self.current_element)
             # For group
-            if self.database_manager.check_is_group(self.current_element.uuid):
+            if self.current_element.is_group:
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
                 self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP
             # For entry
@@ -236,14 +237,14 @@ class UnlockedDatabase(GObject.GObject):
         """
         self._stack.add_named(scrolled_window, name)
 
-    def switch_page(self, element: Union[SafeEntry, Group]) -> None:
+    def switch_page(self, element: SafeElement) -> None:
         """Set the current element and display it
 
         :param element: Entry or Group
         """
-        self.current_element = element
+        self.props.current_element = element
 
-        page_uuid = self.current_element.uuid
+        page_uuid = self.props.current_element.uuid
         group_page = self.database_manager.check_is_group(page_uuid)
 
         if page_uuid in self.scheduled_page_destroy:
@@ -264,19 +265,19 @@ class UnlockedDatabase(GObject.GObject):
         elif not group_page:
             self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
 
-    def _remove_page(self, element: Union[SafeEntry, Group]) -> None:
+    def remove_page(self, element: SafeElement) -> None:
         """Remove an element (SafeEntry, Group) from the stack if present."""
         stack_page_name = element.uuid.urn
         stack_page = self._stack.get_child_by_name(stack_page_name)
         if stack_page:
             stack_page.destroy()
 
-    @property
-    def current_element(self) -> Union[SafeEntry, Group]:
+    @GObject.Property(type=SafeElement, flags=GObject.ParamFlags.READWRITE)
+    def current_element(self) -> SafeElement:
         return self._current_element
 
-    @current_element.setter
-    def current_element(self, element: Union[SafeEntry, Group]) -> None:
+    @current_element.setter  # type: ignore
+    def current_element(self, element: SafeElement) -> None:
         self._current_element = element
 
     def get_current_page(self) -> ScrolledPage:
@@ -285,7 +286,7 @@ class UnlockedDatabase(GObject.GObject):
         :returns: current page
         :rtype: Gtk.Widget
         """
-        element_uuid = self.current_element.uuid
+        element_uuid = self.props.current_element.uuid
         return self._stack.get_child_by_name(element_uuid.urn)
 
     def get_pages(self) -> List[ScrolledPage]:
@@ -303,7 +304,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def destroy_current_page_if_scheduled(self) -> None:
         """If the current_element is in self.scheduled_page_destroy, destroy it"""
-        page_uuid = self.current_element.uuid
+        page_uuid = self.props.current_element.uuid
         logging.debug("Test if we should destroy page %s", page_uuid)
         if page_uuid in self.scheduled_page_destroy:
             logging.debug("Yes, destroying page %s", page_uuid)
@@ -316,13 +317,12 @@ class UnlockedDatabase(GObject.GObject):
     # Create Group & Entry Rows
     #
 
-    def show_element(self, element: Union[SafeEntry, Group]) -> None:
+    def show_element(self, element: SafeElement) -> None:
         """Sets the current element and display it
 
         :param element: Entry or Group to display
         """
-        self.current_element = element
-        self.pathbar.add_pathbar_button_to_pathbar(element)
+        self.props.current_element = element
         self.show_page_of_new_directory(False, False)
 
     def insert_groups_into_listbox(self, list_box, overlay):
@@ -344,7 +344,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def group_instance_creation(self, list_box, sorted_list, groups):
         for group in groups:
-            group_row = GroupRow(self, self.database_manager, group)
+            group_row = GroupRow(self, group)
             sorted_list.append(group_row)
 
         if self.list_box_sorting == "A-Z":
@@ -356,8 +356,7 @@ class UnlockedDatabase(GObject.GObject):
             list_box.add(group_row)
 
     def entry_instance_creation(self, list_box, sorted_list, entries, overlay):
-        for entry in entries:
-            safe_entry: SafeEntry = SafeEntry(self.database_manager, entry)
+        for safe_entry in entries:
             entry_row = EntryRow(self, safe_entry)
             sorted_list.append(entry_row)
 
@@ -402,9 +401,9 @@ class UnlockedDatabase(GObject.GObject):
                 self.props.search_active = False
 
             if list_box_row.type == "GroupRow":
-                uuid = self.database_manager.get_group(
-                    list_box_row.get_uuid())
-                self.show_element(uuid)
+                safe_group = list_box_row.safe_group
+                self.current_element = safe_group
+                self.show_page_of_new_directory(False, True)
             else:
                 if self.selection_mode:
                     active = list_box_row.selection_checkbox.props.active
@@ -441,10 +440,9 @@ class UnlockedDatabase(GObject.GObject):
     def on_add_entry_button_clicked(self, _widget):
         """CB when the Add Entry menu was clicked"""
         self.start_database_lock_timer()
-        new_entry: Entry = self.database_manager.add_entry_to_database(self.current_element)
-        safe_entry: SafeEntry = SafeEntry(self.database_manager, new_entry)
-        self.current_element = safe_entry
-        self.pathbar.add_pathbar_button_to_pathbar(safe_entry)
+        group = self.props.current_element.group
+        new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
+        self.props.current_element = new_entry
         self.show_page_of_new_directory(False, True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:
@@ -452,10 +450,10 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True
         group = self.database_manager.add_group_to_database(
-            "", "0", "", self.current_element
+            "", "0", "", self.props.current_element.group
         )
-        self.current_element = group
-        self.pathbar.add_pathbar_button_to_pathbar(self.current_element)
+        safe_group = SafeGroup(self.database_manager, group)
+        self.props.current_element = safe_group
         self.show_page_of_new_directory(True, False)
 
     def on_element_delete_menu_button_clicked(
@@ -464,11 +462,11 @@ class UnlockedDatabase(GObject.GObject):
         """Delete the visible entry from the menu."""
         self.start_database_lock_timer()
 
-        parent_group = self.current_element.parentgroup
-        self.database_manager.delete_from_database(self.current_element.entry)
+        parent_group = self.props.current_element.parentgroup
+        self.database_manager.delete_from_database(self.props.current_element.entry)
 
         self._remove_page(self.current_element)
-        self.current_element = parent_group
+        self.props.current_element = parent_group
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
         # the group view.
@@ -477,13 +475,12 @@ class UnlockedDatabase(GObject.GObject):
         # again to the stack.
         self._remove_page(parent_group)
         self.show_page_of_new_directory(False, False)
-        self.pathbar.rebuild_pathbar(self.current_element)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
 
-        self.database_manager.duplicate_entry(self.current_element.entry)
-        parent_group = self.current_element.parentgroup
+        self.database_manager.duplicate_entry(self.props.current_element.entry)
+        parent_group = self.props.current_element.parentgroup
 
         if self.database_manager.check_is_root_group(parent_group) is True:
             self.pathbar.on_home_button_clicked(self.pathbar.home_button)
@@ -499,7 +496,7 @@ class UnlockedDatabase(GObject.GObject):
         # to update the group view without removing it and adding it
         # again to the stack.
         self._remove_page(parent_group)
-        self.current_element = parent_group
+        self.current_element = SafeGroup(self.database_manager, parent_group)
         self.show_page_of_new_directory(False, False)
 
     def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
@@ -513,8 +510,7 @@ class UnlockedDatabase(GObject.GObject):
             widget = widget.get_parent()
         group_uuid = widget.get_uuid()
 
-        self.current_element = self.database_manager.get_group(group_uuid)
-        self.pathbar.add_pathbar_button_to_pathbar(self.current_element)
+        self.props.current_element = SafeGroup(self.database_manager, self.database_manager.get_group(group_uuid))
         self.show_page_of_new_directory(True, False)
 
     def send_to_clipboard(self, text, message=_("Copied to clipboard")):
@@ -766,22 +762,11 @@ class UnlockedDatabase(GObject.GObject):
         if not self.__can_go_back():
             return
 
-        parent_group = self.current_element.parentgroup
-
-        if db_manager.check_is_root_group(parent_group):
-            pathbar = self.pathbar
-            pathbar.on_home_button_clicked(pathbar.home_button)
-
-        pathbar_btn_type = passwordsafe.pathbar_button.PathbarButton
-        for button in self.pathbar:
-            if (
-                isinstance(button, pathbar_btn_type)
-                and button.element.uuid == parent_group.uuid
-            ):
-                pathbar = self.pathbar
-                pathbar.on_pathbar_button_clicked(button)
-
-        self.pathbar.rebuild_pathbar(parent_group)
+        buttons = self.pathbar.buttons
+        if len(buttons) == 1:
+            self.pathbar.on_pathbar_button_clicked(buttons[0])
+        else:
+            self.pathbar.on_pathbar_button_clicked(buttons[-2])
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:

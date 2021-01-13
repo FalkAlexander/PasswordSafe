@@ -4,10 +4,13 @@ from __future__ import annotations
 import typing
 from gettext import gettext as _
 from typing import List
+
 from gi.repository import GObject, Gtk
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
+from passwordsafe.safe_element import SafeGroup
+
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
@@ -110,10 +113,10 @@ class SelectionUI(Gtk.Box):
                 safe_entry.entry)
 
         for group_row in self.groups_selected:
-            group = self.unlocked_database.database_manager.get_group(group_row.get_uuid())
-            self.unlocked_database.database_manager.delete_from_database(group)
+            safe_group = group_row.safe_group
+            self.unlocked_database.database_manager.delete_from_database(safe_group.group)
 
-            group_uuid = group.uuid
+            group_uuid = safe_group.uuid
             current_uuid = self.unlocked_database.current_element.uuid
             if group_uuid == current_uuid:
                 rebuild_pathbar = True
@@ -125,12 +128,8 @@ class SelectionUI(Gtk.Box):
 
         self.unlocked_database.show_page_of_new_directory(False, False)
 
-        if rebuild_pathbar is True:
-            self.unlocked_database.pathbar.rebuild_pathbar(
-                self.unlocked_database.current_element)
-
         if reset_stack_page is True:
-            root_group = self.unlocked_database.database_manager.get_root_group()
+            root_group = SafeGroup.get_root(self.unlocked_database.database_manager)
             self.unlocked_database.current_element = root_group
 
         self.unlocked_database.window.notify(_("Deletion completed"))
@@ -168,10 +167,6 @@ class SelectionUI(Gtk.Box):
                     if button.element.uuid == group_row.get_uuid():
                         rebuild = True
 
-            if rebuild is True:
-                self.unlocked_database.pathbar.rebuild_pathbar(
-                    self.unlocked_database.current_element)
-
             self.cut_mode = False
             return
 
@@ -183,7 +178,7 @@ class SelectionUI(Gtk.Box):
         for entry_row in self.entries_cut:
             safe_entry = entry_row.safe_entry
             self.unlocked_database.database_manager.move_entry(
-                safe_entry.uuid, self.unlocked_database.current_element)
+                safe_entry.uuid, self.unlocked_database.current_element.group)
             # If the moved entry is in the pathbar, we need to rebuild the pathbar
             if self.unlocked_database.pathbar.uuid_in_pathbar(safe_entry.uuid):
                 rebuild_pathbar = True
@@ -191,14 +186,14 @@ class SelectionUI(Gtk.Box):
         move_conflict = False
 
         for group_row in self.groups_cut:
-            group_uuid = group_row.get_uuid()
-            group = self.unlocked_database.database_manager.get_group(group_uuid)
+            group_uuid = group_row.safe_group.uuid
+            group = group_row.safe_group.group
             current_element = self.unlocked_database.current_element
             if not self.unlocked_database.database_manager.parent_checker(
-                current_element, group
+                current_element.element, group
             ):
                 self.unlocked_database.database_manager.move_group(
-                    group, current_element
+                    group, current_element.element
                 )
             else:
                 move_conflict = True
@@ -211,10 +206,6 @@ class SelectionUI(Gtk.Box):
                 stack_page.destroy()
 
         self.unlocked_database.show_page_of_new_directory(False, False)
-
-        if rebuild_pathbar is True:
-            self.unlocked_database.pathbar.rebuild_pathbar(
-                self.unlocked_database.current_element)
 
         if move_conflict is False:
             self.unlocked_database.window.notify(_("Move completed"))

@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-import re
 import threading
 import typing
 from gettext import gettext as _
@@ -509,56 +508,11 @@ class UnlockedDatabase(GObject.GObject):
         self.show_page_of_new_directory(True, False)
 
     def send_to_clipboard(self, text, message=_("Copied to clipboard")):
-        # pylint: disable=too-many-branches
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()
 
-        replace_string = text
-        for ref in re.finditer("({REF:.*?})", text):
-            not_valid = False
-            code = ref.group()[5]
-
-            try:
-                uuid = UUID(self.reference_to_hex_uuid(ref.group()))
-            except Exception:  # pylint: disable=broad-except
-                # TODO: find out which Exceptions could
-                # reasonably happen and only protect against these.
-                not_valid = True
-
-            value = NotImplemented
-
-            if not_valid is False:
-                if code == "T":
-                    try:
-                        value = self.database_manager.get_entry_name(uuid)
-                    except AttributeError:
-                        value = ref.group()
-                elif code == "U":
-                    try:
-                        value = self.database_manager.get_entry_username(uuid)
-                    except AttributeError:
-                        value = ref.group()
-                elif code == "P":
-                    try:
-                        value = self.database_manager.get_entry_password(uuid)
-                    except AttributeError:
-                        logging.debug("FAIL")
-                        value = ref.group()
-                elif code == "A":
-                    try:
-                        value = str(self.database_manager.get_entry_url(uuid))
-                    except AttributeError:
-                        value = ref.group()
-                elif code == "N":
-                    try:
-                        value = str(self.database_manager.get_notes(uuid))
-                    except AttributeError:
-                        value = ref.group()
-
-                replace_string = replace_string.replace(ref.group(), value)
-
-        self.clipboard.set_text(replace_string, -1)
+        self.clipboard.set_text(text, -1)
 
         self.window.notify(message)
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
@@ -717,9 +671,6 @@ class UnlockedDatabase(GObject.GObject):
             self.database_manager.save_database()
 
         return True
-
-    def reference_to_hex_uuid(self, reference_string):
-        return reference_string[9:-1].lower()
 
     #
     # DBus

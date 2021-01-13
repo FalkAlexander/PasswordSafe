@@ -44,7 +44,6 @@ class UnlockedDatabase(GObject.GObject):
     revealer = NotImplemented
     action_bar = NotImplemented
     pathbar = NotImplemented
-    overlay = NotImplemented
 
     # Objects
     builder = NotImplemented
@@ -110,6 +109,7 @@ class UnlockedDatabase(GObject.GObject):
         self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
         self.revealer = self.builder.get_object("revealer")
         self.action_bar = self.builder.get_object("action_bar")
+        self.empty_page = self.builder.get_object("empty_group_box")
 
         self.headerbar = UnlockedHeaderBar(self)
         self.selection_ui = self.headerbar.selection_ui
@@ -203,7 +203,7 @@ class UnlockedDatabase(GObject.GObject):
                 list_box.hide()
 
                 self.listbox_insert_thread = threading.Thread(
-                    target=self.insert_groups_into_listbox, args=(list_box, hdy_clamp)
+                    target=self.insert_groups_into_listbox, args=[list_box]
                 )
                 self.listbox_insert_thread.daemon = True
                 self.listbox_insert_thread.start()
@@ -244,7 +244,7 @@ class UnlockedDatabase(GObject.GObject):
         self.props.current_element = element
 
         page_uuid = self.props.current_element.uuid
-        group_page = self.database_manager.check_is_group(page_uuid)
+        group_page = element.is_group
 
         if page_uuid in self.scheduled_page_destroy:
             stack_page = self._stack.get_child_by_name(page_uuid.urn)
@@ -324,21 +324,21 @@ class UnlockedDatabase(GObject.GObject):
         self.props.current_element = element
         self.show_page_of_new_directory(False, False)
 
-    def insert_groups_into_listbox(self, list_box, overlay):
+    def insert_groups_into_listbox(self, list_box):
         groups = NotImplemented
         sorted_list = []
 
         groups = self.current_element.subgroups
         GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
 
-        self.insert_entries_into_listbox(list_box, overlay)
+        self.insert_entries_into_listbox(list_box)
 
-    def insert_entries_into_listbox(self, list_box, overlay):
+    def insert_entries_into_listbox(self, list_box):
         entries = self.current_element.entries
         sorted_list = []
 
         GLib.idle_add(
-            self.entry_instance_creation, list_box, sorted_list, entries, overlay
+            self.entry_instance_creation, list_box, sorted_list, entries
         )
 
     def group_instance_creation(self, list_box, sorted_list, groups):
@@ -354,7 +354,7 @@ class UnlockedDatabase(GObject.GObject):
         for group_row in sorted_list:
             list_box.add(group_row)
 
-    def entry_instance_creation(self, list_box, sorted_list, entries, overlay):
+    def entry_instance_creation(self, list_box, sorted_list, entries):
         for safe_entry in entries:
             entry_row = EntryRow(self, safe_entry)
             sorted_list.append(entry_row)
@@ -369,12 +369,12 @@ class UnlockedDatabase(GObject.GObject):
 
         if list_box.get_children():
             list_box.get_children()[0].grab_focus()
+            self._unlocked_db_stack.set_visible_child(self._stack)
             list_box.show()
         else:
             builder = Gtk.Builder()
             builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-            empty_group_overlay = builder.get_object("empty_group_overlay")
-            overlay.add_overlay(empty_group_overlay)
+            self._unlocked_db_stack.set_visible_child(self.empty_page)
             list_box.hide()
 
     def rebuild_all_pages(self):
@@ -402,7 +402,7 @@ class UnlockedDatabase(GObject.GObject):
             if list_box_row.type == "GroupRow":
                 safe_group = list_box_row.safe_group
                 self.current_element = safe_group
-                self.show_page_of_new_directory(False, True)
+                self.show_page_of_new_directory(False, False)
             else:
                 if self.selection_mode:
                     active = list_box_row.selection_checkbox.props.active
@@ -682,11 +682,15 @@ class UnlockedDatabase(GObject.GObject):
         if self.props.current_element.is_root_group:
             return
 
+        current_page = self.get_current_page()
         buttons = self.pathbar.buttons
         if len(buttons) == 1:
             self.pathbar.on_pathbar_button_clicked(buttons[0])
+            self._unlocked_db_stack.set_visible_child(self._stack)
         else:
             self.pathbar.on_pathbar_button_clicked(buttons[-2])
+            self._unlocked_db_stack.set_visible_child(self._stack)
+        self._stack.remove(current_page)
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:

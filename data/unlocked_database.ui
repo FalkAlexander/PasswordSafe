@@ -17,6 +17,43 @@
             <property name="name">browser</property>
           </packing>
         </child>
+        <child>
+          <object class="GtkBox" id="empty_group_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">8</property>
+            <child>
+              <object class="GtkImage">
+                <property name="name">empty_group_image</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">end</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="pixel_size">70</property>
+                <property name="icon_name">folder-symbolic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="name">empty_group_label</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">start</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">Empty group</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                  <attribute name="size" value="15000"/>
+                </attributes>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
     <child>
@@ -34,52 +71,6 @@
           </object>
         </child>
       </object>
-    </child>
-  </object>
-  <object class="GtkOverlay" id="empty_group_overlay">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
-    <child>
-      <object class="GtkBox" id="empty_group_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">8</property>
-        <child>
-          <object class="GtkImage">
-            <property name="name">empty_group_image</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="valign">end</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="pixel_size">70</property>
-            <property name="icon_name">folder-symbolic</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="name">empty_group_label</property>
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="valign">start</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="label" translatable="yes">Empty group</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-              <attribute name="size" value="15000"/>
-            </attributes>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="index">-1</property>
-      </packing>
     </child>
   </object>
   <object class="HdyClamp" id="browser_clamp">

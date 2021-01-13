@@ -28,7 +28,6 @@ class EntryPage(Gtk.ScrolledWindow):
     __gtype_name__ = "EntryPage"
 
     _filechooser = None
-    is_dirty = False
     edit_page = True
 
     properties_box = Gtk.Template.Child()
@@ -128,7 +127,6 @@ class EntryPage(Gtk.ScrolledWindow):
             "notes", textbuffer, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
-        textbuffer.connect("changed", self.on_property_value_entry_changed)
         self.notes_property_value_entry.set_buffer(textbuffer)
         self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
@@ -232,12 +230,6 @@ class EntryPage(Gtk.ScrolledWindow):
             widget.set_visible(True)
 
         self.show_all_row.set_visible(False)
-
-    @Gtk.Template.Callback()
-    def on_property_value_entry_changed(self, _widget, _data=None):
-        self.unlocked_database.start_database_lock_timer()
-
-        self.is_dirty = True
 
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):
@@ -476,4 +468,3 @@ class EntryPage(Gtk.ScrolledWindow):
 
     def _on_safe_entry_updated(self, safe_entry):
         self.unlocked_database.start_database_lock_timer()
-        self.is_dirty = True

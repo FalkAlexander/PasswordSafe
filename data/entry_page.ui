@@ -38,7 +38,6 @@
                     <property name="visible">True</property>
                     <property name="input_purpose">name</property>
                     <property name="receives_default">True</property>
-                    <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
                   </object>
                 </child>
               </object>
@@ -70,7 +69,6 @@
                         <property name="secondary_icon_name">edit-copy-symbolic</property>
                         <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
                         <signal name="copy-clipboard" handler="_on_copy_secondary_button_clicked" swapped="no"/>
-                        <signal name="changed" handler="on_property_value_entry_changed" swapped="no"/>
                       </object>
                     </child>
                   </object>

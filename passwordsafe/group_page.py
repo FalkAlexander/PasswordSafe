@@ -20,7 +20,6 @@ class GroupPage(Gtk.ScrolledWindow):
     notes_property_value_entry = Gtk.Template.Child()
 
     edit_page = True
-    is_dirty = False
 
     def __init__(self, unlocked_database):
         super().__init__()
@@ -48,4 +47,3 @@ class GroupPage(Gtk.ScrolledWindow):
 
     def _on_safe_group_updated(self, _safe_group: SafeGroup) -> None:
         self.unlocked_database.start_database_lock_timer()
-        self.is_dirty = True

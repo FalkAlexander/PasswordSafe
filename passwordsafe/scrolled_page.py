@@ -4,7 +4,6 @@ from gi.repository import Gtk
 
 class ScrolledPage(Gtk.ScrolledWindow):
     edit_page = False
-    is_dirty = False  # Whether the database needs saving
 
     def __init__(self, edit):
         Gtk.ScrolledWindow.__init__(self)

@@ -493,20 +493,6 @@ class UnlockedDatabase(GObject.GObject):
         self.current_element = SafeGroup(self.database_manager, parent_group)
         self.show_page_of_new_directory(False, False)
 
-    def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
-        """Edit button in a GroupRow was clicked
-
-        button: The edit button in the GroupRow"""
-        self.start_database_lock_timer()  # Reset the lock timer
-        widget = button
-        # Get the ancestor GroupRow object
-        while not isinstance(widget, GroupRow):
-            widget = widget.get_parent()
-        group_uuid = widget.get_uuid()
-
-        self.props.current_element = SafeGroup(self.database_manager, self.database_manager.get_group(group_uuid))
-        self.show_page_of_new_directory(True, False)
-
     def send_to_clipboard(self, text, message=_("Copied to clipboard")):
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:

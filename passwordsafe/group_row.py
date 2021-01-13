@@ -71,7 +71,7 @@ class GroupRow(Gtk.ListBoxRow):
 
         # Edit Button
         self.edit_button = builder.get_object("group_edit_button")
-        self.edit_button.connect("clicked", self.unlocked_database.on_group_edit_button_clicked)
+        self.edit_button.connect("clicked", self.on_group_edit_button_clicked)
         self.unlocked_database.bind_property(
             "selection_mode",
             self.edit_button,
@@ -114,3 +114,12 @@ class GroupRow(Gtk.ListBoxRow):
             self.unlocked_database.selection_ui.add_group(self)
         else:
             self.unlocked_database.selection_ui.remove_group(self)
+
+    def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
+        """Edit button in a GroupRow was clicked
+
+        button: The edit button in the GroupRow"""
+        self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
+
+        self.unlocked_database.props.current_element = self.safe_group
+        self.unlocked_database.show_page_of_new_directory(True, False)

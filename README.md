@@ -1,7 +1,7 @@
 # Password Safe
 Password Safe is a password manager which integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
 
-<img src="https://gitlab.gnome.org/World/PasswordSafe/-/wikis/uploads/de508f02b076699243410df1e020262f/PasswordSafe.png" width="800px" />
+<img src="https://gitlab.gnome.org/World/PasswordSafe/-/raw/master/screenshots/browser.png" width="800px" />
 
 ## Features:
 * ⭐ Create or import a KeePass v.4 safe
@@ -87,7 +87,7 @@ sudo ninja -C _build install
 
 # Translations
 Helping to translate Password Safe or add support to a new language is very welcome.  
-You can find everything you need at: https://l10n.gnome.org/module/PasswordSafe/
+You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https://l10n.gnome.org/module/PasswordSafe/)
 
 # Supported encryption algorithms
 ### Encryption algorithms:
@@ -109,3 +109,10 @@ gsettings set org.gnome.PasswordSafe development-backup-mode false
 
 # Contact
 You can contact through chat (Matrix protocol) on [#passwordsafe:gnome.org](https://matrix.to/#/#passwordsafe:gnome.org) channel.
+
+### Part of GNOME Circle
+Applications and libraries extending the GNOME ecosystem.
+
+<a href="https://circle.gnome.org/">
+<img src=" https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/circle-button-fullcolor.svg" width="180"/>
+</a>

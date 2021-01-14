@@ -5,17 +5,27 @@
     <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
     <child>
-      <object class="GtkStack" id="_unlocked_db_stack">
+      <object class="GtkStack" id="_unlocked_db_deck">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <child>
-          <object class="GtkStack" id="list_stack">
+          <object class="GtkStack" id="_unlocked_db_stack">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <child>
+              <object class="GtkStack" id="list_stack">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+              </object>
+              <packing>
+                <property name="name">browser</property>
+              </packing>
+            </child>
           </object>
-          <packing>
-            <property name="name">browser</property>
-          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="_edit_page_box">
+            <property name="visible">True</property>
+          </object>
         </child>
       </object>
     </child>

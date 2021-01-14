@@ -118,14 +118,13 @@ class UnlockedDatabase(GObject.GObject):
     #
 
     def assemble_listbox(self):
-        self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-
+        self._edit_page_box = self.builder.get_object("_edit_page_box")
         self.pathbar = Pathbar(self, self.database_manager)
         self._stack = self.builder.get_object("list_stack")
         self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
         self.revealer = self.builder.get_object("revealer")
         self.action_bar = self.builder.get_object("action_bar")
+        self._unlocked_db_deck = self.builder.get_object("_unlocked_db_deck")
 
         self.headerbar = UnlockedHeaderBar(self)
         self.selection_ui = self.headerbar.selection_ui
@@ -144,6 +143,78 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
 
         self.show_page_of_new_directory(False, False)
+
+    def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
+        self.props.current_element = element
+
+        # Sets the accessed time.
+        self.database_manager.set_element_atime(element.element)
+
+        if element.is_group:
+            page = GroupPage(self)
+            self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
+        else:
+            page = EntryPage(self, new)
+            self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
+
+        page_box = self._edit_page_box
+
+        # TODO Use the set_child api in GTK 4 with a StackPage.
+        while page_box.get_children():
+            page_box.remove(page_box.get_children()[0])
+
+        page_box.add(page)
+        self._unlocked_db_deck.set_visible_child(self._edit_page_box)
+
+    def show_browser_page(self, group: SafeGroup) -> None:
+        self.props.current_element = group
+
+        self._unlocked_db_stack.set_visible_child(self._stack)
+        self._unlocked_db_deck.set_visible_child(self._unlocked_db_stack)
+        self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
+
+        page_name = self.props.current_element.uuid.urn
+
+        if not self._stack.get_child_by_name(page_name):
+            new_page = self.new_group_browser_page(group)
+            self._stack.add_named(new_page, page_name)
+
+        self._stack.set_visible_child_name(page_name)
+
+    def new_group_browser_page(self, group: SafeGroup) -> ScrolledPage:
+        builder = Gtk.Builder()
+        builder.add_from_resource(
+            "/org/gnome/PasswordSafe/unlocked_database.ui"
+        )
+        browser_clamp = builder.get_object("browser_clamp")
+        browser_stack = builder.get_object("browser_stack")
+        empty_group_box = builder.get_object("empty_group_box")
+
+        list_box = builder.get_object("list_box")
+        list_box.connect("row-activated", self.on_list_box_row_activated)
+        list_model = Gio.ListStore.new(SafeElement)
+
+        list_box.bind_model(list_model, self.listbox_row_factory)
+        list_model.connect(
+            "items-changed",
+            self.on_listbox_items_changed,
+            browser_stack,
+            browser_clamp,
+            empty_group_box)
+        self.populate_list_model(list_model)
+
+        scrolled_window = ScrolledPage(False)
+        scrolled_window.add(browser_stack)
+
+        return scrolled_window
+
+    @property
+    def in_edit_page(self) -> bool:
+        """Returns true if the current visible page is either
+        the Group edit page or Entry edit page."""
+
+        boolean: bool = self._unlocked_db_deck.props.visible_child == self._edit_page_box
+        return boolean
 
     #
     # Headerbar

@@ -6,6 +6,7 @@ import typing
 from typing import List, Optional, Union
 
 from gi.repository import GLib, GObject, Gtk, Handy
+from pykeepass.group import Group
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
@@ -14,7 +15,6 @@ from passwordsafe.scrolled_page import ScrolledPage
 
 if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
-    from pykeepass.group import Group
 
     from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -188,7 +188,7 @@ class Search:
         new_idx: int = 0
         for element in self._result_list[self._current_result_idx:]:
             if search_height < window_height or load_all:
-                if self._db_manager.check_is_group_object(element):
+                if isinstance(element, Group):
                     search_height += group_row_height
                     safe_group = SafeGroup(self._db_manager, element)
                     row = GroupRow(

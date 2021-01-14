@@ -552,9 +552,6 @@ class DatabaseManager(GObject.GObject):
         """Whether uuid is a group uuid"""
         return self.get_group(uuid) is not None
 
-    def check_is_group_object(self, group):
-        return isinstance(group, Group)
-
     def get_attachment_from_id(self, attachment_id):
         return self.db.find_attachments(id=attachment_id, first=True)
 

@@ -37,10 +37,9 @@ class GroupRow(Gtk.ListBoxRow):
         self._entry_box_gesture.connect(
             "pressed", self._on_group_row_button_pressed)
 
-        if self.safe_group.name:
-            self.name_label.set_text(self.safe_group.name)
-        else:
-            self.name_label.set_markup("<span font-style=\"italic\">" + _("No group title specified") + "</span>")
+        # # Name Label
+        self.safe_group.connect("notify::name", self._on_group_name_changed)
+        self._on_group_name_changed(self.safe_group, None)
 
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
@@ -103,3 +102,14 @@ class GroupRow(Gtk.ListBoxRow):
 
         self.unlocked_database.props.current_element = self.safe_group
         self.unlocked_database.show_page_of_new_directory(True, False)
+
+    def _on_group_name_changed(
+            self, _safe_group: SafeGroup, _value: GObject.ParamSpec) -> None:
+        group_name = self.safe_group.name
+        style_context = self.name_label.get_style_context()
+        if group_name:
+            style_context.remove_class("italic")
+            self.name_label.props.label = group_name
+        else:
+            style_context.add_class("italic")
+            self.name_label.props.label = _("Title not specified")

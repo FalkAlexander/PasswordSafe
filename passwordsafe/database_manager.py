@@ -62,86 +62,6 @@ class DatabaseManager(GObject.GObject):
         assert isinstance(uuid, UUID), "uuid needs to be of type UUID"
         return self.db.find_groups(uuid=uuid, first=True)
 
-    def get_group_name(self, data: Union[Group, UUID]) -> str:
-        """Get group name from a group or an uuid
-
-        :param data: a group or an uuid
-        :returns: group name or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            group: Group = self.db.find_groups(uuid=data, first=True)
-            if not group:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            group = data
-
-        return group.name or ""
-
-    def get_notes(self, data: Union[Entry, Group, UUID]) -> str:
-        """Get notes from an entry, a group or an uuid
-
-        :param data: a group or an uuid
-        :returns: notes or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            if self.check_is_group(data):
-                value: Union[Entry, Group] = self.db.find_groups(
-                    uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return ""
-            else:
-                value = self.db.find_entries(uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return ""
-        else:
-            value = data
-
-        return value.notes or ""
-
-    def get_icon(self, data: Union[Entry, Group, UUID]) -> Optional[int]:
-        """Get an entry icon from an entry, a group or an uuid
-
-        :param data: entry, group or uuid
-        :returns: icon number (int) or None in case of no/invalid icon data.
-                  Note that the number range could still be outside of the
-                  supported number range 0-68.
-        :rtype: Optional[int]
-        """
-        if isinstance(data, UUID):
-            if self.check_is_group(data):
-                value: Union[Entry, Group] = self.db.find_groups(
-                    uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-            else:
-                value = self.db.find_entries(uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-        else:
-            value = data
-        try:
-            icon = int(value.icon)
-        except TypeError:
-            return None
-        return icon
-
     #
     # Entry Transformation Methods
     #
@@ -149,48 +69,6 @@ class DatabaseManager(GObject.GObject):
     # Return the belonging entry object for a entry uuid
     def get_entry_object_from_uuid(self, uuid):
         return self.db.find_entries(uuid=uuid, first=True)
-
-    def get_entry_name(self, data: Union[Entry, UUID]) -> str:
-        """Get entry name from an uuid or an entry
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: UUID or Entry
-        :returns: entry name or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.title or ""
-
-    def get_entry_username(self, data: Union[Entry, UUID]) -> str:
-        """Get an entry username from an entry or an uuid
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: entry or uuid
-        :returns: entry username or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.username or ""
 
     def get_entry_password(self, data: Union[Entry, UUID]) -> str:
         """Get an entry password from an entry or an uuid
@@ -212,27 +90,6 @@ class DatabaseManager(GObject.GObject):
             entry = data
 
         return entry.password or ""
-
-    def get_entry_url(self, data: Union[Entry, UUID]) -> str:
-        """Get an entry url from an entry or an uuid
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: UUID or Entry
-        :returns: entry url or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.url or ""
 
     #
     # Database Modifications
@@ -364,87 +221,6 @@ class DatabaseManager(GObject.GObject):
     # Entry Modifications
     #
 
-    def set_entry_name(self, uuid, name):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.title = name
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_username(self, uuid, username):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.username = username
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_password(self, entry: Entry, password: str) -> None:
-        """Change the password and save it.
-
-        :param Entry entry: entry to change
-        :param password: new password
-        """
-        entry.password = password
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_url(self, uuid, url):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.url = url
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_notes(self, uuid, notes):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.notes = notes
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_icon(self, uuid, icon):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.icon = icon
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_color(self, uuid, color):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.set_custom_property("color_prop_LcljUMJZ9X", color)
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_attribute(self, entry: Entry, key: str, value: str) -> None:
-        """Set an entry attribute.
-
-        :param Entry entry: entry to modify
-        :param key: key of the attribute
-        :param value: value of the attribute
-        """
-        entry.set_custom_property(key, value)
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def delete_entry_attribute(self, entry: Entry, key: str) -> None:
-        """Delete an entry attribute.
-
-        :param Entry entry: entry to modify
-        :param str key: the attribute key
-        """
-        entry.delete_custom_property(key)
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def add_entry_attachment(self, uuid, byte_buffer, filename):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        attachment_id = self.db.add_binary(byte_buffer)
-        attachment = entry.add_attachment(attachment_id, filename)
-        self.is_dirty = True
-        return attachment
-
-    def delete_entry_attachment(self, attachment):
-        try:
-            self.db.delete_binary(attachment.id)
-        except Exception:  # pylint: disable=broad-except
-            logging.warning("Failed to delete attachment.")
-        self.is_dirty = True
-
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)
@@ -461,28 +237,6 @@ class DatabaseManager(GObject.GObject):
     def set_element_mtime(self, element):
         element.mtime = datetime.utcnow()
 
-    #
-    # Group Modifications
-    #
-
-    def set_group_name(self, uuid, name):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        group.name = name
-        self.is_dirty = True
-        self.set_element_mtime(group)
-
-    def set_group_notes(self, uuid, notes):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        group.notes = notes
-        self.is_dirty = True
-        self.set_element_mtime(group)
-
-    def set_group_icon(self, uuid, icon):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        group.icon = icon
-        self.is_dirty = True
-        self.set_element_mtime(group)
-
     # Move an group
     def move_group(self, group: Group, dest_group: Group) -> None:
         self.db.move_group(group, dest_group)
@@ -494,14 +248,6 @@ class DatabaseManager(GObject.GObject):
     #
     # Read Database
     #
-
-    # Return the root group of the database instance
-    def get_root_group(self):
-        return self.db.root_group
-
-    # Check if root group
-    def check_is_root_group(self, group):
-        return group.is_root_group
 
     # Check if entry with title in group exists
     def check_entry_in_group_exists(self, title, group):
@@ -547,13 +293,6 @@ class DatabaseManager(GObject.GObject):
                 search_entry(entry, [username, notes, url])
 
         return results
-
-    def check_is_group(self, uuid):
-        """Whether uuid is a group uuid"""
-        return self.get_group(uuid) is not None
-
-    def get_attachment_from_id(self, attachment_id):
-        return self.db.find_attachments(id=attachment_id, first=True)
 
     #
     # Properties

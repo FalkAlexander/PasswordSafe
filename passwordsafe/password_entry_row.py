@@ -4,7 +4,6 @@ from __future__ import annotations
 import logging
 import typing
 from typing import Optional
-from uuid import UUID
 
 from gi.repository import Gdk, Gtk
 
@@ -94,9 +93,7 @@ class PasswordEntryRow(Gtk.Box):
 
         if pwd_text.startswith("{REF:P"):
             try:
-                uuid: UUID = UUID(
-                    self._unlocked_database.reference_to_hex_uuid(pwd_text))
-                password: str = self._db_manager.get_entry_password(uuid)
+                password: str = self._safe_entry.password
             except ValueError:
                 logging.warning(
                     "Failed to look up password for reference '%s'", password)

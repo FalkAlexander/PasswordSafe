@@ -70,27 +70,6 @@ class DatabaseManager(GObject.GObject):
     def get_entry_object_from_uuid(self, uuid):
         return self.db.find_entries(uuid=uuid, first=True)
 
-    def get_entry_password(self, data: Union[Entry, UUID]) -> str:
-        """Get an entry password from an entry or an uuid
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: entry or uuid
-        :returns: entry password or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s , this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.password or ""
-
     #
     # Database Modifications
     #

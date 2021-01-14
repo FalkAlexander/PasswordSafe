@@ -87,9 +87,6 @@ class GroupRow(Gtk.ListBoxRow):
                 db_view.props.selection_mode = True
                 self.selection_checkbox.props.active = True
 
-    def get_uuid(self):
-        return self.safe_group.uuid
-
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active():

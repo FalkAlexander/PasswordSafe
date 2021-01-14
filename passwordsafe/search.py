@@ -260,17 +260,14 @@ class Search:
         if not self.search_list_box.get_children():
             return
 
-        uuid = NotImplemented
-        first_row = NotImplemented
         selected_row = self.search_list_box.get_selected_row()
 
         if selected_row is None:
             selected_row = self.search_list_box.get_children()[0]
-        uuid = selected_row.get_uuid()
         if selected_row.type == "GroupRow":
-            first_row = self._db_manager.get_group(uuid)
+            first_row = selected_row.safe_group.uuid
         else:
-            first_row = self._db_manager.get_entry_object_from_uuid(uuid)
+            first_row = selected_row.safe_entry.uuid
 
         self.unlocked_database.show_element(first_row)
         self.unlocked_database.props.search_active = False

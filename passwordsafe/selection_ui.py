@@ -94,7 +94,7 @@ class SelectionUI(Gtk.Box):
         # Abort the operation if there is a groups which is in the pathbar,
         # i.e. if it is a parent of the current view.
         for group_row in self.groups_selected:
-            group_uuid = group_row.get_uuid()
+            group_uuid = group_row.safe_group.uuid
             group = self.unlocked_database.database_manager.get_group(group_uuid)
             if self.unlocked_database.database_manager.parent_checker(
                     self.unlocked_database.current_element,
@@ -164,7 +164,7 @@ class SelectionUI(Gtk.Box):
             rebuild = False
             for button in self.unlocked_database.pathbar.buttons:
                 for group_row in self.groups_cut:
-                    if button.element.uuid == group_row.get_uuid():
+                    if button.element.uuid == group_row.safe_group.uuid:
                         rebuild = True
 
             self.cut_mode = False

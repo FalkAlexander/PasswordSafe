@@ -139,9 +139,16 @@ class EntryRow(Gtk.ListBoxRow):
 
     def _on_entry_color_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
-        color = self._safe_entry.props.color
         image_style = self._entry_icon.get_style_context()
+        # Clear current style
+        image_style.remove_class("DarkIcon")
+        image_style.remove_class("BrightIcon")
+        for color in Color:
+            image_style.remove_class(color.value + "List")
+
+        color = self._safe_entry.props.color
         image_style.add_class(color + "List")
         if color not in [Color.NONE.value, Color.YELLOW.value]:
-            image_style.remove_class("DarkIcon")
             image_style.add_class("BrightIcon")
+        else:
+            image_style.add_class("DarkIcon")

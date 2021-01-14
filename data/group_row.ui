@@ -1,59 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkEventBox" id="group_event_box">
+  <template class="GroupRow" parent="GtkListBoxRow">
     <property name="visible">True</property>
-    <property name="halign">baseline</property>
     <child>
-      <object class="GtkBox" id="group_box">
-        <property name="height_request">45</property>
+      <object class="GtkEventBox" id="group_event_box">
         <property name="visible">True</property>
-        <property name="margin_start">8</property>
-        <property name="margin_end">8</property>
+        <property name="halign">baseline</property>
         <child>
-          <object class="GtkCheckButton" id="selection_checkbox_group">
-            <property name="receives_default">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="vexpand">True</property>
-            <property name="draw_indicator">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkImage" id="group_icon">
-            <property name="width_request">50</property>
+          <object class="GtkBox" id="group_box">
+            <property name="height_request">45</property>
             <property name="visible">True</property>
-            <property name="margin_start">2</property>
-            <property name="margin_end">2</property>
-            <property name="pixel_size">22</property>
-            <property name="icon_name">folder-symbolic</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="group_name_label">
-            <property name="name">name_label</property>
-            <property name="visible">True</property>
-            <property name="label">Group title not specified</property>
-            <property name="ellipsize">end</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="hexpand">True</property>
-            <property name="halign">end</property>
-            <property name="margin_start">6</property>
-            <property name="margin_end">6</property>
+            <property name="margin_start">8</property>
+            <property name="margin_end">8</property>
             <child>
-              <object class="GtkButton" id="group_edit_button">
-                <property name="name">ListBoxRowButton</property>
-                <property name="visible">True</property>
-                <property name="receives_default">True</property>
-                <property name="halign">end</property>
+              <object class="GtkCheckButton" id="selection_checkbox">
+                <property name="receives_default">False</property>
+                <property name="halign">center</property>
                 <property name="valign">center</property>
+                <property name="vexpand">True</property>
+                <property name="draw_indicator">True</property>
+                <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="group_icon">
+                <property name="width_request">50</property>
+                <property name="visible">True</property>
+                <property name="margin_start">2</property>
+                <property name="margin_end">2</property>
+                <property name="pixel_size">22</property>
+                <property name="icon_name">folder-symbolic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="name_label">
+                <property name="name">name_label</property>
+                <property name="visible">True</property>
+                <property name="label">Group title not specified</property>
+                <property name="ellipsize">end</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="hexpand">True</property>
+                <property name="halign">end</property>
+                <property name="margin_start">6</property>
+                <property name="margin_end">6</property>
                 <child>
-                  <object class="GtkImage">
+                  <object class="GtkButton" id="edit_button">
+                    <property name="name">ListBoxRowButton</property>
                     <property name="visible">True</property>
-                    <property name="icon_name">document-edit-symbolic</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <signal name="clicked" handler="on_group_edit_button_clicked" swapped="no"/>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon_name">document-edit-symbolic</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
@@ -62,8 +69,8 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkGestureMultiPress" id="entry_box_gesture">
+  </template>
+  <object class="GtkGestureMultiPress" id="_entry_box_gesture">
     <property name="widget">group_event_box</property>
     <property name="button">3</property>
   </object>

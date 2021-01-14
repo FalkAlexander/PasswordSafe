@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
-from typing import Optional
 
 from gi.repository import GObject, Gtk
 from passwordsafe.safe_element import SafeGroup
@@ -12,12 +11,17 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/group_row.ui")
 class GroupRow(Gtk.ListBoxRow):
-    unlocked_database = NotImplemented
-    group_uuid = NotImplemented
-    label = NotImplemented
-    selection_checkbox = NotImplemented
-    edit_button = NotImplemented
+
+    __gtype_name__ = "GroupRow"
+
+    _entry_box_gesture = Gtk.Template.Child()
+    name_label = Gtk.Template.Child()
+    selection_checkbox = Gtk.Template.Child()
+    edit_button = Gtk.Template.Child()
+    _entry_box_gesture = Gtk.Template.Child()
+
     type = "GroupRow"
 
     def __init__(self, unlocked_database, safe_group):
@@ -26,37 +30,19 @@ class GroupRow(Gtk.ListBoxRow):
 
         assert isinstance(safe_group, SafeGroup)
         self.unlocked_database = unlocked_database
-
-        self.group_uuid = safe_group.uuid
-        self.label = safe_group.name
         self.safe_group = safe_group
-
-        self._entry_box_gesture: Optional[Gtk.GestureMultiPress] = None
         self.assemble_group_row()
 
     def assemble_group_row(self):
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/group_row.ui")
-        group_event_box = builder.get_object("group_event_box")
-
-        self._entry_box_gesture = builder.get_object("entry_box_gesture")
         self._entry_box_gesture.connect(
             "pressed", self._on_group_row_button_pressed)
 
-        group_name_label = builder.get_object("group_name_label")
-
-        if self.label:
-            group_name_label.set_text(self.label)
+        if self.safe_group.name:
+            self.name_label.set_text(self.safe_group.name)
         else:
-            group_name_label.set_markup("<span font-style=\"italic\">" + _("No group title specified") + "</span>")
-
-        self.add(group_event_box)
-        self.show()
+            self.name_label.set_markup("<span font-style=\"italic\">" + _("No group title specified") + "</span>")
 
         # Selection Mode Checkboxes
-        self.selection_checkbox = builder.get_object("selection_checkbox_group")
-        self.selection_checkbox.connect("toggled", self.on_selection_checkbox_toggled)
         self.unlocked_database.bind_property(
             "selection_mode",
             self.selection_checkbox,
@@ -70,8 +56,6 @@ class GroupRow(Gtk.ListBoxRow):
         )
 
         # Edit Button
-        self.edit_button = builder.get_object("group_edit_button")
-        self.edit_button.connect("clicked", self.on_group_edit_button_clicked)
         self.unlocked_database.bind_property(
             "selection_mode",
             self.edit_button,
@@ -104,17 +88,16 @@ class GroupRow(Gtk.ListBoxRow):
                 self.selection_checkbox.props.active = True
 
     def get_uuid(self):
-        return self.group_uuid
+        return self.safe_group.uuid
 
-    def set_label(self, label):
-        self.label = label
-
+    @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active():
             self.unlocked_database.selection_ui.add_group(self)
         else:
             self.unlocked_database.selection_ui.remove_group(self)
 
+    @Gtk.Template.Callback()
     def on_group_edit_button_clicked(self, button: Gtk.Button) -> None:
         """Edit button in a GroupRow was clicked
 

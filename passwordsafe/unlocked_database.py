@@ -186,7 +186,7 @@ class UnlockedDatabase(GObject.GObject):
             stack_page_uuid = self.current_element.uuid
             if self._stack.get_child_by_name(stack_page_uuid.urn) is not None:
                 stack_page = self._stack.get_child_by_name(stack_page_uuid.urn)
-                stack_page.destroy()
+                self._stack.remove(stack_page)
 
             self.add_page(scrolled_window, self.current_element.uuid.urn)
             self.switch_page(self.current_element)
@@ -325,7 +325,7 @@ class UnlockedDatabase(GObject.GObject):
         # obliterating everything.
         for page in self._stack.get_children():
             if page.edit_page is False:
-                page.destroy()
+                self._stack.remove(page)
 
         self.show_page_of_new_directory(False, False)
 

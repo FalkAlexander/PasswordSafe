@@ -39,11 +39,11 @@ class CustomKeypressHandler:
         if not self._current_view_accessible():
             return Gdk.EVENT_PROPAGATE
 
-        scrolled_page = self.unlocked_database.get_current_page()
+        edit_page = self.unlocked_database.in_edit_page
 
         # Handle undo and redo on entries.
         if (
-                scrolled_page.edit_page
+                edit_page
                 and eventkey.state & Gdk.ModifierType.CONTROL_MASK == Gdk.ModifierType.CONTROL_MASK
         ):
             keyval_name = Gdk.keyval_name(eventkey.keyval)
@@ -65,7 +65,7 @@ class CustomKeypressHandler:
                     if keyval_name == "z":
                         textbuffer.logic.do_undo()
                         return Gdk.EVENT_PROPAGATE
-        elif (not scrolled_page.edit_page
+        elif (not edit_page
               # MOD1 usually corresponds to Alt
               and eventkey.state & Gdk.ModifierType.MOD1_MASK == 0
               and eventkey.string.isalnum()):

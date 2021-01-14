@@ -267,10 +267,11 @@ class Search:
 
         if selected_row.type == "GroupRow":
             first_row = selected_row.safe_group.uuid
+            self.unlocked_database.show_group_browser_page(first_row.safe_group)
         else:
             first_row = selected_row.safe_entry.uuid
+            self.unlocked_database.show_edit_page(first_row.safe_entry)
 
-        self.unlocked_database.show_element(first_row)
         self.unlocked_database.props.search_active = False
 
     def on_load_more_row_clicked(self, row):

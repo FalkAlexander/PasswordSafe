@@ -142,7 +142,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.start_database_lock_timer()
 
-        self.show_page_of_new_directory(False, False)
+        self.show_browser_page(self.current_element)
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.props.current_element = element
@@ -244,75 +244,6 @@ class UnlockedDatabase(GObject.GObject):
     # Group and Entry Management
     #
 
-    def show_page_of_new_directory(self, edit_group, new_entry):
-        # pylint: disable=too-many-statements
-
-        # Removes the page if already exists.
-        self.remove_page(self.current_element)
-
-        # Creation of group edit page
-        if edit_group is True:
-            scrolled_window = GroupPage(self)
-
-            stack_page_uuid = self.current_element.uuid
-            if self._stack.get_child_by_name(stack_page_uuid.urn) is not None:
-                stack_page = self._stack.get_child_by_name(stack_page_uuid.urn)
-                self._stack.remove(stack_page)
-
-            self.add_page(scrolled_window, self.current_element.uuid.urn)
-            self.switch_page(self.current_element)
-            self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
-        # If the stack page with current group's uuid isn't existing - we need to create it (first time opening of group/entry)
-        elif (
-            not self._stack.get_child_by_name(self.current_element.uuid.urn)
-            and not edit_group
-        ):
-            self.database_manager.set_element_atime(self.current_element)
-            # Create not existing stack page for group
-            if self.current_element.is_group:
-                builder = Gtk.Builder()
-                builder.add_from_resource(
-                    "/org/gnome/PasswordSafe/unlocked_database.ui"
-                )
-                browser_clamp = builder.get_object("browser_clamp")
-                browser_stack = builder.get_object("browser_stack")
-                empty_group_box = builder.get_object("empty_group_box")
-
-                list_box = builder.get_object("list_box")
-                list_box.connect("row-activated", self.on_list_box_row_activated)
-                list_model = Gio.ListStore.new(SafeElement)
-
-                list_box.bind_model(list_model, self.listbox_row_factory)
-                list_model.connect("items-changed", self.on_listbox_items_changed, browser_stack, browser_clamp, empty_group_box)
-                self.populate_list_model(list_model)
-
-                scrolled_window = ScrolledPage(False)
-                scrolled_window.add(browser_stack)
-
-                self.add_page(scrolled_window, self.current_element.uuid.urn)
-                self.switch_page(self.current_element)
-
-            # Create not existing stack page for entry
-            else:
-                if new_entry:
-                    scrolled_window = EntryPage(self, True)
-                else:
-                    scrolled_window = EntryPage(self, False)
-
-                self.add_page(scrolled_window, self.current_element.uuid.urn)
-                self.switch_page(self.current_element)
-        # Stack page with current group's uuid already exists, we only need to switch stack page
-        else:
-            self.database_manager.set_element_atime(self.current_element)
-            # For group
-            if self.current_element.is_group:
-                self._stack.set_visible_child_name(self.current_element.uuid.urn)
-                self.headerbar.props.mode = UnlockedHeaderBar.Mode.GROUP
-            # For entry
-            else:
-                self._stack.set_visible_child_name(self.current_element.uuid.urn)
-                self.headerbar.props.mode = UnlockedHeaderBar.Mode.ENTRY
-
     def on_listbox_items_changed(self, listmodel, _position, _removed, _added, browser_stack, browser_clamp, empty_group_box):
         if not listmodel.get_n_items():
             browser_stack.set_visible_child(empty_group_box)
@@ -326,26 +257,6 @@ class UnlockedDatabase(GObject.GObject):
         :param str name: name of the page
         """
         self._stack.add_named(scrolled_window, name)
-
-    def switch_page(self, element: SafeElement) -> None:
-        """Set the current element and display it
-
-        :param element: Entry or Group
-        """
-        self.props.current_element = element
-
-        page_uuid = self.props.current_element.uuid
-        group_page = element.is_group
-
-        if self._stack.get_child_by_name(page_uuid.urn) is None:
-            self.show_page_of_new_directory(False, False)
-        else:
-            self._stack.set_visible_child_name(page_uuid.urn)
-
-        if group_page and not self.props.selection_mode:
-            self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
-        elif not group_page:
-            self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
 
     def remove_page(self, element: SafeElement) -> None:
         """Remove an element (SafeEntry, Group) from the stack if present."""
@@ -383,14 +294,6 @@ class UnlockedDatabase(GObject.GObject):
     # Create Group & Entry Rows
     #
 
-    def show_element(self, element: SafeElement) -> None:
-        """Sets the current element and display it
-
-        :param element: Entry or Group to display
-        """
-        self.props.current_element = element
-        self.show_page_of_new_directory(False, False)
-
     def rebuild_all_pages(self):
         # FIXME find a more elegant way to do this without
         # obliterating everything.
@@ -398,7 +301,7 @@ class UnlockedDatabase(GObject.GObject):
             if page.edit_page is False:
                 self._stack.remove(page)
 
-        self.show_page_of_new_directory(False, False)
+        self.show_browser_page(self.current_element)
 
     #
     # Events
@@ -415,8 +318,7 @@ class UnlockedDatabase(GObject.GObject):
 
             if list_box_row.type == "GroupRow":
                 safe_group = list_box_row.safe_group
-                self.current_element = safe_group
-                self.show_page_of_new_directory(False, False)
+                self.show_browser_page(safe_group)
             else:
                 if self.selection_mode:
                     active = list_box_row.selection_checkbox.props.active
@@ -424,7 +326,7 @@ class UnlockedDatabase(GObject.GObject):
                     return
 
                 safe_entry = list_box_row.safe_entry
-                self.show_element(safe_entry)
+                self.show_edit_page(safe_entry)
 
     def on_database_save_notification(self, _database_manager: DatabaseManager, saved: bool) -> None:
         if saved:
@@ -454,9 +356,8 @@ class UnlockedDatabase(GObject.GObject):
         """CB when the Add Entry menu was clicked"""
         self.start_database_lock_timer()
         group = self.props.current_element.group
-        new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
-        self.props.current_element = new_entry
-        self.show_page_of_new_directory(False, True)
+        new_entry: Entry = self.database_manager.add_entry_to_database(group)
+        self.show_edit_page(new_entry, new=True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:
         """CB when menu entry Add Group is clicked"""
@@ -466,8 +367,7 @@ class UnlockedDatabase(GObject.GObject):
             "", "0", "", self.props.current_element.group
         )
         safe_group = SafeGroup(self.database_manager, group)
-        self.props.current_element = safe_group
-        self.show_page_of_new_directory(True, False)
+        self.show_edit_page(safe_group)
 
     def on_element_delete_menu_button_clicked(
         self, _action: Gio.SimpleAction, _param: None
@@ -476,10 +376,9 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
 
         parent_group = self.props.current_element.parentgroup
-        self.database_manager.delete_from_database(self.props.current_element.entry)
+        self.database_manager.delete_from_database(self.props.current_element.element)
 
         self.remove_page(self.current_element)
-        self.props.current_element = parent_group
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
         # the group view.
@@ -487,7 +386,7 @@ class UnlockedDatabase(GObject.GObject):
         # to update the group view without removing it and adding it
         # again to the stack.
         self.remove_page(parent_group)
-        self.show_page_of_new_directory(False, False)
+        self.show_browser_page(parent_group)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
         self.start_database_lock_timer()
@@ -495,8 +394,6 @@ class UnlockedDatabase(GObject.GObject):
         self.database_manager.duplicate_entry(self.props.current_element.entry)
         parent_group = self.props.current_element.parentgroup
 
-        self.go_back()
-
         # Remove the parent group from the stack and add it again with
         # a show_page_of_new_directory call to force a full refresh of
         # the group view.
@@ -504,8 +401,7 @@ class UnlockedDatabase(GObject.GObject):
         # to update the group view without removing it and adding it
         # again to the stack.
         self.remove_page(parent_group)
-        self.current_element = SafeGroup(self.database_manager, parent_group)
-        self.show_page_of_new_directory(False, False)
+        self.show_browser_page(parent_group)
 
     def send_to_clipboard(self, text, message=_("Copied to clipboard")):
         self.start_database_lock_timer()
@@ -700,10 +596,8 @@ class UnlockedDatabase(GObject.GObject):
         buttons = self.pathbar.buttons
         if len(buttons) == 1:
             self.pathbar.on_pathbar_button_clicked(buttons[0])
-            self._unlocked_db_stack.set_visible_child(self._stack)
         else:
             self.pathbar.on_pathbar_button_clicked(buttons[-2])
-            self._unlocked_db_stack.set_visible_child(self._stack)
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:
@@ -727,8 +621,7 @@ class UnlockedDatabase(GObject.GObject):
         if self._search_active:
             self._unlocked_db_stack.set_visible_child_name("search")
         else:
-            self._unlocked_db_stack.set_visible_child_name("browser")
-            self.show_page_of_new_directory(False, False)
+            self.show_browser_page(self.current_element)
 
         self._update_headerbar()
 

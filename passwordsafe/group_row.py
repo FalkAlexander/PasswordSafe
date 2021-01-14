@@ -100,8 +100,7 @@ class GroupRow(Gtk.ListBoxRow):
         button: The edit button in the GroupRow"""
         self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
 
-        self.unlocked_database.props.current_element = self.safe_group
-        self.unlocked_database.show_page_of_new_directory(True, False)
+        self.unlocked_database.show_edit_page(self.safe_group)
 
     def _on_group_name_changed(
             self, _safe_group: SafeGroup, _value: GObject.ParamSpec) -> None:

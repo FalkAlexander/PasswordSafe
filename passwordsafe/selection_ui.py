@@ -74,7 +74,11 @@ class SelectionUI(Gtk.Box):
 
     def _exit_selection_mode(self):
         self.cut_mode = True
-        self.unlocked_database.show_page_of_new_directory(False, False)
+        element = self.unlocked_database.current_element
+        if element.is_group:
+            self.unlocked_database.show_browser_page(element)
+        else:
+            self.unlocked_database.show_edit_page(element)
 
     #
     # Events
@@ -83,7 +87,6 @@ class SelectionUI(Gtk.Box):
     @Gtk.Template.Callback()
     def _on_cancel_button_clicked(self, _widget):
         self.unlocked_database.props.selection_mode = False
-        self.unlocked_database.show_page_of_new_directory(False, False)
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _widget):
@@ -126,11 +129,11 @@ class SelectionUI(Gtk.Box):
             if stack_page.edit_page is False:
                 stack_page.destroy()
 
-        self.unlocked_database.show_page_of_new_directory(False, False)
+        self.unlocked_database.show_browser_page(self.unlocked_database.current_element)
 
         if reset_stack_page is True:
             root_group = SafeGroup.get_root(self.unlocked_database.database_manager)
-            self.unlocked_database.current_element = root_group
+            self.unlocked_database.show_browser_page(root_group)
 
         self.unlocked_database.window.notify(_("Deletion completed"))
 
@@ -205,7 +208,7 @@ class SelectionUI(Gtk.Box):
             if stack_page.edit_page is False:
                 stack_page.destroy()
 
-        self.unlocked_database.show_page_of_new_directory(False, False)
+        self.unlocked_database.show_browser_page(self.unlocked_database.current_element)
 
         if move_conflict is False:
             self.unlocked_database.window.notify(_("Move completed"))

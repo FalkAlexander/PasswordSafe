@@ -77,11 +77,9 @@ class Pathbar(Gtk.Box):
 
         if pathbar_button_elem.uuid != current_elem_uuid:
             is_group = pathbar_button.is_group
-            selection_mode = self.unlocked_database.props.selection_mode
-            if (is_group
-                    or (not is_group and not selection_mode)):
+            if is_group:
                 self.unlocked_database.remove_page(pathbar_button_elem)
-                self.unlocked_database.switch_page(pathbar_button_elem)
+                self.unlocked_database.show_browser_page(pathbar_button_elem)
 
     def uuid_in_pathbar(self, uuid: UUID) -> bool:
         """Return True if the uuid entry is visible in the bar"""

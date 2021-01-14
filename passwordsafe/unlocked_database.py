@@ -324,23 +324,20 @@ class UnlockedDatabase(GObject.GObject):
     def on_list_box_row_activated(self, _widget, list_box_row):
         self.start_database_lock_timer()
 
-        if list_box_row.get_name() == "LoadMoreRow":
-            self.search.on_load_more_row_clicked(list_box_row)
+        if self.props.search_active:
+            self.props.search_active = False
+
+        if list_box_row.type == "GroupRow":
+            safe_group = list_box_row.safe_group
+            self.show_browser_page(safe_group)
         else:
-            if self.props.search_active:
-                self.props.search_active = False
+            if self.selection_mode:
+                active = list_box_row.selection_checkbox.props.active
+                list_box_row.selection_checkbox.props.active = not active
+                return
 
-            if list_box_row.type == "GroupRow":
-                safe_group = list_box_row.safe_group
-                self.show_browser_page(safe_group)
-            else:
-                if self.selection_mode:
-                    active = list_box_row.selection_checkbox.props.active
-                    list_box_row.selection_checkbox.props.active = not active
-                    return
-
-                safe_entry = list_box_row.safe_entry
-                self.show_edit_page(safe_entry)
+            safe_entry = list_box_row.safe_entry
+            self.show_edit_page(safe_entry)
 
     def on_database_save_notification(self, _database_manager: DatabaseManager, saved: bool) -> None:
         if saved:

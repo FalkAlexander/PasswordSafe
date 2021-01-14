@@ -60,7 +60,6 @@ class Search:
         self._timeout_info: int = 0
         self._result_list: List[Union[Entry, Group]] = []
         self._search_text: str = self._search_entry.props.text
-        self._current_result_idx: int = 0
 
     def initialize(self):
         # Search Headerbar
@@ -169,7 +168,6 @@ class Search:
             self._stack.set_visible_child(self._empty_search_page)
             return
 
-        self._current_result_idx = 0
         GLib.idle_add(self._show_results)
 
     def _show_results(self, load_all=False):
@@ -179,51 +177,18 @@ class Search:
         """
         self.search_list_box.show()
         self._stack.set_visible_child(self._results_search_page)
-        window_height = self.unlocked_database.parent_widget.get_allocation().height - 120
-        group_row_height = 50
-        entry_row_height = 65
-        search_height: int = 0
-        skipped_rows: bool = False
 
-        new_idx: int = 0
-        for element in self._result_list[self._current_result_idx:]:
-            if search_height < window_height or load_all:
-                if isinstance(element, Group):
-                    search_height += group_row_height
-                    safe_group = SafeGroup(self._db_manager, element)
-                    row = GroupRow(
-                        self.unlocked_database, safe_group)
-                else:
-                    search_height += entry_row_height
-                    safe_entry = SafeEntry(self._db_manager, element)
-                    row = EntryRow(self.unlocked_database, safe_entry)
-
-                self.search_list_box.add(row)
-                new_idx += 1
+        for element in self._result_list:
+            if isinstance(element, Group):
+                safe_group = SafeGroup(self._db_manager, element)
+                row = GroupRow(
+                    self.unlocked_database, safe_group)
             else:
-                skipped_rows = True
-                break
+                safe_entry = SafeEntry(self._db_manager, element)
+                row = EntryRow(self.unlocked_database, safe_entry)
 
-        self._current_result_idx += new_idx
+            self.search_list_box.add(row)
 
-        if skipped_rows:
-            load_more_row = self._builder.get_object("load_more_row")
-            self.search_list_box.add(load_more_row)
-            search_height += 40
-
-        # FIXME: It should not be necessary to set the height of the list
-        # and a check_resize on the scrolled_page. Without this, the
-        # result list is not always correctly displayed.
-        # The 38 = 18 + 18 + 2 number comes from the margins and the border of
-        # the list.
-        # It has to be adjusted for mobile view when there are no margins.
-        if self.unlocked_database.window.mobile_layout:
-            margin = 2
-        else:
-            margin = 38
-
-        self.search_list_box.props.height_request = search_height + margin
-        self.scrolled_page.check_resize()
         return GLib.SOURCE_REMOVE
 
     #

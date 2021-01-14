@@ -2,7 +2,6 @@
 <interface>
   <object class="GtkBox" id="divider">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkStack" id="_unlocked_db_deck">
@@ -10,11 +9,9 @@
         <child>
           <object class="GtkStack" id="_unlocked_db_stack">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <child>
               <object class="GtkStack" id="list_stack">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
               </object>
             </child>
           </object>
@@ -29,14 +26,12 @@
     <child>
       <object class="GtkRevealer" id="revealer">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="valign">end</property>
         <property name="transition_type">slide-up</property>
         <property name="reveal_child">False</property>
         <child>
           <object class="GtkActionBar" id="action_bar">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="valign">end</property>
           </object>
         </child>
@@ -52,7 +47,6 @@
           <object class="GtkListBox" id="list_box">
             <property name="name">BrowserListBox</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="valign">start</property>
             <property name="selection_mode">none</property>
           </object>
@@ -62,7 +56,6 @@
     <child>
       <object class="GtkBox" id="empty_group_box">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
@@ -71,7 +64,6 @@
           <object class="GtkImage">
             <property name="name">empty_group_image</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="valign">end</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
@@ -83,7 +75,6 @@
           <object class="GtkLabel">
             <property name="name">empty_group_label</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="valign">start</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>

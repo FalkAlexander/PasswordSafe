@@ -262,8 +262,9 @@ class Search:
 
         selected_row = self.search_list_box.get_selected_row()
 
-        if selected_row is None:
+        if selected_row is None and self.search_list_box.get_children():
             selected_row = self.search_list_box.get_children()[0]
+
         if selected_row.type == "GroupRow":
             first_row = selected_row.safe_group.uuid
         else:

@@ -5,18 +5,15 @@
     <child>
       <object class="GtkEventBox" id="entry_event_box">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="halign">baseline</property>
         <child>
           <object class="GtkBox" id="entry_box">
             <property name="height_request">60</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="margin_start">8</property>
             <property name="margin_end">8</property>
             <child>
               <object class="GtkCheckButton" id="selection_checkbox">
-                <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
                 <property name="halign">center</property>
                 <property name="valign">center</property>
@@ -28,7 +25,6 @@
             <child>
               <object class="GtkImage" id="_entry_icon">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="icon_size">20</property>
                 <property name="pixel_size">16</property>
                 <property name="icon_name">application-x-executable-symbolic</property>
@@ -46,13 +42,11 @@
             <child>
               <object class="GtkBox" id="description_box">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel" id="_entry_name_label">
                     <property name="name">name_label</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">end</property>
                     <property name="hexpand">False</property>
@@ -67,14 +61,12 @@
                 <child>
                   <object class="GtkBox" id="subtitle_label_box">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="vexpand">True</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkLabel" id="_entry_username_label">
                         <property name="name">entry_subtitle_label</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="hexpand">False</property>
@@ -99,13 +91,11 @@
                 <child>
                   <object class="GtkButton" id="_entry_copy_user_button">
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Copy username to clipboard</property>
                     <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="icon_name">avatar-default-symbolic</property>
                       </object>
                     </child>
@@ -115,14 +105,12 @@
                   <object class="GtkButton" id="_entry_copy_pass_button">
                     <property name="name">ListBoxRowButton</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
                     <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="icon_name">dialog-password-symbolic</property>
                       </object>
                     </child>

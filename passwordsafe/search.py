@@ -3,19 +3,16 @@ from __future__ import annotations
 
 import threading
 import typing
-from typing import List, Optional, Union
+from typing import Optional
 
-from gi.repository import GLib, GObject, Gtk, Handy
-from pykeepass.group import Group
+from gi.repository import Gio, GLib, GObject, Gtk, Handy
 
-from passwordsafe.entry_row import EntryRow
-from passwordsafe.group_row import GroupRow
-from passwordsafe.safe_element import SafeEntry, SafeGroup
+import passwordsafe.config_manager as config
+from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.scrolled_page import ScrolledPage
+from passwordsafe.sorting import SortingHat
 
 if typing.TYPE_CHECKING:
-    from pykeepass.entry import Entry
-
     from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.unlocked_database import UnlockedDatabase
 
@@ -27,6 +24,7 @@ class Search:
     # Global Variables
     #
 
+    _result_list = Gio.ListStore.new(SafeElement)
     search_list_box = NotImplemented
     #
     # Init
@@ -58,8 +56,15 @@ class Search:
         self._timeout_search: int = 0
 
         self._timeout_info: int = 0
-        self._result_list: List[Union[Entry, Group]] = []
         self._search_text: str = self._search_entry.props.text
+        self._result_list.connect("items_changed", self._on_items_changed)
+
+    def _on_items_changed(
+        self, list_model: Gio.ListModel, _pos: int, _removed: int, _added: int
+    ) -> None:
+        if list_model.get_n_items() == 0:
+            if len(self._search_text) < 2:
+                self._display_info_page()
 
     def initialize(self):
         # Search Headerbar
@@ -94,18 +99,16 @@ class Search:
                 "search-changed", self._on_search_entry_timeout)
             self._search_entry.grab_focus()
 
-            self._timeout_info = GLib.timeout_add(
-                200, self._display_info_page)
+            self._timeout_info = GLib.timeout_add(200, self._display_info_page)
 
         else:
-            self._clear_view()
-
             if self._search_changed_id is not None:
                 self._search_entry.disconnect(self._search_changed_id)
                 self._search_changed_id = None
 
             self._search_entry.props.text = ""
             self._key_pressed = False
+            self._result_list.remove_all()
 
     #
     # Stack
@@ -114,7 +117,12 @@ class Search:
     # Set Search stack page
     def _prepare_search_page(self):
         self.search_list_box = self._builder.get_object("list_box")
-        self.search_list_box.connect("row-activated", self.unlocked_database.on_list_box_row_activated)
+        self.search_list_box.bind_model(
+            self._result_list, self.unlocked_database.listbox_row_factory
+        )
+        self.search_list_box.connect(
+            "row-activated", self.unlocked_database.on_list_box_row_activated
+        )
 
         self.scrolled_page.add(self._stack)
 
@@ -135,19 +143,6 @@ class Search:
     # Utils
     #
 
-    def _clear_view(self) -> None:
-        """Clear the view when the search mode is activated
-        or when a new search is performed.
-
-        All the overlay are removed and the results list is cleared.
-        """
-        for row in self.search_list_box:
-            self.search_list_box.remove(row)
-
-        self.search_list_box.hide()
-
-        self._result_list.clear()
-
     def _start_search(self):
         """Update the overlays and start a search
         if the search term is not empty.
@@ -161,33 +156,51 @@ class Search:
 
     def _perform_search(self):
         """Search for results in the database."""
-        path = self.unlocked_database.current_element.path
-        self._result_list = self._db_manager.search(self._search_text, path)
+        querry = self._search_text
 
-        if not self._result_list:
+        db_manager = self.unlocked_database.database_manager
+
+        def filter_func(element: SafeElement) -> bool:
+            if element.is_group:
+                fields = [element.name, element.notes]
+            else:
+                fields = [element.name, element.notes, element.url, element.username]
+
+            for field in fields:
+                if querry.lower() in field.lower():
+                    return True
+
+            return False
+
+        db_entries = filter(
+            filter_func, [SafeEntry(db_manager, e) for e in db_manager.db.entries]
+        )
+        db_groups = filter(
+            filter_func,
+            [
+                SafeGroup(db_manager, g)
+                for g in db_manager.db.groups
+                if not g.is_root_group
+            ],
+        )
+        results = list(db_groups) + list(db_entries)
+
+        if len(results) == 0:
             self._stack.set_visible_child(self._empty_search_page)
             return
 
-        GLib.idle_add(self._show_results)
+        GLib.idle_add(self._show_results, results)
 
-    def _show_results(self, load_all=False):
-        """Display some results.
+    def _show_results(self, results):
+        n_items = self._result_list.get_n_items()
+        self._result_list.splice(0, n_items, results)
 
-        :param bool load_all: True if all the results need to be shown
-        """
-        self.search_list_box.show()
+        # Sort the results
+        sorting = config.get_sort_order()
+        sort_func = SortingHat.get_sort_func(sorting)
+        self._result_list.sort(sort_func)
+
         self._stack.set_visible_child(self._results_search_page)
-
-        for element in self._result_list:
-            if isinstance(element, Group):
-                safe_group = SafeGroup(self._db_manager, element)
-                row = GroupRow(
-                    self.unlocked_database, safe_group)
-            else:
-                safe_entry = SafeEntry(self._db_manager, element)
-                row = EntryRow(self.unlocked_database, safe_entry)
-
-            self.search_list_box.add(row)
 
         return GLib.SOURCE_REMOVE
 
@@ -209,7 +222,6 @@ class Search:
 
     def _on_search_entry_changed(self, widget):
         self._timeout_search = 0
-        self._clear_view()
 
         self._search_text = widget.get_text()
         self._start_search()

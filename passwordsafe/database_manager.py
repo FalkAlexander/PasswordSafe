@@ -3,7 +3,7 @@ import hashlib
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from typing import List, Optional, Union
+from typing import Optional, Union
 from uuid import UUID
 
 from gi.repository import Gio, GObject
@@ -11,7 +11,6 @@ from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
 
-import passwordsafe.config_manager
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 
 
@@ -238,44 +237,6 @@ class DatabaseManager(GObject.GObject):
         if entry is None:
             return False
         return True
-
-    # Search for an entry or a group
-    def search(self, string: str, path: str) -> List[Union[Entry, Group]]:
-        full_text_search = passwordsafe.config_manager.get_full_text_search()
-        global_search = not passwordsafe.config_manager.get_local_search()
-        results: List[Union[Entry, Group]] = []
-
-        def search_entry(entry: Union[Entry, Group], lookfor: List[Union[None, str]]) -> None:
-            """Looks if the querry string appears in any on the items of lookfor.
-            If there is a match adds the entry to the uuid_list.
-            """
-            for term in lookfor:
-                if term is None:
-                    continue
-                if string.lower() in term.lower():
-                    if global_search and entry not in results:
-                        results.append(entry)
-                    elif entry.parentgroup is not None:
-                        parent_group: Group = entry.parentgroup
-                        if parent_group.path == path and entry not in results:
-                            results.append(entry)
-
-        for group in self.db.groups:
-            if group.is_root_group is False:
-                search_entry(group, [group.name])
-                if full_text_search:
-                    notes = group.notes
-                    search_entry(group, [notes])
-
-        for entry in self.db.entries:
-            search_entry(entry, [entry.title])
-            if full_text_search:
-                username = entry.username
-                notes = entry.notes
-                url = entry.url
-                search_entry(entry, [username, notes, url])
-
-        return results
 
     #
     # Properties

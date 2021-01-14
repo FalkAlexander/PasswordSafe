@@ -126,7 +126,6 @@ class UnlockedDatabase(GObject.GObject):
         self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
         self.revealer = self.builder.get_object("revealer")
         self.action_bar = self.builder.get_object("action_bar")
-        self.empty_page = self.builder.get_object("empty_group_box")
 
         self.headerbar = UnlockedHeaderBar(self)
         self.selection_ui = self.headerbar.selection_ui
@@ -180,12 +179,6 @@ class UnlockedDatabase(GObject.GObject):
         # Removes the page if already exists.
         self.remove_page(self.current_element)
 
-        if self.current_element.is_group and not edit_group:
-            if not self.current_element.subgroups:
-                self._unlocked_db_stack.set_visible_child(self.empty_page)
-        else:
-            self._unlocked_db_stack.set_visible_child(self._stack)
-
         # Creation of group edit page
         if edit_group is True:
             scrolled_window = GroupPage(self)
@@ -210,17 +203,20 @@ class UnlockedDatabase(GObject.GObject):
                 builder.add_from_resource(
                     "/org/gnome/PasswordSafe/unlocked_database.ui"
                 )
+                browser_clamp = builder.get_object("browser_clamp")
+                browser_stack = builder.get_object("browser_stack")
+                empty_group_box = builder.get_object("empty_group_box")
+
                 list_box = builder.get_object("list_box")
                 list_box.connect("row-activated", self.on_list_box_row_activated)
                 list_model = Gio.ListStore.new(SafeElement)
 
                 list_box.bind_model(list_model, self.listbox_row_factory)
+                list_model.connect("items-changed", self.on_listbox_items_changed, browser_stack, browser_clamp, empty_group_box)
                 self.populate_list_model(list_model)
 
                 scrolled_window = ScrolledPage(False)
-
-                hdy_clamp = builder.get_object("browser_clamp")
-                scrolled_window.add(hdy_clamp)
+                scrolled_window.add(browser_stack)
 
                 self.add_page(scrolled_window, self.current_element.uuid.urn)
                 self.switch_page(self.current_element)
@@ -245,6 +241,12 @@ class UnlockedDatabase(GObject.GObject):
             else:
                 self._stack.set_visible_child_name(self.current_element.uuid.urn)
                 self.headerbar.props.mode = UnlockedHeaderBar.Mode.ENTRY
+
+    def on_listbox_items_changed(self, listmodel, _position, _removed, _added, browser_stack, browser_clamp, empty_group_box):
+        if not listmodel.get_n_items():
+            browser_stack.set_visible_child(empty_group_box)
+        else:
+            browser_stack.set_visible_child(browser_clamp)
 
     def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
         """Add a new page to the stack

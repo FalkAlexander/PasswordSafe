@@ -90,7 +90,6 @@ class SelectionUI(Gtk.Box):
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _widget):
-        rebuild_pathbar = False
         reset_stack_page = False
         group = None
 
@@ -108,10 +107,6 @@ class SelectionUI(Gtk.Box):
 
         for entry_row in self.entries_selected:
             safe_entry = entry_row.safe_entry
-            # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(safe_entry.uuid):
-                rebuild_pathbar = True
-
             self.unlocked_database.database_manager.delete_from_database(
                 safe_entry.entry)
 
@@ -122,7 +117,6 @@ class SelectionUI(Gtk.Box):
             group_uuid = safe_group.uuid
             current_uuid = self.unlocked_database.current_element.uuid
             if group_uuid == current_uuid:
-                rebuild_pathbar = True
                 reset_stack_page = True
 
         for stack_page in self.unlocked_database.get_pages():
@@ -148,8 +142,6 @@ class SelectionUI(Gtk.Box):
     @Gtk.Template.Callback()
     def _on_cut_paste_button_clicked(self, _widget):
         # pylint: disable=too-many-branches
-        rebuild_pathbar = False
-
         if self.cut_mode is True:
             self.entries_cut = self.entries_selected
             self.groups_cut = self.groups_selected
@@ -164,12 +156,6 @@ class SelectionUI(Gtk.Box):
             if self.entries_selected or self.groups_selected:
                 self._delete_button.set_sensitive(False)
 
-            rebuild = False
-            for button in self.unlocked_database.pathbar.buttons:
-                for group_row in self.groups_cut:
-                    if button.element.uuid == group_row.safe_group.uuid:
-                        rebuild = True
-
             self.cut_mode = False
             return
 
@@ -182,14 +168,10 @@ class SelectionUI(Gtk.Box):
             safe_entry = entry_row.safe_entry
             self.unlocked_database.database_manager.move_entry(
                 safe_entry.uuid, self.unlocked_database.current_element.group)
-            # If the moved entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(safe_entry.uuid):
-                rebuild_pathbar = True
 
         move_conflict = False
 
         for group_row in self.groups_cut:
-            group_uuid = group_row.safe_group.uuid
             group = group_row.safe_group.group
             current_element = self.unlocked_database.current_element
             if not self.unlocked_database.database_manager.parent_checker(
@@ -200,9 +182,6 @@ class SelectionUI(Gtk.Box):
                 )
             else:
                 move_conflict = True
-            # If the moved group is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(group_uuid):
-                rebuild_pathbar = True
 
         for stack_page in self.unlocked_database.get_pages():
             if stack_page.edit_page is False:

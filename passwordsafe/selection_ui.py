@@ -119,10 +119,6 @@ class SelectionUI(Gtk.Box):
             if group_uuid == current_uuid:
                 reset_stack_page = True
 
-        for stack_page in self.unlocked_database.get_pages():
-            if stack_page.edit_page is False:
-                stack_page.destroy()
-
         self.unlocked_database.show_browser_page(self.unlocked_database.current_element)
 
         if reset_stack_page is True:
@@ -182,10 +178,6 @@ class SelectionUI(Gtk.Box):
                 )
             else:
                 move_conflict = True
-
-        for stack_page in self.unlocked_database.get_pages():
-            if stack_page.edit_page is False:
-                stack_page.destroy()
 
         self.unlocked_database.show_browser_page(self.unlocked_database.current_element)
 

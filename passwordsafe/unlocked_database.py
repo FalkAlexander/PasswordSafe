@@ -27,6 +27,8 @@ from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
+    from uuid import UUID
+
     from passwordsafe.container_page import ContainerPage
     from passwordsafe.database_manager import DatabaseManager
     # pylint: disable=ungrouped-imports
@@ -183,6 +185,24 @@ class UnlockedDatabase(GObject.GObject):
 
         self._stack.set_visible_child_name(page_name)
 
+    def _on_element_added(
+            self,
+            _u_db: UnlockedDatabase,
+            element: SafeElement,
+            target_group_uuid: UUID,
+            list_model: Gio.ListStore,
+            list_model_group_uuid: UUID,
+            _data: Any = None
+    ) -> None:
+        # Return if the element was addded to another group than the one
+        # used to generate the list model.
+        if target_group_uuid != list_model_group_uuid:
+            return
+
+        sorting = passwordsafe.config_manager.get_sort_order()
+        sort_func = SortingHat.get_sort_func(sorting)
+        list_model.insert_sorted(element, sort_func)
+
     def new_group_browser_page(self, group: SafeGroup) -> ScrolledPage:
         builder = Gtk.Builder()
         builder.add_from_resource(
@@ -198,6 +218,7 @@ class UnlockedDatabase(GObject.GObject):
 
         settings = self.window.application.settings
         settings.connect("changed", self.on_sort_order_changed, list_model)
+        self.database_manager.connect("element-added", self._on_element_added, list_model, group.uuid)
 
         list_box.bind_model(list_model, self.listbox_row_factory)
         list_model.connect(
@@ -287,14 +308,6 @@ class UnlockedDatabase(GObject.GObject):
         element_uuid = self.props.current_element.uuid
         return self._stack.get_child_by_name(element_uuid.urn)
 
-    def get_pages(self) -> List[ScrolledPage]:
-        """Returns all the children of the stack.
-
-        :returns: All the children of the stack.
-        :rtype: list
-        """
-        return self._stack.get_children()
-
     #
     # Events
     #
@@ -349,8 +362,6 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
         group = self.props.current_element.group
         new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
-        # Need to regenerate parent page to show new entry
-        self.remove_page(self.props.current_element)
         self.show_edit_page(new_entry, new=True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:
@@ -361,8 +372,6 @@ class UnlockedDatabase(GObject.GObject):
             "", "0", "", self.props.current_element.group
         )
         safe_group = SafeGroup(self.database_manager, group)
-        # Need to regenerate parent page to show new entry
-        self.remove_page(self.current_element)
         self.show_edit_page(safe_group)
 
     def on_element_delete_menu_button_clicked(
@@ -390,13 +399,6 @@ class UnlockedDatabase(GObject.GObject):
         self.database_manager.duplicate_entry(self.props.current_element.entry)
         parent_group = self.props.current_element.parentgroup
 
-        # Remove the parent group from the stack and add it again with
-        # a show_page_of_new_directory call to force a full refresh of
-        # the group view.
-        # FIXME: This operation is not efficient, it should be possible
-        # to update the group view without removing it and adding it
-        # again to the stack.
-        self.remove_page(parent_group)
         self.show_browser_page(parent_group)
 
     def send_to_clipboard(self, text, message=_("Copied to clipboard")):

@@ -12,7 +12,7 @@ from pykeepass.entry import Entry
 from pykeepass.group import Group
 
 import passwordsafe.config_manager
-from passwordsafe.safe_element import SafeElement, SafeEntry
+from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 
 
 class DatabaseManager(GObject.GObject):
@@ -76,11 +76,13 @@ class DatabaseManager(GObject.GObject):
 
     # Add new group to database
     def add_group_to_database(self, name, icon, notes, parent_group):
+        new_location = parent_group.uuid
         group = self.db.add_group(parent_group, name, icon=icon, notes=notes)
-        self.is_dirty = True
         self.set_element_mtime(parent_group)
+        safe_group = SafeGroup(self, group)
+        self.emit("element-added", safe_group, new_location)
 
-        return group
+        return safe_group
 
     # Add new entry to database
     def add_entry_to_database(
@@ -103,8 +105,9 @@ class DatabaseManager(GObject.GObject):
             icon="0",
             force_creation=force,
         )
-        self.is_dirty = True
         self.set_element_mtime(group)
+        safe_entry = SafeEntry(self, entry)
+        self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
 
         return safe_entry
 
@@ -144,7 +147,8 @@ class DatabaseManager(GObject.GObject):
             value: str = entry.custom_properties[key] or ""
             clone_entry.set_custom_property(key, value)
 
-        self.is_dirty = True
+        safe_entry = SafeEntry(self, clone_entry)
+        self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
         if entry.parentgroup is not None:
             self.set_element_mtime(entry.parentgroup)
 
@@ -374,3 +378,11 @@ class DatabaseManager(GObject.GObject):
     @GObject.Signal(arg_types=(bool,))
     def save_notification(self, _saved):
         return
+
+    @GObject.Signal(arg_types=(SafeElement, object,))
+    def element_added(self, _element: SafeElement, _parent_uuid: UUID) -> None:
+        """Signal emitted when a new element was added to the database
+        it carries the UUID in string format of the parent group to which
+        the entrie was added."""
+        self.is_dirty = True
+        logging.debug("Added new element to safe")

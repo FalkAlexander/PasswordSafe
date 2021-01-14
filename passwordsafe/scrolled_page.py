@@ -10,4 +10,5 @@ class ScrolledPage(Gtk.ScrolledWindow):
         self.set_name("ScrolledPage")
         self.set_hexpand(True)
         self.set_vexpand(True)
+        self.set_visible(True)
         self.edit_page = edit

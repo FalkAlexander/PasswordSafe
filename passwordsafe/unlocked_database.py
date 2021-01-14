@@ -221,7 +221,6 @@ class UnlockedDatabase(GObject.GObject):
 
                 hdy_clamp = builder.get_object("browser_clamp")
                 scrolled_window.add(hdy_clamp)
-                scrolled_window.show_all()
 
                 self.add_page(scrolled_window, self.current_element.uuid.urn)
                 self.switch_page(self.current_element)

@@ -537,9 +537,7 @@ class MainWindow(Handy.ApplicationWindow):
             ("db.add_entry", "on_database_add_entry_clicked", None),
             ("db.add_group", "on_database_add_group_clicked", None),
             ("db.settings", "on_database_settings_entry_clicked", None),
-            ("sort.az", "on_sort_menu_button_entry_clicked", "A-Z"),
-            ("sort.za", "on_sort_menu_button_entry_clicked", "Z-A"),
-            ("sort.last_added", "on_sort_menu_button_entry_clicked", "last_added"),
+            ("sort", "on_sort_menu_button_entry_clicked", None),
         ]
 
         for action, name, arg in actions:
@@ -547,6 +545,14 @@ class MainWindow(Handy.ApplicationWindow):
             simple_action.connect(
                 "activate", self.execute_gio_action, name, arg)
             self.application.add_action(simple_action)
+
+        sort_action = self.application.settings.create_action(
+            "sort-order"
+        )
+        sort_action.connect(
+            "notify::state", self.execute_gio_action, "sort-order", None
+        )
+        self.application.add_action(sort_action)
 
     # Selection Mode Actions
     def add_selection_actions(self):
@@ -582,8 +588,6 @@ class MainWindow(Handy.ApplicationWindow):
             action_db.on_add_group_button_clicked(None)
         elif name == "on_database_settings_entry_clicked":
             action_db.on_database_settings_entry_clicked(action, param)
-        elif name == "on_sort_menu_button_entry_clicked":
-            action_db.on_sort_menu_button_entry_clicked(action, param, arg)
         elif name == "on_selection_popover_button_clicked":
             action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
 

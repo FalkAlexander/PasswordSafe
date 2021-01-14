@@ -11,6 +11,7 @@ from gi.repository import GObject
 from passwordsafe.color_widget import Color
 
 if typing.TYPE_CHECKING:
+    from datetime import datetime
     from typing import Dict, List, Optional, Union
 
     from pykeepass.attachment import Attachment
@@ -131,6 +132,11 @@ class SafeElement(GObject.GObject):
     @property
     def path(self) -> str:
         return self._element.path
+
+    @property
+    def ctime(self) -> datetime:
+        """The creation time of the element."""
+        return self._element.ctime
 
 
 class SafeGroup(SafeElement):

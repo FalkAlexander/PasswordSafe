@@ -6,7 +6,7 @@ import threading
 import typing
 from gettext import gettext as _
 from threading import Timer
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
@@ -23,6 +23,7 @@ from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
+from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
@@ -102,17 +103,18 @@ class UnlockedDatabase(GObject.GObject):
         entries = self.props.current_element.entries
         groups = [g for g in self.props.current_element.subgroups if not g.is_root_group]
 
-        sorting = passwordsafe.config_manager.get_sort_order()
-
-        if sorting == "A-Z":
-            entries.sort(key=lambda group: str.lower(group.name), reverse=False)
-            groups.sort(key=lambda group: str.lower(group.name), reverse=False)
-        if sorting == "Z-A":
-            entries.sort(key=lambda group: str.lower(group.name), reverse=True)
-            groups.sort(key=lambda group: str.lower(group.name), reverse=True)
-
         elements = groups + entries
         list_model.splice(0, 0, elements)
+        self.sort_list_model(self, list_model)
+
+    def sort_list_model(
+            self, _unlocked_db: UnlockedDatabase, list_model: Gio.ListStore, _data: Any = None
+    ) -> None:
+        sorting = passwordsafe.config_manager.get_sort_order()
+        sort_func = SortingHat.get_sort_func(sorting)
+
+        list_model.sort(sort_func)
+
     #
     # Stack Pages
     #
@@ -193,6 +195,9 @@ class UnlockedDatabase(GObject.GObject):
         list_box = builder.get_object("list_box")
         list_box.connect("row-activated", self.on_list_box_row_activated)
         list_model = Gio.ListStore.new(SafeElement)
+
+        settings = self.window.application.settings
+        settings.connect("changed", self.on_sort_order_changed, list_model)
 
         list_box.bind_model(list_model, self.listbox_row_factory)
         list_model.connect(
@@ -289,19 +294,6 @@ class UnlockedDatabase(GObject.GObject):
         :rtype: list
         """
         return self._stack.get_children()
-
-    #
-    # Create Group & Entry Rows
-    #
-
-    def rebuild_all_pages(self):
-        # FIXME find a more elegant way to do this without
-        # obliterating everything.
-        for page in self._stack.get_children():
-            if page.edit_page is False:
-                self._stack.remove(page)
-
-        self.show_browser_page(self.current_element)
 
     #
     # Events
@@ -424,17 +416,19 @@ class UnlockedDatabase(GObject.GObject):
     def on_database_settings_entry_clicked(self, _action, _param):
         DatabaseSettingsDialog(self).present()
 
-    def on_sort_menu_button_entry_clicked(self, _action, _param, sorting):
-        self.start_database_lock_timer()
-        passwordsafe.config_manager.set_sort_order(sorting)
-        self.rebuild_all_pages()
-
     def on_session_lock(
         self, _connection, _unique_name, _object_path, _interface, _signal, state
     ):
         if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
 
+    def on_sort_order_changed(self, settings, key, list_model):
+        """Callback to be executed when the sorting has been changed."""
+        if key == "sort-order":
+            sorting = settings.get_enum("sort-order")
+            logging.debug("Sort order changed to %s", sorting)
+
+            self.sort_list_model(self, list_model)
     #
     # Dialog Creator
     #

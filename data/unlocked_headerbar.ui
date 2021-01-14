@@ -168,15 +168,18 @@
         <attribute name='label' translatable='yes'>So_rting</attribute>
         <item>
           <attribute name='label' translatable='yes'>_A-Z</attribute>
-          <attribute name='action'>app.sort.az</attribute>
+          <attribute name='action'>app.sort-order</attribute>
+          <attribute name='target'>a-z</attribute>
         </item>
         <item>
           <attribute name='label' translatable='yes'>_Z-A</attribute>
-          <attribute name='action'>app.sort.za</attribute>
+          <attribute name='action'>app.sort-order</attribute>
+          <attribute name='target'>z-a</attribute>
         </item>
         <item>
           <attribute name='label' translatable='yes'>_Last Added</attribute>
-          <attribute name='action'>app.sort.last_added</attribute>
+          <attribute name='action'>app.sort-order</attribute>
+          <attribute name='target'>last_added</attribute>
         </item>
       </submenu>
     </section>

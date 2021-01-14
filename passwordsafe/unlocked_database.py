@@ -203,6 +203,21 @@ class UnlockedDatabase(GObject.GObject):
         sort_func = SortingHat.get_sort_func(sorting)
         list_model.insert_sorted(element, sort_func)
 
+    def _on_element_removed(
+            self, _u_db: UnlockedDatabase, element_uuid: UUID, list_model: Gio.ListStore, _data: Any = None
+    ) -> None:
+        pos = 0
+        found = False
+        for element in list_model:
+            if element.uuid == element_uuid:
+                found = True
+                break
+            pos += 1
+
+        # Only removes the element if it is the current list model
+        if found:
+            list_model.remove(pos)
+
     def new_group_browser_page(self, group: SafeGroup) -> ScrolledPage:
         builder = Gtk.Builder()
         builder.add_from_resource(
@@ -218,6 +233,7 @@ class UnlockedDatabase(GObject.GObject):
 
         settings = self.window.application.settings
         settings.connect("changed", self.on_sort_order_changed, list_model)
+        self.database_manager.connect("element-removed", self._on_element_removed, list_model)
         self.database_manager.connect("element-added", self._on_element_added, list_model, group.uuid)
 
         list_box.bind_model(list_model, self.listbox_row_factory)
@@ -283,13 +299,6 @@ class UnlockedDatabase(GObject.GObject):
         :param str name: name of the page
         """
         self._stack.add_named(scrolled_window, name)
-
-    def remove_page(self, element: SafeElement) -> None:
-        """Remove an element (SafeEntry, Group) from the stack if present."""
-        stack_page_name = element.uuid.urn
-        stack_page = self._stack.get_child_by_name(stack_page_name)
-        if stack_page:
-            self._stack.remove(stack_page)
 
     @GObject.Property(type=SafeElement, flags=GObject.ParamFlags.READWRITE)
     def current_element(self) -> SafeElement:
@@ -383,14 +392,6 @@ class UnlockedDatabase(GObject.GObject):
         parent_group = self.props.current_element.parentgroup
         self.database_manager.delete_from_database(self.props.current_element.element)
 
-        self.remove_page(self.current_element)
-        # Remove the parent group from the stack and add it again with
-        # a show_page_of_new_directory call to force a full refresh of
-        # the group view.
-        # FIXME: This operation is not efficient, it should be possible
-        # to update the group view without removing it and adding it
-        # again to the stack.
-        self.remove_page(parent_group)
         self.show_browser_page(parent_group)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):

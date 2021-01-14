@@ -122,7 +122,7 @@ class DatabaseManager(GObject.GObject):
         else:
             self.db.delete_group(entity)
 
-        self.is_dirty = True
+        self.emit("element-removed", entity.uuid)
         if entity.parentgroup is not None:
             self.set_element_mtime(entity.parentgroup)
 
@@ -386,3 +386,8 @@ class DatabaseManager(GObject.GObject):
         the entrie was added."""
         self.is_dirty = True
         logging.debug("Added new element to safe")
+
+    @GObject.Signal(arg_types=(object,))
+    def element_removed(self, element_uuid: UUID) -> None:
+        self.is_dirty = True
+        logging.debug("Element %s removed from safe", element_uuid)

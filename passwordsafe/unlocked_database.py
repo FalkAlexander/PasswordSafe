@@ -48,13 +48,11 @@ class UnlockedDatabase(GObject.GObject):
     builder = NotImplemented
     scheduled_tmpfiles_deletion: List[Gio.File] = []
     clipboard = NotImplemented
-    list_box_sorting = NotImplemented
     clipboard_timer = NotImplemented
     _current_element: Optional[SafeElement] = None
     database_lock_timer = NotImplemented
     save_loop: Optional[int] = None  # If int, a thread periodically saves the database
     dbus_subscription_id = NotImplemented
-    listbox_insert_thread = NotImplemented
 
     selection_mode = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE
@@ -94,6 +92,27 @@ class UnlockedDatabase(GObject.GObject):
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
         self.database_manager.connect("save-notification", self.on_database_save_notification)
 
+    def listbox_row_factory(self, element: SafeElement) -> Gtk.Widget:
+        if element.is_entry:
+            return EntryRow(self, element)
+
+        return GroupRow(self, element)
+
+    def populate_list_model(self, list_model: Gio.ListStore) -> None:
+        entries = self.props.current_element.entries
+        groups = [g for g in self.props.current_element.subgroups if not g.is_root_group]
+
+        sorting = passwordsafe.config_manager.get_sort_order()
+
+        if sorting == "A-Z":
+            entries.sort(key=lambda group: str.lower(group.name), reverse=False)
+            groups.sort(key=lambda group: str.lower(group.name), reverse=False)
+        if sorting == "Z-A":
+            entries.sort(key=lambda group: str.lower(group.name), reverse=True)
+            groups.sort(key=lambda group: str.lower(group.name), reverse=True)
+
+        elements = groups + entries
+        list_model.splice(0, 0, elements)
     #
     # Stack Pages
     #
@@ -123,7 +142,6 @@ class UnlockedDatabase(GObject.GObject):
         self.search.initialize()
         self._update_headerbar()
 
-        self.list_box_sorting = passwordsafe.config_manager.get_sort_order()
         self.start_database_lock_timer()
 
         self.show_page_of_new_directory(False, False)
@@ -194,6 +212,10 @@ class UnlockedDatabase(GObject.GObject):
                 )
                 list_box = builder.get_object("list_box")
                 list_box.connect("row-activated", self.on_list_box_row_activated)
+                list_model = Gio.ListStore.new(SafeElement)
+
+                list_box.bind_model(list_model, self.listbox_row_factory)
+                self.populate_list_model(list_model)
 
                 scrolled_window = ScrolledPage(False)
 
@@ -204,13 +226,6 @@ class UnlockedDatabase(GObject.GObject):
                 self.add_page(scrolled_window, self.current_element.uuid.urn)
                 self.switch_page(self.current_element)
 
-                list_box.hide()
-
-                self.listbox_insert_thread = threading.Thread(
-                    target=self.insert_groups_into_listbox, args=[list_box]
-                )
-                self.listbox_insert_thread.daemon = True
-                self.listbox_insert_thread.start()
             # Create not existing stack page for entry
             else:
                 if new_entry:
@@ -262,8 +277,6 @@ class UnlockedDatabase(GObject.GObject):
 
     def remove_page(self, element: SafeElement) -> None:
         """Remove an element (SafeEntry, Group) from the stack if present."""
-        if element.is_root_group:
-            return
         stack_page_name = element.uuid.urn
         stack_page = self._stack.get_child_by_name(stack_page_name)
         if stack_page:
@@ -305,59 +318,6 @@ class UnlockedDatabase(GObject.GObject):
         """
         self.props.current_element = element
         self.show_page_of_new_directory(False, False)
-
-    def insert_groups_into_listbox(self, list_box):
-        groups = NotImplemented
-        sorted_list = []
-
-        groups = self.current_element.subgroups
-        GLib.idle_add(self.group_instance_creation, list_box, sorted_list, groups)
-
-        self.insert_entries_into_listbox(list_box)
-
-    def insert_entries_into_listbox(self, list_box):
-        entries = self.current_element.entries
-        sorted_list = []
-
-        GLib.idle_add(
-            self.entry_instance_creation, list_box, sorted_list, entries
-        )
-
-    def group_instance_creation(self, list_box, sorted_list, groups):
-        for group in groups:
-            group_row = GroupRow(self, group)
-            sorted_list.append(group_row)
-
-        if self.list_box_sorting == "A-Z":
-            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=False)
-        elif self.list_box_sorting == "Z-A":
-            sorted_list.sort(key=lambda group: str.lower(group.label), reverse=True)
-
-        for group_row in sorted_list:
-            list_box.add(group_row)
-
-    def entry_instance_creation(self, list_box, sorted_list, entries):
-        for safe_entry in entries:
-            entry_row = EntryRow(self, safe_entry)
-            sorted_list.append(entry_row)
-
-        if self.list_box_sorting == "A-Z":
-            sorted_list.sort(key=lambda entry: str.lower(entry.safe_entry.name), reverse=False)
-        elif self.list_box_sorting == "Z-A":
-            sorted_list.sort(key=lambda entry: str.lower(entry.safe_entry.name), reverse=True)
-
-        for entry_row in sorted_list:
-            list_box.add(entry_row)
-
-        if list_box.get_children():
-            list_box.get_children()[0].grab_focus()
-            self._unlocked_db_stack.set_visible_child(self._stack)
-            list_box.show()
-        else:
-            builder = Gtk.Builder()
-            builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
-            self._unlocked_db_stack.set_visible_child(self.empty_page)
-            list_box.hide()
 
     def rebuild_all_pages(self):
         # FIXME find a more elegant way to do this without
@@ -495,7 +455,6 @@ class UnlockedDatabase(GObject.GObject):
     def on_sort_menu_button_entry_clicked(self, _action, _param, sorting):
         self.start_database_lock_timer()
         passwordsafe.config_manager.set_sort_order(sorting)
-        self.list_box_sorting = sorting
         self.rebuild_all_pages()
 
     def on_session_lock(

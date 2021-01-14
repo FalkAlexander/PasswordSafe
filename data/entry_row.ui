@@ -43,6 +43,7 @@
               <object class="GtkBox" id="description_box">
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
+                <property name="hexpand">True</property>
                 <child>
                   <object class="GtkLabel" id="_entry_name_label">
                     <property name="name">name_label</property>
@@ -120,9 +121,6 @@
                   <class name="linked"/>
                 </style>
               </object>
-              <packing>
-                <property name="pack_type">end</property>
-              </packing>
             </child>
           </object>
         </child>

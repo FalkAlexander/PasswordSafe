@@ -356,7 +356,9 @@ class UnlockedDatabase(GObject.GObject):
         """CB when the Add Entry menu was clicked"""
         self.start_database_lock_timer()
         group = self.props.current_element.group
-        new_entry: Entry = self.database_manager.add_entry_to_database(group)
+        new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
+        # Need to regenerate parent page to show new entry
+        self.remove_page(self.props.current_element)
         self.show_edit_page(new_entry, new=True)
 
     def on_add_group_button_clicked(self, _param: None) -> None:
@@ -367,6 +369,8 @@ class UnlockedDatabase(GObject.GObject):
             "", "0", "", self.props.current_element.group
         )
         safe_group = SafeGroup(self.database_manager, group)
+        # Need to regenerate parent page to show new entry
+        self.remove_page(self.current_element)
         self.show_edit_page(safe_group)
 
     def on_element_delete_menu_button_clicked(
@@ -591,8 +595,6 @@ class UnlockedDatabase(GObject.GObject):
         if self.props.current_element.is_root_group:
             return
 
-        parentgroup = self.current_element.parentgroup
-        self.remove_page(parentgroup)
         buttons = self.pathbar.buttons
         if len(buttons) == 1:
             self.pathbar.on_pathbar_button_clicked(buttons[0])

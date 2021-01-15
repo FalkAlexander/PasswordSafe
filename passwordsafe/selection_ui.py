@@ -55,30 +55,10 @@ class SelectionUI(Gtk.Box):
             GObject.BindingFlags.SYNC_CREATE)
 
     def _on_selection_mode_changed(
-            self, unlocked_database: UnlockedDatabase,
-            value: GObject.ParamSpec) -> None:
-        # pylint: disable=unused-argument
-        if self.unlocked_database.selection_mode:
-            self._enter_selection_mode()
-        else:
-            self._exit_selection_mode()
-
-    #
-    # Selection Mode
-    #
-
-    # Selection headerbar
-    def _enter_selection_mode(self):
-        self._delete_button.set_sensitive(False)
-        self._cut_paste_button.set_sensitive(False)
-
-    def _exit_selection_mode(self):
-        self.cut_mode = True
-        element = self.unlocked_database.current_element
-        if element.is_group:
-            self.unlocked_database.show_browser_page(element)
-        else:
-            self.unlocked_database.show_edit_page(element)
+        self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
+    ) -> None:
+        if not unlocked_database.selection_mode:
+            self._clear_all()
 
     #
     # Events
@@ -127,10 +107,7 @@ class SelectionUI(Gtk.Box):
 
         self.unlocked_database.window.notify(_("Deletion completed"))
 
-        self.entries_selected.clear()
-        self.groups_selected.clear()
-        self._delete_button.set_sensitive(False)
-        self._cut_paste_button.set_sensitive(False)
+        self._clear_all()
 
         # It is more efficient to do this here and not in the database manager loop
         self.unlocked_database.database_manager.is_dirty = True
@@ -186,12 +163,7 @@ class SelectionUI(Gtk.Box):
         else:
             self.unlocked_database.window.notify(_("Skipped moving group into itself"))
 
-        self.entries_cut.clear()
-        self.groups_cut.clear()
-        self.entries_selected.clear()
-        self.groups_selected.clear()
-        self._delete_button.set_sensitive(False)
-        self._cut_paste_button.set_sensitive(False)
+        self._clear_all()
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
         page = self.unlocked_database.get_current_page()
@@ -258,3 +230,16 @@ class SelectionUI(Gtk.Box):
             self.groups_cut.clear()
             self._cut_paste_image.set_from_icon_name(
                 "edit-cut-symbolic", Gtk.IconSize.BUTTON)
+
+    def _clear_all(self) -> None:
+        """Resets everything to the default state"""
+        self.cut_mode = True
+        self.entries_cut.clear()
+        self.groups_cut.clear()
+        self.entries_selected.clear()
+        self.groups_selected.clear()
+        self._delete_button.set_sensitive(False)
+        self._cut_paste_button.set_sensitive(False)
+        self._cut_paste_image.set_from_icon_name(
+            "edit-cut-symbolic", Gtk.IconSize.BUTTON
+        )

@@ -374,10 +374,9 @@ class UnlockedDatabase(GObject.GObject):
         """CB when menu entry Add Group is clicked"""
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True
-        group = self.database_manager.add_group_to_database(
+        safe_group = self.database_manager.add_group_to_database(
             "", "0", "", self.props.current_element.group
         )
-        safe_group = SafeGroup(self.database_manager, group)
         self.show_edit_page(safe_group)
 
     def on_element_delete_menu_button_clicked(

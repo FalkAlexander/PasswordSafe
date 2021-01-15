@@ -9,7 +9,6 @@ from gi.repository import Gio, GObject, Gtk
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
-from passwordsafe.safe_element import SafeGroup
 
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -72,9 +71,6 @@ class SelectionUI(Gtk.Box):
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _widget):
-        reset_stack_page = False
-        group = None
-
         # Abort the operation if there is a groups which is in the pathbar,
         # i.e. if it is a parent of the current view.
         for group_row in self.groups_selected:
@@ -95,17 +91,6 @@ class SelectionUI(Gtk.Box):
         for group_row in self.groups_selected:
             safe_group = group_row.safe_group
             self.unlocked_database.database_manager.delete_from_database(safe_group.group)
-
-            group_uuid = safe_group.uuid
-            current_uuid = self.unlocked_database.current_element.uuid
-            if group_uuid == current_uuid:
-                reset_stack_page = True
-
-        self.unlocked_database.show_browser_page(self.unlocked_database.current_element)
-
-        if reset_stack_page is True:
-            root_group = SafeGroup.get_root(self.unlocked_database.database_manager)
-            self.unlocked_database.show_browser_page(root_group)
 
         self.unlocked_database.window.notify(_("Deletion completed"))
 

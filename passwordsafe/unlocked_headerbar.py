@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+from gettext import gettext as _
 import typing
 from enum import IntEnum
 from typing import Optional
@@ -35,6 +36,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     _secondary_menu_button = Gtk.Template.Child()
     _search_button = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
+    selection_options_button_label = Gtk.Template.Child()
     _title_label = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
@@ -107,6 +109,15 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self, _klass: Optional[MainWindow],
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_action_bar()
+
+    def _on_selected_entries_changed(self, selection_ui, _value):
+        new_number = selection_ui.props.selected_elements
+        default = _("Click on a checkbox to select")
+        numbered = str(new_number) + _(" Selected entries")
+        if new_number == 0:
+            self.selection_options_button_label.set_label(default)
+        else:
+            self.selection_options_button_label.set_label(numbered)
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""

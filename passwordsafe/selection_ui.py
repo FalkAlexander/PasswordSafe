@@ -40,6 +40,10 @@ class SelectionUI(Gtk.Box):
     _cut_paste_image = Gtk.Template.Child()
     _delete_button = Gtk.Template.Child()
 
+    selected_elements = GObject.Property(
+        type=int, default=0, flags=GObject.ParamFlags.READWRITE
+    )
+
     #
     # Init
     #
@@ -212,6 +216,10 @@ class SelectionUI(Gtk.Box):
         non_empty_selection = self.entries_selected or self.groups_selected
         self._cut_paste_button.set_sensitive(non_empty_selection)
         self._delete_button.set_sensitive(non_empty_selection)
+
+        self.props.selected_elements = len(self.entries_selected) + len(
+            self.groups_selected
+        )
 
         if not self.cut_mode:
             self.entries_cut.clear()

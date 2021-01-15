@@ -139,6 +139,8 @@ class UnlockedDatabase(GObject.GObject):
         self.headerbar = UnlockedHeaderBar(self)
         self.selection_ui = self.headerbar.selection_ui
 
+        self.selection_ui.connect("notify::selected-elements", self.headerbar._on_selected_entries_changed)
+
         self.clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
 
         # Contains the "main page" with the BrowserListBox.

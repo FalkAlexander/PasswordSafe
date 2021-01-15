@@ -215,8 +215,10 @@ class Search:
         if self._timeout_search > 0:
             GLib.source_remove(self._timeout_search)
 
+        # Time between search querries.
         self._timeout_search = GLib.timeout_add(
-            500, self._on_search_entry_changed, widget)
+            200, self._on_search_entry_changed, widget
+        )
 
     def _on_search_entry_changed(self, widget):
         self._timeout_search = 0

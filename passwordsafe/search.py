@@ -9,7 +9,6 @@ from gi.repository import Gio, GLib, GObject, Gtk, Handy
 
 import passwordsafe.config_manager as config
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
-from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.sorting import SortingHat
 
 if typing.TYPE_CHECKING:
@@ -46,7 +45,8 @@ class Search:
         self._results_search_page: Gtk.Box = self._builder.get_object(
             "results_search_page")
 
-        self.scrolled_page: ScrolledPage = ScrolledPage(False)
+        self.scrolled_page = self._builder.get_object(
+            "stack")
 
         self._search_entry = self._builder.get_object("headerbar_search_entry")
         self._headerbar: Handy.HeaderBar = self._builder.get_object(
@@ -123,8 +123,6 @@ class Search:
         self.search_list_box.connect(
             "row-activated", self.unlocked_database.on_list_box_row_activated
         )
-
-        self.scrolled_page.add(self._stack)
 
     def _display_info_page(self) -> bool:
         """When search-mode is activated the search text has not been

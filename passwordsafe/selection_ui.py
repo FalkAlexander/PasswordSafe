@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
+from logging import debug
 from typing import List
 
 from gi.repository import Gio, GObject, Gtk
@@ -234,3 +235,11 @@ class SelectionUI(Gtk.Box):
             row.show()
 
         self.hidden_rows.remove_all()
+        self.emit("clear-selection")
+
+    @GObject.Signal()
+    def clear_selection(self):
+        """Signal emited to tell all list models that they should unselect
+        their entries. It differs from the action app.selection.none, since
+        the later removes seleced entries only for the visible listbox."""
+        debug("Clear selection signal emited")

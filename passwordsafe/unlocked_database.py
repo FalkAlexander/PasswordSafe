@@ -31,6 +31,7 @@ if typing.TYPE_CHECKING:
 
     from passwordsafe.container_page import ContainerPage
     from passwordsafe.database_manager import DatabaseManager
+    from passwordsafe.selection_ui import SelectionUI
     # pylint: disable=ungrouped-imports
     from passwordsafe.main_window import MainWindow
 
@@ -314,6 +315,7 @@ class UnlockedDatabase(GObject.GObject):
         self.database_manager.connect(
             "element-moved", self._on_element_moved, list_model, group.uuid
         )
+        self.selection_ui.connect("clear-selection", self._on_clear_selection, list_box)
 
         list_box.bind_model(list_model, self.listbox_row_factory)
         list_model.connect(
@@ -707,3 +709,7 @@ class UnlockedDatabase(GObject.GObject):
         :rtype: bool
         """
         return self.database_manager.props.locked
+
+    def _on_clear_selection(self, _selection_ui: SelectionUI, list_box: Gtk.ListBox) -> None:
+        for row in list_box:
+            row.selection_checkbox.props.active = False

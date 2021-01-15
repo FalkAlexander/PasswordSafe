@@ -107,6 +107,11 @@ class UnlockedDatabase(GObject.GObject):
 
         elements = groups + entries
         list_model.splice(0, 0, elements)
+        for elem in list_model:
+            elem.sorted_handler_id = elem.connect(
+                "notify::name", self._on_element_renamed, list_model
+            )
+
         self.sort_list_model(self, list_model)
 
     def sort_list_model(
@@ -185,6 +190,38 @@ class UnlockedDatabase(GObject.GObject):
 
         self._stack.set_visible_child_name(page_name)
 
+    def _on_element_renamed(
+        self,
+        element: SafeElement,
+        _value: GObject.ParamSpec,
+        list_model: Gio.ListStore,
+    ) -> None:
+        pos = 0
+        found = False
+        # Disconnect previous signal
+        if element.sorted_handler_id:
+            element.disconnect(element.sorted_handler_id)
+            element.sorted_handler_id = None
+
+        # We check if element is in the list model
+        for elem in list_model:
+            if elem.uuid == element.uuid:
+                found = True
+                break
+            pos += 1
+
+        if found:
+            sorting = passwordsafe.config_manager.get_sort_order()
+            sort_func = SortingHat.get_sort_func(sorting)
+
+            list_model.remove(pos)
+            list_model.insert_sorted(element, sort_func)
+            element.sorted_handler_id = element.connect(
+                "notify::name", self._on_element_renamed, list_model
+            )
+        else:
+            logging.debug("No.")
+
     def _on_element_added(
             self,
             _u_db: UnlockedDatabase,
@@ -202,6 +239,9 @@ class UnlockedDatabase(GObject.GObject):
         sorting = passwordsafe.config_manager.get_sort_order()
         sort_func = SortingHat.get_sort_func(sorting)
         list_model.insert_sorted(element, sort_func)
+        element.sorted_handler_id = element.connect(
+            "notify::name", self._on_element_renamed, list_model
+        )
 
     def _on_element_removed(
             self, _u_db: UnlockedDatabase, element_uuid: UUID, list_model: Gio.ListStore, _data: Any = None
@@ -246,6 +286,9 @@ class UnlockedDatabase(GObject.GObject):
             sorting = passwordsafe.config_manager.get_sort_order()
             sort_func = SortingHat.get_sort_func(sorting)
             list_model.insert_sorted(moved_element, sort_func)
+            moved_element.sorted_handler_id = moved_element.connect(
+                "notify::name", self._on_element_renamed, list_model
+            )
 
     def new_group_browser_page(self, group: SafeGroup) -> ScrolledPage:
         builder = Gtk.Builder()

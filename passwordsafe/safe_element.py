@@ -24,6 +24,7 @@ if typing.TYPE_CHECKING:
 class SafeElement(GObject.GObject):
 
     _db_manager: Optional[DatabaseManager] = None
+    sorted_handler_id: Optional[int] = None
 
     def __init__(self, element: Union[Entry, Group]):
         """GObject to handle a safe element. The underlying pykeepass element

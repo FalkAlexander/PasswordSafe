@@ -141,32 +141,33 @@ class SelectionUI(Gtk.Box):
         )
         self.cut_mode = True
 
+        # Abort the entire operation if one of the selected groups is a parent of
+        # the current group.
+        for group_row in self.groups_cut:
+            group = group_row.safe_group.group
+            current_element = self.unlocked_database.current_element
+            if self.unlocked_database.database_manager.parent_checker(
+                current_element, group
+            ):
+                self.unlocked_database.window.notify(
+                    _("Operation aborted: Moving currently active group")
+                )
+                self._clear_all()
+                return
+
         for entry_row in self.entries_cut:
             safe_entry = entry_row.safe_entry
             self.unlocked_database.database_manager.move_entry(
                 safe_entry.uuid, self.unlocked_database.current_element.group)
 
-        move_conflict = False
-
         for group_row in self.groups_cut:
             group = group_row.safe_group.group
             current_element = self.unlocked_database.current_element
-            if not self.unlocked_database.database_manager.parent_checker(
-                current_element.element, group
-            ):
-                self.unlocked_database.database_manager.move_group(
-                    group, current_element.element
-                )
-            else:
-                move_conflict = True
+            self.unlocked_database.database_manager.move_group(
+                group, current_element.element
+            )
 
-        self.unlocked_database.show_browser_page(self.unlocked_database.current_element)
-
-        if move_conflict is False:
-            self.unlocked_database.window.notify(_("Move completed"))
-        else:
-            self.unlocked_database.window.notify(_("Skipped moving group into itself"))
-
+        self.unlocked_database.window.notify(_("Move completed"))
         self._clear_all()
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):

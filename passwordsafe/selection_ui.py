@@ -111,9 +111,6 @@ class SelectionUI(Gtk.Box):
 
         self._clear_all()
 
-        # It is more efficient to do this here and not in the database manager loop
-        self.unlocked_database.database_manager.is_dirty = True
-
     @Gtk.Template.Callback()
     def _on_cut_paste_button_clicked(self, _widget):
         # pylint: disable=too-many-branches

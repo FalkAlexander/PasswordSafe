@@ -104,6 +104,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self.props.mode = UnlockedHeaderBar.Mode.SELECTION
         else:
             style_context.remove_class("selection-mode")
+            self.props.mode = UnlockedHeaderBar.Mode.GROUP
 
     def _on_mobile_layout_changed(
             self, _klass: Optional[MainWindow],

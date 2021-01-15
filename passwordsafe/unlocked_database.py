@@ -218,6 +218,35 @@ class UnlockedDatabase(GObject.GObject):
         if found:
             list_model.remove(pos)
 
+    def _on_element_moved(
+        self,
+        _u_db: UnlockedDatabase,
+        moved_element: SafeElement,
+        old_loc_uuid: UUID,
+        new_loc_uuid: UUID,
+        list_model: Gio.ListStore,
+        list_model_group_uuid: UUID,
+    ) -> None:
+        """Moves the element to a new list model.
+        If the listmodel corresponds to the old group we remove it,
+        and if corresponds to the new location, we add it."""
+        if list_model_group_uuid == old_loc_uuid:
+            pos = 0
+            found = False
+            for element in list_model:
+                if element.uuid == moved_element.uuid:
+                    found = True
+                    break
+                pos += 1
+
+            if found:
+                list_model.remove(pos)
+
+        if list_model_group_uuid == new_loc_uuid:
+            sorting = passwordsafe.config_manager.get_sort_order()
+            sort_func = SortingHat.get_sort_func(sorting)
+            list_model.insert_sorted(moved_element, sort_func)
+
     def new_group_browser_page(self, group: SafeGroup) -> ScrolledPage:
         builder = Gtk.Builder()
         builder.add_from_resource(
@@ -233,8 +262,15 @@ class UnlockedDatabase(GObject.GObject):
 
         settings = self.window.application.settings
         settings.connect("changed", self.on_sort_order_changed, list_model)
-        self.database_manager.connect("element-removed", self._on_element_removed, list_model)
-        self.database_manager.connect("element-added", self._on_element_added, list_model, group.uuid)
+        self.database_manager.connect(
+            "element-removed", self._on_element_removed, list_model
+        )
+        self.database_manager.connect(
+            "element-added", self._on_element_added, list_model, group.uuid
+        )
+        self.database_manager.connect(
+            "element-moved", self._on_element_moved, list_model, group.uuid
+        )
 
         list_box.bind_model(list_model, self.listbox_row_factory)
         list_model.connect(

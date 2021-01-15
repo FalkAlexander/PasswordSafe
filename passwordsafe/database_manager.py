@@ -206,12 +206,22 @@ class DatabaseManager(GObject.GObject):
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)
+        old_location = entry.parentgroup.uuid
+        new_location = destination_group_object.uuid
+
+        if old_location == new_location:
+            return
+
         # TODO: we will crash if uuid does not exist
         self.db.move_entry(entry, destination_group_object)
         # pylint: disable=no-member
         if entry.parentgroup:
             self.set_element_mtime(entry.parentgroup)
         self.set_element_mtime(destination_group_object)
+
+        safe_entry = SafeEntry(self, entry)
+
+        self.emit("element-moved", safe_entry, old_location, new_location)
 
     def set_element_atime(self, element):
         element.atime = datetime.utcnow()
@@ -221,11 +231,19 @@ class DatabaseManager(GObject.GObject):
 
     # Move an group
     def move_group(self, group: Group, dest_group: Group) -> None:
+        old_location = group.parentgroup.uuid
+        new_location = dest_group.uuid
+
+        if old_location == new_location:
+            return
+
         self.db.move_group(group, dest_group)
         if group.parentgroup is not None:
             self.set_element_mtime(group.parentgroup)
         self.set_element_mtime(dest_group)
-        self.is_dirty = True
+
+        safe_group = SafeGroup(self, group)
+        self.emit("element-moved", safe_group, old_location, new_location)
 
     #
     # Read Database
@@ -352,3 +370,10 @@ class DatabaseManager(GObject.GObject):
     def element_removed(self, element_uuid: UUID) -> None:
         self.is_dirty = True
         logging.debug("Element %s removed from safe", element_uuid)
+
+    @GObject.Signal(arg_types=(SafeElement, object, object))
+    def element_moved(
+        self, moved_element: SafeElement, _old_location_uuid: UUID, _new_location_uuid: UUID
+    ) -> None:
+        self.is_dirty = True
+        logging.debug("Element moved safe")

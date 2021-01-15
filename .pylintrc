@@ -60,7 +60,7 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
-disable=missing-docstring,fixme,unsubscriptable-object
+disable=missing-docstring,fixme,unsubscriptable-object,no-self-use,too-few-public-methods
 
 # TODO: `unsubscriptable-object` generates false positives for python 3.9 and pylint==2.6.
 # https://github.com/PyCQA/pylint/issues/3882

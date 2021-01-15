@@ -5,7 +5,7 @@ import typing
 from gettext import gettext as _
 from typing import List
 
-from gi.repository import GObject, Gtk
+from gi.repository import Gio, GObject, Gtk
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
@@ -32,6 +32,8 @@ class SelectionUI(Gtk.Box):
 
     entries_cut: List[EntryRow] = []
     groups_cut: List[GroupRow] = []
+
+    hidden_rows = Gio.ListStore.new(Gtk.ListBoxRow)
 
     _cancel_button = Gtk.Template.Child()
     _cut_paste_button = Gtk.Template.Child()
@@ -121,8 +123,10 @@ class SelectionUI(Gtk.Box):
             self._cut_paste_image.set_from_icon_name("edit-paste-symbolic", Gtk.IconSize.BUTTON)
             for group_row in self.groups_selected:
                 group_row.hide()
+                self.hidden_rows.append(group_row)
             for entry_row in self.entries_selected:
                 entry_row.hide()
+                self.hidden_rows.append(entry_row)
 
             # Do not allow to delete the entries or rows
             # that were selected to be cut.
@@ -243,3 +247,7 @@ class SelectionUI(Gtk.Box):
         self._cut_paste_image.set_from_icon_name(
             "edit-cut-symbolic", Gtk.IconSize.BUTTON
         )
+        for row in self.hidden_rows:
+            row.show()
+
+        self.hidden_rows.remove_all()

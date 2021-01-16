@@ -232,17 +232,10 @@ class Search:
 
         selected_row = self.search_list_box.get_selected_row()
 
-        if selected_row is None and self.search_list_box.get_children():
+        if selected_row is None:
             selected_row = self.search_list_box.get_children()[0]
 
-        if selected_row.type == "GroupRow":
-            first_row = selected_row.safe_group.uuid
-            self.unlocked_database.show_group_browser_page(first_row.safe_group)
-        else:
-            first_row = selected_row.safe_entry.uuid
-            self.unlocked_database.show_edit_page(first_row.safe_entry)
-
-        self.unlocked_database.props.search_active = False
+        selected_row.activate()
 
     def on_load_more_row_clicked(self, row):
         self.search_list_box.remove(row)

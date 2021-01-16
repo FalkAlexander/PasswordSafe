@@ -608,16 +608,12 @@ class MainWindow(Handy.ApplicationWindow):
         elif name == "go_back":
             action_db.go_back()
         elif name == "add_action":
-            if action_db.props.database_locked:
-                return
-
-            if action_db.props.selection_mode:
-                return
-
-            if action_db.in_edit_page:
-                return
-
-            if action_db.props.search_active:
+            if (
+                action_db.props.database_locked
+                or action_db.props.selection_mode
+                or action_db.in_edit_page
+                or action_db.props.search_active
+            ):
                 return
 
             if arg == "entry":

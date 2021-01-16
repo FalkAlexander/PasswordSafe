@@ -546,8 +546,8 @@ class UnlockedDatabase(GObject.GObject):
                         exc.message,
                     )
 
-                if passwordsafe.config_manager.get_save_automatically():
-                    self.save_database()
+            if passwordsafe.config_manager.get_save_automatically():
+                self.save_database()
 
             self.divider.hide()
         else:

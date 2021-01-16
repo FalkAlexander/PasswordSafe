@@ -6,6 +6,7 @@ import typing
 from gi.repository import GObject, Gtk
 
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
+from passwordsafe.notes_dialog import NotesDialog
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeGroup
@@ -42,6 +43,12 @@ class GroupPage(Gtk.ScrolledWindow):
             "notes", notes_buffer, "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
         )
+
+    @Gtk.Template.Callback()
+    def on_notes_detach_button_clicked(self, _button):
+        self.unlocked_database.start_database_lock_timer()
+        safe_group = self.unlocked_database.current_element
+        NotesDialog(self.unlocked_database, safe_group).present()
 
     def _on_safe_group_updated(self, _safe_group: SafeGroup) -> None:
         self.unlocked_database.start_database_lock_timer()

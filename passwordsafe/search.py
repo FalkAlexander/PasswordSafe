@@ -68,9 +68,6 @@ class Search:
 
     def initialize(self):
         # Search Headerbar
-        headerbar_close_button = self._builder.get_object("headerbar_close_button")
-        headerbar_close_button.connect("clicked", self.on_headerbar_search_close_button_clicked)
-
         self._search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
 
         self.unlocked_database.bind_accelerator(
@@ -205,10 +202,6 @@ class Search:
     #
     # Events
     #
-
-    def on_headerbar_search_close_button_clicked(self, _widget):
-        self.unlocked_database.start_database_lock_timer()
-        self.unlocked_database.props.search_active = False
 
     def _on_search_entry_timeout(self, widget: Gtk.Entry) -> None:
         self._key_pressed = True

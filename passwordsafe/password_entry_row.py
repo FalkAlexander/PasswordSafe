@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
+from gettext import gettext as _
 from typing import Optional
 
 from gi.repository import Gdk, Gtk
@@ -11,6 +12,7 @@ import passwordsafe.config_manager
 import passwordsafe.password_generator as pwd_generator
 from passwordsafe.history_buffer import HistoryEntryBuffer
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
+
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.safe_element import SafeEntry
@@ -63,7 +65,9 @@ class PasswordEntryRow(Gtk.Box):
 
     @Gtk.Template.Callback()
     def _on_copy_password_button_clicked(self, _widget: Gtk.Button) -> None:
-        self._unlocked_database.send_to_clipboard(self._password_value_entry.props.text)
+        self._unlocked_database.send_to_clipboard(
+            self._password_value_entry.props.text, _("Password copied to clipboard")
+        )
 
     @Gtk.Template.Callback()
     def _on_password_value_changed(self, _widget: Gtk.Entry) -> None:

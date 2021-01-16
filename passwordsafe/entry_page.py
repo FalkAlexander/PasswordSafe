@@ -457,7 +457,10 @@ class EntryPage(Gtk.ScrolledWindow):
     @Gtk.Template.Callback()
     def _on_copy_secondary_button_clicked(
             self, widget, _position=None, _eventbutton=None):
-        self.unlocked_database.send_to_clipboard(widget.get_text())
+        self.unlocked_database.send_to_clipboard(
+            widget.get_text(),
+            _("Username copied to clipboard"),
+        )
 
     def show_row(self, row: Gtk.ListBoxRow, non_empty: bool, add_all: bool) -> None:
         if non_empty or add_all:

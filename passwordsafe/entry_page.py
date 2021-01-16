@@ -28,7 +28,6 @@ class EntryPage(Gtk.ScrolledWindow):
     __gtype_name__ = "EntryPage"
 
     _filechooser = None
-    edit_page = True
 
     properties_box = Gtk.Template.Child()
 

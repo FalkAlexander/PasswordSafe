@@ -21,7 +21,6 @@ from passwordsafe.pathbar import Pathbar
 from passwordsafe.properties_dialog import PropertiesDialog
 from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
-from passwordsafe.scrolled_page import ScrolledPage
 from passwordsafe.search import Search
 from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
@@ -293,7 +292,7 @@ class UnlockedDatabase(GObject.GObject):
                 "notify::name", self._on_element_renamed, list_model
             )
 
-    def new_group_browser_page(self, group: SafeGroup) -> ScrolledPage:
+    def new_group_browser_page(self, group: SafeGroup) -> Gtk.ScrolledWindow:
         builder = Gtk.Builder()
         builder.add_from_resource(
             "/org/gnome/PasswordSafe/unlocked_database.ui"
@@ -328,7 +327,8 @@ class UnlockedDatabase(GObject.GObject):
             empty_group_box)
         self.populate_list_model(list_model)
 
-        scrolled_window = ScrolledPage(False)
+        scrolled_window = Gtk.ScrolledWindow.new()
+        scrolled_window.props.visible = True
         scrolled_window.add(browser_stack)
 
         return scrolled_window
@@ -375,10 +375,10 @@ class UnlockedDatabase(GObject.GObject):
         else:
             browser_stack.set_visible_child(browser_clamp)
 
-    def add_page(self, scrolled_window: ScrolledPage, name: str) -> None:
+    def add_page(self, scrolled_window: Gtk.ScrolledWindow, name: str) -> None:
         """Add a new page to the stack
 
-        :param ScrolledPage scrolled_window: scrolled_page to add
+        :param ScrolledWindow scrolled_window: scrolled_page to add
         :param str name: name of the page
         """
         self._stack.add_named(scrolled_window, name)
@@ -391,7 +391,7 @@ class UnlockedDatabase(GObject.GObject):
     def current_element(self, element: SafeElement) -> None:
         self._current_element = element
 
-    def get_current_page(self) -> ScrolledPage:
+    def get_current_page(self) -> Gtk.ScrolledWindow:
         """Returns the page associated with current_element.
 
         :returns: current page

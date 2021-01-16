@@ -19,8 +19,6 @@ class GroupPage(Gtk.ScrolledWindow):
     name_property_value_entry = Gtk.Template.Child()
     notes_property_value_entry = Gtk.Template.Child()
 
-    edit_page = True
-
     def __init__(self, unlocked_database):
         super().__init__()
 

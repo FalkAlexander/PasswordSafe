@@ -375,14 +375,6 @@ class UnlockedDatabase(GObject.GObject):
         else:
             browser_stack.set_visible_child(browser_clamp)
 
-    def add_page(self, scrolled_window: Gtk.ScrolledWindow, name: str) -> None:
-        """Add a new page to the stack
-
-        :param ScrolledWindow scrolled_window: scrolled_page to add
-        :param str name: name of the page
-        """
-        self._stack.add_named(scrolled_window, name)
-
     @GObject.Property(type=SafeElement, flags=GObject.ParamFlags.READWRITE)
     def current_element(self) -> SafeElement:
         return self._current_element

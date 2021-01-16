@@ -53,7 +53,7 @@ class UnlockedDatabase(GObject.GObject):
     clipboard = NotImplemented
     clipboard_timer = NotImplemented
     _current_element: Optional[SafeElement] = None
-    database_lock_timer = NotImplemented
+    _lock_timer_handler: Optional[int] = None
     save_loop: Optional[int] = None  # If int, a thread periodically saves the database
     dbus_subscription_id = NotImplemented
 
@@ -581,8 +581,9 @@ class UnlockedDatabase(GObject.GObject):
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()
 
-        if self.database_lock_timer is not NotImplemented:
-            self.database_lock_timer.cancel()
+        if self._lock_timer_handler:
+            GLib.source_remove(self._lock_timer_handler)
+            self._lock_timer_handler = None
 
         # Do not listen to screensaver kicking in anymore
         connection = Gio.Application.get_default().get_dbus_connection()
@@ -625,17 +626,18 @@ class UnlockedDatabase(GObject.GObject):
             self.clipboard.clear()
 
     def start_database_lock_timer(self):
+        if self._lock_timer_handler:
+            GLib.source_remove(self._lock_timer_handler)
+            self._lock_timer_handler = None
+
         if self.database_manager.props.locked:
             return
 
-        if self.database_lock_timer is not NotImplemented:
-            self.database_lock_timer.cancel()
         timeout = passwordsafe.config_manager.get_database_lock_timeout() * 60
         if timeout:
-            self.database_lock_timer = Timer(
-                timeout, GLib.idle_add, args=[self.lock_timeout_database]
+            self._lock_timer_handler = GLib.timeout_add_seconds(
+                timeout, self.lock_timeout_database
             )
-            self.database_lock_timer.start()
 
     def start_save_loop(self):
         self.save_loop = GLib.timeout_add_seconds(30, self.threaded_save_loop)

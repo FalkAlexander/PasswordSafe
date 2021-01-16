@@ -671,11 +671,8 @@ class UnlockedDatabase(GObject.GObject):
         if self.props.current_element.is_root_group:
             return
 
-        buttons = self.pathbar.buttons
-        if len(buttons) == 1:
-            self.pathbar.on_pathbar_button_clicked(buttons[0])
-        else:
-            self.pathbar.on_pathbar_button_clicked(buttons[-2])
+        parent = self.props.current_element.parentgroup
+        self.show_browser_page(parent)
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def search_active(self) -> bool:

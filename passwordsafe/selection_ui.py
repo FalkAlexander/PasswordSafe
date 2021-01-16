@@ -35,7 +35,6 @@ class SelectionUI(Gtk.Box):
 
     hidden_rows = Gio.ListStore.new(Gtk.ListBoxRow)
 
-    _cancel_button = Gtk.Template.Child()
     _cut_paste_button = Gtk.Template.Child()
     _cut_paste_image = Gtk.Template.Child()
     _delete_button = Gtk.Template.Child()
@@ -69,10 +68,6 @@ class SelectionUI(Gtk.Box):
     #
     # Events
     #
-
-    @Gtk.Template.Callback()
-    def _on_cancel_button_clicked(self, _widget):
-        self.unlocked_database.props.selection_mode = False
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _widget):

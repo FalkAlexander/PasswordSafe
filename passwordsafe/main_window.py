@@ -134,26 +134,8 @@ class MainWindow(Handy.ApplicationWindow):
         new_mobile_layout = (self.get_allocation().width < 700)
         if new_mobile_layout != self.props.mobile_layout:
             self.props.mobile_layout = new_mobile_layout
-            self.change_layout()
 
         Handy.ApplicationWindow.do_size_allocate(self, allocation)
-
-    def change_layout(self):
-        """Switches all open databases between mobile/desktop layout"""
-        for database in self.opened_databases:
-            # Do Nothing on Lock Screen
-            if database.props.database_locked:
-                return
-
-            # Do nothing for Search View
-            if database.props.search_active:
-                return
-
-            scrolled_page = database.get_current_page()
-
-            # For Group/Entry Edit Page
-            if scrolled_page.edit_page:
-                return
 
     #
     # First Start Screen

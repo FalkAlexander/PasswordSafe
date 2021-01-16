@@ -446,14 +446,14 @@ class UnlockedDatabase(GObject.GObject):
     def lock_safe(self):
         self.database_manager.props.locked = True
 
-    def on_add_entry_button_clicked(self, _widget):
+    def on_add_entry_action(self, _action: Gio.SimpleAction) -> None:
         """CB when the Add Entry menu was clicked"""
         self.start_database_lock_timer()
         group = self.props.current_element.group
         new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
         self.show_edit_page(new_entry, new=True)
 
-    def on_add_group_button_clicked(self, _param: None) -> None:
+    def on_add_group_action(self, _action: Gio.SimpleAction) -> None:
         """CB when menu entry Add Group is clicked"""
         self.start_database_lock_timer()
         self.database_manager.is_dirty = True

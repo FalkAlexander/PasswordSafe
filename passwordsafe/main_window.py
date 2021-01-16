@@ -516,8 +516,8 @@ class MainWindow(Handy.ApplicationWindow):
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):
         actions = [
-            ("db.add_entry", "on_database_add_entry_clicked", None),
-            ("db.add_group", "on_database_add_group_clicked", None),
+            ("db.add_entry", "on_add_entry_action", None),
+            ("db.add_group", "on_add_group_action", None),
             ("db.settings", "on_database_settings_entry_clicked", None),
             ("sort", "on_sort_menu_button_entry_clicked", None),
         ]
@@ -565,9 +565,9 @@ class MainWindow(Handy.ApplicationWindow):
         elif name == "on_group_delete_menu_button_clicked":
             action_db.on_group_delete_menu_button_clicked(action, param)
         elif name == "on_database_add_entry_clicked":
-            action_db.on_add_entry_button_clicked(None)
-        elif name == "on_database_add_group_clicked":
-            action_db.on_add_group_button_clicked(None)
+            action_db.on_database_add_entry_clicked(action)
+        elif name == "on_add_group_action":
+            action_db.on_add_group_action(action)
         elif name == "on_database_settings_entry_clicked":
             action_db.on_database_settings_entry_clicked(action, param)
         elif name == "on_selection_popover_button_clicked":
@@ -596,7 +596,7 @@ class MainWindow(Handy.ApplicationWindow):
             self.application.add_action(simple_action)
 
     # Accelerator Action Handler
-    def execute_accel_action(self, _action, _param, name, arg=None):
+    def execute_accel_action(self, action, _param, name, arg=None):
         action_db = self.find_action_db()
         if action_db is None:
             return
@@ -617,9 +617,9 @@ class MainWindow(Handy.ApplicationWindow):
                 return
 
             if arg == "entry":
-                action_db.on_add_entry_button_clicked(None)
+                action_db.on_add_entry_action(action)
             elif arg == "group":
-                action_db.on_add_group_button_clicked(None)
+                action_db.on_add_group_action(action)
 
     #
     # Tools

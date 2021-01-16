@@ -68,8 +68,6 @@ class EntryPage(Gtk.ScrolledWindow):
         self.unlocked_database = u_d
         self.toggeable_widget_list = [self.url_property_box,
                                       self.notes_property_box,
-                                      self.color_property_box,
-                                      self.icon_property_box,
                                       self.attachment_property_box,
                                       self.attributes_property_box]
 
@@ -133,9 +131,6 @@ class EntryPage(Gtk.ScrolledWindow):
         self.color_property_box.add(ColorEntryRow(
             self.unlocked_database, safe_entry))
 
-        non_default = safe_entry.color != "NoneColorButton"
-        self.show_row(self.color_property_box, non_default, add_all)
-
         # Icons
         icon_builder = Gtk.Builder()
         first_btn = None
@@ -169,9 +164,6 @@ class EntryPage(Gtk.ScrolledWindow):
             btn.props.visible = False
             btn.props.group = first_btn
             btn.props.active = True
-
-        non_default = safe_entry.icon != ICONS["0"]
-        self.show_row(self.icon_property_box, non_default, add_all)
 
         # Attachments
         for attachment in safe_entry.attachments:

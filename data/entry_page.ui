@@ -200,16 +200,18 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkScrolledWindow">
-                    <property name="name">EntryIconScrolled</property>
+                  <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="vscrollbar_policy">never</property>
-                    <property name="shadow_type">in</property>
                     <child>
-                      <object class="GtkBox" id="icon_entry_box">
+                      <object class="GtkFlowBox" id="icon_entry_box">
                         <property name="visible">True</property>
+                        <property name="selection-mode">single</property>
+                        <property name="max-children-per-line">10</property>
+                        <property name="min-children-per-line">5</property>
+                        <property name="row-spacing">6</property>
+                        <property name="column-spacing">6</property>
                         <style>
-                          <class name="linked"/>
+                          <class name="EntryIconFlowBox"/>
                         </style>
                       </object>
                     </child>

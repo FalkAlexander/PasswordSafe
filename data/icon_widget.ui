@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkRadioButton" id="icon_button">
+  <object class="GtkFlowBoxChild" id="icon_button">
     <property name="visible">True</property>
-    <property name="receives_default">False</property>
     <property name="hexpand">True</property>
-    <property name="draw_indicator">False</property>
     <child>
       <object class="GtkImage" id="image">
         <property name="visible">True</property>
+        <property name="icon_size">3</property>
+        <property name="margin_start">6</property>
+        <property name="margin_end">6</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
       </object>
     </child>
-    <style>
-      <class name="EntryIconButton"/>
-      <class name="flat"/>
-    </style>
   </object>
 </interface>

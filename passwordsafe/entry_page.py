@@ -144,14 +144,16 @@ class EntryPage(Gtk.ScrolledWindow):
             btn = icon_builder.get_object("icon_button")
             img = icon_builder.get_object("image")
             img.props.icon_name = icon.name
-            if first_btn is None:
-                first_btn = btn
-            else:
-                btn.props.group = first_btn
 
-            btn.props.active = (entry_icon == icon)
-            btn.connect("toggled", self.on_entry_icon_button_toggled, icon_nr)
+            if entry_icon == icon:
+                self.icon_entry_box.select_child(btn)
+
+            btn.set_name(icon_nr)
             self.icon_entry_box.add(btn)
+
+        self.icon_entry_box.connect(
+            "selected-children-changed", self.on_entry_icon_button_toggled
+        )
 
         # The icons are GtkRadioButton, which means that at
         # least one button needs to be selected. If the icon is
@@ -228,11 +230,13 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry = self.unlocked_database.current_element
         NotesDialog(self.unlocked_database, safe_entry).present()
 
-    def on_entry_icon_button_toggled(self, button, icon):
-        if button.get_active() is False:
+    def on_entry_icon_button_toggled(self, flowbox):
+        if not flowbox.get_selected_children():
             return
 
-        self.unlocked_database.start_database_lock_timer()
+        selected_row = flowbox.get_selected_children()[0]
+        icon = selected_row.get_name()
+
         safe_entry = self.unlocked_database.current_element
         safe_entry.props.icon = icon
 

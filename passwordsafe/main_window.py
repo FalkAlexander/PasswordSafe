@@ -614,8 +614,7 @@ class MainWindow(Handy.ApplicationWindow):
             if action_db.props.selection_mode:
                 return
 
-            scrolled_page = action_db.get_current_page()
-            if scrolled_page.edit_page:
+            if action_db.in_edit_page:
                 return
 
             if action_db.props.search_active:

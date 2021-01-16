@@ -12,7 +12,6 @@ class NotesDialog:
         self.__unlocked_database = unlocked_database
         self.__safe_entry = safe_entry
         self.__dialog = self.__builder.get_object("notes_detached_dialog")
-        self.__scrolled_page = self.__unlocked_database.get_current_page()
         self.__accelerators = Gtk.AccelGroup()
         self.__search_stopped = False
 

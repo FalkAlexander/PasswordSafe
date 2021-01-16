@@ -552,6 +552,8 @@ class MainWindow(Handy.ApplicationWindow):
         if action_db is None:
             return
 
+        action_db.start_database_lock_timer()
+
         if name == "on_element_delete_menu_button_clicked":
             action_db.on_element_delete_menu_button_clicked(action, param)
         elif name == "on_entry_duplicate_menu_button_clicked":

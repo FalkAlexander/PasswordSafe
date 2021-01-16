@@ -97,7 +97,6 @@ class ColorEntryRow(Gtk.Box):  # pylint: disable=too-few-public-methods
     @Gtk.Template.Callback()
     def _on_color_activated(
             self, _flowbox: Gtk.FlowBox, selected_child: Gtk.FlowBoxChild) -> None:
-        self._unlocked_database.start_database_lock_timer()
         if selected_child.props.selected:
             return
 

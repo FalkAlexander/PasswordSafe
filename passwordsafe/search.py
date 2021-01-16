@@ -192,6 +192,8 @@ class Search:
         )
 
     def _on_search_entry_changed(self, widget):
+        self.unlocked_database.start_database_lock_timer()
+
         self._timeout_search = 0
 
         self._search_text = widget.get_text()

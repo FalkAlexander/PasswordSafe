@@ -65,14 +65,17 @@ class ReferencesDialog():
 
     def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
         if event.keyval == Gdk.KEY_Escape:
+            self.__unlocked_database.start_database_lock_timer()
             self.__dialog.close()
             return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE
 
     def __on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
+        self.__unlocked_database.start_database_lock_timer()
         self.__unlocked_database.clipboard.set_text(widget.get_text(), -1)
 
     def __on_property_model_button_clicked(self, widget):
+        self.__unlocked_database.start_database_lock_timer()
         self.__property = widget.get_name()
         self.__update_reference_entry()
 

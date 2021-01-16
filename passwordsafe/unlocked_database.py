@@ -156,6 +156,7 @@ class UnlockedDatabase(GObject.GObject):
         self.show_browser_page(self.current_element)
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
+        self.start_database_lock_timer()
         self.props.current_element = element
 
         # Sets the accessed time.
@@ -178,6 +179,7 @@ class UnlockedDatabase(GObject.GObject):
         self._unlocked_db_deck.set_visible_child(self._edit_page_box)
 
     def show_browser_page(self, group: SafeGroup) -> None:
+        self.start_database_lock_timer()
         self.props.current_element = group
 
         self._unlocked_db_stack.set_visible_child(self._stack)
@@ -421,8 +423,6 @@ class UnlockedDatabase(GObject.GObject):
             self.window.notify(_("Could not save Safe"))
 
     def save_safe(self):
-        self.start_database_lock_timer()
-
         if self.database_manager.is_dirty is True:
             if self.database_manager.save_running is False:
                 self.save_database(notification=True)
@@ -440,14 +440,12 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_add_entry_action(self, _action: Gio.SimpleAction) -> None:
         """CB when the Add Entry menu was clicked"""
-        self.start_database_lock_timer()
         group = self.props.current_element.group
         new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
         self.show_edit_page(new_entry, new=True)
 
     def on_add_group_action(self, _action: Gio.SimpleAction) -> None:
         """CB when menu entry Add Group is clicked"""
-        self.start_database_lock_timer()
         self.database_manager.is_dirty = True
         safe_group = self.database_manager.add_group_to_database(
             "", "0", "", self.props.current_element.group
@@ -458,16 +456,12 @@ class UnlockedDatabase(GObject.GObject):
         self, _action: Gio.SimpleAction, _param: None
     ) -> None:
         """Delete the visible entry from the menu."""
-        self.start_database_lock_timer()
-
         parent_group = self.props.current_element.parentgroup
         self.database_manager.delete_from_database(self.props.current_element.element)
 
         self.show_browser_page(parent_group)
 
     def on_entry_duplicate_menu_button_clicked(self, _action, _param):
-        self.start_database_lock_timer()
-
         self.database_manager.duplicate_entry(self.props.current_element.entry)
         parent_group = self.props.current_element.parentgroup
 

@@ -71,6 +71,8 @@ class SelectionUI(Gtk.Box):
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _widget):
+        self.unlocked_database.start_database_lock_timer()
+
         # Abort the operation if there is a groups which is in the pathbar,
         # i.e. if it is a parent of the current view.
         for group_row in self.groups_selected:
@@ -99,6 +101,8 @@ class SelectionUI(Gtk.Box):
     @Gtk.Template.Callback()
     def _on_cut_paste_button_clicked(self, _widget):
         # pylint: disable=too-many-branches
+        self.unlocked_database.start_database_lock_timer()
+
         if self.cut_mode is True:
             self.entries_cut = self.entries_selected
             self.groups_cut = self.groups_selected
@@ -153,6 +157,8 @@ class SelectionUI(Gtk.Box):
         self._clear_all()
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
+        self.unlocked_database.start_database_lock_timer()
+
         page = self.unlocked_database.get_current_page()
         viewport = page.get_children()[0]
         overlay = viewport.get_children()[0]

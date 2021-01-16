@@ -63,8 +63,6 @@ class PasswordGeneratorPopover(Gtk.Popover):  # pylint: disable=too-few-public-m
 
     @Gtk.Template.Callback()
     def _on_generate_button_clicked(self, _button: Gtk.Button) -> None:
-        self._db_view.start_database_lock_timer()
-
         if self._stack.get_visible_child_name() == "password":
             use_uppercase: bool = self._high_letter_toggle_btn.props.active
             use_lowercase: bool = self._low_letter_toggle_button.props.active

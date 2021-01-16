@@ -58,8 +58,21 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._mode: int = UnlockedHeaderBar.Mode.GROUP
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
 
+        self._setup_widgets()
         self._setup_signals()
         self._setup_accelerators()
+
+    def _setup_widgets(self):
+        is_mobile = self._window.props.mobile_layout
+
+        if is_mobile and not self._action_bar.get_children():
+            # mobile mode
+            self._action_bar.add(self._pathbar)
+            self._action_bar.show()
+            self._unlocked_database.revealer.props.reveal_child = True
+        elif not is_mobile:
+            # desktop mode
+            self._headerbar_box.add(self._pathbar)
 
     def _setup_signals(self):
         self._window.connect(
@@ -122,21 +135,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""
-        page = self._unlocked_database.get_current_page()
         is_mobile = self._window.props.mobile_layout
-
-        if page is None:
-            # Initial placement of pathbar before content appeared
-            if is_mobile and not self._action_bar.get_children():
-                # mobile mode
-                self._action_bar.add(self._pathbar)
-                self._action_bar.show()
-                self._unlocked_database.revealer.props.reveal_child = True
-            elif not is_mobile:
-                # desktop mode
-                self._headerbar_box.add(self._pathbar)
-
-            return
 
         if self._unlocked_database.props.search_active:
             # No pathbar in search mode

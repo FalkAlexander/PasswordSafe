@@ -5,7 +5,6 @@ import logging
 import threading
 import typing
 from gettext import gettext as _
-from threading import Timer
 from typing import Any, List, Optional
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
@@ -51,7 +50,7 @@ class UnlockedDatabase(GObject.GObject):
     builder = NotImplemented
     scheduled_tmpfiles_deletion: List[Gio.File] = []
     clipboard = NotImplemented
-    clipboard_timer = NotImplemented
+    clipboard_timer_handler: Optional[int] = None
     _current_element: Optional[SafeElement] = None
     _lock_timer_handler: Optional[int] = None
     save_loop: Optional[int] = None  # If int, a thread periodically saves the database
@@ -472,17 +471,19 @@ class UnlockedDatabase(GObject.GObject):
             message = _("Copied to clipboard")
 
         self.start_database_lock_timer()
-        if self.clipboard_timer is not NotImplemented:
-            self.clipboard_timer.cancel()
+
+        if self.clipboard_timer_handler:
+            GLib.source_remove(self.clipboard_timer_handler)
+            self.clipboard_timer_handler = None
 
         self.clipboard.set_text(text, -1)
 
         self.window.notify(message)
+
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
-        self.clipboard_timer = Timer(
-            clear_clipboard_time, GLib.idle_add, args=[self.clear_clipboard]
+        self.clipboard_timer_handler = GLib.timeout_add_seconds(
+            clear_clipboard_time, self.clipboard.clear
         )
-        self.clipboard_timer.start()
 
     def on_database_settings_entry_clicked(self, _action, _param):
         DatabaseSettingsDialog(self).present()
@@ -567,8 +568,10 @@ class UnlockedDatabase(GObject.GObject):
         """
         logging.debug("Cleaning database %s", self.database_manager.database_path)
 
-        if self.clipboard_timer is not NotImplemented:
-            self.clipboard_timer.cancel()
+        if self.clipboard_timer_handler:
+            GLib.source_remove(self.clipboard_timer_handler)
+            self.clipboard_timer_handler = None
+            self.clipboard.clear()
 
         if self._lock_timer_handler:
             GLib.source_remove(self._lock_timer_handler)
@@ -582,8 +585,6 @@ class UnlockedDatabase(GObject.GObject):
         if self.save_loop:
             GLib.source_remove(self.save_loop)
             self.save_loop = None
-
-        self.clipboard.clear()
 
         if not delete_tmp_file:
             return
@@ -608,11 +609,6 @@ class UnlockedDatabase(GObject.GObject):
         save_thread.start()
 
         logging.debug("Saving database %s", self.database_manager.database_path)
-
-    def clear_clipboard(self):
-        clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
-        if clear_clipboard_time:
-            self.clipboard.clear()
 
     def start_database_lock_timer(self):
         if self._lock_timer_handler:

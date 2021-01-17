@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-from datetime import datetime
 from gettext import gettext as _
 from uuid import UUID
 
@@ -223,13 +222,13 @@ class DatabaseManager(GObject.GObject):
 
         self.emit("element-moved", safe_entry, old_location, new_location)
 
-    def set_element_atime(self, element):
+    def set_element_atime(self, element: Entry | Group) -> None:
         # TODO Move to safe_element method.
-        element.atime = datetime.now()
+        element.touch()
 
-    def set_element_mtime(self, element):
+    def set_element_mtime(self, element: Entry | Group) -> None:
         # TODO Move to safe_element method.
-        element.mtime = datetime.now()
+        element.touch(modify=True)
 
     # Move an group
     def move_group(self, group: Group, dest_group: Group) -> None:

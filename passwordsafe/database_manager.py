@@ -58,7 +58,7 @@ class DatabaseManager(GObject.GObject):
     def add_group_to_database(self, name, icon, notes, parent_group):
         new_location = parent_group.uuid
         group = self.db.add_group(parent_group, name, icon=icon, notes=notes)
-        self.set_element_mtime(parent_group)
+        parent_group.touch(modify=True)
         safe_group = SafeGroup(self, group)
         self.emit("element-added", safe_group, new_location)
 
@@ -85,7 +85,7 @@ class DatabaseManager(GObject.GObject):
             icon="0",
             force_creation=force,
         )
-        self.set_element_mtime(group)
+        group.touch(modify=True)
         safe_entry = SafeEntry(self, entry)
         self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
 
@@ -104,7 +104,7 @@ class DatabaseManager(GObject.GObject):
 
         self.emit("element-removed", entity.uuid)
         if entity.parentgroup is not None:
-            self.set_element_mtime(entity.parentgroup)
+            entity.parentgroup.touch(modify=True)
 
     def duplicate_entry(self, entry: Entry) -> None:
         """Duplicate an entry
@@ -138,7 +138,7 @@ class DatabaseManager(GObject.GObject):
         safe_entry = SafeEntry(self, clone_entry)
         self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
         if entry.parentgroup is not None:
-            self.set_element_mtime(entry.parentgroup)
+            entry.parentgroup.touch(modify=True)
 
     # Write all changes to database
     def save_database(self, notification=False):
@@ -215,20 +215,12 @@ class DatabaseManager(GObject.GObject):
         self.db.move_entry(entry, destination_group_object)
         # pylint: disable=no-member
         if entry.parentgroup:
-            self.set_element_mtime(entry.parentgroup)
-        self.set_element_mtime(destination_group_object)
+            entry.parentgroup.touch(modify=True)
+        destination_group_object.parentgroup.touch(modify=True)
 
         safe_entry = SafeEntry(self, entry)
 
         self.emit("element-moved", safe_entry, old_location, new_location)
-
-    def set_element_atime(self, element: Entry | Group) -> None:
-        # TODO Move to safe_element method.
-        element.touch()
-
-    def set_element_mtime(self, element: Entry | Group) -> None:
-        # TODO Move to safe_element method.
-        element.touch(modify=True)
 
     # Move an group
     def move_group(self, group: Group, dest_group: Group) -> None:
@@ -240,8 +232,8 @@ class DatabaseManager(GObject.GObject):
 
         self.db.move_group(group, dest_group)
         if group.parentgroup is not None:
-            self.set_element_mtime(group.parentgroup)
-        self.set_element_mtime(dest_group)
+            group.parentgroup.touch(modify=True)
+        dest_group.touch(modify=True)
 
         safe_group = SafeGroup(self, group)
         self.emit("element-moved", safe_group, old_location, new_location)

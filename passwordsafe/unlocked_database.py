@@ -183,7 +183,7 @@ class UnlockedDatabase(GObject.GObject):
             self.props.search_active = False
 
         # Sets the accessed time.
-        self.database_manager.set_element_atime(element.element)
+        element.touch()
 
         if element.is_group:
             page = GroupPage(self)

@@ -56,8 +56,16 @@ class SafeElement(GObject.GObject):
         """Signal used to tell whenever there have been any changed that should
         be reflected on the main list box or edit page."""
         self._db_manager.is_dirty = True
-        self._db_manager.set_element_mtime(self._element)
+        self.touch(modify=True)
         logging.debug("Safe element updated")
+
+    def touch(self, modify: bool = False) -> None:
+        """Updates the last accessed time. If modify is true
+        it also updates the last modified time."""
+        now = datetime.now()
+        self.element.atime = now
+        if modify:
+            self.element.mtime = now
 
     @property
     def element(self) -> SafeElement:

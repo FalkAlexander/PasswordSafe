@@ -17,9 +17,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/selection_ui.ui")
 class SelectionUI(Gtk.Box):
-    #
-    # Global Variables
-    #
 
     __gtype_name__ = "SelectionUI"
 
@@ -43,10 +40,6 @@ class SelectionUI(Gtk.Box):
         type=int, default=0, flags=GObject.ParamFlags.READWRITE
     )
 
-    #
-    # Init
-    #
-
     def __init__(self, u_d):
         super().__init__()
 
@@ -65,9 +58,7 @@ class SelectionUI(Gtk.Box):
         if not unlocked_database.selection_mode:
             self._clear_all()
 
-    #
     # Events
-    #
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _widget):
@@ -173,9 +164,7 @@ class SelectionUI(Gtk.Box):
             else:
                 row.selection_checkbox.set_active(False)
 
-    #
-    # Helper
-    #
+    # Helpers
 
     def add_entry(self, entry: EntryRow) -> None:
         """Add an entry to selection

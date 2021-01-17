@@ -2,7 +2,6 @@
 <interface>
   <template class="UnlockedHeaderBar" parent="HdyHeaderBar">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
     <property name="show_close_button">True</property>
     <child>
       <object class="GtkStack" id="_linkedbox_left">
@@ -24,12 +23,10 @@
         <child>
           <object class="GtkMenuButton" id="_add_button">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="menu_model">_add_button_menu</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="icon_name">list-add-symbolic</property>
               </object>
             </child>
@@ -40,13 +37,11 @@
     <child>
       <object class="GtkBox" id="_headerbar_box">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
       </object>
     </child>
     <child type="title">
       <object class="GtkLabel" id="_title_label">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
         <property name="margin_start">8</property>
@@ -60,19 +55,16 @@
     <child type="title">
       <object class="GtkMenuButton" id="_selection_options_button">
         <property name="visible">False</property>
-        <property name="can_focus">True</property>
         <property name="receives_default">True</property>
         <property name="relief">none</property>
         <property name="menu_model">selection_mode_menu</property>
         <child>
           <object class="GtkBox" id="selection_options_button_box">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkLabel" id="selection_options_button_label">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="label" translatable="yes">Click on a checkbox to select</property>
                 <property name="ellipsize">middle</property>
               </object>
@@ -80,7 +72,6 @@
             <child>
               <object class="GtkImage" id="selection_options_button_labe">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="icon_name">pan-down-symbolic</property>
               </object>
             </child>
@@ -91,24 +82,20 @@
     <child>
       <object class="GtkBox" id="_headerbar_right_box">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="spacing">6</property>
         <child>
           <object class="GtkBox" id="_linkedbox_right">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="spacing">6</property>
             <child>
               <object class="GtkButton" id="_search_button">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
                 <signal name="clicked" handler="_on_search_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="search_button_image">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="icon_name">system-search-symbolic</property>
                   </object>
                 </child>
@@ -117,14 +104,12 @@
             <child>
               <object class="GtkButton" id="selection_button">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
                 <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage" id="selection_button_image">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="icon_name">emblem-ok-symbolic</property>
                   </object>
                 </child>
@@ -133,12 +118,10 @@
             <child>
               <object class="GtkMenuButton" id="menupopover_button">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
                 <property name="menu_model">unlocked_database_menu</property>
                 <child>
                   <object class="GtkImage">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="icon_name">open-menu-symbolic</property>
                   </object>
                 </child>
@@ -149,12 +132,10 @@
         <child>
           <object class="GtkMenuButton" id="_secondary_menu_button">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="icon_name">view-more-symbolic</property>
               </object>
             </child>

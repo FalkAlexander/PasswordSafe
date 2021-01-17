@@ -223,12 +223,6 @@ class SelectionUI(Gtk.Box):
             self.groups_selected
         )
 
-        if not self.cut_mode:
-            self.entries_cut.clear()
-            self.groups_cut.clear()
-            self._cut_paste_image.set_from_icon_name(
-                "edit-cut-symbolic", Gtk.IconSize.BUTTON)
-
     def _clear_all(self) -> None:
         """Resets everything to the default state"""
         self.cut_mode = True

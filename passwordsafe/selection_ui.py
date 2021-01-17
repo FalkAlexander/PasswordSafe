@@ -211,7 +211,8 @@ class SelectionUI(Gtk.Box):
         """
         if group in self.groups_selected:
             self.groups_selected.remove(group)
-            self._update_selection()
+
+        self._update_selection()
 
     def _update_selection(self) -> None:
         non_empty_selection = self.entries_selected or self.groups_selected

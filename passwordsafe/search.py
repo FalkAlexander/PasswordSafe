@@ -17,17 +17,9 @@ if typing.TYPE_CHECKING:
 
 
 class Search:
-    # pylint: disable=too-many-instance-attributes
-
-    #
-    # Global Variables
-    #
 
     _result_list = Gio.ListStore.new(SafeElement)
     search_list_box = NotImplemented
-    #
-    # Init
-    #
 
     def __init__(self, unlocked_database: UnlockedDatabase) -> None:
         self.unlocked_database: UnlockedDatabase = unlocked_database
@@ -75,9 +67,6 @@ class Search:
         self.unlocked_database.connect(
             "notify::search-active", self._on_search_active)
         self._prepare_search_page()
-    #
-    # Search
-    #
 
     # Search headerbar
     def _on_search_active(
@@ -107,11 +96,6 @@ class Search:
             self._key_pressed = False
             self._result_list.remove_all()
 
-    #
-    # Stack
-    #
-
-    # Set Search stack page
     def _prepare_search_page(self):
         self.search_list_box = self._builder.get_object("list_box")
         self.search_list_box.bind_model(
@@ -133,10 +117,6 @@ class Search:
             self._stack.set_visible_child(self._info_search_page)
 
         return GLib.SOURCE_REMOVE
-
-    #
-    # Utils
-    #
 
     def _start_search(self):
         """Update the overlays and start a search
@@ -199,9 +179,7 @@ class Search:
 
         return GLib.SOURCE_REMOVE
 
-    #
     # Events
-    #
 
     def _on_search_entry_timeout(self, widget: Gtk.Entry) -> None:
         self._key_pressed = True

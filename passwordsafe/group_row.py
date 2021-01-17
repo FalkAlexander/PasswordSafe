@@ -53,7 +53,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.unlocked_database.bind_property(
             "selection_mode",
             self.edit_button,
-            "visible",
+            "sensitive",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
         )
 

@@ -129,6 +129,9 @@ class Application(Gtk.Application):
                 unsaved_databases_list.append(database)
 
         if config.get_save_automatically():
+            if not unsaved_databases_list:
+                GLib.idle_add(self.quit)
+
             for database in unsaved_databases_list:
                 self._save_handler_ids[database] = database.database_manager.connect(
                     "save-notification",

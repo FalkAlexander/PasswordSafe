@@ -54,6 +54,19 @@ class EntryRow(Adw.ActionRow):
             GObject.BindingFlags.SYNC_CREATE,
         )
 
+        # Expiration Date
+        self.safe_entry.connect(
+            "notify::expired",
+            self._on_entry_notify_expired,
+        )
+        self._on_entry_notify_expired(self.safe_entry, None)
+
+    def _on_entry_notify_expired(self, safe_entry, _gparam):
+        if safe_entry.expired and safe_entry.props.expires:
+            self.add_css_class("strikethrough")
+        else:
+            self.remove_css_class("strikethrough")
+
     @Gtk.Template.Callback()
     def _on_entry_row_button_pressed(
         self,

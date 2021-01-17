@@ -13,6 +13,7 @@ from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
 from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401
 from passwordsafe.widgets.notes_dialog import NotesDialog
+from passwordsafe.widgets.expiration_date_row import ExpirationDateRow  # noqa: F401
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
@@ -57,6 +58,9 @@ class EntryPage(Gtk.ScrolledWindow):
     attributes_property_box = Gtk.Template.Child()
     attributes_value_entry = Gtk.Template.Child()
 
+    expiration_date_property_box = Gtk.Template.Child()
+    expiration_date_row = Gtk.Template.Child()
+
     show_all_row = Gtk.Template.Child()
 
     attribute_property_row_list: list[Gtk.ListBoxRow] = []
@@ -72,6 +76,7 @@ class EntryPage(Gtk.ScrolledWindow):
             self.notes_property_box,
             self.attachment_property_box,
             self.attributes_property_box,
+            self.expiration_date_property_box,
         ]
 
         self.insert_entry_properties_into_listbox(add_all)
@@ -203,6 +208,11 @@ class EntryPage(Gtk.ScrolledWindow):
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)
 
+        # Expiration Date
+        self.expiration_date_row.props.safe_entry = safe_entry
+        self.show_row(self.expiration_date_property_box, safe_entry.expires, add_all)
+
+        # Show more row
         for widget in self.toggeable_widget_list:
             if not widget.get_visible():
                 self.show_all_row.set_visible(True)

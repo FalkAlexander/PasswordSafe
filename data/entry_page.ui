@@ -381,6 +381,26 @@
               </object>
             </child>
             <child>
+              <object class="GtkBox" id="expiration_date_property_box">
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">_Expiration Date</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">expiration_date_row</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="ExpirationDateRow" id="expiration_date_row"/>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="GtkBox" id="show_all_row">
                 <property name="visible">False</property>
                 <property name="margin_top">6</property>

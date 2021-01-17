@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="ExpirationDateRow" parent="AdwBin">
+    <signal name="mnemonic-activate" handler="on_mnemonic_activate" swapped="no"/>
+    <property name="child">
+      <object class="GtkListBox" id="list_box">
+        <signal name="row-activated" handler="on_row_activated" swapped="no"/>
+        <child>
+          <object class="AdwActionRow" id="action_row">
+            <property name="title" translatable="yes">Expiration date not set</property>
+            <property name="activatable">True</property>
+            <property name="selectable">False</property>
+            <property name="icon_name">x-office-calendar-symbolic</property>
+            <child>
+              <object class="GtkBox">
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkMenuButton" id="edit_button">
+                    <property name="popover">popover</property>
+                    <property name="valign">center</property>
+                    <property name="icon_name">document-edit-symbolic</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="remove_button">
+                    <property name="tooltip_text" translatable="yes">Remove expiration date</property>
+                    <property name="valign">center</property>
+                    <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
+                    <property name="icon_name">user-trash-symbolic</property>
+                    <style>
+                      <class name="destructive-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <style>
+          <class name="content"/>
+        </style>
+      </object>
+    </property>
+  </template>
+  <object class="GtkPopover" id="popover">
+    <child>
+      <object class="GtkBox">
+        <property name="margin_start">12</property>
+        <property name="margin_end">12</property>
+        <property name="margin_bottom">12</property>
+        <property name="margin_top">12</property>
+        <property name="spacing">12</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkCalendar" id="calendar">
+            <property name="halign">center</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="popover_edit_button">
+            <property name="label" translatable="yes">_Set Expiration Date</property>
+            <property name="use_underline">True</property>
+            <signal name="clicked" handler="on_edit_button_clicked" swapped="no"/>
+            <style>
+              <class name="suggested-action"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

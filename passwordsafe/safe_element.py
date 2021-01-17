@@ -5,7 +5,7 @@ import binascii
 import logging
 import typing
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import NamedTuple
 from uuid import UUID
 
@@ -485,6 +485,40 @@ class SafeEntry(SafeElement):
         if new_username != self._username:
             self._username = new_username
             self._entry.username = new_username
+            self.emit("updated")
+
+    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    def expires(self) -> bool:
+        return self.entry.expires
+
+    @expires.setter  # type: ignore
+    def expires(self, value: bool) -> None:
+        if value != self.entry.expires:
+            self.entry.expires = value
+            self.props.expired = self.entry.expired
+            self.emit("updated")
+
+    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    def expired(self):
+        return self.entry.expired
+
+    @property
+    def expiry_time(self) -> GLib.DateTime:
+        time = self.entry.expiry_time
+        gtime = GLib.DateTime.new_utc(time.year, time.month, time.day, 0, 0, 0)
+        return gtime
+
+    @expiry_time.setter  # type: ignore
+    def expiry_time(self, value: GLib.DateTime) -> None:
+        if value != self.entry.expiry_time:
+            expired = datetime(
+                value.get_year(),
+                value.get_month(),
+                value.get_day_of_month(),
+                tzinfo=timezone.utc,
+            )
+            self.entry.expiry_time = expired
+            self.props.expired = self.entry.expired
             self.emit("updated")
 
 

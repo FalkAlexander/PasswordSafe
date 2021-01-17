@@ -425,17 +425,8 @@ class EntryPage(Gtk.ScrolledWindow):
             self, _button, attachment_to_delete, attachment_row):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         safe_entry.delete_attachment(attachment_to_delete)
-        attachment_row.destroy()
 
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_entry_row.ui")
-
-        for row in self.attachment_list_box:
-            if row.get_name() != "AddAttachmentRow":
-                row.destroy()
-
-        for attachment in safe_entry.props.attachments:
-            self.add_attachment_row(attachment)
+        self.attachment_list_box.remove(attachment_row)
 
     #
     # Helper

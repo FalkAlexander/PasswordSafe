@@ -5,8 +5,8 @@ import threading
 from gettext import gettext as _
 from gi.repository import GLib, Gtk
 
-import passwordsafe.keyfile_generator
 from passwordsafe.unlock_database import KeyFileFilter, UnlockDatabase
+from passwordsafe.utils import generate_keyfile
 
 
 @Gtk.Template(
@@ -138,14 +138,19 @@ class CreateDatabase(Gtk.Stack):
         if response == Gtk.ResponseType.ACCEPT:
             self.generate_keyfile_button.set_sensitive(False)
             self.generate_keyfile_button.set_label(_("Generating…"))
-            keyfile_path = dialog.get_file().get_path()
+            keyfile = dialog.get_file()
+            keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
 
-            generator_thread = threading.Thread(
-                target=passwordsafe.keyfile_generator.generate_keyfile,
-                args=(keyfile_path, True, self, self.composite))
-            generator_thread.daemon = True
-            generator_thread.start()
+            def callback():
+                if self.composite is False:
+                    self.database_manager.password = None
+
+                self.database_manager.set_database_keyfile(keyfile_path)
+                self.database_manager.save_database()
+                self.success_page()
+
+            GLib.idle_add(generate_keyfile, keyfile, callback)
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:

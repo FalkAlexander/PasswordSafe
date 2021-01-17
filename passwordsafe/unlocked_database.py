@@ -467,7 +467,10 @@ class UnlockedDatabase(GObject.GObject):
 
         self.show_browser_page(parent_group)
 
-    def send_to_clipboard(self, text, message=_("Copied to clipboard")):
+    def send_to_clipboard(self, text: str, message: str = "") -> None:
+        if not message:
+            message = _("Copied to clipboard")
+
         self.start_database_lock_timer()
         if self.clipboard_timer is not NotImplemented:
             self.clipboard_timer.cancel()

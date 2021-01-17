@@ -349,15 +349,6 @@ class SafeEntry(SafeElement):
             self.notify("icon-name")
             self.emit("updated")
 
-    @property
-    def icon_handled(self) -> bool:
-        try:
-            icon = ICONS[self._icon_nr]
-            return icon.visible
-        except KeyError:
-            logging.warning("Unknown icon %s", self._icon_nr)
-            return False
-
     @GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READABLE)
     def icon_name(self) -> str:

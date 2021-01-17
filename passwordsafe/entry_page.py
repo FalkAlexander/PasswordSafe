@@ -133,7 +133,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
         # Icons
         icon_builder = Gtk.Builder()
-        first_btn = None
         entry_icon = safe_entry.props.icon
         for icon_nr, icon in ICONS.items():
             if not icon.visible:
@@ -154,18 +153,6 @@ class EntryPage(Gtk.ScrolledWindow):
         self.icon_entry_box.connect(
             "selected-children-changed", self.on_entry_icon_button_toggled
         )
-
-        # The icons are GtkRadioButton, which means that at
-        # least one button needs to be selected. If the icon is
-        # not handled by, a new button is added. This button is
-        # selected and not visible.
-        if not safe_entry.icon_handled or not entry_icon.visible:
-            icon_builder.add_from_resource(
-                "/org/gnome/PasswordSafe/icon_widget.ui")
-            btn = icon_builder.get_object("icon_button")
-            btn.props.visible = False
-            btn.props.group = first_btn
-            btn.props.active = True
 
         # Attachments
         for attachment in safe_entry.attachments:

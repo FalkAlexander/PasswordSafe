@@ -12,6 +12,7 @@ from pykeepass.entry import Entry
 from pykeepass.group import Group
 
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
+from passwordsafe.utils import format_time
 
 
 class DatabaseManager(GObject.GObject):
@@ -204,10 +205,10 @@ class DatabaseManager(GObject.GObject):
         self.emit("element-moved", safe_entry, old_location, new_location)
 
     def set_element_atime(self, element):
-        element.atime = datetime.utcnow()
+        element.atime = datetime.now()
 
     def set_element_mtime(self, element):
-        element.mtime = datetime.utcnow()
+        element.mtime = datetime.now()
 
     # Move an group
     def move_group(self, group: Group, dest_group: Group) -> None:
@@ -242,36 +243,18 @@ class DatabaseManager(GObject.GObject):
 
     def get_element_creation_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups creation time or ''"""
-        if isinstance(element, SafeEntry):
-            elem = element.entry
-        else:
-            elem = element.group
-
-        if elem.ctime is None:
-            return ""
-        return elem.ctime.strftime("%x %X")
+        elem = element.element
+        return format_time(elem.ctime)
 
     def get_element_acessed_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups access time or ''"""
-        if isinstance(element, SafeEntry):
-            elem = element.entry
-        else:
-            elem = element.group
-
-        if elem.atime is None:
-            return ""
-        return elem.atime.strftime("%x %X")
+        elem = element.element
+        return format_time(elem.atime)
 
     def get_element_modified_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups modification time or ''"""
-        if isinstance(element, SafeEntry):
-            elem = element.entry
-        else:
-            elem = element.group
-
-        if elem.mtime is None:
-            return ""
-        return elem.mtime.strftime("%x %X")
+        elem = element.element
+        return format_time(elem.mtime)
 
     #
     # Database creation methods

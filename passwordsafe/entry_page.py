@@ -12,10 +12,10 @@ from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
-from passwordsafe.safe_entry import ICONS
+from passwordsafe.safe_element import ICONS
 
 if typing.TYPE_CHECKING:
-    from passwordsafe.safe_entry import SafeEntry
+    from passwordsafe.safe_element import SafeEntry
 
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
@@ -28,8 +28,6 @@ class EntryPage(Gtk.ScrolledWindow):
     __gtype_name__ = "EntryPage"
 
     _filechooser = None
-    is_dirty = False
-    edit_page = True
 
     properties_box = Gtk.Template.Child()
 
@@ -70,8 +68,6 @@ class EntryPage(Gtk.ScrolledWindow):
         self.unlocked_database = u_d
         self.toggeable_widget_list = [self.url_property_box,
                                       self.notes_property_box,
-                                      self.color_property_box,
-                                      self.icon_property_box,
                                       self.attachment_property_box,
                                       self.attributes_property_box]
 
@@ -128,16 +124,12 @@ class EntryPage(Gtk.ScrolledWindow):
             "notes", textbuffer, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
-        textbuffer.connect("changed", self.on_property_value_entry_changed)
         self.notes_property_value_entry.set_buffer(textbuffer)
         self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
         # Color
         self.color_property_box.add(ColorEntryRow(
             self.unlocked_database, safe_entry))
-
-        non_default = safe_entry.color != "NoneColorButton"
-        self.show_row(self.color_property_box, non_default, add_all)
 
         # Icons
         icon_builder = Gtk.Builder()
@@ -152,14 +144,16 @@ class EntryPage(Gtk.ScrolledWindow):
             btn = icon_builder.get_object("icon_button")
             img = icon_builder.get_object("image")
             img.props.icon_name = icon.name
-            if first_btn is None:
-                first_btn = btn
-            else:
-                btn.props.group = first_btn
 
-            btn.props.active = (entry_icon == icon)
-            btn.connect("toggled", self.on_entry_icon_button_toggled, icon_nr)
+            if entry_icon == icon:
+                self.icon_entry_box.select_child(btn)
+
+            btn.set_name(icon_nr)
             self.icon_entry_box.add(btn)
+
+        self.icon_entry_box.connect(
+            "selected-children-changed", self.on_entry_icon_button_toggled
+        )
 
         # The icons are GtkRadioButton, which means that at
         # least one button needs to be selected. If the icon is
@@ -172,9 +166,6 @@ class EntryPage(Gtk.ScrolledWindow):
             btn.props.visible = False
             btn.props.group = first_btn
             btn.props.active = True
-
-        non_default = safe_entry.icon != ICONS["0"]
-        self.show_row(self.icon_property_box, non_default, add_all)
 
         # Attachments
         for attachment in safe_entry.attachments:
@@ -234,22 +225,18 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_all_row.set_visible(False)
 
     @Gtk.Template.Callback()
-    def on_property_value_entry_changed(self, _widget, _data=None):
-        self.unlocked_database.start_database_lock_timer()
-
-        self.is_dirty = True
-
-    @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         safe_entry = self.unlocked_database.current_element
         NotesDialog(self.unlocked_database, safe_entry).present()
 
-    def on_entry_icon_button_toggled(self, button, icon):
-        if button.get_active() is False:
+    def on_entry_icon_button_toggled(self, flowbox):
+        if not flowbox.get_selected_children():
             return
 
-        self.unlocked_database.start_database_lock_timer()
+        selected_row = flowbox.get_selected_children()[0]
+        icon = selected_row.get_name()
+
         safe_entry = self.unlocked_database.current_element
         safe_entry.props.icon = icon
 
@@ -438,17 +425,8 @@ class EntryPage(Gtk.ScrolledWindow):
             self, _button, attachment_to_delete, attachment_row):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         safe_entry.delete_attachment(attachment_to_delete)
-        attachment_row.destroy()
 
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_entry_row.ui")
-
-        for row in self.attachment_list_box:
-            if row.get_name() != "AddAttachmentRow":
-                row.destroy()
-
-        for attachment in safe_entry.props.attachments:
-            self.add_attachment_row(attachment)
+        self.attachment_list_box.remove(attachment_row)
 
     #
     # Helper
@@ -466,7 +444,10 @@ class EntryPage(Gtk.ScrolledWindow):
     @Gtk.Template.Callback()
     def _on_copy_secondary_button_clicked(
             self, widget, _position=None, _eventbutton=None):
-        self.unlocked_database.send_to_clipboard(widget.get_text())
+        self.unlocked_database.send_to_clipboard(
+            widget.get_text(),
+            _("Username copied to clipboard"),
+        )
 
     def show_row(self, row: Gtk.ListBoxRow, non_empty: bool, add_all: bool) -> None:
         if non_empty or add_all:
@@ -476,4 +457,3 @@ class EntryPage(Gtk.ScrolledWindow):
 
     def _on_safe_entry_updated(self, safe_entry):
         self.unlocked_database.start_database_lock_timer()
-        self.is_dirty = True

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+from gettext import gettext as _
 import typing
 from enum import IntEnum
 from typing import Optional
@@ -26,13 +27,16 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
     _add_button = Gtk.Template.Child()
     _entry_menu = Gtk.Template.Child()
+    _back_button = Gtk.Template.Child()
     _group_menu = Gtk.Template.Child()
     _headerbar_box = Gtk.Template.Child()
     _headerbar_right_box = Gtk.Template.Child()
+    _linkedbox_left = Gtk.Template.Child()
     _linkedbox_right = Gtk.Template.Child()
     _secondary_menu_button = Gtk.Template.Child()
     _search_button = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
+    selection_options_button_label = Gtk.Template.Child()
     _title_label = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
@@ -54,8 +58,21 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._mode: int = UnlockedHeaderBar.Mode.GROUP
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
 
+        self._setup_widgets()
         self._setup_signals()
         self._setup_accelerators()
+
+    def _setup_widgets(self):
+        is_mobile = self._window.props.mobile_layout
+
+        if is_mobile and not self._action_bar.get_children():
+            # mobile mode
+            self._action_bar.add(self._pathbar)
+            self._action_bar.show()
+            self._unlocked_database.revealer.props.reveal_child = True
+        elif not is_mobile:
+            # desktop mode
+            self._headerbar_box.add(self._pathbar)
 
     def _setup_signals(self):
         self._window.connect(
@@ -100,29 +117,25 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self.props.mode = UnlockedHeaderBar.Mode.SELECTION
         else:
             style_context.remove_class("selection-mode")
+            self.props.mode = UnlockedHeaderBar.Mode.GROUP
 
     def _on_mobile_layout_changed(
             self, _klass: Optional[MainWindow],
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_action_bar()
 
+    def _on_selected_entries_changed(self, selection_ui, _value):
+        new_number = selection_ui.props.selected_elements
+        default = _("Click on a checkbox to select")
+        numbered = str(new_number) + _(" Selected entries")
+        if new_number == 0:
+            self.selection_options_button_label.set_label(default)
+        else:
+            self.selection_options_button_label.set_label(numbered)
+
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""
-        page = self._unlocked_database.get_current_page()
         is_mobile = self._window.props.mobile_layout
-
-        if page is None:
-            # Initial placement of pathbar before content appeared
-            if is_mobile and not self._action_bar.get_children():
-                # mobile mode
-                self._action_bar.add(self._pathbar)
-                self._action_bar.show()
-                self._unlocked_database.revealer.props.reveal_child = True
-            elif not is_mobile:
-                # desktop mode
-                self._headerbar_box.add(self._pathbar)
-
-            return
 
         if self._unlocked_database.props.search_active:
             # No pathbar in search mode
@@ -173,17 +186,21 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             selection_mode = self._unlocked_database.props.selection_mode
             self._add_button.props.visible = not selection_mode
             self._linkedbox_right.props.visible = not selection_mode
+            self._linkedbox_left.set_visible_child(self._add_button)
         elif new_mode == UnlockedHeaderBar.Mode.GROUP_EDIT:
             self._add_button.props.visible = False
             self._secondary_menu_button.props.menu_model = self._group_menu
             self._secondary_menu_button.props.visible = True
             self._linkedbox_right.props.visible = False
+            self._linkedbox_left.set_visible_child(self._back_button)
         elif new_mode == UnlockedHeaderBar.Mode.ENTRY:
             self._add_button.props.visible = False
             self._secondary_menu_button.props.menu_model = self._entry_menu
             self._secondary_menu_button.props.visible = True
             self._linkedbox_right.props.visible = False
+            self._linkedbox_left.set_visible_child(self._back_button)
         else:
             self._add_button.props.visible = False
             self._secondary_menu_button.props.visible = False
             self._linkedbox_right.props.visible = False
+            self._linkedbox_left.set_visible_child(self._add_button)

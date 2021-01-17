@@ -6,18 +6,19 @@ import os
 import threading
 import time
 from gettext import gettext as _
+from typing import Optional
 
 from gi.repository import Gdk, GLib, Gtk, Handy
 
 import passwordsafe.config_manager as config
-import passwordsafe.keyfile_generator
 import passwordsafe.password_generator
+from passwordsafe.utils import generate_keyfile
 
 
 class DatabaseSettingsDialog:
     # pylint: disable=too-many-instance-attributes
 
-    new_password = NotImplemented
+    new_password: Optional[str] = None
     new_keyfile_path = NotImplemented
 
     entries_number = NotImplemented
@@ -117,7 +118,7 @@ class DatabaseSettingsDialog:
         conf_password_entry = self.builder.get_object("confirm_password_entry")
         conf_password = conf_password_entry.get_text()
 
-        self.new_password = NotImplemented
+        self.new_password = None
 
         # Update the quality level bar
         if entry.get_name() == "new_entry" and new_password:
@@ -261,15 +262,19 @@ class DatabaseSettingsDialog:
             self.generate_keyfile_button.add(spinner)
             self.generate_keyfile_button.show_all()
 
-            self.new_keyfile_path = save_dialog.get_file().get_path()
+            keyfile = save_dialog.get_file()
+            self.new_keyfile_path = keyfile.get_path()
 
-            if self.new_password is NotImplemented:
-                generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.new_keyfile_path, False, self, False))
-            else:
-                generator_thread = threading.Thread(target=passwordsafe.keyfile_generator.generate_keyfile, args=(self.new_keyfile_path, False, self, True))
+            def callback():
+                if self.new_password is not None:
+                    self.database_manager.password = self.new_password
 
-            generator_thread.daemon = True
-            generator_thread.start()
+                self.database_manager.set_database_keyfile(self.new_keyfile_path)
+                self.database_manager.save_database()
+
+                self.keyfile_generated()
+
+            GLib.idle_add(generate_keyfile, keyfile, callback)
 
     def keyfile_generated(self):
         self.generate_keyfile_button.remove(self.generate_keyfile_button.get_children()[0])
@@ -284,7 +289,7 @@ class DatabaseSettingsDialog:
     #
 
     def on_auth_apply_button_clicked(self, button):
-        if self.new_password is not NotImplemented:
+        if self.new_password is not None:
             if self.new_keyfile_path is NotImplemented and self.database_manager.keyfile_hash is not NotImplemented:
                 self.database_manager.set_database_keyfile(None)
                 self.database_manager.keyfile_hash = NotImplemented
@@ -292,7 +297,7 @@ class DatabaseSettingsDialog:
             self.database_manager.password = self.new_password
 
         if self.new_keyfile_path is not NotImplemented:
-            if self.new_password is NotImplemented:
+            if self.new_password is None:
                 self.database_manager.password = None
 
             self.database_manager.set_database_keyfile(str(self.new_keyfile_path))
@@ -347,7 +352,7 @@ class DatabaseSettingsDialog:
         self.generate_keyfile_button.add(Gtk.Image.new_from_icon_name("security-high-symbolic", Gtk.IconSize.BUTTON))
         self.generate_keyfile_button.show_all()
 
-        self.new_password = NotImplemented
+        self.new_password = None
         self.new_keyfile_path = NotImplemented
 
         self.auth_apply_button.set_label(_("Apply Changes"))

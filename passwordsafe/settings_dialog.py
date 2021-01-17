@@ -13,7 +13,6 @@ class SettingsDialog(Handy.PreferencesWindow):
     _clear_button = Gtk.Template.Child()
     _clearcb_spin_button = Gtk.Template.Child()
     _fstart_switch = Gtk.Template.Child()
-    _full_text_search_switch = Gtk.Template.Child()
     _generator_length_spin_button = Gtk.Template.Child()
     _generator_separator_entry = Gtk.Template.Child()
     _generator_use_lowercase_switch = Gtk.Template.Child()
@@ -21,7 +20,6 @@ class SettingsDialog(Handy.PreferencesWindow):
     _generator_use_symbols_switch = Gtk.Template.Child()
     _generator_use_uppercase_switch = Gtk.Template.Child()
     _generator_words_spin_button = Gtk.Template.Child()
-    _local_search_switch = Gtk.Template.Child()
     _lockdb_spin_button = Gtk.Template.Child()
     _remember_method_switch = Gtk.Template.Child()
     _remember_switch = Gtk.Template.Child()
@@ -129,18 +127,6 @@ class SettingsDialog(Handy.PreferencesWindow):
         self._clear_button.connect("clicked", self._on_settings_clear_recents_clicked)
         if not config.get_last_opened_list():
             self._clear_button.props.sensitive = False
-
-        # Search
-        full_text_search = config.get_full_text_search()
-        self._full_text_search_switch.props.active = full_text_search
-        self._full_text_search_switch.connect(
-            "notify::active", self._on_settings_full_text_search_switch_switched
-        )
-
-        self._local_search_switch.props.active = config.get_local_search()
-        self._local_search_switch.connect(
-            "notify::active", self._on_settings_local_search_switch_switched
-        )
 
         # Unlock
         remember_composite_key = config.get_remember_composite_key()

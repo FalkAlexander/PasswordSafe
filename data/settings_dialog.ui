@@ -69,42 +69,6 @@
         <child>
           <object class="HdyPreferencesGroup">
             <property name="visible">True</property>
-            <property name="title" translatable="yes">Search</property>
-            <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">_Full-Text Search</property>
-                <property name="subtitle" translatable="yes">Performs a search across all values of entries.</property>
-                <property name="activatable_widget">_full_text_search_switch</property>
-                <property name="use_underline">True</property>
-                <child>
-                  <object class="GtkSwitch" id="_full_text_search_switch">
-                    <property name="visible">True</property>
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="HdyActionRow">
-                <property name="visible">True</property>
-                <property name="title" translatable="yes">_Current Group Search</property>
-                <property name="subtitle" translatable="yes">Only search entries in the current group.</property>
-                <property name="activatable_widget">_local_search_switch</property>
-                <property name="use_underline">True</property>
-                <child>
-                  <object class="GtkSwitch" id="_local_search_switch">
-                    <property name="visible">True</property>
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="HdyPreferencesGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes">Unlock</property>
             <child>
               <object class="HdyActionRow">

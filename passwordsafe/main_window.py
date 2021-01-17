@@ -134,26 +134,8 @@ class MainWindow(Handy.ApplicationWindow):
         new_mobile_layout = (self.get_allocation().width < 700)
         if new_mobile_layout != self.props.mobile_layout:
             self.props.mobile_layout = new_mobile_layout
-            self.change_layout()
 
         Handy.ApplicationWindow.do_size_allocate(self, allocation)
-
-    def change_layout(self):
-        """Switches all open databases between mobile/desktop layout"""
-        for database in self.opened_databases:
-            # Do Nothing on Lock Screen
-            if database.props.database_locked:
-                return
-
-            # Do nothing for Search View
-            if database.props.search_active:
-                return
-
-            scrolled_page = database.get_current_page()
-
-            # For Group/Entry Edit Page
-            if scrolled_page.edit_page:
-                return
 
     #
     # First Start Screen
@@ -534,12 +516,10 @@ class MainWindow(Handy.ApplicationWindow):
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):
         actions = [
-            ("db.add_entry", "on_database_add_entry_clicked", None),
-            ("db.add_group", "on_database_add_group_clicked", None),
+            ("db.add_entry", "on_add_entry_action", None),
+            ("db.add_group", "on_add_group_action", None),
             ("db.settings", "on_database_settings_entry_clicked", None),
-            ("sort.az", "on_sort_menu_button_entry_clicked", "A-Z"),
-            ("sort.za", "on_sort_menu_button_entry_clicked", "Z-A"),
-            ("sort.last_added", "on_sort_menu_button_entry_clicked", "last_added"),
+            ("sort", "on_sort_menu_button_entry_clicked", None),
         ]
 
         for action, name, arg in actions:
@@ -547,6 +527,14 @@ class MainWindow(Handy.ApplicationWindow):
             simple_action.connect(
                 "activate", self.execute_gio_action, name, arg)
             self.application.add_action(simple_action)
+
+        sort_action = self.application.settings.create_action(
+            "sort-order"
+        )
+        sort_action.connect(
+            "notify::state", self.execute_gio_action, "sort-order", None
+        )
+        self.application.add_action(sort_action)
 
     # Selection Mode Actions
     def add_selection_actions(self):
@@ -564,6 +552,8 @@ class MainWindow(Handy.ApplicationWindow):
         if action_db is None:
             return
 
+        action_db.start_database_lock_timer()
+
         if name == "on_element_delete_menu_button_clicked":
             action_db.on_element_delete_menu_button_clicked(action, param)
         elif name == "on_entry_duplicate_menu_button_clicked":
@@ -577,13 +567,11 @@ class MainWindow(Handy.ApplicationWindow):
         elif name == "on_group_delete_menu_button_clicked":
             action_db.on_group_delete_menu_button_clicked(action, param)
         elif name == "on_database_add_entry_clicked":
-            action_db.on_add_entry_button_clicked(None)
-        elif name == "on_database_add_group_clicked":
-            action_db.on_add_group_button_clicked(None)
+            action_db.on_database_add_entry_clicked(action)
+        elif name == "on_add_group_action":
+            action_db.on_add_group_action(action)
         elif name == "on_database_settings_entry_clicked":
             action_db.on_database_settings_entry_clicked(action, param)
-        elif name == "on_sort_menu_button_entry_clicked":
-            action_db.on_sort_menu_button_entry_clicked(action, param, arg)
         elif name == "on_selection_popover_button_clicked":
             action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
 
@@ -610,7 +598,7 @@ class MainWindow(Handy.ApplicationWindow):
             self.application.add_action(simple_action)
 
     # Accelerator Action Handler
-    def execute_accel_action(self, _action, _param, name, arg=None):
+    def execute_accel_action(self, action, _param, name, arg=None):
         action_db = self.find_action_db()
         if action_db is None:
             return
@@ -622,23 +610,18 @@ class MainWindow(Handy.ApplicationWindow):
         elif name == "go_back":
             action_db.go_back()
         elif name == "add_action":
-            if action_db.props.database_locked:
-                return
-
-            if action_db.props.selection_mode:
-                return
-
-            scrolled_page = action_db.get_current_page()
-            if scrolled_page.edit_page:
-                return
-
-            if action_db.props.search_active:
+            if (
+                action_db.props.database_locked
+                or action_db.props.selection_mode
+                or action_db.in_edit_page
+                or action_db.props.search_active
+            ):
                 return
 
             if arg == "entry":
-                action_db.on_add_entry_button_clicked(None)
+                action_db.on_add_entry_action(action)
             elif arg == "group":
-                action_db.on_add_group_button_clicked(None)
+                action_db.on_add_group_action(action)
 
     #
     # Tools

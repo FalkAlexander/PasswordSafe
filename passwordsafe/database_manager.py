@@ -3,15 +3,16 @@ import hashlib
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from typing import List, Optional, Union
+from typing import Optional, Union
 from uuid import UUID
+
+from gi.repository import Gio, GObject
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
-from gi.repository import Gio, GObject
 
-import passwordsafe.config_manager
-from passwordsafe.safe_entry import SafeEntry
+from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
+from passwordsafe.utils import format_time
 
 
 class DatabaseManager(GObject.GObject):
@@ -50,200 +51,18 @@ class DatabaseManager(GObject.GObject):
         self.database_path = database_path
 
     #
-    # Group Transformation Methods
-    #
-
-    def get_group(self, uuid: UUID) -> Optional[Group]:
-        """Return the group object for a group uuid
-
-        :returns: a `pykeepass.group.Group` object or None if it does not exist
-        """
-        assert isinstance(uuid, UUID), "uuid needs to be of type UUID"
-        return self.db.find_groups(uuid=uuid, first=True)
-
-    def get_group_name(self, data: Union[Group, UUID]) -> str:
-        """Get group name from a group or an uuid
-
-        :param data: a group or an uuid
-        :returns: group name or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            group: Group = self.db.find_groups(uuid=data, first=True)
-            if not group:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            group = data
-
-        return group.name or ""
-
-    def get_notes(self, data: Union[Entry, Group, UUID]) -> str:
-        """Get notes from an entry, a group or an uuid
-
-        :param data: a group or an uuid
-        :returns: notes or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            if self.check_is_group(data):
-                value: Union[Entry, Group] = self.db.find_groups(
-                    uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return ""
-            else:
-                value = self.db.find_entries(uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return ""
-        else:
-            value = data
-
-        return value.notes or ""
-
-    def get_icon(self, data: Union[Entry, Group, UUID]) -> Optional[int]:
-        """Get an entry icon from an entry, a group or an uuid
-
-        :param data: entry, group or uuid
-        :returns: icon number (int) or None in case of no/invalid icon data.
-                  Note that the number range could still be outside of the
-                  supported number range 0-68.
-        :rtype: Optional[int]
-        """
-        if isinstance(data, UUID):
-            if self.check_is_group(data):
-                value: Union[Entry, Group] = self.db.find_groups(
-                    uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-            else:
-                value = self.db.find_entries(uuid=data, first=True)
-                if not value:
-                    logging.warning(
-                        "Trying to look up a non-existing UUID %s, this "
-                        "should never happen", data)
-                    return None
-        else:
-            value = data
-        try:
-            icon = int(value.icon)
-        except TypeError:
-            return None
-        return icon
-
-    #
-    # Entry Transformation Methods
-    #
-
-    # Return the belonging entry object for a entry uuid
-    def get_entry_object_from_uuid(self, uuid):
-        return self.db.find_entries(uuid=uuid, first=True)
-
-    def get_entry_name(self, data: Union[Entry, UUID]) -> str:
-        """Get entry name from an uuid or an entry
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: UUID or Entry
-        :returns: entry name or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.title or ""
-
-    def get_entry_username(self, data: Union[Entry, UUID]) -> str:
-        """Get an entry username from an entry or an uuid
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: entry or uuid
-        :returns: entry username or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.username or ""
-
-    def get_entry_password(self, data: Union[Entry, UUID]) -> str:
-        """Get an entry password from an entry or an uuid
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: entry or uuid
-        :returns: entry password or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s , this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.password or ""
-
-    def get_entry_url(self, data: Union[Entry, UUID]) -> str:
-        """Get an entry url from an entry or an uuid
-
-        Passing in an Entry is more performant than passing in a UUID
-        as we avoid having to look up the entry.
-        :param data: UUID or Entry
-        :returns: entry url or an empty string if it does not exist
-        :rtype: str
-        """
-        if isinstance(data, UUID):
-            entry: Entry = self.db.find_entries(uuid=data, first=True)
-            if not entry:
-                logging.warning(
-                    "Trying to look up a non-existing UUID %s, this should "
-                    "never happen", data)
-                return ""
-        else:
-            entry = data
-
-        return entry.url or ""
-
-    #
     # Database Modifications
     #
 
     # Add new group to database
     def add_group_to_database(self, name, icon, notes, parent_group):
+        new_location = parent_group.uuid
         group = self.db.add_group(parent_group, name, icon=icon, notes=notes)
-        self.is_dirty = True
         self.set_element_mtime(parent_group)
+        safe_group = SafeGroup(self, group)
+        self.emit("element-added", safe_group, new_location)
 
-        return group
+        return safe_group
 
     # Add new entry to database
     def add_entry_to_database(
@@ -252,7 +71,7 @@ class DatabaseManager(GObject.GObject):
         name: Optional[str] = "",
         username: Optional[str] = "",
         password: Optional[str] = "",
-    ) -> Entry:
+    ) -> SafeEntry:
         force: bool = self.check_entry_in_group_exists("", group)
         entry = self.db.add_entry(
             group,
@@ -266,10 +85,11 @@ class DatabaseManager(GObject.GObject):
             icon="0",
             force_creation=force,
         )
-        self.is_dirty = True
         self.set_element_mtime(group)
+        safe_entry = SafeEntry(self, entry)
+        self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
 
-        return entry
+        return safe_entry
 
     # Delete an entry
     def delete_from_database(self, entity: Union[Entry, Group]) -> None:
@@ -282,7 +102,7 @@ class DatabaseManager(GObject.GObject):
         else:
             self.db.delete_group(entity)
 
-        self.is_dirty = True
+        self.emit("element-removed", entity.uuid)
         if entity.parentgroup is not None:
             self.set_element_mtime(entity.parentgroup)
 
@@ -307,7 +127,8 @@ class DatabaseManager(GObject.GObject):
             value: str = entry.custom_properties[key] or ""
             clone_entry.set_custom_property(key, value)
 
-        self.is_dirty = True
+        safe_entry = SafeEntry(self, clone_entry)
+        self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
         if entry.parentgroup is not None:
             self.set_element_mtime(entry.parentgroup)
 
@@ -363,90 +184,15 @@ class DatabaseManager(GObject.GObject):
     # Entry Modifications
     #
 
-    def set_entry_name(self, uuid, name):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.title = name
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_username(self, uuid, username):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.username = username
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_password(self, entry: Entry, password: str) -> None:
-        """Change the password and save it.
-
-        :param Entry entry: entry to change
-        :param password: new password
-        """
-        entry.password = password
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_url(self, uuid, url):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.url = url
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_notes(self, uuid, notes):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.notes = notes
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_icon(self, uuid, icon):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.icon = icon
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_color(self, uuid, color):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        entry.set_custom_property("color_prop_LcljUMJZ9X", color)
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def set_entry_attribute(self, entry: Entry, key: str, value: str) -> None:
-        """Set an entry attribute.
-
-        :param Entry entry: entry to modify
-        :param key: key of the attribute
-        :param value: value of the attribute
-        """
-        entry.set_custom_property(key, value)
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def delete_entry_attribute(self, entry: Entry, key: str) -> None:
-        """Delete an entry attribute.
-
-        :param Entry entry: entry to modify
-        :param str key: the attribute key
-        """
-        entry.delete_custom_property(key)
-        self.is_dirty = True
-        self.set_element_mtime(entry)
-
-    def add_entry_attachment(self, uuid, byte_buffer, filename):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        attachment_id = self.db.add_binary(byte_buffer)
-        attachment = entry.add_attachment(attachment_id, filename)
-        self.is_dirty = True
-        return attachment
-
-    def delete_entry_attachment(self, attachment):
-        try:
-            self.db.delete_binary(attachment.id)
-        except Exception:  # pylint: disable=broad-except
-            logging.warning("Failed to delete attachment.")
-        self.is_dirty = True
-
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)
+        old_location = entry.parentgroup.uuid
+        new_location = destination_group_object.uuid
+
+        if old_location == new_location:
+            return
+
         # TODO: we will crash if uuid does not exist
         self.db.move_entry(entry, destination_group_object)
         # pylint: disable=no-member
@@ -454,53 +200,35 @@ class DatabaseManager(GObject.GObject):
             self.set_element_mtime(entry.parentgroup)
         self.set_element_mtime(destination_group_object)
 
+        safe_entry = SafeEntry(self, entry)
+
+        self.emit("element-moved", safe_entry, old_location, new_location)
+
     def set_element_atime(self, element):
-        element.atime = datetime.utcnow()
+        element.atime = datetime.now()
 
     def set_element_mtime(self, element):
-        element.mtime = datetime.utcnow()
-
-    #
-    # Group Modifications
-    #
-
-    def set_group_name(self, uuid, name):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        group.name = name
-        self.is_dirty = True
-        self.set_element_mtime(group)
-
-    def set_group_notes(self, uuid, notes):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        group.notes = notes
-        self.is_dirty = True
-        self.set_element_mtime(group)
-
-    def set_group_icon(self, uuid, icon):
-        group = self.db.find_groups(uuid=uuid, first=True)
-        group.icon = icon
-        self.is_dirty = True
-        self.set_element_mtime(group)
+        element.mtime = datetime.now()
 
     # Move an group
     def move_group(self, group: Group, dest_group: Group) -> None:
+        old_location = group.parentgroup.uuid
+        new_location = dest_group.uuid
+
+        if old_location == new_location:
+            return
+
         self.db.move_group(group, dest_group)
         if group.parentgroup is not None:
             self.set_element_mtime(group.parentgroup)
         self.set_element_mtime(dest_group)
-        self.is_dirty = True
+
+        safe_group = SafeGroup(self, group)
+        self.emit("element-moved", safe_group, old_location, new_location)
 
     #
     # Read Database
     #
-
-    # Return the root group of the database instance
-    def get_root_group(self):
-        return self.db.root_group
-
-    # Check if root group
-    def check_is_root_group(self, group):
-        return group.is_root_group
 
     # Check if entry with title in group exists
     def check_entry_in_group_exists(self, title, group):
@@ -509,90 +237,24 @@ class DatabaseManager(GObject.GObject):
             return False
         return True
 
-    # Search for an entry or a group
-    def search(self, string: str, path: str) -> List[Union[Entry, Group]]:
-        full_text_search = passwordsafe.config_manager.get_full_text_search()
-        global_search = not passwordsafe.config_manager.get_local_search()
-        results: List[Union[Entry, Group]] = []
-
-        def search_entry(entry: Union[Entry, Group], lookfor: List[Union[None, str]]) -> None:
-            """Looks if the querry string appears in any on the items of lookfor.
-            If there is a match adds the entry to the uuid_list.
-            """
-            for term in lookfor:
-                if term is None:
-                    continue
-                if string.lower() in term.lower():
-                    if global_search and entry not in results:
-                        results.append(entry)
-                    elif entry.parentgroup is not None:
-                        parent_group: Group = entry.parentgroup
-                        if parent_group.path == path and entry not in results:
-                            results.append(entry)
-
-        for group in self.db.groups:
-            if group.is_root_group is False:
-                search_entry(group, [group.name])
-                if full_text_search:
-                    notes = group.notes
-                    search_entry(group, [notes])
-
-        for entry in self.db.entries:
-            search_entry(entry, [entry.title])
-            if full_text_search:
-                username = entry.username
-                notes = entry.notes
-                url = entry.url
-                search_entry(entry, [username, notes, url])
-
-        return results
-
-    def check_is_group(self, uuid):
-        """Whether uuid is a group uuid"""
-        return self.get_group(uuid) is not None
-
-    def check_is_group_object(self, group):
-        return isinstance(group, Group)
-
-    def get_attachment_from_id(self, attachment_id):
-        return self.db.find_attachments(id=attachment_id, first=True)
-
     #
     # Properties
     #
 
-    def get_element_creation_date(self, element: Union[SafeEntry, Group]) -> str:
+    def get_element_creation_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups creation time or ''"""
-        if isinstance(element, SafeEntry):
-            elem = element.entry
-        else:
-            elem = element
+        elem = element.element
+        return format_time(elem.ctime)
 
-        if elem.ctime is None:
-            return ""
-        return elem.ctime.strftime("%x %X")
-
-    def get_element_acessed_date(self, element: Union[SafeEntry, Group]) -> str:
+    def get_element_acessed_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups access time or ''"""
-        if isinstance(element, SafeEntry):
-            elem = element.entry
-        else:
-            elem = element
+        elem = element.element
+        return format_time(elem.atime)
 
-        if elem.atime is None:
-            return ""
-        return elem.atime.strftime("%x %X")
-
-    def get_element_modified_date(self, element: Union[SafeEntry, Group]) -> str:
+    def get_element_modified_date(self, element: SafeElement) -> str:
         """Returns a string of the Entry|Groups modification time or ''"""
-        if isinstance(element, SafeEntry):
-            elem = element.entry
-        else:
-            elem = element
-
-        if elem.mtime is None:
-            return ""
-        return elem.mtime.strftime("%x %X")
+        elem = element.element
+        return format_time(elem.mtime)
 
     #
     # Database creation methods
@@ -658,3 +320,23 @@ class DatabaseManager(GObject.GObject):
     @GObject.Signal(arg_types=(bool,))
     def save_notification(self, _saved):
         return
+
+    @GObject.Signal(arg_types=(SafeElement, object,))
+    def element_added(self, _element: SafeElement, _parent_uuid: UUID) -> None:
+        """Signal emitted when a new element was added to the database
+        it carries the UUID in string format of the parent group to which
+        the entrie was added."""
+        self.is_dirty = True
+        logging.debug("Added new element to safe")
+
+    @GObject.Signal(arg_types=(object,))
+    def element_removed(self, element_uuid: UUID) -> None:
+        self.is_dirty = True
+        logging.debug("Element %s removed from safe", element_uuid)
+
+    @GObject.Signal(arg_types=(SafeElement, object, object))
+    def element_moved(
+        self, moved_element: SafeElement, _old_location_uuid: UUID, _new_location_uuid: UUID
+    ) -> None:
+        self.is_dirty = True
+        logging.debug("Element moved safe")

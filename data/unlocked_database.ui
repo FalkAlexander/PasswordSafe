@@ -2,49 +2,60 @@
 <interface>
   <object class="GtkBox" id="divider">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
     <child>
-      <object class="GtkStack" id="_unlocked_db_stack">
+      <object class="GtkStack" id="_unlocked_db_deck">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <child>
-          <object class="GtkStack" id="list_stack">
+          <object class="GtkStack" id="_unlocked_db_stack">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkStack" id="list_stack">
+                <property name="visible">True</property>
+              </object>
+            </child>
           </object>
-          <packing>
-            <property name="name">browser</property>
-          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="_edit_page_box">
+            <property name="visible">True</property>
+          </object>
         </child>
       </object>
     </child>
     <child>
       <object class="GtkRevealer" id="revealer">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="valign">end</property>
         <property name="transition_type">slide-up</property>
         <property name="reveal_child">False</property>
         <child>
           <object class="GtkActionBar" id="action_bar">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="valign">end</property>
           </object>
         </child>
       </object>
     </child>
   </object>
-  <object class="GtkOverlay" id="empty_group_overlay">
+  <object class="GtkStack" id="browser_stack">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">True</property>
+    <child>
+      <object class="HdyClamp" id="browser_clamp">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkListBox" id="list_box">
+            <property name="name">BrowserListBox</property>
+            <property name="visible">True</property>
+            <property name="valign">start</property>
+            <property name="selection_mode">none</property>
+          </object>
+        </child>
+      </object>
+    </child>
     <child>
       <object class="GtkBox" id="empty_group_box">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
@@ -53,7 +64,6 @@
           <object class="GtkImage">
             <property name="name">empty_group_image</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="valign">end</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
@@ -65,7 +75,6 @@
           <object class="GtkLabel">
             <property name="name">empty_group_label</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="valign">start</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
@@ -76,35 +85,6 @@
             </attributes>
           </object>
         </child>
-      </object>
-      <packing>
-        <property name="index">-1</property>
-      </packing>
-    </child>
-  </object>
-  <object class="HdyClamp" id="browser_clamp">
-    <property name="visible">True</property>
-    <child>
-      <object class="GtkListBox" id="list_box">
-        <property name="name">BrowserListBox</property>
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="valign">start</property>
-        <property name="selection_mode">none</property>
-      </object>
-    </child>
-  </object>
-  <object class="GtkListBoxRow" id="load_more_row">
-    <property name="name">LoadMoreRow</property>
-    <property name="height_request">40</property>
-    <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="selectable">False</property>
-    <child>
-      <object class="GtkImage">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="icon_name">view-more-symbolic</property>
       </object>
     </child>
   </object>

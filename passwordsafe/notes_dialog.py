@@ -12,7 +12,6 @@ class NotesDialog:
         self.__unlocked_database = unlocked_database
         self.__safe_entry = safe_entry
         self.__dialog = self.__builder.get_object("notes_detached_dialog")
-        self.__scrolled_page = self.__unlocked_database.get_current_page()
         self.__accelerators = Gtk.AccelGroup()
         self.__search_stopped = False
 
@@ -76,6 +75,8 @@ class NotesDialog:
         )
 
     def __on_search_button_toggled(self, _button):
+        self.__unlocked_database.start_database_lock_timer()
+
         if self.__search_stopped is True:
             return
         self.__toggle_search_bar()
@@ -87,6 +88,8 @@ class NotesDialog:
             self.__search_bar.set_search_mode(True)
 
     def __on_search_entry_changed(self, entry):
+        self.__unlocked_database.start_database_lock_timer()
+
         notes_buffer = self.__notes_buffer
 
         notes_buffer.remove_all_tags(
@@ -118,6 +121,8 @@ class NotesDialog:
     def __on_key_press_event(self, _window: Handy.Window, event: Gtk.Event) -> bool:
         if event.keyval == Gdk.KEY_Escape:
             if not self.__search_bar.get_search_mode():
+                self.__unlocked_database.start_database_lock_timer()
+
                 self.__dialog.close()
                 return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE

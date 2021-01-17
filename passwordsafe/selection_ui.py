@@ -3,20 +3,20 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
+from logging import debug
 from typing import List
-from gi.repository import GObject, Gtk
+
+from gi.repository import Gio, GObject, Gtk
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
+
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/selection_ui.ui")
 class SelectionUI(Gtk.Box):
-    #
-    # Global Variables
-    #
 
     __gtype_name__ = "SelectionUI"
 
@@ -30,14 +30,15 @@ class SelectionUI(Gtk.Box):
     entries_cut: List[EntryRow] = []
     groups_cut: List[GroupRow] = []
 
-    _cancel_button = Gtk.Template.Child()
+    hidden_rows = Gio.ListStore.new(Gtk.ListBoxRow)
+
     _cut_paste_button = Gtk.Template.Child()
     _cut_paste_image = Gtk.Template.Child()
     _delete_button = Gtk.Template.Child()
 
-    #
-    # Init
-    #
+    selected_elements = GObject.Property(
+        type=int, default=0, flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(self, u_d):
         super().__init__()
@@ -52,47 +53,21 @@ class SelectionUI(Gtk.Box):
             GObject.BindingFlags.SYNC_CREATE)
 
     def _on_selection_mode_changed(
-            self, unlocked_database: UnlockedDatabase,
-            value: GObject.ParamSpec) -> None:
-        # pylint: disable=unused-argument
-        if self.unlocked_database.selection_mode:
-            self._enter_selection_mode()
-        else:
-            self._exit_selection_mode()
+        self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
+    ) -> None:
+        if not unlocked_database.selection_mode:
+            self._clear_all()
 
-    #
-    # Selection Mode
-    #
-
-    # Selection headerbar
-    def _enter_selection_mode(self):
-        self._delete_button.set_sensitive(False)
-        self._cut_paste_button.set_sensitive(False)
-
-    def _exit_selection_mode(self):
-        self.cut_mode = True
-        self.unlocked_database.show_page_of_new_directory(False, False)
-
-    #
     # Events
-    #
-
-    @Gtk.Template.Callback()
-    def _on_cancel_button_clicked(self, _widget):
-        self.unlocked_database.props.selection_mode = False
-        self.unlocked_database.show_page_of_new_directory(False, False)
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _widget):
-        rebuild_pathbar = False
-        reset_stack_page = False
-        group = None
+        self.unlocked_database.start_database_lock_timer()
 
         # Abort the operation if there is a groups which is in the pathbar,
         # i.e. if it is a parent of the current view.
         for group_row in self.groups_selected:
-            group_uuid = group_row.get_uuid()
-            group = self.unlocked_database.database_manager.get_group(group_uuid)
+            group = group_row.safe_group.group
             if self.unlocked_database.database_manager.parent_checker(
                     self.unlocked_database.current_element,
                     group
@@ -102,51 +77,21 @@ class SelectionUI(Gtk.Box):
 
         for entry_row in self.entries_selected:
             safe_entry = entry_row.safe_entry
-            # If the deleted entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(safe_entry.uuid):
-                rebuild_pathbar = True
-
             self.unlocked_database.database_manager.delete_from_database(
                 safe_entry.entry)
 
         for group_row in self.groups_selected:
-            group = self.unlocked_database.database_manager.get_group(group_row.get_uuid())
-            self.unlocked_database.database_manager.delete_from_database(group)
-
-            group_uuid = group.uuid
-            current_uuid = self.unlocked_database.current_element.uuid
-            if group_uuid == current_uuid:
-                rebuild_pathbar = True
-                reset_stack_page = True
-
-        for stack_page in self.unlocked_database.get_pages():
-            if stack_page.edit_page is False:
-                stack_page.destroy()
-
-        self.unlocked_database.show_page_of_new_directory(False, False)
-
-        if rebuild_pathbar is True:
-            self.unlocked_database.pathbar.rebuild_pathbar(
-                self.unlocked_database.current_element)
-
-        if reset_stack_page is True:
-            root_group = self.unlocked_database.database_manager.get_root_group()
-            self.unlocked_database.current_element = root_group
+            safe_group = group_row.safe_group
+            self.unlocked_database.database_manager.delete_from_database(safe_group.group)
 
         self.unlocked_database.window.notify(_("Deletion completed"))
 
-        self.entries_selected.clear()
-        self.groups_selected.clear()
-        self._delete_button.set_sensitive(False)
-        self._cut_paste_button.set_sensitive(False)
-
-        # It is more efficient to do this here and not in the database manager loop
-        self.unlocked_database.database_manager.is_dirty = True
+        self._clear_all()
 
     @Gtk.Template.Callback()
     def _on_cut_paste_button_clicked(self, _widget):
         # pylint: disable=too-many-branches
-        rebuild_pathbar = False
+        self.unlocked_database.start_database_lock_timer()
 
         if self.cut_mode is True:
             self.entries_cut = self.entries_selected
@@ -154,23 +99,15 @@ class SelectionUI(Gtk.Box):
             self._cut_paste_image.set_from_icon_name("edit-paste-symbolic", Gtk.IconSize.BUTTON)
             for group_row in self.groups_selected:
                 group_row.hide()
+                self.hidden_rows.append(group_row)
             for entry_row in self.entries_selected:
                 entry_row.hide()
+                self.hidden_rows.append(entry_row)
 
             # Do not allow to delete the entries or rows
             # that were selected to be cut.
             if self.entries_selected or self.groups_selected:
                 self._delete_button.set_sensitive(False)
-
-            rebuild = False
-            for button in self.unlocked_database.pathbar.buttons:
-                for group_row in self.groups_cut:
-                    if button.element.uuid == group_row.get_uuid():
-                        rebuild = True
-
-            if rebuild is True:
-                self.unlocked_database.pathbar.rebuild_pathbar(
-                    self.unlocked_database.current_element)
 
             self.cut_mode = False
             return
@@ -180,55 +117,38 @@ class SelectionUI(Gtk.Box):
         )
         self.cut_mode = True
 
+        # Abort the entire operation if one of the selected groups is a parent of
+        # the current group.
+        for group_row in self.groups_cut:
+            group = group_row.safe_group.group
+            current_element = self.unlocked_database.current_element
+            if self.unlocked_database.database_manager.parent_checker(
+                current_element, group
+            ):
+                self.unlocked_database.window.notify(
+                    _("Operation aborted: Moving currently active group")
+                )
+                self._clear_all()
+                return
+
         for entry_row in self.entries_cut:
             safe_entry = entry_row.safe_entry
             self.unlocked_database.database_manager.move_entry(
-                safe_entry.uuid, self.unlocked_database.current_element)
-            # If the moved entry is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(safe_entry.uuid):
-                rebuild_pathbar = True
-
-        move_conflict = False
+                safe_entry.uuid, self.unlocked_database.current_element.group)
 
         for group_row in self.groups_cut:
-            group_uuid = group_row.get_uuid()
-            group = self.unlocked_database.database_manager.get_group(group_uuid)
+            group = group_row.safe_group.group
             current_element = self.unlocked_database.current_element
-            if not self.unlocked_database.database_manager.parent_checker(
-                current_element, group
-            ):
-                self.unlocked_database.database_manager.move_group(
-                    group, current_element
-                )
-            else:
-                move_conflict = True
-            # If the moved group is in the pathbar, we need to rebuild the pathbar
-            if self.unlocked_database.pathbar.uuid_in_pathbar(group_uuid):
-                rebuild_pathbar = True
+            self.unlocked_database.database_manager.move_group(
+                group, current_element.element
+            )
 
-        for stack_page in self.unlocked_database.get_pages():
-            if stack_page.edit_page is False:
-                stack_page.destroy()
-
-        self.unlocked_database.show_page_of_new_directory(False, False)
-
-        if rebuild_pathbar is True:
-            self.unlocked_database.pathbar.rebuild_pathbar(
-                self.unlocked_database.current_element)
-
-        if move_conflict is False:
-            self.unlocked_database.window.notify(_("Move completed"))
-        else:
-            self.unlocked_database.window.notify(_("Skipped moving group into itself"))
-
-        self.entries_cut.clear()
-        self.groups_cut.clear()
-        self.entries_selected.clear()
-        self.groups_selected.clear()
-        self._delete_button.set_sensitive(False)
-        self._cut_paste_button.set_sensitive(False)
+        self.unlocked_database.window.notify(_("Move completed"))
+        self._clear_all()
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):
+        self.unlocked_database.start_database_lock_timer()
+
         page = self.unlocked_database.get_current_page()
         viewport = page.get_children()[0]
         overlay = viewport.get_children()[0]
@@ -243,9 +163,7 @@ class SelectionUI(Gtk.Box):
             else:
                 row.selection_checkbox.set_active(False)
 
-    #
-    # Helper
-    #
+    # Helpers
 
     def add_entry(self, entry: EntryRow) -> None:
         """Add an entry to selection
@@ -281,15 +199,39 @@ class SelectionUI(Gtk.Box):
         """
         if group in self.groups_selected:
             self.groups_selected.remove(group)
-            self._update_selection()
+
+        self._update_selection()
 
     def _update_selection(self) -> None:
         non_empty_selection = self.entries_selected or self.groups_selected
         self._cut_paste_button.set_sensitive(non_empty_selection)
         self._delete_button.set_sensitive(non_empty_selection)
 
-        if not self.cut_mode:
-            self.entries_cut.clear()
-            self.groups_cut.clear()
-            self._cut_paste_image.set_from_icon_name(
-                "edit-cut-symbolic", Gtk.IconSize.BUTTON)
+        self.props.selected_elements = len(self.entries_selected) + len(
+            self.groups_selected
+        )
+
+    def _clear_all(self) -> None:
+        """Resets everything to the default state"""
+        self.cut_mode = True
+        self.entries_cut.clear()
+        self.groups_cut.clear()
+        self.entries_selected.clear()
+        self.groups_selected.clear()
+        self._delete_button.set_sensitive(False)
+        self._cut_paste_button.set_sensitive(False)
+        self._cut_paste_image.set_from_icon_name(
+            "edit-cut-symbolic", Gtk.IconSize.BUTTON
+        )
+        for row in self.hidden_rows:
+            row.show()
+
+        self.hidden_rows.remove_all()
+        self.emit("clear-selection")
+
+    @GObject.Signal()
+    def clear_selection(self):
+        """Signal emited to tell all list models that they should unselect
+        their entries. It differs from the action app.selection.none, since
+        the later removes seleced entries only for the visible listbox."""
+        debug("Clear selection signal emited")

@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import logging
 import typing
+from gettext import gettext as _
 from typing import Optional
-from uuid import UUID
 
 from gi.repository import Gdk, Gtk
 
@@ -12,9 +12,10 @@ import passwordsafe.config_manager
 import passwordsafe.password_generator as pwd_generator
 from passwordsafe.history_buffer import HistoryEntryBuffer
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
+
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
-    from passwordsafe.safe_entry import SafeEntry
+    from passwordsafe.safe_element import SafeEntry
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
@@ -63,8 +64,10 @@ class PasswordEntryRow(Gtk.Box):
         self._set_password_level_bar()
 
     @Gtk.Template.Callback()
-    def _on_copy_password_button_clicked(self, _widget: Gtk.ToggleButton) -> None:
-        self._unlocked_database.send_to_clipboard(self._password_value_entry.props.text)
+    def _on_copy_password_button_clicked(self, _widget: Gtk.Button) -> None:
+        self._unlocked_database.send_to_clipboard(
+            self._password_value_entry.props.text, _("Password copied to clipboard")
+        )
 
     @Gtk.Template.Callback()
     def _on_password_value_changed(self, _widget: Gtk.Entry) -> None:
@@ -94,9 +97,7 @@ class PasswordEntryRow(Gtk.Box):
 
         if pwd_text.startswith("{REF:P"):
             try:
-                uuid: UUID = UUID(
-                    self._unlocked_database.reference_to_hex_uuid(pwd_text))
-                password: str = self._db_manager.get_entry_password(uuid)
+                password: str = self._safe_entry.password
             except ValueError:
                 logging.warning(
                     "Failed to look up password for reference '%s'", password)

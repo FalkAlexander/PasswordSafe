@@ -1,7 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import logging
 from enum import IntEnum
-from gi.repository import GLib, Gio
+from typing import cast
+
+from gi.repository import Gio, GLib
+
+from passwordsafe.sorting import SortingHat
 
 setting = Gio.Settings.new("org.gnome.PasswordSafe")
 
@@ -175,25 +179,10 @@ def set_window_size(lis):
     setting.set_value(WINDOW_SIZE, g_variant)
 
 
-def get_sort_order():
-    value = setting.get_enum(SORT_ORDER)
-    if value == 0:
-        return "A-Z"
-    if value == 1:
-        return "Z-A"
-    if value == 2:
-        return "last_added"
-    logging.warning("Retrieving unknown sort order")
-    return None
-
-
-def set_sort_order(value):
-    if value == "A-Z":
-        setting.set_enum(SORT_ORDER, 0)
-    elif value == "Z-A":
-        setting.set_enum(SORT_ORDER, 1)
-    elif value == "last_added":
-        setting.set_enum(SORT_ORDER, 2)
+def get_sort_order() -> SortingHat.SortOrder:
+    """Returns the sort order as Enum of type SortingHat.SortOrder"""
+    value = cast(SortingHat.SortOrder, setting.get_enum(SORT_ORDER))
+    return value
 
 
 def get_last_opened_list():

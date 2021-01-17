@@ -26,6 +26,7 @@ class Application(Gtk.Application):
     file_list: List[Gio.File] = []
     development_mode = False
     application_id = "org.gnome.PasswordSafe"
+    settings = Gio.Settings.new(application_id)
 
     def __init__(self, *args, **_kwargs):
         app_flags = Gio.ApplicationFlags.HANDLES_OPEN

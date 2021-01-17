@@ -50,26 +50,6 @@ class DatabaseManager(GObject.GObject):
         self.database_path = database_path
 
     #
-    # Group Transformation Methods
-    #
-
-    def get_group(self, uuid: UUID) -> Optional[Group]:
-        """Return the group object for a group uuid
-
-        :returns: a `pykeepass.group.Group` object or None if it does not exist
-        """
-        assert isinstance(uuid, UUID), "uuid needs to be of type UUID"
-        return self.db.find_groups(uuid=uuid, first=True)
-
-    #
-    # Entry Transformation Methods
-    #
-
-    # Return the belonging entry object for a entry uuid
-    def get_entry_object_from_uuid(self, uuid):
-        return self.db.find_entries(uuid=uuid, first=True)
-
-    #
     # Database Modifications
     #
 

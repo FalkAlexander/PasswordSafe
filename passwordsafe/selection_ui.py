@@ -67,8 +67,7 @@ class SelectionUI(Gtk.Box):
         # Abort the operation if there is a groups which is in the pathbar,
         # i.e. if it is a parent of the current view.
         for group_row in self.groups_selected:
-            group_uuid = group_row.safe_group.uuid
-            group = self.unlocked_database.database_manager.get_group(group_uuid)
+            group = group_row.safe_group.group
             if self.unlocked_database.database_manager.parent_checker(
                     self.unlocked_database.current_element,
                     group

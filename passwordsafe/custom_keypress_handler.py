@@ -33,9 +33,9 @@ class CustomKeypressHandler:
         edit_page = self.unlocked_database.in_edit_page
 
         if (
-                not edit_page
-                and state & Gdk.ModifierType.MOD1_MASK == 0
-                and Gdk.keyval_to_unicode(keyval) != 0
+            not edit_page
+            and state & Gdk.ModifierType.ALT_MASK == 0
+            and Gdk.keyval_to_unicode(keyval) != 0
         ):
             self.unlocked_database.props.search_active = True
 

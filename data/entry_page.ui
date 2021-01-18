@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="EntryPage" parent="GtkScrolledWindow">
-    <property name="visible">True</property>
     <property name="hexpand">True</property>
     <property name="hscrollbar_policy">never</property>
     <property name="vscrollbar_policy">automatic</property>
@@ -24,24 +23,20 @@
     </child>
     <child>
       <object class="HdyClamp">
-        <property name="visible">True</property>
         <property name="margin_top">30</property>
         <property name="margin_bottom">30</property>
         <property name="margin_start">12</property>
         <property name="margin_end">12</property>
         <child>
           <object class="GtkBox" id="properties_box">
-            <property name="visible">True</property>
             <property name="spacing">12</property>
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkBox" id="name_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="name_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_Title</property>
                     <property name="use_underline">True</property>
@@ -53,7 +48,6 @@
                 </child>
                 <child>
                   <object class="GtkEntry" id="name_property_value_entry">
-                    <property name="visible">True</property>
                     <property name="input_purpose">name</property>
                     <property name="receives_default">True</property>
                     <property name="enable_undo">False</property>
@@ -63,12 +57,10 @@
             </child>
             <child>
               <object class="GtkBox" id="username_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="username_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_Username</property>
                     <property name="use_underline">True</property>
@@ -80,11 +72,9 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="username_entry_box">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkEntry" id="username_property_value_entry">
-                        <property name="visible">True</property>
                         <property name="secondary_icon_name">edit-copy-symbolic</property>
                         <property name="enable_undo">False</property>
                         <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
@@ -96,17 +86,14 @@
             </child>
             <child>
               <object class="GtkBox" id="password_property_box">
-                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkBox" id="otp_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="otp_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">One-_Time Password Secret</property>
                     <property name="use_underline">True</property>
@@ -118,12 +105,9 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="otp_entry_box">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="hexpand">True</property>
                     <child>
                       <object class="GtkEntry" id="otp_property_value_entry">
-                        <property name="visible">True</property>
                         <property name="hexpand">True</property>
                         <property name="secondary_icon_name">user-not-tracked-symbolic</property>
                         <signal name="icon-press" handler="on_show_otp_secret_button_toggled" swapped="no"/>
@@ -135,11 +119,11 @@
             </child>
             <child>
               <object class="GtkBox" id="otp_generated_token_box">
+                <property name="visible">False</property>
                 <property name="orientation">vertical</property>
                 <property name="hexpand">True</property>
                 <child>
                   <object class="GtkLabel" id="otp_generated_token_label">
-                    <property name="visible">True</property>
                     <property name="label" translatable="yes">_One-Time Password</property>
                     <property name="halign">start</property>
                     <property name="use_underline">True</property>
@@ -151,12 +135,10 @@
                 </child>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
                     <property name="spacing">12</property>
                     <property name="hexpand">True</property>
                     <child>
                       <object class="GtkLabel" id="otp_generated_token">
-                        <property name="visible">True</property>
                         <property name="halign">start</property>
                         <property name="hexpand">True</property>
                         <attributes>
@@ -169,21 +151,16 @@
                     <!-- <child> -->
                     <!--   <object class="DzlProgressIcon" id="otp_lifespan_icon"> -->
                     <!--     <property name="halign">end</property> -->
-                    <!--     <property name="visible">True</property> -->
                     <!--   </object> -->
                     <!-- </child> -->
                     <child>
                       <object class="GtkButton" id="otp_copy_button">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="halign">end</property>
                         <property name="tooltip_text" translatable="yes">Copy one-time password to clipboard</property>
                         <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="otp_copy_button_image">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="icon_name">edit-copy-symbolic</property>
                           </object>
                         </child>
@@ -195,12 +172,10 @@
             </child>
             <child>
               <object class="GtkBox" id="url_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="url_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">U_RL</property>
                     <property name="use_underline">True</property>
@@ -212,11 +187,9 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="url_entry_box">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkEntry" id="url_property_value_entry">
-                        <property name="visible">True</property>
                         <property name="secondary_icon_name">send-to-symbolic</property>
                         <property name="enable_undo">False</property>
                         <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
@@ -228,15 +201,12 @@
             </child>
             <child>
               <object class="GtkBox" id="notes_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkBox" id="notes_label_box">
-                    <property name="visible">True</property>
                     <child>
                       <object class="GtkLabel" id="notes_property_name_label">
-                        <property name="visible">True</property>
                         <property name="halign">start</property>
                         <property name="valign">end</property>
                         <property name="hexpand">True</property>
@@ -250,7 +220,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="notes_detach_button">
-                        <property name="visible">True</property>
                         <property name="halign">end</property>
                         <property name="receives_default">True</property>
                         <property name="icon_name">focus-windows-symbolic</property>
@@ -265,15 +234,12 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="notes_entry_box">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
                         <property name="height_request">100</property>
-                        <property name="visible">True</property>
                         <child>
                           <object class="GtkTextView" id="notes_property_value_entry">
-                            <property name="visible">True</property>
                             <property name="wrap_mode">word</property>
                             <property name="left_margin">8</property>
                             <property name="right_margin">8</property>
@@ -289,17 +255,14 @@
             </child>
             <child>
               <object class="GtkBox" id="color_property_box">
-                <property name="visible">True</property>
               </object>
             </child>
             <child>
               <object class="GtkBox" id="icon_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="icon_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Icon</property>
                     <style>
@@ -309,10 +272,8 @@
                 </child>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
                     <child>
                       <object class="GtkFlowBox" id="icon_entry_box">
-                        <property name="visible">True</property>
                         <property name="selection-mode">single</property>
                         <property name="max-children-per-line">10</property>
                         <property name="min-children-per-line">5</property>
@@ -329,12 +290,10 @@
             </child>
             <child>
               <object class="GtkBox" id="attachment_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="attachment_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Attachments</property>
                     <style>
@@ -344,38 +303,31 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="attachment_entry_box">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkScrolledWindow" id="attachment_scrolled_window">
-                        <property name="visible">True</property>
                         <property name="hscrollbar_policy">never</property>
                         <property name="vscrollbar_policy">never</property>
                         <property name="propagate_natural_height">True</property>
                         <child>
                           <object class="GtkListBox" id="attachment_list_box">
-                            <property name="visible">True</property>
                             <property name="selection_mode">none</property>
                             <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
                             <child>
                               <object class="GtkListBoxRow" id="add_attachment_row">
                                 <property name="name">AddAttachmentRow</property>
                                 <property name="height_request">50</property>
-                                <property name="visible">True</property>
                                 <child>
                                   <object class="GtkBox">
-                                    <property name="visible">True</property>
                                     <property name="halign">center</property>
                                     <property name="spacing">6</property>
                                     <child>
                                       <object class="GtkImage">
-                                        <property name="visible">True</property>
                                         <property name="icon_name">list-add-symbolic</property>
                                       </object>
                                     </child>
                                     <child>
                                       <object class="GtkLabel">
-                                        <property name="visible">True</property>
                                         <property name="label" translatable="yes">_Add Attachment</property>
                                         <property name="use_underline">True</property>
                                       </object>
@@ -397,12 +349,10 @@
             </child>
             <child>
               <object class="GtkBox" id="attributes_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="attributes_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Attributes</property>
                     <style>
@@ -412,16 +362,13 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="attributes_entry_box">
-                    <property name="visible">True</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkBox">
-                        <property name="visible">True</property>
                         <property name="hexpand">True</property>
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkEntry" id="attributes_key_entry">
-                            <property name="visible">True</property>
                             <property name="width_chars">10</property>
                             <property name="placeholder_text" translatable="yes">Key</property>
                             <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
@@ -429,7 +376,6 @@
                         </child>
                         <child>
                           <object class="GtkEntry" id="attributes_value_entry">
-                            <property name="visible">True</property>
                             <property name="placeholder_text" translatable="yes">Value</property>
                             <signal name="activate" handler="on_attributes_add_button_clicked" swapped="no"/>
                           </object>
@@ -441,7 +387,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="attributes_add_button">
-                        <property name="visible">True</property>
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Add attribute</property>
                         <property name="halign">end</property>
@@ -453,7 +398,6 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="attribute_list_box">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <property name="margin_top">6</property>
@@ -469,14 +413,12 @@
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkSeparator">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                     <property name="hexpand">True</property>
                   </object>
                 </child>
                 <child>
                   <object class="GtkButton" id="show_all_properties_button">
-                    <property name="visible">True</property>
                     <property name="receives_default">True</property>
                     <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
                     <property name="icon_name">pan-down-symbolic</property>
@@ -488,7 +430,6 @@
                 </child>
                 <child>
                   <object class="GtkSeparator">
-                    <property name="visible">True</property>
                     <property name="valign">center</property>
                     <property name="hexpand">True</property>
                   </object>

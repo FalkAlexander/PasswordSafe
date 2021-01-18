@@ -25,10 +25,7 @@ class PathbarButton(Gtk.Button):
         self.element: SafeElement = element
 
         if element.is_root_group:
-            home_button_image = Gtk.Image.new_from_icon_name(
-                "go-home-symbolic", Gtk.IconSize.BUTTON
-            )
-            self.set_child(home_button_image)
+            self.set_icon_name("go-home-symbolic")
             return
 
         self.element.bind_property(

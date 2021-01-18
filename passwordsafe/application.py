@@ -32,6 +32,8 @@ class Application(Gtk.Application):
         app_flags = Gio.ApplicationFlags.HANDLES_OPEN
         super().__init__(*args, application_id=self.application_id, flags=app_flags)
 
+        self.set_resource_base_path("/org/gnome/PasswordSafe")
+
         # debug level logging option
         self.add_main_option("debug", ord("d"), GLib.OptionFlags.NONE,
                              GLib.OptionArg.NONE,

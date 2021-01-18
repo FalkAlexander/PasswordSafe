@@ -82,9 +82,9 @@ class ReferencesDialog():
             return Gdk.EVENT_STOP
         return Gdk.EVENT_PROPAGATE
 
-    def __on_copy_secondary_button_clicked(self, widget, _position, _eventbutton):
+    def __on_copy_secondary_button_clicked(self, entry, _position):
         self.__unlocked_database.start_database_lock_timer()
-        self.__unlocked_database.clipboard.set(widget.get_text())
+        self.__unlocked_database.clipboard.set(entry.get_text())
 
     def __on_property_model_button_clicked(self, action: Gio.SimpleAction, _data: Any = None) -> None:
         self.__unlocked_database.start_database_lock_timer()

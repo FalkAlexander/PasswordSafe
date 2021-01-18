@@ -44,7 +44,6 @@ class UnlockedDatabase(GObject.GObject):
     headerbar = NotImplemented
     scrolled_window = NotImplemented
     divider = NotImplemented
-    revealer = NotImplemented
     action_bar = NotImplemented
     pathbar = NotImplemented
 
@@ -126,9 +125,9 @@ class UnlockedDatabase(GObject.GObject):
     def assemble_listbox(self):
         self._edit_page_box = self.builder.get_object("_edit_page_box")
         self.pathbar = Pathbar(self, self.database_manager)
+        self.mobile_pathbar = Pathbar(self, self.database_manager)
         self._stack = self.builder.get_object("list_stack")
         self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
-        self.revealer = self.builder.get_object("revealer")
         self.action_bar = self.builder.get_object("action_bar")
         self._unlocked_db_deck = self.builder.get_object("_unlocked_db_deck")
 

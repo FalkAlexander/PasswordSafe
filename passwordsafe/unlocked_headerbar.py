@@ -48,6 +48,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._action_bar = unlocked_database.action_bar
         self._db_manager = unlocked_database.database_manager
         self._pathbar = unlocked_database.pathbar
+        self._mobile_pathbar = unlocked_database.mobile_pathbar
         self._window = unlocked_database.window
 
         self._selection_ui = SelectionUI(self._unlocked_database)
@@ -63,14 +64,10 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     def _setup_widgets(self):
         is_mobile = self._window.props.mobile_layout
 
-        if is_mobile and not self._action_bar.get_first_child():
-            # mobile mode
-            self._action_bar.append(self._pathbar)
-            self._action_bar.show()
-            self._unlocked_database.revealer.props.reveal_child = True
-        elif not is_mobile:
-            # desktop mode
-            self._headerbar_box.append(self._pathbar)
+        self._action_bar.pack_start(self._mobile_pathbar)
+        self._headerbar_box.append(self._pathbar)
+
+        self._unlocked_database.action_bar.props.revealed = is_mobile
 
     def _setup_signals(self):
         self._window.connect(
@@ -89,6 +86,11 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             "notify::selected-elements", self._on_selected_entries_changed)
 
         self._on_mobile_layout_changed(None, None)
+
+        self._pathbar.bind_property(
+            "visible", self._action_bar, "revealed",
+            GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.INVERT_BOOLEAN,
+        )
 
     def _setup_accelerators(self):
         self._unlocked_database.bind_accelerator(self._search_button, "<primary>f")
@@ -139,21 +141,10 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
         if self._unlocked_database.props.search_active:
             # No pathbar in search mode
-            self._unlocked_database.revealer.props.reveal_child = False
+            self._unlocked_database.action_bar.props.revealed = False
             return
 
-        if is_mobile and not self._action_bar.get_first_child():
-            # mobile width: hide pathbar in header
-            self._headerbar_box.remove(self._pathbar)
-            # and put it in the bottom Action bar instead
-            self._action_bar.append(self._pathbar)
-            self._action_bar.show()
-        elif not is_mobile and self._action_bar.get_first_child():
-            # Desktop width and pathbar is in actionbar
-            self._action_bar.remove(self._pathbar)
-            self._headerbar_box.append(self._pathbar)
-
-        self._unlocked_database.revealer.props.reveal_child = is_mobile
+        self._unlocked_database.action_bar.props.revealed = is_mobile
 
     @property
     def selection_ui(self) -> SelectionUI:

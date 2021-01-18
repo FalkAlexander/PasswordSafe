@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from typing import NamedTuple
 from uuid import UUID
 
-from gi.repository import GObject
+from gi.repository import GLib, GObject
 from pyotp import OTP, TOTP, parse_uri
 
 from passwordsafe.color_widget import Color
@@ -283,6 +283,9 @@ class SafeEntry(SafeElement):
         self._url: str = entry.url or ""
         self._username: str = entry.username or ""
 
+        # Check if the entry has expired every 10 minutes.
+        GLib.timeout_add_seconds(600, self._is_expired)
+
     @property
     def entry(self) -> Entry:
         """Get entry
@@ -291,6 +294,10 @@ class SafeEntry(SafeElement):
         :rtype: Entry
         """
         return self._entry
+
+    def _is_expired(self) -> bool:
+        self.props.expired = self.element.expired
+        return GLib.SOURCE_CONTINUE
 
     @GObject.Property(type=object, flags=GObject.ParamFlags.READABLE)
     def attachments(self) -> list[Attachment]:

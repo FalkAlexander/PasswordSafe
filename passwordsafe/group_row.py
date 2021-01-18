@@ -36,12 +36,7 @@ class GroupRow(Gtk.ListBoxRow):
         self.assemble_group_row()
 
     def assemble_group_row(self):
-        self._entry_box_gesture.connect(
-            "pressed", self._on_group_row_button_pressed)
-        self._long_press_gesture.connect(
-            "pressed", self._on_long_press_gesture_pressed)
-
-        # # Name Label
+        # Name Label
         self.safe_group.connect("notify::name", self._on_group_name_changed)
         self._on_group_name_changed(self.safe_group, None)
 
@@ -61,6 +56,7 @@ class GroupRow(Gtk.ListBoxRow):
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
         )
 
+    @Gtk.Template.Callback()
     def _on_group_row_button_pressed(
             self, _gesture: Gtk.GestureClick, _n_press: int, _event_x: float,
             _event_y: float) -> None:
@@ -103,6 +99,7 @@ class GroupRow(Gtk.ListBoxRow):
             style_context.add_class("italic")
             self.name_label.props.label = _("Title not specified")
 
+    @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, gesture, _x, _y):
         self.unlocked_database.props.selection_mode = True
         self.selection_checkbox.props.active = not self.selection_checkbox.props.active

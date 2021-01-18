@@ -5,11 +5,13 @@
     <child>
       <object class="GtkGestureClick" id="_entry_box_gesture">
         <property name="button">3</property>
+        <signal name="pressed" handler="_on_group_row_button_pressed" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkGestureLongPress" id="_long_press_gesture">
         <property name="touch_only">True</property>
+        <signal name="pressed" handler="_on_long_press_gesture_pressed" swapped="no"/>
       </object>
     </child>
     <child>

@@ -53,11 +53,6 @@ class EntryRow(Gtk.ListBoxRow):
         self._safe_entry.connect("notify::color", self._on_entry_color_changed)
         self._on_entry_color_changed(self._safe_entry, None)
 
-        self._entry_box_gesture.connect("pressed", self._on_entry_row_button_pressed)
-        self._long_press_gesture.connect(
-            "pressed", self._on_long_press_gesture_pressed
-        )
-
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
             "selection_mode",
@@ -66,6 +61,7 @@ class EntryRow(Gtk.ListBoxRow):
             GObject.BindingFlags.SYNC_CREATE,
         )
 
+    @Gtk.Template.Callback()
     def _on_entry_row_button_pressed(
             self, _gesture: Gtk.GestureClick, _n_press: int, _event_x: float,
             _event_y: float) -> None:
@@ -144,6 +140,7 @@ class EntryRow(Gtk.ListBoxRow):
         else:
             image_style.add_class("DarkIcon")
 
+    @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, gesture, _x, _y):
         self.unlocked_database.props.selection_mode = True
         self.selection_checkbox.props.active = not self.selection_checkbox.props.active

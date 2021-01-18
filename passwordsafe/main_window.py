@@ -74,13 +74,6 @@ class MainWindow(Handy.ApplicationWindow):
         self.apply_theme()
         self.invoke_initial_screen()
 
-        # Setup shortcuts menu
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/shortcuts_overview.ui"
-        )
-        shortcuts_overview = builder.get_object("shortcuts_overview")
-        self.set_help_overlay(shortcuts_overview)
-
     #
     # Headerbar
     #

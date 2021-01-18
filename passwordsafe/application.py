@@ -249,4 +249,3 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.redo", ["<primary>y"])
         self.set_accels_for_action("app.go_back", ["Escape"])
         self.set_accels_for_action("app.quit", ["<primary>q"])
-        self.set_accels_for_action("win.show-help-overlay", ["<primary>question"])

@@ -4,44 +4,37 @@
     <property name="modal">True</property>
     <child>
       <object class="GtkShortcutsSection">
-        <property name="visible">True</property>
         <property name="section-name">shortcuts</property>
         <property name="max-height">10</property>
         <child>
           <object class="GtkShortcutsGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes" context="Shortcut window description">Application</property>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Create safe</property>
                 <property name="action-name">app.new_database</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Open safe</property>
                 <property name="action-name">app.open_database</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Open preferences</property>
                 <property name="action-name">app.settings</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
                 <property name="action-name">win.show-help-overlay</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Quit</property>
                 <property name="action-name">app.quit</property>
               </object>
@@ -50,39 +43,33 @@
         </child>
         <child>
           <object class="GtkShortcutsGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes" context="Shortcut window description">Safe</property>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Lock safe</property>
                 <property name="action-name">app.db.lock</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Save safe</property>
                 <property name="action-name">app.db.save</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Open search</property>
                 <property name="accelerator">&lt;Primary&gt;F</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Create entry</property>
                 <property name="action-name">app.db.add_entry</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Create group</property>
                 <property name="action-name">app.db.add_group</property>
               </object>
@@ -91,25 +78,21 @@
         </child>
         <child>
           <object class="GtkShortcutsGroup">
-            <property name="visible">True</property>
             <property name="title" translatable="yes" context="Shortcut window description">Entry</property>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Copy password</property>
                 <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;C</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Copy username</property>
                 <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;B</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="visible">True</property>
                 <property name="title" translatable="yes" context="Shortcut window description">Go back</property>
                 <property name="accelerator">Escape</property>
               </object>

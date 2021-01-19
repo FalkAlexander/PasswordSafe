@@ -1,14 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import typing
-
 from gi.repository import Gdk, Gtk
-
-import passwordsafe.pathbar_button
-
-if typing.TYPE_CHECKING:
-    from passwordsafe.main_window import MainWindow
 
 
 class CustomKeypressHandler:
@@ -22,9 +15,14 @@ class CustomKeypressHandler:
 
     def register_custom_events(self):
         controller = Gtk.EventControllerKey()
+        click_controller = Gtk.GestureClick.new()
+        click_controller.props.button = 8  # Mouse button 8 is the back button.
+
         controller.connect("key-pressed", self.on_special_key_pressed)
-        controller.connect("key-released", self._on_button_released)
+        click_controller.connect("pressed", self._on_button_pressed)
+
         self.unlocked_database.window.add_controller(controller)
+        self.unlocked_database.window.add_controller(click_controller)
 
     def on_special_key_pressed(self, controller, keyval, _keycode, state):
         if not self._current_view_accessible():
@@ -56,16 +54,9 @@ class CustomKeypressHandler:
 
         return True
 
-    def _on_button_released(
-            self, _controller, keyval, keycode, state, gdata=None) -> bool:
+    def _on_button_pressed(
+        self, _gesture: Gtk.GestureClick, _n_press: int, _x: float, _y: float
+    ) -> None:
         """Go to the parent group with the back button.
-
-        :param Gtk.Widget window: the main window
-        :param Gtk.Event event: the event
         """
-        # Mouse button 8 is the back button.
-        if keyval == 8:
-            self.unlocked_database.go_back()
-            return Gdk.EVENT_STOP
-
-        return Gdk.EVENT_PROPAGATE
+        self.unlocked_database.go_back()

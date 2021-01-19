@@ -1,59 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="AttributeEntryRow" parent="GtkBox">
-    <property name="margin_bottom">6</property>
-    <property name="hexpand">True</property>
-    <property name="orientation">vertical</property>
+  <template class="AttributeEntryRow" parent="AdwEntryRow">
+    <property name="show_apply_button">True</property>
+    <signal name="apply" handler="_on_apply" swapped="no"/>
     <child>
-      <object class="GtkBox" id="entry_box">
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkImage">
-            <property name="margin_bottom">9</property>
-            <property name="icon_name">error-correct-symbolic</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkStack" id="edit_stack">
-            <child>
-              <object class="GtkButton" id="key_edit_button">
-                <property name="halign">start</property>
-                <property name="valign">end</property>
-                <property name="has_frame">False</property>
-                <signal name="clicked" handler="_on_key_edit_button_clicked" swapped="no"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkEntry" id="key_entry">
-                <signal name="activate" handler="_on_key_entry_activate" swapped="no"/>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox">
-        <property name="hexpand">True</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkEntry" id="value_entry">
-            <property name="hexpand">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="remove_button">
-            <property name="tooltip_text" translatable="yes">Remove Attribute</property>
-            <property name="icon_name">user-trash-symbolic</property>
-            <signal name="clicked" handler="_on_remove_button_clicked" swapped="no"/>
-            <style>
-              <class name="destructive-action"/>
-            </style>
-          </object>
-        </child>
+      <object class="GtkButton">
+        <property name="valign">center</property>
+        <property name="tooltip_text" translatable="yes">Remove Attribute</property>
+        <property name="icon_name">user-trash-symbolic</property>
+        <signal name="clicked" handler="_on_remove_button_clicked" swapped="no"/>
+        <style>
+          <class name="destructive-action"/>
+        </style>
       </object>
     </child>
   </template>

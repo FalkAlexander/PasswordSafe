@@ -405,10 +405,12 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox" id="attribute_list_box">
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">6</property>
-                        <property name="margin_top">6</property>
+                      <object class="GtkListBox" id="attribute_list_box">
+                        <property name="selection_mode">none</property>
+                        <property name="margin_top">12</property>
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
                       </object>
                     </child>
                   </object>

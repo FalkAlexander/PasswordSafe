@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="AdwWindow" id="database_settings_window">
-    <property name="can_focus">False</property>
     <property name="default_height">400</property>
     <property name="default_width">400</property>
     <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
         <child>
           <object class="AdwHeaderBar" id="headerbar">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <child type="title">
               <object class="AdwViewSwitcher" id="stack_switcher">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="stack">dbsd_stack</property>
               </object>
             </child>
@@ -24,20 +17,14 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="margin_start">18</property>
             <property name="margin_end">18</property>
             <property name="margin_top">18</property>
             <property name="margin_bottom">18</property>
             <child>
               <object class="AdwClamp">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <child>
                   <object class="GtkStack" id="dbsd_stack">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <child>
                       <object class="GtkStackPage">
                         <property name="name">general_page</property>
@@ -46,8 +33,6 @@
                         <property name="child">
                           <object class="GtkBox" id="frame_box">
                             <property name="height_request">200</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="valign">start</property>
                             <property name="margin_start">10</property>
                             <property name="margin_end">10</property>
@@ -56,8 +41,6 @@
                             <property name="orientation">vertical</property>
                             <child>
                               <object class="GtkLabel" id="section_label_password4">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">start</property>
                                 <property name="margin_bottom">15</property>
@@ -69,16 +52,12 @@
                             </child>
                             <child>
                               <object class="GtkGrid">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
                                 <property name="hexpand">False</property>
                                 <property name="row_spacing">6</property>
                                 <property name="column_spacing">12</property>
                                 <property name="column_homogeneous">True</property>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="hexpand">False</property>
                                     <property name="label" translatable="yes">Path</property>
@@ -95,8 +74,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes">File Size</property>
                                     <property name="justify">right</property>
@@ -112,8 +89,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes">Safe Name</property>
                                     <property name="justify">right</property>
@@ -129,8 +104,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_name">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -142,8 +115,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes" comments="KeePass is a proper noun">KeePass Version</property>
                                     <property name="justify">right</property>
@@ -159,8 +130,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes">Creation Date</property>
                                     <property name="justify">right</property>
@@ -176,8 +145,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes">Encryption Algorithm</property>
                                     <property name="justify">right</property>
@@ -193,8 +160,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes">Derivation Algorithm</property>
                                     <property name="justify">right</property>
@@ -210,8 +175,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_path">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -226,8 +189,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_size">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -239,8 +200,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_version">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -252,8 +211,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_date">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -265,8 +222,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_enc_alg">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -278,8 +233,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_der_alg">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -293,8 +246,6 @@
                             </child>
                             <child>
                               <object class="GtkLabel" id="section_label_password5">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">start</property>
                                 <property name="margin_top">30</property>
@@ -307,16 +258,12 @@
                             </child>
                             <child>
                               <object class="GtkGrid">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
                                 <property name="hexpand">False</property>
                                 <property name="row_spacing">6</property>
                                 <property name="column_spacing">12</property>
                                 <property name="column_homogeneous">True</property>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="hexpand">False</property>
                                     <property name="label" translatable="yes">Number of Groups</property>
@@ -333,8 +280,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes">Passwords</property>
                                     <property name="justify">right</property>
@@ -350,8 +295,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes">Number of Entries</property>
                                     <property name="justify">right</property>
@@ -367,8 +310,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_number_entries">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -380,8 +321,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_number_groups">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -393,8 +332,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="label_number_passwords">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">start</property>
                                     <property name="label">-</property>
                                     <property name="ellipsize">end</property>
@@ -417,8 +354,6 @@
                         <property name="icon_name">security-high-symbolic</property>
                         <property name="child">
                           <object class="GtkBox" id="frame_box1">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="margin_start">10</property>
                             <property name="margin_end">10</property>
                             <property name="margin_top">10</property>
@@ -426,8 +361,6 @@
                             <property name="orientation">vertical</property>
                             <child>
                               <object class="GtkLabel" id="section_label_password1">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">start</property>
                                 <property name="margin_bottom">15</property>
@@ -439,14 +372,10 @@
                             </child>
                             <child>
                               <object class="GtkGrid">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
                                 <property name="row_spacing">6</property>
                                 <property name="column_spacing">12</property>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes" comments="New password (replacement for an old one)">_New</property>
                                     <property name="use_underline">True</property>
@@ -487,7 +416,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes" comments="Retype the new password to confirm">C_onfirm</property>
                                     <property name="justify">right</property>
@@ -515,7 +443,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel">
-                                    <property name="can_focus">False</property>
                                     <property name="halign">end</property>
                                     <property name="label" translatable="yes" comments="Current password">_Current</property>
                                     <property name="use_underline">True</property>
@@ -543,7 +470,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLevelBar" id="password_level_bar">
-                                    <property name="can_focus">False</property>
                                     <property name="hexpand">True</property>
                                     <property name="max_value">5</property>
                                     <property name="mode">discrete</property>
@@ -557,7 +483,6 @@
                             </child>
                             <child>
                               <object class="GtkLabel" id="section_label_password3">
-                                <property name="can_focus">False</property>
                                 <property name="halign">start</property>
                                 <property name="valign">start</property>
                                 <property name="margin_top">30</property>
@@ -570,18 +495,15 @@
                             </child>
                             <child>
                               <object class="GtkBox">
-                                <property name="can_focus">False</property>
                                 <property name="spacing">44</property>
                                 <child>
                                   <object class="GtkBox">
-                                    <property name="can_focus">False</property>
                                     <property name="hexpand">True</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkButton" id="select_keyfile_button">
                                         <property name="width_request">50</property>
                                         <property name="height_request">50</property>
-                                        <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="halign">center</property>
                                         <property name="valign">center</property>
@@ -593,7 +515,6 @@
                                     </child>
                                     <child>
                                       <object class="GtkLabel">
-                                        <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="label" translatable="yes">_Select current keyfile</property>
                                         <property name="justify">center</property>
@@ -613,7 +534,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkImage">
-                                    <property name="can_focus">False</property>
                                     <property name="icon_name">media-playlist-consecutive-symbolic</property>
                                     <style>
                                       <class name="dim-label"/>
@@ -622,14 +542,12 @@
                                 </child>
                                 <child>
                                   <object class="GtkBox">
-                                    <property name="can_focus">False</property>
                                     <property name="hexpand">True</property>
                                     <property name="orientation">vertical</property>
                                     <child>
                                       <object class="GtkButton" id="generate_keyfile_button">
                                         <property name="width_request">50</property>
                                         <property name="height_request">50</property>
-                                        <property name="can_focus">True</property>
                                         <property name="receives_default">True</property>
                                         <property name="halign">center</property>
                                         <property name="valign">center</property>
@@ -641,7 +559,6 @@
                                     </child>
                                     <child>
                                       <object class="GtkLabel">
-                                        <property name="can_focus">False</property>
                                         <property name="margin_top">5</property>
                                         <property name="label" translatable="yes">_Generate new keyfile</property>
                                         <property name="justify">center</property>
@@ -664,7 +581,6 @@
                             <child>
                               <object class="GtkButton" id="auth_apply_button">
                                 <property name="label" translatable="yes">_Apply Changes</property>
-                                <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="halign">end</property>
                                 <property name="valign">end</property>
@@ -690,14 +606,12 @@
     </child>
   </object>
   <object class="GtkBox" id="frame_box2">
-    <property name="can_focus">False</property>
     <property name="margin_top">10</property>
     <property name="margin_bottom">10</property>
     <property name="vexpand">True</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkLabel" id="section_label_password2">
-        <property name="can_focus">False</property>
         <property name="halign">start</property>
         <property name="valign">start</property>
         <property name="margin_bottom">15</property>
@@ -709,19 +623,15 @@
     </child>
     <child>
       <object class="GtkFrame">
-        <property name="can_focus">False</property>
         <child>
           <object class="GtkListBox" id="enc_alg_list_box">
-            <property name="can_focus">False</property>
             <child>
               <object class="GtkListBoxRow">
                 <property name="name">chacha20</property>
                 <property name="width_request">200</property>
                 <property name="height_request">35</property>
-                <property name="can_focus">True</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="ChaCha20 is a proper name, do not translate">ChaCha20: 256-bit</property>
                   </object>
@@ -733,10 +643,8 @@
                 <property name="name">twofish</property>
                 <property name="width_request">200</property>
                 <property name="height_request">35</property>
-                <property name="can_focus">True</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="Twofish is a proper name, do not translate">Twofish: 256-bit</property>
                   </object>
@@ -748,10 +656,8 @@
                 <property name="name">aes256</property>
                 <property name="width_request">200</property>
                 <property name="height_request">35</property>
-                <property name="can_focus">True</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes" comments="AES is a proper name, do not translate">AES: 256-bit</property>
                   </object>
@@ -764,7 +670,6 @@
     </child>
     <child>
       <object class="GtkLabel" id="section_label_password6">
-        <property name="can_focus">False</property>
         <property name="halign">start</property>
         <property name="valign">start</property>
         <property name="margin_top">30</property>
@@ -777,19 +682,15 @@
     </child>
     <child>
       <object class="GtkFrame">
-        <property name="can_focus">False</property>
         <child>
           <object class="GtkListBox" id="der_alg_list_box">
-            <property name="can_focus">False</property>
             <child>
               <object class="GtkListBoxRow">
                 <property name="name">argon2</property>
                 <property name="width_request">200</property>
                 <property name="height_request">35</property>
-                <property name="can_focus">True</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="label">Argon2 (KeePass 4)</property>
                   </object>
@@ -801,10 +702,8 @@
                 <property name="name">aeskdf</property>
                 <property name="width_request">200</property>
                 <property name="height_request">35</property>
-                <property name="can_focus">True</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="label">AES-KDF (KeePass 3.1)</property>
                   </object>
@@ -818,7 +717,6 @@
     <child>
       <object class="GtkButton" id="encryption_apply_button">
         <property name="label" translatable="yes">Apply Changes</property>
-        <property name="can_focus">True</property>
         <property name="receives_default">True</property>
         <property name="halign">end</property>
         <property name="valign">end</property>

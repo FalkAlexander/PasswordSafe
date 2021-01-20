@@ -29,12 +29,10 @@ class CustomKeypressHandler:
             return Gdk.EVENT_PROPAGATE
 
         edit_page = self.unlocked_database.in_edit_page
+        unicode_key = chr(Gdk.keyval_to_unicode(keyval))
+        isalnum = unicode_key.isalnum()
 
-        if (
-            not edit_page
-            and state & Gdk.ModifierType.ALT_MASK == 0
-            and Gdk.keyval_to_unicode(keyval) != 0
-        ):
+        if not edit_page and state & Gdk.ModifierType.ALT_MASK == 0 and isalnum:
             self.unlocked_database.props.search_active = True
 
         return Gdk.EVENT_PROPAGATE

@@ -79,9 +79,7 @@ class Application(Gtk.Application):
             # Just present the existing one.
             self.window.present()
             return
-        self.window = MainWindow(
-            application=self, title="Password Safe",
-            icon_name=self.application_id)
+        self.window = MainWindow(application=self)
 
         self.setup_actions()
         self.add_global_accelerators()

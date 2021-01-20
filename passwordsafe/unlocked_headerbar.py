@@ -83,7 +83,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             "notify::search-active", self._on_search_active)
 
         self._selection_ui.connect(
-            "notify::selected-elements", self._on_selected_entries_changed)
+            "notify::selected-elements", self.on_selected_entries_changed)
 
         self._on_mobile_layout_changed(None, None)
 
@@ -124,7 +124,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_action_bar()
 
-    def _on_selected_entries_changed(self, selection_ui, _value):
+    def on_selected_entries_changed(self, selection_ui, _value):
         new_number = selection_ui.props.selected_elements
         if new_number == 0:
             label = _("Click on a checkbox to select")

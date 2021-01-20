@@ -68,6 +68,9 @@ class Search:
             "notify::search-active", self._on_search_active)
         self._prepare_search_page()
 
+        search_button = self.unlocked_database.headerbar.search_button
+        self._search_entry.set_key_capture_widget(search_button)
+
     # Search headerbar
     def _on_search_active(
         self, _db_view: UnlockedDatabase, _value: GObject.ParamSpecBoolean

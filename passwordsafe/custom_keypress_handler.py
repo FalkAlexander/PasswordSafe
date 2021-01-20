@@ -34,6 +34,9 @@ class CustomKeypressHandler:
 
         if not edit_page and state & Gdk.ModifierType.ALT_MASK == 0 and isalnum:
             self.unlocked_database.props.search_active = True
+            search_button = self.unlocked_database.headerbar.search_button
+            controller.forward(search_button)
+            return Gdk.EVENT_STOP
 
         return Gdk.EVENT_PROPAGATE
 

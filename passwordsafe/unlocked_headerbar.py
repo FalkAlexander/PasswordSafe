@@ -33,7 +33,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
     _linkedbox_left = Gtk.Template.Child()
     _linkedbox_right = Gtk.Template.Child()
     _secondary_menu_button = Gtk.Template.Child()
-    _search_button = Gtk.Template.Child()
+    search_button = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
     _title_label = Gtk.Template.Child()
 
@@ -93,7 +93,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         )
 
     def _setup_accelerators(self):
-        self._unlocked_database.bind_accelerator(self._search_button, "<primary>f")
+        self._unlocked_database.bind_accelerator(self.search_button, "<primary>f")
 
     def _on_search_active(
             self, _unlocked_database: UnlockedDatabase,

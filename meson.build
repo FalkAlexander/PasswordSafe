@@ -29,10 +29,11 @@ if not python_bin.language_version().version_compare('>= 3.7')
 endif
 
 
-dependency('glib-2.0')
-dependency('gobject-introspection-1.0', version: '>=1.35.9')
-dependency('gtk+-3.0', version: '>=3.24.1')
-dependency('libhandy-1', version: '>=1.0.0')
+dependency('glib-2.0', version: '>= 2.66')
+dependency('gio-2.0', version: '>= 2.66')
+dependency('gobject-introspection-1.0', version: '>=1.66.0')
+dependency('gtk4', version: '>=4.0.0')
+dependency('libadwaita-1', version: '>=1.0.0')
 dependency('pwquality')
 
 env = environment()

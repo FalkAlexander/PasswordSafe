@@ -5,7 +5,7 @@ import logging
 import typing
 from gettext import gettext as _
 
-from gi.repository import Gtk
+from gi.repository import Adw, Gtk
 
 import passwordsafe.password_generator as pwd_generator
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
@@ -17,7 +17,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/password_entry_row.ui")
-class PasswordEntryRow(Gtk.Box):
+class PasswordEntryRow(Adw.Bin):
 
     __gtype_name__ = "PasswordEntryRow"
 

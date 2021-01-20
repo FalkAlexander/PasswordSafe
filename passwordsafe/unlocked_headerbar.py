@@ -5,7 +5,7 @@ from gettext import gettext as _, ngettext
 import typing
 from enum import IntEnum
 
-from gi.repository import GObject, Gtk, Handy
+from gi.repository import GObject, Gtk, Adw
 
 from passwordsafe.selection_ui import SelectionUI
 if typing.TYPE_CHECKING:
@@ -14,7 +14,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/unlocked_headerbar.ui")
-class UnlockedHeaderBar(Handy.HeaderBar):
+class UnlockedHeaderBar(Adw.HeaderBar):
 
     __gtype_name__ = "UnlockedHeaderBar"
 

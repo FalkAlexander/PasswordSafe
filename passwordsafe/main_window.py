@@ -5,7 +5,7 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Adw
 
 import passwordsafe.config_manager
 from passwordsafe.container_page import ContainerPage
@@ -21,7 +21,7 @@ from passwordsafe.welcome_page import WelcomePage
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/main_window.ui")
-class MainWindow(Handy.ApplicationWindow):
+class MainWindow(Adw.ApplicationWindow):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
     __gtype_name__ = "MainWindow"
@@ -61,7 +61,7 @@ class MainWindow(Handy.ApplicationWindow):
     def send_notification(self, notification: str) -> None:
         self._notification.send_notification(notification)
 
-    def set_headerbar(self, headerbar: Handy.HeaderBar | None = None) -> None:
+    def set_headerbar(self, headerbar: Adw.HeaderBar | None = None) -> None:
         if headerbar is None:
             self._title_stack.set_visible_child(self._headerbar)
             return
@@ -129,7 +129,7 @@ class MainWindow(Handy.ApplicationWindow):
         if new_mobile_layout != self.props.mobile_layout:
             self.props.mobile_layout = new_mobile_layout
 
-        Handy.ApplicationWindow.do_size_allocate(self, width, height, baseline)
+        Adw.ApplicationWindow.do_size_allocate(self, width, height, baseline)
 
     #
     # First Start Screen

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="HdyWindow" id="properties_dialog">
+  <object class="AdwWindow" id="properties_dialog">
     <property name="default_width">360</property>
     <property name="default_height">180</property>
     <child>
@@ -8,7 +8,7 @@
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="HdyHeaderBar">
+          <object class="AdwHeaderBar">
             <property name="visible">True</property>
             <property name="title-widget">
               <object class="GtkLabel">
@@ -24,7 +24,7 @@
           </object>
         </child>
         <child>
-          <object class="HdyClamp">
+          <object class="AdwClamp">
             <property name="visible">True</property>
             <child>
               <object class="GtkBox" id="frame_box">

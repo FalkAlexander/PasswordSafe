@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="HdyHeaderBar" id="headerbar_search">
+  <object class="AdwHeaderBar" id="headerbar_search">
     <child>
       <object class="GtkButton" id="headerbar_close_button">
         <property name="receives_default">True</property>
@@ -9,7 +9,7 @@
       </object>
     </child>
     <child type="title">
-      <object class="HdyClamp">
+      <object class="AdwClamp">
         <property name="hexpand">True</property>
         <child>
           <object class="GtkBox" id="headerbar_search_box">
@@ -95,7 +95,7 @@
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <child>
-          <object class="HdyClamp">
+          <object class="AdwClamp">
             <child>
               <object class="GtkListBox" id="list_box">
                 <property name="name">BrowserListBox</property>

@@ -4,7 +4,7 @@ from __future__ import annotations
 import threading
 import typing
 
-from gi.repository import Gio, GLib, GObject, Gtk, Handy
+from gi.repository import Gio, GLib, GObject, Gtk, Adw
 
 import passwordsafe.config_manager as config
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
@@ -41,8 +41,7 @@ class Search:
             "stack")
 
         self._search_entry = self._builder.get_object("headerbar_search_entry")
-        self._headerbar: Handy.HeaderBar = self._builder.get_object(
-            "headerbar_search")
+        self._headerbar: Adw.HeaderBar = self._builder.get_object("headerbar_search")
 
         self._key_pressed: bool = False
         self._timeout_search: int = 0
@@ -217,10 +216,10 @@ class Search:
         first_row.activate()
 
     @property
-    def headerbar(self) -> Handy.HeaderBar:
+    def headerbar(self) -> Adw.HeaderBar:
         """Get the search headerbar.
 
         :returns: the search headerbar
-        :rtype: Handy.Headerbar
+        :rtype: Adw.Headerbar
         """
         return self._headerbar

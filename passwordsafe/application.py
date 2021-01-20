@@ -6,7 +6,7 @@ import typing
 from gettext import gettext as _
 from typing import Any
 
-from gi.repository import Gio, GLib, Gtk, Handy
+from gi.repository import Adw, Gio, GLib, Gtk
 
 import passwordsafe.config_manager as config
 from passwordsafe.main_window import MainWindow
@@ -43,7 +43,7 @@ class Application(Gtk.Application):
     def do_startup(self):  # pylint: disable=arguments-differ
         Gtk.Application.do_startup(self)
 
-        Handy.init()
+        Adw.init()
         self.connect("open", self.file_open_handler)
         self.connect("shutdown", self._on_shutdown_action)
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import os
 
-from gi.repository import Gio, Gtk, Handy
+from gi.repository import Gio, Gtk, Adw
 
 import passwordsafe.config_manager as config
 
@@ -61,7 +61,7 @@ class RecentFilesPage(Gtk.Box):
         window.start_database_opening_routine(Gio.File.new_for_uri(file_uri).get_path())
 
 
-class RecentFileRow(Handy.ActionRow):
+class RecentFileRow(Adw.ActionRow):
     __gtype_name__ = "RecentFileRow"
 
     def __init__(self, filename, path, name):

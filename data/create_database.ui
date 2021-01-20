@@ -40,7 +40,7 @@
               <object class="GtkListBox" id="methods_list_box">
                 <signal name="row-activated" handler="on_auth_chooser_row_activated" swapped="no"/>
                 <child>
-                  <object class="HdyActionRow">
+                  <object class="AdwActionRow">
                     <property name="name">password</property>
                     <property name="title" translatable="yes">_Password</property>
                     <property name="subtitle" translatable="yes">Use a password to secure your safe.</property>
@@ -51,7 +51,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="HdyActionRow">
+                  <object class="AdwActionRow">
                     <property name="name">keyfile</property>
                     <property name="title" translatable="yes">_Keyfile</property>
                     <property name="subtitle" translatable="yes">Use a keyfile to secure your safe.</property>
@@ -62,7 +62,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="HdyActionRow">
+                  <object class="AdwActionRow">
                     <property name="name">composite</property>
                     <property name="title" translatable="yes">_Composite</property>
                     <property name="subtitle" translatable="yes">Use a password in combination with a keyfile to secure your safe.</property>

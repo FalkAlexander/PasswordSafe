@@ -6,8 +6,6 @@ from __future__ import annotations
 import typing
 from enum import IntEnum
 
-# from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
-
 from passwordsafe.safe_element import SafeElement
 
 

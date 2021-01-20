@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Gtk, Handy
+from gi.repository import Gtk, Adw
 
 import passwordsafe.config_manager as config
 from passwordsafe.config_manager import UnlockMethod
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/settings_dialog.ui")
-class SettingsDialog(Handy.PreferencesWindow):
+class SettingsDialog(Adw.PreferencesWindow):
 
     __gtype_name__ = "SettingsDialog"
 

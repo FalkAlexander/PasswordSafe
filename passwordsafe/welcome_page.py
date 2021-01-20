@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from gi.repository import Gtk
-from gi.repository.GdkPixbuf import Pixbuf
+
+RESOURCE = "/org/gnome/PasswordSafe/images/welcome.png"
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/welcome_page.ui")
@@ -15,6 +16,4 @@ class WelcomePage(Gtk.Box):
         """Welcome Page widget"""
         super().__init__()
 
-        pix = Pixbuf.new_from_resource_at_scale(
-            "/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
-        self._app_logo.set_from_pixbuf(pix)
+        self._app_logo.set_from_resource(RESOURCE)

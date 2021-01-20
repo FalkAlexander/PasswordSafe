@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="QuitDialog" parent="GtkMessageDialog">
-    <property name="can_focus">False</property>
     <property name="modal">True</property>
     <property name="text" translatable="yes" comments="Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.">Do you want to save all safes with unsaved changes?</property>
     <property name="secondary_text" translatable="yes" comments="Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.">Select the safes you want to save.</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="quit_dialog_box">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkScrolledWindow" id="unsaved_databases_scrolled_window">
-            <property name="can_focus">False</property>
-            <property name="visible">True</property>
             <property name="valign">start</property>
             <property name="hscrollbar_policy">never</property>
             <property name="vscrollbar_policy">never</property>
@@ -22,8 +17,6 @@
               <object class="GtkListBox" id="unsaved_databases_list_box">
                 <property name="margin_start">10</property>
                 <property name="margin_end">10</property>
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="valign">start</property>
                 <property name="selection_mode">none</property>
                 <property name="activate_on_single_click">False</property>
@@ -38,14 +31,12 @@
     </child>
     <child type="action">
       <object class="GtkButton" id="back_button">
-        <property name="visible">True</property>
         <property name="label" translatable="yes">_Cancel</property>
         <property name="use_underline">True</property>
       </object>
     </child>
     <child type="action">
       <object class="GtkButton" id="quit_button">
-        <property name="visible">True</property>
         <property name="label" translatable="yes">_Quit</property>
         <property name="use_underline">True</property>
       </object>

@@ -15,14 +15,8 @@ class CustomKeypressHandler:
 
     def register_custom_events(self):
         controller = Gtk.EventControllerKey()
-        click_controller = Gtk.GestureClick.new()
-        click_controller.props.button = 8  # Mouse button 8 is the back button.
-
         controller.connect("key-pressed", self.on_special_key_pressed)
-        click_controller.connect("pressed", self._on_button_pressed)
-
         self.unlocked_database.window.add_controller(controller)
-        self.unlocked_database.window.add_controller(click_controller)
 
     def on_special_key_pressed(self, controller, keyval, _keycode, state):
         if not self._current_view_accessible():
@@ -54,10 +48,3 @@ class CustomKeypressHandler:
             return False
 
         return True
-
-    def _on_button_pressed(
-        self, _gesture: Gtk.GestureClick, _n_press: int, _x: float, _y: float
-    ) -> None:
-        """Go to the parent group with the back button.
-        """
-        self.unlocked_database.go_back()

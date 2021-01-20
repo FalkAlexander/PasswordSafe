@@ -3,6 +3,12 @@
   <template class="MainWindow" parent="HdyApplicationWindow">
     <property name="visible">True</property>
     <child>
+      <object class="GtkGestureClick">
+        <property name="button">8</property>
+        <signal name="pressed" handler="on_back_button_pressed"/>
+      </object>
+    </child>
+    <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <property name="visible">True</property>

@@ -568,3 +568,13 @@ class MainWindow(Handy.ApplicationWindow):
         """
         current_page = self.container.get_current_page()
         return self.container.page_num(tab) == current_page
+
+    @Gtk.Template.Callback()
+    def on_back_button_pressed(
+        self,
+        _gesture: Gtk.GestureClick,
+        _n_press: int,
+        _event_x: float,
+        _event_y: float,
+    ) -> None:
+        self.application.lookup_action("go_back").activate()

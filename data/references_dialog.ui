@@ -228,14 +228,8 @@
           <object class="AdwHeaderBar">
             <property name="visible">True</property>
             <property name="title-widget">
-              <object class="GtkLabel">
-                <property name="label" translatable="yes">References</property>
-                <property name="single-line-mode">True</property>
-                <property name="ellipsize">end</property>
-                <property name="width-chars">5</property>
-                <style>
-                  <class name="title"/>
-                </style>
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">References</property>
               </object>
             </property>
           </object>

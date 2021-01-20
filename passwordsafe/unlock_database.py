@@ -65,8 +65,8 @@ class UnlockDatabase:
 
     def _set_headerbar(self):
         headerbar = self.builder.get_object("headerbar")
-        headerbar_subtitle = self.builder.get_object("headerbar_subtitle")
-        headerbar_subtitle.set_label(os.path.basename(self.database_filepath))
+        headerbar_title = self.builder.get_object("headerbar_title")
+        headerbar_title.props.subtitle = os.path.basename(self.database_filepath)
 
         if self.window.tab_visible(self.parent_widget):
             self.window.set_headerbar(headerbar)

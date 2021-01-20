@@ -9,6 +9,11 @@
       </object>
     </child>
     <child>
+      <object class="GtkEventControllerKey" id="search_controller">
+        <signal name="key-pressed" handler="_on_search_controller_key_pressed"/>
+      </object>
+    </child>
+    <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <property name="visible">True</property>

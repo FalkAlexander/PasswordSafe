@@ -12,7 +12,6 @@ from typing import Any
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 import passwordsafe.config_manager
-from passwordsafe.custom_keypress_handler import CustomKeypressHandler
 from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.entry_page import EntryPage
 from passwordsafe.entry_row import EntryRow
@@ -70,9 +69,6 @@ class UnlockedDatabase(GObject.GObject):
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
         self.search: Search = Search(self)
-        self.custom_keypress_handler: CustomKeypressHandler = CustomKeypressHandler(
-            self
-        )
 
         root_group = SafeGroup.get_root(dbm)
         self.props.current_element = root_group
@@ -85,7 +81,6 @@ class UnlockedDatabase(GObject.GObject):
         # Browser Mode
         self.assemble_listbox()
         self.start_save_loop()
-        self.custom_keypress_handler.register_custom_events()
         self.register_dbus_signal()
 
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)

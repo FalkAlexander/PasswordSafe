@@ -16,6 +16,7 @@ from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
+from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 from passwordsafe.welcome_page import WelcomePage
 
 
@@ -578,3 +579,21 @@ class MainWindow(Handy.ApplicationWindow):
         _event_y: float,
     ) -> None:
         self.application.lookup_action("go_back").activate()
+
+    @Gtk.Template.Callback()
+    def _on_search_controller_key_pressed(self, controller, keyval, _keycode, state):
+        action_db = self.find_action_db()
+        unicode_key = chr(Gdk.keyval_to_unicode(keyval))
+        isalnum = unicode_key.isalnum()
+        mask = Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK | Gdk.ModifierType.ALT_MASK
+        if (
+                state & mask == 0
+                and isalnum
+                and action_db.headerbar.mode == UnlockedHeaderBar.Mode.GROUP
+        ):
+            search_button = action_db.headerbar.search_button
+            action_db.props.search_active = True
+            controller.forward(search_button)
+            return Gdk.EVENT_STOP
+
+        return Gdk.EVENT_PROPAGATE

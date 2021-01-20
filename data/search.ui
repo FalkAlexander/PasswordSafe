@@ -28,65 +28,15 @@
   </object>
   <object class="GtkStack" id="stack">
     <child>
-      <object class="GtkBox" id="info_search_page">
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">8</property>
-        <child>
-          <object class="GtkImage">
-            <property name="name">empty_group_image</property>
-            <property name="valign">end</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="pixel_size">70</property>
-            <property name="icon_name">folder-saved-search-symbolic</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="name">empty_group_label</property>
-            <property name="valign">start</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="label" translatable="yes">Enter search term</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-              <attribute name="size" value="15000"/>
-            </attributes>
-          </object>
-        </child>
+      <object class="AdwStatusPage" id="info_search_page">
+        <property name="icon_name">folder-saved-search-symbolic</property>
+        <property name="title" translatable="yes">Enter Search Term</property>
       </object>
     </child>
     <child>
-      <object class="GtkBox" id="empty_search_page">
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="orientation">vertical</property>
-        <property name="spacing">8</property>
-        <child>
-          <object class="GtkImage">
-            <property name="name">empty_group_image</property>
-            <property name="valign">end</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="pixel_size">70</property>
-            <property name="icon_name">folder-saved-search-symbolic</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel">
-            <property name="name">empty_group_label</property>
-            <property name="valign">start</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="label" translatable="yes">No search results</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-              <attribute name="size" value="15000"/>
-            </attributes>
-          </object>
-        </child>
+      <object class="AdwStatusPage" id="empty_search_page">
+        <property name="icon_name">folder-saved-search-symbolic</property>
+        <property name="title" translatable="yes">No Search Results</property>
       </object>
     </child>
     <child>

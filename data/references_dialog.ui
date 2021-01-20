@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="GtkPopover" id="codes_popover">
-    <property name="can_focus">False</property>
     <property name="position">bottom</property>
     <child>
       <object class="GtkGrid">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="margin_start">8</property>
         <property name="margin_end">8</property>
         <property name="margin_top">8</property>
@@ -15,8 +12,6 @@
         <property name="column_spacing">14</property>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Code</property>
             <attributes>
               <attribute name="weight" value="bold"/>
@@ -29,8 +24,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Property</property>
             <attributes>
               <attribute name="weight" value="bold"/>
@@ -43,8 +36,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label">T</property>
             <layout>
               <property name="column">0</property>
@@ -54,8 +45,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Title</property>
             <style>
               <class name="dim-label"/>
@@ -68,8 +57,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label">U</property>
             <layout>
               <property name="column">0</property>
@@ -79,8 +66,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Username</property>
             <style>
               <class name="dim-label"/>
@@ -93,8 +78,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label">P</property>
             <layout>
               <property name="column">0</property>
@@ -104,8 +87,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label">A</property>
             <layout>
               <property name="column">0</property>
@@ -115,8 +96,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label">N</property>
             <layout>
               <property name="column">0</property>
@@ -126,8 +105,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label">I</property>
             <layout>
               <property name="column">0</property>
@@ -137,8 +114,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Password</property>
             <style>
               <class name="dim-label"/>
@@ -151,8 +126,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">URL</property>
             <style>
               <class name="dim-label"/>
@@ -165,8 +138,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Notes</property>
             <style>
               <class name="dim-label"/>
@@ -179,8 +150,6 @@
         </child>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">UUID</property>
             <style>
               <class name="dim-label"/>
@@ -222,11 +191,9 @@
     <property name="default_height">200</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="AdwHeaderBar">
-            <property name="visible">True</property>
             <property name="title-widget">
               <object class="AdwWindowTitle">
                 <property name="title" translatable="yes">References</property>
@@ -236,17 +203,12 @@
         </child>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="hexpand">True</property>
             <child>
               <object class="AdwClamp">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="valign">start</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="margin_start">12</property>
                     <property name="margin_end">12</property>
                     <property name="margin_top">12</property>
@@ -254,8 +216,6 @@
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkLabel" id="section_label_ref_syntax">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="margin_top">6</property>
@@ -268,8 +228,6 @@
                     </child>
                     <child>
                       <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="label" translatable="yes">The placeholder syntax for field references is the following:</property>
                         <style>
@@ -279,12 +237,8 @@
                     </child>
                     <child>
                       <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="label">{REF:&lt;</property>
                             <style>
                               <class name="dim-label"/>
@@ -294,8 +248,6 @@
                         <child>
                           <object class="GtkLabel" id="property_label">
                             <property name="name">LinkLabel</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="tooltip_text" translatable="yes">Show Field Codes</property>
                             <property name="label" translatable="yes">Property</property>
                             <property name="ellipsize">end</property>
@@ -311,8 +263,6 @@
                         </child>
                         <child>
                           <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="label">&gt;@&lt;</property>
                             <style>
                               <class name="dim-label"/>
@@ -322,8 +272,6 @@
                         <child>
                           <object class="GtkLabel" id="identifier_label">
                             <property name="name">LinkLabel</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="tooltip_text" translatable="yes">Show Field Codes</property>
                             <property name="label" translatable="yes">Identifier</property>
                             <property name="ellipsize">end</property>
@@ -339,8 +287,6 @@
                         </child>
                         <child>
                           <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="label">&gt;:&lt;</property>
                             <style>
                               <class name="dim-label"/>
@@ -350,8 +296,6 @@
                         <child>
                           <object class="GtkLabel" id="uuid_label">
                             <property name="name">LinkLabel</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="label">UUID</property>
                             <property name="ellipsize">end</property>
                             <attributes>
@@ -366,8 +310,6 @@
                         </child>
                         <child>
                           <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
                             <property name="label">&gt;}</property>
                             <style>
                               <class name="dim-label"/>
@@ -378,8 +320,6 @@
                     </child>
                     <child>
                       <object class="GtkLabel" id="section_label_reference">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
                         <property name="margin_top">30</property>
@@ -392,12 +332,8 @@
                     </child>
                     <child>
                       <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
                         <child>
                           <object class="GtkMenuButton" id="property_popover_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="menu_model">prop_selection_menu</property>
                             <property name="label" translatable="yes">Property</property>
@@ -405,8 +341,6 @@
                         </child>
                         <child>
                           <object class="GtkEntry" id="reference_entry">
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
                             <property name="hexpand">True</property>
                             <property name="editable">False</property>
                             <property name="secondary_icon_name">edit-copy-symbolic</property>
@@ -427,12 +361,9 @@
     </child>
   </object>
   <object class="GtkPopover" id="uuid_popover">
-    <property name="can_focus">False</property>
     <property name="position">bottom</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="margin_start">8</property>
         <property name="margin_end">8</property>
         <property name="margin_top">8</property>
@@ -440,8 +371,6 @@
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="label" translatable="yes">Each entry has a unique identifier called UUID. It can be found in the properties of the entry.</property>
             <property name="wrap">True</property>
           </object>

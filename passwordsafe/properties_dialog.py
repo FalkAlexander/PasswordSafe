@@ -2,7 +2,7 @@
 """Responsible for displaying the Entry/Group Properties"""
 from __future__ import annotations
 
-from gi.repository import Gtk, Gdk, Handy
+from gi.repository import Gtk, Gdk
 
 
 class PropertiesDialog:

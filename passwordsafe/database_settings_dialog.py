@@ -7,7 +7,7 @@ import threading
 import time
 from gettext import gettext as _
 
-from gi.repository import Gdk, GLib, Gtk, Handy
+from gi.repository import Gdk, GLib, Gtk
 
 import passwordsafe.config_manager as config
 import passwordsafe.password_generator

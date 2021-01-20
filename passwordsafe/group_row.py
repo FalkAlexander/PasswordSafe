@@ -100,6 +100,6 @@ class GroupRow(Gtk.ListBoxRow):
             self.name_label.props.label = _("Title not specified")
 
     @Gtk.Template.Callback()
-    def _on_long_press_gesture_pressed(self, gesture, _x, _y):
+    def _on_long_press_gesture_pressed(self, _gesture, _x, _y):
         self.unlocked_database.props.selection_mode = True
         self.selection_checkbox.props.active = not self.selection_checkbox.props.active

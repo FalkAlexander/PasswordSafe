@@ -357,7 +357,7 @@ class UnlockedDatabase(GObject.GObject):
     # Keystrokes
     #
 
-    def bind_accelerator(self, widget, accelerator, signal="clicked"):
+    def bind_accelerator(self, _widget, accelerator, signal="clicked"):
         """bind accelerators to self, aka this `UnlockedDatabase`"""
         _, key, mod = Gtk.accelerator_parse(accelerator)
         trigger = Gtk.KeyvalTrigger.new(key, mod)

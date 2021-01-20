@@ -67,11 +67,11 @@ class ReferencesDialog():
 
         self.__reference_entry.set_text("{REF:" + self.__property + "@I:" + encoded_uuid + "}")
 
-    def __open_codes_popover(self, gesture, _n_points, _x, _y, data=None):
+    def __open_codes_popover(self, _gesture, _n_points, _x, _y, _data=None):
         codes_popover = self.__builder.get_object("codes_popover")
         codes_popover.popup()
 
-    def __open_uuid_popover(self, gesture, _n_points, _x, _y, data=None):
+    def __open_uuid_popover(self, _gesture, _n_points, _x, _y, _data=None):
         uuid_popover = self.__builder.get_object("uuid_popover")
         uuid_popover.popup()
 

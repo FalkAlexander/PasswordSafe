@@ -339,7 +339,7 @@ class UnlockDatabase:
         return button, image
 
     def _open_database(self):
-        button, image = self._open_database_update_entries(False)
+        button, _image = self._open_database_update_entries(False)
 
         spinner = Gtk.Spinner()
         spinner.show()

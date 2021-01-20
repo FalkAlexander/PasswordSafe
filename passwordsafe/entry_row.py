@@ -141,6 +141,6 @@ class EntryRow(Gtk.ListBoxRow):
             image_style.add_class("DarkIcon")
 
     @Gtk.Template.Callback()
-    def _on_long_press_gesture_pressed(self, gesture, _x, _y):
+    def _on_long_press_gesture_pressed(self, _gesture, _x, _y):
         self.unlocked_database.props.selection_mode = True
         self.selection_checkbox.props.active = not self.selection_checkbox.props.active

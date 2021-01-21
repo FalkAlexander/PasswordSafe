@@ -7,7 +7,7 @@ import threading
 import time
 from gettext import gettext as _
 
-from gi.repository import Gdk, GLib, Gtk
+from gi.repository import GLib, Gtk
 
 import passwordsafe.config_manager as config
 import passwordsafe.password_generator
@@ -36,7 +36,6 @@ class DatabaseSettingsDialog:
         self.window = self.builder.get_object("database_settings_window")
         self.auth_apply_button = self.builder.get_object("auth_apply_button")
 
-        self.stack = self.builder.get_object("dbsd_stack")
         self.encryption_apply_button = self.builder.get_object("encryption_apply_button")
         self.select_keyfile_button = self.builder.get_object("select_keyfile_button")
         self.generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
@@ -68,7 +67,6 @@ class DatabaseSettingsDialog:
         )
 
     def __setup_widgets(self) -> None:
-        self.stack.set_visible_child(self.stack.get_child_by_name("auth_page"))
         self.auth_apply_button.set_sensitive(False)
         self.encryption_apply_button.set_sensitive(False)
 
@@ -275,7 +273,6 @@ class DatabaseSettingsDialog:
             self.database_manager.keyfile_hash = self.database_manager.create_keyfile_hash(str(self.new_keyfile_path))
 
         # Insensitive entries and buttons
-        self.builder.get_object("stack_switcher").set_sensitive(False)
         self.builder.get_object("current_password_entry").set_sensitive(False)
         self.builder.get_object("new_password_entry").set_sensitive(False)
         self.builder.get_object("confirm_password_entry").set_sensitive(False)
@@ -300,7 +297,6 @@ class DatabaseSettingsDialog:
         confirm_password_entry = self.builder.get_object("confirm_password_entry")
         select_keyfile_button = self.builder.get_object("select_keyfile_button")
 
-        self.builder.get_object("stack_switcher").set_sensitive(True)
         current_password_entry.set_sensitive(True)
         new_password_entry.set_sensitive(True)
         confirm_password_entry.set_sensitive(True)

@@ -2,14 +2,11 @@
 <interface>
   <object class="AdwActionRow" id="attachment_row">
     <property name="activatable">True</property>
-    <property name="visible">True</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <child>
           <object class="GtkButton" id="attachment_download_button">
             <property name="name">AttachmentDownloadButton</property>
-            <property name="visible">True</property>
             <property name="receives_default">True</property>
             <property name="valign">center</property>
             <property name="icon_name">document-save-as-symbolic</property>
@@ -18,7 +15,6 @@
         <child>
           <object class="GtkButton" id="attachment_delete_button">
             <property name="name">AttachmentDeleteButton</property>
-            <property name="visible">True</property>
             <property name="receives_default">True</property>
             <property name="valign">center</property>
             <property name="icon_name">user-trash-symbolic</property>

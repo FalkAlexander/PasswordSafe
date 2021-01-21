@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="Notification" parent="GtkRevealer">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
     <property name="halign">center</property>
     <property name="valign">start</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="hexpand">True</property>
         <child>
           <object class="GtkLabel" id="label">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
             <property name="margin_start">18</property>
             <property name="margin_end">18</property>
           </object>

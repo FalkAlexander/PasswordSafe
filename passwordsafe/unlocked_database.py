@@ -396,7 +396,7 @@ class UnlockedDatabase(GObject.GObject):
         if self.props.search_active:
             self.props.search_active = False
 
-        if list_box_row.type == "GroupRow":
+        if list_box_row.__gtype_name__ == "GroupRow":
             safe_group = list_box_row.safe_group
             self.show_browser_page(safe_group)
         else:

@@ -5,6 +5,7 @@ import typing
 from gettext import gettext as _
 
 from gi.repository import Adw, GObject, Gtk
+
 from passwordsafe.safe_element import SafeGroup
 
 if typing.TYPE_CHECKING:
@@ -16,14 +17,9 @@ class GroupRow(Adw.ActionRow):
 
     __gtype_name__ = "GroupRow"
 
-    _entry_box_gesture = Gtk.Template.Child()
     _checkbox_revealer = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
     edit_button = Gtk.Template.Child()
-    _entry_box_gesture = Gtk.Template.Child()
-    _long_press_gesture = Gtk.Template.Child()
-
-    type = "GroupRow"
 
     def __init__(self, unlocked_database, safe_group):
         super().__init__()

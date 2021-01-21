@@ -22,7 +22,6 @@
             <child>
               <object class="GtkCheckButton" id="selection_checkbox">
                 <property name="margin_end">12</property>
-                <property name="receives_default">False</property>
                 <property name="valign">center</property>
                 <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
               </object>
@@ -55,8 +54,6 @@
         </child>
         <child>
           <object class="GtkButton" id="_entry_copy_pass_button">
-            <property name="name">ListBoxRowButton</property>
-            <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
             <property name="icon_name">dialog-password-symbolic</property>
             <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="GroupRow" parent="AdwActionRow">
-    <property name="visible">True</property>
     <property name="activatable">True</property>
     <child>
       <object class="GtkGestureClick" id="_entry_box_gesture">
@@ -23,7 +22,6 @@
            <child>
              <object class="GtkCheckButton" id="selection_checkbox">
                <property name="margin_end">12</property>
-               <property name="receives_default">False</property>
                <property name="valign">center</property>
                <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
              </object>
@@ -32,7 +30,6 @@
        </child>
         <child>
           <object class="GtkImage" id="group_icon">
-            <property name="visible">True</property>
             <property name="pixel_size">32</property>
             <property name="icon_name">folder-symbolic</property>
           </object>
@@ -41,10 +38,6 @@
     </child>
     <child>
       <object class="GtkButton" id="edit_button">
-        <property name="name">ListBoxRowButton</property>
-        <property name="visible">True</property>
-        <property name="receives_default">True</property>
-        <property name="halign">end</property>
         <property name="valign">center</property>
         <property name="icon_name">document-edit-symbolic</property>
         <signal name="clicked" handler="on_group_edit_button_clicked" swapped="no"/>

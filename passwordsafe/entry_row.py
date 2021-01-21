@@ -15,15 +15,12 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/entry_row.ui")
 class EntryRow(Adw.ActionRow):
-    # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "EntryRow"
 
     _checkbox_revealer = Gtk.Template.Child()
     _entry_icon = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
-
-    type = "EntryRow"
 
     def __init__(self, database: UnlockedDatabase, safe_entry: SafeEntry) -> None:
         super().__init__()

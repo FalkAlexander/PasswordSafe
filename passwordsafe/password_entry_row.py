@@ -48,7 +48,7 @@ class PasswordEntryRow(Gtk.Box):
         show_pwds = passwordsafe.config_manager.get_show_password_fields()
         self._password_value_entry.props.visibility = show_pwds
 
-        self._pwd_popover = PasswordGeneratorPopover(self._unlocked_database)
+        self._pwd_popover = PasswordGeneratorPopover()
         self._pwd_popover.bind_property(
             "password", self._password_value_entry, "text")
         self._generate_password_button.set_popover(self._pwd_popover)

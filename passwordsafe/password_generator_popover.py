@@ -1,15 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import typing
 from gi.repository import GObject, Gtk
 
 import passwordsafe.config_manager as config
 from passwordsafe.password_generator import generate as generate_pwd
 from passwordsafe.passphrase_generator import Passphrase
-
-if typing.TYPE_CHECKING:
-    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 @Gtk.Template(
@@ -31,14 +27,12 @@ class PasswordGeneratorPopover(Gtk.Popover):  # pylint: disable=too-few-public-m
     password = GObject.Property(
         type=str, default="", flags=GObject.ParamFlags.READWRITE)
 
-    def __init__(self, database_view: UnlockedDatabase):
+    def __init__(self):
         """Popover to generate a new password for an entry
 
         :param UnlockedDatabase database_view: database view
         """
         super().__init__()
-
-        self._db_view: UnlockedDatabase = database_view
 
         use_lowercase = config.get_generator_use_lowercase()
         self._low_letter_toggle_button.set_active(use_lowercase)

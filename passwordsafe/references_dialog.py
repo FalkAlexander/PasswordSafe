@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from gi.repository import Gdk, Gio, Gtk
+from gi.repository import Gio, Gtk
 
 
 class ReferencesDialog():
@@ -33,9 +33,6 @@ class ReferencesDialog():
     def __setup_signals(self) -> None:
         self.__reference_entry.connect("icon-press", self.__on_copy_secondary_button_clicked)
         self.__connect_model_buttons_signals()
-        controller = Gtk.EventControllerKey()
-        controller.connect("key-pressed", self.__on_key_press_event)
-        self.__dialog.add_controller(controller)
         self.__database_manager.connect("notify::locked", self.__on_locked)
 
     def __setup_actions(self) -> None:
@@ -74,13 +71,6 @@ class ReferencesDialog():
     def __open_uuid_popover(self, _gesture, _n_points, _x, _y, _data=None):
         uuid_popover = self.__builder.get_object("uuid_popover")
         uuid_popover.popup()
-
-    def __on_key_press_event(self, _controller, keyval, _keycode, _state, _gdata=None):
-        self.__unlocked_database.start_database_lock_timer()
-        if keyval == Gdk.KEY_Escape:
-            self.__dialog.close()
-            return Gdk.EVENT_STOP
-        return Gdk.EVENT_PROPAGATE
 
     def __on_copy_secondary_button_clicked(self, entry, _position):
         self.__unlocked_database.start_database_lock_timer()

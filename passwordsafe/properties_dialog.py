@@ -2,7 +2,7 @@
 """Responsible for displaying the Entry/Group Properties"""
 from __future__ import annotations
 
-from gi.repository import Gtk, Gdk
+from gi.repository import Gtk
 
 
 class PropertiesDialog:
@@ -37,21 +37,12 @@ class PropertiesDialog:
         )
 
     def __setup_signals(self) -> None:
-        controller = Gtk.EventControllerKey()
-        controller.connect("key-pressed", self.__on_key_press_event)
-        self.__dialog.add_controller(controller)
         self.__db_manager.connect("notify::locked", self.__on_locked)
 
     def __setup_widgets(self) -> None:
         self.__update_properties()
         self.__dialog.set_modal(True)
         self.__dialog.set_transient_for(self.__database.window)
-
-    def __on_key_press_event(self, _controller, keyval, _keycode, _state):
-        if keyval == Gdk.KEY_Escape:
-            self.__dialog.close()
-            return Gdk.EVENT_STOP
-        return Gdk.EVENT_PROPAGATE
 
     def __on_locked(self, database_manager, _value):
         locked = database_manager.props.locked

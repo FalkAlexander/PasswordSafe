@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Gdk, GObject, Gtk
+from gi.repository import GObject, Gtk
 
 
 class NotesDialog:
@@ -48,9 +48,6 @@ class NotesDialog:
         # Dialog
         self.__dialog.set_modal(True)
         self.__dialog.set_transient_for(self.__unlocked_database.window)
-        controller = Gtk.EventControllerKey()
-        controller.connect("key-pressed", self.__on_key_press_event)
-        self.__dialog.add_controller(controller)
 
     #
     # Events
@@ -108,15 +105,6 @@ class NotesDialog:
             match_start, match_end = match
             notes_buffer.apply_tag(self.__tag, match_start, match_end)
             self.__do_search(notes_buffer, keyword, match_end)
-
-    def __on_key_press_event(self, _controller, keyval, _keycode, _state, _gdata=None):
-        if keyval == Gdk.KEY_Escape:
-            if not self.__search_bar.get_search_mode():
-                self.__unlocked_database.start_database_lock_timer()
-
-                self.__dialog.close()
-                return Gdk.EVENT_STOP
-        return Gdk.EVENT_PROPAGATE
 
     def __on_locked(self, database_manager, _value):
         locked = database_manager.props.locked

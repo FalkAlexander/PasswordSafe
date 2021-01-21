@@ -53,9 +53,6 @@ class DatabaseSettingsDialog:
         self.encryption_apply_button.connect(
             "clicked", self.on_encryption_apply_button_clicked
         )
-        controller = Gtk.EventControllerKey()
-        controller.connect("key-pressed", self.__on_key_press_event)
-        self.window.add_controller(controller)
 
         # Password Section
         self.builder.get_object("current_password_entry").connect("changed", self.on_password_entry_changed)
@@ -425,9 +422,3 @@ class DatabaseSettingsDialog:
         locked = database_manager.props.locked
         if locked:
             self.window.close()
-
-    def __on_key_press_event(self, _controller, keyval, _keycode, _state, _gdata=None):
-        if keyval == Gdk.KEY_Escape:
-            self.window.close()
-            return Gdk.EVENT_STOP
-        return Gdk.EVENT_PROPAGATE

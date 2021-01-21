@@ -17,6 +17,7 @@ class GroupRow(Adw.ActionRow):
     __gtype_name__ = "GroupRow"
 
     _entry_box_gesture = Gtk.Template.Child()
+    _checkbox_revealer = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
     edit_button = Gtk.Template.Child()
     _entry_box_gesture = Gtk.Template.Child()
@@ -40,8 +41,8 @@ class GroupRow(Adw.ActionRow):
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
             "selection_mode",
-            self.selection_checkbox,
-            "visible",
+            self._checkbox_revealer,
+            "reveal-child",
             GObject.BindingFlags.SYNC_CREATE,
         )
 

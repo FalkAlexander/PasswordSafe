@@ -17,15 +17,19 @@
     </child>
     <child type="prefix">
      <object class="GtkBox">
-       <property name="spacing">6</property>
-        <child>
-          <object class="GtkCheckButton" id="selection_checkbox">
-            <property name="visible">False</property>
-            <property name="receives_default">False</property>
-            <property name="valign">center</property>
-            <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
-          </object>
-        </child>
+       <child>
+         <object class="GtkRevealer" id="_checkbox_revealer">
+           <property name="transition_type">slide-right</property>
+           <child>
+             <object class="GtkCheckButton" id="selection_checkbox">
+               <property name="margin_end">12</property>
+               <property name="receives_default">False</property>
+               <property name="valign">center</property>
+               <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
+             </object>
+           </child>
+         </object>
+       </child>
         <child>
           <object class="GtkImage" id="group_icon">
             <property name="visible">True</property>

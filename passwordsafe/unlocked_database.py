@@ -322,7 +322,6 @@ class UnlockedDatabase(GObject.GObject):
         self.populate_list_model(list_model)
 
         scrolled_window = Gtk.ScrolledWindow.new()
-        scrolled_window.props.visible = True
         scrolled_window.set_child(browser_stack)
 
         return scrolled_window

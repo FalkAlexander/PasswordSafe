@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="GroupPage" parent="GtkScrolledWindow">
-    <property name="visible">True</property>
     <property name="hexpand">True</property>
     <child>
       <object class="AdwClamp">
-        <property name="visible">True</property>
         <property name="margin_top">30</property>
         <property name="margin_bottom">30</property>
         <property name="margin_start">12</property>
         <property name="margin_end">12</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
             <property name="orientation">vertical</property>
             <property name="spacing">12</property>
             <child>
               <object class="GtkBox" id="name_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkLabel" id="name_property_name_label">
-                    <property name="visible">True</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">_Title</property>
                     <property name="use_underline">True</property>
@@ -34,11 +29,9 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="name_entry_box">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkEntry" id="name_property_value_entry">
-                        <property name="visible">True</property>
                         <property name="enable_undo">False</property>
                       </object>
                     </child>
@@ -48,15 +41,12 @@
             </child>
             <child>
               <object class="GtkBox" id="notes_property_box">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <child>
                   <object class="GtkBox">
-                    <property name="visible">True</property>
                     <child>
                       <object class="GtkLabel" id="notes_property_name_label">
-                        <property name="visible">True</property>
                         <property name="halign">start</property>
                         <property name="hexpand">True</property>
                         <property name="label" translatable="yes">_Notes</property>
@@ -69,7 +59,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="notes_detach_button">
-                        <property name="visible">True</property>
                         <property name="receives_default">True</property>
                         <property name="icon_name">focus-windows-symbolic</property>
                         <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
@@ -83,15 +72,12 @@
                 </child>
                 <child>
                   <object class="GtkBox" id="notes_entry_box">
-                    <property name="visible">True</property>
                     <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkScrolledWindow" id="notes_property_scrolled_window">
                         <property name="height_request">180</property>
-                        <property name="visible">True</property>
                         <child>
                           <object class="GtkTextView" id="notes_property_value_entry">
-                            <property name="visible">True</property>
                             <property name="left_margin">8</property>
                             <property name="right_margin">8</property>
                             <property name="top_margin">5</property>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="RecentFilesPage" parent="GtkBox">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
     <property name="valign">center</property>
     <property name="halign">fill</property>
     <property name="hexpand">True</property>
@@ -11,19 +9,14 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkScrolledWindow" id="last_opened_scrolled_window">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
         <property name="hscrollbar_policy">never</property>
         <property name="propagate_natural_height">True</property>
         <child>
           <object class="AdwClamp">
-            <property name="visible">True</property>
             <property name="maximum_size">400</property>
             <child>
               <object class="GtkBox">
-                <property name="visible">True</property>
                 <property name="orientation">vertical</property>
-                <property name="can_focus">False</property>
                 <property name="margin_top">32</property>
                 <property name="margin_bottom">32</property>
                 <property name="margin_start">12</property>
@@ -31,8 +24,6 @@
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">Recent Safes</property>
                     <style>
@@ -42,8 +33,6 @@
                 </child>
                 <child>
                   <object class="GtkListBox" id="_last_opened_listbox">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
                     <property name="hexpand">True</property>
                     <signal name="row-activated" handler="_on_last_opened_listbox_activated" swapped="no"/>
                     <style>

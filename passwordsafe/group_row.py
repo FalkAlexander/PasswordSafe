@@ -4,7 +4,7 @@ from __future__ import annotations
 import typing
 from gettext import gettext as _
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 from passwordsafe.safe_element import SafeGroup
 
 if typing.TYPE_CHECKING:
@@ -12,12 +12,11 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/group_row.ui")
-class GroupRow(Gtk.ListBoxRow):
+class GroupRow(Adw.ActionRow):
 
     __gtype_name__ = "GroupRow"
 
     _entry_box_gesture = Gtk.Template.Child()
-    name_label = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
     edit_button = Gtk.Template.Child()
     _entry_box_gesture = Gtk.Template.Child()
@@ -28,15 +27,13 @@ class GroupRow(Gtk.ListBoxRow):
     def __init__(self, unlocked_database, safe_group):
         super().__init__()
 
-        self.get_style_context().add_class("row")
-
         assert isinstance(safe_group, SafeGroup)
         self.unlocked_database = unlocked_database
         self.safe_group = safe_group
         self.assemble_group_row()
 
     def assemble_group_row(self):
-        # Name Label
+        # Name title
         self.safe_group.connect("notify::name", self._on_group_name_changed)
         self._on_group_name_changed(self.safe_group, None)
 
@@ -91,13 +88,13 @@ class GroupRow(Gtk.ListBoxRow):
     def _on_group_name_changed(
             self, _safe_group: SafeGroup, _value: GObject.ParamSpec) -> None:
         group_name = self.safe_group.name
-        style_context = self.name_label.get_style_context()
+        style_context = self.get_style_context()
         if group_name:
-            style_context.remove_class("italic")
-            self.name_label.props.label = group_name
+            style_context.remove_class("italic-title")
+            self.props.title = group_name
         else:
-            style_context.add_class("italic")
-            self.name_label.props.label = _("Title not specified")
+            style_context.add_class("italic-title")
+            self.props.title = _("Title not specified")
 
     @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):

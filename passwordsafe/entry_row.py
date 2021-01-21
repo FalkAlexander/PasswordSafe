@@ -1,8 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
+
 import typing
 from gettext import gettext as _
-from gi.repository import GObject, Gtk
+
+from gi.repository import Adw, GObject, Gtk
 
 from passwordsafe.color_widget import Color
 
@@ -12,7 +14,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/entry_row.ui")
-class EntryRow(Gtk.ListBoxRow):
+class EntryRow(Adw.ActionRow):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "EntryRow"
@@ -20,17 +22,11 @@ class EntryRow(Gtk.ListBoxRow):
     selection_checkbox = Gtk.Template.Child()
 
     _entry_icon = Gtk.Template.Child()
-    _entry_name_label = Gtk.Template.Child()
-    _entry_username_label = Gtk.Template.Child()
-    _entry_box_gesture = Gtk.Template.Child()
-    _long_press_gesture = Gtk.Template.Child()
 
     type = "EntryRow"
 
     def __init__(self, database: UnlockedDatabase, safe_entry: SafeEntry) -> None:
         super().__init__()
-
-        self.get_style_context().add_class("row")
 
         self._safe_entry: SafeEntry = safe_entry
 
@@ -105,24 +101,24 @@ class EntryRow(Gtk.ListBoxRow):
     def _on_entry_name_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
         entry_name = self._safe_entry.props.name
-        style_context = self._entry_name_label.get_style_context()
+        style_context = self.get_style_context()
         if entry_name:
-            style_context.remove_class("italic")
-            self._entry_name_label.props.label = entry_name
+            style_context.remove_class("italic-title")
+            self.props.title = entry_name
         else:
-            style_context.add_class("italic")
-            self._entry_name_label.props.label = _("Title not specified")
+            style_context.add_class("italic-title")
+            self.props.title = _("Title not specified")
 
     def _on_entry_username_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
         entry_username = self._safe_entry.props.username
-        style_context = self._entry_username_label.get_style_context()
+        style_context = self.get_style_context()
         if entry_username:
-            style_context.remove_class("italic")
-            self._entry_username_label.props.label = entry_username
+            style_context.remove_class("italic-subtitle")
+            self.props.subtitle = entry_username
         else:
-            style_context.add_class("italic")
-            self._entry_username_label.props.label = _("No username specified")
+            style_context.add_class("italic-subtitle")
+            self.props.subtitle = _("No username specified")
 
     def _on_entry_color_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:

@@ -19,9 +19,9 @@ class EntryRow(Adw.ActionRow):
 
     __gtype_name__ = "EntryRow"
 
-    selection_checkbox = Gtk.Template.Child()
-
+    _checkbox_revealer = Gtk.Template.Child()
     _entry_icon = Gtk.Template.Child()
+    selection_checkbox = Gtk.Template.Child()
 
     type = "EntryRow"
 
@@ -52,8 +52,8 @@ class EntryRow(Adw.ActionRow):
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
             "selection_mode",
-            self.selection_checkbox,
-            "visible",
+            self._checkbox_revealer,
+            "reveal-child",
             GObject.BindingFlags.SYNC_CREATE,
         )
 

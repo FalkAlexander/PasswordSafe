@@ -29,12 +29,8 @@ class EntryPage(Gtk.ScrolledWindow):
 
     _filechooser = None
 
-    properties_box = Gtk.Template.Child()
-
-    name_property_box = Gtk.Template.Child()
     name_property_value_entry = Gtk.Template.Child()
 
-    username_property_box = Gtk.Template.Child()
     username_property_value_entry = Gtk.Template.Child()
 
     password_property_box = Gtk.Template.Child()
@@ -48,7 +44,6 @@ class EntryPage(Gtk.ScrolledWindow):
     color_property_box = Gtk.Template.Child()
 
     icon_entry_box = Gtk.Template.Child()
-    icon_property_box = Gtk.Template.Child()
 
     attachment_property_box = Gtk.Template.Child()
     attachment_list_box = Gtk.Template.Child()

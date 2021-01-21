@@ -217,10 +217,6 @@ class Search:
 
         selected_row.activate()
 
-    def on_load_more_row_clicked(self, row):
-        self.search_list_box.remove(row)
-        self._show_results(True)
-
     @property
     def headerbar(self) -> Handy.HeaderBar:
         """Get the search headerbar.

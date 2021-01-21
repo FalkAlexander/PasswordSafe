@@ -22,7 +22,6 @@ class AttachmentWarningDialog(Gtk.MessageDialog):
         :param entry_page: entry page
         """
         super().__init__()
-        self.__entry_page = entry_page
         self.__unlocked_database = entry_page.unlocked_database
         self.__attachment = attachment
 

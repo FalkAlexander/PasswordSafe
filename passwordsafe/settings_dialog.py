@@ -174,12 +174,6 @@ class SettingsDialog(Handy.PreferencesWindow):
     def _on_generator_separator_entry_changed(self, entry: Gtk.Entry) -> None:
         config.set_generator_separator(entry.get_text())
 
-    def _on_settings_full_text_search_switch_switched(self, switch_button, _gparam):
-        config.set_full_text_search(switch_button.get_active())
-
-    def _on_settings_local_search_switch_switched(self, switch_button, _gparam):
-        config.set_local_search(switch_button.get_active())
-
     def _on_settings_theme_switch_switched(self, switch_button, _gparam):
         gtk_settings = Gtk.Settings.get_default()
         value = switch_button.get_active()

@@ -24,8 +24,6 @@ LAST_USED_COMPOSITE_KEY = "last-used-composite-key"
 REMEMBER_UNLOCK_METHOD = "remember-unlock-method"
 UNLOCK_METHOD = "unlock-method"
 DEV_BACKUP_MODE = "development-backup-mode"
-FULL_TEXT_SEARCH = "full-text-search"
-LOCAL_SEARCH = "local-search"
 GENERATOR_USE_UPPERCASE = "generator-use-uppercase"
 GENERATOR_USE_LOWERCASE = "generator-use-lowercase"
 GENERATOR_USE_NUMBERS = "generator-use-numbers"
@@ -130,28 +128,12 @@ def set_first_start_screen(value):
     setting.set_boolean(SHOW_START_SCREEN, value)
 
 
-def get_full_text_search() -> bool:
-    return setting.get_boolean(FULL_TEXT_SEARCH)
-
-
-def set_full_text_search(value: bool) -> None:
-    setting.set_boolean(FULL_TEXT_SEARCH, value)
-
-
 def get_last_opened_database():
     return setting.get_string(LAST_OPENED_DB)
 
 
 def set_last_opened_database(value):
     setting.set_string(LAST_OPENED_DB, value)
-
-
-def get_local_search() -> bool:
-    return setting.get_boolean(LOCAL_SEARCH)
-
-
-def set_local_search(value: bool) -> None:
-    setting.set_boolean(LOCAL_SEARCH, value)
 
 
 def get_save_automatically():

@@ -453,10 +453,6 @@ class MainWindow(Handy.ApplicationWindow):
             database.cleanup()
             self.close_tab(widget, database)
 
-    def on_tab_switch(self, _notebook, tab, _pagenum):
-        headerbar = tab.get_headerbar()
-        self.set_titlebar(headerbar)
-
     #
     # Application Quit Dialog
     #

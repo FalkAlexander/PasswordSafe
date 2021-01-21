@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import typing
-from uuid import UUID
 
 from gi.repository import Gio, GObject, Gtk
 
@@ -79,13 +78,6 @@ class Pathbar(Gtk.Box):
             is_group = pathbar_button.is_group
             if is_group:
                 self.unlocked_database.show_browser_page(pathbar_button_elem)
-
-    def uuid_in_pathbar(self, uuid: UUID) -> bool:
-        """Return True if the uuid entry is visible in the bar"""
-        for button in self.buttons:
-            if button.element.uuid == uuid:
-                return True
-        return False
 
 
 class PathbarSeparator(Gtk.Label):

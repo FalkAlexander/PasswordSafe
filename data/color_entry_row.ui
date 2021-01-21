@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="ColorEntryRow" parent="GtkBox">
-    <property name="visible">True</property>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">12</property>
         <child>
           <object class="GtkLabel" id="color_property_name_label">
-            <property name="visible">True</property>
             <property name="halign">start</property>
             <property name="label" translatable="yes">Color</property>
             <style>
@@ -19,7 +16,6 @@
         </child>
         <child>
           <object class="GtkFlowBox" id="_flowbox">
-            <property name="visible">True</property>
             <property name="min-children-per-line">4</property>
             <property name="max-children-per-line">8</property>
             <property name="row-spacing">12</property>

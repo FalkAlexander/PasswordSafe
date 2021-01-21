@@ -2,7 +2,6 @@
 <interface>
   <template class="EntryRow" parent="AdwActionRow">
     <property name="activatable">True</property>
-    <property name="visible">True</property>
     <child>
       <object class="GtkGestureClick" id="_entry_box_gesture">
         <property name="button">3</property>
@@ -32,7 +31,6 @@
         </child>
         <child>
           <object class="GtkImage" id="_entry_icon">
-            <property name="visible">True</property>
             <property name="icon_name">application-x-executable-symbolic</property>
             <property name="width_request">32</property>
             <property name="height_request">32</property>
@@ -47,11 +45,9 @@
     </child>
     <child>
       <object class="GtkBox">
-        <property name="visible">True</property>
         <property name="valign">center</property>
         <child>
           <object class="GtkButton" id="_entry_copy_user_button">
-            <property name="visible">True</property>
             <property name="tooltip_text" translatable="yes">Copy username to clipboard</property>
             <property name="icon_name">avatar-default-symbolic</property>
             <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
@@ -60,7 +56,6 @@
         <child>
           <object class="GtkButton" id="_entry_copy_pass_button">
             <property name="name">ListBoxRowButton</property>
-            <property name="visible">True</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
             <property name="icon_name">dialog-password-symbolic</property>

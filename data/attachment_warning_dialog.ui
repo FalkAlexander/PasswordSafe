@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="AttachmentWarningDialog" parent="GtkMessageDialog">
-    <property name="can_focus">False</property>
     <property name="message_type">warning</property>
     <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Safety Info</property>
     <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">It is possible that external applications will create unencrypted hidden or temporary copies of this attachment file! Please proceed with caution.</property>

@@ -24,9 +24,6 @@ class DatabaseSettingsDialog:
     groups_number = NotImplemented
     passwords_number = NotImplemented
 
-    new_encryption_algorithm = NotImplemented
-    new_derivation_algorithm = NotImplemented
-
     def __init__(self, unlocked_database):
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
@@ -36,7 +33,6 @@ class DatabaseSettingsDialog:
         self.window = self.builder.get_object("database_settings_window")
         self.auth_apply_button = self.builder.get_object("auth_apply_button")
 
-        self.encryption_apply_button = self.builder.get_object("encryption_apply_button")
         self.select_keyfile_button = self.builder.get_object("select_keyfile_button")
         self.generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
 
@@ -49,9 +45,6 @@ class DatabaseSettingsDialog:
 
     def __setup_signals(self) -> None:
         self.auth_apply_button.connect("clicked", self.on_auth_apply_button_clicked)
-        self.encryption_apply_button.connect(
-            "clicked", self.on_encryption_apply_button_clicked
-        )
 
         # Password Section
         self.builder.get_object("current_password_entry").connect("changed", self.on_password_entry_changed)
@@ -68,7 +61,6 @@ class DatabaseSettingsDialog:
 
     def __setup_widgets(self) -> None:
         self.auth_apply_button.set_sensitive(False)
-        self.encryption_apply_button.set_sensitive(False)
 
         if self.database_manager.keyfile_hash is NotImplemented:
             self.generate_keyfile_button.set_sensitive(True)
@@ -319,27 +311,6 @@ class DatabaseSettingsDialog:
 
         self.auth_apply_button.set_label(_("Apply Changes"))
         self.auth_apply_button.set_sensitive(False)
-
-    def on_encryption_apply_button_clicked(self, _button):
-        if self.new_encryption_algorithm is not NotImplemented:
-            self.database_manager.db.encryption_algorithm = self.new_encryption_algorithm
-
-        if self.new_derivation_algorithm is not NotImplemented:
-            self.database_manager.db.version = self.new_derivation_algorithm
-
-        self.encryption_apply_button.set_sensitive(False)
-        self.encryption_apply_button.set_label(_("Apply…"))
-
-        save_thread = threading.Thread(target=self.enc_save_thread)
-        save_thread.daemon = True
-        save_thread.start()
-
-    def enc_save_thread(self):
-        self.database_manager.save_database()
-        GLib.idle_add(self.enc_save_process_finished)
-
-    def enc_save_process_finished(self):
-        self.encryption_apply_button.set_label(_("Apply Changes"))
 
     #
     # General Section

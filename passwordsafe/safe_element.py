@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
-from typing import Dict, NamedTuple, Optional, Union
+from typing import NamedTuple, Optional, Union
 from uuid import UUID
 
 from gi.repository import GObject
@@ -196,7 +196,7 @@ class SafeEntry(SafeElement):
 
         self._attachments: list[Attachment] = entry.attachments or []
 
-        self._attributes: Dict[str, str] = {
+        self._attributes: dict[str, str] = {
             key: value for key, value in entry.custom_properties.items()
             if key not in (self._color_key, self._note_key)}
 
@@ -268,7 +268,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(
         type=object, flags=GObject.ParamFlags.READABLE)
-    def attributes(self) -> Dict[str, str]:
+    def attributes(self) -> dict[str, str]:
         return self._attributes
 
     def has_attribute(self, key: str) -> bool:

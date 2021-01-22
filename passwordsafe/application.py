@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import typing
 from gettext import gettext as _
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from gi.repository import Gio, GLib, Gtk, Handy
 
@@ -21,7 +21,7 @@ if typing.TYPE_CHECKING:
 
 class Application(Gtk.Application):
 
-    _save_handler_ids: Dict[UnlockedDatabase, int] = {}
+    _save_handler_ids: dict[UnlockedDatabase, int] = {}
     window: MainWindow = None
     file_list: list[Gio.File] = []
     development_mode = False

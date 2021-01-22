@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
-from typing import NamedTuple, Optional, Union
+from typing import NamedTuple, Optional
 from uuid import UUID
 
 from gi.repository import GObject
@@ -25,7 +25,7 @@ class SafeElement(GObject.GObject):
     _db_manager: Optional[DatabaseManager] = None
     sorted_handler_id: Optional[int] = None
 
-    def __init__(self, element: Union[Entry, Group]):
+    def __init__(self, element: Entry | Group):
         """GObject to handle a safe element. The underlying pykeepass element
         can be obtainied via the `element` property, when it is certain the
         element is a Group or Entry, the properties `entry` and `group` should

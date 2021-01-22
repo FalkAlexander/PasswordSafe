@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import hashlib
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from typing import Optional, Union
+from typing import Optional
 from uuid import UUID
 
 from gi.repository import Gio, GObject
@@ -92,7 +94,7 @@ class DatabaseManager(GObject.GObject):
         return safe_entry
 
     # Delete an entry
-    def delete_from_database(self, entity: Union[Entry, Group]) -> None:
+    def delete_from_database(self, entity: Entry | Group) -> None:
         """Delete an Entry or a Group from the database.
 
         :param entity: Entity or Group to delete

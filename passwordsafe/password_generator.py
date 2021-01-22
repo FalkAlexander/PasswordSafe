@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import secrets
 import string
-from typing import Optional
 
 import pwquality
 
@@ -52,7 +53,7 @@ def generate(
     return "".join([secrets.choice(characters) for _ in range(0, length)])
 
 
-def strength(password: str) -> Optional[float]:
+def strength(password: str) -> float | None:
     """Get strength of a password between 0 and 5.
 
     The higher the score is, the more secure the password is.

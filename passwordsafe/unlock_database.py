@@ -1,4 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
 import ntpath
 import os
@@ -6,7 +8,6 @@ import threading
 from datetime import datetime
 from gettext import gettext as _
 from pathlib import Path
-from typing import Optional
 
 from gi.repository import Gio, GLib, Gtk, Pango
 from pykeepass.exceptions import (
@@ -154,7 +155,7 @@ class UnlockDatabase:
     #
 
     def _on_headerbar_back_button_clicked(self, _widget: Gtk.Button) -> None:
-        database: Optional[UnlockedDatabase] = None
+        database: UnlockedDatabase | None = None
         if self.database_manager:
             for db in self.window.opened_databases:
                 db_path: str = db.database_manager.database_path

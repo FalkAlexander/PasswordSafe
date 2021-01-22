@@ -5,7 +5,6 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from typing import Optional
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 
 import passwordsafe.config_manager
@@ -481,7 +480,7 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     # Find current displayed tab for executing the action
-    def find_action_db(self) -> Optional[UnlockedDatabase]:
+    def find_action_db(self) -> UnlockedDatabase | None:
         action_db = None
 
         for database in self.opened_databases:

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import threading
 import typing
-from typing import Optional
 
 from gi.repository import Gio, GLib, GObject, Gtk, Handy
 
@@ -25,7 +24,7 @@ class Search:
     def __init__(self, unlocked_database: UnlockedDatabase) -> None:
         self.unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
-        self._search_changed_id: Optional[int] = None
+        self._search_changed_id: int | None = None
 
         self._builder: Gtk.Builder = Gtk.Builder()
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")

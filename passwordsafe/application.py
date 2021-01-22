@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import typing
 from gettext import gettext as _
-from typing import Any, Optional
+from typing import Any
 
 from gi.repository import Gio, GLib, Gtk, Handy
 
@@ -120,7 +120,7 @@ class Application(Gtk.Application):
         about_dialog.set_transient_for(self.window)
         about_dialog.show()
 
-    def on_quit(self, _action: Optional[Gio.SimpleAction] = None,
+    def on_quit(self, _action: Gio.SimpleAction | None = None,
                 _data: Any = None) -> None:
         unsaved_databases_list = []
         self.window.databases_to_save.clear()

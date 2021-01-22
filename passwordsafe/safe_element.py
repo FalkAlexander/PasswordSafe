@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
-from typing import NamedTuple, Optional
+from typing import NamedTuple
 from uuid import UUID
 
 from gi.repository import GObject
@@ -22,8 +22,8 @@ if typing.TYPE_CHECKING:
 
 class SafeElement(GObject.GObject):
 
-    _db_manager: Optional[DatabaseManager] = None
-    sorted_handler_id: Optional[int] = None
+    _db_manager: DatabaseManager | None = None
+    sorted_handler_id: int | None = None
 
     def __init__(self, element: Entry | Group):
         """GObject to handle a safe element. The underlying pykeepass element
@@ -246,7 +246,7 @@ class SafeEntry(SafeElement):
         self._attachments.remove(attachment)
         self.emit("updated")
 
-    def get_attachment(self, id_: str) -> Optional[Attachment]:
+    def get_attachment(self, id_: str) -> Attachment | None:
         """Get an attachment from its id.
 
         :param str id_: attachment id

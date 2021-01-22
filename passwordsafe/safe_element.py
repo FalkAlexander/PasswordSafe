@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
-from typing import Dict, List, NamedTuple, Optional, Union
+from typing import Dict, NamedTuple, Optional, Union
 from uuid import UUID
 
 from gi.repository import GObject
@@ -157,11 +157,11 @@ class SafeGroup(SafeElement):
         return SafeGroup(db_manager, db_manager.db.root_group)
 
     @property
-    def subgroups(self) -> List[SafeGroup]:
+    def subgroups(self) -> list[SafeGroup]:
         return [SafeGroup(self._db_manager, group) for group in self._group.subgroups]
 
     @property
-    def entries(self) -> List[SafeEntry]:
+    def entries(self) -> list[SafeEntry]:
         return [SafeEntry(self._db_manager, entry) for entry in self._group.entries]
 
     @property
@@ -194,7 +194,7 @@ class SafeEntry(SafeElement):
         self._db_manager: DatabaseManager = db_manager
         self._entry: Entry = entry
 
-        self._attachments: List[Attachment] = entry.attachments or []
+        self._attachments: list[Attachment] = entry.attachments or []
 
         self._attributes: Dict[str, str] = {
             key: value for key, value in entry.custom_properties.items()
@@ -219,7 +219,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(
         type=object, flags=GObject.ParamFlags.READABLE)
-    def attachments(self) -> List[Attachment]:
+    def attachments(self) -> list[Attachment]:
         return self._attachments
 
     def add_attachment(self, byte_buffer: bytes, filename: str) -> Attachment:

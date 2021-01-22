@@ -5,7 +5,7 @@ import logging
 import threading
 import typing
 from gettext import gettext as _
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
@@ -48,7 +48,7 @@ class UnlockedDatabase(GObject.GObject):
 
     # Objects
     builder = NotImplemented
-    scheduled_tmpfiles_deletion: List[Gio.File] = []
+    scheduled_tmpfiles_deletion: list[Gio.File] = []
     clipboard = NotImplemented
     clipboard_timer_handler: Optional[int] = None
     _current_element: Optional[SafeElement] = None

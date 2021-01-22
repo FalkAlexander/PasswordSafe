@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Generate a passphrase from a list of predefined words."""
+from __future__ import annotations
+
 import logging
 from secrets import randbelow
-from typing import List
 from gi.repository import Gio, GLib
 
 
@@ -28,7 +29,7 @@ class Passphrase:
         f_buffer: GLib.Bytes = Gio.InputStream.read_bytes(word_file.read(),
                                                           108800)
         word_str: str = f_buffer.get_data().decode("utf-8")
-        word_list: List[str] = word_str.split("\n")
+        word_list: list[str] = word_str.split("\n")
         len_words: int = len(word_list)
 
         words = [word_list[randbelow(len_words)] for _ in range(0, num_words)]

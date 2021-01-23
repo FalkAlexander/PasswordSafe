@@ -59,7 +59,7 @@ class MainWindow(Handy.ApplicationWindow):
     def send_notification(self, notification: str) -> None:
         self._notification.send_notification(notification)
 
-    def set_titlebar(self, headerbar: Handy.Headebar) -> None:
+    def set_titlebar(self, headerbar: Handy.HeaderBar) -> None:
         if headerbar not in self._title_stack.get_children():
             self._title_stack.add(headerbar)
         self._title_stack.set_visible_child(headerbar)

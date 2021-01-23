@@ -90,6 +90,9 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._unlocked_database.connect(
             "notify::search-active", self._on_search_active)
 
+        self._selection_ui.connect(
+            "notify::selected-elements", self._on_selected_entries_changed)
+
         self._on_mobile_layout_changed(None, None)
 
     def _setup_accelerators(self):

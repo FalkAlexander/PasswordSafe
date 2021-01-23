@@ -95,7 +95,7 @@ class MainWindow(Handy.ApplicationWindow):
     # Styles
     #
 
-    def load_custom_css(self) -> None:  # pylint: disable=R0201
+    def load_custom_css(self) -> None:
         """Load passwordsafe.css and enable it"""
         screen = Gdk.Screen.get_default()
 
@@ -106,7 +106,7 @@ class MainWindow(Handy.ApplicationWindow):
         context.add_provider_for_screen(
             screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
-    def apply_theme(self) -> None:  # pylint: disable=R0201
+    def apply_theme(self) -> None:
         """Set the bright/dark theme depending on the configuration"""
         gtk_settings = Gtk.Settings.get_default()
 

@@ -241,10 +241,10 @@ class MainWindow(Handy.ApplicationWindow):
                     # is merged in distros' gvfs version.
                     "standard::content-type,standard::fast-content-type", Gio.FileQueryInfoFlags.NONE, None
                 )
-            except GLib.Error as e:  # pylint: disable=C0103
+            except GLib.Error as error:
                 self.notify(_("Could not open file"))
                 logging.debug(
-                    "Unable to query info for file %s: %s", db_filename, e.message
+                    "Unable to query info for file %s: %s", db_filename, error.message
                 )
                 return
 

@@ -24,8 +24,8 @@ else
 endif
 dependency('glib-2.0')
 dependency('gobject-introspection-1.0', version: '>=1.35.9')
-dependency('gtk+-3.0', version :'>=3.24.1')
-dependency('libhandy-1', version :'>=1.0.0')
+dependency('gtk+-3.0', version: '>=3.24.1')
+dependency('libhandy-1', version: '>=1.0.0')
 dependency('python3', version: '>=3.7')
 dependency('pwquality')
 

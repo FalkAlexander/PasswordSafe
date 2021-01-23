@@ -89,9 +89,6 @@ class MainWindow(Handy.ApplicationWindow):
             context = self.get_style_context()
             context.add_class("devel")
 
-    def get_headerbar(self):
-        return self._headerbar
-
     #
     # Styles
     #

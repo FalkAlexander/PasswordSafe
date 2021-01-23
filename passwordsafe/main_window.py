@@ -95,7 +95,7 @@ class MainWindow(Handy.ApplicationWindow):
     # Styles
     #
 
-    def load_custom_css(self) -> None:  # pylint: disable=R0201
+    def load_custom_css(self) -> None:
         """Load passwordsafe.css and enable it"""
         screen = Gdk.Screen.get_default()
 
@@ -106,7 +106,7 @@ class MainWindow(Handy.ApplicationWindow):
         context.add_provider_for_screen(
             screen, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
 
-    def apply_theme(self) -> None:  # pylint: disable=R0201
+    def apply_theme(self) -> None:
         """Set the bright/dark theme depending on the configuration"""
         gtk_settings = Gtk.Settings.get_default()
 
@@ -118,7 +118,8 @@ class MainWindow(Handy.ApplicationWindow):
     # Responsive Listener
     #
 
-    def do_size_allocate(self, allocation: Gdk.Rectangle) -> None:  # pylint: disable=W0221
+    def do_size_allocate(self, allocation: Gdk.Rectangle) -> None:
+        # pylint: disable=arguments-differ
         """Handler for resizing event. It is used to check if
         the layout needs to be updated.
 
@@ -241,10 +242,10 @@ class MainWindow(Handy.ApplicationWindow):
                     # is merged in distros' gvfs version.
                     "standard::content-type,standard::fast-content-type", Gio.FileQueryInfoFlags.NONE, None
                 )
-            except GLib.Error as e:  # pylint: disable=C0103
+            except GLib.Error as error:
                 self.notify(_("Could not open file"))
                 logging.debug(
-                    "Unable to query info for file %s: %s", db_filename, e.message
+                    "Unable to query info for file %s: %s", db_filename, error.message
                 )
                 return
 
@@ -462,12 +463,18 @@ class MainWindow(Handy.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, _event: Gdk.EventAny) -> bool:  # pylint:disable=W0221
-        """invoked when we hit the window close button"""
-        # Just invoke the app.quit action, it cleans up stuff
-        # and will invoke the on_application_shutdown()
+    def do_delete_event(self, _event: Gdk.EventAny) -> bool:
+        # pylint:disable=arguments-differ
+        """This is invoked when the window close button is pressed.
+
+        Only the app.quit action is called. This action cleans up stuff
+        and will invoke the on_application_shutdown() method.
+
+        The true value returned ensures that the destroy method is not
+        called yet.
+        """
         self.application.activate_action("quit")
-        return True  # we handled event, don't call destroy
+        return True
 
     #
     # Gio Actions

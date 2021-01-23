@@ -8,7 +8,7 @@ from passwordsafe.color_widget import Color
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
-    from passwordsafe.unlocked_database import UnlockedDatabase  # pylint: disable=C0412
+    from passwordsafe.unlocked_database import UnlockedDatabase  # pylint: disable=ungrouped-imports
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/entry_row.ui")

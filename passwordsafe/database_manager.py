@@ -47,7 +47,7 @@ class DatabaseManager(GObject.GObject):
         super().__init__()
 
         # password remains accessible as self.db.password
-        self.db = PyKeePass(database_path, password, keyfile)  # pylint: disable=C0103
+        self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
 
     #

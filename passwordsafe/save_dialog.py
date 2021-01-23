@@ -6,7 +6,6 @@ from gi.repository import Gtk
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/save_dialog.ui")
 class SaveDialog(Gtk.MessageDialog):
-    # pylint: disable=too-few-public-methods
 
     __gtype_name__ = "SaveDialog"
 

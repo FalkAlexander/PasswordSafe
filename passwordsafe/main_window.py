@@ -465,11 +465,16 @@ class MainWindow(Handy.ApplicationWindow):
 
     def do_delete_event(self, _event: Gdk.EventAny) -> bool:
         # pylint:disable=arguments-differ
-        """invoked when we hit the window close button"""
-        # Just invoke the app.quit action, it cleans up stuff
-        # and will invoke the on_application_shutdown()
+        """This is invoked when the window close button is pressed.
+
+        Only the app.quit action is called. This action cleans up stuff
+        and will invoke the on_application_shutdown() method.
+
+        The true value returned ensures that the destroy method is not
+        called yet.
+        """
         self.application.activate_action("quit")
-        return True  # we handled event, don't call destroy
+        return True
 
     #
     # Gio Actions

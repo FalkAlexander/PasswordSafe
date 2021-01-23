@@ -72,7 +72,8 @@ class SelectionUI(Gtk.Box):
                     self.unlocked_database.current_element,
                     group
             ):
-                self.unlocked_database.window.notify(_("Operation aborted: Deleting currently active group"))
+                self.unlocked_database.window.send_notification(
+                    _("Operation aborted: Deleting currently active group"))
                 return
 
         for entry_row in self.entries_selected:
@@ -84,7 +85,7 @@ class SelectionUI(Gtk.Box):
             safe_group = group_row.safe_group
             self.unlocked_database.database_manager.delete_from_database(safe_group.group)
 
-        self.unlocked_database.window.notify(_("Deletion completed"))
+        self.unlocked_database.window.send_notification(_("Deletion completed"))
 
         self._clear_all()
 
@@ -125,7 +126,7 @@ class SelectionUI(Gtk.Box):
             if self.unlocked_database.database_manager.parent_checker(
                 current_element, group
             ):
-                self.unlocked_database.window.notify(
+                self.unlocked_database.window.send_notification(
                     _("Operation aborted: Moving currently active group")
                 )
                 self._clear_all()
@@ -143,7 +144,7 @@ class SelectionUI(Gtk.Box):
                 group, current_element.element
             )
 
-        self.unlocked_database.window.notify(_("Move completed"))
+        self.unlocked_database.window.send_notification(_("Move completed"))
         self._clear_all()
 
     def on_selection_popover_button_clicked(self, _action, _param, selection_type):

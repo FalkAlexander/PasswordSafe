@@ -244,7 +244,8 @@ class EntryPage(Gtk.ScrolledWindow):
 
         if safe_entry.has_attribute(key):
             self.attributes_key_entry.get_style_context().add_class("error")
-            self.unlocked_database.window.notify(_("Attribute key already exists"))
+            self.unlocked_database.window.send_notification(
+                _("Attribute key already exists"))
             return
 
         self.attributes_key_entry.get_style_context().remove_class("error")
@@ -304,7 +305,8 @@ class EntryPage(Gtk.ScrolledWindow):
 
         if safe_entry.has_attribute(new_key):
             widget.get_style_context().add_class("error")
-            self.unlocked_database.window.notify(_("Attribute key already exists"))
+            self.unlocked_database.window.send_notification(
+                _("Attribute key already exists"))
             return
 
         safe_entry.set_attribute(new_key, safe_entry.props.attributes[key])

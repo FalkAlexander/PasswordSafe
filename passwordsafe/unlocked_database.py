@@ -417,9 +417,9 @@ class UnlockedDatabase(GObject.GObject):
 
     def on_database_save_notification(self, _database_manager: DatabaseManager, saved: bool) -> None:
         if saved:
-            self.window.notify(_("Safe saved"))
+            self.window.send_notification(_("Safe saved"))
         else:
-            self.window.notify(_("Could not save Safe"))
+            self.window.send_notification(_("Could not save Safe"))
 
     def save_safe(self):
         if self.database_manager.is_dirty is True:
@@ -427,12 +427,12 @@ class UnlockedDatabase(GObject.GObject):
                 self.save_database(notification=True)
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
-                self.window.notify(
+                self.window.send_notification(
                     _("Please wait. Another save is running.")
                 )
         else:
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-            self.window.notify(_("No changes made"))
+            self.window.send_notification(_("No changes made"))
 
     def lock_safe(self):
         self.database_manager.props.locked = True
@@ -478,7 +478,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.clipboard.set_text(text, -1)
 
-        self.window.notify(message)
+        self.window.send_notification(message)
 
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
         self.clipboard_timer_handler = GLib.timeout_add_seconds(
@@ -550,7 +550,7 @@ class UnlockedDatabase(GObject.GObject):
         self.database_manager.props.locked = True
 
         # NOTE: Notification that a safe has been locked.
-        self.window.notify(_("Safe locked due to inactivity"))
+        self.window.send_notification(_("Safe locked due to inactivity"))
 
     #
     # Helper Methods

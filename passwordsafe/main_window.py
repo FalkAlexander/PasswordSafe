@@ -57,7 +57,7 @@ class MainWindow(Handy.ApplicationWindow):
         if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
 
-    def notify(self, notification: str) -> None:
+    def send_notification(self, notification: str) -> None:
         self._notification.notify(notification)
 
     def set_titlebar(self, headerbar: Handy.Headebar) -> None:

@@ -18,7 +18,7 @@ class QuitDialog(Gtk.MessageDialog):
 
         self.set_transient_for(window)
 
-        for database in unsaved_databases_list:  # pylint: disable=C0103
+        for database in unsaved_databases_list:
             unsaved_database_row = Gtk.ListBoxRow()
             check_button = Gtk.CheckButton()
             if "/home/" in database.database_manager.database_path:
@@ -39,7 +39,7 @@ class QuitDialog(Gtk.MessageDialog):
             unsaved_database_row.show_all()
             self.unsaved_databases_list_box.add(unsaved_database_row)
 
-    def on_save_check_button_toggled(self, check_button, args):  # pylint: disable=C0103
+    def on_save_check_button_toggled(self, check_button, args):
         database, window = args
         if check_button.get_active():
             window.databases_to_save.append(database)

@@ -40,7 +40,9 @@ class Pathbar(Gtk.Box):
         button = self.add_button(current_element)
         self.buttons.insert(0, button)
 
+        # pylint: disable=no-member
         while not current_element.is_root_group:
+            # pylint: disable=no-member
             current_element = current_element.parentgroup
             button = self.add_button(current_element)
             self.buttons.insert(0, button)

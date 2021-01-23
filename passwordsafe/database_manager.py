@@ -188,6 +188,7 @@ class DatabaseManager(GObject.GObject):
     # Move an entry to another group
     def move_entry(self, uuid, destination_group_object):
         entry = self.db.find_entries(uuid=uuid, first=True)
+        # pylint: disable=no-member
         old_location = entry.parentgroup.uuid
         new_location = destination_group_object.uuid
 

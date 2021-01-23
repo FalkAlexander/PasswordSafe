@@ -155,6 +155,7 @@ class SafeGroup(SafeElement):
     @staticmethod
     def get_root(db_manager: DatabaseManager) -> SafeGroup:
         """Method to obtain the root group."""
+        # pylint: disable=no-member
         return SafeGroup(db_manager, db_manager.db.root_group)
 
     @property

@@ -58,7 +58,7 @@ class MainWindow(Handy.ApplicationWindow):
             passwordsafe.config_manager.set_development_backup_mode(True)
 
     def send_notification(self, notification: str) -> None:
-        self._notification.notify(notification)
+        self._notification.send_notification(notification)
 
     def set_titlebar(self, headerbar: Handy.Headebar) -> None:
         if headerbar not in self._title_stack.get_children():

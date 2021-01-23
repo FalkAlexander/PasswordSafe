@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gettext import gettext as _
+from gettext import gettext as _, ngettext
 import typing
 from enum import IntEnum
 from typing import Optional
@@ -132,7 +132,9 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         if new_number == 0:
             label = _("Click on a checkbox to select")
         else:
-            label = str(new_number) + _(" Selected entries")
+            label = ngettext(
+                "{} Selected entry", "{} Selected entries",
+                new_number).format(new_number)
 
         self.selection_options_button_label.props.label = label
 

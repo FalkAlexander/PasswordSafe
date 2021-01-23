@@ -528,7 +528,7 @@ class UnlockedDatabase(GObject.GObject):
             for tmpfile in self.scheduled_tmpfiles_deletion:
                 try:
                     tmpfile.delete()
-                except GLib.Error as exc:  # pylint: disable=broad-except
+                except GLib.Error as exc:
                     logging.warning(
                         "Skipping deletion of tmpfile %s: %s",
                         tmpfile.get_path(),

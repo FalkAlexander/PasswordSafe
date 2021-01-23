@@ -118,7 +118,8 @@ class MainWindow(Handy.ApplicationWindow):
     # Responsive Listener
     #
 
-    def do_size_allocate(self, allocation: Gdk.Rectangle) -> None:  # pylint: disable=W0221
+    def do_size_allocate(self, allocation: Gdk.Rectangle) -> None:
+        # pylint: disable=arguments-differ
         """Handler for resizing event. It is used to check if
         the layout needs to be updated.
 
@@ -462,7 +463,8 @@ class MainWindow(Handy.ApplicationWindow):
         window_size = [self.get_size().width, self.get_size().height]
         passwordsafe.config_manager.set_window_size(window_size)
 
-    def do_delete_event(self, _event: Gdk.EventAny) -> bool:  # pylint:disable=W0221
+    def do_delete_event(self, _event: Gdk.EventAny) -> bool:
+        # pylint:disable=arguments-differ
         """invoked when we hit the window close button"""
         # Just invoke the app.quit action, it cleans up stuff
         # and will invoke the on_application_shutdown()

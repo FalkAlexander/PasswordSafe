@@ -152,6 +152,7 @@ class SafeGroup(SafeElement):
         self._group: Group = group
         self._db_manager: DatabaseManager = db_manager
 
+    @staticmethod
     def get_root(db_manager: DatabaseManager) -> SafeGroup:
         """Method to obtain the root group."""
         return SafeGroup(db_manager, db_manager.db.root_group)

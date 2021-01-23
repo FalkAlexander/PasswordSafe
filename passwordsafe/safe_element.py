@@ -173,7 +173,7 @@ class SafeGroup(SafeElement):
 
     def append(self, safe_element: SafeElement) -> None:
         if safe_element.is_group:
-            self._group.append(safe_element._group)
+            self._group.append(safe_element.group)
             return
 
         self._group.append(safe_element.entry)

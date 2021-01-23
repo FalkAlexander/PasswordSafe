@@ -4,7 +4,6 @@ from __future__ import annotations
 from gettext import gettext as _, ngettext
 import typing
 from enum import IntEnum
-from typing import Optional
 
 from gi.repository import GObject, Gtk, Handy
 
@@ -123,7 +122,7 @@ class UnlockedHeaderBar(Handy.HeaderBar):
             self.props.mode = UnlockedHeaderBar.Mode.GROUP
 
     def _on_mobile_layout_changed(
-            self, _klass: Optional[MainWindow],
+            self, _klass: MainWindow | None,
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_action_bar()
 

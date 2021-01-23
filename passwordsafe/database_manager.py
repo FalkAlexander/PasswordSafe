@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import hashlib
 import logging
 from datetime import datetime
 from gettext import gettext as _
-from typing import Optional, Union
 from uuid import UUID
 
 from gi.repository import Gio, GObject
@@ -41,8 +42,8 @@ class DatabaseManager(GObject.GObject):
     def __init__(
         self,
         database_path: str,
-        password: Optional[str] = None,
-        keyfile: Optional[str] = None,
+        password: str | None = None,
+        keyfile: str | None = None,
     ) -> None:
         super().__init__()
 
@@ -68,9 +69,9 @@ class DatabaseManager(GObject.GObject):
     def add_entry_to_database(
         self,
         group: Group,
-        name: Optional[str] = "",
-        username: Optional[str] = "",
-        password: Optional[str] = "",
+        name: str | None = "",
+        username: str | None = "",
+        password: str | None = "",
     ) -> SafeEntry:
         force: bool = self.check_entry_in_group_exists("", group)
         entry = self.db.add_entry(
@@ -92,7 +93,7 @@ class DatabaseManager(GObject.GObject):
         return safe_entry
 
     # Delete an entry
-    def delete_from_database(self, entity: Union[Entry, Group]) -> None:
+    def delete_from_database(self, entity: Entry | Group) -> None:
         """Delete an Entry or a Group from the database.
 
         :param entity: Entity or Group to delete
@@ -170,7 +171,7 @@ class DatabaseManager(GObject.GObject):
         return self.db.password or ""
 
     @password.setter
-    def password(self, new_password: Optional[str]) -> None:
+    def password(self, new_password: str | None) -> None:
         """Set database password (None if a keyfile is used)"""
         self.db.password = new_password
         self.is_dirty = True

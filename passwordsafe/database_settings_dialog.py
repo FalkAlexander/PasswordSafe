@@ -6,7 +6,6 @@ import os
 import threading
 import time
 from gettext import gettext as _
-from typing import Optional
 
 from gi.repository import Gdk, GLib, Gtk, Handy
 
@@ -18,7 +17,7 @@ from passwordsafe.utils import generate_keyfile
 class DatabaseSettingsDialog:
     # pylint: disable=too-many-instance-attributes
 
-    new_password: Optional[str] = None
+    new_password: str | None = None
     new_keyfile_path = NotImplemented
 
     entries_number = NotImplemented

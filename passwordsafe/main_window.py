@@ -5,7 +5,6 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from typing import List, Optional
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Handy
 
 import passwordsafe.config_manager
@@ -27,8 +26,8 @@ class MainWindow(Handy.ApplicationWindow):
     __gtype_name__ = "MainWindow"
 
     database_manager = NotImplemented
-    opened_databases: List[UnlockedDatabase] = []
-    databases_to_save: List[UnlockedDatabase] = []
+    opened_databases: list[UnlockedDatabase] = []
+    databases_to_save: list[UnlockedDatabase] = []
     _filechooser = None
     _notification = Notification()
 
@@ -228,7 +227,7 @@ class MainWindow(Handy.ApplicationWindow):
     def _on_open_filechooser_response(self,
                                       dialog: Gtk.Dialog,
                                       response: Gtk.ResponseType,
-                                      supported_mime_types: List[str]) -> None:
+                                      supported_mime_types: list[str]) -> None:
         self._filechooser = None
         if response == Gtk.ResponseType.ACCEPT:
             db_filename = dialog.get_file().get_path()
@@ -481,7 +480,7 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     # Find current displayed tab for executing the action
-    def find_action_db(self) -> Optional[UnlockedDatabase]:
+    def find_action_db(self) -> UnlockedDatabase | None:
         action_db = None
 
         for database in self.opened_databases:

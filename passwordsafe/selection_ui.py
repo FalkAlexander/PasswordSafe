@@ -4,7 +4,6 @@ from __future__ import annotations
 import typing
 from gettext import gettext as _
 from logging import debug
-from typing import List
 
 from gi.repository import Gio, GObject, Gtk
 
@@ -24,11 +23,11 @@ class SelectionUI(Gtk.Box):
 
     cut_mode = True
 
-    entries_selected: List[EntryRow] = []
-    groups_selected: List[GroupRow] = []
+    entries_selected: list[EntryRow] = []
+    groups_selected: list[GroupRow] = []
 
-    entries_cut: List[EntryRow] = []
-    groups_cut: List[GroupRow] = []
+    entries_cut: list[EntryRow] = []
+    groups_cut: list[GroupRow] = []
 
     hidden_rows = Gio.ListStore.new(Gtk.ListBoxRow)
 

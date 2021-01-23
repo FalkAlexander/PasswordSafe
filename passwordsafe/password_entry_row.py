@@ -4,7 +4,6 @@ from __future__ import annotations
 import logging
 import typing
 from gettext import gettext as _
-from typing import Optional
 
 from gi.repository import Gdk, Gtk
 
@@ -85,8 +84,8 @@ class PasswordEntryRow(Gtk.Box):
     def _on_show_password_button_toggled(
         self,
         _widget: Gtk.Entry,
-        _position: Optional[Gtk.EntryIconPosition] = None,
-        _event: Optional[Gdk.Event] = None,
+        _position: Gtk.EntryIconPosition | None = None,
+        _event: Gdk.Event | None = None,
     ) -> None:
         self._unlocked_database.start_database_lock_timer()
         entry_visibility = self._password_value_entry.props.visibility
@@ -105,6 +104,6 @@ class PasswordEntryRow(Gtk.Box):
         else:
             password = pwd_text
 
-        password_strength: Optional[float] = pwd_generator.strength(password)
+        password_strength: float | None = pwd_generator.strength(password)
         if password_strength is not None:
             self._password_level_bar.props.value = password_strength

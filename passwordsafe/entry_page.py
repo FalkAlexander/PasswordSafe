@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
-from typing import List
 
 from gi.repository import Gio, GLib, GObject, Gtk
 
@@ -55,7 +54,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
     show_all_row = Gtk.Template.Child()
 
-    attribute_property_row_list: List[Gtk.ListBoxRow] = []
+    attribute_property_row_list: list[Gtk.ListBoxRow] = []
 
     def __init__(self, u_d, add_all):
         super().__init__()

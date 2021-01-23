@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import secrets
 import typing
-from typing import Callable, Optional
+from typing import Callable
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
@@ -14,7 +14,7 @@ if typing.TYPE_CHECKING:
     from datetime import datetime
 
 
-def format_time(time: Optional[datetime]) -> str:
+def format_time(time: datetime | None) -> str:
     if not time:
         return ""
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import typing
 from gettext import gettext as _
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from gi.repository import Gio, GLib, Gtk, Handy
 
@@ -21,9 +21,9 @@ if typing.TYPE_CHECKING:
 
 class Application(Gtk.Application):
 
-    _save_handler_ids: Dict[UnlockedDatabase, int] = {}
+    _save_handler_ids: dict[UnlockedDatabase, int] = {}
     window: MainWindow = None
-    file_list: List[Gio.File] = []
+    file_list: list[Gio.File] = []
     development_mode = False
     application_id = "org.gnome.PasswordSafe"
     settings = Gio.Settings.new(application_id)
@@ -120,7 +120,7 @@ class Application(Gtk.Application):
         about_dialog.set_transient_for(self.window)
         about_dialog.show()
 
-    def on_quit(self, _action: Optional[Gio.SimpleAction] = None,
+    def on_quit(self, _action: Gio.SimpleAction | None = None,
                 _data: Any = None) -> None:
         unsaved_databases_list = []
         self.window.databases_to_save.clear()
@@ -201,7 +201,7 @@ class Application(Gtk.Application):
         _db_manager: DatabaseManager,
         saved: bool,
         database: UnlockedDatabase,
-        unsaved_database_list: List[UnlockedDatabase],
+        unsaved_database_list: list[UnlockedDatabase],
     ) -> None:
         """Makes sure all safes that were scheduled for autmatic save
         are correctly saved. Quits when all safes are saved."""

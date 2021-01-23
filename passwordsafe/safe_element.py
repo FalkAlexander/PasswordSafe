@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import logging
 import typing
-from typing import Dict, List, NamedTuple, Optional, Union
+from typing import NamedTuple
 from uuid import UUID
 
 from gi.repository import GObject
@@ -22,10 +22,10 @@ if typing.TYPE_CHECKING:
 
 class SafeElement(GObject.GObject):
 
-    _db_manager: Optional[DatabaseManager] = None
-    sorted_handler_id: Optional[int] = None
+    _db_manager: DatabaseManager | None = None
+    sorted_handler_id: int | None = None
 
-    def __init__(self, element: Union[Entry, Group]):
+    def __init__(self, element: Entry | Group):
         """GObject to handle a safe element. The underlying pykeepass element
         can be obtainied via the `element` property, when it is certain the
         element is a Group or Entry, the properties `entry` and `group` should
@@ -157,11 +157,11 @@ class SafeGroup(SafeElement):
         return SafeGroup(db_manager, db_manager.db.root_group)
 
     @property
-    def subgroups(self) -> List[SafeGroup]:
+    def subgroups(self) -> list[SafeGroup]:
         return [SafeGroup(self._db_manager, group) for group in self._group.subgroups]
 
     @property
-    def entries(self) -> List[SafeEntry]:
+    def entries(self) -> list[SafeEntry]:
         return [SafeEntry(self._db_manager, entry) for entry in self._group.entries]
 
     @property
@@ -194,9 +194,9 @@ class SafeEntry(SafeElement):
         self._db_manager: DatabaseManager = db_manager
         self._entry: Entry = entry
 
-        self._attachments: List[Attachment] = entry.attachments or []
+        self._attachments: list[Attachment] = entry.attachments or []
 
-        self._attributes: Dict[str, str] = {
+        self._attributes: dict[str, str] = {
             key: value for key, value in entry.custom_properties.items()
             if key not in (self._color_key, self._note_key)}
 
@@ -219,7 +219,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(
         type=object, flags=GObject.ParamFlags.READABLE)
-    def attachments(self) -> List[Attachment]:
+    def attachments(self) -> list[Attachment]:
         return self._attachments
 
     def add_attachment(self, byte_buffer: bytes, filename: str) -> Attachment:
@@ -246,7 +246,7 @@ class SafeEntry(SafeElement):
         self._attachments.remove(attachment)
         self.emit("updated")
 
-    def get_attachment(self, id_: str) -> Optional[Attachment]:
+    def get_attachment(self, id_: str) -> Attachment | None:
         """Get an attachment from its id.
 
         :param str id_: attachment id
@@ -268,7 +268,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(
         type=object, flags=GObject.ParamFlags.READABLE)
-    def attributes(self) -> Dict[str, str]:
+    def attributes(self) -> dict[str, str]:
         return self._attributes
 
     def has_attribute(self, key: str) -> bool:

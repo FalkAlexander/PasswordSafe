@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gettext import gettext as _
+from gettext import gettext as _, ngettext
 import typing
 from enum import IntEnum
 from typing import Optional
@@ -90,6 +90,9 @@ class UnlockedHeaderBar(Handy.HeaderBar):
         self._unlocked_database.connect(
             "notify::search-active", self._on_search_active)
 
+        self._selection_ui.connect(
+            "notify::selected-elements", self._on_selected_entries_changed)
+
         self._on_mobile_layout_changed(None, None)
 
     def _setup_accelerators(self):
@@ -126,12 +129,14 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
     def _on_selected_entries_changed(self, selection_ui, _value):
         new_number = selection_ui.props.selected_elements
-        default = _("Click on a checkbox to select")
-        numbered = str(new_number) + _(" Selected entries")
         if new_number == 0:
-            self.selection_options_button_label.set_label(default)
+            label = _("Click on a checkbox to select")
         else:
-            self.selection_options_button_label.set_label(numbered)
+            label = ngettext(
+                "{} Selected entry", "{} Selected entries",
+                new_number).format(new_number)
+
+        self.selection_options_button_label.props.label = label
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""

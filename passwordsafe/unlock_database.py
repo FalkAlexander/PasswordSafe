@@ -188,7 +188,7 @@ class UnlockDatabase:
                 page_num = self.window.container.page_num(db.parent_widget)
                 self.window.container.set_current_page(page_num)
                 self.window.close_tab(self.parent_widget)
-                self.window.notify(_("Safe already opened"))
+                self.window.send_notification(_("Safe already opened"))
                 return
 
         entered_pwd = password_unlock_entry.get_text()
@@ -408,7 +408,7 @@ class UnlockDatabase:
         if Path(self.database_filepath).suffix == ".kdb":
             self._open_database_failure()
             # NOTE kdb is a an older format for Keepass databases.
-            self.window.notify(_("The kdb format is not supported"))
+            self.window.send_notification(_("The kdb format is not supported"))
             return
 
         if self._unlock_method == UnlockMethod.COMPOSITE:
@@ -496,7 +496,7 @@ class UnlockDatabase:
             self._assemble_stack()
 
     def _composite_unlock_failed(self):
-        self.window.notify(_("Failed to unlock safe"))
+        self.window.send_notification(_("Failed to unlock safe"))
 
         if self.database_manager:
             self.database_manager.keyfile_hash = NotImplemented
@@ -516,7 +516,7 @@ class UnlockDatabase:
         logging.debug("Could not open database, wrong password")
 
     def _keyfile_unlock_failed(self):
-        self.window.notify(_("Failed to unlock safe"))
+        self.window.send_notification(_("Failed to unlock safe"))
 
         if self.database_manager:
             self.database_manager.keyfile_hash = NotImplemented
@@ -530,7 +530,7 @@ class UnlockDatabase:
         logging.debug("Invalid keyfile chosen")
 
     def _password_unlock_failed(self):
-        self.window.notify(_("Failed to unlock safe"))
+        self.window.send_notification(_("Failed to unlock safe"))
 
         password_unlock_entry = self.builder.get_object(
             "password_unlock_entry")

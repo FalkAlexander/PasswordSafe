@@ -180,7 +180,7 @@ class Application(Gtk.Application):
         if value:
             GLib.idle_add(self.quit)
         else:
-            self.window.notify(_("Unable to Quit: Could not save Safe"))
+            self.window.send_notification(_("Unable to Quit: Could not save Safe"))
 
     def _on_save_dialog_response(self,
                                  dialog: Gtk.Dialog,

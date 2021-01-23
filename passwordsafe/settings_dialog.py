@@ -188,7 +188,7 @@ class SettingsDialog(Handy.PreferencesWindow):
 
     def _on_settings_lockdb_spin_button_changed(self, spin_button):
         config.set_database_lock_timeout(spin_button.get_value())
-        for db in self.window.opened_databases:  # pylint: disable=C0103
+        for db in self.window.opened_databases:
             db.start_database_lock_timer()
 
     def _on_settings_clearcb_spin_button_changed(self, spin_button):

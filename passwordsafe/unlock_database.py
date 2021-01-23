@@ -156,7 +156,7 @@ class UnlockDatabase:
     def _on_headerbar_back_button_clicked(self, _widget: Gtk.Button) -> None:
         database: Optional[UnlockedDatabase] = None
         if self.database_manager:
-            for db in self.window.opened_databases:  # pylint: disable=C0103
+            for db in self.window.opened_databases:
                 db_path: str = db.database_manager.database_path
                 if db_path == self.database_manager.database_path:
                     if passwordsafe.config_manager.get_save_automatically():
@@ -181,7 +181,7 @@ class UnlockDatabase:
     def _on_password_unlock_button_clicked(self, _widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
 
-        for db in self.window.opened_databases:  # pylint: disable=C0103
+        for db in self.window.opened_databases:
             if (db.database_manager.database_path == self.database_filepath
                     and not db.database_locked):
                 page_num = self.window.container.page_num(db.parent_widget)

@@ -129,12 +129,12 @@ class UnlockedHeaderBar(Handy.HeaderBar):
 
     def _on_selected_entries_changed(self, selection_ui, _value):
         new_number = selection_ui.props.selected_elements
-        default = _("Click on a checkbox to select")
-        numbered = str(new_number) + _(" Selected entries")
         if new_number == 0:
-            self.selection_options_button_label.set_label(default)
+            label = _("Click on a checkbox to select")
         else:
-            self.selection_options_button_label.set_label(numbered)
+            label = str(new_number) + _(" Selected entries")
+
+        self.selection_options_button_label.props.label = label
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""

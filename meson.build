@@ -1,26 +1,26 @@
 project('passwordsafe',
-  version: '5.alpha',
-  meson_version: '>= 0.51.0'
-)
+        version: '5.alpha',
+        meson_version: '>= 0.51.0'
+       )
 i18n = import('i18n')
 python = import('python')
 project_id = 'org.gnome.PasswordSafe'
 contributors = '\n'.join([
-	'Falk Alexander Seidl &lt;fseidl@gnome.org&gt;',
-	'Uta Lemke',
-	'David Heidelberg',
-	'Jean Felder',
-	'Maximiliano Sandoval',
-	'Sebastian Spaeth',
-	'Christopher Davis',
-])
+    'Falk Alexander Seidl &lt;fseidl@gnome.org&gt;',
+    'Uta Lemke',
+    'David Heidelberg',
+    'Jean Felder',
+    'Maximiliano Sandoval',
+    'Sebastian Spaeth',
+    'Christopher Davis',
+                        ])
 
 message('Looking for dependencies')
 python_bin = python.find_installation('python3', modules:['pykeepass'])
 if not python_bin.found()
-    error('No valid python3 binary found')
+  error('No valid python3 binary found')
 else
-    message('Found python3 binary')
+  message('Found python3 binary')
 endif
 dependency('glib-2.0')
 dependency('gobject-introspection-1.0', version: '>=1.35.9')
@@ -40,11 +40,11 @@ bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 # Profiles
 if get_option('profile') == 'development'
-    profile = 'Devel'
-    name_suffix = ' (Development)'
+  profile = 'Devel'
+  name_suffix = ' (Development)'
 else
-    profile = ''
-    name_suffix = ''
+  profile = ''
+  name_suffix = ''
 endif
 
 
@@ -58,9 +58,9 @@ conf.set('PYTHON_EXEC_DIR', join_paths(get_option('prefix'), python_bin.get_path
 conf.set('PYTHON', python_bin.path())
 conf.set('libexecdir', LIBEXEC_DIR)
 if get_option('profile') == 'development'
-    conf.set('VERSION', ''.join([run_command(['git', 'describe', '--long', '--tags']).stdout(), get_option('profile')]))
+  conf.set('VERSION', ''.join([run_command(['git', 'describe', '--long', '--tags']).stdout(), get_option('profile')]))
 else
-    conf.set('VERSION', meson.project_version())
+  conf.set('VERSION', meson.project_version())
 endif
 conf.set('CONTRIBUTORS', contributors)
 conf.set_quoted('PROFILE', profile)

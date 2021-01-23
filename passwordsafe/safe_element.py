@@ -140,7 +140,6 @@ class SafeElement(GObject.GObject):
 
 
 class SafeGroup(SafeElement):
-    # pylint: disable=too-few-public-methods
 
     def __init__(self, db_manager: DatabaseManager, group: Group) -> None:
         """GObject to handle a safe group.
@@ -179,7 +178,6 @@ class SafeGroup(SafeElement):
 
 
 class SafeEntry(SafeElement):
-    # pylint: disable=too-few-public-methods
     # pylint: disable=too-many-instance-attributes
 
     _color_key = "color_prop_LcljUMJZ9X"

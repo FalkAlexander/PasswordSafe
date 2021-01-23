@@ -10,7 +10,7 @@ from passwordsafe.passphrase_generator import Passphrase
 
 @Gtk.Template(
     resource_path="/org/gnome/PasswordSafe/password_generator_popover.ui")
-class PasswordGeneratorPopover(Gtk.Popover):  # pylint: disable=too-few-public-methods
+class PasswordGeneratorPopover(Gtk.Popover):
 
     __gtype_name__ = "PasswordGeneratorPopover"
 

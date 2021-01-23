@@ -8,7 +8,6 @@ from gi.repository import Gio, Gtk
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/quit_dialog.ui")
 class QuitDialog(Gtk.MessageDialog):
-    # pylint: disable=too-few-public-methods
 
     __gtype_name__ = "QuitDialog"
 

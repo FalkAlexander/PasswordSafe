@@ -423,6 +423,10 @@ class SafeEntry(SafeElement):
 
 
 class Icon(NamedTuple):
+    # pylint: disable=inherit-non-class
+    # This is a false positive because pylint does not properly handle
+    # Python 3.9 at the moment. It can be safely removed once pylint
+    # handles it.
     name: str
     visible: bool = False
 

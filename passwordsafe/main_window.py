@@ -59,7 +59,11 @@ class MainWindow(Handy.ApplicationWindow):
     def send_notification(self, notification: str) -> None:
         self._notification.send_notification(notification)
 
-    def set_titlebar(self, headerbar: Handy.Headebar) -> None:
+    def set_headerbar(self, headerbar: Handy.HeaderBar | None = None) -> None:
+        if headerbar is None:
+            self._title_stack.set_visible_child(self._headerbar)
+            return
+
         if headerbar not in self._title_stack.get_children():
             self._title_stack.add(headerbar)
         self._title_stack.set_visible_child(headerbar)
@@ -78,17 +82,12 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     def create_headerbar(self):
-        self.set_titlebar(self._headerbar)
+        self._title_stack.add(self._headerbar)
+        self.set_headerbar()
 
         if Gio.Application.get_default().development_mode is True:
             context = self.get_style_context()
             context.add_class("devel")
-
-    def set_headerbar(self):
-        self.set_titlebar(self._headerbar)
-
-    def get_headerbar(self):
-        return self._headerbar
 
     #
     # Styles
@@ -356,7 +355,7 @@ class MainWindow(Handy.ApplicationWindow):
             self, parent_widget,
             self.database_manager,
             back_button)
-        self.set_titlebar(headerbar)
+        self.set_headerbar(headerbar)
         parent_widget.add(create_database)
         back_button.connect("clicked",
                             create_database.on_headerbar_back_button_clicked)

@@ -349,10 +349,10 @@ class UnlockedDatabase(GObject.GObject):
         """Display the correct headerbar according to search state."""
         if self.props.search_active:
             self.parent_widget.set_headerbar(self.search.headerbar)
-            self.window.set_titlebar(self.search.headerbar)
+            self.window.set_headerbar(self.search.headerbar)
         else:
             self.parent_widget.set_headerbar(self.headerbar)
-            self.window.set_titlebar(self.headerbar)
+            self.window.set_headerbar(self.headerbar)
 
     #
     # Keystrokes

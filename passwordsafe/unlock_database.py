@@ -70,7 +70,7 @@ class UnlockDatabase:
         headerbar.set_subtitle(os.path.basename(self.database_filepath))
 
         if self.window.tab_visible(self.parent_widget):
-            self.window.set_titlebar(headerbar)
+            self.window.set_headerbar(headerbar)
 
         self.parent_widget.set_headerbar(headerbar)
         back_button = self.builder.get_object("back_button")

@@ -31,8 +31,8 @@ In distribution package manager, you can find Password Safe under name `gnome-pa
 </a>
 
 ## Install Development Flatpak
-Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak) and extract it.  
-To install, open the flatpak package with GNOME Software and install it.  
+Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/jobs/artifacts/master/download?job=flatpak) and extract it.
+To install, open the flatpak package with GNOME Software and install it.
 If you don't have GNOME Software then run
 ```
 flatpak install org.gnome.PasswordSafeDevel.flatpak
@@ -86,7 +86,7 @@ sudo ninja -C _build install
 ```
 
 # Translations
-Helping to translate Password Safe or add support to a new language is very welcome.  
+Helping to translate Password Safe or add support to a new language is very welcome.
 You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https://l10n.gnome.org/module/PasswordSafe/)
 
 # Supported encryption algorithms
@@ -100,9 +100,9 @@ You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https
 * AES-KDF KDBX 3.1
 
 # Data protection
-Please be careful when using development versions. Create enough backups if you're using a production database with a Password Safe development version. It is possible that data loss will occur, though I give my best that this will never happen.  
+Please be careful when using development versions. Create enough backups if you're using a production database with a Password Safe development version. It is possible that data loss will occur, though I give my best that this will never happen.
 
-Development versions create a backup of your database on unlocking by default. These can be found at ```~/.cache/passwordsafe/backup/``` where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:  
+Development versions create a backup of your database on unlocking by default. These can be found at ```~/.cache/passwordsafe/backup/``` where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:
 ```
 gsettings set org.gnome.PasswordSafe development-backup-mode false
 ```

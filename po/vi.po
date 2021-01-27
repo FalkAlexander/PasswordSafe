@@ -1,40 +1,42 @@
 # This file is distributed under the same license as the PasswordSafe package.
 # Trần Ngọc Quân <vnwildman@gmail.com>, 2020.
+# Antoine Đỗ <do.antoine@disroot.org>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-11-22 22:58+0000\n"
-"PO-Revision-Date: 2020-11-24 14:15+0700\n"
-"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
-"Language-Team: Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>\n"
+"POT-Creation-Date: 2021-01-25 19:09+0000\n"
+"PO-Revision-Date: 2021-01-26 09:06+0100\n"
+"Last-Translator: Antoine Đỗ <do.antoine@disroot.org>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
-#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
+#: data/about_dialog.ui.in:8 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Quản lý các mật khẩu của bạn"
 
-#: data/about_dialog.ui.in:13
+#: data/about_dialog.ui.in:10
 msgid "Learn more about Password Safe"
 msgstr "Tìm hiểu thêm về Két giữ Mật khẩu"
 
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:15
+#: data/about_dialog.ui.in:12
 msgid "translator-credits"
 msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/attachment_warning_dialog.ui:9
+#: data/attachment_warning_dialog.ui:7
 msgid "Safety Info"
 msgstr "Thông tin an toàn"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/attachment_warning_dialog.ui:10
+#: data/attachment_warning_dialog.ui:8
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -43,330 +45,408 @@ msgstr ""
 "được mã hóa của tệp đính kèm này! Vui lòng tiến hành thận trọng."
 
 #. Discard all the changes which the user have made to his keepass safe
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/attachment_warning_dialog.ui:23 data/unlocked_database.ui:713
-msgid "Back"
-msgstr "Quay lại"
+#: data/attachment_warning_dialog.ui:12
+msgid "_Back"
+msgstr "_Quay lại"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:35
-msgid "Proceed"
-msgstr "Đã xử lý"
+#: data/attachment_warning_dialog.ui:21
+msgid "_Proceed"
+msgstr "Đã _xử lý"
 
-#: data/create_database.ui:72 data/database_settings_dialog.ui:449
-#: data/password_entry_row.ui:33 data/password_generator_popover.ui:178
-#: data/references_dialog.ui:155 data/references_dialog.ui:259
-#: data/settings_dialog.ui:688 passwordsafe/unlock_database.py:99
-msgid "Password"
-msgstr "Mật khẩu"
+#: data/attribute_entry_row.ui:60
+msgid "Remove attribute"
+msgstr "Xóa bỏ thuộc tính"
 
-#: data/create_database.ui:92
-msgid "Use a password to secure your safe"
-msgstr "Sử dụng mật khẩu để đảm bảo an toàn cho két của bạn"
-
-#: data/create_database.ui:155 data/database_settings_dialog.ui:589
-#: passwordsafe/database_settings_dialog.py:190
-#: passwordsafe/database_settings_dialog.py:230
-#: passwordsafe/database_settings_dialog.py:235
-#: passwordsafe/unlock_database.py:30 passwordsafe/unlock_database.py:102
-msgid "Keyfile"
-msgstr "Tập tin khóa"
-
-#: data/create_database.ui:175
-msgid "Use a keyfile to secure your safe"
-msgstr "Sử dụng tập tin khóa để đảm bảo an toàn cho két của bạn"
-
-#. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:238 passwordsafe/unlock_database.py:106
-msgid "Composite"
-msgstr "Hỗn hợp"
-
-#: data/create_database.ui:258
-msgid "Use a password in combination with a keyfile to secure your safe"
-msgstr ""
-"Sử dụng mật khẩu kết hợp với tập tin khóa để đảm bảo an toàn cho két của bạn"
-
-#: data/create_database.ui:304
-msgid "Protect your safe"
-msgstr "Bảo vệ két của bạn"
-
-#: data/create_database.ui:416
-msgid "Set password for safe"
-msgstr "Đặt mật khẩu cho két của bạn"
-
-#: data/create_database.ui:431
-msgid "Enter Password"
-msgstr "Nhập mật khẩu"
-
-#: data/create_database.ui:477
-msgid "Password Match Check"
-msgstr "Kiểm tra Khớp cặp Mật khẩu"
-
-#: data/create_database.ui:563
-msgid "Repeat password for safe"
-msgstr "Lặp lại mật khẩu cho két"
-
-#: data/create_database.ui:609
-msgid "Match Check Failed"
-msgstr "Kiểm tra khớp cặp gặp lỗi"
-
-#: data/create_database.ui:668
-msgid "Please try again"
-msgstr "Vui lòng thử lại"
-
-#. Button to generate a password
-#: data/create_database.ui:789 data/password_generator_popover.ui:265
-#: passwordsafe/create_database.py:243
-#: passwordsafe/database_settings_dialog.py:228
-msgid "Generate"
-msgstr "Tạo"
-
-#: data/create_database.ui:818
-msgid "Set keyfile for safe"
-msgstr "Đặt tập tin khóa cho két"
-
-#: data/create_database.ui:833
-msgid "Generate Keyfile"
-msgstr "Tạo tập tin khóa"
-
-#: data/create_database.ui:888 data/main_window.ui:203
-#: data/unlocked_database.ui:560
-msgid "Preferences"
-msgstr "Tùy chọn"
-
-#: data/create_database.ui:902 data/main_window.ui:217
-#: data/unlocked_database.ui:574
-msgid "Keyboard Shortcuts"
-msgstr "Phím tắt bàn phím"
-
-#. "Password Safe" is the application name
-#: data/create_database.ui:916 data/main_window.ui:231
-#: data/unlock_database.ui:273 data/unlocked_database.ui:588
-msgid "About Password Safe"
-msgstr "Giới thiệu Két giữ Mật khẩu"
+#: data/color_entry_row.ui:14
+msgid "Color"
+msgstr "Màu sắc"
 
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:930 data/main_window.ui:358
+#: data/create_database_headerbar.ui:6 data/main_window.ui:17
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:281
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
 msgid "Password Safe"
 msgstr "Két giữ mật khẩu"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:931
+#: data/create_database_headerbar.ui:7
 msgid "Create Safe"
 msgstr "Tạo két"
 
-#: data/created_database.ui:24
+#: data/create_database_headerbar.ui:43 data/main_window.ui:119
+#: data/unlock_database.ui:16 data/unlocked_headerbar.ui:200
+msgid "_Preferences"
+msgstr "_Tùy thích"
+
+#: data/create_database_headerbar.ui:47 data/main_window.ui:123
+#: data/unlock_database.ui:20 data/unlocked_headerbar.ui:204
+msgid "_Keyboard Shortcuts"
+msgstr "_Phím tắt bàn phím"
+
+#. "Password Safe" is the application name
+#: data/create_database_headerbar.ui:51 data/main_window.ui:127
+#: data/unlock_database.ui:24 data/unlocked_headerbar.ui:208
+msgid "_About Password Safe"
+msgstr "_Giới thiệu Két giữ Mật khẩu"
+
+#: data/create_database.ui:34
+msgid "Protect your safe"
+msgstr "Bảo vệ két của bạn"
+
+#: data/create_database.ui:52 data/password_entry_row.ui:14
+msgid "_Password"
+msgstr "_Mật khẩu"
+
+#: data/create_database.ui:53
+msgid "Use a password to secure your safe."
+msgstr "Sử dụng mật khẩu để đảm bảo an toàn cho két của bạn."
+
+#: data/create_database.ui:65
+msgid "_Keyfile"
+msgstr "Tập tin _khóa"
+
+#: data/create_database.ui:66
+msgid "Use a keyfile to secure your safe."
+msgstr "Sử dụng tập tin khóa để đảm bảo an toàn cho két của bạn."
+
+#: data/create_database.ui:78
+msgid "_Composite"
+msgstr "_Hỗn hợp"
+
+#: data/create_database.ui:79
+msgid "Use a password in combination with a keyfile to secure your safe."
+msgstr ""
+"Sử dụng mật khẩu kết hợp với tập tin khóa để đảm bảo an toàn cho két của bạn."
+
+#: data/create_database.ui:115
+msgid "Enter Password"
+msgstr "Nhập mật khẩu"
+
+#: data/create_database.ui:126
+msgid "Set password for safe."
+msgstr "Đặt mật khẩu cho két của bạn."
+
+#: data/create_database.ui:198
+msgid "Password Match Check"
+msgstr "Kiểm tra Khớp cặp Mật khẩu"
+
+#: data/create_database.ui:209
+msgid "Repeat password for safe."
+msgstr "Lặp lại mật khẩu cho két."
+
+#: data/create_database.ui:288
+msgid "Match Check Failed"
+msgstr "Kiểm tra khớp cặp gặp lỗi"
+
+#: data/create_database.ui:299
+msgid "Please try again."
+msgstr "Vui lòng thử lại."
+
+#: data/create_database.ui:348
+msgid "_Confirm"
+msgstr "Xác _nhận"
+
+#: data/create_database.ui:388
+msgid "Generate Keyfile"
+msgstr "Tạo tập tin khóa"
+
+#: data/create_database.ui:399
+msgid "Set keyfile for safe"
+msgstr "Đặt tập tin khóa cho két"
+
+#. Button to generate a password
+#: data/create_database.ui:409 data/password_generator_popover.ui:189
+#: passwordsafe/create_database.py:125
+#: passwordsafe/database_settings_dialog.py:234
+msgid "_Generate"
+msgstr "Tạ_o"
+
+#: data/create_database.ui:448
 msgid "Safe Successfully Created"
 msgstr "Két đã được tạo thành công"
 
-#. Headerbar subtitle for the keepass safe unlock screen.
-#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
-#: data/created_database.ui:50 data/unlock_database.ui:282
-#: data/unlocked_database.ui:521
-msgid "Open Safe"
-msgstr "Mở két"
+#. Menubutton in headerbar for starting the safe opening process (for existing safe)
+#: data/create_database.ui:457 data/unlock_database.ui:10
+#: data/unlocked_headerbar.ui:190
+msgid "_Open Safe"
+msgstr "Mở _Két"
 
-#: data/database_settings_dialog.ui:64
+#: data/database_settings_dialog.ui:61
 msgid "Details"
 msgstr "Chi tiết"
 
-#: data/database_settings_dialog.ui:89
+#: data/database_settings_dialog.ui:81
 msgid "Path"
 msgstr "Đường dẫn"
 
-#: data/database_settings_dialog.ui:106
+#: data/database_settings_dialog.ui:98
 msgid "File Size"
 msgstr "Kích cỡ tập tin"
 
-#: data/database_settings_dialog.ui:123
+#: data/database_settings_dialog.ui:115
 msgid "Safe Name"
 msgstr "Tên Két"
 
 #. KeePass is a proper noun
-#: data/database_settings_dialog.ui:153
+#: data/database_settings_dialog.ui:145
 msgid "KeePass Version"
 msgstr "Phiên bản Keepass"
 
-#: data/database_settings_dialog.ui:170
+#: data/database_settings_dialog.ui:162
 msgid "Creation Date"
 msgstr "Ngày tạo"
 
-#: data/database_settings_dialog.ui:187 data/database_settings_dialog.ui:814
+#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:725
 msgid "Encryption Algorithm"
 msgstr "Thuật toán mã hóa"
 
-#: data/database_settings_dialog.ui:204
+#: data/database_settings_dialog.ui:196
 msgid "Derivation Algorithm"
 msgstr "Thuật toán dẫn xuất"
 
 #. Statistics
-#: data/database_settings_dialog.ui:309
+#: data/database_settings_dialog.ui:296
 msgid "Stats"
 msgstr "Thống kê"
 
-#: data/database_settings_dialog.ui:334
+#: data/database_settings_dialog.ui:316
 msgid "Number of Groups"
 msgstr "Số nhóm"
 
-#: data/database_settings_dialog.ui:351
+#: data/database_settings_dialog.ui:333
 msgid "Passwords"
 msgstr "Mật khẩu"
 
-#: data/database_settings_dialog.ui:368
+#: data/database_settings_dialog.ui:350
 msgid "Number of Entries"
 msgstr "Số mục tin"
 
-#: data/database_settings_dialog.ui:429 data/settings_dialog.ui:15
-#: data/settings_dialog.ui:20
+#: data/database_settings_dialog.ui:406 data/settings_dialog.ui:11
+#: data/settings_dialog.ui:15
 msgid "General"
 msgstr "Chung"
 
-#. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:471
-msgid "New"
-msgstr "Tạo mới"
+#: data/database_settings_dialog.ui:426 data/password_generator_popover.ui:128
+#: data/references_dialog.ui:142 data/references_dialog.ui:232
+#: data/settings_dialog.ui:111 data/unlock_database.ui:174
+msgid "Password"
+msgstr "Mật khẩu"
 
-#: data/database_settings_dialog.ui:490 data/database_settings_dialog.ui:491
+#. New password (replacement for an old one)
+#: data/database_settings_dialog.ui:443
+msgid "_New"
+msgstr "Két _mới"
+
+#: data/database_settings_dialog.ui:464 data/database_settings_dialog.ui:465
 msgid "Generate Password"
 msgstr "Tạo mật khẩu"
 
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:504
-msgid "Confirm"
-msgstr "Xác nhận"
+#: data/database_settings_dialog.ui:478
+msgid "C_onfirm"
+msgstr "Xá_c nhận"
 
 #. Current password
-#: data/database_settings_dialog.ui:534
-msgid "Current"
-msgstr "Hiện tại"
+#: data/database_settings_dialog.ui:510
+msgid "_Current"
+msgstr "H_iện tại"
 
-#: data/database_settings_dialog.ui:642
-msgid "Select current keyfile"
-msgstr "Chọn tập tin khóa hiện tại"
+#: data/database_settings_dialog.ui:559 data/unlock_database.ui:275
+#: passwordsafe/database_settings_dialog.py:187
+#: passwordsafe/database_settings_dialog.py:235
+#: passwordsafe/database_settings_dialog.py:239
+#: passwordsafe/unlock_database.py:30
+msgid "Keyfile"
+msgstr "Tập tin khóa"
 
-#: data/database_settings_dialog.ui:718
-msgid "Generate new keyfile"
-msgstr "Tạo tập tin khóa mới"
+#: data/database_settings_dialog.ui:602
+msgid "_Select current keyfile"
+msgstr "_Chọn tập tin khóa hiện tại"
 
-#: data/database_settings_dialog.ui:751 data/database_settings_dialog.ui:975
-#: passwordsafe/database_settings_dialog.py:342
-#: passwordsafe/database_settings_dialog.py:364
-msgid "Apply Changes"
-msgstr "Áp dụng thay đổi"
+#: data/database_settings_dialog.ui:660
+msgid "_Generate new keyfile"
+msgstr "Tạo tậ_p tin khóa mới"
 
-#: data/database_settings_dialog.ui:772
+#: data/database_settings_dialog.ui:680
+msgid "_Apply Changes"
+msgstr "Áp dụng tha_y đổi"
+
+#: data/database_settings_dialog.ui:697
 msgid "Authentication"
 msgstr "Xác thực"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:847
+#: data/database_settings_dialog.ui:751
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-bít"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:864
+#: data/database_settings_dialog.ui:768
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-bít"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:881
+#: data/database_settings_dialog.ui:785
 msgid "AES: 256-bit"
 msgstr "AES: 256-bít"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:906
+#: data/database_settings_dialog.ui:802
 msgid "Key Derivation Function"
 msgstr "Tính năng khóa dẫn xuất"
 
-#: data/entry_page.ui:34
-msgid "Add Attachment"
-msgstr "Thêm đính kèm"
+#: data/database_settings_dialog.ui:856
+#: passwordsafe/database_settings_dialog.py:357
+#: passwordsafe/database_settings_dialog.py:379
+msgid "Apply Changes"
+msgstr "Áp dụng thay đổi"
 
-#: data/entry_page.ui:76
-msgid "Attachments"
-msgstr "Đính kèm"
+#: data/entry_page.ui:28 data/group_page.ui:27
+msgid "_Title"
+msgstr "_Tựa đề"
 
-#: data/entry_page.ui:164
-msgid "Secret_Photo.png"
-msgstr "Secret_Photo.png"
+#: data/entry_page.ui:54
+msgid "_Username"
+msgstr "Tài _khoản"
 
-#: data/entry_page.ui:342
-msgid "Remove attribute"
-msgstr "Xóa bỏ thuộc tính"
+#: data/entry_page.ui:92
+msgid "U_RL"
+msgstr "U_RL"
 
-#: data/entry_page.ui:403
-msgid "Attributes"
-msgstr "Thuộc tính"
+#: data/entry_page.ui:129 data/group_page.ui:61
+msgid "_Notes"
+msgstr "_Ghi chú"
 
-#: data/entry_page.ui:443
-msgid "Key"
-msgstr "Phím"
-
-#: data/entry_page.ui:457
-msgid "Value"
-msgstr "Giá trị"
-
-#: data/entry_page.ui:479
-msgid "Add attribute"
-msgstr "Thêm thuộc tính"
-
-#: data/entry_page.ui:535
+#: data/entry_page.ui:196
 msgid "Icon"
 msgstr "Biểu tượng"
 
-#: data/entry_page.ui:907 data/group_page.ui:35 data/references_dialog.ui:65
-#: data/references_dialog.ui:231
-msgid "Title"
-msgstr "Tựa đề"
+#: data/entry_page.ui:231
+msgid "Attachments"
+msgstr "Đính kèm"
 
-#: data/entry_page.ui:992 data/group_page.ui:120 data/references_dialog.ui:185
-#: data/references_dialog.ui:287
-msgid "Notes"
-msgstr "Ghi chú"
+#: data/entry_page.ui:271
+msgid "_Add Attachment"
+msgstr "Thê_m đính kèm"
 
-#: data/entry_page.ui:1189 data/references_dialog.ui:170
-#: data/references_dialog.ui:273
-msgid "URL"
-msgstr "URL"
+#: data/entry_page.ui:299
+msgid "Attributes"
+msgstr "Thuộc tính"
 
-#: data/entry_page.ui:1276 data/references_dialog.ui:92
-#: data/references_dialog.ui:245
-msgid "Username"
-msgstr "Tài khoản"
+#: data/entry_page.ui:318
+msgid "Key"
+msgstr "Phím"
 
-#. The umbrella sentence of the application on the first start screen
-#: data/main_window.ui:45
-msgid "Secure password safe"
-msgstr "Đảm bảo an toàn cho két giữ mật khẩu"
+#: data/entry_page.ui:325
+msgid "Value"
+msgstr "Giá trị"
 
-#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:64
-msgid ""
-"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
-"b> a new Keepass safe."
-msgstr ""
-"Lưu trữ an toàn mật khẩu, ghi chú và dữ liệu của bạn. <b>Tạo</b> hoặc "
-"<b>nhập</b> một két KeePass mới."
+#: data/entry_page.ui:338
+msgid "Add attribute"
+msgstr "Thêm thuộc tính"
 
-#: data/main_window.ui:272
+#: data/entry_row.ui:93
+msgid "Copy username to clipboard"
+msgstr "Chép tên tài khoản vào clipboard"
+
+#: data/entry_row.ui:108
+msgid "Copy password to clipboard"
+msgstr "Chép vào mật khẩu clipboard"
+
+#: data/gtk/help-overlay.ui:13
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Ứng dụng"
+
+#: data/gtk/help-overlay.ui:17
+msgctxt "Shortcut window description"
+msgid "Create safe"
+msgstr "Tạo két"
+
+#: data/gtk/help-overlay.ui:24
+msgctxt "Shortcut window description"
+msgid "Open safe"
+msgstr "Mở két"
+
+#: data/gtk/help-overlay.ui:31
+msgctxt "Shortcut window description"
+msgid "Open preferences"
+msgstr "Mở Tùy thích"
+
+#: data/gtk/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Hiển thị các phím tắt"
+
+#: data/gtk/help-overlay.ui:45
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Thoát"
+
+#: data/gtk/help-overlay.ui:54
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Két"
+
+#: data/gtk/help-overlay.ui:58
+msgctxt "Shortcut window description"
+msgid "Lock safe"
+msgstr "Khóa két"
+
+#: data/gtk/help-overlay.ui:65
+msgctxt "Shortcut window description"
+msgid "Save safe"
+msgstr "Lưu két"
+
+#: data/gtk/help-overlay.ui:72
+msgctxt "Shortcut window description"
+msgid "Open search"
+msgstr "Mở hộp thoại Tìm kiếm"
+
+#: data/gtk/help-overlay.ui:79
+msgctxt "Shortcut window description"
+msgid "Create entry"
+msgstr "Tạo mục tin"
+
+#: data/gtk/help-overlay.ui:86
+msgctxt "Shortcut window description"
+msgid "Create group"
+msgstr "Tạo nhóm"
+
+#: data/gtk/help-overlay.ui:95
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Mục tin"
+
+#: data/gtk/help-overlay.ui:99
+msgctxt "Shortcut window description"
+msgid "Copy password"
+msgstr "Sao chép mật khẩu"
+
+#: data/gtk/help-overlay.ui:106
+msgctxt "Shortcut window description"
+msgid "Copy username"
+msgstr "Sao chép tên tài khoản"
+
+#: data/gtk/help-overlay.ui:113
+msgctxt "Shortcut window description"
+msgid "Go back"
+msgstr "Quay lại"
+
+#: data/main_window.ui:25
 msgid "New…"
 msgstr "Mới…"
 
-#: data/main_window.ui:317
+#: data/main_window.ui:38
 msgid "Open…"
 msgstr "Mở…"
 
-#: data/main_window.ui:416
-msgid "Recent Databases"
-msgstr "Cơ sở dữ liệu mới dùng"
-
-#: data/notes_dialog.ui:21
-msgid "Copy"
-msgstr "Sao chép"
+#: data/notes_dialog.ui:18
+msgid "_Copy"
+msgstr "_Sao chép"
 
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
 msgid ""
@@ -379,7 +459,7 @@ msgstr ""
 "và cung cấp một giao diện dễ dùng và gọn gàng cho quản lý cơ sở dữ liệu mật "
 "khẩu."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:133
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:164
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -394,8 +474,8 @@ msgstr ""
 "keepass;encrypt;secure;mã hóa;ma hoa;an toàn;an toàn;mật khẩu;mat khau;"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:16
-msgid "Use dark GTK+ theme"
-msgstr "Dùng chủ đề GTK+ tối"
+msgid "Use dark GTK theme"
+msgstr "Dùng chủ đề GTK tối"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:17
 msgid ""
@@ -544,7 +624,7 @@ msgstr ""
 msgid "Use full-text search"
 msgstr "Tìm qua toàn văn bản"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:92 data/settings_dialog.ui:360
+#: data/org.gnome.PasswordSafe.gschema.xml:92
 msgid "Performs a search across all values of entries."
 msgstr "Thực hiện tìm kiếm trên tất cả các giá trị của mục."
 
@@ -552,7 +632,7 @@ msgstr "Thực hiện tìm kiếm trên tất cả các giá trị của mục."
 msgid "Current group search"
 msgstr "Tìm nhóm hiện tại"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:97 data/settings_dialog.ui:450
+#: data/org.gnome.PasswordSafe.gschema.xml:97
 msgid "Only search entries in the current group."
 msgstr "Chỉ tìm kiếm các mục trong nhóm hiện tại."
 
@@ -593,7 +673,7 @@ msgstr ""
 msgid "Password length when generating a password"
 msgstr "Độ dài mật khẩu khi tạo mật khẩu"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:737
+#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:120
 msgid "Number of single characters when generating a password."
 msgstr "Số ký tự đơn khi tạo mật khẩu."
 
@@ -601,7 +681,7 @@ msgstr "Số ký tự đơn khi tạo mật khẩu."
 msgid "Number of words when generating a passphrase"
 msgstr "Số từ khi tạo mật khẩu"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:1099
+#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:203
 msgid "Number of words to use when generating a passphrase."
 msgstr "Số từ được dùng khi tạo cụm từ mật khẩu."
 
@@ -609,675 +689,696 @@ msgstr "Số từ được dùng khi tạo cụm từ mật khẩu."
 msgid "Separator when generating a passphrase"
 msgstr "Bộ phân tách khi tạo cụm mật khẩu"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:1171
+#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:220
 msgid "Word separator to use when generating a passphrase."
 msgstr "Bộ phân tách từ khi tạo cụm mật khẩu."
 
-#. Tooltip for button near input field to show or hide the password (clear text)
-#: data/password_entry_row.ui:95
-msgid "Show/hide password"
-msgstr "Hiện/ẩn mật khẩu"
-
-#: data/password_generator_popover.ui:49
+#: data/password_generator_popover.ui:45
 msgid "Length"
 msgstr "Độ dài"
 
-#: data/password_generator_popover.ui:83
+#: data/password_generator_popover.ui:69
 msgid "Characters"
 msgstr "Ký tự"
 
-#: data/password_generator_popover.ui:191
+#: data/password_generator_popover.ui:142
 msgid "Words"
 msgstr "Từ"
 
-#: data/password_generator_popover.ui:224 data/settings_dialog.ui:1132
-#: data/settings_dialog.ui:1159
+#: data/password_generator_popover.ui:165 data/settings_dialog.ui:219
 msgid "Separator"
 msgstr "Bộ phân cách"
 
-#: data/password_generator_popover.ui:241
+#: data/password_generator_popover.ui:176
 msgid "Enter character here…"
 msgstr "Nhập các ký tự vào đây…"
 
-#: data/password_generator_popover.ui:252
+#: data/password_generator_popover.ui:182
 msgid "Passphrase"
 msgstr "Cụm từ mật khẩu"
 
-#: data/properties_dialog.ui:16 data/unlocked_database.ui:648
+#: data/properties_dialog.ui:13
 msgid "Properties"
 msgstr "Thuộc tính"
 
-#: data/properties_dialog.ui:45 data/references_dialog.ui:200
+#: data/properties_dialog.ui:42 data/references_dialog.ui:184
 msgid "UUID"
 msgstr "UUID"
 
-#: data/properties_dialog.ui:63
+#: data/properties_dialog.ui:59
 msgid "Accessed"
 msgstr "Lúc xem"
 
-#: data/properties_dialog.ui:80
+#: data/properties_dialog.ui:75
 msgid "Modified"
 msgstr "Lúc sửa"
 
-#: data/properties_dialog.ui:111
+#: data/properties_dialog.ui:105
 msgid "Created"
 msgstr "Lúc tạo"
 
-#: data/references_dialog.ui:23
-msgid "Code"
-msgstr "Mã"
-
-#: data/references_dialog.ui:38 data/references_dialog.ui:395
-#: data/references_dialog.ui:546
-msgid "Property"
-msgstr "Thuộc tính"
-
-#: data/references_dialog.ui:309 data/unlocked_database.ui:634
-msgid "References"
-msgstr "Tùy thích"
-
-#: data/references_dialog.ui:338
-msgid "Syntax"
-msgstr "Cú pháp"
-
-#: data/references_dialog.ui:353
-msgid "The placeholder syntax for field references is the following:"
-msgstr "Cú pháp chỗ dành sẵn cho tham chiếu trường như sau:"
-
-#: data/references_dialog.ui:394 data/references_dialog.ui:433
-msgid "Show Field Codes"
-msgstr "Hiện mã trường"
-
-#: data/references_dialog.ui:434
-msgid "Identifier"
-msgstr "Định danh"
-
-#: data/references_dialog.ui:516
-msgid "Reference"
-msgstr "Tùy thích"
-
-#: data/references_dialog.ui:625
-msgid ""
-"Each entry has a unique identifier called UUID.\n"
-"It can be found in the properties of the entry."
-msgstr ""
-"Mỗi mục có một mã định danh duy nhất được gọi là UUID.\n"
-"Nó có thể được tìm thấy trong các thuộc tính của mục tin."
-
-#: data/search.ui:93
-msgid "No search results"
-msgstr "Không tìm thấy kết quả nào"
-
-#: data/search.ui:141
-msgid "Enter search term"
-msgstr "Nhập chuỗi tìm kiếm"
-
 #. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:10
+#: data/quit_dialog.ui:6
 msgid "Do you want to save all safes with unsaved changes?"
 msgstr "Bạn có muốn lưu lại mọi két với các thay đổi chưa được lựu không?"
 
 #. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:11
+#: data/quit_dialog.ui:7
 msgid "Select the safes you want to save."
 msgstr "Chọn các két bạn muốn ghi lại."
 
-#: data/quit_dialog.ui:38
-msgid "Quit"
-msgstr "Thoát"
+#: data/quit_dialog.ui:42
+msgid "_Cancel"
+msgstr "_Hủy"
+
+#: data/quit_dialog.ui:49
+msgid "_Quit"
+msgstr "_Thoát"
+
+#: data/recent_files_page.ui:37
+msgid "Recent Safes"
+msgstr "Cơ sở dữ liệu Mới dùng"
+
+#: data/references_dialog.ui:20
+msgid "Code"
+msgstr "Mã"
+
+#: data/references_dialog.ui:34 data/references_dialog.ui:338
+#: data/references_dialog.ui:449
+msgid "Property"
+msgstr "Thuộc tính"
+
+#: data/references_dialog.ui:59 data/references_dialog.ui:214
+msgid "Title"
+msgstr "Tựa đề"
+
+#: data/references_dialog.ui:84 data/references_dialog.ui:223
+msgid "Username"
+msgstr "Tài khoản"
+
+#: data/references_dialog.ui:156 data/references_dialog.ui:241
+msgid "URL"
+msgstr "URL"
+
+#: data/references_dialog.ui:170 data/references_dialog.ui:250
+msgid "Notes"
+msgstr "Ghi chú"
+
+#: data/references_dialog.ui:267
+msgid "References"
+msgstr "Tùy thích"
+
+#: data/references_dialog.ui:296
+msgid "Syntax"
+msgstr "Cú pháp"
+
+#: data/references_dialog.ui:307
+msgid "The placeholder syntax for field references is the following:"
+msgstr "Cú pháp chỗ dành sẵn cho tham chiếu trường như sau:"
+
+#: data/references_dialog.ui:337 data/references_dialog.ui:366
+msgid "Show Field Codes"
+msgstr "Hiện mã trường"
+
+#: data/references_dialog.ui:367
+msgid "Identifier"
+msgstr "Định danh"
+
+#: data/references_dialog.ui:424
+msgid "Reference"
+msgstr "Tùy thích"
+
+#: data/references_dialog.ui:503
+msgid ""
+"Each entry has a unique identifier called UUID. It can be found in the "
+"properties of the entry."
+msgstr ""
+"Mỗi mục có một mã định danh duy nhất được gọi là UUID. Nó có thể được tìm "
+"thấy trong các thuộc tính của mục tin."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:11
+#: data/save_dialog.ui:7
 msgid "Unsaved Changes"
 msgstr "Thay đổi chưa lưu"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:12
+#: data/save_dialog.ui:8
 msgid "Do you want to write all changes to the safe?"
 msgstr "Bạn có muốn ghi tất cả các thay đổi vào két không?"
 
-#. Discard all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:25
-msgid "Quit Without Saving"
-msgstr "Thoát mà không lưu lại"
-
-#. Cancel exiting the program
-#: data/save_dialog.ui:35
-msgid "Don't Quit"
-msgstr "Đừng thoát"
-
-#. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:42
-msgid "Save and Quit"
-msgstr "Lưu và Thoát"
-
-#: data/settings_dialog.ui:25 data/settings_dialog.ui:53
-msgid "Dark Theme"
-msgstr "Chủ đề tối"
-
-#: data/settings_dialog.ui:70
-msgid "Use dark GTK+ theme."
-msgstr "Dùng chủ đề GTK+ tối."
-
-#: data/settings_dialog.ui:116
-msgid "First Start"
-msgstr "Chạy lần đầu"
-
-#: data/settings_dialog.ui:143
-msgid "Hide First Start Screen"
-msgstr "Không hiển thị màn hình Chạy lần đầu"
-
-#: data/settings_dialog.ui:160
-msgid "Reopen last opened safe."
-msgstr "Mở lại két mở cuối cùng."
-
-#: data/settings_dialog.ui:211 data/unlocked_database.ui:444
-#: passwordsafe/main_window.py:394
-msgid "Safe"
-msgstr "Két"
-
-#. Open settings for safe (e.g. password changing)
-#: data/settings_dialog.ui:215 data/unlocked_database.ui:535
-msgid "Safe Settings"
-msgstr "Cài đặt Két"
-
-#: data/settings_dialog.ui:243
-msgid "Save Automatically"
-msgstr "Tự động lưu"
-
-#: data/settings_dialog.ui:260
-msgid "Save every change automatically."
-msgstr "Tự động lưu mỗi khi có thay đổi."
-
-#. Button tooltip in headerbar to open search page
-#: data/settings_dialog.ui:311 data/unlocked_database.ui:43
-msgid "Search"
-msgstr "Tìm kiếm"
-
-#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:316 data/settings_dialog.ui:503
-#: data/settings_dialog.ui:530
-msgid "Remember Composite Key"
-msgstr "Nhớ khóa tổ hợp"
-
-#: data/settings_dialog.ui:343
-msgid "Full-Text Search"
-msgstr "Tìm kiếm toàn văn"
-
-#: data/settings_dialog.ui:406 data/settings_dialog.ui:433
-msgid "Current Group Search"
-msgstr "Tìm nhóm hiện tại"
-
-#: data/settings_dialog.ui:498 data/unlock_database.ui:83
-#: data/unlock_database.ui:223 data/unlock_database.ui:376
-msgid "Unlock"
-msgstr "Mở khóa"
-
-#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:547
-msgid "Remember last used composite key."
-msgstr "Nhớ tổ hợp khóa dùng lần cuối."
-
-#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:593 data/settings_dialog.ui:620
-msgid "Remember Unlock Method"
-msgstr "Nhớ phương thức mở khóa"
-
-#: data/settings_dialog.ui:637
-msgid "Enable faster unlocking."
-msgstr "Bật mở khóa nhanh hơn."
-
-#: data/settings_dialog.ui:693
-msgid "Password Generation"
-msgstr "Tạo mật khẩu"
-
-#: data/settings_dialog.ui:698 data/settings_dialog.ui:725
-msgid "Password Length"
-msgstr "Độ dài mật khẩu"
-
-#: data/settings_dialog.ui:770 data/settings_dialog.ui:797
-msgid "Uppercase Characters"
-msgstr "Ký tự HOA"
-
-#: data/settings_dialog.ui:809
-msgid "Use uppercase characters A-Z when generating a password."
-msgstr "Sử dụng ký tự chữ hoa A-Z khi tạo mật khẩu."
-
-#: data/settings_dialog.ui:840 data/settings_dialog.ui:867
-msgid "Lowercase Characters"
-msgstr "Ký tự thường"
-
-#: data/settings_dialog.ui:879
-msgid "Use lowercase characters a-z when generating a password."
-msgstr "Sử dụng ký tự chữ thường a-z khi tạo mật khẩu."
-
-#: data/settings_dialog.ui:911 data/settings_dialog.ui:938
-msgid "Numeric Characters"
-msgstr "Ký tự chữ số"
-
-#: data/settings_dialog.ui:950
-msgid "Use numeric characters when generating a password."
-msgstr "Sử dụng ký tự chữ số khi tạo mật khẩu."
-
-#: data/settings_dialog.ui:982 data/settings_dialog.ui:1009
-msgid "Special Characters"
-msgstr "Ký tự đặc biệt"
-
-#: data/settings_dialog.ui:1021
-msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr "Sử dụng ký hiệu ASCII không phải chữ và số khi tạo mật khẩu."
-
-#: data/settings_dialog.ui:1054
-msgid "Passphrase Generation"
-msgstr "Tạo cụm từ mật khẩu"
-
-#: data/settings_dialog.ui:1060 data/settings_dialog.ui:1087
-msgid "Passphrase Length"
-msgstr "Độ dài cụm từ mật khẩu"
-
-#: data/settings_dialog.ui:1189
-msgid "Enter Character"
-msgstr "Nhập ký tự"
-
-#: data/settings_dialog.ui:1208 data/settings_dialog.ui:1213
-msgid "Security"
-msgstr "Bảo mật"
-
-#: data/settings_dialog.ui:1218
-msgid "Timeout"
-msgstr "Thời hạn chờ tối đa"
-
-#: data/settings_dialog.ui:1245
-msgid "Safe Lock Timeout"
-msgstr "Thời gian tối đa không dùng sẽ khóa két"
-
-#: data/settings_dialog.ui:1262
-msgid "Lock safe on idle after X minutes."
-msgstr "Khóa két sau X phút khi hệ thống không làm gì."
-
-#: data/settings_dialog.ui:1307 data/settings_dialog.ui:1336
-msgid "Clear Clipboard"
-msgstr "Xóa Clipboard"
-
-#: data/settings_dialog.ui:1353
-msgid "Clear clipboard after X seconds."
-msgstr "Xóa clipboard sau X phút."
-
-#: data/settings_dialog.ui:1398 data/settings_dialog.ui:1427
-msgid "Show Password Fields"
-msgstr "Hiển thị trường mật khẩu"
-
-#: data/settings_dialog.ui:1444
-msgid "Display passwords in plain text."
-msgstr "Hiển thị mật khẩu ở dạng văn bản đọc được."
-
-#: data/settings_dialog.ui:1488 data/settings_dialog.ui:1517
-msgid "Clear Recent List"
-msgstr "Xóa danh sách mới dùng"
-
-#: data/settings_dialog.ui:1534
-msgid "Clear the recently opened safes list."
-msgstr "Xóa sạch danh sách lưu các két mới mở gần đây."
-
-#: data/shortcuts_overview.ui:14
-msgctxt "Shortcut window description"
-msgid "Application"
-msgstr "Ứng dụng"
-
-#: data/shortcuts_overview.ui:18
-msgctxt "Shortcut window description"
-msgid "Create safe"
-msgstr "Tạo két"
-
-#: data/shortcuts_overview.ui:25
-msgctxt "Shortcut window description"
-msgid "Open safe"
-msgstr "Mở két"
-
-#: data/shortcuts_overview.ui:32
-msgctxt "Shortcut window description"
-msgid "Open preferences"
-msgstr "Mở Tùy thích"
-
-#: data/shortcuts_overview.ui:39
-msgctxt "Shortcut window description"
-msgid "Quit"
-msgstr "Thoát"
-
-#: data/shortcuts_overview.ui:48
-msgctxt "Shortcut window description"
-msgid "Safe"
-msgstr "Két"
-
-#: data/shortcuts_overview.ui:52
-msgctxt "Shortcut window description"
-msgid "Lock safe"
-msgstr "Khóa két"
-
-#: data/shortcuts_overview.ui:59
-msgctxt "Shortcut window description"
-msgid "Save safe"
-msgstr "Lưu két"
-
-#: data/shortcuts_overview.ui:66
-msgctxt "Shortcut window description"
-msgid "Open search"
-msgstr "Mở hộp thoại Tìm kiếm"
-
-#: data/shortcuts_overview.ui:73
-msgctxt "Shortcut window description"
-msgid "Create entry"
-msgstr "Tạo mục tin"
-
-#: data/shortcuts_overview.ui:80
-msgctxt "Shortcut window description"
-msgid "Create group"
-msgstr "Tạo nhóm"
-
-#: data/shortcuts_overview.ui:89
-msgctxt "Shortcut window description"
-msgid "Entry"
-msgstr "Mục tin"
-
-#: data/shortcuts_overview.ui:93
-msgctxt "Shortcut window description"
-msgid "Copy password"
-msgstr "Sao chép mật khẩu"
-
-#: data/shortcuts_overview.ui:100
-msgctxt "Shortcut window description"
-msgid "Exit entry page"
-msgstr "Thoát trang mục tin"
-
-#: data/shortcuts_overview.ui:107
-msgctxt "Shortcut window description"
-msgid "Navigate to parent group"
-msgstr "Di chuyển đến nhóm cha mẹ"
-
-#: data/unlock_database.ui:28
-msgid "Enter password and select keyfile to unlock"
-msgstr "Nhập mật khẩu và chọn tập tin khóa để mở khóa"
-
-#: data/unlock_database.ui:43 data/unlock_database.ui:173
-#: data/unlock_database.ui:422
-msgid "Safe is Locked"
-msgstr "Két bị khóa"
-
-#: data/unlock_database.ui:158
-msgid "Select keyfile to unlock"
-msgstr "Chọn tập tin khóa để mở khóa"
-
-#: data/unlock_database.ui:205
-msgid "Open Keyfile"
-msgstr "Mở tập tin khóa"
-
-#. Menubutton in headerbar for starting the safe creation process
-#: data/unlock_database.ui:255
-msgid "_New Safe"
-msgstr "Két _mới"
-
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/unlock_database.ui:259
-msgid "_Open Safe"
-msgstr "Mở _Két"
-
-#: data/unlock_database.ui:265
-msgid "_Preferences"
-msgstr "_Tùy thích"
-
-#: data/unlock_database.ui:269
-msgid "_Keyboard Shortcuts"
-msgstr "_Phím tắt bàn phím"
-
-#: data/unlock_database.ui:407
-msgid "Enter password to unlock"
-msgstr "Nhập mật khẩu để mở khóa"
-
-#: data/unlock_database.ui:497
-msgid "Failed to unlock safe"
-msgstr "Gặp lỗi khi mở khóa két"
-
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:21 data/unlocked_database.ui:738
-msgid "Selection Mode"
-msgstr "Chế độ chọn"
-
-#: data/unlocked_database.ui:196
-msgid "Empty group"
-msgstr "Nhóm rỗng"
-
-#: data/unlocked_database.ui:267 data/unlocked_database.ui:411
-msgid "Sorting"
-msgstr "Sắp xếp"
-
-#. This string depicts the alphabet from the beginning to the end (first character to last one).
-#: data/unlocked_database.ui:284
-msgid "A-Z"
-msgstr "A-Z"
-
-#. This string depicts the alphabet in reversed order, from the end to the start (last character to first one).
-#: data/unlocked_database.ui:298
-msgid "Z-A"
-msgstr "Z-A"
-
-#. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:312
-msgid "Last Added"
-msgstr "Thêm cuối"
-
-#: data/unlocked_database.ui:345 passwordsafe/entry_page.py:550
-msgid "Save"
-msgstr "Lưu"
-
-#: data/unlocked_database.ui:367
-msgid "Lock"
-msgstr "Khóa"
-
-#: data/unlocked_database.ui:458
-msgid "New Entry"
-msgstr "Đề mục mới"
-
-#: data/unlocked_database.ui:472
-msgid "New Group"
-msgstr "Nhóm mới"
-
-#. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlocked_database.ui:507
-msgid "New Safe"
-msgstr "Két mới"
-
-#: data/unlocked_database.ui:620
-msgid "Duplicate"
-msgstr "Nhân đôi"
-
-#: data/unlocked_database.ui:673
-msgid "Delete"
-msgstr "Xóa bỏ"
-
-#: data/unlocked_database.ui:786
-msgid "Click on a checkbox to select"
-msgstr "Nhấn vào ô kiểm để chọn"
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:12
+msgid "_Quit Without Saving"
+msgstr "Thoát mà _Không Lưu lại"
+
+#. _Cancel exiting the program
+#: data/save_dialog.ui:22
+msgid "_Don't Quit"
+msgstr "Đừn_g Thoát"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:29
+msgid "_Save and Quit"
+msgstr "_Lưu và Thoát"
+
+#: data/search.ui:70
+msgid "Enter search term"
+msgstr "Nhập chuỗi tìm kiếm"
+
+#: data/search.ui:104
+msgid "No search results"
+msgstr "Không tìm thấy kết quả nào"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:895
+#: data/selection_ui.ui:12
 msgid "Move selection"
 msgstr "Di chuyển cái được chọn"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:915
+#: data/selection_ui.ui:27
 msgid "Delete selection"
 msgstr "Xóa cái được chọn"
 
-#: data/unlocked_database.ui:932
+#: data/selection_ui.ui:40
 msgid "Cancel"
 msgstr "Hủy"
 
-#: data/unlocked_database.ui:975
-msgid "Select all"
-msgstr "Chọn tất cả"
+#: data/settings_dialog.ui:19
+msgid "_Dark Theme"
+msgstr "Chủ đề _tối"
 
-#: data/unlocked_database.ui:989
-msgid "Select none"
-msgstr "Không chọn gì cả"
+#: data/settings_dialog.ui:20
+msgid "Use dark GTK theme."
+msgstr "Dùng chủ đề GTK tối."
+
+#: data/settings_dialog.ui:34
+msgid "_Hide First Start Screen"
+msgstr "Không Hiển thị _Màn hình Chạy lần đầu"
+
+#: data/settings_dialog.ui:35
+msgid "Reopen last opened safe."
+msgstr "Mở lại két mở cuối cùng."
+
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
+msgid "Safe"
+msgstr "Két"
+
+#: data/settings_dialog.ui:55
+msgid "_Save Automatically"
+msgstr "Tự động Lư_u"
+
+#: data/settings_dialog.ui:56
+msgid "Save every change automatically."
+msgstr "Tự động lưu mỗi khi có thay đổi."
+
+#: data/settings_dialog.ui:72 data/unlock_database.ui:155
+#: data/unlock_database.ui:253 data/unlock_database.ui:341
+msgid "Unlock"
+msgstr "Mở khóa"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:76
+msgid "Remember Composite _Key"
+msgstr "Nhớ Khó_a Tổ hợp"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:77
+msgid "Remember last used composite key."
+msgstr "Nhớ tổ hợp khóa dùng lần cuối."
+
+#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
+#: data/settings_dialog.ui:91
+msgid "Remember _Unlock Method"
+msgstr "Nhớ _Phương thức Mở khóa"
+
+#: data/settings_dialog.ui:92
+msgid "Enable faster unlocking."
+msgstr "Bật mở khóa nhanh hơn."
+
+#: data/settings_dialog.ui:115
+msgid "Password Generation"
+msgstr "Tạo mật khẩu"
+
+#: data/settings_dialog.ui:119
+msgid "Password Length"
+msgstr "Độ dài mật khẩu"
+
+#: data/settings_dialog.ui:136
+msgid "_Uppercase Characters"
+msgstr "Ký tự H_OA"
+
+#: data/settings_dialog.ui:137
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Sử dụng ký tự chữ hoa A-Z khi tạo mật khẩu."
+
+#: data/settings_dialog.ui:151
+msgid "_Lowercase Characters"
+msgstr "Ký tự thườn_g"
+
+#: data/settings_dialog.ui:152
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Sử dụng ký tự chữ thường a-z khi tạo mật khẩu."
+
+#: data/settings_dialog.ui:166
+msgid "_Numeric Characters"
+msgstr "Ký tự chữ _số"
+
+#: data/settings_dialog.ui:167
+msgid "Use numeric characters when generating a password."
+msgstr "Sử dụng ký tự chữ số khi tạo mật khẩu."
+
+#: data/settings_dialog.ui:181
+msgid "_Special Characters"
+msgstr "Ký tự Đặc _biệt"
+
+#: data/settings_dialog.ui:182
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr "Sử dụng ký hiệu ASCII không phải chữ và số khi tạo mật khẩu."
+
+#: data/settings_dialog.ui:198
+msgid "Passphrase Generation"
+msgstr "Tạo cụm từ mật khẩu"
+
+#: data/settings_dialog.ui:202
+msgid "Passphrase Length"
+msgstr "Độ dài cụm từ mật khẩu"
+
+#: data/settings_dialog.ui:228
+msgid "Enter Character"
+msgstr "Nhập ký tự"
+
+#: data/settings_dialog.ui:241 data/settings_dialog.ui:245
+msgid "Security"
+msgstr "Bảo mật"
+
+#: data/settings_dialog.ui:249
+msgid "Safe Lock Timeout"
+msgstr "Thời gian tối đa không dùng sẽ khóa két"
+
+#: data/settings_dialog.ui:250
+msgid "Lock safe on idle after X minutes."
+msgstr "Khóa két sau X phút khi hệ thống không làm gì."
+
+#: data/settings_dialog.ui:266
+msgid "Clear Clipboard"
+msgstr "Xóa Clipboard"
+
+#: data/settings_dialog.ui:267
+msgid "Clear clipboard after X seconds."
+msgstr "Xóa clipboard sau X phút."
+
+#: data/settings_dialog.ui:283
+msgid "_Show Password Fields"
+msgstr "_Hiển thị Trường Mật khẩu"
+
+#: data/settings_dialog.ui:284
+msgid "Display passwords in plain text."
+msgstr "Hiển thị mật khẩu ở dạng văn bản đọc được."
+
+#: data/settings_dialog.ui:298
+msgid "Clear Recent List"
+msgstr "Xóa danh sách mới dùng"
+
+#: data/settings_dialog.ui:299
+msgid "Clear the recently opened safes list."
+msgstr "Xóa sạch danh sách lưu các két mới mở gần đây."
+
+#. Menubutton in headerbar for starting the safe creation process
+#: data/unlock_database.ui:6 data/unlocked_headerbar.ui:186
+msgid "_New Safe"
+msgstr "Két _mới"
+
+#. Headerbar subtitle for the keepass safe unlock screen.
+#: data/unlock_database.ui:33
+msgid "Open Safe"
+msgstr "Mở két"
+
+#: data/unlock_database.ui:111 data/unlock_database.ui:198
+#: data/unlock_database.ui:299
+msgid "Safe is Locked"
+msgstr "Két bị khóa"
+
+#: data/unlock_database.ui:123
+msgid "Enter password to unlock"
+msgstr "Nhập mật khẩu để mở khóa"
+
+#: data/unlock_database.ui:212
+msgid "Select keyfile to unlock"
+msgstr "Chọn tập tin khóa để mở khóa"
+
+#: data/unlock_database.ui:239
+msgid "_Open Keyfile"
+msgstr "Mở _Tập tin khóa"
+
+#: data/unlock_database.ui:311
+msgid "Enter password and select keyfile to unlock"
+msgstr "Nhập mật khẩu và chọn tập tin khóa để mở khóa"
+
+#. Composite unlock is a authentication method where both password and keyfile are required
+#: data/unlock_database.ui:378
+msgid "Composite"
+msgstr "Hỗn hợp"
+
+#: data/unlocked_database.ui:81
+msgid "Empty group"
+msgstr "Nhóm rỗng"
+
+#: data/unlocked_headerbar.ui:68 passwordsafe/unlocked_headerbar.py:132
+msgid "Click on a checkbox to select"
+msgstr "Nhấn vào ô kiểm để chọn"
+
+#. Button tooltip in headerbar to open search page
+#: data/unlocked_headerbar.ui:94
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/unlocked_headerbar.ui:108
+msgid "Selection Mode"
+msgstr "Chế độ chọn"
+
+#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:389
+msgid "_Save"
+msgstr "_Lưu"
+
+#: data/unlocked_headerbar.ui:161
+msgid "_Lock"
+msgstr "_Khóa"
+
+#: data/unlocked_headerbar.ui:166
+msgid "So_rting"
+msgstr "Sắp _xếp"
+
+#: data/unlocked_headerbar.ui:168
+msgid "_A-Z"
+msgstr "_A-Z"
+
+#: data/unlocked_headerbar.ui:173
+msgid "_Z-A"
+msgstr "_Z-A"
+
+#: data/unlocked_headerbar.ui:178
+msgid "_Last Added"
+msgstr "Được _thêm Lần cuối"
+
+#: data/unlocked_headerbar.ui:194
+msgid "Sa_fe Settings"
+msgstr "_Cài đặt Két"
+
+#: data/unlocked_headerbar.ui:216
+msgid "Select _All"
+msgstr "Chọn _Tất cả"
+
+#: data/unlocked_headerbar.ui:220
+msgid "Select _None"
+msgstr "Không chọn _Gì cả"
+
+#: data/unlocked_headerbar.ui:228
+msgid "D_uplicate"
+msgstr "N_hân đôi"
+
+#: data/unlocked_headerbar.ui:232
+msgid "_References"
+msgstr "Tù_y chọn"
+
+#: data/unlocked_headerbar.ui:236 data/unlocked_headerbar.ui:250
+msgid "_Properties"
+msgstr "Th_uộc tính"
+
+#: data/unlocked_headerbar.ui:242 data/unlocked_headerbar.ui:256
+msgid "_Delete"
+msgstr "_Xóa bỏ"
+
+#: data/unlocked_headerbar.ui:264
+msgid "New _Entry"
+msgstr "Đề _mục Mới"
+
+#: data/unlocked_headerbar.ui:268
+msgid "New _Group"
+msgstr "_Nhóm Mới"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/welcome_page.ui:31
+msgid "Secure Password Safe"
+msgstr "Đảm bảo an toàn cho Két giữ Mật khẩu"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/welcome_page.ui:45
+msgid ""
+"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
+"b> a new Keepass safe."
+msgstr ""
+"Lưu trữ an toàn mật khẩu, ghi chú và dữ liệu của bạn. <b>Tạo</b> hoặc "
+"<b>nhập</b> một két KeePass mới."
+
+#: passwordsafe/application.py:183
+msgid "Unable to Quit: Could not save Safe"
+msgstr "Không thể Thoát: Không thể lưu Két an toàn"
+
+#: passwordsafe/create_database.py:114
+msgid "Passwords do not match"
+msgstr "Mật khẩu không khớp"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:241
-#: passwordsafe/database_settings_dialog.py:227
+#: passwordsafe/create_database.py:123
+#: passwordsafe/database_settings_dialog.py:233
 msgid "Choose location for keyfile"
 msgstr "Chọn vị trí cho tập tin khóa"
 
-#: passwordsafe/create_database.py:254
+#: passwordsafe/create_database.py:140
 msgid "Generating…"
 msgstr "Đang tạo…"
 
-#: passwordsafe/database_manager.py:484
+#: passwordsafe/database_manager.py:122
 msgid "Clone"
 msgstr "Nhân đôi"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/database_settings_dialog.py:184
+#: passwordsafe/database_settings_dialog.py:182
 msgid "Choose current keyfile"
 msgstr "Chọn tập tin khóa hiện tại"
 
-#: passwordsafe/database_settings_dialog.py:185
-msgid "Open"
-msgstr "Mở"
+#: passwordsafe/database_settings_dialog.py:183
+msgid "_Open"
+msgstr "_Mở"
 
-#: passwordsafe/database_settings_dialog.py:298
-#: passwordsafe/database_settings_dialog.py:353
+#: passwordsafe/database_settings_dialog.py:313
+#: passwordsafe/database_settings_dialog.py:368
 msgid "Apply…"
 msgstr "Áp dụng…"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:395
+#: passwordsafe/database_settings_dialog.py:410
 msgid "Unknown"
 msgstr "Không hiểu"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:398
+#: passwordsafe/database_settings_dialog.py:413
 msgid "AES 256-bit"
 msgstr "AES 256-bít"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:401
+#: passwordsafe/database_settings_dialog.py:416
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bít"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:404
+#: passwordsafe/database_settings_dialog.py:419
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bít"
 
-#: passwordsafe/entry_page.py:402 passwordsafe/entry_page.py:472
+#: passwordsafe/entry_page.py:247 passwordsafe/entry_page.py:308
 msgid "Attribute key already exists"
 msgstr "Khóa thuộc tính đã sẵn có"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:502
+#: passwordsafe/entry_page.py:339
 msgid "Select attachment"
 msgstr "Chọn đính kèm"
 
-#: passwordsafe/entry_page.py:503
-msgid "Add"
-msgstr "Thêm"
+#: passwordsafe/entry_page.py:340
+msgid "_Add"
+msgstr "_Thêm"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:549
+#: passwordsafe/entry_page.py:388
 msgid "Save attachment"
 msgstr "Lưu phần đính kèm"
 
-#: passwordsafe/entry_row.py:66
+#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:101
+msgid "Username copied to clipboard"
+msgstr "Đã sao chép tên người dùng vào khay nhớ tạm"
+
+#: passwordsafe/entry_row.py:94 passwordsafe/password_entry_row.py:68
+msgid "Password copied to clipboard"
+msgstr "Đã sao chép mật khẩu vào khay nhớ tạm"
+
+#: passwordsafe/entry_row.py:113 passwordsafe/entry_row.py:124
+#: passwordsafe/group_row.py:100
 msgid "Title not specified"
 msgstr "Chưa chỉ ra tựa đề"
 
-#: passwordsafe/entry_row.py:72
-msgid "No username specified"
-msgstr "Chưa chỉ định tài khoản"
-
-#: passwordsafe/group_row.py:50
-msgid "No group title specified"
-msgstr "Chưa chỉ ra tựa đề nhóm"
-
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:293
+#: passwordsafe/main_window.py:206
 msgid "Choose a Keepass safe"
 msgstr "Chọn một két Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:400
+#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
 msgid "KeePass 3.1/4 Database"
 msgstr "Cơ sở dữ liệu KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:332
-msgid "Unable to open file \"{}\"."
-msgstr "Không thể mở tập tin \"{}\"."
+#: passwordsafe/main_window.py:244
+msgid "Could not open file"
+msgstr "Không thể mở tập tin"
 
-#: passwordsafe/main_window.py:335
-msgid "File type {} ({}) is not supported."
-msgstr "Kiểu tập tin {} ({}) không được hỗ trợ."
+#: passwordsafe/main_window.py:253
+msgid "Could not open file: Mime type not supported"
+msgstr "Không thể mở tập tin: Kiểu định dạng tập tin không được hỗ trợ"
+
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:191
+msgid "Safe already opened"
+msgstr "Cơ sở dữ liệu đã được mở rồi"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:387
+#: passwordsafe/main_window.py:295
 msgid "Choose location for Keepass safe"
 msgstr "Chọn vị trí cho két Keepass"
 
-#: passwordsafe/main_window.py:390
-msgid "Create"
-msgstr "Tạo"
+#: passwordsafe/main_window.py:298
+msgid "_Create"
+msgstr "_Tạo"
 
-#: passwordsafe/selection_ui.py:170
+#: passwordsafe/selection_ui.py:75
+msgid "Operation aborted: Deleting currently active group"
+msgstr "Thao tác bị hủy: Xóa nhóm hiện đang hoạt động"
+
+#: passwordsafe/selection_ui.py:87
 msgid "Deletion completed"
 msgstr "Xóa xong"
 
-#: passwordsafe/selection_ui.py:246
+#: passwordsafe/selection_ui.py:129
+msgid "Operation aborted: Moving currently active group"
+msgstr "Thao tác bị hủy: Di chuyển nhóm hiện đang hoạt động"
+
+#: passwordsafe/selection_ui.py:146
 msgid "Move completed"
 msgstr "Di chuyển xong"
 
-#: passwordsafe/selection_ui.py:248
-msgid "Skipped moving group into itself"
-msgstr "Bỏ qua vì di chuyển vào chính bản thân nhóm"
-
-#: passwordsafe/unlock_database.py:222
-msgid "Database already opened"
-msgstr "Cơ sở dữ liệu đã được mở rồi"
-
-#: passwordsafe/unlock_database.py:245
+#: passwordsafe/unlock_database.py:214
 msgid "Choose a keyfile"
 msgstr "Chọn một tập tin khóa"
 
-#: passwordsafe/unlock_database.py:284
+#: passwordsafe/unlock_database.py:261
 msgid "Choose Keyfile"
 msgstr "Chọn tập tin khóa"
 
-#: passwordsafe/unlock_database.py:559
+#. NOTE kdb is a an older format for Keepass databases.
+#: passwordsafe/unlock_database.py:411
+msgid "The kdb format is not supported"
+msgstr "Kiểu tập tin {} ({}) không được hỗ trợ"
+
+#: passwordsafe/unlock_database.py:499 passwordsafe/unlock_database.py:519
+#: passwordsafe/unlock_database.py:533
+msgid "Failed to unlock safe"
+msgstr "Gặp lỗi khi mở khóa két"
+
+#: passwordsafe/unlock_database.py:528
 msgid "Try again"
 msgstr "Thử lại"
 
-#: passwordsafe/unlocked_database.py:569
-msgid "Database saved"
-msgstr "Cơ sở dữ liệu đã được lưu"
+#: passwordsafe/unlocked_database.py:419
+msgid "Safe saved"
+msgstr "Két đã được lưu"
 
-#: passwordsafe/unlocked_database.py:573
+#: passwordsafe/unlocked_database.py:421
+msgid "Could not save Safe"
+msgstr "Không thể lưu Két"
+
+#: passwordsafe/unlocked_database.py:430
 msgid "Please wait. Another save is running."
 msgstr "Vui lòng chờ. Đã có tiến trình lưu khác đang chạy."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:577
+#: passwordsafe/unlocked_database.py:434
 msgid "No changes made"
 msgstr "Không tạo ra thay đổi nào"
 
-#: passwordsafe/unlocked_database.py:717
+#: passwordsafe/unlocked_database.py:470
 msgid "Copied to clipboard"
 msgstr "Chép vào clipboard"
 
-#: passwordsafe/unlocked_database.py:895
-#, python-format
-msgid "%s locked"
-msgstr "%s bị khóa"
+#. NOTE: Notification that a safe has been locked.
+#: passwordsafe/unlocked_database.py:552
+msgid "Safe locked due to inactivity"
+msgstr "Đã khóa Két do không hoạt động"
 
-#: passwordsafe/unlocked_database.py:901
-msgid "Keepass safe locked due to inactivity"
-msgstr "Két Keepass bị khóa vì lâu chưa dùng"
+#: passwordsafe/unlocked_headerbar.py:135
+msgid "{} Selected entry"
+msgid_plural "{} Selected entries"
+msgstr[0] "{} Mục đã được chọn"
+
+#~ msgid "Preferences"
+#~ msgstr "Tùy chọn"
+
+#~ msgid "New"
+#~ msgstr "Tạo mới"
+
+#~ msgid "Secret_Photo.png"
+#~ msgstr "Secret_Photo.png"
+
+#~ msgid "Show/hide password"
+#~ msgstr "Hiện/ẩn mật khẩu"
+
+#~ msgid "First Start"
+#~ msgstr "Chạy lần đầu"
+
+#~ msgid "Full-Text Search"
+#~ msgstr "Tìm kiếm toàn văn"
+
+#~ msgid "Current Group Search"
+#~ msgstr "Tìm nhóm hiện tại"
+
+#~ msgid "Timeout"
+#~ msgstr "Thời hạn chờ tối đa"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Exit entry page"
+#~ msgstr "Thoát trang mục tin"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Navigate to parent group"
+#~ msgstr "Di chuyển đến nhóm cha mẹ"
+
+#~ msgid "A-Z"
+#~ msgstr "A-Z"
+
+#~ msgid "Z-A"
+#~ msgstr "Z-A"
+
+#~ msgid "New Safe"
+#~ msgstr "Két mới"
+
+#~ msgid "Add"
+#~ msgstr "Thêm"
+
+#~ msgid "No username specified"
+#~ msgstr "Chưa chỉ định tài khoản"
+
+#~ msgid "No group title specified"
+#~ msgstr "Chưa chỉ ra tựa đề nhóm"
+
+#~ msgid "Unable to open file \"{}\"."
+#~ msgstr "Không thể mở tập tin \"{}\"."
+
+#~ msgid "Skipped moving group into itself"
+#~ msgstr "Bỏ qua vì di chuyển vào chính bản thân nhóm"
+
+#~ msgid "Database saved"
+#~ msgstr "Cơ sở dữ liệu đã được lưu"
+
+#~ msgid "%s locked"
+#~ msgstr "%s bị khóa"
 
 #~ msgid "Close"
 #~ msgstr "Đóng"

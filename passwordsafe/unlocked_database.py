@@ -341,10 +341,8 @@ class UnlockedDatabase(GObject.GObject):
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""
         if self.props.search_active:
-            self.parent_widget.set_headerbar(self.search.headerbar)
             self.window.set_headerbar(self.search.headerbar)
         else:
-            self.parent_widget.set_headerbar(self.headerbar)
             self.window.set_headerbar(self.headerbar)
 
     #

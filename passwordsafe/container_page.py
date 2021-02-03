@@ -7,11 +7,8 @@ class ContainerPage(Gtk.Box):
         super().__init__()
 
         self.development_mode = development_mode
-        self.headerbar = headerbar
         self.set_name("BGPlatform")
 
     def set_headerbar(self, headerbar):
-        self.headerbar = headerbar
-
         if self.development_mode is True:
-            self.headerbar.add_css_class("devel")
+            headerbar.add_css_class("devel")

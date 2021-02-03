@@ -122,7 +122,7 @@ class MainWindow(Handy.ApplicationWindow):
 
         :param GdkEvent event: event
         """
-        new_mobile_layout = (self.get_allocation().width < 700)
+        new_mobile_layout = allocation.width < 700
         if new_mobile_layout != self.props.mobile_layout:
             self.props.mobile_layout = new_mobile_layout
 

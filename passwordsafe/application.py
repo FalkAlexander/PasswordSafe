@@ -224,6 +224,7 @@ class Application(Gtk.Application):
         self.set_accels_for_action("app.open_database", ["<primary>o"])
         self.set_accels_for_action("app.new_database", ["<primary><Shift>n"])
         self.set_accels_for_action("app.db.save", ["<primary>s"])
+        self.set_accels_for_action("app.db.search", ["<primary>f"])
         self.set_accels_for_action("app.db.lock", ["<primary>l"])
         self.set_accels_for_action("app.db.add_entry", ["<primary>n"])
         self.set_accels_for_action("app.db.add_group", ["<primary>g"])

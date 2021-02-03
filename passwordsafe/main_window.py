@@ -16,7 +16,6 @@ from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
-from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 from passwordsafe.welcome_page import WelcomePage
 
 
@@ -66,10 +65,12 @@ class MainWindow(Adw.ApplicationWindow):
             self._title_stack.set_visible_child(self._headerbar)
             return
 
+        self.add_headerbar(headerbar)
+        self._title_stack.set_visible_child(headerbar)
+
+    def add_headerbar(self, headerbar: Adw.HeaderBar) -> None:
         if not self._title_stack.get_page(headerbar):
             self._title_stack.add_child(headerbar)
-
-        self._title_stack.set_visible_child(headerbar)
 
     def assemble_window(self) -> None:
         window_size = passwordsafe.config_manager.get_window_size()
@@ -498,6 +499,7 @@ class MainWindow(Adw.ApplicationWindow):
             "db.add_entry",
             "db.add_group",
             "db.settings",
+            "db.search",
             "go_back",
             "element.delete",
             "entry.duplicate",
@@ -557,6 +559,14 @@ class MainWindow(Adw.ApplicationWindow):
             else:
                 action_db.on_add_group_action()
 
+        elif name == "db.search":
+            if not (
+                action_db.props.database_locked
+                or action_db.props.selection_mode
+                or action_db.in_edit_page
+            ):
+                action_db.props.search_active = not action_db.props.search_active
+
     #
     # Tools
     #
@@ -578,21 +588,3 @@ class MainWindow(Adw.ApplicationWindow):
         _event_y: float,
     ) -> None:
         self.application.lookup_action("go_back").activate()
-
-    @Gtk.Template.Callback()
-    def _on_search_controller_key_pressed(self, controller, keyval, _keycode, state):
-        action_db = self.find_action_db()
-        unicode_key = chr(Gdk.keyval_to_unicode(keyval))
-        isalnum = unicode_key.isalnum()
-        mask = Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK | Gdk.ModifierType.ALT_MASK
-        if (
-                state & mask == 0
-                and isalnum
-                and action_db.headerbar.mode == UnlockedHeaderBar.Mode.GROUP
-        ):
-            search_button = action_db.headerbar.search_button
-            action_db.props.search_active = True
-            controller.forward(search_button)
-            return Gdk.EVENT_STOP
-
-        return Gdk.EVENT_PROPAGATE

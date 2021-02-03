@@ -138,6 +138,7 @@ class UnlockedDatabase(GObject.GObject):
 
         self.search.initialize()
         self._update_headerbar()
+        self.window.add_headerbar(self.search.headerbar)
 
         self.start_database_lock_timer()
 

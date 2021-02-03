@@ -6,6 +6,7 @@ import typing
 
 from gi.repository import Gio, GLib, GObject, Gtk, Adw
 
+from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 import passwordsafe.config_manager as config
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.sorting import SortingHat
@@ -50,6 +51,8 @@ class Search:
         self._search_text: str = self._search_entry.props.text
         self._result_list.connect("items_changed", self._on_items_changed)
 
+        self._search_entry.set_key_capture_widget(self.unlocked_database.window)
+
     def _on_items_changed(
         self, list_model: Gio.ListModel, _pos: int, _removed: int, _added: int
     ) -> None:
@@ -59,16 +62,22 @@ class Search:
 
     def initialize(self):
         # Search Headerbar
-        self._search_entry.connect("activate", self.on_headerbar_search_entry_enter_pressed)
+        self._search_entry.connect(
+            "activate", self.on_headerbar_search_entry_enter_pressed
+        )
 
-        self.unlocked_database.bind_accelerator(
-            self._search_entry, "<primary>f", signal="stop-search")
         self.unlocked_database.connect(
             "notify::search-active", self._on_search_active)
+        self._search_entry.connect("search-started", self._on_search_started)
+
         self._prepare_search_page()
 
-        search_button = self.unlocked_database.headerbar.search_button
-        self._search_entry.set_key_capture_widget(search_button)
+    def _on_search_started(self, search_entry: Gtk.SearchEntry) -> None:
+        headerbar = self.unlocked_database.headerbar
+        if headerbar.props.mode == UnlockedHeaderBar.Mode.GROUP:
+            self.unlocked_database.props.search_active = True
+        else:
+            self._search_entry.props.text = ""
 
     # Search headerbar
     def _on_search_active(
@@ -195,9 +204,7 @@ class Search:
 
     def _on_search_entry_changed(self, widget):
         self.unlocked_database.start_database_lock_timer()
-
         self._timeout_search = 0
-
         self._search_text = widget.get_text()
         self._start_search()
 
@@ -213,7 +220,9 @@ class Search:
             return
 
         first_row = self.search_list_box.get_first_child()
-        first_row.activate()
+        focus = self.search_list_box.get_focus_child()
+        if focus is None:
+            first_row.emit("activate")
 
     @property
     def headerbar(self) -> Adw.HeaderBar:

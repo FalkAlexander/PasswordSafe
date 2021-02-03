@@ -213,6 +213,7 @@ class SelectionUI(Gtk.Box):
 
     def _clear_all(self) -> None:
         """Resets everything to the default state"""
+        self.props.selected_elements = 0
         self.cut_mode = True
         self.entries_cut.clear()
         self.groups_cut.clear()

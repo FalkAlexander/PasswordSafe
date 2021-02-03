@@ -5,7 +5,6 @@
     <child>
       <object class="GtkButton" id="_cut_paste_button">
         <property name="sensitive">False</property>
-        <property name="receives_default">True</property>
         <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move selection</property>
         <property name="icon_name">edit-cut-symbolic</property>
         <signal name="clicked" handler="_on_cut_paste_button_clicked" swapped="no"/>
@@ -21,7 +20,6 @@
     <child>
       <object class="GtkButton" id="_cancel_button">
         <property name="label" translatable="yes">Cancel</property>
-        <property name="receives_default">True</property>
         <property name="action_name">app.go_back</property>
       </object>
     </child>

@@ -24,7 +24,6 @@
             <child>
               <object class="GtkButton" id="copy_button">
                 <property name="label" translatable="yes">_Copy</property>
-                <property name="receives_default">True</property>
                 <property name="use_underline">True</property>
                 <style>
                   <class name="suggested-action"/>
@@ -33,7 +32,6 @@
             </child>
             <child type="end">
               <object class="GtkToggleButton" id="search_button">
-                <property name="receives_default">True</property>
                 <property name="halign">end</property>
                 <property name="icon_name">system-search-symbolic</property>
                 <child>

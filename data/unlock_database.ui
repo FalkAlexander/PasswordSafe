@@ -36,7 +36,6 @@
       <object class="GtkBox" id="linkedbox_left">
         <child>
           <object class="GtkButton" id="back_button">
-            <property name="receives_default">True</property>
             <property name="icon_name">go-previous-symbolic</property>
           </object>
         </child>
@@ -44,7 +43,6 @@
     </child>
     <child type="end">
       <object class="GtkMenuButton" id="menupopover_button">
-        <property name="receives_default">True</property>
         <property name="menu_model">primary_menu</property>
         <property name="icon_name">open-menu-symbolic</property>
       </object>
@@ -115,7 +113,6 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="password_unlock_button">
-                            <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">Unlock</property>
                             <property name="icon_name">changes-allow-symbolic</property>
                           </object>
@@ -174,7 +171,6 @@
                         <property name="margin_top">10</property>
                         <child>
                           <object class="GtkButton" id="keyfile_unlock_select_button">
-                            <property name="receives_default">True</property>
                             <property name="halign">end</property>
                             <property name="valign">end</property>
                             <property name="hexpand">True</property>
@@ -188,7 +184,6 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="keyfile_unlock_button">
-                            <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">Unlock</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
@@ -254,14 +249,12 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="composite_unlock_button">
-                            <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">Unlock</property>
                             <property name="icon_name">changes-allow-symbolic</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkButton" id="composite_unlock_select_button">
-                            <property name="receives_default">True</property>
                             <property name="valign">end</property>
                             <property name="vexpand">True</property>
                             <property name="icon_name">document-open-symbolic</property>

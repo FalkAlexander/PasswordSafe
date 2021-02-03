@@ -6,7 +6,6 @@
         <property name="margin_end">6</property>
         <child>
           <object class="GtkButton" id="_back_button">
-            <property name="receives_default">True</property>
             <property name="action_name">app.go_back</property>
             <property name="icon_name">go-previous-symbolic</property>
           </object>
@@ -37,7 +36,6 @@
     </child>
     <child type="title">
       <object class="GtkMenuButton" id="_selection_options_button">
-        <property name="receives_default">True</property>
         <property name="has_frame">False</property>
         <property name="menu_model">selection_mode_menu</property>
         <property name="label" translatable="yes">Click on a checkbox to select</property>
@@ -51,7 +49,6 @@
             <property name="spacing">6</property>
             <child>
               <object class="GtkButton" id="search_button">
-                <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
                 <property name="icon_name">system-search-symbolic</property>
                 <signal name="clicked" handler="_on_search_button_clicked" swapped="no"/>
@@ -59,7 +56,6 @@
             </child>
             <child>
               <object class="GtkButton" id="selection_button">
-                <property name="receives_default">True</property>
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
                 <property name="icon_name">emblem-ok-symbolic</property>
                 <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
@@ -75,7 +71,6 @@
         </child>
         <child type="end">
           <object class="GtkMenuButton" id="_secondary_menu_button">
-            <property name="receives_default">True</property>
             <property name="icon_name">view-more-symbolic</property>
           </object>
         </child>

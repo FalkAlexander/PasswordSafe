@@ -49,7 +49,6 @@
                 <child>
                   <object class="GtkEntry" id="name_property_value_entry">
                     <property name="input_purpose">name</property>
-                    <property name="receives_default">True</property>
                     <property name="enable_undo">False</property>
                   </object>
                 </child>
@@ -221,7 +220,6 @@
                     <child>
                       <object class="GtkButton" id="notes_detach_button">
                         <property name="halign">end</property>
-                        <property name="receives_default">True</property>
                         <property name="icon_name">focus-windows-symbolic</property>
                         <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
                         <style>
@@ -376,7 +374,6 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="attributes_add_button">
-                        <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Add attribute</property>
                         <property name="halign">end</property>
                         <property name="icon_name">list-add-symbolic</property>
@@ -408,7 +405,6 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="show_all_properties_button">
-                    <property name="receives_default">True</property>
                     <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
                     <property name="icon_name">pan-down-symbolic</property>
                     <style>

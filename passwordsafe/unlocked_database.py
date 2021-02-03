@@ -480,8 +480,13 @@ class UnlockedDatabase(GObject.GObject):
         self.window.send_notification(message)
 
         clear_clipboard_time = passwordsafe.config_manager.get_clear_clipboard()
+
+        def callback():
+            self.clipboard_timer_handler = None
+            self.clipboard.clear()
+
         self.clipboard_timer_handler = GLib.timeout_add_seconds(
-            clear_clipboard_time, self.clipboard.clear
+            clear_clipboard_time, callback
         )
 
     def on_database_settings_entry_clicked(self, _action, _param):

@@ -82,7 +82,6 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     def create_headerbar(self):
-        self._title_stack.add(self._headerbar)
         self.set_headerbar()
 
         if Gio.Application.get_default().development_mode is True:
@@ -123,7 +122,7 @@ class MainWindow(Handy.ApplicationWindow):
 
         :param GdkEvent event: event
         """
-        new_mobile_layout = (self.get_allocation().width < 700)
+        new_mobile_layout = allocation.width < 700
         if new_mobile_layout != self.props.mobile_layout:
             self.props.mobile_layout = new_mobile_layout
 

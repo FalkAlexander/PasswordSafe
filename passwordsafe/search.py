@@ -210,12 +210,8 @@ class Search:
         if not self.search_list_box.get_children():
             return
 
-        selected_row = self.search_list_box.get_selected_row()
-
-        if selected_row is None:
-            selected_row = self.search_list_box.get_children()[0]
-
-        selected_row.activate()
+        first_row = self.search_list_box.get_children()[0]
+        first_row.activate()
 
     @property
     def headerbar(self) -> Handy.HeaderBar:

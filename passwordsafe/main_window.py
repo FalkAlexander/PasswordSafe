@@ -82,7 +82,6 @@ class MainWindow(Handy.ApplicationWindow):
     #
 
     def create_headerbar(self):
-        self._title_stack.add(self._headerbar)
         self.set_headerbar()
 
         if Gio.Application.get_default().development_mode is True:

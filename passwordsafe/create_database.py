@@ -118,8 +118,8 @@ class CreateDatabase(Gtk.Stack):
         else:
             self.window.send_notification(_("Passwords do not match"))
             self.clear_input_fields()
-            self.password_repeat_input1.get_style_context().add_class("error")
-            self.password_repeat_input2.get_style_context().add_class("error")
+            self.password_repeat_input1.add_css_class("error")
+            self.password_repeat_input2.add_css_class("error")
 
     @Gtk.Template.Callback()
     def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:

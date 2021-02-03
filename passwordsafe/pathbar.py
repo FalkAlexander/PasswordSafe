@@ -90,17 +90,15 @@ class PathbarSeparator(Gtk.Label):
 
         self.set_text("/")
 
-        context = self.get_style_context()
         if not self.unlocked_database.props.selection_mode:
-            context.add_class("dim-label")
+            self.add_css_class("dim-label")
 
         self.unlocked_database.connect("notify::selection-mode", self._on_selection_mode_changed)
 
     def _on_selection_mode_changed(
         self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpecBoolean
     ) -> None:
-        context = self.get_style_context()
         if unlocked_database.props.selection_mode:
-            context.remove_class("dim-label")
+            self.remove_css_class("dim-label")
         else:
-            context.add_class("dim-label")
+            self.add_css_class("dim-label")

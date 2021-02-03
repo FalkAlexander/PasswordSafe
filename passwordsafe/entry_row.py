@@ -98,40 +98,37 @@ class EntryRow(Adw.ActionRow):
     def _on_entry_name_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
         entry_name = self._safe_entry.props.name
-        style_context = self.get_style_context()
         if entry_name:
-            style_context.remove_class("italic-title")
+            self.remove_css_class("italic-title")
             self.props.title = entry_name
         else:
-            style_context.add_class("italic-title")
+            self.add_css_class("italic-title")
             self.props.title = _("Title not specified")
 
     def _on_entry_username_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
         entry_username = self._safe_entry.props.username
-        style_context = self.get_style_context()
         if entry_username:
-            style_context.remove_class("italic-subtitle")
+            self.remove_css_class("italic-subtitle")
             self.props.subtitle = entry_username
         else:
-            style_context.add_class("italic-subtitle")
+            self.add_css_class("italic-subtitle")
             self.props.subtitle = _("No username specified")
 
     def _on_entry_color_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
-        image_style = self._entry_icon.get_style_context()
         # Clear current style
-        image_style.remove_class("DarkIcon")
-        image_style.remove_class("BrightIcon")
+        self._entry_icon.remove_css_class("DarkIcon")
+        self._entry_icon.remove_css_class("BrightIcon")
         for color in Color:
-            image_style.remove_class(color.value + "List")
+            self._entry_icon.remove_css_class(color.value + "List")
 
         color = self._safe_entry.props.color
-        image_style.add_class(color + "List")
+        self._entry_icon.add_css_class(color + "List")
         if color not in [Color.NONE.value, Color.YELLOW.value]:
-            image_style.add_class("BrightIcon")
+            self._entry_icon.add_css_class("BrightIcon")
         else:
-            image_style.add_class("DarkIcon")
+            self._entry_icon.add_css_class("DarkIcon")
 
     @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):

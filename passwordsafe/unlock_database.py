@@ -217,9 +217,8 @@ class UnlockDatabase:
             logging.debug("Keyfile selected: %s", self.keyfile_path)
 
             keyfile_button = self.builder.get_object("keyfile_unlock_select_button")
-            style_context = keyfile_button.get_style_context()
-            style_context.remove_class("destructive-action")
-            style_context.add_class("suggested-action")
+            keyfile_button.remove_css_class("destructive-action")
+            keyfile_button.add_css_class("suggested-action")
             keyfile_button.set_label(os.path.basename(self.keyfile_path))
 
             # After selecting a keyfile, simulate a keypress on the unlock button
@@ -288,7 +287,7 @@ class UnlockDatabase:
                 self._password = entered_pwd
                 self._open_database()
             else:
-                composite_unlock_entry.get_style_context().add_class("error")
+                composite_unlock_entry.add_css_class("error")
 
     def _set_last_used_composite_key(self):
         if (not passwordsafe.config_manager.get_remember_composite_key()
@@ -495,11 +494,9 @@ class UnlockDatabase:
         composite_unlock_entry = self.builder.get_object(
             "composite_unlock_entry")
         composite_unlock_entry.grab_focus()
-        composite_unlock_entry.get_style_context().add_class("error")
-        composite_unlock_select_button.get_style_context().remove_class(
-            "suggested-action")
-        composite_unlock_select_button.get_style_context().add_class(
-            "destructive-action")
+        composite_unlock_entry.add_css_class("error")
+        composite_unlock_select_button.remove_css_class("suggested-action")
+        composite_unlock_select_button.add_css_class("destructive-action")
         self._clear_input_fields()
 
         logging.debug("Could not open database, wrong password")
@@ -511,9 +508,9 @@ class UnlockDatabase:
             self.database_manager.keyfile_hash = NotImplemented
 
         keyfile_unlock_select_button = self.builder.get_object(
-            "keyfile_unlock_select_button")
-        keyfile_unlock_select_button.get_style_context().add_class(
-            "destructive-action")
+            "keyfile_unlock_select_button"
+        )
+        keyfile_unlock_select_button.add_css_class("destructive-action")
         keyfile_unlock_select_button.set_label(_("Try again"))
 
         logging.debug("Invalid keyfile chosen")
@@ -524,7 +521,7 @@ class UnlockDatabase:
         password_unlock_entry = self.builder.get_object(
             "password_unlock_entry")
         password_unlock_entry.grab_focus()
-        password_unlock_entry.get_style_context().add_class("error")
+        password_unlock_entry.add_css_class("error")
         self._clear_input_fields()
 
         logging.info("Could not open database, wrong password")

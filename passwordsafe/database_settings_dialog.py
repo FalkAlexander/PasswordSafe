@@ -112,11 +112,11 @@ class DatabaseSettingsDialog:
 
         if new_password != conf_password:
             self.auth_apply_button.set_sensitive(False)
-            new_password_entry.get_style_context().add_class("error")
-            conf_password_entry.get_style_context().add_class("error")
+            new_password_entry.add_css_class("error")
+            conf_password_entry.add_css_class("error")
             return
-        new_password_entry.get_style_context().remove_class("error")
-        conf_password_entry.get_style_context().remove_class("error")
+        new_password_entry.remove_css_class("error")
+        conf_password_entry.remove_css_class("error")
 
         if (self.database_manager.password != current_password
            or (not new_password or not conf_password)):

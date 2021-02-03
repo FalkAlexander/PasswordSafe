@@ -14,5 +14,4 @@ class ContainerPage(Gtk.Box):
         self.headerbar = headerbar
 
         if self.development_mode is True:
-            context = self.headerbar.get_style_context()
-            context.add_class("devel")
+            self.headerbar.add_css_class("devel")

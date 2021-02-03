@@ -111,12 +111,11 @@ class UnlockedHeaderBar(Adw.HeaderBar):
     def _on_selection_mode_changed(
             self, _unlocked_database: UnlockedDatabase,
             _value: GObject.ParamSpecInt) -> None:
-        style_context = self.get_style_context()
         if self._unlocked_database.props.selection_mode:
-            style_context.add_class("selection-mode")
+            self.add_css_class("selection-mode")
             self.props.mode = UnlockedHeaderBar.Mode.SELECTION
         else:
-            style_context.remove_class("selection-mode")
+            self.remove_css_class("selection-mode")
             self.props.mode = UnlockedHeaderBar.Mode.GROUP
 
     def _on_mobile_layout_changed(

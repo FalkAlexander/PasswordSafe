@@ -138,7 +138,7 @@ class EntryPage(Gtk.ScrolledWindow):
         self.otp_property_value_entry.props.visibility = show_pwds
 
         # Notes
-        self.notes_property_value_entry.get_style_context().add_class("codeview")
+        self.notes_property_value_entry.add_css_class("codeview")
 
         textbuffer = self.notes_property_value_entry.get_buffer()
         safe_entry.bind_property(
@@ -290,16 +290,16 @@ class EntryPage(Gtk.ScrolledWindow):
         value = self.attributes_value_entry.get_text()
 
         if key == "" or key is None:
-            self.attributes_key_entry.get_style_context().add_class("error")
+            self.attributes_key_entry.add_css_class("error")
             return
 
         if safe_entry.has_attribute(key):
-            self.attributes_key_entry.get_style_context().add_class("error")
+            self.attributes_key_entry.add_css_class("error")
             self.unlocked_database.window.send_notification(
                 _("Attribute key already exists"))
             return
 
-        self.attributes_key_entry.get_style_context().remove_class("error")
+        self.attributes_key_entry.remove_css_class("error")
 
         self.attributes_key_entry.set_text("")
         self.attributes_value_entry.set_text("")
@@ -343,7 +343,7 @@ class EntryPage(Gtk.ScrolledWindow):
         # pylint: disable=too-many-arguments
         new_key: str = widget.props.text
         if not new_key:
-            widget.get_style_context().add_class("error")
+            widget.add_css_class("error")
             return
 
         if new_key == key:
@@ -353,7 +353,7 @@ class EntryPage(Gtk.ScrolledWindow):
             return
 
         if safe_entry.has_attribute(new_key):
-            widget.get_style_context().add_class("error")
+            widget.add_css_class("error")
             self.unlocked_database.window.send_notification(
                 _("Attribute key already exists"))
             return

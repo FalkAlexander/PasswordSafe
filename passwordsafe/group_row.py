@@ -85,12 +85,11 @@ class GroupRow(Adw.ActionRow):
     def _on_group_name_changed(
             self, _safe_group: SafeGroup, _value: GObject.ParamSpec) -> None:
         group_name = self.safe_group.name
-        style_context = self.get_style_context()
         if group_name:
-            style_context.remove_class("italic-title")
+            self.remove_css_class("italic-title")
             self.props.title = group_name
         else:
-            style_context.add_class("italic-title")
+            self.add_css_class("italic-title")
             self.props.title = _("Title not specified")
 
     @Gtk.Template.Callback()

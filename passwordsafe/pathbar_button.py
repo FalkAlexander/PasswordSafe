@@ -18,8 +18,7 @@ class PathbarButton(Gtk.Button):
         assert isinstance(element, SafeElement)
 
         self.set_name("PathbarButtonDynamic")
-        context = self.get_style_context()
-        context.add_class("flat")
+        self.add_css_class("flat")
 
         self.is_group = element.is_group
         self.element: SafeElement = element
@@ -32,5 +31,4 @@ class PathbarButton(Gtk.Button):
             "name", self, "label", GObject.BindingFlags.SYNC_CREATE)
 
     def set_active_style(self):
-        context = self.get_style_context()
-        context.add_class('PathbarButtonActive')
+        self.add_css_class("PathbarButtonActive")

@@ -88,8 +88,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.set_headerbar()
 
         if Gio.Application.get_default().development_mode is True:
-            context = self.get_style_context()
-            context.add_class("devel")
+            self.add_css_class("devel")
 
     #
     # Styles
@@ -102,9 +101,9 @@ class MainWindow(Adw.ApplicationWindow):
         css_provider = Gtk.CssProvider()
         css_provider.load_from_resource("org/gnome/PasswordSafe/passwordsafe.css")
 
-        context = self.get_style_context()
-        context.add_provider_for_display(
-            display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
+        self.get_style_context().add_provider_for_display(
+            display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER
+        )
 
     def apply_theme(self) -> None:
         """Set the bright/dark theme depending on the configuration"""

@@ -61,7 +61,6 @@ class AttachmentWarningDialog(Gtk.MessageDialog):
             )
             output_stream.write_bytes(GLib.Bytes.new(bytes_buffer))
             output_stream.close()
-            self.__unlocked_database.scheduled_tmpfiles_deletion.append(gfile)
             Gtk.show_uri_on_window(None, gfile.get_uri(), Gdk.CURRENT_TIME)
         except GLib.Error as err:
             logging.debug("Could not load attachment %s: %s", filename, err)

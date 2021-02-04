@@ -214,11 +214,13 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Select _All</attribute>
-        <attribute name="action">app.selection.all</attribute>
+        <attribute name="action">app.selection</attribute>
+        <attribute name="target">all</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Select _None</attribute>
-        <attribute name="action">app.selection.none</attribute>
+        <attribute name="action">app.selection</attribute>
+        <attribute name="target">none</attribute>
       </item>
     </section>
   </menu>

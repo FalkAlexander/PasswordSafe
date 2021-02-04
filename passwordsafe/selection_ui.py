@@ -146,9 +146,10 @@ class SelectionUI(Gtk.Box):
         self.unlocked_database.window.send_notification(_("Move completed"))
         self._clear_all()
 
-    def on_selection_popover_button_clicked(self, _action, _param, selection_type):
+    def on_selection_action_activated(self, param):
         self.unlocked_database.start_database_lock_timer()
 
+        selection_type = param.get_string()
         page = self.unlocked_database.get_current_page()
         viewport = page.get_children()[0]
         overlay = viewport.get_children()[0]

@@ -520,13 +520,9 @@ class MainWindow(Handy.ApplicationWindow):
 
     # Selection Mode Actions
     def add_selection_actions(self):
-        selection_all_action = Gio.SimpleAction.new("selection.all", None)
-        selection_all_action.connect("activate", self.execute_gio_action, "on_selection_popover_button_clicked", "all")
-        self.application.add_action(selection_all_action)
-
-        selection_none_action = Gio.SimpleAction.new("selection.none", None)
-        selection_none_action.connect("activate", self.execute_gio_action, "on_selection_popover_button_clicked", "none")
-        self.application.add_action(selection_none_action)
+        selection_action = Gio.SimpleAction.new("selection", GLib.VariantType("s"))
+        self.application.add_action(selection_action)
+        selection_action.connect("activate", self.execute_gio_action, "on_selection_popover_button_clicked")
 
     # Gio Action Handler
     def execute_gio_action(self, action, param, name, arg=None):
@@ -555,7 +551,7 @@ class MainWindow(Handy.ApplicationWindow):
         elif name == "on_database_settings_entry_clicked":
             action_db.on_database_settings_entry_clicked(action, param)
         elif name == "on_selection_popover_button_clicked":
-            action_db.selection_ui.on_selection_popover_button_clicked(action, param, arg)
+            action_db.selection_ui.on_selection_action_activated(param)
 
     # Add Global Accelerator Actions
     # The save_dirty action differs to save in that it is set as disabled

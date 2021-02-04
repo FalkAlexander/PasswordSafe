@@ -87,9 +87,7 @@ class Application(Gtk.Application):
             icon_name=self.application_id)
 
         self.add_menubutton_popover_actions()
-        self.window.add_row_popover_actions()
-        self.window.add_database_menubutton_popover_actions()
-        self.window.add_selection_actions()
+        self.window.setup_actions()
         self.add_global_accelerators()
 
         self.window.present()
@@ -237,7 +235,6 @@ class Application(Gtk.Application):
         self.do_activate()
 
     def add_global_accelerators(self):
-        self.window.add_global_accelerator_actions()
         self.set_accels_for_action("app.settings", ["<primary>comma"])
         self.set_accels_for_action("app.open", ["<primary>o"])
         self.set_accels_for_action("app.new", ["<primary><Shift>n"])

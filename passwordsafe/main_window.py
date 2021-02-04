@@ -491,9 +491,24 @@ class MainWindow(Handy.ApplicationWindow):
 
         return action_db
 
-    # Entry/Group Row Popover Actions
-    def add_row_popover_actions(self):
+    def setup_actions(self):
+        sort_action = self.application.settings.create_action(
+            "sort-order"
+        )
+        self.application.add_action(sort_action)
+
+        selection_action = Gio.SimpleAction.new("selection", GLib.VariantType("s"))
+        self.application.add_action(selection_action)
+        selection_action.connect("activate", self.execute_gio_action)
+
         actions = [
+            "db.save",
+            "db.save_dirty",
+            "db.lock",
+            "db.add_entry",
+            "db.add_group",
+            "db.settings",
+            "go_back",
             "element.delete",
             "entry.duplicate",
             "entry.references",
@@ -501,30 +516,21 @@ class MainWindow(Handy.ApplicationWindow):
             "group.edit",
         ]
 
+        # The save_dirty action differs to save in that it is set as disabled
+        # by default, and it is used by the main menu to determine if the button
+        # should be set to sensitive.
         for action in actions:
             simple_action = Gio.SimpleAction.new(action, None)
-            simple_action.connect("activate", self.execute_gio_action)
+            if action == "db.save_dirty":
+                simple_action.set_enabled(False)
+
+            simple_action.connect(
+                "activate", self.execute_gio_action)
             self.application.add_action(simple_action)
 
-    # MenuButton Popover Actions
-    def add_database_menubutton_popover_actions(self):
-        db_settings_action = Gio.SimpleAction.new("db.settings", None)
-        db_settings_action.connect("activate", self.execute_gio_action)
-        self.application.add_action(db_settings_action)
-
-        sort_action = self.application.settings.create_action(
-            "sort-order"
-        )
-        self.application.add_action(sort_action)
-
-    # Selection Mode Actions
-    def add_selection_actions(self):
-        selection_action = Gio.SimpleAction.new("selection", GLib.VariantType("s"))
-        self.application.add_action(selection_action)
-        selection_action.connect("activate", self.execute_gio_action)
-
     # Gio Action Handler
-    def execute_gio_action(self, action, param, arg=None):
+    def execute_gio_action(self, action, param):
+        # pylint: disable=too-many-branches
         action_db = self.find_action_db()
         if action_db is None:
             return
@@ -546,38 +552,7 @@ class MainWindow(Handy.ApplicationWindow):
             action_db.on_database_settings_entry_clicked(action, param)
         elif name == "selection":
             action_db.selection_ui.on_selection_action_activated(param)
-
-    # Add Global Accelerator Actions
-    # The save_dirty action differs to save in that it is set as disabled
-    # by default, and it is used by the main menu to determine if the button
-    # should be set to sensitive.
-    def add_global_accelerator_actions(self):
-        actions = [
-            "db.save",
-            "db.save_dirty",
-            "db.lock",
-            "db.add_entry",
-            "db.add_group",
-            "go_back",
-        ]
-
-        for action in actions:
-            simple_action = Gio.SimpleAction.new(action, None)
-            if action == "db.save_dirty":
-                simple_action.set_enabled(False)
-
-            simple_action.connect(
-                "activate", self.execute_accel_action)
-            self.application.add_action(simple_action)
-
-    # Accelerator Action Handler
-    def execute_accel_action(self, action, arg=None):
-        action_db = self.find_action_db()
-        if action_db is None:
-            return
-
-        name = action.props.name
-        if name in ["db.save", "db.save_dirty"]:
+        elif name in ["db.save", "db.save_dirty"]:
             action_db.save_safe()
         elif name == "db.lock":
             action_db.lock_safe()

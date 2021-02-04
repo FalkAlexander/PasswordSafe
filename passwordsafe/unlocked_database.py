@@ -440,13 +440,13 @@ class UnlockedDatabase(GObject.GObject):
     def lock_safe(self):
         self.database_manager.props.locked = True
 
-    def on_add_entry_action(self, _action: Gio.SimpleAction) -> None:
+    def on_add_entry_action(self) -> None:
         """CB when the Add Entry menu was clicked"""
         group = self.props.current_element.group
         new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
         self.show_edit_page(new_entry, new=True)
 
-    def on_add_group_action(self, _action: Gio.SimpleAction) -> None:
+    def on_add_group_action(self) -> None:
         """CB when menu entry Add Group is clicked"""
         self.database_manager.is_dirty = True
         safe_group = self.database_manager.add_group_to_database(
@@ -454,16 +454,14 @@ class UnlockedDatabase(GObject.GObject):
         )
         self.show_edit_page(safe_group)
 
-    def on_element_delete_menu_button_clicked(
-        self, _action: Gio.SimpleAction, _param: None
-    ) -> None:
+    def on_element_delete_menu_button_clicked(self) -> None:
         """Delete the visible entry from the menu."""
         parent_group = self.props.current_element.parentgroup
         self.database_manager.delete_from_database(self.props.current_element.element)
 
         self.show_browser_page(parent_group)
 
-    def on_entry_duplicate_menu_button_clicked(self, _action, _param):
+    def on_entry_duplicate_menu_button_clicked(self):
         self.database_manager.duplicate_entry(self.props.current_element.entry)
         parent_group = self.props.current_element.parentgroup
 
@@ -493,7 +491,7 @@ class UnlockedDatabase(GObject.GObject):
             clear_clipboard_time, callback
         )
 
-    def on_database_settings_entry_clicked(self, _action, _param):
+    def on_database_settings_entry_clicked(self) -> None:
         DatabaseSettingsDialog(self).present()
 
     def on_session_lock(
@@ -513,13 +511,13 @@ class UnlockedDatabase(GObject.GObject):
     # Dialog Creator
     #
 
-    def show_references_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
+    def show_references_dialog(self) -> None:
         """Show a Group/Entry reference dialog
 
         Invoked by the app.entry.references action"""
         ReferencesDialog(self).present()
 
-    def show_properties_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
+    def show_properties_dialog(self) -> None:
         """Show a Group/Entry property dialog
 
         Invoked by the app.element.properties action"""

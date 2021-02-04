@@ -538,17 +538,15 @@ class MainWindow(Handy.ApplicationWindow):
         name = action.props.name
 
         if name == "element.delete":
-            action_db.on_element_delete_menu_button_clicked(action, param)
+            action_db.on_element_delete_menu_button_clicked()
         elif name == "entry.duplicate":
-            action_db.on_entry_duplicate_menu_button_clicked(action, param)
+            action_db.on_entry_duplicate_menu_button_clicked()
         elif name == "entry.references":
-            action_db.show_references_dialog(action, param)
+            action_db.show_references_dialog()
         elif name == "element.properties":
-            action_db.show_properties_dialog(action, param)
-        elif name == "group.edit":
-            action_db.on_group_edit_menu_button_clicked(action, param)
+            action_db.show_properties_dialog()
         elif name == "db.settings":
-            action_db.on_database_settings_entry_clicked(action, param)
+            action_db.on_database_settings_entry_clicked()
         elif name == "selection":
             action_db.selection_ui.on_selection_action_activated(param)
         elif name in ["db.save", "db.save_dirty"]:
@@ -567,9 +565,9 @@ class MainWindow(Handy.ApplicationWindow):
                 return
 
             if name == "db.add_entry":
-                action_db.on_add_entry_action(action)
+                action_db.on_add_entry_action()
             elif name == "db.add_group":
-                action_db.on_add_group_action(action)
+                action_db.on_add_group_action()
 
     #
     # Tools

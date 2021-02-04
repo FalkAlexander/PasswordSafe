@@ -92,26 +92,18 @@ class Application(Gtk.Application):
         self.window.present()
 
     def setup_actions(self):
-        settings_action = Gio.SimpleAction.new("settings", None)
-        settings_action.connect("activate", self.on_settings_menu_clicked)
+        actions = [
+            ("settings", self.on_settings_menu_clicked),
+            ("about", self.on_about_menu_clicked),
+            ("quit", self.on_quit),
+            ("new", self.window.create_filechooser),
+            ("open", self.window.open_filechooser),
+        ]
 
-        about_action = Gio.SimpleAction.new("about", None)
-        about_action.connect("activate", self.on_about_menu_clicked)
-
-        quit_action = Gio.SimpleAction.new("quit", None)
-        quit_action.connect("activate", self.on_quit)
-
-        new_action = Gio.SimpleAction.new("new", None)
-        new_action.connect("activate", self.window.create_filechooser)
-
-        open_action = Gio.SimpleAction.new("open", None)
-        open_action.connect("activate", self.window.open_filechooser)
-
-        self.add_action(open_action)
-        self.add_action(new_action)
-        self.add_action(settings_action)
-        self.add_action(about_action)
-        self.add_action(quit_action)
+        for name, callback in actions:
+            simple_action = Gio.SimpleAction.new(name, None)
+            simple_action.connect("activate", callback)
+            self.add_action(simple_action)
 
     def on_settings_menu_clicked(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)

@@ -1,0 +1,1276 @@
+# Romanian translation for PasswordSafe.
+# Copyright (C) 2021 PasswordSafe's COPYRIGHT HOLDER
+# This file is distributed under the same license as the PasswordSafe package.
+# Daniel Șerbănescu <daniel@serbanescu.dk>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PasswordSafe release/4.x\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
+"POT-Creation-Date: 2021-01-17 11:00+0000\n"
+"PO-Revision-Date: 2021-02-04 17:41+0100\n"
+"Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 2.4.2\n"
+
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Administrați-vă parolele"
+
+#: data/about_dialog.ui.in:13
+msgid "Learn more about Password Safe"
+msgstr "Învățați mai multe despre Seiful de parole"
+
+#. Add your name to the translator credits list
+#: data/about_dialog.ui.in:15
+msgid "translator-credits"
+msgstr "Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2021"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/attachment_warning_dialog.ui:9
+msgid "Safety Info"
+msgstr "Informații seif"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/attachment_warning_dialog.ui:10
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"Este posibil ca aplicațiile externe vor crea copii necriptate ascunse sau "
+"copii temporare al acestui fișier atașament! Continuați cu prudență."
+
+#. Discard all the changes which the user have made to his keepass safe
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/attachment_warning_dialog.ui:23 data/unlocked_database.ui:713
+msgid "Back"
+msgstr "Înapoi"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/attachment_warning_dialog.ui:35
+msgid "Proceed"
+msgstr "Continuați"
+
+#: data/create_database.ui:72 data/database_settings_dialog.ui:449
+#: data/password_entry_row.ui:31 data/password_generator_popover.ui:178
+#: data/references_dialog.ui:155 data/references_dialog.ui:259
+#: data/settings_dialog.ui:156 passwordsafe/unlock_database.py:99
+msgid "Password"
+msgstr "Parolă"
+
+#: data/create_database.ui:92
+msgid "Use a password to secure your safe"
+msgstr "Utilizează o parolă pentru a securiza seiful"
+
+#: data/create_database.ui:155 data/database_settings_dialog.ui:589
+#: passwordsafe/database_settings_dialog.py:190
+#: passwordsafe/database_settings_dialog.py:230
+#: passwordsafe/database_settings_dialog.py:235
+#: passwordsafe/unlock_database.py:30 passwordsafe/unlock_database.py:102
+msgid "Keyfile"
+msgstr "Fișier de chei"
+
+#: data/create_database.ui:175
+msgid "Use a keyfile to secure your safe"
+msgstr "Utilizează un fișier de chei pentru a securiza seiful"
+
+#. NOTE: Composite unlock is a authentification method where both password and keyfile are required
+#: data/create_database.ui:238 passwordsafe/unlock_database.py:106
+msgid "Composite"
+msgstr "Compusă"
+
+#: data/create_database.ui:258
+msgid "Use a password in combination with a keyfile to secure your safe"
+msgstr ""
+"Utilizează o parolă în combinație cu un fișier de chei pentru a securiza "
+"seiful"
+
+#: data/create_database.ui:304
+msgid "Protect your safe"
+msgstr "Protejați-vă seiful"
+
+#: data/create_database.ui:416
+msgid "Set password for safe"
+msgstr "Stabilește parola pentru seif"
+
+#: data/create_database.ui:431
+msgid "Enter Password"
+msgstr "Introduceți parola"
+
+#: data/create_database.ui:477
+msgid "Password Match Check"
+msgstr "Verificare potrivirii parolei"
+
+#: data/create_database.ui:563
+msgid "Repeat password for safe"
+msgstr "Repetați parola pentru seif"
+
+#: data/create_database.ui:609
+msgid "Match Check Failed"
+msgstr "Verificarea potrivirii a eșuat"
+
+#: data/create_database.ui:668
+msgid "Please try again"
+msgstr "Încercați din nou"
+
+#. Button to generate a password
+#: data/create_database.ui:789 data/password_generator_popover.ui:265
+#: passwordsafe/create_database.py:242
+#: passwordsafe/database_settings_dialog.py:228
+msgid "Generate"
+msgstr "Generează"
+
+#: data/create_database.ui:818
+msgid "Set keyfile for safe"
+msgstr "Stabilește fișierul de chei pentru seif"
+
+#: data/create_database.ui:833
+msgid "Generate Keyfile"
+msgstr "Generează fișier de chei"
+
+#: data/create_database.ui:888 data/main_window.ui:203
+#: data/unlocked_database.ui:560
+msgid "Preferences"
+msgstr "Preferințe"
+
+#: data/create_database.ui:902 data/main_window.ui:217
+#: data/unlocked_database.ui:574
+msgid "Keyboard Shortcuts"
+msgstr "Scurtături de tastatură"
+
+#. "Password Safe" is the application name
+#: data/create_database.ui:916 data/main_window.ui:231
+#: data/unlock_database.ui:273 data/unlocked_database.ui:588
+msgid "About Password Safe"
+msgstr "Despre Seiful de parole"
+
+#. Application title in headerbar.
+#. Application name in the headerbar title
+#. Application title in headerbar.
+#: data/create_database.ui:930 data/main_window.ui:358
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:281
+msgid "Password Safe"
+msgstr "Seif de parole"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#: data/create_database.ui:931
+msgid "Create Safe"
+msgstr "Creează seif"
+
+#: data/created_database.ui:24
+msgid "Safe Successfully Created"
+msgstr "Seif creeat cu succes"
+
+#. Headerbar subtitle for the keepass safe unlock screen.
+#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
+#: data/created_database.ui:50 data/unlock_database.ui:282
+#: data/unlocked_database.ui:521
+msgid "Open Safe"
+msgstr "Deschide seif"
+
+#: data/color_entry_row.ui:23
+msgid "Color"
+msgstr "Culoare"
+
+#: data/database_settings_dialog.ui:64
+msgid "Details"
+msgstr "Detalii"
+
+#: data/database_settings_dialog.ui:89
+msgid "Path"
+msgstr "Cale"
+
+#: data/database_settings_dialog.ui:106
+msgid "File Size"
+msgstr "Dimensiune fișier"
+
+#: data/database_settings_dialog.ui:123
+msgid "Safe Name"
+msgstr "Nume seif"
+
+#. KeePass is a proper noun
+#: data/database_settings_dialog.ui:153
+msgid "KeePass Version"
+msgstr "Versiune KeePass"
+
+#: data/database_settings_dialog.ui:170
+msgid "Creation Date"
+msgstr "Data creării"
+
+#: data/database_settings_dialog.ui:187 data/database_settings_dialog.ui:814
+msgid "Encryption Algorithm"
+msgstr "Algoritm de criptare"
+
+#: data/database_settings_dialog.ui:204
+msgid "Derivation Algorithm"
+msgstr "Algoritm de derivare"
+
+#. Statistics
+#: data/database_settings_dialog.ui:309
+msgid "Stats"
+msgstr "Statistici"
+
+#: data/database_settings_dialog.ui:334
+msgid "Number of Groups"
+msgstr "Număr de grupuri"
+
+#: data/database_settings_dialog.ui:351
+msgid "Passwords"
+msgstr "Parole"
+
+#: data/database_settings_dialog.ui:368
+msgid "Number of Entries"
+msgstr "Număr de intrări"
+
+#: data/database_settings_dialog.ui:429 data/settings_dialog.ui:15
+#: data/settings_dialog.ui:20
+msgid "General"
+msgstr "Generale"
+
+#. New password (replacement for an old one)
+#: data/database_settings_dialog.ui:471
+msgid "New"
+msgstr "Nouă"
+
+#: data/database_settings_dialog.ui:490 data/database_settings_dialog.ui:491
+msgid "Generate Password"
+msgstr "Generează parolă"
+
+#. Retype the new password to confirm
+#: data/database_settings_dialog.ui:504
+msgid "Confirm"
+msgstr "Confirmă"
+
+#. Current password
+#: data/database_settings_dialog.ui:534
+msgid "Current"
+msgstr "Curent"
+
+#: data/database_settings_dialog.ui:642
+msgid "Select current keyfile"
+msgstr "Selectează fișierul de chei curent"
+
+#: data/database_settings_dialog.ui:718
+msgid "Generate new keyfile"
+msgstr "Generează un nou fișier de chei"
+
+#: data/database_settings_dialog.ui:751 data/database_settings_dialog.ui:975
+#: passwordsafe/database_settings_dialog.py:342
+#: passwordsafe/database_settings_dialog.py:364
+msgid "Apply Changes"
+msgstr "Aplică modificările"
+
+#: data/database_settings_dialog.ui:772
+msgid "Authentication"
+msgstr "Autentificare"
+
+#. ChaCha20 is a proper name, do not translate
+#: data/database_settings_dialog.ui:847
+msgid "ChaCha20: 256-bit"
+msgstr "ChaCha20: 256-biți"
+
+#. Twofish is a proper name, do not translate
+#: data/database_settings_dialog.ui:864
+msgid "Twofish: 256-bit"
+msgstr "Twofish: 256-biți"
+
+#. AES is a proper name, do not translate
+#: data/database_settings_dialog.ui:881
+msgid "AES: 256-bit"
+msgstr "AES: 256-biți"
+
+#. https://en.wikipedia.org/wiki/Key_derivation_function
+#: data/database_settings_dialog.ui:906
+msgid "Key Derivation Function"
+msgstr "Funcție de derivare chei"
+
+#: data/entry_page.ui:32
+msgid "Add Attachment"
+msgstr "Adaugă atașament"
+
+#: data/entry_page.ui:72
+msgid "Attachments"
+msgstr "Atașamente"
+
+#: data/entry_page.ui:158
+msgid "Secret_Photo.png"
+msgstr "Fotografie_secretă.png"
+
+#: data/entry_page.ui:333
+msgid "Remove attribute"
+msgstr "Elimină atributul"
+
+#: data/entry_page.ui:392
+msgid "Attributes"
+msgstr "Atribute"
+
+#: data/entry_page.ui:433
+msgid "Key"
+msgstr "Cheie"
+
+#: data/entry_page.ui:447
+msgid "Value"
+msgstr "Valoare"
+
+#: data/entry_page.ui:465
+msgid "Add attribute"
+msgstr "Adaugă atribut"
+
+#: data/entry_page.ui:514
+msgid "Icon"
+msgstr "Iconiță"
+
+#: data/entry_page.ui:881 data/group_page.ui:33 data/references_dialog.ui:65
+#: data/references_dialog.ui:231
+msgid "Title"
+msgstr "Titlu"
+
+#: data/entry_page.ui:964 data/group_page.ui:116 data/references_dialog.ui:185
+#: data/references_dialog.ui:287
+msgid "Notes"
+msgstr "Note"
+
+#: data/entry_page.ui:1159 data/references_dialog.ui:170
+#: data/references_dialog.ui:273
+msgid "URL"
+msgstr "URL"
+
+#: data/entry_page.ui:1244 data/references_dialog.ui:92
+#: data/references_dialog.ui:245
+msgid "Username"
+msgstr "Nume de utilizator"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/main_window.ui:45
+msgid "Secure password safe"
+msgstr "Seif pentru parole sigure"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/main_window.ui:64
+msgid ""
+"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
+"b> a new Keepass safe."
+msgstr ""
+"Stochează sigur parolele, notele și datele, <b>Creați</b> sau <b>importați</"
+"b> un seif Keepass nou."
+
+#: data/main_window.ui:272
+msgid "New…"
+msgstr "Nouă…"
+
+#: data/main_window.ui:317
+msgid "Open…"
+msgstr "Deschide…"
+
+#: data/main_window.ui:416
+msgid "Recent Databases"
+msgstr "Baze de date recente"
+
+#: data/notes_dialog.ui:21
+msgid "Copy"
+msgstr "Copiază"
+
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
+msgid ""
+"Password Safe is a password manager which makes use of the Keepass v.4 "
+"format. It integrates perfectly with the GNOME desktop and provides an easy "
+"and uncluttered interface for the management of password databases."
+msgstr ""
+"Seif de parole este un administrator de parole ce utilizează formatul "
+"Keepass v.4. Se integrează perfect cu desktopul GNOME și oferă o interfață "
+"ușoară pentru administrarea bazelor de date cu parole."
+
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:153
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "Un administrator de parole pentru GNOME"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.PasswordSafe.desktop.in.in:13
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;encrypt;secure;criptare;encripție;siguranță;securitate;"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:16
+msgid "Use dark GTK+ theme"
+msgstr "Utilizează o temă GTK+ închisă"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:17
+msgid ""
+"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+"theme has a dark variant."
+msgstr ""
+"Utilizează o variantă închisă a temei GTK+ curentă. Notați că nu fiecare "
+"temă GTK+ are o variantă închisă."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:21
+msgid "Reopen last opened database"
+msgstr "Redeschide baza de date deschisă ultima dată"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:22
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Deschide automat ecranul de deblocare a bazei de date ultimă deschisă, "
+"altfel arată ecranul de întâmpinare."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:26
+msgid "Save every change automatically"
+msgstr "Salvează fiecare modificare automat"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:27
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Salvează fiecare modificare pe care o faceți, instant în baza de date. "
+"Notați că nu puteți reface modificările dacă salvarea automată este activă."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:31
+msgid "Lock database after X minutes"
+msgstr "Blochează baza de date după X minute"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:32
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Blochează automat baza de date după un număr dat de minute pentru a "
+"îmbunătăți securitatea."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:36
+msgid "Clear clipboard after X seconds"
+msgstr "Curăță clipboardul după X secunde"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:37
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "După copierea parolei curățați clipboardul din motive de securitate."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:41
+msgid "Display passwords in plain text"
+msgstr "Arată parolele în text simplu"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:42
+msgid "Show the passwords in the entry fields by default."
+msgstr "Arată parolele în câmpurile de intrare în mod implicit."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:46
+msgid "Window size"
+msgstr "Dimensiune fereastră"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:47
+msgid "Remember the window size."
+msgstr "Ține minte dimensiunea ferestrei."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:51
+msgid "Last opened database"
+msgstr "Ultima bază de date deschisă"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:52
+msgid "Path to the last opened database."
+msgstr "Cale către ultima bază de date deschisă."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:56
+msgid "Last opened databases"
+msgstr "Ultimele baze de date deschise"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:57
+msgid "A list of the last opened databases."
+msgstr "O listă a bazelor de date deschise ultima dată."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:61
+msgid "Remember composite key"
+msgstr "Ține minte cheia compusă"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:62
+msgid "Remember last used composite key for database unlocking."
+msgstr ""
+"Ține minte ultima cheie compusă folosită pentru deblocarea bazei de date."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:66
+msgid "Last used composite key"
+msgstr "Ultima cheie compusă folosită"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:67
+msgid "Path to last used key for composite database unlocking."
+msgstr ""
+"Cale către ultima cheie folosită pentru deblocarea bazelor de date compuse."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:71
+msgid "Remember unlock method"
+msgstr "Ține minte metoda de deblocare"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:72
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"Ține minte ultima metodă de deblocare folosită pentru viitoarele deblocări "
+"ale bazei de date."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:76
+msgid "Backup the database on unlock"
+msgstr "Fă o copie de siguranță a bazei de date la deblocare"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:77
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/passwordsafe/backups"
+msgstr ""
+"Dacă apare o eroare în timpul salvării bazei de date, o copie de siguranță "
+"poate fi găsită la ~/.cache/passwordsafe/backups"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:81
+msgid "Sorting order of groups and entries"
+msgstr "Ordinea de sortare a grupurilor și intrărilor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:82
+msgid "Order of the rows in the groups and entries view."
+msgstr "Ordinea rândurilor în vizualizările grupuri și intrări."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:86
+msgid "Last used unlock method"
+msgstr "Ultima metodă de deblocare folosită"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:87
+msgid ""
+"Used to store the last used unlock method and to enable a faster unlock "
+"process."
+msgstr ""
+"Utilizat la stocarea ultimei metode de deblocare folosită și permite un "
+"proces de deblocare mai rapid."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:91
+msgid "Use full-text search"
+msgstr "Utilizează căutare text"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:92 data/settings_dialog.ui:84
+msgid "Performs a search across all values of entries."
+msgstr "Execută o căutare în toate valorile intrărilor."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:96
+msgid "Current group search"
+msgstr "Căutarea grupului curent"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:97 data/settings_dialog.ui:99
+msgid "Only search entries in the current group."
+msgstr "Cată intrări numai în grupul curent."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:101
+msgid "Use uppercases when generating a password"
+msgstr "Utilizează majuscule la generarea unei parole"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:102
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr ""
+"Utilizează caractere majuscule A-Z când se generează o parolă aleatoare."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:106
+msgid "Use lowercases when generating a password"
+msgstr "Utilizează minuscule când se generează o parolă"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:107
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr ""
+"Utilizează caracterele minuscule a-z la generarea unei parole aleatoare."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:111
+msgid "Use numbers when generating a password"
+msgstr "Utilizează numere la generarea unei parole"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:112
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Utilizează numerele 0-9 la generarea unei parole aleatoare."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:116
+msgid "Use symbols when generating a password"
+msgstr "Utilizează simboluri la generarea unei parole"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:117
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr ""
+"Utilizează simboluri non-alfanumerice ASCII la generarea unei parole "
+"aleatoare."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:121
+msgid "Password length when generating a password"
+msgstr "Lungimea parolei când se generează o parolă"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:166
+msgid "Number of single characters when generating a password."
+msgstr "Număr de caractere pentru generarea unei parole."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:126
+msgid "Number of words when generating a passphrase"
+msgstr "Număr de cuvinte pentru generarea unei fraze de acces"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:251
+msgid "Number of words to use when generating a passphrase."
+msgstr "Număr de cuvinte de folosit când se generează o frază de acces."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:131
+msgid "Separator when generating a passphrase"
+msgstr "Separator când se generează o frază de acces"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:269
+msgid "Word separator to use when generating a passphrase."
+msgstr "Separator de cuvinte de folosit la generarea unei fraze de acces."
+
+#. Tooltip for button near input field to show or hide the password (clear text)
+#: data/password_entry_row.ui:93
+msgid "Show/hide password"
+msgstr "Arată/ascunde parola"
+
+#: data/password_generator_popover.ui:49
+msgid "Length"
+msgstr "Lungime"
+
+#: data/password_generator_popover.ui:83
+msgid "Characters"
+msgstr "Caractere"
+
+#: data/password_generator_popover.ui:191
+msgid "Words"
+msgstr "Cuvinte"
+
+#: data/password_generator_popover.ui:224 data/settings_dialog.ui:268
+msgid "Separator"
+msgstr "Separator"
+
+#: data/password_generator_popover.ui:241
+msgid "Enter character here…"
+msgstr "Introduceți caracter aici…"
+
+#: data/password_generator_popover.ui:252
+msgid "Passphrase"
+msgstr "Frază de acces"
+
+#: data/properties_dialog.ui:16 data/unlocked_database.ui:648
+msgid "Properties"
+msgstr "Proprietăți"
+
+#: data/properties_dialog.ui:45 data/references_dialog.ui:200
+msgid "UUID"
+msgstr "UUID"
+
+#: data/properties_dialog.ui:63
+msgid "Accessed"
+msgstr "Accesate"
+
+#: data/properties_dialog.ui:80
+msgid "Modified"
+msgstr "Modificat"
+
+#: data/properties_dialog.ui:111
+msgid "Created"
+msgstr "Creat"
+
+#: data/references_dialog.ui:23
+msgid "Code"
+msgstr "Cod"
+
+#: data/references_dialog.ui:38 data/references_dialog.ui:395
+#: data/references_dialog.ui:546
+msgid "Property"
+msgstr "Proprietate"
+
+#: data/references_dialog.ui:309 data/unlocked_database.ui:634
+msgid "References"
+msgstr "Referințe"
+
+#: data/references_dialog.ui:338
+msgid "Syntax"
+msgstr "Sintaxă"
+
+#: data/references_dialog.ui:353
+msgid "The placeholder syntax for field references is the following:"
+msgstr "Sintaxa ce ține locul în referințele câmpurilor este următoarea:"
+
+#: data/references_dialog.ui:394 data/references_dialog.ui:433
+msgid "Show Field Codes"
+msgstr "Arată codurile câmpului"
+
+#: data/references_dialog.ui:434
+msgid "Identifier"
+msgstr "Identificator"
+
+#: data/references_dialog.ui:516
+msgid "Reference"
+msgstr "Referință"
+
+#: data/references_dialog.ui:625
+msgid ""
+"Each entry has a unique identifier called UUID.\n"
+"It can be found in the properties of the entry."
+msgstr ""
+"Fiecare intrare are un identificator unic numit UUID.\n"
+"Poate fi găsit la proprietățile fiecărei intrări."
+
+#: data/search.ui:93
+msgid "No search results"
+msgstr "Niciun rezultat de cătuare"
+
+#: data/search.ui:141
+msgid "Enter search term"
+msgstr "Introduceți un termen de căutare"
+
+#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:10
+msgid "Do you want to save all safes with unsaved changes?"
+msgstr "Doriți să salvați toate seifurile cu modificări nesalvate?"
+
+#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:11
+msgid "Select the safes you want to save."
+msgstr "Selectează seifurile de salvat."
+
+#: data/quit_dialog.ui:38
+msgid "Quit"
+msgstr "Închide"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/save_dialog.ui:11
+msgid "Unsaved Changes"
+msgstr "Modificări nesalvate"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/save_dialog.ui:12
+msgid "Do you want to write all changes to the safe?"
+msgstr "Doriți să scrieți toate modificările în seif?"
+
+#. Discard all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:25
+msgid "Quit Without Saving"
+msgstr "Închide fără a salva"
+
+#. Cancel exiting the program
+#: data/save_dialog.ui:35
+msgid "Don't Quit"
+msgstr "Nu închide"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:42
+msgid "Save and Quit"
+msgstr "Salvează și ieși"
+
+#: data/settings_dialog.ui:24
+msgid "Dark Theme"
+msgstr "Temă închisă"
+
+#: data/settings_dialog.ui:25
+msgid "Use dark GTK+ theme."
+msgstr "Utilizează o temă GTK+ închisă."
+
+#: data/settings_dialog.ui:39
+msgid "Hide First Start Screen"
+msgstr "Ascunde primul ecran de pornire"
+
+#: data/settings_dialog.ui:40
+msgid "Reopen last opened safe."
+msgstr "Redeschide seiful deschis ultima dată."
+
+#: data/settings_dialog.ui:57 data/unlocked_database.ui:444
+#: passwordsafe/main_window.py:397
+msgid "Safe"
+msgstr "Seif"
+
+#: data/settings_dialog.ui:61
+msgid "Save Automatically"
+msgstr "Salvează automat"
+
+#: data/settings_dialog.ui:62
+msgid "Save every change automatically."
+msgstr "Salvează fiecare modificare automat."
+
+#. Button tooltip in headerbar to open search page
+#: data/settings_dialog.ui:79 data/unlocked_database.ui:43
+msgid "Search"
+msgstr "Caută"
+
+#: data/settings_dialog.ui:83
+msgid "Full-Text Search"
+msgstr "Căutare text"
+
+#: data/settings_dialog.ui:98
+msgid "Current Group Search"
+msgstr "Căutare grup curent"
+
+#: data/settings_dialog.ui:116 data/unlock_database.ui:83
+#: data/unlock_database.ui:223 data/unlock_database.ui:376
+msgid "Unlock"
+msgstr "Deblochează"
+
+#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:120
+msgid "Remember Composite Key"
+msgstr "Ține minte cheia compusă"
+
+#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:121
+msgid "Remember last used composite key."
+msgstr "Ține minte ultima cheie compusă folosită."
+
+#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
+#: data/settings_dialog.ui:135
+msgid "Remember Unlock Method"
+msgstr "Ține minte metoda de deblocare"
+
+#: data/settings_dialog.ui:136
+msgid "Enable faster unlocking."
+msgstr "Activează deblocare mai rapidă"
+
+#: data/settings_dialog.ui:161
+msgid "Password Generation"
+msgstr "Generarea parolei"
+
+#: data/settings_dialog.ui:165
+msgid "Password Length"
+msgstr "Lungimea parolei"
+
+#: data/settings_dialog.ui:183
+msgid "Uppercase Characters"
+msgstr "Caractere majuscule"
+
+#: data/settings_dialog.ui:184
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Utilizează caractere majuscule A-Z când se generează o parolă."
+
+#: data/settings_dialog.ui:198
+msgid "Lowercase Characters"
+msgstr "Caractere minuscule"
+
+#: data/settings_dialog.ui:199
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Utilizează caracterele minuscule a-z la generarea unei parole."
+
+#: data/settings_dialog.ui:213
+msgid "Numeric Characters"
+msgstr "Caractere numerice"
+
+#: data/settings_dialog.ui:214
+msgid "Use numeric characters when generating a password."
+msgstr "Utilizează caractere numerice la generarea unei parole."
+
+#: data/settings_dialog.ui:228
+msgid "Special Characters"
+msgstr "Caractere speciale"
+
+#: data/settings_dialog.ui:229
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr "Utilizează simboluri non-alfanumerice ASCII la generarea unei parole."
+
+#: data/settings_dialog.ui:246
+msgid "Passphrase Generation"
+msgstr "Generarea frazei de acces"
+
+#: data/settings_dialog.ui:250
+msgid "Passphrase Length"
+msgstr "Lungimea frazei de acces"
+
+#: data/settings_dialog.ui:278
+msgid "Enter Character"
+msgstr "Introduceți caracter"
+
+#: data/settings_dialog.ui:292 data/settings_dialog.ui:297
+msgid "Security"
+msgstr "Securitate"
+
+#: data/settings_dialog.ui:301
+msgid "Safe Lock Timeout"
+msgstr "Limita de timp pentru blocarea seifului"
+
+#: data/settings_dialog.ui:302
+msgid "Lock safe on idle after X minutes."
+msgstr "Blochează seiful pentru inactivitate după X minute."
+
+#: data/settings_dialog.ui:319
+msgid "Clear Clipboard"
+msgstr "Curăță clipboardul"
+
+#: data/settings_dialog.ui:320
+msgid "Clear clipboard after X seconds."
+msgstr "Curăță clipboardul după X secunde."
+
+#: data/settings_dialog.ui:337
+msgid "Show Password Fields"
+msgstr "Arată câmpurile de parolă"
+
+#: data/settings_dialog.ui:338
+msgid "Display passwords in plain text."
+msgstr "Arată parolele în text simplu."
+
+#: data/settings_dialog.ui:352
+msgid "Clear Recent List"
+msgstr "Curăță lista recentelor"
+
+#: data/settings_dialog.ui:353
+msgid "Clear the recently opened safes list."
+msgstr "Curăță lista de seifuri deschise recent."
+
+#: data/shortcuts_overview.ui:14
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Aplicație"
+
+#: data/shortcuts_overview.ui:18
+msgctxt "Shortcut window description"
+msgid "Create safe"
+msgstr "Creează seif"
+
+#: data/shortcuts_overview.ui:25
+msgctxt "Shortcut window description"
+msgid "Open safe"
+msgstr "Deschide seiful"
+
+#: data/shortcuts_overview.ui:32
+msgctxt "Shortcut window description"
+msgid "Open preferences"
+msgstr "Deschide preferințele"
+
+#: data/shortcuts_overview.ui:39
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Ieșire"
+
+#: data/shortcuts_overview.ui:48
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Seif"
+
+#: data/shortcuts_overview.ui:52
+msgctxt "Shortcut window description"
+msgid "Lock safe"
+msgstr "Închide seiful"
+
+#: data/shortcuts_overview.ui:59
+msgctxt "Shortcut window description"
+msgid "Save safe"
+msgstr "Salvează seif"
+
+#: data/shortcuts_overview.ui:66
+msgctxt "Shortcut window description"
+msgid "Open search"
+msgstr "Deschide căutarea"
+
+#: data/shortcuts_overview.ui:73
+msgctxt "Shortcut window description"
+msgid "Create entry"
+msgstr "Creează o intrare"
+
+#: data/shortcuts_overview.ui:80
+msgctxt "Shortcut window description"
+msgid "Create group"
+msgstr "Creează un grup"
+
+#: data/shortcuts_overview.ui:89
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Intrare"
+
+#: data/shortcuts_overview.ui:93
+msgctxt "Shortcut window description"
+msgid "Copy password"
+msgstr "Copiază parola"
+
+#: data/shortcuts_overview.ui:100
+msgctxt "Shortcut window description"
+msgid "Exit entry page"
+msgstr "Închide pagina intrării"
+
+#: data/unlock_database.ui:28
+msgid "Enter password and select keyfile to unlock"
+msgstr "Introduceți parola și selectați fișierul de chei pentru deblocare"
+
+#: data/unlock_database.ui:43 data/unlock_database.ui:173
+#: data/unlock_database.ui:422
+msgid "Safe is Locked"
+msgstr "Seiful este blocat"
+
+#: data/unlock_database.ui:158
+msgid "Select keyfile to unlock"
+msgstr "Selectează fișierul de chei de deblocat"
+
+#: data/unlock_database.ui:205
+msgid "Open Keyfile"
+msgstr "Deschide fișier de chei"
+
+#. Menubutton in headerbar for starting the safe creation process
+#: data/unlock_database.ui:255
+msgid "_New Safe"
+msgstr "Seif _nou"
+
+#. Menubutton in headerbar for starting the safe opening process (for existing safe)
+#: data/unlock_database.ui:259
+msgid "_Open Safe"
+msgstr "_Deschide seif"
+
+#: data/unlock_database.ui:265
+msgid "_Preferences"
+msgstr "_Preferințe"
+
+#: data/unlock_database.ui:269
+msgid "_Keyboard Shortcuts"
+msgstr "Scurtături de _tastatură"
+
+#: data/unlock_database.ui:407
+msgid "Enter password to unlock"
+msgstr "Introduceți parola pentru a debloca"
+
+#: data/unlock_database.ui:497
+msgid "Failed to unlock safe"
+msgstr "Eșec la deblocarea seifului"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/unlocked_database.ui:21 data/unlocked_database.ui:738
+msgid "Selection Mode"
+msgstr "Mod de selectare"
+
+#: data/unlocked_database.ui:196
+msgid "Empty group"
+msgstr "Golește grupul"
+
+#: data/unlocked_database.ui:267 data/unlocked_database.ui:411
+msgid "Sorting"
+msgstr "Sortare"
+
+#. This string depicts the alphabet from the beginning to the end (first character to last one).
+#: data/unlocked_database.ui:284
+msgid "A-Z"
+msgstr "A-Z"
+
+#. This string depicts the alphabet in reversed order, from the end to the start (last character to first one).
+#: data/unlocked_database.ui:298
+msgid "Z-A"
+msgstr "Z-A"
+
+#. This is a modelbutton in a popover to sort entries by last added
+#: data/unlocked_database.ui:312
+msgid "Last Added"
+msgstr "Ultima adăugată"
+
+#: data/unlocked_database.ui:345 passwordsafe/entry_page.py:550
+msgid "Save"
+msgstr "Salvează"
+
+#: data/unlocked_database.ui:367
+msgid "Lock"
+msgstr "Blochează"
+
+#: data/unlocked_database.ui:458
+msgid "New Entry"
+msgstr "Intrare nouă"
+
+#: data/unlocked_database.ui:472
+msgid "New Group"
+msgstr "Grup nou"
+
+#. Menubutton popover in headerbar for starting the safe creation process
+#: data/unlocked_database.ui:507
+msgid "New Safe"
+msgstr "Seif nou"
+
+#. Open settings for safe (e.g. password changing)
+#: data/unlocked_database.ui:535
+msgid "Safe Settings"
+msgstr "Configurări seif"
+
+#: data/unlocked_database.ui:620
+msgid "Duplicate"
+msgstr "Dublet"
+
+#: data/unlocked_database.ui:673
+msgid "Delete"
+msgstr "Șterge"
+
+#: data/unlocked_database.ui:786
+msgid "Click on a checkbox to select"
+msgstr "Clic pe o căsuță de bifat pentru a selecta"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/unlocked_database.ui:895
+msgid "Move selection"
+msgstr "Mută selecția"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/unlocked_database.ui:915
+msgid "Delete selection"
+msgstr "Șterge selecția"
+
+#: data/unlocked_database.ui:932
+msgid "Cancel"
+msgstr "Anulează"
+
+#: data/unlocked_database.ui:975
+msgid "Select all"
+msgstr "Selectează toate"
+
+#: data/unlocked_database.ui:989
+msgid "Select none"
+msgstr "Deselectează tot"
+
+#. NOTE: Filechooser title for generating a new keyfile
+#: passwordsafe/create_database.py:240
+#: passwordsafe/database_settings_dialog.py:227
+msgid "Choose location for keyfile"
+msgstr "Alege locația pentru fișierul de chei"
+
+#: passwordsafe/create_database.py:253
+msgid "Generating…"
+msgstr "Se generează…"
+
+#: passwordsafe/database_manager.py:484
+msgid "Clone"
+msgstr "Clonează"
+
+#. NOTE: Filechooser title for choosing current used keyfile
+#: passwordsafe/database_settings_dialog.py:184
+msgid "Choose current keyfile"
+msgstr "Alegeți fișierul de chei curent"
+
+#: passwordsafe/database_settings_dialog.py:185
+msgid "Open"
+msgstr "Deschide"
+
+#: passwordsafe/database_settings_dialog.py:298
+#: passwordsafe/database_settings_dialog.py:353
+msgid "Apply…"
+msgstr "Aplică…"
+
+#. Encryption Algorithm
+#: passwordsafe/database_settings_dialog.py:395
+msgid "Unknown"
+msgstr "Necunoscut"
+
+#. NOTE: AES is a proper name
+#: passwordsafe/database_settings_dialog.py:398
+msgid "AES 256-bit"
+msgstr "AES 256-biți"
+
+#. NOTE: ChaCha20 is a proper name
+#: passwordsafe/database_settings_dialog.py:401
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256-biți"
+
+#. NOTE: Twofish is a proper name
+#: passwordsafe/database_settings_dialog.py:404
+msgid "Twofish 256-bit"
+msgstr "Twofish 256-biți"
+
+#: passwordsafe/entry_page.py:402 passwordsafe/entry_page.py:472
+msgid "Attribute key already exists"
+msgstr "Cheia atributului există deja"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: passwordsafe/entry_page.py:502
+msgid "Select attachment"
+msgstr "Selectează atașamentul"
+
+#: passwordsafe/entry_page.py:503
+msgid "Add"
+msgstr "Adaugă"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: passwordsafe/entry_page.py:549
+msgid "Save attachment"
+msgstr "Salvează atașament"
+
+#: passwordsafe/entry_row.py:65
+msgid "Title not specified"
+msgstr "Titlu nespecificat"
+
+#: passwordsafe/entry_row.py:71
+msgid "No username specified"
+msgstr "Niciun nume de utilizator specificat"
+
+#: passwordsafe/group_row.py:49
+msgid "No group title specified"
+msgstr "Niciun titlu de grup specificat"
+
+#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
+#: passwordsafe/main_window.py:293
+msgid "Choose a Keepass safe"
+msgstr "Alegeți un seif Keepass"
+
+#. NOTE: KeePass + version number is a proper name, do not translate
+#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:403
+msgid "KeePass 3.1/4 Database"
+msgstr "Bază de date KeePass 3.1/4"
+
+#: passwordsafe/main_window.py:335
+msgid "Unable to open file \"{}\"."
+msgstr "Nu s-a putut deschide fișierul „{}”."
+
+#: passwordsafe/main_window.py:338
+msgid "File type {} ({}) is not supported."
+msgstr "Tip de fișier {} ({}) nesuportat."
+
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: passwordsafe/main_window.py:390
+msgid "Choose location for Keepass safe"
+msgstr "Alegeți locația pentru seiful Keepass"
+
+#: passwordsafe/main_window.py:393
+msgid "Create"
+msgstr "Creează"
+
+#: passwordsafe/selection_ui.py:170
+msgid "Deletion completed"
+msgstr "Ștergere completă"
+
+#: passwordsafe/selection_ui.py:246
+msgid "Move completed"
+msgstr "Mutare completă"
+
+#: passwordsafe/selection_ui.py:248
+msgid "Skipped moving group into itself"
+msgstr "S-a omis mutarea grupului în el însuși"
+
+#: passwordsafe/unlock_database.py:222
+msgid "Database already opened"
+msgstr "Baza de date deschisă deja"
+
+#: passwordsafe/unlock_database.py:245
+msgid "Choose a keyfile"
+msgstr "Alegeți un fișier de chei"
+
+#: passwordsafe/unlock_database.py:284
+msgid "Choose Keyfile"
+msgstr "Alegeți fișier de chei"
+
+#: passwordsafe/unlock_database.py:559
+msgid "Try again"
+msgstr "Încercați din nou"
+
+#: passwordsafe/unlocked_database.py:574
+msgid "Database saved"
+msgstr "Bază de date salvată"
+
+#: passwordsafe/unlocked_database.py:578
+msgid "Please wait. Another save is running."
+msgstr "Așteptați. O altă salvare este în curs de rulare."
+
+#. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
+#: passwordsafe/unlocked_database.py:582
+msgid "No changes made"
+msgstr "Nicio modificare efectuată"
+
+#: passwordsafe/unlocked_database.py:722
+msgid "Copied to clipboard"
+msgstr "Copiată în clipboard"
+
+#: passwordsafe/unlocked_database.py:900
+#, python-format
+msgid "%s locked"
+msgstr "%s blocat"
+
+#: passwordsafe/unlocked_database.py:906
+msgid "Keepass safe locked due to inactivity"
+msgstr "Seif Keepass blocat din cauza inactivității"

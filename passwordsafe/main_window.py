@@ -525,9 +525,6 @@ class MainWindow(Handy.ApplicationWindow):
         sort_action = self.application.settings.create_action(
             "sort-order"
         )
-        sort_action.connect(
-            "notify::state", self.execute_gio_action, "sort-order", None
-        )
         self.application.add_action(sort_action)
 
     # Selection Mode Actions

@@ -513,7 +513,6 @@ class MainWindow(Handy.ApplicationWindow):
             "entry.duplicate",
             "entry.references",
             "element.properties",
-            "group.edit",
         ]
 
         # The save_dirty action differs to save in that it is set as disabled

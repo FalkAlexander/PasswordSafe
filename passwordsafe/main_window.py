@@ -509,18 +509,9 @@ class MainWindow(Handy.ApplicationWindow):
 
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):
-        actions = [
-            ("db.add_entry", "on_add_entry_action", None),
-            ("db.add_group", "on_add_group_action", None),
-            ("db.settings", "on_database_settings_entry_clicked", None),
-            ("sort", "on_sort_menu_button_entry_clicked", None),
-        ]
-
-        for action, name, arg in actions:
-            simple_action = Gio.SimpleAction.new(action, None)
-            simple_action.connect(
-                "activate", self.execute_gio_action, name, arg)
-            self.application.add_action(simple_action)
+        db_settings_action = Gio.SimpleAction.new("db.settings", None)
+        db_settings_action.connect("activate", self.execute_gio_action, "on_database_settings_entry_clicked")
+        self.application.add_action(db_settings_action)
 
         sort_action = self.application.settings.create_action(
             "sort-order"

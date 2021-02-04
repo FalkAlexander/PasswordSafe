@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import os
+import shutil
 import logging
 import threading
 import typing
@@ -48,7 +50,6 @@ class UnlockedDatabase(GObject.GObject):
 
     # Objects
     builder = NotImplemented
-    scheduled_tmpfiles_deletion: list[Gio.File] = []
     clipboard = NotImplemented
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
@@ -528,18 +529,7 @@ class UnlockedDatabase(GObject.GObject):
     def _on_database_lock_changed(self, _database_manager, _value):
         locked = self.database_manager.props.locked
         if locked:
-            self.cleanup(False)
-
-            for tmpfile in self.scheduled_tmpfiles_deletion:
-                try:
-                    tmpfile.delete()
-                except GLib.Error as exc:
-                    logging.warning(
-                        "Skipping deletion of tmpfile %s: %s",
-                        tmpfile.get_path(),
-                        exc.message,
-                    )
-
+            self.cleanup()
             if passwordsafe.config_manager.get_save_automatically():
                 self.save_database()
 
@@ -560,13 +550,12 @@ class UnlockedDatabase(GObject.GObject):
     # Helper Methods
     #
 
-    def cleanup(self, delete_tmp_file: bool = True) -> None:
+    def cleanup(self) -> None:
         """Stop all ongoing operations:
 
         * stop the save loop
         * cancel all timers
         * unregistrer from dbus
-        * delete all temporary file is delete_tmp_file is True
 
         :param bool show_save_dialog: chooe to delete temporary files
         """
@@ -590,14 +579,9 @@ class UnlockedDatabase(GObject.GObject):
             GLib.source_remove(self.save_loop)
             self.save_loop = None
 
-        if not delete_tmp_file:
-            return
-
-        for tmpfile in self.scheduled_tmpfiles_deletion:
-            try:
-                tmpfile.delete()
-            except Gio.Error:
-                logging.warning("Skipping deletion of tmpfile...")
+        # Cleanup temporal files created when opening attachments.
+        cache_dir = os.path.join(GLib.get_user_cache_dir(), "passwordsafe", "tmp")
+        shutil.rmtree(cache_dir, ignore_errors=True)
 
     def save_database(self, notification: bool = False) -> None:
         """Save the database.

@@ -102,7 +102,7 @@ You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https
 # Data protection
 Please be careful when using development versions. Create enough backups if you're using a production database with a Password Safe development version. It is possible that data loss will occur, though I give my best that this will never happen.
 
-Development versions create a backup of your database on unlocking by default. These can be found at ```~/.cache/passwordsafe/backup/``` where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:
+Development versions create a backup of your database on unlocking by default. These can be found at ```$XDG_CACHE_HOME/passwordsafe/backup/``` (or `~/.var/app/org.gnome.PasswordSafe/cache/passwordsafe/backup` for Flatpak users) where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:
 ```
 gsettings set org.gnome.PasswordSafe development-backup-mode false
 ```

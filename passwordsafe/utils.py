@@ -39,11 +39,10 @@ def generate_keyfile(gfile: Gio.File, callback: Callable[[], None]) -> None:
     ciphertext, tag = cipher.encrypt_and_digest(create_random_data(96))  # type: ignore
     contents = cipher.nonce + tag + ciphertext  # type: ignore
 
-    success, _ = gfile.replace_contents(
-        contents, None, False, Gio.FileCreateFlags.REPLACE_DESTINATION, None
-    )
-
-    if not success:
-        logging.debug("Could not create keyfile")
-
-    callback()
+    try:
+        gfile.replace_contents(
+            contents, None, False, Gio.FileCreateFlags.REPLACE_DESTINATION, None
+        )
+        callback()
+    except GLib.Error as err:
+        logging.debug("Could not create keyfile: %s", err.message)

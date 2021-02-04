@@ -280,11 +280,17 @@ class DatabaseManager(GObject.GObject):
     def create_keyfile_hash(self, keyfile_path: str) -> str:
         """Computes the SHA-1 hash of keyfile."""
         gfile = Gio.File.new_for_path(keyfile_path)
-        gbytes, _stream = gfile.load_bytes()
+        try:
+            gbytes, _stream = gfile.load_bytes()
 
-        return GLib.compute_checksum_for_bytes(
-            GLib.ChecksumType.SHA1, gbytes
-        )
+            return GLib.compute_checksum_for_bytes(
+                GLib.ChecksumType.SHA1, gbytes
+            )
+        except GLib.Error as err:
+            logging.warning(
+                "Could not compute hash of %s: %s", keyfile_path, err.message
+            )
+            return ""
 
     # Set keyfile hash
     def set_keyfile_hash(self, keyfile_path):

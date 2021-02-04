@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
+from logging import warning
 
 from gi.repository import Gio, GLib, GObject, Gtk
 
@@ -349,10 +350,17 @@ class EntryPage(Gtk.ScrolledWindow):
         if response == Gtk.ResponseType.ACCEPT:
             safe_entry: SafeEntry = self.unlocked_database.current_element
             for attachment in dialog.get_files():
-                byte_buffer = attachment.load_bytes()[0].get_data()
-                filename = attachment.get_basename()
-                new_attachment = safe_entry.add_attachment(byte_buffer, filename)
-                self.add_attachment_row(new_attachment)
+                try:
+                    byte_buffer = attachment.load_bytes()[0].get_data()
+                    filename = attachment.get_basename()
+                    new_attachment = safe_entry.add_attachment(byte_buffer, filename)
+                    self.add_attachment_row(new_attachment)
+                except GLib.Error as err:
+                    warning(
+                        "Could not create new keyfile %s: %s",
+                        filename,
+                        err.message,
+                    )
 
     def add_attachment_row(self, attachment):
         builder = Gtk.Builder()

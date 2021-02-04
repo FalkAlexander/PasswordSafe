@@ -566,7 +566,7 @@ class MainWindow(Handy.ApplicationWindow):
 
             if name == "db.add_entry":
                 action_db.on_add_entry_action()
-            elif name == "db.add_group":
+            else:
                 action_db.on_add_group_action()
 
     #

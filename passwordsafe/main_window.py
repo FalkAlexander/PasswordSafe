@@ -499,7 +499,6 @@ class MainWindow(Handy.ApplicationWindow):
             ("entry.references", "on_entry_references_menu_button_clicked"),
             ("element.properties", "on_element_properties_menu_button_clicked"),
             ("group.edit", "on_group_edit_menu_button_clicked"),
-            ("group.delete", "on_group_delete_menu_button_clicked")
         ]
 
         for action, name in actions:
@@ -542,8 +541,6 @@ class MainWindow(Handy.ApplicationWindow):
             action_db.show_properties_dialog(action, param)
         elif name == "on_group_edit_menu_button_clicked":
             action_db.on_group_edit_menu_button_clicked(action, param)
-        elif name == "on_group_delete_menu_button_clicked":
-            action_db.on_group_delete_menu_button_clicked(action, param)
         elif name == "on_database_add_entry_clicked":
             action_db.on_database_add_entry_clicked(action)
         elif name == "on_add_group_action":

@@ -121,7 +121,7 @@ class EntryRow(Gtk.ListBoxRow):
             self._entry_username_label.props.label = entry_username
         else:
             style_context.add_class("italic")
-            self._entry_username_label.props.label = _("Title not specified")
+            self._entry_username_label.props.label = _("No username specified")
 
     def _on_entry_color_changed(
             self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:

@@ -430,7 +430,9 @@ class UnlockDatabase:
         passwordsafe.config_manager.set_last_opened_database(opened.get_uri())
 
         if passwordsafe.config_manager.get_development_backup_mode():
-            cache_dir = os.path.expanduser("~") + "/.cache/passwordsafe/backup"
+            cache_dir = os.path.join(
+                GLib.get_user_cache_dir(), "passwordsafe", "backup"
+            )
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 

@@ -1,13 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import hashlib
 import logging
 from datetime import datetime
 from gettext import gettext as _
 from uuid import UUID
 
-from gi.repository import Gio, GObject
+from gi.repository import Gio, GLib, GObject
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
@@ -278,15 +277,14 @@ class DatabaseManager(GObject.GObject):
             return True
         return False
 
-    def create_keyfile_hash(self, keyfile_path):
-        """Create keyfile hash and returns it"""
-        hasher = hashlib.sha512()
-        with open(keyfile_path, 'rb') as file:
-            buffer = 0
-            while buffer != b'':
-                buffer = file.read(1024)
-                hasher.update(buffer)
-        return hasher.hexdigest()
+    def create_keyfile_hash(self, keyfile_path: str) -> str:
+        """Computes the SHA-1 hash of keyfile."""
+        gfile = Gio.File.new_for_path(keyfile_path)
+        gbytes, _stream = gfile.load_bytes()
+
+        return GLib.compute_checksum_for_bytes(
+            GLib.ChecksumType.SHA1, gbytes
+        )
 
     # Set keyfile hash
     def set_keyfile_hash(self, keyfile_path):

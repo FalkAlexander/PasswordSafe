@@ -494,22 +494,22 @@ class MainWindow(Handy.ApplicationWindow):
     # Entry/Group Row Popover Actions
     def add_row_popover_actions(self):
         actions = [
-            ("element.delete", "on_element_delete_menu_button_clicked"),
-            ("entry.duplicate", "on_entry_duplicate_menu_button_clicked"),
-            ("entry.references", "on_entry_references_menu_button_clicked"),
-            ("element.properties", "on_element_properties_menu_button_clicked"),
-            ("group.edit", "on_group_edit_menu_button_clicked"),
+            "element.delete",
+            "entry.duplicate",
+            "entry.references",
+            "element.properties",
+            "group.edit",
         ]
 
-        for action, name in actions:
+        for action in actions:
             simple_action = Gio.SimpleAction.new(action, None)
-            simple_action.connect("activate", self.execute_gio_action, name)
+            simple_action.connect("activate", self.execute_gio_action)
             self.application.add_action(simple_action)
 
     # MenuButton Popover Actions
     def add_database_menubutton_popover_actions(self):
         db_settings_action = Gio.SimpleAction.new("db.settings", None)
-        db_settings_action.connect("activate", self.execute_gio_action, "on_database_settings_entry_clicked")
+        db_settings_action.connect("activate", self.execute_gio_action)
         self.application.add_action(db_settings_action)
 
         sort_action = self.application.settings.create_action(
@@ -521,33 +521,30 @@ class MainWindow(Handy.ApplicationWindow):
     def add_selection_actions(self):
         selection_action = Gio.SimpleAction.new("selection", GLib.VariantType("s"))
         self.application.add_action(selection_action)
-        selection_action.connect("activate", self.execute_gio_action, "on_selection_popover_button_clicked")
+        selection_action.connect("activate", self.execute_gio_action)
 
     # Gio Action Handler
-    def execute_gio_action(self, action, param, name, arg=None):
+    def execute_gio_action(self, action, param, arg=None):
         action_db = self.find_action_db()
         if action_db is None:
             return
 
         action_db.start_database_lock_timer()
+        name = action.props.name
 
-        if name == "on_element_delete_menu_button_clicked":
+        if name == "element.delete":
             action_db.on_element_delete_menu_button_clicked(action, param)
-        elif name == "on_entry_duplicate_menu_button_clicked":
+        elif name == "entry.duplicate":
             action_db.on_entry_duplicate_menu_button_clicked(action, param)
-        elif name == "on_entry_references_menu_button_clicked":
+        elif name == "entry.references":
             action_db.show_references_dialog(action, param)
-        elif name == "on_element_properties_menu_button_clicked":
+        elif name == "element.properties":
             action_db.show_properties_dialog(action, param)
-        elif name == "on_group_edit_menu_button_clicked":
+        elif name == "group.edit":
             action_db.on_group_edit_menu_button_clicked(action, param)
-        elif name == "on_database_add_entry_clicked":
-            action_db.on_database_add_entry_clicked(action)
-        elif name == "on_add_group_action":
-            action_db.on_add_group_action(action)
-        elif name == "on_database_settings_entry_clicked":
+        elif name == "db.settings":
             action_db.on_database_settings_entry_clicked(action, param)
-        elif name == "on_selection_popover_button_clicked":
+        elif name == "selection":
             action_db.selection_ui.on_selection_action_activated(param)
 
     # Add Global Accelerator Actions

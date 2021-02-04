@@ -48,7 +48,6 @@ class Application(Gtk.Application):
         Handy.init()
         self.connect("open", self.file_open_handler)
         self.connect("shutdown", self._on_shutdown_action)
-        self.assemble_application_menu()
 
     def do_handle_local_options(        # pylint: disable=arguments-differ
         self, options: GLib.VariantDict
@@ -86,13 +85,13 @@ class Application(Gtk.Application):
             application=self, title="Password Safe",
             icon_name=self.application_id)
 
-        self.add_menubutton_popover_actions()
+        self.setup_actions()
         self.window.setup_actions()
         self.add_global_accelerators()
 
         self.window.present()
 
-    def assemble_application_menu(self):
+    def setup_actions(self):
         settings_action = Gio.SimpleAction.new("settings", None)
         settings_action.connect("activate", self.on_settings_menu_clicked)
 
@@ -102,6 +101,14 @@ class Application(Gtk.Application):
         quit_action = Gio.SimpleAction.new("quit", None)
         quit_action.connect("activate", self.on_quit)
 
+        new_action = Gio.SimpleAction.new("new", None)
+        new_action.connect("activate", self.window.create_filechooser)
+
+        open_action = Gio.SimpleAction.new("open", None)
+        open_action.connect("activate", self.window.open_filechooser)
+
+        self.add_action(open_action)
+        self.add_action(new_action)
         self.add_action(settings_action)
         self.add_action(about_action)
         self.add_action(quit_action)
@@ -216,15 +223,6 @@ class Application(Gtk.Application):
         self.window.save_window_size()
         for database in self.window.opened_databases:
             database.cleanup()
-
-    def add_menubutton_popover_actions(self):
-        new_action = Gio.SimpleAction.new("new", None)
-        new_action.connect("activate", self.window.create_filechooser)
-        self.add_action(new_action)
-
-        open_action = Gio.SimpleAction.new("open", None)
-        open_action.connect("activate", self.window.open_filechooser)
-        self.add_action(open_action)
 
     def file_open_handler(self, _application, g_file_list, _amount, _ukwn):
         for g_file in g_file_list:

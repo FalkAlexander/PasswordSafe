@@ -26,8 +26,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
     __gtype_name__ = "EntryPage"
 
-    _filechooser = None
-
     name_property_value_entry = Gtk.Template.Child()
 
     username_property_value_entry = Gtk.Template.Child()
@@ -341,20 +339,16 @@ class EntryPage(Gtk.ScrolledWindow):
         select_dialog.set_modal(True)
         select_dialog.set_select_multiple(True)
 
-        # We need to hold a reference, otherwise the app crashes.
-        self._filechooser = select_dialog
-        select_dialog.connect("response", self._on_select_filechooser_response)
+        select_dialog.connect("response", self._on_select_filechooser_response, select_dialog)
         select_dialog.show()
 
     def _on_select_filechooser_response(self,
                                         dialog: Gtk.Dialog,
-                                        response: Gtk.ResponseType) -> None:
-        self._filechooser = None
+                                        response: Gtk.ResponseType,
+                                        _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             safe_entry: SafeEntry = self.unlocked_database.current_element
             for attachment in dialog.get_files():
-                uri = attachment.get_uri()
-                attachment = Gio.File.new_for_uri(uri)
                 byte_buffer = attachment.load_bytes()[0].get_data()
                 filename = attachment.get_basename()
                 new_attachment = safe_entry.add_attachment(byte_buffer, filename)
@@ -390,19 +384,26 @@ class EntryPage(Gtk.ScrolledWindow):
         save_dialog.set_current_name(attachment.filename)
         save_dialog.set_modal(True)
 
-        self._filechooser = save_dialog
-        save_dialog.connect("response", self._on_save_filechooser_response, attachment)
+        save_dialog.connect(
+            "response", self._on_save_filechooser_response, attachment, save_dialog
+        )
         save_dialog.show()
 
     def _on_save_filechooser_response(self,
                                       dialog: Gtk.Dialog,
                                       response: Gtk.ResponseType,
-                                      attachment: Attachment) -> None:
-        self._filechooser = None
+                                      attachment: Attachment,
+                                      _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             safe_entry: SafeEntry = self.unlocked_database.current_element
             bytes_buffer = safe_entry.get_attachment_content(attachment)
-            self.save_to_disk(dialog.get_file().get_path(), bytes_buffer)
+            stream = Gio.File.replace(
+                dialog.get_file(), None, False,
+                Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
+                None
+            )
+            Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes_buffer), None)
+            stream.close()
 
     def on_attachment_delete_button_clicked(
             self, _button, attachment_to_delete, attachment_row):
@@ -410,19 +411,6 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry.delete_attachment(attachment_to_delete)
 
         self.attachment_list_box.remove(attachment_row)
-
-    #
-    # Helper
-    #
-
-    def save_to_disk(self, filepath, byte_buffer):
-        file = Gio.File.new_for_path(filepath)
-        stream = Gio.File.replace(
-            file, None, False,
-            Gio.FileCreateFlags.PRIVATE
-            | Gio.FileCreateFlags.REPLACE_DESTINATION, None)
-        Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(byte_buffer), None)
-        stream.close()
 
     @Gtk.Template.Callback()
     def _on_copy_secondary_button_clicked(

@@ -28,7 +28,6 @@ class MainWindow(Handy.ApplicationWindow):
     database_manager = NotImplemented
     opened_databases: list[UnlockedDatabase] = []
     databases_to_save: list[UnlockedDatabase] = []
-    _filechooser = None
     _notification = Notification()
 
     container = Gtk.Template.Child()
@@ -198,7 +197,7 @@ class MainWindow(Handy.ApplicationWindow):
     ) -> None:
         """Callback function to open a safe."""
         # pylint: disable=too-many-locals
-        filechooser_opening_dialog = Gtk.FileChooserNative.new(
+        opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
             _("Choose a Keepass safe"), self, Gtk.FileChooserAction.OPEN,
             None, None)
@@ -213,23 +212,23 @@ class MainWindow(Handy.ApplicationWindow):
         filter_text.set_name(_("KeePass 3.1/4 Database"))
         for mime_type in supported_mime_types:
             filter_text.add_mime_type(mime_type)
-        filechooser_opening_dialog.add_filter(filter_text)
+        opening_dialog.add_filter(filter_text)
 
-        # We need to hold a reference, otherwise the app crashes.
-        self._filechooser = filechooser_opening_dialog
-        filechooser_opening_dialog.connect("response", self._on_open_filechooser_response, supported_mime_types)
-        filechooser_opening_dialog.show()
+        opening_dialog.connect(
+            "response", self._on_open_filechooser_response, supported_mime_types, opening_dialog
+        )
+        opening_dialog.show()
 
     def _on_open_filechooser_response(self,
                                       dialog: Gtk.Dialog,
                                       response: Gtk.ResponseType,
-                                      supported_mime_types: list[str]) -> None:
-        self._filechooser = None
+                                      supported_mime_types: list[str],
+                                      _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
-            db_filename = dialog.get_file().get_path()
+            db_gfile = dialog.get_file()
+            db_filename = db_gfile.get_path()
             logging.debug("File selected: %s", db_filename)
 
-            db_gfile = Gio.File.new_for_path(db_filename)
             try:
                 db_file_info = db_gfile.query_info(
                     # https://gitlab.gnome.org/GNOME/gvfs/-/issues/529
@@ -282,7 +281,7 @@ class MainWindow(Handy.ApplicationWindow):
             self, _action: Gio.Action, _parameter: GLib.Variant
     ) -> None:
         """Callback function to create a new safe."""
-        filechooser_creation_dialog = Gtk.FileChooserNative.new(
+        creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"),
             self,
@@ -290,24 +289,24 @@ class MainWindow(Handy.ApplicationWindow):
             _("_Create"),
             None,
         )
-        filechooser_creation_dialog.set_current_name(_("Safe") + ".kdbx")
-        filechooser_creation_dialog.set_modal(True)
+        creation_dialog.set_current_name(_("Safe") + ".kdbx")
+        creation_dialog.set_modal(True)
 
         filter_text = Gtk.FileFilter()
         # NOTE: KeePass + version number is a proper name, do not translate
         filter_text.set_name(_("KeePass 3.1/4 Database"))
         filter_text.add_mime_type("application/x-keepass2")
-        filechooser_creation_dialog.add_filter(filter_text)
+        creation_dialog.add_filter(filter_text)
 
-        # We need to hold a reference, otherwise the app crashes.
-        self._filechooser = filechooser_creation_dialog
-        filechooser_creation_dialog.connect("response", self._on_create_filechooser_response)
-        filechooser_creation_dialog.show()
+        creation_dialog.connect(
+            "response", self._on_create_filechooser_response, creation_dialog
+        )
+        creation_dialog.show()
 
     def _on_create_filechooser_response(self,
                                         dialog: Gtk.Dialog,
-                                        response: Gtk.ResponseType) -> None:
-        self._filechooser = None
+                                        response: Gtk.ResponseType,
+                                        _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             filepath = dialog.get_file().get_path()
 

@@ -33,7 +33,6 @@ class CreateDatabase(Gtk.Stack):
     open_safe_button = Gtk.Template.Child()
 
     composite = False
-    _filechooser = None
 
     def __init__(self, window, widget, dbm, back_button):
         super().__init__()
@@ -127,15 +126,15 @@ class CreateDatabase(Gtk.Stack):
         keyfile_dlg.set_modal(True)
         keyfile_dlg.add_filter(KeyFileFilter())
 
-        # We need to hold a reference, otherwise the app crashes.
-        self._filechooser = keyfile_dlg
-        keyfile_dlg.connect("response", self._on_filechooser_response)
+        keyfile_dlg.connect(
+            "response", self._on_filechooser_response, keyfile_dlg
+        )
         keyfile_dlg.show()
 
     def _on_filechooser_response(self,
                                  dialog: Gtk.Dialog,
-                                 response: Gtk.ResponseType) -> None:
-        self._filechooser = None
+                                 response: Gtk.ResponseType,
+                                 _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             self.generate_keyfile_button.set_sensitive(False)
             self.generate_keyfile_button.set_label(_("Generating…"))

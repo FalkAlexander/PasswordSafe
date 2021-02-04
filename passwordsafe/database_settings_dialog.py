@@ -27,8 +27,6 @@ class DatabaseSettingsDialog:
     new_encryption_algorithm = NotImplemented
     new_derivation_algorithm = NotImplemented
 
-    _filechooser = None
-
     def __init__(self, unlocked_database):
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
@@ -192,16 +190,16 @@ class DatabaseSettingsDialog:
 
         select_dialog.add_filter(ffilter)
 
-        # We need to hold a reference, otherwise the app crashes.
-        self._filechooser = select_dialog
-        select_dialog.connect("response", self._on_select_filechooser_response, button)
+        select_dialog.connect(
+            "response", self._on_select_filechooser_response, button, select_dialog
+        )
         select_dialog.show()
 
     def _on_select_filechooser_response(self,
                                         select_dialog: Gtk.Dialog,
                                         response: Gtk.ResponseType,
-                                        button: Gtk.Button) -> None:
-        self._filechooser = None
+                                        button: Gtk.Button,
+                                        _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             selected_keyfile = select_dialog.get_file().get_path()
             keyfile_hash: str = self.database_manager.create_keyfile_hash(
@@ -242,16 +240,14 @@ class DatabaseSettingsDialog:
         ffilter.add_mime_type("text/plain")
         ffilter.add_mime_type("application/x-iwork-keynote-sffkey")
 
-        # We need to hold a reference, otherwise the app crashes.
-        self._filechooser = save_dialog
         save_dialog.add_filter(ffilter)
-        save_dialog.connect("response", self._on_filechooser_response)
+        save_dialog.connect("response", self._on_filechooser_response, save_dialog)
         save_dialog.show()
 
     def _on_filechooser_response(self,
                                  save_dialog: Gtk.Dialog,
-                                 response: Gtk.ResponseType) -> None:
-        self._filechooser = None
+                                 response: Gtk.ResponseType,
+                                 _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             self.generate_keyfile_button.set_sensitive(False)
 

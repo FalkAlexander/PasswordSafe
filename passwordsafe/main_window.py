@@ -553,35 +553,37 @@ class MainWindow(Handy.ApplicationWindow):
     # should be set to sensitive.
     def add_global_accelerator_actions(self):
         actions = [
-            ("db.save", "save", None),
-            ("db.save_dirty", "save_dirty", None),
-            ("db.lock", "lock", None),
-            ("db.add_entry", "add_action", "entry"),
-            ("db.add_group", "add_action", "group"),
-            ("go_back", "go_back", None),
+            "db.save",
+            "db.save_dirty",
+            "db.lock",
+            "db.add_entry",
+            "db.add_group",
+            "go_back",
         ]
 
-        for action, name, arg in actions:
+        for action in actions:
             simple_action = Gio.SimpleAction.new(action, None)
-            if name == "save_dirty":
+            if action == "db.save_dirty":
                 simple_action.set_enabled(False)
+
             simple_action.connect(
-                "activate", self.execute_accel_action, name, arg)
+                "activate", self.execute_accel_action)
             self.application.add_action(simple_action)
 
     # Accelerator Action Handler
-    def execute_accel_action(self, action, _param, name, arg=None):
+    def execute_accel_action(self, action, arg=None):
         action_db = self.find_action_db()
         if action_db is None:
             return
 
-        if name in ["save", "save_dirty"]:
+        name = action.props.name
+        if name in ["db.save", "db.save_dirty"]:
             action_db.save_safe()
-        elif name == "lock":
+        elif name == "db.lock":
             action_db.lock_safe()
         elif name == "go_back":
             action_db.go_back()
-        elif name == "add_action":
+        elif name in ["db.add_entry", "db.add_group"]:
             if (
                 action_db.props.database_locked
                 or action_db.props.selection_mode
@@ -590,9 +592,9 @@ class MainWindow(Handy.ApplicationWindow):
             ):
                 return
 
-            if arg == "entry":
+            if name == "db.add_entry":
                 action_db.on_add_entry_action(action)
-            elif arg == "group":
+            elif name == "db.add_group":
                 action_db.on_add_group_action(action)
 
     #

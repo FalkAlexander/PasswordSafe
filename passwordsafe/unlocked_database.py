@@ -118,7 +118,7 @@ class UnlockedDatabase(GObject.GObject):
     #
 
     def assemble_listbox(self):
-        self._edit_page_box = self.builder.get_object("_edit_page_box")
+        self._edit_page_bin = self.builder.get_object("_edit_page_bin")
         self.pathbar = Pathbar(self, self.database_manager)
         self.mobile_pathbar = Pathbar(self, self.database_manager)
         self._stack = self.builder.get_object("list_stack")
@@ -161,14 +161,8 @@ class UnlockedDatabase(GObject.GObject):
             page = EntryPage(self, new)
             self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
 
-        page_box = self._edit_page_box
-
-        # TODO Use the set_child api in GTK 4 with a StackPage.
-        while page_box.get_first_child():
-            page_box.remove(page_box.get_first_child())
-
-        page_box.append(page)
-        self._unlocked_db_deck.set_visible_child(self._edit_page_box)
+        self._edit_page_bin.set_child(page)
+        self._unlocked_db_deck.set_visible_child(self._edit_page_bin)
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
@@ -332,7 +326,9 @@ class UnlockedDatabase(GObject.GObject):
         """Returns true if the current visible page is either
         the Group edit page or Entry edit page."""
 
-        boolean: bool = self._unlocked_db_deck.props.visible_child == self._edit_page_box
+        boolean: bool = (
+            self._unlocked_db_deck.props.visible_child == self._edit_page_bin
+        )
         return boolean
 
     #

@@ -96,8 +96,8 @@ class Application(Gtk.Application):
             ("settings", self.show_settings),
             ("about", self.show_about_dialog),
             ("quit", self.on_quit_action),
-            ("new", self.window.create_filechooser),
-            ("open", self.window.open_filechooser),
+            ("new", self.window.on_create_file_action),
+            ("open", self.window.on_open_file_action),
         ]
 
         for name, callback in actions:

@@ -23,7 +23,7 @@
                       <object class="GtkButton" id="new_file_button">
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">New…</property>
-                        <signal name="clicked" handler="create_filechooser" swapped="no"/>
+                        <property name="action_name">app.new</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
@@ -36,7 +36,7 @@
                       <object class="GtkButton" id="open_file_button">
                         <property name="visible">True</property>
                         <property name="tooltip_text" translatable="yes">Open…</property>
-                        <signal name="clicked" handler="open_filechooser" swapped="no"/>
+                        <property name="action_name">app.open</property>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>

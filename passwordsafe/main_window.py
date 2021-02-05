@@ -192,14 +192,10 @@ class MainWindow(Handy.ApplicationWindow):
     # Open Database Methods
     #
 
-    @Gtk.Template.Callback()
-    def open_filechooser(self, _widget, _user_data=None):
-        """Callback function to open a safe.
-        This callback can be called from an action activate event or
-        a clicked event from a button. In the latter case, no user_data
-        is set. Having None as a default value allows to handle both
-        events reliably.
-        """
+    def on_open_file_action(
+            self, _action: Gio.Action, _parameter: GLib.Variant
+    ) -> None:
+        """Callback function to open a safe."""
         # pylint: disable=too-many-locals
         filechooser_opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
@@ -281,15 +277,10 @@ class MainWindow(Handy.ApplicationWindow):
     # Create Database Methods
     #
 
-    @Gtk.Template.Callback()
-    def create_filechooser(self, _widget, _user_data=None):
-        """Callback function to create a new safe.
-
-        This callback can be called from an action activate event or
-        a clicked event from a button. In the latter case, no user_data
-        is set. Having None as a default value allows to handle both
-        events reliably.
-        """
+    def on_create_file_action(
+            self, _action: Gio.Action, _parameter: GLib.Variant
+    ) -> None:
+        """Callback function to create a new safe."""
         filechooser_creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
             _("Choose location for Keepass safe"),

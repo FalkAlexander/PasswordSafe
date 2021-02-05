@@ -1,20 +1,20 @@
 # This file is distributed under the same license as the PasswordSafe package.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2020.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2020, 2021.
 # Antoine Đỗ <do.antoine@disroot.org>, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PasswordSafe gnome-master\n"
+"Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-01-25 19:09+0000\n"
-"PO-Revision-Date: 2021-01-26 09:06+0100\n"
-"Last-Translator: Antoine Đỗ <do.antoine@disroot.org>\n"
+"POT-Creation-Date: 2021-02-05 07:39+0000\n"
+"PO-Revision-Date: 2021-02-05 14:44+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 3.38.0\n"
 
 #: data/about_dialog.ui.in:8 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
@@ -296,7 +296,7 @@ msgstr "AES: 256-bít"
 #. https://en.wikipedia.org/wiki/Key_derivation_function
 #: data/database_settings_dialog.ui:802
 msgid "Key Derivation Function"
-msgstr "Tính năng khóa dẫn xuất"
+msgstr "Tính năng dẫn xuất khóa"
 
 #: data/database_settings_dialog.ui:856
 #: passwordsafe/database_settings_dialog.py:357
@@ -338,7 +338,7 @@ msgstr "Thuộc tính"
 
 #: data/entry_page.ui:318
 msgid "Key"
-msgstr "Phím"
+msgstr "Khóa"
 
 #: data/entry_page.ui:325
 msgid "Value"
@@ -350,11 +350,11 @@ msgstr "Thêm thuộc tính"
 
 #: data/entry_row.ui:93
 msgid "Copy username to clipboard"
-msgstr "Chép tên tài khoản vào clipboard"
+msgstr "Chép tài khoản vào clipboard"
 
 #: data/entry_row.ui:108
 msgid "Copy password to clipboard"
-msgstr "Chép vào mật khẩu clipboard"
+msgstr "Chép mật khẩu vào clipboard"
 
 #: data/gtk/help-overlay.ui:13
 msgctxt "Shortcut window description"
@@ -429,7 +429,7 @@ msgstr "Sao chép mật khẩu"
 #: data/gtk/help-overlay.ui:106
 msgctxt "Shortcut window description"
 msgid "Copy username"
-msgstr "Sao chép tên tài khoản"
+msgstr "Sao chép tài khoản"
 
 #: data/gtk/help-overlay.ui:113
 msgctxt "Shortcut window description"
@@ -450,16 +450,15 @@ msgstr "_Sao chép"
 
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
 msgid ""
-"Password Safe is a password manager which makes use of the Keepass v.4 "
+"Password Safe is a password manager which makes use of the KeePass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
 "and uncluttered interface for the management of password databases."
 msgstr ""
 "Két giữ Mật khẩu là một chương trình quản lý mật khẩu sử dụng định dạng "
 "Keepass v.4. Nó được tích hợp hoàn hảo với môi trường máy tính để bàn GNOME "
-"và cung cấp một giao diện dễ dùng và gọn gàng cho quản lý cơ sở dữ liệu mật "
-"khẩu."
+"và cung cấp một giao diện gọn gàng cho quản lý cơ sở dữ liệu mật khẩu."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:164
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:163
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -879,7 +878,7 @@ msgstr "Không Hiển thị _Màn hình Chạy lần đầu"
 msgid "Reopen last opened safe."
 msgstr "Mở lại két mở cuối cùng."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:300
 msgid "Safe"
 msgstr "Két"
 
@@ -1213,39 +1212,42 @@ msgstr "Đã sao chép tên người dùng vào khay nhớ tạm"
 msgid "Password copied to clipboard"
 msgstr "Đã sao chép mật khẩu vào khay nhớ tạm"
 
-#: passwordsafe/entry_row.py:113 passwordsafe/entry_row.py:124
-#: passwordsafe/group_row.py:100
+#: passwordsafe/entry_row.py:113 passwordsafe/group_row.py:100
 msgid "Title not specified"
 msgstr "Chưa chỉ ra tựa đề"
 
+#: passwordsafe/entry_row.py:124
+msgid "No username specified"
+msgstr "Chưa chỉ định tài khoản"
+
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:206
+#: passwordsafe/main_window.py:205
 msgid "Choose a Keepass safe"
 msgstr "Chọn một két Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
+#: passwordsafe/main_window.py:215 passwordsafe/main_window.py:305
 msgid "KeePass 3.1/4 Database"
 msgstr "Cơ sở dữ liệu KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:244
+#: passwordsafe/main_window.py:243
 msgid "Could not open file"
 msgstr "Không thể mở tập tin"
 
-#: passwordsafe/main_window.py:253
+#: passwordsafe/main_window.py:252
 msgid "Could not open file: Mime type not supported"
 msgstr "Không thể mở tập tin: Kiểu định dạng tập tin không được hỗ trợ"
 
-#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:262 passwordsafe/unlock_database.py:191
 msgid "Safe already opened"
 msgstr "Cơ sở dữ liệu đã được mở rồi"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:295
+#: passwordsafe/main_window.py:294
 msgid "Choose location for Keepass safe"
 msgstr "Chọn vị trí cho két Keepass"
 
-#: passwordsafe/main_window.py:298
+#: passwordsafe/main_window.py:297
 msgid "_Create"
 msgstr "_Tạo"
 
@@ -1278,38 +1280,38 @@ msgstr "Chọn tập tin khóa"
 msgid "The kdb format is not supported"
 msgstr "Kiểu tập tin {} ({}) không được hỗ trợ"
 
-#: passwordsafe/unlock_database.py:499 passwordsafe/unlock_database.py:519
-#: passwordsafe/unlock_database.py:533
+#: passwordsafe/unlock_database.py:501 passwordsafe/unlock_database.py:521
+#: passwordsafe/unlock_database.py:535
 msgid "Failed to unlock safe"
 msgstr "Gặp lỗi khi mở khóa két"
 
-#: passwordsafe/unlock_database.py:528
+#: passwordsafe/unlock_database.py:530
 msgid "Try again"
 msgstr "Thử lại"
 
-#: passwordsafe/unlocked_database.py:419
+#: passwordsafe/unlocked_database.py:420
 msgid "Safe saved"
 msgstr "Két đã được lưu"
 
-#: passwordsafe/unlocked_database.py:421
+#: passwordsafe/unlocked_database.py:422
 msgid "Could not save Safe"
 msgstr "Không thể lưu Két"
 
-#: passwordsafe/unlocked_database.py:430
+#: passwordsafe/unlocked_database.py:431
 msgid "Please wait. Another save is running."
 msgstr "Vui lòng chờ. Đã có tiến trình lưu khác đang chạy."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:434
+#: passwordsafe/unlocked_database.py:435
 msgid "No changes made"
 msgstr "Không tạo ra thay đổi nào"
 
-#: passwordsafe/unlocked_database.py:470
+#: passwordsafe/unlocked_database.py:471
 msgid "Copied to clipboard"
-msgstr "Chép vào clipboard"
+msgstr "Đã chép vào clipboard"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:552
+#: passwordsafe/unlocked_database.py:547
 msgid "Safe locked due to inactivity"
 msgstr "Đã khóa Két do không hoạt động"
 
@@ -1361,9 +1363,6 @@ msgstr[0] "{} Mục đã được chọn"
 
 #~ msgid "Add"
 #~ msgstr "Thêm"
-
-#~ msgid "No username specified"
-#~ msgstr "Chưa chỉ định tài khoản"
 
 #~ msgid "No group title specified"
 #~ msgstr "Chưa chỉ ra tựa đề nhóm"

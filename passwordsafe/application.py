@@ -86,7 +86,6 @@ class Application(Gtk.Application):
             icon_name=self.application_id)
 
         self.setup_actions()
-        self.window.setup_actions()
         self.add_global_accelerators()
 
         self.window.present()

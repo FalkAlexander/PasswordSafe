@@ -53,6 +53,7 @@ class MainWindow(Handy.ApplicationWindow):
         self._main_overlay.add_overlay(self._notification)
 
         self.assemble_window()
+        self.setup_actions()
 
         if Gio.Application.get_default().development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)

@@ -105,8 +105,8 @@ class Application(Gtk.Application):
             simple_action.connect("activate", callback)
             self.add_action(simple_action)
 
-    def show_settings(self, action, param):
-        SettingsDialog(self.window).on_settings_menu_clicked(action, param)
+    def show_settings(self, _action: Gio.Action, _param: GLib.Variant) -> None:
+        SettingsDialog(self.window).present()
 
     def show_about_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Invoked when we click "about" in the main menu"""

@@ -32,10 +32,7 @@ class SettingsDialog(Handy.PreferencesWindow):
 
         self.window = window
         self.props.transient_for = self.window
-
-    def on_settings_menu_clicked(self, _action, _param):
         self._set_config_values()
-        self.present()
 
     def _set_config_values(self):
         # pylint: disable=too-many-locals

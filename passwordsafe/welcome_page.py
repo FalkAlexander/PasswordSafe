@@ -14,6 +14,7 @@ class WelcomePage(Gtk.Box):
     def __init__(self):
         """Welcome Page widget"""
         super().__init__()
+
         pix = Pixbuf.new_from_resource_at_scale(
             "/org/gnome/PasswordSafe/images/welcome.png", 256, 256, True)
         self._app_logo.set_from_pixbuf(pix)

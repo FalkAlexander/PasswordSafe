@@ -157,6 +157,9 @@ class UnlockedDatabase(GObject.GObject):
         self.start_database_lock_timer()
         self.props.current_element = element
 
+        if self.props.search_active:
+            self.props.search_active = False
+
         # Sets the accessed time.
         self.database_manager.set_element_atime(element.element)
 

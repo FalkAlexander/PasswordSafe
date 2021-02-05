@@ -21,6 +21,7 @@ class Pathbar(Gtk.Box):
 
     def __init__(self, unlocked_database, dbm):
         super().__init__()
+
         self.set_name("Pathbar")
         self.unlocked_database = unlocked_database
         self.database_manager = dbm

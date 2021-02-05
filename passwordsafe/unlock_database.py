@@ -27,6 +27,7 @@ class KeyFileFilter(Gtk.FileFilter):
 
     def __init__(self):
         super().__init__()
+
         self.set_name(_("Keyfile"))
         self.add_mime_type("application/octet-stream")
         self.add_mime_type("application/x-keepass2")
@@ -39,7 +40,6 @@ class UnlockDatabase:
 
     builder = NotImplemented
     parent_widget = NotImplemented
-    window = NotImplemented
     database_filepath = NotImplemented
     hdy_page = NotImplemented
     unlock_database_stack_switcher = NotImplemented

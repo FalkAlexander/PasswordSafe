@@ -12,15 +12,6 @@ if typing.TYPE_CHECKING:
 
 
 class CustomKeypressHandler:
-    #
-    # Global Variables
-    #
-
-    unlocked_database = NotImplemented
-
-    #
-    # Init
-    #
 
     def __init__(self, u_d):
         self.unlocked_database = u_d

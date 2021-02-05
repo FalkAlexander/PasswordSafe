@@ -25,7 +25,8 @@ class GroupRow(Gtk.ListBoxRow):
     type = "GroupRow"
 
     def __init__(self, unlocked_database, safe_group):
-        Gtk.ListBoxRow.__init__(self)
+        super().__init__()
+
         self.get_style_context().add_class("row")
 
         assert isinstance(safe_group, SafeGroup)

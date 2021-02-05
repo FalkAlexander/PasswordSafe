@@ -27,7 +27,8 @@ class EntryRow(Gtk.ListBoxRow):
     type = "EntryRow"
 
     def __init__(self, database: UnlockedDatabase, safe_entry: SafeEntry) -> None:
-        Gtk.ListBoxRow.__init__(self)
+        super().__init__()
+
         self.get_style_context().add_class("row")
 
         self._safe_entry: SafeEntry = safe_entry

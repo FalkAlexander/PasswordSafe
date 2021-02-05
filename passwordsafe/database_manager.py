@@ -207,9 +207,11 @@ class DatabaseManager(GObject.GObject):
         self.emit("element-moved", safe_entry, old_location, new_location)
 
     def set_element_atime(self, element):
+        # TODO Move to safe_element method.
         element.atime = datetime.now()
 
     def set_element_mtime(self, element):
+        # TODO Move to safe_element method.
         element.mtime = datetime.now()
 
     # Move an group

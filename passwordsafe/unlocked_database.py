@@ -454,14 +454,14 @@ class UnlockedDatabase(GObject.GObject):
         )
         self.show_edit_page(safe_group)
 
-    def on_element_delete_menu_button_clicked(self) -> None:
+    def on_element_delete_action(self) -> None:
         """Delete the visible entry from the menu."""
         parent_group = self.props.current_element.parentgroup
         self.database_manager.delete_from_database(self.props.current_element.element)
 
         self.show_browser_page(parent_group)
 
-    def on_entry_duplicate_menu_button_clicked(self):
+    def on_entry_duplicate_action(self):
         self.database_manager.duplicate_entry(self.props.current_element.entry)
         parent_group = self.props.current_element.parentgroup
 
@@ -491,7 +491,7 @@ class UnlockedDatabase(GObject.GObject):
             clear_clipboard_time, callback
         )
 
-    def on_database_settings_entry_clicked(self) -> None:
+    def show_database_settings(self) -> None:
         DatabaseSettingsDialog(self).present()
 
     def on_session_lock(

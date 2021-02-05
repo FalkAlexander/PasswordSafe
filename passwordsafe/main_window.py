@@ -538,17 +538,17 @@ class MainWindow(Handy.ApplicationWindow):
         name = action.props.name
 
         if name == "element.delete":
-            action_db.on_element_delete_menu_button_clicked()
+            action_db.on_element_delete_action()
         elif name == "entry.duplicate":
-            action_db.on_entry_duplicate_menu_button_clicked()
+            action_db.on_entry_duplicate_action()
         elif name == "entry.references":
             action_db.show_references_dialog()
         elif name == "element.properties":
             action_db.show_properties_dialog()
         elif name == "db.settings":
-            action_db.on_database_settings_entry_clicked()
+            action_db.show_database_settings()
         elif name == "selection":
-            action_db.selection_ui.on_selection_action_activated(param)
+            action_db.selection_ui.on_selection_action(param)
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_safe()
         elif name == "db.lock":

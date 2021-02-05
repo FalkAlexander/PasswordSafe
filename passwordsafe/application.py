@@ -93,9 +93,9 @@ class Application(Gtk.Application):
 
     def setup_actions(self):
         actions = [
-            ("settings", self.on_settings_menu_clicked),
-            ("about", self.on_about_menu_clicked),
-            ("quit", self.on_quit),
+            ("settings", self.show_settings),
+            ("about", self.show_about_dialog),
+            ("quit", self.on_quit_action),
             ("new", self.window.create_filechooser),
             ("open", self.window.open_filechooser),
         ]
@@ -105,10 +105,10 @@ class Application(Gtk.Application):
             simple_action.connect("activate", callback)
             self.add_action(simple_action)
 
-    def on_settings_menu_clicked(self, action, param):
+    def show_settings(self, action, param):
         SettingsDialog(self.window).on_settings_menu_clicked(action, param)
 
-    def on_about_menu_clicked(self, _action: Gio.SimpleAction, _param: None) -> None:
+    def show_about_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
         """Invoked when we click "about" in the main menu"""
         builder = Gtk.Builder.new_from_resource(
             "/org/gnome/PasswordSafe/about_dialog.ui"
@@ -117,8 +117,8 @@ class Application(Gtk.Application):
         about_dialog.set_transient_for(self.window)
         about_dialog.show()
 
-    def on_quit(self, _action: Gio.SimpleAction | None = None,
-                _data: Any = None) -> None:
+    def on_quit_action(self, _action: Gio.SimpleAction | None = None,
+                       _data: Any = None) -> None:
         unsaved_databases_list = []
         self.window.databases_to_save.clear()
 

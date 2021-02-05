@@ -40,7 +40,6 @@ class UnlockDatabase:
 
     builder = NotImplemented
     parent_widget = NotImplemented
-    window = NotImplemented
     database_filepath = NotImplemented
     hdy_page = NotImplemented
     unlock_database_stack_switcher = NotImplemented

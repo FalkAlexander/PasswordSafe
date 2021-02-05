@@ -3,9 +3,6 @@ from gi.repository import Gtk
 
 
 class ContainerPage(Gtk.Box):
-    development_mode = NotImplemented
-    headerbar = NotImplemented
-
     def __init__(self, headerbar, development_mode):
         super().__init__()
 

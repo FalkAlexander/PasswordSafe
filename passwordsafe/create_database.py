@@ -37,6 +37,7 @@ class CreateDatabase(Gtk.Stack):
 
     def __init__(self, window, widget, dbm, back_button):
         super().__init__()
+
         self.database_manager = dbm
         self.window = window
         self.parent_widget = widget

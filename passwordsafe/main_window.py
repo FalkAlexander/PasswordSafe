@@ -43,6 +43,7 @@ class MainWindow(Handy.ApplicationWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         self.application = self.get_application()
         self.welcome_page = WelcomePage()
         self.recent_files_page = RecentFilesPage()

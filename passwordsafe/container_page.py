@@ -7,7 +7,8 @@ class ContainerPage(Gtk.Box):
     headerbar = NotImplemented
 
     def __init__(self, headerbar, development_mode):
-        Gtk.Box.__init__(self, spacing=1)
+        super().__init__()
+
         self.show_all()
         self.development_mode = development_mode
         self.headerbar = headerbar

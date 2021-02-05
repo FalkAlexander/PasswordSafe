@@ -27,6 +27,7 @@ class KeyFileFilter(Gtk.FileFilter):
 
     def __init__(self):
         super().__init__()
+
         self.set_name(_("Keyfile"))
         self.add_mime_type("application/octet-stream")
         self.add_mime_type("application/x-keepass2")

@@ -8,10 +8,12 @@
         <property name="halign">baseline</property>
         <child>
           <object class="GtkBox" id="group_box">
-            <property name="height_request">45</property>
             <property name="visible">True</property>
-            <property name="margin_start">8</property>
-            <property name="margin_end">8</property>
+            <property name="margin_start">12</property>
+            <property name="margin_end">12</property>
+            <property name="margin_top">12</property>
+            <property name="margin_bottom">12</property>
+            <property name="spacing">12</property>
             <child>
               <object class="GtkCheckButton" id="selection_checkbox">
                 <property name="receives_default">False</property>
@@ -24,12 +26,16 @@
             </child>
             <child>
               <object class="GtkImage" id="group_icon">
-                <property name="width_request">50</property>
                 <property name="visible">True</property>
-                <property name="margin_start">2</property>
-                <property name="margin_end">2</property>
-                <property name="pixel_size">32</property>
                 <property name="icon_name">folder-symbolic</property>
+                <property name="width_request">34</property>
+                <property name="height_request">34</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="circular-icon"/>
+                  <class name="NoneColorButtonList"/>
+                  <class name="DarkIcon"/>
+                </style>
               </object>
             </child>
             <child>
@@ -43,8 +49,6 @@
                 <property name="visible">True</property>
                 <property name="hexpand">True</property>
                 <property name="halign">end</property>
-                <property name="margin_start">6</property>
-                <property name="margin_end">6</property>
                 <child>
                   <object class="GtkButton" id="edit_button">
                     <property name="name">ListBoxRowButton</property>
@@ -59,6 +63,9 @@
                         <property name="icon_name">document-edit-symbolic</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="list-button"/>
+                    </style>
                   </object>
                 </child>
               </object>

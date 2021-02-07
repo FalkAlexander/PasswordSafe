@@ -25,7 +25,7 @@ install_data(
 # Install mimetype file
 install_data(
   project_id + '.xml',
-  install_dir: 'share/mime/application'
+  install_dir: 'share/mime/packages'
 )
 
 desktop_conf = configuration_data()

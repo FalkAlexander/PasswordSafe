@@ -8,10 +8,12 @@
         <property name="halign">baseline</property>
         <child>
           <object class="GtkBox" id="entry_box">
-            <property name="height_request">60</property>
             <property name="visible">True</property>
-            <property name="margin_start">8</property>
-            <property name="margin_end">8</property>
+            <property name="margin_start">12</property>
+            <property name="margin_end">12</property>
+            <property name="margin_top">12</property>
+            <property name="margin_bottom">12</property>
+            <property name="spacing">12</property>
             <child>
               <object class="GtkCheckButton" id="selection_checkbox">
                 <property name="receives_default">False</property>
@@ -26,10 +28,8 @@
               <object class="GtkImage" id="_entry_icon">
                 <property name="visible">True</property>
                 <property name="icon_name">application-x-executable-symbolic</property>
-                <property name="margin_start">10</property>
-                <property name="margin_end">10</property>
-                <property name="width_request">32</property>
-                <property name="height_request">32</property>
+                <property name="width_request">34</property>
+                <property name="height_request">34</property>
                 <property name="valign">center</property>
                 <style>
                   <class name="circular-icon"/>
@@ -85,8 +85,6 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="valign">center</property>
-                <property name="margin_start">6</property>
-                <property name="margin_end">6</property>
                 <child>
                   <object class="GtkButton" id="_entry_copy_user_button">
                     <property name="visible">True</property>
@@ -98,6 +96,9 @@
                         <property name="icon_name">avatar-default-symbolic</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="list-button"/>
+                    </style>
                   </object>
                 </child>
                 <child>
@@ -113,6 +114,9 @@
                         <property name="icon_name">dialog-password-symbolic</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="list-button"/>
+                    </style>
                   </object>
                 </child>
                 <style>

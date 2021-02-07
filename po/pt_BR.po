@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-02-03 15:04+0000\n"
-"PO-Revision-Date: 2021-02-04 09:04-0300\n"
+"POT-Creation-Date: 2021-02-05 17:34+0000\n"
+"PO-Revision-Date: 2021-02-06 21:07-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -165,7 +165,7 @@ msgstr "Define o arquivo de senha para o cofre"
 
 #. Button to generate a password
 #: data/create_database.ui:409 data/password_generator_popover.ui:189
-#: passwordsafe/create_database.py:125
+#: passwordsafe/create_database.py:126
 #: passwordsafe/database_settings_dialog.py:234
 msgid "_Generate"
 msgstr "_Gerar"
@@ -264,7 +264,7 @@ msgstr "Atua_l"
 #: passwordsafe/database_settings_dialog.py:187
 #: passwordsafe/database_settings_dialog.py:235
 #: passwordsafe/database_settings_dialog.py:239
-#: passwordsafe/unlock_database.py:30
+#: passwordsafe/unlock_database.py:31
 msgid "Keyfile"
 msgstr "Arquivo de chave"
 
@@ -889,7 +889,7 @@ msgstr "_Ocultar tela de primeiro início"
 msgid "Reopen last opened safe."
 msgstr "Reabre o último cofre aberto."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:300
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
 msgid "Safe"
 msgstr "Cofre"
 
@@ -1145,17 +1145,17 @@ msgstr ""
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Impossível sair: não foi possível salvar o cofre"
 
-#: passwordsafe/create_database.py:114
+#: passwordsafe/create_database.py:115
 msgid "Passwords do not match"
 msgstr "Senhas não conferem"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:123
+#: passwordsafe/create_database.py:124
 #: passwordsafe/database_settings_dialog.py:233
 msgid "Choose location for keyfile"
 msgstr "Selecione a localização do arquivo de chave"
 
-#: passwordsafe/create_database.py:140
+#: passwordsafe/create_database.py:141
 msgid "Generating…"
 msgstr "Gerando…"
 
@@ -1215,47 +1215,50 @@ msgstr "_Adicionar"
 msgid "Save attachment"
 msgstr "Salvar anexo"
 
-#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:101
+#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:102
 msgid "Username copied to clipboard"
 msgstr "Nome de usuário copiado para área de transferência"
 
-#: passwordsafe/entry_row.py:94 passwordsafe/password_entry_row.py:68
+#: passwordsafe/entry_row.py:95 passwordsafe/password_entry_row.py:68
 msgid "Password copied to clipboard"
 msgstr "Senha copiada para área de transferência"
 
-#: passwordsafe/entry_row.py:113 passwordsafe/entry_row.py:124
-#: passwordsafe/group_row.py:100
+#: passwordsafe/entry_row.py:114 passwordsafe/group_row.py:101
 msgid "Title not specified"
 msgstr "Título não especificado"
 
+#: passwordsafe/entry_row.py:125
+msgid "No username specified"
+msgstr "Nenhum nome de usuário especificado"
+
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:205
+#: passwordsafe/main_window.py:206
 msgid "Choose a Keepass safe"
 msgstr "Escolha um cofre de Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:215 passwordsafe/main_window.py:305
+#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
 msgid "KeePass 3.1/4 Database"
 msgstr "Banco de dados KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:243
+#: passwordsafe/main_window.py:244
 msgid "Could not open file"
 msgstr "Não foi possível abrir arquivo"
 
-#: passwordsafe/main_window.py:252
+#: passwordsafe/main_window.py:253
 msgid "Could not open file: Mime type not supported"
 msgstr "Não foi possível abrir arquivo: não há suporte ao tipo Mime"
 
-#: passwordsafe/main_window.py:262 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:191
 msgid "Safe already opened"
 msgstr "Cofre já está aberto"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:294
+#: passwordsafe/main_window.py:295
 msgid "Choose location for Keepass safe"
 msgstr "Escolha a localização do cofre de Keepass"
 
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:298
 msgid "_Create"
 msgstr "_Criar"
 
@@ -1288,38 +1291,38 @@ msgstr "Escolher arquivo de chave"
 msgid "The kdb format is not supported"
 msgstr "Não há suporte ao formato kdb"
 
-#: passwordsafe/unlock_database.py:499 passwordsafe/unlock_database.py:519
-#: passwordsafe/unlock_database.py:533
+#: passwordsafe/unlock_database.py:501 passwordsafe/unlock_database.py:521
+#: passwordsafe/unlock_database.py:535
 msgid "Failed to unlock safe"
 msgstr "Falha ao desbloquear o cofre"
 
-#: passwordsafe/unlock_database.py:528
+#: passwordsafe/unlock_database.py:530
 msgid "Try again"
 msgstr "Tente novamente"
 
-#: passwordsafe/unlocked_database.py:419
+#: passwordsafe/unlocked_database.py:423
 msgid "Safe saved"
 msgstr "Cofre salvo"
 
-#: passwordsafe/unlocked_database.py:421
+#: passwordsafe/unlocked_database.py:425
 msgid "Could not save Safe"
 msgstr "Não foi possível salvar o cofre"
 
-#: passwordsafe/unlocked_database.py:430
+#: passwordsafe/unlocked_database.py:434
 msgid "Please wait. Another save is running."
 msgstr "Por favor, aguarde. Há outro salvamento em progresso."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:434
+#: passwordsafe/unlocked_database.py:438
 msgid "No changes made"
 msgstr "Nenhuma alteração feita"
 
-#: passwordsafe/unlocked_database.py:470
+#: passwordsafe/unlocked_database.py:474
 msgid "Copied to clipboard"
 msgstr "Copiado(a) para área de transferência"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:557
+#: passwordsafe/unlocked_database.py:550
 msgid "Safe locked due to inactivity"
 msgstr "Cofre bloqueado devido inatividade"
 
@@ -1337,9 +1340,6 @@ msgstr[1] "{} entradas selecionadas"
 
 #~ msgid "_Current Group Search"
 #~ msgstr "Pesquisar no _grupo atual"
-
-#~ msgid "No username specified"
-#~ msgstr "Nenhum nome de usuário especificado"
 
 #~ msgid "No group title specified"
 #~ msgstr "Nenhum título de grupo especificado"

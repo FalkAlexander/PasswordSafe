@@ -489,9 +489,9 @@ class MainWindow(Handy.ApplicationWindow):
         )
         self.application.add_action(sort_action)
 
-        selection_action = Gio.SimpleAction.new("selection", GLib.VariantType("s"))
+        selection_action = Gio.SimpleAction.new("db.selection", GLib.VariantType("s"))
         self.application.add_action(selection_action)
-        selection_action.connect("activate", self.execute_gio_action)
+        selection_action.connect("activate", self.execute_database_action)
 
         actions = [
             "db.save",
@@ -515,12 +515,10 @@ class MainWindow(Handy.ApplicationWindow):
             if action == "db.save_dirty":
                 simple_action.set_enabled(False)
 
-            simple_action.connect(
-                "activate", self.execute_gio_action)
+            simple_action.connect("activate", self.execute_database_action)
             self.application.add_action(simple_action)
 
-    # Gio Action Handler
-    def execute_gio_action(self, action, param):
+    def execute_database_action(self, action, param):
         # pylint: disable=too-many-branches
         action_db = self.find_action_db()
         if action_db is None:
@@ -539,7 +537,7 @@ class MainWindow(Handy.ApplicationWindow):
             action_db.show_properties_dialog()
         elif name == "db.settings":
             action_db.show_database_settings()
-        elif name == "selection":
+        elif name == "db.selection":
             action_db.selection_ui.on_selection_action(param)
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_safe()

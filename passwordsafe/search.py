@@ -9,7 +9,6 @@ from gi.repository import Adw, Gio, GLib, GObject, Gtk
 import passwordsafe.config_manager as config
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.sorting import SortingHat
-from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -73,9 +72,9 @@ class Search:
         self._prepare_search_page()
 
     def _on_search_started(self, search_entry: Gtk.SearchEntry) -> None:
-        headerbar = self.unlocked_database.headerbar
-        if headerbar.props.mode == UnlockedHeaderBar.Mode.GROUP:
-            self.unlocked_database.props.search_active = True
+        unlocked_database = self.unlocked_database
+        if unlocked_database.props.mode == unlocked_database.Mode.GROUP:
+            unlocked_database.props.search_active = True
         else:
             self._search_entry.props.text = ""
 

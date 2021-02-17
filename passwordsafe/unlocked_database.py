@@ -6,6 +6,7 @@ import os
 import shutil
 import threading
 import typing
+from enum import IntEnum
 from gettext import gettext as _
 from typing import Any
 
@@ -33,7 +34,6 @@ if typing.TYPE_CHECKING:
 
     from passwordsafe.container_page import ContainerPage
     from passwordsafe.database_manager import DatabaseManager
-
     # pylint: disable=ungrouped-imports
     from passwordsafe.main_window import MainWindow
 
@@ -62,6 +62,13 @@ class UnlockedDatabase(GObject.GObject):
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE
     )
 
+    class Mode(IntEnum):
+        ENTRY = 0
+        GROUP = 1
+        GROUP_EDIT = 2
+        SEARCH = 3
+        SELECTION = 4
+
     def __init__(self, window: MainWindow, widget: ContainerPage, dbm: DatabaseManager):
         super().__init__()
         # Instances
@@ -74,6 +81,7 @@ class UnlockedDatabase(GObject.GObject):
 
         root_group = SafeGroup.get_root(dbm)
         self.props.current_element = root_group
+        self._mode = self.Mode.GROUP
 
         # Declare database as opened
         self.window.opened_databases.append(self)
@@ -154,7 +162,6 @@ class UnlockedDatabase(GObject.GObject):
         self.parent_widget.append(self.divider)
 
         self.search.initialize()
-        self._update_headerbar()
 
         self.start_database_lock_timer()
 
@@ -172,12 +179,10 @@ class UnlockedDatabase(GObject.GObject):
 
         if element.is_group:
             page = GroupPage(self)
-            self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
-            self._update_headerbar()
+            self.props.mode = self.Mode.GROUP_EDIT
         else:
             page = EntryPage(self, new)
-            self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
-            self._update_headerbar()
+            self.props.mode = self.Mode.ENTRY
 
         self._edit_page_bin.set_child(page)
         self._unlocked_db_deck.set_visible_child(self._edit_page_bin)
@@ -188,8 +193,8 @@ class UnlockedDatabase(GObject.GObject):
 
         self._unlocked_db_stack.set_visible_child(self._stack)
         self._unlocked_db_deck.set_visible_child(self._unlocked_db_stack)
-        self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
-        self._update_headerbar()
+        if not self.props.selection_mode:
+            self.props.mode = self.Mode.GROUP
 
         page_name = self.props.current_element.uuid.urn
 
@@ -359,13 +364,13 @@ class UnlockedDatabase(GObject.GObject):
 
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""
-        if self.props.search_active:
+        if self.props.mode == self.Mode.SEARCH:
             self.window.set_headerbar(self.search.headerbar)
-        elif self.headerbar.mode == UnlockedHeaderBar.Mode.GROUP_EDIT:
+        elif self.props.mode == self.Mode.GROUP_EDIT:
             self.window.set_headerbar(self.edit_group_headerbar)
-        elif self.headerbar.mode == UnlockedHeaderBar.Mode.ENTRY:
+        elif self.props.mode == self.Mode.ENTRY:
             self.window.set_headerbar(self.edit_entry_headerbar)
-        elif self.selection_mode:
+        elif self.props.mode == self.Mode.SELECTION:
             self.window.set_headerbar(self.selection_mode_headerbar)
         else:
             self.window.set_headerbar(self.headerbar)
@@ -373,7 +378,8 @@ class UnlockedDatabase(GObject.GObject):
     def _on_selection_mode_changed(
         self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
     ) -> None:
-        self._update_headerbar()
+        if self.props.selection_mode:
+            self.props.mode = self.Mode.SELECTION
 
     #
     # Group and Entry Management
@@ -542,9 +548,9 @@ class UnlockedDatabase(GObject.GObject):
 
             self.divider.hide()
         else:
-            self._update_headerbar()
             self.start_save_loop()
             self.divider.show()
+            self._update_headerbar()
             self.start_database_lock_timer()
 
     def lock_timeout_database(self):
@@ -646,9 +652,11 @@ class UnlockedDatabase(GObject.GObject):
     def go_back(self):
         if self.props.selection_mode:
             self.props.selection_mode = False
+            self.props.mode = self.Mode.GROUP
             return
         if self.props.search_active:
             self.props.search_active = False
+            self.props.mode = self.Mode.GROUP
             return
         if self.props.current_element.is_root_group:
             return
@@ -676,11 +684,10 @@ class UnlockedDatabase(GObject.GObject):
         """
         self._search_active = value
         if self._search_active:
+            self.props.mode = self.Mode.SEARCH
             self._unlocked_db_stack.set_visible_child_name("search")
         else:
             self.show_browser_page(self.current_element)
-
-        self._update_headerbar()
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def database_locked(self):
@@ -696,3 +703,12 @@ class UnlockedDatabase(GObject.GObject):
     ) -> None:
         for row in list_box:
             row.selection_checkbox.props.active = False
+
+    @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
+    def mode(self) -> int:
+        return self._mode
+
+    @mode.setter  # type: ignore
+    def mode(self, new_mode: int) -> None:
+        self._mode = new_mode
+        self._update_headerbar()

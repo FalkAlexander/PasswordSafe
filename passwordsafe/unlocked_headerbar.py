@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import typing
-from enum import IntEnum
 
 from gi.repository import GObject, Gtk, Adw
 
@@ -15,12 +14,6 @@ if typing.TYPE_CHECKING:
 class UnlockedHeaderBar(Adw.HeaderBar):
 
     __gtype_name__ = "UnlockedHeaderBar"
-
-    class Mode(IntEnum):
-        GROUP = 0
-        GROUP_EDIT = 1
-        ENTRY = 2
-        SELECTION = 3
 
     _add_button = Gtk.Template.Child()
     _pathbar_bin = Gtk.Template.Child()
@@ -40,9 +33,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         self._db_manager = unlocked_database.database_manager
         self._pathbar = unlocked_database.pathbar
         self._window = unlocked_database.window
-
-        self._mode: int = UnlockedHeaderBar.Mode.GROUP
-        self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
 
         self._setup_widgets()
         self._setup_signals()
@@ -78,20 +68,3 @@ class UnlockedHeaderBar(Adw.HeaderBar):
     ) -> None:
         is_mobile = self._window.props.mobile_layout
         self._unlocked_database.action_bar.props.revealed = is_mobile
-
-    @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
-    def mode(self) -> int:
-        """Get headerbar mode
-
-        :returns: headerbar mode
-        :rtype: int
-        """
-        return self._mode
-
-    @mode.setter  # type: ignore
-    def mode(self, new_mode: int) -> None:
-        """Set headerbar mode
-
-        :param int new_mode: new headerbar mode
-        """
-        self._mode = new_mode

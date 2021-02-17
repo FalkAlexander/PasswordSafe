@@ -2,20 +2,10 @@
 <interface>
   <template class="UnlockedHeaderBar" parent="AdwHeaderBar">
     <child>
-      <object class="GtkStack" id="_linkedbox_left">
+      <object class="GtkMenuButton" id="_add_button">
+        <property name="menu_model">_add_button_menu</property>
+        <property name="icon_name">list-add-symbolic</property>
         <property name="margin_end">6</property>
-        <child>
-          <object class="GtkButton" id="_back_button">
-            <property name="action_name">app.go_back</property>
-            <property name="icon_name">go-previous-symbolic</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkMenuButton" id="_add_button">
-            <property name="menu_model">_add_button_menu</property>
-            <property name="icon_name">list-add-symbolic</property>
-          </object>
-        </child>
       </object>
     </child>
     <child>
@@ -54,11 +44,6 @@
                 <property name="icon_name">open-menu-symbolic</property>
               </object>
             </child>
-          </object>
-        </child>
-        <child type="end">
-          <object class="GtkMenuButton" id="_secondary_menu_button">
-            <property name="icon_name">view-more-symbolic</property>
           </object>
         </child>
       </object>
@@ -141,42 +126,6 @@
         <attribute name="label" translatable="yes">Select _None</attribute>
         <attribute name="action">app.db.selection</attribute>
         <attribute name="target">none</attribute>
-      </item>
-    </section>
-  </menu>
-  <menu id="_entry_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">D_uplicate</attribute>
-        <attribute name="action">app.entry.duplicate</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_References</attribute>
-        <attribute name="action">app.entry.references</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Properties</attribute>
-        <attribute name="action">app.element.properties</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Delete</attribute>
-        <attribute name="action">app.element.delete</attribute>
-      </item>
-    </section>
-  </menu>
-  <menu id="_group_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Properties</attribute>
-        <attribute name="action">app.element.properties</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Delete</attribute>
-        <attribute name="action">app.element.delete</attribute>
       </item>
     </section>
   </menu>

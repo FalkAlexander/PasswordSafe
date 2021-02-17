@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import logging
 import os
 import shutil
-import logging
 import threading
 import typing
 from gettext import gettext as _
@@ -24,6 +24,7 @@ from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.search import Search
 from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
+from passwordsafe.widgets.edit_element_headerbar import EditElementHeaderbar, PageType
 
 if typing.TYPE_CHECKING:
     from uuid import UUID
@@ -78,6 +79,15 @@ class UnlockedDatabase(GObject.GObject):
 
         self._search_active = False
 
+        # Actionbar has to be setup before edit entry & group headerbars.
+        mobile_pathbar = Pathbar(self)
+        self.action_bar = self.builder.get_object("action_bar")
+        self.action_bar.pack_start(mobile_pathbar)
+
+        # Headerbars
+        self.edit_entry_headerbar = EditElementHeaderbar(self, PageType.ENTRY)
+        self.edit_group_headerbar = EditElementHeaderbar(self, PageType.GROUP)
+
         # Browser Mode
         self.assemble_listbox()
         self.start_save_loop()
@@ -120,10 +130,8 @@ class UnlockedDatabase(GObject.GObject):
     def assemble_listbox(self):
         self._edit_page_bin = self.builder.get_object("_edit_page_bin")
         self.pathbar = Pathbar(self)
-        self.mobile_pathbar = Pathbar(self)
         self._stack = self.builder.get_object("list_stack")
         self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
-        self.action_bar = self.builder.get_object("action_bar")
         self._unlocked_db_deck = self.builder.get_object("_unlocked_db_deck")
 
         self.headerbar = UnlockedHeaderBar(self)
@@ -138,6 +146,9 @@ class UnlockedDatabase(GObject.GObject):
 
         self.search.initialize()
         self._update_headerbar()
+
+        self.window.add_headerbar(self.edit_entry_headerbar)
+        self.window.add_headerbar(self.edit_group_headerbar)
         self.window.add_headerbar(self.search.headerbar)
 
         self.start_database_lock_timer()
@@ -157,9 +168,11 @@ class UnlockedDatabase(GObject.GObject):
         if element.is_group:
             page = GroupPage(self)
             self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP_EDIT
+            self._update_headerbar()
         else:
             page = EntryPage(self, new)
             self.headerbar.mode = UnlockedHeaderBar.Mode.ENTRY
+            self._update_headerbar()
 
         self._edit_page_bin.set_child(page)
         self._unlocked_db_deck.set_visible_child(self._edit_page_bin)
@@ -171,6 +184,7 @@ class UnlockedDatabase(GObject.GObject):
         self._unlocked_db_stack.set_visible_child(self._stack)
         self._unlocked_db_deck.set_visible_child(self._unlocked_db_stack)
         self.headerbar.mode = UnlockedHeaderBar.Mode.GROUP
+        self._update_headerbar()
 
         page_name = self.props.current_element.uuid.urn
 
@@ -339,6 +353,10 @@ class UnlockedDatabase(GObject.GObject):
         """Display the correct headerbar according to search state."""
         if self.props.search_active:
             self.window.set_headerbar(self.search.headerbar)
+        elif self.headerbar.mode == UnlockedHeaderBar.Mode.GROUP_EDIT:
+            self.window.set_headerbar(self.edit_group_headerbar)
+        elif self.headerbar.mode == UnlockedHeaderBar.Mode.ENTRY:
+            self.window.set_headerbar(self.edit_entry_headerbar)
         else:
             self.window.set_headerbar(self.headerbar)
     #

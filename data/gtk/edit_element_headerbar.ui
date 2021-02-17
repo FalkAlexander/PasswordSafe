@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="EditElementHeaderBar" parent="AdwHeaderBar">
+    <property name="title-widget">
+      <object class="AdwWindowTitle"/>
+    </property>
+    <child>
+      <object class="GtkButton">
+        <property name="action_name">app.go_back</property>
+        <property name="icon_name">go-previous-symbolic</property>
+        <property name="margin_end">6</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwBin" id="_pathbar_bin"/>
+    </child>
+    <child type="end">
+      <object class="GtkMenuButton" id="_secondary_menu_button">
+        <property name="icon_name">view-more-symbolic</property>
+      </object>
+    </child>
+    <style>
+      <class name="titlebar"/>
+    </style>
+  </template>
+  <menu id="_group_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Properties</attribute>
+        <attribute name="action">app.element.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Delete</attribute>
+        <attribute name="action">app.element.delete</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="_entry_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">D_uplicate</attribute>
+        <attribute name="action">app.entry.duplicate</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_References</attribute>
+        <attribute name="action">app.entry.references</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Properties</attribute>
+        <attribute name="action">app.element.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Delete</attribute>
+        <attribute name="action">app.element.delete</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

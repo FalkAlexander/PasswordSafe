@@ -11,16 +11,9 @@
       <object class="AdwClamp">
         <property name="hexpand">True</property>
         <child>
-          <object class="GtkBox" id="headerbar_search_box">
-            <child>
-              <object class="GtkSearchEntry" id="headerbar_search_entry">
-                <property name="hexpand">True</property>
-                <property name="activates_default">True</property>
-              </object>
-            </child>
-            <style>
-              <class name="linked"/>
-            </style>
+          <object class="GtkSearchEntry" id="headerbar_search_entry">
+            <property name="hexpand">True</property>
+            <property name="activates_default">True</property>
           </object>
         </child>
       </object>

@@ -73,7 +73,10 @@ class Search:
 
     def _on_search_started(self, search_entry: Gtk.SearchEntry) -> None:
         unlocked_database = self.unlocked_database
-        if unlocked_database.props.mode == unlocked_database.Mode.GROUP:
+        if (
+            unlocked_database.props.mode == unlocked_database.Mode.GROUP
+            and not self.unlocked_database.database_manager.props.locked
+        ):
             unlocked_database.props.search_active = True
         else:
             self._search_entry.props.text = ""

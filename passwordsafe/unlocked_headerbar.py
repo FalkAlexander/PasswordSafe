@@ -28,14 +28,13 @@ class UnlockedHeaderBar(Adw.HeaderBar):
     _entry_menu = Gtk.Template.Child()
     _back_button = Gtk.Template.Child()
     _group_menu = Gtk.Template.Child()
-    _headerbar_box = Gtk.Template.Child()
+    _pathbar_bin = Gtk.Template.Child()
     _headerbar_right_box = Gtk.Template.Child()
     _linkedbox_left = Gtk.Template.Child()
     _linkedbox_right = Gtk.Template.Child()
     _secondary_menu_button = Gtk.Template.Child()
     search_button = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
-    _title_label = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
         """HearderBar of an UnlockedDatabase
@@ -64,7 +63,7 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         is_mobile = self._window.props.mobile_layout
 
         self._action_bar.pack_start(self._mobile_pathbar)
-        self._headerbar_box.append(self._pathbar)
+        self._pathbar_bin.set_child(self._pathbar)
 
         self._unlocked_database.action_bar.props.revealed = is_mobile
 

@@ -19,12 +19,12 @@ class Pathbar(Gtk.Box):
     current_element = GObject.Property(
         type=SafeElement, flags=GObject.ParamFlags.READWRITE)
 
-    def __init__(self, unlocked_database, dbm):
+    def __init__(self, unlocked_database):
         super().__init__()
 
         self.set_name("Pathbar")
         self.unlocked_database = unlocked_database
-        self.database_manager = dbm
+        self.database_manager = unlocked_database.database_manager
 
         unlocked_database.bind_property(
             "current-element", self, "current-element",

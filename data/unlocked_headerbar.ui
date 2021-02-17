@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="UnlockedHeaderBar" parent="AdwHeaderBar">
+    <property name="title-widget">
+      <object class="AdwWindowTitle"/>
+    </property>
     <child>
       <object class="GtkMenuButton" id="_add_button">
         <property name="menu_model">_add_button_menu</property>
@@ -10,13 +13,6 @@
     </child>
     <child>
       <object class="AdwBin" id="_pathbar_bin"/>
-    </child>
-    <child type="title">
-      <object class="GtkMenuButton" id="_selection_options_button">
-        <property name="has_frame">False</property>
-        <property name="menu_model">selection_mode_menu</property>
-        <property name="label" translatable="yes">Click on a checkbox to select</property>
-      </object>
     </child>
     <child type="end">
       <object class="GtkBox" id="_headerbar_right_box">
@@ -112,20 +108,6 @@
       <item>
         <attribute name='label' translatable='yes'>_About Password Safe</attribute>
         <attribute name='action'>app.about</attribute>
-      </item>
-    </section>
-  </menu>
-  <menu id="selection_mode_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Select _All</attribute>
-        <attribute name="action">app.db.selection</attribute>
-        <attribute name="target">all</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Select _None</attribute>
-        <attribute name="action">app.db.selection</attribute>
-        <attribute name="target">none</attribute>
       </item>
     </section>
   </menu>

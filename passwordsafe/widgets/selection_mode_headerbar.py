@@ -2,22 +2,22 @@
 from __future__ import annotations
 
 import typing
-from gettext import gettext as _
+from gettext import gettext as _, ngettext
 from logging import debug
 
-from gi.repository import Gio, GObject, Gtk
-
+from gi.repository import Adw, Gio, GObject, Gtk
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
+from passwordsafe.pathbar import Pathbar
 
 if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/selection_ui.ui")
-class SelectionUI(Gtk.Box):
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/selection_mode_headerbar.ui")
+class SelectionModeHeaderbar(Adw.HeaderBar):
 
-    __gtype_name__ = "SelectionUI"
+    __gtype_name__ = "SelectionModeHeaderbar"
 
     unlocked_database = NotImplemented
 
@@ -33,22 +33,37 @@ class SelectionUI(Gtk.Box):
 
     _cut_paste_button = Gtk.Template.Child()
     _delete_button = Gtk.Template.Child()
+    _pathbar_bin = Gtk.Template.Child()
+    _selection_options_button = Gtk.Template.Child()
 
     selected_elements = GObject.Property(
         type=int, default=0, flags=GObject.ParamFlags.READWRITE
     )
 
-    def __init__(self, u_d):
+    def __init__(self, unlocked_database):
         super().__init__()
 
-        self.unlocked_database = u_d
+        self._pathbar_bin.set_child(Pathbar(unlocked_database))
+        self.unlocked_database = unlocked_database
 
-        self.unlocked_database.connect(
-            "notify::selection-mode", self._on_selection_mode_changed)
+        unlocked_database.connect(
+            "notify::selection-mode", self._on_selection_mode_changed
+        )
+        unlocked_database.bind_property(
+            "selection-mode", self, "visible", GObject.BindingFlags.SYNC_CREATE
+        )
+        self.connect("notify::selected-elements", self.on_selected_entries_changed)
 
-        self.unlocked_database.bind_property(
-            "selection-mode", self, "visible",
-            GObject.BindingFlags.SYNC_CREATE)
+    def on_selected_entries_changed(self, selection_ui, _value):
+        new_number = selection_ui.props.selected_elements
+        if new_number == 0:
+            label = _("Click on a checkbox to select")
+        else:
+            label = ngettext(
+                "{} Selected entry", "{} Selected entries", new_number
+            ).format(new_number)
+
+        self._selection_options_button.props.label = label
 
     def _on_selection_mode_changed(
         self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
@@ -67,21 +82,24 @@ class SelectionUI(Gtk.Box):
         for group_row in self.groups_selected:
             group = group_row.safe_group.group
             if self.unlocked_database.database_manager.parent_checker(
-                    self.unlocked_database.current_element,
-                    group
+                self.unlocked_database.current_element, group
             ):
                 self.unlocked_database.window.send_notification(
-                    _("Operation aborted: Deleting currently active group"))
+                    _("Operation aborted: Deleting currently active group")
+                )
                 return
 
         for entry_row in self.entries_selected:
             safe_entry = entry_row.safe_entry
             self.unlocked_database.database_manager.delete_from_database(
-                safe_entry.entry)
+                safe_entry.entry
+            )
 
         for group_row in self.groups_selected:
             safe_group = group_row.safe_group
-            self.unlocked_database.database_manager.delete_from_database(safe_group.group)
+            self.unlocked_database.database_manager.delete_from_database(
+                safe_group.group
+            )
 
         self.unlocked_database.window.send_notification(_("Deletion completed"))
 
@@ -131,7 +149,8 @@ class SelectionUI(Gtk.Box):
         for entry_row in self.entries_cut:
             safe_entry = entry_row.safe_entry
             self.unlocked_database.database_manager.move_entry(
-                safe_entry.uuid, self.unlocked_database.current_element.group)
+                safe_entry.uuid, self.unlocked_database.current_element.group
+            )
 
         for group_row in self.groups_cut:
             group = group_row.safe_group.group

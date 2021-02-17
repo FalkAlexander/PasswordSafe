@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="SelectionModeHeaderbar" parent="AdwHeaderBar">
+    <property name="title-widget">
+      <object class="AdwWindowTitle"/>
+    </property>
+    <child>
+      <object class="GtkButton">
+        <property name="action_name">app.go_back</property>
+        <property name="icon_name">go-previous-symbolic</property>
+        <property name="margin_end">6</property>
+      </object>
+    </child>
+    <child>
+      <object class="AdwBin" id="_pathbar_bin"/>
+    </child>
+    <child type="title">
+      <object class="GtkMenuButton" id="_selection_options_button">
+        <property name="has_frame">False</property>
+        <property name="menu_model">selection_mode_menu</property>
+        <property name="label" translatable="yes">Click on a checkbox to select</property>
+      </object>
+    </child>
+    <child type="end">
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkButton" id="_cut_paste_button">
+            <property name="sensitive">False</property>
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move selection</property>
+            <property name="icon_name">edit-cut-symbolic</property>
+            <signal name="clicked" handler="_on_cut_paste_button_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="_delete_button">
+            <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete selection</property>
+            <property name="icon_name">user-trash-symbolic</property>
+            <signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="_cancel_button">
+            <property name="label" translatable="yes">Cancel</property>
+            <property name="action_name">app.go_back</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="titlebar"/>
+    </style>
+  </template>
+  <menu id="selection_mode_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Select _All</attribute>
+        <attribute name="action">app.db.selection</attribute>
+        <attribute name="target">all</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Select _None</attribute>
+        <attribute name="action">app.db.selection</attribute>
+        <attribute name="target">none</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

@@ -538,7 +538,7 @@ class MainWindow(Adw.ApplicationWindow):
         elif name == "db.settings":
             action_db.show_database_settings()
         elif name == "db.selection":
-            action_db.selection_ui.on_selection_action(param)
+            action_db.selection_mode_headerbar.on_selection_action(param)
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_safe()
         elif name == "db.lock":

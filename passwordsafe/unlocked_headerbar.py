@@ -1,13 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gettext import gettext as _, ngettext
 import typing
 from enum import IntEnum
 
 from gi.repository import GObject, Gtk, Adw
 
-from passwordsafe.selection_ui import SelectionUI
 if typing.TYPE_CHECKING:
     from passwordsafe.main_window import MainWindow
     from passwordsafe.unlocked_database import UnlockedDatabase
@@ -29,7 +27,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
     _headerbar_right_box = Gtk.Template.Child()
     _linkedbox_right = Gtk.Template.Child()
     search_button = Gtk.Template.Child()
-    _selection_options_button = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
         """HearderBar of an UnlockedDatabase
@@ -43,9 +40,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         self._db_manager = unlocked_database.database_manager
         self._pathbar = unlocked_database.pathbar
         self._window = unlocked_database.window
-
-        self._selection_ui = SelectionUI(self._unlocked_database)
-        self._headerbar_right_box.append(self._selection_ui)
 
         self._mode: int = UnlockedHeaderBar.Mode.GROUP
         self.props.mode: int = UnlockedHeaderBar.Mode.GROUP
@@ -64,17 +58,8 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         self._window.connect(
             "notify::mobile-layout", self._on_mobile_layout_changed)
 
-        self._unlocked_database.bind_property(
-            "selection-mode", self._selection_options_button, "visible",
-            GObject.BindingFlags.SYNC_CREATE)
-        self._unlocked_database.connect(
-            "notify::selection-mode", self._on_selection_mode_changed)
-
         self._unlocked_database.connect(
             "notify::search-active", self._on_search_active)
-
-        self._selection_ui.connect(
-            "notify::selected-elements", self.on_selected_entries_changed)
 
         self._on_mobile_layout_changed(None, None)
 
@@ -96,31 +81,10 @@ class UnlockedHeaderBar(Adw.HeaderBar):
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True
 
-    def _on_selection_mode_changed(
-            self, _unlocked_database: UnlockedDatabase,
-            _value: GObject.ParamSpecInt) -> None:
-        if self._unlocked_database.props.selection_mode:
-            self.add_css_class("selection-mode")
-            self.props.mode = UnlockedHeaderBar.Mode.SELECTION
-        else:
-            self.remove_css_class("selection-mode")
-            self.props.mode = UnlockedHeaderBar.Mode.GROUP
-
     def _on_mobile_layout_changed(
             self, _klass: MainWindow | None,
             _value: GObject.ParamSpecBoolean) -> None:
         self._update_action_bar()
-
-    def on_selected_entries_changed(self, selection_ui, _value):
-        new_number = selection_ui.props.selected_elements
-        if new_number == 0:
-            label = _("Click on a checkbox to select")
-        else:
-            label = ngettext(
-                "{} Selected entry", "{} Selected entries",
-                new_number).format(new_number)
-
-        self._selection_options_button.props.label = label
 
     def _update_action_bar(self):
         """Move pathbar between top headerbar and bottom actionbar if needed"""
@@ -132,15 +96,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
             return
 
         self._unlocked_database.action_bar.props.revealed = is_mobile
-
-    @property
-    def selection_ui(self) -> SelectionUI:
-        """SelectionUI getter
-
-        :returns: selection box
-        :rtype: SelectionUI
-        """
-        return self._selection_ui
 
     @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
     def mode(self) -> int:
@@ -158,11 +113,3 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         :param int new_mode: new headerbar mode
         """
         self._mode = new_mode
-
-        if new_mode == UnlockedHeaderBar.Mode.GROUP:
-            selection_mode = self._unlocked_database.props.selection_mode
-            self._add_button.props.visible = not selection_mode
-            self._linkedbox_right.props.visible = not selection_mode
-        elif new_mode == UnlockedHeaderBar.Mode.SELECTION:
-            self._add_button.props.visible = False
-            self._linkedbox_right.props.visible = False

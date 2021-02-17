@@ -25,13 +25,14 @@ from passwordsafe.search import Search
 from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 from passwordsafe.widgets.edit_element_headerbar import EditElementHeaderbar, PageType
+from passwordsafe.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 
 if typing.TYPE_CHECKING:
     from uuid import UUID
 
     from passwordsafe.container_page import ContainerPage
     from passwordsafe.database_manager import DatabaseManager
-    from passwordsafe.selection_ui import SelectionUI
+
     # pylint: disable=ungrouped-imports
     from passwordsafe.main_window import MainWindow
 
@@ -87,6 +88,7 @@ class UnlockedDatabase(GObject.GObject):
         # Headerbars
         self.edit_entry_headerbar = EditElementHeaderbar(self, PageType.ENTRY)
         self.edit_group_headerbar = EditElementHeaderbar(self, PageType.GROUP)
+        self.selection_mode_headerbar = SelectionModeHeaderbar(self)
 
         # Browser Mode
         self.assemble_listbox()
@@ -135,7 +137,6 @@ class UnlockedDatabase(GObject.GObject):
         self._unlocked_db_deck = self.builder.get_object("_unlocked_db_deck")
 
         self.headerbar = UnlockedHeaderBar(self)
-        self.selection_ui = self.headerbar.selection_ui
 
         self.clipboard = Gdk.Display.get_default().get_clipboard()
 
@@ -319,7 +320,10 @@ class UnlockedDatabase(GObject.GObject):
         self.database_manager.connect(
             "element-moved", self._on_element_moved, list_model, group.uuid
         )
-        self.selection_ui.connect("clear-selection", self._on_clear_selection, list_box)
+        self.selection_mode_headerbar.connect(
+            "clear-selection", self._on_clear_selection, list_box
+        )
+        self.connect("notify::selection-mode", self._on_selection_mode_changed)
 
         list_box.bind_model(list_model, self.listbox_row_factory)
         list_model.connect(
@@ -357,8 +361,16 @@ class UnlockedDatabase(GObject.GObject):
             self.window.set_headerbar(self.edit_group_headerbar)
         elif self.headerbar.mode == UnlockedHeaderBar.Mode.ENTRY:
             self.window.set_headerbar(self.edit_entry_headerbar)
+        elif self.selection_mode:
+            self.window.set_headerbar(self.selection_mode_headerbar)
         else:
             self.window.set_headerbar(self.headerbar)
+
+    def _on_selection_mode_changed(
+        self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
+    ) -> None:
+        self._update_headerbar()
+
     #
     # Group and Entry Management
     #
@@ -675,6 +687,8 @@ class UnlockedDatabase(GObject.GObject):
         """
         return self.database_manager.props.locked
 
-    def _on_clear_selection(self, _selection_ui: SelectionUI, list_box: Gtk.ListBox) -> None:
+    def _on_clear_selection(
+        self, _header: SelectionModeHeaderbar, list_box: Gtk.ListBox
+    ) -> None:
         for row in list_box:
             row.selection_checkbox.props.active = False

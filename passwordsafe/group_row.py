@@ -69,9 +69,9 @@ class GroupRow(Adw.ActionRow):
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.get_active():
-            self.unlocked_database.selection_ui.add_group(self)
+            self.unlocked_database.selection_mode_headerbar.add_group(self)
         else:
-            self.unlocked_database.selection_ui.remove_group(self)
+            self.unlocked_database.selection_mode_headerbar.remove_group(self)
 
     @Gtk.Template.Callback()
     def on_group_edit_button_clicked(self, _button: Gtk.Button) -> None:

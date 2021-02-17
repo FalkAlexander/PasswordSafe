@@ -77,9 +77,9 @@ class EntryRow(Adw.ActionRow):
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.props.active:
-            self.unlocked_database.selection_ui.add_entry(self)
+            self.unlocked_database.selection_mode_headerbar.add_entry(self)
         else:
-            self.unlocked_database.selection_ui.remove_entry(self)
+            self.unlocked_database.selection_mode_headerbar.remove_entry(self)
 
     @Gtk.Template.Callback()
     def on_entry_copy_pass_button_clicked(self, _button):

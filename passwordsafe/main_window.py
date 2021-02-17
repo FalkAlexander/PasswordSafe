@@ -146,7 +146,7 @@ class MainWindow(Handy.ApplicationWindow):
         if self.application.file_list:
             # file_list is appended to when we invoke the app with
             # files as cmd line parameters. (it is also appended to
-            # whenever we open a file via app.open action). If it is
+            # whenever we open a file via app.open_database action). If it is
             # populated, simply load those files and don't show any
             # screens.
             for g_file in self.application.file_list:

@@ -95,8 +95,8 @@ class Application(Gtk.Application):
             ("settings", self.show_settings),
             ("about", self.show_about_dialog),
             ("quit", self.on_quit_action),
-            ("new", self.window.on_create_file_action),
-            ("open", self.window.on_open_file_action),
+            ("new_database", self.window.on_create_file_action),
+            ("open_database", self.window.on_open_file_action),
         ]
 
         for name, callback in actions:
@@ -225,8 +225,8 @@ class Application(Gtk.Application):
 
     def add_global_accelerators(self):
         self.set_accels_for_action("app.settings", ["<primary>comma"])
-        self.set_accels_for_action("app.open", ["<primary>o"])
-        self.set_accels_for_action("app.new", ["<primary><Shift>n"])
+        self.set_accels_for_action("app.open_database", ["<primary>o"])
+        self.set_accels_for_action("app.new_database", ["<primary><Shift>n"])
         self.set_accels_for_action("app.db.save", ["<primary>s"])
         self.set_accels_for_action("app.db.lock", ["<primary>l"])
         self.set_accels_for_action("app.db.add_entry", ["<primary>n"])

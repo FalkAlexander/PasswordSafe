@@ -58,20 +58,12 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         self._window.connect(
             "notify::mobile-layout", self._on_mobile_layout_changed)
 
-        self._unlocked_database.connect(
-            "notify::search-active", self._on_search_active)
-
         self._on_mobile_layout_changed(None, None)
 
         self._pathbar.bind_property(
             "visible", self._action_bar, "revealed",
             GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.INVERT_BOOLEAN,
         )
-
-    def _on_search_active(
-            self, _unlocked_database: UnlockedDatabase,
-            _value: GObject.ParamSpecBoolean) -> None:
-        self._update_action_bar()
 
     @Gtk.Template.Callback()
     def _on_search_button_clicked(self, _btn: Gtk.Button) -> None:
@@ -82,19 +74,9 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         self._unlocked_database.props.selection_mode = True
 
     def _on_mobile_layout_changed(
-            self, _klass: MainWindow | None,
-            _value: GObject.ParamSpecBoolean) -> None:
-        self._update_action_bar()
-
-    def _update_action_bar(self):
-        """Move pathbar between top headerbar and bottom actionbar if needed"""
+        self, _window: MainWindow, _value: GObject.ParamSpecBoolean
+    ) -> None:
         is_mobile = self._window.props.mobile_layout
-
-        if self._unlocked_database.props.search_active:
-            # No pathbar in search mode
-            self._unlocked_database.action_bar.props.revealed = False
-            return
-
         self._unlocked_database.action_bar.props.revealed = is_mobile
 
     @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)

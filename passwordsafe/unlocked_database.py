@@ -25,6 +25,7 @@ from passwordsafe.search import Search
 from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 from passwordsafe.widgets.edit_element_headerbar import EditElementHeaderbar, PageType
+from passwordsafe.widgets.search_headerbar import SearchHeaderbar
 from passwordsafe.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 
 if typing.TYPE_CHECKING:
@@ -70,15 +71,12 @@ class UnlockedDatabase(GObject.GObject):
         self.window: MainWindow = window
         self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
-        self.search: Search = Search(self)
 
         root_group = SafeGroup.get_root(dbm)
         self.props.current_element = root_group
 
         # Declare database as opened
         self.window.opened_databases.append(self)
-
-        self._search_active = False
 
         # Actionbar has to be setup before edit entry & group headerbars.
         mobile_pathbar = Pathbar(self)
@@ -88,7 +86,17 @@ class UnlockedDatabase(GObject.GObject):
         # Headerbars
         self.edit_entry_headerbar = EditElementHeaderbar(self, PageType.ENTRY)
         self.edit_group_headerbar = EditElementHeaderbar(self, PageType.GROUP)
+        self.search_headerbar = SearchHeaderbar()
         self.selection_mode_headerbar = SelectionModeHeaderbar(self)
+
+        self.window.add_headerbar(self.edit_entry_headerbar)
+        self.window.add_headerbar(self.edit_group_headerbar)
+        self.window.add_headerbar(self.search_headerbar)
+        self.window.add_headerbar(self.selection_mode_headerbar)
+
+        # self.search has to be loaded after the search headerbar.
+        self._search_active = False
+        self.search: Search = Search(self)
 
         # Browser Mode
         self.assemble_listbox()
@@ -147,10 +155,6 @@ class UnlockedDatabase(GObject.GObject):
 
         self.search.initialize()
         self._update_headerbar()
-
-        self.window.add_headerbar(self.edit_entry_headerbar)
-        self.window.add_headerbar(self.edit_group_headerbar)
-        self.window.add_headerbar(self.search.headerbar)
 
         self.start_database_lock_timer()
 

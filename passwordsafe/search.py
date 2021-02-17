@@ -4,12 +4,12 @@ from __future__ import annotations
 import threading
 import typing
 
-from gi.repository import Gio, GLib, GObject, Gtk, Adw
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
-from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 import passwordsafe.config_manager as config
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.sorting import SortingHat
+from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -41,8 +41,8 @@ class Search:
         self.scrolled_page = self._builder.get_object(
             "stack")
 
-        self._search_entry = self._builder.get_object("headerbar_search_entry")
-        self._headerbar: Adw.HeaderBar = self._builder.get_object("headerbar_search")
+        self._headerbar = self.unlocked_database.search_headerbar
+        self._search_entry = self._headerbar.search_entry
 
         self._key_pressed: bool = False
         self._timeout_search: int = 0
@@ -192,20 +192,20 @@ class Search:
 
     # Events
 
-    def _on_search_entry_timeout(self, widget: Gtk.Entry) -> None:
+    def _on_search_entry_timeout(self, search_entry: Gtk.Entry) -> None:
         self._key_pressed = True
         if self._timeout_search > 0:
             GLib.source_remove(self._timeout_search)
 
         # Time between search querries.
         self._timeout_search = GLib.timeout_add(
-            200, self._on_search_entry_changed, widget
+            200, self._on_search_entry_changed, search_entry
         )
 
-    def _on_search_entry_changed(self, widget):
+    def _on_search_entry_changed(self, search_entry):
         self.unlocked_database.start_database_lock_timer()
         self._timeout_search = 0
-        self._search_text = widget.get_text()
+        self._search_text = search_entry.props.text
         self._start_search()
 
         return False

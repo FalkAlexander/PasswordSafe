@@ -31,7 +31,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
     username_property_value_entry = Gtk.Template.Child()
 
-    password_property_box = Gtk.Template.Child()
+    password_property_bin = Gtk.Template.Child()
 
     otp_generated_token_box = Gtk.Template.Child()
     otp_generated_token = Gtk.Template.Child()
@@ -47,7 +47,7 @@ class EntryPage(Gtk.ScrolledWindow):
     notes_property_box = Gtk.Template.Child()
     notes_property_value_entry = Gtk.Template.Child()
 
-    color_property_box = Gtk.Template.Child()
+    color_property_bin = Gtk.Template.Child()
 
     icon_entry_box = Gtk.Template.Child()
 
@@ -113,7 +113,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
         # Password
         self.password_entry_row = PasswordEntryRow(self.unlocked_database)
-        self.password_property_box.append(self.password_entry_row)
+        self.password_property_bin.set_child(self.password_entry_row)
 
         # OTP (token)
         if safe_entry.otp_token():
@@ -149,8 +149,9 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
         # Color
-        self.color_property_box.append(ColorEntryRow(
-            self.unlocked_database, safe_entry))
+        self.color_property_bin.set_child(
+            ColorEntryRow(self.unlocked_database, safe_entry)
+        )
 
         # Icons
         icon_builder = Gtk.Builder()

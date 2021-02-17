@@ -47,10 +47,6 @@ class PasswordEntryRow(Adw.Bin):
             "password", self._password_value_entry, "text")
         self._generate_password_button.set_popover(self._pwd_popover)
 
-        self._unlocked_database.bind_accelerator(
-            self._password_value_entry, "<primary><Shift>c", signal="copy-clipboard"
-        )
-
         self._password_level_bar.add_offset_value("weak", 1.0)
         self._password_level_bar.add_offset_value("medium", 3.0)
         self._password_level_bar.add_offset_value("strong", 4.0)

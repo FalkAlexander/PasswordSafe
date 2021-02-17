@@ -341,18 +341,6 @@ class UnlockedDatabase(GObject.GObject):
             self.window.set_headerbar(self.search.headerbar)
         else:
             self.window.set_headerbar(self.headerbar)
-
-    #
-    # Keystrokes
-    #
-
-    def bind_accelerator(self, _widget, accelerator, signal="clicked"):
-        """bind accelerators to self, aka this `UnlockedDatabase`"""
-        _, key, mod = Gtk.accelerator_parse(accelerator)
-        trigger = Gtk.KeyvalTrigger.new(key, mod)
-        action = Gtk.SignalAction.new(signal)
-        Gtk.Shortcut.new(trigger, action)
-
     #
     # Group and Entry Management
     #

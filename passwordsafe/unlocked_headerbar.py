@@ -59,7 +59,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
 
         self._setup_widgets()
         self._setup_signals()
-        self._setup_accelerators()
 
     def _setup_widgets(self):
         is_mobile = self._window.props.mobile_layout
@@ -91,9 +90,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
             "visible", self._action_bar, "revealed",
             GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.INVERT_BOOLEAN,
         )
-
-    def _setup_accelerators(self):
-        self._unlocked_database.bind_accelerator(self.search_button, "<primary>f")
 
     def _on_search_active(
             self, _unlocked_database: UnlockedDatabase,

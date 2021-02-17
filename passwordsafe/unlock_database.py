@@ -9,7 +9,7 @@ from datetime import datetime
 from gettext import gettext as _
 from pathlib import Path
 
-from gi.repository import Gio, GLib, Gtk, Pango
+from gi.repository import Gio, GLib, Gtk
 from pykeepass.exceptions import (
     CredentialsError,
     HeaderChecksumError,

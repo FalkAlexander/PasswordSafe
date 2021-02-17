@@ -260,7 +260,6 @@
                         </child>
                         <child>
                           <object class="GtkLabel" id="property_label">
-                            <property name="name">LinkLabel</property>
                             <property name="tooltip_text" translatable="yes">Show Field Codes</property>
                             <property name="label" translatable="yes">Property</property>
                             <property name="ellipsize">end</property>
@@ -272,6 +271,9 @@
                                 <property name="button">1</property>
                               </object>
                             </child>
+                            <style>
+                              <class name="link"/>
+                            </style>
                           </object>
                         </child>
                         <child>
@@ -284,7 +286,6 @@
                         </child>
                         <child>
                           <object class="GtkLabel" id="identifier_label">
-                            <property name="name">LinkLabel</property>
                             <property name="tooltip_text" translatable="yes">Show Field Codes</property>
                             <property name="label" translatable="yes">Identifier</property>
                             <property name="ellipsize">end</property>
@@ -296,6 +297,9 @@
                                 <property name="button">1</property>
                               </object>
                             </child>
+                            <style>
+                              <class name="link"/>
+                            </style>
                           </object>
                         </child>
                         <child>
@@ -308,7 +312,6 @@
                         </child>
                         <child>
                           <object class="GtkLabel" id="uuid_label">
-                            <property name="name">LinkLabel</property>
                             <property name="label">UUID</property>
                             <property name="ellipsize">end</property>
                             <attributes>
@@ -319,6 +322,9 @@
                                 <property name="button">1</property>
                               </object>
                             </child>
+                            <style>
+                              <class name="link"/>
+                            </style>
                           </object>
                         </child>
                         <child>

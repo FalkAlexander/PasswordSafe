@@ -30,8 +30,15 @@
        </child>
         <child>
           <object class="GtkImage" id="group_icon">
-            <property name="pixel_size">32</property>
             <property name="icon_name">folder-symbolic</property>
+            <property name="height_request">32</property>
+            <property name="width_request">32</property>
+            <property name="valign">center</property>
+            <style>
+              <class name="circular-icon"/>
+              <class name="NoneColorButtonList"/>
+              <class name="DarkIcon"/>
+            </style>
           </object>
         </child>
      </object>

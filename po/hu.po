@@ -1,29 +1,29 @@
 # Hungarian translation for PasswordSafe.
-# Copyright (C) 2019, 2020 Free Software Foundation, Inc.
+# Copyright (C) 2019, 2020, 2021 Free Software Foundation, Inc.
 # This file is distributed under the same license as the PasswordSafe package.
 #
-# Balázs Meskó <mesko.balazs at fsf dot hu>, 2019.
+# Balázs Meskó <mesko.balazs at fsf dot hu>, 2019, 2021.
 # Gabor Kelemen <kelemeng at ubuntu dot com>, 2019.
-# Balázs Úr <ur.balazs at fsf dot hu>, 2019, 2020.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2019, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-01-18 16:11+0000\n"
-"PO-Revision-Date: 2020-02-13 19:24+0100\n"
-"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
+"POT-Creation-Date: 2020-12-10 23:51+0000\n"
+"PO-Revision-Date: 2021-02-18 20:20+0100\n"
+"Last-Translator: Balázs Meskó <mesko.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.04.3\n"
+"X-Generator: Lokalize 19.12.3\n"
 
-#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
-#: data/org.gnome.PasswordSafe.desktop.in.in:4
-msgid "A password manager for GNOME"
-msgstr "Jelszókezelő a GNOME-hoz"
+#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
+#| msgid "Secure password safe"
+msgid "Manage your passwords"
+msgstr "Kezelje a jelszavait"
 
 #: data/about_dialog.ui.in:13
 msgid "Learn more about Password Safe"
@@ -50,120 +50,117 @@ msgstr ""
 
 #. Discard all the changes which the user have made to his keepass safe
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
-#: data/unlocked_database.ui:1274
+#: data/attachment_warning_dialog.ui:23 data/unlocked_database.ui:713
 msgid "Back"
 msgstr "Vissza"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:36
+#: data/attachment_warning_dialog.ui:35
 msgid "Proceed"
 msgstr "Folytatás"
 
-#: data/create_database.ui:74 data/database_settings_dialog.ui:439
-#: data/entry_page.ui:1563 data/entry_page.ui:1699
-#: data/references_dialog.ui:155 data/references_dialog.ui:263
-#: passwordsafe/unlock_database.py:94
+#: data/create_database.ui:72 data/database_settings_dialog.ui:449
+#: data/password_entry_row.ui:31 data/password_generator_popover.ui:178
+#: data/references_dialog.ui:155 data/references_dialog.ui:259
+#: data/settings_dialog.ui:156 passwordsafe/unlock_database.py:99
 msgid "Password"
 msgstr "Jelszó"
 
-#: data/create_database.ui:94
+#: data/create_database.ui:92
 msgid "Use a password to secure your safe"
 msgstr "Jelszó használata a széf biztonságossá tételéhez"
 
-#: data/create_database.ui:157 data/database_settings_dialog.ui:579
-#: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
-#: passwordsafe/database_settings_dialog.py:184
-#: passwordsafe/database_settings_dialog.py:219
-#: passwordsafe/database_settings_dialog.py:224
-#: passwordsafe/unlock_database.py:97 passwordsafe/unlock_database.py:302
-#: passwordsafe/unlock_database.py:424
+#: data/create_database.ui:155 data/database_settings_dialog.ui:589
+#: passwordsafe/database_settings_dialog.py:190
+#: passwordsafe/database_settings_dialog.py:230
+#: passwordsafe/database_settings_dialog.py:235
+#: passwordsafe/unlock_database.py:30 passwordsafe/unlock_database.py:102
 msgid "Keyfile"
 msgstr "Kulcsfájl"
 
-#: data/create_database.ui:177
+#: data/create_database.ui:175
 msgid "Use a keyfile to secure your safe"
 msgstr "Kulcsfájl használata a széf biztonságossá tételéhez"
 
 #. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:240 passwordsafe/unlock_database.py:101
+#: data/create_database.ui:238 passwordsafe/unlock_database.py:106
 msgid "Composite"
 msgstr "Összetett"
 
-#: data/create_database.ui:260
+#: data/create_database.ui:258
 msgid "Use a password in combination with a keyfile to secure your safe"
 msgstr "Kulcsfájl és jelszó együttes használata a széf biztonságossá tételéhez"
 
-#: data/create_database.ui:303
+#: data/create_database.ui:304
 msgid "Protect your safe"
 msgstr "Védje meg a széfjét"
 
-#: data/create_database.ui:415
+#: data/create_database.ui:416
 msgid "Set password for safe"
 msgstr "Adja meg a széf jelszavát"
 
-#: data/create_database.ui:430
+#: data/create_database.ui:431
 msgid "Enter Password"
 msgstr "Adja meg a jelszót"
 
-#: data/create_database.ui:476
+#: data/create_database.ui:477
 msgid "Password Match Check"
 msgstr "Jelszóegyezés ellenőrzése"
 
-#: data/create_database.ui:562
+#: data/create_database.ui:563
 msgid "Repeat password for safe"
 msgstr "Ismételje meg a széf jelszavát"
 
-#: data/create_database.ui:608
+#: data/create_database.ui:609
 msgid "Match Check Failed"
 msgstr "Jelszóellenőrzés sikertelen"
 
-#: data/create_database.ui:667
+#: data/create_database.ui:668
 msgid "Please try again"
 msgstr "Próbálja meg újra"
 
 #. Button to generate a password
-#: data/create_database.ui:788 data/entry_page.ui:1650
-#: passwordsafe/create_database.py:240
-#: passwordsafe/database_settings_dialog.py:217
+#: data/create_database.ui:789 data/password_generator_popover.ui:265
+#: passwordsafe/create_database.py:242
+#: passwordsafe/database_settings_dialog.py:228
 msgid "Generate"
 msgstr "Előállítás"
 
-#: data/create_database.ui:817
+#: data/create_database.ui:818
 msgid "Set keyfile for safe"
 msgstr "Adja meg a széf kulcsfájlját"
 
-#: data/create_database.ui:832
+#: data/create_database.ui:833
 msgid "Generate Keyfile"
 msgstr "Kulcsfájl előállítása"
 
-#: data/create_database.ui:887 data/main_window.ui:200
-#: data/unlock_database.ui:311 data/unlocked_database.ui:976
+#: data/create_database.ui:888 data/main_window.ui:203
+#: data/unlocked_database.ui:560
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: data/create_database.ui:901 data/main_window.ui:214
-#: data/unlock_database.ui:325 data/unlocked_database.ui:990
+#: data/create_database.ui:902 data/main_window.ui:217
+#: data/unlocked_database.ui:574
 msgid "Keyboard Shortcuts"
 msgstr "Gyorsbillentyűk"
 
 #. "Password Safe" is the application name
-#: data/create_database.ui:915 data/main_window.ui:228
-#: data/unlock_database.ui:339 data/unlocked_database.ui:1004
+#: data/create_database.ui:916 data/main_window.ui:231
+#: data/unlock_database.ui:273 data/unlocked_database.ui:588
 msgid "About Password Safe"
 msgstr "A Jelszókezelő névjegye"
 
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:929 data/main_window.ui:355
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:4
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
+#: data/create_database.ui:930 data/main_window.ui:358
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:281
 msgid "Password Safe"
 msgstr "Jelszókezelő"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:930
+#: data/create_database.ui:931
 msgid "Create Safe"
 msgstr "Széf létrehozása"
 
@@ -171,221 +168,192 @@ msgstr "Széf létrehozása"
 msgid "Safe Successfully Created"
 msgstr "Széf sikeresen létrehozva"
 
-#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
 #. Headerbar subtitle for the keepass safe unlock screen.
 #. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
-#: data/created_database.ui:50 data/unlock_database.ui:286
-#: data/unlock_database.ui:354 data/unlocked_database.ui:937
+#: data/created_database.ui:50 data/unlock_database.ui:282
+#: data/unlocked_database.ui:521
 msgid "Open Safe"
 msgstr "Széf kinyitása"
 
-#: data/database_settings_dialog.ui:55
+#: data/color_entry_row.ui:23
+msgid "Color"
+msgstr "Szín"
+
+#: data/database_settings_dialog.ui:64
 msgid "Details"
 msgstr "Részletek"
 
-#: data/database_settings_dialog.ui:80
+#: data/database_settings_dialog.ui:89
 msgid "Path"
 msgstr "Útvonal"
 
-#: data/database_settings_dialog.ui:97
+#: data/database_settings_dialog.ui:106
 msgid "File Size"
 msgstr "Fájlméret"
 
-#: data/database_settings_dialog.ui:114
+#: data/database_settings_dialog.ui:123
 msgid "Safe Name"
 msgstr "Széf neve"
 
 #. KeePass is a proper noun
-#: data/database_settings_dialog.ui:144
+#: data/database_settings_dialog.ui:153
 msgid "KeePass Version"
 msgstr "KeePass verzió"
 
-#: data/database_settings_dialog.ui:161
+#: data/database_settings_dialog.ui:170
 msgid "Creation Date"
 msgstr "Létrehozás dátuma"
 
-#: data/database_settings_dialog.ui:178 data/database_settings_dialog.ui:801
+#: data/database_settings_dialog.ui:187 data/database_settings_dialog.ui:814
 msgid "Encryption Algorithm"
 msgstr "Titkosítási algoritmus"
 
-#: data/database_settings_dialog.ui:195
+#: data/database_settings_dialog.ui:204
 msgid "Derivation Algorithm"
 msgstr "Származtatási algoritmus"
 
 #. Statistics
-#: data/database_settings_dialog.ui:300
+#: data/database_settings_dialog.ui:309
 msgid "Stats"
 msgstr "Statisztikák"
 
-#: data/database_settings_dialog.ui:325
+#: data/database_settings_dialog.ui:334
 msgid "Number of Groups"
 msgstr "Csoportok száma"
 
-#: data/database_settings_dialog.ui:342
+#: data/database_settings_dialog.ui:351
 msgid "Passwords"
 msgstr "Jelszavak"
 
-#: data/database_settings_dialog.ui:359
+#: data/database_settings_dialog.ui:368
 msgid "Number of Entries"
 msgstr "Bejegyzések száma"
 
-#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:55
+#: data/database_settings_dialog.ui:429 data/settings_dialog.ui:15
+#: data/settings_dialog.ui:20
 msgid "General"
 msgstr "Általános"
 
 #. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:461
+#: data/database_settings_dialog.ui:471
 msgid "New"
 msgstr "Új"
 
-#: data/database_settings_dialog.ui:480 data/database_settings_dialog.ui:481
+#: data/database_settings_dialog.ui:490 data/database_settings_dialog.ui:491
 msgid "Generate Password"
 msgstr "Jelszó előállítása"
 
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:494
+#: data/database_settings_dialog.ui:504
 msgid "Confirm"
 msgstr "Megerősítés"
 
 #. Current password
-#: data/database_settings_dialog.ui:524
+#: data/database_settings_dialog.ui:534
 msgid "Current"
 msgstr "Jelenlegi"
 
-#: data/database_settings_dialog.ui:632
+#: data/database_settings_dialog.ui:642
 msgid "Select current keyfile"
 msgstr "Válassza ki a jelenlegi kulcsfájlt"
 
-#: data/database_settings_dialog.ui:708
+#: data/database_settings_dialog.ui:718
 msgid "Generate new keyfile"
 msgstr "Új kulcsfájl előállítása"
 
-#: data/database_settings_dialog.ui:741 data/database_settings_dialog.ui:962
-#: passwordsafe/database_settings_dialog.py:335
-#: passwordsafe/database_settings_dialog.py:357
+#: data/database_settings_dialog.ui:751 data/database_settings_dialog.ui:975
+#: passwordsafe/database_settings_dialog.py:342
+#: passwordsafe/database_settings_dialog.py:364
 msgid "Apply Changes"
 msgstr "Módosítások alkalmazása"
 
-#: data/database_settings_dialog.ui:762
+#: data/database_settings_dialog.ui:772
 msgid "Authentication"
 msgstr "Hitelesítés"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:834
+#: data/database_settings_dialog.ui:847
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256 bites"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:851
+#: data/database_settings_dialog.ui:864
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256 bites"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:868
+#: data/database_settings_dialog.ui:881
 msgid "AES: 256-bit"
 msgstr "AES: 256 bites"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:893
+#: data/database_settings_dialog.ui:906
 msgid "Key Derivation Function"
 msgstr "Kulcsszármaztatási függvény"
 
-#: data/entry_page.ui:34
+#: data/entry_page.ui:32
 msgid "Add Attachment"
 msgstr "Melléklet hozzáadása"
 
-#: data/entry_page.ui:76
+#: data/entry_page.ui:72
 msgid "Attachments"
 msgstr "Mellékletek"
 
-#: data/entry_page.ui:163
+#: data/entry_page.ui:158
 msgid "Secret_Photo.png"
 msgstr "Titkos_fenykep.png"
 
-#: data/entry_page.ui:338
+#: data/entry_page.ui:333
 msgid "Remove attribute"
 msgstr "Tulajdonság eltávolítása"
 
-#: data/entry_page.ui:399
+#: data/entry_page.ui:392
 msgid "Attributes"
 msgstr "Tulajdonságok"
 
-#: data/entry_page.ui:439
+#: data/entry_page.ui:433
 msgid "Key"
 msgstr "Kulcs"
 
-#: data/entry_page.ui:453
+#: data/entry_page.ui:447
 msgid "Value"
 msgstr "Érték"
 
-#: data/entry_page.ui:475
+#: data/entry_page.ui:465
 msgid "Add attribute"
 msgstr "Tulajdonság hozzáadása"
 
-#: data/entry_page.ui:530
-msgid "Color"
-msgstr "Szín"
-
-#: data/entry_page.ui:825
+#: data/entry_page.ui:514
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/entry_page.ui:1197 data/group_page.ui:35 data/references_dialog.ui:65
-#: data/references_dialog.ui:235
+#: data/entry_page.ui:881 data/group_page.ui:33 data/references_dialog.ui:65
+#: data/references_dialog.ui:231
 msgid "Title"
 msgstr "Cím"
 
-#: data/entry_page.ui:1282 data/group_page.ui:120 data/references_dialog.ui:185
-#: data/references_dialog.ui:291
+#: data/entry_page.ui:964 data/group_page.ui:116 data/references_dialog.ui:185
+#: data/references_dialog.ui:287
 msgid "Notes"
 msgstr "Jegyzetek"
 
-#: data/entry_page.ui:1434
-msgid "Length"
-msgstr "Hossz"
-
-#: data/entry_page.ui:1468
-msgid "Characters"
-msgstr "Karakterek"
-
-#: data/entry_page.ui:1576
-msgid "Words"
-msgstr "Szavak"
-
-#: data/entry_page.ui:1609
-msgid "Separator"
-msgstr "Elválasztó"
-
-#: data/entry_page.ui:1626
-msgid "Enter character here…"
-msgstr "Adjon meg egy karaktert itt…"
-
-#: data/entry_page.ui:1637
-msgid "Passphrase"
-msgstr "Jelmondat"
-
-#. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1755
-msgid "Show/hide password"
-msgstr "Jelszó megjelenítése/elrejtése"
-
-#: data/entry_page.ui:1936 data/references_dialog.ui:170
-#: data/references_dialog.ui:277
+#: data/entry_page.ui:1159 data/references_dialog.ui:170
+#: data/references_dialog.ui:273
 msgid "URL"
 msgstr "URL"
 
-#: data/entry_page.ui:2023 data/references_dialog.ui:92
-#: data/references_dialog.ui:249
+#: data/entry_page.ui:1244 data/references_dialog.ui:92
+#: data/references_dialog.ui:245
 msgid "Username"
 msgstr "Felhasználónév"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/main_window.ui:43
+#: data/main_window.ui:45
 msgid "Secure password safe"
 msgstr "Biztonságos jelszótároló"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:62
+#: data/main_window.ui:64
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -393,27 +361,23 @@ msgstr ""
 "Tárolja biztonságosan a jelszavait, jegyzeteit és adatait. <b>Hozzon létre</"
 "b> vagy <b>importáljon</b> egy új Keepass széfet."
 
-#: data/main_window.ui:269
+#: data/main_window.ui:272
 msgid "New…"
 msgstr "Új…"
 
-#: data/main_window.ui:314
+#: data/main_window.ui:317
 msgid "Open…"
 msgstr "Megnyitás…"
 
-#: data/main_window.ui:411
+#: data/main_window.ui:416
 msgid "Recent Databases"
 msgstr "Legutóbbi adatbázisok"
 
-#: data/notes_dialog.ui:15
+#: data/notes_dialog.ui:21
 msgid "Copy"
 msgstr "Másolás"
 
-#: data/notes_dialog.ui:52
-msgid "Close"
-msgstr "Bezárás"
-
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:11
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
 msgid ""
 "Password Safe is a password manager which makes use of the Keepass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
@@ -423,16 +387,20 @@ msgstr ""
 "GNOME asztali környezetbe, egyszerű és rendezett felületet biztosít a "
 "jelszóadatbázisok kezeléséhez."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:71
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:125
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
+
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "Jelszókezelő a GNOME-hoz"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;titkosítás;biztonság;"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:121
+#: data/org.gnome.PasswordSafe.gschema.xml:16
 msgid "Use dark GTK+ theme"
 msgstr "Sötét GTK+ téma használata"
 
@@ -456,7 +424,7 @@ msgstr ""
 "A legutóbb megnyitott adatbázis automatikus megnyitása, ellenkező esetben az "
 "üdvözlőképernyő megjelenítése."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:326
+#: data/org.gnome.PasswordSafe.gschema.xml:26
 msgid "Save every change automatically"
 msgstr "Az összes módosítás automatikus mentése"
 
@@ -480,7 +448,7 @@ msgstr ""
 "Az adatbázis automatikus zárolása megadott számú perc után a biztonság "
 "javítása érdekében."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:737
+#: data/org.gnome.PasswordSafe.gschema.xml:36
 msgid "Clear clipboard after X seconds"
 msgstr "Vágólap törlése X másodperc után"
 
@@ -488,7 +456,7 @@ msgstr "Vágólap törlése X másodperc után"
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr "A jelszó vágólapra másolása után a vágólap törlése biztonsági okokból."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:821
+#: data/org.gnome.PasswordSafe.gschema.xml:41
 msgid "Display passwords in plain text"
 msgstr "Jelszavak megjelenítése egyszerű szövegként"
 
@@ -580,39 +548,133 @@ msgstr ""
 "A legutóbb használt feloldási mód tárolására szolgál, hogy gyorsabb "
 "feloldást tehessen lehetővé."
 
-#: data/override_dialog.ui:8
-msgid "File already exists"
-msgstr "A fájl már létezik"
+#: data/org.gnome.PasswordSafe.gschema.xml:91
+msgid "Use full-text search"
+msgstr "Teljes szöveges keresés használata"
 
-#: data/override_dialog.ui:9
-msgid "Do you want to override it?"
-msgstr "Szeretné felülírni?"
+#: data/org.gnome.PasswordSafe.gschema.xml:92 data/settings_dialog.ui:84
+msgid "Performs a search across all values of entries."
+msgstr "Keresést hajt végre a bejegyzések összes értékén."
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1452
-msgid "Cancel"
-msgstr "Mégse"
+#: data/org.gnome.PasswordSafe.gschema.xml:96
+#| msgctxt "Shortcut window description"
+#| msgid "Create group"
+msgid "Current group search"
+msgstr "Keresés a jelenlegi csoportban"
 
-#: data/override_dialog.ui:35
-msgid "Override"
-msgstr "Felülírás"
+#: data/org.gnome.PasswordSafe.gschema.xml:97 data/settings_dialog.ui:99
+msgid "Only search entries in the current group."
+msgstr "Csak a jelenlegi csoportban keressen bejegyzéseket."
 
-#: data/properties_dialog.ui:13 data/unlocked_database.ui:1209
+#: data/org.gnome.PasswordSafe.gschema.xml:101
+msgid "Use uppercases when generating a password"
+msgstr "Nagybetűk használata egy jelszó előállításakor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:102
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr ""
+"Nagybetűs karakterek használata A-tól Z-ig egy véletlenszerű jelszó"
+" előállításakor."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:106
+msgid "Use lowercases when generating a password"
+msgstr "Kisbetűk használata egy jelszó előállításakor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:107
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr ""
+"Kisbetűs karakterek használata a-tól z-ig egy véletlenszerű jelszó"
+" előállításakor."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:111
+msgid "Use numbers when generating a password"
+msgstr "Számok használata egy jelszó előállításakor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:112
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr ""
+"Szám karakterek használata 0-tól 9-ig egy véletlenszerű jelszó előállításakor."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:116
+msgid "Use symbols when generating a password"
+msgstr "Szimbólumok használata egy jelszó előállításakor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:117
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr ""
+"Nem alfanumerikus ASCII szimbólumok használata egy véletlenszerű jelszó"
+" előállításakor."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:121
+msgid "Password length when generating a password"
+msgstr "Jelszóhossz egy jelszó előállításakor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:166
+msgid "Number of single characters when generating a password."
+msgstr "Önálló karakterek száma egy véletlenszerű jelszó előállításakor."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:126
+msgid "Number of words when generating a passphrase"
+msgstr "Szavak száma egy jelmondat előállításakor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:251
+msgid "Number of words to use when generating a passphrase."
+msgstr "Használandó szavak száma egy jelmondat előállításakor."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:131
+msgid "Separator when generating a passphrase"
+msgstr "Elválasztó egy jelmondat előállításakor"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:269
+msgid "Word separator to use when generating a passphrase."
+msgstr "Használandó szóelválasztó egy jelmondat előállításakor."
+
+#. Tooltip for button near input field to show or hide the password (clear text)
+#: data/password_entry_row.ui:93
+msgid "Show/hide password"
+msgstr "Jelszó megjelenítése/elrejtése"
+
+#: data/password_generator_popover.ui:49
+msgid "Length"
+msgstr "Hossz"
+
+#: data/password_generator_popover.ui:83
+msgid "Characters"
+msgstr "Karakterek"
+
+#: data/password_generator_popover.ui:191
+msgid "Words"
+msgstr "Szavak"
+
+#: data/password_generator_popover.ui:224 data/settings_dialog.ui:268
+msgid "Separator"
+msgstr "Elválasztó"
+
+#: data/password_generator_popover.ui:241
+msgid "Enter character here…"
+msgstr "Adjon meg egy karaktert itt…"
+
+#: data/password_generator_popover.ui:252
+msgid "Passphrase"
+msgstr "Jelmondat"
+
+#: data/properties_dialog.ui:16 data/unlocked_database.ui:648
 msgid "Properties"
 msgstr "Beállítások"
 
-#: data/properties_dialog.ui:48
-msgid "Accessed"
-msgstr "Hozzáférve"
-
-#: data/properties_dialog.ui:66
-msgid "Modified"
-msgstr "Módosítva"
-
-#: data/properties_dialog.ui:85 data/references_dialog.ui:200
+#: data/properties_dialog.ui:45 data/references_dialog.ui:200
 msgid "UUID"
 msgstr "UUID"
 
-#: data/properties_dialog.ui:118
+#: data/properties_dialog.ui:63
+msgid "Accessed"
+msgstr "Hozzáférve"
+
+#: data/properties_dialog.ui:80
+msgid "Modified"
+msgstr "Módosítva"
+
+#: data/properties_dialog.ui:111
 msgid "Created"
 msgstr "Létrehozva"
 
@@ -620,36 +682,36 @@ msgstr "Létrehozva"
 msgid "Code"
 msgstr "Kód"
 
-#: data/references_dialog.ui:38 data/references_dialog.ui:403
-#: data/references_dialog.ui:554
+#: data/references_dialog.ui:38 data/references_dialog.ui:395
+#: data/references_dialog.ui:546
 msgid "Property"
 msgstr "Tulajdonság"
 
-#: data/references_dialog.ui:314 data/unlocked_database.ui:1195
+#: data/references_dialog.ui:309 data/unlocked_database.ui:634
 msgid "References"
 msgstr "Hivatkozások"
 
-#: data/references_dialog.ui:346
+#: data/references_dialog.ui:338
 msgid "Syntax"
 msgstr "Szintaxis"
 
-#: data/references_dialog.ui:361
+#: data/references_dialog.ui:353
 msgid "The placeholder syntax for field references is the following:"
 msgstr "A mezőhivatkozások helykitöltő szintaxisa a következő:"
 
-#: data/references_dialog.ui:402 data/references_dialog.ui:441
+#: data/references_dialog.ui:394 data/references_dialog.ui:433
 msgid "Show Field Codes"
 msgstr "Mezőkódok megjelenítése"
 
-#: data/references_dialog.ui:442
+#: data/references_dialog.ui:434
 msgid "Identifier"
 msgstr "Azonosító"
 
-#: data/references_dialog.ui:524
+#: data/references_dialog.ui:516
 msgid "Reference"
 msgstr "Hivatkozás"
 
-#: data/references_dialog.ui:631
+#: data/references_dialog.ui:625
 msgid ""
 "Each entry has a unique identifier called UUID.\n"
 "It can be found in the properties of the entry."
@@ -657,119 +719,228 @@ msgstr ""
 "Minden bejegyzés egy UUID-nak nevezett egyéni azonosítóval rendelkezik.\n"
 "Ez a bejegyzés tulajdonságai között található."
 
+#: data/search.ui:93
+msgid "No search results"
+msgstr "Nincsenek találatok"
+
+#: data/search.ui:141
+msgid "Enter search term"
+msgstr "Adja meg a keresési kifejezést"
+
 #. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:8
+#: data/quit_dialog.ui:10
 msgid "Do you want to save all safes with unsaved changes?"
 msgstr ""
 "Szeretné elmenteni az összes mentetlen változtatással rendelkező széfet?"
 
 #. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:9
+#: data/quit_dialog.ui:11
 msgid "Select the safes you want to save."
 msgstr "Válassza ki a mentendő széfeket."
 
-#: data/quit_dialog.ui:35
+#: data/quit_dialog.ui:38
 msgid "Quit"
 msgstr "Kilépés"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:8
+#: data/save_dialog.ui:11
 msgid "Unsaved Changes"
 msgstr "Mentetlen változtatások"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:9
+#: data/save_dialog.ui:12
 msgid "Do you want to write all changes to the safe?"
 msgstr "Szeretné kiírni az összes változtatást a széfbe?"
 
 #. Discard all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:22
-msgid "Discard"
-msgstr "Eldobás"
+#: data/save_dialog.ui:25
+msgid "Quit Without Saving"
+msgstr "Kilépés mentés nélkül"
+
+#. Cancel exiting the program
+#: data/save_dialog.ui:35
+msgid "Don't Quit"
+msgstr "Ne lépjen ki"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/entry_page.py:651 passwordsafe/main_window.py:380
-msgid "Save"
-msgstr "Mentés"
+#: data/save_dialog.ui:42
+msgid "Save and Quit"
+msgstr "Mentés és kilépés"
 
-#. Title of the settings dialog
-#: data/settings_dialog.ui:15
-msgid "Settings"
-msgstr "Beállítások"
-
-#: data/settings_dialog.ui:104
+#: data/settings_dialog.ui:24
 msgid "Dark Theme"
 msgstr "Sötét téma"
 
-#: data/settings_dialog.ui:187
+#: data/settings_dialog.ui:25
+#| msgid "Use dark GTK+ theme"
+msgid "Use dark GTK+ theme."
+msgstr "Sötét GTK+ téma használata."
+
+#: data/settings_dialog.ui:39
 msgid "Hide First Start Screen"
 msgstr "Első indítási képernyő elrejtése"
 
-#: data/settings_dialog.ui:204
-msgid "Reopen last opened safe"
-msgstr "Legutóbb megnyitott széf újranyitása"
+#: data/settings_dialog.ui:40
+#| msgid "Reopen last opened safe"
+msgid "Reopen last opened safe."
+msgstr "Legutóbb megnyitott széf újranyitása."
 
-#: data/settings_dialog.ui:260 data/unlocked_database.ui:860
-#: passwordsafe/main_window.py:382
+#: data/settings_dialog.ui:57 data/unlocked_database.ui:444
+#: passwordsafe/main_window.py:394
 msgid "Safe"
 msgstr "Széf"
 
-#: data/settings_dialog.ui:309
-msgid "Save automatically"
+#: data/settings_dialog.ui:61
+#| msgid "Save automatically"
+msgid "Save Automatically"
 msgstr "Automatikus mentés"
 
-#: data/settings_dialog.ui:382 data/unlock_database.ui:84
-#: data/unlock_database.ui:226 data/unlock_database.ui:468
+#: data/settings_dialog.ui:62
+#| msgid "Save every change automatically"
+msgid "Save every change automatically."
+msgstr "Az összes módosítás automatikus mentése."
+
+#. Button tooltip in headerbar to open search page
+#: data/settings_dialog.ui:79 data/unlocked_database.ui:43
+msgid "Search"
+msgstr "Keresés"
+
+#: data/settings_dialog.ui:83
+#| msgid "Full Text"
+msgid "Full-Text Search"
+msgstr "Teljes szöveges keresés"
+
+#: data/settings_dialog.ui:98
+msgid "Current Group Search"
+msgstr "Keresés a jelenlegi csoportban"
+
+#: data/settings_dialog.ui:116 data/unlock_database.ui:83
+#: data/unlock_database.ui:223 data/unlock_database.ui:376
 msgid "Unlock"
 msgstr "Feloldás"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:431
+#: data/settings_dialog.ui:120
 msgid "Remember Composite Key"
 msgstr "Összetett kulcs megjegyzése"
 
 #. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:448
-msgid "Remember last used composite key"
-msgstr "Legutóbb használt összetett kulcs megjegyzése"
+#: data/settings_dialog.ui:121
+#| msgid "Remember last used composite key"
+msgid "Remember last used composite key."
+msgstr "Legutóbb használt összetett kulcs megjegyzése."
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:514
+#: data/settings_dialog.ui:135
 msgid "Remember Unlock Method"
 msgstr "Feloldási mód megjegyzése"
 
-#: data/settings_dialog.ui:531
-msgid "Enable faster unlocking"
-msgstr "Gyorsabb feloldás engedélyezése"
+#: data/settings_dialog.ui:136
+#| msgid "Enable faster unlocking"
+msgid "Enable faster unlocking."
+msgstr "Gyorsabb feloldás engedélyezése."
 
-#: data/settings_dialog.ui:587
+#: data/settings_dialog.ui:161
+#| msgid "Password Safe"
+msgid "Password Generation"
+msgstr "Jelszó-előállítás"
+
+#: data/settings_dialog.ui:165
+#| msgid "Password Safe"
+msgid "Password Length"
+msgstr "Jelszóhossz"
+
+#: data/settings_dialog.ui:183
+#| msgid "Characters"
+msgid "Uppercase Characters"
+msgstr "Nagybetűs karakterek"
+
+#: data/settings_dialog.ui:184
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Nagybetűs karakterek használata A-tól Z-ig egy jelszó előállításakor."
+
+#: data/settings_dialog.ui:198
+#| msgid "Characters"
+msgid "Lowercase Characters"
+msgstr "Kisbetűs karakterek"
+
+#: data/settings_dialog.ui:199
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Kisbetűs karakterek használata a-tól z-ig egy jelszó előállításakor."
+
+#: data/settings_dialog.ui:213
+#| msgid "Characters"
+msgid "Numeric Characters"
+msgstr "Szám karakterek"
+
+#: data/settings_dialog.ui:214
+msgid "Use numeric characters when generating a password."
+msgstr "Szám karakterek használata egy jelszó előállításakor."
+
+#: data/settings_dialog.ui:228
+#| msgid "Characters"
+msgid "Special Characters"
+msgstr "Különleges karakterek"
+
+#: data/settings_dialog.ui:229
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr ""
+"Nem alfanumerikus ASCII szimbólumok használata egy jelszó előállításakor."
+
+#: data/settings_dialog.ui:246
+#| msgid "Passphrase"
+msgid "Passphrase Generation"
+msgstr "Jelmondat-előállítás"
+
+#: data/settings_dialog.ui:250
+#| msgid "Passphrase"
+msgid "Passphrase Length"
+msgstr "Jelmondat hossza"
+
+#: data/settings_dialog.ui:278
+#| msgid "Enter search term"
+msgid "Enter Character"
+msgstr "Adja meg a karaktert"
+
+#: data/settings_dialog.ui:292 data/settings_dialog.ui:297
 msgid "Security"
 msgstr "Biztonság"
 
-#: data/settings_dialog.ui:636
+#: data/settings_dialog.ui:301
 msgid "Safe Lock Timeout"
 msgstr "Széf zárolási időkorlát"
 
-#: data/settings_dialog.ui:653
-msgid "Lock safe on idle after X minutes"
-msgstr "Széf zárolása X percnyi tétlenség után"
+#: data/settings_dialog.ui:302
+#| msgid "Lock safe on idle after X minutes"
+msgid "Lock safe on idle after X minutes."
+msgstr "Széf zárolása X percnyi tétlenség után."
 
-#: data/settings_dialog.ui:720
+#: data/settings_dialog.ui:319
 msgid "Clear Clipboard"
 msgstr "Vágólap törlése"
 
-#: data/settings_dialog.ui:804
+#: data/settings_dialog.ui:320
+#| msgid "Clear clipboard after X seconds"
+msgid "Clear clipboard after X seconds."
+msgstr "Vágólap törlése X másodperc után."
+
+#: data/settings_dialog.ui:337
 msgid "Show Password Fields"
 msgstr "Jelszómezők megjelenítése"
 
-#: data/settings_dialog.ui:887
+#: data/settings_dialog.ui:338
+#| msgid "Display passwords in plain text"
+msgid "Display passwords in plain text."
+msgstr "Jelszavak megjelenítése egyszerű szövegként."
+
+#: data/settings_dialog.ui:352
 msgid "Clear Recent List"
 msgstr "Legutóbbiak listájának törlése"
 
-#: data/settings_dialog.ui:904
-msgid "Clear the recently opened safes list"
-msgstr "A legutóbb megnyitott széfek listájának törlése"
+#: data/settings_dialog.ui:353
+#| msgid "Clear the recently opened safes list"
+msgid "Clear the recently opened safes list."
+msgstr "A legutóbb megnyitott széfek listájának törlése."
 
 #: data/shortcuts_overview.ui:14
 msgctxt "Shortcut window description"
@@ -791,333 +962,348 @@ msgctxt "Shortcut window description"
 msgid "Open preferences"
 msgstr "Beállítások megnyitása"
 
-#: data/shortcuts_overview.ui:41
+#: data/shortcuts_overview.ui:39
+#| msgid "Quit"
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Kilépés"
+
+#: data/shortcuts_overview.ui:48
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Széf"
 
-#: data/shortcuts_overview.ui:45
+#: data/shortcuts_overview.ui:52
 msgctxt "Shortcut window description"
 msgid "Lock safe"
 msgstr "Széf zárolása"
 
-#: data/shortcuts_overview.ui:52
+#: data/shortcuts_overview.ui:59
 msgctxt "Shortcut window description"
 msgid "Save safe"
 msgstr "Széf mentése"
 
-#: data/shortcuts_overview.ui:59
+#: data/shortcuts_overview.ui:66
 msgctxt "Shortcut window description"
 msgid "Open search"
 msgstr "Keresés megnyitása"
 
-#: data/shortcuts_overview.ui:66
+#: data/shortcuts_overview.ui:73
 msgctxt "Shortcut window description"
 msgid "Create entry"
 msgstr "Bejegyzés létrehozása"
 
-#: data/shortcuts_overview.ui:73
+#: data/shortcuts_overview.ui:80
 msgctxt "Shortcut window description"
 msgid "Create group"
 msgstr "Csoport létrehozása"
 
-#: data/shortcuts_overview.ui:82
+#: data/shortcuts_overview.ui:89
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Bejegyzés"
 
-#: data/shortcuts_overview.ui:86
+#: data/shortcuts_overview.ui:93
 msgctxt "Shortcut window description"
 msgid "Copy password"
 msgstr "Jelszó másolása"
 
-#: data/shortcuts_overview.ui:93
+#: data/shortcuts_overview.ui:100
 msgctxt "Shortcut window description"
 msgid "Exit entry page"
 msgstr "Kilépés a bejegyzés lapjáról"
 
-#: data/unlock_database.ui:27
+#: data/unlock_database.ui:28
 msgid "Enter password and select keyfile to unlock"
 msgstr "Adja meg a jelszót, és válassza ki a kulcsfájlt a feloldáshoz"
 
-#: data/unlock_database.ui:43 data/unlock_database.ui:175
-#: data/unlock_database.ui:515
+#: data/unlock_database.ui:43 data/unlock_database.ui:173
+#: data/unlock_database.ui:422
 msgid "Safe is Locked"
 msgstr "A széf zárolva van"
 
-#: data/unlock_database.ui:159
+#: data/unlock_database.ui:158
 msgid "Select keyfile to unlock"
 msgstr "Válassza ki a kulcsfájlt a feloldáshoz"
 
-#: data/unlock_database.ui:208
+#: data/unlock_database.ui:205
 msgid "Open Keyfile"
 msgstr "Kulcsfájl megnyitása"
 
-#. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:272 data/unlocked_database.ui:923
-msgid "New Safe"
-msgstr "Új széf"
+#. Menubutton in headerbar for starting the safe creation process
+#: data/unlock_database.ui:255
+#| msgid "New Safe"
+msgid "_New Safe"
+msgstr "Ú_j széf"
 
-#: data/unlock_database.ui:499
+#. Menubutton in headerbar for starting the safe opening process (for existing safe)
+#: data/unlock_database.ui:259
+#| msgid "Open Safe"
+msgid "_Open Safe"
+msgstr "Széf _kinyitása"
+
+#: data/unlock_database.ui:265
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_Beállítások"
+
+#: data/unlock_database.ui:269
+#| msgid "Keyboard Shortcuts"
+msgid "_Keyboard Shortcuts"
+msgstr "_Gyorsbillentyűk"
+
+#: data/unlock_database.ui:407
 msgid "Enter password to unlock"
 msgstr "Adja meg a jelszót a feloldáshoz"
 
-#: data/unlock_database.ui:590
+#: data/unlock_database.ui:497
 msgid "Failed to unlock safe"
 msgstr "A széf feloldása sikertelen"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:21 data/unlocked_database.ui:1299
+#: data/unlocked_database.ui:21 data/unlocked_database.ui:738
 msgid "Selection Mode"
 msgstr "Kiválasztási mód"
 
-#. Button tooltip in headerbar to open search page
-#: data/unlocked_database.ui:43
-msgid "Search"
-msgstr "Keresés"
-
-#: data/unlocked_database.ui:211
+#: data/unlocked_database.ui:196
 msgid "Empty group"
 msgstr "Üres csoport"
 
-#: data/unlocked_database.ui:267
-msgid "No search results"
-msgstr "Nincsenek találatok"
-
-#: data/unlocked_database.ui:620
-msgid "Enter search term"
-msgstr "Adja meg a keresési kifejezést"
-
-#: data/unlocked_database.ui:683 data/unlocked_database.ui:827
+#: data/unlocked_database.ui:267 data/unlocked_database.ui:411
 msgid "Sorting"
 msgstr "Rendezés"
 
 #. This string depicts the alphabet from the beginning to the end (first character to last one).
-#: data/unlocked_database.ui:700
+#: data/unlocked_database.ui:284
 msgid "A-Z"
 msgstr "A-Z"
 
 #. This string depicts the alphabet in reversed order, from the end to the start (last character to first one).
-#: data/unlocked_database.ui:714
+#: data/unlocked_database.ui:298
 msgid "Z-A"
 msgstr "Z-A"
 
 #. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:728
+#: data/unlocked_database.ui:312
 msgid "Last Added"
 msgstr "Legutóbb hozzáadva"
 
-#: data/unlocked_database.ui:783
+#: data/unlocked_database.ui:345 passwordsafe/entry_page.py:550
+msgid "Save"
+msgstr "Mentés"
+
+#: data/unlocked_database.ui:367
 msgid "Lock"
 msgstr "Zárolás"
 
-#: data/unlocked_database.ui:874
+#: data/unlocked_database.ui:458
 msgid "New Entry"
 msgstr "Új bejegyzés"
 
-#: data/unlocked_database.ui:888
+#: data/unlocked_database.ui:472
 msgid "New Group"
 msgstr "Új csoport"
 
+#. Menubutton popover in headerbar for starting the safe creation process
+#: data/unlocked_database.ui:507
+msgid "New Safe"
+msgstr "Új széf"
+
 #. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:951
+#: data/unlocked_database.ui:535
 msgid "Safe Settings"
 msgstr "Széfbeállítások"
 
-#: data/unlocked_database.ui:1066
-msgid "Local"
-msgstr "Helyi"
-
-#: data/unlocked_database.ui:1078
-msgid "Full Text"
-msgstr "Teljes szöveges"
-
-#: data/unlocked_database.ui:1181
+#: data/unlocked_database.ui:620
 msgid "Duplicate"
 msgstr "Kettőzés"
 
-#: data/unlocked_database.ui:1234
+#: data/unlocked_database.ui:673
 msgid "Delete"
 msgstr "Törlés"
 
+#: data/unlocked_database.ui:786
+msgid "Click on a checkbox to select"
+msgstr "Kattintson egy jelölőmezőre a kiválasztáshoz"
+
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1415
+#: data/unlocked_database.ui:895
 msgid "Move selection"
 msgstr "Kiválasztás áthelyezése"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1435
+#: data/unlocked_database.ui:915
 msgid "Delete selection"
 msgstr "Kiválasztás törlése"
 
-#: data/unlocked_database.ui:1482
+#: data/unlocked_database.ui:932
+msgid "Cancel"
+msgstr "Mégse"
+
+#: data/unlocked_database.ui:975
 msgid "Select all"
 msgstr "Összes kiválasztása"
 
-#: data/unlocked_database.ui:1496
+#: data/unlocked_database.ui:989
 msgid "Select none"
 msgstr "Kiválasztás megszüntetése"
 
-#: data/unlocked_database.ui:1526
-msgid "Click on a checkbox to select"
-msgstr "Kattintson egy jelölőmezőre a kiválasztáshoz"
-
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:239
-#: passwordsafe/database_settings_dialog.py:216
+#: passwordsafe/create_database.py:240
+#: passwordsafe/database_settings_dialog.py:227
 msgid "Choose location for keyfile"
 msgstr "Válassza ki a kulcsfájl helyét"
 
-#: passwordsafe/create_database.py:259
+#: passwordsafe/create_database.py:253
 msgid "Generating…"
 msgstr "Előállítás…"
 
-#. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-#: passwordsafe/database_manager.py:384
+#: passwordsafe/database_manager.py:484
 msgid "Clone"
 msgstr "Klónozás"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/database_settings_dialog.py:178
+#: passwordsafe/database_settings_dialog.py:184
 msgid "Choose current keyfile"
 msgstr "Válassza ki a jelenlegi kulcsfájlt"
 
-#: passwordsafe/database_settings_dialog.py:179
+#: passwordsafe/database_settings_dialog.py:185
 msgid "Open"
 msgstr "Megnyitás"
 
-#: passwordsafe/database_settings_dialog.py:290
-#: passwordsafe/database_settings_dialog.py:346
+#: passwordsafe/database_settings_dialog.py:298
+#: passwordsafe/database_settings_dialog.py:353
 msgid "Apply…"
 msgstr "Alkalmaz…"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:388
+#: passwordsafe/database_settings_dialog.py:395
 msgid "Unknown"
 msgstr "Ismeretlen"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:391
+#: passwordsafe/database_settings_dialog.py:398
 msgid "AES 256-bit"
 msgstr "256 bites AES"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:394
+#: passwordsafe/database_settings_dialog.py:401
 msgid "ChaCha20 256-bit"
 msgstr "256 bites ChaCha20"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:397
+#: passwordsafe/database_settings_dialog.py:404
 msgid "Twofish 256-bit"
 msgstr "256 bites Twofish"
 
-#: passwordsafe/entry_page.py:512 passwordsafe/entry_page.py:575
+#: passwordsafe/entry_page.py:402 passwordsafe/entry_page.py:472
 msgid "Attribute key already exists"
 msgstr "A tulajdonságkulcs már létezik"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:603
+#: passwordsafe/entry_page.py:502
 msgid "Select attachment"
 msgstr "Válasszon mellékletet"
 
-#: passwordsafe/entry_page.py:604
+#: passwordsafe/entry_page.py:503
 msgid "Add"
 msgstr "Hozzáadás"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:650
+#: passwordsafe/entry_page.py:549
 msgid "Save attachment"
 msgstr "Melléklet mentése"
 
-#: passwordsafe/entry_row.py:63
+#: passwordsafe/entry_row.py:65
 msgid "Title not specified"
 msgstr "Cím nincs megadva"
 
-#: passwordsafe/entry_row.py:74
+#: passwordsafe/entry_row.py:71
 msgid "No username specified"
 msgstr "Felhasználónév nincs megadva"
 
-#: passwordsafe/group_row.py:37
+#: passwordsafe/group_row.py:49
 msgid "No group title specified"
 msgstr "Csoportcím nincs megadva"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:293
 msgid "Choose a Keepass safe"
 msgstr "Válasszon egy Keepass széfet"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:307 passwordsafe/main_window.py:388
+#: passwordsafe/main_window.py:303 passwordsafe/main_window.py:400
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 adatbázis"
 
-#: passwordsafe/main_window.py:336
+#: passwordsafe/main_window.py:332
 msgid "Unable to open file \"{}\"."
 msgstr "A(z) „{}” fájl nem nyitható meg."
 
-#: passwordsafe/main_window.py:339
+#: passwordsafe/main_window.py:335
 msgid "File type {} ({}) is not supported."
 msgstr "A(z) {} ({}) fájltípus nem támogatott."
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:379
+#: passwordsafe/main_window.py:387
 msgid "Choose location for Keepass safe"
 msgstr "Válasszon egy helyet a Keepass széfnek"
 
-#: passwordsafe/selection_ui.py:175
+#: passwordsafe/main_window.py:390
+#| msgid "Created"
+msgid "Create"
+msgstr "Létrehozás"
+
+#: passwordsafe/selection_ui.py:170
 msgid "Deletion completed"
 msgstr "Törlés befejezve"
 
-#: passwordsafe/selection_ui.py:242
+#: passwordsafe/selection_ui.py:246
 msgid "Move completed"
 msgstr "Áthelyezés befejezve"
 
-#: passwordsafe/selection_ui.py:244
+#: passwordsafe/selection_ui.py:248
 msgid "Skipped moving group into itself"
 msgstr "Csoport saját magába áthelyezése kihagyva"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:222
 msgid "Database already opened"
 msgstr "Az adatbázis már nyitott"
 
-#. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:300
+#: passwordsafe/unlock_database.py:245
 msgid "Choose a keyfile"
 msgstr "Válasszon egy kulcsfájlt"
 
-#: passwordsafe/unlock_database.py:353 passwordsafe/unlock_database.py:410
-msgid "Try again"
-msgstr "Próbálja újra"
-
-#. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:419
+#: passwordsafe/unlock_database.py:284
 msgid "Choose Keyfile"
 msgstr "Válasszon kulcsfájlt"
 
-#: passwordsafe/unlocked_database.py:482
+#: passwordsafe/unlock_database.py:559
+msgid "Try again"
+msgstr "Próbálja újra"
+
+#: passwordsafe/unlocked_database.py:578
 msgid "Database saved"
 msgstr "Adatbázis mentve"
 
-#. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:485
+#: passwordsafe/unlocked_database.py:582
 msgid "Please wait. Another save is running."
 msgstr "Kis türelmet. Egy másik mentés is fut."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:488
+#: passwordsafe/unlocked_database.py:586
 msgid "No changes made"
 msgstr "Nincsenek módosítások"
 
-#: passwordsafe/unlocked_database.py:667
+#: passwordsafe/unlocked_database.py:726
 msgid "Copied to clipboard"
 msgstr "Vágólapra másolva"
 
-#. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:822
+#: passwordsafe/unlocked_database.py:904
 #, python-format
 msgid "%s locked"
 msgstr "%s zárolva"
 
-#: passwordsafe/unlocked_database.py:822
+#: passwordsafe/unlocked_database.py:910
 msgid "Keepass safe locked due to inactivity"
 msgstr "Keepass széf tétlenség miatt zárolva"

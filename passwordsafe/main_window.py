@@ -364,7 +364,7 @@ class MainWindow(Adw.ApplicationWindow):
     def create_tab(self, title, headerbar):
         page_instance = ContainerPage(headerbar, Gio.Application.get_default().development_mode)
 
-        tab_hbox = Gtk.Box.new(False, 0)
+        tab_hbox = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 6)
         tab_label = Gtk.Label.new(title)
         tab_hbox.prepend(tab_label)
 

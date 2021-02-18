@@ -5,7 +5,8 @@ import logging
 import os
 import threading
 from gettext import gettext as _
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk, Adw
+
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 import passwordsafe.config_manager
 from passwordsafe.container_page import ContainerPage
@@ -17,6 +18,7 @@ from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
+from passwordsafe.widgets.recent_files_headerbar import RecentFilesHeaderbar
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/main_window.ui")
@@ -31,7 +33,6 @@ class MainWindow(Adw.ApplicationWindow):
     _notification = Notification()
 
     container = Gtk.Template.Child()
-    _headerbar = Gtk.Template.Child()
     _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
@@ -51,6 +52,9 @@ class MainWindow(Adw.ApplicationWindow):
         self._main_view.add_child(self.recent_files_page)
         self._main_overlay.add_overlay(self._notification)
 
+        self._recent_files_headerbar = RecentFilesHeaderbar()
+        self.add_headerbar(self._recent_files_headerbar)
+
         self.assemble_window()
         self.setup_actions()
 
@@ -62,7 +66,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     def set_headerbar(self, headerbar: Adw.HeaderBar | None = None) -> None:
         if headerbar is None:
-            self._title_stack.set_visible_child(self._headerbar)
+            self._title_stack.set_visible_child(self._recent_files_headerbar)
             return
 
         self.add_headerbar(headerbar)

@@ -11,45 +11,7 @@
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkStack" id="_title_stack">
-            <child>
-              <object class="GtkStackPage">
-                <property name="name">recent_files_headerbar</property>
-                <property name="child">
-                  <object class="AdwHeaderBar" id="_headerbar">
-                    <child>
-                      <object class="GtkBox" id="linkedbox_left">
-                        <property name="spacing">6</property>
-                        <child>
-                          <object class="GtkButton" id="new_file_button">
-                            <property name="tooltip_text" translatable="yes">New…</property>
-                            <property name="icon_name">list-add-symbolic</property>
-                            <property name="action_name">app.new_database</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="open_file_button">
-                            <property name="tooltip_text" translatable="yes">Open…</property>
-                            <property name="action_name">app.open_database</property>
-                            <property name="icon_name">document-open-symbolic</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="end">
-                      <object class="GtkMenuButton" id="menupopover_button">
-                        <property name="menu_model">recent_files_menu</property>
-                        <property name="icon_name">open-menu-symbolic</property>
-                      </object>
-                    </child>
-                    <style>
-                      <class name="titlebar"/>
-                    </style>
-                  </object>
-                </property>
-              </object>
-            </child>
-          </object>
+          <object class="GtkStack" id="_title_stack"/>
         </child>
         <child>
           <object class="GtkOverlay" id="_main_overlay">
@@ -90,20 +52,4 @@
       </object>
     </child>
   </template>
-  <menu id="recent_files_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">app.settings</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes" comments="&quot;Password Safe&quot; is the application name">_About Password Safe</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>

@@ -36,7 +36,7 @@ class MainWindow(Adw.ApplicationWindow):
     _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
-    _title_stack = Gtk.Template.Child()
+    _headerbar_stack = Gtk.Template.Child()
 
     mobile_layout = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
@@ -66,15 +66,15 @@ class MainWindow(Adw.ApplicationWindow):
 
     def set_headerbar(self, headerbar: Adw.HeaderBar | None = None) -> None:
         if headerbar is None:
-            self._title_stack.set_visible_child(self._recent_files_headerbar)
+            self._headerbar_stack.set_visible_child(self._recent_files_headerbar)
             return
 
         self.add_headerbar(headerbar)
-        self._title_stack.set_visible_child(headerbar)
+        self._headerbar_stack.set_visible_child(headerbar)
 
     def add_headerbar(self, headerbar: Adw.HeaderBar) -> None:
-        if not self._title_stack.get_page(headerbar):
-            self._title_stack.add_child(headerbar)
+        if not self._headerbar_stack.get_page(headerbar):
+            self._headerbar_stack.add_child(headerbar)
 
     def assemble_window(self) -> None:
         window_size = passwordsafe.config_manager.get_window_size()
@@ -176,7 +176,7 @@ class MainWindow(Adw.ApplicationWindow):
     def display_welcome_page(self) -> None:
         """Shown when there is no autoloading and no recent files to display"""
         self._main_view.set_visible_child(self.welcome_page)
-        self._title_stack.set_visible_child_name("recent_files_headerbar")
+        self._headerbar_stack.set_visible_child_name("recent_files_headerbar")
 
     #
     # Open Database Methods

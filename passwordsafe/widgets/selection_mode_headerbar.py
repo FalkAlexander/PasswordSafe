@@ -21,7 +21,7 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
 
     unlocked_database = NotImplemented
 
-    cut_mode = True
+    _cut_mode = True
 
     entries_selected: list[EntryRow] = []
     groups_selected: list[GroupRow] = []
@@ -31,8 +31,10 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
 
     hidden_rows = Gio.ListStore.new(Gtk.ListBoxRow)
 
-    _cut_paste_button = Gtk.Template.Child()
+    _cut_button = Gtk.Template.Child()
+    _cut_paste_button_stack = Gtk.Template.Child()
     _delete_button = Gtk.Template.Child()
+    _paste_button = Gtk.Template.Child()
     _pathbar_bin = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
 
@@ -106,31 +108,28 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
         self._clear_all()
 
     @Gtk.Template.Callback()
-    def _on_cut_paste_button_clicked(self, _widget):
-        # pylint: disable=too-many-branches
+    def _on_cut_button_clicked(self, _widget):
         self.unlocked_database.start_database_lock_timer()
 
-        if self.cut_mode is True:
-            self.entries_cut = self.entries_selected
-            self.groups_cut = self.groups_selected
-            self._cut_paste_button.set_icon_name("edit-paste-symbolic")
-            for group_row in self.groups_selected:
-                group_row.hide()
-                self.hidden_rows.append(group_row)
-            for entry_row in self.entries_selected:
-                entry_row.hide()
-                self.hidden_rows.append(entry_row)
+        self.entries_cut = self.entries_selected
+        self.groups_cut = self.groups_selected
+        for group_row in self.groups_selected:
+            group_row.hide()
+            self.hidden_rows.append(group_row)
+        for entry_row in self.entries_selected:
+            entry_row.hide()
+            self.hidden_rows.append(entry_row)
 
-            # Do not allow to delete the entries or rows
-            # that were selected to be cut.
-            if self.entries_selected or self.groups_selected:
-                self._delete_button.set_sensitive(False)
+        # Do not allow to delete the entries or rows
+        # that were selected to be cut.
+        if self.entries_selected or self.groups_selected:
+            self._delete_button.set_sensitive(False)
 
-            self.cut_mode = False
-            return
+        self.cut_mode = False
 
-        self._cut_paste_button.set_icon_name("edit-cut-symbolic")
-        self.cut_mode = True
+    @Gtk.Template.Callback()
+    def _on_paste_button_clicked(self, _widget):
+        self.unlocked_database.start_database_lock_timer()
 
         # Abort the entire operation if one of the selected groups is a parent of
         # the current group.
@@ -221,7 +220,7 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
 
     def _update_selection(self) -> None:
         non_empty_selection = self.entries_selected or self.groups_selected
-        self._cut_paste_button.set_sensitive(non_empty_selection)
+        self._cut_button.set_sensitive(non_empty_selection)
         self._delete_button.set_sensitive(non_empty_selection)
 
         self.props.selected_elements = len(self.entries_selected) + len(
@@ -231,14 +230,13 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
     def _clear_all(self) -> None:
         """Resets everything to the default state"""
         self.props.selected_elements = 0
-        self.cut_mode = True
+        self.props.cut_mode = True
         self.entries_cut.clear()
         self.groups_cut.clear()
         self.entries_selected.clear()
         self.groups_selected.clear()
         self._delete_button.set_sensitive(False)
-        self._cut_paste_button.set_sensitive(False)
-        self._cut_paste_button.set_icon_name("edit-cut-symbolic")
+        self._cut_button.set_sensitive(False)
         for row in self.hidden_rows:
             row.show()
 
@@ -251,3 +249,16 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
         their entries. It differs from the action app.selection.none, since
         the later removes seleced entries only for the visible listbox."""
         debug("Clear selection signal emited")
+
+    @GObject.Property(type=bool, default=True, flags=GObject.ParamFlags.READWRITE)
+    def cut_mode(self) -> bool:
+        return self._cut_mode
+
+    @cut_mode.setter  # type: ignore
+    def cut_mode(self, mode: bool) -> None:
+        stack = self._cut_paste_button_stack
+        self._cut_mode = mode
+        if mode:
+            stack.set_visible_child(self._cut_button)
+        else:
+            stack.set_visible_child(self._paste_button)

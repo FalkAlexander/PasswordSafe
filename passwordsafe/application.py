@@ -42,10 +42,15 @@ class Application(Gtk.Application):
 
     def do_startup(self):  # pylint: disable=arguments-differ
         Gtk.Application.do_startup(self)
-
         Adw.init()
-        self.connect("open", self.file_open_handler)
-        self.connect("shutdown", self._on_shutdown_action)
+
+    def do_open(self, g_file_list, _n_files, _hint):  # pylint: disable=arguments-differ
+        for g_file in g_file_list:
+            self.file_list.append(g_file)
+            if self.window is not None:
+                self.window.start_database_opening_routine(g_file.get_path())
+
+        self.do_activate()
 
     def do_handle_local_options(        # pylint: disable=arguments-differ
         self, options: GLib.VariantDict
@@ -85,6 +90,14 @@ class Application(Gtk.Application):
         self.add_global_accelerators()
 
         self.window.present()
+
+    def do_shutdown(self) -> None:
+        """Activated on shutdown. Cleans all remaining processes."""
+        self.window.save_window_size()
+        for database in self.window.opened_databases:
+            database.cleanup()
+
+        Gtk.Application.do_shutdown(self)
 
     def setup_actions(self):
         actions = [
@@ -204,20 +217,6 @@ class Application(Gtk.Application):
 
         if not unsaved_database_list:
             GLib.idle_add(self.quit)
-
-    def _on_shutdown_action(self, _action: Gio.SimpleAction) -> None:
-        """Activated on shutdown signal. Cleans all remaining processes."""
-        self.window.save_window_size()
-        for database in self.window.opened_databases:
-            database.cleanup()
-
-    def file_open_handler(self, _application, g_file_list, _amount, _ukwn):
-        for g_file in g_file_list:
-            self.file_list.append(g_file)
-            if self.window is not None:
-                self.window.start_database_opening_routine(g_file.get_path())
-
-        self.do_activate()
 
     def add_global_accelerators(self):
         self.set_accels_for_action("app.settings", ["<primary>comma"])

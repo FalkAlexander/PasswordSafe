@@ -18,7 +18,7 @@ class DatabaseSettingsDialog:
     # pylint: disable=too-many-instance-attributes
 
     new_password: str | None = None
-    new_keyfile_path = NotImplemented
+    new_keyfile_path = None
 
     entries_number = NotImplemented
     groups_number = NotImplemented
@@ -235,11 +235,6 @@ class DatabaseSettingsDialog:
     #
 
     def on_auth_apply_button_clicked(self, button):
-        if self.new_password is not None:
-            if self.new_keyfile_path is NotImplemented and self.database_manager.keyfile_hash is not NotImplemented:
-                self.database_manager.keyfile = None
-                self.database_manager.keyfile_hash = NotImplemented
-
         self.database_manager.password = self.new_password
         self.database_manager.keyfile = self.new_keyfile_path
 
@@ -275,7 +270,7 @@ class DatabaseSettingsDialog:
         self.generate_keyfile_button.set_icon_name("security-high-symbolic")
 
         self.new_password = None
-        self.new_keyfile_path = NotImplemented
+        self.new_keyfile_path = None
 
         self.auth_apply_button.set_label(_("Apply Changes"))
         self.auth_apply_button.set_sensitive(False)

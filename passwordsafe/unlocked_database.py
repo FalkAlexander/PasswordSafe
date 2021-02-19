@@ -633,7 +633,7 @@ class UnlockedDatabase(GObject.GObject):
         if passwordsafe.config_manager.get_save_automatically() is True:
             self.database_manager.save_database()
 
-        return True
+        return GLib.SOURCE_CONTINUE
 
     #
     # DBus

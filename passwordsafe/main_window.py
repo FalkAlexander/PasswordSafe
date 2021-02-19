@@ -145,11 +145,11 @@ class MainWindow(Adw.ApplicationWindow):
         if passwordsafe.config_manager.get_first_start_screen():
             # simply load the last opened file
             filepath = None
-            file: Gio.File = Gio.File.new_for_uri(
+            gfile: Gio.File = Gio.File.new_for_uri(
                 passwordsafe.config_manager.get_last_opened_database()
             )
-            if Gio.File.query_exists(file):
-                filepath = file.get_path()
+            if Gio.File.query_exists(gfile):
+                filepath = gfile.get_path()
                 logging.debug("Opening last opened database: %s", filepath)
                 self.start_database_opening_routine(filepath)
                 return

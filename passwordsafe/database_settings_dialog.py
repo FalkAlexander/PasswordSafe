@@ -60,14 +60,6 @@ class DatabaseSettingsDialog:
         )
 
     def __setup_widgets(self) -> None:
-        self.auth_apply_button.set_sensitive(False)
-
-        if self.database_manager.keyfile_hash is NotImplemented:
-            self.generate_keyfile_button.set_sensitive(True)
-            self.select_keyfile_button.set_sensitive(False)
-        else:
-            self.generate_keyfile_button.set_sensitive(False)
-
         # Password Level Bar
         level_bar = self.builder.get_object("password_level_bar")
         level_bar.add_offset_value("weak", 1.0)
@@ -111,7 +103,6 @@ class DatabaseSettingsDialog:
             self.builder.get_object("password_level_bar").set_value(level or 0)
 
         if new_password != conf_password:
-            self.auth_apply_button.set_sensitive(False)
             new_password_entry.add_css_class("error")
             conf_password_entry.add_css_class("error")
             return
@@ -184,12 +175,9 @@ class DatabaseSettingsDialog:
                 keyfile_hash == self.database_manager.keyfile_hash
                 or self.database_manager.keyfile_hash is NotImplemented
             ):
-                self.generate_keyfile_button.set_sensitive(True)
-
                 if keyfile_hash == self.database_manager.keyfile_hash:
                     self.new_keyfile_path = selected_keyfile
 
-                button.set_sensitive(False)
                 button.set_icon_name("object-select-symbolic")
             else:
                 button.set_icon_name("edit-delete-symbolic")
@@ -219,8 +207,6 @@ class DatabaseSettingsDialog:
                                  response: Gtk.ResponseType,
                                  _dialog: Gtk.Dialog) -> None:
         if response == Gtk.ResponseType.ACCEPT:
-            self.generate_keyfile_button.set_sensitive(False)
-
             spinner = Gtk.Spinner()
             spinner.start()
             self.generate_keyfile_button.set_child(spinner)
@@ -241,7 +227,6 @@ class DatabaseSettingsDialog:
 
     def keyfile_generated(self):
         self.generate_keyfile_button.set_icon_name("object-select-symbolic")
-        self.generate_keyfile_button.set_sensitive(True)
 
         self.auth_apply_button.set_sensitive(True)
 
@@ -265,10 +250,7 @@ class DatabaseSettingsDialog:
             self.database_manager.keyfile_hash = self.database_manager.create_keyfile_hash(str(self.new_keyfile_path))
 
         # Insensitive entries and buttons
-        self.builder.get_object("current_password_entry").set_sensitive(False)
-        self.builder.get_object("new_password_entry").set_sensitive(False)
-        self.builder.get_object("confirm_password_entry").set_sensitive(False)
-        self.builder.get_object("select_keyfile_button").set_sensitive(False)
+        self.window.set_sensitive(False)
 
         spinner = Gtk.Spinner()
         spinner.start()
@@ -290,19 +272,10 @@ class DatabaseSettingsDialog:
         confirm_password_entry = self.builder.get_object("confirm_password_entry")
         select_keyfile_button = self.builder.get_object("select_keyfile_button")
 
-        current_password_entry.set_sensitive(True)
-        new_password_entry.set_sensitive(True)
-        confirm_password_entry.set_sensitive(True)
-
+        self.window.set_sensitive(True)
         current_password_entry.set_text("")
         new_password_entry.set_text("")
         confirm_password_entry.set_text("")
-
-        if self.database_manager.keyfile_hash is NotImplemented:
-            select_keyfile_button.set_sensitive(False)
-            self.generate_keyfile_button.set_sensitive(True)
-        else:
-            select_keyfile_button.set_sensitive(True)
 
         select_keyfile_button.set_icon_name("document-open-symbolic")
         self.generate_keyfile_button.set_icon_name("security-high-symbolic")

@@ -81,10 +81,6 @@ class DatabaseSettingsDialog:
     def present(self):
         self.window.present()
 
-    #
-    # Password Section
-    #
-
     def on_password_entry_changed(self, entry: Gtk.Entry) -> None:
         """CB if password entry (existing or new) has changed"""
 
@@ -145,10 +141,6 @@ class DatabaseSettingsDialog:
 
         new_password_entry.set_text(generated_password)
         confirm_password_entry.set_text(generated_password)
-
-    #
-    # Keyfile Section
-    #
 
     def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
@@ -233,10 +225,6 @@ class DatabaseSettingsDialog:
 
             GLib.idle_add(generate_keyfile, keyfile, callback)
 
-    #
-    # Apply Buttons
-    #
-
     def on_auth_apply_button_clicked(self, button):
         new_password = self.builder.get_object("new_password_entry").get_text()
 
@@ -278,10 +266,6 @@ class DatabaseSettingsDialog:
 
         self.auth_apply_button.set_label(_("Apply Changes"))
         self.auth_apply_button.set_sensitive(False)
-
-    #
-    # General Section
-    #
 
     def set_detail_values(self):
         # Name
@@ -347,10 +331,6 @@ class DatabaseSettingsDialog:
             if entry.password is not None and entry.password != "":
                 self.passwords_number = self.passwords_number + 1
         GLib.idle_add(self.set_stats_values)
-
-    #
-    # Encryption Section
-    #
 
     def __on_locked(self, database_manager, _value):
         locked = database_manager.props.locked

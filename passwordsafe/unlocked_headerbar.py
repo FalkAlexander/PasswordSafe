@@ -7,7 +7,6 @@ from gi.repository import GObject, Gtk, Adw
 
 if typing.TYPE_CHECKING:
     from passwordsafe.main_window import MainWindow
-    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/unlocked_headerbar.ui")
@@ -15,10 +14,7 @@ class UnlockedHeaderBar(Adw.HeaderBar):
 
     __gtype_name__ = "UnlockedHeaderBar"
 
-    _add_button = Gtk.Template.Child()
     _pathbar_bin = Gtk.Template.Child()
-    _headerbar_right_box = Gtk.Template.Child()
-    _linkedbox_right = Gtk.Template.Child()
     search_button = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
@@ -30,7 +26,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
 
         self._unlocked_database = unlocked_database
         self._action_bar = unlocked_database.action_bar
-        self._db_manager = unlocked_database.database_manager
         self._pathbar = unlocked_database.pathbar
         self._window = unlocked_database.window
 

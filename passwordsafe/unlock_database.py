@@ -95,9 +95,7 @@ class UnlockDatabase:
 
             if keyfile_path is not None:
                 composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
-                label = Gtk.Label()
-                label.set_text(ntpath.basename(keyfile_path))
-                label.set_ellipsize(Pango.EllipsizeMode.END)
+                label = ntpath.basename(keyfile_path)
                 composite_unlock_select_button.set_label(label)
 
                 self.composite_keyfile_path = keyfile_path
@@ -316,16 +314,14 @@ class UnlockDatabase:
         if self._unlock_method == UnlockMethod.PASSWORD:
             entry = self.builder.get_object("password_unlock_entry")
             button = self.builder.get_object("password_unlock_button")
-            image = self.builder.get_object("password_unlock_button_image")
         elif self._unlock_method == UnlockMethod.KEYFILE:
             entry = self.builder.get_object("keyfile_unlock_select_button")
             button = self.builder.get_object("keyfile_unlock_button")
-            image = self.builder.get_object("keyfile_unlock_button_image")
         else:
             entry = self.builder.get_object("composite_unlock_entry")
             button = self.builder.get_object("composite_unlock_button")
-            image = self.builder.get_object("composite_unlock_button_image")
 
+        image = "changes-allow-symbolic"
         entry.set_sensitive(sensitive)
         button.set_sensitive(sensitive)
         back_button = self.builder.get_object("back_button")

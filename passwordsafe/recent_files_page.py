@@ -72,4 +72,3 @@ class RecentFileRow(Adw.ActionRow):
         self.set_name(name)
         self.set_selectable(False)
         self.set_activatable(True)
-        self.show()

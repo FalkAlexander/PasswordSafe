@@ -338,7 +338,6 @@ class UnlockDatabase:
         button, _image = self._open_database_update_entries(False)
 
         spinner = Gtk.Spinner()
-        spinner.show()
         spinner.start()
 
         button.set_child(spinner)

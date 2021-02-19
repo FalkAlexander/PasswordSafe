@@ -180,7 +180,6 @@ class CreateDatabase(Gtk.Stack):
         password_check_button = self.password_check_button
         spinner = Gtk.Spinner()
         spinner.start()
-        spinner.show()
         password_check_button.set_child(spinner)
         password_check_button.set_sensitive(False)
         self.password_check_input.set_sensitive(False)
@@ -197,7 +196,6 @@ class CreateDatabase(Gtk.Stack):
         password_repeat_button = self.password_repeat_button
         spinner = Gtk.Spinner()
         spinner.start()
-        spinner.show()
         password_repeat_button.set_child(spinner)
         password_repeat_button.set_sensitive(False)
         self.password_repeat_input1.set_sensitive(False)

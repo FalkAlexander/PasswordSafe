@@ -269,9 +269,10 @@ class DatabaseSettingsDialog:
         self.builder.get_object("new_password_entry").set_sensitive(False)
         self.builder.get_object("confirm_password_entry").set_sensitive(False)
         self.builder.get_object("select_keyfile_button").set_sensitive(False)
-        self.generate_keyfile_button.set_sensitive(False)
 
-        button.set_label(_("Apply…"))
+        spinner = Gtk.Spinner()
+        spinner.start()
+        button.set_child(spinner)
         button.set_sensitive(False)
 
         save_thread = threading.Thread(target=self.auth_save_process)

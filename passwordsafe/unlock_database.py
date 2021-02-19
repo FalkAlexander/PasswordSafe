@@ -178,8 +178,10 @@ class UnlockDatabase:
             return
 
         if self.database_manager:
-            if (entered_pwd == self.database_manager.password
-                    and self.database_manager.keyfile_hash is NotImplemented):
+            if (
+                entered_pwd == self.database_manager.password
+                and self.database_manager.keyfile_hash is None
+            ):
                 self.parent_widget.remove(self.hdy_page)
                 self.database_manager.props.locked = False
             else:
@@ -370,11 +372,11 @@ class UnlockDatabase:
             self._password_unlock_failed()
         elif self._unlock_method == UnlockMethod.KEYFILE:
             if self.database_manager:
-                self.database_manager.keyfile_hash = NotImplemented
+                self.database_manager.keyfile_hash = None
             self._keyfile_unlock_failed()
         else:
             if self.database_manager:
-                self.database_manager.keyfile_hash = NotImplemented
+                self.database_manager.keyfile_hash = None
             self._composite_unlock_failed()
 
     def _open_database_success(self):
@@ -479,7 +481,7 @@ class UnlockDatabase:
         self.window.send_notification(_("Failed to unlock safe"))
 
         if self.database_manager:
-            self.database_manager.keyfile_hash = NotImplemented
+            self.database_manager.keyfile_hash = None
 
         composite_unlock_select_button = self.builder.get_object(
             "composite_unlock_select_button")
@@ -497,7 +499,7 @@ class UnlockDatabase:
         self.window.send_notification(_("Failed to unlock safe"))
 
         if self.database_manager:
-            self.database_manager.keyfile_hash = NotImplemented
+            self.database_manager.keyfile_hash = None
 
         keyfile_unlock_select_button = self.builder.get_object(
             "keyfile_unlock_select_button"

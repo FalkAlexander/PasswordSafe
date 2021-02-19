@@ -31,7 +31,7 @@ class DatabaseManager(GObject.GObject):
 
     # self.db contains a `PyKeePass` database
     password_try = ""
-    keyfile_hash = NotImplemented
+    keyfile_hash: str | None = None
     _is_dirty = False  # Does the database need saving?
     save_running = False
 

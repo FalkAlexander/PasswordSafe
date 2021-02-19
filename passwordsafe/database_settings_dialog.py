@@ -173,7 +173,7 @@ class DatabaseSettingsDialog:
 
             if (
                 keyfile_hash == self.database_manager.keyfile_hash
-                or self.database_manager.keyfile_hash is NotImplemented
+                or self.database_manager.keyfile_hash is None
             ):
                 if keyfile_hash == self.database_manager.keyfile_hash:
                     self.new_keyfile_path = selected_keyfile

@@ -85,22 +85,14 @@ class MainWindow(Adw.ApplicationWindow):
         self.apply_theme()
         self.invoke_initial_screen()
 
-    #
-    # Headerbar
-    #
-
     def create_headerbar(self):
         self.set_headerbar()
 
         if Gio.Application.get_default().development_mode is True:
             self.add_css_class("devel")
 
-    #
-    # Styles
-    #
-
     def load_custom_css(self) -> None:
-        """Load passwordsafe.css and enable it"""
+        """Load passwordsafe.css and enable it."""
         display = Gdk.Display.get_default()
 
         css_provider = Gtk.CssProvider()
@@ -118,10 +110,6 @@ class MainWindow(Adw.ApplicationWindow):
             "gtk-application-prefer-dark-theme",
             passwordsafe.config_manager.get_dark_theme())
 
-    #
-    # Responsive Listener
-    #
-
     def do_size_allocate(self, width: int, height: int, baseline: int) -> None:
         # pylint: disable=arguments-differ
         """Handler for resizing event. It is used to check if
@@ -134,10 +122,6 @@ class MainWindow(Adw.ApplicationWindow):
             self.props.mobile_layout = new_mobile_layout
 
         Adw.ApplicationWindow.do_size_allocate(self, width, height, baseline)
-
-    #
-    # First Start Screen
-    #
 
     def invoke_initial_screen(self) -> None:
         """Present the first start screen if required or autoload files
@@ -357,10 +341,6 @@ class MainWindow(Adw.ApplicationWindow):
         back_button.connect("clicked",
                             create_database.on_headerbar_back_button_clicked)
 
-    #
-    # Tab Manager
-    #
-
     def create_tab(self, title, headerbar):
         page_instance = ContainerPage(headerbar, Gio.Application.get_default().development_mode)
 
@@ -409,10 +389,6 @@ class MainWindow(Adw.ApplicationWindow):
         if database:
             self.opened_databases.remove(database)
 
-    #
-    # Events
-    #
-
     def on_tab_close_button_clicked(self, _sender, widget):
         page_num = self.container.page_num(widget)
 
@@ -447,10 +423,6 @@ class MainWindow(Adw.ApplicationWindow):
             database.cleanup()
             self.close_tab(widget, database)
 
-    #
-    # Application Quit Dialog
-    #
-
     def save_window_size(self):
         width = self.get_width()
         height = self.get_height()
@@ -469,12 +441,8 @@ class MainWindow(Adw.ApplicationWindow):
         self.application.activate_action("quit")
         return True
 
-    #
-    # Gio Actions
-    #
-
-    # Find current displayed tab for executing the action
     def find_action_db(self) -> UnlockedDatabase | None:
+        """Finds current displayed tab for executing an action."""
         action_db = None
 
         for database in self.opened_databases:
@@ -571,9 +539,6 @@ class MainWindow(Adw.ApplicationWindow):
             ):
                 action_db.props.search_active = not action_db.props.search_active
 
-    #
-    # Tools
-    #
     def tab_visible(self, tab):
         """Checks that the tab is visible
 

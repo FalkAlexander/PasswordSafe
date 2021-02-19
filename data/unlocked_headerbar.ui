@@ -21,7 +21,7 @@
           <object class="GtkButton" id="search_button">
             <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
             <property name="icon_name">system-search-symbolic</property>
-            <signal name="clicked" handler="_on_search_button_clicked" swapped="no"/>
+            <property name="action_name">app.db.search</property>
           </object>
         </child>
         <child>

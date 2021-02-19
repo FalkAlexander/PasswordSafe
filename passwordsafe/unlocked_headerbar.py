@@ -15,7 +15,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
     __gtype_name__ = "UnlockedHeaderBar"
 
     _pathbar_bin = Gtk.Template.Child()
-    search_button = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
         """HearderBar of an UnlockedDatabase
@@ -49,10 +48,6 @@ class UnlockedHeaderBar(Adw.HeaderBar):
             "visible", self._action_bar, "revealed",
             GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.INVERT_BOOLEAN,
         )
-
-    @Gtk.Template.Callback()
-    def _on_search_button_clicked(self, _btn: Gtk.Button) -> None:
-        self._unlocked_database.props.search_active = True
 
     @Gtk.Template.Callback()
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:

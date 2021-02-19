@@ -18,6 +18,7 @@ class DatabaseSettingsDialog:
     # pylint: disable=too-many-instance-attributes
 
     new_password: str | None = None
+    current_keyfile_path = None
     new_keyfile_path = None
 
     entries_number = NotImplemented
@@ -89,13 +90,10 @@ class DatabaseSettingsDialog:
 
         self.unlocked_database.start_database_lock_timer()
 
-        current_password = self.builder.get_object("current_password_entry").get_text()
         new_password_entry = self.builder.get_object("new_password_entry")
         new_password = new_password_entry.get_text()
         conf_password_entry = self.builder.get_object("confirm_password_entry")
         conf_password = conf_password_entry.get_text()
-
-        self.new_password = None
 
         # Update the quality level bar
         if entry.get_name() == "new_entry" and new_password:
@@ -105,19 +103,33 @@ class DatabaseSettingsDialog:
         if new_password != conf_password:
             new_password_entry.add_css_class("error")
             conf_password_entry.add_css_class("error")
-            return
-        new_password_entry.remove_css_class("error")
-        conf_password_entry.remove_css_class("error")
+        else:
+            new_password_entry.remove_css_class("error")
+            conf_password_entry.remove_css_class("error")
 
-        if (self.database_manager.password != current_password
-           or (not new_password or not conf_password)):
-            # 1) existing db password != current one entered
-            # 2) Nothing entered for new and/or confirmed password
-            self.auth_apply_button.set_sensitive(False)
-            return
+        correct_input = self.passwords_coincide() and self.correct_credentials()
+        self.auth_apply_button.set_sensitive(correct_input)
 
-        self.auth_apply_button.set_sensitive(True)
-        self.new_password = new_password
+    def correct_credentials(self) -> bool:
+        old_hash = self.database_manager.keyfile_hash
+        new_hash = None
+        database_password = self.database_manager.password
+        current_password = self.builder.get_object("current_password_entry").get_text()
+
+        if self.current_keyfile_path:
+            new_hash = self.database_manager.create_keyfile_hash(
+                self.current_keyfile_path
+            )
+
+        return old_hash == new_hash and database_password == current_password
+
+    def passwords_coincide(self) -> bool:
+        new_password_entry = self.builder.get_object("new_password_entry")
+        new_password = new_password_entry.get_text()
+        repeat_password_entry = self.builder.get_object("confirm_password_entry")
+        repeat_password = repeat_password_entry.get_text()
+
+        return repeat_password == new_password and new_password
 
     def on_generate_password(self, _button: Gtk.Button) -> None:
         new_password_entry = self.builder.get_object("new_password_entry")
@@ -170,17 +182,19 @@ class DatabaseSettingsDialog:
             keyfile_hash: str = self.database_manager.create_keyfile_hash(
                 selected_keyfile
             )
+            self.current_keyfile_path = selected_keyfile
 
             if (
                 keyfile_hash == self.database_manager.keyfile_hash
                 or self.database_manager.keyfile_hash is None
             ):
-                if keyfile_hash == self.database_manager.keyfile_hash:
-                    self.new_keyfile_path = selected_keyfile
-
                 button.set_icon_name("object-select-symbolic")
+                correct_input = self.passwords_coincide() and self.correct_credentials()
+
+                self.auth_apply_button.set_sensitive(correct_input)
             else:
                 button.set_icon_name("edit-delete-symbolic")
+                self.auth_apply_button.set_sensitive(False)
 
     def on_keyfile_generator_button_clicked(self, _button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
@@ -215,27 +229,18 @@ class DatabaseSettingsDialog:
             self.new_keyfile_path = keyfile.get_path()
 
             def callback():
-                if self.new_password is not None:
-                    self.database_manager.password = self.new_password
-
-                self.database_manager.keyfile = self.new_keyfile_path
-                self.database_manager.save_database()
-
-                self.keyfile_generated()
+                self.generate_keyfile_button.set_icon_name("object-select-symbolic")
 
             GLib.idle_add(generate_keyfile, keyfile, callback)
-
-    def keyfile_generated(self):
-        self.generate_keyfile_button.set_icon_name("object-select-symbolic")
-
-        self.auth_apply_button.set_sensitive(True)
 
     #
     # Apply Buttons
     #
 
     def on_auth_apply_button_clicked(self, button):
-        self.database_manager.password = self.new_password
+        new_password = self.builder.get_object("new_password_entry").get_text()
+
+        self.database_manager.password = new_password
         self.database_manager.keyfile = self.new_keyfile_path
 
         # Insensitive entries and buttons
@@ -269,8 +274,7 @@ class DatabaseSettingsDialog:
         select_keyfile_button.set_icon_name("document-open-symbolic")
         self.generate_keyfile_button.set_icon_name("security-high-symbolic")
 
-        self.new_password = None
-        self.new_keyfile_path = None
+        self.current_keyfile_path = None
 
         self.auth_apply_button.set_label(_("Apply Changes"))
         self.auth_apply_button.set_sensitive(False)

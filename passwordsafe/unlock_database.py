@@ -150,16 +150,13 @@ class UnlockDatabase:
     #
 
     def _on_headerbar_back_button_clicked(self, _widget: Gtk.Button) -> None:
-        database: UnlockedDatabase | None = None
-        if self.database_manager:
-            for db in self.window.opened_databases:
-                db_path: str = db.database_manager.database_path
-                if db_path == self.database_manager.database_path:
-                    if passwordsafe.config_manager.get_save_automatically():
-                        db.save_database()
+        # TODO Use the go_back action instead.
+        database = self.window.find_action_db()
+        if database:
+            if passwordsafe.config_manager.get_save_automatically():
+                database.save_database()
 
-                    db.cleanup()
-                    database = db
+            database.cleanup()
 
         self.window.set_headerbar()
         self.window.close_tab(self.parent_widget, database)

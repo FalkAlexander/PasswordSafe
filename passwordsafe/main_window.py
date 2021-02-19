@@ -80,15 +80,12 @@ class MainWindow(Adw.ApplicationWindow):
         window_size = passwordsafe.config_manager.get_window_size()
         self.set_default_size(window_size[0], window_size[1])
 
-        self.create_headerbar()
+        self.set_headerbar()
         self.load_custom_css()
         self.apply_theme()
         self.invoke_initial_screen()
 
-    def create_headerbar(self):
-        self.set_headerbar()
-
-        if Gio.Application.get_default().development_mode is True:
+        if Gio.Application.get_default().development_mode:
             self.add_css_class("devel")
 
     def load_custom_css(self) -> None:

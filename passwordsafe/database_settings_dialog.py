@@ -218,7 +218,7 @@ class DatabaseSettingsDialog:
                 if self.new_password is not None:
                     self.database_manager.password = self.new_password
 
-                self.database_manager.set_database_keyfile(self.new_keyfile_path)
+                self.database_manager.keyfile = self.new_keyfile_path
                 self.database_manager.save_database()
 
                 self.keyfile_generated()
@@ -237,17 +237,11 @@ class DatabaseSettingsDialog:
     def on_auth_apply_button_clicked(self, button):
         if self.new_password is not None:
             if self.new_keyfile_path is NotImplemented and self.database_manager.keyfile_hash is not NotImplemented:
-                self.database_manager.set_database_keyfile(None)
+                self.database_manager.keyfile = None
                 self.database_manager.keyfile_hash = NotImplemented
 
-            self.database_manager.password = self.new_password
-
-        if self.new_keyfile_path is not NotImplemented:
-            if self.new_password is None:
-                self.database_manager.password = None
-
-            self.database_manager.set_database_keyfile(str(self.new_keyfile_path))
-            self.database_manager.keyfile_hash = self.database_manager.create_keyfile_hash(str(self.new_keyfile_path))
+        self.database_manager.password = self.new_password
+        self.database_manager.keyfile = self.new_keyfile_path
 
         # Insensitive entries and buttons
         self.window.set_sensitive(False)

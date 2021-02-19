@@ -175,10 +175,19 @@ class DatabaseManager(GObject.GObject):
         self.db.password = new_password
         self.is_dirty = True
 
-    # Set database keyfile
-    def set_database_keyfile(self, new_keyfile):
+    @property
+    def keyfile(self) -> str:
+        """Get the current keyfile or None if it is not set."""
+        return self.db.keyfile
+
+    @keyfile.setter
+    def keyfile(self, new_keyfile: str | None) -> None:
         self.db.keyfile = new_keyfile
         self.is_dirty = True
+        if new_keyfile:
+            self.keyfile_hash = self.create_keyfile_hash(new_keyfile)
+        else:
+            self.keyfile_hash = None
 
     #
     # Entry Modifications

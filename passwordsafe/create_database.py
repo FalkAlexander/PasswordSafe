@@ -151,7 +151,7 @@ class CreateDatabase(Gtk.Stack):
                 if self.composite is False:
                     self.database_manager.password = None
 
-                self.database_manager.set_database_keyfile(keyfile_path)
+                self.database_manager.keyfile = keyfile_path
                 self.database_manager.save_database()
                 self.success_page()
 

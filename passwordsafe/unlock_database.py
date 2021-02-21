@@ -323,17 +323,16 @@ class UnlockDatabase:
             entry = self.builder.get_object("composite_unlock_entry")
             button = self.builder.get_object("composite_unlock_button")
 
-        image = "changes-allow-symbolic"
         entry.set_sensitive(sensitive)
         button.set_sensitive(sensitive)
         back_button = self.builder.get_object("back_button")
         back_button.set_sensitive(sensitive)
         self.unlock_database_stack_switcher.set_sensitive(sensitive)
 
-        return button, image
+        return button
 
     def _open_database(self):
-        button, _image = self._open_database_update_entries(False)
+        button = self._open_database_update_entries(False)
 
         spinner = Gtk.Spinner()
         spinner.start()
@@ -365,8 +364,8 @@ class UnlockDatabase:
             GLib.idle_add(self._open_database_failure)
 
     def _open_database_failure(self):
-        button, image = self._open_database_update_entries(True)
-        button.set_icon_name(image)
+        button = self._open_database_update_entries(True)
+        button.set_icon_name("changes-allow-symbolic")
 
         if self._unlock_method == UnlockMethod.PASSWORD:
             self._password_unlock_failed()

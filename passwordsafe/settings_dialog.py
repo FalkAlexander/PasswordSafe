@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Gtk, Adw
+from gi.repository import Adw, Gtk
 
 import passwordsafe.config_manager as config
 from passwordsafe.config_manager import UnlockMethod

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Gtk, GLib
+from gi.repository import GLib, Gtk
 
 REVEAL_TIME = 3.0
 

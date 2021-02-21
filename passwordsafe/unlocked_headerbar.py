@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import typing
 
-from gi.repository import GObject, Gtk, Adw
+from gi.repository import Adw, GObject, Gtk
 
 if typing.TYPE_CHECKING:
     from passwordsafe.main_window import MainWindow

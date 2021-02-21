@@ -9,6 +9,7 @@ from gi.repository import Gdk, Gio, GLib, Gtk
 
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
+
     from passwordsafe.entry_page import EntryPage
 
 

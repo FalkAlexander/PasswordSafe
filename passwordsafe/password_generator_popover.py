@@ -4,8 +4,8 @@ from __future__ import annotations
 from gi.repository import GObject, Gtk
 
 import passwordsafe.config_manager as config
-from passwordsafe.password_generator import generate as generate_pwd
 from passwordsafe.passphrase_generator import Passphrase
+from passwordsafe.password_generator import generate as generate_pwd
 
 
 @Gtk.Template(

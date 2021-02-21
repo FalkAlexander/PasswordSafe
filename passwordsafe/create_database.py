@@ -3,6 +3,7 @@
 import logging
 import threading
 from gettext import gettext as _
+
 from gi.repository import GLib, Gtk
 
 from passwordsafe.unlock_database import KeyFileFilter, UnlockDatabase

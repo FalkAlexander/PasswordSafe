@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from secrets import randbelow
+
 from gi.repository import Gio, GLib
 
 

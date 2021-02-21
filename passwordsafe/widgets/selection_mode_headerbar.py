@@ -2,10 +2,12 @@
 from __future__ import annotations
 
 import typing
-from gettext import gettext as _, ngettext
+from gettext import gettext as _
+from gettext import ngettext
 from logging import debug
 
 from gi.repository import Adw, Gio, GObject, Gtk
+
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar

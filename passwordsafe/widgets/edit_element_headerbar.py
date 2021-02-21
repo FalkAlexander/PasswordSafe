@@ -5,6 +5,7 @@ import typing
 from enum import IntEnum
 
 from gi.repository import Adw, GObject, Gtk
+
 from passwordsafe.pathbar import Pathbar
 
 if typing.TYPE_CHECKING:

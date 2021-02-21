@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import os
 
-from gi.repository import Gio, Gtk, Adw
+from gi.repository import Adw, Gio, Gtk
 
 import passwordsafe.config_manager as config
 

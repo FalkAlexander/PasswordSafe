@@ -19,7 +19,7 @@ if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
     from pykeepass.group import Group
 
-    from passwordsafe.database_manager import DatabaseManager  # pylint: disable=ungrouped-imports
+    from passwordsafe.database_manager import DatabaseManager
 
 
 class SafeElement(GObject.GObject):

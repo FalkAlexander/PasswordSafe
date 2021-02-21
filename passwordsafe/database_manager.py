@@ -36,7 +36,8 @@ class DatabaseManager(GObject.GObject):
     save_running = False
 
     locked = GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(
         self,
@@ -118,9 +119,17 @@ class DatabaseManager(GObject.GObject):
         # NOTE: With clone is meant a duplicated object, not the process
         # of cloning/duplication; "the" clone
         clone_entry: Entry = self.db.add_entry(
-            entry.parentgroup, title + " - " + _("Clone"), username, password,
-            url=entry.url, notes=entry.notes, expiry_time=entry.expiry_time,
-            tags=entry.tags, icon=entry.icon, force_creation=True)
+            entry.parentgroup,
+            title + " - " + _("Clone"),
+            username,
+            password,
+            url=entry.url,
+            notes=entry.notes,
+            expiry_time=entry.expiry_time,
+            tags=entry.tags,
+            icon=entry.icon,
+            force_creation=True,
+        )
 
         # Add custom properties
         for key in entry.custom_properties:
@@ -244,7 +253,9 @@ class DatabaseManager(GObject.GObject):
 
     # Check if entry with title in group exists
     def check_entry_in_group_exists(self, title, group):
-        entry = self.db.find_entries(title=title, group=group, recursive=False, history=False, first=True)
+        entry = self.db.find_entries(
+            title=title, group=group, recursive=False, history=False, first=True
+        )
         if entry is None:
             return False
         return True
@@ -292,9 +303,7 @@ class DatabaseManager(GObject.GObject):
         try:
             gbytes, _stream = gfile.load_bytes()
 
-            return GLib.compute_checksum_for_bytes(
-                GLib.ChecksumType.SHA1, gbytes
-            )
+            return GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
         except GLib.Error as err:
             logging.warning(
                 "Could not compute hash of %s: %s", keyfile_path, err.message
@@ -338,7 +347,12 @@ class DatabaseManager(GObject.GObject):
     def save_notification(self, _saved):
         return
 
-    @GObject.Signal(arg_types=(SafeElement, object,))
+    @GObject.Signal(
+        arg_types=(
+            SafeElement,
+            object,
+        )
+    )
     def element_added(self, _element: SafeElement, _parent_uuid: UUID) -> None:
         """Signal emitted when a new element was added to the database
         it carries the UUID in string format of the parent group to which

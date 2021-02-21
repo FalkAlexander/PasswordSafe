@@ -35,6 +35,7 @@ GENERATOR_SEPARATOR = "generator-separator"
 
 class UnlockMethod(IntEnum):
     """Enum for database unlock methods"""
+
     PASSWORD = 0
     KEYFILE = 1
     COMPOSITE = 2
@@ -157,7 +158,7 @@ def get_window_size():
 
 
 def set_window_size(lis):
-    g_variant = GLib.Variant('ai', lis)
+    g_variant = GLib.Variant("ai", lis)
     setting.set_value(WINDOW_SIZE, g_variant)
 
 
@@ -172,7 +173,7 @@ def get_last_opened_list():
 
 
 def set_last_opened_list(opened_list):
-    g_variant = GLib.Variant('as', opened_list)
+    g_variant = GLib.Variant("as", opened_list)
     setting.set_value(LAST_OPENED_LIST, g_variant)
 
 

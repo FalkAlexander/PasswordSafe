@@ -57,7 +57,9 @@ class SettingsDialog(Adw.PreferencesWindow):
 
         # Password Generator
         generator_length = config.get_generator_length()
-        self._generator_length_spin_button.props.adjustment.props.value = generator_length
+        self._generator_length_spin_button.props.adjustment.props.value = (
+            generator_length
+        )
         self._generator_length_spin_button.connect(
             "value-changed", self._on_generator_length_spin_button_changed
         )
@@ -88,7 +90,9 @@ class SettingsDialog(Adw.PreferencesWindow):
 
         # Passphrase Generation
         generator_words_value = config.get_generator_words()
-        self._generator_words_spin_button.props.adjustment.props.value = generator_words_value
+        self._generator_words_spin_button.props.adjustment.props.value = (
+            generator_words_value
+        )
         self._generator_words_spin_button.connect(
             "value-changed", self._on_generator_words_spin_button_changed
         )
@@ -210,5 +214,4 @@ class SettingsDialog(Adw.PreferencesWindow):
             config.set_remember_unlock_method(True)
         else:
             config.set_remember_unlock_method(False)
-            config.set_unlock_method(
-                UnlockMethod.PASSWORD)
+            config.set_unlock_method(UnlockMethod.PASSWORD)

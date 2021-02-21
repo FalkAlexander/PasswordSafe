@@ -39,7 +39,8 @@ class MainWindow(Adw.ApplicationWindow):
     _headerbar_stack = Gtk.Template.Child()
 
     mobile_layout = GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -105,7 +106,8 @@ class MainWindow(Adw.ApplicationWindow):
 
         gtk_settings.set_property(
             "gtk-application-prefer-dark-theme",
-            passwordsafe.config_manager.get_dark_theme())
+            passwordsafe.config_manager.get_dark_theme(),
+        )
 
     def do_size_allocate(self, width: int, height: int, baseline: int) -> None:
         # pylint: disable=arguments-differ
@@ -180,19 +182,20 @@ class MainWindow(Adw.ApplicationWindow):
     #
 
     def on_open_file_action(
-            self, _action: Gio.Action, _parameter: GLib.Variant
+        self, _action: Gio.Action, _parameter: GLib.Variant
     ) -> None:
         """Callback function to open a safe."""
         # pylint: disable=too-many-locals
         opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
-            _("Choose a Keepass safe"), self, Gtk.FileChooserAction.OPEN,
-            None, None)
+            _("Choose a Keepass safe"),
+            self,
+            Gtk.FileChooserAction.OPEN,
+            None,
+            None,
+        )
 
-        supported_mime_types = [
-            "application/x-keepass2",
-            "application/octet-stream"
-        ]
+        supported_mime_types = ["application/x-keepass2", "application/octet-stream"]
 
         filter_text = Gtk.FileFilter()
         # NOTE: KeePass + version number is a proper name, do not translate
@@ -202,15 +205,20 @@ class MainWindow(Adw.ApplicationWindow):
         opening_dialog.add_filter(filter_text)
 
         opening_dialog.connect(
-            "response", self._on_open_filechooser_response, supported_mime_types, opening_dialog
+            "response",
+            self._on_open_filechooser_response,
+            supported_mime_types,
+            opening_dialog,
         )
         opening_dialog.show()
 
-    def _on_open_filechooser_response(self,
-                                      dialog: Gtk.Dialog,
-                                      response: Gtk.ResponseType,
-                                      supported_mime_types: list[str],
-                                      _dialog: Gtk.Dialog) -> None:
+    def _on_open_filechooser_response(
+        self,
+        dialog: Gtk.Dialog,
+        response: Gtk.ResponseType,
+        supported_mime_types: list[str],
+        _dialog: Gtk.Dialog,
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             db_gfile = dialog.get_file()
             db_filename = db_gfile.get_path()
@@ -221,7 +229,9 @@ class MainWindow(Adw.ApplicationWindow):
                     # https://gitlab.gnome.org/GNOME/gvfs/-/issues/529
                     # we can remove standard::content-type when the fix
                     # is merged in distros' gvfs version.
-                    "standard::content-type,standard::fast-content-type", Gio.FileQueryInfoFlags.NONE, None
+                    "standard::content-type,standard::fast-content-type",
+                    Gio.FileQueryInfoFlags.NONE,
+                    None,
                 )
             except GLib.Error as error:
                 self.notify(_("Could not open file"))
@@ -230,7 +240,9 @@ class MainWindow(Adw.ApplicationWindow):
                 )
                 return
 
-            file_content_type = db_file_info.get_attribute_as_string("standard::fast-content-type")
+            file_content_type = db_file_info.get_attribute_as_string(
+                "standard::fast-content-type"
+            )
             file_mime_type = Gio.content_type_get_mime_type(file_content_type)
             if file_mime_type not in supported_mime_types:
                 self.notify(_("Could not open file: Mime type not supported"))
@@ -254,7 +266,8 @@ class MainWindow(Adw.ApplicationWindow):
         """Start opening a safe file"""
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database_headerbar.ui")
+            "/org/gnome/PasswordSafe/create_database_headerbar.ui"
+        )
         headerbar = builder.get_object("headerbar")
         tab_title: str = os.path.basename(filepath)
         UnlockDatabase(self, self.create_tab(tab_title, headerbar), filepath)
@@ -265,7 +278,7 @@ class MainWindow(Adw.ApplicationWindow):
     #
 
     def on_create_file_action(
-            self, _action: Gio.Action, _parameter: GLib.Variant
+        self, _action: Gio.Action, _parameter: GLib.Variant
     ) -> None:
         """Callback function to create a new safe."""
         creation_dialog = Gtk.FileChooserNative.new(
@@ -290,10 +303,9 @@ class MainWindow(Adw.ApplicationWindow):
         )
         creation_dialog.show()
 
-    def _on_create_filechooser_response(self,
-                                        dialog: Gtk.Dialog,
-                                        response: Gtk.ResponseType,
-                                        _dialog: Gtk.Dialog) -> None:
+    def _on_create_filechooser_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             filepath = dialog.get_file().get_path()
 
@@ -311,13 +323,13 @@ class MainWindow(Adw.ApplicationWindow):
 
         # Copy our stock database file to `filepath`
         stock_db_file: Gio.File = Gio.File.new_for_uri(
-            "resource:///org/gnome/PasswordSafe/database.kdbx")
+            "resource:///org/gnome/PasswordSafe/database.kdbx"
+        )
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
         stock_db_file.copy(new_db_file, Gio.FileCopyFlags.OVERWRITE)
 
         tab_title: str = os.path.basename(filepath)
-        self.database_manager = DatabaseManager(filepath,
-                                                "liufhre86ewoiwejmrcu8owe")
+        self.database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
         GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
@@ -325,21 +337,22 @@ class MainWindow(Adw.ApplicationWindow):
         self._spinner.stop()
         builder = Gtk.Builder()
         builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database_headerbar.ui")
+            "/org/gnome/PasswordSafe/create_database_headerbar.ui"
+        )
         headerbar = builder.get_object("headerbar")
         parent_widget = self.create_tab(tab_title, headerbar)
         back_button = builder.get_object("back_button")
         create_database = CreateDatabase(
-            self, parent_widget,
-            self.database_manager,
-            back_button)
+            self, parent_widget, self.database_manager, back_button
+        )
         self.set_headerbar(headerbar)
         parent_widget.append(create_database)
-        back_button.connect("clicked",
-                            create_database.on_headerbar_back_button_clicked)
+        back_button.connect("clicked", create_database.on_headerbar_back_button_clicked)
 
     def create_tab(self, title, headerbar):
-        page_instance = ContainerPage(headerbar, Gio.Application.get_default().development_mode)
+        page_instance = ContainerPage(
+            headerbar, Gio.Application.get_default().development_mode
+        )
 
         tab_hbox = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 6)
         tab_label = Gtk.Label.new(title)
@@ -397,9 +410,11 @@ class MainWindow(Adw.ApplicationWindow):
                         database.save_database()
                     else:
                         save_dialog = SaveDialog(self)
-                        save_dialog.connect("response",
-                                            self._on_save_dialog_response,
-                                            [widget, database])
+                        save_dialog.connect(
+                            "response",
+                            self._on_save_dialog_response,
+                            [widget, database],
+                        )
                         save_dialog.show()
                 else:
                     database.cleanup()
@@ -444,17 +459,15 @@ class MainWindow(Adw.ApplicationWindow):
 
         for database in self.opened_databases:
             if (
-                    self.tab_visible(database.parent_widget)
-                    and not database.database_manager.props.locked
+                self.tab_visible(database.parent_widget)
+                and not database.database_manager.props.locked
             ):
                 action_db = database
 
         return action_db
 
     def setup_actions(self):
-        sort_action = self.application.settings.create_action(
-            "sort-order"
-        )
+        sort_action = self.application.settings.create_action("sort-order")
         self.application.add_action(sort_action)
 
         selection_action = Gio.SimpleAction.new("db.selection", GLib.VariantType("s"))

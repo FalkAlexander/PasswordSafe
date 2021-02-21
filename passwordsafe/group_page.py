@@ -33,12 +33,16 @@ class GroupPage(Gtk.ScrolledWindow):
         # Connect Signals
         safe_group.connect("updated", self._on_safe_group_updated)
         safe_group.bind_property(
-            "name", self.name_property_value_entry, "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
+            "name",
+            self.name_property_value_entry,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
         safe_group.bind_property(
-            "notes", notes_buffer, "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
+            "notes",
+            notes_buffer,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
 
         # Enable Undo. Has to be set to true after the name has been set.

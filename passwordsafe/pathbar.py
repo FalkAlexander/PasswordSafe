@@ -14,10 +14,12 @@ if typing.TYPE_CHECKING:
 
 class Pathbar(Gtk.Box):
     """Pathbar provides a breadcrumb-style Box with the current hierarchy"""
+
     buttons = Gio.ListStore.new(PathbarButton)
 
     current_element = GObject.Property(
-        type=SafeElement, flags=GObject.ParamFlags.READWRITE)
+        type=SafeElement, flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(self, unlocked_database):
         super().__init__()
@@ -27,8 +29,8 @@ class Pathbar(Gtk.Box):
         self.database_manager = unlocked_database.database_manager
 
         unlocked_database.bind_property(
-            "current-element", self, "current-element",
-            GObject.BindingFlags.SYNC_CREATE)
+            "current-element", self, "current-element", GObject.BindingFlags.SYNC_CREATE
+        )
         self.connect("notify::current-element", self._on_current_element_changed)
 
     def _on_current_element_changed(self, _pathbar, _value):
@@ -93,7 +95,9 @@ class PathbarSeparator(Gtk.Label):
         if not self.unlocked_database.props.selection_mode:
             self.add_css_class("dim-label")
 
-        self.unlocked_database.connect("notify::selection-mode", self._on_selection_mode_changed)
+        self.unlocked_database.connect(
+            "notify::selection-mode", self._on_selection_mode_changed
+        )
 
     def _on_selection_mode_changed(
         self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpecBoolean

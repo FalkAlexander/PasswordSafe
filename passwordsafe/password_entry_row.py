@@ -43,8 +43,7 @@ class PasswordEntryRow(Adw.Bin):
         self._password_value_entry.props.enable_undo = True
 
         self._pwd_popover = PasswordGeneratorPopover()
-        self._pwd_popover.bind_property(
-            "password", self._password_value_entry, "text")
+        self._pwd_popover.bind_property("password", self._password_value_entry, "text")
         self._generate_password_button.set_popover(self._pwd_popover)
 
         self._password_level_bar.add_offset_value("weak", 1.0)
@@ -77,7 +76,8 @@ class PasswordEntryRow(Adw.Bin):
                 password: str = self._safe_entry.password
             except ValueError:
                 logging.warning(
-                    "Failed to look up password for reference '%s'", password)
+                    "Failed to look up password for reference '%s'", password
+                )
                 password = pwd_text
         else:
             password = pwd_text

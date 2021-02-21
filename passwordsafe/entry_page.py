@@ -67,11 +67,13 @@ class EntryPage(Gtk.ScrolledWindow):
         super().__init__()
 
         self.unlocked_database = u_d
-        self.toggeable_widget_list = [self.url_property_box,
-                                      self.otp_property_box,
-                                      self.notes_property_box,
-                                      self.attachment_property_box,
-                                      self.attributes_property_box]
+        self.toggeable_widget_list = [
+            self.url_property_box,
+            self.otp_property_box,
+            self.notes_property_box,
+            self.attachment_property_box,
+            self.attributes_property_box,
+        ]
 
         self.insert_entry_properties_into_listbox(add_all)
 
@@ -96,17 +98,21 @@ class EntryPage(Gtk.ScrolledWindow):
 
         # Create the name_property_row
         safe_entry.bind_property(
-            "name", self.name_property_value_entry, "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL
+            "name",
+            self.name_property_value_entry,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
         self.name_property_value_entry.grab_focus()
         self.name_property_value_entry.props.enable_undo = True
 
         # Username
         safe_entry.bind_property(
-            "username", self.username_property_value_entry, "text",
-            GObject.BindingFlags.SYNC_CREATE
-            | GObject.BindingFlags.BIDIRECTIONAL)
+            "username",
+            self.username_property_value_entry,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
 
         value = safe_entry.username != ""
         self.username_property_value_entry.props.enable_undo = True
@@ -122,17 +128,21 @@ class EntryPage(Gtk.ScrolledWindow):
 
         # Url
         safe_entry.bind_property(
-            "url", self.url_property_value_entry, "text",
-            GObject.BindingFlags.SYNC_CREATE
-            | GObject.BindingFlags.BIDIRECTIONAL)
+            "url",
+            self.url_property_value_entry,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
         self.show_row(self.url_property_box, safe_entry.url, add_all)
         self.url_property_value_entry.props.enable_undo = True
 
         # OTP (secret)
         safe_entry.bind_property(
-            "otp", self.otp_property_value_entry, "text",
-            GObject.BindingFlags.SYNC_CREATE
-            | GObject.BindingFlags.BIDIRECTIONAL)
+            "otp",
+            self.otp_property_value_entry,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
         self.show_row(self.otp_property_box, False, add_all)
         show_pwds = config_manager.get_show_password_fields()
         self.otp_property_value_entry.props.visibility = show_pwds
@@ -142,9 +152,11 @@ class EntryPage(Gtk.ScrolledWindow):
 
         textbuffer = self.notes_property_value_entry.get_buffer()
         safe_entry.bind_property(
-            "notes", textbuffer, "text",
-            GObject.BindingFlags.SYNC_CREATE
-            | GObject.BindingFlags.BIDIRECTIONAL)
+            "notes",
+            textbuffer,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
         self.notes_property_value_entry.set_buffer(textbuffer)
         self.show_row(self.notes_property_box, safe_entry.notes, add_all)
 
@@ -160,8 +172,7 @@ class EntryPage(Gtk.ScrolledWindow):
             if not icon.visible:
                 continue
 
-            icon_builder.add_from_resource(
-                "/org/gnome/PasswordSafe/icon_widget.ui")
+            icon_builder.add_from_resource("/org/gnome/PasswordSafe/icon_widget.ui")
             btn = icon_builder.get_object("icon_button")
             img = icon_builder.get_object("image")
             img.props.icon_name = icon.name
@@ -214,9 +225,15 @@ class EntryPage(Gtk.ScrolledWindow):
         attribute_key_edit_button.set_label(key)
         if value is not None:
             attribute_value_entry.set_text(value)
-        attribute_remove_button.connect("clicked", self.on_attribute_remove_button_clicked, key)
-        attribute_key_edit_button.connect("clicked", self.on_attribute_key_edit_button_clicked)
-        attribute_value_entry.connect("changed", self.on_attributes_value_entry_changed, key)
+        attribute_remove_button.connect(
+            "clicked", self.on_attribute_remove_button_clicked, key
+        )
+        attribute_key_edit_button.connect(
+            "clicked", self.on_attribute_key_edit_button_clicked
+        )
+        attribute_value_entry.connect(
+            "changed", self.on_attributes_value_entry_changed, key
+        )
 
         self.attribute_list_box.append(attribute_row)
         self.attribute_property_row_list.append(attribute_row)
@@ -297,7 +314,8 @@ class EntryPage(Gtk.ScrolledWindow):
         if safe_entry.has_attribute(key):
             self.attributes_key_entry.add_css_class("error")
             self.unlocked_database.window.send_notification(
-                _("Attribute key already exists"))
+                _("Attribute key already exists")
+            )
             return
 
         self.attributes_key_entry.remove_css_class("error")
@@ -330,7 +348,8 @@ class EntryPage(Gtk.ScrolledWindow):
         key_entry.set_visible(True)
 
         key_entry.connect(
-            "activate", self.on_key_entry_activated, safe_entry, key, button, parent)
+            "activate", self.on_key_entry_activated, safe_entry, key, button, parent
+        )
         key_entry.set_text(key)
 
         attribute_entry_box = button.get_parent()
@@ -339,8 +358,13 @@ class EntryPage(Gtk.ScrolledWindow):
         key_entry.grab_focus()
 
     def on_key_entry_activated(
-            self, widget: Gtk.Entry, safe_entry: SafeEntry, key: str,
-            button: Gtk.Button, parent: Gtk.Box) -> None:
+        self,
+        widget: Gtk.Entry,
+        safe_entry: SafeEntry,
+        key: str,
+        button: Gtk.Button,
+        parent: Gtk.Box,
+    ) -> None:
         # pylint: disable=too-many-arguments
         new_key: str = widget.props.text
         if not new_key:
@@ -356,7 +380,8 @@ class EntryPage(Gtk.ScrolledWindow):
         if safe_entry.has_attribute(new_key):
             widget.add_css_class("error")
             self.unlocked_database.window.send_notification(
-                _("Attribute key already exists"))
+                _("Attribute key already exists")
+            )
             return
 
         safe_entry.set_attribute(new_key, safe_entry.props.attributes[key])
@@ -386,18 +411,23 @@ class EntryPage(Gtk.ScrolledWindow):
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for selecting attachment file
-            _("Select attachment"), self.unlocked_database.window, Gtk.FileChooserAction.OPEN,
-            _("_Add"), None)
+            _("Select attachment"),
+            self.unlocked_database.window,
+            Gtk.FileChooserAction.OPEN,
+            _("_Add"),
+            None,
+        )
         select_dialog.set_modal(True)
         select_dialog.set_select_multiple(True)
 
-        select_dialog.connect("response", self._on_select_filechooser_response, select_dialog)
+        select_dialog.connect(
+            "response", self._on_select_filechooser_response, select_dialog
+        )
         select_dialog.show()
 
-    def _on_select_filechooser_response(self,
-                                        dialog: Gtk.Dialog,
-                                        response: Gtk.ResponseType,
-                                        _dialog: Gtk.Dialog) -> None:
+    def _on_select_filechooser_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             safe_entry: SafeEntry = self.unlocked_database.current_element
             for attachment in dialog.get_files():
@@ -438,8 +468,12 @@ class EntryPage(Gtk.ScrolledWindow):
     def on_attachment_download_button_clicked(self, _button, attachment):
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for downloading an attachment
-            _("Save attachment"), self.unlocked_database.window, Gtk.FileChooserAction.SAVE,
-            _("_Save"), None)
+            _("Save attachment"),
+            self.unlocked_database.window,
+            Gtk.FileChooserAction.SAVE,
+            _("_Save"),
+            None,
+        )
         save_dialog.set_current_name(attachment.filename)
         save_dialog.set_modal(True)
 
@@ -448,32 +482,36 @@ class EntryPage(Gtk.ScrolledWindow):
         )
         save_dialog.show()
 
-    def _on_save_filechooser_response(self,
-                                      dialog: Gtk.Dialog,
-                                      response: Gtk.ResponseType,
-                                      attachment: Attachment,
-                                      _dialog: Gtk.Dialog) -> None:
+    def _on_save_filechooser_response(
+        self,
+        dialog: Gtk.Dialog,
+        response: Gtk.ResponseType,
+        attachment: Attachment,
+        _dialog: Gtk.Dialog,
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             safe_entry: SafeEntry = self.unlocked_database.current_element
             bytes_buffer = safe_entry.get_attachment_content(attachment)
             stream = Gio.File.replace(
-                dialog.get_file(), None, False,
+                dialog.get_file(),
+                None,
+                False,
                 Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
-                None
+                None,
             )
             Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes_buffer), None)
             stream.close()
 
     def on_attachment_delete_button_clicked(
-            self, _button, attachment_to_delete, attachment_row):
+        self, _button, attachment_to_delete, attachment_row
+    ):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         safe_entry.delete_attachment(attachment_to_delete)
 
         self.attachment_list_box.remove(attachment_row)
 
     @Gtk.Template.Callback()
-    def _on_copy_secondary_button_clicked(
-            self, widget, _icon_pos, _data=None):
+    def _on_copy_secondary_button_clicked(self, widget, _icon_pos, _data=None):
         self.unlocked_database.send_to_clipboard(
             widget.get_text(),
             _("Username copied to clipboard"),

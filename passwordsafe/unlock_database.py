@@ -82,7 +82,9 @@ class UnlockDatabase:
     def _assemble_stack(self):
         stack = self.builder.get_object("unlock_database_stack")
 
-        self.unlock_database_stack_switcher = self.builder.get_object("unlock_database_stack_switcher")
+        self.unlock_database_stack_switcher = self.builder.get_object(
+            "unlock_database_stack_switcher"
+        )
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_filepath).get_uri()
@@ -94,14 +96,20 @@ class UnlockDatabase:
                     keyfile_path = pair[1]
 
             if keyfile_path is not None:
-                composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
+                composite_unlock_select_button = self.builder.get_object(
+                    "composite_unlock_select_button"
+                )
                 label = ntpath.basename(keyfile_path)
                 composite_unlock_select_button.set_label(label)
 
                 self.composite_keyfile_path = keyfile_path
 
         if passwordsafe.config_manager.get_remember_unlock_method():
-            stack.set_visible_child(stack.get_child_by_name(passwordsafe.config_manager.get_unlock_method() + "_unlock"))
+            stack.set_visible_child(
+                stack.get_child_by_name(
+                    passwordsafe.config_manager.get_unlock_method() + "_unlock"
+                )
+            )
 
         # Responsive Container
         self.hdy_page = self.builder.get_object("unlock_database_clamp")
@@ -113,33 +121,42 @@ class UnlockDatabase:
     def _connect_events(self, stack):
         password_unlock_button = self.builder.get_object("password_unlock_button")
         password_unlock_button.connect(
-            "clicked", self._on_password_unlock_button_clicked)
+            "clicked", self._on_password_unlock_button_clicked
+        )
 
         keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
-        keyfile_unlock_button.connect(
-            "clicked", self._on_keyfile_unlock_button_clicked)
+        keyfile_unlock_button.connect("clicked", self._on_keyfile_unlock_button_clicked)
 
         composite_unlock_button = self.builder.get_object("composite_unlock_button")
         composite_unlock_button.connect(
-            "clicked", self._on_composite_unlock_button_clicked)
+            "clicked", self._on_composite_unlock_button_clicked
+        )
 
-        keyfile_unlock_select_button = self.builder.get_object("keyfile_unlock_select_button")
+        keyfile_unlock_select_button = self.builder.get_object(
+            "keyfile_unlock_select_button"
+        )
         keyfile_unlock_select_button.connect(
-            "clicked", self._on_keyfile_unlock_select_button_clicked)
+            "clicked", self._on_keyfile_unlock_select_button_clicked
+        )
 
-        composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
+        composite_unlock_select_button = self.builder.get_object(
+            "composite_unlock_select_button"
+        )
         composite_unlock_select_button.connect(
-            "clicked", self._on_composite_unlock_select_button_clicked)
+            "clicked", self._on_composite_unlock_select_button_clicked
+        )
 
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
         if stack.get_visible_child_name() == "password_unlock":
             password_unlock_entry.grab_focus()
         password_unlock_entry.connect(
-            "activate", self._on_password_unlock_button_clicked)
+            "activate", self._on_password_unlock_button_clicked
+        )
 
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         composite_unlock_entry.connect(
-            "activate", self._on_composite_unlock_button_clicked)
+            "activate", self._on_composite_unlock_button_clicked
+        )
         if stack.get_visible_child_name() == "composite_unlock":
             composite_unlock_entry.grab_focus()
 
@@ -165,8 +182,10 @@ class UnlockDatabase:
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
 
         for db in self.window.opened_databases:
-            if (db.database_manager.database_path == self.database_filepath
-                    and not db.database_locked):
+            if (
+                db.database_manager.database_path == self.database_filepath
+                and not db.database_locked
+            ):
                 page_num = self.window.container.page_num(db.parent_widget)
                 self.window.container.set_current_page(page_num)
                 self.window.close_tab(self.parent_widget)
@@ -205,10 +224,9 @@ class UnlockDatabase:
         )
         keyfile_chooser_dialog.show()
 
-    def on_dialog_response(self,
-                           dialog: Gtk.Dialog,
-                           response: Gtk.ResponseType,
-                           _dialog: Gtk.Dialog) -> None:
+    def on_dialog_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             self.keyfile_path = dialog.get_file().get_path()
             logging.debug("Keyfile selected: %s", self.keyfile_path)
@@ -227,8 +245,11 @@ class UnlockDatabase:
 
     def _on_keyfile_unlock_button_clicked(self, _widget):
         if self.database_manager:
-            if (self.keyfile_path is not NotImplemented
-                    and self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.keyfile_path)):
+            if (
+                self.keyfile_path is not NotImplemented
+                and self.database_manager.keyfile_hash
+                == self.database_manager.create_keyfile_hash(self.keyfile_path)
+            ):
                 self.parent_widget.remove(self.hdy_page)
                 self.keyfile_path = NotImplemented
                 self.database_manager.props.locked = False
@@ -242,8 +263,8 @@ class UnlockDatabase:
 
     def _on_composite_unlock_select_button_clicked(self, _widget):
         opening_dialog = Gtk.FileChooserNative.new(
-            _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN,
-            None, None)
+            _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
+        )
         opening_dialog.add_filter(KeyFileFilter())
 
         opening_dialog.connect(
@@ -251,11 +272,12 @@ class UnlockDatabase:
         )
         opening_dialog.show()
 
-    def _on_composite_filechooser_response(self,
-                                           dialog: Gtk.Dialog,
-                                           response: Gtk.ResponseType,
-                                           _dialog: Gtk.Dialog) -> None:
-        composite_unlock_select_button = self.builder.get_object("composite_unlock_select_button")
+    def _on_composite_filechooser_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
+    ) -> None:
+        composite_unlock_select_button = self.builder.get_object(
+            "composite_unlock_select_button"
+        )
         if response == Gtk.ResponseType.ACCEPT:
             logging.debug("File selected: %s", dialog.get_file().get_path)
             file_path = dialog.get_file().get_path()
@@ -270,16 +292,22 @@ class UnlockDatabase:
         entered_pwd = composite_unlock_entry.get_text()
 
         if self.database_manager:
-            if ((self.composite_keyfile_path is not NotImplemented)
-                    and (self.database_manager.keyfile_hash == self.database_manager.create_keyfile_hash(self.composite_keyfile_path))
-                    and (entered_pwd == self.database_manager.password)):
+            if (
+                (self.composite_keyfile_path is not NotImplemented)
+                and (
+                    self.database_manager.keyfile_hash
+                    == self.database_manager.create_keyfile_hash(
+                        self.composite_keyfile_path
+                    )
+                )
+                and (entered_pwd == self.database_manager.password)
+            ):
                 self.parent_widget.remove(self.hdy_page)
                 self.database_manager.props.locked = False
             else:
                 self._composite_unlock_failed()
         else:
-            if (entered_pwd
-                    and self.composite_keyfile_path is not NotImplemented):
+            if entered_pwd and self.composite_keyfile_path is not NotImplemented:
                 self._unlock_method = UnlockMethod.COMPOSITE
                 self._password = entered_pwd
                 self._open_database()
@@ -287,8 +315,10 @@ class UnlockDatabase:
                 composite_unlock_entry.add_css_class("error")
 
     def _set_last_used_composite_key(self):
-        if (not passwordsafe.config_manager.get_remember_composite_key()
-                or self.composite_keyfile_path is NotImplemented):
+        if (
+            not passwordsafe.config_manager.get_remember_composite_key()
+            or self.composite_keyfile_path is NotImplemented
+        ):
             return
 
         pairs = passwordsafe.config_manager.get_last_used_composite_key()
@@ -339,8 +369,7 @@ class UnlockDatabase:
 
         button.set_child(spinner)
 
-        self.unlock_thread = threading.Thread(
-            target=self._open_database_process)
+        self.unlock_thread = threading.Thread(target=self._open_database_process)
         self.unlock_thread.daemon = True
         self.unlock_thread.start()
 
@@ -357,10 +386,17 @@ class UnlockDatabase:
 
         try:
             self.database_manager = DatabaseManager(
-                self.database_filepath, password, keyfile)
+                self.database_filepath, password, keyfile
+            )
             GLib.idle_add(self._open_database_success)
-        except(OSError, ValueError, AttributeError,
-               CredentialsError, PayloadChecksumError, HeaderChecksumError):
+        except (
+            OSError,
+            ValueError,
+            AttributeError,
+            CredentialsError,
+            PayloadChecksumError,
+            HeaderChecksumError,
+        ):
             GLib.idle_add(self._open_database_failure)
 
     def _open_database_failure(self):
@@ -415,12 +451,10 @@ class UnlockDatabase:
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 
-            current_time = datetime.now().strftime('%F_%T')
-            basename = os.path.splitext(
-                ntpath.basename(self.database_filepath))[0]
+            current_time = datetime.now().strftime("%F_%T")
+            basename = os.path.splitext(ntpath.basename(self.database_filepath))[0]
             backup_name = basename + "_backup_" + current_time + ".kdbx"
-            backup = Gio.File.new_for_path(
-                os.path.join(cache_dir, backup_name))
+            backup = Gio.File.new_for_path(os.path.join(cache_dir, backup_name))
             try:
                 opened.copy(backup, Gio.FileCopyFlags.NONE)
             except GLib.Error:
@@ -429,7 +463,8 @@ class UnlockDatabase:
                     "most likely happened because the database is located on "
                     "a network drive, and Password Safe doesn't have network "
                     "permission. Either disable development-backup-mode or if "
-                    "PasswordSafe runs as Flatpak grant network permission.")
+                    "PasswordSafe runs as Flatpak grant network permission."
+                )
                 logging.warning(warning_msg)
 
         already_added = False
@@ -450,10 +485,10 @@ class UnlockDatabase:
         passwordsafe.config_manager.set_last_opened_list(path_listh)
 
         self.parent_widget.remove(self.hdy_page)
-        UnlockedDatabase(
-            self.window, self.parent_widget, self.database_manager)
+        UnlockedDatabase(self.window, self.parent_widget, self.database_manager)
         self.database_manager.connect(
-            "notify::locked", self._on_database_locked_changed)
+            "notify::locked", self._on_database_locked_changed
+        )
 
     #
     # Helper Functions
@@ -466,12 +501,11 @@ class UnlockDatabase:
         composite_unlock_entry.set_text("")
 
     def _on_database_locked_changed(self, _database_manager=None, _value=None):
-        if (not self.database_manager
-            or (self.database_manager
-                and self.database_manager.props.locked)):
+        if not self.database_manager or (
+            self.database_manager and self.database_manager.props.locked
+        ):
             self.builder = Gtk.Builder()
-            self.builder.add_from_resource(
-                "/org/gnome/PasswordSafe/unlock_database.ui")
+            self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
 
             self._set_headerbar()
             self._assemble_stack()
@@ -483,9 +517,9 @@ class UnlockDatabase:
             self.database_manager.keyfile_hash = None
 
         composite_unlock_select_button = self.builder.get_object(
-            "composite_unlock_select_button")
-        composite_unlock_entry = self.builder.get_object(
-            "composite_unlock_entry")
+            "composite_unlock_select_button"
+        )
+        composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         composite_unlock_entry.grab_focus()
         composite_unlock_entry.add_css_class("error")
         composite_unlock_select_button.remove_css_class("suggested-action")
@@ -511,8 +545,7 @@ class UnlockDatabase:
     def _password_unlock_failed(self):
         self.window.send_notification(_("Failed to unlock safe"))
 
-        password_unlock_entry = self.builder.get_object(
-            "password_unlock_entry")
+        password_unlock_entry = self.builder.get_object("password_unlock_entry")
         password_unlock_entry.grab_focus()
         password_unlock_entry.add_css_class("error")
         self._clear_input_fields()

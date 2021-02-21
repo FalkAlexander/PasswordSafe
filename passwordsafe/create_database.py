@@ -10,10 +10,10 @@ from passwordsafe.unlock_database import KeyFileFilter, UnlockDatabase
 from passwordsafe.utils import generate_keyfile
 
 
-@Gtk.Template(
-    resource_path="/org/gnome/PasswordSafe/create_database.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/create_database.ui")
 class CreateDatabase(Gtk.Stack):
     """Creates a new Safe when invoked"""
+
     # TODO Add an accelerator for Escape that
     # calls on_headerbar_back_button_clicked().
     # Can be done on GTK 4 with GtkShortcutController.
@@ -84,8 +84,7 @@ class CreateDatabase(Gtk.Stack):
 
     @Gtk.Template.Callback()
     def on_password_creation_button_clicked(self, _widget: Gtk.Button) -> None:
-        self.database_manager.set_password_try(
-            self.password_creation_input.get_text())
+        self.database_manager.set_password_try(self.password_creation_input.get_text())
         self.set_visible_child_name("check-password")
         self.password_check_input.grab_focus()
 
@@ -127,20 +126,20 @@ class CreateDatabase(Gtk.Stack):
         """cb invoked when we create a new keyfile for a newly created Safe"""
         keyfile_dlg = Gtk.FileChooserNative.new(
             _("Choose location for keyfile"),
-            self.window, Gtk.FileChooserAction.SAVE,
-            _("_Generate"), None)
+            self.window,
+            Gtk.FileChooserAction.SAVE,
+            _("_Generate"),
+            None,
+        )
         keyfile_dlg.set_modal(True)
         keyfile_dlg.add_filter(KeyFileFilter())
 
-        keyfile_dlg.connect(
-            "response", self._on_filechooser_response, keyfile_dlg
-        )
+        keyfile_dlg.connect("response", self._on_filechooser_response, keyfile_dlg)
         keyfile_dlg.show()
 
-    def _on_filechooser_response(self,
-                                 dialog: Gtk.Dialog,
-                                 response: Gtk.ResponseType,
-                                 _dialog: Gtk.Dialog) -> None:
+    def _on_filechooser_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             self.generate_keyfile_button.set_sensitive(False)
             self.generate_keyfile_button.set_label(_("Generating…"))
@@ -162,8 +161,8 @@ class CreateDatabase(Gtk.Stack):
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:
         self.parent_widget.remove(self)
         UnlockDatabase(
-            self.window, self.parent_widget,
-            self.database_manager.database_path)
+            self.window, self.parent_widget, self.database_manager.database_path
+        )
 
     @Gtk.Template.Callback()
     def on_password_repeat_input_activate(self, _widget: Gtk.Entry) -> None:

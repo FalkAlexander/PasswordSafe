@@ -34,8 +34,8 @@ class EntryRow(Adw.ActionRow):
 
     def assemble_entry_row(self):
         self._safe_entry.bind_property(
-            "icon-name", self._entry_icon, "icon-name",
-            GObject.BindingFlags.SYNC_CREATE)
+            "icon-name", self._entry_icon, "icon-name", GObject.BindingFlags.SYNC_CREATE
+        )
 
         self._safe_entry.connect("notify::name", self._on_entry_name_changed)
         self._on_entry_name_changed(self._safe_entry, None)
@@ -56,8 +56,12 @@ class EntryRow(Adw.ActionRow):
 
     @Gtk.Template.Callback()
     def _on_entry_row_button_pressed(
-            self, _gesture: Gtk.GestureClick, _n_press: int, _event_x: float,
-            _event_y: float) -> None:
+        self,
+        _gesture: Gtk.GestureClick,
+        _n_press: int,
+        _event_x: float,
+        _event_y: float,
+    ) -> None:
         # pylint: disable=too-many-arguments
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()
@@ -96,7 +100,8 @@ class EntryRow(Adw.ActionRow):
         )
 
     def _on_entry_name_changed(
-            self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
+        self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
+    ) -> None:
         entry_name = self._safe_entry.props.name
         if entry_name:
             self.remove_css_class("italic-title")
@@ -106,7 +111,8 @@ class EntryRow(Adw.ActionRow):
             self.props.title = _("Title not specified")
 
     def _on_entry_username_changed(
-            self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
+        self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
+    ) -> None:
         entry_username = self._safe_entry.props.username
         if entry_username:
             self.remove_css_class("italic-subtitle")
@@ -116,7 +122,8 @@ class EntryRow(Adw.ActionRow):
             self.props.subtitle = _("No username specified")
 
     def _on_entry_color_changed(
-            self, _safe_entry: SafeEntry, _value: GObject.ParamSpec) -> None:
+        self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
+    ) -> None:
         # Clear current style
         self._entry_icon.remove_css_class("DarkIcon")
         self._entry_icon.remove_css_class("BrightIcon")

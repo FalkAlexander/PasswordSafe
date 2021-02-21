@@ -47,18 +47,17 @@ class AttachmentWarningDialog(Gtk.MessageDialog):
 
     def __open_tmp_file(self, bytes_buffer, filename):
         try:
-            cache_dir = os.path.join(
-                GLib.get_user_cache_dir(), "passwordsafe", "tmp"
-            )
+            cache_dir = os.path.join(GLib.get_user_cache_dir(), "passwordsafe", "tmp")
             file_path = os.path.join(cache_dir, filename)
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 
             gfile = Gio.File.new_for_path(file_path)
             output_stream = gfile.replace(
-                None, False,
-                Gio.FileCreateFlags.PRIVATE
-                | Gio.FileCreateFlags.REPLACE_DESTINATION, None
+                None,
+                False,
+                Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
+                None,
             )
             output_stream.write_bytes(GLib.Bytes.new(bytes_buffer))
             output_stream.close()

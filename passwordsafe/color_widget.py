@@ -31,7 +31,8 @@ class ColorButton(Gtk.FlowBoxChild):
     _selected_image = Gtk.Template.Child()
 
     selected = GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+        type=bool, default=False, flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(self, color: Color, selected: bool):
         """RadioButton to select the color of an entry
@@ -60,7 +61,9 @@ class ColorButton(Gtk.FlowBoxChild):
         return self._color.value
 
     @Gtk.Template.Callback()
-    def _on_enter_event(self, _gesture: Gtk.EventControllerMotion, _x: int, _y: int) -> None:
+    def _on_enter_event(
+        self, _gesture: Gtk.EventControllerMotion, _x: int, _y: int
+    ) -> None:
         self.set_state_flags(Gtk.StateFlags.PRELIGHT, False)
 
     @Gtk.Template.Callback()
@@ -75,8 +78,7 @@ class ColorEntryRow(Gtk.Box):
 
     _flowbox = Gtk.Template.Child()
 
-    def __init__(
-            self, unlocked_database: UnlockedDatabase, safe_entry: SafeEntry):
+    def __init__(self, unlocked_database: UnlockedDatabase, safe_entry: SafeEntry):
         """Widget to select the color of an entry
 
         :param UnlockedDatabase unlocked_database: unlocked database
@@ -89,7 +91,7 @@ class ColorEntryRow(Gtk.Box):
         self._safe_entry: SafeEntry = safe_entry
 
         for color in Color:
-            active: bool = (safe_entry.props.color == color.value)
+            active: bool = safe_entry.props.color == color.value
             color_button: ColorButton = ColorButton(color, active)
             self._flowbox.insert(color_button, -1)
             if active:
@@ -97,12 +99,13 @@ class ColorEntryRow(Gtk.Box):
 
     @Gtk.Template.Callback()
     def _on_color_activated(
-            self, _flowbox: Gtk.FlowBox, selected_child: Gtk.FlowBoxChild) -> None:
+        self, _flowbox: Gtk.FlowBox, selected_child: Gtk.FlowBoxChild
+    ) -> None:
         if selected_child.props.selected:
             return
 
         for child in self._flowbox:
-            selected: bool = (child == selected_child)
+            selected: bool = child == selected_child
             child.props.selected = selected
 
         self._safe_entry.props.color = selected_child.color

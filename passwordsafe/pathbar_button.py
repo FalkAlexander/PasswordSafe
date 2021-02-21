@@ -28,7 +28,8 @@ class PathbarButton(Gtk.Button):
             return
 
         self.element.bind_property(
-            "name", self, "label", GObject.BindingFlags.SYNC_CREATE)
+            "name", self, "label", GObject.BindingFlags.SYNC_CREATE
+        )
 
     def set_active_style(self):
         self.add_css_class("PathbarButtonActive")

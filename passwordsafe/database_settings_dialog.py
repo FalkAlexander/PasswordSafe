@@ -29,13 +29,17 @@ class DatabaseSettingsDialog:
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
         self.builder = Gtk.Builder()
-        self.builder.add_from_resource("/org/gnome/PasswordSafe/database_settings_dialog.ui")
+        self.builder.add_from_resource(
+            "/org/gnome/PasswordSafe/database_settings_dialog.ui"
+        )
 
         self.window = self.builder.get_object("database_settings_window")
         self.auth_apply_button = self.builder.get_object("auth_apply_button")
 
         self.select_keyfile_button = self.builder.get_object("select_keyfile_button")
-        self.generate_keyfile_button = self.builder.get_object("generate_keyfile_button")
+        self.generate_keyfile_button = self.builder.get_object(
+            "generate_keyfile_button"
+        )
 
         self.__setup_widgets()
         self.__setup_signals()
@@ -48,17 +52,27 @@ class DatabaseSettingsDialog:
         self.auth_apply_button.connect("clicked", self.on_auth_apply_button_clicked)
 
         # Password Section
-        self.builder.get_object("current_password_entry").connect("changed", self.on_password_entry_changed)
-        self.builder.get_object("new_password_entry").connect("changed", self.on_password_entry_changed)
-        self.builder.get_object("new_password_generate_button").connect("clicked", self.on_generate_password)
-        self.builder.get_object("confirm_password_entry").connect("changed", self.on_password_entry_changed)
-
-        self.generate_keyfile_button.connect("clicked", self.on_keyfile_generator_button_clicked)
-        self.select_keyfile_button.connect("clicked", self.on_keyfile_select_button_clicked)
-
-        self.database_manager.connect(
-            "notify::locked", self.__on_locked
+        self.builder.get_object("current_password_entry").connect(
+            "changed", self.on_password_entry_changed
         )
+        self.builder.get_object("new_password_entry").connect(
+            "changed", self.on_password_entry_changed
+        )
+        self.builder.get_object("new_password_generate_button").connect(
+            "clicked", self.on_generate_password
+        )
+        self.builder.get_object("confirm_password_entry").connect(
+            "changed", self.on_password_entry_changed
+        )
+
+        self.generate_keyfile_button.connect(
+            "clicked", self.on_keyfile_generator_button_clicked
+        )
+        self.select_keyfile_button.connect(
+            "clicked", self.on_keyfile_select_button_clicked
+        )
+
+        self.database_manager.connect("notify::locked", self.__on_locked)
 
     def __setup_widgets(self) -> None:
         # Password Level Bar
@@ -137,7 +151,9 @@ class DatabaseSettingsDialog:
         use_symbols = config.get_generator_use_symbols()
         length = config.get_generator_length()
 
-        generated_password = passwordsafe.password_generator.generate(length, use_uppercase, use_lowercase, use_numbers, use_symbols)
+        generated_password = passwordsafe.password_generator.generate(
+            length, use_uppercase, use_lowercase, use_numbers, use_symbols
+        )
 
         new_password_entry.set_text(generated_password)
         confirm_password_entry.set_text(generated_password)
@@ -146,8 +162,12 @@ class DatabaseSettingsDialog:
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
-            _("Choose current keyfile"), self.window, Gtk.FileChooserAction.OPEN,
-            _("_Open"), None)
+            _("Choose current keyfile"),
+            self.window,
+            Gtk.FileChooserAction.OPEN,
+            _("_Open"),
+            None,
+        )
         select_dialog.set_modal(True)
 
         ffilter = Gtk.FileFilter()
@@ -164,11 +184,13 @@ class DatabaseSettingsDialog:
         )
         select_dialog.show()
 
-    def _on_select_filechooser_response(self,
-                                        select_dialog: Gtk.Dialog,
-                                        response: Gtk.ResponseType,
-                                        button: Gtk.Button,
-                                        _dialog: Gtk.Dialog) -> None:
+    def _on_select_filechooser_response(
+        self,
+        select_dialog: Gtk.Dialog,
+        response: Gtk.ResponseType,
+        button: Gtk.Button,
+        _dialog: Gtk.Dialog,
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             selected_keyfile = select_dialog.get_file().get_path()
             keyfile_hash: str = self.database_manager.create_keyfile_hash(
@@ -192,8 +214,12 @@ class DatabaseSettingsDialog:
         self.unlocked_database.start_database_lock_timer()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
-            _("Choose location for keyfile"), self.window, Gtk.FileChooserAction.SAVE,
-            _("_Generate"), None)
+            _("Choose location for keyfile"),
+            self.window,
+            Gtk.FileChooserAction.SAVE,
+            _("_Generate"),
+            None,
+        )
         save_dialog.set_current_name(_("Keyfile"))
         save_dialog.set_modal(True)
 
@@ -208,10 +234,9 @@ class DatabaseSettingsDialog:
         save_dialog.connect("response", self._on_filechooser_response, save_dialog)
         save_dialog.show()
 
-    def _on_filechooser_response(self,
-                                 save_dialog: Gtk.Dialog,
-                                 response: Gtk.ResponseType,
-                                 _dialog: Gtk.Dialog) -> None:
+    def _on_filechooser_response(
+        self, save_dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
+    ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             spinner = Gtk.Spinner()
             spinner.start()
@@ -269,7 +294,9 @@ class DatabaseSettingsDialog:
 
     def set_detail_values(self):
         # Name
-        self.builder.get_object("label_name").set_text(os.path.splitext(ntpath.basename(self.database_manager.database_path))[0])
+        self.builder.get_object("label_name").set_text(
+            os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]
+        )
 
         # Path
         label_path = self.builder.get_object("label_path")
@@ -285,7 +312,9 @@ class DatabaseSettingsDialog:
 
         # Version
         version = self.database_manager.db.version
-        self.builder.get_object("label_version").set_text(str(version[0]) + "." + str(version[1]))
+        self.builder.get_object("label_version").set_text(
+            str(version[0]) + "." + str(version[1])
+        )
 
         # Date
         date = time.ctime(os.path.getctime(path))
@@ -313,15 +342,21 @@ class DatabaseSettingsDialog:
     def set_stats_values(self):
         # Number of Entries
         if self.builder.get_object("label_number_entries") is not None:
-            self.builder.get_object("label_number_entries").set_text(str(self.entries_number))
+            self.builder.get_object("label_number_entries").set_text(
+                str(self.entries_number)
+            )
 
         # Number of Groups
         if self.builder.get_object("label_number_groups") is not None:
-            self.builder.get_object("label_number_groups").set_text(str(self.groups_number))
+            self.builder.get_object("label_number_groups").set_text(
+                str(self.groups_number)
+            )
 
         # Number of Passwords
         if self.builder.get_object("label_number_passwords") is not None:
-            self.builder.get_object("label_number_passwords").set_text(str(self.passwords_number))
+            self.builder.get_object("label_number_passwords").set_text(
+                str(self.passwords_number)
+            )
 
     def start_stats_thread(self):
         self.entries_number = len(self.database_manager.db.entries)

@@ -39,13 +39,14 @@ class UnlockedHeaderBar(Adw.HeaderBar):
         self._unlocked_database.action_bar.props.revealed = is_mobile
 
     def _setup_signals(self):
-        self._window.connect(
-            "notify::mobile-layout", self._on_mobile_layout_changed)
+        self._window.connect("notify::mobile-layout", self._on_mobile_layout_changed)
 
         self._on_mobile_layout_changed(None, None)
 
         self._pathbar.bind_property(
-            "visible", self._action_bar, "revealed",
+            "visible",
+            self._action_bar,
+            "revealed",
             GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.INVERT_BOOLEAN,
         )
 

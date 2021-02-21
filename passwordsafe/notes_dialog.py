@@ -26,8 +26,12 @@ class NotesDialog:
         self.__dialog.present()
 
     def __setup_signals(self):
-        self.__unlocked_database.database_manager.connect("notify::locked", self.__on_locked)
-        self.__builder.get_object("copy_button").connect("clicked", self.__on_copy_button_clicked)
+        self.__unlocked_database.database_manager.connect(
+            "notify::locked", self.__on_locked
+        )
+        self.__builder.get_object("copy_button").connect(
+            "clicked", self.__on_copy_button_clicked
+        )
 
         # Search
         self.__search_button = self.__builder.get_object("search_button")
@@ -40,9 +44,11 @@ class NotesDialog:
 
         # Bind text to the corresponding safe entry.
         self.__safe_entry.bind_property(
-            "notes", self.__notes_buffer, "text",
-            GObject.BindingFlags.SYNC_CREATE
-            | GObject.BindingFlags.BIDIRECTIONAL)
+            "notes",
+            self.__notes_buffer,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
 
     def __setup_widgets(self):
         # Dialog

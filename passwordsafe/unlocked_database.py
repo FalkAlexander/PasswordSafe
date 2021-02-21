@@ -34,6 +34,7 @@ if typing.TYPE_CHECKING:
 
     from passwordsafe.container_page import ContainerPage
     from passwordsafe.database_manager import DatabaseManager
+
     # pylint: disable=ungrouped-imports
     from passwordsafe.main_window import MainWindow
 
@@ -112,7 +113,9 @@ class UnlockedDatabase(GObject.GObject):
         self.register_dbus_signal()
 
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
-        self.database_manager.connect("save-notification", self.on_database_save_notification)
+        self.database_manager.connect(
+            "save-notification", self.on_database_save_notification
+        )
 
     def listbox_row_factory(self, element: SafeElement) -> Gtk.Widget:
         if element.is_entry:
@@ -122,7 +125,9 @@ class UnlockedDatabase(GObject.GObject):
 
     def populate_list_model(self, list_model: Gio.ListStore) -> None:
         entries = self.props.current_element.entries
-        groups = [g for g in self.props.current_element.subgroups if not g.is_root_group]
+        groups = [
+            g for g in self.props.current_element.subgroups if not g.is_root_group
+        ]
 
         elements = groups + entries
         list_model.splice(0, 0, elements)
@@ -134,7 +139,10 @@ class UnlockedDatabase(GObject.GObject):
         self.sort_list_model(self, list_model)
 
     def sort_list_model(
-            self, _unlocked_db: UnlockedDatabase, list_model: Gio.ListStore, _data: Any = None
+        self,
+        _unlocked_db: UnlockedDatabase,
+        list_model: Gio.ListStore,
+        _data: Any = None,
     ) -> None:
         sorting = passwordsafe.config_manager.get_sort_order()
         sort_func = SortingHat.get_sort_func(sorting)
@@ -237,13 +245,13 @@ class UnlockedDatabase(GObject.GObject):
             logging.debug("No.")
 
     def _on_element_added(
-            self,
-            _u_db: UnlockedDatabase,
-            element: SafeElement,
-            target_group_uuid: UUID,
-            list_model: Gio.ListStore,
-            list_model_group_uuid: UUID,
-            _data: Any = None
+        self,
+        _u_db: UnlockedDatabase,
+        element: SafeElement,
+        target_group_uuid: UUID,
+        list_model: Gio.ListStore,
+        list_model_group_uuid: UUID,
+        _data: Any = None,
     ) -> None:
         # Return if the element was addded to another group than the one
         # used to generate the list model.
@@ -258,7 +266,11 @@ class UnlockedDatabase(GObject.GObject):
         )
 
     def _on_element_removed(
-            self, _u_db: UnlockedDatabase, element_uuid: UUID, list_model: Gio.ListStore, _data: Any = None
+        self,
+        _u_db: UnlockedDatabase,
+        element_uuid: UUID,
+        list_model: Gio.ListStore,
+        _data: Any = None,
     ) -> None:
         pos = 0
         found = False
@@ -307,9 +319,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def new_group_browser_page(self, group: SafeGroup) -> Gtk.ScrolledWindow:
         builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_database.ui"
-        )
+        builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
         browser_clamp = builder.get_object("browser_clamp")
         browser_stack = builder.get_object("browser_stack")
         empty_group_box = builder.get_object("empty_group_box")
@@ -340,7 +350,8 @@ class UnlockedDatabase(GObject.GObject):
             self.on_listbox_items_changed,
             browser_stack,
             browser_clamp,
-            empty_group_box)
+            empty_group_box,
+        )
         self.populate_list_model(list_model)
 
         scrolled_window = Gtk.ScrolledWindow.new()
@@ -385,7 +396,16 @@ class UnlockedDatabase(GObject.GObject):
     # Group and Entry Management
     #
 
-    def on_listbox_items_changed(self, listmodel, _position, _removed, _added, browser_stack, browser_clamp, empty_group_box):
+    def on_listbox_items_changed(
+        self,
+        listmodel,
+        _position,
+        _removed,
+        _added,
+        browser_stack,
+        browser_clamp,
+        empty_group_box,
+    ):
         if not listmodel.get_n_items():
             browser_stack.set_visible_child(empty_group_box)
         else:
@@ -430,7 +450,9 @@ class UnlockedDatabase(GObject.GObject):
             safe_entry = list_box_row.safe_entry
             self.show_edit_page(safe_entry)
 
-    def on_database_save_notification(self, _database_manager: DatabaseManager, saved: bool) -> None:
+    def on_database_save_notification(
+        self, _database_manager: DatabaseManager, saved: bool
+    ) -> None:
         if saved:
             self.window.send_notification(_("Safe saved"))
         else:
@@ -519,6 +541,7 @@ class UnlockedDatabase(GObject.GObject):
             logging.debug("Sort order changed to %s", sorting)
 
             self.sort_list_model(self, list_model)
+
     #
     # Dialog Creator
     #
@@ -605,7 +628,9 @@ class UnlockedDatabase(GObject.GObject):
         if not self.database_manager.is_dirty or self.database_manager.save_running:
             return
 
-        save_thread = threading.Thread(target=self.database_manager.save_database, args=[notification])
+        save_thread = threading.Thread(
+            target=self.database_manager.save_database, args=[notification]
+        )
         save_thread.daemon = False
         save_thread.start()
 
@@ -645,9 +670,14 @@ class UnlockedDatabase(GObject.GObject):
         In this case we will call self.on_session_lock()"""
         connection = Gio.Application.get_default().get_dbus_connection()
         self.dbus_subscription_id = connection.signal_subscribe(
-            None, "org.gnome.ScreenSaver", "ActiveChanged",
-            "/org/gnome/ScreenSaver", None,
-            Gio.DBusSignalFlags.NONE, self.on_session_lock,)
+            None,
+            "org.gnome.ScreenSaver",
+            "ActiveChanged",
+            "/org/gnome/ScreenSaver",
+            None,
+            Gio.DBusSignalFlags.NONE,
+            self.on_session_lock,
+        )
 
     def go_back(self):
         if self.props.selection_mode:

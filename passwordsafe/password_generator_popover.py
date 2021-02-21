@@ -8,8 +8,7 @@ from passwordsafe.passphrase_generator import Passphrase
 from passwordsafe.password_generator import generate as generate_pwd
 
 
-@Gtk.Template(
-    resource_path="/org/gnome/PasswordSafe/password_generator_popover.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/password_generator_popover.ui")
 class PasswordGeneratorPopover(Gtk.Popover):
 
     __gtype_name__ = "PasswordGeneratorPopover"
@@ -25,7 +24,8 @@ class PasswordGeneratorPopover(Gtk.Popover):
     _words_spin_button = Gtk.Template.Child()
 
     password = GObject.Property(
-        type=str, default="", flags=GObject.ParamFlags.READWRITE)
+        type=str, default="", flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(self):
         """Popover to generate a new password for an entry
@@ -65,8 +65,8 @@ class PasswordGeneratorPopover(Gtk.Popover):
 
             length: int = self._digit_spin_button.get_value_as_int()
             pass_text: str = generate_pwd(
-                length, use_uppercase, use_lowercase, use_numbers,
-                use_symbols)
+                length, use_uppercase, use_lowercase, use_numbers, use_symbols
+            )
         else:
             separator: str = self._separator_entry.props.text
             words: int = self._words_spin_button.get_value_as_int()

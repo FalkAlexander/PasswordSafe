@@ -30,15 +30,13 @@ class Search:
         self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
 
         self._stack: Gtk.Stack = self._builder.get_object("stack")
-        self._empty_search_page: Gtk.Box = self._builder.get_object(
-            "empty_search_page")
-        self._info_search_page: Gtk.Box = self._builder.get_object(
-            "info_search_page")
+        self._empty_search_page: Gtk.Box = self._builder.get_object("empty_search_page")
+        self._info_search_page: Gtk.Box = self._builder.get_object("info_search_page")
         self._results_search_page: Gtk.Box = self._builder.get_object(
-            "results_search_page")
+            "results_search_page"
+        )
 
-        self.scrolled_page = self._builder.get_object(
-            "stack")
+        self.scrolled_page = self._builder.get_object("stack")
 
         self._headerbar = self.unlocked_database.search_headerbar
         self._search_entry = self._headerbar.search_entry
@@ -65,8 +63,7 @@ class Search:
             "activate", self.on_headerbar_search_entry_enter_pressed
         )
 
-        self.unlocked_database.connect(
-            "notify::search-active", self._on_search_active)
+        self.unlocked_database.connect("notify::search-active", self._on_search_active)
         self._search_entry.connect("search-started", self._on_search_started)
 
         self._prepare_search_page()
@@ -95,7 +92,8 @@ class Search:
 
         if search_active:
             self._search_changed_id = self._search_entry.connect(
-                "search-changed", self._on_search_entry_timeout)
+                "search-changed", self._on_search_entry_timeout
+            )
             self._search_entry.grab_focus()
 
             self._timeout_info = GLib.timeout_add(200, self._display_info_page)

@@ -45,14 +45,11 @@ class RecentFilesPage(Gtk.Box):
 
     @property
     def is_empty(self) -> bool:
-        """Return True is there are no recent files.
-        """
+        """Return True is there are no recent files."""
         return self.list_model.get_n_items() == 0
 
     @Gtk.Template.Callback()
-    def _on_last_opened_listbox_activated(
-            self, _widget, list_box_row
-    ):
+    def _on_last_opened_listbox_activated(self, _widget, list_box_row):
         """cb when we click on an entry in the recently opened files list
 
         Starts opening the database corresponding to the entry."""

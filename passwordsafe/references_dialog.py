@@ -6,7 +6,7 @@ from typing import Any
 from gi.repository import Gio, Gtk
 
 
-class ReferencesDialog():
+class ReferencesDialog:
     __property = "P"
 
     def __init__(self, unlocked_database):
@@ -31,7 +31,9 @@ class ReferencesDialog():
         self.__update_reference_entry()
 
     def __setup_signals(self) -> None:
-        self.__reference_entry.connect("icon-press", self.__on_copy_secondary_button_clicked)
+        self.__reference_entry.connect(
+            "icon-press", self.__on_copy_secondary_button_clicked
+        )
         self.__connect_model_buttons_signals()
         self.__database_manager.connect("notify::locked", self.__on_locked)
 
@@ -45,9 +47,14 @@ class ReferencesDialog():
 
     def __connect_model_buttons_signals(self):
         self.__builder.get_object("property_label_gesture").connect(
-            "pressed", self.__open_codes_popover)
-        self.__builder.get_object("identifier_label_gesture").connect("pressed", self.__open_codes_popover)
-        self.__builder.get_object("uuid_label_gesture").connect("pressed", self.__open_uuid_popover)
+            "pressed", self.__open_codes_popover
+        )
+        self.__builder.get_object("identifier_label_gesture").connect(
+            "pressed", self.__open_codes_popover
+        )
+        self.__builder.get_object("uuid_label_gesture").connect(
+            "pressed", self.__open_uuid_popover
+        )
 
         uuid_popover = self.__builder.get_object("uuid_popover")
         uuid_popover.set_parent(self.__builder.get_object("uuid_label"))
@@ -62,7 +69,9 @@ class ReferencesDialog():
 
         self.__builder.get_object("property_popover_button").set_label(self.__property)
 
-        self.__reference_entry.set_text("{REF:" + self.__property + "@I:" + encoded_uuid + "}")
+        self.__reference_entry.set_text(
+            "{REF:" + self.__property + "@I:" + encoded_uuid + "}"
+        )
 
     def __open_codes_popover(self, _gesture, _n_points, _x, _y, _data=None):
         codes_popover = self.__builder.get_object("codes_popover")
@@ -76,7 +85,9 @@ class ReferencesDialog():
         self.__unlocked_database.start_database_lock_timer()
         self.__unlocked_database.clipboard.set(entry.get_text())
 
-    def __on_property_model_button_clicked(self, action: Gio.SimpleAction, _data: Any = None) -> None:
+    def __on_property_model_button_clicked(
+        self, action: Gio.SimpleAction, _data: Any = None
+    ) -> None:
         self.__unlocked_database.start_database_lock_timer()
         self.__property = action.props.name
         self.__update_reference_entry()

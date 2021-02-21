@@ -35,10 +35,14 @@ class Application(Gtk.Application):
         self.set_resource_base_path("/org/gnome/PasswordSafe")
 
         # debug level logging option
-        self.add_main_option("debug", ord("d"), GLib.OptionFlags.NONE,
-                             GLib.OptionArg.NONE,
-                             "Enable debug logging",
-                             None)
+        self.add_main_option(
+            "debug",
+            ord("d"),
+            GLib.OptionFlags.NONE,
+            GLib.OptionArg.NONE,
+            "Enable debug logging",
+            None,
+        )
 
     def do_startup(self):  # pylint: disable=arguments-differ
         Gtk.Application.do_startup(self)
@@ -52,7 +56,7 @@ class Application(Gtk.Application):
 
         self.do_activate()
 
-    def do_handle_local_options(        # pylint: disable=arguments-differ
+    def do_handle_local_options(  # pylint: disable=arguments-differ
         self, options: GLib.VariantDict
     ) -> int:
         """
@@ -66,15 +70,18 @@ class Application(Gtk.Application):
 
         # set up logging depending on the verbosity level
         loglevel = logging.INFO
-        if self.development_mode or 'debug' in options:
+        if self.development_mode or "debug" in options:
             loglevel = logging.DEBUG
             # Don't clutter our log output with debug msg of the
             # pykeepass module it is very noisy.
             pykeepass_logger = logging.getLogger("pykeepass")
             pykeepass_logger.setLevel(logging.INFO)
 
-        logging.basicConfig(format="%(asctime)s | %(levelname)s | %(message)s",
-                            datefmt='%d-%m-%y %H:%M:%S', level=loglevel)
+        logging.basicConfig(
+            format="%(asctime)s | %(levelname)s | %(message)s",
+            datefmt="%d-%m-%y %H:%M:%S",
+            level=loglevel,
+        )
 
         return -1
 
@@ -125,14 +132,17 @@ class Application(Gtk.Application):
         about_dialog.set_transient_for(self.window)
         about_dialog.show()
 
-    def on_quit_action(self, _action: Gio.SimpleAction | None = None,
-                       _data: Any = None) -> None:
+    def on_quit_action(
+        self, _action: Gio.SimpleAction | None = None, _data: Any = None
+    ) -> None:
         unsaved_databases_list = []
         self.window.databases_to_save.clear()
 
         for database in self.window.opened_databases:
-            if (database.database_manager.is_dirty
-                    and not database.database_manager.save_running):
+            if (
+                database.database_manager.is_dirty
+                and not database.database_manager.save_running
+            ):
                 unsaved_databases_list.append(database)
 
         if config.get_save_automatically():
@@ -164,9 +174,9 @@ class Application(Gtk.Application):
         else:
             GLib.idle_add(self.quit)
 
-    def _on_quit_dialog_response(self,
-                                 dialog: Gtk.Dialog,
-                                 response: Gtk.ResponseType) -> None:
+    def _on_quit_dialog_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType
+    ) -> None:
         dialog.close()
         if response != Gtk.ResponseType.OK:
             self.window.databases_to_save.clear()
@@ -187,10 +197,9 @@ class Application(Gtk.Application):
         else:
             self.window.send_notification(_("Unable to Quit: Could not save Safe"))
 
-    def _on_save_dialog_response(self,
-                                 dialog: Gtk.Dialog,
-                                 response: Gtk.ResponseType,
-                                 database: UnlockedDatabase) -> None:
+    def _on_save_dialog_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, database: UnlockedDatabase
+    ) -> None:
         dialog.close()
         if response == Gtk.ResponseType.YES:  # Save
             self._save_handler_ids[database] = database.database_manager.connect(

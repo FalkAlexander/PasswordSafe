@@ -52,8 +52,12 @@ class GroupRow(Adw.ActionRow):
 
     @Gtk.Template.Callback()
     def _on_group_row_button_pressed(
-            self, _gesture: Gtk.GestureClick, _n_press: int, _event_x: float,
-            _event_y: float) -> None:
+        self,
+        _gesture: Gtk.GestureClick,
+        _n_press: int,
+        _event_x: float,
+        _event_y: float,
+    ) -> None:
         # pylint: disable=too-many-arguments
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()
@@ -83,7 +87,8 @@ class GroupRow(Adw.ActionRow):
         self.unlocked_database.show_edit_page(self.safe_group)
 
     def _on_group_name_changed(
-            self, _safe_group: SafeGroup, _value: GObject.ParamSpec) -> None:
+        self, _safe_group: SafeGroup, _value: GObject.ParamSpec
+    ) -> None:
         group_name = self.safe_group.name
         if group_name:
             self.remove_css_class("italic-title")

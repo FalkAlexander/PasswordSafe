@@ -19,8 +19,7 @@ class Notification(Gtk.Revealer):
             self.event_id = None
 
         self.set_reveal_child(True)
-        self.event_id = GLib.timeout_add_seconds(
-            REVEAL_TIME, self.__hide_notification)
+        self.event_id = GLib.timeout_add_seconds(REVEAL_TIME, self.__hide_notification)
 
     def __hide_notification(self) -> None:
         self.event_id = None

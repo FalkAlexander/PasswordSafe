@@ -344,6 +344,8 @@ class UnlockDatabase:
 
         entry.set_sensitive(sensitive)
         button.set_sensitive(sensitive)
+        back_button = self.builder.get_object("back_button")
+        back_button.set_sensitive(sensitive)
         self.unlock_database_stack_switcher.set_sensitive(sensitive)
 
         return button, image

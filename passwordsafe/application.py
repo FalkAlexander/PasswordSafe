@@ -43,7 +43,7 @@ class Application(Gtk.Application):
     def do_startup(self):  # pylint: disable=arguments-differ
         Gtk.Application.do_startup(self)
         GLib.set_application_name('Password Safe')
-        GLib.set_prgname("Password Safe")
+        GLib.set_prgname(self.application_id)
 
         Handy.init()
         self.connect("open", self.file_open_handler)

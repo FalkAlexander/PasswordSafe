@@ -55,6 +55,8 @@ class SortingHat:
     @staticmethod
     def sort_by_ctime_dec(ele1: SafeElement, ele2: SafeElement) -> int:
         # <0 if ele1<ele2, 0 if ele1=ele2, >0 ele1>ele2
+        if ele1.ctime is None or ele2.ctime is None:
+            return 0
         if ele1.is_group and ele2.is_entry:
             return -1
         if ele1.is_entry and ele2.is_group:

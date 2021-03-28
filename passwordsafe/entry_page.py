@@ -103,7 +103,6 @@ class EntryPage(Gtk.ScrolledWindow):
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
-        self.name_property_value_entry.grab_focus()
         self.name_property_value_entry.props.enable_undo = True
 
         # Username

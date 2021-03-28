@@ -27,7 +27,6 @@ class GroupPage(Gtk.ScrolledWindow):
         safe_group = self.unlocked_database.current_element
 
         # Setup Widgets
-        self.name_property_value_entry.grab_focus()
         notes_buffer = self.notes_property_value_entry.get_buffer()
 
         # Connect Signals

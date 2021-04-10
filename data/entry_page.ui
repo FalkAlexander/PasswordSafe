@@ -113,6 +113,58 @@
               </object>
             </child>
             <child>
+              <object class="GtkBox" id="otp_property_box">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">6</property>
+                <child>
+                  <object class="GtkLabel" id="otp_property_name_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">One time password token</property>
+                    <property name="use_underline">True</property>
+                    <property name="mnemonic_widget">otp_property_value_entry</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox" id="otp_entry_box">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                    <child>
+                      <object class="GtkEntry" id="otp_property_value_entry">
+                        <property name="visible">True</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="otp_copy_button">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Copy one time password to clipboard</property>
+                        <property name="halign">end</property>
+                        <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkImage" id="otp_copy_button_image">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="icon_name">document-open-recent-symbolic</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="linked"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="GtkBox" id="notes_property_box">
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>

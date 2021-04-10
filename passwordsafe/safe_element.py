@@ -10,6 +10,8 @@ from gi.repository import GObject
 
 from passwordsafe.color_widget import Color
 
+from pyotp import parse_uri, TOTP
+
 if typing.TYPE_CHECKING:
     from datetime import datetime
 
@@ -42,6 +44,12 @@ class SafeElement(GObject.GObject):
             self._name = element.name or ""
         else:
             self._name = element.title or ""
+
+        self._otp = None
+        if self.is_entry:
+            otp_uri = element.get_custom_property("otp")
+            if otp_uri:
+                self._otp = parse_uri(otp_uri)
 
     @GObject.Signal()
     def updated(self):
@@ -100,6 +108,39 @@ class SafeElement(GObject.GObject):
             self._notes = new_notes
             self._element.notes = new_notes
             self.emit("updated")
+
+    @GObject.Property(
+        type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    def otp(self) -> str:
+        if self._otp:
+            return self._otp.secret
+        return ""
+
+    @otp.setter  # type: ignore
+    def otp(self, otp: str) -> None:
+        updated = False
+        if not otp and self._otp:
+            # Delete existing
+            self._otp = None
+            self._element.delete_custom_property("otp")
+            self.emit("updated")
+        elif self._otp and self._otp.secret != otp:
+            # Changing an existing OTP
+            self._otp.secret = otp
+            updated = True
+        elif otp:
+            # Creating brand new OTP.
+            self._otp = TOTP(otp, issuer=self.name)
+            updated = True
+
+        if updated:
+            self._element.set_custom_property("otp", self._otp.provisioning_uri())
+            self.emit("updated")
+
+    # Returns current OTP
+    def otp_code(self):
+        if self._otp:
+            return self._otp.now()
 
     @property
     def parentgroup(self) -> SafeGroup:

@@ -16,6 +16,7 @@ Password Safe is a password manager which integrates perfectly with the GNOME de
 * 🔎 Search tool with local, global and fulltext filter
 * 🕐 Automatic database lock during inactivity and session lock
 * 📲 Responsive UI for both desktop and mobile
+* ⏱️ Support for time based one time passwords.
 
 # Installation
 ## Install via distribution package manager
@@ -76,6 +77,7 @@ flatpak install org.gnome.PasswordSafeDevel.flatpak
 * libpwquality >= 1.4.0
 * meson >= 0.51.0
 * git
+* pyopt >= 2.6.0
 
 ```
 git clone https://gitlab.gnome.org/World/PasswordSafe.git

@@ -124,7 +124,6 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.url_property_box, safe_entry.url, add_all)
 
         # OTP (secret)
-        self.otp_property_value_entry.set_buffer(HistoryEntryBuffer([]))
         safe_entry.bind_property(
             "otp", self.otp_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE
@@ -253,7 +252,7 @@ class EntryPage(Gtk.ScrolledWindow):
         otp_token = safe_entry.otp_token() or ""
         self.unlocked_database.send_to_clipboard(
             otp_token,
-            _("One time password copied to clipboard"),
+            _("One-Time Password copied to clipboard"),
         )
 
     #
@@ -478,7 +477,7 @@ class EntryPage(Gtk.ScrolledWindow):
             progress = lifespan / safe_entry._otp.interval * 1000
             self.otp_token_lifespan_bar.set_value(progress)
             self.otp_token_lifespan_label.set_label(
-                _("One time password expires in %d seconds") % lifespan
+                _("One-Time Password expires in %d seconds") % lifespan
             )
             self.otp_generated_token_box.set_visible(True)
             GObject.timeout_add(50, self.otp_update)

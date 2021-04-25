@@ -27,6 +27,7 @@ if typing.TYPE_CHECKING:
 
 class SafeElement(GObject.GObject):
 
+    _otp: TOTP | None = None
     _db_manager: DatabaseManager | None = None
     sorted_handler_id: int | None = None
 
@@ -48,7 +49,6 @@ class SafeElement(GObject.GObject):
         else:
             self._name = element.title or ""
 
-        self._otp = None
         if self.is_entry:
             otp_uri = element.get_custom_property("otp")
             if otp_uri:

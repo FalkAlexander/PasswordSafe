@@ -100,7 +100,7 @@ class EntryRow(Gtk.ListBoxRow):
         otp_code = self._safe_entry.otp_code() or ""
         self.unlocked_database.send_to_clipboard(
             otp_code,
-            _("One time password copied to clipboard"),
+            _("One-Time Password copied to clipboard"),
         )
 
     @Gtk.Template.Callback()

@@ -86,7 +86,7 @@
                 <child>
                   <object class="GtkLabel" id="otp_generated_token_label">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">_One Time Password</property>
+                    <property name="label" translatable="yes">_One-Time Password</property>
                     <property name="halign">start</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">otp_copy_button</property>
@@ -113,7 +113,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Copy one time password to clipboard</property>
+                        <property name="tooltip_text" translatable="yes">Copy One-Time Password to clipboard</property>
                         <property name="halign">end</property>
                         <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
                         <child>
@@ -182,7 +182,7 @@
                   <object class="GtkLabel" id="otp_property_name_label">
                     <property name="visible">True</property>
                     <property name="halign">start</property>
-                    <property name="label" translatable="yes">One time password secret</property>
+                    <property name="label" translatable="yes">One-Time Password secret</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">otp_property_value_entry</property>
                     <style>

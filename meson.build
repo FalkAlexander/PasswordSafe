@@ -28,6 +28,7 @@ if not python_bin.language_version().version_compare('>= 3.7')
 endif
 
 
+dependency('libdazzle-1.0', version: '>= 3.34.0')
 dependency('glib-2.0')
 dependency('gobject-introspection-1.0', version: '>=1.35.9')
 dependency('gtk+-3.0', version: '>=3.24.1')

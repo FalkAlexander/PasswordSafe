@@ -6,6 +6,7 @@ from gettext import gettext as _
 from logging import warning
 
 from gi.repository import Gio, GLib, GObject, Gtk
+from gi.repository.Dazzle import ProgressMenuButton
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
@@ -35,8 +36,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
     otp_generated_token_box = Gtk.Template.Child()
     otp_generated_token = Gtk.Template.Child()
-    otp_token_lifespan_bar = Gtk.Template.Child()
-    otp_token_lifespan_label = Gtk.Template.Child()
+    otp_lifespan_icon = Gtk.Template.Child()
 
     url_property_box = Gtk.Template.Child()
     url_property_value_entry = Gtk.Template.Child()
@@ -178,6 +178,9 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.attributes_property_box, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
+            if key == "otp":
+                # Skip the OTP property as it's handled by it's own field.
+                continue
             self.add_attribute_property_row(key, value)
 
         for widget in self.toggeable_widget_list:
@@ -473,13 +476,9 @@ class EntryPage(Gtk.ScrolledWindow):
         if safe_entry.otp_token():
             lifespan = safe_entry.otp_lifespan()
             self.otp_generated_token.set_label(safe_entry.otp_token())
-            # The bar is out of 1000 so calculate the per mil progress
-            progress = lifespan / safe_entry._otp.interval * 1000
-            self.otp_token_lifespan_bar.set_value(progress)
-            self.otp_token_lifespan_label.set_label(
-                _("One-Time Password expires in %d seconds") % lifespan
-            )
+            self.otp_lifespan_icon.set_progress(
+                lifespan / safe_entry._otp.interval)
             self.otp_generated_token_box.set_visible(True)
-            GObject.timeout_add(50, self.otp_update)
+            GObject.timeout_add(100, self.otp_update)
         else:
             self.otp_generated_token_box.set_visible(False)

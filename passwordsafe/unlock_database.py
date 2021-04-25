@@ -147,6 +147,8 @@ class UnlockDatabase:
             "activate", self._on_composite_unlock_button_clicked)
         if stack.get_visible_child_name() == "composite_unlock":
             composite_unlock_entry.grab_focus()
+        composite_unlock_entry.connect(
+            "icon-press", self._on_password_unlock_entry_secondary_clicked)
 
     #
     # Events

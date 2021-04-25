@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-02-04 20:15+0000\n"
-"PO-Revision-Date: 2021-02-05 10:55+0100\n"
+"POT-Creation-Date: 2021-04-25 11:51+0000\n"
+"PO-Revision-Date: 2021-04-25 18:45+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -168,7 +168,7 @@ msgstr "Ställ in nyckelfil för kassaskåp"
 #. Button to generate a password
 #: data/create_database.ui:409 data/password_generator_popover.ui:189
 #: passwordsafe/create_database.py:125
-#: passwordsafe/database_settings_dialog.py:234
+#: passwordsafe/database_settings_dialog.py:232
 msgid "_Generate"
 msgstr "_Generera"
 
@@ -264,10 +264,10 @@ msgid "_Current"
 msgstr "_Aktuellt"
 
 #: data/database_settings_dialog.ui:559 data/unlock_database.ui:275
-#: passwordsafe/database_settings_dialog.py:187
-#: passwordsafe/database_settings_dialog.py:235
-#: passwordsafe/database_settings_dialog.py:239
-#: passwordsafe/unlock_database.py:30
+#: passwordsafe/database_settings_dialog.py:185
+#: passwordsafe/database_settings_dialog.py:233
+#: passwordsafe/database_settings_dialog.py:237
+#: passwordsafe/unlock_database.py:31
 msgid "Keyfile"
 msgstr "Nyckelfil"
 
@@ -309,8 +309,8 @@ msgid "Key Derivation Function"
 msgstr "Nyckelgenereringsfunktion"
 
 #: data/database_settings_dialog.ui:856
-#: passwordsafe/database_settings_dialog.py:357
-#: passwordsafe/database_settings_dialog.py:379
+#: passwordsafe/database_settings_dialog.py:353
+#: passwordsafe/database_settings_dialog.py:375
 msgid "Apply Changes"
 msgstr "Verkställ ändringar"
 
@@ -680,7 +680,7 @@ msgstr ""
 msgid "Password length when generating a password"
 msgstr "Lösenordslängd när ett lösenord genereras"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:120
+#: data/org.gnome.PasswordSafe.gschema.xml:122
 msgid "Number of single characters when generating a password."
 msgstr "Antalet enskilda tecken då ett lösenord genereras."
 
@@ -857,16 +857,16 @@ msgid "No search results"
 msgstr "Inga sökresultat"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/selection_ui.ui:12
+#: data/selection_ui.ui:13
 msgid "Move selection"
 msgstr "Flytta markering"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/selection_ui.ui:27
+#: data/selection_ui.ui:28
 msgid "Delete selection"
 msgstr "Ta bort markering"
 
-#: data/selection_ui.ui:40
+#: data/selection_ui.ui:41
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -886,7 +886,7 @@ msgstr "_Dölj första startskärm"
 msgid "Reopen last opened safe."
 msgstr "Öppna det senast öppnade kassaskåpet igen."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:300
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:292
 msgid "Safe"
 msgstr "Kassaskåp"
 
@@ -929,6 +929,10 @@ msgstr "Lösenordsgenerering"
 #: data/settings_dialog.ui:119
 msgid "Password Length"
 msgstr "Lösenordslängd"
+
+#: data/settings_dialog.ui:120
+msgid "Number of characters when generating a password."
+msgstr "Antalet tecken då ett lösenord genereras."
 
 #: data/settings_dialog.ui:136
 msgid "_Uppercase Characters"
@@ -1064,7 +1068,7 @@ msgstr "Sök"
 msgid "Selection Mode"
 msgstr "Markeringsläge"
 
-#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:389
+#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:391
 msgid "_Save"
 msgstr "_Spara"
 
@@ -1096,31 +1100,31 @@ msgstr "I_nställningar för kassaskåp"
 msgid "Select _All"
 msgstr "Markera _alla"
 
-#: data/unlocked_headerbar.ui:220
+#: data/unlocked_headerbar.ui:221
 msgid "Select _None"
 msgstr "Markera _inget"
 
-#: data/unlocked_headerbar.ui:228
+#: data/unlocked_headerbar.ui:230
 msgid "D_uplicate"
 msgstr "_Duplicera"
 
-#: data/unlocked_headerbar.ui:232
+#: data/unlocked_headerbar.ui:234
 msgid "_References"
 msgstr "_Referenser"
 
-#: data/unlocked_headerbar.ui:236 data/unlocked_headerbar.ui:250
+#: data/unlocked_headerbar.ui:238 data/unlocked_headerbar.ui:252
 msgid "_Properties"
 msgstr "_Egenskaper"
 
-#: data/unlocked_headerbar.ui:242 data/unlocked_headerbar.ui:256
+#: data/unlocked_headerbar.ui:244 data/unlocked_headerbar.ui:258
 msgid "_Delete"
 msgstr "_Ta bort"
 
-#: data/unlocked_headerbar.ui:264
+#: data/unlocked_headerbar.ui:266
 msgid "New _Entry"
 msgstr "Ny _post"
 
-#: data/unlocked_headerbar.ui:268
+#: data/unlocked_headerbar.ui:270
 msgid "New _Group"
 msgstr "Ny _grupp"
 
@@ -1138,7 +1142,7 @@ msgstr ""
 "Lagra säkert dina lösenord, anteckningar och data. <b>Skapa</b> eller "
 "<b>importera</b> ett nytt Keepass-kassaskåp."
 
-#: passwordsafe/application.py:183
+#: passwordsafe/application.py:179
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Kunde inte avsluta: det gick inte att spara kassaskåp"
 
@@ -1148,7 +1152,7 @@ msgstr "Lösenord stämmer inte överens"
 
 #. NOTE: Filechooser title for generating a new keyfile
 #: passwordsafe/create_database.py:123
-#: passwordsafe/database_settings_dialog.py:233
+#: passwordsafe/database_settings_dialog.py:231
 msgid "Choose location for keyfile"
 msgstr "Välj plats för nyckelfilen"
 
@@ -1156,106 +1160,106 @@ msgstr "Välj plats för nyckelfilen"
 msgid "Generating…"
 msgstr "Genererar…"
 
-#: passwordsafe/database_manager.py:122
+#: passwordsafe/database_manager.py:121
 msgid "Clone"
 msgstr "Klon"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/database_settings_dialog.py:182
+#: passwordsafe/database_settings_dialog.py:180
 msgid "Choose current keyfile"
 msgstr "Välj aktuell nyckelfil"
 
-#: passwordsafe/database_settings_dialog.py:183
+#: passwordsafe/database_settings_dialog.py:181
 msgid "_Open"
 msgstr "Ö_ppna"
 
-#: passwordsafe/database_settings_dialog.py:313
-#: passwordsafe/database_settings_dialog.py:368
+#: passwordsafe/database_settings_dialog.py:309
+#: passwordsafe/database_settings_dialog.py:364
 msgid "Apply…"
 msgstr "Verkställ…"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:410
+#: passwordsafe/database_settings_dialog.py:406
 msgid "Unknown"
 msgstr "Okänd"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:413
+#: passwordsafe/database_settings_dialog.py:409
 msgid "AES 256-bit"
 msgstr "AES 256-bitars"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:416
+#: passwordsafe/database_settings_dialog.py:412
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitars"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:419
+#: passwordsafe/database_settings_dialog.py:415
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitars"
 
-#: passwordsafe/entry_page.py:247 passwordsafe/entry_page.py:308
+#: passwordsafe/entry_page.py:246 passwordsafe/entry_page.py:307
 msgid "Attribute key already exists"
 msgstr "Attributnyckel finns redan"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:339
+#: passwordsafe/entry_page.py:338
 msgid "Select attachment"
 msgstr "Välj bilaga"
 
-#: passwordsafe/entry_page.py:340
+#: passwordsafe/entry_page.py:339
 msgid "_Add"
 msgstr "_Lägg till"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:388
+#: passwordsafe/entry_page.py:390
 msgid "Save attachment"
 msgstr "Spara bilaga"
 
-#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:101
+#: passwordsafe/entry_page.py:428 passwordsafe/entry_row.py:102
 msgid "Username copied to clipboard"
 msgstr "Användarnamn kopierat till urklipp"
 
-#: passwordsafe/entry_row.py:94 passwordsafe/password_entry_row.py:68
+#: passwordsafe/entry_row.py:95 passwordsafe/password_entry_row.py:68
 msgid "Password copied to clipboard"
 msgstr "Lösenord kopierat till urklipp"
 
-#: passwordsafe/entry_row.py:113 passwordsafe/group_row.py:100
+#: passwordsafe/entry_row.py:114 passwordsafe/group_row.py:101
 msgid "Title not specified"
 msgstr "Titel inte angiven"
 
-#: passwordsafe/entry_row.py:124
+#: passwordsafe/entry_row.py:125
 msgid "No username specified"
 msgstr "Inget användarnamn angivet"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:205
+#: passwordsafe/main_window.py:202
 msgid "Choose a Keepass safe"
 msgstr "Välj ett Keepass-kassaskåp"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:215 passwordsafe/main_window.py:305
+#: passwordsafe/main_window.py:212 passwordsafe/main_window.py:297
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4-databas"
 
-#: passwordsafe/main_window.py:243
+#: passwordsafe/main_window.py:240
 msgid "Could not open file"
 msgstr "Kunde inte öppna fil"
 
-#: passwordsafe/main_window.py:252
+#: passwordsafe/main_window.py:249
 msgid "Could not open file: Mime type not supported"
 msgstr "Kunde inte öppna fil: Mime-typen stöds inte"
 
-#: passwordsafe/main_window.py:262 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:259 passwordsafe/unlock_database.py:189
 msgid "Safe already opened"
 msgstr "Kassaskåpet är redan öppnat"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:294
+#: passwordsafe/main_window.py:286
 msgid "Choose location for Keepass safe"
 msgstr "Välj plats för Keepass-kassaskåp"
 
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:289
 msgid "_Create"
 msgstr "S_kapa"
 
@@ -1275,56 +1279,55 @@ msgstr "Åtgärden avbröts: flyttar för närvarande aktiv grupp"
 msgid "Move completed"
 msgstr "Flytt slutförd"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:213
 msgid "Choose a keyfile"
 msgstr "Välj en nyckelfil"
 
-#: passwordsafe/unlock_database.py:261
+#: passwordsafe/unlock_database.py:260
 msgid "Choose Keyfile"
 msgstr "Välj nyckelfil"
 
 #. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:411
+#: passwordsafe/unlock_database.py:412
 msgid "The kdb format is not supported"
 msgstr "KDB-formatet stöds inte"
 
-#: passwordsafe/unlock_database.py:501 passwordsafe/unlock_database.py:521
-#: passwordsafe/unlock_database.py:535
+#: passwordsafe/unlock_database.py:502 passwordsafe/unlock_database.py:522
+#: passwordsafe/unlock_database.py:536
 msgid "Failed to unlock safe"
 msgstr "Misslyckades med att låsa upp kassaskåp"
 
-#: passwordsafe/unlock_database.py:530
+#: passwordsafe/unlock_database.py:531
 msgid "Try again"
 msgstr "Försök igen"
 
-#: passwordsafe/unlocked_database.py:420
+#: passwordsafe/unlocked_database.py:423
 msgid "Safe saved"
 msgstr "Kassaskåp sparat"
 
-#: passwordsafe/unlocked_database.py:422
+#: passwordsafe/unlocked_database.py:425
 msgid "Could not save Safe"
 msgstr "Kunde inte spara kassaskåp"
 
-#: passwordsafe/unlocked_database.py:431
+#: passwordsafe/unlocked_database.py:434
 msgid "Please wait. Another save is running."
 msgstr "Vänta, en annan sparning körs."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:435
+#: passwordsafe/unlocked_database.py:438
 msgid "No changes made"
 msgstr "Inga ändringar gjorda"
 
-#: passwordsafe/unlocked_database.py:471
+#: passwordsafe/unlocked_database.py:472
 msgid "Copied to clipboard"
 msgstr "Kopierat till urklipp"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:547
+#: passwordsafe/unlocked_database.py:548
 msgid "Safe locked due to inactivity"
 msgstr "Kassaskåp låstes på grund av inaktivitet"
 
 #: passwordsafe/unlocked_headerbar.py:135
-#| msgid "Deleted blank entry"
 msgid "{} Selected entry"
 msgid_plural "{} Selected entries"
 msgstr[0] "{} markerad post"

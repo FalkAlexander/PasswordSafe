@@ -119,6 +119,11 @@ class SafeElement(GObject.GObject):
     @otp.setter  # type: ignore
     def otp(self, otp: str) -> None:
         updated = False
+
+        # Some sites give the secret in chunks split by spaces for easy reading
+        # lets strip those as they'll produce an invalid secret.
+        otp = otp.replace(" ", "")
+
         if not otp and self._otp:
             # Delete existing
             self._otp = None
@@ -140,7 +145,11 @@ class SafeElement(GObject.GObject):
     # Returns current OTP
     def otp_code(self):
         if self._otp:
-            return self._otp.now()
+            try:
+                return self._otp.now()
+            except binascii.Error:
+                logging.debug("Error cought in OTP code generation (likely invalid base32 secret).")
+                return None
 
     @property
     def parentgroup(self) -> SafeGroup:

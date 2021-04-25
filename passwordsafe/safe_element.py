@@ -1,8 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import binascii
+import datetime
 import logging
 import typing
+
 from typing import NamedTuple
 from uuid import UUID
 
@@ -143,13 +146,20 @@ class SafeElement(GObject.GObject):
             self.emit("updated")
 
     # Returns current OTP
-    def otp_code(self):
+    def otp_token(self):
         if self._otp:
             try:
                 return self._otp.now()
             except binascii.Error:
-                logging.debug("Error cought in OTP code generation (likely invalid base32 secret).")
+                logging.debug("Error cought in OTP token generation (likely invalid base32 secret).")
                 return None
+
+    def otp_lifespan(self):
+        """ Returns seconds until token expires """
+        if self._otp:
+            now = datetime.datetime.now().timestamp()
+            return self._otp.interval - now % self._otp.interval
+
 
     @property
     def parentgroup(self) -> SafeGroup:

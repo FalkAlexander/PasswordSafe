@@ -2,10 +2,10 @@
 from __future__ import annotations
 
 import binascii
-import datetime
 import logging
 import typing
 
+from datetime import datetime
 from typing import NamedTuple
 from uuid import UUID
 
@@ -16,8 +16,6 @@ from passwordsafe.color_widget import Color
 from pyotp import parse_uri, TOTP
 
 if typing.TYPE_CHECKING:
-    from datetime import datetime
-
     from pykeepass.attachment import Attachment
     from pykeepass.entry import Entry
     from pykeepass.group import Group
@@ -157,9 +155,8 @@ class SafeElement(GObject.GObject):
     def otp_lifespan(self):
         """ Returns seconds until token expires """
         if self._otp:
-            now = datetime.datetime.now().timestamp()
+            now = datetime.now().timestamp()
             return self._otp.interval - now % self._otp.interval
-
 
     @property
     def parentgroup(self) -> SafeGroup:

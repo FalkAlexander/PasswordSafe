@@ -6,7 +6,7 @@ from gettext import gettext as _
 from logging import warning
 
 from gi.repository import Gio, GLib, GObject, Gtk
-from gi.repository.Dazzle import ProgressMenuButton
+from gi.repository.Dazzle import ProgressIcon  # noqa: F401
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow

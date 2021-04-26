@@ -8,6 +8,7 @@ from logging import warning
 from gi.repository import Gio, GLib, GObject, Gtk
 from gi.repository.Dazzle import ProgressIcon  # noqa: F401
 
+from passwordsafe import config_manager
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.history_buffer import HistoryEntryBuffer, HistoryTextBuffer
@@ -129,6 +130,8 @@ class EntryPage(Gtk.ScrolledWindow):
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
         self.show_row(self.otp_property_box, (not safe_entry.otp_token()), add_all)
+        show_pwds = config_manager.get_show_password_fields()
+        self.otp_property_value_entry.props.visibility = show_pwds
 
         # Notes
         self.notes_property_value_entry.get_style_context().add_class("codeview")
@@ -286,6 +289,11 @@ class EntryPage(Gtk.ScrolledWindow):
 
         safe_entry.set_attribute(key, value)
         self.add_attribute_property_row(key, value)
+
+    @Gtk.Template.Callback()
+    def on_show_otp_secret_button_toggled(self, _widget, _position, _eventbutton):
+        visibility = self.otp_property_value_entry.props.visibility
+        self.otp_property_value_entry.props.visibility = not visibility
 
     def on_attribute_remove_button_clicked(self, button, key):
         safe_entry: SafeEntry = self.unlocked_database.current_element

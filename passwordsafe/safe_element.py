@@ -153,7 +153,7 @@ class SafeElement(GObject.GObject):
                 return None
 
     def otp_lifespan(self):
-        """ Returns seconds until token expires """
+        """Returns seconds until token expires."""
         if self._otp:
             now = datetime.now().timestamp()
             return self._otp.interval - now % self._otp.interval

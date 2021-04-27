@@ -258,8 +258,13 @@ class EntryPage(Gtk.ScrolledWindow):
         otp_token = safe_entry.otp_token() or ""
         self.unlocked_database.send_to_clipboard(
             otp_token,
-            _("One-Time Password copied to clipboard"),
+            _("One-time password copied to clipboard"),
         )
+
+    @Gtk.Template.Callback()
+    def on_show_otp_secret_button_toggled(self, _widget, _position, _eventbutton):
+        visibility = self.otp_property_value_entry.props.visibility
+        self.otp_property_value_entry.props.visibility = not visibility
 
     #
     # Additional Attributes
@@ -289,11 +294,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
         safe_entry.set_attribute(key, value)
         self.add_attribute_property_row(key, value)
-
-    @Gtk.Template.Callback()
-    def on_show_otp_secret_button_toggled(self, _widget, _position, _eventbutton):
-        visibility = self.otp_property_value_entry.props.visibility
-        self.otp_property_value_entry.props.visibility = not visibility
 
     def on_attribute_remove_button_clicked(self, button, key):
         safe_entry: SafeEntry = self.unlocked_database.current_element

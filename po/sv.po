@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-02-04 20:15+0000\n"
-"PO-Revision-Date: 2021-02-05 10:55+0100\n"
+"POT-Creation-Date: 2021-05-02 12:01+0000\n"
+"PO-Revision-Date: 2021-05-02 17:20+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -167,7 +167,7 @@ msgstr "Ställ in nyckelfil för kassaskåp"
 
 #. Button to generate a password
 #: data/create_database.ui:409 data/password_generator_popover.ui:189
-#: passwordsafe/create_database.py:125
+#: passwordsafe/create_database.py:126
 #: passwordsafe/database_settings_dialog.py:234
 msgid "_Generate"
 msgstr "_Generera"
@@ -267,7 +267,7 @@ msgstr "_Aktuellt"
 #: passwordsafe/database_settings_dialog.py:187
 #: passwordsafe/database_settings_dialog.py:235
 #: passwordsafe/database_settings_dialog.py:239
-#: passwordsafe/unlock_database.py:30
+#: passwordsafe/unlock_database.py:31
 msgid "Keyfile"
 msgstr "Nyckelfil"
 
@@ -680,7 +680,7 @@ msgstr ""
 msgid "Password length when generating a password"
 msgstr "Lösenordslängd när ett lösenord genereras"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:120
+#: data/org.gnome.PasswordSafe.gschema.xml:122
 msgid "Number of single characters when generating a password."
 msgstr "Antalet enskilda tecken då ett lösenord genereras."
 
@@ -886,7 +886,7 @@ msgstr "_Dölj första startskärm"
 msgid "Reopen last opened safe."
 msgstr "Öppna det senast öppnade kassaskåpet igen."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:300
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
 msgid "Safe"
 msgstr "Kassaskåp"
 
@@ -899,7 +899,7 @@ msgid "Save every change automatically."
 msgstr "Spara varje ändring automatiskt."
 
 #: data/settings_dialog.ui:72 data/unlock_database.ui:155
-#: data/unlock_database.ui:253 data/unlock_database.ui:341
+#: data/unlock_database.ui:253 data/unlock_database.ui:342
 msgid "Unlock"
 msgstr "Lås upp"
 
@@ -929,6 +929,10 @@ msgstr "Lösenordsgenerering"
 #: data/settings_dialog.ui:119
 msgid "Password Length"
 msgstr "Lösenordslängd"
+
+#: data/settings_dialog.ui:120
+msgid "Number of characters when generating a password."
+msgstr "Antalet tecken då ett lösenord genereras."
 
 #: data/settings_dialog.ui:136
 msgid "_Uppercase Characters"
@@ -1042,7 +1046,7 @@ msgid "Enter password and select keyfile to unlock"
 msgstr "Ange lösenord och välj nyckelfil för att låsa upp"
 
 #. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:378
+#: data/unlock_database.ui:379
 msgid "Composite"
 msgstr "Sammansatt"
 
@@ -1142,17 +1146,17 @@ msgstr ""
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Kunde inte avsluta: det gick inte att spara kassaskåp"
 
-#: passwordsafe/create_database.py:114
+#: passwordsafe/create_database.py:115
 msgid "Passwords do not match"
 msgstr "Lösenord stämmer inte överens"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:123
+#: passwordsafe/create_database.py:124
 #: passwordsafe/database_settings_dialog.py:233
 msgid "Choose location for keyfile"
 msgstr "Välj plats för nyckelfilen"
 
-#: passwordsafe/create_database.py:140
+#: passwordsafe/create_database.py:141
 msgid "Generating…"
 msgstr "Genererar…"
 
@@ -1212,50 +1216,50 @@ msgstr "_Lägg till"
 msgid "Save attachment"
 msgstr "Spara bilaga"
 
-#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:101
+#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:102
 msgid "Username copied to clipboard"
 msgstr "Användarnamn kopierat till urklipp"
 
-#: passwordsafe/entry_row.py:94 passwordsafe/password_entry_row.py:68
+#: passwordsafe/entry_row.py:95 passwordsafe/password_entry_row.py:68
 msgid "Password copied to clipboard"
 msgstr "Lösenord kopierat till urklipp"
 
-#: passwordsafe/entry_row.py:113 passwordsafe/group_row.py:100
+#: passwordsafe/entry_row.py:114 passwordsafe/group_row.py:101
 msgid "Title not specified"
 msgstr "Titel inte angiven"
 
-#: passwordsafe/entry_row.py:124
+#: passwordsafe/entry_row.py:125
 msgid "No username specified"
 msgstr "Inget användarnamn angivet"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:205
+#: passwordsafe/main_window.py:206
 msgid "Choose a Keepass safe"
 msgstr "Välj ett Keepass-kassaskåp"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:215 passwordsafe/main_window.py:305
+#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4-databas"
 
-#: passwordsafe/main_window.py:243
+#: passwordsafe/main_window.py:244
 msgid "Could not open file"
 msgstr "Kunde inte öppna fil"
 
-#: passwordsafe/main_window.py:252
+#: passwordsafe/main_window.py:253
 msgid "Could not open file: Mime type not supported"
 msgstr "Kunde inte öppna fil: Mime-typen stöds inte"
 
-#: passwordsafe/main_window.py:262 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:193
 msgid "Safe already opened"
 msgstr "Kassaskåpet är redan öppnat"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:294
+#: passwordsafe/main_window.py:295
 msgid "Choose location for Keepass safe"
 msgstr "Välj plats för Keepass-kassaskåp"
 
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:298
 msgid "_Create"
 msgstr "S_kapa"
 
@@ -1275,56 +1279,55 @@ msgstr "Åtgärden avbröts: flyttar för närvarande aktiv grupp"
 msgid "Move completed"
 msgstr "Flytt slutförd"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:216
 msgid "Choose a keyfile"
 msgstr "Välj en nyckelfil"
 
-#: passwordsafe/unlock_database.py:261
+#: passwordsafe/unlock_database.py:263
 msgid "Choose Keyfile"
 msgstr "Välj nyckelfil"
 
 #. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:411
+#: passwordsafe/unlock_database.py:413
 msgid "The kdb format is not supported"
 msgstr "KDB-formatet stöds inte"
 
-#: passwordsafe/unlock_database.py:501 passwordsafe/unlock_database.py:521
-#: passwordsafe/unlock_database.py:535
+#: passwordsafe/unlock_database.py:503 passwordsafe/unlock_database.py:523
+#: passwordsafe/unlock_database.py:537
 msgid "Failed to unlock safe"
 msgstr "Misslyckades med att låsa upp kassaskåp"
 
-#: passwordsafe/unlock_database.py:530
+#: passwordsafe/unlock_database.py:532
 msgid "Try again"
 msgstr "Försök igen"
 
-#: passwordsafe/unlocked_database.py:420
+#: passwordsafe/unlocked_database.py:423
 msgid "Safe saved"
 msgstr "Kassaskåp sparat"
 
-#: passwordsafe/unlocked_database.py:422
+#: passwordsafe/unlocked_database.py:425
 msgid "Could not save Safe"
 msgstr "Kunde inte spara kassaskåp"
 
-#: passwordsafe/unlocked_database.py:431
+#: passwordsafe/unlocked_database.py:434
 msgid "Please wait. Another save is running."
 msgstr "Vänta, en annan sparning körs."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:435
+#: passwordsafe/unlocked_database.py:438
 msgid "No changes made"
 msgstr "Inga ändringar gjorda"
 
-#: passwordsafe/unlocked_database.py:471
+#: passwordsafe/unlocked_database.py:474
 msgid "Copied to clipboard"
 msgstr "Kopierat till urklipp"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:547
+#: passwordsafe/unlocked_database.py:550
 msgid "Safe locked due to inactivity"
 msgstr "Kassaskåp låstes på grund av inaktivitet"
 
 #: passwordsafe/unlocked_headerbar.py:135
-#| msgid "Deleted blank entry"
 msgid "{} Selected entry"
 msgid_plural "{} Selected entries"
 msgstr[0] "{} markerad post"

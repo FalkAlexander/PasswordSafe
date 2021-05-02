@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-02-07 00:09+0000\n"
-"PO-Revision-Date: 2021-02-07 12:15+0100\n"
+"POT-Creation-Date: 2021-05-02 10:24+0000\n"
+"PO-Revision-Date: 2021-05-02 12:25+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -677,7 +677,7 @@ msgstr ""
 msgid "Password length when generating a password"
 msgstr "Długość hasła podczas tworzenia hasła"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:120
+#: data/org.gnome.PasswordSafe.gschema.xml:122
 msgid "Number of single characters when generating a password."
 msgstr "Liczba pojedynczych znaków podczas tworzenia hasła."
 
@@ -896,7 +896,7 @@ msgid "Save every change automatically."
 msgstr "Automatyczne zapisywanie każdej zmiany."
 
 #: data/settings_dialog.ui:72 data/unlock_database.ui:155
-#: data/unlock_database.ui:253 data/unlock_database.ui:341
+#: data/unlock_database.ui:253 data/unlock_database.ui:342
 msgid "Unlock"
 msgstr "Odblokuj"
 
@@ -926,6 +926,10 @@ msgstr "Tworzenie hasła"
 #: data/settings_dialog.ui:119
 msgid "Password Length"
 msgstr "Długość hasła"
+
+#: data/settings_dialog.ui:120
+msgid "Number of characters when generating a password."
+msgstr "Liczba znaków podczas tworzenia hasła."
 
 #: data/settings_dialog.ui:136
 msgid "_Uppercase Characters"
@@ -1039,7 +1043,7 @@ msgid "Enter password and select keyfile to unlock"
 msgstr "Proszę wpisać hasło i wybrać plik klucza, aby odblokować"
 
 #. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:378
+#: data/unlock_database.ui:379
 msgid "Composite"
 msgstr "Złożony"
 
@@ -1243,7 +1247,7 @@ msgstr "Nie można otworzyć pliku"
 msgid "Could not open file: Mime type not supported"
 msgstr "Nie można otworzyć pliku: nieobsługiwany typ MIME"
 
-#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:193
 msgid "Safe already opened"
 msgstr "Sejf jest już otwarty"
 
@@ -1272,25 +1276,25 @@ msgstr "Przerwano działanie: przenoszenie obecnie aktywnej grupy"
 msgid "Move completed"
 msgstr "Ukończono przeniesienie"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:216
 msgid "Choose a keyfile"
 msgstr "Wybór pliku klucza"
 
-#: passwordsafe/unlock_database.py:261
+#: passwordsafe/unlock_database.py:263
 msgid "Choose Keyfile"
 msgstr "Wybór pliku klucza"
 
 #. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:411
+#: passwordsafe/unlock_database.py:413
 msgid "The kdb format is not supported"
 msgstr "Format kdb jest nieobsługiwany"
 
-#: passwordsafe/unlock_database.py:501 passwordsafe/unlock_database.py:521
-#: passwordsafe/unlock_database.py:535
+#: passwordsafe/unlock_database.py:503 passwordsafe/unlock_database.py:523
+#: passwordsafe/unlock_database.py:537
 msgid "Failed to unlock safe"
 msgstr "Odblokowanie sejfu się nie powiodło"
 
-#: passwordsafe/unlock_database.py:530
+#: passwordsafe/unlock_database.py:532
 msgid "Try again"
 msgstr "Spróbuj ponownie"
 

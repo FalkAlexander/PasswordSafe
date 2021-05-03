@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-02-05 17:34+0000\n"
-"PO-Revision-Date: 2021-02-06 21:07-0300\n"
+"POT-Creation-Date: 2021-05-02 15:22+0000\n"
+"PO-Revision-Date: 2021-05-03 08:10-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: data/about_dialog.ui.in:8 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
 msgid "Manage your passwords"
@@ -683,7 +683,7 @@ msgstr "Usa símbolos ASCII não-alfanuméricos ao gerar uma senha aleatória."
 msgid "Password length when generating a password"
 msgstr "Comprimento da senha ao gerá-la"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:120
+#: data/org.gnome.PasswordSafe.gschema.xml:122
 msgid "Number of single characters when generating a password."
 msgstr "Número de caracteres únicos ao gerar uma senha."
 
@@ -902,7 +902,7 @@ msgid "Save every change automatically."
 msgstr "Salva todas as alterações automaticamente."
 
 #: data/settings_dialog.ui:72 data/unlock_database.ui:155
-#: data/unlock_database.ui:253 data/unlock_database.ui:341
+#: data/unlock_database.ui:253 data/unlock_database.ui:342
 msgid "Unlock"
 msgstr "Desbloquear"
 
@@ -932,6 +932,10 @@ msgstr "Geração de senha"
 #: data/settings_dialog.ui:119
 msgid "Password Length"
 msgstr "Comprimento da senha"
+
+#: data/settings_dialog.ui:120
+msgid "Number of characters when generating a password."
+msgstr "Número de caracteres ao gerar uma senha."
 
 #: data/settings_dialog.ui:136
 msgid "_Uppercase Characters"
@@ -1045,7 +1049,7 @@ msgid "Enter password and select keyfile to unlock"
 msgstr "Insira a senha e selecione o arquivo de chave para desbloquear"
 
 #. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:378
+#: data/unlock_database.ui:379
 msgid "Composite"
 msgstr "Composto"
 
@@ -1249,7 +1253,7 @@ msgstr "Não foi possível abrir arquivo"
 msgid "Could not open file: Mime type not supported"
 msgstr "Não foi possível abrir arquivo: não há suporte ao tipo Mime"
 
-#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:193
 msgid "Safe already opened"
 msgstr "Cofre já está aberto"
 
@@ -1278,25 +1282,25 @@ msgstr "Operação abortada: Movendo o grupo atualmente ativo"
 msgid "Move completed"
 msgstr "Movimentação concluída"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:216
 msgid "Choose a keyfile"
 msgstr "Escolhe um arquivo de chave"
 
-#: passwordsafe/unlock_database.py:261
+#: passwordsafe/unlock_database.py:263
 msgid "Choose Keyfile"
 msgstr "Escolher arquivo de chave"
 
 #. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:411
+#: passwordsafe/unlock_database.py:413
 msgid "The kdb format is not supported"
 msgstr "Não há suporte ao formato kdb"
 
-#: passwordsafe/unlock_database.py:501 passwordsafe/unlock_database.py:521
-#: passwordsafe/unlock_database.py:535
+#: passwordsafe/unlock_database.py:503 passwordsafe/unlock_database.py:523
+#: passwordsafe/unlock_database.py:537
 msgid "Failed to unlock safe"
 msgstr "Falha ao desbloquear o cofre"
 
-#: passwordsafe/unlock_database.py:530
+#: passwordsafe/unlock_database.py:532
 msgid "Try again"
 msgstr "Tente novamente"
 

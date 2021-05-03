@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe release/4.x\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-02-04 16:42+0000\n"
-"PO-Revision-Date: 2021-02-05 12:34+0100\n"
+"POT-Creation-Date: 2021-05-02 10:27+0000\n"
+"PO-Revision-Date: 2021-05-03 23:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -163,7 +163,7 @@ msgstr "Stabilește fișierul de chei pentru seif"
 
 #. Button to generate a password
 #: data/create_database.ui:409 data/password_generator_popover.ui:189
-#: passwordsafe/create_database.py:125
+#: passwordsafe/create_database.py:126
 #: passwordsafe/database_settings_dialog.py:234
 msgid "_Generate"
 msgstr "_Generează"
@@ -262,7 +262,7 @@ msgstr "_Curent"
 #: passwordsafe/database_settings_dialog.py:187
 #: passwordsafe/database_settings_dialog.py:235
 #: passwordsafe/database_settings_dialog.py:239
-#: passwordsafe/unlock_database.py:30
+#: passwordsafe/unlock_database.py:31
 msgid "Keyfile"
 msgstr "Fișier de chei"
 
@@ -679,7 +679,7 @@ msgstr ""
 msgid "Password length when generating a password"
 msgstr "Lungimea parolei când se generează o parolă"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:120
+#: data/org.gnome.PasswordSafe.gschema.xml:122
 msgid "Number of single characters when generating a password."
 msgstr "Număr de caractere pentru generarea unei parole."
 
@@ -885,7 +885,7 @@ msgstr "_Ascunde primul ecran de pornire"
 msgid "Reopen last opened safe."
 msgstr "Redeschide seiful deschis ultima dată."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:300
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
 msgid "Safe"
 msgstr "Seif"
 
@@ -898,7 +898,7 @@ msgid "Save every change automatically."
 msgstr "Salvează fiecare modificare automat."
 
 #: data/settings_dialog.ui:72 data/unlock_database.ui:155
-#: data/unlock_database.ui:253 data/unlock_database.ui:341
+#: data/unlock_database.ui:253 data/unlock_database.ui:342
 msgid "Unlock"
 msgstr "Deblochează"
 
@@ -928,6 +928,10 @@ msgstr "Generarea parolei"
 #: data/settings_dialog.ui:119
 msgid "Password Length"
 msgstr "Lungimea parolei"
+
+#: data/settings_dialog.ui:120
+msgid "Number of characters when generating a password."
+msgstr "Număr de caractere pentru generarea unei parole."
 
 #: data/settings_dialog.ui:136
 msgid "_Uppercase Characters"
@@ -1041,7 +1045,7 @@ msgid "Enter password and select keyfile to unlock"
 msgstr "Introduceți parola și selectați fișierul de chei pentru deblocare"
 
 #. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:378
+#: data/unlock_database.ui:379
 msgid "Composite"
 msgstr "Compusă"
 
@@ -1141,17 +1145,17 @@ msgstr ""
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Nu s-a putut ieși: Nu s-a putut salva seiful"
 
-#: passwordsafe/create_database.py:114
+#: passwordsafe/create_database.py:115
 msgid "Passwords do not match"
 msgstr "Parolele nu se potrivesc"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:123
+#: passwordsafe/create_database.py:124
 #: passwordsafe/database_settings_dialog.py:233
 msgid "Choose location for keyfile"
 msgstr "Alege locația pentru fișierul de chei"
 
-#: passwordsafe/create_database.py:140
+#: passwordsafe/create_database.py:141
 msgid "Generating…"
 msgstr "Se generează…"
 
@@ -1211,50 +1215,50 @@ msgstr "_Adaugă"
 msgid "Save attachment"
 msgstr "Salvează atașament"
 
-#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:101
+#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:102
 msgid "Username copied to clipboard"
 msgstr "Nume de utilizator copiat în clipboard"
 
-#: passwordsafe/entry_row.py:94 passwordsafe/password_entry_row.py:68
+#: passwordsafe/entry_row.py:95 passwordsafe/password_entry_row.py:68
 msgid "Password copied to clipboard"
 msgstr "Parolă copiată în clipboard"
 
-#: passwordsafe/entry_row.py:113 passwordsafe/group_row.py:100
+#: passwordsafe/entry_row.py:114 passwordsafe/group_row.py:101
 msgid "Title not specified"
 msgstr "Titlu nespecificat"
 
-#: passwordsafe/entry_row.py:124
+#: passwordsafe/entry_row.py:125
 msgid "No username specified"
 msgstr "Niciun nume de utilizator specificat"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:205
+#: passwordsafe/main_window.py:206
 msgid "Choose a Keepass safe"
 msgstr "Alegeți un seif Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:215 passwordsafe/main_window.py:305
+#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
 msgid "KeePass 3.1/4 Database"
 msgstr "Bază de date KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:243
+#: passwordsafe/main_window.py:244
 msgid "Could not open file"
 msgstr "Nu s-a putut deschide fișierul"
 
-#: passwordsafe/main_window.py:252
+#: passwordsafe/main_window.py:253
 msgid "Could not open file: Mime type not supported"
 msgstr "Nu s-a putut deschide fișierul: tip Mime nesuportat"
 
-#: passwordsafe/main_window.py:262 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:193
 msgid "Safe already opened"
 msgstr "Seif deschis deja"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:294
+#: passwordsafe/main_window.py:295
 msgid "Choose location for Keepass safe"
 msgstr "Alegeți locația pentru seiful Keepass"
 
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:298
 msgid "_Create"
 msgstr "_Creează"
 
@@ -1274,51 +1278,51 @@ msgstr "Operație renunțată: Se mută grupul activ curent"
 msgid "Move completed"
 msgstr "Mutare completă"
 
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:216
 msgid "Choose a keyfile"
 msgstr "Alegeți un fișier de chei"
 
-#: passwordsafe/unlock_database.py:261
+#: passwordsafe/unlock_database.py:263
 msgid "Choose Keyfile"
 msgstr "Alegeți fișier de chei"
 
 #. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:411
+#: passwordsafe/unlock_database.py:413
 msgid "The kdb format is not supported"
 msgstr "Formatul kdb este nesuportat"
 
-#: passwordsafe/unlock_database.py:499 passwordsafe/unlock_database.py:519
-#: passwordsafe/unlock_database.py:533
+#: passwordsafe/unlock_database.py:503 passwordsafe/unlock_database.py:523
+#: passwordsafe/unlock_database.py:537
 msgid "Failed to unlock safe"
 msgstr "Eșec la deblocarea seifului"
 
-#: passwordsafe/unlock_database.py:528
+#: passwordsafe/unlock_database.py:532
 msgid "Try again"
 msgstr "Încercați din nou"
 
-#: passwordsafe/unlocked_database.py:419
+#: passwordsafe/unlocked_database.py:423
 msgid "Safe saved"
 msgstr "Seif salvat"
 
-#: passwordsafe/unlocked_database.py:421
+#: passwordsafe/unlocked_database.py:425
 msgid "Could not save Safe"
 msgstr "Nu s-a putut salva seiful"
 
-#: passwordsafe/unlocked_database.py:430
+#: passwordsafe/unlocked_database.py:434
 msgid "Please wait. Another save is running."
 msgstr "Așteptați. O altă salvare este în curs de rulare."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:434
+#: passwordsafe/unlocked_database.py:438
 msgid "No changes made"
 msgstr "Nicio modificare efectuată"
 
-#: passwordsafe/unlocked_database.py:470
+#: passwordsafe/unlocked_database.py:474
 msgid "Copied to clipboard"
 msgstr "Copiată în clipboard"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:557
+#: passwordsafe/unlocked_database.py:550
 msgid "Safe locked due to inactivity"
 msgstr "Seif blocat din cauza inactivității"
 

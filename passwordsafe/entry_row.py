@@ -96,14 +96,6 @@ class EntryRow(Gtk.ListBoxRow):
         )
 
     @Gtk.Template.Callback()
-    def on_entry_copy_otp_button_clicked(self, _button):
-        otp_code = self._safe_entry.otp_code() or ""
-        self.unlocked_database.send_to_clipboard(
-            otp_code,
-            _("One-time password copied to clipboard"),
-        )
-
-    @Gtk.Template.Callback()
     def on_entry_copy_user_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(
             self._safe_entry.props.username,

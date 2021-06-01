@@ -115,21 +115,6 @@
                     </child>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkButton" id="_entry_copy_otp_button">
-                    <property name="name">ListBoxRowButton</property>
-                    <property name="visible">True</property>
-                    <property name="receives_default">True</property>
-                    <property name="tooltip_text" translatable="yes">Copy one-time password to clipboard</property>
-                    <signal name="clicked" handler="on_entry_copy_otp_button_clicked" swapped="no"/>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="icon_name">document-open-recent-symbolic</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
                 <style>
                   <class name="linked"/>
                 </style>

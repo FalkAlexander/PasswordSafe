@@ -129,7 +129,7 @@ class EntryPage(Gtk.ScrolledWindow):
             "otp", self.otp_property_value_entry, "text",
             GObject.BindingFlags.SYNC_CREATE
             | GObject.BindingFlags.BIDIRECTIONAL)
-        self.show_row(self.otp_property_box, (not safe_entry.otp_token()), add_all)
+        self.show_row(self.otp_property_box, False, add_all)
         show_pwds = config_manager.get_show_password_fields()
         self.otp_property_value_entry.props.visibility = show_pwds
 

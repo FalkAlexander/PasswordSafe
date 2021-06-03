@@ -6,6 +6,8 @@ from gettext import gettext as _
 from logging import warning
 
 from gi.repository import Gio, GLib, GObject, Gtk
+
+# pylint: disable=unused-import
 from gi.repository.Dazzle import ProgressIcon  # noqa: F401
 
 from passwordsafe import config_manager
@@ -184,6 +186,7 @@ class EntryPage(Gtk.ScrolledWindow):
             if key == "otp":
                 # Skip the OTP property as it's handled by it's own field.
                 continue
+
             self.add_attribute_property_row(key, value)
 
         for widget in self.toggeable_widget_list:
@@ -484,8 +487,7 @@ class EntryPage(Gtk.ScrolledWindow):
         if safe_entry.otp_token():
             lifespan = safe_entry.otp_lifespan()
             self.otp_generated_token.set_label(safe_entry.otp_token())
-            self.otp_lifespan_icon.set_progress(
-                lifespan / safe_entry._otp.interval)
+            self.otp_lifespan_icon.set_progress(lifespan / safe_entry.otp_interval())
             self.otp_generated_token_box.set_visible(True)
             GObject.timeout_add(100, self.otp_update)
         else:

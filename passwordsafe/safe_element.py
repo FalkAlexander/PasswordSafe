@@ -10,10 +10,9 @@ from typing import NamedTuple
 from uuid import UUID
 
 from gi.repository import GObject
+from pyotp import OTP, TOTP, parse_uri
 
 from passwordsafe.color_widget import Color
-
-from pyotp import parse_uri, TOTP
 
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
@@ -25,8 +24,8 @@ if typing.TYPE_CHECKING:
 
 class SafeElement(GObject.GObject):
 
-    _otp: TOTP | None = None
     _db_manager: DatabaseManager | None = None
+    _otp: OTP | None = None
     sorted_handler_id: int | None = None
 
     def __init__(self, element: Entry | Group):
@@ -115,6 +114,7 @@ class SafeElement(GObject.GObject):
     def otp(self) -> str:
         if self._otp:
             return self._otp.secret
+
         return ""
 
     @otp.setter  # type: ignore
@@ -143,20 +143,24 @@ class SafeElement(GObject.GObject):
             self._element.set_custom_property("otp", self._otp.provisioning_uri())
             self.emit("updated")
 
+    def otp_interval(self) -> str:
+        return self._otp.interval
+
     # Returns current OTP
-    def otp_token(self):
+    def otp_token(self):  # pylint: disable=inconsistent-return-statements
         if self._otp:
-            try:
+            try:  # pylint: disable=inconsistent-return-statements
                 return self._otp.now()
             except binascii.Error:
                 logging.debug("Error cought in OTP token generation (likely invalid base32 secret).")
-                return None
 
     def otp_lifespan(self):
         """Returns seconds until token expires."""
         if self._otp:
             now = datetime.now().timestamp()
             return self._otp.interval - now % self._otp.interval
+
+        return None
 
     @property
     def parentgroup(self) -> SafeGroup:

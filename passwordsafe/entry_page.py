@@ -484,9 +484,10 @@ class EntryPage(Gtk.ScrolledWindow):
 
     def otp_update(self):
         safe_entry: SafeEntry = self.unlocked_database.current_element
-        if safe_entry.otp_token():
+        otp_token = safe_entry.otp_token()
+        if otp_token:
             lifespan = safe_entry.otp_lifespan()
-            self.otp_generated_token.set_label(safe_entry.otp_token())
+            self.otp_generated_token.set_label(otp_token)
             self.otp_lifespan_icon.set_progress(lifespan / safe_entry.otp_interval())
             self.otp_generated_token_box.set_visible(True)
             GObject.timeout_add(100, self.otp_update)

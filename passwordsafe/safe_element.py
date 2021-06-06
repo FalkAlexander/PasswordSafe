@@ -143,8 +143,11 @@ class SafeElement(GObject.GObject):
             self._element.set_custom_property("otp", self._otp.provisioning_uri())
             self.emit("updated")
 
-    def otp_interval(self) -> str:
-        return self._otp.interval
+    def otp_interval(self) -> int:
+        if self._otp:
+            return self._otp.interval  # type: ignore
+
+        return 30
 
     # Returns current OTP
     def otp_token(self):  # pylint: disable=inconsistent-return-statements

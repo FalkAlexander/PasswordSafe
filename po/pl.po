@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-04-25 11:51+0000\n"
-"PO-Revision-Date: 2021-05-02 12:23+0200\n"
+"POT-Creation-Date: 2021-06-06 08:20+0000\n"
+"PO-Revision-Date: 2021-06-06 13:38+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -316,38 +316,50 @@ msgid "_Username"
 msgstr "_Nazwa użytkownika"
 
 #: data/entry_page.ui:92
+msgid "One-_Time Password Secret"
+msgstr "_Sekret jednorazowego hasła"
+
+#: data/entry_page.ui:124
+msgid "_One-Time Password"
+msgstr "_Jednorazowe hasło"
+
+#: data/entry_page.ui:161
+msgid "Copy one-time password to clipboard"
+msgstr "Kopiuje jednorazowe hasło do schowka"
+
+#: data/entry_page.ui:185
 msgid "U_RL"
 msgstr "_Adres URL"
 
-#: data/entry_page.ui:129 data/group_page.ui:61
+#: data/entry_page.ui:222 data/group_page.ui:61
 msgid "_Notes"
 msgstr "_Uwagi"
 
-#: data/entry_page.ui:196
+#: data/entry_page.ui:289
 msgid "Icon"
 msgstr "Ikona"
 
-#: data/entry_page.ui:231
+#: data/entry_page.ui:324
 msgid "Attachments"
 msgstr "Załączniki"
 
-#: data/entry_page.ui:271
+#: data/entry_page.ui:364
 msgid "_Add Attachment"
 msgstr "_Dodaj załącznik"
 
-#: data/entry_page.ui:299
+#: data/entry_page.ui:392
 msgid "Attributes"
 msgstr "Atrybuty"
 
-#: data/entry_page.ui:318
+#: data/entry_page.ui:411
 msgid "Key"
 msgstr "Klucz"
 
-#: data/entry_page.ui:325
+#: data/entry_page.ui:418
 msgid "Value"
 msgstr "Wartość"
 
-#: data/entry_page.ui:338
+#: data/entry_page.ui:431
 msgid "Add attribute"
 msgstr "Dodaje atrybut"
 
@@ -896,7 +908,7 @@ msgid "Save every change automatically."
 msgstr "Automatyczne zapisywanie każdej zmiany."
 
 #: data/settings_dialog.ui:72 data/unlock_database.ui:155
-#: data/unlock_database.ui:253 data/unlock_database.ui:341
+#: data/unlock_database.ui:253 data/unlock_database.ui:342
 msgid "Unlock"
 msgstr "Odblokuj"
 
@@ -1043,7 +1055,7 @@ msgid "Enter password and select keyfile to unlock"
 msgstr "Proszę wpisać hasło i wybrać plik klucza, aby odblokować"
 
 #. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:378
+#: data/unlock_database.ui:379
 msgid "Composite"
 msgstr "Złożony"
 
@@ -1065,7 +1077,7 @@ msgstr "Wyszukuje"
 msgid "Selection Mode"
 msgstr "Tryb zaznaczania"
 
-#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:391
+#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:435
 msgid "_Save"
 msgstr "_Zapisz"
 
@@ -1195,25 +1207,29 @@ msgstr "256-bitowy ChaCha20"
 msgid "Twofish 256-bit"
 msgstr "256-bitowy Twofish"
 
-#: passwordsafe/entry_page.py:246 passwordsafe/entry_page.py:307
+#: passwordsafe/entry_page.py:264
+msgid "One-time password copied to clipboard"
+msgstr "Skopiowano jednorazowe hasło do schowka"
+
+#: passwordsafe/entry_page.py:290 passwordsafe/entry_page.py:351
 msgid "Attribute key already exists"
 msgstr "Klucz atrybutu już istnieje"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:338
+#: passwordsafe/entry_page.py:382
 msgid "Select attachment"
 msgstr "Wybór załącznika"
 
-#: passwordsafe/entry_page.py:339
+#: passwordsafe/entry_page.py:383
 msgid "_Add"
 msgstr "_Dodaj"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:390
+#: passwordsafe/entry_page.py:434
 msgid "Save attachment"
 msgstr "Zapis załącznika"
 
-#: passwordsafe/entry_page.py:428 passwordsafe/entry_row.py:102
+#: passwordsafe/entry_page.py:472 passwordsafe/entry_row.py:102
 msgid "Username copied to clipboard"
 msgstr "Skopiowano nazwę użytkownika do schowka"
 
@@ -1247,7 +1263,7 @@ msgstr "Nie można otworzyć pliku"
 msgid "Could not open file: Mime type not supported"
 msgstr "Nie można otworzyć pliku: nieobsługiwany typ MIME"
 
-#: passwordsafe/main_window.py:259 passwordsafe/unlock_database.py:189
+#: passwordsafe/main_window.py:259 passwordsafe/unlock_database.py:191
 msgid "Safe already opened"
 msgstr "Sejf jest już otwarty"
 
@@ -1276,25 +1292,25 @@ msgstr "Przerwano działanie: przenoszenie obecnie aktywnej grupy"
 msgid "Move completed"
 msgstr "Ukończono przeniesienie"
 
-#: passwordsafe/unlock_database.py:213
+#: passwordsafe/unlock_database.py:215
 msgid "Choose a keyfile"
 msgstr "Wybór pliku klucza"
 
-#: passwordsafe/unlock_database.py:260
+#: passwordsafe/unlock_database.py:262
 msgid "Choose Keyfile"
 msgstr "Wybór pliku klucza"
 
 #. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:412
+#: passwordsafe/unlock_database.py:414
 msgid "The kdb format is not supported"
 msgstr "Format kdb jest nieobsługiwany"
 
-#: passwordsafe/unlock_database.py:502 passwordsafe/unlock_database.py:522
-#: passwordsafe/unlock_database.py:536
+#: passwordsafe/unlock_database.py:504 passwordsafe/unlock_database.py:524
+#: passwordsafe/unlock_database.py:538
 msgid "Failed to unlock safe"
 msgstr "Odblokowanie sejfu się nie powiodło"
 
-#: passwordsafe/unlock_database.py:531
+#: passwordsafe/unlock_database.py:533
 msgid "Try again"
 msgstr "Spróbuj ponownie"
 

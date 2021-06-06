@@ -7,9 +7,6 @@ from logging import warning
 
 from gi.repository import Gio, GLib, GObject, Gtk
 
-# pylint: disable=unused-import
-from gi.repository.Dazzle import ProgressIcon  # noqa: F401
-
 from passwordsafe import config_manager
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
@@ -39,7 +36,8 @@ class EntryPage(Gtk.ScrolledWindow):
 
     otp_generated_token_box = Gtk.Template.Child()
     otp_generated_token = Gtk.Template.Child()
-    otp_lifespan_icon = Gtk.Template.Child()
+    # TODO Port the progress icon to Cairo
+    # otp_lifespan_icon = Gtk.Template.Child()
 
     url_property_box = Gtk.Template.Child()
     url_property_value_entry = Gtk.Template.Child()
@@ -486,9 +484,10 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         otp_token = safe_entry.otp_token()
         if otp_token:
-            lifespan = safe_entry.otp_lifespan()
+            # TODO
+            # lifespan = safe_entry.otp_lifespan()
+            # self.otp_lifespan_icon.set_progress(lifespan / safe_entry.otp_interval())
             self.otp_generated_token.set_label(otp_token)
-            self.otp_lifespan_icon.set_progress(lifespan / safe_entry.otp_interval())
             self.otp_generated_token_box.set_visible(True)
             GObject.timeout_add(100, self.otp_update)
         else:

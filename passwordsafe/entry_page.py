@@ -129,9 +129,10 @@ class EntryPage(Gtk.ScrolledWindow):
         self.password_property_bin.set_child(self.password_entry_row)
 
         # OTP (token)
+        safe_entry.connect("notify::otp", self.otp_update)
         if safe_entry.otp_token():
-            self.otp_update()
-            self.show_row(self.otp_generated_token_box, safe_entry.otp_token, add_all)
+            self.otp_update(safe_entry, None)
+            self.show_row(self.otp_generated_token_box, True, add_all)
 
         # Url
         safe_entry.bind_property(
@@ -520,11 +521,9 @@ class EntryPage(Gtk.ScrolledWindow):
             row.set_visible(False)
 
     def _on_safe_entry_updated(self, _safe_entry: SafeEntry) -> None:
-        self.otp_update()
         self.unlocked_database.start_database_lock_timer()
 
-    def otp_update(self):
-        safe_entry: SafeEntry = self.unlocked_database.current_element
+    def otp_update(self, safe_entry, _value):
         otp_token = safe_entry.otp_token()
 
         if self.otp_timer_handler is not None:
@@ -536,7 +535,9 @@ class EntryPage(Gtk.ScrolledWindow):
             self.otp_lifespan_icon.props.progress = remaining_time
             self.otp_generated_token_box.props.visible = True
             self.otp_generated_token.set_label(otp_token)
-            self.otp_timer_handler = GObject.timeout_add(100, self.otp_update)
+            self.otp_timer_handler = GObject.timeout_add(
+                100, self.otp_update, safe_entry, None
+            )
         else:
             self.otp_generated_token_box.props.visible = False
 

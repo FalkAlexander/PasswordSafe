@@ -40,6 +40,7 @@ class EntryPage(Gtk.ScrolledWindow):
     url_property_box = Gtk.Template.Child()
     url_property_value_entry = Gtk.Template.Child()
 
+    otp_error_revealer = Gtk.Template.Child()
     otp_property_box = Gtk.Template.Child()
     otp_property_value_entry = Gtk.Template.Child()
 
@@ -61,6 +62,7 @@ class EntryPage(Gtk.ScrolledWindow):
     show_all_row = Gtk.Template.Child()
 
     attribute_property_row_list: list[Gtk.ListBoxRow] = []
+    otp_timer_handler: int | None = None
 
     def __init__(self, u_d, add_all):
         super().__init__()
@@ -88,6 +90,13 @@ class EntryPage(Gtk.ScrolledWindow):
         action_group.insert(copy_user_action)
         action_group.insert(copy_password_action)
         self.insert_action_group("entry", action_group)
+
+    def do_unroot(self) -> None:
+        if self.otp_timer_handler is not None:
+            GLib.source_remove(self.otp_timer_handler)
+            self.otp_timer_handler = None
+
+        Gtk.Widget.do_unroot(self)
 
     def insert_entry_properties_into_listbox(self, add_all):
         # pylint: disable=too-many-locals
@@ -517,11 +526,21 @@ class EntryPage(Gtk.ScrolledWindow):
     def otp_update(self):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         otp_token = safe_entry.otp_token()
+
+        if self.otp_timer_handler is not None:
+            GLib.source_remove(self.otp_timer_handler)
+            self.otp_timer_handler = None
+
         if otp_token:
             remaining_time = safe_entry.otp_lifespan() / safe_entry.otp_interval()
             self.otp_lifespan_icon.props.progress = remaining_time
+            self.otp_generated_token_box.props.visible = True
             self.otp_generated_token.set_label(otp_token)
-            self.otp_generated_token_box.set_visible(True)
-            GObject.timeout_add(100, self.otp_update)
+            self.otp_timer_handler = GObject.timeout_add(100, self.otp_update)
         else:
-            self.otp_generated_token_box.set_visible(False)
+            self.otp_generated_token_box.props.visible = False
+
+        reveal_error = not otp_token and safe_entry.props.otp
+        self.otp_error_revealer.props.reveal_child = reveal_error
+
+        return GLib.SOURCE_CONTINUE

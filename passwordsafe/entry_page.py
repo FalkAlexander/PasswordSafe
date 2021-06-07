@@ -13,6 +13,7 @@ from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
+from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
@@ -35,8 +36,7 @@ class EntryPage(Gtk.ScrolledWindow):
 
     otp_generated_token_box = Gtk.Template.Child()
     otp_generated_token = Gtk.Template.Child()
-    # TODO Port the progress icon to Cairo
-    # otp_lifespan_icon = Gtk.Template.Child()
+    otp_lifespan_icon = Gtk.Template.Child()
 
     url_property_box = Gtk.Template.Child()
     url_property_value_entry = Gtk.Template.Child()
@@ -526,9 +526,8 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         otp_token = safe_entry.otp_token()
         if otp_token:
-            # TODO
-            # lifespan = safe_entry.otp_lifespan()
-            # self.otp_lifespan_icon.set_progress(lifespan / safe_entry.otp_interval())
+            remaining_time = safe_entry.otp_lifespan() / safe_entry.otp_interval()
+            self.otp_lifespan_icon.props.progress = remaining_time
             self.otp_generated_token.set_label(otp_token)
             self.otp_generated_token_box.set_visible(True)
             GObject.timeout_add(100, self.otp_update)

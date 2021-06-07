@@ -145,12 +145,11 @@
                         </attributes>
                       </object>
                     </child>
-                    <!-- TODO Port Progress Icon to Cairo-->
-                    <!-- <child> -->
-                    <!--   <object class="DzlProgressIcon" id="otp_lifespan_icon"> -->
-                    <!--     <property name="halign">end</property> -->
-                    <!--   </object> -->
-                    <!-- </child> -->
+                    <child>
+                      <object class="ProgressIcon" id="otp_lifespan_icon">
+                        <property name="halign">end</property>
+                      </object>
+                    </child>
                     <child>
                       <object class="GtkButton" id="otp_copy_button">
                         <property name="receives_default">True</property>

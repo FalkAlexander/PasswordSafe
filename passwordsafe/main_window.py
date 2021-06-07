@@ -547,7 +547,7 @@ class MainWindow(Adw.ApplicationWindow):
                 or action_db.props.selection_mode
                 or action_db.in_edit_page
             ):
-                action_db.props.search_active = not action_db.props.search_active
+                action_db.props.search_active = True
 
     def tab_visible(self, tab):
         """Checks that the tab is visible

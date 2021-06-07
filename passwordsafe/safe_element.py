@@ -246,6 +246,7 @@ class SafeEntry(SafeElement):
 
     _color_key = "color_prop_LcljUMJZ9X"
     _note_key = "Notes"
+    _otp_key = "otp"
 
     def __init__(self, db_manager: DatabaseManager, entry: Entry) -> None:
         """GObject to handle a safe entry.
@@ -263,7 +264,7 @@ class SafeEntry(SafeElement):
         self._attributes: dict[str, str] = {
             key: value
             for key, value in entry.custom_properties.items()
-            if key not in (self._color_key, self._note_key)
+            if key not in (self._color_key, self._note_key, self._otp_key)
         }
 
         color_value: Color = entry.get_custom_property(self._color_key)

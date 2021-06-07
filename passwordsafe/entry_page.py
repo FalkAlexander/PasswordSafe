@@ -196,10 +196,6 @@ class EntryPage(Gtk.ScrolledWindow):
         self.show_row(self.attributes_property_box, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
-            if key == "otp":
-                # Skip the OTP property as it's handled by it's own field.
-                continue
-
             self.add_attribute_property_row(key, value)
 
         for widget in self.toggeable_widget_list:

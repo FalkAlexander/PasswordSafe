@@ -105,10 +105,9 @@
                   <object class="GtkBox" id="otp_entry_box">
                     <property name="hexpand">True</property>
                     <child>
-                      <object class="GtkEntry" id="otp_property_value_entry">
+                      <object class="GtkPasswordEntry" id="otp_property_value_entry">
                         <property name="hexpand">True</property>
-                        <property name="secondary_icon_name">user-not-tracked-symbolic</property>
-                        <signal name="icon-press" handler="on_show_otp_secret_button_toggled" swapped="no"/>
+                        <property name="show_peek_icon">True</property>
                       </object>
                     </child>
                   </object>

@@ -7,7 +7,6 @@ from logging import warning
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
-from passwordsafe import config_manager
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.notes_dialog import NotesDialog
@@ -143,8 +142,6 @@ class EntryPage(Gtk.ScrolledWindow):
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
         self.show_row(self.otp_property_box, False, add_all)
-        show_pwds = config_manager.get_show_password_fields()
-        self.otp_property_value_entry.props.visibility = show_pwds
 
         # Notes
         self.notes_property_value_entry.add_css_class("codeview")
@@ -285,11 +282,6 @@ class EntryPage(Gtk.ScrolledWindow):
             otp_token,
             _("One-time password copied to clipboard"),
         )
-
-    @Gtk.Template.Callback()
-    def on_show_otp_secret_button_toggled(self, _widget, _position, _eventbutton):
-        visibility = self.otp_property_value_entry.props.visibility
-        self.otp_property_value_entry.props.visibility = not visibility
 
     #
     # Additional Attributes

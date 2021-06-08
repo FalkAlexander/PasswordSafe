@@ -36,7 +36,7 @@ Download the [latest artifact](https://gitlab.gnome.org/World/PasswordSafe/-/job
 To install, open the flatpak package with GNOME Software and install it.
 If you don't have GNOME Software then run
 ```
-flatpak install org.gnome.PasswordSafeDevel.flatpak
+flatpak install org.gnome.PasswordSafe.Devel.flatpak
 ```
 
 
@@ -58,12 +58,12 @@ flatpak remote-add gnome-nightly --if-not-exists https://sdk.gnome.org/gnome-nig
 # Install the required GNOME runtimes
 flatpak install gnome-nightly org.gnome.Platform//master org.gnome.Sdk//master
 # Start building
-flatpak-builder --repo=repo org.gnome.PasswordSafeDevel flatpak/org.gnome.PasswordSafe.json --force-clean
+flatpak-builder --repo=repo org.gnome.PasswordSafe.Devel flatpak/org.gnome.PasswordSafe.json --force-clean
 # Create the Flatpak
-flatpak build-export repo org.gnome.PasswordSafeDevel
-flatpak build-bundle repo org.gnome.PasswordSafeDevel.flatpak org.gnome.PasswordSafeDevel
+flatpak build-export repo org.gnome.PasswordSafe.Devel
+flatpak build-bundle repo org.gnome.PasswordSafe.Devel.flatpak org.gnome.PasswordSafe.Devel
 # Install the Flatpak
-flatpak install org.gnome.PasswordSafeDevel.flatpak
+flatpak install org.gnome.PasswordSafe.Devel.flatpak
 
 ```
 

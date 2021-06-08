@@ -4,7 +4,6 @@ if get_option('profile') == 'development'
 install_data (
     join_paths(icondir, 'org.gnome.PasswordSafe.Devel.svg'),
     install_dir: join_paths(datadir, icondir),
-    rename: 'org.gnome.PasswordSafeDevel.svg'
 )
 else
 install_data (
@@ -18,7 +17,7 @@ if get_option('profile') == 'development'
 install_data (
     join_paths(icondir, 'org.gnome.PasswordSafe-symbolic.svg'),
     install_dir: join_paths(datadir, icondir),
-    rename: 'org.gnome.PasswordSafeDevel-symbolic.svg'
+    rename: 'org.gnome.PasswordSafe.Devel-symbolic.svg'
 )
 else
 install_data (

@@ -5,6 +5,7 @@ project('passwordsafe',
 i18n = import('i18n')
 python = import('python')
 project_id = 'org.gnome.PasswordSafe'
+project_name = 'Password Safe'
 contributors = '\n'.join([
     'Falk Alexander Seidl &lt;fseidl@gnome.org&gt;',
     'Uta Lemke',
@@ -46,11 +47,9 @@ bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 # Profiles
 if get_option('profile') == 'development'
-  profile = 'Devel'
-  name_suffix = ' (Development)'
+    profile = 'Devel'
 else
-  profile = ''
-  name_suffix = ''
+    profile = ''
 endif
 
 
@@ -71,11 +70,12 @@ endif
 conf.set('CONTRIBUTORS', contributors)
 conf.set_quoted('PROFILE', profile)
 
-application_id = 'org.gnome.PasswordSafe'
+application_id = project_id
 if get_option('profile') == 'development'
-  application_id = 'org.gnome.PasswordSafeDevel'
+  application_id = '@0@.Devel'.format(application_id)
 endif
 conf.set('APPID', application_id)
+conf.set('NAME', project_name)
 
 subdir('data')
 subdir('po')

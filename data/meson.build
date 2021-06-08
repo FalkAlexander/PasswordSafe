@@ -31,7 +31,7 @@ install_data(
 desktop_conf = configuration_data()
 application_id = 'org.gnome.PasswordSafe'
 if get_option('profile') == 'development'
-  application_id = 'org.gnome.PasswordSafeDevel'
+  application_id = 'org.gnome.PasswordSafe.Devel'
 endif
 desktop_conf.set('ICON', application_id)
 desktop = i18n.merge_file(
@@ -61,7 +61,7 @@ endif
 appdata_conf = configuration_data()
 application_id = 'org.gnome.PasswordSafe'
 if get_option('profile') == 'development'
-  application_id = 'org.gnome.PasswordSafeDevel'
+  application_id = 'org.gnome.PasswordSafe.Devel'
 endif
 appdata_conf.set('APPID', application_id)
 appdata = i18n.merge_file(

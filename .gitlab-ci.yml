@@ -34,10 +34,10 @@ flatpak:
     stage: Build
     image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master
     variables:
-        APP_ID: org.gnome.PasswordSafeDevel
-        MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.json"
+        APP_ID: org.gnome.PasswordSafe.Devel
+        MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.Devel.json"
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         FLATPAK_MODULE: "passwordsafe"
         MESON_ARGS: "-Dprofile=development"
-        BUNDLE: "org.gnome.PasswordSafeDevel.flatpak"
+        BUNDLE: "org.gnome.PasswordSafe.Devel.flatpak"
     extends: .flatpak

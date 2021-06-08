@@ -41,10 +41,6 @@ class Search:
         self._headerbar = self.unlocked_database.search_headerbar
         self._search_entry = self._headerbar.search_entry
 
-        self._key_pressed: bool = False
-        self._timeout_search: int = 0
-
-        self._timeout_info: int = 0
         self._search_text: str = self._search_entry.props.text
         self._result_list.connect("items_changed", self._on_items_changed)
 
@@ -55,7 +51,7 @@ class Search:
     ) -> None:
         if list_model.get_n_items() == 0:
             if len(self._search_text) < 2:
-                self._display_info_page()
+                self._stack.set_visible_child(self._info_search_page)
 
     def initialize(self):
         # Search Headerbar
@@ -92,11 +88,9 @@ class Search:
 
         if search_active:
             self._search_changed_id = self._search_entry.connect(
-                "search-changed", self._on_search_entry_timeout
+                "search-changed", self._on_search_changed
             )
             self._search_entry.grab_focus()
-
-            self._timeout_info = GLib.timeout_add(200, self._display_info_page)
 
         else:
             if self._search_changed_id is not None:
@@ -104,7 +98,6 @@ class Search:
                 self._search_changed_id = None
 
             self._search_entry.props.text = ""
-            self._key_pressed = False
             self._result_list.remove_all()
 
     def _prepare_search_page(self):
@@ -115,19 +108,6 @@ class Search:
         self.search_list_box.connect(
             "row-activated", self.unlocked_database.on_list_box_row_activated
         )
-
-    def _display_info_page(self) -> bool:
-        """When search-mode is activated the search text has not been
-        entered yet. The info_search overlay only needs to be displayed
-        if the search text is empty."""
-        if self._timeout_info > 0:
-            GLib.source_remove(self._timeout_info)
-            self._timeout_info = 0
-
-        if not self._key_pressed:
-            self._stack.set_visible_child(self._info_search_page)
-
-        return GLib.SOURCE_REMOVE
 
     def _start_search(self):
         """Update the overlays and start a search
@@ -192,23 +172,10 @@ class Search:
 
     # Events
 
-    def _on_search_entry_timeout(self, search_entry: Gtk.Entry) -> None:
-        self._key_pressed = True
-        if self._timeout_search > 0:
-            GLib.source_remove(self._timeout_search)
-
-        # Time between search querries.
-        self._timeout_search = GLib.timeout_add(
-            200, self._on_search_entry_changed, search_entry
-        )
-
-    def _on_search_entry_changed(self, search_entry):
+    def _on_search_changed(self, search_entry):
         self.unlocked_database.start_database_lock_timer()
-        self._timeout_search = 0
         self._search_text = search_entry.props.text
         self._start_search()
-
-        return False
 
     def on_headerbar_search_entry_enter_pressed(self, _widget):
         self.unlocked_database.start_database_lock_timer()

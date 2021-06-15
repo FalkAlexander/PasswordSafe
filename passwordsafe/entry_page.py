@@ -16,8 +16,6 @@ from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
-
-if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
 

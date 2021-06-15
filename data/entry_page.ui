@@ -166,12 +166,8 @@
                         <property name="receives_default">True</property>
                         <property name="halign">end</property>
                         <property name="tooltip_text" translatable="yes">Copy one-time password to clipboard</property>
+                        <property name="icon_name">edit-copy-symbolic</property>
                         <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
-                        <child>
-                          <object class="GtkImage" id="otp_copy_button_image">
-                            <property name="icon_name">edit-copy-symbolic</property>
-                          </object>
-                        </child>
                       </object>
                     </child>
                   </object>

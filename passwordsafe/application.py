@@ -86,11 +86,12 @@ class Application(Gtk.Application):
         return -1
 
     def do_activate(self):  # pylint: disable=arguments-differ
+        # If the window exists already e.g. if we invoke us a 2nd time,
+        # we just present the existing one.
         if self.window:
-            # Window exists already eg if we invoke us a 2nd time.
-            # Just present the existing one.
             self.window.present()
             return
+
         self.window = MainWindow(application=self)
 
         self.setup_actions()

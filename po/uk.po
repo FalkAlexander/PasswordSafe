@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-06-08 18:37+0000\n"
-"PO-Revision-Date: 2021-06-08 22:54+0300\n"
+"POT-Creation-Date: 2021-06-17 11:17+0000\n"
+"PO-Revision-Date: 2021-06-17 14:46+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -190,7 +190,6 @@ msgid "_New"
 msgstr "С_творити"
 
 #: data/database_settings_dialog.ui:42
-#| msgid "Generate Password"
 msgid "Generate New Password"
 msgstr "Створення пароля"
 
@@ -200,7 +199,6 @@ msgid "C_onfirm"
 msgstr "П_ідтвердити"
 
 #: data/database_settings_dialog.ui:78
-#| msgid "_One-Time Password"
 msgid "Confirm New Password"
 msgstr "Підтвердження нового пароля"
 
@@ -210,7 +208,6 @@ msgid "_Current"
 msgstr "_Поточний"
 
 #: data/database_settings_dialog.ui:106
-#| msgid "Enter Password"
 msgid "Enter Current Password"
 msgstr "Введіть поточний пароль"
 
@@ -223,12 +220,10 @@ msgid "Keyfile"
 msgstr "Файл ключа"
 
 #: data/database_settings_dialog.ui:153
-#| msgid "_Select current keyfile"
 msgid "_Select current keyfile if any"
 msgstr "Ви_беріть поточний файл ключа, якщо такий є"
 
 #: data/database_settings_dialog.ui:196
-#| msgid "_Generate new keyfile"
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Необов'язково) С_творити файл ключа"
 
@@ -305,8 +300,7 @@ msgstr "_Одноразовий захист паролем"
 
 #: data/entry_page.ui:119
 msgid "Could not generate OTP token"
-msgstr ""
-"Не вдалося створити жетон OTP"
+msgstr "Не вдалося створити жетон OTP"
 
 #: data/entry_page.ui:136
 msgid "_One-Time Password"
@@ -316,39 +310,39 @@ msgstr "_Одноразовий пароль"
 msgid "Copy one-time password to clipboard"
 msgstr "Копіювати одноразовий пароль до буфера обміну"
 
-#: data/entry_page.ui:188
+#: data/entry_page.ui:184
 msgid "U_RL"
 msgstr "Ад_реса"
 
-#: data/entry_page.ui:221 data/group_page.ui:52 data/references_dialog.ui:185
+#: data/entry_page.ui:217 data/group_page.ui:52 data/references_dialog.ui:185
 msgid "_Notes"
 msgstr "_Нотатки"
 
-#: data/entry_page.ui:269
+#: data/entry_page.ui:265
 msgid "Icon"
 msgstr "Піктограма"
 
-#: data/entry_page.ui:300
+#: data/entry_page.ui:296
 msgid "Attachments"
 msgstr "Долучення"
 
-#: data/entry_page.ui:328
+#: data/entry_page.ui:324
 msgid "_Add Attachment"
 msgstr "_Додати долучення"
 
-#: data/entry_page.ui:352
+#: data/entry_page.ui:348
 msgid "Attributes"
 msgstr "Атрибути"
 
-#: data/entry_page.ui:368
+#: data/entry_page.ui:364
 msgid "Key"
 msgstr "Ключ"
 
-#: data/entry_page.ui:374
+#: data/entry_page.ui:370
 msgid "Value"
 msgstr "Значення"
 
-#: data/entry_page.ui:385
+#: data/entry_page.ui:381
 msgid "Add attribute"
 msgstr "Додати атрибут"
 
@@ -475,7 +469,6 @@ msgid "Move selection"
 msgstr "Переміщення позначеного"
 
 #: data/gtk/selection_mode_headerbar.ui:39
-#| msgid "Delete selection"
 msgid "Paste selection"
 msgstr "Вставити позначене"
 
@@ -846,8 +839,7 @@ msgstr "Нотатки"
 
 #: data/references_dialog.ui:181
 msgid "_URL"
-msgstr ""
-"_Адреса"
+msgstr "_Адреса"
 
 #: data/references_dialog.ui:209
 msgid "References"
@@ -907,12 +899,10 @@ msgid "_Save and Quit"
 msgstr "З_берегти та вийти"
 
 #: data/search.ui:7
-#| msgid "Enter search term"
 msgid "Enter Search Term"
 msgstr "Вкажіть критерій пошуку"
 
 #: data/search.ui:13
-#| msgid "No search results"
 msgid "No Search Results"
 msgstr "Нічого не знайдено"
 
@@ -1102,7 +1092,7 @@ msgstr "Пошук"
 msgid "Selection Mode"
 msgstr "Режим вибору"
 
-#: data/unlocked_headerbar.ui:51 passwordsafe/entry_page.py:471
+#: data/unlocked_headerbar.ui:51 passwordsafe/entry_page.py:469
 msgid "_Save"
 msgstr "З_берегти"
 
@@ -1152,7 +1142,13 @@ msgstr ""
 "Зберігайте ваші паролі, нотатки і дані безпечно. <b>Створіть</b> або "
 "<b>імпортуйте</b> нове сховище Keepass."
 
-#: passwordsafe/application.py:198
+#. Translators: This is a CLI/terminal error.
+#: passwordsafe/application.py:55
+msgid "Error: File {} does not exist"
+msgstr ""
+"Помилка: файл {} не існує"
+
+#: passwordsafe/application.py:205
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Неможливо вийти: не вдалося зберегти сейф"
 
@@ -1207,30 +1203,30 @@ msgstr "ChaCha20, 256-бітовий"
 msgid "Twofish 256-bit"
 msgstr "Twofish, 256-бітовий"
 
-#: passwordsafe/entry_page.py:252 passwordsafe/entry_page.py:514
+#: passwordsafe/entry_page.py:250 passwordsafe/entry_page.py:512
 #: passwordsafe/entry_row.py:99
 msgid "Username copied to clipboard"
 msgstr "Ім'я користувача скопійовано до буфера обміну"
 
-#: passwordsafe/entry_page.py:293
+#: passwordsafe/entry_page.py:291
 msgid "One-time password copied to clipboard"
 msgstr "Одноразовий пароль скопійовано до буфера обміну"
 
-#: passwordsafe/entry_page.py:314 passwordsafe/entry_page.py:380
+#: passwordsafe/entry_page.py:312 passwordsafe/entry_page.py:378
 msgid "Attribute key already exists"
 msgstr "Ключ атрибута вже існує"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:411
+#: passwordsafe/entry_page.py:409
 msgid "Select attachment"
 msgstr "Виберіть долучення"
 
-#: passwordsafe/entry_page.py:414
+#: passwordsafe/entry_page.py:412
 msgid "_Add"
 msgstr "Д_одати"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:468
+#: passwordsafe/entry_page.py:466
 msgid "Save attachment"
 msgstr "Збереження долучення"
 

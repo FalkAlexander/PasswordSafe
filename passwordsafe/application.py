@@ -51,7 +51,6 @@ class Application(Gtk.Application):
     def do_open(self, gfile_list, _n_files, _hint):  # pylint: disable=arguments-differ
         for gfile in gfile_list:
             if not gfile.query_exists():
-                # Translators: This is a CLI/terminal error.
                 print(_("Error: File {} does not exist").format(gfile.get_path()))
                 if self.window is None:
                     self.quit()

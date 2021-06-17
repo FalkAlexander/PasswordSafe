@@ -48,11 +48,11 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
         Adw.init()
 
-    def do_open(self, g_file_list, _n_files, _hint):  # pylint: disable=arguments-differ
-        for g_file in g_file_list:
-            self.file_list.append(g_file)
+    def do_open(self, gfile_list, _n_files, _hint):  # pylint: disable=arguments-differ
+        for gfile in gfile_list:
+            self.file_list.append(gfile)
             if self.window is not None:
-                self.window.start_database_opening_routine(g_file.get_path())
+                self.window.start_database_opening_routine(gfile.get_path())
 
         self.do_activate()
 

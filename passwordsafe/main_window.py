@@ -97,7 +97,7 @@ class MainWindow(Adw.ApplicationWindow):
         css_provider.load_from_resource("org/gnome/PasswordSafe/passwordsafe.css")
 
         self.get_style_context().add_provider_for_display(
-            display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER
+            display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )
 
     def apply_theme(self) -> None:

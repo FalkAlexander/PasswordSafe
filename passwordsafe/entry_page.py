@@ -31,9 +31,9 @@ class EntryPage(Gtk.ScrolledWindow):
 
     password_property_bin = Gtk.Template.Child()
 
-    otp_generated_token_box = Gtk.Template.Child()
-    otp_generated_token = Gtk.Template.Child()
-    otp_lifespan_icon = Gtk.Template.Child()
+    otp_token_box = Gtk.Template.Child()
+    otp_token_row = Gtk.Template.Child()
+    otp_progress_icon = Gtk.Template.Child()
 
     url_property_box = Gtk.Template.Child()
     url_property_value_entry = Gtk.Template.Child()
@@ -130,7 +130,7 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry.connect("notify::otp", self.otp_update)
         if safe_entry.otp_token():
             self.otp_update(safe_entry, None)
-            self.show_row(self.otp_generated_token_box, True, add_all)
+            self.show_row(self.otp_token_box, True, add_all)
 
         # Url
         safe_entry.bind_property(
@@ -530,14 +530,14 @@ class EntryPage(Gtk.ScrolledWindow):
 
         if otp_token:
             remaining_time = safe_entry.otp_lifespan() / safe_entry.otp_interval()
-            self.otp_lifespan_icon.props.progress = remaining_time
-            self.otp_generated_token_box.props.visible = True
-            self.otp_generated_token.set_label(otp_token)
+            self.otp_progress_icon.props.progress = remaining_time
+            self.otp_token_box.props.visible = True
+            self.otp_token_row.props.title = otp_token
             self.otp_timer_handler = GObject.timeout_add(
                 100, self.otp_update, safe_entry, None
             )
         else:
-            self.otp_generated_token_box.props.visible = False
+            self.otp_token_box.props.visible = False
 
         reveal_error = not otp_token and safe_entry.props.otp
         self.otp_error_revealer.props.reveal_child = reveal_error

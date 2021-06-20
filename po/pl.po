@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-06-08 18:37+0000\n"
-"PO-Revision-Date: 2021-06-13 12:22+0200\n"
+"POT-Creation-Date: 2021-06-17 11:17+0000\n"
+"PO-Revision-Date: 2021-06-20 11:15+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -312,39 +312,39 @@ msgstr "_Jednorazowe hasło"
 msgid "Copy one-time password to clipboard"
 msgstr "Kopiuje jednorazowe hasło do schowka"
 
-#: data/entry_page.ui:188
+#: data/entry_page.ui:184
 msgid "U_RL"
 msgstr "_Adres URL"
 
-#: data/entry_page.ui:221 data/group_page.ui:52 data/references_dialog.ui:185
+#: data/entry_page.ui:217 data/group_page.ui:52 data/references_dialog.ui:185
 msgid "_Notes"
 msgstr "_Uwagi"
 
-#: data/entry_page.ui:269
+#: data/entry_page.ui:265
 msgid "Icon"
 msgstr "Ikona"
 
-#: data/entry_page.ui:300
+#: data/entry_page.ui:296
 msgid "Attachments"
 msgstr "Załączniki"
 
-#: data/entry_page.ui:328
+#: data/entry_page.ui:324
 msgid "_Add Attachment"
 msgstr "_Dodaj załącznik"
 
-#: data/entry_page.ui:352
+#: data/entry_page.ui:348
 msgid "Attributes"
 msgstr "Atrybuty"
 
-#: data/entry_page.ui:368
+#: data/entry_page.ui:364
 msgid "Key"
 msgstr "Klucz"
 
-#: data/entry_page.ui:374
+#: data/entry_page.ui:370
 msgid "Value"
 msgstr "Wartość"
 
-#: data/entry_page.ui:385
+#: data/entry_page.ui:381
 msgid "Add attribute"
 msgstr "Dodaje atrybut"
 
@@ -1086,7 +1086,7 @@ msgstr "Wyszukuje"
 msgid "Selection Mode"
 msgstr "Tryb zaznaczania"
 
-#: data/unlocked_headerbar.ui:51 passwordsafe/entry_page.py:471
+#: data/unlocked_headerbar.ui:51 passwordsafe/entry_page.py:469
 msgid "_Save"
 msgstr "_Zapisz"
 
@@ -1136,7 +1136,12 @@ msgstr ""
 "Bezpieczne przechowywanie haseł, notatek i danych. Można <b>utworzyć</b> lub "
 "<b>zaimportować</b> nowy sejf KeePass."
 
-#: passwordsafe/application.py:198
+#. Translators: This is a CLI/terminal error.
+#: passwordsafe/application.py:55
+msgid "Error: File {} does not exist"
+msgstr "Błąd: plik {} nie istnieje"
+
+#: passwordsafe/application.py:205
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Nie można zakończyć programu: nie można zapisać sejfu"
 
@@ -1191,30 +1196,30 @@ msgstr "256-bitowy ChaCha20"
 msgid "Twofish 256-bit"
 msgstr "256-bitowy Twofish"
 
-#: passwordsafe/entry_page.py:252 passwordsafe/entry_page.py:514
+#: passwordsafe/entry_page.py:250 passwordsafe/entry_page.py:512
 #: passwordsafe/entry_row.py:99
 msgid "Username copied to clipboard"
 msgstr "Skopiowano nazwę użytkownika do schowka"
 
-#: passwordsafe/entry_page.py:293
+#: passwordsafe/entry_page.py:291
 msgid "One-time password copied to clipboard"
 msgstr "Skopiowano jednorazowe hasło do schowka"
 
-#: passwordsafe/entry_page.py:314 passwordsafe/entry_page.py:380
+#: passwordsafe/entry_page.py:312 passwordsafe/entry_page.py:378
 msgid "Attribute key already exists"
 msgstr "Klucz atrybutu już istnieje"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:411
+#: passwordsafe/entry_page.py:409
 msgid "Select attachment"
 msgstr "Wybór załącznika"
 
-#: passwordsafe/entry_page.py:414
+#: passwordsafe/entry_page.py:412
 msgid "_Add"
 msgstr "_Dodaj"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:468
+#: passwordsafe/entry_page.py:466
 msgid "Save attachment"
 msgstr "Zapis załącznika"
 

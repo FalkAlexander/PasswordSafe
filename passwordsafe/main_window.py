@@ -230,7 +230,7 @@ class MainWindow(Adw.ApplicationWindow):
     def start_database_opening_routine(self, filepath: str) -> None:
         """Start opening a safe file"""
         unlock_db = UnlockDatabase(self, filepath)
-        self._unlock_database_bin.props.child = unlock_db.hdy_page
+        self._unlock_database_bin.props.child = unlock_db
         unlock_db.grab_focus()
         self.view = self.View.UNLOCK_DATABASE
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import os
 
-from gi.repository import Adw, Gio, Gtk
+from gi.repository import Adw, Gio, GObject, Gtk
 
 import passwordsafe.config_manager as config
 
@@ -14,6 +14,10 @@ class RecentFilesPage(Gtk.Box):
     __gtype_name__ = "RecentFilesPage"
 
     _last_opened_listbox: Gtk.ListBox = Gtk.Template.Child()
+
+    window = GObject.Property(
+        type=Adw.ApplicationWindow, flags=GObject.ParamFlags.READWRITE
+    )
 
     def __init__(self):
         """Recently opened files page widget
@@ -54,8 +58,13 @@ class RecentFilesPage(Gtk.Box):
 
         Starts opening the database corresponding to the entry."""
         file_uri: str = list_box_row.get_name()
-        window = Gio.Application.get_default().window
-        window.start_database_opening_routine(Gio.File.new_for_uri(file_uri).get_path())
+        # TODO Any unsaved changes will be lost here. Operning a safe when
+        # a safe is already opened should open a new window.
+        self.unlocked_db.cleanup()
+        self.window.unlocked_db = None
+        self.window.start_database_opening_routine(
+            Gio.File.new_for_uri(file_uri).get_path()
+        )
 
 
 class RecentFileRow(Adw.ActionRow):

@@ -6,7 +6,6 @@ from gettext import gettext as _
 
 from gi.repository import GLib, Gtk
 
-from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.utils import KeyFileFilter, generate_keyfile
 
 
@@ -35,13 +34,12 @@ class CreateDatabase(Gtk.Stack):
 
     composite = False
 
-    def __init__(self, window, widget, dbm, back_button):
+    def __init__(self, window, dbm):
         super().__init__()
 
         self.database_manager = dbm
         self.window = window
-        self.parent_widget = widget
-        self.back_button = back_button
+        self.back_button = window.create_database_headerbar.back_button
 
         self.back_button.props.sensitive = True
         self.back_button.connect("clicked", self.on_headerbar_back_button_clicked)
@@ -49,8 +47,7 @@ class CreateDatabase(Gtk.Stack):
     def success_page(self):
         self.set_visible_child_name("safe-successfully-create")
         # TODO This should be improved upon. Widgets should not
-        # modify widgets outside of their scope. And __init__()
-        # should not request a back button either.
+        # modify widgets outside of their scope.
         self.back_button.props.sensitive = False
         self.open_safe_button.grab_focus()
 
@@ -63,9 +60,7 @@ class CreateDatabase(Gtk.Stack):
         authentication method. In the case we are already in that page
         we kill this page."""
         if self.get_visible_child_name() == "select_auth_method":
-            self.window.set_headerbar()
-            self.window.close_tab(self.parent_widget)
-            self.parent_widget.remove(self)
+            self.window.view = self.window.View.RECENT_FILES
         else:
             self.set_visible_child_name("select_auth_method")
             self.clear_input_fields()
@@ -163,10 +158,7 @@ class CreateDatabase(Gtk.Stack):
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:
-        self.parent_widget.remove(self)
-        UnlockDatabase(
-            self.window, self.parent_widget, self.database_manager.database_path
-        )
+        self.window.start_database_opening_routine(self.database_manager.database_path)
 
     @Gtk.Template.Callback()
     def on_password_repeat_input_activate(self, _widget: Gtk.Entry) -> None:

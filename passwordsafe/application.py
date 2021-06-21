@@ -10,7 +10,6 @@ from gi.repository import Adw, Gio, GLib, Gtk
 import passwordsafe.config_manager as config
 from passwordsafe import const
 from passwordsafe.main_window import MainWindow
-from passwordsafe.quit_dialog import QuitDialog
 from passwordsafe.save_dialog import SaveDialog
 
 if typing.TYPE_CHECKING:
@@ -20,7 +19,6 @@ if typing.TYPE_CHECKING:
 
 class Application(Gtk.Application):
 
-    _save_handler_ids: dict[UnlockedDatabase, int] = {}
     window: MainWindow = None
     file_list: list[Gio.File] = []
     development_mode = const.IS_DEVEL
@@ -108,8 +106,8 @@ class Application(Gtk.Application):
     def do_shutdown(self) -> None:  # pylint: disable=arguments-differ
         """Activated on shutdown. Cleans all remaining processes."""
         self.window.save_window_size()
-        for database in self.window.opened_databases:
-            database.cleanup()
+        if self.window.unlocked_db:
+            self.window.unlocked_db.cleanup()
 
         Gtk.Application.do_shutdown(self)
 
@@ -119,96 +117,36 @@ class Application(Gtk.Application):
         self.add_action(quit_action)
 
     def on_quit_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
-        unsaved_databases_list = []
-        self.window.databases_to_save.clear()
+        database = self.window.unlocked_db
+        is_database_dirty = database.database_manager.is_dirty
 
-        for database in self.window.opened_databases:
-            if (
-                database.database_manager.is_dirty
-                and not database.database_manager.save_running
-            ):
-                unsaved_databases_list.append(database)
+        if not database:
+            GLib.idle_add(self.quit)
 
-        if config.get_save_automatically():
-            if not unsaved_databases_list:
+        if is_database_dirty:
+            if config.get_save_automatically():
+                database.save_database()
                 GLib.idle_add(self.quit)
+                return
 
-            for database in unsaved_databases_list:
-                self._save_handler_ids[database] = database.database_manager.connect(
-                    "save-notification",
-                    self._on_automatic_save_callback,
-                    database,
-                    unsaved_databases_list,
-                )
-                database.save_database(True)
-            return
-
-        if len(unsaved_databases_list) == 1:
-            database = unsaved_databases_list[0]
             save_dialog = SaveDialog(self.window)
-            save_dialog.connect("response", self._on_save_dialog_response, database)
+            save_dialog.connect("response", self._on_save_dialog_response)
             save_dialog.show()
-
-        elif len(unsaved_databases_list) > 1:
-            # Multiple unsaved files, ask which to save
-            quit_dialog = QuitDialog(self.window, unsaved_databases_list)
-            quit_dialog.connect("response", self._on_quit_dialog_response)
-            quit_dialog.show()
 
         else:
             GLib.idle_add(self.quit)
 
-    def _on_quit_dialog_response(
+    def _on_save_dialog_response(
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType
     ) -> None:
         dialog.close()
-        if response != Gtk.ResponseType.OK:
-            self.window.databases_to_save.clear()
-            return
 
-        for database in self.window.databases_to_save:
-            database.save_database()
-
-        GLib.idle_add(self.quit)
-
-    def _on_save_dialog_save_notification(
-        self, _db_manager: DatabaseManager, value: bool, database: UnlockedDatabase
-    ) -> None:
-        database.database_manager.disconnect(self._save_handler_ids[database])
-        self._save_handler_ids.pop(database)
-        if value:
-            GLib.idle_add(self.quit)
-        else:
-            self.window.send_notification(_("Unable to Quit: Could not save Safe"))
-
-    def _on_save_dialog_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, database: UnlockedDatabase
-    ) -> None:
-        dialog.close()
         if response == Gtk.ResponseType.YES:  # Save
-            self._save_handler_ids[database] = database.database_manager.connect(
-                "save-notification", self._on_save_dialog_save_notification, database
-            )
-            database.database_manager.save_database(True)
+            database = self.window.unlocked_db
+            database.database_manager.save_database()
+            GLib.idle_add(self.quit)
 
         elif response == Gtk.ResponseType.NO:  # Discard
-            GLib.idle_add(self.quit)
-
-    def _on_automatic_save_callback(
-        self,
-        _db_manager: DatabaseManager,
-        saved: bool,
-        database: UnlockedDatabase,
-        unsaved_database_list: list[UnlockedDatabase],
-    ) -> None:
-        """Makes sure all safes that were scheduled for autmatic save
-        are correctly saved. Quits when all safes are saved."""
-        database.database_manager.disconnect(self._save_handler_ids[database])
-        self._save_handler_ids.pop(database)
-        if saved and database in unsaved_database_list:
-            unsaved_database_list.remove(database)
-
-        if not unsaved_database_list:
             GLib.idle_add(self.quit)
 
     def add_global_accelerators(self):

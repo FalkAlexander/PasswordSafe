@@ -33,7 +33,6 @@ from passwordsafe.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 if typing.TYPE_CHECKING:
     from uuid import UUID
 
-    from passwordsafe.container_page import ContainerPage
     from passwordsafe.database_manager import DatabaseManager
 
     # pylint: disable=ungrouped-imports
@@ -71,22 +70,18 @@ class UnlockedDatabase(GObject.GObject):
         SEARCH = 3
         SELECTION = 4
 
-    def __init__(self, window: MainWindow, widget: ContainerPage, dbm: DatabaseManager):
+    def __init__(self, window: MainWindow, dbm: DatabaseManager):
         super().__init__()
         # Instances
         self.builder = Gtk.Builder.new_from_resource(
             "/org/gnome/PasswordSafe/unlocked_database.ui"
         )
         self.window: MainWindow = window
-        self.parent_widget: ContainerPage = widget
         self.database_manager: DatabaseManager = dbm
 
         root_group = SafeGroup.get_root(dbm)
         self.props.current_element = root_group
         self._mode = self.Mode.GROUP
-
-        # Declare database as opened
-        self.window.opened_databases.append(self)
 
         # Actionbar has to be setup before edit entry & group headerbars.
         mobile_pathbar = Pathbar(self)
@@ -168,7 +163,6 @@ class UnlockedDatabase(GObject.GObject):
         # Contains the "main page" with the BrowserListBox.
         self.divider = self.builder.get_object("divider")
         self._unlocked_db_stack.add_named(self.search, "search")
-        self.parent_widget.append(self.divider)
 
         self.search.initialize()
 
@@ -575,10 +569,11 @@ class UnlockedDatabase(GObject.GObject):
             if passwordsafe.config_manager.get_save_automatically():
                 self.save_database()
 
-            self.divider.hide()
+            filepath = self.database_manager.database_path
+            self.window.start_database_opening_routine(filepath)
         else:
+            self.window.view = self.window.View.UNLOCKED_DATABASE
             self.start_save_loop()
-            self.divider.show()
             self._update_headerbar()
             self.start_database_lock_timer()
 

@@ -22,8 +22,6 @@ from passwordsafe.utils import KeyFileFilter
 class UnlockDatabase:
     # pylint: disable=too-many-instance-attributes
 
-    builder = NotImplemented
-    parent_widget = NotImplemented
     database_filepath = NotImplemented
     hdy_page = NotImplemented
     unlock_database_stack_switcher = NotImplemented
@@ -31,32 +29,30 @@ class UnlockDatabase:
     composite_keyfile_path = NotImplemented
     overlay = NotImplemented
 
-    def __init__(self, window, widget, filepath):
+    builder = Gtk.Builder()
+
+    def __init__(self, window, filepath):
         self.window = window
-        self.parent_widget = widget
         self.database_filepath = filepath
 
         self.database_manager = None
+        self.headerbar = self.window.unlock_database_headerbar
         self._password = None
         self._unlock_method = None
 
-        self._on_database_locked_changed()
+        # Reset headerbar to initial state if it already exists.
+        self.headerbar.title.props.subtitle = os.path.basename(filepath)
+        self.headerbar.back_button.props.sensitive = True
 
-    #
-    # Headerbar
-    #
+        self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
 
-    def _set_headerbar(self):
-        headerbar = self.builder.get_object("headerbar")
-        headerbar_title = self.builder.get_object("headerbar_title")
-        headerbar_title.props.subtitle = os.path.basename(self.database_filepath)
+        database = self.window.unlocked_db
+        if database:
+            is_current = database.database_manager.database_path == filepath
+            if is_current:
+                self.database_manager = database.database_manager
 
-        if self.window.tab_visible(self.parent_widget):
-            self.window.set_headerbar(headerbar)
-
-        self.parent_widget.set_headerbar(headerbar)
-        back_button = self.builder.get_object("back_button")
-        back_button.connect("clicked", self._on_headerbar_back_button_clicked)
+        self._assemble_stack()
 
     #
     # Password stack
@@ -99,9 +95,23 @@ class UnlockDatabase:
         # Responsive Container
         self.hdy_page = self.builder.get_object("unlock_database_clamp")
 
-        self.parent_widget.append(self.hdy_page)
-
         self._connect_events(stack)
+
+    def grab_focus(self):
+        stack = self.builder.get_object("unlock_database_stack")
+        # FIXME This function is only needed since at the time of creation
+        # of UnlockDatabase it is not associated to any GtkWindow. By subclassing
+        # this class this function could be added to __init__.
+
+        if stack.get_visible_child_name() == "password_unlock":
+            password_unlock_entry = self.builder.get_object("password_unlock_entry")
+            password_unlock_entry.grab_focus()
+        elif stack.get_visible_child_name() == "composite_unlock":
+            composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
+            composite_unlock_entry.grab_focus()
+        else:
+            keyfile_unlock_button = self.builder.get_object("keyfile_unlock_button")
+            keyfile_unlock_button.grab_focus()
 
     def _connect_events(self, stack):
         password_unlock_button = self.builder.get_object("password_unlock_button")
@@ -132,8 +142,6 @@ class UnlockDatabase:
         )
 
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
-        if stack.get_visible_child_name() == "password_unlock":
-            password_unlock_entry.grab_focus()
         password_unlock_entry.connect(
             "activate", self._on_password_unlock_button_clicked
         )
@@ -142,40 +150,11 @@ class UnlockDatabase:
         composite_unlock_entry.connect(
             "activate", self._on_composite_unlock_button_clicked
         )
-        if stack.get_visible_child_name() == "composite_unlock":
-            composite_unlock_entry.grab_focus()
-
-    #
-    # Events
-    #
-
-    def _on_headerbar_back_button_clicked(self, _widget: Gtk.Button) -> None:
-        # TODO Use the go_back action instead.
-        database = self.window.find_action_db()
-        if database:
-            if passwordsafe.config_manager.get_save_automatically():
-                database.save_database()
-
-            database.cleanup()
-
-        self.window.set_headerbar()
-        self.window.close_tab(self.parent_widget, database)
 
     # Password Unlock
 
     def _on_password_unlock_button_clicked(self, _widget):
         password_unlock_entry = self.builder.get_object("password_unlock_entry")
-
-        for db in self.window.opened_databases:
-            if (
-                db.database_manager.database_path == self.database_filepath
-                and not db.database_locked
-            ):
-                page_num = self.window.container.page_num(db.parent_widget)
-                self.window.container.set_current_page(page_num)
-                self.window.close_tab(self.parent_widget)
-                self.window.send_notification(_("Safe already opened"))
-                return
 
         entered_pwd = password_unlock_entry.get_text()
         if not entered_pwd:
@@ -186,7 +165,6 @@ class UnlockDatabase:
                 entered_pwd == self.database_manager.password
                 and self.database_manager.keyfile_hash is None
             ):
-                self.parent_widget.remove(self.hdy_page)
                 self.database_manager.props.locked = False
             else:
                 self._password_unlock_failed()
@@ -236,7 +214,6 @@ class UnlockDatabase:
                 and self.database_manager.keyfile_hash
                 == self.database_manager.create_keyfile_hash(self.keyfile_path)
             ):
-                self.parent_widget.remove(self.hdy_page)
                 self.keyfile_path = NotImplemented
                 self.database_manager.props.locked = False
             else:
@@ -289,7 +266,6 @@ class UnlockDatabase:
                 )
                 and (entered_pwd == self.database_manager.password)
             ):
-                self.parent_widget.remove(self.hdy_page)
                 self.database_manager.props.locked = False
             else:
                 self._composite_unlock_failed()
@@ -342,7 +318,7 @@ class UnlockDatabase:
 
         entry.set_sensitive(sensitive)
         button.set_sensitive(sensitive)
-        back_button = self.builder.get_object("back_button")
+        back_button = self.headerbar.back_button
         back_button.set_sensitive(sensitive)
         self.unlock_database_stack_switcher.set_sensitive(sensitive)
 
@@ -466,11 +442,14 @@ class UnlockDatabase:
 
         passwordsafe.config_manager.set_last_opened_list(path_listh)
 
-        self.parent_widget.remove(self.hdy_page)
-        UnlockedDatabase(self.window, self.parent_widget, self.database_manager)
-        self.database_manager.connect(
-            "notify::locked", self._on_database_locked_changed
-        )
+        if self.window.unlocked_db is None:
+            database = UnlockedDatabase(
+                self.window, self.database_manager
+            )
+            self.window.unlocked_db = database
+            self.window.unlocked_db_bin.props.child = database
+
+        self.window.view = self.window.View.UNLOCKED_DATABASE
 
     #
     # Helper Functions
@@ -481,17 +460,6 @@ class UnlockDatabase:
         composite_unlock_entry = self.builder.get_object("composite_unlock_entry")
         password_unlock_entry.set_text("")
         composite_unlock_entry.set_text("")
-
-    def _on_database_locked_changed(self, _database_manager=None, _value=None):
-        if not self.database_manager or (
-            self.database_manager and self.database_manager.props.locked
-        ):
-            self.builder = Gtk.Builder.new_from_resource(
-                "/org/gnome/PasswordSafe/unlock_database.ui"
-            )
-
-            self._set_headerbar()
-            self._assemble_stack()
 
     def _composite_unlock_failed(self):
         self.window.send_notification(_("Failed to unlock safe"))

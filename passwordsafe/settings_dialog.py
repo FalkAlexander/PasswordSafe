@@ -185,8 +185,8 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     def _on_settings_lockdb_spin_button_changed(self, spin_button):
         config.set_database_lock_timeout(spin_button.get_value())
-        for db in self.window.opened_databases:
-            db.start_database_lock_timer()
+        if self.window.unlocked_db:
+            self.window.unlocked_db.start_database_lock_timer()
 
     def _on_settings_clearcb_spin_button_changed(self, spin_button):
         config.set_clear_clipboard(spin_button.get_value())
@@ -197,8 +197,8 @@ class SettingsDialog(Adw.PreferencesWindow):
     def _on_settings_clear_recents_clicked(self, widget):
         config.set_last_opened_list([])
         config.set_last_opened_database("")
-        if not self.window.opened_databases or not self.window.container.get_n_pages():
-            self.window.display_welcome_page()
+        if self.window.view == self.window.View.RECENT_FILES:
+            self.window.view = self.window.View.WELCOME
 
         widget.set_sensitive(False)
 

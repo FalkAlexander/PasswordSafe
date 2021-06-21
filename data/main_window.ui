@@ -14,6 +14,14 @@
           <object class="GtkStack" id="_headerbar_stack">
             <child>
               <object class="GtkStackPage">
+                <property name="name">recent_files</property>
+                <property name="child">
+                  <object class="RecentFilesHeaderbar"/>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
                 <property name="name">unlock_database</property>
                 <property name="child">
                   <object class="UnlockDatabaseHeaderbar" id="unlock_database_headerbar">
@@ -38,13 +46,43 @@
               <object class="GtkStack" id="_main_view">
                 <child>
                   <object class="GtkStackPage">
-                    <property name="name">container</property>
+                    <property name="name">welcome</property>
                     <property name="child">
-                      <object class="GtkNotebook" id="container">
-                        <property name="scrollable">True</property>
-                        <property name="show_border">False</property>
-                        <signal name="switch-page" handler="on_tab_switch" swapped="no"/>
+                      <object class="WelcomePage"/>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">create_database</property>
+                    <property name="child">
+                      <object class="AdwBin" id="_create_database_bin"/>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">recent_files</property>
+                    <property name="child">
+                      <object class="RecentFilesPage" id="_recent_files_page">
+                        <property name="window">MainWindow</property>
                       </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">unlock_database</property>
+                    <property name="child">
+                      <object class="AdwBin" id="_unlock_database_bin"/>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">unlocked</property>
+                    <property name="child">
+                      <object class="AdwBin" id="unlocked_db_bin"/>
                     </property>
                   </object>
                 </child>

@@ -14,6 +14,16 @@
           <object class="GtkStack" id="_headerbar_stack">
             <child>
               <object class="GtkStackPage">
+                <property name="name">unlock_database</property>
+                <property name="child">
+                  <object class="UnlockDatabaseHeaderbar" id="unlock_database_headerbar">
+                    <property name="window">MainWindow</property>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStackPage">
                 <property name="name">create_database</property>
                 <property name="child">
                   <object class="CreateDatabaseHeaderbar" id="create_database_headerbar"/>

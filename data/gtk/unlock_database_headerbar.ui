@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe creation process">_New Safe</attribute>
+        <attribute name="action">win.new_database</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe opening process (for existing safe)">_Open Safe</attribute>
+        <attribute name="action">win.open_database</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">win.settings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes" comments="&quot;Password Safe&quot; is the application name">_About Password Safe</attribute>
+        <attribute name="action">win.about</attribute>
+      </item>
+    </section>
+  </menu>
+  <template class="UnlockDatabaseHeaderbar" parent="AdwHeaderBar">
+    <property name="title-widget">
+      <object class="AdwWindowTitle" id="title">
+        <property name="title" translatable="yes">Password Safe</property>
+      </object>
+    </property>
+    <child>
+      <object class="GtkButton" id="back_button">
+        <property name="icon_name">go-previous-symbolic</property>
+        <signal name="clicked" handler="_on_back_button_clicked" swapped="no"/>
+      </object>
+    </child>
+    <child type="end">
+      <object class="GtkMenuButton" id="menupopover_button">
+        <property name="menu_model">primary_menu</property>
+        <property name="icon_name">open-menu-symbolic</property>
+      </object>
+    </child>
+    <style>
+      <class name="titlebar"/>
+    </style>
+  </template>
+</interface>

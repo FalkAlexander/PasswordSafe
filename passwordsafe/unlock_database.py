@@ -94,6 +94,7 @@ class UnlockDatabase:
             for pair in pairs:
                 if pair[0] == uri:
                     keyfile_path = pair[1]
+                    break
 
             if keyfile_path is not None:
                 composite_unlock_select_button = self.builder.get_object(

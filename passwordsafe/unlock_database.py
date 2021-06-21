@@ -99,10 +99,11 @@ class UnlockDatabase:
                 composite_unlock_select_button = self.builder.get_object(
                     "composite_unlock_select_button"
                 )
-                label = ntpath.basename(keyfile_path)
-                composite_unlock_select_button.set_label(label)
-
-                self.composite_keyfile_path = keyfile_path
+                keyfile = Gio.File.new_for_path(keyfile_path)
+                if keyfile.query_exists():
+                    label = keyfile.get_basename()
+                    composite_unlock_select_button.set_label(label)
+                    self.composite_keyfile_path = keyfile_path
 
         if passwordsafe.config_manager.get_remember_unlock_method():
             stack.set_visible_child(

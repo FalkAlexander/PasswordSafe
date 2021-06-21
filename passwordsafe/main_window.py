@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 import os
 import threading
+from enum import IntEnum
 from gettext import gettext as _
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
@@ -29,6 +30,13 @@ from passwordsafe.widgets.create_database_headerbar import (  # noqa: F401, pyli
 class MainWindow(Adw.ApplicationWindow):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
+    class View(IntEnum):
+        WELCOME = 0
+        RECENT_FILES = 1
+        UNLOCK_DATABASE = 2
+        UNLOCKED_DATABASE = 3
+        CREATE_DATABASE = 4
+
     __gtype_name__ = "MainWindow"
 
     database_manager = NotImplemented
@@ -46,6 +54,7 @@ class MainWindow(Adw.ApplicationWindow):
     mobile_layout = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE
     )
+    _view = View.WELCOME
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -573,3 +582,29 @@ class MainWindow(Adw.ApplicationWindow):
         _event_y: float,
     ) -> None:
         self.lookup_action("go_back").activate()
+
+    @property
+    def view(self) -> View:
+        return self._view
+
+    @view.setter  # type: ignore
+    def view(self, new_view: View) -> None:
+        stack = self._main_view
+        headerbar_stack = self._headerbar_stack
+
+        self._view = new_view
+
+        if new_view == self.View.WELCOME:
+            stack.props.visible_child_name = "welcome"
+            headerbar_stack.props.visible_child_name = "recent_files"
+        elif new_view == self.View.RECENT_FILES:
+            stack.props.visible_child_name = "recent_files"
+            headerbar_stack.props.visible_child_name = "recent_files"
+        elif new_view == self.View.UNLOCK_DATABASE:
+            stack.props.visible_child_name = "unlock_database"
+            headerbar_stack.props.visible_child_name = "unlock_database"
+        elif new_view == self.View.UNLOCKED_DATABASE:
+            stack.props.visible_child_name = "unlocked"
+        elif new_view == self.View.CREATE_DATABASE:
+            stack.props.visible_child_name = "create_database"
+            headerbar_stack.props.visible_child_name = "create_database"

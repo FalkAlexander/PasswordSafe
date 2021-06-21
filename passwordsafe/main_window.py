@@ -234,7 +234,7 @@ class MainWindow(Adw.ApplicationWindow):
                     None,
                 )
             except GLib.Error as error:
-                self.notify(_("Could not open file"))
+                self.send_notification(_("Could not open file"))
                 logging.debug(
                     "Unable to query info for file %s: %s", db_filename, error.message
                 )
@@ -245,7 +245,9 @@ class MainWindow(Adw.ApplicationWindow):
             )
             file_mime_type = Gio.content_type_get_mime_type(file_content_type)
             if file_mime_type not in supported_mime_types:
-                self.notify(_("Could not open file: Mime type not supported"))
+                self.send_notification(
+                    _("Could not open file: Mime type not supported")
+                )
                 return
 
             database_already_opened = False
@@ -255,7 +257,7 @@ class MainWindow(Adw.ApplicationWindow):
                     database_already_opened = True
                     page_num = self.container.page_num(database.parent_widget)
                     self.container.set_current_page(page_num)
-                    self.notify(_("Safe already opened"))
+                    self.send_notification(_("Safe already opened"))
 
             if database_already_opened is False:
                 self.start_database_opening_routine(db_filename)

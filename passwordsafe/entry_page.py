@@ -9,10 +9,10 @@ from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
-from passwordsafe.notes_dialog import NotesDialog
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
 from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401
+from passwordsafe.widgets.notes_dialog import NotesDialog
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry

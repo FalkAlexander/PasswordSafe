@@ -5,7 +5,7 @@ import typing
 
 from gi.repository import GObject, Gtk
 
-from passwordsafe.notes_dialog import NotesDialog
+from passwordsafe.widgets.notes_dialog import NotesDialog
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeGroup

@@ -257,7 +257,7 @@ class UnlockedDatabase(GObject.GObject):
         list_model_group_uuid: UUID,
         _data: Any = None,
     ) -> None:
-        # Return if the element was addded to another group than the one
+        # Return if the element was added to another group than the one
         # used to generate the list model.
         if target_group_uuid != list_model_group_uuid:
             return

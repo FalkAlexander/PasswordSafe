@@ -122,7 +122,7 @@ class Search:
 
     def _perform_search(self):
         """Search for results in the database."""
-        querry = self._search_text
+        query = self._search_text
 
         db_manager = self.unlocked_database.database_manager
 
@@ -133,7 +133,7 @@ class Search:
                 fields = [element.name, element.notes, element.url, element.username]
 
             for field in fields:
-                if querry.lower() in field.lower():
+                if query.lower() in field.lower():
                     return True
 
             return False

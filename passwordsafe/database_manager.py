@@ -356,7 +356,7 @@ class DatabaseManager(GObject.GObject):
     def element_added(self, _element: SafeElement, _parent_uuid: UUID) -> None:
         """Signal emitted when a new element was added to the database
         it carries the UUID in string format of the parent group to which
-        the entrie was added."""
+        the entry was added."""
         self.is_dirty = True
         logging.debug("Added new element to safe")
 

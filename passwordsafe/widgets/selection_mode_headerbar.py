@@ -247,10 +247,10 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
 
     @GObject.Signal()
     def clear_selection(self):
-        """Signal emited to tell all list models that they should unselect
+        """Signal emitted to tell all list models that they should unselect
         their entries. It differs from the action app.selection.none, since
-        the later removes seleced entries only for the visible listbox."""
-        debug("Clear selection signal emited")
+        the later removes selected entries only for the visible listbox."""
+        debug("Clear selection signal emitted")
 
     @GObject.Property(type=bool, default=True, flags=GObject.ParamFlags.READWRITE)
     def cut_mode(self) -> bool:

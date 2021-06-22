@@ -30,7 +30,7 @@ class RecentFilesPage(Gtk.Box):
             # TODO Remove the file from config if it does not exist.
             if not gio_file.query_exists():
                 logging.info(
-                    "Ignoring nonexistant recent file: %s", gio_file.get_path()
+                    "Ignoring nonexistent recent file: %s", gio_file.get_path()
                 )
                 continue  # only work with existing files
 

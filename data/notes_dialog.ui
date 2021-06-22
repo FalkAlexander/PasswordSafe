@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="AdwWindow" id="notes_detached_dialog">
+  <template class="NotesDialog" parent="AdwWindow">
     <property name="default_width">500</property>
     <property name="default_height">450</property>
     <child>
@@ -25,15 +25,17 @@
               <object class="GtkButton" id="copy_button">
                 <property name="label" translatable="yes">_Copy</property>
                 <property name="use_underline">True</property>
+                <signal name="clicked" handler="_on_copy_button_clicked"/>
                 <style>
                   <class name="suggested-action"/>
                 </style>
               </object>
             </child>
             <child type="end">
-              <object class="GtkToggleButton" id="search_button">
+              <object class="GtkToggleButton" id="_search_button">
                 <property name="halign">end</property>
                 <property name="icon_name">system-search-symbolic</property>
+                <signal name="toggled" handler="_on_search_button_toggled"/>
                 <child>
                   <object class='GtkShortcutController'>
                     <property name='scope'>managed</property>
@@ -56,10 +58,12 @@
           <object class="GtkBox">
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkSearchBar" id="search_bar">
+              <object class="GtkSearchBar" id="_search_bar">
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">
                     <property name="width_chars">26</property>
+                    <signal name="search-changed" handler="_on_search_entry_changed"/>
+                    <signal name="stop-search" handler="_on_search_stopped"/>
                   </object>
                 </child>
               </object>
@@ -70,7 +74,7 @@
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <child>
-                  <object class="GtkTextView" id="value_entry">
+                  <object class="GtkTextView" id="_value_entry">
                     <property name="wrap_mode">word</property>
                     <property name="left_margin">5</property>
                     <property name="right_margin">5</property>
@@ -85,5 +89,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

@@ -1,47 +1,38 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 
-class NotesDialog:
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/notes_dialog.ui")
+class NotesDialog(Adw.Window):
     # pylint: disable=too-many-instance-attributes
 
+    __gtype_name__ = "NotesDialog"
+
+    _search_bar = Gtk.Template.Child()
+    _search_button = Gtk.Template.Child()
+    _value_entry = Gtk.Template.Child()
+
     def __init__(self, unlocked_database, safe_entry):
-        self.__builder = Gtk.Builder()
-        self.__builder.add_from_resource("/org/gnome/PasswordSafe/notes_dialog.ui")
+        super().__init__()
 
         self.__unlocked_database = unlocked_database
         self.__safe_entry = safe_entry
-        self.__dialog = self.__builder.get_object("notes_detached_dialog")
         self.__search_stopped = False
 
-        self.__notes_buffer = self.__builder.get_object("value_entry").get_buffer()
+        self.__notes_buffer = self._value_entry.get_buffer()
+        # TODO Revisit the choice of color used as it might look bad
+        # other themes.
         self.__tag = self.__notes_buffer.create_tag("found", background="yellow")
 
         self.__setup_widgets()
         self.__setup_signals()
 
-    def present(self):
-        self.__dialog.present()
-
     def __setup_signals(self):
         self.__unlocked_database.database_manager.connect(
             "notify::locked", self.__on_locked
         )
-        self.__builder.get_object("copy_button").connect(
-            "clicked", self.__on_copy_button_clicked
-        )
-
-        # Search
-        self.__search_button = self.__builder.get_object("search_button")
-        self.__search_bar = self.__builder.get_object("search_bar")
-        self.__search_entry = self.__builder.get_object("search_entry")
-
-        self.__search_button.connect("toggled", self.__on_search_button_toggled)
-        self.__search_entry.connect("search-changed", self.__on_search_entry_changed)
-        self.__search_entry.connect("stop-search", self.__on_search_stopped)
-
         # Bind text to the corresponding safe entry.
         self.__safe_entry.bind_property(
             "notes",
@@ -51,15 +42,15 @@ class NotesDialog:
         )
 
     def __setup_widgets(self):
-        # Dialog
-        self.__dialog.set_modal(True)
-        self.__dialog.set_transient_for(self.__unlocked_database.window)
+        self.set_modal(True)
+        self.set_transient_for(self.__unlocked_database.window)
 
     #
     # Events
     #
 
-    def __on_copy_button_clicked(self, _button):
+    @Gtk.Template.Callback()
+    def _on_copy_button_clicked(self, _button):
         notes_buffer = self.__notes_buffer
 
         self.__unlocked_database.send_to_clipboard(
@@ -68,7 +59,8 @@ class NotesDialog:
             )
         )
 
-    def __on_search_button_toggled(self, _button):
+    @Gtk.Template.Callback()
+    def _on_search_button_toggled(self, _button):
         self.__unlocked_database.start_database_lock_timer()
 
         if self.__search_stopped is True:
@@ -76,12 +68,13 @@ class NotesDialog:
         self.__toggle_search_bar()
 
     def __toggle_search_bar(self):
-        if self.__search_bar.get_search_mode() is True:
-            self.__search_bar.set_search_mode(False)
+        if self._search_bar.get_search_mode() is True:
+            self._search_bar.set_search_mode(False)
         else:
-            self.__search_bar.set_search_mode(True)
+            self._search_bar.set_search_mode(True)
 
-    def __on_search_entry_changed(self, entry):
+    @Gtk.Template.Callback()
+    def _on_search_entry_changed(self, entry):
         self.__unlocked_database.start_database_lock_timer()
 
         notes_buffer = self.__notes_buffer
@@ -94,9 +87,10 @@ class NotesDialog:
         if entry.get_text():
             self.__do_search(notes_buffer, entry.get_text(), start)
 
-    def __on_search_stopped(self, _entry):
+    @Gtk.Template.Callback()
+    def _on_search_stopped(self, _entry):
         self.__search_stopped = True
-        self.__search_button.set_active(False)
+        self._search_button.set_active(False)
         self.__search_stopped = False
 
     #
@@ -115,4 +109,4 @@ class NotesDialog:
     def __on_locked(self, database_manager, _value):
         locked = database_manager.props.locked
         if locked:
-            self.__dialog.close()
+            self.close()

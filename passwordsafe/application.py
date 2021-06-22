@@ -47,6 +47,8 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
         Adw.init()
 
+        self.setup_actions()
+
     def do_open(self, gfile_list, _n_files, _hint):  # pylint: disable=arguments-differ
         for gfile in gfile_list:
             if not gfile.query_exists():
@@ -98,7 +100,6 @@ class Application(Gtk.Application):
 
         self.window = MainWindow(application=self)
 
-        self.setup_actions()
         self.add_global_accelerators()
 
         self.window.present()
@@ -117,39 +118,11 @@ class Application(Gtk.Application):
         self.add_action(quit_action)
 
     def on_quit_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
-        database = self.window.unlocked_db
-        is_database_dirty = database.database_manager.is_dirty
-
-        if not database:
-            GLib.idle_add(self.quit)
-
-        if is_database_dirty:
-            if config.get_save_automatically():
-                database.save_database()
-                GLib.idle_add(self.quit)
-                return
-
-            save_dialog = SaveDialog(self.window)
-            save_dialog.connect("response", self._on_save_dialog_response)
-            save_dialog.show()
-
-        else:
-            GLib.idle_add(self.quit)
-
-    def _on_save_dialog_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType
-    ) -> None:
-        dialog.close()
-
-        if response == Gtk.ResponseType.YES:  # Save
-            database = self.window.unlocked_db
-            database.database_manager.save_database()
-            GLib.idle_add(self.quit)
-
-        elif response == Gtk.ResponseType.NO:  # Discard
-            GLib.idle_add(self.quit)
+        for window in self.get_windows():
+            window.close()
 
     def add_global_accelerators(self):
+        self.set_accels_for_action("app.quit", ["<primary>q"])
         self.set_accels_for_action("win.settings", ["<primary>comma"])
         self.set_accels_for_action("win.open_database", ["<primary>o"])
         self.set_accels_for_action("win.new_database", ["<primary>n"])
@@ -161,4 +134,3 @@ class Application(Gtk.Application):
         self.set_accels_for_action("win.go_back", ["Escape"])
         self.set_accels_for_action("win.entry.copy_password", ["<primary><Shift>c"])
         self.set_accels_for_action("win.entry.copy_user", ["<primary><Shift>b"])
-        self.set_accels_for_action("window.close", ["<primary>q"])

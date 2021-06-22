@@ -19,13 +19,13 @@ from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_page import GroupPage
 from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
-from passwordsafe.references_dialog import ReferencesDialog
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.search import Search
 from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 from passwordsafe.widgets.edit_element_headerbar import EditElementHeaderbar, PageType
 from passwordsafe.widgets.properties_dialog import PropertiesDialog
+from passwordsafe.widgets.references_dialog import ReferencesDialog
 from passwordsafe.widgets.search_headerbar import SearchHeaderbar
 from passwordsafe.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 

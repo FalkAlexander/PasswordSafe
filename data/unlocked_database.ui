@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkBox" id="divider">
+  <template class="UnlockedDatabase" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkStack" id="_unlocked_db_deck">
         <child>
           <object class="GtkStack" id="_unlocked_db_stack">
             <child>
-              <object class="GtkStack" id="list_stack">
+              <object class="GtkStack" id="_stack">
               </object>
             </child>
           </object>
@@ -22,28 +22,5 @@
         <property name="valign">end</property>
       </object>
     </child>
-  </object>
-  <object class="GtkStack" id="browser_stack">
-    <child>
-      <object class="AdwClamp" id="browser_clamp">
-        <child>
-          <object class="GtkListBox" id="list_box">
-            <property name="name">BrowserListBox</property>
-            <property name="valign">start</property>
-            <property name="selection_mode">none</property>
-            <style>
-              <class name="content"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwStatusPage" id="empty_group_box">
-        <property name="icon_name">folder-symbolic</property>
-        <property name="description" translatable="true">Add elements with the ➕ button.</property>
-        <property name="title" translatable="true">Empty Group</property>
-      </object>
-    </child>
-  </object>
+  </template>
 </interface>

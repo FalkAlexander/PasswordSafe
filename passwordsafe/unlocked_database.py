@@ -39,25 +39,29 @@ if typing.TYPE_CHECKING:
     from passwordsafe.main_window import MainWindow
 
 
-class UnlockedDatabase(GObject.GObject):
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/unlocked_database.ui")
+class UnlockedDatabase(Gtk.Box):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
+    __gtype_name__ = "UnlockedDatabase"
 
     # Widgets
     headerbar = NotImplemented
-    scrolled_window = NotImplemented
-    divider = NotImplemented
-    action_bar = NotImplemented
     pathbar = NotImplemented
 
     # Objects
-    builder = NotImplemented
     clipboard = NotImplemented
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
     _lock_timer_handler: int | None = None
     save_loop: int | None = None  # If int, a thread periodically saves the database
     dbus_subscription_id = NotImplemented
+
+    action_bar = Gtk.Template.Child()
+    _edit_page_bin = Gtk.Template.Child()
+    _stack = Gtk.Template.Child()
+    _unlocked_db_deck = Gtk.Template.Child()
+    _unlocked_db_stack = Gtk.Template.Child()
 
     selection_mode = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE
@@ -73,9 +77,6 @@ class UnlockedDatabase(GObject.GObject):
     def __init__(self, window: MainWindow, dbm: DatabaseManager):
         super().__init__()
         # Instances
-        self.builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_database.ui"
-        )
         self.window: MainWindow = window
         self.database_manager: DatabaseManager = dbm
 
@@ -85,7 +86,6 @@ class UnlockedDatabase(GObject.GObject):
 
         # Actionbar has to be setup before edit entry & group headerbars.
         mobile_pathbar = Pathbar(self)
-        self.action_bar = self.builder.get_object("action_bar")
         self.action_bar.pack_start(mobile_pathbar)
 
         # Headerbars
@@ -150,18 +150,12 @@ class UnlockedDatabase(GObject.GObject):
     #
 
     def assemble_listbox(self):
-        self._edit_page_bin = self.builder.get_object("_edit_page_bin")
         self.pathbar = Pathbar(self)
-        self._stack = self.builder.get_object("list_stack")
-        self._unlocked_db_stack = self.builder.get_object("_unlocked_db_stack")
-        self._unlocked_db_deck = self.builder.get_object("_unlocked_db_deck")
-
         self.headerbar = UnlockedHeaderBar(self)
 
         self.clipboard = Gdk.Display.get_default().get_clipboard()
 
         # Contains the "main page" with the BrowserListBox.
-        self.divider = self.builder.get_object("divider")
         self._unlocked_db_stack.add_named(self.search, "search")
 
         self.search.initialize()
@@ -318,7 +312,7 @@ class UnlockedDatabase(GObject.GObject):
 
     def new_group_browser_page(self, group: SafeGroup) -> Gtk.ScrolledWindow:
         builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/unlocked_database.ui"
+            "/org/gnome/PasswordSafe/gtk/unlocked_database_page.ui"
         )
         browser_clamp = builder.get_object("browser_clamp")
         browser_stack = builder.get_object("browser_stack")

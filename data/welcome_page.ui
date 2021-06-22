@@ -24,10 +24,9 @@
         <property name="label" translatable="yes" comments="The umbrella sentence of the application on the first start screen">Secure Password Safe</property>
         <property name="justify">center</property>
         <property name="wrap">True</property>
-        <attributes>
-          <attribute name="weight" value="bold"/>
-          <attribute name="size" value="21000"/>
-        </attributes>
+        <style>
+          <class name="large-title"/>
+        </style>
       </object>
     </child>
     <child>

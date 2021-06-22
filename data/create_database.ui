@@ -30,10 +30,9 @@
                 <property name="vexpand">True</property>
                 <property name="label" translatable="yes">Protect your safe</property>
                 <property name="justify">center</property>
-                <attributes>
-                  <attribute name="weight" value="bold"/>
-                  <attribute name="size" value="21000"/>
-                </attributes>
+                <style>
+                  <class name="large-title"/>
+                </style>
               </object>
             </child>
             <child>
@@ -98,10 +97,9 @@
             <child>
               <object class="GtkLabel" id="password_creation_label1">
                 <property name="label" translatable="yes">Enter Password</property>
-                <attributes>
-                  <attribute name="weight" value="normal"/>
-                  <attribute name="size" value="18000"/>
-                </attributes>
+                <style>
+                  <class name="large-title"/>
+                </style>
               </object>
             </child>
             <child>
@@ -159,10 +157,9 @@
             <child>
               <object class="GtkLabel">
                 <property name="label" translatable="yes">Password Match Check</property>
-                <attributes>
-                  <attribute name="weight" value="normal"/>
-                  <attribute name="size" value="18000"/>
-                </attributes>
+                <style>
+                  <class name="large-title"/>
+                </style>
               </object>
             </child>
             <child>
@@ -225,10 +222,9 @@
                 <child>
                   <object class="GtkLabel">
                     <property name="label" translatable="yes">Match Check Failed</property>
-                    <attributes>
-                      <attribute name="weight" value="normal"/>
-                      <attribute name="size" value="18000"/>
-                    </attributes>
+                    <style>
+                      <class name="large-title"/>
+                    </style>
                   </object>
                 </child>
                 <child>
@@ -298,10 +294,9 @@
                 <child>
                   <object class="GtkLabel" id="keyfile_creation_label1">
                     <property name="label" translatable="yes">Generate Keyfile</property>
-                    <attributes>
-                      <attribute name="weight" value="normal"/>
-                      <attribute name="size" value="18000"/>
-                    </attributes>
+                    <style>
+                      <class name="large-title"/>
+                    </style>
                   </object>
                 </child>
                 <child>
@@ -349,10 +344,9 @@
             <child>
               <object class="GtkLabel">
                 <property name="label" translatable="yes">Safe Successfully Created</property>
-                <attributes>
-                  <attribute name="weight" value="normal"/>
-                  <attribute name="size" value="18000"/>
-                </attributes>
+                <style>
+                  <class name="large-title"/>
+                </style>
               </object>
             </child>
             <child>

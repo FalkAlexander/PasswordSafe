@@ -83,10 +83,9 @@
                       <object class="GtkLabel" id="password_unlock_header_label">
                         <property name="label" translatable="yes">Safe is Locked</property>
                         <property name="ellipsize">middle</property>
-                        <attributes>
-                          <attribute name="weight" value="normal"/>
-                          <attribute name="size" value="18000"/>
-                        </attributes>
+                        <style>
+                          <class name="large-title"/>
+                        </style>
                       </object>
                     </child>
                     <child>
@@ -143,10 +142,9 @@
                       <object class="GtkLabel" id="keyfile_unlock_header_label">
                         <property name="label" translatable="yes">Safe is Locked</property>
                         <property name="ellipsize">middle</property>
-                        <attributes>
-                          <attribute name="weight" value="normal"/>
-                          <attribute name="size" value="18000"/>
-                        </attributes>
+                        <style>
+                          <class name="large-title"/>
+                        </style>
                       </object>
                     </child>
                     <child>
@@ -218,10 +216,9 @@
                       <object class="GtkLabel" id="composite_unlock_header_label">
                         <property name="label" translatable="yes">Safe is Locked</property>
                         <property name="ellipsize">middle</property>
-                        <attributes>
-                          <attribute name="weight" value="normal"/>
-                          <attribute name="size" value="18000"/>
-                        </attributes>
+                        <style>
+                          <class name="large-title"/>
+                        </style>
                       </object>
                     </child>
                     <child>

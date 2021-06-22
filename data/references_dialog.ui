@@ -13,9 +13,9 @@
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Code</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
+            <style>
+              <class name="heading"/>
+            </style>
             <layout>
               <property name="column">0</property>
               <property name="row">0</property>
@@ -25,9 +25,9 @@
         <child>
           <object class="GtkLabel">
             <property name="label" translatable="yes">Property</property>
-            <attributes>
-              <attribute name="weight" value="bold"/>
-            </attributes>
+            <style>
+              <class name="heading"/>
+            </style>
             <layout>
               <property name="column">1</property>
               <property name="row">0</property>
@@ -233,9 +233,9 @@
                         <property name="margin_top">6</property>
                         <property name="margin_bottom">6</property>
                         <property name="label" translatable="yes">Syntax</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
+                        <style>
+                          <class name="heading"/>
+                        </style>
                       </object>
                     </child>
                     <child>
@@ -343,9 +343,9 @@
                         <property name="margin_top">30</property>
                         <property name="margin_bottom">6</property>
                         <property name="label" translatable="yes">Reference</property>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
+                        <style>
+                          <class name="heading"/>
+                        </style>
                       </object>
                     </child>
                     <child>

@@ -11,7 +11,16 @@
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkStack" id="_headerbar_stack"/>
+          <object class="GtkStack" id="_headerbar_stack">
+            <child>
+              <object class="GtkStackPage">
+                <property name="name">create_database</property>
+                <property name="child">
+                  <object class="CreateDatabaseHeaderbar" id="create_database_headerbar"/>
+                </property>
+              </object>
+            </child>
+          </object>
         </child>
         <child>
           <object class="GtkOverlay" id="_main_overlay">

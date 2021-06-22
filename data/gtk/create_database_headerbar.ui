@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="AdwHeaderBar" id="headerbar">
+  <template class="CreateDatabaseHeaderbar" parent="AdwHeaderBar">
     <property name="title-widget">
       <object class="AdwWindowTitle">
         <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
@@ -21,7 +21,7 @@
     <style>
       <class name="titlebar"/>
     </style>
-  </object>
+  </template>
   <menu id="create_safe_menu">
     <section>
       <item>

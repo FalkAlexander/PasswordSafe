@@ -43,12 +43,15 @@ class CreateDatabase(Gtk.Stack):
         self.parent_widget = widget
         self.back_button = back_button
 
+        self.back_button.props.sensitive = True
+        self.back_button.connect("clicked", self.on_headerbar_back_button_clicked)
+
     def success_page(self):
         self.set_visible_child_name("safe-successfully-create")
         # TODO This should be improved upon. Widgets should not
         # modify widgets outside of their scope. And __init__()
         # should not request a back button either.
-        self.back_button.hide()
+        self.back_button.props.sensitive = False
         self.open_safe_button.grab_focus()
 
     def keyfile_generation_page(self):

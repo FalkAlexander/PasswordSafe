@@ -20,6 +20,9 @@ from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
 from passwordsafe.widgets.recent_files_headerbar import RecentFilesHeaderbar
+from passwordsafe.widgets.create_database_headerbar import (  # noqa: F401
+    CreateDatabaseHeaderbar,
+)
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/main_window.ui")
@@ -34,6 +37,7 @@ class MainWindow(Adw.ApplicationWindow):
     _notification = Notification()
 
     container = Gtk.Template.Child()
+    create_database_headerbar = Gtk.Template.Child()
     _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
@@ -267,11 +271,7 @@ class MainWindow(Adw.ApplicationWindow):
 
     def start_database_opening_routine(self, filepath: str) -> None:
         """Start opening a safe file"""
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database_headerbar.ui"
-        )
-        headerbar = builder.get_object("headerbar")
+        headerbar = self.create_database_headerbar
         tab_title: str = os.path.basename(filepath)
         UnlockDatabase(self, self.create_tab(tab_title, headerbar), filepath)
         self._main_view.set_visible_child(self.container)
@@ -336,19 +336,14 @@ class MainWindow(Adw.ApplicationWindow):
     def start_database_creation_routine(self, tab_title):
         self._main_view.set_visible_child(self.container)
         self._spinner.stop()
-        builder = Gtk.Builder()
-        builder.add_from_resource(
-            "/org/gnome/PasswordSafe/create_database_headerbar.ui"
-        )
-        headerbar = builder.get_object("headerbar")
+        headerbar = self.create_database_headerbar
         parent_widget = self.create_tab(tab_title, headerbar)
-        back_button = builder.get_object("back_button")
+        back_button = headerbar.back_button
         create_database = CreateDatabase(
             self, parent_widget, self.database_manager, back_button
         )
         self.set_headerbar(headerbar)
         parent_widget.append(create_database)
-        back_button.connect("clicked", create_database.on_headerbar_back_button_clicked)
 
     def create_tab(self, title, headerbar):
         page_instance = ContainerPage(

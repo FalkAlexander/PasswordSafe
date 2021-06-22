@@ -2,25 +2,16 @@
 from __future__ import annotations
 
 import logging
-import typing
 from gettext import gettext as _
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
-import passwordsafe.config_manager as config
 from passwordsafe import const
 from passwordsafe.main_window import MainWindow
-from passwordsafe.save_dialog import SaveDialog
-
-if typing.TYPE_CHECKING:
-    from passwordsafe.database_manager import DatabaseManager
-    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class Application(Gtk.Application):
 
-    window: MainWindow = None
-    file_list: list[Gio.File] = []
     development_mode = const.IS_DEVEL
     application_id = const.APP_ID
     settings = Gio.Settings.new(application_id)
@@ -48,19 +39,32 @@ class Application(Gtk.Application):
         Adw.init()
 
         self.setup_actions()
+        self.add_global_accelerators()
 
     def do_open(self, gfile_list, _n_files, _hint):  # pylint: disable=arguments-differ
         for gfile in gfile_list:
             if not gfile.query_exists():
                 print(_("Error: File {} does not exist").format(gfile.get_path()))
-                if self.window is None:
+                if self.get_windows() is None:
                     self.quit()
 
-            self.file_list.append(gfile)
-            if self.window is not None:
-                self.window.start_database_opening_routine(gfile.get_path())
+            if self.is_safe_open(gfile.get_path()):
+                print(_("Error: Safe {} is already open").format(gfile.get_path()))
+            else:
+                window = MainWindow(application=self)
+                window.present()
+                window.start_database_opening_routine(gfile.get_path())
 
-        self.do_activate()
+    def is_safe_open(self, filepath: str) -> bool:
+        for window in self.get_windows():
+            database = window.unlocked_db
+            if not database:
+                continue
+
+            if database.database_manager.database_path == filepath:
+                return True
+
+        return False
 
     def do_handle_local_options(  # pylint: disable=arguments-differ
         self, options: GLib.VariantDict
@@ -92,25 +96,9 @@ class Application(Gtk.Application):
         return -1
 
     def do_activate(self):  # pylint: disable=arguments-differ
-        # If the window exists already e.g. if we invoke us a 2nd time,
-        # we just present the existing one.
-        if self.window:
-            self.window.present()
-            return
-
-        self.window = MainWindow(application=self)
-
-        self.add_global_accelerators()
-
-        self.window.present()
-
-    def do_shutdown(self) -> None:  # pylint: disable=arguments-differ
-        """Activated on shutdown. Cleans all remaining processes."""
-        self.window.save_window_size()
-        if self.window.unlocked_db:
-            self.window.unlocked_db.cleanup()
-
-        Gtk.Application.do_shutdown(self)
+        window = MainWindow(application=self)
+        window.invoke_initial_screen()
+        window.present()
 
     def setup_actions(self):
         quit_action = Gio.SimpleAction.new("quit", None)

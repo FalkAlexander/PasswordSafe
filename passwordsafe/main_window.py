@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-import os
 import threading
 from enum import IntEnum
 from gettext import gettext as _
@@ -70,7 +69,7 @@ class MainWindow(Adw.ApplicationWindow):
         self.assemble_window()
         self.setup_actions()
 
-        if Gio.Application.get_default().development_mode is True:
+        if self.application.development_mode is True:
             passwordsafe.config_manager.set_development_backup_mode(True)
 
     def send_notification(self, notification: str) -> None:
@@ -90,7 +89,6 @@ class MainWindow(Adw.ApplicationWindow):
 
         self.load_custom_css()
         self.apply_theme()
-        self.invoke_initial_screen()
 
         if Gio.Application.get_default().development_mode:
             self.add_css_class("devel")
@@ -137,16 +135,6 @@ class MainWindow(Adw.ApplicationWindow):
         displays the empty welcome page if there are no recently
         loaded files).
         """
-        if self.application.file_list:
-            # file_list is appended to when we invoke the app with
-            # files as cmd line parameters. (it is also appended to
-            # whenever we open a file via app.open_database action). If it is
-            # populated, simply load those files and don't show any
-            # screens.
-            for g_file in self.application.file_list:
-                self.start_database_opening_routine(g_file.get_path())
-            return
-
         if passwordsafe.config_manager.get_first_start_screen():
             # simply load the last opened file
             filepath = None
@@ -301,15 +289,6 @@ class MainWindow(Adw.ApplicationWindow):
         self._create_database_bin.props.child = create_database
         self.view = self.View.CREATE_DATABASE
 
-    def _on_save_dialog_response(self, dialog, response, args):
-        widget, database = args
-        dialog.close()
-        if response == Gtk.ResponseType.YES:
-            database.cleanup()
-            database.save_database()
-        elif response == Gtk.ResponseType.NO:
-            database.cleanup()
-
     def save_window_size(self):
         width = self.get_width()
         height = self.get_height()
@@ -322,11 +301,50 @@ class MainWindow(Adw.ApplicationWindow):
         Only the app.quit action is called. This action cleans up stuff
         and will invoke the on_application_shutdown() method.
 
-        The true value returned ensures that the destroy method is not
-        called yet.
+        Return: True to stop other handlers from being invoked for the signal.
         """
-        self.application.activate_action("quit")
-        return True
+        if not self.unlocked_db:
+            self.save_window_size()
+            return False
+
+        is_database_dirty = self.unlocked_db.database_manager.is_dirty
+
+        if is_database_dirty:
+            if passwordsafe.config_manager.get_save_automatically():
+                self.unlocked_db.save_database()
+                self.save_window_size()
+                return False
+
+            save_dialog = SaveDialog(self)
+            save_dialog.connect("response", self._on_save_dialog_response)
+            save_dialog.show()
+            return True
+
+        self.save_window_size()
+        return False
+
+    def _on_save_dialog_response(
+        self, dialog: Gtk.Dialog, response: Gtk.ResponseType
+    ) -> None:
+        dialog.close()
+
+        if response == Gtk.ResponseType.YES:  # Save
+            database = self.unlocked_db
+            if database:
+                database.database_manager.save_database()
+
+            self.save_window_size()
+            self.destroy()
+
+        elif response == Gtk.ResponseType.NO:  # Discard
+            self.save_window_size()
+            self.destroy()
+
+    def do_unrealize(self):  # pylint: disable=arguments-differ
+        if self.unlocked_db:
+            self.unlocked_db.cleanup()
+
+        Gtk.Widget.do_unrealize(self)
 
     def setup_actions(self):
         sort_action = self.application.settings.create_action("sort-order")

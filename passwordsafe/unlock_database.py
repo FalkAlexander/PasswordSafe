@@ -108,12 +108,30 @@ class UnlockDatabase(Adw.Bin):
         else:
             self.keyfile_unlock_button.grab_focus()
 
+    def is_safe_open_elsewhere(self) -> bool:
+        """Returns True if the safe is already open but not in the current window."""
+        is_current = False
+        filepath = self.database_filepath
+        database = self.window.unlocked_db
+        is_open = self.window.application.is_safe_open(filepath)
+
+        if database:
+            is_current = database.database_manager.database_path == filepath
+
+        return is_open and not is_current
+
     @Gtk.Template.Callback()
     def _on_password_unlock_button_clicked(self, _widget):
         password_unlock_entry = self.password_unlock_entry
 
         entered_pwd = password_unlock_entry.get_text()
         if not entered_pwd:
+            return
+
+        if self.is_safe_open_elsewhere():
+            self.window.send_notification(
+                _("Safe {} is already open".format(self.database_filepath))
+            )
             return
 
         if self.database_manager:
@@ -165,6 +183,12 @@ class UnlockDatabase(Adw.Bin):
 
     @Gtk.Template.Callback()
     def _on_keyfile_unlock_button_clicked(self, _widget):
+        if self.is_safe_open_elsewhere():
+            self.window.send_notification(
+                _("Safe {} is already open".format(self.database_filepath))
+            )
+            return
+
         if self.database_manager:
             if (
                 self.keyfile_path is not NotImplemented
@@ -210,6 +234,14 @@ class UnlockDatabase(Adw.Bin):
     @Gtk.Template.Callback()
     def _on_composite_unlock_button_clicked(self, _widget):
         entered_pwd = self.composite_unlock_entry.get_text()
+        if not entered_pwd:
+            return
+
+        if self.is_safe_open_elsewhere():
+            self.window.send_notification(
+                _("Safe {} is already open".format(self.database_filepath))
+            )
+            return
 
         if self.database_manager:
             if (

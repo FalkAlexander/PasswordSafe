@@ -14,7 +14,7 @@ import passwordsafe.password_generator
 from passwordsafe.utils import generate_keyfile
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/database_settings_dialog.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/database_settings_dialog.ui")
 class DatabaseSettingsDialog(Adw.PreferencesWindow):
     # pylint: disable=too-many-instance-attributes
 

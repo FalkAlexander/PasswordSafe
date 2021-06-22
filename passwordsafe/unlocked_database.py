@@ -13,7 +13,6 @@ from typing import Any
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 import passwordsafe.config_manager
-from passwordsafe.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.entry_page import EntryPage
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_page import GroupPage
@@ -23,6 +22,7 @@ from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
 from passwordsafe.search import Search
 from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
+from passwordsafe.widgets.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.widgets.edit_element_headerbar import EditElementHeaderbar, PageType
 from passwordsafe.widgets.properties_dialog import PropertiesDialog
 from passwordsafe.widgets.references_dialog import ReferencesDialog

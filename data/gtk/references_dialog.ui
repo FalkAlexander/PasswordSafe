@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkPopover" id="codes_popover">
+  <object class="GtkPopover" id="_codes_popover">
     <property name="position">bottom</property>
     <child>
       <object class="GtkGrid">
@@ -187,7 +187,7 @@
       </item>
     </section>
   </menu>
-  <object class="AdwWindow" id="references_dialog">
+  <template class="ReferencesDialog" parent="AdwWindow">
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -258,7 +258,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="property_label">
+                          <object class="GtkLabel" id="_property_label">
                             <property name="tooltip_text" translatable="yes">Show Field Codes</property>
                             <property name="label" translatable="yes">Property</property>
                             <property name="ellipsize">end</property>
@@ -268,6 +268,7 @@
                             <child>
                               <object class="GtkGestureClick" id="property_label_gesture">
                                 <property name="button">1</property>
+                                <signal name="pressed" handler="_open_codes_popover" swapped="no"/>
                               </object>
                             </child>
                             <style>
@@ -294,6 +295,7 @@
                             <child>
                               <object class="GtkGestureClick" id="identifier_label_gesture">
                                 <property name="button">1</property>
+                                <signal name="pressed" handler="_open_codes_popover" swapped="no"/>
                               </object>
                             </child>
                             <style>
@@ -310,7 +312,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="uuid_label">
+                          <object class="GtkLabel" id="_uuid_label">
                             <property name="label">UUID</property>
                             <property name="ellipsize">end</property>
                             <attributes>
@@ -319,6 +321,7 @@
                             <child>
                               <object class="GtkGestureClick" id="uuid_label_gesture">
                                 <property name="button">1</property>
+                                <signal name="pressed" handler="_open_uuid_popover" swapped="no"/>
                               </object>
                             </child>
                             <style>
@@ -351,16 +354,17 @@
                     <child>
                       <object class="GtkBox">
                         <child>
-                          <object class="GtkMenuButton" id="property_popover_button">
+                          <object class="GtkMenuButton" id="_property_popover_button">
                             <property name="menu_model">prop_selection_menu</property>
                             <property name="label" translatable="yes">Property</property>
                           </object>
                         </child>
                         <child>
-                          <object class="GtkEntry" id="reference_entry">
+                          <object class="GtkEntry" id="_reference_entry">
                             <property name="hexpand">True</property>
                             <property name="editable">False</property>
                             <property name="secondary_icon_name">edit-copy-symbolic</property>
+                            <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
                           </object>
                         </child>
                         <style>
@@ -376,8 +380,8 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkPopover" id="uuid_popover">
+  </template>
+  <object class="GtkPopover" id="_uuid_popover">
     <property name="position">bottom</property>
     <child>
       <object class="GtkBox">

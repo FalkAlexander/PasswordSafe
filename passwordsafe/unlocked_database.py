@@ -322,8 +322,9 @@ class UnlockedDatabase(GObject.GObject):
             )
 
     def new_group_browser_page(self, group: SafeGroup) -> Gtk.ScrolledWindow:
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/unlocked_database.ui")
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/unlocked_database.ui"
+        )
         browser_clamp = builder.get_object("browser_clamp")
         browser_stack = builder.get_object("browser_stack")
         empty_group_box = builder.get_object("empty_group_box")

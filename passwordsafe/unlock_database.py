@@ -506,8 +506,9 @@ class UnlockDatabase:
         if not self.database_manager or (
             self.database_manager and self.database_manager.props.locked
         ):
-            self.builder = Gtk.Builder()
-            self.builder.add_from_resource("/org/gnome/PasswordSafe/unlock_database.ui")
+            self.builder = Gtk.Builder.new_from_resource(
+                "/org/gnome/PasswordSafe/unlock_database.ui"
+            )
 
             self._set_headerbar()
             self._assemble_stack()

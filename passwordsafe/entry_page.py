@@ -169,13 +169,14 @@ class EntryPage(Gtk.ScrolledWindow):
         )
 
         # Icons
-        icon_builder = Gtk.Builder()
         entry_icon = safe_entry.props.icon
         for icon_nr, icon in ICONS.items():
             if not icon.visible:
                 continue
 
-            icon_builder.add_from_resource("/org/gnome/PasswordSafe/icon_widget.ui")
+            icon_builder = Gtk.Builder.new_from_resource(
+                "/org/gnome/PasswordSafe/icon_widget.ui"
+            )
             btn = icon_builder.get_object("icon_button")
             img = icon_builder.get_object("image")
             img.props.icon_name = icon.name
@@ -213,8 +214,9 @@ class EntryPage(Gtk.ScrolledWindow):
         :param str key: property name
         :param str value: property value
         """
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/attribute_entry_row.ui")
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/attribute_entry_row.ui"
+        )
 
         attribute_row = builder.get_object("attribute_row")
         attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
@@ -438,8 +440,9 @@ class EntryPage(Gtk.ScrolledWindow):
                     )
 
     def add_attachment_row(self, attachment):
-        builder = Gtk.Builder()
-        builder.add_from_resource("/org/gnome/PasswordSafe/attachment_entry_row.ui")
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/attachment_entry_row.ui"
+        )
 
         attachment_row = builder.get_object("attachment_row")
         attachment_row.set_name(str(attachment.id))

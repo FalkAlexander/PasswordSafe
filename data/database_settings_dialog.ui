@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="AdwPreferencesWindow" id="database_settings_window">
+  <template class="DatabaseSettingsDialog" parent="AdwPreferencesWindow">
     <property name="default_height">500</property>
     <property name="default_width">360</property>
     <property name="search-enabled">False</property>
@@ -40,11 +40,13 @@
                         <property name="hexpand">True</property>
                         <property name="show_peek_icon">True</property>
                         <property name="placeholder_text" translatable="yes">Generate New Password</property>
+                        <signal name="changed" handler="on_password_entry_changed"/>
                       </object>
                     </child>
                     <child>
                       <object class="GtkButton" id="new_password_generate_button">
                         <property name="icon_name">security-high-symbolic</property>
+                        <signal name="clicked" handler="on_generate_password"/>
                       </object>
                     </child>
                     <style>
@@ -77,6 +79,7 @@
                     <property name="hexpand">True</property>
                     <property name="placeholder_text" translatable="yes">Confirm New Password</property>
                     <property name="show_peek_icon">True</property>
+                    <signal name="changed" handler="on_password_entry_changed"/>
                     <layout>
                       <property name="column">1</property>
                       <property name="row">2</property>
@@ -104,6 +107,7 @@
                     <property name="hexpand">True</property>
                     <property name="show_peek_icon">True</property>
                     <property name="placeholder_text" translatable="yes">Enter Current Password</property>
+                    <signal name="changed" handler="on_password_entry_changed"/>
                     <layout>
                       <property name="column">1</property>
                       <property name="row">0</property>
@@ -111,7 +115,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLevelBar" id="password_level_bar">
+                  <object class="GtkLevelBar" id="level_bar">
                     <property name="hexpand">True</property>
                     <property name="max_value">5</property>
                     <property name="mode">discrete</property>
@@ -142,6 +146,7 @@
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                         <property name="icon_name">document-open-symbolic</property>
+                        <signal name="clicked" handler="on_keyfile_select_button_clicked"/>
                         <style>
                           <class name="circular"/>
                         </style>
@@ -183,6 +188,7 @@
                         <property name="halign">center</property>
                         <property name="valign">center</property>
                         <property name="icon_name">security-high-symbolic</property>
+                        <signal name="clicked" handler="on_keyfile_generator_button_clicked"/>
                         <style>
                           <class name="circular"/>
                         </style>
@@ -223,6 +229,7 @@
                 <property name="margin_top">30</property>
                 <property name="margin_bottom">10</property>
                 <property name="sensitive">False</property>
+                <signal name="clicked" handler="on_auth_apply_button_clicked"/>
                 <style>
                   <class name="suggested-action"/>
                 </style>
@@ -292,7 +299,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_name">
+                  <object class="GtkLabel" id="name_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -363,7 +370,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_path">
+                  <object class="GtkLabel" id="path_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -377,7 +384,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_size">
+                  <object class="GtkLabel" id="size_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -388,7 +395,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_version">
+                  <object class="GtkLabel" id="version_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -399,7 +406,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_date">
+                  <object class="GtkLabel" id="date_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -410,7 +417,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_enc_alg">
+                  <object class="GtkLabel" id="encryption_algorithm_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -421,7 +428,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_der_alg">
+                  <object class="GtkLabel" id="derivation_algorithm_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -490,7 +497,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_number_entries">
+                  <object class="GtkLabel" id="n_entries_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -501,7 +508,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_number_groups">
+                  <object class="GtkLabel" id="n_groups_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -512,7 +519,7 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label_number_passwords">
+                  <object class="GtkLabel" id="n_passwords_label">
                     <property name="halign">start</property>
                     <property name="label">-</property>
                     <property name="ellipsize">end</property>
@@ -528,5 +535,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

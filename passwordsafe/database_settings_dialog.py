@@ -7,39 +7,53 @@ import threading
 import time
 from gettext import gettext as _
 
-from gi.repository import GLib, Gtk
+from gi.repository import Adw, GLib, Gtk
 
 import passwordsafe.config_manager as config
 import passwordsafe.password_generator
 from passwordsafe.utils import generate_keyfile
 
 
-class DatabaseSettingsDialog:
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/database_settings_dialog.ui")
+class DatabaseSettingsDialog(Adw.PreferencesWindow):
     # pylint: disable=too-many-instance-attributes
+
+    __gtype_name__ = "DatabaseSettingsDialog"
 
     new_password: str | None = None
     current_keyfile_path = None
     new_keyfile_path = None
 
-    entries_number = NotImplemented
-    groups_number = NotImplemented
-    passwords_number = NotImplemented
+    entries_number = None
+    groups_number = None
+    passwords_number = None
+
+    auth_apply_button = Gtk.Template.Child()
+    select_keyfile_button = Gtk.Template.Child()
+    generate_keyfile_button = Gtk.Template.Child()
+
+    level_bar = Gtk.Template.Child()
+
+    encryption_algorithm_label = Gtk.Template.Child()
+    date_label = Gtk.Template.Child()
+    derivation_algorithm_label = Gtk.Template.Child()
+    n_entries_label = Gtk.Template.Child()
+    n_groups_label = Gtk.Template.Child()
+    n_passwords_label = Gtk.Template.Child()
+    name_label = Gtk.Template.Child()
+    path_label = Gtk.Template.Child()
+    size_label = Gtk.Template.Child()
+    version_label = Gtk.Template.Child()
+
+    confirm_password_entry = Gtk.Template.Child()
+    current_password_entry = Gtk.Template.Child()
+    new_password_entry = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
+        super().__init__()
+
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
-        self.builder = Gtk.Builder()
-        self.builder.add_from_resource(
-            "/org/gnome/PasswordSafe/database_settings_dialog.ui"
-        )
-
-        self.window = self.builder.get_object("database_settings_window")
-        self.auth_apply_button = self.builder.get_object("auth_apply_button")
-
-        self.select_keyfile_button = self.builder.get_object("select_keyfile_button")
-        self.generate_keyfile_button = self.builder.get_object(
-            "generate_keyfile_button"
-        )
 
         self.__setup_widgets()
         self.__setup_signals()
@@ -49,42 +63,18 @@ class DatabaseSettingsDialog:
     #
 
     def __setup_signals(self) -> None:
-        self.auth_apply_button.connect("clicked", self.on_auth_apply_button_clicked)
-
-        # Password Section
-        self.builder.get_object("current_password_entry").connect(
-            "changed", self.on_password_entry_changed
-        )
-        self.builder.get_object("new_password_entry").connect(
-            "changed", self.on_password_entry_changed
-        )
-        self.builder.get_object("new_password_generate_button").connect(
-            "clicked", self.on_generate_password
-        )
-        self.builder.get_object("confirm_password_entry").connect(
-            "changed", self.on_password_entry_changed
-        )
-
-        self.generate_keyfile_button.connect(
-            "clicked", self.on_keyfile_generator_button_clicked
-        )
-        self.select_keyfile_button.connect(
-            "clicked", self.on_keyfile_select_button_clicked
-        )
-
         self.database_manager.connect("notify::locked", self.__on_locked)
 
     def __setup_widgets(self) -> None:
         # Password Level Bar
-        level_bar = self.builder.get_object("password_level_bar")
-        level_bar.add_offset_value("weak", 1.0)
-        level_bar.add_offset_value("medium", 3.0)
-        level_bar.add_offset_value("strong", 4.0)
-        level_bar.add_offset_value("secure", 5.0)
+        self.level_bar.add_offset_value("weak", 1.0)
+        self.level_bar.add_offset_value("medium", 3.0)
+        self.level_bar.add_offset_value("strong", 4.0)
+        self.level_bar.add_offset_value("secure", 5.0)
 
         # Dialog
-        self.window.set_modal(True)
-        self.window.set_transient_for(self.unlocked_database.window)
+        self.set_modal(True)
+        self.set_transient_for(self.unlocked_database.window)
 
         self.set_detail_values()
 
@@ -92,30 +82,26 @@ class DatabaseSettingsDialog:
         stats_thread.daemon = True
         stats_thread.start()
 
-    def present(self):
-        self.window.present()
-
+    @Gtk.Template.Callback()
     def on_password_entry_changed(self, entry: Gtk.Entry) -> None:
         """CB if password entry (existing or new) has changed"""
 
         self.unlocked_database.start_database_lock_timer()
 
-        new_password_entry = self.builder.get_object("new_password_entry")
-        new_password = new_password_entry.get_text()
-        conf_password_entry = self.builder.get_object("confirm_password_entry")
-        conf_password = conf_password_entry.get_text()
+        new_password = self.new_password_entry.get_text()
+        conf_password = self.confirm_password_entry.get_text()
 
         # Update the quality level bar
         if entry.get_name() == "new_entry" and new_password:
             level = passwordsafe.password_generator.strength(new_password)
-            self.builder.get_object("password_level_bar").set_value(level or 0)
+            self.level_bar.set_value(level or 0)
 
         if new_password != conf_password:
-            new_password_entry.add_css_class("error")
-            conf_password_entry.add_css_class("error")
+            self.new_password_entry.add_css_class("error")
+            self.confirm_password_entry.add_css_class("error")
         else:
-            new_password_entry.remove_css_class("error")
-            conf_password_entry.remove_css_class("error")
+            self.new_password_entry.remove_css_class("error")
+            self.confirm_password_entry.remove_css_class("error")
 
         correct_input = self.passwords_coincide() and self.correct_credentials()
         self.auth_apply_button.set_sensitive(correct_input)
@@ -124,7 +110,7 @@ class DatabaseSettingsDialog:
         old_hash = self.database_manager.keyfile_hash
         new_hash = None
         database_password = self.database_manager.password
-        current_password = self.builder.get_object("current_password_entry").get_text()
+        current_password = self.current_password_entry.get_text()
 
         if self.current_keyfile_path:
             new_hash = self.database_manager.create_keyfile_hash(
@@ -134,17 +120,13 @@ class DatabaseSettingsDialog:
         return old_hash == new_hash and database_password == current_password
 
     def passwords_coincide(self) -> bool:
-        new_password_entry = self.builder.get_object("new_password_entry")
-        new_password = new_password_entry.get_text()
-        repeat_password_entry = self.builder.get_object("confirm_password_entry")
-        repeat_password = repeat_password_entry.get_text()
+        new_password = self.new_password_entry.get_text()
+        repeat_password = self.confirm_password_entry.get_text()
 
         return repeat_password == new_password and new_password
 
+    @Gtk.Template.Callback()
     def on_generate_password(self, _button: Gtk.Button) -> None:
-        new_password_entry = self.builder.get_object("new_password_entry")
-        confirm_password_entry = self.builder.get_object("confirm_password_entry")
-
         use_lowercase = config.get_generator_use_lowercase()
         use_uppercase = config.get_generator_use_uppercase()
         use_numbers = config.get_generator_use_numbers()
@@ -155,15 +137,16 @@ class DatabaseSettingsDialog:
             length, use_uppercase, use_lowercase, use_numbers, use_symbols
         )
 
-        new_password_entry.set_text(generated_password)
-        confirm_password_entry.set_text(generated_password)
+        self.new_password_entry.set_text(generated_password)
+        self.confirm_password_entry.set_text(generated_password)
 
+    @Gtk.Template.Callback()
     def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
             _("Choose current keyfile"),
-            self.window,
+            self,
             Gtk.FileChooserAction.OPEN,
             _("_Open"),
             None,
@@ -210,12 +193,13 @@ class DatabaseSettingsDialog:
                 button.set_icon_name("edit-delete-symbolic")
                 self.auth_apply_button.set_sensitive(False)
 
+    @Gtk.Template.Callback()
     def on_keyfile_generator_button_clicked(self, _button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
             _("Choose location for keyfile"),
-            self.window,
+            self,
             Gtk.FileChooserAction.SAVE,
             _("_Generate"),
             None,
@@ -250,14 +234,15 @@ class DatabaseSettingsDialog:
 
             GLib.idle_add(generate_keyfile, keyfile, callback)
 
+    @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):
-        new_password = self.builder.get_object("new_password_entry").get_text()
+        new_password = self.new_password_entry.get_text()
 
         self.database_manager.password = new_password
         self.database_manager.keyfile = self.new_keyfile_path
 
         # Insensitive entries and buttons
-        self.window.set_sensitive(False)
+        self.set_sensitive(False)
 
         spinner = Gtk.Spinner()
         spinner.start()
@@ -274,17 +259,13 @@ class DatabaseSettingsDialog:
 
     def auth_save_process_finished(self):
         # Restore all widgets
-        current_password_entry = self.builder.get_object("current_password_entry")
-        new_password_entry = self.builder.get_object("new_password_entry")
-        confirm_password_entry = self.builder.get_object("confirm_password_entry")
-        select_keyfile_button = self.builder.get_object("select_keyfile_button")
 
-        self.window.set_sensitive(True)
-        current_password_entry.set_text("")
-        new_password_entry.set_text("")
-        confirm_password_entry.set_text("")
+        self.set_sensitive(True)
+        self.current_password_entry.set_text("")
+        self.new_password_entry.set_text("")
+        self.confirm_password_entry.set_text("")
 
-        select_keyfile_button.set_icon_name("document-open-symbolic")
+        self.select_keyfile_button.set_icon_name("document-open-symbolic")
         self.generate_keyfile_button.set_icon_name("security-high-symbolic")
 
         self.current_keyfile_path = None
@@ -294,31 +275,28 @@ class DatabaseSettingsDialog:
 
     def set_detail_values(self):
         # Name
-        self.builder.get_object("label_name").set_text(
+        self.name_label.set_text(
             os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]
         )
 
         # Path
-        label_path = self.builder.get_object("label_path")
         path = self.database_manager.database_path
         if "/home/" in path:
-            label_path.set_text("~/" + os.path.relpath(path))
+            self.path_label.set_text("~/" + os.path.relpath(path))
         else:
-            label_path.set_text(path)
+            self.path_label.set_text(path)
 
         # Size
         size = os.path.getsize(path) / 1000
-        self.builder.get_object("label_size").set_text(str(size) + " kB")
+        self.size_label.set_text(str(size) + " kB")
 
         # Version
         version = self.database_manager.db.version
-        self.builder.get_object("label_version").set_text(
-            str(version[0]) + "." + str(version[1])
-        )
+        self.version_label.set_text(str(version[0]) + "." + str(version[1]))
 
         # Date
         date = time.ctime(os.path.getctime(path))
-        self.builder.get_object("label_date").set_text(date)
+        self.date_label.set_text(date)
 
         # Encryption Algorithm
         enc_alg = _("Unknown")
@@ -331,32 +309,18 @@ class DatabaseSettingsDialog:
         elif self.database_manager.db.encryption_algorithm == "twofish":
             # NOTE: Twofish is a proper name
             enc_alg = _("Twofish 256-bit")
-        self.builder.get_object("label_enc_alg").set_text(enc_alg)
+        self.encryption_algorithm_label.set_text(enc_alg)
 
         # Derivation Algorithm
         der_alg = "Argon2"
         if version == (3, 1):
             der_alg = "AES-KDF"
-        self.builder.get_object("label_der_alg").set_text(der_alg)
+        self.derivation_algorithm_label.set_text(der_alg)
 
     def set_stats_values(self):
-        # Number of Entries
-        if self.builder.get_object("label_number_entries") is not None:
-            self.builder.get_object("label_number_entries").set_text(
-                str(self.entries_number)
-            )
-
-        # Number of Groups
-        if self.builder.get_object("label_number_groups") is not None:
-            self.builder.get_object("label_number_groups").set_text(
-                str(self.groups_number)
-            )
-
-        # Number of Passwords
-        if self.builder.get_object("label_number_passwords") is not None:
-            self.builder.get_object("label_number_passwords").set_text(
-                str(self.passwords_number)
-            )
+        self.n_entries_label.set_text(str(self.entries_number))
+        self.n_groups_label.set_text(str(self.groups_number))
+        self.n_passwords_label.set_text(str(self.passwords_number))
 
     def start_stats_thread(self):
         self.entries_number = len(self.database_manager.db.entries)
@@ -370,4 +334,4 @@ class DatabaseSettingsDialog:
     def __on_locked(self, database_manager, _value):
         locked = database_manager.props.locked
         if locked:
-            self.window.close()
+            self.close()

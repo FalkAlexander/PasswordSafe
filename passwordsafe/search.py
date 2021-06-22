@@ -15,28 +15,25 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-class Search:
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/search.ui")
+class Search(Gtk.Stack):
     # pylint: disable=too-many-instance-attributes
 
+    __gtype_name__ = "Search"
+
     _result_list = Gio.ListStore.new(SafeElement)
-    search_list_box = NotImplemented
+
+    _empty_search_page = Gtk.Template.Child()
+    _info_search_page = Gtk.Template.Child()
+    _results_search_page = Gtk.Template.Child()
+    search_list_box = Gtk.Template.Child()
 
     def __init__(self, unlocked_database: UnlockedDatabase) -> None:
+        super().__init__()
+
         self.unlocked_database: UnlockedDatabase = unlocked_database
         self._db_manager: DatabaseManager = unlocked_database.database_manager
         self._search_changed_id: int | None = None
-
-        self._builder: Gtk.Builder = Gtk.Builder()
-        self._builder.add_from_resource("/org/gnome/PasswordSafe/search.ui")
-
-        self._stack: Gtk.Stack = self._builder.get_object("stack")
-        self._empty_search_page: Gtk.Box = self._builder.get_object("empty_search_page")
-        self._info_search_page: Gtk.Box = self._builder.get_object("info_search_page")
-        self._results_search_page: Gtk.Box = self._builder.get_object(
-            "results_search_page"
-        )
-
-        self.scrolled_page = self._builder.get_object("stack")
 
         self._headerbar = self.unlocked_database.search_headerbar
         self._search_entry = self._headerbar.search_entry
@@ -51,7 +48,7 @@ class Search:
     ) -> None:
         if list_model.get_n_items() == 0:
             if len(self._search_text) < 2:
-                self._stack.set_visible_child(self._info_search_page)
+                self.set_visible_child(self._info_search_page)
 
     def initialize(self):
         # Search Headerbar
@@ -101,7 +98,6 @@ class Search:
             self._result_list.remove_all()
 
     def _prepare_search_page(self):
-        self.search_list_box = self._builder.get_object("list_box")
         self.search_list_box.bind_model(
             self._result_list, self.unlocked_database.listbox_row_factory
         )
@@ -118,7 +114,7 @@ class Search:
             search_thread.daemon = True
             search_thread.start()
         else:
-            self._stack.set_visible_child(self._info_search_page)
+            self.set_visible_child(self._info_search_page)
 
     def _perform_search(self):
         """Search for results in the database."""
@@ -152,7 +148,7 @@ class Search:
         results = list(db_groups) + list(db_entries)
 
         if len(results) == 0:
-            self._stack.set_visible_child(self._empty_search_page)
+            self.set_visible_child(self._empty_search_page)
             return
 
         GLib.idle_add(self._show_results, results)
@@ -166,7 +162,7 @@ class Search:
         sort_func = SortingHat.get_sort_func(sorting)
         self._result_list.sort(sort_func)
 
-        self._stack.set_visible_child(self._results_search_page)
+        self.set_visible_child(self._results_search_page)
 
         return GLib.SOURCE_REMOVE
 

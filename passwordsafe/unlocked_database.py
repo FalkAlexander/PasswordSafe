@@ -166,7 +166,7 @@ class UnlockedDatabase(GObject.GObject):
 
         # Contains the "main page" with the BrowserListBox.
         self.divider = self.builder.get_object("divider")
-        self._unlocked_db_stack.add_named(self.search.scrolled_page, "search")
+        self._unlocked_db_stack.add_named(self.search, "search")
         self.parent_widget.append(self.divider)
 
         self.search.initialize()

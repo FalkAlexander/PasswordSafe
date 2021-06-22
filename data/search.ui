@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkStack" id="stack">
+  <template class="Search" parent="GtkStack">
     <child>
-      <object class="AdwStatusPage" id="info_search_page">
+      <object class="AdwStatusPage" id="_info_search_page">
         <property name="icon_name">folder-saved-search-symbolic</property>
         <property name="title" translatable="yes">Enter Search Term</property>
       </object>
     </child>
     <child>
-      <object class="AdwStatusPage" id="empty_search_page">
+      <object class="AdwStatusPage" id="_empty_search_page">
         <property name="icon_name">folder-saved-search-symbolic</property>
         <property name="title" translatable="yes">No Search Results</property>
       </object>
     </child>
     <child>
-      <object class="GtkScrolledWindow" id="results_search_page">
+      <object class="GtkScrolledWindow" id="_results_search_page">
         <property name="hscrollbar_policy">never</property>
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <child>
           <object class="AdwClamp">
             <child>
-              <object class="GtkListBox" id="list_box">
+              <object class="GtkListBox" id="search_list_box">
                 <property name="name">BrowserListBox</property>
                 <property name="valign">start</property>
                 <property name="selection_mode">none</property>
@@ -34,5 +34,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

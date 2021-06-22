@@ -42,6 +42,9 @@
         </child>
         <child>
           <object class="GtkOverlay" id="_main_overlay">
+            <child type="overlay">
+              <object class="Notification" id="_notification"/>
+            </child>
             <child>
               <object class="GtkStack" id="_main_view">
                 <child>

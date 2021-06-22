@@ -43,13 +43,13 @@ class MainWindow(Adw.ApplicationWindow):
     __gtype_name__ = "MainWindow"
 
     database_manager = NotImplemented
-    _notification = Notification()
     unlocked_db = None
 
     _create_database_bin = Gtk.Template.Child()
     create_database_headerbar = Gtk.Template.Child()
     _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
+    _notification = Gtk.Template.Child()
     _recent_files_page = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
     _headerbar_stack = Gtk.Template.Child()
@@ -66,8 +66,6 @@ class MainWindow(Adw.ApplicationWindow):
         super().__init__(*args, **kwargs)
 
         self.application = self.get_application()
-
-        self._main_overlay.add_overlay(self._notification)
 
         self.assemble_window()
         self.setup_actions()

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="HistoryRow" parent="AdwActionRow">
+    <property name="selectable">False</property>
+    <property name="activatable_widget">visibility_button</property>
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">6</property>
+        <child>
+          <object class="GtkToggleButton" id="visibility_button">
+            <property name="icon_name">eye-not-looking-symbolic</property>
+            <property name="valign">center</property>
+            <property name="tooltip_text" translatable="yes">Show</property>
+            <signal name="toggled" handler="_on_visibility_button_toggled" swapped="no"/>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="copy_button">
+            <property name="icon_name">edit-copy-symbolic</property>
+            <property name="valign">center</property>
+            <property name="tooltip_text" translatable="yes">Copy</property>
+            <signal name="clicked" handler="_on_copy_button_clicked" swapped="no"/>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="delete_button">
+            <property name="icon_name">user-trash-symbolic</property>
+            <property name="valign">center</property>
+            <property name="tooltip_text" translatable="yes">Remove from History</property>
+            <signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -16,6 +16,7 @@ from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
 from gsecrets.widgets.attachment_entry_row import AttachmentEntryRow
 from gsecrets.widgets.attribute_entry_row import AttributeEntryRow
 from gsecrets.widgets.entry_page_icon import EntryPageIcon
+from gsecrets.widgets.history_window import HistoryWindow
 from gsecrets.widgets.notes_dialog import NotesDialog
 
 if typing.TYPE_CHECKING:
@@ -70,6 +71,12 @@ class EntryPage(Gtk.Box):
         self.install_action(
             "entry.add_attribute", None, self._on_attributes_add_button_activated
         )
+        self.install_action(
+            "entry.password_history", None, self._on_password_history_action
+        )
+        self.install_action(
+            "entry.save_in_history", None, self._on_save_in_history_action
+        )
 
         super().__init__()
 
@@ -95,6 +102,10 @@ class EntryPage(Gtk.Box):
 
         safe_entry: SafeEntry = self.unlocked_database.current_element
         safe_entry.updated.connect(self._on_safe_entry_updated)
+
+        safe_entry.history_saved.connect(self._on_history_saved)
+        if not safe_entry.history:
+            self.action_set_enabled("entry.password_history", False)
 
     def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:
@@ -226,6 +237,29 @@ class EntryPage(Gtk.Box):
     #
     # Events
     #
+
+    def _on_password_history_action(self, _widget, _action, _param):
+        safe_entry = self.unlocked_database.current_element
+
+        window = HistoryWindow(safe_entry, self.unlocked_database)
+        window.present()
+
+    def _on_save_in_history_action(self, _widget, _action, _param):
+        if not self.unlocked_database.in_edit_page:
+            return
+
+        safe_entry = self.unlocked_database.current_element
+        safe_entry.save_history()
+
+        self.unlocked_database.window.send_notification(
+            _("Entry saved in history")
+        )
+
+    def _on_history_saved(self, entry):
+        if not entry.history:
+            self.action_set_enabled("entry.password_history", False)
+        else:
+            self.action_set_enabled("entry.password_history", True)
 
     def _on_copy_action(self, _widget, action_name, _parameter):
         if self.unlocked_database.props.database_locked:

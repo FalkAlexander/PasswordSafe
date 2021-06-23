@@ -414,6 +414,8 @@ class SafeEntry(SafeElement):
     _otp: OTP | None = None
     _otp_key = "otp"
 
+    history_saved = GObject.Signal()
+
     def __init__(self, db_manager: DatabaseManager, entry: Entry) -> None:
         """GObject to handle a safe entry.
 
@@ -527,6 +529,19 @@ class SafeEntry(SafeElement):
 
         return GLib.SOURCE_CONTINUE
 
+    def save_history(self) -> None:
+        """Save current version of the entry in its history."""
+        # NOTE Attachments are references, so duplicating them is ok.
+        self._entry.save_history()
+        self.updated()
+        self.emit(self.history_saved)
+
+    def delete_history(self, entry: SafeEntry) -> None:
+        """Delete entry from the history of self."""
+        self._entry.delete_history(entry.entry)
+        self.updated()
+        self.emit(self.history_saved)
+
     @GObject.Property(type=object, flags=GObject.ParamFlags.READABLE)
     def attachments(self) -> list[Attachment]:
         return self._attachments
@@ -634,6 +649,11 @@ class SafeEntry(SafeElement):
             self._color = new_color
             self._entry.set_custom_property(self._color_key, new_color)
             self.updated()
+
+    @property
+    def history(self) -> list[SafeEntry]:
+        history = self._entry.history
+        return [SafeEntry(self._db_manager, entry) for entry in history]
 
     @GObject.Property(type=object)
     def icon(self) -> Icon:

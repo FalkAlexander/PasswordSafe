@@ -28,6 +28,18 @@
             <property name="action">action(entry.copy_url)</property>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;h</property>
+            <property name="action">action(entry.password_history)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;&lt;Shift&gt;s</property>
+            <property name="action">action(entry.save_in_history)</property>
+          </object>
+        </child>
       </object>
     </child>
     <child>
@@ -309,6 +321,16 @@
       <item>
         <attribute name="label" translatable="yes">_Properties</attribute>
         <attribute name="action">win.element.properties</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Save in History</attribute>
+        <attribute name="action">entry.save_in_history</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Show _History</attribute>
+        <attribute name="action">entry.password_history</attribute>
       </item>
     </section>
     <section>

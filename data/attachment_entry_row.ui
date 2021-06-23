@@ -4,6 +4,7 @@
     <property name="activatable">True</property>
     <child>
       <object class="GtkBox">
+        <property name="spacing">6</property>
         <child>
           <object class="GtkButton" id="attachment_download_button">
             <property name="valign">center</property>
@@ -19,9 +20,6 @@
             </style>
           </object>
         </child>
-        <style>
-          <class name="linked"/>
-        </style>
       </object>
     </child>
   </object>

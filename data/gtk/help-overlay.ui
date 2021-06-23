@@ -17,6 +17,12 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="Shortcut window description">Go back</property>
+                <property name="action-name">app.go_back</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Open safe</property>
                 <property name="action-name">app.open_database</property>
               </object>
@@ -89,12 +95,6 @@
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Copy username</property>
                 <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;B</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="Shortcut window description">Go back</property>
-                <property name="action-name">app.go_back</property>
               </object>
             </child>
           </object>

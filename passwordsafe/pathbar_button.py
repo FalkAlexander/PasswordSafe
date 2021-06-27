@@ -17,7 +17,7 @@ class PathbarButton(Gtk.Button):
 
         assert isinstance(element, SafeElement)
 
-        self.set_name("PathbarButtonDynamic")
+        self.set_name("PathbarButton")
         self.add_css_class("flat")
 
         self.is_group = element.is_group

@@ -29,8 +29,6 @@ class UnlockDatabase(Adw.Bin):
     keyfile_path = NotImplemented
     composite_keyfile_path = NotImplemented
 
-    unlock_thread = NotImplemented
-
     password_unlock_button = Gtk.Template.Child()
     password_unlock_entry = Gtk.Template.Child()
 

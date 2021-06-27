@@ -206,7 +206,6 @@ class Application(Gtk.Application):
             GLib.idle_add(self.quit)
 
     def add_global_accelerators(self):
-        self.set_accels_for_action("app.quit", ["<primary>q"])
         self.set_accels_for_action("win.settings", ["<primary>comma"])
         self.set_accels_for_action("win.open_database", ["<primary>o"])
         self.set_accels_for_action("win.new_database", ["<primary><Shift>n"])
@@ -218,3 +217,4 @@ class Application(Gtk.Application):
         self.set_accels_for_action("win.go_back", ["Escape"])
         self.set_accels_for_action("win.entry.copy_password", ["<primary><Shift>c"])
         self.set_accels_for_action("win.entry.copy_user", ["<primary><Shift>b"])
+        self.set_accels_for_action("window.close", ["<primary>q"])

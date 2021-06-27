@@ -12,25 +12,25 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Create safe</property>
-                <property name="action-name">app.new_database</property>
+                <property name="action-name">win.new_database</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Go back</property>
-                <property name="action-name">app.go_back</property>
+                <property name="action-name">win.go_back</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Open safe</property>
-                <property name="action-name">app.open_database</property>
+                <property name="action-name">win.open_database</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Open preferences</property>
-                <property name="action-name">app.settings</property>
+                <property name="action-name">win.settings</property>
               </object>
             </child>
             <child>
@@ -53,31 +53,31 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Lock safe</property>
-                <property name="action-name">app.db.lock</property>
+                <property name="action-name">win.db.lock</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Save safe</property>
-                <property name="action-name">app.db.save</property>
+                <property name="action-name">win.db.save</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Open search</property>
-                <property name="action-name">app.db.search</property>
+                <property name="action-name">win.db.search</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Create entry</property>
-                <property name="action-name">app.db.add_entry</property>
+                <property name="action-name">win.db.add_entry</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Create group</property>
-                <property name="action-name">app.db.add_group</property>
+                <property name="action-name">win.db.add_group</property>
               </object>
             </child>
           </object>
@@ -88,13 +88,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Copy password</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;C</property>
+                <property name="action-name">win.entry.copy_password</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="Shortcut window description">Copy username</property>
-                <property name="accelerator">&lt;Primary&gt;&lt;Shift&gt;B</property>
+                <property name="action-name">win.entry.copy_user</property>
               </object>
             </child>
           </object>

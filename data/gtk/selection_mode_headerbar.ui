@@ -6,7 +6,7 @@
     </property>
     <child>
       <object class="GtkButton">
-        <property name="action_name">app.go_back</property>
+        <property name="action_name">win.go_back</property>
         <property name="icon_name">go-previous-symbolic</property>
         <property name="margin_end">6</property>
       </object>
@@ -53,7 +53,7 @@
         <child>
           <object class="GtkButton" id="_cancel_button">
             <property name="label" translatable="yes">Cancel</property>
-            <property name="action_name">app.go_back</property>
+            <property name="action_name">win.go_back</property>
           </object>
         </child>
       </object>
@@ -66,12 +66,12 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">Select _All</attribute>
-        <attribute name="action">app.db.selection</attribute>
+        <attribute name="action">win.db.selection</attribute>
         <attribute name="target">all</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">Select _None</attribute>
-        <attribute name="action">app.db.selection</attribute>
+        <attribute name="action">win.db.selection</attribute>
         <attribute name="target">none</attribute>
       </item>
     </section>

@@ -330,7 +330,7 @@ class DatabaseManager(GObject.GObject):
         dirty state. This makes the save menu button sensitive.
         """
         app = Gio.Application.get_default()
-        save_action = app.lookup_action("db.save_dirty")
+        save_action = app.props.active_window.lookup_action("db.save_dirty")
         save_action.set_enabled(value)
         self._is_dirty = value
 

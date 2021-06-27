@@ -21,7 +21,7 @@
           <object class="GtkButton" id="search_button">
             <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
             <property name="icon_name">system-search-symbolic</property>
-            <property name="action_name">app.db.search</property>
+            <property name="action_name">win.db.search</property>
           </object>
         </child>
         <child>
@@ -49,11 +49,11 @@
       <item>
         <attribute name='verb-icon'>document-save-symbolic</attribute>
         <attribute name='label' translatable='yes'>_Save</attribute>
-        <attribute name='action'>app.db.save_dirty</attribute>
+        <attribute name='action'>win.db.save_dirty</attribute>
       </item>
       <item>
         <attribute name='verb-icon'>system-lock-screen-symbolic</attribute>
-        <attribute name='action'>app.db.lock</attribute>
+        <attribute name='action'>win.db.lock</attribute>
         <attribute name='label' translatable='yes'>_Lock</attribute>
       </item>
     </section>
@@ -62,17 +62,17 @@
         <attribute name='label' translatable='yes'>So_rting</attribute>
         <item>
           <attribute name='label' translatable='yes'>_A-Z</attribute>
-          <attribute name='action'>app.sort-order</attribute>
+          <attribute name='action'>win.sort-order</attribute>
           <attribute name='target'>a-z</attribute>
         </item>
         <item>
           <attribute name='label' translatable='yes'>_Z-A</attribute>
-          <attribute name='action'>app.sort-order</attribute>
+          <attribute name='action'>win.sort-order</attribute>
           <attribute name='target'>z-a</attribute>
         </item>
         <item>
           <attribute name='label' translatable='yes'>_Last Added</attribute>
-          <attribute name='action'>app.sort-order</attribute>
+          <attribute name='action'>win.sort-order</attribute>
           <attribute name='target'>last_added</attribute>
         </item>
       </submenu>
@@ -80,21 +80,21 @@
     <section>
       <item>
         <attribute name='label' translatable='yes'>_New Safe</attribute>
-        <attribute name='action'>app.new_database</attribute>
+        <attribute name='action'>win.new_database</attribute>
       </item>
       <item>
         <attribute name='label' translatable='yes'>_Open Safe</attribute>
-        <attribute name='action'>app.open_database</attribute>
+        <attribute name='action'>win.open_database</attribute>
       </item>
       <item>
         <attribute name='label' translatable='yes'>Sa_fe Settings</attribute>
-        <attribute name='action'>app.db.settings</attribute>
+        <attribute name='action'>win.db.settings</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name='label' translatable='yes'>_Preferences</attribute>
-        <attribute name='action'>app.settings</attribute>
+        <attribute name='action'>win.settings</attribute>
       </item>
       <item>
         <attribute name='label' translatable='yes'>_Keyboard Shortcuts</attribute>
@@ -102,7 +102,7 @@
       </item>
       <item>
         <attribute name='label' translatable='yes'>_About Password Safe</attribute>
-        <attribute name='action'>app.about</attribute>
+        <attribute name='action'>win.about</attribute>
       </item>
     </section>
   </menu>
@@ -110,11 +110,11 @@
     <section>
       <item>
         <attribute name='label' translatable='yes'>New _Entry</attribute>
-        <attribute name='action'>app.db.add_entry</attribute>
+        <attribute name='action'>win.db.add_entry</attribute>
       </item>
       <item>
         <attribute name='label' translatable='yes'>New _Group</attribute>
-        <attribute name='action'>app.db.add_group</attribute>
+        <attribute name='action'>win.db.add_group</attribute>
       </item>
     </section>
   </menu>

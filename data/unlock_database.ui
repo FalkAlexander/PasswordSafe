@@ -4,17 +4,17 @@
     <section>
       <item>
         <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe creation process">_New Safe</attribute>
-        <attribute name="action">app.new_database</attribute>
+        <attribute name="action">win.new_database</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe opening process (for existing safe)">_Open Safe</attribute>
-        <attribute name="action">app.open_database</attribute>
+        <attribute name="action">win.open_database</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">app.settings</attribute>
+        <attribute name="action">win.settings</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
@@ -22,7 +22,7 @@
       </item>
       <item>
         <attribute name="label" translatable="yes" comments="&quot;Password Safe&quot; is the application name">_About Password Safe</attribute>
-        <attribute name="action">app.about</attribute>
+        <attribute name="action">win.about</attribute>
       </item>
     </section>
   </menu>

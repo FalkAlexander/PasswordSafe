@@ -4,7 +4,6 @@ from __future__ import annotations
 import logging
 import typing
 from gettext import gettext as _
-from typing import Any
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -12,7 +11,6 @@ import passwordsafe.config_manager as config
 from passwordsafe.main_window import MainWindow
 from passwordsafe.quit_dialog import QuitDialog
 from passwordsafe.save_dialog import SaveDialog
-from passwordsafe.settings_dialog import SettingsDialog
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -113,34 +111,11 @@ class Application(Gtk.Application):
         Gtk.Application.do_shutdown(self)
 
     def setup_actions(self):
-        actions = [
-            ("settings", self.show_settings),
-            ("about", self.show_about_dialog),
-            ("quit", self.on_quit_action),
-            ("new_database", self.window.on_create_file_action),
-            ("open_database", self.window.on_open_file_action),
-        ]
+        quit_action = Gio.SimpleAction.new("quit", None)
+        quit_action.connect("activate", self.on_quit_action)
+        self.add_action(quit_action)
 
-        for name, callback in actions:
-            simple_action = Gio.SimpleAction.new(name, None)
-            simple_action.connect("activate", callback)
-            self.add_action(simple_action)
-
-    def show_settings(self, _action: Gio.Action, _param: GLib.Variant) -> None:
-        SettingsDialog(self.window).present()
-
-    def show_about_dialog(self, _action: Gio.SimpleAction, _param: None) -> None:
-        """Invoked when we click "about" in the main menu"""
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/about_dialog.ui"
-        )
-        about_dialog = builder.get_object("about_dialog")
-        about_dialog.set_transient_for(self.window)
-        about_dialog.show()
-
-    def on_quit_action(
-        self, _action: Gio.SimpleAction | None = None, _data: Any = None
-    ) -> None:
+    def on_quit_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         unsaved_databases_list = []
         self.window.databases_to_save.clear()
 
@@ -213,9 +188,6 @@ class Application(Gtk.Application):
             )
             database.database_manager.save_database(True)
 
-        elif response == Gtk.ResponseType.NO:  # Discard
-            GLib.idle_add(self.quit)
-
     def _on_automatic_save_callback(
         self,
         _db_manager: DatabaseManager,
@@ -234,13 +206,15 @@ class Application(Gtk.Application):
             GLib.idle_add(self.quit)
 
     def add_global_accelerators(self):
-        self.set_accels_for_action("app.settings", ["<primary>comma"])
-        self.set_accels_for_action("app.open_database", ["<primary>o"])
-        self.set_accels_for_action("app.new_database", ["<primary><Shift>n"])
-        self.set_accels_for_action("app.db.save", ["<primary>s"])
-        self.set_accels_for_action("app.db.search", ["<primary>f"])
-        self.set_accels_for_action("app.db.lock", ["<primary>l"])
-        self.set_accels_for_action("app.db.add_entry", ["<primary>n"])
-        self.set_accels_for_action("app.db.add_group", ["<primary>g"])
-        self.set_accels_for_action("app.go_back", ["Escape"])
         self.set_accels_for_action("app.quit", ["<primary>q"])
+        self.set_accels_for_action("win.settings", ["<primary>comma"])
+        self.set_accels_for_action("win.open_database", ["<primary>o"])
+        self.set_accels_for_action("win.new_database", ["<primary><Shift>n"])
+        self.set_accels_for_action("win.db.save", ["<primary>s"])
+        self.set_accels_for_action("win.db.search", ["<primary>f"])
+        self.set_accels_for_action("win.db.lock", ["<primary>l"])
+        self.set_accels_for_action("win.db.add_entry", ["<primary>n"])
+        self.set_accels_for_action("win.db.add_group", ["<primary>g"])
+        self.set_accels_for_action("win.go_back", ["Escape"])
+        self.set_accels_for_action("win.entry.copy_password", ["<primary><Shift>c"])
+        self.set_accels_for_action("win.entry.copy_user", ["<primary><Shift>b"])

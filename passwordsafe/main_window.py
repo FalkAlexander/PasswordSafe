@@ -15,6 +15,7 @@ from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.notification import Notification
 from passwordsafe.recent_files_page import RecentFilesPage
 from passwordsafe.save_dialog import SaveDialog
+from passwordsafe.settings_dialog import SettingsDialog
 from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
@@ -181,8 +182,8 @@ class MainWindow(Adw.ApplicationWindow):
     # Open Database Methods
     #
 
-    def on_open_file_action(
-        self, _action: Gio.Action, _parameter: GLib.Variant
+    def on_open_database_action(
+        self, _action: Gio.Action, _param: GLib.Variant
     ) -> None:
         """Callback function to open a safe."""
         # pylint: disable=too-many-locals
@@ -279,9 +280,7 @@ class MainWindow(Adw.ApplicationWindow):
     # Create Database Methods
     #
 
-    def on_create_file_action(
-        self, _action: Gio.Action, _parameter: GLib.Variant
-    ) -> None:
+    def on_new_database_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         """Callback function to create a new safe."""
         creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
@@ -470,11 +469,27 @@ class MainWindow(Adw.ApplicationWindow):
 
     def setup_actions(self):
         sort_action = self.application.settings.create_action("sort-order")
-        self.application.add_action(sort_action)
+        self.add_action(sort_action)
 
         selection_action = Gio.SimpleAction.new("db.selection", GLib.VariantType("s"))
-        self.application.add_action(selection_action)
+        self.add_action(selection_action)
         selection_action.connect("activate", self.execute_database_action)
+
+        about_action = Gio.SimpleAction.new("about", None)
+        self.add_action(about_action)
+        about_action.connect("activate", self.on_about_action)
+
+        settings_action = Gio.SimpleAction.new("settings", None)
+        self.add_action(settings_action)
+        settings_action.connect("activate", self.on_settings_action)
+
+        new_database_action = Gio.SimpleAction.new("new_database", None)
+        self.add_action(new_database_action)
+        new_database_action.connect("activate", self.on_new_database_action)
+
+        open_database_action = Gio.SimpleAction.new("open_database", None)
+        self.add_action(open_database_action)
+        open_database_action.connect("activate", self.on_open_database_action)
 
         actions = [
             "db.save",
@@ -500,7 +515,7 @@ class MainWindow(Adw.ApplicationWindow):
                 simple_action.set_enabled(False)
 
             simple_action.connect("activate", self.execute_database_action)
-            self.application.add_action(simple_action)
+            self.add_action(simple_action)
 
     def execute_database_action(self, action, param):
         # pylint: disable=too-many-branches
@@ -560,6 +575,18 @@ class MainWindow(Adw.ApplicationWindow):
         current_page = self.container.get_current_page()
         return self.container.page_num(tab) == current_page
 
+    def on_about_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
+        """Invoked when we click "about" in the main menu"""
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/about_dialog.ui"
+        )
+        about_dialog = builder.get_object("about_dialog")
+        about_dialog.set_transient_for(self)
+        about_dialog.show()
+
+    def on_settings_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
+        SettingsDialog(self).present()
+
     @Gtk.Template.Callback()
     def on_back_button_pressed(
         self,
@@ -568,4 +595,4 @@ class MainWindow(Adw.ApplicationWindow):
         _event_x: float,
         _event_y: float,
     ) -> None:
-        self.application.lookup_action("go_back").activate()
+        self.lookup_action("go_back").activate()

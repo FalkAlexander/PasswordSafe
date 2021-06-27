@@ -5,23 +5,6 @@
     <property name="hscrollbar_policy">never</property>
     <property name="vscrollbar_policy">automatic</property>
     <child>
-      <object class='GtkShortcutController'>
-        <property name='scope'>managed</property>
-        <child>
-          <object class='GtkShortcut'>
-            <property name='trigger'>&lt;primary&gt;&lt;Shift&gt;b</property>
-            <property name='action'>action(entry.copy_user)</property>
-          </object>
-        </child>
-        <child>
-          <object class='GtkShortcut'>
-            <property name='trigger'>&lt;primary&gt;&lt;Shift&gt;c</property>
-            <property name='action'>action(entry.copy_password)</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="AdwClamp">
         <property name="margin_top">30</property>
         <property name="margin_bottom">30</property>

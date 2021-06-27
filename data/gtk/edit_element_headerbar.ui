@@ -6,7 +6,7 @@
     </property>
     <child>
       <object class="GtkButton">
-        <property name="action_name">app.go_back</property>
+        <property name="action_name">win.go_back</property>
         <property name="icon_name">go-previous-symbolic</property>
         <property name="margin_end">6</property>
       </object>
@@ -27,13 +27,13 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">_Properties</attribute>
-        <attribute name="action">app.element.properties</attribute>
+        <attribute name="action">win.element.properties</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">_Delete</attribute>
-        <attribute name="action">app.element.delete</attribute>
+        <attribute name="action">win.element.delete</attribute>
       </item>
     </section>
   </menu>
@@ -41,21 +41,21 @@
     <section>
       <item>
         <attribute name="label" translatable="yes">D_uplicate</attribute>
-        <attribute name="action">app.entry.duplicate</attribute>
+        <attribute name="action">win.entry.duplicate</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_References</attribute>
-        <attribute name="action">app.entry.references</attribute>
+        <attribute name="action">win.entry.references</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes">_Properties</attribute>
-        <attribute name="action">app.element.properties</attribute>
+        <attribute name="action">win.element.properties</attribute>
       </item>
     </section>
     <section>
       <item>
         <attribute name="label" translatable="yes">_Delete</attribute>
-        <attribute name="action">app.element.delete</attribute>
+        <attribute name="action">win.element.delete</attribute>
       </item>
     </section>
   </menu>

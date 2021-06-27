@@ -80,14 +80,13 @@ class EntryPage(Gtk.ScrolledWindow):
         safe_entry.connect("updated", self._on_safe_entry_updated)
 
         # Setup actions
-        action_group = Gio.SimpleActionGroup.new()
-        copy_user_action = Gio.SimpleAction.new("copy_user", None)
+        copy_user_action = Gio.SimpleAction.new("entry.copy_user", None)
         copy_user_action.connect("activate", self._on_copy_action)
-        copy_password_action = Gio.SimpleAction.new("copy_password", None)
+        self.unlocked_database.window.add_action(copy_user_action)
+
+        copy_password_action = Gio.SimpleAction.new("entry.copy_password", None)
         copy_password_action.connect("activate", self._on_copy_action)
-        action_group.insert(copy_user_action)
-        action_group.insert(copy_password_action)
-        self.insert_action_group("entry", action_group)
+        self.unlocked_database.window.add_action(copy_password_action)
 
     def do_unroot(self) -> None:
         if self.otp_timer_handler is not None:
@@ -243,13 +242,13 @@ class EntryPage(Gtk.ScrolledWindow):
     #
 
     def _on_copy_action(self, action, _data=None):
-        if action.props.name == "copy_user":
+        if action.props.name == "entry.copy_user":
             username = self.username_property_value_entry.get_text()
             self.unlocked_database.send_to_clipboard(
                 username,
                 _("Username copied to clipboard"),
             )
-        elif action.props.name == "copy_password":
+        elif action.props.name == "entry.copy_password":
             self.password_entry_row.copy_password()
 
     @Gtk.Template.Callback()

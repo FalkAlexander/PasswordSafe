@@ -209,7 +209,13 @@ class MainWindow(Adw.ApplicationWindow):
             db_filename = db_gfile.get_path()
             logging.debug("File selected: %s", db_filename)
 
-            self.start_database_opening_routine(db_filename)
+            if self.unlocked_db:
+                window = MainWindow(application=self.application)
+                window.present()
+                window.start_database_opening_routine(db_filename)
+            else:
+                self.start_database_opening_routine(db_filename)
+
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection canceled")
 
@@ -254,19 +260,43 @@ class MainWindow(Adw.ApplicationWindow):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             filepath = dialog.get_file().get_path()
+            if self.unlocked_db:
+                auto_save = passwordsafe.config_manager.get_save_automatically()
+                is_dirty = self.unlocked_db.database_manager.is_dirty
+                is_open = self.application.is_safe_open(filepath)
 
-            self._spinner.start()
-            self._main_view.set_visible_child(self._spinner)
+                if is_open:
+                    self.send_notification(
+                        _("Cannot create safe: Safe is already open")
+                    )
+                    return
 
-            creation_thread = threading.Thread(
-                target=self.create_new_database, args=[filepath]
-            )
-            creation_thread.daemon = True
-            creation_thread.start()
+                if is_dirty and not auto_save:
+                    window = MainWindow(application=self.application)
+                    window.start_database_creation_routine(filepath)
+                    window.present()
+                else:
+                    if is_dirty and auto_save:
+                        self.unlocked_db.save_database()
+
+                    self.unlocked_db.cleanup()
+                    self.unlocked_db = None
+                    self.create_new_database(filepath)
+
+            else:
+                self.create_new_database(filepath)
 
     def create_new_database(self, filepath: str) -> None:
         """invoked in a separate thread to create a new safe."""
+        self._spinner.start()
+        self._main_view.set_visible_child(self._spinner)
+        creation_thread = threading.Thread(
+            target=self.start_database_creation_routine, args=[filepath]
+        )
+        creation_thread.daemon = True
+        creation_thread.start()
 
+    def start_database_creation_routine(self, filepath):
         # Copy our stock database file to `filepath`
         stock_db_file: Gio.File = Gio.File.new_for_uri(
             "resource:///org/gnome/PasswordSafe/database.kdbx"
@@ -274,16 +304,12 @@ class MainWindow(Adw.ApplicationWindow):
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
         stock_db_file.copy(new_db_file, Gio.FileCopyFlags.OVERWRITE)
 
-        tab_title: str = os.path.basename(filepath)
         try:
             self.database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
         except Exception as err:  # pylint: disable=broad-except
             logging.debug("Could not create safe: %s", err)
             self.send_notification(_("Could not create new Safe"))
-        else:
-            GLib.idle_add(self.start_database_creation_routine, tab_title)
 
-    def start_database_creation_routine(self, tab_title):
         self._spinner.stop()
         create_database = CreateDatabase(self, self.database_manager)
         self._create_database_bin.props.child = create_database

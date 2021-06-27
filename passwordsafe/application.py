@@ -51,9 +51,12 @@ class Application(Gtk.Application):
             if self.is_safe_open(gfile.get_path()):
                 print(_("Error: Safe {} is already open").format(gfile.get_path()))
             else:
-                window = MainWindow(application=self)
+                window = self.new_window()
                 window.present()
                 window.start_database_opening_routine(gfile.get_path())
+
+    def new_window(self) -> MainWindow:
+        return MainWindow(application=self)
 
     def is_safe_open(self, filepath: str) -> bool:
         for window in self.get_windows():
@@ -96,7 +99,7 @@ class Application(Gtk.Application):
         return -1
 
     def do_activate(self):  # pylint: disable=arguments-differ
-        window = MainWindow(application=self)
+        window = self.new_window()
         window.invoke_initial_screen()
         window.present()
 

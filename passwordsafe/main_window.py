@@ -209,15 +209,49 @@ class MainWindow(Adw.ApplicationWindow):
             db_filename = db_gfile.get_path()
             logging.debug("File selected: %s", db_filename)
 
-            if self.unlocked_db:
-                window = MainWindow(application=self.application)
-                window.present()
-                window.start_database_opening_routine(db_filename)
-            else:
-                self.start_database_opening_routine(db_filename)
+            self._open_database_in_window(db_filename)
 
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection canceled")
+
+    def _open_database_in_window(self, filepath):
+        if self.unlocked_db:
+            auto_save = passwordsafe.config_manager.get_save_automatically()
+            is_dirty = self.unlocked_db.database_manager.is_dirty
+            is_current = (
+                self.unlocked_db.database_manager.database_path == filepath
+            )
+            is_locked = self.unlocked_db.database_manager.props.locked
+
+            if is_locked:
+                if is_dirty and not is_current:
+                    app = Gio.Application.get_default()
+                    window = app.new_window()
+                    window.start_database_opening_routine(filepath)
+                    window.present()
+                else:
+                    if is_current:
+                        self.view = self.View.UNLOCK_DATABASE
+                        return
+
+                    if auto_save:
+                        self.unlocked_db.save_database()
+
+                    self.unlocked_db.cleanup()
+                    self.unlocked_db = None
+                    self.start_database_opening_routine(filepath)
+
+            else:
+                if not is_current:
+                    app = Gio.Application.get_default()
+                    window = app.new_window()
+                    window.start_database_opening_routine(filepath)
+                    window.present()
+                else:
+                    self.send_notification(_("Safe is already open"))
+
+        else:
+            self.start_database_opening_routine(filepath)
 
     def start_database_opening_routine(self, filepath: str) -> None:
         """Start opening a safe file"""
@@ -264,6 +298,7 @@ class MainWindow(Adw.ApplicationWindow):
                 auto_save = passwordsafe.config_manager.get_save_automatically()
                 is_dirty = self.unlocked_db.database_manager.is_dirty
                 is_open = self.application.is_safe_open(filepath)
+                is_locked = self.unlocked_db.database_manager.props.locked
 
                 if is_open:
                     self.send_notification(
@@ -271,17 +306,24 @@ class MainWindow(Adw.ApplicationWindow):
                     )
                     return
 
-                if is_dirty and not auto_save:
-                    window = MainWindow(application=self.application)
+                if is_locked:
+                    if is_dirty and not auto_save:
+                        app = Gio.Application.get_default()
+                        window = app.new_window()
+                        window.start_database_creation_routine(filepath)
+                        window.present()
+                    else:
+                        if auto_save:
+                            self.unlocked_db.save_database()
+
+                        self.unlocked_db.cleanup()
+                        self.unlocked_db = None
+                        self.create_new_database(filepath)
+                else:
+                    app = Gio.Application.get_default()
+                    window = app.new_window()
                     window.start_database_creation_routine(filepath)
                     window.present()
-                else:
-                    if is_dirty and auto_save:
-                        self.unlocked_db.save_database()
-
-                    self.unlocked_db.cleanup()
-                    self.unlocked_db = None
-                    self.create_new_database(filepath)
 
             else:
                 self.create_new_database(filepath)

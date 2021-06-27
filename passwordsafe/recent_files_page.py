@@ -58,13 +58,33 @@ class RecentFilesPage(Gtk.Box):
 
         Starts opening the database corresponding to the entry."""
         file_uri: str = list_box_row.get_name()
-        # TODO Any unsaved changes will be lost here. Operning a safe when
-        # a safe is already opened should open a new window.
-        self.unlocked_db.cleanup()
-        self.window.unlocked_db = None
-        self.window.start_database_opening_routine(
-            Gio.File.new_for_uri(file_uri).get_path()
-        )
+        file_path = Gio.File.new_for_uri(file_uri).get_path()
+        database = self.window.unlocked_db
+
+        if database:
+            auto_save = config.get_save_automatically()
+            is_dirty = database.database_manager.is_dirty
+            is_current = database.database_manager.database_path == file_path
+
+            if is_dirty and not is_current:
+                app = Gio.Application.get_default()
+                window = app.new_window()
+                window.start_database_opening_routine(file_path)
+                window.present()
+            else:
+                if is_current:
+                    self.window.view = self.window.View.UNLOCK_DATABASE
+                    return
+
+                if auto_save:
+                    database.save_database()
+
+                database.cleanup()
+                self.window.unlocked_db = None
+                self.window.start_database_opening_routine(file_path)
+
+        else:
+            self.window.start_database_opening_routine(file_path)
 
 
 class RecentFileRow(Adw.ActionRow):

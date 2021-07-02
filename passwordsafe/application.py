@@ -188,6 +188,9 @@ class Application(Gtk.Application):
             )
             database.database_manager.save_database(True)
 
+        elif response == Gtk.ResponseType.NO:  # Discard
+            GLib.idle_add(self.quit)
+
     def _on_automatic_save_callback(
         self,
         _db_manager: DatabaseManager,

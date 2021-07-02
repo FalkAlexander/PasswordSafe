@@ -1,28 +1,37 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import math
 
-from gi.repository import GObject, Gtk
+from gi.repository import GObject, Gtk, Graphene
 
 
-class ProgressIcon(Gtk.DrawingArea):
+class ProgressIcon(Gtk.Widget):
 
     __gtype_name__ = "ProgressIcon"
 
     _progress: float = 0.0
-    SIZE = 16
+    size = GObject.Property(type=int, default=16, flags=GObject.ParamFlags.READWRITE)
 
     def __init__(self):
         super().__init__()
 
-        self.set_content_width(self.SIZE)
-        self.set_content_height(self.SIZE)
-        self.set_draw_func(self.draw)
+        self.props.height_request = self.size
+        self.props.width_request = self.size
+        self.props.valign = Gtk.Align.CENTER
 
-    def draw(self, area, cr, width, height):
-        context = area.get_style_context()
-        color = Gtk.StyleContext.get_color(context)
+    def do_measure(self, orientation, for_size):
+        baseline = -1
+        return self.size, self.size, baseline, baseline
 
+    def do_snapshot(self, snapshot):
+        width = self.size
+        height = self.size
+        color = self.get_style_context().get_color()
         color.alpha = 0.15
+
+        rect = Graphene.Rect().alloc()
+        rect.init(0, 0, width, height)
+
+        cr = snapshot.append_cairo(rect)
         cr.set_source_rgba(color.red, color.green, color.blue, color.alpha)
 
         cr.arc(width / 2, height / 2, width / 2, 0.0, 2 * math.pi)

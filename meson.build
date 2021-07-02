@@ -17,7 +17,7 @@ contributors = '\n'.join([
                         ])
 
 message('Looking for dependencies')
-python_bin = python.find_installation('python3', modules:['pykeepass'])
+python_bin = python.find_installation('python3', modules:['pykeepass', 'pyotp'])
 if not python_bin.found()
   error('No valid python3 binary found')
 else

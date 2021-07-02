@@ -63,15 +63,6 @@ subdir('data')
 subdir('po')
 subdir('passwordsafe')
 
-conf = configuration_data()
-conf.set('PYTHON', python_bin.path())
-configure_file(
-  input: 'passwordsafe.in',
-  output: 'gnome-passwordsafe',
-  configuration: conf,
-  install_dir: bindir
-)
-
 pylint = find_program('pylint', required: false)
 if pylint.found()
   test (

@@ -21,3 +21,12 @@ install_subdir(
   exclude_directories: ['.mypy_cache', ' __pycache__'],
   install_dir: python_dir
 )
+
+main_conf = configuration_data()
+main_conf.set('PYTHON', python_bin.path())
+configure_file(
+  input: 'main.py.in',
+  output: 'gnome-passwordsafe',
+  configuration: conf,
+  install_dir: bindir
+)

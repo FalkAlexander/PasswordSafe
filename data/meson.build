@@ -2,6 +2,14 @@ gnome = import('gnome')
 
 message('Compiling resources')
 
+about_conf = configuration_data()
+about_conf.set('PACKAGE_URL', package_url)
+about_conf.set('CONTRIBUTORS', contributors)
+about_conf.set('ARTISTS', artists)
+about_conf.set('APPID', application_id)
+about_conf.set('VERSION', version)
+about_conf.set('COPYRIGHT', copyright)
+
 gnome.compile_resources(
   meson.project_name(),
   meson.project_name() + '.gresource.xml',
@@ -12,14 +20,20 @@ gnome.compile_resources(
   dependencies: configure_file (
     input: 'about_dialog.ui.in',
     output: 'about_dialog.ui',
-    configuration: conf
+    configuration: about_conf
   )
 )
 
 # Installing the schema file
-install_data(
-  project_id + '.gschema.xml',
-  install_dir: 'share/glib-2.0/schemas'
+gschema_conf = configuration_data()
+gschema_conf.set('APP_ID', application_id)
+gschema_conf.set('GETTEXT_PACKAGE', meson.project_name())
+configure_file(
+    input: '@0@.gschema.xml.in'.format(project_id),
+    output: '@0@.gschema.xml'.format(application_id),
+    configuration: gschema_conf,
+    install: true,
+    install_dir: 'share/glib-2.0/schemas'
 )
 
 # Install mimetype file
@@ -29,10 +43,6 @@ install_data(
 )
 
 desktop_conf = configuration_data()
-application_id = 'org.gnome.PasswordSafe'
-if get_option('profile') == 'development'
-  application_id = 'org.gnome.PasswordSafe.Devel'
-endif
 desktop_conf.set('ICON', application_id)
 desktop = i18n.merge_file(
   'desktop',
@@ -59,10 +69,6 @@ if desktop_file_validate.found()
 endif
 
 appdata_conf = configuration_data()
-application_id = 'org.gnome.PasswordSafe'
-if get_option('profile') == 'development'
-  application_id = 'org.gnome.PasswordSafe.Devel'
-endif
 appdata_conf.set('APPID', application_id)
 appdata = i18n.merge_file(
   'appdata',

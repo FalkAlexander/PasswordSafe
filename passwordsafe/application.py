@@ -8,6 +8,7 @@ from gettext import gettext as _
 from gi.repository import Adw, Gio, GLib, Gtk
 
 import passwordsafe.config_manager as config
+from passwordsafe import const
 from passwordsafe.main_window import MainWindow
 from passwordsafe.quit_dialog import QuitDialog
 from passwordsafe.save_dialog import SaveDialog
@@ -22,15 +23,17 @@ class Application(Gtk.Application):
     _save_handler_ids: dict[UnlockedDatabase, int] = {}
     window: MainWindow = None
     file_list: list[Gio.File] = []
-    development_mode = False
-    application_id = "org.gnome.PasswordSafe"
+    development_mode = const.IS_DEVEL
+    application_id = const.APP_ID
     settings = Gio.Settings.new(application_id)
 
     def __init__(self, *args, **_kwargs):
-        app_flags = Gio.ApplicationFlags.HANDLES_OPEN
-        super().__init__(*args, application_id=self.application_id, flags=app_flags)
-
-        self.set_resource_base_path("/org/gnome/PasswordSafe")
+        super().__init__(
+            *args,
+            application_id=self.application_id,
+            flags=Gio.ApplicationFlags.HANDLES_OPEN,
+            resource_base_path="/org/gnome/PasswordSafe",
+        )
 
         # debug level logging option
         self.add_main_option(

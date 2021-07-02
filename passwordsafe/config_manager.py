@@ -5,9 +5,10 @@ from typing import cast
 
 from gi.repository import Gio, GLib
 
+from passwordsafe import const
 from passwordsafe.sorting import SortingHat
 
-setting = Gio.Settings.new("org.gnome.PasswordSafe")
+setting = Gio.Settings.new(const.APP_ID)
 
 CLEAR_CLIPBOARD = "clear-clipboard"
 DARK_THEME = "dark-theme"

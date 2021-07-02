@@ -6,6 +6,8 @@ i18n = import('i18n')
 python = import('python')
 project_id = 'org.gnome.PasswordSafe'
 project_name = 'Password Safe'
+package_url = 'https://gitlab.gnome.org/World/PasswordSafe'
+copyright = '© 2018-2021 Falk Alexander Seidl, et al.'
 contributors = '\n'.join([
     'Falk Alexander Seidl &lt;fseidl@gnome.org&gt;',
     'Uta Lemke',
@@ -15,6 +17,10 @@ contributors = '\n'.join([
     'Sebastian Spaeth',
     'Christopher Davis',
                         ])
+artists = '\n'.join([
+'Christopher Davis',
+'Tobias Bernard'
+                   ])
 
 message('Looking for dependencies')
 python_bin = python.find_installation('python3', modules:['pykeepass', 'pyotp'])
@@ -36,57 +42,28 @@ dependency('gtk4', version: '>=4.0.0')
 dependency('libadwaita-1', version: '>=1.0.0')
 dependency('pwquality')
 
-env = environment()
-
 python_dir = python_bin.get_install_dir()
-LIBEXEC_DIR = join_paths(get_option('prefix'), get_option('libexecdir'))
-EXTENSION_DIR = join_paths(get_option('prefix'), get_option('libdir'), meson.project_name())
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
 bindir = join_paths(get_option('prefix'), get_option('bindir'))
 
 
 # Profiles
-if get_option('profile') == 'development'
-    profile = 'Devel'
-else
-    profile = ''
-endif
-
-
-conf = configuration_data()
-conf.set('PACKAGE_URL', 'https://gitlab.gnome.org/World/PasswordSafe')
-conf.set('DATA_DIR', DATA_DIR)
-conf.set('EXTENSION_DIR', EXTENSION_DIR)
-conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
-conf.set('PYTHON_DIR', python_dir)
-conf.set('PYTHON_EXEC_DIR', join_paths(get_option('prefix'), python_bin.get_path('stdlib')))
-conf.set('PYTHON', python_bin.path())
-conf.set('libexecdir', LIBEXEC_DIR)
-if get_option('profile') == 'development'
-  conf.set('VERSION', ''.join([run_command(['git', 'describe', '--long', '--tags']).stdout(), get_option('profile')]))
-else
-  conf.set('VERSION', meson.project_version())
-endif
-conf.set('CONTRIBUTORS', contributors)
-conf.set_quoted('PROFILE', profile)
-
 application_id = project_id
 if get_option('profile') == 'development'
-  application_id = '@0@.Devel'.format(application_id)
+    profile = 'Devel'
+    application_id = '@0@.Devel'.format(application_id)
+    version =  ''.join([run_command(['git', 'describe', '--long', '--tags']).stdout().strip()])
+else
+    profile = ''
+    version = meson.project_version()
 endif
-conf.set('APPID', application_id)
-conf.set('NAME', project_name)
 
 subdir('data')
 subdir('po')
+subdir('passwordsafe')
 
-install_subdir(
-  'passwordsafe',
-  exclude_directories: ['.mypy_cache', ' __pycache__'],
-  install_dir: python_dir
-)
-
-message('Preparing init file')
+conf = configuration_data()
+conf.set('PYTHON', python_bin.path())
 configure_file(
   input: 'passwordsafe.in',
   output: 'gnome-passwordsafe',

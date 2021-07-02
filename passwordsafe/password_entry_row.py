@@ -46,9 +46,10 @@ class PasswordEntryRow(Adw.Bin):
         self._pwd_popover.bind_property("password", self._password_value_entry, "text")
         self._generate_password_button.set_popover(self._pwd_popover)
 
-        self._password_level_bar.add_offset_value("weak", 1.0)
-        self._password_level_bar.add_offset_value("medium", 3.0)
-        self._password_level_bar.add_offset_value("strong", 4.0)
+        self._password_level_bar.add_offset_value("insecure", 1.49)
+        self._password_level_bar.add_offset_value("weak", 2.49)
+        self._password_level_bar.add_offset_value("medium", 3.49)
+        self._password_level_bar.add_offset_value("strong", 4.49)
         self._password_level_bar.add_offset_value("secure", 5.0)
         self._set_password_level_bar()
 

@@ -67,10 +67,11 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
     def __setup_widgets(self) -> None:
         # Password Level Bar
-        self.level_bar.add_offset_value("weak", 1.0)
-        self.level_bar.add_offset_value("medium", 3.0)
-        self.level_bar.add_offset_value("strong", 4.0)
-        self.level_bar.add_offset_value("secure", 5.0)
+        self._password_level_bar.add_offset_value("insecure", 1.49)
+        self._password_level_bar.add_offset_value("weak", 2.49)
+        self._password_level_bar.add_offset_value("medium", 3.49)
+        self._password_level_bar.add_offset_value("strong", 4.49)
+        self._password_level_bar.add_offset_value("secure", 5.0)
 
         # Dialog
         self.set_modal(True)

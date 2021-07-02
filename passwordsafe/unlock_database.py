@@ -46,7 +46,6 @@ class UnlockDatabase:
     keyfile_path = NotImplemented
     composite_keyfile_path = NotImplemented
     overlay = NotImplemented
-    unlock_thread = NotImplemented
 
     def __init__(self, window, widget, filepath):
         self.window = window
@@ -371,9 +370,9 @@ class UnlockDatabase:
 
         button.set_child(spinner)
 
-        self.unlock_thread = threading.Thread(target=self._open_database_process)
-        self.unlock_thread.daemon = True
-        self.unlock_thread.start()
+        unlock_thread = threading.Thread(target=self._open_database_process)
+        unlock_thread.daemon = True
+        unlock_thread.start()
 
     def _open_database_process(self):
         if self._unlock_method == UnlockMethod.PASSWORD:

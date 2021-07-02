@@ -70,6 +70,8 @@ endif
 
 appdata_conf = configuration_data()
 appdata_conf.set('APPID', application_id)
+appdata_conf.set('GETTEXT_PACKAGE', meson.project_name())
+appdata_conf.set('NAME', project_name)
 appdata = i18n.merge_file(
   'appdata',
   input: configure_file(

@@ -1,6 +1,7 @@
 project('passwordsafe',
         version: '5.0',
-        meson_version: '>= 0.51.0'
+        meson_version: '>= 0.51.0',
+        license: 'GPL-3.0-only'
        )
 i18n = import('i18n')
 python = import('python')

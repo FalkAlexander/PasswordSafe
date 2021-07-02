@@ -1,14 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import logging
 import typing
 from gettext import gettext as _
 
 from gi.repository import Adw, Gtk
 
-import passwordsafe.password_generator as pwd_generator
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
+from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -46,19 +45,12 @@ class PasswordEntryRow(Adw.Bin):
         self._pwd_popover.bind_property("password", self._password_value_entry, "text")
         self._generate_password_button.set_popover(self._pwd_popover)
 
-        self._password_level_bar.add_offset_value("insecure", 1.49)
-        self._password_level_bar.add_offset_value("weak", 2.49)
-        self._password_level_bar.add_offset_value("medium", 3.49)
-        self._password_level_bar.add_offset_value("strong", 4.49)
-        self._password_level_bar.add_offset_value("secure", 5.0)
-        self._set_password_level_bar()
-
     @Gtk.Template.Callback()
     def _on_copy_password_button_clicked(self, _widget: Gtk.Button) -> None:
         self.copy_password()
 
     @Gtk.Template.Callback()
-    def _on_password_value_changed(self, _widget: Gtk.Entry) -> None:
+    def _on_password_value_changed(self, entry: Gtk.Entry) -> None:
         """Invoked when the password entry has changed
 
         Take note that this callback is already invoked after the initial
@@ -67,24 +59,6 @@ class PasswordEntryRow(Adw.Bin):
         side-effects.
         """
         self._unlocked_database.start_database_lock_timer()
-        self._set_password_level_bar()
-
-    def _set_password_level_bar(self) -> None:
-        pwd_text: str = self._password_value_entry.props.text
-
-        if pwd_text.startswith("{REF:P"):
-            try:
-                password: str = self._safe_entry.password
-            except ValueError:
-                logging.warning(
-                    "Failed to look up password for reference '%s'", password
-                )
-                password = pwd_text
-        else:
-            password = pwd_text
-
-        password_strength: float = pwd_generator.strength(password)
-        self._password_level_bar.props.value = password_strength
 
     def copy_password(self) -> None:
         password: str = self._password_value_entry.props.text

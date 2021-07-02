@@ -115,10 +115,8 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLevelBar" id="level_bar">
-                    <property name="hexpand">True</property>
-                    <property name="max_value">5</property>
-                    <property name="mode">discrete</property>
+                  <object class="PasswordLevelBar" id="level_bar">
+                    <property name="entry">new_password_entry</property>
                     <layout>
                       <property name="column">1</property>
                       <property name="row">3</property>

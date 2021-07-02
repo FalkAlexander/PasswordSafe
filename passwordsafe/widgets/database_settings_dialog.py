@@ -12,6 +12,7 @@ from gi.repository import Adw, GLib, Gtk
 import passwordsafe.config_manager as config
 import passwordsafe.password_generator
 from passwordsafe.utils import generate_keyfile
+from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/database_settings_dialog.ui")
@@ -66,13 +67,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.database_manager.connect("notify::locked", self.__on_locked)
 
     def __setup_widgets(self) -> None:
-        # Password Level Bar
-        self._password_level_bar.add_offset_value("insecure", 1.49)
-        self._password_level_bar.add_offset_value("weak", 2.49)
-        self._password_level_bar.add_offset_value("medium", 3.49)
-        self._password_level_bar.add_offset_value("strong", 4.49)
-        self._password_level_bar.add_offset_value("secure", 5.0)
-
         # Dialog
         self.set_modal(True)
         self.set_transient_for(self.unlocked_database.window)
@@ -91,11 +85,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
         new_password = self.new_password_entry.get_text()
         conf_password = self.confirm_password_entry.get_text()
-
-        # Update the quality level bar
-        if entry.get_name() == "new_entry" and new_password:
-            level = passwordsafe.password_generator.strength(new_password)
-            self.level_bar.set_value(level or 0)
 
         if new_password != conf_password:
             self.new_password_entry.add_css_class("error")

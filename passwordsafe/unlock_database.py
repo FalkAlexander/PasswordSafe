@@ -94,14 +94,11 @@ class UnlockDatabase(Adw.Bin):
                 )
             )
 
-    def grab_focus(self):
-        stack = self.stack
-        # FIXME This function is only needed since at the time of creation
-        # of UnlockDatabase it is not associated to any GtkWindow.
-
-        if stack.get_visible_child_name() == "password_unlock":
+    def do_realize(self):  # pylint: disable=arguments-differ
+        Gtk.Widget.do_realize(self)
+        if self.stack.get_visible_child_name() == "password_unlock":
             self.password_unlock_entry.grab_focus()
-        elif stack.get_visible_child_name() == "composite_unlock":
+        elif self.stack.get_visible_child_name() == "composite_unlock":
             self.composite_unlock_entry.grab_focus()
         else:
             self.keyfile_unlock_button.grab_focus()

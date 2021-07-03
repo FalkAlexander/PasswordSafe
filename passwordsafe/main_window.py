@@ -257,7 +257,6 @@ class MainWindow(Adw.ApplicationWindow):
         """Start opening a safe file"""
         unlock_db = UnlockDatabase(self, filepath)
         self._unlock_database_bin.props.child = unlock_db
-        unlock_db.grab_focus()
         self.view = self.View.UNLOCK_DATABASE
 
     #

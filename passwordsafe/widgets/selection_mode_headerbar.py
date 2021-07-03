@@ -168,12 +168,7 @@ class SelectionModeHeaderbar(Adw.HeaderBar):
 
         selection_type = param.get_string()
         page = self.unlocked_database.get_current_page()
-        viewport = page.get_first_child()
-        overlay = viewport.get_first_child()
-        list_box = NotImplemented
-
-        column = overlay.get_first_child()
-        list_box = column.get_first_child()
+        list_box = page.list_box
 
         for row in list_box:
             if selection_type == "all":

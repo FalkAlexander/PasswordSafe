@@ -8,7 +8,6 @@ import threading
 import typing
 from enum import IntEnum
 from gettext import gettext as _
-from typing import Any
 
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
@@ -20,7 +19,6 @@ from passwordsafe.group_page import GroupPage
 from passwordsafe.group_row import GroupRow
 from passwordsafe.pathbar import Pathbar
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
-from passwordsafe.sorting import SortingHat
 from passwordsafe.unlocked_headerbar import UnlockedHeaderBar
 from passwordsafe.widgets.database_settings_dialog import DatabaseSettingsDialog
 from passwordsafe.widgets.edit_element_headerbar import EditElementHeaderbar, PageType
@@ -29,10 +27,9 @@ from passwordsafe.widgets.references_dialog import ReferencesDialog
 from passwordsafe.widgets.search import Search
 from passwordsafe.widgets.search_headerbar import SearchHeaderbar
 from passwordsafe.widgets.selection_mode_headerbar import SelectionModeHeaderbar
+from passwordsafe.widgets.unlocked_database_page import UnlockedDatabasePage
 
 if typing.TYPE_CHECKING:
-    from uuid import UUID
-
     from passwordsafe.database_manager import DatabaseManager
 
     # pylint: disable=ungrouped-imports
@@ -108,6 +105,7 @@ class UnlockedDatabase(Gtk.Box):
         self.start_save_loop()
         self.register_dbus_signal()
 
+        self.connect("notify::selection-mode", self._on_selection_mode_changed)
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
         self.database_manager.connect(
             "save-notification", self.on_database_save_notification
@@ -118,32 +116,6 @@ class UnlockedDatabase(Gtk.Box):
             return EntryRow(self, element)
 
         return GroupRow(self, element)
-
-    def populate_list_model(self, list_model: Gio.ListStore) -> None:
-        entries = self.props.current_element.entries
-        groups = [
-            g for g in self.props.current_element.subgroups if not g.is_root_group
-        ]
-
-        elements = groups + entries
-        list_model.splice(0, 0, elements)
-        for elem in list_model:
-            elem.sorted_handler_id = elem.connect(
-                "notify::name", self._on_element_renamed, list_model
-            )
-
-        self.sort_list_model(self, list_model)
-
-    def sort_list_model(
-        self,
-        _unlocked_db: UnlockedDatabase,
-        list_model: Gio.ListStore,
-        _data: Any = None,
-    ) -> None:
-        sorting = passwordsafe.config_manager.get_sort_order()
-        sort_func = SortingHat.get_sort_func(sorting)
-
-        list_model.sort(sort_func)
 
     #
     # Stack Pages
@@ -197,161 +169,13 @@ class UnlockedDatabase(Gtk.Box):
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP
 
-        page_name = self.props.current_element.uuid.urn
+        page_name = group.uuid.urn
 
         if not self._stack.get_child_by_name(page_name):
-            new_page = self.new_group_browser_page(group)
+            new_page = UnlockedDatabasePage(self, group)
             self._stack.add_named(new_page, page_name)
 
         self._stack.set_visible_child_name(page_name)
-
-    def _on_element_renamed(
-        self,
-        element: SafeElement,
-        _value: GObject.ParamSpec,
-        list_model: Gio.ListStore,
-    ) -> None:
-        pos = 0
-        found = False
-        # Disconnect previous signal
-        if element.sorted_handler_id:
-            element.disconnect(element.sorted_handler_id)
-            element.sorted_handler_id = None
-
-        # We check if element is in the list model
-        for elem in list_model:
-            if elem == element:
-                found = True
-                break
-            pos += 1
-
-        if found:
-            sorting = passwordsafe.config_manager.get_sort_order()
-            sort_func = SortingHat.get_sort_func(sorting)
-
-            list_model.remove(pos)
-            list_model.insert_sorted(element, sort_func)
-            element.sorted_handler_id = element.connect(
-                "notify::name", self._on_element_renamed, list_model
-            )
-        else:
-            logging.debug("No.")
-
-    def _on_element_added(
-        self,
-        _u_db: UnlockedDatabase,
-        element: SafeElement,
-        target_group_uuid: UUID,
-        list_model: Gio.ListStore,
-        list_model_group_uuid: UUID,
-        _data: Any = None,
-    ) -> None:
-        # Return if the element was added to another group than the one
-        # used to generate the list model.
-        if target_group_uuid != list_model_group_uuid:
-            return
-
-        sorting = passwordsafe.config_manager.get_sort_order()
-        sort_func = SortingHat.get_sort_func(sorting)
-        list_model.insert_sorted(element, sort_func)
-        element.sorted_handler_id = element.connect(
-            "notify::name", self._on_element_renamed, list_model
-        )
-
-    def _on_element_removed(
-        self,
-        _u_db: UnlockedDatabase,
-        element_uuid: UUID,
-        list_model: Gio.ListStore,
-        _data: Any = None,
-    ) -> None:
-        pos = 0
-        found = False
-        for element in list_model:
-            if element.uuid == element_uuid:
-                found = True
-                break
-            pos += 1
-
-        # Only removes the element if it is the current list model
-        if found:
-            list_model.remove(pos)
-
-    def _on_element_moved(
-        self,
-        _u_db: UnlockedDatabase,
-        moved_element: SafeElement,
-        old_loc_uuid: UUID,
-        new_loc_uuid: UUID,
-        list_model: Gio.ListStore,
-        list_model_group_uuid: UUID,
-    ) -> None:
-        # pylint: disable=too-many-arguments
-        """Moves the element to a new list model.
-        If the listmodel corresponds to the old group we remove it,
-        and if corresponds to the new location, we add it."""
-        if list_model_group_uuid == old_loc_uuid:
-            pos = 0
-            found = False
-            for element in list_model:
-                if element == moved_element:
-                    found = True
-                    break
-                pos += 1
-
-            if found:
-                list_model.remove(pos)
-
-        if list_model_group_uuid == new_loc_uuid:
-            sorting = passwordsafe.config_manager.get_sort_order()
-            sort_func = SortingHat.get_sort_func(sorting)
-            list_model.insert_sorted(moved_element, sort_func)
-            moved_element.sorted_handler_id = moved_element.connect(
-                "notify::name", self._on_element_renamed, list_model
-            )
-
-    def new_group_browser_page(self, group: SafeGroup) -> Gtk.ScrolledWindow:
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/gtk/unlocked_database_page.ui"
-        )
-        browser_clamp = builder.get_object("browser_clamp")
-        browser_stack = builder.get_object("browser_stack")
-        empty_group_box = builder.get_object("empty_group_box")
-
-        list_box = builder.get_object("list_box")
-        list_box.connect("row-activated", self.on_list_box_row_activated)
-        list_model = Gio.ListStore.new(SafeElement)
-
-        settings = self.window.application.settings
-        settings.connect("changed", self.on_sort_order_changed, list_model)
-        self.database_manager.connect(
-            "element-removed", self._on_element_removed, list_model
-        )
-        self.database_manager.connect(
-            "element-added", self._on_element_added, list_model, group.uuid
-        )
-        self.database_manager.connect(
-            "element-moved", self._on_element_moved, list_model, group.uuid
-        )
-        self.selection_mode_headerbar.connect(
-            "clear-selection", self._on_clear_selection, list_box
-        )
-        self.connect("notify::selection-mode", self._on_selection_mode_changed)
-
-        list_box.bind_model(list_model, self.listbox_row_factory)
-        list_model.connect(
-            "items-changed",
-            self.on_listbox_items_changed,
-            browser_stack,
-            browser_clamp,
-            empty_group_box,
-        )
-        self.populate_list_model(list_model)
-
-        scrolled_window = Gtk.ScrolledWindow.new()
-        scrolled_window.set_child(browser_stack)
-
-        return scrolled_window
 
     @property
     def in_edit_page(self) -> bool:
@@ -390,21 +214,6 @@ class UnlockedDatabase(Gtk.Box):
     # Group and Entry Management
     #
 
-    def on_listbox_items_changed(
-        self,
-        listmodel,
-        _position,
-        _removed,
-        _added,
-        browser_stack,
-        browser_clamp,
-        empty_group_box,
-    ):
-        if not listmodel.get_n_items():
-            browser_stack.set_visible_child(empty_group_box)
-        else:
-            browser_stack.set_visible_child(browser_clamp)
-
     @GObject.Property(type=SafeElement, flags=GObject.ParamFlags.READWRITE)
     def current_element(self) -> SafeElement:
         return self._current_element
@@ -413,7 +222,7 @@ class UnlockedDatabase(Gtk.Box):
     def current_element(self, element: SafeElement) -> None:
         self._current_element = element
 
-    def get_current_page(self) -> Gtk.ScrolledWindow:
+    def get_current_page(self) -> UnlockedDatabasePage:
         """Returns the page associated with current_element.
 
         :returns: current page
@@ -527,14 +336,6 @@ class UnlockedDatabase(Gtk.Box):
     ):
         if state[0] and not self.database_manager.props.locked:
             self.lock_timeout_database()
-
-    def on_sort_order_changed(self, settings, key, list_model):
-        """Callback to be executed when the sorting has been changed."""
-        if key == "sort-order":
-            sorting = settings.get_enum("sort-order")
-            logging.debug("Sort order changed to %s", sorting)
-
-            self.sort_list_model(self, list_model)
 
     #
     # Dialog Creator
@@ -722,12 +523,6 @@ class UnlockedDatabase(Gtk.Box):
         :rtype: bool
         """
         return self.database_manager.props.locked
-
-    def _on_clear_selection(
-        self, _header: SelectionModeHeaderbar, list_box: Gtk.ListBox
-    ) -> None:
-        for row in list_box:
-            row.selection_checkbox.props.active = False
 
     @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
     def mode(self) -> int:

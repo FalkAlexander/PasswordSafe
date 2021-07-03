@@ -19,6 +19,8 @@ class CreateDatabase(Gtk.Stack):
 
     __gtype_name__ = "CreateDatabase"
 
+    password_action_row = Gtk.Template.Child()
+
     password_creation_input = Gtk.Template.Child()
 
     password_check_button = Gtk.Template.Child()
@@ -43,6 +45,10 @@ class CreateDatabase(Gtk.Stack):
 
         self.back_button.props.sensitive = True
         self.back_button.connect("clicked", self.on_headerbar_back_button_clicked)
+
+    def do_realize(self):  # pylint: disable=arguments-differ
+        Gtk.Widget.do_realize(self)
+        self.password_action_row.grab_focus()
 
     def success_page(self):
         self.set_visible_child_name("safe-successfully-create")

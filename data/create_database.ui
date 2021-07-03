@@ -39,7 +39,7 @@
               <object class="GtkListBox" id="methods_list_box">
                 <signal name="row-activated" handler="on_auth_chooser_row_activated" swapped="no"/>
                 <child>
-                  <object class="AdwActionRow">
+                  <object class="AdwActionRow" id="password_action_row">
                     <property name="name">password</property>
                     <property name="title" translatable="yes">_Password</property>
                     <property name="subtitle" translatable="yes">Use a password to secure your safe.</property>

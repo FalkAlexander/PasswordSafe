@@ -294,9 +294,14 @@ class UnlockedDatabase(Gtk.Box):
     def on_element_delete_action(self) -> None:
         """Delete the visible entry from the menu."""
         parent_group = self.props.current_element.parentgroup
+        uuid = self.props.current_element.element.uuid.urn
         self.database_manager.delete_from_database(self.props.current_element.element)
 
         self.show_browser_page(parent_group)
+
+        page = self._stack.get_child_by_name(uuid)
+        if page:
+            self._stack.remove(page)
 
     def on_entry_duplicate_action(self):
         self.database_manager.duplicate_entry(self.props.current_element.entry)

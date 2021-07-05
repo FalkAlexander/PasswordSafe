@@ -6,6 +6,7 @@
     <property name="message_type">question</property>
     <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Unsaved Changes</property>
     <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">Do you want to write all changes to the safe?</property>
+    <signal name="response" handler="_on_dialog_response" swapped="no"/>
     <child type="action">
       <object class="GtkButton" id="discard_button">
         <property name="label" translatable="yes" comments="_Discard all the changes which the user have made to his keepass safe">_Quit Without Saving</property>

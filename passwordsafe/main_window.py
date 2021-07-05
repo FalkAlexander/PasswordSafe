@@ -383,29 +383,11 @@ class MainWindow(Adw.ApplicationWindow):
                 return False
 
             save_dialog = SaveDialog(self)
-            save_dialog.connect("response", self._on_save_dialog_response)
             save_dialog.show()
             return True
 
         self.save_window_size()
         return False
-
-    def _on_save_dialog_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType
-    ) -> None:
-        dialog.close()
-
-        if response == Gtk.ResponseType.YES:  # Save
-            database = self.unlocked_db
-            if database:
-                database.database_manager.save_database()
-
-            self.save_window_size()
-            self.destroy()
-
-        elif response == Gtk.ResponseType.NO:  # Discard
-            self.save_window_size()
-            self.destroy()
 
     def do_unrealize(self):  # pylint: disable=arguments-differ
         if self.unlocked_db:

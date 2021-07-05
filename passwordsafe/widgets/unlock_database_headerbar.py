@@ -7,7 +7,7 @@ import passwordsafe.config_manager
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/unlock_database_headerbar.ui")
-class UnlockDatabaseHeaderbar(Adw.HeaderBar):
+class UnlockDatabaseHeaderbar(Adw.Bin):
 
     __gtype_name__ = "UnlockDatabaseHeaderbar"
 

@@ -1,15 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import typing
-
 from gi.repository import Gio, GObject, Gtk
 
 from passwordsafe.pathbar_button import PathbarButton
 from passwordsafe.safe_element import SafeElement
-
-if typing.TYPE_CHECKING:
-    from passwordsafe.unlocked_database import UnlockedDatabase
 
 
 class Pathbar(Gtk.Box):
@@ -59,7 +54,7 @@ class Pathbar(Gtk.Box):
         self.buttons[-1].set_active_style()
 
     def add_separator_label(self):
-        separator_label = PathbarSeparator(self.unlocked_database)
+        separator_label = Gtk.Label.new("/")
         self.append(separator_label)
 
     def add_button(self, element: SafeElement) -> PathbarButton:
@@ -82,27 +77,3 @@ class Pathbar(Gtk.Box):
             is_group = pathbar_button.is_group
             if is_group:
                 self.unlocked_database.show_browser_page(pathbar_button_elem)
-
-
-class PathbarSeparator(Gtk.Label):
-    def __init__(self, unlocked_database):
-        super().__init__()
-
-        self.unlocked_database = unlocked_database
-
-        self.set_text("/")
-
-        if not self.unlocked_database.props.selection_mode:
-            self.add_css_class("dim-label")
-
-        self.unlocked_database.connect(
-            "notify::selection-mode", self._on_selection_mode_changed
-        )
-
-    def _on_selection_mode_changed(
-        self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpecBoolean
-    ) -> None:
-        if unlocked_database.props.selection_mode:
-            self.remove_css_class("dim-label")
-        else:
-            self.add_css_class("dim-label")

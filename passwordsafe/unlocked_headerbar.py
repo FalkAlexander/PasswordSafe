@@ -10,7 +10,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/unlocked_headerbar.ui")
-class UnlockedHeaderBar(Adw.HeaderBar):
+class UnlockedHeaderBar(Adw.Bin):
 
     __gtype_name__ = "UnlockedHeaderBar"
 

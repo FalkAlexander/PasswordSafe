@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="UnlockedHeaderBar" parent="AdwHeaderBar">
-    <property name="title-widget">
-      <object class="AdwWindowTitle"/>
-    </property>
+  <template class="UnlockedHeaderBar" parent="AdwBin">
     <child>
-      <object class="GtkMenuButton" id="_add_button">
-        <property name="menu_model">_add_button_menu</property>
-        <property name="icon_name">list-add-symbolic</property>
-        <property name="margin_end">6</property>
+      <object class="AdwHeaderBar">
+        <property name="title-widget">
+          <object class="AdwWindowTitle"/>
+        </property>
+        <child>
+          <object class="GtkMenuButton" id="_add_button">
+            <property name="menu_model">_add_button_menu</property>
+            <property name="icon_name">list-add-symbolic</property>
+            <property name="margin_end">6</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwBin" id="_pathbar_bin"/>
+        </child>
+        <child type="end">
+          <object class="GtkBox">
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkButton" id="search_button">
+                <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
+                <property name="icon_name">system-search-symbolic</property>
+                <property name="action_name">win.db.search</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="selection_button">
+                <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
+                <property name="icon_name">emblem-ok-symbolic</property>
+                <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="menupopover_button">
+                <property name="menu_model">unlocked_database_menu</property>
+                <property name="icon_name">open-menu-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <style>
+          <class name="titlebar"/>
+        </style>
       </object>
     </child>
-    <child>
-      <object class="AdwBin" id="_pathbar_bin"/>
-    </child>
-    <child type="end">
-      <object class="GtkBox">
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkButton" id="search_button">
-            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
-            <property name="icon_name">system-search-symbolic</property>
-            <property name="action_name">win.db.search</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="selection_button">
-            <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
-            <property name="icon_name">emblem-ok-symbolic</property>
-            <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkMenuButton" id="menupopover_button">
-            <property name="menu_model">unlocked_database_menu</property>
-            <property name="icon_name">open-menu-symbolic</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <style>
-      <class name="titlebar"/>
-    </style>
   </template>
   <menu id="unlocked_database_menu">
     <section>

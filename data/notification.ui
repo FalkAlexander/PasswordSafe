@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="Notification" parent="GtkRevealer">
-    <property name="halign">center</property>
+  <template class="Notification" parent="AdwBin">
     <property name="valign">start</property>
+    <property name="halign">center</property>
     <child>
-      <object class="GtkBox">
-        <property name="hexpand">True</property>
+      <object class="GtkRevealer" id="revealer">
         <child>
-          <object class="GtkLabel" id="label">
-            <property name="margin_start">18</property>
-            <property name="margin_end">18</property>
+          <object class="GtkBox">
+            <property name="hexpand">True</property>
+            <child>
+              <object class="GtkLabel" id="label">
+                <property name="margin_start">18</property>
+                <property name="margin_end">18</property>
+              </object>
+            </child>
+            <style>
+              <class name="app-notification"/>
+            </style>
           </object>
         </child>
-        <style>
-          <class name="app-notification"/>
-        </style>
       </object>
     </child>
   </template>

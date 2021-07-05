@@ -17,7 +17,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/selection_mode_headerbar.ui")
-class SelectionModeHeaderbar(Adw.HeaderBar):
+class SelectionModeHeaderbar(Adw.Bin):
 
     __gtype_name__ = "SelectionModeHeaderbar"
 

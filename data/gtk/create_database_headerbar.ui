@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="CreateDatabaseHeaderbar" parent="AdwHeaderBar">
-    <property name="title-widget">
-      <object class="AdwWindowTitle">
-        <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
-        <property name="subtitle" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Safe</property>
-      </object>
-    </property>
+  <template class="CreateDatabaseHeaderbar" parent="AdwBin">
     <child>
-      <object class="GtkButton" id="back_button">
-        <property name="icon_name">go-previous-symbolic</property>
+      <object class="AdwHeaderBar">
+        <property name="title-widget">
+          <object class="AdwWindowTitle">
+            <property name="title" translatable="yes" comments="Application title in headerbar.">Password Safe</property>
+            <property name="subtitle" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Safe</property>
+          </object>
+        </property>
+        <child>
+          <object class="GtkButton" id="back_button">
+            <property name="icon_name">go-previous-symbolic</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton" id="menupopover_button">
+            <property name="menu_model">create_safe_menu</property>
+            <property name="icon_name">open-menu-symbolic</property>
+          </object>
+        </child>
+        <style>
+          <class name="titlebar"/>
+        </style>
       </object>
     </child>
-    <child type="end">
-      <object class="GtkMenuButton" id="menupopover_button">
-        <property name="menu_model">create_safe_menu</property>
-        <property name="icon_name">open-menu-symbolic</property>
-      </object>
-    </child>
-    <style>
-      <class name="titlebar"/>
-    </style>
   </template>
   <menu id="create_safe_menu">
     <section>

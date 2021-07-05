@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="EditElementHeaderBar" parent="AdwHeaderBar">
-    <property name="title-widget">
-      <object class="AdwWindowTitle"/>
-    </property>
+  <template class="EditElementHeaderBar" parent="AdwBin">
     <child>
-      <object class="GtkButton">
-        <property name="action_name">win.go_back</property>
-        <property name="icon_name">go-previous-symbolic</property>
-        <property name="margin_end">6</property>
+      <object class="AdwHeaderBar">
+        <property name="title-widget">
+          <object class="AdwWindowTitle"/>
+        </property>
+        <child>
+          <object class="GtkButton">
+            <property name="action_name">win.go_back</property>
+            <property name="icon_name">go-previous-symbolic</property>
+            <property name="margin_end">6</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwBin" id="_pathbar_bin"/>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton" id="_secondary_menu_button">
+            <property name="icon_name">view-more-symbolic</property>
+          </object>
+        </child>
+        <style>
+          <class name="titlebar"/>
+        </style>
       </object>
     </child>
-    <child>
-      <object class="AdwBin" id="_pathbar_bin"/>
-    </child>
-    <child type="end">
-      <object class="GtkMenuButton" id="_secondary_menu_button">
-        <property name="icon_name">view-more-symbolic</property>
-      </object>
-    </child>
-    <style>
-      <class name="titlebar"/>
-    </style>
   </template>
   <menu id="_group_menu">
     <section>

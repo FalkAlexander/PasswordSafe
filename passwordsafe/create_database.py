@@ -4,13 +4,13 @@ import logging
 import threading
 from gettext import gettext as _
 
-from gi.repository import GLib, Gtk
+from gi.repository import Adw, GLib, Gtk
 
 from passwordsafe.utils import KeyFileFilter, generate_keyfile
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/create_database.ui")
-class CreateDatabase(Gtk.Stack):
+class CreateDatabase(Adw.Bin):
     """Creates a new Safe when invoked"""
 
     # TODO Add an accelerator for Escape that
@@ -18,6 +18,8 @@ class CreateDatabase(Gtk.Stack):
     # Can be done on GTK 4 with GtkShortcutController.
 
     __gtype_name__ = "CreateDatabase"
+
+    stack = Gtk.Template.Child()
 
     password_action_row = Gtk.Template.Child()
 
@@ -51,24 +53,24 @@ class CreateDatabase(Gtk.Stack):
         self.password_action_row.grab_focus()
 
     def success_page(self):
-        self.set_visible_child_name("safe-successfully-create")
+        self.stack.set_visible_child_name("safe-successfully-create")
         # TODO This should be improved upon. Widgets should not
         # modify widgets outside of their scope.
         self.back_button.props.sensitive = False
         self.open_safe_button.grab_focus()
 
     def keyfile_generation_page(self):
-        self.set_visible_child_name("keyfile-creation")
+        self.stack.set_visible_child_name("keyfile-creation")
         self.generate_keyfile_button.grab_focus()
 
     def on_headerbar_back_button_clicked(self, _widget):
         """Back button: Always goes back to the page in which you select the
         authentication method. In the case we are already in that page
         we kill this page."""
-        if self.get_visible_child_name() == "select_auth_method":
+        if self.stack.get_visible_child_name() == "select_auth_method":
             self.window.view = self.window.View.RECENT_FILES
         else:
-            self.set_visible_child_name("select_auth_method")
+            self.stack.set_visible_child_name("select_auth_method")
             self.clear_input_fields()
             self.composite = False
 
@@ -77,19 +79,19 @@ class CreateDatabase(Gtk.Stack):
         self, _widget: Gtk.ListBox, row: Gtk.ListBoxRow
     ) -> None:
         if row.get_name() == "password":
-            self.set_visible_child_name("password-creation")
+            self.stack.set_visible_child_name("password-creation")
             self.password_creation_input.grab_focus()
         elif row.get_name() == "keyfile":
             self.keyfile_generation_page()
         elif row.get_name() == "composite":
             self.composite = True
-            self.set_visible_child_name("password-creation")
+            self.stack.set_visible_child_name("password-creation")
             self.password_creation_input.grab_focus()
 
     @Gtk.Template.Callback()
     def on_password_creation_button_clicked(self, _widget: Gtk.Button) -> None:
         self.database_manager.set_password_try(self.password_creation_input.get_text())
-        self.set_visible_child_name("check-password")
+        self.stack.set_visible_child_name("check-password")
         self.password_check_input.grab_focus()
 
     @Gtk.Template.Callback()
@@ -103,7 +105,7 @@ class CreateDatabase(Gtk.Stack):
             save_thread.daemon = True
             save_thread.start()
         else:
-            self.set_visible_child_name("passwords-dont-match")
+            self.stack.set_visible_child_name("passwords-dont-match")
             self.password_repeat_input1.grab_focus()
 
     @Gtk.Template.Callback()

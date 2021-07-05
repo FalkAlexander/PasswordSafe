@@ -16,7 +16,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/search.ui")
-class Search(Gtk.Stack):
+class Search(Adw.Bin):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "Search"
@@ -27,6 +27,7 @@ class Search(Gtk.Stack):
     _info_search_page = Gtk.Template.Child()
     _results_search_page = Gtk.Template.Child()
     search_list_box = Gtk.Template.Child()
+    stack = Gtk.Template.Child()
 
     def __init__(self, unlocked_database: UnlockedDatabase) -> None:
         super().__init__()
@@ -48,7 +49,7 @@ class Search(Gtk.Stack):
     ) -> None:
         if list_model.get_n_items() == 0:
             if len(self._search_text) < 2:
-                self.set_visible_child(self._info_search_page)
+                self.stack.set_visible_child(self._info_search_page)
 
     def initialize(self):
         # Search Headerbar
@@ -114,7 +115,7 @@ class Search(Gtk.Stack):
             search_thread.daemon = True
             search_thread.start()
         else:
-            self.set_visible_child(self._info_search_page)
+            self.stack.set_visible_child(self._info_search_page)
 
     def _perform_search(self):
         """Search for results in the database."""
@@ -148,7 +149,7 @@ class Search(Gtk.Stack):
         results = list(db_groups) + list(db_entries)
 
         if len(results) == 0:
-            self.set_visible_child(self._empty_search_page)
+            self.stack.set_visible_child(self._empty_search_page)
             return
 
         GLib.idle_add(self._show_results, results)
@@ -162,7 +163,7 @@ class Search(Gtk.Stack):
         sort_func = SortingHat.get_sort_func(sorting)
         self._result_list.sort(sort_func)
 
-        self.set_visible_child(self._results_search_page)
+        self.stack.set_visible_child(self._results_search_page)
 
         return GLib.SOURCE_REMOVE
 

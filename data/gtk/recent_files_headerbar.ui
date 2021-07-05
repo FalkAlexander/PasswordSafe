@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="RecentFilesHeaderbar" parent="AdwHeaderBar">
+  <template class="RecentFilesHeaderbar" parent="AdwBin">
     <child>
-      <object class="GtkBox">
-        <property name="spacing">6</property>
+      <object class="AdwHeaderBar">
         <child>
-          <object class="GtkButton" id="new_file_button">
-            <property name="tooltip_text" translatable="yes">New…</property>
-            <property name="icon_name">list-add-symbolic</property>
-            <property name="action_name">win.new_database</property>
+          <object class="GtkBox">
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkButton" id="new_file_button">
+                <property name="tooltip_text" translatable="yes">New…</property>
+                <property name="icon_name">list-add-symbolic</property>
+                <property name="action_name">win.new_database</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="open_file_button">
+                <property name="tooltip_text" translatable="yes">Open…</property>
+                <property name="action_name">win.open_database</property>
+                <property name="icon_name">document-open-symbolic</property>
+              </object>
+            </child>
           </object>
         </child>
-        <child>
-          <object class="GtkButton" id="open_file_button">
-            <property name="tooltip_text" translatable="yes">Open…</property>
-            <property name="action_name">win.open_database</property>
-            <property name="icon_name">document-open-symbolic</property>
+        <child type="end">
+          <object class="GtkMenuButton" id="menupopover_button">
+            <property name="menu_model">recent_files_menu</property>
+            <property name="icon_name">open-menu-symbolic</property>
           </object>
         </child>
+        <style>
+          <class name="titlebar"/>
+        </style>
       </object>
     </child>
-    <child type="end">
-      <object class="GtkMenuButton" id="menupopover_button">
-        <property name="menu_model">recent_files_menu</property>
-        <property name="icon_name">open-menu-symbolic</property>
-      </object>
-    </child>
-    <style>
-      <class name="titlebar"/>
-    </style>
   </template>
   <menu id="recent_files_menu">
     <section>

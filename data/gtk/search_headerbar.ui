@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="SearchHeaderbar" parent="AdwHeaderBar">
+  <template class="SearchHeaderbar" parent="AdwBin">
     <child>
-      <object class="GtkButton">
-        <property name="action_name">win.go_back</property>
-        <property name="icon_name">go-previous-symbolic</property>
-      </object>
-    </child>
-    <child type="title">
-      <object class="AdwClamp">
-        <property name="hexpand">True</property>
+      <object class="AdwHeaderBar">
         <child>
-          <object class="GtkSearchEntry" id="search_entry">
-            <property name="hexpand">True</property>
-            <property name="activates_default">True</property>
+          <object class="GtkButton">
+            <property name="action_name">win.go_back</property>
+            <property name="icon_name">go-previous-symbolic</property>
           </object>
         </child>
+        <child type="title">
+          <object class="AdwClamp">
+            <property name="hexpand">True</property>
+            <child>
+              <object class="GtkSearchEntry" id="search_entry">
+                <property name="hexpand">True</property>
+                <property name="activates_default">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <style>
+          <class name="titlebar"/>
+        </style>
       </object>
     </child>
-    <style>
-      <class name="titlebar"/>
-    </style>
   </template>
 </interface>

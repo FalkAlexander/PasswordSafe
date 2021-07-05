@@ -5,7 +5,7 @@ import typing
 from gettext import gettext as _
 from logging import warning
 
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
 from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
@@ -23,7 +23,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/entry_page.ui")
-class EntryPage(Gtk.ScrolledWindow):
+class EntryPage(Adw.Bin):
     # pylint: disable=too-many-public-methods
 
     __gtype_name__ = "EntryPage"

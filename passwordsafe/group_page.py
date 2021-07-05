@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import typing
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 from passwordsafe.widgets.notes_dialog import NotesDialog
 
@@ -12,7 +12,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/group_page.ui")
-class GroupPage(Gtk.ScrolledWindow):
+class GroupPage(Adw.Bin):
 
     __gtype_name__ = "GroupPage"
 

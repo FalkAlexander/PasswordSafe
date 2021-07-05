@@ -18,7 +18,7 @@ class PageType(IntEnum):
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/edit_element_headerbar.ui")
-class EditElementHeaderbar(Adw.HeaderBar):
+class EditElementHeaderbar(Adw.Bin):
 
     __gtype_name__ = "EditElementHeaderBar"
 

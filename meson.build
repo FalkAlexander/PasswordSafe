@@ -94,4 +94,15 @@ configure_file(
   install_dir: bindir
 )
 
+pylint = find_program('pylint', required: false)
+if pylint.found()
+  test (
+    'Pylint tests',
+    pylint,
+    args: ['--rcfile=@0@'.format(join_paths(meson.current_source_dir (), '.pylintrc')),
+          join_paths(python_dir, 'passwordsafe')],
+    timeout: 300,
+  )
+endif
+
 meson.add_install_script('meson_post_install.py')

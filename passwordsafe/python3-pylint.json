@@ -1,0 +1,39 @@
+{
+    "name": "python3-pylint",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pylint\""
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/82/f7/e43cefbe88c5fd371f4cf0cf5eb3feccd07515af9fd6cf7dbf1d1793a797/wrapt-1.12.1.tar.gz",
+            "sha256": "b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/44/6f/7120676b6d73228c96e17f1f794d8ab046fc910d781c8d151120c3f1569e/toml-0.10.2-py2.py3-none-any.whl",
+            "sha256": "806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/87/89/479dc97e18549e21354893e4ee4ef36db1d237534982482c3681ee6e7b57/mccabe-0.6.1-py2.py3-none-any.whl",
+            "sha256": "ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/b3/3f/4e39910865572d2ff209e601d9c1d15180ef1b735538a0c7bc2d15b63ac6/isort-5.9.1-py3-none-any.whl",
+            "sha256": "8e2c107091cfec7286bc0f68a547d0ba4c094d460b732075b6fba674f1035c0c"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/9e/bc/ee4ca5a31fbc1f9cec6df52170baa151f82cbf4f4989de87c7f94a28a958/astroid-2.6.2-py3-none-any.whl",
+            "sha256": "606b2911d10c3dcf35e58d2ee5c97360e8477d7b9f3efc3f24811c93e6fc2cd9"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/dc/dd/7b8e2f0ed47cc46ba2f6144df4f32de3614d6f56ca07b7f308d40cfa2dfb/pylint-2.9.3-py3-none-any.whl",
+            "sha256": "5d46330e6b8886c31b5e3aba5ff48c10f4aa5e76cbf9002c6544306221e63fbc"
+        }
+    ]
+}

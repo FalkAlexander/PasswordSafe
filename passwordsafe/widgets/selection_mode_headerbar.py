@@ -127,7 +127,7 @@ class SelectionModeHeaderbar(Adw.Bin):
         if self.entries_selected or self.groups_selected:
             self._delete_button.set_sensitive(False)
 
-        self.cut_mode = False
+        self.props.cut_mode = False
 
     @Gtk.Template.Callback()
     def _on_paste_button_clicked(self, _widget):

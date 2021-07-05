@@ -59,7 +59,7 @@ class RecentFilesPage(Gtk.Box):
         Starts opening the database corresponding to the entry."""
         file_uri: str = list_box_row.get_name()
         file_path = Gio.File.new_for_uri(file_uri).get_path()
-        database = self.window.unlocked_db
+        database = self.props.window.unlocked_db
 
         if database:
             auto_save = config.get_save_automatically()
@@ -73,18 +73,18 @@ class RecentFilesPage(Gtk.Box):
                 window.present()
             else:
                 if is_current:
-                    self.window.view = self.window.View.UNLOCK_DATABASE
+                    self.props.window.view = self.props.window.view.UNLOCK_DATABASE
                     return
 
                 if auto_save:
                     database.save_database()
 
                 database.cleanup()
-                self.window.unlocked_db = None
-                self.window.start_database_opening_routine(file_path)
+                self.props.window.unlocked_db = None
+                self.props.window.start_database_opening_routine(file_path)
 
         else:
-            self.window.start_database_opening_routine(file_path)
+            self.props.window.start_database_opening_routine(file_path)
 
 
 class RecentFileRow(Adw.ActionRow):

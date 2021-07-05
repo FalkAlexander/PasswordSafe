@@ -31,16 +31,16 @@ class ProgressIcon(Gtk.Widget):
         rect = Graphene.Rect().alloc()
         rect.init(0, 0, width, height)
 
-        cr = snapshot.append_cairo(rect)
-        cr.set_source_rgba(color.red, color.green, color.blue, color.alpha)
+        ctx = snapshot.append_cairo(rect)
+        ctx.set_source_rgba(color.red, color.green, color.blue, color.alpha)
 
-        cr.arc(width / 2, height / 2, width / 2, 0.0, 2 * math.pi)
-        cr.fill()
+        ctx.arc(width / 2, height / 2, width / 2, 0.0, 2 * math.pi)
+        ctx.fill()
 
         if self.progress > 0.0:
             color.alpha = 1.0
-            cr.set_source_rgba(color.red, color.green, color.blue, color.alpha)
-            cr.arc(
+            ctx.set_source_rgba(color.red, color.green, color.blue, color.alpha)
+            ctx.arc(
                 width / 2,
                 height / 2,
                 width / 2,
@@ -48,10 +48,10 @@ class ProgressIcon(Gtk.Widget):
                 2 * self.progress * math.pi - 0.5 * math.pi,
             )
             if self.progress != 1.0:
-                cr.line_to(width / 2, height / 2)
-                cr.line_to(width / 2, 0)
+                ctx.line_to(width / 2, height / 2)
+                ctx.line_to(width / 2, 0)
 
-            cr.fill()
+            ctx.fill()
 
     @GObject.Property(type=float, default=0.0, flags=GObject.ParamFlags.READWRITE)
     def progress(self) -> float:

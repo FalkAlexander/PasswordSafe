@@ -102,7 +102,7 @@ class Application(Gtk.Application):
 
         self.window.present()
 
-    def do_shutdown(self) -> None:
+    def do_shutdown(self) -> None:  # pylint: disable=arguments-differ
         """Activated on shutdown. Cleans all remaining processes."""
         self.window.save_window_size()
         for database in self.window.opened_databases:

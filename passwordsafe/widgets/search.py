@@ -69,7 +69,7 @@ class Search(Gtk.Stack):
         ):
             unlocked_database.props.search_active = True
         else:
-            self._search_entry.props.text = ""
+            search_entry.props.text = ""
 
     # Search headerbar
     def _on_search_active(

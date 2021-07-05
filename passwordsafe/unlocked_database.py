@@ -392,7 +392,7 @@ class UnlockedDatabase(GObject.GObject):
             self.window.set_headerbar(self.headerbar)
 
     def _on_selection_mode_changed(
-        self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
+        self, _unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
     ) -> None:
         if self.props.selection_mode:
             self.props.mode = self.Mode.SELECTION

@@ -12,7 +12,7 @@ from gi.repository import Adw, GLib, Gtk
 import passwordsafe.config_manager as config
 import passwordsafe.password_generator
 from passwordsafe.utils import generate_keyfile
-from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401
+from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/database_settings_dialog.ui")
@@ -78,7 +78,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         stats_thread.start()
 
     @Gtk.Template.Callback()
-    def on_password_entry_changed(self, entry: Gtk.Entry) -> None:
+    def on_password_entry_changed(self, _entry: Gtk.Entry) -> None:
         """CB if password entry (existing or new) has changed"""
 
         self.unlocked_database.start_database_lock_timer()

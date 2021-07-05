@@ -6,6 +6,3 @@ from gi.repository import Adw, Gtk
 class RecentFilesHeaderbar(Adw.HeaderBar):
 
     __gtype_name__ = "RecentFilesHeaderbar"
-
-    def __init__(self):
-        super().__init__()

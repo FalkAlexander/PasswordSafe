@@ -20,7 +20,7 @@ from passwordsafe.unlock_database import UnlockDatabase
 from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.welcome_page import WelcomePage
 from passwordsafe.widgets.recent_files_headerbar import RecentFilesHeaderbar
-from passwordsafe.widgets.create_database_headerbar import (  # noqa: F401
+from passwordsafe.widgets.create_database_headerbar import (  # noqa: F401, pylint: disable=unused-import
     CreateDatabaseHeaderbar,
 )
 
@@ -114,7 +114,7 @@ class MainWindow(Adw.ApplicationWindow):
             passwordsafe.config_manager.get_dark_theme(),
         )
 
-    def do_size_allocate(self, width: int, height: int, baseline: int) -> None:
+    def do_size_allocate(self, width: int, height: int, baseline: int) -> None:  # pylint: disable=arguments-differ
         # pylint: disable=arguments-differ
         """Handler for resizing event. It is used to check if
         the layout needs to be updated.
@@ -437,7 +437,7 @@ class MainWindow(Adw.ApplicationWindow):
         logging.debug("Saving window geometry: (%s, %s)", width, height)
         passwordsafe.config_manager.set_window_size([width, height])
 
-    def do_close_request(self) -> bool:
+    def do_close_request(self) -> bool:  # pylint: disable=arguments-differ
         """This is invoked when the window close button is pressed.
 
         Only the app.quit action is called. This action cleans up stuff

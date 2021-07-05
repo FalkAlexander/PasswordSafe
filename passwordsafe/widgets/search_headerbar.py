@@ -8,6 +8,3 @@ class SearchHeaderbar(Adw.HeaderBar):
     __gtype_name__ = "SearchHeaderbar"
 
     search_entry = Gtk.Template.Child()
-
-    def __init__(self):
-        super().__init__()

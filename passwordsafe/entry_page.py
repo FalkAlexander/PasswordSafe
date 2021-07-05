@@ -11,9 +11,9 @@ from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
-from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401
+from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.notes_dialog import NotesDialog
-from passwordsafe.widgets.expiration_date_row import ExpirationDateRow  # noqa: F401
+from passwordsafe.widgets.expiration_date_row import ExpirationDateRow  # noqa: F401, pylint: disable=unused-import
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
@@ -93,7 +93,7 @@ class EntryPage(Gtk.ScrolledWindow):
         copy_password_action.connect("activate", self._on_copy_action)
         self.unlocked_database.window.add_action(copy_password_action)
 
-    def do_unroot(self) -> None:
+    def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:
             GLib.source_remove(self.otp_timer_handler)
             self.otp_timer_handler = None

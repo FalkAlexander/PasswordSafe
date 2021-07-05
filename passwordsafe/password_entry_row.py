@@ -7,7 +7,7 @@ from gettext import gettext as _
 from gi.repository import Adw, Gtk
 
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover
-from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401
+from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
@@ -50,7 +50,7 @@ class PasswordEntryRow(Adw.Bin):
         self.copy_password()
 
     @Gtk.Template.Callback()
-    def _on_password_value_changed(self, entry: Gtk.Entry) -> None:
+    def _on_password_value_changed(self, _entry: Gtk.Entry) -> None:
         """Invoked when the password entry has changed
 
         Take note that this callback is already invoked after the initial

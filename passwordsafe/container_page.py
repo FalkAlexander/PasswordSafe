@@ -3,7 +3,7 @@ from gi.repository import Gtk
 
 
 class ContainerPage(Gtk.Box):
-    def __init__(self, headerbar, development_mode):
+    def __init__(self, _headerbar, development_mode):
         super().__init__()
 
         self.development_mode = development_mode

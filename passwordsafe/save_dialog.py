@@ -4,18 +4,20 @@ from __future__ import annotations
 from gi.repository import Gtk
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/save_dialog.ui")
-class SaveDialog(Gtk.MessageDialog):
-
-    __gtype_name__ = "SaveDialog"
-
+class SaveDialog:
     def __init__(self, window):
-        super().__init__()
-
         self.window = window
-        self.set_transient_for(window)
 
-    @Gtk.Template.Callback()
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/save_dialog.ui"
+        )
+        self._dialog = builder.get_object("dialog")
+        self._dialog.set_transient_for(window)
+        self._dialog.connect("response", self._on_dialog_response)
+
+    def show(self):
+        self._dialog.show()
+
     def _on_dialog_response(
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType
     ) -> None:

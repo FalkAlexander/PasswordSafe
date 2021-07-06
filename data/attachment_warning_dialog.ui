@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="AttachmentWarningDialog" parent="GtkMessageDialog">
+    <property name="destroy_with_parent">True</property>
     <property name="message_type">warning</property>
     <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Safety Info</property>
     <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">It is possible that external applications will create unencrypted hidden or temporary copies of this attachment file! Please proceed with caution.</property>
+    <signal name="response" handler="_on_warning_dialog_response" swapped="no"/>
     <child type="action">
       <object class="GtkButton" id="back_button">
         <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">_Back</property>
         <property name="use_underline">True</property>
-        <signal name="clicked" handler="_on_warning_dialog_back_button_clicked" swapped="no"/>
       </object>
     </child>
     <child type="action">
       <object class="GtkButton" id="proceed_button">
         <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">_Proceed</property>
         <property name="use_underline">True</property>
-        <signal name="clicked" handler="_on_warning_dialog_proceed_button_clicked" swapped="no"/>
         <style>
           <class name="destructive-action"/>
         </style>
@@ -23,6 +23,7 @@
     </child>
     <action-widgets>
       <action-widget default="true" response="ok">proceed_button</action-widget>
+      <action-widget response="cancel">back_button</action-widget>
     </action-widgets>
   </template>
 </interface>

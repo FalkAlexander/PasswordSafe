@@ -33,22 +33,21 @@ class AttachmentWarningDialog(Gtk.MessageDialog):
         self.set_transient_for(self.__unlocked_database.window)
 
     @Gtk.Template.Callback()
-    def _on_warning_dialog_back_button_clicked(self, _button):
-        self.close()
+    def _on_warning_dialog_response(self, dialog, response):
+        dialog.close()
 
-    @Gtk.Template.Callback()
-    def _on_warning_dialog_proceed_button_clicked(self, _button):
-        attachment = self.__attachment
-        u_db = self.__unlocked_database
-        self.close()
-        self.__open_tmp_file(
-            u_db.database_manager.db.binaries[attachment.id], attachment.filename
-        )
+        if response == Gtk.ResponseType.OK:
+            attachment = self.__attachment
+            u_db = self.__unlocked_database
+            self.__open_tmp_file(
+                u_db.database_manager.db.binaries[attachment.id], attachment.filename
+            )
 
     def __open_tmp_file(self, bytes_buffer, filename):
         try:
             cache_dir = os.path.join(GLib.get_user_cache_dir(), "passwordsafe", "tmp")
             file_path = os.path.join(cache_dir, filename)
+            window = self.__unlocked_database.window
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 
@@ -61,6 +60,6 @@ class AttachmentWarningDialog(Gtk.MessageDialog):
             )
             output_stream.write_bytes(GLib.Bytes.new(bytes_buffer))
             output_stream.close()
-            Gtk.show_uri_on_window(None, gfile.get_uri(), Gdk.CURRENT_TIME)
+            Gtk.show_uri(window, gfile.get_uri(), Gdk.CURRENT_TIME)
         except GLib.Error as err:
             logging.debug("Could not load attachment %s: %s", filename, err)

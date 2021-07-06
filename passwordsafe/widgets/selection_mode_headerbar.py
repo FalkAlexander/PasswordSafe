@@ -6,7 +6,7 @@ from gettext import gettext as _
 from gettext import ngettext
 from logging import debug
 
-from gi.repository import Adw, Gio, GObject, Gtk
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_row import GroupRow
@@ -163,10 +163,10 @@ class SelectionModeHeaderbar(Adw.Bin):
         self.unlocked_database.window.send_notification(_("Move completed"))
         self._clear_all()
 
-    def on_selection_action(self, param):
+    def on_selection_action(self, variant: GLib.Variant) -> None:
         self.unlocked_database.start_database_lock_timer()
 
-        selection_type = param.get_string()
+        selection_type = variant.get_string()
         page = self.unlocked_database.get_current_page()
         list_box = page.list_box
 

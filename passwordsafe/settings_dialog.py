@@ -66,9 +66,6 @@ class SettingsDialog(Adw.PreferencesWindow):
         settings.bind("database-lock-timeout", self._lockdb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
         settings.bind("clear-clipboard", self._clearcb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
 
-        show_passwords_action = settings.create_action("show-password-fields")
-        action_group.add_action(show_passwords_action)
-
         self._clear_button.connect("clicked", self._on_settings_clear_recents_clicked)
         if not config.get_last_opened_list():
             self._clear_button.props.sensitive = False

@@ -16,7 +16,6 @@ DB_LOCK_TIMEOUT = "database-lock-timeout"
 SHOW_START_SCREEN = "first-start-screen"
 LAST_OPENED_DB = "last-opened-database"
 SAVE_AUTOMATICALLY = "save-automatically"
-SHOW_PASSWORDS = "show-password-fields"
 WINDOW_SIZE = "window-size"
 SORT_ORDER = "sort-order"
 LAST_OPENED_LIST = "last-opened-list"
@@ -144,14 +143,6 @@ def get_save_automatically():
 
 def set_save_automatically(value):
     setting.set_boolean(SAVE_AUTOMATICALLY, value)
-
-
-def get_show_password_fields():
-    return setting.get_boolean(SHOW_PASSWORDS)
-
-
-def set_show_password_fields(value):
-    setting.set_boolean(SHOW_PASSWORDS, value)
 
 
 def get_window_size():

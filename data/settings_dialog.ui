@@ -269,20 +269,6 @@
             </child>
             <child>
               <object class="AdwActionRow">
-                <property name="title" translatable="yes">_Show Password Fields</property>
-                <property name="subtitle" translatable="yes">Display passwords in plain text.</property>
-                <property name="activatable_widget">_showpw_switch</property>
-                <property name="use_underline">True</property>
-                <child>
-                  <object class="GtkSwitch" id="_showpw_switch">
-                    <property name="valign">center</property>
-                    <property name="action_name">settings.show-password-fields</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow">
                 <property name="title" translatable="yes">Clear Recent List</property>
                 <property name="subtitle" translatable="yes">Clear the recently opened safes list.</property>
                 <property name="selectable">False</property>

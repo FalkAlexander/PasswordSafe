@@ -13,26 +13,27 @@ if typing.TYPE_CHECKING:
     from passwordsafe.entry_page import EntryPage
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/attachment_warning_dialog.ui")
-class AttachmentWarningDialog(Gtk.MessageDialog):
-
-    __gtype_name__ = "AttachmentWarningDialog"
-
+class AttachmentWarningDialog:
     def __init__(self, entry_page: EntryPage, attachment: Attachment) -> None:
         """Dialog to confirm opening an attachment
 
         :param entry_page: entry page
         """
-        super().__init__()
-
         self.__unlocked_database = entry_page.unlocked_database
         self.__attachment = attachment
 
         # Setup Widgets
-        self.set_modal(True)
-        self.set_transient_for(self.__unlocked_database.window)
+        builder = Gtk.Builder.new_from_resource(
+            "/org/gnome/PasswordSafe/attachment_warning_dialog.ui"
+        )
+        self._dialog = builder.get_object("dialog")
+        self._dialog.connect("response", self._on_warning_dialog_response)
+        self._dialog.set_modal(True)
+        self._dialog.set_transient_for(self.__unlocked_database.window)
 
-    @Gtk.Template.Callback()
+    def show(self):
+        self._dialog.show()
+
     def _on_warning_dialog_response(self, dialog, response):
         dialog.close()
 

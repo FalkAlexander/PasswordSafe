@@ -11,6 +11,7 @@ from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
+from passwordsafe.widgets.attribute_entry_row import AttributeEntryRow
 from passwordsafe.widgets.entry_page_icon import EntryPageIcon
 from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.notes_dialog import NotesDialog
@@ -218,27 +219,8 @@ class EntryPage(Gtk.ScrolledWindow):
         :param str key: property name
         :param str value: property value
         """
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/attribute_entry_row.ui"
-        )
-
-        attribute_row = builder.get_object("attribute_row")
-        attribute_key_edit_button = builder.get_object("attribute_key_edit_button")
-        attribute_value_entry = builder.get_object("attribute_value_entry")
-        attribute_remove_button = builder.get_object("attribute_remove_button")
-
-        attribute_key_edit_button.set_label(key)
-        if value is not None:
-            attribute_value_entry.set_text(value)
-        attribute_remove_button.connect(
-            "clicked", self.on_attribute_remove_button_clicked, key
-        )
-        attribute_key_edit_button.connect(
-            "clicked", self.on_attribute_key_edit_button_clicked
-        )
-        attribute_value_entry.connect(
-            "changed", self.on_attributes_value_entry_changed, key
-        )
+        safe_entry = self.unlocked_database.current_element
+        attribute_row = AttributeEntryRow(safe_entry, key, value)
 
         self.attribute_list_box.append(attribute_row)
         self.attribute_property_row_list.append(attribute_row)
@@ -325,74 +307,6 @@ class EntryPage(Gtk.ScrolledWindow):
 
         safe_entry.set_attribute(key, value)
         self.add_attribute_property_row(key, value)
-
-    def on_attribute_remove_button_clicked(self, button, key):
-        safe_entry: SafeEntry = self.unlocked_database.current_element
-
-        attribute_row = button.get_parent().get_parent()
-        safe_entry.delete_attribute(key)
-        self.attribute_list_box.remove(attribute_row)
-
-    def on_attributes_value_entry_changed(self, widget, key):
-        safe_entry = self.unlocked_database.current_element
-        safe_entry.set_attribute(key, widget.get_text())
-
-    def on_attribute_key_edit_button_clicked(self, button):
-        safe_entry: SafeEntry = self.unlocked_database.current_element
-        parent = button.get_parent()
-
-        parent = button.get_parent().get_parent().get_parent()
-        key = button.get_label()
-
-        key_entry = Gtk.Entry()
-        key_entry.set_visible(True)
-
-        key_entry.connect(
-            "activate", self.on_key_entry_activated, safe_entry, key, button, parent
-        )
-        key_entry.set_text(key)
-
-        attribute_entry_box = button.get_parent()
-        attribute_entry_box.remove(button)
-        attribute_entry_box.append(key_entry)
-        key_entry.grab_focus()
-
-    def on_key_entry_activated(
-        self,
-        widget: Gtk.Entry,
-        safe_entry: SafeEntry,
-        key: str,
-        button: Gtk.Button,
-        parent: Gtk.Box,
-    ) -> None:
-        # pylint: disable=too-many-arguments
-        new_key: str = widget.props.text
-        if not new_key:
-            widget.add_css_class("error")
-            return
-
-        if new_key == key:
-            attribute_entry_box = widget.get_parent()
-            attribute_entry_box.remove(widget)
-            attribute_entry_box.append(button)
-            return
-
-        if safe_entry.has_attribute(new_key):
-            widget.add_css_class("error")
-            self.unlocked_database.window.send_notification(
-                _("Attribute key already exists")
-            )
-            return
-
-        safe_entry.set_attribute(new_key, safe_entry.props.attributes[key])
-        safe_entry.delete_attribute(key)
-
-        button.set_label(new_key)
-        parent.set_name(new_key)
-
-        attribute_entry_box = widget.get_parent()
-        attribute_entry_box.remove(widget)
-        attribute_entry_box.append(button)
 
     #
     # Attachment Handling

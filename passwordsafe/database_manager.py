@@ -217,7 +217,7 @@ class DatabaseManager(GObject.GObject):
         # pylint: disable=no-member
         if entry.parentgroup:
             entry.parentgroup.touch(modify=True)
-        destination_group_object.parentgroup.touch(modify=True)
+        destination_group_object.touch(modify=True)
 
         safe_entry = SafeEntry(self, entry)
 

@@ -129,6 +129,7 @@ class DatabaseManager(GObject.GObject):
             icon=entry.icon,
             force_creation=True,
         )
+        clone_entry.expires = entry.expires
 
         # Add custom properties
         for key in entry.custom_properties:

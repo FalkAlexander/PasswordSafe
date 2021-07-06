@@ -11,6 +11,7 @@ from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
+from passwordsafe.widgets.attachment_entry_row import AttachmentEntryRow
 from passwordsafe.widgets.attribute_entry_row import AttributeEntryRow
 from passwordsafe.widgets.entry_page_icon import EntryPageIcon
 from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401, pylint: disable=unused-import
@@ -19,7 +20,6 @@ from passwordsafe.widgets.expiration_date_row import ExpirationDateRow  # noqa: 
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
-    from pykeepass.attachment import Attachment
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/entry_page.ui")
@@ -317,9 +317,8 @@ class EntryPage(Gtk.ScrolledWindow):
         if list_box_row.get_name() == "AddAttachmentRow":
             self.on_add_attachment_row_clicked()
         else:
-            safe_entry: SafeEntry = self.unlocked_database.current_element
-            attachment = safe_entry.get_attachment(list_box_row.get_name())
-            self.on_attachment_row_clicked(attachment)
+            attachment = list_box_row.attachment
+            AttachmentWarningDialog(self, attachment).show()
 
     def on_add_attachment_row_clicked(self):
         self.unlocked_database.start_database_lock_timer()
@@ -358,72 +357,9 @@ class EntryPage(Gtk.ScrolledWindow):
                     )
 
     def add_attachment_row(self, attachment):
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/attachment_entry_row.ui"
-        )
-
-        attachment_row = builder.get_object("attachment_row")
-        attachment_row.set_name(str(attachment.id))
-        attachment_row.set_title(attachment.filename)
-        builder.get_object("attachment_download_button").connect(
-            "clicked", self.on_attachment_download_button_clicked, attachment
-        )
-        builder.get_object("attachment_delete_button").connect(
-            "clicked",
-            self.on_attachment_delete_button_clicked,
-            attachment,
-            attachment_row,
-        )
-
-        self.attachment_list_box.prepend(attachment_row)
-
-    def on_attachment_row_clicked(self, attachment):
-        AttachmentWarningDialog(self, attachment).present()
-
-    def on_attachment_download_button_clicked(self, _button, attachment):
-        save_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for downloading an attachment
-            _("Save attachment"),
-            self.unlocked_database.window,
-            Gtk.FileChooserAction.SAVE,
-            _("_Save"),
-            None,
-        )
-        save_dialog.set_current_name(attachment.filename)
-        save_dialog.set_modal(True)
-
-        save_dialog.connect(
-            "response", self._on_save_filechooser_response, attachment, save_dialog
-        )
-        save_dialog.show()
-
-    def _on_save_filechooser_response(
-        self,
-        dialog: Gtk.Dialog,
-        response: Gtk.ResponseType,
-        attachment: Attachment,
-        _dialog: Gtk.Dialog,
-    ) -> None:
-        if response == Gtk.ResponseType.ACCEPT:
-            safe_entry: SafeEntry = self.unlocked_database.current_element
-            bytes_buffer = safe_entry.get_attachment_content(attachment)
-            stream = Gio.File.replace(
-                dialog.get_file(),
-                None,
-                False,
-                Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
-                None,
-            )
-            Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes_buffer), None)
-            stream.close()
-
-    def on_attachment_delete_button_clicked(
-        self, _button, attachment_to_delete, attachment_row
-    ):
         safe_entry: SafeEntry = self.unlocked_database.current_element
-        safe_entry.delete_attachment(attachment_to_delete)
-
-        self.attachment_list_box.remove(attachment_row)
+        attachment_row = AttachmentEntryRow(safe_entry, attachment)
+        self.attachment_list_box.prepend(attachment_row)
 
     @Gtk.Template.Callback()
     def _on_copy_secondary_button_clicked(self, widget, _icon_pos, _data=None):

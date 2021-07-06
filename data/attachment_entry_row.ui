@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="AdwActionRow" id="attachment_row">
+  <template class="AttachmentEntryRow" parent="AdwActionRow">
     <property name="activatable">True</property>
     <child>
       <object class="GtkBox">
         <property name="spacing">6</property>
         <child>
-          <object class="GtkButton" id="attachment_download_button">
+          <object class="GtkButton" id="download_button">
             <property name="valign">center</property>
             <property name="icon_name">document-save-as-symbolic</property>
+            <signal name="clicked" handler="_on_download_button_clicked" swapped="no"/>
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="attachment_delete_button">
+          <object class="GtkButton" id="delete_button">
             <property name="valign">center</property>
             <property name="icon_name">user-trash-symbolic</property>
+            <signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>
             <style>
               <class name="destructive-action"/>
             </style>
@@ -22,5 +24,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

@@ -11,6 +11,7 @@ from gi.repository import Adw, GLib, Gtk
 
 import passwordsafe.config_manager as config
 import passwordsafe.password_generator
+from passwordsafe.utils import KeyFileFilter
 from passwordsafe.utils import generate_keyfile
 from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
 
@@ -143,13 +144,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         )
         select_dialog.set_modal(True)
 
-        ffilter = Gtk.FileFilter()
-        ffilter.set_name(_("Keyfile"))
-        ffilter.add_mime_type("application/octet-stream")
-        ffilter.add_mime_type("application/x-keepass2")
-        ffilter.add_mime_type("text/plain")
-        ffilter.add_mime_type("application/x-iwork-keynote-sffkey")
-
+        ffilter = KeyFileFilter().file_filter
         select_dialog.add_filter(ffilter)
 
         select_dialog.connect(
@@ -197,14 +192,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         save_dialog.set_current_name(_("Keyfile"))
         save_dialog.set_modal(True)
 
-        ffilter = Gtk.FileFilter()
-        ffilter.set_name(_("Keyfile"))
-        ffilter.add_mime_type("application/octet-stream")
-        ffilter.add_mime_type("application/x-keepass2")
-        ffilter.add_mime_type("text/plain")
-        ffilter.add_mime_type("application/x-iwork-keynote-sffkey")
-
+        ffilter = KeyFileFilter().file_filter
         save_dialog.add_filter(ffilter)
+
         save_dialog.connect("response", self._on_filechooser_response, save_dialog)
         save_dialog.show()
 

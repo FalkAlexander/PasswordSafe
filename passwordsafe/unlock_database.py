@@ -20,19 +20,7 @@ import passwordsafe.config_manager
 from passwordsafe.config_manager import UnlockMethod
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
-
-
-class KeyFileFilter(Gtk.FileFilter):
-    """Filter out Keyfiles in the file chooser dialog"""
-
-    def __init__(self):
-        super().__init__()
-
-        self.set_name(_("Keyfile"))
-        self.add_mime_type("application/octet-stream")
-        self.add_mime_type("application/x-keepass2")
-        self.add_mime_type("text/plain")
-        self.add_mime_type("application/x-iwork-keynote-sffkey")
+from passwordsafe.utils import KeyFileFilter
 
 
 class UnlockDatabase:
@@ -218,7 +206,7 @@ class UnlockDatabase:
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(
             _("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
         )
-        keyfile_chooser_dialog.add_filter(KeyFileFilter())
+        keyfile_chooser_dialog.add_filter(KeyFileFilter().file_filter)
 
         keyfile_chooser_dialog.connect(
             "response", self.on_dialog_response, keyfile_chooser_dialog
@@ -266,7 +254,7 @@ class UnlockDatabase:
         opening_dialog = Gtk.FileChooserNative.new(
             _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
         )
-        opening_dialog.add_filter(KeyFileFilter())
+        opening_dialog.add_filter(KeyFileFilter().file_filter)
 
         opening_dialog.connect(
             "response", self._on_composite_filechooser_response, opening_dialog

@@ -4,11 +4,12 @@ from __future__ import annotations
 import logging
 import secrets
 import typing
+from gettext import gettext as _
 from typing import Callable
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
-from gi.repository import Gio, GLib
+from gi.repository import Gio, GLib, Gtk
 
 if typing.TYPE_CHECKING:
     from datetime import datetime
@@ -46,3 +47,16 @@ def generate_keyfile(gfile: Gio.File, callback: Callable[[], None]) -> None:
         callback()
     except GLib.Error as err:
         logging.debug("Could not create keyfile: %s", err.message)
+
+
+class KeyFileFilter:
+    """Filter out Keyfiles in the file chooser dialog"""
+
+    def __init__(self):
+        self.file_filter = Gtk.FileFilter()
+
+        self.file_filter.set_name(_("Keyfile"))
+        self.file_filter.add_mime_type("application/octet-stream")
+        self.file_filter.add_mime_type("application/x-keepass2")
+        self.file_filter.add_mime_type("text/plain")
+        self.file_filter.add_mime_type("application/x-iwork-keynote-sffkey")

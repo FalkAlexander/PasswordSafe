@@ -6,8 +6,8 @@ from gettext import gettext as _
 
 from gi.repository import GLib, Gtk
 
-from passwordsafe.unlock_database import KeyFileFilter, UnlockDatabase
-from passwordsafe.utils import generate_keyfile
+from passwordsafe.unlock_database import UnlockDatabase
+from passwordsafe.utils import KeyFileFilter, generate_keyfile
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/create_database.ui")
@@ -135,7 +135,7 @@ class CreateDatabase(Gtk.Stack):
             None,
         )
         keyfile_dlg.set_modal(True)
-        keyfile_dlg.add_filter(KeyFileFilter())
+        keyfile_dlg.add_filter(KeyFileFilter().file_filter)
 
         keyfile_dlg.connect("response", self._on_filechooser_response, keyfile_dlg)
         keyfile_dlg.show()

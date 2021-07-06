@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="ExpirationDateRow" parent="AdwBin">
-    <signal name="mnemonic-activate" handler="on_mnemonic_activate" swapped="no"/>
     <property name="child">
       <object class="GtkListBox" id="list_box">
-        <signal name="row-activated" handler="on_row_activated" swapped="no"/>
         <child>
           <object class="AdwActionRow" id="action_row">
             <property name="title" translatable="yes">Expiration Date not Set</property>
-            <property name="activatable">True</property>
+            <property name="activatable_widget">edit_button</property>
             <property name="selectable">False</property>
             <property name="icon_name">x-office-calendar-symbolic</property>
             <child>

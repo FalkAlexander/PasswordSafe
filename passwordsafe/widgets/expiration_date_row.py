@@ -19,12 +19,14 @@ class ExpirationDateRow(Adw.Bin):
     action_row = Gtk.Template.Child()
     calendar = Gtk.Template.Child()
     popover = Gtk.Template.Child()
-    edit_button = Gtk.Template.Child()
     remove_button = Gtk.Template.Child()
     popover_edit_button = Gtk.Template.Child()
     list_box = Gtk.Template.Child()
 
     _safe_entry = None
+
+    def do_mnemonic_activate(self, group_cycling: bool) -> bool:
+        return self.action_row.mnemonic_activate(group_cycling)
 
     @GObject.Property(type=SafeEntry)
     def safe_entry(self) -> SafeEntry:
@@ -79,14 +81,3 @@ class ExpirationDateRow(Adw.Bin):
         now = GLib.DateTime.new_now_utc()
         self.calendar.select_day(now)
         safe_entry.props.expires = False
-
-    @Gtk.Template.Callback()
-    def on_mnemonic_activate(self, _widget, _group_cycling):
-        # FIXME MenuButtons don't implement the Actionable interface
-        # therefore activatable_widget and mnemonic_widget do not work.
-        # See https://gitlab.gnome.org/GNOME/gtk/-/issues/4079
-        self.edit_button.popup()
-
-    @Gtk.Template.Callback()
-    def on_row_activated(self, _listbox: Gtk.ListBox, _row: Gtk.ListBoxRow) -> None:
-        self.edit_button.popup()

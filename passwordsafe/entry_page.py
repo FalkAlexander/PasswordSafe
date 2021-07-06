@@ -11,6 +11,7 @@ from passwordsafe.attachment_warning_dialog import AttachmentWarningDialog
 from passwordsafe.color_widget import ColorEntryRow
 from passwordsafe.password_entry_row import PasswordEntryRow
 from passwordsafe.safe_element import ICONS
+from passwordsafe.widgets.entry_page_icon import EntryPageIcon
 from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.notes_dialog import NotesDialog
 from passwordsafe.widgets.expiration_date_row import ExpirationDateRow  # noqa: F401, pylint: disable=unused-import
@@ -179,18 +180,11 @@ class EntryPage(Gtk.ScrolledWindow):
             if not icon.visible:
                 continue
 
-            icon_builder = Gtk.Builder.new_from_resource(
-                "/org/gnome/PasswordSafe/icon_widget.ui"
-            )
-            btn = icon_builder.get_object("icon_button")
-            img = icon_builder.get_object("image")
-            img.props.icon_name = icon.name
+            btn = EntryPageIcon(icon.name, icon_nr)
+            self.icon_entry_box.insert(btn, -1)
 
             if entry_icon == icon:
                 self.icon_entry_box.select_child(btn)
-
-            btn.set_name(icon_nr)
-            self.icon_entry_box.insert(btn, -1)
 
         self.icon_entry_box.connect(
             "selected-children-changed", self.on_entry_icon_button_toggled

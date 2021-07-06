@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkFlowBoxChild" id="icon_button">
+  <template class="EntryPageIcon" parent="GtkFlowBoxChild">
     <property name="hexpand">True</property>
     <child>
       <object class="GtkImage" id="image">
@@ -10,5 +10,5 @@
         <property name="margin_bottom">6</property>
       </object>
     </child>
-  </object>
+  </template>
 </interface>

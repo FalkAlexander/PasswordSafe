@@ -7,6 +7,9 @@ import typing
 from gi.repository import Adw, Gio, Gtk
 
 import gsecrets.config_manager as config
+from gsecrets.entry_row import EntryRow
+from gsecrets.group_row import GroupRow
+from gsecrets.safe_element import SafeElement, SafeEntry
 from gsecrets.sorting import SortingHat
 
 if typing.TYPE_CHECKING:
@@ -19,7 +22,7 @@ class UnlockedDatabasePage(Adw.Bin):
     __gtype_name__ = "UnlockedDatabasePage"
 
     empty_group_box = Gtk.Template.Child()
-    list_box = Gtk.Template.Child()
+    list_view = Gtk.Template.Child()
     scrolled_window = Gtk.Template.Child()
     stack = Gtk.Template.Child()
 
@@ -39,6 +42,7 @@ class UnlockedDatabasePage(Adw.Bin):
         flatten = Gio.ListStore.new(Gtk.SortListModel)
         flatten.splice(0, 0, [self.groups, self.entries])
         self.list_model = Gtk.FlattenListModel.new(flatten)
+        self.selection_model = Gtk.NoSelection.new(self.list_model)
 
         settings = unlocked_database.window.application.settings
         settings.connect("changed::sort-order", self.on_sort_order_changed)
@@ -46,10 +50,13 @@ class UnlockedDatabasePage(Adw.Bin):
         unlocked_database.selection_mode_headerbar.connect(
             "clear-selection", self._on_clear_selection
         )
-        self.list_box.bind_model(self.list_model, unlocked_database.listbox_row_factory)
-        self.list_box.connect(
-            "row-activated", unlocked_database.on_list_box_row_activated
-        )
+        factory = Gtk.SignalListItemFactory()
+        factory.connect("setup", self.on_setup)
+        factory.connect("bind", self.on_bind)
+
+        self.list_view.set_model(self.selection_model)
+        self.list_view.set_factory(factory)
+        self.list_view.connect("activate", self.on_list_view_activate)
         self.list_model.connect(
             "notify::n-items",
             self.on_listbox_n_items_changed,
@@ -60,6 +67,36 @@ class UnlockedDatabasePage(Adw.Bin):
         unlocked_database.database_manager.connect(
             "sorting_changed", self._on_sorting_changed
         )
+
+    def on_setup(self, _list_view, item):
+        entry_row = EntryRow(self.unlocked_database)
+
+        item.props.child = entry_row
+
+    def on_bind(self, _list_view, item):
+        element = item.props.item
+        row = item.props.child
+        if element.is_group:
+            if row.__gtype_name__ != "GroupRow":
+                row = GroupRow(self.unlocked_database)
+                item.props.child = row
+
+            row.props.safe_group = element
+        else:
+            if row.__gtype_name__ != "EntryRow":
+                row = EntryRow(self.unlocked_database)
+                item.props.child = row
+
+            row.props.safe_entry = element
+
+    def on_list_view_activate(self, _list_view, pos):
+        element = self.list_model.get_item(pos)
+
+        if isinstance(element, SafeEntry):
+            self.unlocked_database.show_edit_page(element)
+            return
+
+        self.unlocked_database.show_browser_page(element)
 
     def do_grab_focus(self):  # pylint: disable=arguments-differ
         if child := self.list_box.get_first_child():
@@ -92,5 +129,5 @@ class UnlockedDatabasePage(Adw.Bin):
             self.stack.set_visible_child(self.scrolled_window)
 
     def _on_clear_selection(self, _header: SelectionModeHeaderbar) -> None:
-        for row in self.list_box:  # pylint: disable=not-an-iterable
+        for row in self.list_view:  # pylint: disable=not-an-iterable
             row.selection_checkbox.props.active = False

@@ -219,13 +219,14 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         selection_type = variant.get_string()
         page = self.unlocked_database.get_current_page()
-        list_box = page.list_box
+        list_view = page.list_view
 
-        for row in list_box:
+        # FIXME
+        for item in list_view:
             if selection_type == "all":
-                row.selection_checkbox.set_active(True)
+                item.child.selection_checkbox.set_active(True)
             else:
-                row.selection_checkbox.set_active(False)
+                item.child.selection_checkbox.set_active(False)
 
     # Helpers
 

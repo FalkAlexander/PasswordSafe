@@ -7,17 +7,12 @@
         <child>
           <object class="GtkScrolledWindow" id="scrolled_window">
             <child>
-              <object class="AdwClamp" id="clamp">
-                <property name="margin-top">24</property>
-                <property name="margin-bottom">24</property>
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
+              <object class="AdwClampScrollable">
                 <child>
-                  <object class="GtkListBox" id="list_box">
-                    <property name="selection_mode">none</property>
-                    <property name="valign">start</property>
+                  <object class="GtkListView" id="list_view">
+                    <property name="single_click_activate">True</property>
                     <style>
-                      <class name="boxed-list"/>
+                      <class name="navigation-sidebar"/>
                     </style>
                   </object>
                 </child>

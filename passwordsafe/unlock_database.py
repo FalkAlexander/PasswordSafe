@@ -218,8 +218,8 @@ class UnlockDatabase(Adw.Bin):
         dialog.destroy()
         composite_unlock_select_button = self.composite_unlock_select_button
         if response == Gtk.ResponseType.ACCEPT:
-            logging.debug("File selected: %s", dialog.get_file().get_path)
             file_path = dialog.get_file().get_path()
+            logging.debug("KeyFile selected: %s", file_path)
             composite_unlock_select_button.set_label(ntpath.basename(file_path))
             self.composite_keyfile_path = file_path
 

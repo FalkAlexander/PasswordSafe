@@ -45,7 +45,6 @@ class UnlockedDatabase(Gtk.Box):
     pathbar = NotImplemented
 
     # Objects
-    clipboard = NotImplemented
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
     _lock_timer_handler: int | None = None
@@ -100,14 +99,20 @@ class UnlockedDatabase(Gtk.Box):
 
         # Browser Mode
         self.assemble_listbox()
-        self.start_save_loop()
-        self.register_dbus_signal()
+        self.setup()
+
+        self.clipboard = Gdk.Display.get_default().get_clipboard()
 
         self.connect("notify::selection-mode", self._on_selection_mode_changed)
         self.database_manager.connect("notify::locked", self._on_database_lock_changed)
         self.database_manager.connect(
             "save-notification", self.on_database_save_notification
         )
+
+    def setup(self):
+        self.start_save_loop()
+        self.register_dbus_signal()
+        self.start_database_lock_timer()
 
     def listbox_row_factory(self, element: SafeElement) -> Gtk.Widget:
         if element.is_entry:
@@ -123,14 +128,10 @@ class UnlockedDatabase(Gtk.Box):
         self.pathbar = Pathbar(self)
         self.headerbar = UnlockedHeaderBar(self)
 
-        self.clipboard = Gdk.Display.get_default().get_clipboard()
-
         # Contains the "main page" with the BrowserListBox.
         self._unlocked_db_stack.add_named(self.search, "search")
 
         self.search.initialize()
-
-        self.start_database_lock_timer()
 
         self.show_browser_page(self.current_element)
 
@@ -371,9 +372,8 @@ class UnlockedDatabase(Gtk.Box):
             self.window.start_database_opening_routine(filepath)
         else:
             self.window.view = self.window.View.UNLOCKED_DATABASE
-            self.start_save_loop()
+            self.setup()
             self._update_headerbar()
-            self.start_database_lock_timer()
 
     def lock_timeout_database(self):
         self.database_manager.props.locked = True
@@ -392,7 +392,7 @@ class UnlockedDatabase(Gtk.Box):
         * cancel all timers
         * unregistrer from dbus
 
-        :param bool show_save_dialog: chooe to delete temporary files
+        This is the opposite of setup().
         """
         logging.debug("Cleaning database %s", self.database_manager.database_path)
 
@@ -450,11 +450,13 @@ class UnlockedDatabase(Gtk.Box):
             )
 
     def start_save_loop(self):
+        logging.debug("Starting automatic save loop")
         self.save_loop = GLib.timeout_add_seconds(30, self.threaded_save_loop)
 
     def threaded_save_loop(self) -> bool:
         """Saves the safe as long as it returns True."""
         if passwordsafe.config_manager.get_save_automatically() is True:
+            logging.debug("Automatically saving")
             self.database_manager.save_database()
 
         return GLib.SOURCE_CONTINUE
@@ -467,6 +469,7 @@ class UnlockedDatabase(Gtk.Box):
         """Register a listener so we get notified about screensave kicking in
 
         In this case we will call self.on_session_lock()"""
+        logging.debug("Subscribed to org.gnome.ScreenSaver")
         connection = Gio.Application.get_default().get_dbus_connection()
         self.dbus_subscription_id = connection.signal_subscribe(
             None,

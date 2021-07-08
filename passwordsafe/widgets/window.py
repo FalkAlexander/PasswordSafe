@@ -28,8 +28,8 @@ from passwordsafe.widgets.unlock_database_headerbar import (  # noqa: F401, pyli
 )
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/main_window.ui")
-class MainWindow(Adw.ApplicationWindow):
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/window.ui")
+class Window(Adw.ApplicationWindow):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
     class View(IntEnum):
@@ -39,7 +39,7 @@ class MainWindow(Adw.ApplicationWindow):
         UNLOCKED_DATABASE = 3
         CREATE_DATABASE = 4
 
-    __gtype_name__ = "MainWindow"
+    __gtype_name__ = "Window"
 
     database_manager = NotImplemented
     unlocked_db = None
@@ -113,7 +113,9 @@ class MainWindow(Adw.ApplicationWindow):
             passwordsafe.config_manager.get_dark_theme(),
         )
 
-    def do_size_allocate(self, width: int, height: int, baseline: int) -> None:  # pylint: disable=arguments-differ
+    def do_size_allocate(
+        self, width: int, height: int, baseline: int
+    ) -> None:  # pylint: disable=arguments-differ
         # pylint: disable=arguments-differ
         """Handler for resizing event. It is used to check if
         the layout needs to be updated.
@@ -218,9 +220,7 @@ class MainWindow(Adw.ApplicationWindow):
         if self.unlocked_db:
             auto_save = passwordsafe.config_manager.get_save_automatically()
             is_dirty = self.unlocked_db.database_manager.is_dirty
-            is_current = (
-                self.unlocked_db.database_manager.database_path == filepath
-            )
+            is_current = self.unlocked_db.database_manager.database_path == filepath
             is_locked = self.unlocked_db.database_manager.props.locked
 
             if is_locked:

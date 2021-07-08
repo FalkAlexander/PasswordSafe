@@ -31,9 +31,7 @@ from passwordsafe.widgets.unlocked_database_page import UnlockedDatabasePage
 
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
-
-    # pylint: disable=ungrouped-imports
-    from passwordsafe.main_window import MainWindow
+    from passwordsafe.widgets.window import Window
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/unlocked_database.ui")
@@ -71,10 +69,10 @@ class UnlockedDatabase(Gtk.Box):
         SEARCH = 3
         SELECTION = 4
 
-    def __init__(self, window: MainWindow, dbm: DatabaseManager):
+    def __init__(self, window: Window, dbm: DatabaseManager):
         super().__init__()
         # Instances
-        self.window: MainWindow = window
+        self.window: Window = window
         self.database_manager: DatabaseManager = dbm
 
         root_group = SafeGroup.get_root(dbm)

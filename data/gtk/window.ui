@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="MainWindow" parent="AdwApplicationWindow">
+  <template class="Window" parent="AdwApplicationWindow">
     <child>
       <object class="GtkGestureClick">
         <property name="button">8</property>
@@ -25,7 +25,7 @@
                 <property name="name">unlock_database</property>
                 <property name="child">
                   <object class="UnlockDatabaseHeaderbar" id="unlock_database_headerbar">
-                    <property name="window">MainWindow</property>
+                    <property name="window">Window</property>
                   </object>
                 </property>
               </object>
@@ -68,7 +68,7 @@
                     <property name="name">recent_files</property>
                     <property name="child">
                       <object class="RecentFilesPage" id="_recent_files_page">
-                        <property name="window">MainWindow</property>
+                        <property name="window">Window</property>
                       </object>
                     </property>
                   </object>

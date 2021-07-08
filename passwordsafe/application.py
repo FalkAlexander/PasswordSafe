@@ -7,7 +7,7 @@ from gettext import gettext as _
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from passwordsafe import const
-from passwordsafe.main_window import MainWindow
+from passwordsafe.widgets.window import Window
 
 
 class Application(Gtk.Application):
@@ -55,8 +55,8 @@ class Application(Gtk.Application):
                 window.present()
                 window.start_database_opening_routine(gfile.get_path())
 
-    def new_window(self) -> MainWindow:
-        return MainWindow(application=self)
+    def new_window(self) -> Window:
+        return Window(application=self)
 
     def is_safe_open(self, filepath: str) -> bool:
         for window in self.get_windows():

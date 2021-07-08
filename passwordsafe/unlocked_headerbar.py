@@ -6,7 +6,7 @@ import typing
 from gi.repository import Adw, GObject, Gtk
 
 if typing.TYPE_CHECKING:
-    from passwordsafe.main_window import MainWindow
+    from passwordsafe.widgets.window import Window
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/unlocked_headerbar.ui")
@@ -55,7 +55,7 @@ class UnlockedHeaderBar(Adw.Bin):
         self._unlocked_database.props.selection_mode = True
 
     def _on_mobile_layout_changed(
-        self, _window: MainWindow, _value: GObject.ParamSpecBoolean
+        self, _window: Window, _value: GObject.ParamSpecBoolean
     ) -> None:
         is_mobile = self._window.props.mobile_layout
         self._unlocked_database.action_bar.props.revealed = is_mobile

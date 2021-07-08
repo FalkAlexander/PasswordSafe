@@ -9,3 +9,4 @@ PROFILE = "@PROFILE@"
 
 IS_DEVEL = PROFILE == "Devel"
 SUFFIX = " (Devel)" if IS_DEVEL else ""
+SHORT_NAME = GETTEXT_PACKAGE

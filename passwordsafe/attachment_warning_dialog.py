@@ -7,6 +7,8 @@ import typing
 
 from gi.repository import Gdk, Gio, GLib, Gtk
 
+from passwordsafe import const
+
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
@@ -46,7 +48,7 @@ class AttachmentWarningDialog:
 
     def __open_tmp_file(self, bytes_buffer, filename):
         try:
-            cache_dir = os.path.join(GLib.get_user_cache_dir(), "passwordsafe", "tmp")
+            cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
             file_path = os.path.join(cache_dir, filename)
             window = self.__unlocked_database.window
             if not os.path.exists(cache_dir):

@@ -13,6 +13,7 @@ from typing import Any
 from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 import passwordsafe.config_manager
+from passwordsafe import const
 from passwordsafe.entry_page import EntryPage
 from passwordsafe.entry_row import EntryRow
 from passwordsafe.group_page import GroupPage
@@ -621,7 +622,7 @@ class UnlockedDatabase(GObject.GObject):
             self.save_loop = None
 
         # Cleanup temporal files created when opening attachments.
-        cache_dir = os.path.join(GLib.get_user_cache_dir(), "passwordsafe", "tmp")
+        cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
         shutil.rmtree(cache_dir, ignore_errors=True)
 
     def save_database(self, notification: bool = False) -> None:

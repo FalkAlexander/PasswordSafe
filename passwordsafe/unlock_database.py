@@ -17,6 +17,7 @@ from pykeepass.exceptions import (
 )
 
 import passwordsafe.config_manager
+from passwordsafe import const
 from passwordsafe.config_manager import UnlockMethod
 from passwordsafe.database_manager import DatabaseManager
 from passwordsafe.unlocked_database import UnlockedDatabase
@@ -435,7 +436,7 @@ class UnlockDatabase:
 
         if passwordsafe.config_manager.get_development_backup_mode():
             cache_dir = os.path.join(
-                GLib.get_user_cache_dir(), "passwordsafe", "backup"
+                GLib.get_user_cache_dir(), const.SHORT_NAME, "backup"
             )
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)

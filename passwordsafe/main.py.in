@@ -5,6 +5,7 @@ import sys
 import os
 import locale
 import gettext
+from gettext import gettext as _
 
 import gi
 
@@ -50,7 +51,7 @@ def main():
     )
     Gio.resources_register(resource)
 
-    GLib.set_application_name(const.NAME + const.SUFFIX)
+    GLib.set_application_name(_("Password Safe") + const.SUFFIX)
 
     from passwordsafe.application import Application
 

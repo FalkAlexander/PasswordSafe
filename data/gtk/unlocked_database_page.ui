@@ -8,20 +8,11 @@
           <object class="GtkScrolledWindow" id="_scrolled_window">
             <property name="hscrollbar_policy">never</property>
             <child>
-              <object class="AdwClamp" id="clamp">
-                <property name="margin-top">24</property>
-                <property name="margin-bottom">24</property>
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
-                <child>
-                  <object class="GtkListBox" id="list_box">
-                    <property name="selection_mode">none</property>
-                    <property name="valign">start</property>
-                    <style>
-                      <class name="boxed-list"/>
-                    </style>
-                  </object>
-                </child>
+              <object class="GtkListView" id="_list_view">
+                <property name="single_click_activate">True</property>
+                <style>
+                  <class name="navigation-sidebar"/>
+                </style>
               </object>
             </child>
           </object>

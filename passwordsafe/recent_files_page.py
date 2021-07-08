@@ -98,3 +98,6 @@ class RecentFileRow(Adw.ActionRow):
         self.set_name(name)
         self.set_selectable(False)
         self.set_activatable(True)
+        # TODO This is done so that it does not grab focus,
+        # and then the focus in not on the password entry.
+        self.set_focus_on_click(False)

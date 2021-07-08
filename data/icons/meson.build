@@ -12,17 +12,9 @@ install_data (
 )
 endif
 
-icondir = join_paths('hicolor', 'symbolic', 'apps')
-if get_option('profile') == 'development'
+symbolicdir = join_paths('hicolor', 'symbolic', 'apps')
 install_data (
-    join_paths(icondir, 'org.gnome.PasswordSafe-symbolic.svg'),
-    install_dir: join_paths(datadir, icondir),
-    rename: 'org.gnome.PasswordSafe.Devel-symbolic.svg'
+    join_paths(symbolicdir, 'org.gnome.PasswordSafe-symbolic.svg'),
+    install_dir: join_paths(datadir, symbolicdir),
+    rename: '@0@-symbolic.svg'.format(application_id),
 )
-else
-install_data (
-    join_paths(icondir, 'org.gnome.PasswordSafe-symbolic.svg'),
-    install_dir: join_paths(datadir, icondir)
-)
-endif
-

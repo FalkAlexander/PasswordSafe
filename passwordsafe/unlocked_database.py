@@ -161,18 +161,20 @@ class UnlockedDatabase(Gtk.Box):
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
-        self.props.current_element = group
+        page_name = group.uuid.urn
+
+        page = self._stack.get_child_by_name(page_name)
+        if page:
+            self.props.current_element = page.group
+        else:
+            self.props.current_element = group
+            new_page = UnlockedDatabasePage(self, group)
+            self._stack.add_named(new_page, page_name)
 
         self._unlocked_db_stack.set_visible_child(self._stack)
         self._unlocked_db_deck.set_visible_child(self._unlocked_db_stack)
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP
-
-        page_name = group.uuid.urn
-
-        if not self._stack.get_child_by_name(page_name):
-            new_page = UnlockedDatabasePage(self, group)
-            self._stack.add_named(new_page, page_name)
 
         self._stack.set_visible_child_name(page_name)
 

@@ -38,8 +38,9 @@ configure_file(
 
 # Install mimetype file
 install_data(
-  project_id + '.xml',
-  install_dir: 'share/mime/packages'
+  '@0@.xml'.format(project_id),
+  install_dir: 'share/mime/packages',
+  rename: '@0@.xml'.format(application_id),
 )
 
 desktop_conf = configuration_data()

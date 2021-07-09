@@ -6,6 +6,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
 
+from passwordsafe.password_generator_popover import PasswordGeneratorPopover  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.utils import KeyFileFilter, generate_keyfile
 
 
@@ -73,6 +74,11 @@ class CreateDatabase(Adw.Bin):
             self.stack.set_visible_child_name("select_auth_method")
             self.clear_input_fields()
             self.composite = False
+
+    @Gtk.Template.Callback()
+    def on_password_generated(self, _popover, password):
+        self.password_creation_input.props.text = password
+        self.password_check_input.props.text = password
 
     @Gtk.Template.Callback()
     def on_auth_chooser_row_activated(

@@ -6,7 +6,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, Gtk
 
-from passwordsafe.password_generator_popover import PasswordGeneratorPopover
+from passwordsafe.password_generator_popover import PasswordGeneratorPopover  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
 
 if typing.TYPE_CHECKING:
@@ -41,13 +41,13 @@ class PasswordEntryRow(Adw.Bin):
         self._password_value_entry.bind_property("text", self._safe_entry, "password")
         self._password_value_entry.props.enable_undo = True
 
-        self._pwd_popover = PasswordGeneratorPopover()
-        self._pwd_popover.bind_property("password", self._password_value_entry, "text")
-        self._generate_password_button.set_popover(self._pwd_popover)
-
     @Gtk.Template.Callback()
     def _on_copy_password_button_clicked(self, _widget: Gtk.Button) -> None:
         self.copy_password()
+
+    @Gtk.Template.Callback()
+    def on_password_generated(self, _popover, password):
+        self._password_value_entry.props.text = password
 
     @Gtk.Template.Callback()
     def _on_password_value_changed(self, _entry: Gtk.Entry) -> None:

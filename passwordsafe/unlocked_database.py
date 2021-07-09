@@ -232,7 +232,7 @@ class UnlockedDatabase(GObject.GObject):
 
         # We check if element is in the list model
         for elem in list_model:
-            if elem.uuid == element.uuid:
+            if elem == element:
                 found = True
                 break
             pos += 1
@@ -306,7 +306,7 @@ class UnlockedDatabase(GObject.GObject):
             pos = 0
             found = False
             for element in list_model:
-                if element.uuid == moved_element.uuid:
+                if element == moved_element:
                     found = True
                     break
                 pos += 1

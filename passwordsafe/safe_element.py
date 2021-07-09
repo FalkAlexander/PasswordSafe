@@ -50,6 +50,12 @@ class SafeElement(GObject.GObject):
             if otp_uri:
                 self._otp = parse_uri(otp_uri)
 
+    def __eq__(self, other):  # pylint: disable=arguments-differ
+        if isinstance(other, SafeElement):
+            return self.uuid == other.uuid
+
+        return False
+
     @GObject.Signal()
     def updated(self):
         """Signal used to tell whenever there have been any changed that should

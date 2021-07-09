@@ -91,21 +91,6 @@ class DatabaseManager(GObject.GObject):
 
         return safe_entry
 
-    # Delete an entry
-    def delete_from_database(self, entity: Entry | Group) -> None:
-        """Delete an Entry or a Group from the database.
-
-        :param entity: Entity or Group to delete
-        """
-        if isinstance(entity, Entry):
-            self.db.delete_entry(entity)
-        else:
-            self.db.delete_group(entity)
-
-        self.emit("element-removed", entity.uuid)
-        if entity.parentgroup is not None:
-            entity.parentgroup.touch(modify=True)
-
     def duplicate_entry(self, entry: Entry) -> None:
         """Duplicate an entry
 
@@ -258,7 +243,6 @@ class DatabaseManager(GObject.GObject):
 
     @GObject.Signal(arg_types=(object,))
     def element_removed(self, element_uuid: UUID) -> None:
-        self.is_dirty = True
         logging.debug("Element %s removed from safe", element_uuid)
 
     @GObject.Signal(arg_types=(SafeElement, object, object))

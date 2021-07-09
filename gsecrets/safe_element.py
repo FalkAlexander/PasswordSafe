@@ -74,6 +74,19 @@ class SafeElement(GObject.GObject):
         it also updates the last modified time."""
         self._element.touch(modify)
 
+    def delete(self) -> None:
+        """Delete an Element from the database."""
+        element = self._element
+        uuid = self.uuid
+        parentgroup = self.parentgroup
+        if self.is_entry:
+            self._db_manager.db.delete_entry(element)
+        else:
+            self._db_manager.db.delete_group(element)
+
+        parentgroup.updated()
+        self._db_manager.emit("element-removed", uuid)
+
     @property
     def element(self) -> Entry | Group:
         return self._element

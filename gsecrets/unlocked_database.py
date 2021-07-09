@@ -314,7 +314,7 @@ class UnlockedDatabase(Gtk.Box):
         """Delete the visible entry from the menu."""
         parent_group = self.props.current_element.parentgroup
         uuid = self.props.current_element.element.uuid.urn
-        self.database_manager.delete_from_database(self.props.current_element.element)
+        self.props.current_element.delete()
 
         self.show_browser_page(parent_group)
 

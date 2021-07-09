@@ -100,16 +100,10 @@ class SelectionModeHeaderbar(Adw.Bin):
                 return
 
         for entry_row in self.entries_selected:
-            safe_entry = entry_row.safe_entry
-            self.unlocked_database.database_manager.delete_from_database(
-                safe_entry.entry
-            )
+            entry_row.safe_entry.delete()
 
         for group_row in self.groups_selected:
-            safe_group = group_row.safe_group
-            self.unlocked_database.database_manager.delete_from_database(
-                safe_group.group
-            )
+            group_row.safe_group.delete()
 
         self.unlocked_database.window.send_notification(_("Deletion Completed"))
 

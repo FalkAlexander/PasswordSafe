@@ -93,7 +93,7 @@ class SafeElement(GObject.GObject):
             else:
                 self._element.title = new_name
 
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
     def notes(self) -> str:
@@ -113,7 +113,7 @@ class SafeElement(GObject.GObject):
         if new_notes != self._notes:
             self._notes = new_notes
             self._element.notes = new_notes
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
     def otp(self) -> str:
@@ -134,7 +134,7 @@ class SafeElement(GObject.GObject):
             # Delete existing
             self._otp = None
             self._element.delete_custom_property("otp")
-            self.emit("updated")
+            self.updated()
         elif self._otp and self._otp.secret != otp:
             # Changing an existing OTP
             self._otp.secret = otp
@@ -146,7 +146,7 @@ class SafeElement(GObject.GObject):
 
         if updated:
             self._element.set_custom_property("otp", self._otp.provisioning_uri())
-            self.emit("updated")
+            self.updated()
 
     def otp_interval(self) -> int:
         if self._otp:
@@ -314,7 +314,7 @@ class SafeEntry(SafeElement):
         attachment_id = self._db_manager.db.add_binary(byte_buffer)
         attachment = self._entry.add_attachment(attachment_id, filename)
         self._attachments.append(attachment)
-        self.emit("updated")
+        self.updated()
 
         return attachment
 
@@ -325,7 +325,7 @@ class SafeEntry(SafeElement):
         """
         self._db_manager.db.delete_binary(attachment.id)
         self._attachments.remove(attachment)
-        self.emit("updated")
+        self.updated()
 
     def get_attachment(self, id_: str) -> Attachment | None:
         """Get an attachment from its id.
@@ -366,7 +366,7 @@ class SafeEntry(SafeElement):
         """
         self._entry.set_custom_property(key, value)
         self._attributes[key] = value
-        self.emit("updated")
+        self.updated()
 
     def delete_attribute(self, key: str) -> None:
         """Delete an attribute
@@ -378,7 +378,7 @@ class SafeEntry(SafeElement):
 
         self._entry.delete_custom_property(key)
         self._attributes.pop(key)
-        self.emit("updated")
+        self.updated()
 
     @GObject.Property(type=str, flags=GObject.ParamFlags.READWRITE)
     def color(self) -> str:
@@ -398,7 +398,7 @@ class SafeEntry(SafeElement):
         if new_color != self._color:
             self._color = new_color
             self._entry.set_custom_property(self._color_key, new_color)
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=object, flags=GObject.ParamFlags.READWRITE)
     def icon(self) -> Icon:
@@ -423,7 +423,7 @@ class SafeEntry(SafeElement):
             self._icon_nr = new_icon_nr
             self._entry.icon = new_icon_nr
             self.notify("icon-name")
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READABLE)
     def icon_name(self) -> str:
@@ -452,7 +452,7 @@ class SafeEntry(SafeElement):
         if new_password != self._password:
             self._password = new_password
             self._entry.password = new_password
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
     def url(self) -> str:
@@ -472,7 +472,7 @@ class SafeEntry(SafeElement):
         if new_url != self._url:
             self._url = new_url
             self._entry.url = new_url
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
     def username(self) -> str:
@@ -492,7 +492,7 @@ class SafeEntry(SafeElement):
         if new_username != self._username:
             self._username = new_username
             self._entry.username = new_username
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def expires(self) -> bool:
@@ -503,7 +503,7 @@ class SafeEntry(SafeElement):
         if value != self.entry.expires:
             self.entry.expires = value
             self.props.expired = self.entry.expired
-            self.emit("updated")
+            self.updated()
 
     @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
     def expired(self):
@@ -526,7 +526,7 @@ class SafeEntry(SafeElement):
             )
             self.entry.expiry_time = expired
             self.props.expired = self.entry.expired
-            self.emit("updated")
+            self.updated()
 
 
 class Icon(NamedTuple):

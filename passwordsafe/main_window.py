@@ -200,19 +200,21 @@ class MainWindow(Adw.ApplicationWindow):
             None,
         )
 
-        supported_mime_types = ["application/x-keepass2", "application/octet-stream"]
-
-        filter_text = Gtk.FileFilter()
+        keepass_filter = Gtk.FileFilter()
+        keepass_filter.add_mime_type("application/x-keepass2")
+        keepass_filter.add_pattern("*.kdbx")
         # NOTE: KeePass + version number is a proper name, do not translate
-        filter_text.set_name(_("KeePass 3.1/4 Database"))
-        for mime_type in supported_mime_types:
-            filter_text.add_mime_type(mime_type)
-        opening_dialog.add_filter(filter_text)
+        keepass_filter.set_name(_("KeePass 3.1/4 Database"))
+        opening_dialog.add_filter(keepass_filter)
+
+        binary_filter = Gtk.FileFilter()
+        binary_filter.add_mime_type("application/octet-stream")
+        binary_filter.set_name(_("Any file type"))
+        opening_dialog.add_filter(binary_filter)
 
         opening_dialog.connect(
             "response",
             self._on_open_filechooser_response,
-            supported_mime_types,
             opening_dialog,
         )
         opening_dialog.show()
@@ -221,39 +223,12 @@ class MainWindow(Adw.ApplicationWindow):
         self,
         dialog: Gtk.Dialog,
         response: Gtk.ResponseType,
-        supported_mime_types: list[str],
         _dialog: Gtk.Dialog,
     ) -> None:
         if response == Gtk.ResponseType.ACCEPT:
             db_gfile = dialog.get_file()
             db_filename = db_gfile.get_path()
             logging.debug("File selected: %s", db_filename)
-
-            try:
-                db_file_info = db_gfile.query_info(
-                    # https://gitlab.gnome.org/GNOME/gvfs/-/issues/529
-                    # we can remove standard::content-type when the fix
-                    # is merged in distros' gvfs version.
-                    "standard::content-type,standard::fast-content-type",
-                    Gio.FileQueryInfoFlags.NONE,
-                    None,
-                )
-            except GLib.Error as error:
-                self.send_notification(_("Could not open file"))
-                logging.debug(
-                    "Unable to query info for file %s: %s", db_filename, error.message
-                )
-                return
-
-            file_content_type = db_file_info.get_attribute_as_string(
-                "standard::fast-content-type"
-            )
-            file_mime_type = Gio.content_type_get_mime_type(file_content_type)
-            if file_mime_type not in supported_mime_types:
-                self.send_notification(
-                    _("Could not open file: Mime type not supported")
-                )
-                return
 
             database_already_opened = False
 

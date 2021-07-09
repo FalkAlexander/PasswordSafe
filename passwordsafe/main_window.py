@@ -307,8 +307,13 @@ class MainWindow(Adw.ApplicationWindow):
         stock_db_file.copy(new_db_file, Gio.FileCopyFlags.OVERWRITE)
 
         tab_title: str = os.path.basename(filepath)
-        self.database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
-        GLib.idle_add(self.start_database_creation_routine, tab_title)
+        try:
+            self.database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
+        except Exception as err:  # pylint: disable=broad-except
+            logging.debug("Could not create safe: %s", err)
+            self.send_notification(_("Could not create new Safe"))
+        else:
+            GLib.idle_add(self.start_database_creation_routine, tab_title)
 
     def start_database_creation_routine(self, tab_title):
         self._main_view.set_visible_child(self.container)

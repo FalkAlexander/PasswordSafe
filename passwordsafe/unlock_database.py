@@ -10,11 +10,6 @@ from gettext import gettext as _
 from pathlib import Path
 
 from gi.repository import Gio, GLib, Gtk
-from pykeepass.exceptions import (
-    CredentialsError,
-    HeaderChecksumError,
-    PayloadChecksumError,
-)
 
 import passwordsafe.config_manager
 from passwordsafe import const
@@ -380,16 +375,11 @@ class UnlockDatabase:
             self.database_manager = DatabaseManager(
                 self.database_filepath, password, keyfile
             )
-            GLib.idle_add(self._open_database_success)
-        except (
-            OSError,
-            ValueError,
-            AttributeError,
-            CredentialsError,
-            PayloadChecksumError,
-            HeaderChecksumError,
-        ):
+        except Exception as err:  # pylint: disable=broad-except
+            logging.debug("Could not open safe: %s", err)
             GLib.idle_add(self._open_database_failure)
+        else:
+            GLib.idle_add(self._open_database_success)
 
     def _open_database_failure(self):
         button = self._open_database_update_entries(True)

@@ -24,10 +24,9 @@ if typing.TYPE_CHECKING:
 
 class SafeElement(GObject.GObject):
 
-    _db_manager: DatabaseManager | None = None
     sorted_handler_id: int | None = None
 
-    def __init__(self, element: Entry | Group):
+    def __init__(self, db_manager: DatabaseManager, element: Entry | Group):
         """GObject to handle a safe element. The underlying pykeepass element
         can be obtainied via the `element` property, when it is certain the
         element is a Group or Entry, the properties `entry` and `group` should
@@ -35,6 +34,7 @@ class SafeElement(GObject.GObject):
         super().__init__()
 
         self._element = element
+        self._db_manager = db_manager
 
         self.is_group = isinstance(self, SafeGroup)
         self.is_entry = isinstance(self, SafeEntry)
@@ -162,10 +162,9 @@ class SafeGroup(SafeElement):
         :param DatabaseManager db_manager:  database of the group
         :param Group group: group to handle
         """
-        super().__init__(group)
+        super().__init__(db_manager, group)
 
         self._group: Group = group
-        self._db_manager: DatabaseManager = db_manager
 
     @staticmethod
     def get_root(db_manager: DatabaseManager) -> SafeGroup:
@@ -201,9 +200,8 @@ class SafeEntry(SafeElement):
         :param DatabaseManager db_manager:  database of the entry
         :param Entry entry: entry to handle
         """
-        super().__init__(entry)
+        super().__init__(db_manager, entry)
 
-        self._db_manager: DatabaseManager = db_manager
         self._entry: Entry = entry
 
         self._attachments: list[Attachment] = entry.attachments or []

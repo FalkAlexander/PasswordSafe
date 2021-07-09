@@ -24,9 +24,10 @@ def install_excepthook():
         old_hook(etype, evalue, etb)
         app = Gio.Application.get_default()
         if app is not None:
-           app.quit()
+            app.quit()
 
         sys.exit()
+
     sys.excepthook = new_hook
 
 

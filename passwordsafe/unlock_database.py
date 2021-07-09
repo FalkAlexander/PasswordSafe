@@ -217,6 +217,7 @@ class UnlockDatabase:
     def on_dialog_response(
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
     ) -> None:
+        dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             self.keyfile_path = dialog.get_file().get_path()
             logging.debug("Keyfile selected: %s", self.keyfile_path)
@@ -265,6 +266,7 @@ class UnlockDatabase:
     def _on_composite_filechooser_response(
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
     ) -> None:
+        dialog.destroy()
         composite_unlock_select_button = self.builder.get_object(
             "composite_unlock_select_button"
         )

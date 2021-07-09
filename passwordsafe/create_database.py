@@ -143,6 +143,7 @@ class CreateDatabase(Gtk.Stack):
     def _on_filechooser_response(
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
     ) -> None:
+        dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             self.generate_keyfile_button.set_sensitive(False)
             self.generate_keyfile_button.set_label(_("Generating…"))

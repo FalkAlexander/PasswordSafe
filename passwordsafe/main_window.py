@@ -225,6 +225,7 @@ class MainWindow(Adw.ApplicationWindow):
         response: Gtk.ResponseType,
         _dialog: Gtk.Dialog,
     ) -> None:
+        dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             db_gfile = dialog.get_file()
             db_filename = db_gfile.get_path()
@@ -282,6 +283,7 @@ class MainWindow(Adw.ApplicationWindow):
     def _on_create_filechooser_response(
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
     ) -> None:
+        dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             filepath = dialog.get_file().get_path()
 

@@ -341,6 +341,7 @@ class EntryPage(Gtk.ScrolledWindow):
     def _on_select_filechooser_response(
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
     ) -> None:
+        dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             safe_entry: SafeEntry = self.unlocked_database.current_element
             for attachment in dialog.get_files():

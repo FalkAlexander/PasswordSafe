@@ -159,6 +159,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         button: Gtk.Button,
         _dialog: Gtk.Dialog,
     ) -> None:
+        select_dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             selected_keyfile = select_dialog.get_file().get_path()
             keyfile_hash: str = self.database_manager.create_keyfile_hash(
@@ -201,6 +202,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     def _on_filechooser_response(
         self, save_dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
     ) -> None:
+        save_dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             spinner = Gtk.Spinner()
             spinner.start()

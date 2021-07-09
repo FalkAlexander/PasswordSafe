@@ -57,6 +57,7 @@ class AttachmentEntryRow(Adw.ActionRow):
         response: Gtk.ResponseType,
         _dialog: Gtk.Dialog,
     ) -> None:
+        dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             bytes_buffer = self.entry.get_attachment_content(self.attachment)
             stream = Gio.File.replace(

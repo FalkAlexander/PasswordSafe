@@ -10,6 +10,8 @@ from passwordsafe.safe_element import SafeEntry
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/expiration_date_row.ui")
 class ExpirationDateRow(Adw.Bin):
+    """Expiration date widget, all the dates are stored and gathered
+    in UTC and showed in the local timezone."""
 
     __gtype_name__ = "ExpirationDateRow"
 
@@ -41,7 +43,7 @@ class ExpirationDateRow(Adw.Bin):
             "notify::expired",
             self.on_safe_entry_notify_expired,
         )
-        expiry_date = entry.expiry_time
+        expiry_date = entry.expiry_time.to_local()
 
         if entry.props.expires:
             self.calendar.select_day(expiry_date)
@@ -60,7 +62,7 @@ class ExpirationDateRow(Adw.Bin):
     @Gtk.Template.Callback()
     def on_edit_button_clicked(self, _button: Gtk.Button) -> None:
         safe_entry = self.props.safe_entry
-        date = self.calendar.get_date()
+        date = self.calendar.get_date().to_utc()
         safe_entry.expiry_time = date
         self.action_row.props.title = date.format("%e %b %Y")
 

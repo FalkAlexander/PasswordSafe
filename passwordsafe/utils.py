@@ -16,17 +16,18 @@ if typing.TYPE_CHECKING:
 
 
 def format_time(time: datetime | None) -> str:
+    """Displays a UTC datetime in the local timezone."""
     if not time:
         return ""
 
-    timestamp = GLib.DateTime.new_local(
+    timestamp = GLib.DateTime.new_utc(
         time.year,
         time.month,
         time.day,
         time.hour,
         time.minute,
         time.second,
-    )
+    ).to_local()
     return timestamp.format("%e %b %Y %R")
 
 

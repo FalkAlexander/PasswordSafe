@@ -4,7 +4,7 @@ from __future__ import annotations
 import ntpath
 import os
 import threading
-import time
+from datetime import datetime
 from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
@@ -12,7 +12,7 @@ from gi.repository import Adw, GLib, Gtk
 import passwordsafe.config_manager as config
 import passwordsafe.password_generator
 from passwordsafe.utils import KeyFileFilter
-from passwordsafe.utils import generate_keyfile
+from passwordsafe.utils import format_time, generate_keyfile
 from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
 
 
@@ -275,8 +275,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.version_label.set_text(str(version[0]) + "." + str(version[1]))
 
         # Date
-        date = time.ctime(os.path.getctime(path))
-        self.date_label.set_text(date)
+        # TODO g_file_info_get_creation_date_time introduced in GLib 2.70.
+        epoch_time = os.path.getctime(path)  # Time since UNIX epoch.
+        date = datetime.utcfromtimestamp(epoch_time)
+        self.date_label.set_text(format_time(date))
 
         # Encryption Algorithm
         enc_alg = _("Unknown")

@@ -506,12 +506,14 @@ class SafeEntry(SafeElement):
 
     @property
     def expiry_time(self) -> GLib.DateTime:
+        """Returns the expiration time in the UTC timezone."""
         time = self.entry.expiry_time
         gtime = GLib.DateTime.new_utc(time.year, time.month, time.day, 0, 0, 0)
         return gtime
 
     @expiry_time.setter  # type: ignore
     def expiry_time(self, value: GLib.DateTime) -> None:
+        """Sets the expiration time in the UTC timezone."""
         if value != self.entry.expiry_time:
             expired = datetime(
                 value.get_year(),

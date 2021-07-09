@@ -25,6 +25,12 @@ flatpak:
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         MESON_ARGS: "-Dprofile=development"
 
+codespell:
+  stage: check
+  script:
+    - dnf install -y codespell
+    - codespell -S "*.png,*.po,.git,*.jpg,eff_large_wordlist.txt,.mypy_cache,_build" -f
+
 flake8:
   stage: check
   script:

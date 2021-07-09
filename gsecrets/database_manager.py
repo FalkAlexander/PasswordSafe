@@ -10,7 +10,7 @@ from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
 
-from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
+from gsecrets.safe_element import SafeElement, SafeEntry
 
 
 class DatabaseManager(GObject.GObject):
@@ -53,43 +53,6 @@ class DatabaseManager(GObject.GObject):
     #
     # Database Modifications
     #
-
-    # Add new group to database
-    def add_group_to_database(self, name, icon, notes, parent_group):
-        new_location = parent_group.uuid
-        group = self.db.add_group(parent_group, name, icon=icon, notes=notes)
-        parent_group.touch(modify=True)
-        safe_group = SafeGroup(self, group)
-        self.emit("element-added", safe_group, new_location)
-
-        return safe_group
-
-    # Add new entry to database
-    def add_entry_to_database(
-        self,
-        group: Group,
-        name: str | None = "",
-        username: str | None = "",
-        password: str | None = "",
-    ) -> SafeEntry:
-        force: bool = self.check_entry_in_group_exists("", group)
-        entry = self.db.add_entry(
-            group,
-            name,
-            username,
-            password,
-            url=None,
-            notes=None,
-            expiry_time=None,
-            tags=None,
-            icon="0",
-            force_creation=force,
-        )
-        group.touch(modify=True)
-        safe_entry = SafeEntry(self, entry)
-        self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
-
-        return safe_entry
 
     def duplicate_entry(self, entry: Entry) -> None:
         """Duplicate an entry
@@ -238,7 +201,6 @@ class DatabaseManager(GObject.GObject):
         """Signal emitted when a new element was added to the database
         it carries the UUID in string format of the parent group to which
         the entry was added."""
-        self.is_dirty = True
         logging.debug("Added new element to safe")
 
     @GObject.Signal(arg_types=(object,))

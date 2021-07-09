@@ -298,16 +298,14 @@ class UnlockedDatabase(Gtk.Box):
 
     def on_add_entry_action(self) -> None:
         """CB when the Add Entry menu was clicked"""
-        group = self.props.current_element.group
-        new_entry: SafeEntry = self.database_manager.add_entry_to_database(group)
+        group = self.props.current_element
+        new_entry: SafeEntry = group.new_entry()
         self.show_edit_page(new_entry, new=True)
 
     def on_add_group_action(self) -> None:
         """CB when menu entry Add Group is clicked"""
-        self.database_manager.is_dirty = True
-        safe_group = self.database_manager.add_group_to_database(
-            "", "0", "", self.props.current_element.group
-        )
+        group = self.props.current_element
+        safe_group = group.new_subgroup()
         self.show_edit_page(safe_group)
 
     def on_element_delete_action(self) -> None:

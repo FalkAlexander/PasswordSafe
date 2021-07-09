@@ -240,6 +240,44 @@ class SafeGroup(SafeElement):
         # pylint: disable=no-member
         return SafeGroup(db_manager, db_manager.db.root_group)
 
+    def new_entry(
+        self, title: str = "", username: str = "", password: str = ""
+    ) -> SafeEntry:
+        """Adds new entry to self."""
+        group = self.group
+        force: bool = self._db_manager.check_entry_in_group_exists("", group)
+
+        new_entry = self._db_manager.db.add_entry(
+            group,
+            title,
+            username,
+            password,
+            url=None,
+            notes=None,
+            expiry_time=None,
+            tags=None,
+            icon="0",
+            force_creation=force,
+        )
+        safe_entry = SafeEntry(self._db_manager, new_entry)
+        self.updated()
+        self._db_manager.emit("element-added", safe_entry, self.uuid)
+
+        return safe_entry
+
+    def new_subgroup(
+        self, name: str = "", icon: str | None = None, notes: str = ""
+    ) -> SafeGroup:
+        """Adds new subgroup to self."""
+        new_group = self._db_manager.db.add_group(
+            self.group, name, icon=icon, notes=notes
+        )
+        safe_group = SafeGroup(self._db_manager, new_group)
+        self.updated()
+        self._db_manager.emit("element-added", safe_group, self.uuid)
+
+        return safe_group
+
     @property
     def subgroups(self) -> list[SafeGroup]:
         return [SafeGroup(self._db_manager, group) for group in self._group.subgroups]

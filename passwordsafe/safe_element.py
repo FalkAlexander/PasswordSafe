@@ -67,10 +67,7 @@ class SafeElement(GObject.GObject):
     def touch(self, modify: bool = False) -> None:
         """Updates the last accessed time. If modify is true
         it also updates the last modified time."""
-        now = datetime.now()
-        self.element.atime = now
-        if modify:
-            self.element.mtime = now
+        self._element.touch(modify)
 
     @property
     def element(self) -> SafeElement:

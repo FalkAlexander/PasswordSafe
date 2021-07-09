@@ -9,8 +9,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
 
-import passwordsafe.config_manager as config
-import passwordsafe.password_generator
+from passwordsafe.password_generator_popover import PasswordGeneratorPopover  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.utils import KeyFileFilter
 from passwordsafe.utils import format_time, generate_keyfile
 from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
@@ -118,21 +117,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         return repeat_password == new_password and new_password
 
     @Gtk.Template.Callback()
-    def on_generate_password(self, _button: Gtk.Button) -> None:
-        use_lowercase = config.get_generator_use_lowercase()
-        use_uppercase = config.get_generator_use_uppercase()
-        use_numbers = config.get_generator_use_numbers()
-        use_symbols = config.get_generator_use_symbols()
-        length = config.get_generator_length()
-
-        generated_password = passwordsafe.password_generator.generate(
-            length, use_uppercase, use_lowercase, use_numbers, use_symbols
-        )
-
-        self.new_password_entry.set_text(generated_password)
-        self.confirm_password_entry.set_text(generated_password)
-
-    @Gtk.Template.Callback()
     def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
@@ -235,6 +219,11 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         save_thread = threading.Thread(target=self.auth_save_process)
         save_thread.daemon = True
         save_thread.start()
+
+    @Gtk.Template.Callback()
+    def on_password_generated(self, _popover, password):
+        self.confirm_password_entry.props.text = password
+        self.new_password_entry.props.text = password
 
     def auth_save_process(self):
         self.database_manager.save_database()

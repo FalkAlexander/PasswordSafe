@@ -44,9 +44,13 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkButton" id="new_password_generate_button">
+                      <object class="GtkMenuButton">
                         <property name="icon_name">security-high-symbolic</property>
-                        <signal name="clicked" handler="on_generate_password"/>
+                        <property name="popover">
+                          <object class="PasswordGeneratorPopover">
+                            <signal name="generated" handler="on_password_generated" swapped="no"/>
+                          </object>
+                        </property>
                       </object>
                     </child>
                     <style>

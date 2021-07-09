@@ -45,11 +45,6 @@ class SafeElement(GObject.GObject):
         else:
             self._name = element.title or ""
 
-        if self.is_entry:
-            otp_uri = element.get_custom_property("otp")
-            if otp_uri:
-                self._otp = parse_uri(otp_uri)
-
     def __eq__(self, other):  # pylint: disable=arguments-differ
         if isinstance(other, SafeElement):
             return self.uuid == other.uuid
@@ -219,6 +214,10 @@ class SafeEntry(SafeElement):
         self._password: str = entry.password or ""
         self._url: str = entry.url or ""
         self._username: str = entry.username or ""
+
+        otp_uri = entry.get_custom_property("otp")
+        if otp_uri:
+            self._otp = parse_uri(otp_uri)
 
         # Check if the entry has expired every 10 minutes.
         GLib.timeout_add_seconds(600, self._is_expired)

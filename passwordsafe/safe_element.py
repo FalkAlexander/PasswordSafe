@@ -25,7 +25,6 @@ if typing.TYPE_CHECKING:
 class SafeElement(GObject.GObject):
 
     _db_manager: DatabaseManager | None = None
-    _otp: OTP | None = None
     sorted_handler_id: int | None = None
 
     def __init__(self, element: Entry | Group):
@@ -115,63 +114,6 @@ class SafeElement(GObject.GObject):
             self._element.notes = new_notes
             self.updated()
 
-    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
-    def otp(self) -> str:
-        if self._otp:
-            return self._otp.secret
-
-        return ""
-
-    @otp.setter  # type: ignore
-    def otp(self, otp: str) -> None:
-        updated = False
-
-        # Some sites give the secret in chunks split by spaces for easy reading
-        # lets strip those as they'll produce an invalid secret.
-        otp = otp.replace(" ", "")
-
-        if not otp and self._otp:
-            # Delete existing
-            self._otp = None
-            self._element.delete_custom_property("otp")
-            self.updated()
-        elif self._otp and self._otp.secret != otp:
-            # Changing an existing OTP
-            self._otp.secret = otp
-            updated = True
-        elif otp:
-            # Creating brand new OTP.
-            self._otp = TOTP(otp, issuer=self.name)
-            updated = True
-
-        if updated:
-            self._element.set_custom_property("otp", self._otp.provisioning_uri())
-            self.updated()
-
-    def otp_interval(self) -> int:
-        if self._otp:
-            return self._otp.interval  # type: ignore
-
-        return 30
-
-    # Returns current OTP
-    def otp_token(self):  # pylint: disable=inconsistent-return-statements
-        if self._otp:
-            try:  # pylint: disable=inconsistent-return-statements
-                return self._otp.now()
-            except binascii.Error:
-                logging.debug(
-                    "Error cought in OTP token generation (likely invalid base32 secret)."
-                )
-
-    def otp_lifespan(self):
-        """Returns seconds until token expires."""
-        if self._otp:
-            now = datetime.now().timestamp()
-            return self._otp.interval - now % self._otp.interval
-
-        return None
-
     @property
     def parentgroup(self) -> SafeGroup:
         """Parent Group of the element
@@ -250,10 +192,11 @@ class SafeGroup(SafeElement):
 
 
 class SafeEntry(SafeElement):
-    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-instance-attributes, too-many-public-methods
 
     _color_key = "color_prop_LcljUMJZ9X"
     _note_key = "Notes"
+    _otp: OTP | None = None
     _otp_key = "otp"
 
     def __init__(self, db_manager: DatabaseManager, entry: Entry) -> None:
@@ -433,6 +376,62 @@ class SafeEntry(SafeElement):
         :rtype: str
         """
         return self.props.icon.name
+
+    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    def otp(self) -> str:
+        if self._otp:
+            return self._otp.secret
+
+        return ""
+
+    @otp.setter  # type: ignore
+    def otp(self, otp: str) -> None:
+        updated = False
+
+        # Some sites give the secret in chunks split by spaces for easy reading
+        # lets strip those as they'll produce an invalid secret.
+        otp = otp.replace(" ", "")
+
+        if not otp and self._otp:
+            # Delete existing
+            self._otp = None
+            self._element.delete_custom_property("otp")
+            self.updated()
+        elif self._otp and self._otp.secret != otp:
+            # Changing an existing OTP
+            self._otp.secret = otp
+            updated = True
+        elif otp:
+            # Creating brand new OTP.
+            self._otp = TOTP(otp, issuer=self.name)
+            updated = True
+
+        if updated:
+            self._element.set_custom_property("otp", self._otp.provisioning_uri())
+            self.updated()
+
+    def otp_interval(self) -> int:
+        if self._otp:
+            return self._otp.interval  # type: ignore
+
+        return 30
+
+    def otp_lifespan(self):
+        """Returns seconds until token expires."""
+        if self._otp:
+            now = datetime.now().timestamp()
+            return self._otp.interval - now % self._otp.interval
+
+        return None
+
+    def otp_token(self):  # pylint: disable=inconsistent-return-statements
+        if self._otp:
+            try:  # pylint: disable=inconsistent-return-statements
+                return self._otp.now()
+            except binascii.Error:
+                logging.debug(
+                    "Error cought in OTP token generation (likely invalid base32 secret)."
+                )
 
     @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
     def password(self) -> str:

@@ -349,7 +349,6 @@ class SafeEntry(SafeElement):
         try:
             return ICONS[self._icon_nr]
         except KeyError:
-            logging.warning("Unknown icon %s", self._icon_nr)
             return ICONS["0"]
 
     @icon.setter  # type: ignore

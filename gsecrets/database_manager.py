@@ -2,15 +2,12 @@
 from __future__ import annotations
 
 import logging
-from gettext import gettext as _
 from uuid import UUID
 
 from gi.repository import Gio, GObject
 from pykeepass import PyKeePass
-from pykeepass.entry import Entry
-from pykeepass.group import Group
 
-from gsecrets.safe_element import SafeElement, SafeEntry
+from gsecrets.safe_element import SafeElement
 
 
 class DatabaseManager(GObject.GObject):
@@ -53,41 +50,6 @@ class DatabaseManager(GObject.GObject):
     #
     # Database Modifications
     #
-
-    def duplicate_entry(self, entry: Entry) -> None:
-        """Duplicate an entry
-
-        :param Entry entry: entry to duplicate
-        """
-        title: str = entry.title or ""
-        username: str = entry.username or ""
-        password: str = entry.password or ""
-
-        # NOTE: With clone is meant a duplicated object, not the process
-        # of cloning/duplication; "the" clone
-        clone_entry: Entry = self.db.add_entry(
-            entry.parentgroup,
-            title + " - " + _("Clone"),
-            username,
-            password,
-            url=entry.url,
-            notes=entry.notes,
-            expiry_time=entry.expiry_time,
-            tags=entry.tags,
-            icon=entry.icon,
-            force_creation=True,
-        )
-        clone_entry.expires = entry.expires
-
-        # Add custom properties
-        for key in entry.custom_properties:
-            value: str = entry.custom_properties[key] or ""
-            clone_entry.set_custom_property(key, value)
-
-        safe_entry = SafeEntry(self, clone_entry)
-        self.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
-        if entry.parentgroup is not None:
-            entry.parentgroup.touch(modify=True)
 
     # Write all changes to database
     def save_database(self, notification=False):

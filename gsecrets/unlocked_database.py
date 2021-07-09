@@ -321,7 +321,7 @@ class UnlockedDatabase(Gtk.Box):
             self._stack.remove(page)
 
     def on_entry_duplicate_action(self):
-        self.database_manager.duplicate_entry(self.props.current_element.entry)
+        self.props.current_element.duplicate()
         parent_group = self.props.current_element.parentgroup
 
         self.show_browser_page(parent_group)

@@ -5,6 +5,7 @@ import binascii
 import logging
 import typing
 
+from gettext import gettext as _
 from datetime import datetime, timezone
 from enum import Enum
 from typing import NamedTuple
@@ -344,6 +345,40 @@ class SafeEntry(SafeElement):
         :rtype: Entry
         """
         return self._entry
+
+    def duplicate(self):
+        """Duplicate an entry
+        """
+        title: str = self.name or ""
+        username: str = self.username or ""
+        password: str = self.password or ""
+
+        # NOTE: With clone is meant a duplicated object, not the process
+        # of cloning/duplication; "the" clone
+        entry = self.entry
+        clone_entry: Entry = self._db_manager.db.add_entry(
+            entry.parentgroup,
+            title + " - " + _("Clone"),
+            username,
+            password,
+            url=entry.url,
+            notes=entry.notes,
+            expiry_time=entry.expiry_time,
+            tags=entry.tags,
+            icon=entry.icon,
+            force_creation=True,
+        )
+        clone_entry.expires = entry.expires
+
+        # Add custom properties
+        for key in entry.custom_properties:
+            value: str = entry.custom_properties[key] or ""
+            clone_entry.set_custom_property(key, value)
+
+        safe_entry = SafeEntry(self._db_manager, clone_entry)
+
+        self.parentgroup.updated()
+        self._db_manager.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
 
     def _is_expired(self) -> bool:
         self.props.expired = self.element.expired

@@ -189,13 +189,6 @@ class SafeGroup(SafeElement):
         """Returns the private pykeepass group."""
         return self._group
 
-    def append(self, safe_element: SafeElement) -> None:
-        if safe_element.is_group:
-            self._group.append(safe_element.group)
-            return
-
-        self._group.append(safe_element.entry)
-
 
 class SafeEntry(SafeElement):
     # pylint: disable=too-many-instance-attributes, too-many-public-methods

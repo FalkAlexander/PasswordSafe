@@ -14,9 +14,7 @@ class UnlockDatabaseHeaderbar(Adw.Bin):
     title = Gtk.Template.Child()
     back_button = Gtk.Template.Child()
 
-    window = GObject.Property(
-        type=Adw.ApplicationWindow, flags=GObject.ParamFlags.READWRITE
-    )
+    window = GObject.Property(type=Adw.ApplicationWindow)
 
     @Gtk.Template.Callback()
     def _on_back_button_clicked(self, _widget: Gtk.Button) -> None:

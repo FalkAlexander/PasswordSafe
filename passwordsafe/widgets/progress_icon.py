@@ -9,7 +9,7 @@ class ProgressIcon(Gtk.Widget):
     __gtype_name__ = "ProgressIcon"
 
     _progress: float = 0.0
-    size = GObject.Property(type=int, default=16, flags=GObject.ParamFlags.READWRITE)
+    size = GObject.Property(type=int, default=16)
 
     def __init__(self):
         super().__init__()
@@ -53,7 +53,7 @@ class ProgressIcon(Gtk.Widget):
 
             ctx.fill()
 
-    @GObject.Property(type=float, default=0.0, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=float, default=0.0)
     def progress(self) -> float:
         return self._progress
 

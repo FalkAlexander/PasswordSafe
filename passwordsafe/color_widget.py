@@ -30,9 +30,7 @@ class ColorButton(Gtk.FlowBoxChild):
 
     _selected_image = Gtk.Template.Child()
 
-    selected = GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE
-    )
+    selected = GObject.Property(type=bool, default=False)
 
     def __init__(self, color: Color, selected: bool):
         """RadioButton to select the color of an entry

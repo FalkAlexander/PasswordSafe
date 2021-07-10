@@ -35,9 +35,7 @@ class DatabaseManager(GObject.GObject):
     _is_dirty = False  # Does the database need saving?
     save_running = False
 
-    locked = GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE
-    )
+    locked = GObject.Property(type=bool, default=False)
     is_dirty = GObject.Property(type=bool, default=False)
 
     def __init__(

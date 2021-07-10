@@ -25,7 +25,7 @@ class ExpirationDateRow(Adw.Bin):
 
     _safe_entry = None
 
-    @GObject.Property(type=SafeEntry, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=SafeEntry)
     def safe_entry(self) -> SafeEntry:
         return self._safe_entry
 

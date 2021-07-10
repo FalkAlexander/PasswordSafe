@@ -40,9 +40,7 @@ class SelectionModeHeaderbar(Adw.Bin):
     _pathbar_bin = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
 
-    selected_elements = GObject.Property(
-        type=int, default=0, flags=GObject.ParamFlags.READWRITE
-    )
+    selected_elements = GObject.Property(type=int, default=0)
 
     def __init__(self, unlocked_database):
         super().__init__()
@@ -247,7 +245,7 @@ class SelectionModeHeaderbar(Adw.Bin):
         the later removes selected entries only for the visible listbox."""
         debug("Clear selection signal emitted")
 
-    @GObject.Property(type=bool, default=True, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=bool, default=True)
     def cut_mode(self) -> bool:
         return self._cut_mode
 

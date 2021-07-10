@@ -12,9 +12,7 @@ class Pathbar(Gtk.Box):
 
     buttons = Gio.ListStore.new(PathbarButton)
 
-    current_element = GObject.Property(
-        type=SafeElement, flags=GObject.ParamFlags.READWRITE
-    )
+    current_element = GObject.Property(type=SafeElement)
 
     def __init__(self, unlocked_database):
         super().__init__()

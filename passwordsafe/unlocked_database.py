@@ -57,9 +57,7 @@ class UnlockedDatabase(Gtk.Box):
     _unlocked_db_deck = Gtk.Template.Child()
     _unlocked_db_stack = Gtk.Template.Child()
 
-    selection_mode = GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READWRITE
-    )
+    selection_mode = GObject.Property(type=bool, default=False)
 
     class Mode(IntEnum):
         ENTRY = 0
@@ -219,7 +217,7 @@ class UnlockedDatabase(Gtk.Box):
     # Group and Entry Management
     #
 
-    @GObject.Property(type=SafeElement, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=SafeElement)
     def current_element(self) -> SafeElement:
         return self._current_element
 
@@ -502,7 +500,7 @@ class UnlockedDatabase(Gtk.Box):
         parent = self.props.current_element.parentgroup
         self.show_browser_page(parent)
 
-    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=bool, default=False)
     def search_active(self) -> bool:
         """Property to know if search is active.
 
@@ -527,7 +525,7 @@ class UnlockedDatabase(Gtk.Box):
         else:
             self.show_browser_page(self.current_element)
 
-    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=bool, default=False)
     def database_locked(self):
         """Get database lock status
 
@@ -536,7 +534,7 @@ class UnlockedDatabase(Gtk.Box):
         """
         return self.database_manager.props.locked
 
-    @GObject.Property(type=int, default=0, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=int, default=0)
     def mode(self) -> int:
         return self._mode
 

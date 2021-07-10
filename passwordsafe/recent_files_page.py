@@ -15,9 +15,7 @@ class RecentFilesPage(Gtk.Box):
 
     _last_opened_listbox: Gtk.ListBox = Gtk.Template.Child()
 
-    window = GObject.Property(
-        type=Adw.ApplicationWindow, flags=GObject.ParamFlags.READWRITE
-    )
+    window = GObject.Property(type=Adw.ApplicationWindow)
 
     def __init__(self):
         """Recently opened files page widget

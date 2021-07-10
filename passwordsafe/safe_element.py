@@ -68,7 +68,7 @@ class SafeElement(GObject.GObject):
     def element(self) -> SafeElement:
         return self._element
 
-    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=str, default="")
     def name(self) -> str:
         """Get element title or name
 
@@ -92,7 +92,7 @@ class SafeElement(GObject.GObject):
 
             self.updated()
 
-    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=str, default="")
     def notes(self) -> str:
         """Get entry notes
 
@@ -316,7 +316,7 @@ class SafeEntry(SafeElement):
         self._attributes.pop(key)
         self.updated()
 
-    @GObject.Property(type=str, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=str, default=Color.NONE.value)
     def color(self) -> str:
         """Get entry color
 
@@ -336,7 +336,7 @@ class SafeEntry(SafeElement):
             self._entry.set_custom_property(self._color_key, new_color)
             self.updated()
 
-    @GObject.Property(type=object, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=object)
     def icon(self) -> Icon:
         """Get icon number
 
@@ -369,7 +369,7 @@ class SafeEntry(SafeElement):
         """
         return self.props.icon.name
 
-    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=str, default="")
     def otp(self) -> str:
         if self._otp:
             return self._otp.secret
@@ -425,7 +425,7 @@ class SafeEntry(SafeElement):
                     "Error cought in OTP token generation (likely invalid base32 secret)."
                 )
 
-    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=str, default="")
     def password(self) -> str:
         """Get entry password
 
@@ -445,7 +445,7 @@ class SafeEntry(SafeElement):
             self._entry.password = new_password
             self.updated()
 
-    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=str, default="")
     def url(self) -> str:
         """Get entry url
 
@@ -465,7 +465,7 @@ class SafeEntry(SafeElement):
             self._entry.url = new_url
             self.updated()
 
-    @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=str, default="")
     def username(self) -> str:
         """Get entry username
 
@@ -485,7 +485,7 @@ class SafeEntry(SafeElement):
             self._entry.username = new_username
             self.updated()
 
-    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=bool, default=False)
     def expires(self) -> bool:
         return self.entry.expires
 
@@ -496,7 +496,7 @@ class SafeEntry(SafeElement):
             self.props.expired = self.entry.expired
             self.updated()
 
-    @GObject.Property(type=bool, default=False, flags=GObject.ParamFlags.READWRITE)
+    @GObject.Property(type=bool, default=False)
     def expired(self):
         return self.entry.expired
 

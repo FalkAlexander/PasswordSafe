@@ -114,38 +114,49 @@
                 </child>
                 <child>
                   <object class="GtkBox">
-                    <property name="margin_top">10</property>
+                    <property name="spacing">6</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkPasswordEntry" id="password_creation_input">
-                        <property name="width_request">250</property>
-                        <property name="halign">end</property>
-                        <property name="hexpand">True</property>
-                        <property name="show-peek-icon">True</property>
-                        <signal name="activate" handler="on_password_creation_button_clicked" swapped="no"/>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuButton">
-                        <property name="icon_name">security-high-symbolic</property>
-                        <property name="popover">
-                          <object class="PasswordGeneratorPopover">
-                            <signal name="generated" handler="on_password_generated" swapped="no"/>
+                      <object class="GtkBox">
+                        <property name="margin_top">10</property>
+                        <child>
+                          <object class="GtkPasswordEntry" id="password_creation_input">
+                            <property name="width_request">250</property>
+                            <property name="halign">end</property>
+                            <property name="hexpand">True</property>
+                            <property name="show-peek-icon">True</property>
+                            <signal name="activate" handler="on_password_creation_button_clicked" swapped="no"/>
                           </object>
-                        </property>
+                        </child>
+                        <child>
+                          <object class="GtkMenuButton">
+                            <property name="icon_name">security-high-symbolic</property>
+                            <property name="popover">
+                              <object class="PasswordGeneratorPopover">
+                                <signal name="generated" handler="on_password_generated" swapped="no"/>
+                              </object>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="password_creation_button">
+                            <property name="halign">start</property>
+                            <property name="valign">start</property>
+                            <property name="hexpand">True</property>
+                            <property name="icon_name">go-next-symbolic</property>
+                            <signal name="clicked" handler="on_password_creation_button_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="linked"/>
+                        </style>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkButton" id="password_creation_button">
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="hexpand">True</property>
-                        <property name="icon_name">go-next-symbolic</property>
-                        <signal name="clicked" handler="on_password_creation_button_clicked" swapped="no"/>
+                      <object class="PasswordLevelBar" id="level_bar">
+                        <property name="password" bind-source="password_creation_input" bind-property="text"/>
                       </object>
                     </child>
-                    <style>
-                      <class name="linked"/>
-                    </style>
                   </object>
                 </child>
               </object>

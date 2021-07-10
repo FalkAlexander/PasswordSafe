@@ -56,7 +56,13 @@ class Application(Gtk.Application):
                 window.start_database_opening_routine(gfile.get_path())
 
     def new_window(self) -> Window:
-        return Window(application=self)
+        """Creates a new window inside its own group. This is done
+        so that modal windows don't make other windows insensitive."""
+        window_group = Gtk.WindowGroup()
+        window = Window(application=self)
+
+        window_group.add_window(window)
+        return window
 
     def is_safe_open(self, filepath: str) -> bool:
         for window in self.get_windows():

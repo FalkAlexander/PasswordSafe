@@ -12,7 +12,7 @@ from passwordsafe import const
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
-    from passwordsafe.entry_page import EntryPage
+    from passwordsafe.entry_page import EntryPage  # pylint: disable=ungrouped-imports
 
 
 class AttachmentWarningDialog:

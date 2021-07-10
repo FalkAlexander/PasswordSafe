@@ -109,6 +109,10 @@ class UnlockedDatabase(Gtk.Box):
             "save-notification", self.on_database_save_notification
         )
 
+        # Sets the menu's save button sensitive property.
+        save_action = window.lookup_action("db.save_dirty")
+        dbm.bind_property("is-dirty", save_action, "enabled")
+
     def setup(self):
         self.start_save_loop()
         self.register_dbus_signal()

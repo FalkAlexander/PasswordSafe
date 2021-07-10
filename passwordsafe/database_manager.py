@@ -21,6 +21,7 @@ class DatabaseManager(GObject.GObject):
 
     Useful attributes:
      .database_path: str containing the filepath of the database
+     .is_dirty: bool telling whether the database is in a dirty state
 
     Group objects are of type `pykeepass.group.Group`
     Entry objects are of type `pykeepass.entry.Entry`
@@ -37,6 +38,7 @@ class DatabaseManager(GObject.GObject):
     locked = GObject.Property(
         type=bool, default=False, flags=GObject.ParamFlags.READWRITE
     )
+    is_dirty = GObject.Property(type=bool, default=False)
 
     def __init__(
         self,
@@ -319,21 +321,6 @@ class DatabaseManager(GObject.GObject):
     def version(self):
         """returns the database version"""
         return self.db.version
-
-    @property
-    def is_dirty(self) -> bool:
-        return self._is_dirty
-
-    @is_dirty.setter
-    def is_dirty(self, value: bool) -> None:
-        """
-        Enables the save_dirty action whenever the Safe is in a
-        dirty state. This makes the save menu button sensitive.
-        """
-        app = Gio.Application.get_default()
-        save_action = app.props.active_window.lookup_action("db.save_dirty")
-        save_action.set_enabled(value)
-        self._is_dirty = value
 
     @GObject.Signal(arg_types=(bool,))
     def save_notification(self, _saved):

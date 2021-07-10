@@ -23,8 +23,6 @@ class PasswordGeneratorPopover(Gtk.Popover):
     _stack = Gtk.Template.Child()
     _words_spin_button = Gtk.Template.Child()
 
-    password = GObject.Property(type=str, default="")
-
     def __init__(self):
         """Popover to generate a new password for an entry
 
@@ -70,4 +68,8 @@ class PasswordGeneratorPopover(Gtk.Popover):
             words: int = self._words_spin_button.get_value_as_int()
             pass_text = str(Passphrase.generate(words, separator))
 
-        self.props.password = pass_text
+        self.emit("generated", pass_text)
+
+    @GObject.Signal(arg_types=(str,))
+    def generated(self, password):
+        return

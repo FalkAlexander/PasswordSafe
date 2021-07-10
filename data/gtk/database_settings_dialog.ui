@@ -120,7 +120,7 @@
                 </child>
                 <child>
                   <object class="PasswordLevelBar" id="level_bar">
-                    <property name="entry">new_password_entry</property>
+                    <property name="password" bind-source="new_password_entry" bind-property="text"/>
                     <layout>
                       <property name="column">1</property>
                       <property name="row">3</property>

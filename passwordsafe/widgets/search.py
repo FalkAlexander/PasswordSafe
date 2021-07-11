@@ -44,6 +44,9 @@ class Search(Adw.Bin):
 
         self._search_entry.set_key_capture_widget(self.unlocked_database.window)
 
+    def do_dispose(self):
+        self._search_entry.set_key_capture_widget(None)
+
     def _on_items_changed(
         self, list_model: Gio.ListModel, _pos: int, _removed: int, _added: int
     ) -> None:

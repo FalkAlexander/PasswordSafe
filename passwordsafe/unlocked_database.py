@@ -41,6 +41,8 @@ class UnlockedDatabase(Gtk.Box):
     __gtype_name__ = "UnlockedDatabase"
 
     # Connection handlers
+    db_locked_handler: int | None = None
+    db_save_handler: int | None = None
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
     dbus_subscription_id: int | None = None
@@ -104,14 +106,36 @@ class UnlockedDatabase(Gtk.Box):
         self.clipboard = Gdk.Display.get_default().get_clipboard()
 
         self.connect("notify::selection-mode", self._on_selection_mode_changed)
-        self.database_manager.connect("notify::locked", self._on_database_lock_changed)
-        self.database_manager.connect(
+        self.db_locked_handler = self.database_manager.connect(
+            "notify::locked", self._on_database_lock_changed
+        )
+        self.db_save_handler = self.database_manager.connect(
             "save-notification", self.on_database_save_notification
         )
 
         # Sets the menu's save button sensitive property.
         save_action = window.lookup_action("db.save_dirty")
         dbm.bind_property("is-dirty", save_action, "enabled")
+
+    def do_dispose(self):
+        logging.debug("Database disposed")
+        self.cleanup()
+
+        if self.db_locked_handler:
+            self.database_manager.disconnect(self.db_locked_handler)
+            self.db_locked_handler = None
+
+        if self.db_save_handler:
+            self.database_manager.disconnect(self.db_save_handler)
+            self.db_save_handler = None
+
+        self.search.do_dispose()
+
+        self.edit_entry_headerbar.unparent()
+        self.edit_group_headerbar.unparent()
+        self.search_headerbar.unparent()
+        self.selection_mode_headerbar.unparent()
+        self.headerbar.unparent()
 
     def setup(self):
         self.start_save_loop()

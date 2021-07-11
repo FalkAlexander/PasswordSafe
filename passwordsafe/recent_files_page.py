@@ -77,7 +77,7 @@ class RecentFilesPage(Gtk.Box):
                 if auto_save:
                     database.save_database()
 
-                database.cleanup()
+                self.props.window.unlocked_db.do_dispose()
                 self.props.window.unlocked_db = None
                 self.props.window.start_database_opening_routine(file_path)
 

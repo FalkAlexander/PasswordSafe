@@ -40,10 +40,6 @@ class UnlockedDatabase(Gtk.Box):
     # pylint: disable=too-many-public-methods
     __gtype_name__ = "UnlockedDatabase"
 
-    # Widgets
-    headerbar = NotImplemented
-    pathbar = NotImplemented
-
     # Connection handlers
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
@@ -78,6 +74,7 @@ class UnlockedDatabase(Gtk.Box):
 
         # Actionbar has to be setup before edit entry & group headerbars.
         mobile_pathbar = Pathbar(self)
+        self.pathbar = Pathbar(self)
         self.action_bar.pack_start(mobile_pathbar)
 
         # Headerbars
@@ -85,11 +82,13 @@ class UnlockedDatabase(Gtk.Box):
         self.edit_group_headerbar = EditElementHeaderbar(self, PageType.GROUP)
         self.search_headerbar = SearchHeaderbar()
         self.selection_mode_headerbar = SelectionModeHeaderbar(self)
+        self.headerbar = UnlockedHeaderBar(self)
 
         self.window.add_headerbar(self.edit_entry_headerbar)
         self.window.add_headerbar(self.edit_group_headerbar)
         self.window.add_headerbar(self.search_headerbar)
         self.window.add_headerbar(self.selection_mode_headerbar)
+        self.window.add_headerbar(self.headerbar)
 
         # self.search has to be loaded after the search headerbar.
         self._search_active = False
@@ -127,9 +126,6 @@ class UnlockedDatabase(Gtk.Box):
     #
 
     def assemble_listbox(self):
-        self.pathbar = Pathbar(self)
-        self.headerbar = UnlockedHeaderBar(self)
-
         # Contains the "main page" with the BrowserListBox.
         self._unlocked_db_stack.add_named(self.search, "search")
 

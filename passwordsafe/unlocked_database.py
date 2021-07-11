@@ -44,12 +44,12 @@ class UnlockedDatabase(Gtk.Box):
     headerbar = NotImplemented
     pathbar = NotImplemented
 
-    # Objects
+    # Connection handlers
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
+    dbus_subscription_id: int | None = None
     _lock_timer_handler: int | None = None
     save_loop: int | None = None  # If int, a thread periodically saves the database
-    dbus_subscription_id = NotImplemented
 
     action_bar = Gtk.Template.Child()
     _edit_page_bin = Gtk.Template.Child()
@@ -410,8 +410,10 @@ class UnlockedDatabase(Gtk.Box):
             self._lock_timer_handler = None
 
         # Do not listen to screensaver kicking in anymore
-        connection = Gio.Application.get_default().get_dbus_connection()
-        connection.signal_unsubscribe(self.dbus_subscription_id)
+        if self.dbus_subscription_id:
+            connection = Gio.Application.get_default().get_dbus_connection()
+            connection.signal_unsubscribe(self.dbus_subscription_id)
+            self.dbus_subscription_id = None
 
         # stop the save loop
         if self.save_loop:

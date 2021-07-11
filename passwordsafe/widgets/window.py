@@ -41,7 +41,6 @@ class Window(Adw.ApplicationWindow):
 
     __gtype_name__ = "Window"
 
-    database_manager = NotImplemented
     unlocked_db = None
 
     _create_database_bin = Gtk.Template.Child()
@@ -344,13 +343,13 @@ class Window(Adw.ApplicationWindow):
         stock_db_file.copy(new_db_file, Gio.FileCopyFlags.OVERWRITE)
 
         try:
-            self.database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
+            database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
         except Exception as err:  # pylint: disable=broad-except
             logging.debug("Could not create safe: %s", err)
             self.send_notification(_("Could not create new Safe"))
 
         self._spinner.stop()
-        create_database = CreateDatabase(self, self.database_manager)
+        create_database = CreateDatabase(self, database_manager)
         self._create_database_bin.props.child = create_database
         self.view = self.View.CREATE_DATABASE
 

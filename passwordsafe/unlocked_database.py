@@ -93,9 +93,12 @@ class UnlockedDatabase(Gtk.Box):
         # self.search has to be loaded after the search headerbar.
         self._search_active = False
         self.search: Search = Search(self)
+        self._unlocked_db_stack.add_named(self.search, "search")
+        self.search.initialize()
 
         # Browser Mode
-        self.assemble_listbox()
+        self.show_browser_page(self.current_element)
+
         self.setup()
 
         self.clipboard = Gdk.Display.get_default().get_clipboard()
@@ -120,18 +123,6 @@ class UnlockedDatabase(Gtk.Box):
             return EntryRow(self, element)
 
         return GroupRow(self, element)
-
-    #
-    # Stack Pages
-    #
-
-    def assemble_listbox(self):
-        # Contains the "main page" with the BrowserListBox.
-        self._unlocked_db_stack.add_named(self.search, "search")
-
-        self.search.initialize()
-
-        self.show_browser_page(self.current_element)
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.start_database_lock_timer()

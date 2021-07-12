@@ -38,6 +38,8 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
         Adw.init()
 
+        Gtk.Window.set_default_icon_name(const.APP_ID)
+
         self.load_css()
         self.setup_actions()
         self.add_global_accelerators()

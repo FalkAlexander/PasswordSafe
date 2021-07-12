@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 from gettext import gettext as _
 
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from passwordsafe import const
 from passwordsafe.widgets.window import Window
@@ -38,6 +38,7 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
         Adw.init()
 
+        self.load_css()
         self.setup_actions()
         self.add_global_accelerators()
 
@@ -117,6 +118,17 @@ class Application(Gtk.Application):
     def on_quit_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         for window in self.get_windows():
             window.close()
+
+    def load_css(self) -> None:
+        """Load passwordsafe.css and enable it."""
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_resource("org/gnome/PasswordSafe/passwordsafe.css")
+
+        display = Gdk.Display.get_default()
+        if display:
+            Gtk.StyleContext.add_provider_for_display(
+                display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            )
 
     def add_global_accelerators(self):
         self.set_accels_for_action("app.quit", ["<primary>q"])

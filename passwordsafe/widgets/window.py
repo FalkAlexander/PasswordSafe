@@ -6,7 +6,7 @@ import threading
 from enum import IntEnum
 from gettext import gettext as _
 
-from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
 import passwordsafe.config_manager
 from passwordsafe.create_database import CreateDatabase
@@ -84,22 +84,10 @@ class Window(Adw.ApplicationWindow):
         window_size = passwordsafe.config_manager.get_window_size()
         self.set_default_size(window_size[0], window_size[1])
 
-        self.load_custom_css()
         self.apply_theme()
 
         if Gio.Application.get_default().development_mode:
             self.add_css_class("devel")
-
-    def load_custom_css(self) -> None:
-        """Load passwordsafe.css and enable it."""
-        display = Gdk.Display.get_default()
-
-        css_provider = Gtk.CssProvider()
-        css_provider.load_from_resource("org/gnome/PasswordSafe/passwordsafe.css")
-
-        self.get_style_context().add_provider_for_display(
-            display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-        )
 
     def apply_theme(self) -> None:
         """Set the bright/dark theme depending on the configuration"""

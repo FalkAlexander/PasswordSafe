@@ -103,10 +103,7 @@ class Window(Adw.ApplicationWindow):
     ) -> None:  # pylint: disable=arguments-differ
         # pylint: disable=arguments-differ
         """Handler for resizing event. It is used to check if
-        the layout needs to be updated.
-
-        :param GdkEvent event: event
-        """
+        the layout needs to be updated."""
         new_mobile_layout = width < 700
         if new_mobile_layout != self.props.mobile_layout:
             self.props.mobile_layout = new_mobile_layout

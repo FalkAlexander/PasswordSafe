@@ -63,13 +63,17 @@ class PasswordGeneratorPopover(Gtk.Popover):
             pass_text: str = generate_pwd(
                 length, use_uppercase, use_lowercase, use_numbers, use_symbols
             )
+            self.emit("generated", pass_text)
         else:
             separator: str = self._separator_entry.props.text
             words: int = self._words_spin_button.get_value_as_int()
-            pass_text = str(Passphrase.generate(words, separator))
-
-        self.emit("generated", pass_text)
+            passphrase_generator = Passphrase()
+            passphrase_generator.connect("generated", self.on_passphrase_generated)
+            passphrase_generator.generate(words, separator)
 
     @GObject.Signal(arg_types=(str,))
     def generated(self, password):
         return
+
+    def on_passphrase_generated(self, _passphrase_gen, passphrase):
+        self.emit("generated", passphrase)

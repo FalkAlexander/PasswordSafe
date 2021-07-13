@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import logging
 import os
-import shutil
 import threading
 import typing
 from enum import IntEnum
@@ -432,8 +431,21 @@ class UnlockedDatabase(Gtk.Box):
             self.save_loop = None
 
         # Cleanup temporal files created when opening attachments.
+        def callback(gfile, result):
+            try:
+                success = gfile.delete_finish(result)
+                if not success:
+                    raise Exception("IO operation error")
+
+            except Exception as err:  # pylint: disable=broad-except
+                logging.debug("Could not delete temporal file: %s", err)
+
         cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
-        shutil.rmtree(cache_dir, ignore_errors=True)
+        for root, _dirs, files in os.walk(cache_dir):
+            for file_name in files:
+                file_path = os.path.join(root, file_name)
+                gfile = Gio.File.new_for_path(file_path)
+                gfile.delete_async(GLib.PRIORITY_DEFAULT, None, callback)
 
     def save_database(self, notification: bool = False) -> None:
         """Save the database.

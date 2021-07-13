@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import logging
 import typing
 from gettext import gettext as _
-from logging import warning
 
 from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
 
@@ -344,18 +344,23 @@ class EntryPage(Adw.Bin):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             safe_entry: SafeEntry = self.unlocked_database.current_element
-            for attachment in dialog.get_files():
+
+            def callback(gfile, result):
                 try:
-                    byte_buffer = attachment.load_bytes()[0].get_data()
-                    filename = attachment.get_basename()
-                    new_attachment = safe_entry.add_attachment(byte_buffer, filename)
+                    gbytes, _stream = gfile.load_bytes_finish(result)
+                    if not gbytes:
+                        raise Exception("IO operation error")
+
+                except Exception as err:  # pylint: disable=broad-except
+                    logging.debug("Could not read attachment: %s", err)
+                else:
+                    filename = gfile.get_basename()
+                    data = gbytes.get_data()
+                    new_attachment = safe_entry.add_attachment(data, filename)
                     self.add_attachment_row(new_attachment)
-                except GLib.Error as err:
-                    warning(
-                        "Could not create new keyfile %s: %s",
-                        filename,
-                        err.message,
-                    )
+
+            for attachment in dialog.get_files():
+                attachment.load_bytes_async(None, callback)
 
     def add_attachment_row(self, attachment):
         safe_entry: SafeEntry = self.unlocked_database.current_element

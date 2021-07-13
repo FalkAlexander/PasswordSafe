@@ -145,6 +145,7 @@ class CreateDatabase(Adw.Bin):
             None,
         )
         keyfile_dlg.set_modal(True)
+        keyfile_dlg.set_current_name(_("Keyfile"))
         keyfile_dlg.add_filter(KeyFileFilter().file_filter)
 
         keyfile_dlg.connect("response", self._on_filechooser_response, keyfile_dlg)

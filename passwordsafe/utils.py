@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import logging
 import secrets
 import typing
 from gettext import gettext as _
@@ -9,7 +8,7 @@ from typing import Callable
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
-from gi.repository import Gio, GLib, Gtk
+from gi.repository import Gio, GLib, Gtk, GObject
 
 if typing.TYPE_CHECKING:
     from datetime import datetime
@@ -35,19 +34,22 @@ def create_random_data(bytes_buffer):
     return secrets.token_bytes(bytes_buffer)
 
 
-def generate_keyfile(gfile: Gio.File, callback: Callable[[], None]) -> None:
+def generate_keyfile(
+    gfile: Gio.File, callback: Callable[[GObject.Object, Gio.Task], None]
+) -> None:
     key = get_random_bytes(32)
     cipher = AES.new(key, AES.MODE_EAX)
     ciphertext, tag = cipher.encrypt_and_digest(create_random_data(96))  # type: ignore
     contents = cipher.nonce + tag + ciphertext  # type: ignore
 
-    try:
-        gfile.replace_contents(
-            contents, None, False, Gio.FileCreateFlags.REPLACE_DESTINATION, None
-        )
-        callback()
-    except GLib.Error as err:
-        logging.debug("Could not create keyfile: %s", err.message)
+    gfile.replace_contents_async(
+        contents,
+        None,
+        False,
+        Gio.FileCreateFlags.REPLACE_DESTINATION,
+        None,
+        callback,
+    )
 
 
 class KeyFileFilter:

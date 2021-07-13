@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import logging
 import ntpath
 import os
 import threading
@@ -196,10 +197,20 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             keyfile = save_dialog.get_file()
             self.new_keyfile_path = keyfile.get_path()
 
-            def callback():
-                self.generate_keyfile_button.set_icon_name("object-select-symbolic")
+            def callback(gfile, result):
+                try:
+                    success, _ = gfile.replace_contents_finish(result)
+                    if not success:
+                        raise Exception("IO operation error")
 
-            GLib.idle_add(generate_keyfile, keyfile, callback)
+                except Exception as err:  # pylint: disable=broad-except
+                    self.generate_keyfile_button.set_icon_name("security-high-symbolic")
+                    logging.debug("Could not create keyfile: %s", err)
+                    # TODO Handle error in the UI, implement a revealer with error css.
+                else:
+                    self.generate_keyfile_button.set_icon_name("object-select-symbolic")
+
+            generate_keyfile(keyfile, callback)
 
     @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):

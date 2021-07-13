@@ -162,15 +162,26 @@ class CreateDatabase(Adw.Bin):
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
 
-            def callback():
-                if self.composite is False:
-                    self.database_manager.password = None
+            def callback(gfile, result):
+                try:
+                    success, _ = gfile.replace_contents_finish(result)
+                    if not success:
+                        raise Exception("IO operation error")
 
-                self.database_manager.keyfile = keyfile_path
-                self.database_manager.save_database()
-                self.success_page()
+                except Exception as err:  # pylint: disable=broad-except
+                    logging.debug("Could not create keyfile: %s", err)
+                    self.window.send_notification(_("Could not create keyfile"))
+                    self.generate_keyfile_button.set_sensitive(True)
+                    self.generate_keyfile_button.set_label(_("Generate"))
+                else:
+                    if self.composite is False:
+                        self.database_manager.password = None
 
-            GLib.idle_add(generate_keyfile, keyfile, callback)
+                    self.database_manager.keyfile = keyfile_path
+                    self.database_manager.save_database()
+                    self.success_page()
+
+            generate_keyfile(keyfile, callback)
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:

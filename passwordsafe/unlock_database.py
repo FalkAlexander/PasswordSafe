@@ -356,11 +356,6 @@ class UnlockDatabase(Adw.Bin):
             self._composite_unlock_failed()
 
     def _open_database_success(self):
-        if self._unlock_method == UnlockMethod.KEYFILE:
-            self.database_manager.set_keyfile_hash(self.keyfile_path)
-        elif self._unlock_method == UnlockMethod.COMPOSITE:
-            self.database_manager.set_keyfile_hash(self.composite_keyfile_path)
-
         if Path(self.database_filepath).suffix == ".kdb":
             self._open_database_failure()
             # NOTE kdb is a an older format for Keepass databases.

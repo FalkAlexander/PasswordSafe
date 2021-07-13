@@ -49,6 +49,8 @@ class DatabaseManager(GObject.GObject):
         # password remains accessible as self.db.password
         self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
+        if keyfile:
+            self.set_keyfile_hash_async(keyfile)
 
     #
     # Database Modifications
@@ -194,7 +196,7 @@ class DatabaseManager(GObject.GObject):
         self.db.keyfile = new_keyfile
         self.is_dirty = True
         if new_keyfile:
-            self.keyfile_hash = self.create_keyfile_hash(new_keyfile)
+            self.set_keyfile_hash_async(new_keyfile)
         else:
             self.keyfile_hash = None
 
@@ -302,9 +304,23 @@ class DatabaseManager(GObject.GObject):
             )
             return ""
 
-    # Set keyfile hash
-    def set_keyfile_hash(self, keyfile_path):
-        self.keyfile_hash = self.create_keyfile_hash(keyfile_path)
+    def set_keyfile_hash_async(self, keyfile_path):
+        gfile = Gio.File.new_for_path(keyfile_path)
+
+        def callback(gfile, result):
+            try:
+                gbytes, _ = gfile.load_bytes_finish(result)
+                if not gbytes:
+                    raise Exception("IO operation error")
+
+            except Exception as err:  # pylint: disable=broad-except
+                logging.debug("Could not set keyfile hash: %s", err)
+            else:
+                keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
+                if keyfile_hash:
+                    self.keyfile_hash = keyfile_hash
+
+        gfile.load_bytes_async(None, callback)
 
     def parent_checker(self, current_group, moved_group):
         """Returns True if moved_group is an ancestor of current_group"""

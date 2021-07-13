@@ -320,23 +320,54 @@ class Window(Adw.ApplicationWindow):
         creation_thread.start()
 
     def start_database_creation_routine(self, filepath):
-        # Copy our stock database file to `filepath`
+        """Copy stock database onto filepath. Most functions are called
+        inside a idle_add, so they get executed in the main thread
+        rather than in the thread where the database is created."""
         stock_db_file: Gio.File = Gio.File.new_for_uri(
             "resource:///org/gnome/PasswordSafe/database.kdbx"
         )
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
-        stock_db_file.copy(new_db_file, Gio.FileCopyFlags.OVERWRITE)
 
-        try:
-            database_manager = DatabaseManager(filepath, "liufhre86ewoiwejmrcu8owe")
-        except Exception as err:  # pylint: disable=broad-except
-            logging.debug("Could not create safe: %s", err)
+        def database_created_callback(database_manager):
+            """Callback to be run on the main thread."""
+            self._spinner.stop()
+            create_database = CreateDatabase(self, database_manager)
+            self._create_database_bin.props.child = create_database
+            self.view = self.View.CREATE_DATABASE
+
+        def error_callback(err):
+            logging.debug("Could not copy new database: %s", err)
+            self._spinner.stop()
+            self.invoke_initial_screen()
             self.send_notification(_("Could not create new Safe"))
 
-        self._spinner.stop()
-        create_database = CreateDatabase(self, database_manager)
-        self._create_database_bin.props.child = create_database
-        self.view = self.View.CREATE_DATABASE
+        def copy_callback(gfile, result):
+            try:
+                success = gfile.copy_finish(result)
+                if not success:
+                    raise Exception("IO operation error")
+
+            except Exception as err:  # pylint: disable=broad-except
+                GLib.idle_add(error_callback, err)
+            else:
+                try:
+                    database_manager = DatabaseManager(
+                        filepath, "liufhre86ewoiwejmrcu8owe"
+                    )
+                except Exception as err:  # pylint: disable=broad-except
+                    GLib.idle_add(error_callback, err)
+                else:
+                    GLib.idle_add(database_created_callback, database_manager)
+
+        stock_db_file.copy_async(
+            new_db_file,
+            Gio.FileCopyFlags.OVERWRITE,
+            GLib.PRIORITY_DEFAULT,
+            None,
+            None,
+            None,
+            copy_callback,
+        )
 
     def save_window_size(self):
         width = self.get_width()

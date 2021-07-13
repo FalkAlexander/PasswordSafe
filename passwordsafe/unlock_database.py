@@ -391,17 +391,24 @@ class UnlockDatabase(Adw.Bin):
             basename = os.path.splitext(ntpath.basename(self.database_filepath))[0]
             backup_name = basename + "_backup_" + current_time + ".kdbx"
             backup = Gio.File.new_for_path(os.path.join(cache_dir, backup_name))
-            try:
-                opened.copy(backup, Gio.FileCopyFlags.NONE)
-            except GLib.Error:
-                warning_msg = (
-                    "Could not copy database file to backup location. This "
-                    "most likely happened because the database is located on "
-                    "a network drive, and Password Safe doesn't have network "
-                    "permission. Either disable development-backup-mode or if "
-                    "PasswordSafe runs as Flatpak grant network permission."
-                )
-                logging.warning(warning_msg)
+
+            def callback(gfile, result):
+                try:
+                    success = gfile.copy_finish(result)
+                    if not success:
+                        raise Exception("IO operation error")
+                except Exception as err:  # pylint: disable=broad-except
+                    logging.warning("Could not save database backup: %s", err)
+
+            opened.copy_async(
+                backup,
+                Gio.FileCopyFlags.NONE,
+                GLib.PRIORITY_DEFAULT,
+                None,
+                None,
+                None,
+                callback,
+            )
 
         already_added = False
         path_listh = []

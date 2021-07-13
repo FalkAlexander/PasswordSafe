@@ -47,22 +47,32 @@ class AttachmentWarningDialog:
             )
 
     def __open_tmp_file(self, bytes_buffer, filename):
-        try:
-            cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
-            file_path = os.path.join(cache_dir, filename)
-            window = self.__unlocked_database.window
-            if not os.path.exists(cache_dir):
-                os.makedirs(cache_dir)
+        cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
+        file_path = os.path.join(cache_dir, filename)
+        window = self.__unlocked_database.window
+        if not os.path.exists(cache_dir):
+            os.makedirs(cache_dir)
 
-            gfile = Gio.File.new_for_path(file_path)
-            output_stream = gfile.replace(
-                None,
-                False,
-                Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
-                None,
-            )
-            output_stream.write_bytes(GLib.Bytes.new(bytes_buffer))
-            output_stream.close()
-            Gtk.show_uri(window, gfile.get_uri(), Gdk.CURRENT_TIME)
-        except GLib.Error as err:
-            logging.debug("Could not load attachment %s: %s", filename, err)
+        gfile = Gio.File.new_for_path(file_path)
+
+        def callback(gfile, result):
+            try:
+                success, _ = gfile.replace_contents_finish(result)
+                if not success:
+                    raise Exception("IO operation error")
+
+            except Exception as err:  # pylint: disable=broad-except
+                logging.debug("Could not load attachment: %s", err)
+                window.send_notification(_("Could not load attachment"))
+            else:
+                Gtk.show_uri(window, gfile.get_uri(), Gdk.CURRENT_TIME)
+
+        contents = GLib.Bytes.new(bytes_buffer)
+        gfile.replace_contents_bytes_async(
+            contents,
+            None,
+            False,
+            Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
+            None,
+            callback,
+        )

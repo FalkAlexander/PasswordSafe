@@ -27,7 +27,7 @@ def format_time(time: datetime | None) -> str:
         time.minute,
         time.second,
     ).to_local()
-    return timestamp.format("%e %b %Y %R")
+    return timestamp.format("%e %b %Y %R")
 
 
 def create_random_data(bytes_buffer):

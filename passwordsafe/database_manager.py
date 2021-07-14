@@ -11,7 +11,6 @@ from pykeepass.entry import Entry
 from pykeepass.group import Group
 
 from passwordsafe.safe_element import SafeElement, SafeEntry, SafeGroup
-from passwordsafe.utils import format_time
 
 
 class DatabaseManager(GObject.GObject):
@@ -253,25 +252,6 @@ class DatabaseManager(GObject.GObject):
         if entry is None:
             return False
         return True
-
-    #
-    # Properties
-    #
-
-    def get_element_creation_date(self, element: SafeElement) -> str:
-        """Returns a string of the Entry|Groups creation time or ''"""
-        elem = element.element
-        return format_time(elem.ctime)
-
-    def get_element_acessed_date(self, element: SafeElement) -> str:
-        """Returns a string of the Entry|Groups access time or ''"""
-        elem = element.element
-        return format_time(elem.atime)
-
-    def get_element_modified_date(self, element: SafeElement) -> str:
-        """Returns a string of the Entry|Groups modification time or ''"""
-        elem = element.element
-        return format_time(elem.mtime)
 
     #
     # Database creation methods

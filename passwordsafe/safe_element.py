@@ -145,9 +145,19 @@ class SafeElement(GObject.GObject):
         return self._element.path
 
     @property
+    def atime(self) -> datetime:
+        """The UTC accessed time of the element."""
+        return self._element.atime
+
+    @property
     def ctime(self) -> datetime:
-        """The creation time of the element."""
+        """The UTC creation time of the element."""
         return self._element.ctime
+
+    @property
+    def mtime(self) -> datetime:
+        """The UTC modified time of the element."""
+        return self._element.mtime
 
 
 class SafeGroup(SafeElement):

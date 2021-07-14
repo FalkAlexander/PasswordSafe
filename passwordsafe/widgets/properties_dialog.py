@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from gi.repository import Adw, Gtk
 
+from passwordsafe.utils import format_time
 from passwordsafe.widgets.preferences_row import PreferencesRow  # noqa: F401, pylint: disable=unused-import
 
 
@@ -31,15 +32,9 @@ class PropertiesDialog(Adw.Window):
         element = self.__database.current_element
         hex_uuid = element.uuid.hex.upper()
         self._uuid_row.props.subtitle = hex_uuid
-        self._accessed_row.props.subtitle = (
-            self.__db_manager.get_element_acessed_date(element)
-        )
-        self._modified_row.props.subtitle = (
-            self.__db_manager.get_element_modified_date(element)
-        )
-        self._created_row.props.subtitle = (
-            self.__db_manager.get_element_creation_date(element)
-        )
+        self._accessed_row.props.subtitle = format_time(element.atime)
+        self._modified_row.props.subtitle = format_time(element.mtime)
+        self._created_row.props.subtitle = format_time(element.ctime)
 
     def __setup_signals(self) -> None:
         self.__db_manager.connect("notify::locked", self.__on_locked)

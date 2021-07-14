@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from gi.repository import Adw, Gtk
 
+from passwordsafe.widgets.preferences_row import PreferencesRow  # noqa: F401, pylint: disable=unused-import
+
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/properties_dialog.ui")
 class PropertiesDialog(Adw.Window):
@@ -11,10 +13,10 @@ class PropertiesDialog(Adw.Window):
 
     __gtype_name__ = "PropertiesDialog"
 
-    _accessed_label = Gtk.Template.Child()
-    _created_label = Gtk.Template.Child()
-    _modified_label = Gtk.Template.Child()
-    _uuid_label = Gtk.Template.Child()
+    _accessed_row = Gtk.Template.Child()
+    _created_row = Gtk.Template.Child()
+    _modified_row = Gtk.Template.Child()
+    _uuid_row = Gtk.Template.Child()
 
     def __init__(self, database):
         super().__init__()
@@ -28,14 +30,14 @@ class PropertiesDialog(Adw.Window):
         """Construct dialog content with the attributes of the Entry|Group"""
         element = self.__database.current_element
         hex_uuid = element.uuid.hex.upper()
-        self._uuid_label.set_text(hex_uuid)
-        self._accessed_label.set_text(
+        self._uuid_row.props.subtitle = hex_uuid
+        self._accessed_row.props.subtitle = (
             self.__db_manager.get_element_acessed_date(element)
         )
-        self._modified_label.set_text(
+        self._modified_row.props.subtitle = (
             self.__db_manager.get_element_modified_date(element)
         )
-        self._created_label.set_text(
+        self._created_row.props.subtitle = (
             self.__db_manager.get_element_creation_date(element)
         )
 

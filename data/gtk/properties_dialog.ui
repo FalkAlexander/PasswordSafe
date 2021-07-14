@@ -2,7 +2,7 @@
 <interface>
   <template class="PropertiesDialog" parent="AdwWindow">
     <property name="default_width">360</property>
-    <property name="default_height">180</property>
+    <property name="default_height">240</property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -30,129 +30,30 @@
         </child>
         <child>
           <object class="AdwClamp">
+            <property name="margin_bottom">18</property>
+            <property name="margin_top">18</property>
+            <property name="margin_start">18</property>
+            <property name="margin_end">18</property>
             <child>
-              <object class="GtkBox" id="frame_box">
-                <property name="width_request">300</property>
-                <property name="valign">start</property>
-                <property name="margin_start">18</property>
-                <property name="margin_end">18</property>
-                <property name="margin_top">12</property>
-                <property name="margin_bottom">12</property>
-                <property name="hexpand">True</property>
-                <property name="orientation">vertical</property>
+              <object class="AdwPreferencesGroup">
                 <child>
-                  <object class="GtkGrid">
-                    <property name="hexpand">False</property>
-                    <property name="row_spacing">6</property>
-                    <property name="column_spacing">12</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">end</property>
-                        <property name="hexpand">False</property>
-                        <property name="label" translatable="yes">UUID</property>
-                        <property name="justify">right</property>
-                        <property name="ellipsize">middle</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">0</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">end</property>
-                        <property name="hexpand">False</property>
-                        <property name="label" translatable="yes">Accessed</property>
-                        <property name="justify">right</property>
-                        <property name="ellipsize">middle</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">1</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Modified</property>
-                        <property name="justify">right</property>
-                        <property name="ellipsize">middle</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">2</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="_uuid_label">
-                        <property name="halign">start</property>
-                        <property name="label">-</property>
-                        <property name="wrap">True</property>
-                        <property name="wrap_mode">char</property>
-                        <property name="selectable">True</property>
-                        <layout>
-                          <property name="column">1</property>
-                          <property name="row">0</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Created</property>
-                        <property name="justify">right</property>
-                        <property name="ellipsize">middle</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                        <layout>
-                          <property name="column">0</property>
-                          <property name="row">3</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="_accessed_label">
-                        <property name="halign">start</property>
-                        <property name="label">-</property>
-                        <property name="ellipsize">end</property>
-                        <layout>
-                          <property name="column">1</property>
-                          <property name="row">1</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="_modified_label">
-                        <property name="halign">start</property>
-                        <property name="label">-</property>
-                        <property name="ellipsize">end</property>
-                        <layout>
-                          <property name="column">1</property>
-                          <property name="row">2</property>
-                        </layout>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="_created_label">
-                        <property name="halign">start</property>
-                        <property name="label">-</property>
-                        <property name="ellipsize">end</property>
-                        <layout>
-                          <property name="column">1</property>
-                          <property name="row">3</property>
-                        </layout>
-                      </object>
-                    </child>
+                  <object class="PreferencesRow" id="_uuid_row">
+                    <property name="title" translatable="yes">UUID</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="PreferencesRow" id="_accessed_row">
+                    <property name="title" translatable="yes">Accessed</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="PreferencesRow" id="_modified_row">
+                    <property name="title" translatable="yes">Modified</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="PreferencesRow" id="_created_row">
+                    <property name="title" translatable="yes">Created</property>
                   </object>
                 </child>
               </object>

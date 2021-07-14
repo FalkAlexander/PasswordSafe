@@ -167,8 +167,8 @@ class DatabaseManager(GObject.GObject):
                 self.db.save()
                 logging.debug("Saved database")
                 self.is_dirty = False
-            except Exception:  # pylint: disable=broad-except
-                logging.error("Error occurred while saving database")
+            except Exception as err:  # pylint: disable=broad-except
+                logging.error("Error occurred while saving database: %s", err)
 
             if notification:
                 self.emit("save-notification", not self.is_dirty)

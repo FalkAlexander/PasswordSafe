@@ -145,3 +145,4 @@ class Application(Gtk.Application):
         self.set_accels_for_action("win.go_back", ["Escape"])
         self.set_accels_for_action("win.entry.copy_password", ["<primary><Shift>c"])
         self.set_accels_for_action("win.entry.copy_user", ["<primary><Shift>b"])
+        self.set_accels_for_action("window.close", ["<primary>w"])

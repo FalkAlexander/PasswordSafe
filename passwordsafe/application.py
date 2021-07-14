@@ -214,11 +214,11 @@ class Application(Gtk.Application):
     def add_global_accelerators(self):
         self.set_accels_for_action("win.settings", ["<primary>comma"])
         self.set_accels_for_action("win.open_database", ["<primary>o"])
-        self.set_accels_for_action("win.new_database", ["<primary><Shift>n"])
+        self.set_accels_for_action("win.new_database", ["<primary>n"])
         self.set_accels_for_action("win.db.save", ["<primary>s"])
         self.set_accels_for_action("win.db.search", ["<primary>f"])
         self.set_accels_for_action("win.db.lock", ["<primary>l"])
-        self.set_accels_for_action("win.db.add_entry", ["<primary>n"])
+        self.set_accels_for_action("win.db.add_entry", ["<primary>e"])
         self.set_accels_for_action("win.db.add_group", ["<primary>g"])
         self.set_accels_for_action("win.go_back", ["Escape"])
         self.set_accels_for_action("win.entry.copy_password", ["<primary><Shift>c"])

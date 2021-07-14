@@ -12,26 +12,21 @@
             <property name="selectable">False</property>
             <property name="icon_name">x-office-calendar-symbolic</property>
             <child>
-              <object class="GtkBox">
-                <property name="spacing">6</property>
-                <child>
-                  <object class="GtkMenuButton" id="edit_button">
-                    <property name="popover">popover</property>
-                    <property name="valign">center</property>
-                    <property name="icon_name">document-edit-symbolic</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton" id="remove_button">
-                    <property name="tooltip_text" translatable="yes">Remove expiration date</property>
-                    <property name="valign">center</property>
-                    <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
-                    <property name="icon_name">user-trash-symbolic</property>
-                    <style>
-                      <class name="destructive-action"/>
-                    </style>
-                  </object>
-                </child>
+              <object class="GtkMenuButton" id="edit_button">
+                <property name="popover">popover</property>
+                <property name="valign">center</property>
+                <property name="icon_name">document-edit-symbolic</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="remove_button">
+                <property name="tooltip_text" translatable="yes">Remove expiration date</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
+                <property name="icon_name">user-trash-symbolic</property>
+                <style>
+                  <class name="destructive-action"/>
+                </style>
               </object>
             </child>
           </object>

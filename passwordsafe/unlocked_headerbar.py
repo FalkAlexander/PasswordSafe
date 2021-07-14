@@ -35,19 +35,16 @@ class UnlockedHeaderBar(Adw.Bin):
         is_mobile = self._window.props.mobile_layout
 
         self._pathbar_bin.set_child(self._pathbar)
-
-        self._unlocked_database.action_bar.props.revealed = is_mobile
+        self._pathbar.props.visible = not is_mobile
 
     def _setup_signals(self):
         self._window.connect("notify::mobile-layout", self._on_mobile_layout_changed)
-
-        self._on_mobile_layout_changed(None, None)
 
         self._pathbar.bind_property(
             "visible",
             self._action_bar,
             "revealed",
-            GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.INVERT_BOOLEAN,
+            GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
         )
 
     @Gtk.Template.Callback()
@@ -58,4 +55,4 @@ class UnlockedHeaderBar(Adw.Bin):
         self, _window: Window, _value: GObject.ParamSpecBoolean
     ) -> None:
         is_mobile = self._window.props.mobile_layout
-        self._unlocked_database.action_bar.props.revealed = is_mobile
+        self._pathbar.props.visible = not is_mobile

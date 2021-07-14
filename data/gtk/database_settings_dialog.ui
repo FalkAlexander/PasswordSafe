@@ -130,6 +130,7 @@
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Keyfile</property>
+            <property name="vexpand">True</property>
             <child>
               <object class="GtkBox">
                 <property name="spacing">44</property>
@@ -215,11 +216,11 @@
         </child>
         <child>
           <object class="AdwPreferencesGroup">
+            <property name="halign">end</property>
+            <property name="valign">end</property>
             <child>
               <object class="GtkButton" id="auth_apply_button">
                 <property name="label" translatable="yes">_Apply Changes</property>
-                <property name="halign">end</property>
-                <property name="valign">end</property>
                 <!-- <property name="vexpand">True</property> -->
                 <property name="use_underline">True</property>
                 <property name="margin_start">10</property>

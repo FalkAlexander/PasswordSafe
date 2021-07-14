@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import logging
 import typing
 from gettext import gettext as _
 
@@ -51,6 +52,17 @@ class AttachmentEntryRow(Adw.ActionRow):
         listbox = self.get_parent()
         listbox.remove(self)
 
+    def _replace_contents_callback(self, gfile, result):
+        try:
+            success, _etag = gfile.replace_contents_finish(result)
+            if not success:
+                raise Exception("IO operation error")
+
+        except Exception as err:  # pylint: disable=broad-except
+            logging.debug("Could not store attachment: %s", err)
+            window = self.get_root()
+            window.send_notification(_("Could not store attachment"))
+
     def _on_save_filechooser_response(
         self,
         dialog: Gtk.Dialog,
@@ -59,13 +71,15 @@ class AttachmentEntryRow(Adw.ActionRow):
     ) -> None:
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
+            gfile = dialog.get_file()
             bytes_buffer = self.entry.get_attachment_content(self.attachment)
-            stream = Gio.File.replace(
-                dialog.get_file(),
+            gbytes = GLib.Bytes.new(bytes_buffer)
+
+            gfile.replace_contents_bytes_async(
+                gbytes,
                 None,
                 False,
                 Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
                 None,
+                self._replace_contents_callback,
             )
-            Gio.OutputStream.write_bytes(stream, GLib.Bytes.new(bytes_buffer), None)
-            stream.close()

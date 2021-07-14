@@ -72,7 +72,7 @@ class PasswordGeneratorPopover(Gtk.Popover):
             passphrase_generator.generate(words, separator)
 
     @GObject.Signal(arg_types=(str,))
-    def generated(self, password):
+    def generated(self, _password):
         return
 
     def on_passphrase_generated(self, _passphrase_gen, passphrase):

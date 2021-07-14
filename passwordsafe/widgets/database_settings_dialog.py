@@ -14,6 +14,7 @@ import passwordsafe.password_generator
 from passwordsafe.utils import KeyFileFilter
 from passwordsafe.utils import format_time, generate_keyfile
 from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
+from passwordsafe.widgets.preferences_row import PreferencesRow  # noqa: F401, pylint: disable=unused-import
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/database_settings_dialog.ui")
@@ -36,16 +37,16 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
     level_bar = Gtk.Template.Child()
 
-    encryption_algorithm_label = Gtk.Template.Child()
-    date_label = Gtk.Template.Child()
-    derivation_algorithm_label = Gtk.Template.Child()
-    n_entries_label = Gtk.Template.Child()
-    n_groups_label = Gtk.Template.Child()
-    n_passwords_label = Gtk.Template.Child()
-    name_label = Gtk.Template.Child()
-    path_label = Gtk.Template.Child()
-    size_label = Gtk.Template.Child()
-    version_label = Gtk.Template.Child()
+    encryption_algorithm_row = Gtk.Template.Child()
+    date_row = Gtk.Template.Child()
+    derivation_algorithm_row = Gtk.Template.Child()
+    n_entries_row = Gtk.Template.Child()
+    n_groups_row = Gtk.Template.Child()
+    n_passwords_row = Gtk.Template.Child()
+    name_row = Gtk.Template.Child()
+    path_row = Gtk.Template.Child()
+    size_row = Gtk.Template.Child()
+    version_row = Gtk.Template.Child()
 
     confirm_password_entry = Gtk.Template.Child()
     current_password_entry = Gtk.Template.Child()
@@ -257,30 +258,30 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
     def set_detail_values(self):
         # Name
-        self.name_label.set_text(
+        self.name_row.props.subtitle = (
             os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]
         )
 
         # Path
         path = self.database_manager.database_path
         if "/home/" in path:
-            self.path_label.set_text("~/" + os.path.relpath(path))
+            self.path_row.props.subtitle = "~/" + os.path.relpath(path)
         else:
-            self.path_label.set_text(path)
+            self.path_row.props.subtitle = path
 
         # Size
         size = os.path.getsize(path) / 1000
-        self.size_label.set_text(str(size) + " kB")
+        self.size_row.props.subtitle = str(size) + " kB"
 
         # Version
         version = self.database_manager.db.version
-        self.version_label.set_text(str(version[0]) + "." + str(version[1]))
+        self.version_row.props.subtitle = str(version[0]) + "." + str(version[1])
 
         # Date
         # TODO g_file_info_get_creation_date_time introduced in GLib 2.70.
         epoch_time = os.path.getctime(path)  # Time since UNIX epoch.
         date = datetime.utcfromtimestamp(epoch_time)
-        self.date_label.set_text(format_time(date))
+        self.date_row.props.subtitle = format_time(date)
 
         # Encryption Algorithm
         enc_alg = _("Unknown")
@@ -294,7 +295,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         elif enc_alg_priv == "twofish":
             # NOTE: Twofish is a proper name
             enc_alg = _("Twofish 256-bit")
-        self.encryption_algorithm_label.set_text(enc_alg)
+        self.encryption_algorithm_row.props.subtitle = enc_alg
 
         # Derivation Algorithm
         der_alg = _("Unknown")
@@ -306,12 +307,12 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             # NOTE: AES-KDF is a proper name
             der_alg = _("AES-KDF")
 
-        self.derivation_algorithm_label.set_text(der_alg)
+        self.derivation_algorithm_row.props.subtitle = der_alg
 
     def set_stats_values(self):
-        self.n_entries_label.set_text(str(self.entries_number))
-        self.n_groups_label.set_text(str(self.groups_number))
-        self.n_passwords_label.set_text(str(self.passwords_number))
+        self.n_entries_row.props.subtitle = str(self.entries_number)
+        self.n_groups_row.props.subtitle = str(self.groups_number)
+        self.n_passwords_row.props.subtitle = str(self.passwords_number)
 
     def start_stats_thread(self):
         self.entries_number = len(self.database_manager.db.entries)

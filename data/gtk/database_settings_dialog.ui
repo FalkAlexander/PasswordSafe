@@ -247,196 +247,38 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Details</property>
             <child>
-              <object class="GtkGrid">
-                <property name="hexpand">False</property>
-                <property name="row_spacing">6</property>
-                <property name="column_spacing">12</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="hexpand">False</property>
-                    <property name="label" translatable="yes">Path</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">1</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">File Size</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">2</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Safe Name</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">0</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="name_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">0</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes" comments="KeePass is a proper noun">KeePass Version</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">3</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Creation Date</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">4</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Encryption Algorithm</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">5</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Derivation Algorithm</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">6</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="path_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <property name="wrap">True</property>
-                    <property name="wrap_mode">char</property>
-                    <property name="lines">2</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">1</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="size_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">2</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="version_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">3</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="date_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">4</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="encryption_algorithm_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">5</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="derivation_algorithm_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">6</property>
-                    </layout>
-                  </object>
-                </child>
+              <object class="PreferencesRow" id="name_row">
+                <property name="title" translatable="yes">Safe Name</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="path_row">
+                <property name="title" translatable="yes">Path</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="size_row">
+                <property name="title" translatable="yes">File Size</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="version_row">
+                <property name="title" translatable="yes" comments="KeePass is a proper noun">KeePass Version</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="date_row">
+                <property name="title" translatable="yes">Creation Date</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="encryption_algorithm_row">
+                <property name="title" translatable="yes">Encryption Algorithm</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="derivation_algorithm_row">
+                <property name="title" translatable="yes">Derivation Algorithm</property>
               </object>
             </child>
           </object>
@@ -445,89 +287,18 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes" comments="Statistics">Stats</property>
             <child>
-              <object class="GtkGrid">
-                <property name="hexpand">False</property>
-                <property name="row_spacing">6</property>
-                <property name="column_spacing">12</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="hexpand">False</property>
-                    <property name="label" translatable="yes">Number of Groups</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">1</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Passwords</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">2</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes">Number of Entries</property>
-                    <property name="justify">right</property>
-                    <property name="ellipsize">middle</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">0</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="n_entries_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">0</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="n_groups_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">1</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="n_passwords_label">
-                    <property name="halign">start</property>
-                    <property name="label">-</property>
-                    <property name="ellipsize">end</property>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">2</property>
-                    </layout>
-                  </object>
-                </child>
+              <object class="PreferencesRow" id="n_entries_row">
+                <property name="title" translatable="yes">Number of Entries</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="n_groups_row">
+                <property name="title" translatable="yes">Number of Groups</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="n_passwords_row">
+                <property name="title" translatable="yes">Passwords</property>
               </object>
             </child>
           </object>

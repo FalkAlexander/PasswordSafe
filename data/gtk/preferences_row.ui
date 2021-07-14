@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="PreferencesRow" parent="AdwActionRow">
+    <property name="activatable">False</property>
+    <child>
+      <object class="GtkLabel">
+        <property name="halign">end</property>
+        <property name="ellipsize">end</property>
+        <property name="wrap">True</property>
+        <property name="wrap_mode">char</property>
+        <property name="lines">3</property>
+        <property name="label" bind-source="PreferencesRow" bind-property="subtitle"/>
+        <style>
+          <class name="dim-label"/>
+        </style>
+      </object>
+    </child>
+  </template>
+</interface>

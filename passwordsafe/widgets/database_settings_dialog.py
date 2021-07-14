@@ -284,21 +284,28 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
         # Encryption Algorithm
         enc_alg = _("Unknown")
-        if self.database_manager.db.encryption_algorithm == "aes256":
+        enc_alg_priv = self.database_manager.db.encryption_algorithm
+        if enc_alg_priv == "aes256":
             # NOTE: AES is a proper name
             enc_alg = _("AES 256-bit")
-        elif self.database_manager.db.encryption_algorithm == "chacha20":
+        elif enc_alg_priv == "chacha20":
             # NOTE: ChaCha20 is a proper name
             enc_alg = _("ChaCha20 256-bit")
-        elif self.database_manager.db.encryption_algorithm == "twofish":
+        elif enc_alg_priv == "twofish":
             # NOTE: Twofish is a proper name
             enc_alg = _("Twofish 256-bit")
         self.encryption_algorithm_label.set_text(enc_alg)
 
         # Derivation Algorithm
-        der_alg = "Argon2"
-        if version == (3, 1):
-            der_alg = "AES-KDF"
+        der_alg = _("Unknown")
+        der_alg_priv = self.database_manager.db.kdf_algorithm
+        if der_alg_priv == "argon2":
+            # NOTE: Argon2 is a proper name
+            der_alg = _("Argon2")
+        elif der_alg_priv == "aeskdf":
+            # NOTE: AES-KDF is a proper name
+            der_alg = _("AES-KDF")
+
         self.derivation_algorithm_label.set_text(der_alg)
 
     def set_stats_values(self):

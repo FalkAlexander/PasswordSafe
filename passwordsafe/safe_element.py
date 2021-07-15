@@ -527,6 +527,9 @@ class SafeEntry(SafeElement):
                 value.get_year(),
                 value.get_month(),
                 value.get_day_of_month(),
+                value.get_hour(),
+                value.get_minute(),
+                value.get_second(),
                 tzinfo=timezone.utc,
             )
             self.entry.expiry_time = expired

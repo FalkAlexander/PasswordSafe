@@ -145,19 +145,31 @@ class SafeElement(GObject.GObject):
         return self._element.path
 
     @property
-    def atime(self) -> datetime:
+    def atime(self) -> GLib.DateTime:
         """The UTC accessed time of the element."""
-        return self._element.atime
+        time = self._element.atime
+        gtime = GLib.DateTime.new_utc(
+            time.year, time.month, time.day, time.hour, time.minute, time.second
+        )
+        return gtime
 
     @property
-    def ctime(self) -> datetime:
+    def ctime(self) -> GLib.DateTime:
         """The UTC creation time of the element."""
-        return self._element.ctime
+        time = self._element.ctime
+        gtime = GLib.DateTime.new_utc(
+            time.year, time.month, time.day, time.hour, time.minute, time.second
+        )
+        return gtime
 
     @property
-    def mtime(self) -> datetime:
+    def mtime(self) -> GLib.DateTime:
         """The UTC modified time of the element."""
-        return self._element.mtime
+        time = self._element.mtime
+        gtime = GLib.DateTime.new_utc(
+            time.year, time.month, time.day, time.hour, time.minute, time.second
+        )
+        return gtime
 
 
 class SafeGroup(SafeElement):
@@ -418,10 +430,13 @@ class SafeEntry(SafeElement):
 
         return 30
 
-    def otp_lifespan(self):
+    def otp_lifespan(self) -> float | None:
         """Returns seconds until token expires."""
         if self._otp:
-            now = datetime.now().timestamp()
+            gnow = GLib.DateTime.new_now_utc()
+            now_seconds = gnow.to_unix()
+            now_milis = gnow.get_seconds() % 1
+            now = now_seconds + now_milis
             return self._otp.interval - now % self._otp.interval
 
         return None

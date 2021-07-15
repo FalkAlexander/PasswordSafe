@@ -6,6 +6,7 @@ from gettext import gettext as _
 from gi.repository import Adw, GLib, GObject, Gtk
 
 from passwordsafe.safe_element import SafeEntry
+from passwordsafe.utils import format_time
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/expiration_date_row.ui")
@@ -43,11 +44,11 @@ class ExpirationDateRow(Adw.Bin):
             "notify::expired",
             self.on_safe_entry_notify_expired,
         )
-        expiry_date = entry.expiry_time.to_local()
+        expiry_date = entry.expiry_time  # UTC
 
         if entry.props.expires:
-            self.calendar.select_day(expiry_date)
-            self.action_row.props.title = expiry_date.format("%e %b %Y")
+            self.calendar.select_day(expiry_date.to_local())
+            self.action_row.props.title = format_time(expiry_date, hours=False)
             if entry.props.expired:
                 self.action_row.props.subtitle = _("Entry expired")
 
@@ -64,7 +65,7 @@ class ExpirationDateRow(Adw.Bin):
         safe_entry = self.props.safe_entry
         date = self.calendar.get_date().to_utc()
         safe_entry.expiry_time = date
-        self.action_row.props.title = date.format("%e %b %Y")
+        self.action_row.props.title = format_time(date, hours=False)
 
         safe_entry.props.expires = True
         if safe_entry.props.expired:

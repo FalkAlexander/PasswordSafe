@@ -5,7 +5,6 @@ import logging
 import ntpath
 import os
 import threading
-from datetime import datetime
 from gettext import gettext as _
 from pathlib import Path
 
@@ -387,7 +386,7 @@ class UnlockDatabase(Adw.Bin):
             if not os.path.exists(cache_dir):
                 os.makedirs(cache_dir)
 
-            current_time = datetime.now().strftime("%F_%T")
+            current_time = GLib.DateTime.new_now_local().format("%F_%T")
             basename = os.path.splitext(ntpath.basename(self.database_filepath))[0]
             backup_name = basename + "_backup_" + current_time + ".kdbx"
             backup = Gio.File.new_for_path(os.path.join(cache_dir, backup_name))

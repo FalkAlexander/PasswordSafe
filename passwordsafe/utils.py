@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import secrets
-import typing
 from gettext import gettext as _
 from typing import Callable
 
@@ -10,24 +9,17 @@ from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 from gi.repository import Gio, GLib, Gtk, GObject
 
-if typing.TYPE_CHECKING:
-    from datetime import datetime
 
-
-def format_time(time: datetime | None) -> str:
-    """Displays a UTC datetime in the local timezone."""
+def format_time(time: GLib.DateTime | None, hours: bool = True) -> str:
+    """Displays a UTC DateTime in the local timezone."""
     if not time:
         return ""
 
-    timestamp = GLib.DateTime.new_utc(
-        time.year,
-        time.month,
-        time.day,
-        time.hour,
-        time.minute,
-        time.second,
-    ).to_local()
-    return timestamp.format("%e %b %Y %R")
+    time_format = "%e %b %Y"
+    if hours:
+        time_format += " %R"  # The space is a 'EN SPACE'
+
+    return time.to_local().format(time_format)
 
 
 def create_random_data(bytes_buffer):

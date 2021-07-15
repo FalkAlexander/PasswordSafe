@@ -55,15 +55,8 @@ class SortingHat:
         # <0 if ele1<ele2, 0 if ele1=ele2, >0 ele1>ele2
         if ele1.ctime is None or ele2.ctime is None:
             return 0
-        if ele1.is_group and ele2.is_entry:
-            return -1
-        if ele1.is_entry and ele2.is_group:
-            return 1
-        if ele1.ctime < ele2.ctime:
-            return 1
-        if ele1.ctime == ele2.ctime:
-            return 0
-        return -1
+
+        return ele1.ctime.compare(ele2.ctime)
 
 
 SortingHat.sort_funcs = {

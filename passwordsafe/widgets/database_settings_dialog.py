@@ -5,7 +5,6 @@ import logging
 import ntpath
 import os
 import threading
-from datetime import datetime
 from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
@@ -280,8 +279,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         # Date
         # TODO g_file_info_get_creation_date_time introduced in GLib 2.70.
         epoch_time = os.path.getctime(path)  # Time since UNIX epoch.
-        date = datetime.utcfromtimestamp(epoch_time)
-        self.date_row.props.subtitle = format_time(date)
+        gdate = GLib.DateTime.new_from_unix_utc(epoch_time)
+        self.date_row.props.subtitle = format_time(gdate)
 
         # Encryption Algorithm
         enc_alg = _("Unknown")

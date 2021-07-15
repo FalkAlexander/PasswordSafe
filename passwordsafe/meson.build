@@ -9,17 +9,12 @@ conf.set('DATA_DIR', DATA_DIR)
 conf.set('PROFILE', profile)
 conf.set('APPID', application_id)
 
-config_output_file = configure_file(
+configure_file(
   input: 'const.py.in',
   output: 'const.py',
   configuration: conf,
-  install_dir: meson.current_source_dir()
-)
-
-install_subdir(
-  meson.current_source_dir(),
-  exclude_directories: ['.mypy_cache', ' __pycache__'],
-  install_dir: python_dir
+  install_dir: join_paths(python_dir, meson.project_name()),
+  install: true
 )
 
 main_conf = configuration_data()
@@ -28,5 +23,13 @@ configure_file(
   input: 'main.py.in',
   output: 'gnome-passwordsafe',
   configuration: conf,
-  install_dir: bindir
+  install_dir: bindir,
+  install: true
+)
+
+install_subdir(
+  meson.current_source_dir(),
+  exclude_directories: ['.mypy_cache', '__pycache__'],
+  exclude_files: ['main.py.in', 'const.py.in', 'meson.build'],
+  install_dir: python_dir,
 )

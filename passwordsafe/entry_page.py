@@ -16,6 +16,7 @@ from passwordsafe.widgets.attribute_entry_row import AttributeEntryRow
 from passwordsafe.widgets.entry_page_icon import EntryPageIcon
 from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.notes_dialog import NotesDialog
+from passwordsafe.widgets.error_revealer import ErrorRevealer  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.expiration_date_row import ExpirationDateRow  # noqa: F401, pylint: disable=unused-import
 
 if typing.TYPE_CHECKING:
@@ -402,6 +403,6 @@ class EntryPage(Adw.Bin):
             self.otp_token_box.props.visible = False
 
         reveal_error = not otp_token and safe_entry.props.otp
-        self.otp_error_revealer.props.reveal_child = reveal_error
+        self.otp_error_revealer.reveal(reveal_error)
 
         return GLib.SOURCE_CONTINUE

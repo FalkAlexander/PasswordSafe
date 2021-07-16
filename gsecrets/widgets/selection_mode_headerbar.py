@@ -165,14 +165,10 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         selection_type = variant.get_string()
         page = self.unlocked_database.get_current_page()
-        list_view = page.list_view
 
-        # FIXME
-        for item in list_view:
-            if selection_type == "all":
-                item.child.selection_checkbox.set_active(True)
-            else:
-                item.child.selection_checkbox.set_active(False)
+        selected = selection_type == "all"
+        for element in page.list_model:
+            element.props.selected = selected
 
     # Helpers
 

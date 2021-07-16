@@ -90,12 +90,20 @@ class UnlockedDatabasePage(Adw.Bin):
 
     def on_list_view_activate(self, _list_view, pos):
         element = self.list_model.get_item(pos)
+        database = self.unlocked_database
 
-        if element.is_entry:
-            self.unlocked_database.show_edit_page(element)
+        if database.props.search_active:
+            database.props.search_active = False
+
+        if element.is_group:
+            self.unlocked_database.show_browser_page(element)
             return
 
-        self.unlocked_database.show_browser_page(element)
+        if database.props.selection_mode:
+            element.props.selected = not element.props.selected
+            return
+
+        self.unlocked_database.show_edit_page(element)
 
     def on_sort_order_changed(self, settings, key):
         """Callback to be executed when the sorting has been changed."""
@@ -122,5 +130,5 @@ class UnlockedDatabasePage(Adw.Bin):
             self.stack.set_visible_child(self.scrolled_window)
 
     def _on_clear_selection(self, _header: SelectionModeHeaderbar) -> None:
-        for row in self.list_view:  # pylint: disable=not-an-iterable
-            row.selection_checkbox.props.active = False
+        for element in self.list_model:
+            element.props.selected = False

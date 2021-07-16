@@ -42,6 +42,7 @@ class GroupRow(Adw.Bin):
         self._on_group_name_changed(element, None)
 
         # Selection Mode Checkboxes
+        element.bind_property("selected", self.selection_checkbox, "active", GObject.BindingFlags.BIDIRECTIONAL)
         self.unlocked_database.bind_property(
             "selection_mode",
             self._checkbox_revealer,
@@ -71,15 +72,15 @@ class GroupRow(Adw.Bin):
 
         if not db_view.props.search_active:
             if db_view.props.selection_mode:
-                active = self.selection_checkbox.props.active
-                self.selection_checkbox.props.active = not active
+                selected = self._safe_group.props.selected
+                self._safe_group.props.selected = not selected
             else:
                 db_view.props.selection_mode = True
-                self.selection_checkbox.props.active = True
+                self._safe_group.props.selected = True
 
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
-        if self.selection_checkbox.get_active():
+        if self._safe_group.props.selected:
             self.unlocked_database.selection_mode_headerbar.add_group(self)
         else:
             self.unlocked_database.selection_mode_headerbar.remove_group(self)
@@ -107,4 +108,4 @@ class GroupRow(Adw.Bin):
     @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):
         self.unlocked_database.props.selection_mode = True
-        self.selection_checkbox.props.active = not self.selection_checkbox.props.active
+        self._safe_group.props.selected = not self._safe_group.props.selected

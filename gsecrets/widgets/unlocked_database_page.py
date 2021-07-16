@@ -9,7 +9,6 @@ from gi.repository import Adw, Gio, Gtk
 import gsecrets.config_manager as config
 from gsecrets.entry_row import EntryRow
 from gsecrets.group_row import GroupRow
-from gsecrets.safe_element import SafeElement, SafeEntry
 from gsecrets.sorting import SortingHat
 
 if typing.TYPE_CHECKING:
@@ -42,7 +41,10 @@ class UnlockedDatabasePage(Adw.Bin):
         flatten = Gio.ListStore.new(Gtk.SortListModel)
         flatten.splice(0, 0, [self.groups, self.entries])
         self.list_model = Gtk.FlattenListModel.new(flatten)
-        self.selection_model = Gtk.NoSelection.new(self.list_model)
+        self.selection_model = Gtk.SingleSelection(
+            autoselect=False, can_unselect=True, model=self.list_model
+        )
+        self.selection_model.connect("notify::selected-item", self.on_selected_item_changed)
 
         settings = unlocked_database.window.application.settings
         settings.connect("changed::sort-order", self.on_sort_order_changed)
@@ -56,7 +58,6 @@ class UnlockedDatabasePage(Adw.Bin):
 
         self.list_view.set_model(self.selection_model)
         self.list_view.set_factory(factory)
-        self.list_view.connect("activate", self.on_list_view_activate)
         self.list_model.connect(
             "notify::n-items",
             self.on_listbox_n_items_changed,
@@ -89,14 +90,22 @@ class UnlockedDatabasePage(Adw.Bin):
 
             row.props.safe_entry = element
 
-    def on_list_view_activate(self, _list_view, pos):
-        element = self.list_model.get_item(pos)
+    def on_selected_item_changed(self, selection_model, _pspec):
+        element = selection_model.props.selected_item
+        database = self.unlocked_database
 
-        if isinstance(element, SafeEntry):
-            self.unlocked_database.show_edit_page(element)
+        if database.props.search_active:
+            database.props.search_active = False
+
+        if element.is_group:
+            self.unlocked_database.show_browser_page(element)
             return
 
-        self.unlocked_database.show_browser_page(element)
+        if database.props.selection_mode:
+            element.props.selected = not element.props.selected
+            return
+
+        self.unlocked_database.show_edit_page(element)
 
     def do_grab_focus(self):  # pylint: disable=arguments-differ
         if child := self.list_box.get_first_child():
@@ -129,5 +138,5 @@ class UnlockedDatabasePage(Adw.Bin):
             self.stack.set_visible_child(self.scrolled_window)
 
     def _on_clear_selection(self, _header: SelectionModeHeaderbar) -> None:
-        for row in self.list_view:  # pylint: disable=not-an-iterable
-            row.selection_checkbox.props.active = False
+        for element in self.list_model:
+            element.props.selected = False

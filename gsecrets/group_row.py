@@ -21,18 +21,23 @@ class GroupRow(Adw.ActionRow):
     selection_checkbox = Gtk.Template.Child()
     edit_button = Gtk.Template.Child()
 
-    def __init__(self, unlocked_database, safe_group):
+    _safe_group = None
+
+    def __init__(self, unlocked_database):
         super().__init__()
 
-        assert isinstance(safe_group, SafeGroup)
         self.unlocked_database = unlocked_database
-        self.safe_group = safe_group
-        self.assemble_group_row()
 
-    def assemble_group_row(self):
+    @GObject.Property(type=SafeGroup)
+    def safe_group(self):
+        return self._safe_group
+
+    @safe_group.setter  # type: ignore
+    def safe_group(self, element):
+        self._safe_group = element
         # Name title
-        self.safe_group.connect("notify::name", self._on_group_name_changed)
-        self._on_group_name_changed(self.safe_group, None)
+        element.connect("notify::name", self._on_group_name_changed)
+        self._on_group_name_changed(element, None)
 
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
@@ -84,7 +89,7 @@ class GroupRow(Adw.ActionRow):
         button: The edit button in the GroupRow"""
         self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
 
-        self.unlocked_database.show_edit_page(self.safe_group)
+        self.unlocked_database.show_edit_page(self._safe_group)
 
     def _on_group_name_changed(
         self, _safe_group: SafeGroup, _value: GObject.ParamSpec

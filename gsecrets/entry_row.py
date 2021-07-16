@@ -7,9 +7,9 @@ from gettext import gettext as _
 from gi.repository import Adw, GLib, GObject, Gtk
 
 from gsecrets.safe_element import EntryColor
+from gsecrets.safe_element import SafeEntry
 
 if typing.TYPE_CHECKING:
-    from gsecrets.safe_element import SafeEntry
     from gsecrets.unlocked_database import UnlockedDatabase
 
 
@@ -22,29 +22,33 @@ class EntryRow(Adw.ActionRow):
     _entry_icon = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
 
-    def __init__(self, database: UnlockedDatabase, safe_entry: SafeEntry) -> None:
-        super().__init__()
+    _safe_entry = None
 
-        self._safe_entry: SafeEntry = safe_entry
+    def __init__(self, database: UnlockedDatabase) -> None:
+        super().__init__()
 
         self.unlocked_database = database
         self.db_manager = database.database_manager
 
-        self.assemble_entry_row()
+    @GObject.Property(type=SafeEntry)
+    def safe_entry(self):
+        return self._safe_entry
 
-    def assemble_entry_row(self):
-        self._safe_entry.bind_property(
+    @safe_entry.setter  # type: ignore
+    def safe_entry(self, element):
+        self._safe_entry = element
+        element.bind_property(
             "icon-name", self._entry_icon, "icon-name", GObject.BindingFlags.SYNC_CREATE
         )
 
-        self._safe_entry.connect("notify::name", self._on_entry_name_changed)
-        self._on_entry_name_changed(self._safe_entry, None)
+        element.connect("notify::name", self._on_entry_name_changed)
+        self._on_entry_name_changed(element, None)
 
-        self._safe_entry.connect("notify::username", self._on_entry_username_changed)
-        self._on_entry_username_changed(self._safe_entry, None)
+        element.connect("notify::username", self._on_entry_username_changed)
+        self._on_entry_username_changed(element, None)
 
-        self._safe_entry.connect("notify::color", self._on_entry_color_changed)
-        self._on_entry_color_changed(self._safe_entry, None)
+        element.connect("notify::color", self._on_entry_color_changed)
+        self._on_entry_color_changed(element, None)
 
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
@@ -87,10 +91,6 @@ class EntryRow(Adw.ActionRow):
                 db_view.props.selection_mode = True
                 self.selection_checkbox.props.active = True
 
-    @property
-    def safe_entry(self) -> SafeEntry:
-        return self._safe_entry
-
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
         if self.selection_checkbox.props.active:
@@ -113,7 +113,7 @@ class EntryRow(Adw.ActionRow):
         )
 
     def _on_entry_name_changed(
-        self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
         entry_name = GLib.markup_escape_text(self._safe_entry.props.name)
         if entry_name:
@@ -124,7 +124,7 @@ class EntryRow(Adw.ActionRow):
             self.props.title = _("Title not Specified")
 
     def _on_entry_username_changed(
-        self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
         entry_username = GLib.markup_escape_text(self._safe_entry.props.username)
         if entry_username:
@@ -135,13 +135,13 @@ class EntryRow(Adw.ActionRow):
             self.props.subtitle = _("Username not specified")
 
     def _on_entry_color_changed(
-        self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
         # Clear current style
         for color in EntryColor:
             self._entry_icon.remove_css_class(color.value)
 
-        color = self._safe_entry.props.color
+        color = safe_entry.props.color
         self._entry_icon.add_css_class(color)
 
     @Gtk.Template.Callback()

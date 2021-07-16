@@ -56,6 +56,8 @@ class EntryColor(Enum):
 
 
 class SafeElement(GObject.Object):
+
+    selected = GObject.Property(type=bool, default=False)
     sorted_handler_id: int | None = None
 
     def __init__(self, db_manager: DatabaseManager, element: Entry | Group):

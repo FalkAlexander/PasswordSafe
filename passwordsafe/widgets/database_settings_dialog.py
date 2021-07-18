@@ -120,8 +120,16 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         return repeat_password == new_password and new_password
 
     @Gtk.Template.Callback()
-    def on_keyfile_select_button_clicked(self, _button: Gtk.Button) -> None:
+    def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
+
+        # We reset the button if we previously failed.
+        if button.props.icon_name == "edit-delete-symbolic":
+            button.props.icon_name = "document-open-symbolic"
+            button.remove_css_class("destructive-action")
+            self.current_keyfile_path = None
+            return
+
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
             _("Select Current Keyfile"),
@@ -178,8 +186,15 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                 self.auth_apply_button.set_sensitive(False)
 
     @Gtk.Template.Callback()
-    def on_keyfile_generator_button_clicked(self, _button: Gtk.Button) -> None:
+    def on_keyfile_generator_button_clicked(self, button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
+
+        # We reset the button if we previously failed.
+        if button.props.icon_name == "object-select-symbolic":
+            button.props.icon_name = "security-high-symbolic"
+            self.new_keyfile_path = None
+            return
+
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
             _("Generate Keyfile"),

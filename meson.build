@@ -70,7 +70,7 @@ if pylint.found()
     pylint,
     args: ['--rcfile=@0@'.format(join_paths(meson.current_source_dir (), '.pylintrc')),
           join_paths(python_dir, 'passwordsafe')],
-    timeout: 300,
+    timeout: 360,
   )
 endif
 

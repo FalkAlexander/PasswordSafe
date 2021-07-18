@@ -27,7 +27,7 @@ class SortingHat:
         return SortingHat.sort_funcs[order]
 
     @staticmethod
-    def sort_by_asc(ele1: SafeElement, ele2: SafeElement) -> int:
+    def sort_by_name_asc(ele1: SafeElement, ele2: SafeElement) -> int:
         # <0 if ele1<ele2, 0 if ele1=ele2, >0 ele1>ele2
         if ele1.is_group and ele2.is_entry:
             return -1
@@ -37,7 +37,7 @@ class SortingHat:
         return GLib.ascii_strcasecmp(ele1.name, ele2.name)
 
     @staticmethod
-    def sort_by_dec(ele1: SafeElement, ele2: SafeElement) -> int:
+    def sort_by_name_dec(ele1: SafeElement, ele2: SafeElement) -> int:
         # <0 if ele1<ele2, 0 if ele1=ele2, >0 ele1>ele2
         if ele1.is_group and ele2.is_entry:
             return -1
@@ -60,7 +60,7 @@ class SortingHat:
 
 
 SortingHat.sort_funcs = {
-    SortingHat.SortOrder.ASC: SortingHat.sort_by_asc,
-    SortingHat.SortOrder.DEC: SortingHat.sort_by_dec,
+    SortingHat.SortOrder.ASC: SortingHat.sort_by_name_asc,
+    SortingHat.SortOrder.DEC: SortingHat.sort_by_name_dec,
     SortingHat.SortOrder.CTIME_DEC: SortingHat.sort_by_ctime_dec,
 }

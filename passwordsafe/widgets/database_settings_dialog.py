@@ -24,7 +24,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     __gtype_name__ = "DatabaseSettingsDialog"
 
     new_password: str | None = None
+    current_keyfile_hash = None
     current_keyfile_path = None
+    new_keyfile_hash = None
     new_keyfile_path = None
 
     entries_number = None
@@ -101,17 +103,12 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.auth_apply_button.set_sensitive(correct_input)
 
     def correct_credentials(self) -> bool:
-        old_hash = self.database_manager.keyfile_hash
-        new_hash = None
+        database_hash = self.database_manager.keyfile_hash
         database_password = self.database_manager.password
+        current_hash = self.current_keyfile_hash
         current_password = self.current_password_entry.get_text()
 
-        if self.current_keyfile_path:
-            new_hash = self.database_manager.create_keyfile_hash(
-                self.current_keyfile_path
-            )
-
-        return old_hash == new_hash and database_password == current_password
+        return database_hash == current_hash and database_password == current_password
 
     def passwords_coincide(self) -> bool:
         new_password = self.new_password_entry.get_text()
@@ -128,6 +125,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             button.props.icon_name = "document-open-symbolic"
             button.remove_css_class("destructive-action")
             self.current_keyfile_path = None
+            self.current_keyfile_hash = None
             return
 
         select_dialog = Gtk.FileChooserNative.new(
@@ -172,6 +170,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         else:
             keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
             self.current_keyfile_path = gfile.get_path()
+            self.current_keyfile_hash = keyfile_hash
 
             button = self.select_keyfile_button
 
@@ -193,6 +192,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         if button.props.icon_name == "object-select-symbolic":
             button.props.icon_name = "security-high-symbolic"
             self.new_keyfile_path = None
+            self.new_keyfile_hash = None
             return
 
         save_dialog = Gtk.FileChooserNative.new(
@@ -222,7 +222,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.generate_keyfile_button.set_child(spinner)
 
             keyfile = save_dialog.get_file()
-            self.new_keyfile_path = keyfile.get_path()
 
             def callback(gfile, result, keyfile_hash):
                 try:
@@ -236,6 +235,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                     self.keyfile_error_revealer.reveal(True)
                 else:
                     self.generate_keyfile_button.set_icon_name("object-select-symbolic")
+                    self.new_keyfile_hash = keyfile_hash
+                    self.new_keyfile_path = keyfile.get_path()
 
             generate_keyfile(keyfile, callback)
 
@@ -245,6 +246,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
         self.database_manager.password = new_password
         self.database_manager.keyfile = self.new_keyfile_path
+        self.database_manager.keyfile_hash = self.new_keyfile_hash
 
         # Insensitive entries and buttons
         self.set_sensitive(False)
@@ -278,7 +280,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.select_keyfile_button.set_icon_name("document-open-symbolic")
         self.generate_keyfile_button.set_icon_name("security-high-symbolic")
 
+        self.current_keyfile_hash = None
         self.current_keyfile_path = None
+        self.new_keyfile_hash = None
+        self.new_keyfile_path = None
 
         self.auth_apply_button.set_label(_("_Apply Changes"))
         self.auth_apply_button.set_sensitive(False)

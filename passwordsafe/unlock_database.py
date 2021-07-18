@@ -26,6 +26,7 @@ class UnlockDatabase(Adw.Bin):
 
     database_filepath = NotImplemented
     keyfile_path = NotImplemented
+    keyfile_hash = None
     composite_keyfile_path = NotImplemented
 
     password_unlock_button = Gtk.Template.Child()
@@ -102,6 +103,19 @@ class UnlockDatabase(Adw.Bin):
         else:
             self.keyfile_unlock_button.grab_focus()
 
+    def load_keyfile_callback(self, keyfile, result):
+        try:
+            gbytes, _ = keyfile.load_bytes_finish(result)
+            if not gbytes:
+                raise Exception("IO operation error")
+
+        except Exception as err:  # pylint: disable=broad-except
+            logging.debug("Could not set keyfile hash: %s", err)
+        else:
+            keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
+            if keyfile_hash:
+                self.keyfile_hash = keyfile_hash
+
     def is_safe_open_elsewhere(self) -> bool:
         """Returns True if the safe is already open but not in the current window."""
         is_current = False
@@ -161,7 +175,10 @@ class UnlockDatabase(Adw.Bin):
     ) -> None:
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
-            self.keyfile_path = dialog.get_file().get_path()
+            keyfile = dialog.get_file()
+            self.keyfile_path = keyfile.get_path()
+            keyfile.load_bytes_async(None, self.load_keyfile_callback)
+
             logging.debug("Keyfile selected: %s", self.keyfile_path)
 
             keyfile_button = self.keyfile_unlock_select_button
@@ -217,7 +234,9 @@ class UnlockDatabase(Adw.Bin):
         dialog.destroy()
         composite_unlock_select_button = self.composite_unlock_select_button
         if response == Gtk.ResponseType.ACCEPT:
-            file_path = dialog.get_file().get_path()
+            keyfile = dialog.get_file()
+            file_path = keyfile.get_path()
+            keyfile.load_bytes_async(None, self.load_keyfile_callback)
             logging.debug("KeyFile selected: %s", file_path)
             composite_unlock_select_button.set_label(ntpath.basename(file_path))
             self.composite_keyfile_path = file_path
@@ -333,6 +352,7 @@ class UnlockDatabase(Adw.Bin):
             self.database_manager = DatabaseManager(
                 self.database_filepath, password, keyfile
             )
+            self.database_manager.keyfile_hash = self.keyfile_hash
         except Exception as err:  # pylint: disable=broad-except
             logging.debug("Could not open safe: %s", err)
             GLib.idle_add(self._open_database_failure)
@@ -346,12 +366,8 @@ class UnlockDatabase(Adw.Bin):
         if self._unlock_method == UnlockMethod.PASSWORD:
             self._password_unlock_failed()
         elif self._unlock_method == UnlockMethod.KEYFILE:
-            if self.database_manager:
-                self.database_manager.keyfile_hash = None
             self._keyfile_unlock_failed()
         else:
-            if self.database_manager:
-                self.database_manager.keyfile_hash = None
             self._composite_unlock_failed()
 
     def _open_database_success(self):
@@ -445,10 +461,6 @@ class UnlockDatabase(Adw.Bin):
 
     def _composite_unlock_failed(self):
         self.window.send_notification(_("Failed to Unlock Safe"))
-
-        if self.database_manager:
-            self.database_manager.keyfile_hash = None
-
         self.composite_unlock_entry.grab_focus()
         self.composite_unlock_entry.add_css_class("error")
         self.composite_unlock_select_button.remove_css_class("suggested-action")
@@ -459,10 +471,6 @@ class UnlockDatabase(Adw.Bin):
 
     def _keyfile_unlock_failed(self):
         self.window.send_notification(_("Failed to Unlock Safe"))
-
-        if self.database_manager:
-            self.database_manager.keyfile_hash = None
-
         self.keyfile_unlock_select_button.add_css_class("destructive-action")
         self.keyfile_unlock_select_button.set_label(_("Try again"))
 

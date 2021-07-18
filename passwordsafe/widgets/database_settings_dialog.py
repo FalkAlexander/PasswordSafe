@@ -152,16 +152,14 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             )
             self.current_keyfile_path = selected_keyfile
 
-            if (
-                keyfile_hash == self.database_manager.keyfile_hash
-                or self.database_manager.keyfile_hash is None
-            ):
+            if keyfile_hash == self.database_manager.keyfile_hash:
                 button.set_icon_name("object-select-symbolic")
                 correct_input = self.passwords_coincide() and self.correct_credentials()
 
                 self.auth_apply_button.set_sensitive(correct_input)
             else:
                 button.set_icon_name("edit-delete-symbolic")
+                button.add_css_class("destructive-action")
                 self.auth_apply_button.set_sensitive(False)
 
     @Gtk.Template.Callback()

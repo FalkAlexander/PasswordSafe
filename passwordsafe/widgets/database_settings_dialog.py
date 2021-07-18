@@ -252,7 +252,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
         self.current_keyfile_path = None
 
-        self.auth_apply_button.set_label(_("Apply Changes"))
+        self.auth_apply_button.set_label(_("_Apply Changes"))
         self.auth_apply_button.set_sensitive(False)
 
     def set_detail_values(self):

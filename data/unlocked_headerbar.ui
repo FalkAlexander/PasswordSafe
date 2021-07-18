@@ -75,9 +75,14 @@
           <attribute name='target'>z-a</attribute>
         </item>
         <item>
-          <attribute name='label' translatable='yes'>_Last Added</attribute>
+          <attribute name='label' translatable='yes'>_Newest First</attribute>
           <attribute name='action'>win.sort-order</attribute>
-          <attribute name='target'>last_added</attribute>
+          <attribute name='target'>newest_first</attribute>
+        </item>
+        <item>
+          <attribute name='label' translatable='yes'>_Oldest First</attribute>
+          <attribute name='action'>win.sort-order</attribute>
+          <attribute name='target'>oldest_first</attribute>
         </item>
       </submenu>
     </section>

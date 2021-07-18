@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="GroupRow" parent="AdwActionRow">
-    <property name="activatable">True</property>
+  <template class="GroupRow" parent="AdwBin">
     <child>
       <object class="GtkGestureClick" id="_entry_box_gesture">
         <property name="button">3</property>
@@ -14,42 +13,68 @@
         <signal name="pressed" handler="_on_long_press_gesture_pressed" swapped="no"/>
       </object>
     </child>
-    <child type="prefix">
-     <object class="GtkBox">
-       <child>
-         <object class="GtkRevealer" id="_checkbox_revealer">
-           <property name="transition_type">slide-right</property>
-           <child>
-             <object class="GtkCheckButton" id="selection_checkbox">
-               <property name="margin_end">12</property>
-               <property name="valign">center</property>
-               <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
-               <style>
-                 <class name="selection-mode"/>
-               </style>
-             </object>
-           </child>
-         </object>
-       </child>
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">12</property>
+        <property name="margin_end">12</property>
+        <property name="margin_start">12</property>
+        <property name="margin_top">12</property>
+        <property name="margin_bottom">12</property>
         <child>
-          <object class="GtkImage" id="group_icon">
-            <property name="icon_name">folder-symbolic</property>
-            <property name="height_request">32</property>
-            <property name="width_request">32</property>
-            <property name="valign">center</property>
-            <style>
-              <class name="circular-icon"/>
-              <class name="NoneColorButton"/>
-            </style>
+          <object class="GtkBox">
+            <child>
+              <object class="GtkRevealer" id="_checkbox_revealer">
+                <property name="transition_type">slide-right</property>
+                <child>
+                  <object class="GtkCheckButton" id="selection_checkbox">
+                    <property name="margin_end">12</property>
+                    <property name="valign">center</property>
+                    <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
+                    <style>
+                      <class name="selection-mode"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="group_icon">
+                <property name="icon_name">folder-symbolic</property>
+                <property name="height_request">32</property>
+                <property name="width_request">32</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="circular-icon"/>
+                  <class name="NoneColorButton"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
-     </object>
-    </child>
-    <child>
-      <object class="GtkButton" id="edit_button">
-        <property name="valign">center</property>
-        <property name="icon_name">document-edit-symbolic</property>
-        <signal name="clicked" handler="on_group_edit_button_clicked" swapped="no"/>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="halign">start</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" bind-source="GroupRow" bind-property="title"/>
+                <property name="hexpand">True</property>
+                <property name="halign">start</property>
+                <style>
+                  <class name="title"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="edit_button">
+            <property name="valign">center</property>
+            <property name="icon_name">document-edit-symbolic</property>
+            <signal name="clicked" handler="on_group_edit_button_clicked" swapped="no"/>
+          </object>
+        </child>
       </object>
     </child>
   </template>

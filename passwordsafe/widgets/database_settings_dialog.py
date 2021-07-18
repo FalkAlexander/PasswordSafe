@@ -12,6 +12,7 @@ from gi.repository import Adw, GLib, Gtk
 from passwordsafe.password_generator_popover import PasswordGeneratorPopover  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.utils import KeyFileFilter
 from passwordsafe.utils import format_time, generate_keyfile
+from passwordsafe.widgets.error_revealer import ErrorRevealer  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.preferences_row import PreferencesRow  # noqa: F401, pylint: disable=unused-import
 
@@ -35,6 +36,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     generate_keyfile_button = Gtk.Template.Child()
 
     level_bar = Gtk.Template.Child()
+
+    keyfile_error_revealer = Gtk.Template.Child()
 
     encryption_algorithm_row = Gtk.Template.Child()
     date_row = Gtk.Template.Child()
@@ -203,7 +206,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                 except Exception as err:  # pylint: disable=broad-except
                     self.generate_keyfile_button.set_icon_name("security-high-symbolic")
                     logging.debug("Could not create keyfile: %s", err)
-                    # TODO Handle error in the UI, implement a revealer with error css.
+                    self.keyfile_error_revealer.reveal(True)
                 else:
                     self.generate_keyfile_button.set_icon_name("object-select-symbolic")
 

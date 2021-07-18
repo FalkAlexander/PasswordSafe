@@ -119,19 +119,13 @@ class UnlockedDatabasePage(Adw.Bin):
         element: SafeElement,
         _value: GObject.ParamSpec,
     ) -> None:
-        pos = 0
-        found = False
         # Disconnect previous signal
         if element.sorted_handler_id:
             element.disconnect(element.sorted_handler_id)
             element.sorted_handler_id = None
 
         # We check if element is in the list model
-        for elem in self.list_model:
-            if elem == element:
-                found = True
-                break
-            pos += 1
+        found, pos = self.list_model.find(element)
 
         if found:
             sorting = config.get_sort_order()
@@ -158,14 +152,7 @@ class UnlockedDatabasePage(Adw.Bin):
         and if corresponds to the new location, we add it."""
         list_model_group_uuid = self.group.uuid
         if list_model_group_uuid == old_loc_uuid:
-            pos = 0
-            found = False
-            for element in self.list_model:
-                if element == moved_element:
-                    found = True
-                    break
-                pos += 1
-
+            found, pos = self.list_model.find(moved_element)
             if found:
                 self.list_model.remove(pos)
 

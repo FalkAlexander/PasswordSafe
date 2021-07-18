@@ -24,8 +24,7 @@ class RecentFilesPage(Gtk.Box):
         for the user to pick one (or the welcome screen if there are none)"""
         super().__init__()
 
-        user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
-        self.list_model = Gio.ListStore.new(RecentFileRow)
+        self.list_model = Gio.ListStore.new(Gio.File)
 
         for path_uri in config.get_last_opened_list():
             gio_file: Gio.File = Gio.File.new_for_uri(path_uri)
@@ -36,14 +35,9 @@ class RecentFilesPage(Gtk.Box):
                 )
                 continue  # only work with existing files
 
-            path: str = user_home.get_relative_path(gio_file) or gio_file.get_path()
-            filename: str = os.path.splitext(gio_file.get_basename())[0]
-            name: str = gio_file.get_uri()
+            self.list_model.insert(0, gio_file)
 
-            recent_file_row = RecentFileRow(filename, path, name)
-            self.list_model.insert(0, recent_file_row)
-
-        self._last_opened_listbox.bind_model(self.list_model, (lambda item: item))
+        self._last_opened_listbox.bind_model(self.list_model, RecentFileRow)
 
     @property
     def is_empty(self) -> bool:
@@ -55,8 +49,7 @@ class RecentFilesPage(Gtk.Box):
         """cb when we click on an entry in the recently opened files list
 
         Starts opening the database corresponding to the entry."""
-        file_uri: str = list_box_row.get_name()
-        file_path = Gio.File.new_for_uri(file_uri).get_path()
+        file_path = list_box_row.gfile.get_path()
         database = self.props.window.unlocked_db
 
         if database:
@@ -88,8 +81,15 @@ class RecentFilesPage(Gtk.Box):
 class RecentFileRow(Adw.ActionRow):
     __gtype_name__ = "RecentFileRow"
 
-    def __init__(self, filename, path, name):
+    def __init__(self, gfile: Gio.File):
         super().__init__()
+
+        self.gfile = gfile
+
+        user_home: Gio.File = Gio.File.new_for_path(os.path.expanduser("~"))
+        filename: str = os.path.splitext(gfile.get_basename())[0]
+        name: str = gfile.get_uri()
+        path: str = user_home.get_relative_path(gfile) or gfile.get_path()
 
         self.set_title(filename)
         self.set_subtitle(path)

@@ -6,6 +6,8 @@ from __future__ import annotations
 import typing
 from enum import IntEnum
 
+from gi.repository import GLib
+
 from passwordsafe.safe_element import SafeElement
 
 
@@ -31,11 +33,8 @@ class SortingHat:
             return -1
         if ele1.is_entry and ele2.is_group:
             return 1
-        if ele1.name.lower() < ele2.name.lower():
-            return -1
-        if ele1.name.lower() == ele2.name.lower():
-            return 0
-        return 1
+
+        return GLib.ascii_strcasecmp(ele1.name, ele2.name)
 
     @staticmethod
     def sort_by_dec(ele1: SafeElement, ele2: SafeElement) -> int:
@@ -44,11 +43,8 @@ class SortingHat:
             return -1
         if ele1.is_entry and ele2.is_group:
             return 1
-        if ele1.name.lower() < ele2.name.lower():
-            return 1
-        if ele1.name.lower() == ele2.name.lower():
-            return 0
-        return -1
+
+        return GLib.ascii_strcasecmp(ele2.name, ele1.name)
 
     @staticmethod
     def sort_by_ctime_dec(ele1: SafeElement, ele2: SafeElement) -> int:

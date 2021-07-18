@@ -69,31 +69,31 @@ if desktop_file_validate.found()
   )
 endif
 
-appdata_conf = configuration_data()
-appdata_conf.set('APPID', application_id)
-appdata_conf.set('GETTEXT_PACKAGE', meson.project_name())
-appdata_conf.set('NAME', project_name)
-appdata = i18n.merge_file(
-  'appdata',
+metainfo_conf = configuration_data()
+metainfo_conf.set('APPID', application_id)
+metainfo_conf.set('GETTEXT_PACKAGE', meson.project_name())
+metainfo_conf.set('NAME', project_name)
+metainfo = i18n.merge_file(
+  'metainfo',
   input: configure_file(
-    input: files('org.gnome.PasswordSafe.appdata.xml.in.in'),
-    output: 'org.gnome.PasswordSafe.appdata.xml.in',
-    configuration: appdata_conf
+    input: files('org.gnome.PasswordSafe.metainfo.xml.in.in'),
+    output: 'org.gnome.PasswordSafe.metainfo.xml.in',
+    configuration: metainfo_conf
   ),
-  output: application_id + '.appdata.xml',
+  output: application_id + '.metainfo.xml',
   install: true,
   install_dir: join_paths(join_paths('share'), 'metainfo'),
   po_dir: join_paths(meson.source_root(), 'po')
 )
 
 
-# Validating the appdata file
+# Validating the metainfo file
 appstreamcli = find_program('appstream-util', required: false)
 if appstreamcli.found()
   test (
-    'Validate appdata file',
+    'Validate metainfo file',
     appstreamcli,
-    args: ['validate-relax', '--nonet', join_paths(meson.current_build_dir (), application_id + '.appdata.xml')]
+    args: ['validate-relax', '--nonet', join_paths(meson.current_build_dir (), application_id + '.metainfo.xml')]
   )
 endif
 

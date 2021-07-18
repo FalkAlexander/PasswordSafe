@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="EntryRow" parent="AdwActionRow">
-    <property name="activatable">True</property>
+  <template class="EntryRow" parent="AdwBin">
     <child>
       <object class="GtkGestureClick" id="_entry_box_gesture">
         <property name="button">3</property>
@@ -14,71 +13,92 @@
         <signal name="pressed" handler="_on_long_press_gesture_pressed" swapped="no"/>
       </object>
     </child>
-    <child type="prefix">
+    <child>
       <object class="GtkBox">
+        <property name="spacing">12</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <child>
-          <object class="GtkRevealer" id="_checkbox_revealer">
-            <property name="transition_type">slide-right</property>
+          <object class="GtkBox">
             <child>
-              <object class="GtkCheckButton" id="selection_checkbox">
-                <property name="margin_end">12</property>
+              <object class="GtkRevealer" id="_checkbox_revealer">
+                <property name="transition_type">slide-right</property>
+                <child>
+                  <object class="GtkCheckButton" id="selection_checkbox">
+                    <property name="margin_end">12</property>
+                    <property name="valign">center</property>
+                    <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
+                    <property name="accessible-role">presentation</property>
+                    <style>
+                      <class name="selection-mode"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="_entry_icon">
+                <property name="icon_name">application-x-executable-symbolic</property>
+                <property name="width_request">32</property>
+                <property name="height_request">32</property>
                 <property name="valign">center</property>
-                <property name="tooltip_text" translatable="yes">Select</property>
-                <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
                 <style>
-                  <class name="selection-mode"/>
+                  <class name="circular-icon"/>
                 </style>
               </object>
             </child>
           </object>
         </child>
         <child>
-          <object class="GtkImage" id="_entry_icon">
-            <property name="icon_name">application-x-executable-symbolic</property>
-            <property name="width_request">32</property>
-            <property name="height_request">32</property>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="halign">start</property>
             <property name="valign">center</property>
-            <property name="accessible-role">presentation</property>
-            <style>
-              <class name="circular-icon"/>
-            </style>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkBox">
-        <property name="valign">center</property>
-        <property name="spacing">6</property>
-        <child>
-          <object class="GtkButton" id="_entry_copy_otp_button">
-            <property name="tooltip_text" translatable="yes">Copy One-Time Password</property>
-            <property name="icon_name">clock-alt-symbolic</property>
-            <property name="visible">False</property>
-            <signal name="clicked" handler="on_entry_copy_otp_button_clicked" swapped="no"/>
-            <style>
-              <class name="flat"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="_entry_copy_user_button">
-            <property name="tooltip_text" translatable="yes">Copy Username</property>
-            <property name="icon_name">avatar-default-symbolic</property>
-            <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
-            <style>
-              <class name="flat"/>
-            </style>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" bind-source="EntryRow" bind-property="title"/>
+                <property name="hexpand">True</property>
+                <property name="halign">start</property>
+                <style>
+                  <class name="title"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" bind-source="EntryRow" bind-property="subtitle"/>
+                <property name="hexpand">True</property>
+                <property name="halign">start</property>
+                <style>
+                  <class name="subtitle"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="_entry_copy_pass_button">
-            <property name="tooltip_text" translatable="yes">Copy Password</property>
-            <property name="icon_name">dialog-password-symbolic</property>
-            <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>
-            <style>
-              <class name="flat"/>
-            </style>
+          <object class="GtkBox">
+            <property name="spacing">6</property>
+            <child>
+              <object class="GtkButton" id="_entry_copy_user_button">
+                <property name="tooltip_text" translatable="yes">Copy Username</property>
+                <property name="icon_name">avatar-default-symbolic</property>
+                <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="_entry_copy_pass_button">
+                <property name="tooltip_text" translatable="yes">Copy Password</property>
+                <property name="icon_name">dialog-password-symbolic</property>
+                <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
       </object>

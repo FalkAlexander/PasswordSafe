@@ -14,7 +14,8 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_row.ui")
-class EntryRow(Adw.ActionRow):
+class EntryRow(Adw.Bin):
+
     __gtype_name__ = "EntryRow"
 
     _checkbox_revealer = Gtk.Template.Child()
@@ -25,6 +26,9 @@ class EntryRow(Adw.ActionRow):
     _entry_copy_otp_button = Gtk.Template.Child()
 
     _safe_entry = None
+
+    title = GObject.Property(type=str, default="")
+    subtitle = GObject.Property(type=str, default="")
 
     def __init__(self, database: UnlockedDatabase) -> None:
         super().__init__()

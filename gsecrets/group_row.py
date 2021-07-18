@@ -13,7 +13,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/group_row.ui")
-class GroupRow(Adw.ActionRow):
+class GroupRow(Adw.Bin):
     __gtype_name__ = "GroupRow"
 
     _checkbox_revealer = Gtk.Template.Child()
@@ -21,6 +21,8 @@ class GroupRow(Adw.ActionRow):
     edit_button = Gtk.Template.Child()
 
     _safe_group = None
+
+    title = GObject.Property(type=str, default="")
 
     def __init__(self, unlocked_database):
         super().__init__()

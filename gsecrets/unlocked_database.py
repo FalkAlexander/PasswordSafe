@@ -269,6 +269,7 @@ class UnlockedDatabase(Adw.Bin):
     #
 
     def on_list_box_row_activated(self, _widget, list_box_row):
+        list_box_row = list_box_row.get_child()
         self.start_database_lock_timer()
 
         if self.props.search_active:

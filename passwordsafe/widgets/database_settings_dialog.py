@@ -120,7 +120,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         return repeat_password == new_password and new_password
 
     @Gtk.Template.Callback()
-    def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
+    def on_keyfile_select_button_clicked(self, _button: Gtk.Button) -> None:
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
@@ -136,7 +136,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         select_dialog.add_filter(ffilter)
 
         select_dialog.connect(
-            "response", self._on_select_filechooser_response, button, select_dialog
+            "response", self._on_select_filechooser_response, select_dialog
         )
         select_dialog.show()
 
@@ -144,16 +144,28 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self,
         select_dialog: Gtk.Dialog,
         response: Gtk.ResponseType,
-        button: Gtk.Button,
         _dialog: Gtk.Dialog,
     ) -> None:
         select_dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
-            selected_keyfile = select_dialog.get_file().get_path()
-            keyfile_hash: str = self.database_manager.create_keyfile_hash(
-                selected_keyfile
-            )
-            self.current_keyfile_path = selected_keyfile
+            keyfile = select_dialog.get_file()
+            keyfile.load_bytes_async(None, self.load_bytes_callback)
+
+    def load_bytes_callback(self, gfile, result):
+        try:
+            gbytes, _ = gfile.load_bytes_finish(result)
+            if not gbytes:
+                raise Exception("IO operation error")
+
+        except Exception as err:  # pylint: disable=broad-except
+            logging.debug("Could not set keyfile hash: %s", err)
+            self.keyfile_error_revealer.reveal(True)
+            self.select_keyfile_button.set_icon_name("document-open-symbolic")
+        else:
+            keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
+            self.current_keyfile_path = gfile.get_path()
+
+            button = self.select_keyfile_button
 
             if keyfile_hash == self.database_manager.keyfile_hash:
                 button.set_icon_name("object-select-symbolic")

@@ -162,7 +162,7 @@ class CreateDatabase(Adw.Bin):
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
 
-            def callback(gfile, result):
+            def callback(gfile, result, keyfile_hash):
                 try:
                     success, _ = gfile.replace_contents_finish(result)
                     if not success:
@@ -178,6 +178,7 @@ class CreateDatabase(Adw.Bin):
                         self.database_manager.password = None
 
                     self.database_manager.keyfile = keyfile_path
+                    self.database_manager.keyfile_hash = keyfile_hash
                     self.database_manager.save_database()
                     self.success_page()
 

@@ -224,7 +224,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             keyfile = save_dialog.get_file()
             self.new_keyfile_path = keyfile.get_path()
 
-            def callback(gfile, result):
+            def callback(gfile, result, keyfile_hash):
                 try:
                     success, _ = gfile.replace_contents_finish(result)
                     if not success:

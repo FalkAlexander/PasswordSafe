@@ -33,14 +33,17 @@ def generate_keyfile(
     cipher = AES.new(key, AES.MODE_EAX)
     ciphertext, tag = cipher.encrypt_and_digest(create_random_data(96))  # type: ignore
     contents = cipher.nonce + tag + ciphertext  # type: ignore
+    gbytes = GLib.Bytes.new(contents)
+    keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
 
-    gfile.replace_contents_async(
-        contents,
+    gfile.replace_contents_bytes_async(
+        gbytes,
         None,
         False,
         Gio.FileCreateFlags.REPLACE_DESTINATION,
         None,
         callback,
+        keyfile_hash
     )
 
 

@@ -35,11 +35,11 @@ flake8:
   stage: check
   script:
     - dnf install -y python3-flake8 python3-pyotp
-    - flake8 --max-line-length=170 --ignore=E402,W503 --show-source passwordsafe/
+    - flake8 --max-line-length=170 --ignore=E402,W503 --show-source passwordsafe
 
 mypy:
   stage: check
   script:
     - dnf install -y pip python3-pyotp
     - pip install mypy
-    - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe/
+    - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe

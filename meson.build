@@ -63,15 +63,4 @@ subdir('data')
 subdir('po')
 subdir('passwordsafe')
 
-pylint = find_program('pylint', required: false)
-if pylint.found()
-  test (
-    'Pylint tests',
-    pylint,
-    args: ['--rcfile=@0@'.format(join_paths(meson.current_source_dir (), '.pylintrc')),
-          join_paths(python_dir, 'passwordsafe')],
-    timeout: 360,
-  )
-endif
-
 meson.add_install_script('meson_post_install.py')

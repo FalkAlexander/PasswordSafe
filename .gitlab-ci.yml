@@ -43,3 +43,12 @@ mypy:
     - dnf install -y pip python3-pyotp
     - pip install mypy
     - mypy --ignore-missing-imports --disallow-incomplete-defs passwordsafe
+
+pylint:
+  stage: check
+  script:
+    - dnf install -y 'dnf-command(copr)'
+    - dnf copr enable -y deathwish/libadwaita
+    - dnf install -y libadwaita-devel gtk4-devel libpwquality-devel pylint python3-pwquality python3-gobject-devel python3-pyotp python3-pykeepass
+    - mv passwordsafe/const.py.in passwordsafe/const.py  # We need a dummy file
+    - pylint --rcfile=.pylintrc passwordsafe

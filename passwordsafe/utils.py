@@ -17,7 +17,7 @@ def format_time(time: GLib.DateTime | None, hours: bool = True) -> str:
 
     time_format = "%e %b %Y"
     if hours:
-        time_format += " %R"  # The space is a 'EN SPACE'
+        time_format += " %R"  # NOTE This is a U+2002 En Space.
 
     return time.to_local().format(time_format)
 

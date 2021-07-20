@@ -47,14 +47,14 @@
         <property name="valign">center</property>
         <child>
           <object class="GtkButton" id="_entry_copy_user_button">
-            <property name="tooltip_text" translatable="yes">Copy username to clipboard</property>
+            <property name="tooltip_text" translatable="yes">Copy Username to Clipboard</property>
             <property name="icon_name">avatar-default-symbolic</property>
             <signal name="clicked" handler="on_entry_copy_user_button_clicked" swapped="no"/>
           </object>
         </child>
         <child>
           <object class="GtkButton" id="_entry_copy_pass_button">
-            <property name="tooltip_text" translatable="yes">Copy password to clipboard</property>
+            <property name="tooltip_text" translatable="yes">Copy Password to Clipboard</property>
             <property name="icon_name">dialog-password-symbolic</property>
             <signal name="clicked" handler="on_entry_copy_pass_button_clicked" swapped="no"/>
           </object>

@@ -59,7 +59,7 @@ class SelectionModeHeaderbar(Adw.Bin):
     def on_selected_entries_changed(self, selection_ui, _value):
         new_number = selection_ui.props.selected_elements
         if new_number == 0:
-            label = _("Click on a checkbox to select")
+            label = _("Click on a Checkbox to Select")
         else:
             label = ngettext(
                 "{} Selected entry", "{} Selected entries", new_number

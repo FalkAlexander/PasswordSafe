@@ -230,7 +230,7 @@ class Window(Adw.ApplicationWindow):
                     window.start_database_opening_routine(filepath)
                     window.present()
                 else:
-                    self.send_notification(_("Safe is already open"))
+                    self.send_notification(_("Safe is Already Open"))
 
         else:
             self.start_database_opening_routine(filepath)
@@ -283,7 +283,7 @@ class Window(Adw.ApplicationWindow):
 
                 if is_open:
                     self.send_notification(
-                        _("Cannot create safe: Safe is already open")
+                        _("Cannot Create Safe: Safe is Already Open")
                     )
                     return
 
@@ -339,7 +339,7 @@ class Window(Adw.ApplicationWindow):
             logging.debug("Could not copy new database: %s", err)
             self._spinner.stop()
             self.invoke_initial_screen()
-            self.send_notification(_("Could not create new Safe"))
+            self.send_notification(_("Could not Create new Safe"))
 
         def copy_callback(gfile, result):
             try:

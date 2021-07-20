@@ -61,7 +61,7 @@ class AttachmentEntryRow(Adw.ActionRow):
         except Exception as err:  # pylint: disable=broad-except
             logging.debug("Could not store attachment: %s", err)
             window = self.get_root()
-            window.send_notification(_("Could not store attachment"))
+            window.send_notification(_("Could not Store Attachment"))
 
     def _on_save_filechooser_response(
         self,

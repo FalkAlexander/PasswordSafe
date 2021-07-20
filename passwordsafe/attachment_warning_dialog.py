@@ -63,7 +63,7 @@ class AttachmentWarningDialog:
 
             except Exception as err:  # pylint: disable=broad-except
                 logging.debug("Could not load attachment: %s", err)
-                window.send_notification(_("Could not load attachment"))
+                window.send_notification(_("Could not Load Attachment"))
             else:
                 Gtk.show_uri(window, gfile.get_uri(), Gdk.CURRENT_TIME)
 

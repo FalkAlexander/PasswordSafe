@@ -66,7 +66,7 @@ class AttributeEntryRow(Gtk.Box):
         if self.entry.has_attribute(new_key):
             entry.add_css_class("error")
             window = self.get_root()
-            window.send_notification(_("Attribute key already exists"))
+            window.send_notification(_("Attribute key Already Exists"))
             return
 
         self.entry.set_attribute(new_key, self.entry.props.attributes[self.key])

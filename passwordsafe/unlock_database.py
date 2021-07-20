@@ -124,7 +124,7 @@ class UnlockDatabase(Adw.Bin):
 
         if self.is_safe_open_elsewhere():
             self.window.send_notification(
-                _("Safe {} is already open".format(self.database_filepath))
+                _("Safe {} is Already Open".format(self.database_filepath))
             )
             return
 
@@ -179,7 +179,7 @@ class UnlockDatabase(Adw.Bin):
     def _on_keyfile_unlock_button_clicked(self, _widget):
         if self.is_safe_open_elsewhere():
             self.window.send_notification(
-                _("Safe {} is already open".format(self.database_filepath))
+                _("Safe {} is Already Open".format(self.database_filepath))
             )
             return
 
@@ -233,7 +233,7 @@ class UnlockDatabase(Adw.Bin):
 
         if self.is_safe_open_elsewhere():
             self.window.send_notification(
-                _("Safe {} is already open".format(self.database_filepath))
+                _("Safe {} is Already Open".format(self.database_filepath))
             )
             return
 
@@ -358,7 +358,7 @@ class UnlockDatabase(Adw.Bin):
         if Path(self.database_filepath).suffix == ".kdb":
             self._open_database_failure()
             # NOTE kdb is a an older format for Keepass databases.
-            self.window.send_notification(_("The kdb format is not supported"))
+            self.window.send_notification(_("The kdb Format is not Supported"))
             return
 
         if self._unlock_method == UnlockMethod.COMPOSITE:
@@ -444,7 +444,7 @@ class UnlockDatabase(Adw.Bin):
         self.composite_unlock_entry.set_text("")
 
     def _composite_unlock_failed(self):
-        self.window.send_notification(_("Failed to unlock safe"))
+        self.window.send_notification(_("Failed to Unlock Safe"))
 
         if self.database_manager:
             self.database_manager.keyfile_hash = None
@@ -458,7 +458,7 @@ class UnlockDatabase(Adw.Bin):
         logging.debug("Could not open database, wrong password")
 
     def _keyfile_unlock_failed(self):
-        self.window.send_notification(_("Failed to unlock safe"))
+        self.window.send_notification(_("Failed to Unlock Safe"))
 
         if self.database_manager:
             self.database_manager.keyfile_hash = None
@@ -469,7 +469,7 @@ class UnlockDatabase(Adw.Bin):
         logging.debug("Invalid keyfile chosen")
 
     def _password_unlock_failed(self):
-        self.window.send_notification(_("Failed to unlock safe"))
+        self.window.send_notification(_("Failed to Unlock Safe"))
 
         self.password_unlock_entry.grab_focus()
         self.password_unlock_entry.add_css_class("error")

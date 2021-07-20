@@ -270,9 +270,9 @@ class UnlockedDatabase(Gtk.Box):
         self, _database_manager: DatabaseManager, saved: bool
     ) -> None:
         if saved:
-            self.window.send_notification(_("Safe saved"))
+            self.window.send_notification(_("Safe Saved"))
         else:
-            self.window.send_notification(_("Could not save Safe"))
+            self.window.send_notification(_("Could not Save Safe"))
 
     def save_safe(self):
         if self.database_manager.is_dirty is True:
@@ -281,11 +281,11 @@ class UnlockedDatabase(Gtk.Box):
             else:
                 # NOTE: In-app notification to inform the user that already an unfinished save job is running
                 self.window.send_notification(
-                    _("Please wait. Another save is running.")
+                    _("Please Wait. Another Save is Running.")
                 )
         else:
             # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-            self.window.send_notification(_("No changes made"))
+            self.window.send_notification(_("No Changes Made"))
 
     def lock_safe(self):
         self.database_manager.props.locked = True
@@ -393,7 +393,7 @@ class UnlockedDatabase(Gtk.Box):
         self.database_manager.props.locked = True
 
         # NOTE: Notification that a safe has been locked.
-        self.window.send_notification(_("Safe locked due to inactivity"))
+        self.window.send_notification(_("Safe Locked due to Inactivity"))
 
     #
     # Helper Methods

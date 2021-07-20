@@ -129,7 +129,7 @@ class CreateDatabase(Adw.Bin):
             save_thread.daemon = True
             save_thread.start()
         else:
-            self.window.send_notification(_("Passwords do not match"))
+            self.window.send_notification(_("Passwords do not Match"))
             self.clear_input_fields()
             self.password_repeat_input1.add_css_class("error")
             self.password_repeat_input2.add_css_class("error")
@@ -170,7 +170,7 @@ class CreateDatabase(Adw.Bin):
 
                 except Exception as err:  # pylint: disable=broad-except
                     logging.debug("Could not create keyfile: %s", err)
-                    self.window.send_notification(_("Could not create keyfile"))
+                    self.window.send_notification(_("Could not Create Keyfile"))
                     self.generate_keyfile_button.set_sensitive(True)
                     self.generate_keyfile_button.set_label(_("Generate"))
                 else:

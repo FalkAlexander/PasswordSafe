@@ -324,7 +324,7 @@ class UnlockedDatabase(Gtk.Box):
 
     def send_to_clipboard(self, text: str, message: str = "") -> None:
         if not message:
-            message = _("Copied to clipboard")
+            message = _("Copied to Clipboard")
 
         self.start_database_lock_timer()
 

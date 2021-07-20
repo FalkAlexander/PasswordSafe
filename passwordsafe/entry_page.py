@@ -235,7 +235,7 @@ class EntryPage(Adw.Bin):
             username = self.username_property_value_entry.get_text()
             self.unlocked_database.send_to_clipboard(
                 username,
-                _("Username copied to clipboard"),
+                _("Username Copied to Clipboard"),
             )
         elif action.props.name == "entry.copy_password":
             self.password_entry_row.copy_password()
@@ -276,7 +276,7 @@ class EntryPage(Adw.Bin):
         otp_token = safe_entry.otp_token() or ""
         self.unlocked_database.send_to_clipboard(
             otp_token,
-            _("One-time password copied to clipboard"),
+            _("One-time Password Copied to Clipboard"),
         )
 
     #
@@ -372,7 +372,7 @@ class EntryPage(Adw.Bin):
     def _on_copy_secondary_button_clicked(self, widget, _icon_pos, _data=None):
         self.unlocked_database.send_to_clipboard(
             widget.get_text(),
-            _("Username copied to clipboard"),
+            _("Username Copied to Clipboard"),
         )
 
     def show_row(self, row: Gtk.ListBoxRow, non_empty: bool, add_all: bool) -> None:

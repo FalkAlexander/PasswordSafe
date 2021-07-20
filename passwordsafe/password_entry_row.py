@@ -64,5 +64,5 @@ class PasswordEntryRow(Adw.Bin):
         password: str = self._password_value_entry.props.text
         self._unlocked_database.send_to_clipboard(
             password,
-            _("Password copied to clipboard"),
+            _("Password Copied to Clipboard"),
         )

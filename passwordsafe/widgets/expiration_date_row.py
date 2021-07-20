@@ -76,7 +76,7 @@ class ExpirationDateRow(Adw.Bin):
     @Gtk.Template.Callback()
     def on_remove_button_clicked(self, _button: Gtk.Button) -> None:
         safe_entry = self.props.safe_entry
-        self.action_row.props.title = _("Expiration date not set")
+        self.action_row.props.title = _("Expiration Date not Set")
         self.action_row.props.subtitle = None
         now = GLib.DateTime.new_now_utc()
         self.calendar.select_day(now)

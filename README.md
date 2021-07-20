@@ -72,12 +72,12 @@ flatpak install org.gnome.PasswordSafe.Devel.flatpak
 ##### Prerequisites:
 * python >= 3.7.9
 * [pykeepass](https://github.com/libkeepass/pykeepass) >= 3.2.1
+* [pyotp](https://github.com/pyauth/pyotp) >= 2.4.0
 * gtk >= 4.3.0
-* libhandy >= 1.0.0
+* libadwaita >= 1.0.0
 * libpwquality >= 1.4.0
 * meson >= 0.51.0
 * git
-* pyopt >= 2.6.0
 
 ```
 git clone https://gitlab.gnome.org/World/PasswordSafe.git

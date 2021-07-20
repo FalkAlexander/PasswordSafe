@@ -24,6 +24,7 @@ artists = '\n'.join([
                    ])
 
 message('Looking for dependencies')
+# We need pykeepass>=4.0.1 and pyotp>=2.4.0.
 python_bin = python.find_installation('python3', modules:['pykeepass', 'pyotp'])
 if not python_bin.found()
   error('No valid python3 binary found')
@@ -41,7 +42,7 @@ dependency('gio-2.0', version: '>= 2.66')
 dependency('gobject-introspection-1.0', version: '>=1.66.0')
 dependency('gtk4', version: '>=4.3.0')
 dependency('libadwaita-1', version: '>=1.0.0')
-dependency('pwquality')
+dependency('pwquality', version: '>=1.4.0')
 
 python_dir = python_bin.get_install_dir()
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())

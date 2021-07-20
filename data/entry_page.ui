@@ -60,6 +60,7 @@
                         <child>
                           <object class="GtkEntry" id="username_property_value_entry">
                             <property name="secondary_icon_name">edit-copy-symbolic</property>
+                            <property name="secondary_icon_tooltip_text" translatable="yes">Copy</property>
                             <property name="enable_undo">False</property>
                             <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
                           </object>
@@ -134,7 +135,7 @@
                               <object class="GtkButton" id="otp_copy_button">
                                 <property name="valign">center</property>
                                 <property name="receives_default">True</property>
-                                <property name="tooltip_text" translatable="yes">Copy One-Time Password to Clipboard</property>
+                                <property name="tooltip_text" translatable="yes">Copy</property>
                                 <property name="icon_name">edit-copy-symbolic</property>
                                 <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
                               </object>

@@ -121,7 +121,7 @@ class EntryRow(Adw.ActionRow):
             self.props.title = entry_name
         else:
             self.add_css_class("italic-title")
-            self.props.title = _("Title not specified")
+            self.props.title = _("Title not Specified")
 
     def _on_entry_username_changed(
         self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
@@ -132,7 +132,7 @@ class EntryRow(Adw.ActionRow):
             self.props.subtitle = entry_username
         else:
             self.add_css_class("italic-subtitle")
-            self.props.subtitle = _("No username specified")
+            self.props.subtitle = _("Username not specified")
 
     def _on_entry_color_changed(
         self, _safe_entry: SafeEntry, _value: GObject.ParamSpec

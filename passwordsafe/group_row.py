@@ -95,7 +95,7 @@ class GroupRow(Adw.ActionRow):
             self.props.title = group_name
         else:
             self.add_css_class("italic-title")
-            self.props.title = _("Title not specified")
+            self.props.title = _("Title not Specified")
 
     @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):

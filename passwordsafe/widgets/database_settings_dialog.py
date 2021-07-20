@@ -121,10 +121,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for choosing current used keyfile
-            _("Choose current keyfile"),
+            _("Select Current Keyfile"),
             self,
             Gtk.FileChooserAction.OPEN,
-            _("_Open"),
+            None,
             None,
         )
         select_dialog.set_modal(True)
@@ -169,7 +169,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.unlocked_database.start_database_lock_timer()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for generating a new keyfile
-            _("Choose location for keyfile"),
+            _("Generate Keyfile"),
             self,
             Gtk.FileChooserAction.SAVE,
             _("_Generate"),

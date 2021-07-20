@@ -147,7 +147,7 @@ class UnlockDatabase(Adw.Bin):
     def _on_keyfile_unlock_select_button_clicked(self, _widget):
         """cb invoked when we unlock a database via keyfile"""
         keyfile_chooser_dialog = Gtk.FileChooserNative.new(
-            _("Choose a keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
+            _("Select Keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
         )
         keyfile_chooser_dialog.add_filter(KeyFileFilter().file_filter)
 
@@ -202,7 +202,7 @@ class UnlockDatabase(Adw.Bin):
     @Gtk.Template.Callback()
     def _on_composite_unlock_select_button_clicked(self, _widget):
         opening_dialog = Gtk.FileChooserNative.new(
-            _("Choose Keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
+            _("Select Keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
         )
         opening_dialog.add_filter(KeyFileFilter().file_filter)
 

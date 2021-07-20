@@ -34,10 +34,10 @@ class AttachmentEntryRow(Adw.ActionRow):
         window = self.get_root()
         save_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for downloading an attachment
-            _("Save attachment"),
+            _("Save Attachment"),
             window,
             Gtk.FileChooserAction.SAVE,
-            _("_Save"),
+            None,
             None,
         )
         save_dialog.set_current_name(self.attachment.filename)

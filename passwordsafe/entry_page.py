@@ -325,7 +325,7 @@ class EntryPage(Adw.Bin):
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for selecting attachment file
-            _("Select attachment"),
+            _("Select Attachment"),
             self.unlocked_database.window,
             Gtk.FileChooserAction.OPEN,
             _("_Add"),

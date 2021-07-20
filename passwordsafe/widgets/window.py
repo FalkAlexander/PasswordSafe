@@ -155,7 +155,7 @@ class Window(Adw.ApplicationWindow):
         # pylint: disable=too-many-locals
         opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
-            _("Choose a Keepass safe"),
+            _("Select Safe"),
             self,
             Gtk.FileChooserAction.OPEN,
             None,
@@ -249,7 +249,7 @@ class Window(Adw.ApplicationWindow):
         """Callback function to create a new safe."""
         creation_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for creating a new keepass safe kdbx file
-            _("Choose location for Keepass safe"),
+            _("Create Safe"),
             self,
             Gtk.FileChooserAction.SAVE,
             _("_Create"),

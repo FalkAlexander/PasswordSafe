@@ -138,7 +138,7 @@ class CreateDatabase(Adw.Bin):
     def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
         """cb invoked when we create a new keyfile for a newly created Safe"""
         keyfile_dlg = Gtk.FileChooserNative.new(
-            _("Choose location for keyfile"),
+            _("Generate Keyfile"),
             self.window,
             Gtk.FileChooserAction.SAVE,
             _("_Generate"),

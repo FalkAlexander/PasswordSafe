@@ -10,6 +10,7 @@
           <object class="GtkMenuButton" id="_add_button">
             <property name="menu_model">_add_button_menu</property>
             <property name="icon_name">list-add-symbolic</property>
+            <property name="tooltip_text" translatable="yes">New Entry or Group</property>
             <property name="margin_end">6</property>
           </object>
         </child>
@@ -35,6 +36,7 @@
             </child>
             <child>
               <object class="GtkMenuButton" id="menupopover_button">
+                <property name="tooltip_text" translatable="yes">Main Menu</property>
                 <property name="menu_model">unlocked_database_menu</property>
                 <property name="icon_name">open-menu-symbolic</property>
               </object>

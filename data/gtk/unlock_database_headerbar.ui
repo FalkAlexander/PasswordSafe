@@ -37,6 +37,7 @@
         <child>
           <object class="GtkButton" id="back_button">
             <property name="icon_name">go-previous-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Back</property>
             <signal name="clicked" handler="_on_back_button_clicked" swapped="no"/>
           </object>
         </child>
@@ -44,6 +45,7 @@
           <object class="GtkMenuButton" id="menupopover_button">
             <property name="menu_model">primary_menu</property>
             <property name="icon_name">open-menu-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Main Menu</property>
           </object>
         </child>
         <style>

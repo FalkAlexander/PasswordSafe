@@ -12,10 +12,12 @@
         <child>
           <object class="GtkButton" id="back_button">
             <property name="icon_name">go-previous-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Back</property>
           </object>
         </child>
         <child type="end">
           <object class="GtkMenuButton" id="menupopover_button">
+            <property name="tooltip_text" translatable="yes">Main Menu</property>
             <property name="menu_model">create_safe_menu</property>
             <property name="icon_name">open-menu-symbolic</property>
           </object>

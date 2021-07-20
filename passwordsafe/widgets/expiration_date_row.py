@@ -68,8 +68,6 @@ class ExpirationDateRow(Adw.Bin):
         self.action_row.props.title = format_time(date, hours=False)
 
         safe_entry.props.expires = True
-        if safe_entry.props.expired:
-            self.action_row.props.subtitle = _("Entry expired.")
 
         self.popover.popdown()
 

@@ -72,7 +72,7 @@ flatpak install org.gnome.PasswordSafe.Devel.flatpak
 ##### Prerequisites:
 * python >= 3.7.9
 * [pykeepass](https://github.com/libkeepass/pykeepass) >= 3.2.1
-* gtk >= 3.24.1
+* gtk >= 4.3.0
 * libhandy >= 1.0.0
 * libpwquality >= 1.4.0
 * meson >= 0.51.0

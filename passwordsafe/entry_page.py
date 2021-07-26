@@ -392,14 +392,8 @@ class EntryPage(Adw.Bin):
             self.otp_timer_handler = None
 
         if otp_token:
-            remaining = safe_entry.otp_lifespan()
-            interval = safe_entry.otp_interval()
-            if int(self.otp_progress_icon.props.progress * interval) != int(remaining):
-                # NOTE: A U+202F Narrow No-Break Space is used for units.
-                tooltip = _("{} s Left").format(int(remaining))
-                self.otp_progress_icon.props.tooltip_text = tooltip
-
-            self.otp_progress_icon.props.progress = remaining / interval
+            remaining_time = safe_entry.otp_lifespan() / safe_entry.otp_interval()
+            self.otp_progress_icon.props.progress = remaining_time
             self.otp_token_box.props.visible = True
             self.otp_token_row.props.title = otp_token
             self.otp_timer_handler = GObject.timeout_add(

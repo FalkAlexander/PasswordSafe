@@ -236,7 +236,9 @@ class Window(Adw.ApplicationWindow):
 
     def start_database_opening_routine(self, filepath: str) -> None:
         """Start opening a safe file"""
-        unlock_db = UnlockDatabase(self, filepath)
+        # TODO Use a Gio.File instead of a path.
+        database = Gio.File.new_for_path(filepath)
+        unlock_db = UnlockDatabase(self, database)
         self._unlock_database_bin.props.child = unlock_db
         self.view = self.View.UNLOCK_DATABASE
 

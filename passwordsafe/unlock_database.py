@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-import ntpath
 import os
 import threading
 from gettext import gettext as _
@@ -42,8 +41,10 @@ class UnlockDatabase(Adw.Bin):
     stack = Gtk.Template.Child()
     stack_switcher = Gtk.Template.Child()
 
-    def __init__(self, window, filepath):
+    def __init__(self, window, database):
         super().__init__()
+
+        filepath = database.get_path()
 
         self.window = window
         self.database_filepath = filepath
@@ -54,7 +55,7 @@ class UnlockDatabase(Adw.Bin):
         self._unlock_method = None
 
         # Reset headerbar to initial state if it already exists.
-        self.headerbar.title.props.subtitle = os.path.basename(filepath)
+        self.headerbar.title.props.subtitle = database.get_basename()
         self.headerbar.back_button.props.sensitive = True
 
         database = self.window.unlocked_db
@@ -83,7 +84,7 @@ class UnlockDatabase(Adw.Bin):
             if keyfile_path is not None:
                 keyfile = Gio.File.new_for_path(keyfile_path)
                 if keyfile.query_exists():
-                    label = ntpath.basename(keyfile_path)
+                    label = keyfile.get_basename()
                     self.composite_unlock_select_button.set_label(label)
                     self.composite_keyfile_path = keyfile_path
 
@@ -427,7 +428,7 @@ class UnlockDatabase(Adw.Bin):
                 os.makedirs(cache_dir)
 
             current_time = GLib.DateTime.new_now_local().format("%F_%T")
-            basename = os.path.splitext(ntpath.basename(self.database_filepath))[0]
+            basename = os.path.splitext(opened.get_basename())[0]
             backup_name = basename + "_backup_" + current_time + ".kdbx"
             backup = Gio.File.new_for_path(os.path.join(cache_dir, backup_name))
 

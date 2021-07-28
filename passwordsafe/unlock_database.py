@@ -105,16 +105,44 @@ class UnlockDatabase(Adw.Bin):
 
     def load_keyfile_callback(self, keyfile, result):
         try:
-            gbytes, _ = keyfile.load_bytes_finish(result)
+            gbytes, _etag = keyfile.load_bytes_finish(result)
             if not gbytes:
                 raise Exception("IO operation error")
 
         except Exception as err:  # pylint: disable=broad-except
             logging.debug("Could not set keyfile hash: %s", err)
+
+            if self.stack.get_visible_child_name() == "composite_unlock":
+                self.composite_unlock_select_button.set_label(_("Try again"))
+                self.composite_unlock_select_button.remove_css_class("suggested-action")
+                self.composite_unlock_select_button.add_css_class("destructive-action")
+            else:
+                self.keyfile_unlock_select_button.set_label(_("Try again"))
+                self.keyfile_unlock_select_button.remove_css_class("suggested-action")
+                self.keyfile_unlock_select_button.add_css_class("destructive-action")
+
         else:
             keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
+            file_path = keyfile.get_path()
+            basename = keyfile.get_basename()
             if keyfile_hash:
                 self.keyfile_hash = keyfile_hash
+
+            if self._unlock_method == UnlockMethod.COMPOSITE:
+                self.composite_unlock_select_button.set_label(basename)
+                self.composite_keyfile_path = file_path
+
+                self.composite_unlock_select_button.remove_css_class("destructive-action")
+                self.composite_unlock_select_button.add_css_class("suggested-action")
+            else:
+                self.keyfile_unlock_select_button.set_label(basename)
+                self.keyfile_path = file_path
+
+                self.keyfile_unlock_select_button.remove_css_class("destructive-action")
+                self.keyfile_unlock_select_button.add_css_class("suggested-action")
+
+                # After selecting a keyfile, activate the unlock button.
+                self.keyfile_unlock_button.activate()
 
     def is_safe_open_elsewhere(self) -> bool:
         """Returns True if the safe is already open but not in the current window."""
@@ -179,15 +207,10 @@ class UnlockDatabase(Adw.Bin):
             self.keyfile_path = keyfile.get_path()
             keyfile.load_bytes_async(None, self.load_keyfile_callback)
 
-            logging.debug("Keyfile selected: %s", self.keyfile_path)
-
-            keyfile_button = self.keyfile_unlock_select_button
-            keyfile_button.remove_css_class("destructive-action")
-            keyfile_button.add_css_class("suggested-action")
-            keyfile_button.set_label(os.path.basename(self.keyfile_path))
-
-            # After selecting a keyfile, simulate a keypress on the unlock button
-            self.keyfile_unlock_button.emit("clicked")
+            spinner = Gtk.Spinner()
+            spinner.start()
+            self.keyfile_unlock_select_button.props.child = spinner
+            logging.debug("Keyfile selected: %s", keyfile.get_path())
 
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection canceled")
@@ -232,14 +255,15 @@ class UnlockDatabase(Adw.Bin):
         self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
     ) -> None:
         dialog.destroy()
-        composite_unlock_select_button = self.composite_unlock_select_button
         if response == Gtk.ResponseType.ACCEPT:
             keyfile = dialog.get_file()
-            file_path = keyfile.get_path()
             keyfile.load_bytes_async(None, self.load_keyfile_callback)
-            logging.debug("KeyFile selected: %s", file_path)
-            composite_unlock_select_button.set_label(ntpath.basename(file_path))
-            self.composite_keyfile_path = file_path
+
+            spinner = Gtk.Spinner()
+            spinner.start()
+            self.composite_unlock_select_button.props.child = spinner
+
+            logging.debug("KeyFile selected: %s", keyfile.get_path())
 
         elif response == Gtk.ResponseType.CANCEL:
             logging.debug("File selection cancelled")

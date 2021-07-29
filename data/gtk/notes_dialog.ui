@@ -70,17 +70,11 @@
             </child>
             <child>
               <object class="GtkScrolledWindow" id="notes_dialog_scrolled_window">
-                <property name="height_request">100</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
                 <child>
                   <object class="GtkTextView" id="_value_entry">
                     <property name="wrap_mode">word</property>
-                    <property name="left_margin">5</property>
-                    <property name="right_margin">5</property>
-                    <property name="top_margin">5</property>
-                    <property name="bottom_margin">5</property>
-                    <property name="monospace">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                 </child>
               </object>

@@ -216,15 +216,18 @@
                     </child>
                     <child>
                       <object class="GtkBox" id="notes_entry_box">
-                        <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkTextView" id="notes_property_value_entry">
-                            <property name="height_request">100</property>
-                            <property name="wrap_mode">word</property>
-                            <property name="left_margin">8</property>
-                            <property name="right_margin">8</property>
-                            <property name="top_margin">5</property>
-                            <property name="bottom_margin">5</property>
+                          <object class="GtkScrolledWindow">
+                            <property name="height_request">180</property>
+                            <child>
+                              <object class="GtkTextView" id="notes_property_value_entry">
+                                <property name="hexpand">True</property>
+                                <property name="wrap_mode">word</property>
+                                <style>
+                                  <class name="codeview"/>
+                                </style>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>

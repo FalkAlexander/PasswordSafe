@@ -159,8 +159,6 @@ class EntryPage(Adw.Bin):
         self.show_row(self.otp_property_box, False, add_all)
 
         # Notes
-        self.notes_property_value_entry.add_css_class("codeview")
-
         textbuffer = self.notes_property_value_entry.get_buffer()
         safe_entry.bind_property(
             "notes",

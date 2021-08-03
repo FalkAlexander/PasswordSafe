@@ -4,74 +4,74 @@
 /* Pathbar button styles */
 
 #PathbarButton {
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-	border: 0;
-	transition: 0.3s;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border: 0;
+  transition: 0.3s;
 }
 
 #PathbarButton:hover {
-	color: @accent_color;
-	box-shadow: none;
-	transition-property: none;
-	border-top: none;
-	box-shadow: 0px -2px 0px alpha(currentColor,0.5) inset;
-	transition: box-shadow 0.3s;
-	border-radius: 0px;
-	background: transparent;
+  color: @accent_color;
+  box-shadow: none;
+  transition-property: none;
+  border-top: none;
+  box-shadow: 0px -2px 0px alpha(currentColor,0.5) inset;
+  transition: box-shadow 0.3s;
+  border-radius: 0px;
+  background: transparent;
 }
 
 .PathbarButtonActive {
-	box-shadow: none;
-	transition-property: none;
-	border-top: none;
-	box-shadow: 0px -2px 0px @accent_bg_color inset;
-	border-radius: 0px;
-	background: transparent;
+  box-shadow: none;
+  transition-property: none;
+  border-top: none;
+  box-shadow: 0px -2px 0px @accent_bg_color inset;
+  border-radius: 0px;
+  background: transparent;
 }
 
 /* Entry and group browser page styles */
 
 #BrowserListBox:not(.small) {
-	margin: 36px 0 36px 0;
+  margin: 36px 0 36px 0;
 }
 
 #BrowserListBox.small row {
-	border-radius: 0px;
+  border-radius: 0px;
 }
 
 /* Entry color button styles */
 
 .NoneColorButton {
-	background: @light_4;
+  background: @light_4;
 }
 
 .BlueColorButton {
-	background: @blue_4;
+  background: @blue_4;
 }
 
 .GreenColorButton {
-	background: @green_4;
+  background: @green_4;
 }
 
 .YellowColorButton {
-	background-color: @yellow_4;
+  background-color: @yellow_4;
 }
 
 .OrangeColorButton {
-	background: @orange_4;
+  background: @orange_4;
 }
 
 .RedColorButton {
-	background: @red_4;
+  background: @red_4;
 }
 
 .PurpleColorButton {
-	background: @purple_4;
+  background: @purple_4;
 }
 
 .BrownColorButton {
-	background: @brown_4;
+  background: @brown_4;
 }
 
 .ColorButton {
@@ -79,47 +79,47 @@
 }
 
 .ColorButton:hover {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 
 .BrightIcon {
-	color: white;
+  color: white;
 }
 
 .DarkIcon {
-	color: black;
+  color: black;
 }
 
 .circular-icon {
-	border-radius: 32px;
+  border-radius: 32px;
 }
 
 /* Entry icon styles */
 
 .EntryIconFlowBox > flowboxchild {
-	border-radius: 8px;
+  border-radius: 8px;
 }
 
 /* Password strength level bar styles */
 
 levelbar block.insecure, levelbar block.low, levelbar block.high, levelbar block.full {
-	background-color: @red_2;
+  background-color: @red_2;
 }
 
 levelbar block.weak {
-	background-color: @orange_2;
+  background-color: @orange_2;
 }
 
 levelbar block.medium {
-	background-color: @yellow_2;
+  background-color: @yellow_2;
 }
 
 levelbar block.strong {
-	background-color: @green_2;
+  background-color: @green_2;
 }
 
 levelbar block.secure {
-	background-color: @green_4;
+  background-color: @green_4;
 }
 
 textview {
@@ -133,15 +133,15 @@ textview.codeview {
 }
 
 .italic-subtitle label.subtitle, .italic-title label.title {
-	font-style: italic;
+  font-style: italic;
 }
 
 .strikethrough label.subtitle, .strikethrough label.title {
-	text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .otp-action-row label.title {
-	font-size: 24px;
+  font-size: 24px;
 }
 
 .notification {

@@ -14,7 +14,7 @@ contributors = '\n'.join([
     'Uta Lemke',
     'David Heidelberg',
     'Jean Felder',
-    'Maximiliano Sandoval',
+    'Maximiliano Sandoval &lt;msandova@gnome.org&gt;',
     'Sebastian Spaeth',
     'Christopher Davis',
                         ])

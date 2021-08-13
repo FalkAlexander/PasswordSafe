@@ -129,7 +129,7 @@ class UnlockDatabase(Adw.Bin):
             if keyfile_hash:
                 self.keyfile_hash = keyfile_hash
 
-            if self._unlock_method == UnlockMethod.COMPOSITE:
+            if self.stack.get_visible_child_name() == "composite_unlock":
                 self.composite_unlock_select_button.set_label(basename)
                 self.composite_keyfile_path = file_path
 
@@ -210,7 +210,11 @@ class UnlockDatabase(Adw.Bin):
 
             spinner = Gtk.Spinner()
             spinner.start()
-            self.keyfile_unlock_select_button.props.child = spinner
+            if self.stack.get_visible_child_name() == "composite_unlock":
+                self.composite_unlock_select_button.props.child = spinner
+            else:
+                self.keyfile_unlock_select_button.props.child = spinner
+
             logging.debug("Keyfile selected: %s", keyfile.get_path())
 
         elif response == Gtk.ResponseType.CANCEL:
@@ -247,27 +251,8 @@ class UnlockDatabase(Adw.Bin):
         )
         opening_dialog.add_filter(KeyFileFilter().file_filter)
 
-        opening_dialog.connect(
-            "response", self._on_composite_filechooser_response, opening_dialog
-        )
+        opening_dialog.connect("response", self.on_dialog_response, opening_dialog)
         opening_dialog.show()
-
-    def _on_composite_filechooser_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
-    ) -> None:
-        dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
-            keyfile = dialog.get_file()
-            keyfile.load_bytes_async(None, self.load_keyfile_callback)
-
-            spinner = Gtk.Spinner()
-            spinner.start()
-            self.composite_unlock_select_button.props.child = spinner
-
-            logging.debug("KeyFile selected: %s", keyfile.get_path())
-
-        elif response == Gtk.ResponseType.CANCEL:
-            logging.debug("File selection cancelled")
 
     @Gtk.Template.Callback()
     def _on_composite_unlock_button_clicked(self, _widget):

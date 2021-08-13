@@ -18,6 +18,15 @@ Password Safe is a password manager which integrates perfectly with the GNOME de
 * 📲 Responsive UI for both desktop and mobile
 * ⏱️ Support for 2-Factor authentication time based passwords.
 
+### Supported Encryption Algorithms:
+* AES 256-bit
+* Twofish 256-bit
+* ChaCha20 256-bit
+
+### Supported Derivation algorithms:
+* Argon2 KDBX4
+* AES-KDF KDBX 3.1
+
 # Installation
 <a href="https://flathub.org/apps/details/org.gnome.PasswordSafe">
 <img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" />
@@ -81,16 +90,6 @@ sudo ninja -C _build install
 # Translations
 Helping to translate Password Safe or add support to a new language is very welcome.
 You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https://l10n.gnome.org/module/PasswordSafe/)
-
-# Supported encryption algorithms
-### Encryption algorithms:
-* AES 256-bit
-* Twofish 256-bit
-* ChaCha20 256-bit
-
-### Derivation algorithms:
-* Argon2 KDBX4
-* AES-KDF KDBX 3.1
 
 # Data protection
 Please be careful when using development versions. Create enough backups if you're using a production database with a Password Safe development version. It is possible that data loss will occur, though I give my best that this will never happen.

@@ -39,65 +39,23 @@ To install, open the Flatpak package with GNOME Software. Alternatively, run:
 flatpak install org.gnome.PasswordSafe.Devel.flatpak
 ```
 
-
-## Building from source
-
-
-#### Option 1: with GNOME Builder
-Open GNOME Builder, click the "Clone..." button, paste the repository url.
-Clone the project and hit the ![](https://terminal.run/stuff/run_button.png) button to start building Password Safe.
-
-#### Option 2: with Flatpak Builder
+## Building locally
+We use the Meson build system for. The quickest
+way to get going is to run the following:
 ```
-# Clone Password Safe repository
-git clone https://gitlab.gnome.org/World/PasswordSafe.git
-cd PasswordSafe
-# Add Flathub repository
-flatpak remote-add flathub --if-not-exists https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak remote-add gnome-nightly --if-not-exists https://sdk.gnome.org/gnome-nightly.flatpakrepo
-# Install the required GNOME runtimes
-flatpak install gnome-nightly org.gnome.Platform//master org.gnome.Sdk//master
-# Start building
-flatpak-builder --repo=repo org.gnome.PasswordSafe.Devel flatpak/org.gnome.PasswordSafe.json --force-clean
-# Create the Flatpak
-flatpak build-export repo org.gnome.PasswordSafe.Devel
-flatpak build-bundle repo org.gnome.PasswordSafe.Devel.flatpak org.gnome.PasswordSafe.Devel
-# Install the Flatpak
-flatpak install org.gnome.PasswordSafe.Devel.flatpak
-
-```
-
-
-#### Option 3: with Meson
-##### Prerequisites:
-* python >= 3.7.9
-* [pykeepass](https://github.com/libkeepass/pykeepass) >= 3.2.1
-* [pyotp](https://github.com/pyauth/pyotp) >= 2.4.0
-* gtk >= 4.3.0
-* libadwaita >= 1.0.0
-* libpwquality >= 1.4.0
-* meson >= 0.51.0
-* git
-
-```
-git clone https://gitlab.gnome.org/World/PasswordSafe.git
-cd PasswordSafe
-meson . _build --prefix=/usr
+meson . _build
 ninja -C _build
-sudo ninja -C _build install
+ninja -C _build install
 ```
 
-# Translations
+## Hacking on Password Safe
+To build the development version of Password Safe and hack on the code
+see the [general guide](https://wiki.gnome.org/Newcomers/BuildProject)
+for building GNOME apps with Flatpak and GNOME Builder.
+
+### Translations
 Helping to translate Password Safe or add support to a new language is very welcome.
 You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https://l10n.gnome.org/module/PasswordSafe/)
-
-# Data protection
-Please be careful when using development versions. Create enough backups if you're using a production database with a Password Safe development version. It is possible that data loss will occur, though I give my best that this will never happen.
-
-Development versions create a backup of your database on unlocking by default. These can be found at ```$XDG_CACHE_HOME/passwordsafe/backup/``` (or `~/.var/app/org.gnome.PasswordSafe/cache/passwordsafe/backup` for Flatpak users) where every backup is named by database name and date. If you don't want this behavior you can turn it off via dconf:
-```
-gsettings set org.gnome.PasswordSafe development-backup-mode false
-```
 
 # Contact
 You can contact through chat (Matrix protocol) on [#passwordsafe:gnome.org](https://matrix.to/#/#passwordsafe:gnome.org) channel.

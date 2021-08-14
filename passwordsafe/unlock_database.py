@@ -159,6 +159,8 @@ class UnlockDatabase(Adw.Bin):
                 and self.database_manager.keyfile_hash == self.keyfile_hash
             ):
                 self.database_manager.props.locked = False
+                if passwordsafe.config_manager.get_remember_composite_key():
+                    self._set_last_used_keyfile()
             else:
                 self._unlock_failed()
         else:

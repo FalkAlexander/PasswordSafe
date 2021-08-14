@@ -38,6 +38,7 @@ class UnlockDatabase(Adw.Bin):
     spinner_stack = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
+    status_page = Gtk.Template.Child()
 
     def __init__(self, window, database):
         super().__init__()
@@ -62,6 +63,9 @@ class UnlockDatabase(Adw.Bin):
 
         if passwordsafe.config_manager.get_remember_composite_key():
             self._get_last_used_keyfile()
+
+        if passwordsafe.const.IS_DEVEL:
+            self.status_page.props.icon_name = passwordsafe.const.APP_ID
 
     def do_realize(self):  # pylint: disable=arguments-differ
         Gtk.Widget.do_realize(self)

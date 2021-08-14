@@ -2,8 +2,8 @@
 <interface>
   <template class="UnlockDatabase" parent="AdwBin">
     <child>
-      <object class="AdwStatusPage">
-        <property name="icon_name">dialog-password-symbolic</property>
+      <object class="AdwStatusPage" id="status_page">
+        <property name="icon_name">org.gnome.PasswordSafe</property>
         <property name="title" translatable="yes">Unlock Safe</property>
         <property name="description" translatable="yes">Enter password, and optionally a keyfile.</property>
         <property name="child">

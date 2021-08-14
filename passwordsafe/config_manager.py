@@ -1,6 +1,4 @@
 # SPDX-License-Identifier: GPL-3.0-only
-import logging
-from enum import IntEnum
 from typing import cast
 
 from gi.repository import Gio, GLib
@@ -31,14 +29,6 @@ GENERATOR_USE_SYMBOLS = "generator-use-symbols"
 GENERATOR_LENGTH = "generator-length"
 GENERATOR_WORDS = "generator-words"
 GENERATOR_SEPARATOR = "generator-separator"
-
-
-class UnlockMethod(IntEnum):
-    """Enum for database unlock methods"""
-
-    PASSWORD = 0
-    KEYFILE = 1
-    COMPOSITE = 2
 
 
 def get_generator_use_uppercase() -> bool:
@@ -192,31 +182,6 @@ def get_remember_unlock_method():
 
 def set_remember_unlock_method(value):
     setting.set_boolean(REMEMBER_UNLOCK_METHOD, value)
-
-
-def get_unlock_method():
-    """Get unlock method
-
-    :returns: last unlock method used
-    :rtype: UnlockMethod
-    """
-    value = setting.get_enum(UNLOCK_METHOD)
-    if value == UnlockMethod.PASSWORD:
-        return "password"
-    if value == UnlockMethod.KEYFILE:
-        return "keyfile"
-    if value == UnlockMethod.COMPOSITE:
-        return "composite"
-    logging.warning("Retrieving unknown unlock method.")
-    return None
-
-
-def set_unlock_method(value):
-    """Set Unlock Method
-
-    :param UnlockMethod value: unlock method used
-    """
-    setting.set_enum(UNLOCK_METHOD, value)
 
 
 def get_development_backup_mode():

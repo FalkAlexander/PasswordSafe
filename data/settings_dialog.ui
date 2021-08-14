@@ -76,19 +76,6 @@
                 </child>
               </object>
             </child>
-            <child>
-              <object class="AdwActionRow">
-                <property name="title" translatable="yes" comments="There are 3 unlock methods: password, keyfile, composite (password+keyfile)">Remember _Unlock Method</property>
-                <property name="subtitle" translatable="yes">Enable faster unlocking.</property>
-                <property name="activatable_widget">_remember_method_switch</property>
-                <property name="use_underline">True</property>
-                <child>
-                  <object class="GtkSwitch" id="_remember_method_switch">
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-              </object>
-            </child>
           </object>
         </child>
       </object>

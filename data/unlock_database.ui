@@ -2,243 +2,115 @@
 <interface>
   <template class="UnlockDatabase" parent="AdwBin">
     <child>
-      <object class="AdwClamp">
-        <property name="margin_start">18</property>
-        <property name="margin_end">18</property>
-        <property name="margin_top">18</property>
-        <property name="margin_bottom">18</property>
-        <property name="maximum_size">300</property>
-        <property name="hexpand">True</property>
-        <child>
-          <object class="GtkBox" id="unlock_database_stack_box">
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <property name="spacing">25</property>
+      <object class="AdwStatusPage">
+        <property name="icon_name">dialog-password-symbolic</property>
+        <property name="title" translatable="yes">Unlock Safe</property>
+        <property name="description" translatable="yes">Enter password, and optionally a keyfile.</property>
+        <property name="child">
+          <object class="AdwClamp">
+            <property name="maximum_size">250</property>
             <child>
-              <object class="GtkStack" id="stack">
-                <property name="transition_type">crossfade</property>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkStackPage">
-                    <property name="name">password_unlock</property>
-                    <property name="title" translatable="yes">Password</property>
-                    <property name="icon_name">input-dialpad-symbolic</property>
-                    <property name="child">
-                      <object class="GtkBox" id="password_unlock_stack_page">
-                        <property name="valign">end</property>
-                        <property name="vexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkImage" id="password_unlock_image">
-                            <property name="pixel_size">100</property>
-                            <property name="icon_name">dialog-password-symbolic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="password_unlock_header_label">
-                            <property name="label" translatable="yes">Safe is Locked</property>
-                            <property name="ellipsize">middle</property>
-                            <style>
-                              <class name="large-title"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="password_unlock_description_label">
-                            <property name="label" translatable="yes">Enter password to unlock</property>
-                            <property name="wrap">True</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkBox" id="password_unlock_input_box">
-                            <property name="margin_top">10</property>
-                            <child>
-                              <object class="GtkPasswordEntry" id="password_unlock_entry">
-                                <property name="show-peek-icon">True</property>
-                                <property name="hexpand">True</property>
-                                <signal name="activate" handler="_on_password_unlock_button_clicked" swapped="no"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="password_unlock_button">
-                                <property name="tooltip_text" translatable="yes">Unlock</property>
-                                <property name="icon_name">changes-allow-symbolic</property>
-                                <signal name="clicked" handler="_on_password_unlock_button_clicked" swapped="no"/>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="linked"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                    </property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkStackPage">
-                    <property name="name">keyfile_unlock</property>
-                    <property name="title" translatable="yes">Keyfile</property>
-                    <property name="icon_name">mail-attachment-symbolic</property>
-                    <property name="child">
-                      <object class="GtkBox" id="keyfile_unlock_stack_page">
-                        <property name="halign">center</property>
-                        <property name="valign">end</property>
-                        <property name="vexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkImage" id="keyfile_unlock_image">
-                            <property name="pixel_size">100</property>
-                            <property name="icon_name">dialog-password-symbolic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="keyfile_unlock_header_label">
-                            <property name="label" translatable="yes">Safe is Locked</property>
-                            <property name="ellipsize">middle</property>
-                            <style>
-                              <class name="large-title"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="keyfile_unlock_description_label">
-                            <property name="margin_start">5</property>
-                            <property name="margin_end">5</property>
-                            <property name="label" translatable="yes">Select keyfile to unlock</property>
-                            <property name="wrap">True</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkBox" id="keyfile_unlock_box">
-                            <property name="width_request">250</property>
-                            <property name="halign">center</property>
-                            <property name="margin_top">10</property>
-                            <child>
-                              <object class="GtkButton" id="keyfile_unlock_select_button">
-                                <property name="halign">end</property>
-                                <property name="valign">end</property>
-                                <property name="hexpand">True</property>
-                                <property name="vexpand">True</property>
-                                <property name="label" translatable="yes">_Open Keyfile</property>
-                                <property name="use_underline">True</property>
-                                <signal name="clicked" handler="_on_keyfile_unlock_select_button_clicked" swapped="no"/>
-                                <style>
-                                  <class name="suggested-action"/>
-                                </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="keyfile_unlock_button">
-                                <property name="tooltip_text" translatable="yes">Unlock</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="hexpand">True</property>
-                                <property name="vexpand">True</property>
-                                <property name="icon_name">changes-allow-symbolic</property>
-                                <signal name="clicked" handler="_on_keyfile_unlock_button_clicked" swapped="no"/>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="linked"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                    </property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkStackPage">
-                    <property name="name">composite_unlock</property>
-                    <property name="title" translatable="yes" comments="Composite unlock is a authentication method where both password and keyfile are required">Composite</property>
-                    <property name="icon_name">insert-link-symbolic</property>
-                    <property name="child">
-                      <object class="GtkBox" id="composite_unlock_stack_page">
-                        <property name="valign">end</property>
+                  <object class="GtkBox">
+                    <property name="halign">center</property>
+                    <property name="width_request">250</property>
+                    <child>
+                      <object class="GtkPasswordEntry" id="password_entry">
                         <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkImage" id="composite_unlock_image">
-                            <property name="pixel_size">100</property>
-                            <property name="icon_name">dialog-password-symbolic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="composite_unlock_header_label">
-                            <property name="label" translatable="yes">Safe is Locked</property>
-                            <property name="ellipsize">middle</property>
-                            <style>
-                              <class name="large-title"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="composite_unlock_description_label">
-                            <property name="label" translatable="yes">Enter password and select keyfile to unlock</property>
-                            <property name="wrap">True</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkBox" id="composite_unlock_input_box">
-                            <property name="hexpand">True</property>
-                            <property name="margin_top">10</property>
-                            <child>
-                              <object class="GtkPasswordEntry" id="composite_unlock_entry">
-                                <property name="hexpand">True</property>
-                                <property name="show-peek-icon">True</property>
-                                <signal name="activate" handler="_on_composite_unlock_button_clicked" swapped="no"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="composite_unlock_button">
-                                <property name="tooltip_text" translatable="yes">Unlock</property>
-                                <property name="icon_name">changes-allow-symbolic</property>
-                                <signal name="clicked" handler="_on_composite_unlock_button_clicked" swapped="no"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="composite_unlock_select_button">
-                                <property name="valign">end</property>
-                                <property name="vexpand">True</property>
-                                <property name="icon_name">document-open-symbolic</property>
-                                <signal name="clicked" handler="_on_composite_unlock_select_button_clicked" swapped="no"/>
-                                <style>
-                                  <class name="suggested-action"/>
-                                </style>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="linked"/>
-                            </style>
-                          </object>
-                        </child>
+                        <property name="show-peek-icon">True</property>
+                        <property name="placeholder_text">Password</property>
+                        <signal name="activate" handler="_on_password_entry_activate" swapped="no"/>
                       </object>
-                    </property>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="unlock_button">
+                        <property name="tooltip_text" translatable="yes">Unlock</property>
+                        <signal name="clicked" handler="_on_unlock_button_clicked" swapped="no"/>
+                        <child>
+                          <object class="GtkStack" id="spinner_stack">
+                            <child>
+                              <object class="GtkStackPage">
+                                <property name="name">image</property>
+                                <property name="child">
+                                  <object class="GtkImage">
+                                    <property name="icon_name">changes-allow-symbolic</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkStackPage">
+                                <property name="name">spinner</property>
+                                <property name="child">
+                                  <object class="GtkSpinner" id="spinner"/>
+                                </property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="suggested-action"/>
+                        </style>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="linked"/>
+                    </style>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkStackSwitcher" id="stack_switcher">
-                <property name="halign">center</property>
-                <property name="valign">start</property>
-                <property name="vexpand">True</property>
-                <property name="stack">stack</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="spacing">6</property>
+                    <property name="halign">center</property>
+                    <property name="width_request">250</property>
+                    <child>
+                      <object class="GtkButton" id="keyfile_button">
+                        <signal name="clicked" handler="_on_keyfile_button_clicked" swapped="no"/>
+                        <property name="hexpand">True</property>
+                        <child>
+                          <object class="GtkStack" id="keyfile_stack">
+                            <child>
+                              <object class="GtkStackPage">
+                                <property name="name">label</property>
+                                <property name="child">
+                                  <object class="GtkLabel" id="keyfile_label">
+                                    <property name="label">_Select Keyfile</property>
+                                    <property name="use_underline">True</property>
+                                    <property name="ellipsize">start</property>
+                                  </object>
+                                </property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkStackPage">
+                                <property name="name">spinner</property>
+                                <property name="child">
+                                  <object class="GtkSpinner" id="keyfile_spinner"/>
+                                </property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="text-button"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="clear_button">
+                        <property name="visible">False</property>
+                        <property name="icon_name">edit-delete-symbolic</property>
+                        <property name="action_name">clear-keyfile</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
-        </child>
+        </property>
       </object>
     </child>
   </template>

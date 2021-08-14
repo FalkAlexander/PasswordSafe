@@ -3,7 +3,6 @@ from gi.repository import Adw, Gio, Gtk
 
 import passwordsafe.config_manager as config
 from passwordsafe.const import APP_ID
-from passwordsafe.config_manager import UnlockMethod
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/settings_dialog.ui")
@@ -17,7 +16,6 @@ class SettingsDialog(Adw.PreferencesWindow):
     _generator_separator_entry = Gtk.Template.Child()
     _generator_words_spin_button = Gtk.Template.Child()
     _lockdb_spin_button = Gtk.Template.Child()
-    _remember_method_switch = Gtk.Template.Child()
 
     def __init__(self, window):
         super().__init__()
@@ -75,12 +73,6 @@ class SettingsDialog(Adw.PreferencesWindow):
         action_group.add_action(remember_composite_key_action)
         remember_composite_key_action.connect("notify::state", self._on_remember_composite_key)
 
-        remember_method = config.get_remember_unlock_method()
-        self._remember_method_switch.props.active = remember_method
-        self._remember_method_switch.connect(
-            "notify::active", self._on_settings_remember_method_switch_switched
-        )
-
         self.insert_action_group("settings", action_group)
 
     def _on_remember_composite_key(self, action, _param):
@@ -94,10 +86,3 @@ class SettingsDialog(Adw.PreferencesWindow):
             self.window.view = self.window.View.WELCOME
 
         widget.set_sensitive(False)
-
-    def _on_settings_remember_method_switch_switched(self, switch_button, _gparam):
-        if switch_button.get_active():
-            config.set_remember_unlock_method(True)
-        else:
-            config.set_remember_unlock_method(False)
-            config.set_unlock_method(UnlockMethod.PASSWORD)

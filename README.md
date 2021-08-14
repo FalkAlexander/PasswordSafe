@@ -4,19 +4,15 @@ Password Safe is a password manager which integrates perfectly with the GNOME de
 <img src="https://gitlab.gnome.org/World/PasswordSafe/-/raw/master/screenshots/browser.png" width="800px" />
 
 ## Features:
-* ⭐ Create or import a KeePass v.4 safe
-* 🔐 Password, keyfile and composite key authentication
-* 📝 Create and edit groups and entries
+* ⭐ Create or import KeePass safes
 * ✨ Assign a color and additional attributes to entries
-* 🗑 Move and delete groups and entries
-* 📎 Add files to your encrypted database
-* 🔗 Link multiple properties together with references
-* 🎲 Cryptographically strong password and passphrase generator
-* 🛠 Database password and keyfile changing
-* 🔎 Search tool with local, global and fulltext filter
-* 🕐 Automatic database lock during inactivity and session lock
-* 📲 Responsive UI for both desktop and mobile
-* ⏱️ Support for 2-Factor authentication time based passwords.
+* 📎 Add attachments to your encrypted database
+* 🎲 Generate cryptographically strong passwords
+* 🛠 Change the password or keyfile of your database
+* 🔎 Quickly search your favorite entries
+* 🕐 Automatic database lock during inactivity
+* 📲 Adaptive interface
+* ⏱ Support for two-factor authentication
 
 ### Supported Encryption Algorithms:
 * AES 256-bit

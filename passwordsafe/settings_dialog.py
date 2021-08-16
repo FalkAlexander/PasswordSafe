@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, Gio, Gtk
 
 import passwordsafe.config_manager as config
+from passwordsafe.const import APP_ID
 from passwordsafe.config_manager import UnlockMethod
 
 
@@ -25,7 +26,6 @@ class SettingsDialog(Adw.PreferencesWindow):
     _remember_switch = Gtk.Template.Child()
     _save_switch = Gtk.Template.Child()
     _showpw_switch = Gtk.Template.Child()
-    _theme_switch = Gtk.Template.Child()
 
     def __init__(self, window):
         super().__init__()
@@ -37,12 +37,12 @@ class SettingsDialog(Adw.PreferencesWindow):
     def _set_config_values(self):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-statements
+        action_group = Gio.SimpleActionGroup.new()
+        settings = Gio.Settings.new(APP_ID)
 
         # General
-        self._theme_switch.props.active = config.get_dark_theme()
-        self._theme_switch.connect(
-            "notify::active", self._on_settings_theme_switch_switched
-        )
+        dark_mode_action = settings.create_action("dark-theme")
+        action_group.add_action(dark_mode_action)
 
         self._fstart_switch.props.active = config.get_first_start_screen()
         self._fstart_switch.connect(
@@ -138,6 +138,8 @@ class SettingsDialog(Adw.PreferencesWindow):
             "notify::active", self._on_settings_remember_method_switch_switched
         )
 
+        self.insert_action_group("settings", action_group)
+
     def _on_generator_use_uppercase_switch_switched(
         self, switch: Gtk.Switch, _: None
     ) -> None:
@@ -170,12 +172,6 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     def _on_generator_separator_entry_changed(self, entry: Gtk.Entry) -> None:
         config.set_generator_separator(entry.get_text())
-
-    def _on_settings_theme_switch_switched(self, switch_button, _gparam):
-        gtk_settings = Gtk.Settings.get_default()
-        value = switch_button.get_active()
-        config.set_dark_theme(value)
-        gtk_settings.set_property("gtk-application-prefer-dark-theme", value)
 
     def _on_settings_fstart_switch_switched(self, switch_button, _gparam):
         config.set_first_start_screen(switch_button.get_active())

@@ -93,9 +93,8 @@ class Window(Adw.ApplicationWindow):
         """Set the bright/dark theme depending on the configuration"""
         gtk_settings = Gtk.Settings.get_default()
 
-        gtk_settings.set_property(
-            "gtk-application-prefer-dark-theme",
-            passwordsafe.config_manager.get_dark_theme(),
+        self.props.application.settings.bind(
+            "dark-theme", gtk_settings, "gtk-application-prefer-dark-theme", Gio.SettingsBindFlags.DEFAULT
         )
 
     def do_size_allocate(

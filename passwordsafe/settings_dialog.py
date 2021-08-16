@@ -18,7 +18,6 @@ class SettingsDialog(Adw.PreferencesWindow):
     _generator_words_spin_button = Gtk.Template.Child()
     _lockdb_spin_button = Gtk.Template.Child()
     _remember_method_switch = Gtk.Template.Child()
-    _showpw_switch = Gtk.Template.Child()
 
     def __init__(self, window):
         super().__init__()
@@ -67,10 +66,8 @@ class SettingsDialog(Adw.PreferencesWindow):
         settings.bind("database-lock-timeout", self._lockdb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
         settings.bind("clear-clipboard", self._clearcb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
 
-        self._showpw_switch.props.active = config.get_show_password_fields()
-        self._showpw_switch.connect(
-            "notify::active", self._on_settings_showpw_switch_switched
-        )
+        show_passwords_action = settings.create_action("show-password-fields")
+        action_group.add_action(show_passwords_action)
 
         self._clear_button.connect("clicked", self._on_settings_clear_recents_clicked)
         if not config.get_last_opened_list():
@@ -92,9 +89,6 @@ class SettingsDialog(Adw.PreferencesWindow):
     def _on_remember_composite_key(self, action, _param):
         if not action.props.state:
             config.set_last_used_composite_key([])
-
-    def _on_settings_showpw_switch_switched(self, switch_button, _gparam):
-        config.set_show_password_fields(switch_button.get_active())
 
     def _on_settings_clear_recents_clicked(self, widget):
         config.set_last_opened_list([])

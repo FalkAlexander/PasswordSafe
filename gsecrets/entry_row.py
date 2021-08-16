@@ -69,6 +69,10 @@ class EntryRow(Adw.Bin):
         )
         self._on_entry_notify_expired(self.safe_entry, None)
 
+        element.bind_property(
+            "sensitive", self, "sensitive", GObject.BindingFlags.SYNC_CREATE
+        )
+
     def _on_entry_notify_expired(self, safe_entry, _gparam):
         if safe_entry.expired and safe_entry.props.expires:
             self.add_css_class("strikethrough")
@@ -98,9 +102,9 @@ class EntryRow(Adw.Bin):
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
         if self._safe_entry.props.selected:
-            self.unlocked_database.selection_mode_headerbar.add_entry(self)
+            self.unlocked_database.selection_mode_headerbar.add_entry(self._safe_entry)
         else:
-            self.unlocked_database.selection_mode_headerbar.remove_entry(self)
+            self.unlocked_database.selection_mode_headerbar.remove_entry(self._safe_entry)
 
     @Gtk.Template.Callback()
     def on_entry_copy_pass_button_clicked(self, _button):

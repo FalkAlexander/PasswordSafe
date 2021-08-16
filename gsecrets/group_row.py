@@ -58,6 +58,10 @@ class GroupRow(Adw.Bin):
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
         )
 
+        element.bind_property(
+            "sensitive", self, "sensitive", GObject.BindingFlags.SYNC_CREATE
+        )
+
     @Gtk.Template.Callback()
     def _on_group_row_button_pressed(
         self,
@@ -81,9 +85,9 @@ class GroupRow(Adw.Bin):
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
         if self._safe_group.props.selected:
-            self.unlocked_database.selection_mode_headerbar.add_group(self)
+            self.unlocked_database.selection_mode_headerbar.add_group(self._safe_group)
         else:
-            self.unlocked_database.selection_mode_headerbar.remove_group(self)
+            self.unlocked_database.selection_mode_headerbar.remove_group(self._safe_group)
 
     @Gtk.Template.Callback()
     def on_group_edit_button_clicked(self, _button: Gtk.Button) -> None:

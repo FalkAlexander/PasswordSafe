@@ -13,7 +13,6 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     _clear_button = Gtk.Template.Child()
     _clearcb_spin_button = Gtk.Template.Child()
-    _fstart_switch = Gtk.Template.Child()
     _generator_length_spin_button = Gtk.Template.Child()
     _generator_separator_entry = Gtk.Template.Child()
     _generator_use_lowercase_switch = Gtk.Template.Child()
@@ -44,10 +43,8 @@ class SettingsDialog(Adw.PreferencesWindow):
         dark_mode_action = settings.create_action("dark-theme")
         action_group.add_action(dark_mode_action)
 
-        self._fstart_switch.props.active = config.get_first_start_screen()
-        self._fstart_switch.connect(
-            "notify::active", self._on_settings_fstart_switch_switched
-        )
+        first_start_action = settings.create_action("first-start-screen")
+        action_group.add_action(first_start_action)
 
         # Safe
         self._save_switch.props.active = config.get_save_automatically()
@@ -172,9 +169,6 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     def _on_generator_separator_entry_changed(self, entry: Gtk.Entry) -> None:
         config.set_generator_separator(entry.get_text())
-
-    def _on_settings_fstart_switch_switched(self, switch_button, _gparam):
-        config.set_first_start_screen(switch_button.get_active())
 
     def _on_settings_save_switch_switched(self, switch_button, _gparam):
         config.set_save_automatically(switch_button.get_active())

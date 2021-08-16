@@ -23,9 +23,12 @@
 }
 
 /* Entry and group browser page styles */
+#BrowserListBox:not(.small) row:first-child {
+    margin-top: 36px;
+}
 
-#BrowserListBox:not(.small) {
-  margin: 36px 0 36px 0;
+#BrowserListBox:not(.small) row:last-child {
+    margin-bottom: 36px;
 }
 
 #BrowserListBox.small {

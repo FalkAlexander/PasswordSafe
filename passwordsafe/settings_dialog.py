@@ -15,10 +15,6 @@ class SettingsDialog(Adw.PreferencesWindow):
     _clearcb_spin_button = Gtk.Template.Child()
     _generator_length_spin_button = Gtk.Template.Child()
     _generator_separator_entry = Gtk.Template.Child()
-    _generator_use_lowercase_switch = Gtk.Template.Child()
-    _generator_use_numbers_switch = Gtk.Template.Child()
-    _generator_use_symbols_switch = Gtk.Template.Child()
-    _generator_use_uppercase_switch = Gtk.Template.Child()
     _generator_words_spin_button = Gtk.Template.Child()
     _lockdb_spin_button = Gtk.Template.Child()
     _remember_method_switch = Gtk.Template.Child()
@@ -58,29 +54,17 @@ class SettingsDialog(Adw.PreferencesWindow):
             "value-changed", self._on_generator_length_spin_button_changed
         )
 
-        use_uppercase = config.get_generator_use_uppercase()
-        self._generator_use_uppercase_switch.props.active = use_uppercase
-        self._generator_use_uppercase_switch.connect(
-            "notify::active", self._on_generator_use_uppercase_switch_switched
-        )
+        use_uppercase_action = settings.create_action("generator-use-uppercase")
+        action_group.add_action(use_uppercase_action)
 
-        use_lowercase = config.get_generator_use_lowercase()
-        self._generator_use_lowercase_switch.props.active = use_lowercase
-        self._generator_use_lowercase_switch.connect(
-            "notify::active", self._on_generator_use_lowercase_switch_switched
-        )
+        use_lowercase_action = settings.create_action("generator-use-lowercase")
+        action_group.add_action(use_lowercase_action)
 
-        use_numbers = config.get_generator_use_numbers()
-        self._generator_use_numbers_switch.props.active = use_numbers
-        self._generator_use_numbers_switch.connect(
-            "notify::active", self._on_generator_use_numbers_switch_switched
-        )
+        use_numbers_action = settings.create_action("generator-use-numbers")
+        action_group.add_action(use_numbers_action)
 
-        use_symbols_value = config.get_generator_use_symbols()
-        self._generator_use_symbols_switch.props.active = use_symbols_value
-        self._generator_use_symbols_switch.connect(
-            "notify::active", self._on_generator_use_symbols_switch_switched
-        )
+        use_symbols_action = settings.create_action("generator-use-symbols")
+        action_group.add_action(use_symbols_action)
 
         # Passphrase Generation
         generator_words_value = config.get_generator_words()
@@ -133,26 +117,6 @@ class SettingsDialog(Adw.PreferencesWindow):
         )
 
         self.insert_action_group("settings", action_group)
-
-    def _on_generator_use_uppercase_switch_switched(
-        self, switch: Gtk.Switch, _: None
-    ) -> None:
-        config.set_generator_use_uppercase(switch.get_active())
-
-    def _on_generator_use_lowercase_switch_switched(
-        self, switch: Gtk.Switch, _: None
-    ) -> None:
-        config.set_generator_use_lowercase(switch.get_active())
-
-    def _on_generator_use_symbols_switch_switched(
-        self, switch: Gtk.Switch, _: None
-    ) -> None:
-        config.set_generator_use_symbols(switch.get_active())
-
-    def _on_generator_use_numbers_switch_switched(
-        self, switch: Gtk.Switch, _: None
-    ) -> None:
-        config.set_generator_use_numbers(switch.get_active())
 
     def _on_generator_words_spin_button_changed(
         self, spin_button: Gtk.SpinButton

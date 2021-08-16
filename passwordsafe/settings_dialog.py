@@ -23,7 +23,6 @@ class SettingsDialog(Adw.PreferencesWindow):
     _lockdb_spin_button = Gtk.Template.Child()
     _remember_method_switch = Gtk.Template.Child()
     _remember_switch = Gtk.Template.Child()
-    _save_switch = Gtk.Template.Child()
     _showpw_switch = Gtk.Template.Child()
 
     def __init__(self, window):
@@ -47,10 +46,8 @@ class SettingsDialog(Adw.PreferencesWindow):
         action_group.add_action(first_start_action)
 
         # Safe
-        self._save_switch.props.active = config.get_save_automatically()
-        self._save_switch.connect(
-            "notify::active", self._on_settings_save_switch_switched
-        )
+        save_automatically_action = settings.create_action("save-automatically")
+        action_group.add_action(save_automatically_action)
 
         # Password Generator
         generator_length = config.get_generator_length()
@@ -169,9 +166,6 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     def _on_generator_separator_entry_changed(self, entry: Gtk.Entry) -> None:
         config.set_generator_separator(entry.get_text())
-
-    def _on_settings_save_switch_switched(self, switch_button, _gparam):
-        config.set_save_automatically(switch_button.get_active())
 
     def _on_settings_lockdb_spin_button_changed(self, spin_button):
         config.set_database_lock_timeout(spin_button.get_value())

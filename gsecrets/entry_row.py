@@ -126,10 +126,11 @@ class EntryRow(Adw.Bin):
     def on_selection_checkbox_toggled(self, _widget):
         self.unlocked_database.start_database_lock_timer()
 
-        if self._safe_entry.props.selected:
-            self.unlocked_database.selection_mode_headerbar.add_entry(self)
+        entry = self._safe_entry
+        if entry.props.selected:
+            self.unlocked_database.selection_mode_headerbar.add_entry(entry)
         else:
-            self.unlocked_database.selection_mode_headerbar.remove_entry(self)
+            self.unlocked_database.selection_mode_headerbar.remove_entry(entry)
 
     @Gtk.Template.Callback()
     def on_entry_copy_pass_button_clicked(self, _button):

@@ -92,10 +92,11 @@ class GroupRow(Adw.Bin):
     def on_selection_checkbox_toggled(self, _widget):
         self.unlocked_database.start_database_lock_timer()
 
-        if self._safe_group.props.selected:
-            self.unlocked_database.selection_mode_headerbar.add_group(self)
+        group = self._safe_group
+        if group.props.selected:
+            self.unlocked_database.selection_mode_headerbar.add_group(group)
         else:
-            self.unlocked_database.selection_mode_headerbar.remove_group(self)
+            self.unlocked_database.selection_mode_headerbar.remove_group(group)
 
     @Gtk.Template.Callback()
     def on_group_edit_button_clicked(self, _button: Gtk.Button) -> None:

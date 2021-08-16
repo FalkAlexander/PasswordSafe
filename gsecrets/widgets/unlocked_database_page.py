@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import typing
 
-from gi.repository import Adw, Gio, Gtk
+from gi.repository import Adw, Gio, GObject, Gtk
 
 import gsecrets.config_manager as config
 from gsecrets.entry_row import EntryRow

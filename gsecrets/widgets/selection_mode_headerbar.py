@@ -8,9 +8,8 @@ from logging import debug
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
-from gsecrets.entry_row import EntryRow
-from gsecrets.group_row import GroupRow
 from gsecrets.pathbar import Pathbar
+from gsecrets.safe_element import SafeElement
 
 if typing.TYPE_CHECKING:
     from gsecrets.unlocked_database import UnlockedDatabase
@@ -24,13 +23,13 @@ class SelectionModeHeaderbar(Adw.Bin):
 
     _cut_mode = True
 
-    entries_selected: list[EntryRow] = []
-    groups_selected: list[GroupRow] = []
+    entries_selected: list[SafeElement] = []
+    groups_selected: list[SafeElement] = []
 
-    entries_cut: list[EntryRow] = []
-    groups_cut: list[GroupRow] = []
+    entries_cut: list[SafeElement] = []
+    groups_cut: list[SafeElement] = []
 
-    hidden_rows = Gio.ListStore.new(Gtk.ListBoxRow)
+    hidden_rows = Gio.ListStore.new(SafeElement)
 
     _cut_button = Gtk.Template.Child()
     _cut_paste_button_stack = Gtk.Template.Child()
@@ -88,10 +87,9 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         # Abort the operation if there is a groups which is in the pathbar,
         # i.e. if it is a parent of the current view.
-        for group_row in self.groups_selected:
-            group = group_row.safe_group.group
+        for safe_group in self.groups_selected:
             if self.unlocked_database.database_manager.parent_checker(
-                self.unlocked_database.current_element, group
+                self.unlocked_database.current_element, safe_group.group
             ):
                 self.unlocked_database.window.send_notification(
                     _("Operation aborted: deleting currently active group")
@@ -102,16 +100,14 @@ class SelectionModeHeaderbar(Adw.Bin):
         # bin and regular elements
         in_trash = False
         outside_trash = False
-        for entry_row in self.entries_selected:
-            element = entry_row.safe_entry
+        for element in self.entries_selected:
             parent = element.parentgroup
             if parent.is_trash_bin:
                 in_trash = True
             else:
                 outside_trash = True
 
-        for group_row in self.groups_selected:
-            element = group_row.safe_group
+        for element in self.groups_selected:
             parent = element.parentgroup
             if parent.is_trash_bin or element.is_trash_bin:
                 in_trash = True
@@ -123,18 +119,16 @@ class SelectionModeHeaderbar(Adw.Bin):
         def delete_elements():
             # List of possible undos
             undo_elements = []
-            for entry_row in self.entries_selected:
-                element = entry_row.safe_entry
+            for element in self.entries_selected:
                 parent = element.parentgroup
-                if entry_row.safe_entry.trash():
+                if element.trash():
                     self.unlocked_database.delete_page(element)
                 else:
                     undo_elements.append((element, parent))
 
-            for group_row in self.groups_selected:
-                element = group_row.safe_group
+            for element in self.groups_selected:
                 parent = element.parentgroup
-                if group_row.safe_group.trash():
+                if element.trash():
                     self.unlocked_database.delete_page(element)
                 else:
                     undo_elements.append((element, parent))
@@ -167,12 +161,12 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         self.entries_cut = self.entries_selected
         self.groups_cut = self.groups_selected
-        for group_row in self.groups_selected:
-            group_row.props.sensitive = False
-            self.hidden_rows.append(group_row)
-        for entry_row in self.entries_selected:
-            entry_row.props.sensitive = False
-            self.hidden_rows.append(entry_row)
+        for group in self.groups_selected:
+            group.props.sensitive = False
+            self.hidden_rows.append(group)
+        for entry in self.entries_selected:
+            entry.props.sensitive = False
+            self.hidden_rows.append(entry)
 
         # Do not allow to delete the entries or rows
         # that were selected to be cut.
@@ -187,11 +181,10 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         # Abort the entire operation if one of the selected groups is a parent of
         # the current group.
-        for group_row in self.groups_cut:
-            group = group_row.safe_group.group
+        for safe_group in self.groups_cut:
             current_element = self.unlocked_database.current_element
             if self.unlocked_database.database_manager.parent_checker(
-                current_element, group
+                current_element, safe_group.group
             ):
                 self.unlocked_database.window.send_notification(
                     _("Operation aborted: moving currently active group")
@@ -201,12 +194,10 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         current_element = self.unlocked_database.current_element
 
-        for entry_row in self.entries_cut:
-            safe_entry = entry_row.safe_entry
+        for safe_entry in self.entries_cut:
             safe_entry.move_to(current_element)
 
-        for group_row in self.groups_cut:
-            safe_group = group_row.safe_group
+        for safe_group in self.groups_cut:
             safe_group.move_to(current_element)
 
         self.unlocked_database.window.send_notification(_("Move completed"))
@@ -224,15 +215,16 @@ class SelectionModeHeaderbar(Adw.Bin):
 
     # Helpers
 
-    def add_entry(self, entry: EntryRow) -> None:
+    def add_entry(self, entry: SafeElement) -> None:
         """Add an entry to selection
 
         :param EntryRow group: entry_row to add
         """
-        self.entries_selected.append(entry)
-        self._update_selection()
+        if entry not in self.entries_selected:
+            self.entries_selected.append(entry)
+            self._update_selection()
 
-    def remove_entry(self, entry: EntryRow) -> None:
+    def remove_entry(self, entry: SafeElement) -> None:
         """Remove an entry from selection
 
         :param EntryRow group: entry_row to remove
@@ -242,7 +234,7 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         self._update_selection()
 
-    def add_group(self, group: GroupRow) -> None:
+    def add_group(self, group: SafeElement) -> None:
         """Add a group to selection
 
         :param GroupRow group: group_row to add
@@ -251,7 +243,7 @@ class SelectionModeHeaderbar(Adw.Bin):
             self.groups_selected.append(group)
             self._update_selection()
 
-    def remove_group(self, group: GroupRow) -> None:
+    def remove_group(self, group: SafeElement) -> None:
         """Remove a group from selection
 
         :param GroupRow group: group_row to remove
@@ -280,8 +272,8 @@ class SelectionModeHeaderbar(Adw.Bin):
         self.groups_selected.clear()
         self._delete_button.set_sensitive(False)
         self._cut_button.set_sensitive(False)
-        for row in self.hidden_rows:
-            row.props.sensitive = True
+        for element in self.hidden_rows:
+            element.props.sensitive = True
 
         self.hidden_rows.remove_all()
         self.emit("clear-selection")

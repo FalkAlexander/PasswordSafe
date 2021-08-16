@@ -102,14 +102,14 @@ class EntryRow(Adw.ActionRow):
     def on_entry_copy_pass_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(
             self._safe_entry.props.password,
-            _("Password Copied to Clipboard"),
+            _("Password Copied"),
         )
 
     @Gtk.Template.Callback()
     def on_entry_copy_user_button_clicked(self, _button):
         self.unlocked_database.send_to_clipboard(
             self._safe_entry.props.username,
-            _("Username Copied to Clipboard"),
+            _("Username Copied"),
         )
 
     def _on_entry_name_changed(

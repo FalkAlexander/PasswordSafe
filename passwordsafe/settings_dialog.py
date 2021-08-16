@@ -46,13 +46,7 @@ class SettingsDialog(Adw.PreferencesWindow):
         action_group.add_action(save_automatically_action)
 
         # Password Generator
-        generator_length = config.get_generator_length()
-        self._generator_length_spin_button.props.adjustment.props.value = (
-            generator_length
-        )
-        self._generator_length_spin_button.connect(
-            "value-changed", self._on_generator_length_spin_button_changed
-        )
+        settings.bind("generator-length", self._generator_length_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
 
         use_uppercase_action = settings.create_action("generator-use-uppercase")
         action_group.add_action(use_uppercase_action)
@@ -67,32 +61,12 @@ class SettingsDialog(Adw.PreferencesWindow):
         action_group.add_action(use_symbols_action)
 
         # Passphrase Generation
-        generator_words_value = config.get_generator_words()
-        self._generator_words_spin_button.props.adjustment.props.value = (
-            generator_words_value
-        )
-        self._generator_words_spin_button.connect(
-            "value-changed", self._on_generator_words_spin_button_changed
-        )
-
-        separator_entry_value = config.get_generator_separator()
-        self._generator_separator_entry.props.text = separator_entry_value
-        self._generator_separator_entry.connect(
-            "activate", self._on_generator_separator_entry_changed
-        )
+        settings.bind("generator-words", self._generator_words_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
+        settings.bind("generator-separator", self._generator_separator_entry, "text", Gio.SettingsBindFlags.DEFAULT)
 
         # Security
-        lockdb_value = config.get_database_lock_timeout()
-        self._lockdb_spin_button.props.adjustment.props.value = lockdb_value
-        self._lockdb_spin_button.connect(
-            "value-changed", self._on_settings_lockdb_spin_button_changed
-        )
-
-        clear_cb_value = config.get_clear_clipboard()
-        self._clearcb_spin_button.props.adjustment.props.value = clear_cb_value
-        self._clearcb_spin_button.connect(
-            "value-changed", self._on_settings_clearcb_spin_button_changed
-        )
+        settings.bind("database-lock-timeout", self._lockdb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
+        settings.bind("clear-clipboard", self._clearcb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
 
         self._showpw_switch.props.active = config.get_show_password_fields()
         self._showpw_switch.connect(
@@ -117,27 +91,6 @@ class SettingsDialog(Adw.PreferencesWindow):
         )
 
         self.insert_action_group("settings", action_group)
-
-    def _on_generator_words_spin_button_changed(
-        self, spin_button: Gtk.SpinButton
-    ) -> None:
-        config.set_generator_words(spin_button.get_value_as_int())
-
-    def _on_generator_length_spin_button_changed(
-        self, spin_button: Gtk.SpinButton
-    ) -> None:
-        config.set_generator_length(spin_button.get_value_as_int())
-
-    def _on_generator_separator_entry_changed(self, entry: Gtk.Entry) -> None:
-        config.set_generator_separator(entry.get_text())
-
-    def _on_settings_lockdb_spin_button_changed(self, spin_button):
-        config.set_database_lock_timeout(spin_button.get_value())
-        if self.window.unlocked_db:
-            self.window.unlocked_db.start_database_lock_timer()
-
-    def _on_settings_clearcb_spin_button_changed(self, spin_button):
-        config.set_clear_clipboard(spin_button.get_value())
 
     def _on_settings_showpw_switch_switched(self, switch_button, _gparam):
         config.set_show_password_fields(switch_button.get_active())

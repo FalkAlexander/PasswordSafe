@@ -233,9 +233,8 @@ class UnlockDatabase(Adw.Bin):
 
         try:
             self.database_manager = DatabaseManager(
-                self.database_filepath, password, keyfile
+                self.database_filepath, password, keyfile, self.keyfile_hash
             )
-            self.database_manager.keyfile_hash = self.keyfile_hash
         except Exception as err:  # pylint: disable=broad-except
             logging.debug("Could not open safe: %s", err)
             GLib.idle_add(self._unlock_failed)

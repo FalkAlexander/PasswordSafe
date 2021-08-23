@@ -5,7 +5,7 @@ import logging
 from gettext import gettext as _
 from uuid import UUID
 
-from gi.repository import Gio, GLib, GObject
+from gi.repository import Gio, GObject
 from pykeepass import PyKeePass
 from pykeepass.entry import Entry
 from pykeepass.group import Group
@@ -30,7 +30,6 @@ class DatabaseManager(GObject.GObject):
 
     # self.db contains a `PyKeePass` database
     password_try = ""
-    keyfile_hash: str | None = None
     _is_dirty = False  # Does the database need saving?
     save_running = False
 
@@ -42,12 +41,14 @@ class DatabaseManager(GObject.GObject):
         database_path: str,
         password: str | None = None,
         keyfile: str | None = None,
+        keyfile_hash: str | None = None,
     ) -> None:
         super().__init__()
 
         # password remains accessible as self.db.password
         self.db = PyKeePass(database_path, password, keyfile)
         self.database_path = database_path
+        self.keyfile_hash = keyfile_hash
 
     #
     # Database Modifications
@@ -264,19 +265,6 @@ class DatabaseManager(GObject.GObject):
         if password2 and self.password_try == password2:
             return True
         return False
-
-    def create_keyfile_hash(self, keyfile_path: str) -> str:
-        """Computes the SHA-1 hash of keyfile."""
-        gfile = Gio.File.new_for_path(keyfile_path)
-        try:
-            gbytes, _stream = gfile.load_bytes()
-
-            return GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
-        except GLib.Error as err:
-            logging.warning(
-                "Could not compute hash of %s: %s", keyfile_path, err.message
-            )
-            return ""
 
     def parent_checker(self, current_group, moved_group):
         """Returns True if moved_group is an ancestor of current_group"""

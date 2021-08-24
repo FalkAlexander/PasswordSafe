@@ -11,15 +11,15 @@ about_conf.set('VERSION', version)
 about_conf.set('COPYRIGHT', copyright)
 
 gnome.compile_resources(
-  meson.project_name(),
-  meson.project_name() + '.gresource.xml',
+  'resources',
+  'resources.gresource.xml',
   gresource_bundle: true,
-  source_dir: '.',
+  source_dir: meson.current_build_dir(),
   install_dir: DATA_DIR,
   install: true,
   dependencies: configure_file (
     input: 'about_dialog.ui.in',
-    output: 'about_dialog.ui',
+    output: '@BASENAME@',
     configuration: about_conf
   )
 )

@@ -48,7 +48,7 @@ def main():
     gettext.textdomain(const.GETTEXT_PACKAGE)
 
     resource = Gio.resource_load(
-        os.path.join(const.PKGDATADIR, "{}.gresource".format(const.SHORT_NAME))
+        os.path.join(const.PKGDATADIR, "resources.gresource")
     )
     Gio.resources_register(resource)
 

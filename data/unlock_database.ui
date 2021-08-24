@@ -5,7 +5,6 @@
       <object class="AdwStatusPage" id="status_page">
         <property name="icon_name">org.gnome.PasswordSafe</property>
         <property name="title" translatable="yes">Unlock Safe</property>
-        <property name="description" translatable="yes">Enter password, and optionally a keyfile.</property>
         <property name="child">
           <object class="AdwClamp">
             <property name="maximum_size">250</property>
@@ -62,7 +61,6 @@
                 </child>
                 <child>
                   <object class="GtkBox">
-                    <property name="spacing">6</property>
                     <property name="halign">center</property>
                     <property name="width_request">250</property>
                     <child>
@@ -105,6 +103,9 @@
                         <property name="action_name">clear-keyfile</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="linked"/>
+                    </style>
                   </object>
                 </child>
               </object>

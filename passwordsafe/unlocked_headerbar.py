@@ -9,7 +9,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.widgets.window import Window
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/unlocked_headerbar.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_headerbar.ui")
 class UnlockedHeaderBar(Adw.Bin):
 
     __gtype_name__ = "UnlockedHeaderBar"

@@ -4,7 +4,7 @@ from __future__ import annotations
 from gi.repository import Adw, Gio, GLib, Gtk
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/references_dialog.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/references_dialog.ui")
 class ReferencesDialog(Adw.Window):
 
     __gtype_name__ = "ReferencesDialog"

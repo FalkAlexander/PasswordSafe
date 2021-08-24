@@ -12,7 +12,7 @@ if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/attachment_entry_row.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attachment_entry_row.ui")
 class AttachmentEntryRow(Adw.ActionRow):
 
     __gtype_name__ = "AttachmentEntryRow"

@@ -6,7 +6,7 @@ from gi.repository import Adw, GLib, Gtk, GObject
 DURATION = 3.0
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/error_revealer.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/error_revealer.ui")
 class ErrorRevealer(Adw.Bin):
 
     __gtype_name__ = "ErrorRevealer"

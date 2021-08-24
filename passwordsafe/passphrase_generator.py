@@ -18,7 +18,7 @@ class Passphrase(GObject.Object):
         :param str separator: separator
         """
         word_file: Gio.File = Gio.File.new_for_uri(
-            "resource:///org/gnome/PasswordSafe/crypto/eff_large_wordlist.txt"
+            "resource:///org/gnome/World/Secrets/crypto/eff_large_wordlist.txt"
         )
 
         def callback(gfile, result):

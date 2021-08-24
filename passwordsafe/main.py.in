@@ -52,7 +52,7 @@ def main():
     )
     Gio.resources_register(resource)
 
-    GLib.set_application_name(_("Password Safe") + const.SUFFIX)
+    GLib.set_application_name(_("Secrets") + const.SUFFIX)
 
     from passwordsafe.application import Application
 

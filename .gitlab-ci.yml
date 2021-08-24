@@ -6,9 +6,9 @@ stages:
   - deploy
 
 variables:
-    BUNDLE: "org.gnome.PasswordSafe.Devel.flatpak"
-    MANIFEST_PATH: "flatpak/org.gnome.PasswordSafe.Devel.json"
-    FLATPAK_MODULE: "passwordsafe"
+    BUNDLE: "org.gnome.World.Secrets.Devel.flatpak"
+    MANIFEST_PATH: "flatpak/org.gnome.World.Secrets.Devel.json"
+    FLATPAK_MODULE: "secrets"
 
 .flatpak_cache_template: &flatpak_cache
     cache:
@@ -21,7 +21,7 @@ flatpak:
     extends: .flatpak
     stage: build
     variables:
-        APP_ID: org.gnome.PasswordSafe.Devel
+        APP_ID: org.gnome.World.Secrets.Devel
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
         MESON_ARGS: "-Dprofile=development"
 

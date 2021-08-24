@@ -5,7 +5,7 @@ import passwordsafe.config_manager as config
 from passwordsafe.const import APP_ID
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/settings_dialog.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/settings_dialog.ui")
 class SettingsDialog(Adw.PreferencesWindow):
 
     __gtype_name__ = "SettingsDialog"

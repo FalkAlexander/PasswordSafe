@@ -4,7 +4,7 @@ from __future__ import annotations
 from gi.repository import Adw, GObject, Gtk
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/notes_dialog.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/notes_dialog.ui")
 class NotesDialog(Adw.Window):
     # pylint: disable=too-many-instance-attributes
 

@@ -26,7 +26,7 @@ class AttachmentWarningDialog:
 
         # Setup Widgets
         builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/gtk/attachment_warning_dialog.ui"
+            "/org/gnome/World/Secrets/gtk/attachment_warning_dialog.ui"
         )
         self._dialog = builder.get_object("dialog")
         self._dialog.connect("response", self._on_warning_dialog_response)

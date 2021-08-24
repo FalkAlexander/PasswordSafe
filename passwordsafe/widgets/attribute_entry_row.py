@@ -10,7 +10,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/attribute_entry_row.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attribute_entry_row.ui")
 class AttributeEntryRow(Gtk.Box):
 
     __gtype_name__ = "AttributeEntryRow"

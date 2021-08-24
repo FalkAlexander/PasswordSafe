@@ -16,7 +16,7 @@ from passwordsafe.unlocked_database import UnlockedDatabase
 from passwordsafe.utils import KeyFileFilter
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/unlock_database.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlock_database.ui")
 class UnlockDatabase(Adw.Bin):
     # pylint: disable=too-many-instance-attributes
 

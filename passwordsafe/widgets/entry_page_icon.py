@@ -2,7 +2,7 @@
 from gi.repository import Gtk
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/entry_page_icon.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_page_icon.ui")
 class EntryPageIcon(Gtk.FlowBoxChild):
 
     __gtype_name__ = "EntryPageIcon"

@@ -16,7 +16,7 @@ from passwordsafe.settings_dialog import SettingsDialog
 from passwordsafe.unlock_database import UnlockDatabase
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/window.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/window.ui")
 class Window(Adw.ApplicationWindow):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
@@ -81,7 +81,7 @@ class Window(Adw.ApplicationWindow):
         """Set the bright/dark theme depending on the configuration"""
         manager = Adw.StyleManager.get_default()
         if not manager.props.system_supports_color_schemes:
-            dark_theme = passwordsafe.config_manager.get_dark_theme()
+            dark_theme = gsecrets.config_manager.get_dark_theme()
             if dark_theme:
                 manager.props.color_scheme = Adw.ColorScheme.PREFER_DARK
             else:
@@ -315,7 +315,7 @@ class Window(Adw.ApplicationWindow):
         inside a idle_add, so they get executed in the main thread
         rather than in the thread where the database is created."""
         stock_db_file: Gio.File = Gio.File.new_for_uri(
-            "resource:///org/gnome/PasswordSafe/database.kdbx"
+            "resource:///org/gnome/World/Secrets/database.kdbx"
         )
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
 
@@ -501,7 +501,7 @@ class Window(Adw.ApplicationWindow):
     def on_about_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         """Invoked when we click "about" in the main menu"""
         builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/about_dialog.ui"
+            "/org/gnome/World/Secrets/about_dialog.ui"
         )
         about_dialog = builder.get_object("about_dialog")
         about_dialog.set_transient_for(self)

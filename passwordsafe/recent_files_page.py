@@ -9,7 +9,7 @@ from gi.repository import Adw, Gio, GObject, Gtk
 import passwordsafe.config_manager as config
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/recent_files_page.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/recent_files_page.ui")
 class RecentFilesPage(Gtk.Box):
     __gtype_name__ = "RecentFilesPage"
 

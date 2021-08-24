@@ -9,7 +9,7 @@ from passwordsafe.safe_element import SafeEntry
 from passwordsafe.utils import format_time
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/expiration_date_row.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/expiration_date_row.ui")
 class ExpirationDateRow(Adw.Bin):
     """Expiration date widget, all the dates are stored and gathered
     in UTC and showed in the local timezone."""

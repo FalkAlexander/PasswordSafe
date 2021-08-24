@@ -2,7 +2,7 @@
 from gi.repository import Adw, GObject, Gtk
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/preferences_row.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/preferences_row.ui")
 class PreferencesRow(Adw.ActionRow):
 
     __gtype_name__ = "PreferencesRow"

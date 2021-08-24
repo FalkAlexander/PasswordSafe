@@ -16,7 +16,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/selection_mode_headerbar.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/selection_mode_headerbar.ui")
 class SelectionModeHeaderbar(Adw.Bin):
 
     __gtype_name__ = "SelectionModeHeaderbar"

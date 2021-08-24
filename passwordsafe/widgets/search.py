@@ -15,7 +15,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/search.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/search.ui")
 class Search(Adw.Bin):
     # pylint: disable=too-many-instance-attributes
 

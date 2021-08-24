@@ -2,7 +2,7 @@
 from gi.repository import Adw, Gtk
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/search_headerbar.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/search_headerbar.ui")
 class SearchHeaderbar(Adw.Bin):
 
     __gtype_name__ = "SearchHeaderbar"

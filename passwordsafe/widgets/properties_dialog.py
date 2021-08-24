@@ -7,7 +7,7 @@ from gi.repository import Adw, Gtk
 from passwordsafe.utils import format_time
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/properties_dialog.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/properties_dialog.ui")
 class PropertiesDialog(Adw.Window):
     """Displays a modal dialog with Entry/Group Properties"""
 

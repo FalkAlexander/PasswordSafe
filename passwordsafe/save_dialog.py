@@ -9,7 +9,7 @@ class SaveDialog:
         self.window = window
 
         builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/PasswordSafe/gtk/save_dialog.ui"
+            "/org/gnome/World/Secrets/gtk/save_dialog.ui"
         )
         self._dialog = builder.get_object("dialog")
         self._dialog.set_transient_for(window)

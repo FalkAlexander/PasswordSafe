@@ -13,7 +13,7 @@ from passwordsafe.utils import KeyFileFilter
 from passwordsafe.utils import format_time, generate_keyfile
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/database_settings_dialog.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/database_settings_dialog.ui")
 class DatabaseSettingsDialog(Adw.PreferencesWindow):
     # pylint: disable=too-many-instance-attributes
 

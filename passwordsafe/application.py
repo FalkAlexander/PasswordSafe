@@ -22,7 +22,7 @@ class Application(Adw.Application):
             *args,
             application_id=self.application_id,
             flags=Gio.ApplicationFlags.HANDLES_OPEN,
-            resource_base_path="/org/gnome/PasswordSafe",
+            resource_base_path="/org/gnome/World/Secrets",
         )
 
         # debug level logging option

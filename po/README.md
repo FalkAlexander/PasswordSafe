@@ -4,15 +4,15 @@
 cd po  
 intltool-update --maintain  
 cd ..  
-find passwordsafe -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=po/passwordsafe-python.pot  
-find data -iname "*.ui" | xargs xgettext --from-code=UTF-8 --output=po/passwordsafe-glade.pot -L Glade  
-msgcat --use-first po/passwordsafe-glade.pot po/passwordsafe-python.pot > po/passwordsafe.pot  
-rm po/passwordsafe-glade.pot po/passwordsafe-python.pot  
+find secrets -iname "*.py" | xargs xgettext --from-code=UTF-8 --output=po/secrets-python.pot  
+find data -iname "*.ui" | xargs xgettext --from-code=UTF-8 --output=po/secrets-glade.pot -L Glade  
+msgcat --use-first po/secrets-glade.pot po/secrets-python.pot > po/secrets.pot  
+rm po/secrets-glade.pot po/secrets-python.pot  
 ```
 
 ## Generate po file for language
 
 ```bash
 cd po  
-msginit --locale=xx --input=passwordsafe.pot
+msginit --locale=xx --input=secrets.pot
 ```

@@ -33,7 +33,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.widgets.window import Window
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/unlocked_database.ui")
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database.ui")
 class UnlockedDatabase(Gtk.Box):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods

@@ -1,13 +1,13 @@
-project('passwordsafe',
+project('secrets',
         version: '5.0',
         meson_version: '>= 0.51.0',
         license: 'GPL-3.0-only'
        )
 i18n = import('i18n')
 python = import('python')
-project_id = 'org.gnome.PasswordSafe'
-project_name = 'Password Safe'
-package_url = 'https://gitlab.gnome.org/World/PasswordSafe'
+project_id = 'org.gnome.World.Secrets'
+project_name = 'Secrets'
+package_url = 'https://gitlab.gnome.org/World/secrets'
 copyright = '© 2018-2021 Falk Alexander Seidl, et al.'
 contributors = '\n'.join([
     'Falk Alexander Seidl &lt;fseidl@gnome.org&gt;',

@@ -13,7 +13,7 @@ configure_file(
   input: 'const.py.in',
   output: 'const.py',
   configuration: conf,
-  install_dir: join_paths(python_dir, meson.project_name()),
+  install_dir: join_paths(python_dir, 'passwordsafe'),
   install: true
 )
 
@@ -21,7 +21,7 @@ main_conf = configuration_data()
 main_conf.set('PYTHON', python_bin.path())
 configure_file(
   input: 'main.py.in',
-  output: 'gnome-passwordsafe',
+  output: 'secrets',
   configuration: conf,
   install_dir: bindir,
   install: true

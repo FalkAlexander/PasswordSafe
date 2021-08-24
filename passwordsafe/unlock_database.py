@@ -111,7 +111,9 @@ class UnlockDatabase(Adw.Bin):
 
             self._wrong_keyfile()
         else:
-            keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
+            keyfile_hash = GLib.compute_checksum_for_bytes(
+                GLib.ChecksumType.SHA1, gbytes
+            )
             file_path = keyfile.get_path()
             basename = keyfile.get_basename()
             if keyfile_hash:
@@ -271,9 +273,7 @@ class UnlockDatabase(Adw.Bin):
         passwordsafe.config_manager.set_last_opened_list(path_listh)
 
         if self.window.unlocked_db is None:
-            database = UnlockedDatabase(
-                self.window, self.database_manager
-            )
+            database = UnlockedDatabase(self.window, self.database_manager)
             self.window.unlocked_db = database
             self.window.unlocked_db_bin.props.child = database
 

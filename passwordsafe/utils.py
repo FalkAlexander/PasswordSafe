@@ -43,7 +43,7 @@ def generate_keyfile(
         Gio.FileCreateFlags.REPLACE_DESTINATION,
         None,
         callback,
-        keyfile_hash
+        keyfile_hash,
     )
 
 

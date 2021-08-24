@@ -54,7 +54,12 @@ class SettingsDialog(Adw.PreferencesWindow):
         action_group.add_action(save_automatically_action)
 
         # Password Generator
-        settings.bind("generator-length", self._generator_length_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
+        settings.bind(
+            "generator-length",
+            self._generator_length_spin_button,
+            "value",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
 
         use_uppercase_action = settings.create_action("generator-use-uppercase")
         action_group.add_action(use_uppercase_action)
@@ -69,12 +74,32 @@ class SettingsDialog(Adw.PreferencesWindow):
         action_group.add_action(use_symbols_action)
 
         # Passphrase Generation
-        settings.bind("generator-words", self._generator_words_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
-        settings.bind("generator-separator", self._generator_separator_entry, "text", Gio.SettingsBindFlags.DEFAULT)
+        settings.bind(
+            "generator-words",
+            self._generator_words_spin_button,
+            "value",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        settings.bind(
+            "generator-separator",
+            self._generator_separator_entry,
+            "text",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
 
         # Security
-        settings.bind("database-lock-timeout", self._lockdb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
-        settings.bind("clear-clipboard", self._clearcb_spin_button, "value", Gio.SettingsBindFlags.DEFAULT)
+        settings.bind(
+            "database-lock-timeout",
+            self._lockdb_spin_button,
+            "value",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
+        settings.bind(
+            "clear-clipboard",
+            self._clearcb_spin_button,
+            "value",
+            Gio.SettingsBindFlags.DEFAULT,
+        )
 
         self._clear_button.connect("clicked", self._on_settings_clear_recents_clicked)
         if not config.get_last_opened_list():
@@ -83,7 +108,9 @@ class SettingsDialog(Adw.PreferencesWindow):
         # Unlock
         remember_composite_key_action = settings.create_action("remember-composite-key")
         action_group.add_action(remember_composite_key_action)
-        remember_composite_key_action.connect("notify::state", self._on_remember_composite_key)
+        remember_composite_key_action.connect(
+            "notify::state", self._on_remember_composite_key
+        )
 
         self.insert_action_group("settings", action_group)
 

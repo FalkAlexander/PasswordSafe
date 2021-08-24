@@ -164,7 +164,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.keyfile_error_revealer.reveal(True)
             self.select_keyfile_button.set_icon_name("document-open-symbolic")
         else:
-            keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, gbytes)
+            keyfile_hash = GLib.compute_checksum_for_bytes(
+                GLib.ChecksumType.SHA1, gbytes
+            )
             self.current_keyfile_path = gfile.get_path()
             self.current_keyfile_hash = keyfile_hash
 
@@ -286,9 +288,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
     def set_detail_values(self):
         # Name
-        self.name_row.props.subtitle = (
-            os.path.splitext(ntpath.basename(self.database_manager.database_path))[0]
-        )
+        self.name_row.props.subtitle = os.path.splitext(
+            ntpath.basename(self.database_manager.database_path)
+        )[0]
 
         # Path
         path = self.database_manager.database_path

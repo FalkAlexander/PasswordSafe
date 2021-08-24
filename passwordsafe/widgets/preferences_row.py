@@ -7,4 +7,6 @@ class PreferencesRow(Adw.ActionRow):
 
     __gtype_name__ = "PreferencesRow"
 
-    subtitle = GObject.Property(type=str, default="", flags=GObject.ParamFlags.READWRITE)
+    subtitle = GObject.Property(
+        type=str, default="", flags=GObject.ParamFlags.READWRITE
+    )

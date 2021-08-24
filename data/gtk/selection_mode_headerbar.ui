@@ -7,11 +7,9 @@
           <object class="AdwWindowTitle"/>
         </property>
         <child>
-          <object class="GtkButton">
-            <property name="tooltip_text" translatable="yes">Back</property>
+          <object class="GtkButton" id="_cancel_button">
+            <property name="label" translatable="yes">Cancel</property>
             <property name="action_name">win.go_back</property>
-            <property name="icon_name">go-previous-symbolic</property>
-            <property name="margin_end">6</property>
           </object>
         </child>
         <child>
@@ -51,12 +49,6 @@
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete Selection</property>
                 <property name="icon_name">user-trash-symbolic</property>
                 <signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="_cancel_button">
-                <property name="label" translatable="yes">Cancel</property>
-                <property name="action_name">win.go_back</property>
               </object>
             </child>
           </object>

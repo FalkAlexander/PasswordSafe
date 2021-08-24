@@ -48,6 +48,7 @@
             </child>
             <child>
               <object class="GtkButton" id="_delete_button">
+                <property name="sensitive">False</property>
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete Selection</property>
                 <property name="icon_name">user-trash-symbolic</property>
                 <signal name="clicked" handler="_on_delete_button_clicked" swapped="no"/>

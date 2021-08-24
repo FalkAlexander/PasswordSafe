@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-08-16 19:50+0000\n"
-"PO-Revision-Date: 2021-08-17 09:37+0300\n"
+"POT-Creation-Date: 2021-08-24 13:48+0000\n"
+"PO-Revision-Date: 2021-08-24 18:42+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -246,7 +246,6 @@ msgstr "Створення сейфа"
 
 #: data/gtk/create_database_headerbar.ui:15
 #: data/gtk/edit_element_headerbar.ui:14 data/gtk/search_headerbar.ui:10
-#: data/gtk/selection_mode_headerbar.ui:11
 #: data/gtk/unlock_database_headerbar.ui:40
 msgid "Back"
 msgstr "Назад"
@@ -606,10 +605,15 @@ msgstr "Вкажіть критерій пошуку"
 msgid "No Search Results"
 msgstr "Нічого не знайдено"
 
-#: data/gtk/selection_mode_headerbar.ui:24
-#: passwordsafe/widgets/selection_mode_headerbar.py:62
-msgid "Click on a Checkbox to Select"
-msgstr "Клацніть на пункті, щоб позначити"
+#: data/gtk/selection_mode_headerbar.ui:11
+msgid "_Cancel"
+msgstr "_Скасувати"
+
+#: data/gtk/selection_mode_headerbar.ui:23
+#: passwordsafe/widgets/selection_mode_headerbar.py:70
+#| msgid "Select Safe"
+msgid "_Select Items"
+msgstr "Поз_начені записи"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
 #: data/gtk/selection_mode_headerbar.ui:35
@@ -623,19 +627,15 @@ msgid "Paste Selection"
 msgstr "Вставити позначене"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/gtk/selection_mode_headerbar.ui:51
+#: data/gtk/selection_mode_headerbar.ui:52
 msgid "Delete Selection"
 msgstr "Вилучити позначене"
 
-#: data/gtk/selection_mode_headerbar.ui:58
-msgid "Cancel"
-msgstr "Скасувати"
-
-#: data/gtk/selection_mode_headerbar.ui:73
+#: data/gtk/selection_mode_headerbar.ui:68
 msgid "Select _All"
 msgstr "Позна_чити все"
 
-#: data/gtk/selection_mode_headerbar.ui:78
+#: data/gtk/selection_mode_headerbar.ui:73
 msgid "Select _None"
 msgstr "С_касувати позначення"
 
@@ -1195,12 +1195,10 @@ msgstr "Клонувати"
 
 #: passwordsafe/entry_page.py:236 passwordsafe/entry_page.py:373
 #: passwordsafe/entry_row.py:112
-#| msgid "Username not specified"
 msgid "Username Copied"
 msgstr "Ім'я користувача скопійовано"
 
 #: passwordsafe/entry_page.py:277
-#| msgid "One-time Password Copied to Clipboard"
 msgid "One-time Password Copied"
 msgstr "Одноразовий пароль скопійовано"
 
@@ -1219,7 +1217,6 @@ msgid "_Add"
 msgstr "Д_одати"
 
 #: passwordsafe/entry_row.py:105 passwordsafe/password_entry_row.py:67
-#| msgid "Password Safe"
 msgid "Password Copied"
 msgstr "Пароль скопійовано"
 
@@ -1273,8 +1270,7 @@ msgstr "Не було внесено жодних змін"
 
 #: passwordsafe/unlocked_database.py:327
 msgid "Copied"
-msgstr ""
-"Скопійовано"
+msgstr "Скопійовано"
 
 #. NOTE: Notification that a safe has been locked.
 #: passwordsafe/unlocked_database.py:396
@@ -1332,27 +1328,29 @@ msgstr "AES-KDF"
 msgid "Entry expired"
 msgstr "Строк дії запису вичерпано"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:65
-msgid "{} Selected entry"
-msgid_plural "{} Selected entries"
-msgstr[0] "{} позначений запис"
-msgstr[1] "{} позначені записи"
-msgstr[2] "{} позначених записів"
-msgstr[3] "{} позначений запис"
+#: passwordsafe/widgets/selection_mode_headerbar.py:72
+#| msgid "{} Selected entry"
+#| msgid_plural "{} Selected entries"
+msgid "{} _Selected"
+msgid_plural "{} _Selected"
+msgstr[0] "{} поз_начений"
+msgstr[1] "{} поз_начені"
+msgstr[2] "{} поз_начених"
+msgstr[3] "{} поз_начений"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:90
+#: passwordsafe/widgets/selection_mode_headerbar.py:98
 msgid "Operation Aborted: Deleting Currently Active Group"
 msgstr "Дію перервано: вилучення поточної активної групи"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:106
+#: passwordsafe/widgets/selection_mode_headerbar.py:114
 msgid "Deletion Completed"
 msgstr "Вилучення завершено"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:143
+#: passwordsafe/widgets/selection_mode_headerbar.py:151
 msgid "Operation Aborted: Moving Currently Active Group"
 msgstr "Дію перервано: пересування поточної активної групи"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:161
+#: passwordsafe/widgets/selection_mode_headerbar.py:169
 msgid "Move Completed"
 msgstr "Пересування завершено"
 
@@ -1385,6 +1383,12 @@ msgstr "Не вдалося створити сейф: сейф вже відк�
 #: passwordsafe/widgets/window.py:341
 msgid "Could not Create new Safe"
 msgstr "Не вдалося створити сейф"
+
+#~ msgid "Click on a Checkbox to Select"
+#~ msgstr "Клацніть на пункті, щоб позначити"
+
+#~ msgid "Cancel"
+#~ msgstr "Скасувати"
 
 #~ msgid "Display passwords in plain text"
 #~ msgstr "Показувати паролі у форматі звичайного тексту"
@@ -1481,9 +1485,6 @@ msgstr "Не вдалося створити сейф"
 
 #~ msgid "Select the safes you want to save."
 #~ msgstr "Виберіть сейфи, які ви хочете зберегти."
-
-#~ msgid "_Cancel"
-#~ msgstr "_Скасувати"
 
 #~ msgid "_Quit"
 #~ msgstr "Ви_йти"

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
-from gettext import ngettext
 from logging import debug
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
@@ -67,11 +66,9 @@ class SelectionModeHeaderbar(Adw.Bin):
     def on_selected_entries_changed(self, selection_ui, _value):
         new_number = selection_ui.props.selected_elements
         if new_number == 0:
-            label = _("Click on a Checkbox to Select")
+            label = _("_Select Items")
         else:
-            label = ngettext(
-                "{} Selected entry", "{} Selected entries", new_number
-            ).format(new_number)
+            label = _("{} _Selected").format(new_number)
 
         self._selection_options_button.props.label = label
 

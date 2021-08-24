@@ -9,7 +9,7 @@ from gi.repository import Adw, GLib, Gtk
 from passwordsafe.utils import KeyFileFilter, generate_keyfile
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/create_database.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/create_database.ui")
 class CreateDatabase(Adw.Bin):
     """Creates a new Safe when invoked"""
 

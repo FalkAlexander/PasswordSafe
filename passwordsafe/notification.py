@@ -4,7 +4,7 @@ from gi.repository import Adw, GLib, Gtk
 REVEAL_TIME = 3.0
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/notification.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/notification.ui")
 class Notification(Adw.Bin):
 
     __gtype_name__ = "Notification"

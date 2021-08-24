@@ -6,7 +6,7 @@ from gi.repository import Gtk
 RESOURCE = "/org/gnome/PasswordSafe/images/welcome.png"
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/welcome_page.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/welcome_page.ui")
 class WelcomePage(Gtk.Box):
     __gtype_name__ = "WelcomePage"
 

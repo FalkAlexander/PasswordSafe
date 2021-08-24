@@ -11,7 +11,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeGroup
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/group_page.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/group_page.ui")
 class GroupPage(Adw.Bin):
 
     __gtype_name__ = "GroupPage"

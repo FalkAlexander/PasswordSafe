@@ -12,7 +12,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/password_entry_row.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/password_entry_row.ui")
 class PasswordEntryRow(Adw.Bin):
 
     __gtype_name__ = "PasswordEntryRow"

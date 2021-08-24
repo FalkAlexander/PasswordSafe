@@ -23,7 +23,7 @@ class Color(Enum):
     BROWN = "BrownColorButton"
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/color_button.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/color_button.ui")
 class ColorButton(Gtk.FlowBoxChild):
 
     __gtype_name__ = "ColorButton"
@@ -69,7 +69,7 @@ class ColorButton(Gtk.FlowBoxChild):
         self.unset_state_flags(Gtk.StateFlags.PRELIGHT)
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/color_entry_row.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/color_entry_row.ui")
 class ColorEntryRow(Gtk.Box):
 
     __gtype_name__ = "ColorEntryRow"

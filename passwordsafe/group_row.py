@@ -12,7 +12,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.unlocked_database import UnlockedDatabase
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/group_row.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/group_row.ui")
 class GroupRow(Adw.ActionRow):
 
     __gtype_name__ = "GroupRow"

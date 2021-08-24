@@ -20,7 +20,7 @@ if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry
 
 
-@Gtk.Template(resource_path="/org/gnome/PasswordSafe/entry_page.ui")
+@Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/entry_page.ui")
 class EntryPage(Adw.Bin):
     # pylint: disable=too-many-public-methods
 

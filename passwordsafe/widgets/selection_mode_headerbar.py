@@ -45,7 +45,15 @@ class SelectionModeHeaderbar(Adw.Bin):
     def __init__(self, unlocked_database):
         super().__init__()
 
-        self._pathbar_bin.set_child(Pathbar(unlocked_database))
+        pathbar = Pathbar(unlocked_database)
+        self._pathbar_bin.set_child(pathbar)
+        unlocked_database.action_bar.bind_property(
+            "revealed",
+            pathbar,
+            "visible",
+            GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
+        )
+
         self.unlocked_database = unlocked_database
 
         unlocked_database.connect(

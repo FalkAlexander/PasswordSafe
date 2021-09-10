@@ -122,10 +122,10 @@ class SelectionModeHeaderbar(Adw.Bin):
         self.entries_cut = self.entries_selected
         self.groups_cut = self.groups_selected
         for group_row in self.groups_selected:
-            group_row.hide()
+            group_row.props.sensitive = False
             self.hidden_rows.append(group_row)
         for entry_row in self.entries_selected:
-            entry_row.hide()
+            entry_row.props.sensitive = False
             self.hidden_rows.append(entry_row)
 
         # Do not allow to delete the entries or rows
@@ -241,7 +241,7 @@ class SelectionModeHeaderbar(Adw.Bin):
         self._delete_button.set_sensitive(False)
         self._cut_button.set_sensitive(False)
         for row in self.hidden_rows:
-            row.show()
+            row.props.sensitive = True
 
         self.hidden_rows.remove_all()
         self.emit("clear-selection")

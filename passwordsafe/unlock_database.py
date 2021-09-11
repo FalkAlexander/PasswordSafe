@@ -50,7 +50,7 @@ class UnlockDatabase(Adw.Bin):
         self.headerbar = self.window.unlock_database_headerbar
 
         # Reset headerbar to initial state if it already exists.
-        self.headerbar.title.props.subtitle = database.get_basename()
+        self.headerbar.title.props.title = database.get_basename()
         self.headerbar.back_button.props.sensitive = True
 
         self.install_action("clear-keyfile", None, self.on_clear_keyfile)

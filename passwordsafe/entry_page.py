@@ -14,10 +14,7 @@ from passwordsafe.safe_element import ICONS
 from passwordsafe.widgets.attachment_entry_row import AttachmentEntryRow
 from passwordsafe.widgets.attribute_entry_row import AttributeEntryRow
 from passwordsafe.widgets.entry_page_icon import EntryPageIcon
-from passwordsafe.widgets.progress_icon import ProgressIcon  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.widgets.notes_dialog import NotesDialog
-from passwordsafe.widgets.error_revealer import ErrorRevealer  # noqa: F401, pylint: disable=unused-import
-from passwordsafe.widgets.expiration_date_row import ExpirationDateRow  # noqa: F401, pylint: disable=unused-import
 
 if typing.TYPE_CHECKING:
     from passwordsafe.safe_element import SafeEntry

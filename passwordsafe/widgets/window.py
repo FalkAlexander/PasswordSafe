@@ -11,21 +11,9 @@ from gi.repository import Adw, Gio, GLib, GObject, Gtk
 import passwordsafe.config_manager
 from passwordsafe.create_database import CreateDatabase
 from passwordsafe.database_manager import DatabaseManager
-from passwordsafe.notification import Notification  # noqa: F401, pylint: disable=unused-import
-from passwordsafe.recent_files_page import RecentFilesPage  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.save_dialog import SaveDialog
 from passwordsafe.settings_dialog import SettingsDialog
 from passwordsafe.unlock_database import UnlockDatabase
-from passwordsafe.welcome_page import WelcomePage  # noqa: F401, pylint: disable=unused-import
-from passwordsafe.widgets.create_database_headerbar import (  # noqa: F401, pylint: disable=unused-import
-    CreateDatabaseHeaderbar,
-)
-from passwordsafe.widgets.recent_files_headerbar import (  # noqa: F401, pylint: disable=unused-import
-    RecentFilesHeaderbar,
-)
-from passwordsafe.widgets.unlock_database_headerbar import (  # noqa: F401, pylint: disable=unused-import
-    UnlockDatabaseHeaderbar,
-)
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/window.ui")

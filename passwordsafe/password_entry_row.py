@@ -6,9 +6,6 @@ from gettext import gettext as _
 
 from gi.repository import Adw, Gtk
 
-from passwordsafe.password_generator_popover import PasswordGeneratorPopover  # noqa: F401, pylint: disable=unused-import
-from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
-
 if typing.TYPE_CHECKING:
     from passwordsafe.database_manager import DatabaseManager
     from passwordsafe.safe_element import SafeEntry

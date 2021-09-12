@@ -7,6 +7,7 @@ from gettext import gettext as _
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from passwordsafe import const
+from passwordsafe.widgets.mod import load_widgets
 from passwordsafe.widgets.window import Window
 
 
@@ -41,6 +42,8 @@ class Application(Adw.Application):
 
         self.setup_actions()
         self.add_global_accelerators()
+
+        load_widgets()
 
     def do_open(self, gfile_list, _n_files, _hint):  # pylint: disable=arguments-differ
         for gfile in gfile_list:

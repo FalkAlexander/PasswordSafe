@@ -5,7 +5,6 @@ from __future__ import annotations
 from gi.repository import Adw, Gtk
 
 from passwordsafe.utils import format_time
-from passwordsafe.widgets.preferences_row import PreferencesRow  # noqa: F401, pylint: disable=unused-import
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/properties_dialog.ui")

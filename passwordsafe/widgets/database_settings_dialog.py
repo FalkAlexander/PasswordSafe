@@ -9,12 +9,8 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
 
-from passwordsafe.password_generator_popover import PasswordGeneratorPopover  # noqa: F401, pylint: disable=unused-import
 from passwordsafe.utils import KeyFileFilter
 from passwordsafe.utils import format_time, generate_keyfile
-from passwordsafe.widgets.error_revealer import ErrorRevealer  # noqa: F401, pylint: disable=unused-import
-from passwordsafe.widgets.password_level_bar import PasswordLevelBar  # noqa: F401, pylint: disable=unused-import
-from passwordsafe.widgets.preferences_row import PreferencesRow  # noqa: F401, pylint: disable=unused-import
 
 
 @Gtk.Template(resource_path="/org/gnome/PasswordSafe/gtk/database_settings_dialog.ui")

@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+from gettext import gettext as _
+
 from gi.repository import GObject, Gtk
 
 import gsecrets.config_manager as config
@@ -53,6 +55,37 @@ class PasswordGeneratorPopover(Gtk.Popover):
         words = config.get_generator_words()
         self._words_spin_button.set_value(words)
 
+        self._low_letter_toggle_button.connect("toggled", self.on_toggled_callback)
+        self._high_letter_toggle_btn.connect("toggled", self.on_toggled_callback)
+        self._number_toggle_button.connect("toggled", self.on_toggled_callback)
+        self._special_toggle_button.connect("toggled", self.on_toggled_callback)
+
+        self.set_tooltips()
+
+    def on_toggled_callback(self, _button):
+        self.set_tooltips()
+
+    def set_tooltips(self):
+        text = "{} {}"
+
+        use_uppercase: bool = self._high_letter_toggle_btn.props.active
+        use_lowercase: bool = self._low_letter_toggle_button.props.active
+        use_numbers: bool = self._number_toggle_button.props.active
+        use_symbols: bool = self._special_toggle_button.props.active
+
+        self._low_letter_toggle_button.set_tooltip_text(
+            text.format(_format_bool(use_lowercase), _("Lowercase"))
+        )
+        self._high_letter_toggle_btn.set_tooltip_text(
+            text.format(_format_bool(use_uppercase), _("Uppercase"))
+        )
+        self._number_toggle_button.set_tooltip_text(
+            text.format(_format_bool(use_numbers), _("Numbers"))
+        )
+        self._special_toggle_button.set_tooltip_text(
+            text.format(_format_bool(use_symbols), _("Symbols"))
+        )
+
     @Gtk.Template.Callback()
     def _on_generate_button_clicked(self, _button: Gtk.Button) -> None:
         if self._stack.get_visible_child_name() == "password":
@@ -79,3 +112,10 @@ class PasswordGeneratorPopover(Gtk.Popover):
 
     def on_passphrase_generated(self, _passphrase_gen, passphrase):
         self.emit("generated", passphrase)
+
+
+def _format_bool(boolean):
+    if boolean:
+        return _("Exclude")
+
+    return _("Include")

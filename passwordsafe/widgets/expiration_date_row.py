@@ -25,7 +25,9 @@ class ExpirationDateRow(Adw.Bin):
 
     _safe_entry = None
 
-    def do_mnemonic_activate(self, group_cycling: bool) -> bool:
+    def do_mnemonic_activate(
+        self, group_cycling: bool
+    ) -> bool:  # pylint: disable=arguments-differ
         return self.action_row.mnemonic_activate(group_cycling)
 
     @GObject.Property(type=SafeEntry)

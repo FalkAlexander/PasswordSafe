@@ -62,6 +62,6 @@ endif
 
 subdir('data')
 subdir('po')
-subdir('passwordsafe')
+subdir('gsecrets')
 
 meson.add_install_script('meson_post_install.py')

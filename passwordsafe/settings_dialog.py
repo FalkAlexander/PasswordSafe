@@ -12,6 +12,7 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     _clear_button = Gtk.Template.Child()
     _clearcb_spin_button = Gtk.Template.Child()
+    _dark_theme_row = Gtk.Template.Child()
     _generator_length_spin_button = Gtk.Template.Child()
     _generator_separator_entry = Gtk.Template.Child()
     _generator_words_spin_button = Gtk.Template.Child()
@@ -24,6 +25,13 @@ class SettingsDialog(Adw.PreferencesWindow):
         self.props.transient_for = self.window
         self._set_config_values()
 
+    def on_dark_theme(self, action, *args):
+        manager = Adw.StyleManager.get_default()
+        if action.props.state:
+            manager.props.color_scheme = Adw.ColorScheme.PREFER_DARK
+        else:
+            manager.props.color_scheme = Adw.ColorScheme.DEFAULT
+
     def _set_config_values(self):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-statements
@@ -31,8 +39,12 @@ class SettingsDialog(Adw.PreferencesWindow):
         settings = Gio.Settings.new(APP_ID)
 
         # General
-        dark_mode_action = settings.create_action("dark-theme")
-        action_group.add_action(dark_mode_action)
+        manager = Adw.StyleManager.get_default()
+        if not manager.props.system_supports_color_schemes:
+            self._dark_theme_row.props.visible = True
+            dark_mode_action = settings.create_action("dark-theme")
+            action_group.add_action(dark_mode_action)
+            dark_mode_action.connect("notify::state", self.on_dark_theme)
 
         first_start_action = settings.create_action("first-start-screen")
         action_group.add_action(first_start_action)

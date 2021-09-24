@@ -11,7 +11,8 @@
           <object class="AdwPreferencesGroup" id="section_label_security">
             <property name="title" translatable="yes">General</property>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwActionRow" id="_dark_theme_row">
+                <property name="visible">False</property>
                 <property name="title" translatable="yes">_Dark Theme</property>
                 <property name="subtitle" translatable="yes">Use dark GTK theme.</property>
                 <property name="activatable_widget">_theme_switch</property>

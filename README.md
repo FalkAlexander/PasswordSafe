@@ -55,10 +55,3 @@ You can find everything you need at: [l10n.gnome.org/module/PasswordSafe/](https
 
 # Contact
 You can contact through chat (Matrix protocol) on [#passwordsafe:gnome.org](https://matrix.to/#/#passwordsafe:gnome.org) channel.
-
-### Part of GNOME Circle
-Applications and libraries extending the GNOME ecosystem.
-
-<a href="https://circle.gnome.org/">
-<img src=" https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/circle-button-fullcolor.svg" width="180"/>
-</a>

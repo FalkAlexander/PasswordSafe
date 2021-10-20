@@ -52,7 +52,7 @@ def main():
     )
     Gio.resources_register(resource)
 
-    GLib.set_application_name(_("Secrets") + const.SUFFIX)
+    GLib.set_application_name("Secrets" + const.SUFFIX)
 
     from gsecrets.application import Application
 

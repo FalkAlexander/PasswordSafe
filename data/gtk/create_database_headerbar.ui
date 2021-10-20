@@ -5,7 +5,7 @@
       <object class="AdwHeaderBar">
         <property name="title-widget">
           <object class="AdwWindowTitle">
-            <property name="title" translatable="yes" comments="Application title in headerbar.">Secrets</property>
+            <property name="title">Secrets</property>
             <property name="subtitle" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Safe</property>
           </object>
         </property>
@@ -39,7 +39,7 @@
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes" comments="&quot;Secrets&quot; is the application name">_About Secrets</attribute>
+        <attribute name="label" translatable="yes" comments="&quot;Secrets&quot; is the application name, do not translate">_About Secrets</attribute>
         <attribute name="action">win.about</attribute>
       </item>
     </section>

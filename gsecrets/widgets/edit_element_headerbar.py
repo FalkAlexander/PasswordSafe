@@ -35,7 +35,9 @@ class EditElementHeaderbar(Adw.Bin):
             "visible",
             unlocked_database.action_bar,
             "revealed",
-            GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.INVERT_BOOLEAN,
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.INVERT_BOOLEAN
+            | GObject.BindingFlags.SYNC_CREATE,
         )
         if page_type == PageType.GROUP:
             self._secondary_menu_button.set_menu_model(self._group_menu)

@@ -3,7 +3,6 @@
 
 from gi.repository import GObject
 
-from gsecrets.notification import Notification
 from gsecrets.password_generator_popover import PasswordGeneratorPopover
 from gsecrets.recent_files_page import RecentFilesPage
 from gsecrets.welcome_page import WelcomePage
@@ -19,7 +18,6 @@ from gsecrets.widgets.unlock_database_headerbar import UnlockDatabaseHeaderbar
 
 
 def load_widgets():
-    GObject.type_ensure(Notification)
     GObject.type_ensure(PasswordGeneratorPopover)
     GObject.type_ensure(RecentFilesPage)
     GObject.type_ensure(WelcomePage)

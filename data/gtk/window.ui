@@ -41,11 +41,8 @@
           </object>
         </child>
         <child>
-          <object class="GtkOverlay" id="_main_overlay">
-            <child type="overlay">
-              <object class="Notification" id="_notification"/>
-            </child>
-            <child>
+          <object class="AdwToastOverlay" id="_toast_overlay">
+            <property name="child">
               <object class="GtkStack" id="_main_view">
                 <child>
                   <object class="GtkStackPage">
@@ -106,7 +103,7 @@
                   </object>
                 </child>
               </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>

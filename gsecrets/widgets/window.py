@@ -33,12 +33,11 @@ class Window(Adw.ApplicationWindow):
 
     _create_database_bin = Gtk.Template.Child()
     create_database_headerbar = Gtk.Template.Child()
-    _main_overlay = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
-    _notification = Gtk.Template.Child()
     _recent_files_page = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
     _headerbar_stack = Gtk.Template.Child()
+    _toast_overlay = Gtk.Template.Child()
     _unlock_database_bin = Gtk.Template.Child()
     unlock_database_headerbar = Gtk.Template.Child()
     unlocked_db_bin = Gtk.Template.Child()
@@ -58,7 +57,8 @@ class Window(Adw.ApplicationWindow):
             gsecrets.config_manager.set_development_backup_mode(True)
 
     def send_notification(self, notification: str) -> None:
-        self._notification.send_notification(notification)
+        toast = Adw.Toast.new(notification)
+        self._toast_overlay.add_toast(toast)
 
     def set_headerbar(self, headerbar: Adw.HeaderBar) -> None:
         self.add_headerbar(headerbar)

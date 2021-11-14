@@ -48,7 +48,6 @@ pylint:
   stage: check
   script:
     - dnf install -y 'dnf-command(copr)'
-    - dnf copr enable -y deathwish/libadwaita
     - dnf install -y libadwaita-devel gtk4-devel libpwquality-devel pylint python3-pwquality python3-gobject-devel python3-pyotp python3-pykeepass
     - mv gsecrets/const.py.in gsecrets/const.py  # We need a dummy file
     - pylint --rcfile=.pylintrc gsecrets

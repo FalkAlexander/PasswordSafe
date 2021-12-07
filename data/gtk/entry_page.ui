@@ -55,16 +55,11 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox" id="username_entry_box">
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkEntry" id="username_property_value_entry">
-                            <property name="secondary_icon_name">edit-copy-symbolic</property>
-                            <property name="secondary_icon_tooltip_text" translatable="yes">Copy</property>
-                            <property name="enable_undo">False</property>
-                            <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
-                          </object>
-                        </child>
+                      <object class="GtkEntry" id="username_property_value_entry">
+                        <property name="secondary_icon_name">edit-copy-symbolic</property>
+                        <property name="secondary_icon_tooltip_text" translatable="yes">Copy</property>
+                        <property name="enable_undo">False</property>
+                        <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -170,17 +165,12 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox" id="url_entry_box">
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkEntry" id="url_property_value_entry">
-                            <property name="input_purpose">url</property>
-                            <property name="secondary_icon_name">send-to-symbolic</property>
-                            <property name="secondary_icon_tooltip_text">Open Address</property>
-                            <property name="enable_undo">False</property>
-                            <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
-                          </object>
-                        </child>
+                      <object class="GtkEntry" id="url_property_value_entry">
+                        <property name="input_purpose">url</property>
+                        <property name="secondary_icon_name">send-to-symbolic</property>
+                        <property name="secondary_icon_tooltip_text">Open Address</property>
+                        <property name="enable_undo">False</property>
+                        <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
                       </object>
                     </child>
                   </object>
@@ -255,16 +245,12 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <child>
-                          <object class="GtkFlowBox" id="icon_entry_box">
-                            <property name="selection-mode">single</property>
-                            <property name="max-children-per-line">10</property>
-                            <property name="min-children-per-line">5</property>
-                            <property name="row-spacing">6</property>
-                            <property name="column-spacing">6</property>
-                          </object>
-                        </child>
+                      <object class="GtkFlowBox" id="icon_entry_box">
+                        <property name="selection-mode">single</property>
+                        <property name="max-children-per-line">10</property>
+                        <property name="min-children-per-line">5</property>
+                        <property name="row-spacing">6</property>
+                        <property name="column-spacing">6</property>
                       </object>
                     </child>
                   </object>
@@ -283,40 +269,35 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox" id="attachment_entry_box">
-                        <property name="orientation">vertical</property>
+                      <object class="GtkListBox" id="attachment_list_box">
+                        <property name="selection_mode">none</property>
+                        <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
                         <child>
-                          <object class="GtkListBox" id="attachment_list_box">
-                            <property name="selection_mode">none</property>
-                            <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
+                          <object class="GtkListBoxRow" id="add_attachment_row">
+                            <property name="name">AddAttachmentRow</property>
+                            <property name="height_request">50</property>
                             <child>
-                              <object class="GtkListBoxRow" id="add_attachment_row">
-                                <property name="name">AddAttachmentRow</property>
-                                <property name="height_request">50</property>
+                              <object class="GtkBox">
+                                <property name="halign">center</property>
+                                <property name="spacing">6</property>
                                 <child>
-                                  <object class="GtkBox">
-                                    <property name="halign">center</property>
-                                    <property name="spacing">6</property>
-                                    <child>
-                                      <object class="GtkImage">
-                                        <property name="icon_name">list-add-symbolic</property>
-                                      </object>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel">
-                                        <property name="label" translatable="yes">_Add Attachment</property>
-                                        <property name="use_underline">True</property>
-                                      </object>
-                                    </child>
+                                  <object class="GtkImage">
+                                    <property name="icon_name">list-add-symbolic</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="label" translatable="yes">_Add Attachment</property>
+                                    <property name="use_underline">True</property>
                                   </object>
                                 </child>
                               </object>
                             </child>
-                            <style>
-                              <class name="boxed-list"/>
-                            </style>
                           </object>
                         </child>
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
                       </object>
                     </child>
                   </object>

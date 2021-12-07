@@ -381,18 +381,13 @@
   <object class="GtkPopover" id="_uuid_popover">
     <property name="position">bottom</property>
     <child>
-      <object class="GtkBox">
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Each entry has a unique identifier called UUID. It can be found in the properties of the entry.</property>
+        <property name="wrap">True</property>
         <property name="margin_start">8</property>
         <property name="margin_end">8</property>
         <property name="margin_top">8</property>
         <property name="margin_bottom">8</property>
-        <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="label" translatable="yes">Each entry has a unique identifier called UUID. It can be found in the properties of the entry.</property>
-            <property name="wrap">True</property>
-          </object>
-        </child>
       </object>
     </child>
   </object>

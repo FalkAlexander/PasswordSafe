@@ -45,6 +45,7 @@ class ProgressIcon(GObject.Object, Gdk.Paintable, Gtk.SymbolicPaintable):
 
     @progress.setter  # type: ignore
     def progress(self, progress: float) -> None:
+        progress = max(min(progress, 1.0), 0.0)
         if self._progress != progress:
-            self._progress = max(min(progress, 1.0), 0.0)
+            self._progress = progress
             self.invalidate_contents()

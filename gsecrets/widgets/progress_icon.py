@@ -1,31 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import math
 
-from gi.repository import GObject, Gtk, Graphene
+from gi.repository import GObject, Gdk, Gtk, Graphene
 
 
-class ProgressIcon(Gtk.Widget):
+class ProgressIcon(GObject.Object, Gdk.Paintable, Gtk.SymbolicPaintable):
 
     __gtype_name__ = "ProgressIcon"
 
     _progress: float = 0.0
-    size = GObject.Property(type=int, default=16)
 
-    def __init__(self):
-        super().__init__()
-
-        self.props.height_request = self.size
-        self.props.width_request = self.size
-        self.props.valign = Gtk.Align.CENTER
-
-    def do_measure(self, _orientation, _for_size):  # pylint: disable=arguments-differ
-        baseline = -1
-        return self.size, self.size, baseline, baseline
-
-    def do_snapshot(self, snapshot):  # pylint: disable=arguments-differ
-        width = self.size
-        height = self.size
-        color = self.get_style_context().get_color()
+    def do_snapshot_symbolic(self, snapshot, width, height, colors, _n_colors):
+        color = colors[0]
         color.alpha = 0.15
 
         rect = Graphene.Rect().alloc()
@@ -61,4 +47,4 @@ class ProgressIcon(Gtk.Widget):
     def progress(self, progress: float) -> None:
         if self._progress != progress:
             self._progress = max(min(progress, 1.0), 0.0)
-            self.queue_draw()
+            self.invalidate_contents()

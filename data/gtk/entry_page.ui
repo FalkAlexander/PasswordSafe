@@ -129,7 +129,11 @@
                           <object class="AdwActionRow" id="otp_token_row">
                             <property name="activatable_widget">otp_copy_button</property>
                             <child>
-                              <object class="ProgressIcon" id="otp_progress_icon"/>
+                              <object class="GtkImage">
+                                <property name="paintable">
+                                  <object class="ProgressIcon" id="otp_progress_icon"/>
+                                </property>
+                              </object>
                             </child>
                             <child>
                               <object class="GtkButton" id="otp_copy_button">

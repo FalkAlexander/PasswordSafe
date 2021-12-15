@@ -24,6 +24,9 @@
                 <property name="margin_end">12</property>
                 <property name="valign">center</property>
                 <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
+                <style>
+                  <class name="selection-mode"/>
+                </style>
               </object>
             </child>
           </object>

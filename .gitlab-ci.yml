@@ -36,7 +36,7 @@ flake8:
   script:
     - dnf install -y python3-flake8 pip
     - pip install pyotp
-    - flake8 --max-line-length=170 --ignore=E402,W503 --show-source gsecrets
+    - flake8 --max-line-length=88 --ignore=E402,W503 --show-source gsecrets
 
 mypy:
   stage: check

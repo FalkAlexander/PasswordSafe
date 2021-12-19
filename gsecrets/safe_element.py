@@ -447,7 +447,8 @@ class SafeEntry(SafeElement):
                 return self._otp.now()
             except binascii.Error:
                 logging.debug(
-                    "Error cought in OTP token generation (likely invalid base32 secret)."
+                    "Error cought in OTP token generation (likely invalid "
+                    "base32 secret)."
                 )
 
     @GObject.Property(type=str, default="")

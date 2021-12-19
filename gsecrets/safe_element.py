@@ -19,7 +19,7 @@ if typing.TYPE_CHECKING:
     from pykeepass.entry import Entry
     from pykeepass.group import Group
 
-    from gsecrets.database_manager import DatabaseManager  # pylint: disable=ungrouped-imports
+    from gsecrets.database_manager import DatabaseManager  # pylint: disable=ungrouped-imports # noqa: E501
 
 
 class SafeElement(GObject.GObject):

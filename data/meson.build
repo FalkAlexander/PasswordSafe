@@ -46,7 +46,6 @@ install_data(
 desktop_conf = configuration_data()
 desktop_conf.set('ICON', application_id)
 desktop = i18n.merge_file(
-  'desktop',
   input: configure_file(
     input: files('org.gnome.World.Secrets.desktop.in.in'),
     output: 'org.gnome.World.Secrets.desktop.in',
@@ -74,7 +73,6 @@ metainfo_conf.set('APPID', application_id)
 metainfo_conf.set('GETTEXT_PACKAGE', meson.project_name())
 metainfo_conf.set('NAME', project_name)
 metainfo = i18n.merge_file(
-  'metainfo',
   input: configure_file(
     input: files('org.gnome.World.Secrets.metainfo.xml.in.in'),
     output: 'org.gnome.World.Secrets.metainfo.xml.in',

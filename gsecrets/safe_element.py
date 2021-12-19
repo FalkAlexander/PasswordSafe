@@ -561,7 +561,7 @@ class Icon(NamedTuple):
     visible: bool = False
 
 
-# https://github.com/dlech/KeePass2.x/blob/4facf2f1ebc76eeddbe11975eccb0dc2b49dfc37/KeePassLib/PwEnums.cs#L81  # noqa: E501
+# https://github.com/dlech/KeePass2.x/blob/4facf2f1ebc76eeddbe11975eccb0dc2b49dfc37/KeePassLib/PwEnums.cs#L81  # noqa: E501  # pylint: disable=line-too-long
 # https://hsto.org/files/b1e/d20/e38/b1ed20e385d642cc870355fdef153fb9.png
 # FIXME: Based on the names from the links above, some of the current
 # icons should be replaced.

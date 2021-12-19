@@ -34,20 +34,22 @@ codespell:
 flake8:
   stage: check
   script:
-    - dnf install -y python3-flake8 python3-pyotp
+    - dnf install -y python3-flake8 pip
+    - pip install pyotp
     - flake8 --max-line-length=170 --ignore=E402,W503 --show-source gsecrets
 
 mypy:
   stage: check
   script:
-    - dnf install -y pip python3-pyotp
-    - pip install mypy
+    - dnf install -y pip
+    - pip install mypy pyotp
     - mypy --ignore-missing-imports --disallow-incomplete-defs gsecrets
 
 pylint:
   stage: check
   script:
     - dnf install -y 'dnf-command(copr)'
-    - dnf install -y libadwaita-devel gtk4-devel libpwquality-devel pylint python3-pwquality python3-gobject-devel python3-pyotp python3-pykeepass
+    - dnf install -y libadwaita-devel gtk4-devel libpwquality-devel pip pylint python3-pwquality python3-gobject-devel python3-pykeepass
+    - pip install pyotp
     - mv gsecrets/const.py.in gsecrets/const.py  # We need a dummy file
     - pylint --rcfile=.pylintrc gsecrets

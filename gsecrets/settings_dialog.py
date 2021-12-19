@@ -25,7 +25,7 @@ class SettingsDialog(Adw.PreferencesWindow):
         self.props.transient_for = self.window
         self._set_config_values()
 
-    def on_dark_theme(self, action, *args):
+    def on_dark_theme(self, action, *_args):
         manager = Adw.StyleManager.get_default()
         if action.props.state:
             manager.props.color_scheme = Adw.ColorScheme.PREFER_DARK

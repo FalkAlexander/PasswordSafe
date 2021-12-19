@@ -425,14 +425,14 @@ class SafeEntry(SafeElement):
             self.updated()
 
     def otp_interval(self) -> int:
-        if self._otp:
-            return self._otp.interval  # type: ignore
+        if isinstance(self._otp, TOTP):
+            return self._otp.interval
 
         return 30
 
     def otp_lifespan(self) -> float | None:
         """Returns seconds until token expires."""
-        if self._otp:
+        if isinstance(self._otp, TOTP):
             gnow = GLib.DateTime.new_now_utc()
             now_seconds = gnow.to_unix()
             now_milis = gnow.get_seconds() % 1

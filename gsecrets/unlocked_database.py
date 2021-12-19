@@ -279,12 +279,14 @@ class UnlockedDatabase(Gtk.Box):
             if self.database_manager.save_running is False:
                 self.save_database(notification=True)
             else:
-                # NOTE: In-app notification to inform the user that already an unfinished save job is running
+                # NOTE: In-app notification to inform the user that
+                # already an unfinished save job is running
                 self.window.send_notification(
                     _("Please Wait. Another Save is Running.")
                 )
         else:
-            # NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
+            # NOTE: In-app notification to inform the user that no save
+            # is necessary because there where no changes made
             self.window.send_notification(_("No Changes Made"))
 
     def lock_safe(self):

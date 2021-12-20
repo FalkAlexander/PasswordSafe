@@ -54,11 +54,8 @@ class AttachmentEntryRow(Adw.ActionRow):
 
     def _replace_contents_callback(self, gfile, result):
         try:
-            success, _etag = gfile.replace_contents_finish(result)
-            if not success:
-                raise Exception("IO operation error")
-
-        except Exception as err:  # pylint: disable=broad-except
+            gfile.replace_contents_finish(result)
+        except GLib.Error as err:
             logging.debug("Could not store attachment: %s", err)
             window = self.get_root()
             window.send_notification(_("Could not Store Attachment"))

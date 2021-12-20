@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Adw, GObject, Gtk
+from gi.repository import GObject, Gtk
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/notes_dialog.ui")
-class NotesDialog(Adw.Window):
+class NotesDialog(Gtk.Window):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "NotesDialog"

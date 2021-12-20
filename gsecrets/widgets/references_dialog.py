@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Gio, GLib, Gtk
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/references_dialog.ui")
-class ReferencesDialog(Adw.Window):
+class ReferencesDialog(Gtk.Window):
 
     __gtype_name__ = "ReferencesDialog"
 

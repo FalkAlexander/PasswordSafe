@@ -187,8 +187,10 @@
       </item>
     </section>
   </menu>
-  <template class="ReferencesDialog" parent="AdwWindow">
+  <template class="ReferencesDialog" parent="GtkWindow">
     <property name="destroy-with-parent">True</property>
+    <property name="title" translatable="yes">References</property>
+    <property name="default_height">200</property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -199,177 +201,162 @@
         </child>
       </object>
     </child>
-    <property name="default_height">200</property>
     <child>
       <object class="GtkBox">
-        <property name="orientation">vertical</property>
+        <property name="halign">center</property>
         <child>
-          <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">References</property>
-              </object>
-            </property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="halign">center</property>
+          <object class="AdwClamp">
             <child>
-              <object class="AdwClamp">
+              <object class="GtkBox">
+                <property name="margin_start">12</property>
+                <property name="margin_end">12</property>
+                <property name="margin_top">12</property>
+                <property name="margin_bottom">12</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="section_label_ref_syntax">
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="margin_top">6</property>
+                    <property name="margin_bottom">6</property>
+                    <property name="label" translatable="yes">Syntax</property>
+                    <style>
+                      <class name="heading"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">The placeholder syntax for field references is the following:</property>
+                    <style>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                </child>
                 <child>
                   <object class="GtkBox">
-                    <property name="margin_start">12</property>
-                    <property name="margin_end">12</property>
-                    <property name="margin_top">12</property>
-                    <property name="margin_bottom">12</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkLabel" id="section_label_ref_syntax">
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="margin_top">6</property>
-                        <property name="margin_bottom">6</property>
-                        <property name="label" translatable="yes">Syntax</property>
-                        <style>
-                          <class name="heading"/>
-                        </style>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkLabel">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">The placeholder syntax for field references is the following:</property>
+                        <property name="label">{REF:&lt;</property>
                         <style>
                           <class name="dim-label"/>
                         </style>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
+                      <object class="GtkLabel" id="_property_label">
+                        <property name="tooltip_text" translatable="yes">Show Field Codes</property>
+                        <property name="label" translatable="yes">Property</property>
+                        <property name="ellipsize">end</property>
+                        <attributes>
+                          <attribute name="underline" value="True"/>
+                        </attributes>
                         <child>
-                          <object class="GtkLabel">
-                            <property name="label">{REF:&lt;</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
+                          <object class="GtkGestureClick" id="property_label_gesture">
+                            <property name="button">1</property>
+                            <signal name="pressed" handler="_open_codes_popover" swapped="no"/>
                           </object>
                         </child>
-                        <child>
-                          <object class="GtkLabel" id="_property_label">
-                            <property name="tooltip_text" translatable="yes">Show Field Codes</property>
-                            <property name="label" translatable="yes">Property</property>
-                            <property name="ellipsize">end</property>
-                            <attributes>
-                              <attribute name="underline" value="True"/>
-                            </attributes>
-                            <child>
-                              <object class="GtkGestureClick" id="property_label_gesture">
-                                <property name="button">1</property>
-                                <signal name="pressed" handler="_open_codes_popover" swapped="no"/>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="link"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label">&gt;@&lt;</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="identifier_label">
-                            <property name="tooltip_text" translatable="yes">Show Field Codes</property>
-                            <property name="label" translatable="yes">Identifier</property>
-                            <property name="ellipsize">end</property>
-                            <attributes>
-                              <attribute name="underline" value="True"/>
-                            </attributes>
-                            <child>
-                              <object class="GtkGestureClick" id="identifier_label_gesture">
-                                <property name="button">1</property>
-                                <signal name="pressed" handler="_open_codes_popover" swapped="no"/>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="link"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label">&gt;:&lt;</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="_uuid_label">
-                            <property name="label">UUID</property>
-                            <property name="ellipsize">end</property>
-                            <attributes>
-                              <attribute name="underline" value="True"/>
-                            </attributes>
-                            <child>
-                              <object class="GtkGestureClick" id="uuid_label_gesture">
-                                <property name="button">1</property>
-                                <signal name="pressed" handler="_open_uuid_popover" swapped="no"/>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="link"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label">&gt;}</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="section_label_reference">
-                        <property name="halign">start</property>
-                        <property name="valign">start</property>
-                        <property name="margin_top">30</property>
-                        <property name="margin_bottom">6</property>
-                        <property name="label" translatable="yes">Reference</property>
                         <style>
-                          <class name="heading"/>
+                          <class name="link"/>
                         </style>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox">
-                        <child>
-                          <object class="GtkMenuButton" id="_property_popover_button">
-                            <property name="menu_model">prop_selection_menu</property>
-                            <property name="label" translatable="yes">Property</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkEntry" id="_reference_entry">
-                            <property name="hexpand">True</property>
-                            <property name="editable">False</property>
-                            <property name="secondary_icon_name">edit-copy-symbolic</property>
-                            <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
-                          </object>
-                        </child>
+                      <object class="GtkLabel">
+                        <property name="label">&gt;@&lt;</property>
                         <style>
-                          <class name="linked"/>
+                          <class name="dim-label"/>
                         </style>
                       </object>
                     </child>
+                    <child>
+                      <object class="GtkLabel" id="identifier_label">
+                        <property name="tooltip_text" translatable="yes">Show Field Codes</property>
+                        <property name="label" translatable="yes">Identifier</property>
+                        <property name="ellipsize">end</property>
+                        <attributes>
+                          <attribute name="underline" value="True"/>
+                        </attributes>
+                        <child>
+                          <object class="GtkGestureClick" id="identifier_label_gesture">
+                            <property name="button">1</property>
+                            <signal name="pressed" handler="_open_codes_popover" swapped="no"/>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="link"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label">&gt;:&lt;</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="_uuid_label">
+                        <property name="label">UUID</property>
+                        <property name="ellipsize">end</property>
+                        <attributes>
+                          <attribute name="underline" value="True"/>
+                        </attributes>
+                        <child>
+                          <object class="GtkGestureClick" id="uuid_label_gesture">
+                            <property name="button">1</property>
+                            <signal name="pressed" handler="_open_uuid_popover" swapped="no"/>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="link"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="label">&gt;}</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="section_label_reference">
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="margin_top">30</property>
+                    <property name="margin_bottom">6</property>
+                    <property name="label" translatable="yes">Reference</property>
+                    <style>
+                      <class name="heading"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkMenuButton" id="_property_popover_button">
+                        <property name="menu_model">prop_selection_menu</property>
+                        <property name="label" translatable="yes">Property</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="_reference_entry">
+                        <property name="hexpand">True</property>
+                        <property name="editable">False</property>
+                        <property name="secondary_icon_name">edit-copy-symbolic</property>
+                        <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="linked"/>
+                    </style>
                   </object>
                 </child>
               </object>

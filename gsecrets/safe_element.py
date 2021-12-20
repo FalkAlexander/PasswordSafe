@@ -229,7 +229,7 @@ class SafeEntry(SafeElement):
             if key not in (self._color_key, self._note_key, self._otp_key)
         }
 
-        color_value: Color = entry.get_custom_property(self._color_key)
+        color_value: str = entry.get_custom_property(self._color_key)
         self._color: str = color_value or Color.NONE.value
 
         self._icon_nr: str = entry.icon or ""

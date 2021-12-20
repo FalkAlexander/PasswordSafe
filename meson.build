@@ -60,8 +60,15 @@ else
     version = meson.project_version()
 endif
 
+top_source_dir = meson.current_source_dir()
+
 subdir('data')
 subdir('po')
 subdir('gsecrets')
+
+if get_option('tests')
+    pytest = find_program(['pytest', 'pytest-3'], required : true)
+    subdir('tests')
+endif
 
 meson.add_install_script('meson_post_install.py')

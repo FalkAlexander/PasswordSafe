@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from secrets import randbelow
 
-from gi.repository import Gio, GObject
+from gi.repository import Gio, GLib, GObject
 
 
 class Passphrase(GObject.Object):
@@ -24,10 +24,7 @@ class Passphrase(GObject.Object):
         def callback(gfile, result):
             try:
                 gbytes, _ = gfile.load_bytes_finish(result)
-                if not gbytes:
-                    raise Exception("IO operation error")
-
-            except Exception as err:  # pylint: disable=broad-except
+            except GLib.Error as err:
                 logging.debug("Could not read word file: %s", err)
             else:
                 word_str: str = gbytes.get_data().decode("utf-8")

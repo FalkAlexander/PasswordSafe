@@ -23,6 +23,7 @@ flatpak:
     variables:
         APP_ID: org.gnome.World.Secrets.Devel
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+        CONFIG_OPTS: "-Dtests=true"
 
 codespell:
   stage: check

@@ -7,7 +7,9 @@ from typing import Callable
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
-from gi.repository import Gio, GLib, Gtk, GObject
+import gi
+gi.require_version("Gtk", "4.0")
+from gi.repository import Gio, GLib, Gtk, GObject  # pylint: disable=wrong-import-position  # noqa: E501
 
 
 def format_time(time: GLib.DateTime | None, hours: bool = True) -> str:

@@ -65,7 +65,7 @@ class SafeElement(GObject.GObject):
         self._element.touch(modify)
 
     @property
-    def element(self) -> SafeElement:
+    def element(self) -> Entry | Group:
         return self._element
 
     @GObject.Property(type=str, default="")

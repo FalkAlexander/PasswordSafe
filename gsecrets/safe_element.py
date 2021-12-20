@@ -334,8 +334,8 @@ class SafeEntry(SafeElement):
             except ValueError as err:
                 logging.debug(err)
 
-        # Check if the entry has expired every 10 minutes.
-        GLib.timeout_add_seconds(600, self._is_expired)
+        self._expired_id = 0
+        self._check_expiration()
 
     @property
     def entry(self) -> Entry:
@@ -380,9 +380,30 @@ class SafeEntry(SafeElement):
         self.parentgroup.updated()
         self._db_manager.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
 
-    def _is_expired(self) -> bool:
+    def _check_expiration(self) -> None:
+        """Check expiration
+
+        If the entry is expired, this ensures that a notification is sent.
+        If the entry is not expired yet, a timeout is set to regularly
+        check if the entry is expired.
+        """
+        if self._expired_id > 0:
+            GLib.source_remove(self._expired_id)
+            self._expired_id = 0
+
+        if not self.props.expires:
+            return
+
         if self.props.expired:
             self.notify("expired")
+        else:
+            self._expired_id = GLib.timeout_add_seconds(600, self._is_expired)
+
+    def _is_expired(self) -> bool:
+        if self.props.expired:
+            self._expired_id = 0
+            self.notify("expired")
+            return GLib.SOURCE_REMOVE
 
         return GLib.SOURCE_CONTINUE
 
@@ -648,6 +669,7 @@ class SafeEntry(SafeElement):
     def expires(self, value: bool) -> None:
         if value != self.entry.expires:
             self.entry.expires = value
+            self._check_expiration()
             self.updated()
 
     @GObject.Property(
@@ -685,9 +707,7 @@ class SafeEntry(SafeElement):
                 tzinfo=timezone.utc,
             )
             self.entry.expiry_time = expired
-            if (self.props.expires
-                    and self.props.expired):
-                self.notify("expired")
+            self._check_expiration()
 
             self.updated()
 

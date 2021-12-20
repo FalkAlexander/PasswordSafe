@@ -436,11 +436,8 @@ class UnlockedDatabase(Gtk.Box):
         # Cleanup temporal files created when opening attachments.
         def callback(gfile, result):
             try:
-                success = gfile.delete_finish(result)
-                if not success:
-                    raise Exception("IO operation error")
-
-            except Exception as err:  # pylint: disable=broad-except
+                gfile.delete_finish(result)
+            except GLib.Error as err:
                 logging.debug("Could not delete temporal file: %s", err)
 
         cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")

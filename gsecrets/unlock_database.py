@@ -104,10 +104,7 @@ class UnlockDatabase(Adw.Bin):
     def load_keyfile_callback(self, keyfile, result):
         try:
             gbytes, _etag = keyfile.load_bytes_finish(result)
-            if not gbytes:
-                raise Exception("IO operation error")
-
-        except Exception as err:  # pylint: disable=broad-except
+        except GLib.Error as err:
             logging.debug("Could not set keyfile hash: %s", err)
 
             self._wrong_keyfile()
@@ -332,10 +329,8 @@ class UnlockDatabase(Adw.Bin):
 
         def callback(gfile, result):
             try:
-                success = gfile.copy_finish(result)
-                if not success:
-                    raise Exception("IO operation error")
-            except Exception as err:  # pylint: disable=broad-except
+                gfile.copy_finish(result)
+            except GLib.Error as err:
                 logging.warning("Could not save database backup: %s", err)
 
         gfile.copy_async(

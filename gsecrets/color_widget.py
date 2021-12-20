@@ -43,13 +43,6 @@ class ColorButton(Gtk.FlowBoxChild):
         self._color: Color = color
         self.add_css_class(self._color.value)
 
-        if self._color in [Color.NONE, Color.YELLOW]:
-            image_class: str = "DarkIcon"
-        else:
-            image_class = "BrightIcon"
-
-        self._selected_image.add_css_class(image_class)
-
         self.bind_property("selected", self._selected_image, "visible")
         self.props.selected = selected
 

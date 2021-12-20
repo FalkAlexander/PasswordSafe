@@ -138,17 +138,11 @@ class EntryRow(Adw.ActionRow):
         self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
         # Clear current style
-        self._entry_icon.remove_css_class("DarkIcon")
-        self._entry_icon.remove_css_class("BrightIcon")
         for color in Color:
             self._entry_icon.remove_css_class(color.value)
 
         color = self._safe_entry.props.color
         self._entry_icon.add_css_class(color)
-        if color not in [Color.NONE.value, Color.YELLOW.value]:
-            self._entry_icon.add_css_class("BrightIcon")
-        else:
-            self._entry_icon.add_css_class("DarkIcon")
 
     @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):

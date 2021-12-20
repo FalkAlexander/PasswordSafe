@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 import os
 import typing
+from gettext import gettext as _
 
 from gi.repository import Gdk, Gio, GLib, Gtk
 
@@ -57,11 +58,8 @@ class AttachmentWarningDialog:
 
         def callback(gfile, result):
             try:
-                success, _ = gfile.replace_contents_finish(result)
-                if not success:
-                    raise Exception("IO operation error")
-
-            except Exception as err:  # pylint: disable=broad-except
+                gfile.replace_contents_finish(result)
+            except GLib.Error as err:
                 logging.debug("Could not load attachment: %s", err)
                 window.send_notification(_("Could not Load Attachment"))
             else:

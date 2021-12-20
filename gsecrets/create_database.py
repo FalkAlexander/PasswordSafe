@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from gettext import gettext as _
 
-from gi.repository import Adw, Gtk
+from gi.repository import Adw, GLib, Gtk
 
 from gsecrets.utils import KeyFileFilter, generate_keyfile
 
@@ -189,11 +189,8 @@ class CreateDatabase(Adw.Bin):
 
             def callback(gfile, result, keyfile_hash):
                 try:
-                    success, _ = gfile.replace_contents_finish(result)
-                    if not success:
-                        raise Exception("IO operation error")
-
-                except Exception as err:  # pylint: disable=broad-except
+                    gfile.replace_contents_finish(result)
+                except GLib.Error as err:
                     logging.debug("Could not create keyfile: %s", err)
                     self.window.send_notification(_("Could not Create Keyfile"))
                     self.generate_keyfile_button.set_sensitive(True)

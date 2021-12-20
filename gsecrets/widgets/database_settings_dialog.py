@@ -158,10 +158,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     def load_bytes_callback(self, gfile, result):
         try:
             gbytes, _ = gfile.load_bytes_finish(result)
-            if not gbytes:
-                raise Exception("IO operation error")
-
-        except Exception as err:  # pylint: disable=broad-except
+        except GLib.Error as err:
             logging.debug("Could not set keyfile hash: %s", err)
             self.keyfile_error_revealer.reveal(True)
             self.select_keyfile_button.set_icon_name("document-open-symbolic")
@@ -225,11 +222,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
             def callback(gfile, result, keyfile_hash):
                 try:
-                    success, _ = gfile.replace_contents_finish(result)
-                    if not success:
-                        raise Exception("IO operation error")
-
-                except Exception as err:  # pylint: disable=broad-except
+                    gfile.replace_contents_finish(result)
+                except GLib.Error as err:
                     self.generate_keyfile_button.set_icon_name("security-high-symbolic")
                     logging.debug("Could not create keyfile: %s", err)
                     self.keyfile_error_revealer.reveal(True)

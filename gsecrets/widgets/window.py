@@ -322,11 +322,8 @@ class Window(Adw.ApplicationWindow):
 
         def copy_callback(gfile, result):
             try:
-                success = gfile.copy_finish(result)
-                if not success:
-                    raise Exception("IO operation error")
-
-            except Exception as err:  # pylint: disable=broad-except
+                gfile.copy_finish(result)
+            except GLib.Error as err:
                 logging.debug("Could not copy new database: %s", err)
                 error_callback()
             else:

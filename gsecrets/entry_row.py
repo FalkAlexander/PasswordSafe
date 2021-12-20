@@ -6,7 +6,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GObject, Gtk
 
-from gsecrets.color_widget import Color
+from gsecrets.safe_element import Color
 
 if typing.TYPE_CHECKING:
     from gsecrets.safe_element import SafeEntry

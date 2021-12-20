@@ -6,13 +6,12 @@ import logging
 import typing
 
 from datetime import datetime, timezone
+from enum import Enum
 from typing import NamedTuple
 from uuid import UUID
 
 from gi.repository import GLib, GObject
 from pyotp import OTP, TOTP, parse_uri
-
-from gsecrets.color_widget import Color
 
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
@@ -20,6 +19,17 @@ if typing.TYPE_CHECKING:
     from pykeepass.group import Group
 
     from gsecrets.database_manager import DatabaseManager  # pylint: disable=ungrouped-imports # noqa: E501
+
+
+class Color(Enum):
+    NONE = "NoneColorButton"
+    BLUE = "BlueColorButton"
+    GREEN = "GreenColorButton"
+    YELLOW = "YellowColorButton"
+    ORANGE = "OrangeColorButton"
+    RED = "RedColorButton"
+    PURPLE = "PurpleColorButton"
+    BROWN = "BrownColorButton"
 
 
 class SafeElement(GObject.GObject):

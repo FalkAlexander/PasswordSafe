@@ -2,25 +2,14 @@
 from __future__ import annotations
 
 import typing
-from enum import Enum
 
 from gi.repository import GObject, Gtk
 
+from gsecrets.safe_element import Color
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.safe_element import SafeEntry
     from gsecrets.unlocked_database import UnlockedDatabase
-
-
-class Color(Enum):
-    NONE = "NoneColorButton"
-    BLUE = "BlueColorButton"
-    GREEN = "GreenColorButton"
-    YELLOW = "YellowColorButton"
-    ORANGE = "OrangeColorButton"
-    RED = "RedColorButton"
-    PURPLE = "PurpleColorButton"
-    BROWN = "BrownColorButton"
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/color_button.ui")

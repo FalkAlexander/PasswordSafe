@@ -3,6 +3,7 @@
   <template class="NotesDialog" parent="GtkWindow">
     <property name="default_width">500</property>
     <property name="default_height">450</property>
+    <property name="destroy-with-parent">True</property>
     <property name="titlebar">
       <object class="GtkHeaderBar">
         <property name="title-widget">

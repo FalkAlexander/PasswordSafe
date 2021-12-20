@@ -188,6 +188,7 @@
     </section>
   </menu>
   <template class="ReferencesDialog" parent="AdwWindow">
+    <property name="destroy-with-parent">True</property>
     <child>
       <object class="GtkShortcutController">
         <child>

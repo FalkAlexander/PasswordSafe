@@ -3,6 +3,7 @@
   <template class="PropertiesDialog" parent="AdwWindow">
     <property name="default_width">360</property>
     <property name="default_height">240</property>
+    <property name="destroy-with-parent">True</property>
     <child>
       <object class="GtkShortcutController">
         <child>

@@ -349,10 +349,7 @@ class EntryPage(Adw.Bin):
             def callback(gfile, result):
                 try:
                     gbytes, _stream = gfile.load_bytes_finish(result)
-                    if not gbytes:
-                        raise Exception("IO operation error")
-
-                except Exception as err:  # pylint: disable=broad-except
+                except GLib.Error as err:
                     logging.debug("Could not read attachment: %s", err)
                 else:
                     filename = gfile.get_basename()

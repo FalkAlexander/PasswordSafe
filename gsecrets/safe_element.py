@@ -141,7 +141,7 @@ class SafeElement(GObject.GObject):
         return self._element.uuid
 
     @property
-    def path(self) -> str:
+    def path(self) -> list[str]:
         return self._element.path
 
     @property

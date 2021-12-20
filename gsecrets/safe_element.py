@@ -381,7 +381,9 @@ class SafeEntry(SafeElement):
         self._db_manager.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
 
     def _is_expired(self) -> bool:
-        self.props.expired = self.element.expired
+        if self.props.expired:
+            self.notify("expired")
+
         return GLib.SOURCE_CONTINUE
 
     @GObject.Property(type=object, flags=GObject.ParamFlags.READABLE)
@@ -646,10 +648,11 @@ class SafeEntry(SafeElement):
     def expires(self, value: bool) -> None:
         if value != self.entry.expires:
             self.entry.expires = value
-            self.props.expired = self.entry.expired
             self.updated()
 
-    @GObject.Property(type=bool, default=False)
+    @GObject.Property(
+        type=bool, default=False, flags=GObject.ParamFlags.READABLE
+        | GObject.ParamFlags.EXPLICIT_NOTIFY)
     def expired(self):
         return self.entry.expired
 
@@ -682,7 +685,10 @@ class SafeEntry(SafeElement):
                 tzinfo=timezone.utc,
             )
             self.entry.expiry_time = expired
-            self.props.expired = self.entry.expired
+            if (self.props.expires
+                    and self.props.expired):
+                self.notify("expired")
+
             self.updated()
 
 

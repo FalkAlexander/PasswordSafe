@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="PropertiesDialog" parent="AdwWindow">
+  <template class="PropertiesDialog" parent="GtkWindow">
     <property name="default_width">360</property>
     <property name="default_height">240</property>
     <property name="destroy-with-parent">True</property>
+    <property name="title" translatable="yes">Properties</property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -15,45 +16,31 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
+      <object class="AdwClamp">
+        <property name="margin_bottom">18</property>
+        <property name="margin_top">18</property>
+        <property name="margin_start">18</property>
+        <property name="margin_end">18</property>
         <child>
-          <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">Properties</property>
-              </object>
-            </property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwClamp">
-            <property name="margin_bottom">18</property>
-            <property name="margin_top">18</property>
-            <property name="margin_start">18</property>
-            <property name="margin_end">18</property>
+          <object class="AdwPreferencesGroup">
             <child>
-              <object class="AdwPreferencesGroup">
-                <child>
-                  <object class="PreferencesRow" id="_uuid_row">
-                    <property name="title" translatable="yes">UUID</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="PreferencesRow" id="_accessed_row">
-                    <property name="title" translatable="yes">Accessed</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="PreferencesRow" id="_modified_row">
-                    <property name="title" translatable="yes">Modified</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="PreferencesRow" id="_created_row">
-                    <property name="title" translatable="yes">Created</property>
-                  </object>
-                </child>
+              <object class="PreferencesRow" id="_uuid_row">
+                <property name="title" translatable="yes">UUID</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="_accessed_row">
+                <property name="title" translatable="yes">Accessed</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="_modified_row">
+                <property name="title" translatable="yes">Modified</property>
+              </object>
+            </child>
+            <child>
+              <object class="PreferencesRow" id="_created_row">
+                <property name="title" translatable="yes">Created</property>
               </object>
             </child>
           </object>

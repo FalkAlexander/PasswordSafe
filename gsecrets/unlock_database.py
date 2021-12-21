@@ -38,7 +38,6 @@ class UnlockDatabase(Adw.Bin):
     spinner_stack = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
-    status_page = Gtk.Template.Child()
 
     def __init__(self, window, database):
         super().__init__()

@@ -6,7 +6,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GObject, Gtk
 
-from gsecrets.safe_element import Color
+from gsecrets.safe_element import EntryColor
 
 if typing.TYPE_CHECKING:
     from gsecrets.safe_element import SafeEntry
@@ -138,7 +138,7 @@ class EntryRow(Adw.ActionRow):
         self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
         # Clear current style
-        for color in Color:
+        for color in EntryColor:
             self._entry_icon.remove_css_class(color.value)
 
         color = self._safe_entry.props.color

@@ -21,7 +21,7 @@ if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager  # pylint: disable=ungrouped-imports # noqa: E501
 
 
-class Color(Enum):
+class EntryColor(Enum):
     NONE = "NoneColorButton"
     BLUE = "BlueColorButton"
     GREEN = "GreenColorButton"
@@ -240,7 +240,7 @@ class SafeEntry(SafeElement):
         }
 
         color_value: str = entry.get_custom_property(self._color_key)
-        self._color: str = color_value or Color.NONE.value
+        self._color: str = color_value or EntryColor.NONE.value
 
         self._icon_nr: str = entry.icon or ""
         self._password: str = entry.password or ""
@@ -348,7 +348,7 @@ class SafeEntry(SafeElement):
         self._attributes.pop(key)
         self.updated()
 
-    @GObject.Property(type=str, default=Color.NONE.value)
+    @GObject.Property(type=str, default=EntryColor.NONE.value)
     def color(self) -> str:
         """Get entry color
 

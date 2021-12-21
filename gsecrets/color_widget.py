@@ -5,7 +5,7 @@ import typing
 
 from gi.repository import GObject, Gtk
 
-from gsecrets.safe_element import Color
+from gsecrets.safe_element import EntryColor
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.safe_element import SafeEntry
@@ -21,15 +21,15 @@ class ColorButton(Gtk.FlowBoxChild):
 
     selected = GObject.Property(type=bool, default=False)
 
-    def __init__(self, color: Color, selected: bool):
+    def __init__(self, color: EntryColor, selected: bool):
         """RadioButton to select the color of an entry
 
-        :param Color color: color of the button
+        :param EntryColor color: color of the button
         :param bool selected: True if the color is selected
         """
         super().__init__()
 
-        self._color: Color = color
+        self._color: EntryColor = color
         self.add_css_class(self._color.value)
 
         self.bind_property("selected", self._selected_image, "visible")
@@ -70,7 +70,7 @@ class ColorEntryRow(Gtk.Box):
         self._db_manager: DatabaseManager = unlocked_database.database_manager
         self._safe_entry: SafeEntry = safe_entry
 
-        for color in Color:
+        for color in EntryColor:
             active: bool = safe_entry.props.color == color.value
             color_button: ColorButton = ColorButton(color, active)
             self._flowbox.insert(color_button, -1)

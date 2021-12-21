@@ -643,7 +643,7 @@ ICONS = {
     "63": Icon("dialog-password-symbolic"),
     "64": Icon("start-here-symbolic"),
     "65": Icon("accessories-dictionary-symbolic"),
-    "66": Icon("currency-symbolic", True),
+    "66": Icon("money-symbolic", True),
     "67": Icon("application-certificate-symbolic"),
     "68": Icon("phone-apple-iphone-symbolic", True),
 }

@@ -75,7 +75,7 @@ class Application(Adw.Application):
             if not database:
                 continue
 
-            if database.database_manager.database_path == filepath:
+            if database.database_manager.path == filepath:
                 return True
 
         return False

@@ -190,7 +190,7 @@ class Window(Adw.ApplicationWindow):
         if self.unlocked_db:
             auto_save = gsecrets.config_manager.get_save_automatically()
             is_dirty = self.unlocked_db.database_manager.is_dirty
-            is_current = self.unlocked_db.database_manager.database_path == filepath
+            is_current = self.unlocked_db.database_manager.path == filepath
             is_locked = self.unlocked_db.database_manager.props.locked
 
             if is_locked:

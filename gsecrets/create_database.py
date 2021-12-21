@@ -213,7 +213,7 @@ class CreateDatabase(Adw.Bin):
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:
-        self.window.start_database_opening_routine(self.database_manager.database_path)
+        self.window.start_database_opening_routine(self.database_manager.path)
 
     @Gtk.Template.Callback()
     def on_password_repeat_input_activate(self, _widget: Gtk.Entry) -> None:

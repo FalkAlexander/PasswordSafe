@@ -18,7 +18,7 @@ class DatabaseManager(GObject.GObject):
     """Implements database functionality that is independent of the UI
 
     Useful attributes:
-     .database_path: str containing the filepath of the database
+     .path: str containing the filepath of the database
      .is_dirty: bool telling whether the database is in a dirty state
 
     Group objects are of type `pykeepass.group.Group`
@@ -44,9 +44,9 @@ class DatabaseManager(GObject.GObject):
     ) -> None:
         super().__init__()
 
+        self._path = database_path
         # password remains accessible as self.db.password
-        self.db = PyKeePass(database_path, password, keyfile)
-        self.database_path = database_path
+        self.db = PyKeePass(self._path, password, keyfile)
         self.keyfile_hash = keyfile_hash
 
     #
@@ -88,7 +88,7 @@ class DatabaseManager(GObject.GObject):
     ) -> None:
         owned_bytes = stream.getvalue()
         if succeeded and owned_bytes:
-            gfile = Gio.File.new_for_path(self.database_path)
+            gfile = Gio.File.new_for_path(self.path)
             gbytes = GLib.Bytes.new(owned_bytes)
             gfile.replace_contents_bytes_async(
                 gbytes,
@@ -216,3 +216,7 @@ class DatabaseManager(GObject.GObject):
         _new_location_uuid: UUID,
     ) -> None:
         logging.debug("Element moved safe")
+
+    @property
+    def path(self) -> str:
+        return self._path

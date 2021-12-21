@@ -296,11 +296,11 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     def set_detail_values(self):
         # Name
         self.name_row.props.subtitle = os.path.splitext(
-            ntpath.basename(self.database_manager.database_path)
+            ntpath.basename(self.database_manager.path)
         )[0]
 
         # Path
-        path = self.database_manager.database_path
+        path = self.database_manager.path
         gfile = Gio.File.new_for_path(path)
         if "/home/" in path:
             self.path_row.props.subtitle = "~/" + os.path.relpath(path)

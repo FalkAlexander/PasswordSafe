@@ -55,7 +55,7 @@ class RecentFilesPage(Gtk.Box):
         if database:
             auto_save = config.get_save_automatically()
             is_dirty = database.database_manager.is_dirty
-            is_current = database.database_manager.database_path == file_path
+            is_current = database.database_manager.path == file_path
 
             if is_dirty and not is_current:
                 app = Gio.Application.get_default()

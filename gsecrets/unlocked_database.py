@@ -383,7 +383,7 @@ class UnlockedDatabase(Gtk.Box):
             if gsecrets.config_manager.get_save_automatically():
                 self.save_database()
 
-            filepath = self.database_manager.database_path
+            filepath = self.database_manager.path
             self.window.start_database_opening_routine(filepath)
         else:
             self.window.view = self.window.View.UNLOCKED_DATABASE
@@ -409,7 +409,7 @@ class UnlockedDatabase(Gtk.Box):
 
         This is the opposite of setup().
         """
-        logging.debug("Cleaning database %s", self.database_manager.database_path)
+        logging.debug("Cleaning database %s", self.database_manager.path)
 
         if self.clipboard_timer_handler:
             GLib.source_remove(self.clipboard_timer_handler)
@@ -459,7 +459,7 @@ class UnlockedDatabase(Gtk.Box):
         if not self.database_manager.is_dirty or self.database_manager.save_running:
             return
 
-        logging.debug("Saving database %s", self.database_manager.database_path)
+        logging.debug("Saving database %s", self.database_manager.path)
         self.database_manager.save_database(notification)
 
     def start_database_lock_timer(self):

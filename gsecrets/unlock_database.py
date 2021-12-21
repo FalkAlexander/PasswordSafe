@@ -59,7 +59,7 @@ class UnlockDatabase(Adw.Bin):
 
         database = self.window.unlocked_db
         if database:
-            is_current = database.database_manager.database_path == filepath
+            is_current = database.database_manager.path == filepath
             if is_current:
                 self.database_manager = database.database_manager
 
@@ -138,7 +138,7 @@ class UnlockDatabase(Adw.Bin):
         is_open = self.window.application.is_safe_open(filepath)
 
         if database:
-            is_current = database.database_manager.database_path == filepath
+            is_current = database.database_manager.path == filepath
 
         return is_open and not is_current
 

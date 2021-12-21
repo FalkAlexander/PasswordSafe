@@ -25,7 +25,6 @@ class UnlockDatabase(Adw.Bin):
 
     __gtype_name__ = "UnlockDatabase"
 
-    database_filepath = None
     keyfile_path = None
     _keyfile_hash = None
 
@@ -48,7 +47,6 @@ class UnlockDatabase(Adw.Bin):
         filepath = database_file.get_path()
 
         self.window = window
-        self.database_filepath = filepath
         self.headerbar = self.window.unlock_database_headerbar
 
         # Reset headerbar to initial state if it already exists.
@@ -133,12 +131,12 @@ class UnlockDatabase(Adw.Bin):
         """Returns True if the safe is already open but not in the
            current window."""
         is_current = False
-        filepath = self.database_filepath
+        db_path = self.database_manager.path
         database = self.window.unlocked_db
-        is_open = self.window.application.is_safe_open(filepath)
+        is_open = self.window.application.is_safe_open(db_path)
 
         if database:
-            is_current = database.database_manager.path == filepath
+            is_current = database.database_manager.path == db_path
 
         return is_open and not is_current
 
@@ -154,7 +152,7 @@ class UnlockDatabase(Adw.Bin):
 
         if self.is_safe_open_elsewhere():
             self.window.send_notification(
-                _("Safe {} is Already Open".format(self.database_filepath))
+                _("Safe {} is Already Open".format(self.database_manager.path))
             )
             return
 
@@ -174,7 +172,7 @@ class UnlockDatabase(Adw.Bin):
     def _set_last_used_keyfile(self):
         remove = self.keyfile_path is None
         pairs = gsecrets.config_manager.get_last_used_composite_key()
-        uri = Gio.File.new_for_path(self.database_filepath).get_uri()
+        uri = Gio.File.new_for_path(self.database_manager.path).get_uri()
         pair_array = []
         already_added = False
 
@@ -197,7 +195,7 @@ class UnlockDatabase(Adw.Bin):
 
     def _get_last_used_keyfile(self):
         pairs = gsecrets.config_manager.get_last_used_composite_key()
-        uri = Gio.File.new_for_path(self.database_filepath).get_uri()
+        uri = Gio.File.new_for_path(self.database_manager.path).get_uri()
         if pairs:
             keyfile_path = None
 
@@ -231,7 +229,7 @@ class UnlockDatabase(Adw.Bin):
         unlock_thread.start()
 
     def _open_database_process(self, password, keyfile):
-        if Path(self.database_filepath).suffix == ".kdb":
+        if Path(self.database_manager.path).suffix == ".kdb":
             GLib.idle_add(self._unlock_failed)
             # NOTE kdb is a an older format for Keepass databases.
             GLib.idle_add(
@@ -252,7 +250,7 @@ class UnlockDatabase(Adw.Bin):
     def _open_database_success(self):
         logging.debug("Opening of database was successful")
 
-        opened = Gio.File.new_for_path(self.database_filepath)
+        opened = Gio.File.new_for_path(self.database_manager.path)
         gsecrets.config_manager.set_last_opened_database(opened.get_uri())
 
         if gsecrets.config_manager.get_remember_composite_key():

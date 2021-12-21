@@ -22,14 +22,14 @@ if typing.TYPE_CHECKING:
 
 
 class EntryColor(Enum):
-    NONE = "NoneColor"
-    BLUE = "BlueColor"
-    GREEN = "GreenColor"
-    YELLOW = "YellowColor"
-    ORANGE = "OrangeColor"
-    RED = "RedColor"
-    PURPLE = "PurpleColor"
-    BROWN = "BrownColor"
+    NONE = "NoneColorButton"
+    BLUE = "BlueColorButton"
+    GREEN = "GreenColorButton"
+    YELLOW = "YellowColorButton"
+    ORANGE = "OrangeColorButton"
+    RED = "RedColorButton"
+    PURPLE = "PurpleColorButton"
+    BROWN = "BrownColorButton"
 
 
 class SafeElement(GObject.GObject):

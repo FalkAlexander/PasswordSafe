@@ -127,7 +127,8 @@ class UnlockDatabase(Adw.Bin):
             self.keyfile_button.props.sensitive = True
 
     def is_safe_open_elsewhere(self) -> bool:
-        """Returns True if the safe is already open but not in the current window."""
+        """Returns True if the safe is already open but not in the
+           current window."""
         is_current = False
         filepath = self.database_filepath
         database = self.window.unlocked_db

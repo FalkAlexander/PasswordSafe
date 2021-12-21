@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 import os
 import threading
+import typing
 from gettext import gettext as _
 from pathlib import Path
 
@@ -14,6 +15,8 @@ from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.unlocked_database import UnlockedDatabase
 from gsecrets.utils import KeyFileFilter
+if typing.TYPE_CHECKING:
+    from gsecrets.widgets.window import Window
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlock_database.ui")
@@ -39,17 +42,17 @@ class UnlockDatabase(Adw.Bin):
     status_page = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
 
-    def __init__(self, window, database):
+    def __init__(self, window: Window, database_file: Gio.File) -> None:
         super().__init__()
 
-        filepath = database.get_path()
+        filepath = database_file.get_path()
 
         self.window = window
         self.database_filepath = filepath
         self.headerbar = self.window.unlock_database_headerbar
 
         # Reset headerbar to initial state if it already exists.
-        self.headerbar.title.props.title = database.get_basename()
+        self.headerbar.title.props.title = database_file.get_basename()
         self.headerbar.back_button.props.sensitive = True
 
         self.install_action("clear-keyfile", None, self.on_clear_keyfile)

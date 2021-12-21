@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import os
 
-from pykeepass.exceptions import CredentialsError
 import pytest
 
 
@@ -23,13 +22,16 @@ def path():
 
 @pytest.fixture(scope="module")
 def db_pwd(path, password):
-    with pytest.raises(CredentialsError):
-        db = DatabaseManager(path, "wrong password")
+    db = DatabaseManager(path)
+    with pytest.raises(OSError):
+        db.open("wrong password")
 
-    db = DatabaseManager(path, password)
+    db.open(password)
     assert db is not None
+    assert db.opened is True
     assert db.password == password
-    assert db.keyfile is None
+    assert db.keyfile == ""
+    assert db.keyfile_hash == ""
     assert db.locked is False
     assert db.is_dirty is False
 

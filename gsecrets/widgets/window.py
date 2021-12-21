@@ -324,11 +324,10 @@ class Window(Adw.ApplicationWindow):
             except Exception as err:  # pylint: disable=broad-except
                 error_callback(err)
             else:
+                database_manager = DatabaseManager(filepath)
                 try:
-                    database_manager = DatabaseManager(
-                        filepath, "liufhre86ewoiwejmrcu8owe"
-                    )
-                except Exception as err:  # pylint: disable=broad-except
+                    database_manager.open("liufhre86ewoiwejmrcu8owe")
+                except OSError as err:
                     error_callback(err)
                 else:
                     self._spinner.stop()

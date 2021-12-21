@@ -31,23 +31,42 @@ class DatabaseManager(GObject.GObject):
     password_try = ""
     _is_dirty = False  # Does the database need saving?
     save_running = False
+    _opened = False
 
     locked = GObject.Property(type=bool, default=False)
     is_dirty = GObject.Property(type=bool, default=False)
 
-    def __init__(
-        self,
-        database_path: str,
-        password: str | None = None,
-        keyfile: str | None = None,
-        keyfile_hash: str | None = None,
-    ) -> None:
+    def __init__(self, database_path: str) -> None:
+        """Initialize the database handling logic.
+
+        :param str database_path: The database path
+        """
         super().__init__()
 
         self._path = database_path
-        # password remains accessible as self.db.password
-        self.db = PyKeePass(self._path, password, keyfile)
+        self.db: PyKeePass = None
+        self.keyfile_hash: str = ""
+
+    def open(self, password: str, keyfile: str = "", keyfile_hash: str = "") -> None:
+        """Open a safe.
+
+        This pykeepass to open a safe database. If the database cannot
+        be opened, an exception is raised.
+
+        :param str password: password to use or an empty string
+        :param str keyfile: keyfile path to use or an empty string
+        :param str keyfile_hash: keyfile_hash to set
+        """
+        self._opened = False
         self.keyfile_hash = keyfile_hash
+        try:
+            self.db = PyKeePass(self.path, password, keyfile)
+        except Exception as err:  # pylint: disable=broad-except
+            logging.debug("Could not open safe: %s", err)
+            raise OSError("Failed to Unlock Safe") from err
+        else:
+            logging.debug("Opening of safe %s was successful", self.path)
+            self._opened = True
 
     #
     # Database Modifications
@@ -216,6 +235,10 @@ class DatabaseManager(GObject.GObject):
         _new_location_uuid: UUID,
     ) -> None:
         logging.debug("Element moved safe")
+
+    @property
+    def opened(self) -> bool:
+        return self._opened
 
     @property
     def path(self) -> str:

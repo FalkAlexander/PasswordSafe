@@ -28,7 +28,7 @@ class UnlockDatabase(Adw.Bin):
     keyfile_path = None
     _keyfile_hash = None
 
-    database_manager = None
+    database_manager: DatabaseManager = None
 
     clear_button = Gtk.Template.Child()
     keyfile_button = Gtk.Template.Child()
@@ -60,6 +60,9 @@ class UnlockDatabase(Adw.Bin):
             is_current = database.database_manager.path == filepath
             if is_current:
                 self.database_manager = database.database_manager
+
+        if not self.database_manager:
+            self.database_manager = DatabaseManager(filepath)
 
         if gsecrets.config_manager.get_remember_composite_key():
             self._get_last_used_keyfile()
@@ -156,18 +159,19 @@ class UnlockDatabase(Adw.Bin):
             )
             return
 
-        if self.database_manager:
-            if (
-                entered_pwd == self.database_manager.password
-                and self.database_manager.keyfile_hash == self.keyfile_hash
-            ):
-                self.database_manager.props.locked = False
-                if gsecrets.config_manager.get_remember_composite_key():
-                    self._set_last_used_keyfile()
-            else:
-                self._unlock_failed()
-        else:
+        if not self.database_manager.opened:
             self._open_database()
+            return
+
+        if (
+            entered_pwd == self.database_manager.password
+            and self.database_manager.keyfile_hash == self.keyfile_hash
+        ):
+            self.database_manager.props.locked = False
+            if gsecrets.config_manager.get_remember_composite_key():
+                self._set_last_used_keyfile()
+        else:
+            self._unlock_failed()
 
     def _set_last_used_keyfile(self):
         remove = self.keyfile_path is None
@@ -238,18 +242,12 @@ class UnlockDatabase(Adw.Bin):
             return
 
         try:
-            self.database_manager = DatabaseManager(
-                self.database_filepath, password, keyfile, self.keyfile_hash
-            )
-        except Exception as err:  # pylint: disable=broad-except
-            logging.debug("Could not open safe: %s", err)
-            GLib.idle_add(self._unlock_failed)
-        else:
+            self.database_manager.open(password, keyfile, self.keyfile_hash)
             GLib.idle_add(self._open_database_success)
+        except OSError as err:
+            GLib.idle_add(self._unlock_failed, err)
 
     def _open_database_success(self):
-        logging.debug("Opening of database was successful")
-
         opened = Gio.File.new_for_path(self.database_manager.path)
         gsecrets.config_manager.set_last_opened_database(opened.get_uri())
 
@@ -288,14 +286,12 @@ class UnlockDatabase(Adw.Bin):
     # Helper Functions
     #
 
-    def _unlock_failed(self):
+    def _unlock_failed(self) -> None:
         self.window.send_notification(_("Failed to Unlock Safe"))
 
         self.password_entry.add_css_class("error")
         self._set_sensitive(True)
         self._reset_unlock_button()
-
-        logging.debug("Could not open database")
 
     def _wrong_keyfile(self):
         self.keyfile_button.add_css_class("destructive-action")

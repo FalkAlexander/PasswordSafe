@@ -4,6 +4,7 @@ from __future__ import annotations
 import io
 import logging
 import threading
+from pathlib import Path
 from uuid import UUID
 
 from gi.repository import Gio, GLib, GObject
@@ -59,6 +60,12 @@ class DatabaseManager(GObject.GObject):
         """
         self._opened = False
         self.keyfile_hash = keyfile_hash
+
+        if Path(self._path).suffix == ".kdb":
+            # NOTE kdb is a an older format for Keepass databases.
+            logging.error("The kdb Format is not Supported")
+            raise OSError("The kdb Format is not Supported")
+
         try:
             self.db = PyKeePass(self.path, password, keyfile)
         except Exception as err:  # pylint: disable=broad-except

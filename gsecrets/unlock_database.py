@@ -6,7 +6,6 @@ import os
 import threading
 import typing
 from gettext import gettext as _
-from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -233,14 +232,6 @@ class UnlockDatabase(Adw.Bin):
         unlock_thread.start()
 
     def _open_database_process(self, password, keyfile):
-        if Path(self.database_manager.path).suffix == ".kdb":
-            GLib.idle_add(self._unlock_failed)
-            # NOTE kdb is a an older format for Keepass databases.
-            GLib.idle_add(
-                self.window.send_notification, _("The kdb Format is not Supported")
-            )
-            return
-
         try:
             self.database_manager.open(password, keyfile, self.keyfile_hash)
             GLib.idle_add(self._open_database_success)

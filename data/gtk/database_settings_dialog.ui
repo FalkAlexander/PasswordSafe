@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="DatabaseSettingsDialog" parent="AdwPreferencesWindow">
-    <property name="default_height">500</property>
+    <property name="default_height">510</property>
     <property name="default_width">360</property>
     <property name="search-enabled">False</property>
     <child>
@@ -135,7 +135,6 @@
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Keyfile</property>
-            <property name="vexpand">True</property>
             <child>
               <object class="GtkBox">
                 <property name="spacing">44</property>
@@ -226,16 +225,16 @@
         </child>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="halign">end</property>
-            <property name="valign">end</property>
             <child>
               <object class="GtkButton" id="auth_apply_button">
+                <property name="halign">center</property>
                 <property name="label" translatable="yes">_Apply Changes</property>
                 <property name="use_underline">True</property>
                 <property name="sensitive">False</property>
                 <signal name="clicked" handler="on_auth_apply_button_clicked"/>
                 <style>
                   <class name="suggested-action"/>
+                  <class name="pill"/>
                 </style>
               </object>
             </child>

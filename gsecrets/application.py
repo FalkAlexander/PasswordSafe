@@ -23,6 +23,7 @@ class Application(Adw.Application):
             application_id=self.application_id,
             flags=Gio.ApplicationFlags.HANDLES_OPEN,
             resource_base_path="/org/gnome/World/Secrets",
+            register_session=True,
         )
 
         # debug level logging option

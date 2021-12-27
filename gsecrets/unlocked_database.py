@@ -44,9 +44,9 @@ class UnlockedDatabase(Gtk.Box):
     db_save_handler: int | None = None
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
-    dbus_subscription_id: int | None = None
     _lock_timer_handler: int | None = None
     save_loop: int | None = None  # If int, a thread periodically saves the database
+    session_handler_id: int | None = None
 
     action_bar = Gtk.Template.Child()
     _edit_page_bin = Gtk.Template.Child()
@@ -138,8 +138,12 @@ class UnlockedDatabase(Gtk.Box):
 
     def setup(self):
         self.start_save_loop()
-        self.register_dbus_signal()
         self.start_database_lock_timer()
+
+        app = self.window.props.application
+        self.session_handler_id = app.connect(
+            "notify::screensaver-active", self.on_session_lock
+        )
 
     def listbox_row_factory(self, element: SafeElement) -> Gtk.Widget:
         if element.is_entry:
@@ -351,10 +355,8 @@ class UnlockedDatabase(Gtk.Box):
     def show_database_settings(self) -> None:
         DatabaseSettingsDialog(self).present()
 
-    def on_session_lock(
-        self, _connection, _unique_name, _object_path, _interface, _signal, state
-    ):
-        if state[0] and not self.database_manager.props.locked:
+    def on_session_lock(self, app: Gtk.Application, _pspec: GObject.ParamSpec) -> None:
+        if app.props.screensaver_active and not self.database_manager.props.locked:
             self.lock_timeout_database()
 
     #
@@ -406,7 +408,7 @@ class UnlockedDatabase(Gtk.Box):
 
         * stop the save loop
         * cancel all timers
-        * unregistrer from dbus
+        * stop lisening to screensaver
 
         This is the opposite of setup().
         """
@@ -422,10 +424,10 @@ class UnlockedDatabase(Gtk.Box):
             self._lock_timer_handler = None
 
         # Do not listen to screensaver kicking in anymore
-        if self.dbus_subscription_id:
-            connection = Gio.Application.get_default().get_dbus_connection()
-            connection.signal_unsubscribe(self.dbus_subscription_id)
-            self.dbus_subscription_id = None
+        if self.session_handler_id:
+            app = self.window.props.application
+            app.disconnect(self.session_handler_id)
+            self.session_handler_id = None
 
         # stop the save loop
         if self.save_loop:
@@ -491,26 +493,6 @@ class UnlockedDatabase(Gtk.Box):
             self.database_manager.save_database()
 
         return GLib.SOURCE_CONTINUE
-
-    #
-    # DBus
-    #
-
-    def register_dbus_signal(self) -> None:
-        """Register a listener so we get notified about screensave kicking in
-
-        In this case we will call self.on_session_lock()"""
-        logging.debug("Subscribed to org.gnome.ScreenSaver")
-        connection = Gio.Application.get_default().get_dbus_connection()
-        self.dbus_subscription_id = connection.signal_subscribe(
-            None,
-            "org.gnome.ScreenSaver",
-            "ActiveChanged",
-            "/org/gnome/ScreenSaver",
-            None,
-            Gio.DBusSignalFlags.NONE,
-            self.on_session_lock,
-        )
 
     def go_back(self):
         if self.props.selection_mode:

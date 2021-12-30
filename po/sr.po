@@ -6,11 +6,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-09-13 22:49+0000\n"
-"PO-Revision-Date: 2021-09-21 08:39+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2021-12-06 11:26+0000\n"
+"PO-Revision-Date: 2021-12-30 15:10+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: српски <gnome-sr@googlegroups.org>\n"
+"Language-Team: Serbian <(nothing)>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,13 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.PasswordSafe.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Управљајте вашим лозинкама"
 
+#. "Secrets" is the application name, do not translate
 #: data/about_dialog.ui.in:9
-msgid "Learn more about Password Safe"
-msgstr "Сазнајте више о Сефу за лозинке"
+#| msgid "Learn more about Password Safe"
+msgid "Learn more about Secrets"
+msgstr "Сазнајте више о Тајнама"
 
 #. Add your name to the translator credits list
 #: data/about_dialog.ui.in:11
@@ -35,12 +37,12 @@ msgstr ""
 "https://гном.срб — превод Гнома на српски језик"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:6
 msgid "Safety Info"
 msgstr "Безбедносни подаци"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:7
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -49,251 +51,156 @@ msgstr ""
 "ове датотеке у прилогу. Обазриво наставите."
 
 #. Discard all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:10
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Back"
 msgstr "_Назад"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:16
+#: data/gtk/attachment_warning_dialog.ui:16
 msgid "_Proceed"
 msgstr "Н_астави"
 
-#: data/attribute_entry_row.ui:48
-#| msgid "Remove attribute"
+#: data/gtk/attribute_entry_row.ui:48
 msgid "Remove Attribute"
 msgstr "Уклони особину"
 
-#: data/color_entry_row.ui:11
+#: data/gtk/color_entry_row.ui:11
 msgid "Color"
 msgstr "Боја"
 
-#: data/create_database.ui:33
+#: data/gtk/create_database.ui:33
 msgid "Protect your safe"
 msgstr "Заштитите ваш сеф"
 
-#: data/create_database.ui:46 data/gtk/references_dialog.ui:177
-#: data/password_entry_row.ui:12
+#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Лозинка"
 
-#: data/create_database.ui:47
+#: data/gtk/create_database.ui:47
 msgid "Use a password to secure your safe."
 msgstr "Користите лозинку да бисте осигурали ваш сеф."
 
-#: data/create_database.ui:57
+#: data/gtk/create_database.ui:57
 msgid "_Keyfile"
 msgstr "_Датотека кључа"
 
-#: data/create_database.ui:58
+#: data/gtk/create_database.ui:58
 msgid "Use a keyfile to secure your safe."
 msgstr "Користите датотеку кључа да бисте осигурали ваш сеф."
 
-#: data/create_database.ui:68
+#: data/gtk/create_database.ui:68
 msgid "_Composite"
 msgstr "Двостру_ко"
 
-#: data/create_database.ui:69
+#: data/gtk/create_database.ui:69
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "Користите лозинку уз датотеку кључа да бисте осигурали ваш сеф."
 
-#: data/create_database.ui:101
+#: data/gtk/create_database.ui:101
 msgid "Enter Password"
 msgstr "Унесите лозинку"
 
-#: data/create_database.ui:109
+#: data/gtk/create_database.ui:109
 msgid "Set password for safe."
 msgstr "Подесите лозинку за сеф."
 
-#: data/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/password_entry_row.ui:42
-#| msgid "Generate Password"
+#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
+#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:42
 msgid "Generate New Password"
 msgstr "Направи нову лозинку"
 
-#: data/create_database.ui:183
+#: data/gtk/create_database.ui:183
 msgid "Password Match Check"
 msgstr "Провера подударања лозинке"
 
-#: data/create_database.ui:191
+#: data/gtk/create_database.ui:191
 msgid "Repeat password for safe."
 msgstr "Поновите лозинку сефа."
 
-#: data/create_database.ui:248
+#: data/gtk/create_database.ui:248
 msgid "Match Check Failed"
 msgstr "Провера подударања није успела"
 
-#: data/create_database.ui:256
+#: data/gtk/create_database.ui:256
 msgid "Please try again."
 msgstr "Покушајте поново."
 
-#: data/create_database.ui:286
+#: data/gtk/create_database.ui:286
 msgid "_Confirm"
 msgstr "П_отврди"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/create_database.ui:320 passwordsafe/create_database.py:139
-#: passwordsafe/widgets/database_settings_dialog.py:196
+#: data/gtk/create_database.ui:320 gsecrets/create_database.py:139
+#: gsecrets/widgets/database_settings_dialog.py:198
 msgid "Generate Keyfile"
 msgstr "Направи датотеку кључа"
 
-#: data/create_database.ui:328
+#: data/gtk/create_database.ui:328
 msgid "Set keyfile for safe"
 msgstr "Подеси датотеку кључа за сеф"
 
 #. Button to generate a password
-#: data/create_database.ui:338 data/password_generator_popover.ui:165
-#: passwordsafe/create_database.py:142
-#: passwordsafe/widgets/database_settings_dialog.py:199
+#: data/gtk/create_database.ui:338 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:201
 msgid "_Generate"
 msgstr "Напра_ви"
 
-#: data/create_database.ui:370
+#: data/gtk/create_database.ui:370
 msgid "Safe Successfully Created"
 msgstr "Сеф је успешно направљен"
 
 #. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/create_database.ui:378 data/gtk/unlock_database_headerbar.ui:10
-#: data/unlocked_headerbar.ui:96
+#: data/gtk/create_database.ui:378 data/gtk/unlock_database_headerbar.ui:10
+#: data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "_Отвори сеф"
 
-#: data/entry_page.ui:26 data/group_page.ui:24
-#: data/gtk/references_dialog.ui:169
-msgid "_Title"
-msgstr "На_слов"
-
-#: data/entry_page.ui:49 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "_Корисничко име"
-
-#: data/entry_page.ui:63 data/entry_page.ui:138 data/password_entry_row.ui:35
-#| msgid "_Copy"
-msgid "Copy"
-msgstr "Умножи"
-
-#: data/entry_page.ui:82
-#| msgid "Secure Password Safe"
-msgid "One-_Time Password Secret"
-msgstr "Једнократна _тајна лозинке"
-
-#: data/entry_page.ui:102
-msgid "Could not Generate OTP Token"
-msgstr "Не могу да створим ОТП скупину"
-
-#: data/entry_page.ui:116
-#| msgid "Enter Password"
-msgid "_One-Time Password"
-msgstr "_Једнократна лозинка"
-
-#: data/entry_page.ui:160
-msgid "U_RL"
-msgstr "У_РЛ"
-
-#: data/entry_page.ui:195 data/group_page.ui:55
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "Бе_лешке"
-
-#: data/entry_page.ui:207 data/group_page.ui:66
-msgid "Edit in a Window"
-msgstr "Уреди у прозору"
-
-#: data/entry_page.ui:247
-msgid "Icon"
-msgstr "Иконица"
-
-#: data/entry_page.ui:278
-msgid "Attachments"
-msgstr "Прилози"
-
-#: data/entry_page.ui:306
-msgid "_Add Attachment"
-msgstr "_Додај прилог"
-
-#: data/entry_page.ui:330
-msgid "Attributes"
-msgstr "Особине"
-
-#: data/entry_page.ui:346
-msgid "Key"
-msgstr "Кључ"
-
-#: data/entry_page.ui:352
-msgid "Value"
-msgstr "Вредност"
-
-#: data/entry_page.ui:363
-#| msgid "Add attribute"
-msgid "Add Attribute"
-msgstr "Додај особину"
-
-#: data/entry_page.ui:387
-#| msgid "Creation Date"
-msgid "_Expiration Date"
-msgstr "Датум _истека"
-
-#: data/entry_row.ui:50
-#| msgctxt "Shortcut window description"
-#| msgid "Copy username"
-msgid "Copy Username"
-msgstr "Умножи корисничко име"
-
-#: data/entry_row.ui:57
-#| msgctxt "Shortcut window description"
-#| msgid "Copy password"
-msgid "Copy Password"
-msgstr "Умножи лозинку"
-
-#. Application title in headerbar.
-#: data/gtk/create_database_headerbar.ui:8
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 passwordsafe/main.py.in:55
-msgid "Password Safe"
-msgstr "Сеф за лозинке"
-
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 passwordsafe/widgets/window.py:241
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
 msgid "Create Safe"
 msgstr "Направите сеф"
 
 #: data/gtk/create_database_headerbar.ui:15
 #: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:10
 #: data/gtk/unlock_database_headerbar.ui:38
-#| msgid "_Back"
 msgid "Back"
 msgstr "Назад"
 
 #: data/gtk/create_database_headerbar.ui:20
 #: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/unlocked_headerbar.ui:38
+#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
 msgid "Main Menu"
 msgstr "Главни изборник"
 
-#: data/gtk/create_database_headerbar.ui:34
-#: data/gtk/recent_files_headerbar.ui:56
-#: data/gtk/unlock_database_headerbar.ui:16 data/unlocked_headerbar.ui:106
+#: data/gtk/create_database_headerbar.ui:31
+#: data/gtk/recent_files_headerbar.ui:53
+#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
 msgid "_Preferences"
 msgstr "_Поставке"
 
-#: data/gtk/create_database_headerbar.ui:38
-#: data/gtk/recent_files_headerbar.ui:60
-#: data/gtk/unlock_database_headerbar.ui:20 data/unlocked_headerbar.ui:110
+#: data/gtk/create_database_headerbar.ui:35
+#: data/gtk/recent_files_headerbar.ui:57
+#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
 msgid "_Keyboard Shortcuts"
 msgstr "Пречице та_статуре"
 
-#. "Password Safe" is the application name
-#: data/gtk/create_database_headerbar.ui:42
-#: data/gtk/recent_files_headerbar.ui:64
-#: data/gtk/unlock_database_headerbar.ui:24 data/unlocked_headerbar.ui:114
-msgid "_About Password Safe"
-msgstr "О сефу з_а лозинке"
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database_headerbar.ui:39
+#: data/gtk/recent_files_headerbar.ui:61
+#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+msgid "_About Secrets"
+msgstr "_О Тајнама"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
 msgstr "Идентификација"
 
-#: data/gtk/database_settings_dialog.ui:14 data/gtk/references_dialog.ui:117
-#: data/password_generator_popover.ui:23 data/settings_dialog.ui:86
+#: data/gtk/database_settings_dialog.ui:14
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:87
 msgid "Password"
 msgstr "Лозинка"
 
@@ -309,7 +216,6 @@ msgid "C_onfirm"
 msgstr "П_отврди"
 
 #: data/gtk/database_settings_dialog.ui:85
-#| msgid "Generate Password"
 msgid "Confirm New Password"
 msgstr "Потврдите нову лозинку"
 
@@ -319,38 +225,33 @@ msgid "_Current"
 msgstr "_Тренутна"
 
 #: data/gtk/database_settings_dialog.ui:114
-#| msgid "Enter Password"
 msgid "Enter Current Password"
 msgstr "Унесите текућу лозинку"
 
-#: data/gtk/database_settings_dialog.ui:137 passwordsafe/create_database.py:146
-#: passwordsafe/utils.py:56
-#: passwordsafe/widgets/database_settings_dialog.py:202
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
+#: gsecrets/utils.py:56 gsecrets/widgets/database_settings_dialog.py:204
 msgid "Keyfile"
 msgstr "Датотека кључа"
 
 #: data/gtk/database_settings_dialog.ui:162
-#| msgid "_Select current keyfile"
 msgid "_Select current keyfile if any"
 msgstr "_Изабери тренутну датотеку кључа ако је има"
 
 #: data/gtk/database_settings_dialog.ui:204
-#| msgid "_Generate new keyfile"
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Изборно) _Направи нову датотеку кључа"
 
 #: data/gtk/database_settings_dialog.ui:222
-#| msgid "Could not open file"
 msgid "Could not Load Keyfile"
 msgstr "Не могу да учитам датотеку кључа"
 
 #: data/gtk/database_settings_dialog.ui:233
-#: passwordsafe/widgets/database_settings_dialog.py:284
+#: gsecrets/widgets/database_settings_dialog.py:286
 msgid "_Apply Changes"
 msgstr "П_римени измене"
 
-#: data/gtk/database_settings_dialog.ui:249 data/settings_dialog.ui:9
-#: data/settings_dialog.ui:12
+#: data/gtk/database_settings_dialog.ui:249 data/gtk/settings_dialog.ui:9
+#: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Опште"
 
@@ -408,35 +309,110 @@ msgstr "Лозинке"
 msgid "Menu"
 msgstr "Изборник"
 
-#: data/gtk/edit_element_headerbar.ui:34 data/gtk/edit_element_headerbar.ui:56
+#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
 msgid "_Properties"
 msgstr "Сво_јства"
 
-#: data/gtk/edit_element_headerbar.ui:40 data/gtk/edit_element_headerbar.ui:62
+#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
 msgid "_Delete"
 msgstr "_Обриши"
 
-#: data/gtk/edit_element_headerbar.ui:48
+#: data/gtk/edit_element_headerbar.ui:45
 msgid "D_uplicate"
 msgstr "_Удвостручи"
 
-#: data/gtk/edit_element_headerbar.ui:52
+#: data/gtk/edit_element_headerbar.ui:49
 msgid "_References"
 msgstr "_Референце"
 
-#: data/gtk/expiration_date_row.ui:8
-#: passwordsafe/widgets/expiration_date_row.py:79
-#| msgid "Creation Date"
+#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/references_dialog.ui:169
+msgid "_Title"
+msgstr "На_слов"
+
+#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Корисничко име"
+
+#: data/gtk/entry_page.ui:63 data/gtk/entry_page.ui:138
+#: data/gtk/password_entry_row.ui:35
+msgid "Copy"
+msgstr "Умножи"
+
+#: data/gtk/entry_page.ui:82
+msgid "One-_Time Password Secret"
+msgstr "Једнократна _тајна лозинке"
+
+#: data/gtk/entry_page.ui:102
+msgid "Could not Generate OTP Token"
+msgstr "Не могу да створим ОТП скупину"
+
+#: data/gtk/entry_page.ui:116
+msgid "_One-Time Password"
+msgstr "_Једнократна лозинка"
+
+#: data/gtk/entry_page.ui:160
+msgid "U_RL"
+msgstr "У_РЛ"
+
+#: data/gtk/entry_page.ui:195 data/gtk/group_page.ui:55
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "Бе_лешке"
+
+#: data/gtk/entry_page.ui:207 data/gtk/group_page.ui:66
+msgid "Edit in a Window"
+msgstr "Уреди у прозору"
+
+#: data/gtk/entry_page.ui:247
+msgid "Icon"
+msgstr "Иконица"
+
+#: data/gtk/entry_page.ui:278
+msgid "Attachments"
+msgstr "Прилози"
+
+#: data/gtk/entry_page.ui:306
+msgid "_Add Attachment"
+msgstr "_Додај прилог"
+
+#: data/gtk/entry_page.ui:330
+msgid "Attributes"
+msgstr "Особине"
+
+#: data/gtk/entry_page.ui:346
+msgid "Key"
+msgstr "Кључ"
+
+#: data/gtk/entry_page.ui:352
+msgid "Value"
+msgstr "Вредност"
+
+#: data/gtk/entry_page.ui:363
+msgid "Add Attribute"
+msgstr "Додај особину"
+
+#: data/gtk/entry_page.ui:387
+msgid "_Expiration Date"
+msgstr "Датум _истека"
+
+#: data/gtk/entry_row.ui:50
+msgid "Copy Username"
+msgstr "Умножи корисничко име"
+
+#: data/gtk/entry_row.ui:57
+msgid "Copy Password"
+msgstr "Умножи лозинку"
+
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:81
 msgid "Expiration Date not Set"
 msgstr "Датум истека није постављен"
 
 #: data/gtk/expiration_date_row.ui:21
-#| msgid "Remove attribute"
 msgid "Remove Expiration Date"
 msgstr "Уклони датум истека"
 
 #: data/gtk/expiration_date_row.ui:54
-#| msgid "Creation Date"
 msgid "_Set Expiration Date"
 msgstr "_Постави датум _истека"
 
@@ -446,26 +422,21 @@ msgid "Application"
 msgstr "Програм"
 
 #: data/gtk/help-overlay.ui:14
-#| msgid "Create Safe"
 msgctxt "Shortcut window description"
 msgid "Create Safe"
 msgstr "Направите Сеф"
 
 #: data/gtk/help-overlay.ui:20
-#| msgid "_Back"
 msgctxt "Shortcut window description"
 msgid "Go Back"
 msgstr "Идите назад"
 
 #: data/gtk/help-overlay.ui:26
-#| msgid "Open Safe"
 msgctxt "Shortcut window description"
 msgid "Open Safe"
 msgstr "Отворите Сеф"
 
 #: data/gtk/help-overlay.ui:32
-#| msgctxt "Shortcut window description"
-#| msgid "Open preferences"
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
 msgstr "Отворите поставке"
@@ -491,36 +462,26 @@ msgid "Safe"
 msgstr "Сеф"
 
 #: data/gtk/help-overlay.ui:61
-#| msgctxt "Shortcut window description"
-#| msgid "Lock safe"
 msgctxt "Shortcut window description"
 msgid "Lock Safe"
 msgstr "Закључајте Сеф"
 
 #: data/gtk/help-overlay.ui:67
-#| msgctxt "Shortcut window description"
-#| msgid "Save safe"
 msgctxt "Shortcut window description"
 msgid "Save Safe"
 msgstr "Сачувајте Сеф"
 
 #: data/gtk/help-overlay.ui:73
-#| msgctxt "Shortcut window description"
-#| msgid "Open search"
 msgctxt "Shortcut window description"
 msgid "Open Search"
 msgstr "Отворите претрагу"
 
 #: data/gtk/help-overlay.ui:79
-#| msgctxt "Shortcut window description"
-#| msgid "Create entry"
 msgctxt "Shortcut window description"
 msgid "Create Entry"
 msgstr "Направите унос"
 
 #: data/gtk/help-overlay.ui:85
-#| msgctxt "Shortcut window description"
-#| msgid "Create group"
 msgctxt "Shortcut window description"
 msgid "Create Group"
 msgstr "Направите групу"
@@ -531,15 +492,11 @@ msgid "Entry"
 msgstr "Унос"
 
 #: data/gtk/help-overlay.ui:96
-#| msgctxt "Shortcut window description"
-#| msgid "Copy password"
 msgctxt "Shortcut window description"
 msgid "Copy Password"
 msgstr "Умножите лозинку"
 
 #: data/gtk/help-overlay.ui:102
-#| msgctxt "Shortcut window description"
-#| msgid "Copy username"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Умножите корисничко име"
@@ -548,23 +505,47 @@ msgstr "Умножите корисничко име"
 msgid "_Copy"
 msgstr "_Умножи"
 
+#: data/gtk/password_generator_popover.ui:35
+msgid "Length"
+msgstr "Дужина"
+
+#: data/gtk/password_generator_popover.ui:62
+msgid "Characters"
+msgstr "Знакови"
+
+#: data/gtk/password_generator_popover.ui:111
+msgid "Passphrase"
+msgstr "Фраза"
+
+#: data/gtk/password_generator_popover.ui:119
+msgid "Words"
+msgstr "Речи"
+
+#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
+msgid "Separator"
+msgstr "Раздвајач"
+
+#: data/gtk/password_generator_popover.ui:154
+msgid "Enter character here…"
+msgstr "Унесите знак овде…"
+
 #: data/gtk/properties_dialog.ui:23
 msgid "Properties"
 msgstr "Својства"
 
-#: data/gtk/properties_dialog.ui:41 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "УУИД"
 
-#: data/gtk/properties_dialog.ui:46
+#: data/gtk/properties_dialog.ui:43
 msgid "Accessed"
 msgstr "Датум приступа"
 
-#: data/gtk/properties_dialog.ui:51
+#: data/gtk/properties_dialog.ui:48
 msgid "Modified"
 msgstr "Датум измене"
 
-#: data/gtk/properties_dialog.ui:56
+#: data/gtk/properties_dialog.ui:53
 msgid "Created"
 msgstr "Датум стварања"
 
@@ -580,12 +561,16 @@ msgstr "Отвори сеф"
 msgid "_Open"
 msgstr "_Отвори"
 
+#: data/gtk/recent_files_page.ui:28
+msgid "Recent Safes"
+msgstr "Недавни сефови"
+
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Кȏд"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:263
-#: data/gtk/references_dialog.ui:359
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:260
+#: data/gtk/references_dialog.ui:356
 msgid "Property"
 msgstr "Својство"
 
@@ -613,27 +598,27 @@ msgstr "_Адреса"
 msgid "References"
 msgstr "Референце"
 
-#: data/gtk/references_dialog.ui:235
+#: data/gtk/references_dialog.ui:232
 msgid "Syntax"
 msgstr "Синтакса"
 
-#: data/gtk/references_dialog.ui:244
+#: data/gtk/references_dialog.ui:241
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Подразумевана синтакса за референце у пољима је следећа:"
 
-#: data/gtk/references_dialog.ui:262 data/gtk/references_dialog.ui:289
+#: data/gtk/references_dialog.ui:259 data/gtk/references_dialog.ui:286
 msgid "Show Field Codes"
 msgstr "Прикажи кȏдове поља"
 
-#: data/gtk/references_dialog.ui:290
+#: data/gtk/references_dialog.ui:287
 msgid "Identifier"
 msgstr "Одредник"
 
-#: data/gtk/references_dialog.ui:348
+#: data/gtk/references_dialog.ui:345
 msgid "Reference"
 msgstr "Референца"
 
-#: data/gtk/references_dialog.ui:395
+#: data/gtk/references_dialog.ui:392
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -641,36 +626,55 @@ msgstr ""
 "Сваки унос садржи јединствени одредник звани УУИД. Можете га наћи у "
 "својствима уноса."
 
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/save_dialog.ui:7
+msgid "Unsaved Changes"
+msgstr "Несачуване измене"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/save_dialog.ui:8
+msgid "Do you want to write all changes to the safe?"
+msgstr "Да ли желите да упишете све измене у сеф?"
+
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:11
+msgid "_Quit Without Saving"
+msgstr "_Изађи без чувања"
+
+#. _Cancel exiting the program
+#: data/gtk/save_dialog.ui:20
+msgid "_Don't Quit"
+msgstr "_Не излази"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:26
+msgid "_Save and Quit"
+msgstr "_Сачувај и изађи"
+
 #: data/gtk/search.ui:9
-#| msgid "Enter search term"
 msgid "Enter Search Term"
 msgstr "Унесите појам за претрагу"
 
 #: data/gtk/search.ui:15
-#| msgid "No search results"
 msgid "No Search Results"
 msgstr "Нема резултата претраге"
 
 #: data/gtk/selection_mode_headerbar.ui:17
-#: passwordsafe/widgets/selection_mode_headerbar.py:70
-#| msgid "Select _None"
+#: gsecrets/widgets/selection_mode_headerbar.py:70
 msgid "_Select Items"
 msgstr "_Изабери ставке"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
 #: data/gtk/selection_mode_headerbar.ui:29
-#| msgid "Move selection"
 msgid "Move Selection"
 msgstr "Премести изабрано"
 
 #: data/gtk/selection_mode_headerbar.ui:36
-#| msgid "Delete selection"
 msgid "Paste Selection"
 msgstr "Убаци изабрано"
 
 #. Button tooltip in selection mode to delete every selected entry/group
 #: data/gtk/selection_mode_headerbar.ui:46
-#| msgid "Delete selection"
 msgid "Delete Selection"
 msgstr "Обриши изабрано"
 
@@ -678,476 +682,220 @@ msgstr "Обриши изабрано"
 msgid "_Cancel"
 msgstr "_Откажи"
 
-#: data/gtk/selection_mode_headerbar.ui:69
+#: data/gtk/selection_mode_headerbar.ui:66
 msgid "Select _All"
 msgstr "Из_абери све"
 
-#: data/gtk/selection_mode_headerbar.ui:74
+#: data/gtk/selection_mode_headerbar.ui:71
 msgid "Select _None"
 msgstr "По_ништи избор"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/unlocked_headerbar.ui:92
-msgid "_New Safe"
-msgstr "_Нови сеф"
-
-#: data/org.gnome.PasswordSafe.desktop.in.in:4
-msgid "A password manager for GNOME"
-msgstr "Управник лозинки за Гном"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.PasswordSafe.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr ""
-"keepass;encrypt;secure;кипес;шифровање;безбедно;сигурно;лозинке;kipes;šifrova"
-"nje;bezbedno;sigurno;lozinke;safe;sef;сеф;"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:12
-msgid "Use dark GTK theme"
-msgstr "Користи тамну ГТК тему"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:13
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Користиће тамну варијанту ваше ГТК+ теме. Знајте да тамна варијанта није "
-"доступна у свакој ГТК+ теми."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:17
-msgid "Reopen last opened database"
-msgstr "Поново отвари последње отварану базу"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:18
-msgid ""
-"Automatically open the unlock screen of the last opened database, otherwise "
-"show the welcome screen."
-msgstr ""
-"Сам ће отворити екран за откључавање последње отваране базе, у супротном ће "
-"приказати екран добродошлице."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:22
-msgid "Save every change automatically"
-msgstr "Самостално чува сваку измену"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:23
-msgid ""
-"Save every change you made instantly into the database. Please note that you "
-"cannot revert changes if Autosave is enabled."
-msgstr ""
-"Сам ће чувати сваку начињену измену у базу. Знајте да не можете опозвати "
-"измене ако је ово укључено."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:27
-msgid "Lock database after X minutes"
-msgstr "Закључава базу након одређеног броја минута"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:28
-msgid ""
-"Automatically lock your database after a given amount of minutes to improve "
-"the security."
-msgstr ""
-"Сам ће закључти базу након датог броја минута да би појачао безбедност базе."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:32
-msgid "Clear clipboard after X seconds"
-msgstr "Чисти оставу након одређеног броја секунди"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:33
-msgid "After copying the password clear the clipboard for security reasons."
-msgstr "Након умножавања лозинке, очистиће оставу зарад веће безбедности."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:37
-msgid "Window size"
-msgstr "Величина прозора"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:38
-msgid "Remember the window size."
-msgstr "Памтиће величину прозора."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:42
-msgid "Last opened database"
-msgstr "Последња отворена база"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:43
-msgid "Path to the last opened database."
-msgstr "Путања до последње отворене базе."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:47
-msgid "Last opened databases"
-msgstr "Последња отворене базе"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:48
-msgid "A list of the last opened databases."
-msgstr "Списак последњих отворених база."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:52
-msgid "Remember composite key"
-msgstr "Памти двоструки кључ"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:53
-msgid "Remember last used composite key for database unlocking."
-msgstr "Памтиће последњи двоструки кључ који је коришћен за откључавање базе."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Последњи коришћени двоструки кључ"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr "Путања до последњег коришћеног двоструког кључа за откључавање базе."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:62
-msgid "Remember unlock method"
-msgstr "Памти начин откључавања"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:63
-msgid "Remember last used unlock method for future database unlocking."
-msgstr ""
-"Памтиће последњи коришћени начин откључавања за будућа откључавања базе."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:67
-msgid "Backup the database on unlock"
-msgstr "Прави резерву базе при откључавању"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:68
-msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/passwordsafe/backups"
-msgstr ""
-"Ако се догоди грешка приликом чувања базе, резерва се може наћи у путањи "
-"„~/.cache/passwordsafe/backups“"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:72
-msgid "Sorting order of groups and entries"
-msgstr "Редослед ређања група и уноса"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:73
-msgid "Order of the rows in the groups and entries view."
-msgstr "Редослед редова у прегледу група и уноса."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:77
-msgid "Use uppercases when generating a password"
-msgstr "Користи велика слова приликом стварања лозинке"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:78
-msgid "Use uppercase characters A-Z when generating a random password."
-msgstr "Користиће велика слова A-Z приликом стварања насумичне лозинке."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:82
-msgid "Use lowercases when generating a password"
-msgstr "Користи мала слова приликом стварања лозинке"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:83
-msgid "Use lowercase characters a-z when generating a random password."
-msgstr "Користиће мала слова a-z приликом стварања насумичне лозинке."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:87
-msgid "Use numbers when generating a password"
-msgstr "Користи бројеве приликом стварања лозинке"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:88
-msgid "Use numbers 0-9 characters when generating a random password."
-msgstr "Користиће бројеве 0-9 приликом стварања насумичне лозинке."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:92
-msgid "Use symbols when generating a password"
-msgstr "Користи симболе приликом стварања лозинке"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:93
-msgid "Use non-alphanumeric ASCII symbols when generating a random password."
-msgstr ""
-"Користиће не-алфанумеричке АСКРИ симболе приликом стварања насумичне лозинке."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:97
-msgid "Password length when generating a password"
-msgstr "Дужина створене лозинке"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:98
-msgid "Number of single characters when generating a password."
-msgstr "Број засебних знакова приликом стварања лозинке."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:102
-msgid "Number of words when generating a passphrase"
-msgstr "Број речи приликом стварања фразе"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:103 data/settings_dialog.ui:174
-msgid "Number of words to use when generating a passphrase."
-msgstr "Број речи за коришћење приликом стварања фразе."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:107
-msgid "Separator when generating a passphrase"
-msgstr "Раздвајач приликом стварања фразе"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:108 data/settings_dialog.ui:194
-msgid "Word separator to use when generating a passphrase."
-msgstr "Раздвајач речи који ће се користити приликом стварања фразе."
-
-#: data/org.gnome.PasswordSafe.metainfo.xml.in.in:5
-msgid "@NAME@"
-msgstr "@НАЗИВ@"
-
-#: data/org.gnome.PasswordSafe.metainfo.xml.in.in:12
-msgid ""
-"Password Safe is a password manager which makes use of the KeePass v.4 "
-"format. It integrates perfectly with the GNOME desktop and provides an easy "
-"and uncluttered interface for the management of password databases."
-msgstr ""
-"Сеф за лозинке је управник лозинки који користи формат „Keepass“ 4. Савршено "
-"се уклапа у Гномову радну површ и пружа једноставно и прегледно сучеље за "
-"управљање базама лозинки."
-
-#: data/org.gnome.PasswordSafe.metainfo.xml.in.in:163
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
-
-#: data/password_generator_popover.ui:35
-msgid "Length"
-msgstr "Дужина"
-
-#: data/password_generator_popover.ui:62
-msgid "Characters"
-msgstr "Знакови"
-
-#: data/password_generator_popover.ui:111
-msgid "Passphrase"
-msgstr "Фраза"
-
-#: data/password_generator_popover.ui:119
-msgid "Words"
-msgstr "Речи"
-
-#: data/password_generator_popover.ui:145 data/settings_dialog.ui:193
-msgid "Separator"
-msgstr "Раздвајач"
-
-#: data/password_generator_popover.ui:154
-msgid "Enter character here…"
-msgstr "Унесите знак овде…"
-
-#: data/recent_files_page.ui:28
-msgid "Recent Safes"
-msgstr "Недавни сефови"
-
-#. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:7
-msgid "Unsaved Changes"
-msgstr "Несачуване измене"
-
-#. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:8
-msgid "Do you want to write all changes to the safe?"
-msgstr "Да ли желите да упишете све измене у сеф?"
-
-#. _Discard all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:11
-msgid "_Quit Without Saving"
-msgstr "_Изађи без чувања"
-
-#. _Cancel exiting the program
-#: data/save_dialog.ui:20
-msgid "_Don't Quit"
-msgstr "_Не излази"
-
-#. _Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:26
-msgid "_Save and Quit"
-msgstr "_Сачувај и изађи"
-
-#: data/settings_dialog.ui:15
+#: data/gtk/settings_dialog.ui:16
 msgid "_Dark Theme"
 msgstr "Та_мна тема"
 
-#: data/settings_dialog.ui:16
+#: data/gtk/settings_dialog.ui:17
 msgid "Use dark GTK theme."
 msgstr "Користи тамну Гтк тему."
 
-#: data/settings_dialog.ui:29
+#: data/gtk/settings_dialog.ui:30
 msgid "_Hide First Start Screen"
 msgstr "Сакри_ј екран првог покретања"
 
-#: data/settings_dialog.ui:30
+#: data/gtk/settings_dialog.ui:31
 msgid "Reopen last opened safe."
 msgstr "Поново отворите последњи сеф."
 
-#: data/settings_dialog.ui:45 passwordsafe/widgets/window.py:247
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
 msgid "Safe"
 msgstr "Сеф"
 
-#: data/settings_dialog.ui:48
+#: data/gtk/settings_dialog.ui:49
 msgid "_Save Automatically"
 msgstr "Сам _сачувај"
 
-#: data/settings_dialog.ui:49
+#: data/gtk/settings_dialog.ui:50
 msgid "Save every change automatically."
 msgstr "Самостално сачувајте сваку измену."
 
-#: data/settings_dialog.ui:64 data/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
 msgid "Unlock"
 msgstr "Откључај"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:67
+#: data/gtk/settings_dialog.ui:68
 msgid "Remember Composite _Key"
 msgstr "Запамти двоструки _кључ"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:68
+#: data/gtk/settings_dialog.ui:69
 msgid "Remember last used composite key."
 msgstr "Запамтите последњи коришћени двоструки кључ."
 
-#: data/settings_dialog.ui:89
+#: data/gtk/settings_dialog.ui:90
 msgid "Password Generation"
 msgstr "Стварање лозинке"
 
-#: data/settings_dialog.ui:92
+#: data/gtk/settings_dialog.ui:93
 msgid "Password Length"
 msgstr "Дужина лозинке"
 
-#: data/settings_dialog.ui:93
-#| msgid "Number of single characters when generating a password."
+#: data/gtk/settings_dialog.ui:94
 msgid "Number of characters when generating a password."
 msgstr "Број знакова приликом стварања лозинке."
 
-#: data/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:113
 msgid "_Uppercase Characters"
 msgstr "В_елика слова"
 
-#: data/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:114
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Користите велика слова „A-Z“ приликом стварања лозинке."
 
-#: data/settings_dialog.ui:126
+#: data/gtk/settings_dialog.ui:127
 msgid "_Lowercase Characters"
 msgstr "Ма_ла слова"
 
-#: data/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Користите мала слова „a-z“ приликом стварања лозинке."
 
-#: data/settings_dialog.ui:140
+#: data/gtk/settings_dialog.ui:141
 msgid "_Numeric Characters"
 msgstr "Бро_јеви"
 
-#: data/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:142
 msgid "Use numeric characters when generating a password."
 msgstr "Користите бројеве приликом стварања лозинке."
 
-#: data/settings_dialog.ui:154
+#: data/gtk/settings_dialog.ui:155
 msgid "_Special Characters"
 msgstr "По_себни знакови"
 
-#: data/settings_dialog.ui:155
+#: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Користите не-алфанумеричке АСКРИ симболе приликом стварања лозинке."
 
-#: data/settings_dialog.ui:170
+#: data/gtk/settings_dialog.ui:171
 msgid "Passphrase Generation"
 msgstr "Стварање фразе"
 
-#: data/settings_dialog.ui:173
+#: data/gtk/settings_dialog.ui:174
 msgid "Passphrase Length"
 msgstr "Дужина фразе"
 
-#: data/settings_dialog.ui:201
+#: data/gtk/settings_dialog.ui:175
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Number of words to use when generating a passphrase."
+msgstr "Број речи за коришћење приликом стварања фразе."
+
+#: data/gtk/settings_dialog.ui:195
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "Раздвајач речи који ће се користити приликом стварања фразе."
+
+#: data/gtk/settings_dialog.ui:202
 msgid "Enter Character"
 msgstr "Унеси знак"
 
-#: data/settings_dialog.ui:213 data/settings_dialog.ui:216
+#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
 msgid "Security"
 msgstr "Безбедност"
 
-#: data/settings_dialog.ui:219
+#: data/gtk/settings_dialog.ui:221
 msgid "Safe Lock Timeout"
 msgstr "Време истека откључаности сефа"
 
-#: data/settings_dialog.ui:220
+#: data/gtk/settings_dialog.ui:222
 msgid "Lock safe on idle after X minutes."
 msgstr "Закључајте сеф након одређеног броја минута у мировању."
 
-#: data/settings_dialog.ui:239
+#: data/gtk/settings_dialog.ui:241
 msgid "Clear Clipboard"
 msgstr "Очисти оставу"
 
-#: data/settings_dialog.ui:240
+#: data/gtk/settings_dialog.ui:242
 msgid "Clear clipboard after X seconds."
 msgstr "Очистите оставу након одређеног броја секунди."
 
-#: data/settings_dialog.ui:259
+#: data/gtk/settings_dialog.ui:261
 msgid "Clear Recent List"
 msgstr "Очисти списак скорашњих база"
 
-#: data/settings_dialog.ui:260
+#: data/gtk/settings_dialog.ui:262
 msgid "Clear the recently opened safes list."
 msgstr "Очистите списак недавно отвараних сефова."
 
-#: data/unlock_database.ui:7
-#| msgid "Unlock"
+#: data/gtk/unlock_database.ui:7
 msgid "Unlock Safe"
 msgstr "Откључај Сеф"
 
-#: data/unlocked_headerbar.ui:13
-#| msgid "Number of Groups"
+#. Menubutton in headerbar for starting the safe creation process
+#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "_Нови сеф"
+
+#: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
 msgstr "Нови унос или група"
 
 #. Button tooltip in headerbar to open search page
-#: data/unlocked_headerbar.ui:24
+#: data/gtk/unlocked_headerbar.ui:24
 msgid "Search"
 msgstr "Потражи"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_headerbar.ui:31
+#: data/gtk/unlocked_headerbar.ui:31
 msgid "Selection Mode"
 msgstr "Режим избора"
 
-#: data/unlocked_headerbar.ui:56
+#: data/gtk/unlocked_headerbar.ui:53
 msgid "_Save"
 msgstr "_Сачувај"
 
-#: data/unlocked_headerbar.ui:62
+#: data/gtk/unlocked_headerbar.ui:59
 msgid "_Lock"
 msgstr "_Закључај"
 
-#: data/unlocked_headerbar.ui:67
+#: data/gtk/unlocked_headerbar.ui:64
 msgid "So_rting"
 msgstr "_Ређање"
 
-#: data/unlocked_headerbar.ui:69
+#: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
-#: data/unlocked_headerbar.ui:74
+#: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/unlocked_headerbar.ui:79
+#: data/gtk/unlocked_headerbar.ui:76
 msgid "_Newest First"
 msgstr "Прво _новије"
 
-#: data/unlocked_headerbar.ui:84
+#: data/gtk/unlocked_headerbar.ui:81
 msgid "_Oldest First"
 msgstr "Прво _старије"
 
-#: data/unlocked_headerbar.ui:100
+#: data/gtk/unlocked_headerbar.ui:97
 msgid "Sa_fe Settings"
 msgstr "Подешавања се_фа"
 
-#: data/unlocked_headerbar.ui:122
+#: data/gtk/unlocked_headerbar.ui:119
 msgid "New _Entry"
 msgstr "Нови _унос"
 
-#: data/unlocked_headerbar.ui:126
+#: data/gtk/unlocked_headerbar.ui:123
 msgid "New _Group"
 msgstr "Нова _група"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/welcome_page.ui:24
-msgid "Secure Password Safe"
-msgstr "Безбедан сеф за лозинке"
+#: data/gtk/welcome_page.ui:24
+msgid "Secure Secrets"
+msgstr "Безбедне Тајне"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/welcome_page.ui:35
+#: data/gtk/welcome_page.ui:35
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -1155,202 +903,388 @@ msgstr ""
 "Безбедно чувајте ваше лозинке, белешке и податке. <b>Направите</b> или "
 "<b>увезите</b> нови сеф Кипеса."
 
-#: passwordsafe/application.py:51
+#. Translators: Secrets is the app name, do not translate
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Тајне"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:5
+msgid "A password manager for GNOME"
+msgstr "Управник лозинки за Гном"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:14
+msgid "keepass;encrypt;secure;"
+msgstr ""
+"keepass;encrypt;secure;кипес;шифровање;безбедно;сигурно;лозинке;kipes;"
+"šifrovanje;bezbedno;sigurno;lozinke;safe;sef;сеф;"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Use dark GTK theme"
+msgstr "Користи тамну ГТК тему"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid ""
+"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+"theme has a dark variant."
+msgstr ""
+"Користиће тамну варијанту ваше ГТК+ теме. Знајте да тамна варијанта није "
+"доступна у свакој ГТК+ теми."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "Поново отвари последње отварану базу"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Сам ће отворити екран за откључавање последње отваране базе, у супротном ће "
+"приказати екран добродошлице."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "Самостално чува сваку измену"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Сам ће чувати сваку начињену измену у базу. Знајте да не можете опозвати "
+"измене ако је ово укључено."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "Закључава базу након одређеног броја минута"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Сам ће закључти базу након датог броја минута да би појачао безбедност базе."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "Чисти оставу након одређеног броја секунди"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "Након умножавања лозинке, очистиће оставу зарад веће безбедности."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "Величина прозора"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "Памтиће величину прозора."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened database"
+msgstr "Последња отворена база"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "Path to the last opened database."
+msgstr "Путања до последње отворене базе."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened databases"
+msgstr "Последња отворене базе"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "A list of the last opened databases."
+msgstr "Списак последњих отворених база."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Remember composite key"
+msgstr "Памти двоструки кључ"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Remember last used composite key for database unlocking."
+msgstr "Памтиће последњи двоструки кључ који је коришћен за откључавање базе."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Last used composite key"
+msgstr "Последњи коришћени двоструки кључ"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid "Path to last used key for composite database unlocking."
+msgstr "Путања до последњег коришћеног двоструког кључа за откључавање базе."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Remember unlock method"
+msgstr "Памти начин откључавања"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"Памтиће последњи коришћени начин откључавања за будућа откључавања базе."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Backup the database on unlock"
+msgstr "Прави резерву базе при откључавању"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#| msgid ""
+#| "If an error occurs while saving the database, a backup can be found at ~/."
+#| "cache/passwordsafe/backups"
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/secrets/backups"
+msgstr ""
+"Ако се догоди грешка приликом чувања базе, резерва се може наћи у путањи "
+"„~/.cache/secrets/backups“"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Sorting order of groups and entries"
+msgstr "Редослед ређања група и уноса"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Order of the rows in the groups and entries view."
+msgstr "Редослед редова у прегледу група и уноса."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use uppercases when generating a password"
+msgstr "Користи велика слова приликом стварања лозинке"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Користиће велика слова A-Z приликом стварања насумичне лозинке."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use lowercases when generating a password"
+msgstr "Користи мала слова приликом стварања лозинке"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Користиће мала слова a-z приликом стварања насумичне лозинке."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Use numbers when generating a password"
+msgstr "Користи бројеве приликом стварања лозинке"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Користиће бројеве 0-9 приликом стварања насумичне лозинке."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Use symbols when generating a password"
+msgstr "Користи симболе приликом стварања лозинке"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr ""
+"Користиће не-алфанумеричке АСКРИ симболе приликом стварања насумичне лозинке."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Password length when generating a password"
+msgstr "Дужина створене лозинке"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Number of single characters when generating a password."
+msgstr "Број засебних знакова приликом стварања лозинке."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Number of words when generating a passphrase"
+msgstr "Број речи приликом стварања фразе"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
+msgid "Separator when generating a passphrase"
+msgstr "Раздвајач приликом стварања фразе"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "@НАЗИВ@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+#| msgid ""
+#| "Password Safe is a password manager which makes use of the KeePass v.4 "
+#| "format. It integrates perfectly with the GNOME desktop and provides an "
+#| "easy and uncluttered interface for the management of password databases."
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"Тајне је управник лозинки који користи формат „Keepass“ 4. Савршено се "
+"уклапа у Гномову радну површ и пружа једноставно и прегледно сучеље за "
+"управљање базама лозинки."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:163
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#: gsecrets/application.py:51
 msgid "Error: File {} does not exist"
 msgstr "Грешка: Датотека „{}“ не постоји"
 
-#: passwordsafe/application.py:56
-#| msgid "Safe already opened"
+#: gsecrets/application.py:56
 msgid "Error: Safe {} is already open"
 msgstr "Грешка: Сеф „{}“ је већ отворен"
 
-#: passwordsafe/attachment_warning_dialog.py:66
-#| msgid "_Add Attachment"
+#: gsecrets/attachment_warning_dialog.py:66
 msgid "Could not Load Attachment"
 msgstr "Не могу да учитам прилог"
 
-#: passwordsafe/create_database.py:130
-#| msgid "Passwords do not match"
+#: gsecrets/create_database.py:130
 msgid "Passwords do not Match"
 msgstr "Лозинке се не подударају"
 
-#: passwordsafe/create_database.py:158
+#: gsecrets/create_database.py:158
 msgid "Generating…"
 msgstr "Правим…"
 
-#: passwordsafe/create_database.py:171
-#| msgid "Could not open file"
+#: gsecrets/create_database.py:171
 msgid "Could not Create Keyfile"
 msgstr "Не могу да направим датотеку кључа"
 
-#: passwordsafe/create_database.py:173
+#: gsecrets/create_database.py:173
 msgid "Generate"
 msgstr "Направи"
 
-#: passwordsafe/database_manager.py:122
+#: gsecrets/database_manager.py:122
 msgid "Clone"
 msgstr "Клонирај"
 
-#: passwordsafe/entry_page.py:233 passwordsafe/entry_page.py:370
-#: passwordsafe/entry_row.py:112
-#| msgid "Username"
+#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
+#: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Корисничко име је умножено"
 
-#: passwordsafe/entry_page.py:274
-#| msgid "Generate Password"
+#: gsecrets/entry_page.py:274
 msgid "One-time Password Copied"
 msgstr "Једнократна лозинка је умножена"
 
-#: passwordsafe/entry_page.py:295
-#: passwordsafe/widgets/attribute_entry_row.py:69
-#| msgid "Attribute key already exists"
+#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Кључ особине већ постоји"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:323
-#| msgid "Select attachment"
+#: gsecrets/entry_page.py:323
 msgid "Select Attachment"
 msgstr "Изаберите прилог"
 
-#: passwordsafe/entry_page.py:326
+#: gsecrets/entry_page.py:326
 msgid "_Add"
 msgstr "_Додај"
 
-#: passwordsafe/entry_row.py:105 passwordsafe/password_entry_row.py:64
-#| msgid "Password Safe"
+#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
 msgid "Password Copied"
 msgstr "Лозинка је умножена"
 
-#: passwordsafe/entry_row.py:124 passwordsafe/group_row.py:98
-#| msgid "Title not specified"
+#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
 msgid "Title not Specified"
 msgstr "Назив није наведен"
 
-#: passwordsafe/entry_row.py:135
-#| msgid "No username specified"
+#: gsecrets/entry_row.py:135
 msgid "Username not specified"
 msgstr "Корисничко име није наведено"
 
-#: passwordsafe/unlock_database.py:79
-#| msgid "Generate Keyfile"
+#: gsecrets/unlock_database.py:79
 msgid "Select Keyfile"
 msgstr "Изаберите датотеку кључа"
 
-#: passwordsafe/unlock_database.py:152
-#| msgid "Safe already opened"
+#: gsecrets/unlock_database.py:154
 msgid "Safe {} is Already Open"
 msgstr "Сеф „{}“ је већ отворен"
 
-#: passwordsafe/unlock_database.py:230
-#| msgid "The kdb format is not supported"
+#: gsecrets/unlock_database.py:232
 msgid "The kdb Format is not Supported"
 msgstr "Формат кбд није подржан"
 
-#: passwordsafe/unlock_database.py:288
-#| msgid "Failed to unlock safe"
+#: gsecrets/unlock_database.py:288
 msgid "Failed to Unlock Safe"
 msgstr "Нисам успео да откључам сеф"
 
-#: passwordsafe/unlock_database.py:299
-#| msgid "Try again"
+#: gsecrets/unlock_database.py:299
 msgid "_Try Again"
 msgstr "_Покушај поново"
 
-#: passwordsafe/unlock_database.py:304
-#| msgid "_Select current keyfile"
+#: gsecrets/unlock_database.py:304
 msgid "_Select Keyfile"
 msgstr "_Изабери датотеку кључа"
 
-#: passwordsafe/unlocked_database.py:273
-#| msgid "Safe saved"
+#: gsecrets/unlocked_database.py:273
 msgid "Safe Saved"
 msgstr "Сеф је сачуван"
 
-#: passwordsafe/unlocked_database.py:275
-#| msgid "Could not save Safe"
+#: gsecrets/unlocked_database.py:275
 msgid "Could not Save Safe"
 msgstr "Не могу да сачувам Сеф"
 
-#: passwordsafe/unlocked_database.py:284
-#| msgid "Please wait. Another save is running."
+#: gsecrets/unlocked_database.py:284
 msgid "Please Wait. Another Save is Running."
 msgstr "Сачекајте. Још једно чување је већ у току."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:288
-#| msgid "No changes made"
+#: gsecrets/unlocked_database.py:288
 msgid "No Changes Made"
 msgstr "Нема начињених измена"
 
-#: passwordsafe/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:327
 msgid "Copied"
 msgstr "Умножено"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:396
-#| msgid "Safe locked due to inactivity"
+#: gsecrets/unlocked_database.py:396
 msgid "Safe Locked due to Inactivity"
 msgstr "Сеф је закључан због неактивности"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/widgets/attachment_entry_row.py:37
-#| msgid "Save attachment"
+#: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
 msgstr "Сачувајте прилог"
 
-#: passwordsafe/widgets/attachment_entry_row.py:64
-#| msgid "Could not open file"
+#: gsecrets/widgets/attachment_entry_row.py:64
 msgid "Could not Store Attachment"
 msgstr "Не могу да причувам прилог"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/widgets/database_settings_dialog.py:129
-#| msgid "_Select current keyfile"
+#: gsecrets/widgets/database_settings_dialog.py:129
 msgid "Select Current Keyfile"
 msgstr "Изаберите тренутну датотеку кључа"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: passwordsafe/widgets/database_settings_dialog.py:315
-#: passwordsafe/widgets/database_settings_dialog.py:329
+#: gsecrets/widgets/database_settings_dialog.py:317
+#: gsecrets/widgets/database_settings_dialog.py:331
 msgid "Unknown"
 msgstr "Непознато"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:319
+#: gsecrets/widgets/database_settings_dialog.py:321
 msgid "AES 256-bit"
 msgstr "AES 256-бита"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:322
+#: gsecrets/widgets/database_settings_dialog.py:324
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-бита"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:325
+#: gsecrets/widgets/database_settings_dialog.py:327
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-бита"
 
 #. NOTE: Argon2 is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:333
+#: gsecrets/widgets/database_settings_dialog.py:335
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:336
+#: gsecrets/widgets/database_settings_dialog.py:338
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
-#: passwordsafe/widgets/expiration_date_row.py:55
-#: passwordsafe/widgets/expiration_date_row.py:61
+#: gsecrets/widgets/expiration_date_row.py:57
+#: gsecrets/widgets/expiration_date_row.py:63
 msgid "Entry expired"
 msgstr "Унос је истекао"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:72
-#| msgid "{} Selected entry"
-#| msgid_plural "{} Selected entries"
+#: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
 msgstr[0] "{} _изабрани унос"
@@ -1358,58 +1292,60 @@ msgstr[1] "{} _изабрана уноса"
 msgstr[2] "{} _изабраних уноса"
 msgstr[3] "_Један изабрани унос"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:98
-#| msgid "Operation aborted: Deleting currently active group"
+#: gsecrets/widgets/selection_mode_headerbar.py:98
 msgid "Operation Aborted: Deleting Currently Active Group"
 msgstr "Радња је прекинута: Бришем тренутно активну групу"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:114
-#| msgid "Deletion completed"
+#: gsecrets/widgets/selection_mode_headerbar.py:114
 msgid "Deletion Completed"
 msgstr "Брисање је обављено"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:151
-#| msgid "Operation aborted: Moving currently active group"
+#: gsecrets/widgets/selection_mode_headerbar.py:151
 msgid "Operation Aborted: Moving Currently Active Group"
 msgstr "Радња је прекинута: Премештам тренутно активну групу"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:169
-#| msgid "Move completed"
+#: gsecrets/widgets/selection_mode_headerbar.py:169
 msgid "Move Completed"
 msgstr "Премештање је обављено"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/widgets/window.py:145
-#| msgid "Select _None"
+#: gsecrets/widgets/window.py:147
 msgid "Select Safe"
 msgstr "Изаберите сеф"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/widgets/window.py:156 passwordsafe/widgets/window.py:252
+#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 база података"
 
-#: passwordsafe/widgets/window.py:161
+#: gsecrets/widgets/window.py:163
 msgid "Any file type"
 msgstr "Било која врста датотеке"
 
-#: passwordsafe/widgets/window.py:220
-#| msgid "Safe already opened"
+#: gsecrets/widgets/window.py:222
 msgid "Safe is Already Open"
 msgstr "Сеф је већ отворен"
 
-#: passwordsafe/widgets/window.py:244
+#: gsecrets/widgets/window.py:246
 msgid "_Create"
 msgstr "_Направи"
 
-#: passwordsafe/widgets/window.py:275
+#: gsecrets/widgets/window.py:277
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Не могу да направим сеф: сеф је већ отворен"
 
-#: passwordsafe/widgets/window.py:331
-#| msgid "Could not save Safe"
+#: gsecrets/widgets/window.py:333
 msgid "Could not Create new Safe"
 msgstr "Не могу да направим нови сеф"
+
+#~ msgid "Password Safe"
+#~ msgstr "Сеф за лозинке"
+
+#~ msgid "_About Password Safe"
+#~ msgstr "О сефу з_а лозинке"
+
+#~ msgid "Secure Password Safe"
+#~ msgstr "Безбедан сеф за лозинке"
 
 #~ msgid "ChaCha20: 256-bit"
 #~ msgstr "Ча-ча 20 (ChaCha20): 256-бита"

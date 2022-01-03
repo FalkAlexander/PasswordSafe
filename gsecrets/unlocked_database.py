@@ -490,7 +490,7 @@ class UnlockedDatabase(Gtk.Box):
 
     def threaded_save_loop(self) -> bool:
         """Saves the safe as long as it returns True."""
-        if gsecrets.config_manager.get_save_automatically() is True:
+        if gsecrets.config_manager.get_save_automatically():
             logging.debug("Automatically saving")
             self.save_database()
 

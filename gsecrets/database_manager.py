@@ -143,7 +143,7 @@ class DatabaseManager(GObject.GObject):
 
     # Write all changes to database
     def save_database(self, notification=False):
-        if self.save_running is False and self.is_dirty:
+        if not self.save_running and self.is_dirty:
             self.save_running = True
 
             # TODO This could be simplified a lot

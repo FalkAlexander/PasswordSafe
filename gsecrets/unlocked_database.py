@@ -492,7 +492,7 @@ class UnlockedDatabase(Gtk.Box):
         """Saves the safe as long as it returns True."""
         if gsecrets.config_manager.get_save_automatically() is True:
             logging.debug("Automatically saving")
-            self.database_manager.save_database()
+            self.save_database()
 
         return GLib.SOURCE_CONTINUE
 

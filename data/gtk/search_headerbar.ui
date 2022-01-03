@@ -3,6 +3,7 @@
   <template class="SearchHeaderbar" parent="AdwBin">
     <child>
       <object class="AdwHeaderBar">
+        <property name="show-end-title-buttons">False</property>
         <child>
           <object class="GtkButton">
             <property name="action_name">win.go_back</property>

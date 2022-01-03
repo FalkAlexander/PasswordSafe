@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import threading
 import logging
 from uuid import UUID
 
-from gi.repository import Gio, GObject
+from gi.repository import Gio, GLib, GObject
 from pykeepass import PyKeePass
 
 from gsecrets.safe_element import SafeElement
@@ -71,17 +72,31 @@ class DatabaseManager(GObject.GObject):
 
                     return
 
-            try:
-                self.db.save()
-                logging.debug("Saved database")
-                self.is_dirty = False
-            except Exception as err:  # pylint: disable=broad-except
-                logging.error("Error occurred while saving database: %s", err)
+            save_thread = threading.Thread(
+                target=self.save_thread, args=[notification]
+            )
+            save_thread.daemon = False
+            save_thread.start()
 
-            if notification:
-                self.emit("save-notification", not self.is_dirty)
+    def save_thread(self, notification: bool) -> None:
+        succeeded = False
+        try:
+            self.db.save()
+            succeeded = True
+        except Exception as err:  # pylint: disable=broad-except
+            logging.error("Error occurred while saving database: %s", err)
+        finally:
+            GLib.idle_add(self.save_thread_finished, succeeded, notification)
 
-            self.save_running = False
+    def save_thread_finished(self, succeeded: bool, notification: bool) -> None:
+        self.save_running = False
+
+        if notification:
+            self.emit("save-notification", succeeded)
+
+        if succeeded:
+            logging.debug("Saved database")
+            self.is_dirty = False
 
     @property
     def password(self) -> str:

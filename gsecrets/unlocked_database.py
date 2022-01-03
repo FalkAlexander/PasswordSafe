@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import logging
 import os
-import threading
 import typing
 from enum import IntEnum
 from gettext import gettext as _
@@ -460,13 +459,8 @@ class UnlockedDatabase(Gtk.Box):
         if not self.database_manager.is_dirty or self.database_manager.save_running:
             return
 
-        save_thread = threading.Thread(
-            target=self.database_manager.save_database, args=[notification]
-        )
-        save_thread.daemon = False
-        save_thread.start()
-
         logging.debug("Saving database %s", self.database_manager.database_path)
+        self.database_manager.save_database(notification)
 
     def start_database_lock_timer(self):
         if self._lock_timer_handler:

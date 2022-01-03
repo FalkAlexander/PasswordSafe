@@ -426,7 +426,9 @@ class UnlockedDatabase(Gtk.Box):
         # Do not listen to screensaver kicking in anymore
         if self.session_handler_id:
             app = self.window.props.application
-            app.disconnect(self.session_handler_id)
+            if app:
+                app.disconnect(self.session_handler_id)
+
             self.session_handler_id = None
 
         # stop the save loop

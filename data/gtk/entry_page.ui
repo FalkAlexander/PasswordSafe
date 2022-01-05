@@ -382,10 +382,16 @@
                 <child>
                   <object class="GtkButton" id="show_all_button">
                     <property name="visible">False</property>
+                    <property name="halign">center</property>
                     <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
-                    <property name="icon_name">pan-down-symbolic</property>
+                    <child>
+                      <object class="AdwButtonContent">
+                        <property name="icon_name">view-more-symbolic</property>
+                        <property name="label" translatable="yes">_Show More</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
                     <style>
-                      <class name="circular"/>
                       <class name="flat"/>
                     </style>
                   </object>

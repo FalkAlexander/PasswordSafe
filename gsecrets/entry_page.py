@@ -61,7 +61,7 @@ class EntryPage(Adw.Bin):
     expiration_date_property_box = Gtk.Template.Child()
     expiration_date_row = Gtk.Template.Child()
 
-    show_all_row = Gtk.Template.Child()
+    show_all_button = Gtk.Template.Child()
 
     attribute_property_row_list: list[Gtk.ListBoxRow] = []
     otp_timer_handler: int | None = None
@@ -206,7 +206,7 @@ class EntryPage(Adw.Bin):
         # Show more row
         for widget in self.toggeable_widget_list:
             if not widget.get_visible():
-                self.show_all_row.set_visible(True)
+                self.show_all_button.set_visible(True)
                 break
 
     def add_attribute_property_row(self, key, value):
@@ -242,7 +242,7 @@ class EntryPage(Adw.Bin):
         for widget in self.toggeable_widget_list:
             widget.set_visible(True)
 
-        self.show_all_row.set_visible(False)
+        self.show_all_button.set_visible(False)
 
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):

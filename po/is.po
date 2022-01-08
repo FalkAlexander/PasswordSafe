@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
 "POT-Creation-Date: 2022-01-08 00:14+0000\n"
-"PO-Revision-Date: 2022-01-08 11:48+0000\n"
+"PO-Revision-Date: 2022-01-08 12:54+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -720,12 +720,12 @@ msgstr "Aflæsa"
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
 #: data/gtk/settings_dialog.ui:68
 msgid "Remember Composite _Key"
-msgstr ""
+msgstr "Muna samsetningarly_kil"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
 #: data/gtk/settings_dialog.ui:69
 msgid "Remember last used composite key."
-msgstr ""
+msgstr "Muna síðast notaða samsetningarlykil."
 
 #: data/gtk/settings_dialog.ui:90
 msgid "Password Generation"
@@ -737,7 +737,7 @@ msgstr "Lengd lykilorðs"
 
 #: data/gtk/settings_dialog.ui:94
 msgid "Number of characters when generating a password."
-msgstr ""
+msgstr "Fjöldi stafa sem á að nota við gerð lykilorðs."
 
 #: data/gtk/settings_dialog.ui:113
 msgid "_Uppercase Characters"
@@ -745,7 +745,7 @@ msgstr "_Hástafir"
 
 #: data/gtk/settings_dialog.ui:114
 msgid "Use uppercase characters A-Z when generating a password."
-msgstr ""
+msgstr "Nota hástafi á bilinu A-Ö við gerð lykilorðs."
 
 #: data/gtk/settings_dialog.ui:127
 msgid "_Lowercase Characters"
@@ -753,7 +753,7 @@ msgstr "_Lágstafir"
 
 #: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
-msgstr ""
+msgstr "Nota lágstafi á bilinu a-ö við gerð lykilorðs."
 
 #: data/gtk/settings_dialog.ui:141
 msgid "_Numeric Characters"
@@ -761,7 +761,7 @@ msgstr "_Tölustafir"
 
 #: data/gtk/settings_dialog.ui:142
 msgid "Use numeric characters when generating a password."
-msgstr ""
+msgstr "Nota tölustafi við gerð lykilorðs."
 
 #: data/gtk/settings_dialog.ui:155
 msgid "_Special Characters"
@@ -769,7 +769,7 @@ msgstr "_Sérstafir"
 
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr ""
+msgstr "Nota ASCII-táknstafi (ekki bók- eða tölustafir) við gerð lykilorðs."
 
 #: data/gtk/settings_dialog.ui:171
 msgid "Passphrase Generation"
@@ -958,7 +958,7 @@ msgstr "Hreinsa klippispjald eftir X sekúndur"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
-msgstr ""
+msgstr "Eftir að lykilorð er afritað skal hreinsa klippispjald í öryggisskyni."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -986,19 +986,21 @@ msgstr "Listi yfir síðast opnuðu gagnagrunnana."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
-msgstr ""
+msgstr "Muna samsetningarlykil"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
+"Muna þann samsetningarlykil sem síðast var notaður til að aflæsa gagnagrunni."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used composite key"
-msgstr ""
+msgstr "Síðast notaði samsetningarlykill"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Path to last used key for composite database unlocking."
 msgstr ""
+"Slóð á lykil sem síðast var notaður til að aflæsa samsettum gagnagrunnum."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1007,10 +1009,12 @@ msgstr "Muna aðferð við aflæsingu"
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
+"Muna þá aðferð við aflæsingu sem síðast var notuð fyrir síðari tíma aflæsinga"
+" gagnagrunna."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
-msgstr ""
+msgstr "Öryggisafrita gagnagrunn við aflæsingu"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
@@ -1020,51 +1024,52 @@ msgstr ""
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
-msgstr ""
+msgstr "Röðun hópa og færslna"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
-msgstr ""
+msgstr "Röð raða í sýn á hópa og færslur."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
-msgstr ""
+msgstr "Nota hástafi við gerð lykilorðs"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
-msgstr ""
+msgstr "Nota hástafi á bilinu A-Ö við gerð slembilykilorðs."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
-msgstr ""
+msgstr "Nota lágstafi við gerð lykilorðs"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
-msgstr ""
+msgstr "Nota lágstafi á bilinu a-ö við gerð slembilykilorðs."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
-msgstr ""
+msgstr "Nota tölur við gerð lykilorðs"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
-msgstr ""
+msgstr "Nota tölur á bilinu 0-9 við gerð slembilykilorðs."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
-msgstr ""
+msgstr "Nota tákn við gerð lykilorðs"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
+"Nota ASCII-táknstafi (ekki bók- eða tölustafir) við gerð slembilykilorðs."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
-msgstr ""
+msgstr "Lengd lykilorðs við gerð lykilorðs"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
-msgstr ""
+msgstr "Fjöldi einstakra stafa sem á að nota við gerð lykilorðs."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
@@ -1189,7 +1194,7 @@ msgstr "Gat ekki vistað öryggishólf"
 
 #: gsecrets/unlocked_database.py:289
 msgid "Please Wait. Another Save is Running."
-msgstr ""
+msgstr "Hinkraðu aðeins. Önnur vistunaraðgerð er í gangi."
 
 #. NOTE: In-app notification to inform the user that no save
 #. is necessary because there where no changes made

@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-09-02 22:17+0000\n"
-"PO-Revision-Date: 2021-09-04 15:26+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2022-01-08 00:12+0000\n"
+"PO-Revision-Date: 2022-01-09 15:30+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,15 +16,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.PasswordSafe.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Hallinnoi salasanojasi"
 
+#. "Secrets" is the application name, do not translate
 #: data/about_dialog.ui.in:9
-msgid "Learn more about Password Safe"
-msgstr "Lisätietoja Salasanasäilöstä"
+msgid "Learn more about Secrets"
+msgstr "Lisätietoja Salaisuuksista"
 
 #. Add your name to the translator credits list
 #: data/about_dialog.ui.in:11
@@ -32,12 +33,12 @@ msgid "translator-credits"
 msgstr "Jiri Grönroos, JRfi"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:6
 msgid "Safety Info"
 msgstr "Varmistustiedot"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:7
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -46,245 +47,162 @@ msgstr ""
 "piilotettuja tai väliaikaisia kopioita tästä liitetiedostosta! Jatka varoen."
 
 #. Discard all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:10
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Back"
 msgstr "_Takaisin"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:16
+#: data/gtk/attachment_warning_dialog.ui:16
 msgid "_Proceed"
 msgstr "_Jatka"
 
-#: data/attribute_entry_row.ui:48
+#: data/gtk/attribute_entry_row.ui:49
 msgid "Remove Attribute"
 msgstr "Poista attribuutti"
 
-#: data/color_entry_row.ui:11
+#: data/gtk/color_entry_row.ui:11
 msgid "Color"
 msgstr "Väri"
 
-#: data/create_database.ui:33
+#: data/gtk/create_database.ui:33
 msgid "Protect your safe"
 msgstr "Suojaa säilösi"
 
-#: data/create_database.ui:46 data/gtk/references_dialog.ui:177
-#: data/password_entry_row.ui:12
+#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Salasana"
 
-#: data/create_database.ui:47
+#: data/gtk/create_database.ui:47
 msgid "Use a password to secure your safe."
 msgstr "Käytä salasanaa suojataksesi säilösi."
 
-#: data/create_database.ui:57
+#: data/gtk/create_database.ui:57
 msgid "_Keyfile"
 msgstr "_Avaintiedosto"
 
-#: data/create_database.ui:58
+#: data/gtk/create_database.ui:58
 msgid "Use a keyfile to secure your safe."
 msgstr "Käytä avaintiedostoa suojataksesi säilösi."
 
-#: data/create_database.ui:68
+#: data/gtk/create_database.ui:68
 msgid "_Composite"
 msgstr "_Yhdistelmä"
 
-#: data/create_database.ui:69
+#: data/gtk/create_database.ui:69
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "Käytä salasanan ja avaintiedoston yhdistelmää suojataksesi säilösi."
 
-#: data/create_database.ui:101
+#: data/gtk/create_database.ui:101
 msgid "Enter Password"
 msgstr "Anna salasana"
 
-#: data/create_database.ui:109
+#: data/gtk/create_database.ui:109
 msgid "Set password for safe."
 msgstr "Aseta salasana säilölle."
 
-#: data/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/password_entry_row.ui:42
+#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
+#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
 msgid "Generate New Password"
 msgstr "Luo uusi salasana"
 
-#: data/create_database.ui:183
+#: data/gtk/create_database.ui:183
 msgid "Password Match Check"
 msgstr "Salasanan vastaavuuden tarkistus"
 
-#: data/create_database.ui:191
+#: data/gtk/create_database.ui:191
 msgid "Repeat password for safe."
 msgstr "Toista säilön salasana."
 
-#: data/create_database.ui:248
+#: data/gtk/create_database.ui:248
 msgid "Match Check Failed"
 msgstr "Vastaavuuden tarkistus epäonnistui"
 
-#: data/create_database.ui:256
+#: data/gtk/create_database.ui:256
 msgid "Please try again."
 msgstr "Yritä uudelleen."
 
-#: data/create_database.ui:286
+#: data/gtk/create_database.ui:286
 msgid "_Confirm"
 msgstr "_Vahvista"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/create_database.ui:320 passwordsafe/create_database.py:141
-#: passwordsafe/widgets/database_settings_dialog.py:200
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
+#: gsecrets/widgets/database_settings_dialog.py:198
 msgid "Generate Keyfile"
 msgstr "Luo avaintiedosto"
 
-#: data/create_database.ui:328
+#: data/gtk/create_database.ui:329
 msgid "Set keyfile for safe"
 msgstr "Aseta avaintiedosto säilölle"
 
 #. Button to generate a password
-#: data/create_database.ui:338 data/password_generator_popover.ui:165
-#: passwordsafe/create_database.py:144
-#: passwordsafe/widgets/database_settings_dialog.py:203
+#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:201
 msgid "_Generate"
 msgstr "_Luo"
 
-#: data/create_database.ui:370
+#: data/gtk/create_database.ui:372
 msgid "Safe Successfully Created"
 msgstr "Säilö luotu onnistuneesti"
 
 #. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/create_database.ui:378 data/gtk/unlock_database_headerbar.ui:10
-#: data/unlocked_headerbar.ui:97
+#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
+#: data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "_Avaa säilö"
 
-#: data/entry_page.ui:26 data/group_page.ui:24
-#: data/gtk/references_dialog.ui:169
-msgid "_Title"
-msgstr "_Otsikko"
-
-#: data/entry_page.ui:49 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "_Käyttäjätunnus"
-
-#: data/entry_page.ui:63 data/entry_page.ui:138 data/password_entry_row.ui:35
-msgid "Copy"
-msgstr "Kopioi"
-
-#: data/entry_page.ui:82
-msgid "One-_Time Password Secret"
-msgstr "Kertakäyttösalasanan _salaisuus"
-
-#: data/entry_page.ui:102
-msgid "Could not Generate OTP Token"
-msgstr "OTP-poletin luominen epäonnistui"
-
-#: data/entry_page.ui:116
-msgid "_One-Time Password"
-msgstr "_Kertakäyttösalasana"
-
-#: data/entry_page.ui:160
-msgid "U_RL"
-msgstr "U_RL-osoite"
-
-#: data/entry_page.ui:195 data/group_page.ui:55
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "_Muistiinpanot"
-
-#: data/entry_page.ui:207 data/group_page.ui:66
-msgid "Edit in a Window"
-msgstr "Muokkaa ikkunassa"
-
-#: data/entry_page.ui:247
-msgid "Icon"
-msgstr "Kuvake"
-
-#: data/entry_page.ui:278
-msgid "Attachments"
-msgstr "Liitteet"
-
-#: data/entry_page.ui:306
-msgid "_Add Attachment"
-msgstr "_Lisää liite"
-
-#: data/entry_page.ui:330
-msgid "Attributes"
-msgstr "Attribuutit"
-
-#: data/entry_page.ui:346
-msgid "Key"
-msgstr "Avain"
-
-#: data/entry_page.ui:352
-msgid "Value"
-msgstr "Arvo"
-
-#: data/entry_page.ui:363
-msgid "Add Attribute"
-msgstr "Lisää attribuutti"
-
-#: data/entry_page.ui:387
-msgid "_Expiration Date"
-msgstr "_Vanhentumispäivä"
-
-#: data/entry_row.ui:50
-msgid "Copy Username"
-msgstr "Kopioi käyttäjätunnus"
-
-#: data/entry_row.ui:57
-msgid "Copy Password"
-msgstr "Kopioi salasana"
-
-#. Application title in headerbar.
-#: data/gtk/create_database_headerbar.ui:8
-#: data/gtk/unlock_database_headerbar.ui:34
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 passwordsafe/main.py.in:55
-msgid "Password Safe"
-msgstr "Salasanasäilö"
-
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 passwordsafe/widgets/window.py:253
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
 msgid "Create Safe"
 msgstr "Luo säilö"
 
 #: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:14 data/gtk/search_headerbar.ui:10
-#: data/gtk/unlock_database_headerbar.ui:40
+#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
+#: data/gtk/unlock_database_headerbar.ui:38
 msgid "Back"
 msgstr "Takaisin"
 
 #: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:27
-#: data/gtk/unlock_database_headerbar.ui:48 data/unlocked_headerbar.ui:39
+#: data/gtk/recent_files_headerbar.ui:42
+#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
 msgid "Main Menu"
 msgstr "Päävalikko"
 
-#: data/gtk/create_database_headerbar.ui:34
-#: data/gtk/recent_files_headerbar.ui:41
-#: data/gtk/unlock_database_headerbar.ui:16 data/unlocked_headerbar.ui:107
+#: data/gtk/create_database_headerbar.ui:31
+#: data/gtk/recent_files_headerbar.ui:53
+#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
 msgid "_Preferences"
 msgstr "_Asetukset"
 
-#: data/gtk/create_database_headerbar.ui:38
-#: data/gtk/recent_files_headerbar.ui:45
-#: data/gtk/unlock_database_headerbar.ui:20 data/unlocked_headerbar.ui:111
+#: data/gtk/create_database_headerbar.ui:35
+#: data/gtk/recent_files_headerbar.ui:57
+#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
 msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
-#. "Password Safe" is the application name
-#: data/gtk/create_database_headerbar.ui:42
-#: data/gtk/recent_files_headerbar.ui:49
-#: data/gtk/unlock_database_headerbar.ui:24 data/unlocked_headerbar.ui:115
-msgid "_About Password Safe"
-msgstr "Tietoja - Salasanasäil_ö"
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database_headerbar.ui:39
+#: data/gtk/recent_files_headerbar.ui:61
+#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+msgid "_About Secrets"
+msgstr "_Tietoja - Salaisuudet"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
 msgstr "Tunnistautuminen"
 
-#: data/gtk/database_settings_dialog.ui:14 data/gtk/references_dialog.ui:117
-#: data/password_generator_popover.ui:23 data/settings_dialog.ui:86
+#: data/gtk/database_settings_dialog.ui:14
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:87
 msgid "Password"
 msgstr "Salasana"
 
 #. New password (replacement for an old one)
 #: data/gtk/database_settings_dialog.ui:22
+#: data/gtk/recent_files_headerbar.ui:19
 msgid "_New"
 msgstr "_Uusi"
 
@@ -306,106 +224,187 @@ msgstr "_Nykyinen"
 msgid "Enter Current Password"
 msgstr "Anna nykyinen salasana"
 
-#: data/gtk/database_settings_dialog.ui:137 passwordsafe/create_database.py:148
-#: passwordsafe/utils.py:56
-#: passwordsafe/widgets/database_settings_dialog.py:206
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
+#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
 msgid "Keyfile"
 msgstr "Avaintiedosto"
 
-#: data/gtk/database_settings_dialog.ui:162
+#: data/gtk/database_settings_dialog.ui:161
 msgid "_Select current keyfile if any"
 msgstr "Valitse _nykyinen avaintiedosto jos olemassa"
 
-#: data/gtk/database_settings_dialog.ui:204
+#: data/gtk/database_settings_dialog.ui:203
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Valinnainen) Luo _uusi avaintiedosto"
 
-#: data/gtk/database_settings_dialog.ui:222
+#: data/gtk/database_settings_dialog.ui:221
 msgid "Could not Load Keyfile"
 msgstr "Avaintiedostoa ei voitu avata"
 
-#: data/gtk/database_settings_dialog.ui:233
-#: passwordsafe/widgets/database_settings_dialog.py:288
+#: data/gtk/database_settings_dialog.ui:231
+#: gsecrets/widgets/database_settings_dialog.py:286
 msgid "_Apply Changes"
 msgstr "_Toteuta muutokset"
 
-#: data/gtk/database_settings_dialog.ui:249 data/settings_dialog.ui:9
-#: data/settings_dialog.ui:12
+#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Yleiset"
 
-#: data/gtk/database_settings_dialog.ui:253
+#: data/gtk/database_settings_dialog.ui:252
 msgid "Details"
 msgstr "Tiedot"
 
-#: data/gtk/database_settings_dialog.ui:256
+#: data/gtk/database_settings_dialog.ui:255
 msgid "Safe Name"
 msgstr "Säilön nimi"
 
-#: data/gtk/database_settings_dialog.ui:261
+#: data/gtk/database_settings_dialog.ui:260
 msgid "Path"
 msgstr "Polku"
 
-#: data/gtk/database_settings_dialog.ui:266
+#: data/gtk/database_settings_dialog.ui:265
 msgid "File Size"
 msgstr "Tiedoston koko"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:271
+#: data/gtk/database_settings_dialog.ui:270
 msgid "KeePass Version"
 msgstr "KeePass-versio"
 
-#: data/gtk/database_settings_dialog.ui:276
+#: data/gtk/database_settings_dialog.ui:275
 msgid "Creation Date"
 msgstr "Luontipäivä"
 
-#: data/gtk/database_settings_dialog.ui:281
+#: data/gtk/database_settings_dialog.ui:280
 msgid "Encryption Algorithm"
 msgstr "Salausalgoritmi"
 
-#: data/gtk/database_settings_dialog.ui:286
+#: data/gtk/database_settings_dialog.ui:285
 msgid "Derivation Algorithm"
 msgstr "Derivaatioalgoritmi"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:293
+#: data/gtk/database_settings_dialog.ui:292
 msgid "Stats"
 msgstr "Tilastot"
 
-#: data/gtk/database_settings_dialog.ui:296
+#: data/gtk/database_settings_dialog.ui:295
 msgid "Number of Entries"
 msgstr "Tietueiden määrä"
 
-#: data/gtk/database_settings_dialog.ui:301
+#: data/gtk/database_settings_dialog.ui:300
 msgid "Number of Groups"
 msgstr "Ryhmien määrä"
 
-#: data/gtk/database_settings_dialog.ui:306
+#: data/gtk/database_settings_dialog.ui:305
 msgid "Passwords"
 msgstr "Salasanat"
 
-#: data/gtk/edit_element_headerbar.ui:23
+#: data/gtk/edit_element_headerbar.ui:22
 msgid "Menu"
 msgstr "Valikko"
 
-#: data/gtk/edit_element_headerbar.ui:35 data/gtk/edit_element_headerbar.ui:57
+#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
 msgid "_Properties"
 msgstr "_Ominaisuudet"
 
-#: data/gtk/edit_element_headerbar.ui:41 data/gtk/edit_element_headerbar.ui:63
+#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
 msgid "_Delete"
 msgstr "_Poista"
 
-#: data/gtk/edit_element_headerbar.ui:49
+#: data/gtk/edit_element_headerbar.ui:45
 msgid "D_uplicate"
 msgstr "_Kaksoiskappale"
 
-#: data/gtk/edit_element_headerbar.ui:53
+#: data/gtk/edit_element_headerbar.ui:49
 msgid "_References"
 msgstr "Viittauks_et"
 
-#: data/gtk/expiration_date_row.ui:8
-#: passwordsafe/widgets/expiration_date_row.py:79
+#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/references_dialog.ui:169
+msgid "_Title"
+msgstr "_Otsikko"
+
+#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Käyttäjätunnus"
+
+#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
+#: data/gtk/password_entry_row.ui:32
+msgid "Copy"
+msgstr "Kopioi"
+
+#: data/gtk/entry_page.ui:77
+msgid "One-_Time Password Secret"
+msgstr "Kertakäyttösalasanan _salaisuus"
+
+#: data/gtk/entry_page.ui:97
+msgid "Could not Generate OTP Token"
+msgstr "OTP-poletin luominen epäonnistui"
+
+#: data/gtk/entry_page.ui:111
+msgid "_One-Time Password"
+msgstr "_Kertakäyttösalasana"
+
+#: data/gtk/entry_page.ui:159
+msgid "U_RL"
+msgstr "U_RL-osoite"
+
+#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Muistiinpanot"
+
+#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+msgid "Edit in a Window"
+msgstr "Muokkaa ikkunassa"
+
+#: data/gtk/entry_page.ui:241
+msgid "Icon"
+msgstr "Kuvake"
+
+#: data/gtk/entry_page.ui:265
+msgid "Attachments"
+msgstr "Liitteet"
+
+#: data/gtk/entry_page.ui:290
+msgid "_Add Attachment"
+msgstr "_Lisää liite"
+
+#: data/gtk/entry_page.ui:312
+msgid "Attributes"
+msgstr "Attribuutit"
+
+#: data/gtk/entry_page.ui:328
+msgid "Key"
+msgstr "Avain"
+
+#: data/gtk/entry_page.ui:334
+msgid "Value"
+msgstr "Arvo"
+
+#: data/gtk/entry_page.ui:345
+msgid "Add Attribute"
+msgstr "Lisää attribuutti"
+
+#: data/gtk/entry_page.ui:369
+msgid "_Expiration Date"
+msgstr "_Vanhentumispäivä"
+
+#: data/gtk/entry_page.ui:390
+msgid "_Show More"
+msgstr "_Näytä lisää"
+
+#: data/gtk/entry_row.ui:52
+msgid "Copy Username"
+msgstr "Kopioi käyttäjätunnus"
+
+#: data/gtk/entry_row.ui:59
+msgid "Copy Password"
+msgstr "Kopioi salasana"
+
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
 msgid "Expiration Date not Set"
 msgstr "Vanhenemispäivää ei ole asetettu"
 
@@ -502,44 +501,76 @@ msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Kopioi käyttäjätunnus"
 
-#: data/gtk/notes_dialog.ui:26
+#: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "_Kopioi"
 
-#: data/gtk/properties_dialog.ui:23
+#: data/gtk/password_generator_popover.ui:35
+msgid "Length"
+msgstr "Pituus"
+
+#: data/gtk/password_generator_popover.ui:62
+msgid "Characters"
+msgstr "Merkit"
+
+#: data/gtk/password_generator_popover.ui:111
+msgid "Passphrase"
+msgstr "Tunnuslause"
+
+#: data/gtk/password_generator_popover.ui:119
+msgid "Words"
+msgstr "Sanat"
+
+#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
+msgid "Separator"
+msgstr "Erotin"
+
+#: data/gtk/password_generator_popover.ui:154
+msgid "Enter character here…"
+msgstr "Kirjoita merkki tähän…"
+
+#: data/gtk/properties_dialog.ui:7
 msgid "Properties"
 msgstr "Ominaisuudet"
 
-#: data/gtk/properties_dialog.ui:41 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:46
+#: data/gtk/properties_dialog.ui:33
 msgid "Accessed"
 msgstr "Käytetty"
 
-#: data/gtk/properties_dialog.ui:51
+#: data/gtk/properties_dialog.ui:38
 msgid "Modified"
 msgstr "Muokattu"
 
-#: data/gtk/properties_dialog.ui:56
+#: data/gtk/properties_dialog.ui:43
 msgid "Created"
 msgstr "Luotu"
 
-#: data/gtk/recent_files_headerbar.ui:11
+#: data/gtk/recent_files_headerbar.ui:14
 msgid "New Safe"
 msgstr "Uusi säilö"
 
-#: data/gtk/recent_files_headerbar.ui:18
+#: data/gtk/recent_files_headerbar.ui:27
 msgid "Open Safe"
 msgstr "Avaa säilö"
+
+#: data/gtk/recent_files_headerbar.ui:32
+msgid "_Open"
+msgstr "_Avaa"
+
+#: data/gtk/recent_files_page.ui:27
+msgid "Recent Safes"
+msgstr "Viimeisimmät säilöt"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Koodi"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:263
-#: data/gtk/references_dialog.ui:359
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
+#: data/gtk/references_dialog.ui:346
 msgid "Property"
 msgstr "Ominaisuus"
 
@@ -563,37 +594,62 @@ msgstr "Muistiinpanot"
 msgid "_URL"
 msgstr "_URL"
 
-#: data/gtk/references_dialog.ui:209
+#: data/gtk/references_dialog.ui:192
 msgid "References"
 msgstr "Viittaukset"
 
-#: data/gtk/references_dialog.ui:235
+#: data/gtk/references_dialog.ui:222
 msgid "Syntax"
 msgstr "Syntaksi"
 
-#: data/gtk/references_dialog.ui:244
+#: data/gtk/references_dialog.ui:231
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Täytteen syntaksi tietokenttäviittauksille on seuraava:"
 
-#: data/gtk/references_dialog.ui:262 data/gtk/references_dialog.ui:289
+#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
 msgid "Show Field Codes"
 msgstr "Näytä kenttäkoodit"
 
-#: data/gtk/references_dialog.ui:290
+#: data/gtk/references_dialog.ui:277
 msgid "Identifier"
 msgstr "Tunniste"
 
-#: data/gtk/references_dialog.ui:348
+#: data/gtk/references_dialog.ui:335
 msgid "Reference"
 msgstr "Viittaus"
 
-#: data/gtk/references_dialog.ui:395
+#: data/gtk/references_dialog.ui:373
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
 msgstr ""
 "Jokaisella tietueella on yksilöllinen tunniste nimeltään UUID. Se löytyy "
 "jokaisen tietueen ominaisuuksista."
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/save_dialog.ui:7
+msgid "Unsaved Changes"
+msgstr "Tallentamattomia muutoksia"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/save_dialog.ui:8
+msgid "Do you want to write all changes to the safe?"
+msgstr "Haluatko kirjoittaa kaikki muutokset säilöön?"
+
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:11
+msgid "_Quit Without Saving"
+msgstr "_Lopeta tallentamatta"
+
+#. _Cancel exiting the program
+#: data/gtk/save_dialog.ui:20
+msgid "_Don't Quit"
+msgstr "_Älä lopeta"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:26
+msgid "_Save and Quit"
+msgstr "_Tallenna ja lopeta"
 
 #: data/gtk/search.ui:9
 msgid "Enter Search Term"
@@ -603,498 +659,244 @@ msgstr "Anna hakuehto"
 msgid "No Search Results"
 msgstr "Ei hakutuloksia"
 
-#: data/gtk/selection_mode_headerbar.ui:11
-msgid "_Cancel"
-msgstr "_Peru"
-
-#: data/gtk/selection_mode_headerbar.ui:23
-#: passwordsafe/widgets/selection_mode_headerbar.py:70
+#: data/gtk/selection_mode_headerbar.ui:17
+#: gsecrets/widgets/selection_mode_headerbar.py:70
 msgid "_Select Items"
 msgstr "_Valitse kohteet"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/gtk/selection_mode_headerbar.ui:35
+#: data/gtk/selection_mode_headerbar.ui:29
 msgid "Move Selection"
 msgstr "Siirrä valinta"
 
-#: data/gtk/selection_mode_headerbar.ui:42
+#: data/gtk/selection_mode_headerbar.ui:36
 msgid "Paste Selection"
 msgstr "Liitä valinta"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/gtk/selection_mode_headerbar.ui:52
+#: data/gtk/selection_mode_headerbar.ui:46
 msgid "Delete Selection"
 msgstr "Poista valinta"
 
-#: data/gtk/selection_mode_headerbar.ui:68
+#: data/gtk/selection_mode_headerbar.ui:53
+msgid "_Cancel"
+msgstr "_Peru"
+
+#: data/gtk/selection_mode_headerbar.ui:66
 msgid "Select _All"
 msgstr "_Valitse kaikki"
 
-#: data/gtk/selection_mode_headerbar.ui:73
+#: data/gtk/selection_mode_headerbar.ui:71
 msgid "Select _None"
 msgstr "_Älä valitse mitään"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/unlocked_headerbar.ui:93
-msgid "_New Safe"
-msgstr "_Uusi säilö"
-
-#: data/org.gnome.PasswordSafe.desktop.in.in:4
-msgid "A password manager for GNOME"
-msgstr "Salasanojen hallintasovellus Gnomelle"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.PasswordSafe.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;encrypt;secure;"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:12
-msgid "Use dark GTK theme"
-msgstr "Käytä tummaa GTK-teemaa"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:13
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Käytä GTK+-teeman tummaa versiota. Ota huomioon, ettei jokaisella GTK+-"
-"teemalla ole välttämättä tummaa versiota."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:17
-msgid "Reopen last opened database"
-msgstr "Avaa uudelleen viimeksi avattu tietokanta"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:18
-msgid ""
-"Automatically open the unlock screen of the last opened database, otherwise "
-"show the welcome screen."
-msgstr ""
-"Automaattisesti näytä viimeksi käytetyn tietokannan avausikkuna, muuten "
-"näytä tervetuloaikkuna."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:22
-msgid "Save every change automatically"
-msgstr "Tallenna jokainen muutos automaattisesti"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:23
-msgid ""
-"Save every change you made instantly into the database. Please note that you "
-"cannot revert changes if Autosave is enabled."
-msgstr ""
-"Tallenna jokainen muutos välittömästi tietokantaan. Ota huomioon, ettet voi "
-"kumota muutoksia, jos automaattinen tallennus on käytössä."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:27
-msgid "Lock database after X minutes"
-msgstr "Lukitse tietokanta X minuutin kuluttua"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:28
-msgid ""
-"Automatically lock your database after a given amount of minutes to improve "
-"the security."
-msgstr ""
-"Lukitse salasanatietokanta automaattisesti tietyn ajan jälkeen parantaaksesi "
-"tietoturvaa."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:32
-msgid "Clear clipboard after X seconds"
-msgstr "Tyhjennä leikepöytä X sekunnin kuluttua"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:33
-msgid "After copying the password clear the clipboard for security reasons."
-msgstr "Salasanan kopioimisen jälkeen tyhjennä leikepöytä tietoturvasyistä."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:37
-msgid "Window size"
-msgstr "Ikkunan koko"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:38
-msgid "Remember the window size."
-msgstr "Muista ikkunan koko."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:42
-msgid "Last opened database"
-msgstr "Viimeksi avattu tietokanta"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:43
-msgid "Path to the last opened database."
-msgstr "Polku viimeksi avattuun tietokantaan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:47
-msgid "Last opened databases"
-msgstr "Viimeksi avatut tietokannat"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:48
-msgid "A list of the last opened databases."
-msgstr "Luettelo viimeksi avatuista tietokannoista."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:52
-msgid "Remember composite key"
-msgstr "Muista yhdistelmäavain"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:53
-msgid "Remember last used composite key for database unlocking."
-msgstr "Muista viimeksi käytetty yhdistelmäavain tietokannan avaamiseksi."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Viimeksi käytetty yhdistelmäavain"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr "Polku viimeksi käytetylle avaimelle yhdistelmätietokannan avaamiseksi."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:62
-msgid "Remember unlock method"
-msgstr "Muista lukituksen avaustapa"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:63
-msgid "Remember last used unlock method for future database unlocking."
-msgstr "Muista viimeksi käytetty avaustapa tuleville tietokannan avauksille."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:67
-msgid "Backup the database on unlock"
-msgstr "Varmuuskopioi tietokanta lukituksen avauksen yhteydessä"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:68
-msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/passwordsafe/backups"
-msgstr ""
-"Jos tietokannan tallennuksen yhteydessä tapahtuu virhe, varmuuskopio löytyy "
-"polusta ~/.cache/passwordsafe/backups"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:72
-msgid "Sorting order of groups and entries"
-msgstr "Ryhmien ja tietueiden lajittelujärjestys"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:73
-msgid "Order of the rows in the groups and entries view."
-msgstr "Rivien järjestys ryhmien ja tietueiden näkymässä."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:77
-msgid "Use uppercases when generating a password"
-msgstr "Käytä isoja kirjaimia salasanaa luotaessa"
-
-# A-Z vai A-Ö - mikä on ohjelman rajoite käytetyissä aakkosissa?
-#: data/org.gnome.PasswordSafe.gschema.xml.in:78
-msgid "Use uppercase characters A-Z when generating a random password."
-msgstr "Käytä isoja kirjaimia A-Z kun luodaan satunnainen salasana."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:82
-msgid "Use lowercases when generating a password"
-msgstr "Käytä pieniä kirjaimia salasanaa luotaessa"
-
-# a-z vai a-ö - mikä on ohjelman rajoite käytetyissä aakkosissa?
-#: data/org.gnome.PasswordSafe.gschema.xml.in:83
-msgid "Use lowercase characters a-z when generating a random password."
-msgstr "Käytä pieniä kirjaimia a-z kun luodaan satunnainen salasana."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:87
-msgid "Use numbers when generating a password"
-msgstr "Käytä numeroita kun salasanaa luodaan"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:88
-msgid "Use numbers 0-9 characters when generating a random password."
-msgstr "Käytä numeroita 0-9 kun satunnaista salasanaa luodaan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:92
-msgid "Use symbols when generating a password"
-msgstr "Käytä symboleja salasanaa luotaessa"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:93
-msgid "Use non-alphanumeric ASCII symbols when generating a random password."
-msgstr ""
-"Käytä muita ASCII-symboleita kuin numeroita ja kirjaimia, kun luodaan "
-"satunnainen salasana."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:97
-msgid "Password length when generating a password"
-msgstr "Salasanan pituus kun salasanaa luodaan"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:98
-msgid "Number of single characters when generating a password."
-msgstr "Yksittäisten merkkien määrä kun salasanaa luodaan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:102
-msgid "Number of words when generating a passphrase"
-msgstr "Sanojen määrä kun tunnuslausetta luodaan"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:103 data/settings_dialog.ui:174
-msgid "Number of words to use when generating a passphrase."
-msgstr "Käytettävien sanojen määrä kun tunnuslausetta luodaan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:107
-msgid "Separator when generating a passphrase"
-msgstr "Erotin kun tunnuslausetta luodaan"
-
-#: data/org.gnome.PasswordSafe.gschema.xml.in:108 data/settings_dialog.ui:194
-msgid "Word separator to use when generating a passphrase."
-msgstr "Sanojen erotin kun tunnuslauseitta luodaan."
-
-#: data/org.gnome.PasswordSafe.metainfo.xml.in.in:5
-msgid "@NAME@"
-msgstr "@NAME@"
-
-#: data/org.gnome.PasswordSafe.metainfo.xml.in.in:12
-msgid ""
-"Password Safe is a password manager which makes use of the KeePass v.4 "
-"format. It integrates perfectly with the GNOME desktop and provides an easy "
-"and uncluttered interface for the management of password databases."
-msgstr ""
-"Salasanasäilö on salasanojen hallintasovellus, joka käyttää Keepass v.4 -"
-"tiedostomuotoa. Se yhdistyy Gnome-työpöydälle ja tarjoaa selkeän sekä "
-"helppokäyttöisen käyttöliittymän salasanatietokantojen hallintaan."
-
-#: data/org.gnome.PasswordSafe.metainfo.xml.in.in:163
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
-
-#: data/password_generator_popover.ui:35
-msgid "Length"
-msgstr "Pituus"
-
-#: data/password_generator_popover.ui:62
-msgid "Characters"
-msgstr "Merkit"
-
-#: data/password_generator_popover.ui:111
-msgid "Passphrase"
-msgstr "Tunnuslause"
-
-#: data/password_generator_popover.ui:119
-msgid "Words"
-msgstr "Sanat"
-
-#: data/password_generator_popover.ui:145 data/settings_dialog.ui:193
-msgid "Separator"
-msgstr "Erotin"
-
-#: data/password_generator_popover.ui:154
-msgid "Enter character here…"
-msgstr "Kirjoita merkki tähän…"
-
-#: data/recent_files_page.ui:28
-msgid "Recent Safes"
-msgstr "Viimeisimmät säilöt"
-
-#. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:7
-msgid "Unsaved Changes"
-msgstr "Tallentamattomia muutoksia"
-
-#. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:8
-msgid "Do you want to write all changes to the safe?"
-msgstr "Haluatko kirjoittaa kaikki muutokset säilöön?"
-
-#. _Discard all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:11
-msgid "_Quit Without Saving"
-msgstr "_Lopeta tallentamatta"
-
-#. _Cancel exiting the program
-#: data/save_dialog.ui:20
-msgid "_Don't Quit"
-msgstr "_Älä lopeta"
-
-#. _Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:26
-msgid "_Save and Quit"
-msgstr "_Tallenna ja lopeta"
-
-#: data/settings_dialog.ui:15
+#: data/gtk/settings_dialog.ui:16
 msgid "_Dark Theme"
 msgstr "_Tumma teema"
 
-#: data/settings_dialog.ui:16
+#: data/gtk/settings_dialog.ui:17
 msgid "Use dark GTK theme."
 msgstr "Käytä tummaa GTK-teemaa."
 
-#: data/settings_dialog.ui:29
+#: data/gtk/settings_dialog.ui:30
 msgid "_Hide First Start Screen"
 msgstr "Piilota _ensimmäisen käynnistyksen näkymä"
 
-#: data/settings_dialog.ui:30
+#: data/gtk/settings_dialog.ui:31
 msgid "Reopen last opened safe."
 msgstr "Avaa uudelleen viimeksi avattu säilö."
 
-#: data/settings_dialog.ui:45 passwordsafe/widgets/window.py:259
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
 msgid "Safe"
 msgstr "Säilö"
 
-#: data/settings_dialog.ui:48
+#: data/gtk/settings_dialog.ui:49
 msgid "_Save Automatically"
 msgstr "Tallenna _automaattisesti"
 
-#: data/settings_dialog.ui:49
+#: data/gtk/settings_dialog.ui:50
 msgid "Save every change automatically."
 msgstr "Tallenna jokainen muutos automaattisesti."
 
-#: data/settings_dialog.ui:64 data/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
 msgid "Unlock"
 msgstr "Avaa lukitus"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:67
+#: data/gtk/settings_dialog.ui:68
 msgid "Remember Composite _Key"
 msgstr "Muista _yhdistelmäavain"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:68
+#: data/gtk/settings_dialog.ui:69
 msgid "Remember last used composite key."
 msgstr "Muista viimeksi käytetty yhdistelmäavain."
 
-#: data/settings_dialog.ui:89
+#: data/gtk/settings_dialog.ui:90
 msgid "Password Generation"
 msgstr "Salasanan luonti"
 
-#: data/settings_dialog.ui:92
+#: data/gtk/settings_dialog.ui:93
 msgid "Password Length"
 msgstr "Salasanan pituus"
 
-#: data/settings_dialog.ui:93
+#: data/gtk/settings_dialog.ui:94
 msgid "Number of characters when generating a password."
 msgstr "Merkkien määrä kun salasanaa luodaan."
 
-#: data/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:113
 msgid "_Uppercase Characters"
 msgstr "_Isot merkit"
 
-#: data/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:114
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Käytä isoja merkkejä A-Z kun salasanaa luodaan."
 
-#: data/settings_dialog.ui:126
+#: data/gtk/settings_dialog.ui:127
 msgid "_Lowercase Characters"
 msgstr "_Pienet merkit"
 
-#: data/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Käytä pieniä kirjaimia a-z kun salasanaa luodaaan."
 
-#: data/settings_dialog.ui:140
+#: data/gtk/settings_dialog.ui:141
 msgid "_Numeric Characters"
 msgstr "_Numeeriset merkit"
 
-#: data/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:142
 msgid "Use numeric characters when generating a password."
 msgstr "Käytä numeerisia merkkejä kun salasanaa luodaan."
 
-#: data/settings_dialog.ui:154
+#: data/gtk/settings_dialog.ui:155
 msgid "_Special Characters"
 msgstr "_Erikoismerkit"
 
-#: data/settings_dialog.ui:155
+#: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Käytä ei-aakkosnumeerisia ASCII-symboleita kun salasanaa luodaan."
 
-#: data/settings_dialog.ui:170
+#: data/gtk/settings_dialog.ui:171
 msgid "Passphrase Generation"
 msgstr "Tunnuslauseen luonti"
 
-#: data/settings_dialog.ui:173
+#: data/gtk/settings_dialog.ui:174
 msgid "Passphrase Length"
 msgstr "Tunnuslauseen pituus"
 
-#: data/settings_dialog.ui:201
+#: data/gtk/settings_dialog.ui:175
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Number of words to use when generating a passphrase."
+msgstr "Käytettävien sanojen määrä kun tunnuslausetta luodaan."
+
+#: data/gtk/settings_dialog.ui:195
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "Sanojen erotin kun tunnuslauseitta luodaan."
+
+#: data/gtk/settings_dialog.ui:202
 msgid "Enter Character"
 msgstr "Anna merkki"
 
-#: data/settings_dialog.ui:213 data/settings_dialog.ui:216
+#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
 msgid "Security"
 msgstr "Turvallisuus"
 
-#: data/settings_dialog.ui:219
+#: data/gtk/settings_dialog.ui:221
 msgid "Safe Lock Timeout"
 msgstr "Säilön lukituksen viive"
 
-#: data/settings_dialog.ui:220
+#: data/gtk/settings_dialog.ui:222
 msgid "Lock safe on idle after X minutes."
 msgstr "Lukitse käyttämätön säilö X minuutin kuluttua."
 
-#: data/settings_dialog.ui:239
+#: data/gtk/settings_dialog.ui:241
 msgid "Clear Clipboard"
 msgstr "Tyhjennä leikepöytä"
 
-#: data/settings_dialog.ui:240
+#: data/gtk/settings_dialog.ui:242
 msgid "Clear clipboard after X seconds."
 msgstr "Tyhjennä leikepöytä X sekunnin kuluttua."
 
-#: data/settings_dialog.ui:259
+#: data/gtk/settings_dialog.ui:261
 msgid "Clear Recent List"
 msgstr "Tyhjennä viimeisimpien luettelo"
 
-#: data/settings_dialog.ui:260
+#: data/gtk/settings_dialog.ui:262
 msgid "Clear the recently opened safes list."
 msgstr "Tyhjennä viimeksi avattujen säilöjen luettelo."
 
-#: data/unlock_database.ui:7
+#: data/gtk/unlock_database.ui:7
 msgid "Unlock Safe"
 msgstr "Avaa säilön lukitus"
 
-#: data/unlocked_headerbar.ui:13
+#. Menubutton in headerbar for starting the safe creation process
+#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "_Uusi säilö"
+
+#: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
 msgstr "Uusi tietue tai ryhmä"
 
 #. Button tooltip in headerbar to open search page
-#: data/unlocked_headerbar.ui:25
+#: data/gtk/unlocked_headerbar.ui:24
 msgid "Search"
 msgstr "Haku"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_headerbar.ui:32
+#: data/gtk/unlocked_headerbar.ui:31
 msgid "Selection Mode"
 msgstr "Valintatila"
 
-#: data/unlocked_headerbar.ui:57
+#: data/gtk/unlocked_headerbar.ui:53
 msgid "_Save"
 msgstr "_Tallenna"
 
-#: data/unlocked_headerbar.ui:63
+#: data/gtk/unlocked_headerbar.ui:59
 msgid "_Lock"
 msgstr "_Lukitse"
 
-#: data/unlocked_headerbar.ui:68
+#: data/gtk/unlocked_headerbar.ui:64
 msgid "So_rting"
 msgstr "_Järjestys"
 
 # Mikä on ohjelman rajoite käytetyissä aakkosissa - a-z vai a-ö?
-#: data/unlocked_headerbar.ui:70
+#: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
-#: data/unlocked_headerbar.ui:75
+#: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/unlocked_headerbar.ui:80
+#: data/gtk/unlocked_headerbar.ui:76
 msgid "_Newest First"
 msgstr "_Uusin ensin"
 
-#: data/unlocked_headerbar.ui:85
+#: data/gtk/unlocked_headerbar.ui:81
 msgid "_Oldest First"
 msgstr "_Vanhin ensin"
 
-#: data/unlocked_headerbar.ui:101
+#: data/gtk/unlocked_headerbar.ui:97
 msgid "Sa_fe Settings"
 msgstr "_Säilön asetukset"
 
-#: data/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:119
 msgid "New _Entry"
 msgstr "_Uusi tietue"
 
-#: data/unlocked_headerbar.ui:127
+#: data/gtk/unlocked_headerbar.ui:123
 msgid "New _Group"
 msgstr "Uusi _ryhmä"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/welcome_page.ui:24
-msgid "Secure Password Safe"
-msgstr "Turvallinen salasanasäilö"
+#: data/gtk/welcome_page.ui:24
+msgid "Secure Secrets"
+msgstr "Salatut salaisuudet"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/welcome_page.ui:35
+#: data/gtk/welcome_page.ui:35
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -1102,227 +904,442 @@ msgstr ""
 "Tallenna turvallisesti salasanasi, salaisuudet, muistiinpanot ja muut "
 "tiedot. <b>Luo</b> tai <b>tuo</b> Keepass-säilö."
 
-#: passwordsafe/application.py:48
+#. Translators: Secrets is the app name, do not translate
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Salaisuudet"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:5
+msgid "A password manager for GNOME"
+msgstr "Salasanojen hallintasovellus Gnomelle"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:14
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;encrypt;secure;"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Use dark GTK theme"
+msgstr "Käytä tummaa GTK-teemaa"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid ""
+"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+"theme has a dark variant."
+msgstr ""
+"Käytä GTK+-teeman tummaa versiota. Ota huomioon, ettei jokaisella GTK+-"
+"teemalla ole välttämättä tummaa versiota."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "Avaa uudelleen viimeksi avattu tietokanta"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Automaattisesti näytä viimeksi käytetyn tietokannan avausikkuna, muuten "
+"näytä tervetuloaikkuna."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "Tallenna jokainen muutos automaattisesti"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Tallenna jokainen muutos välittömästi tietokantaan. Ota huomioon, ettet voi "
+"kumota muutoksia, jos automaattinen tallennus on käytössä."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "Lukitse tietokanta X minuutin kuluttua"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Lukitse salasanatietokanta automaattisesti tietyn ajan jälkeen parantaaksesi "
+"tietoturvaa."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "Tyhjennä leikepöytä X sekunnin kuluttua"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "Salasanan kopioimisen jälkeen tyhjennä leikepöytä tietoturvasyistä."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "Ikkunan koko"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "Muista ikkunan koko."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened database"
+msgstr "Viimeksi avattu tietokanta"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "Path to the last opened database."
+msgstr "Polku viimeksi avattuun tietokantaan."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened databases"
+msgstr "Viimeksi avatut tietokannat"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "A list of the last opened databases."
+msgstr "Luettelo viimeksi avatuista tietokannoista."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Remember composite key"
+msgstr "Muista yhdistelmäavain"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Remember last used composite key for database unlocking."
+msgstr "Muista viimeksi käytetty yhdistelmäavain tietokannan avaamiseksi."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Last used composite key"
+msgstr "Viimeksi käytetty yhdistelmäavain"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid "Path to last used key for composite database unlocking."
+msgstr "Polku viimeksi käytetylle avaimelle yhdistelmätietokannan avaamiseksi."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Remember unlock method"
+msgstr "Muista lukituksen avaustapa"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid "Remember last used unlock method for future database unlocking."
+msgstr "Muista viimeksi käytetty avaustapa tuleville tietokannan avauksille."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Backup the database on unlock"
+msgstr "Varmuuskopioi tietokanta lukituksen avauksen yhteydessä"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/secrets/backups"
+msgstr ""
+"Jos tietokannan tallennuksen yhteydessä tapahtuu virhe, varmuuskopio löytyy "
+"polusta ~/.cache/secrets/backups"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Sorting order of groups and entries"
+msgstr "Ryhmien ja tietueiden lajittelujärjestys"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Order of the rows in the groups and entries view."
+msgstr "Rivien järjestys ryhmien ja tietueiden näkymässä."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use uppercases when generating a password"
+msgstr "Käytä isoja kirjaimia salasanaa luotaessa"
+
+# A-Z vai A-Ö - mikä on ohjelman rajoite käytetyissä aakkosissa?
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Käytä isoja kirjaimia A-Z kun luodaan satunnainen salasana."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use lowercases when generating a password"
+msgstr "Käytä pieniä kirjaimia salasanaa luotaessa"
+
+# a-z vai a-ö - mikä on ohjelman rajoite käytetyissä aakkosissa?
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Käytä pieniä kirjaimia a-z kun luodaan satunnainen salasana."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Use numbers when generating a password"
+msgstr "Käytä numeroita kun salasanaa luodaan"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Käytä numeroita 0-9 kun satunnaista salasanaa luodaan."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Use symbols when generating a password"
+msgstr "Käytä symboleja salasanaa luotaessa"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr ""
+"Käytä muita ASCII-symboleita kuin numeroita ja kirjaimia, kun luodaan "
+"satunnainen salasana."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Password length when generating a password"
+msgstr "Salasanan pituus kun salasanaa luodaan"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Number of single characters when generating a password."
+msgstr "Yksittäisten merkkien määrä kun salasanaa luodaan."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Number of words when generating a passphrase"
+msgstr "Sanojen määrä kun tunnuslausetta luodaan"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
+msgid "Separator when generating a passphrase"
+msgstr "Erotin kun tunnuslausetta luodaan"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"Salaisuudet on salasanojen hallintasovellus, joka käyttää Keepass v.4 -"
+"tiedostomuotoa. Se yhdistyy Gnome-työpöydälle ja tarjoaa selkeän sekä "
+"helppokäyttöisen käyttöliittymän salasanatietokantojen hallintaan."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:179
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#: gsecrets/application.py:52
 msgid "Error: File {} does not exist"
 msgstr "Virhe: Tiedostoa {} ei ole olemassa"
 
-#: passwordsafe/application.py:53
+#: gsecrets/application.py:57
 msgid "Error: Safe {} is already open"
 msgstr "Virhe: Säilö {} on jo avoinna"
 
-#: passwordsafe/attachment_warning_dialog.py:66
+#: gsecrets/attachment_warning_dialog.py:66
 msgid "Could not Load Attachment"
 msgstr "Liitettä ei voitu ladata"
 
-#: passwordsafe/create_database.py:132
+#: gsecrets/create_database.py:130
 msgid "Passwords do not Match"
 msgstr "Salasanat eivät täsmää"
 
-#: passwordsafe/create_database.py:160
+#: gsecrets/create_database.py:158
 msgid "Generating…"
 msgstr "Luodaan…"
 
-#: passwordsafe/create_database.py:173
+#: gsecrets/create_database.py:171
 msgid "Could not Create Keyfile"
 msgstr "Avaintiedostoa ei voitu luoda"
 
-#: passwordsafe/create_database.py:175
+#: gsecrets/create_database.py:173
 msgid "Generate"
 msgstr "Luo"
 
-#: passwordsafe/database_manager.py:122
+#: gsecrets/database_manager.py:122
 msgid "Clone"
 msgstr "Kaksoiskappale"
 
-#: passwordsafe/entry_page.py:236 passwordsafe/entry_page.py:373
-#: passwordsafe/entry_row.py:112
+#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
+#: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Käyttäjätunnus kopioitu"
 
-#: passwordsafe/entry_page.py:277
+#: gsecrets/entry_page.py:274
 msgid "One-time Password Copied"
 msgstr "Kertakäyttösalasana kopioitu"
 
-#: passwordsafe/entry_page.py:298
-#: passwordsafe/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Attribuuttiavain on jo olemassa"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:326
+#: gsecrets/entry_page.py:323
 msgid "Select Attachment"
 msgstr "Valitse liite"
 
-#: passwordsafe/entry_page.py:329
+#: gsecrets/entry_page.py:326
 msgid "_Add"
 msgstr "_Lisää"
 
-#: passwordsafe/entry_row.py:105 passwordsafe/password_entry_row.py:67
+#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
 msgid "Password Copied"
 msgstr "Salasana kopioitu"
 
-#: passwordsafe/entry_row.py:124 passwordsafe/group_row.py:98
+#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
 msgid "Title not Specified"
 msgstr "Otsikkoa ei ole määritetty"
 
-#: passwordsafe/entry_row.py:135
+#: gsecrets/entry_row.py:135
 msgid "Username not specified"
 msgstr "Käyttäjätunnusta ei ole määritetty"
 
-#: passwordsafe/unlock_database.py:79
+#: gsecrets/unlock_database.py:78
 msgid "Select Keyfile"
 msgstr "Luo avaintiedosto"
 
-#: passwordsafe/unlock_database.py:152
+#: gsecrets/unlock_database.py:153
 msgid "Safe {} is Already Open"
 msgstr "Säilö {} on jo avoinna"
 
-#: passwordsafe/unlock_database.py:230
+#: gsecrets/unlock_database.py:231
 msgid "The kdb Format is not Supported"
 msgstr "Kdb-muoto ei ole tuettu"
 
-#: passwordsafe/unlock_database.py:288
+#: gsecrets/unlock_database.py:287
 msgid "Failed to Unlock Safe"
 msgstr "Säilön lukituksen avaaminen epäonnistui"
 
-#: passwordsafe/unlock_database.py:299
+#: gsecrets/unlock_database.py:298
 msgid "_Try Again"
 msgstr "_Yritä uudelleen"
 
-#: passwordsafe/unlock_database.py:304
+#: gsecrets/unlock_database.py:303
 msgid "_Select Keyfile"
 msgstr "_Valitse avaintiedosto"
 
-#: passwordsafe/unlocked_database.py:273
+#: gsecrets/unlocked_database.py:277
 msgid "Safe Saved"
 msgstr "Säilö tallennettu"
 
-#: passwordsafe/unlocked_database.py:275
+#: gsecrets/unlocked_database.py:279
 msgid "Could not Save Safe"
 msgstr "Säilöä ei voitu tallentaa"
 
-#: passwordsafe/unlocked_database.py:284
+#: gsecrets/unlocked_database.py:289
 msgid "Please Wait. Another Save is Running."
 msgstr "Odota, toinen tallennus on meneillään."
 
-#. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:288
+#. NOTE: In-app notification to inform the user that no save
+#. is necessary because there where no changes made
+#: gsecrets/unlocked_database.py:294
 msgid "No Changes Made"
 msgstr "Muutoksia ei tehty"
 
-#: passwordsafe/unlocked_database.py:327
+#: gsecrets/unlocked_database.py:333
 msgid "Copied"
 msgstr "Kopioitu"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:396
+#: gsecrets/unlocked_database.py:400
 msgid "Safe Locked due to Inactivity"
 msgstr "Säilö on lukittu toimettomuuden vuoksi"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
 msgstr "Tallenna liite"
 
-#: passwordsafe/widgets/attachment_entry_row.py:64
+#: gsecrets/widgets/attachment_entry_row.py:64
 msgid "Could not Store Attachment"
 msgstr "Liitettä ei voitu tallettaa"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/widgets/database_settings_dialog.py:133
+#: gsecrets/widgets/database_settings_dialog.py:129
 msgid "Select Current Keyfile"
 msgstr "Valitse nykyinen avaintiedosto"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: passwordsafe/widgets/database_settings_dialog.py:319
-#: passwordsafe/widgets/database_settings_dialog.py:333
+#: gsecrets/widgets/database_settings_dialog.py:317
+#: gsecrets/widgets/database_settings_dialog.py:331
 msgid "Unknown"
 msgstr "Tuntematon"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:323
+#: gsecrets/widgets/database_settings_dialog.py:321
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:326
+#: gsecrets/widgets/database_settings_dialog.py:324
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:329
+#: gsecrets/widgets/database_settings_dialog.py:327
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:337
+#: gsecrets/widgets/database_settings_dialog.py:335
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: passwordsafe/widgets/database_settings_dialog.py:340
+#: gsecrets/widgets/database_settings_dialog.py:338
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
-#: passwordsafe/widgets/expiration_date_row.py:55
-#: passwordsafe/widgets/expiration_date_row.py:61
+#: gsecrets/widgets/expiration_date_row.py:56
+#: gsecrets/widgets/expiration_date_row.py:62
 msgid "Entry expired"
 msgstr "Tietue on vanhentunut"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:72
-#| msgid "{} Selected entry"
-#| msgid_plural "{} Selected entries"
+#: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
 msgstr[0] "{} _valittu"
 msgstr[1] "{} _valittu"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:98
+#: gsecrets/widgets/selection_mode_headerbar.py:98
 msgid "Operation Aborted: Deleting Currently Active Group"
 msgstr "Toimenpide peruttu: poistetaan parhaillaan aktiivista ryhmää"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:114
+#: gsecrets/widgets/selection_mode_headerbar.py:114
 msgid "Deletion Completed"
 msgstr "Poisto valmistui"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:151
+#: gsecrets/widgets/selection_mode_headerbar.py:151
 msgid "Operation Aborted: Moving Currently Active Group"
 msgstr "Toimenpide peruttu: siirretään parhaillaan aktiivinen ryhmä"
 
-#: passwordsafe/widgets/selection_mode_headerbar.py:169
+#: gsecrets/widgets/selection_mode_headerbar.py:169
 msgid "Move Completed"
 msgstr "Siirto valmistui"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/widgets/window.py:157
+#: gsecrets/widgets/window.py:147
 msgid "Select Safe"
 msgstr "Valitse säilö"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/widgets/window.py:168 passwordsafe/widgets/window.py:264
+#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 -tietokanta"
 
-#: passwordsafe/widgets/window.py:173
+#: gsecrets/widgets/window.py:163
 msgid "Any file type"
 msgstr "Mikä tahansa tiedostotyyppi"
 
-#: passwordsafe/widgets/window.py:232
+#: gsecrets/widgets/window.py:222
 msgid "Safe is Already Open"
 msgstr "Säilö on jo avoinna"
 
-#: passwordsafe/widgets/window.py:256
+#: gsecrets/widgets/window.py:246
 msgid "_Create"
 msgstr "_Luo"
 
-#: passwordsafe/widgets/window.py:287
+#: gsecrets/widgets/window.py:277
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Säilöä ei voi luoda: Säilö on jo avoinna"
 
-#: passwordsafe/widgets/window.py:343
+#: gsecrets/widgets/window.py:333
 msgid "Could not Create new Safe"
 msgstr "Uutta säilöä ei voitu luoda"
+
+#~ msgid "Password Safe"
+#~ msgstr "Salasanasäilö"
+
+#~ msgid "_About Password Safe"
+#~ msgstr "Tietoja - Salasanasäil_ö"
+
+#~ msgid "Secure Password Safe"
+#~ msgstr "Turvallinen salasanasäilö"
 
 #~ msgid "Click on a Checkbox to Select"
 #~ msgstr "Napsauta valintaruutua valitaksesi"
@@ -1460,9 +1477,6 @@ msgstr "Uutta säilöä ei voitu luoda"
 
 #~ msgid "Choose current keyfile"
 #~ msgstr "Valitse nykyinen avaintiedosto"
-
-#~ msgid "_Open"
-#~ msgstr "_Avaa"
 
 #~ msgid "Apply…"
 #~ msgstr "Toteuta…"

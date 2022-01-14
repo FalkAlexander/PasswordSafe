@@ -4,7 +4,7 @@ from __future__ import annotations
 import typing
 from gettext import gettext as _
 
-from gi.repository import Adw, GObject, Gtk
+from gi.repository import Adw, GLib, GObject, Gtk
 
 from gsecrets.safe_element import EntryColor
 
@@ -115,7 +115,7 @@ class EntryRow(Adw.ActionRow):
     def _on_entry_name_changed(
         self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
-        entry_name = self._safe_entry.props.name
+        entry_name = GLib.markup_escape_text(self._safe_entry.props.name)
         if entry_name:
             self.remove_css_class("italic-title")
             self.props.title = entry_name
@@ -126,7 +126,7 @@ class EntryRow(Adw.ActionRow):
     def _on_entry_username_changed(
         self, _safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
-        entry_username = self._safe_entry.props.username
+        entry_username = GLib.markup_escape_text(self._safe_entry.props.username)
         if entry_username:
             self.remove_css_class("italic-subtitle")
             self.props.subtitle = entry_username

@@ -4,7 +4,7 @@ from __future__ import annotations
 import typing
 from gettext import gettext as _
 
-from gi.repository import Adw, GObject, Gtk
+from gi.repository import Adw, GLib, GObject, Gtk
 
 from gsecrets.safe_element import SafeGroup
 
@@ -89,7 +89,7 @@ class GroupRow(Adw.ActionRow):
     def _on_group_name_changed(
         self, _safe_group: SafeGroup, _value: GObject.ParamSpec
     ) -> None:
-        group_name = self.safe_group.name
+        group_name = GLib.markup_escape_text(self.safe_group.name)
         if group_name:
             self.remove_css_class("italic-title")
             self.props.title = group_name

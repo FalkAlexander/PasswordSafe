@@ -155,27 +155,36 @@ class SafeElement(GObject.GObject):
         return self._element.path
 
     @property
-    def atime(self) -> GLib.DateTime:
+    def atime(self) -> GLib.DateTime | None:
         """The UTC accessed time of the element."""
         time = self._element.atime
+        if not time:
+            return None
+
         gtime = GLib.DateTime.new_utc(
             time.year, time.month, time.day, time.hour, time.minute, time.second
         )
         return gtime
 
     @property
-    def ctime(self) -> GLib.DateTime:
+    def ctime(self) -> GLib.DateTime | None:
         """The UTC creation time of the element."""
         time = self._element.ctime
+        if not time:
+            return None
+
         gtime = GLib.DateTime.new_utc(
             time.year, time.month, time.day, time.hour, time.minute, time.second
         )
         return gtime
 
     @property
-    def mtime(self) -> GLib.DateTime:
+    def mtime(self) -> GLib.DateTime | None:
         """The UTC modified time of the element."""
         time = self._element.mtime
+        if not time:
+            return None
+
         gtime = GLib.DateTime.new_utc(
             time.year, time.month, time.day, time.hour, time.minute, time.second
         )

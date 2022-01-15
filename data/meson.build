@@ -27,7 +27,7 @@ gnome.compile_resources(
 # Installing the schema file
 gschema_conf = configuration_data()
 gschema_conf.set('APP_ID', application_id)
-gschema_conf.set('GETTEXT_PACKAGE', meson.project_name())
+gschema_conf.set('GETTEXT_PACKAGE', gettext_package)
 configure_file(
     input: '@0@.gschema.xml.in'.format(project_id),
     output: '@0@.gschema.xml'.format(application_id),

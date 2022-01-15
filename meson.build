@@ -61,6 +61,7 @@ else
 endif
 
 top_source_dir = meson.current_source_dir()
+gettext_package = meson.project_name()
 
 subdir('data')
 subdir('po')

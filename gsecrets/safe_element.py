@@ -258,7 +258,10 @@ class SafeEntry(SafeElement):
 
         otp_uri = entry.get_custom_property("otp")
         if otp_uri:
-            self._otp = parse_uri(otp_uri)
+            try:
+                self._otp = parse_uri(otp_uri)
+            except ValueError as err:
+                logging.debug(err)
 
         # Check if the entry has expired every 10 minutes.
         GLib.timeout_add_seconds(600, self._is_expired)

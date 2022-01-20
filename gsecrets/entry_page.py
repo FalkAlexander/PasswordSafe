@@ -226,6 +226,11 @@ class EntryPage(Adw.Bin):
     #
 
     def _on_copy_action(self, action, _data=None):
+        # FIXME This is not a great solution. The action should be defined in
+        # such a way that it cannot be activated outside of the edit page.
+        if not self.unlocked_database.in_edit_page:
+            return
+
         if action.props.name == "entry.copy_user":
             username = self.username_property_value_entry.get_text()
             self.unlocked_database.send_to_clipboard(

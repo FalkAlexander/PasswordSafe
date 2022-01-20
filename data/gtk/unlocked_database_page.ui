@@ -3,30 +3,35 @@
   <template class="UnlockedDatabasePage" parent="AdwBin">
     <property name="vexpand">True</property>
     <property name="child">
-      <object class="GtkScrolledWindow">
+      <object class="GtkStack" id="stack">
         <child>
-          <object class="GtkStack" id="stack">
+          <object class="GtkScrolledWindow" id="scrolled_window">
             <child>
-              <object class="AdwClamp" id="clamp">
+              <object class="GtkViewport">
+                <property name="scroll_to_focus">True</property>
                 <child>
-                  <object class="GtkListBox" id="list_box">
-                    <property name="name">BrowserListBox</property>
-                    <property name="selection_mode">none</property>
-                    <property name="valign">start</property>
-                    <style>
-                      <class name="boxed-list"/>
-                    </style>
+                  <object class="AdwClamp" id="clamp">
+                    <child>
+                      <object class="GtkListBox" id="list_box">
+                        <property name="name">BrowserListBox</property>
+                        <property name="selection_mode">none</property>
+                        <property name="valign">start</property>
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
             </child>
-            <child>
-              <object class="AdwStatusPage" id="empty_group_box">
-                <property name="icon_name">folder-symbolic</property>
-                <property name="description" translatable="true">Add elements with the ➕ button.</property>
-                <property name="title" translatable="true">Empty Group</property>
-              </object>
-            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwStatusPage" id="empty_group_box">
+            <property name="icon_name">folder-symbolic</property>
+            <property name="description" translatable="true">Add elements with the ➕ button.</property>
+            <property name="title" translatable="true">Empty Group</property>
           </object>
         </child>
       </object>

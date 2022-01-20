@@ -22,9 +22,9 @@ class UnlockedDatabasePage(Adw.Bin):
 
     __gtype_name__ = "UnlockedDatabasePage"
 
-    clamp = Gtk.Template.Child()
-    list_box = Gtk.Template.Child()
     empty_group_box = Gtk.Template.Child()
+    list_box = Gtk.Template.Child()
+    scrolled_window = Gtk.Template.Child()
     stack = Gtk.Template.Child()
 
     def __init__(self, unlocked_database, group):
@@ -174,7 +174,7 @@ class UnlockedDatabasePage(Adw.Bin):
         if not listmodel.get_n_items():
             self.stack.set_visible_child(self.empty_group_box)
         else:
-            self.stack.set_visible_child(self.clamp)
+            self.stack.set_visible_child(self.scrolled_window)
 
     def populate_list_model(self) -> None:
         entries = self.group.entries

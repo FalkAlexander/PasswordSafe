@@ -5,6 +5,8 @@ project('secrets',
        )
 i18n = import('i18n')
 python = import('python')
+gnome = import('gnome')
+
 project_id = 'org.gnome.World.Secrets'
 project_name = 'Secrets'
 package_url = 'https://gitlab.gnome.org/World/secrets'
@@ -72,4 +74,8 @@ if get_option('tests')
     subdir('tests')
 endif
 
-meson.add_install_script('meson_post_install.py')
+gnome.post_install(
+  gtk_update_icon_cache: true,
+  glib_compile_schemas: true,
+  update_desktop_database: true,
+)

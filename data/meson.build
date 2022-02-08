@@ -1,5 +1,3 @@
-gnome = import('gnome')
-
 message('Compiling resources')
 
 about_conf = configuration_data()

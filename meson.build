@@ -1,6 +1,6 @@
 project('secrets',
         version: '6.2',
-        meson_version: '>= 0.51.0',
+        meson_version: '>= 0.59',
         license: 'GPL-3.0-only'
        )
 i18n = import('i18n')

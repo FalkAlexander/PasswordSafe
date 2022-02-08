@@ -4,7 +4,7 @@ conf.set('APPID', application_id)
 conf.set('GETTEXT_PACKAGE', meson.project_name())
 conf.set('LOCALE_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'locale'))
 conf.set('NAME', project_name)
-conf.set('PYTHON', python_bin.path())
+conf.set('PYTHON', python_bin.full_path())
 conf.set('DATA_DIR', DATA_DIR)
 conf.set('PROFILE', profile)
 conf.set('APPID', application_id)
@@ -18,7 +18,7 @@ configure_file(
 )
 
 main_conf = configuration_data()
-main_conf.set('PYTHON', python_bin.path())
+main_conf.set('PYTHON', python_bin.full_path())
 configure_file(
   input: 'main.py.in',
   output: 'secrets',

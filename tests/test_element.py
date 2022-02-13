@@ -59,7 +59,7 @@ def test_add_group(db_pwd):
 
     new_parent = db_pwd.db.groups[1]
     assert safe_group.parentgroup.element != new_parent
-    db_pwd.move_group(safe_group.group, new_parent)
+    safe_group.move_to(SafeGroup(db_pwd, new_parent))
     assert safe_group.parentgroup.element == new_parent
     assert safe_group.path == [new_parent.name, new_group_name]
 
@@ -119,7 +119,7 @@ def test_add_entry(db_pwd):
 
     new_parent = db_pwd.db.groups[1]
     assert safe_entry.parentgroup.element != new_parent
-    db_pwd.move_entry(safe_entry.uuid, new_parent)
+    safe_entry.move_to(SafeGroup(db_pwd, new_parent))
     assert safe_entry.parentgroup.element == new_parent
     assert safe_entry.path == [new_parent.name, new_entry_name]
 

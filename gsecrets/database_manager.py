@@ -195,47 +195,6 @@ class DatabaseManager(GObject.GObject):
         self.is_dirty = True
 
     #
-    # Entry Modifications
-    #
-
-    # Move an entry to another group
-    def move_entry(self, uuid, destination_group_object):
-        entry = self.db.find_entries(uuid=uuid, first=True)
-        # pylint: disable=no-member
-        old_location = entry.parentgroup.uuid
-        new_location = destination_group_object.uuid
-
-        if old_location == new_location:
-            return
-
-        # TODO: we will crash if uuid does not exist
-        self.db.move_entry(entry, destination_group_object)
-        # pylint: disable=no-member
-        if entry.parentgroup:
-            entry.parentgroup.touch(modify=True)
-        destination_group_object.touch(modify=True)
-
-        safe_entry = SafeEntry(self, entry)
-
-        self.emit("element-moved", safe_entry, old_location, new_location)
-
-    # Move an group
-    def move_group(self, group: Group, dest_group: Group) -> None:
-        old_location = group.parentgroup.uuid
-        new_location = dest_group.uuid
-
-        if old_location == new_location:
-            return
-
-        self.db.move_group(group, dest_group)
-        if group.parentgroup is not None:
-            group.parentgroup.touch(modify=True)
-        dest_group.touch(modify=True)
-
-        safe_group = SafeGroup(self, group)
-        self.emit("element-moved", safe_group, old_location, new_location)
-
-    #
     # Read Database
     #
 

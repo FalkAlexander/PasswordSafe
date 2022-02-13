@@ -153,18 +153,15 @@ class SelectionModeHeaderbar(Adw.Bin):
                 self._clear_all()
                 return
 
+        current_element = self.unlocked_database.current_element
+
         for entry_row in self.entries_cut:
             safe_entry = entry_row.safe_entry
-            self.unlocked_database.database_manager.move_entry(
-                safe_entry.uuid, self.unlocked_database.current_element.group
-            )
+            safe_entry.move_to(current_element)
 
         for group_row in self.groups_cut:
-            group = group_row.safe_group.group
-            current_element = self.unlocked_database.current_element
-            self.unlocked_database.database_manager.move_group(
-                group, current_element.element
-            )
+            safe_group = group_row.safe_group
+            safe_group.move_to(current_element)
 
         self.unlocked_database.window.send_notification(_("Move Completed"))
         self._clear_all()

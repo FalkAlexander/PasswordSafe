@@ -88,6 +88,25 @@ class SafeElement(GObject.GObject):
         parentgroup.updated()
         self._db_manager.emit("element-removed", uuid)
 
+    def move_to(self, dest: SafeGroup) -> None:
+        old_location = self.parentgroup.uuid
+        new_location = dest.uuid
+
+        if self.parentgroup == dest:
+            return
+
+        # TODO: we will crash if uuid does not exist
+        if self.is_entry:
+            self._db_manager.db.move_entry(self._element, dest.group)
+        else:
+            self._db_manager.db.move_group(self._element, dest.group)
+
+        self.parentgroup.updated()
+        dest.updated()
+
+        # We use the UUIDs stored before moving the element.
+        self._db_manager.emit("element-moved", self, old_location, new_location)
+
     @property
     def element(self) -> Entry | Group:
         return self._element
@@ -203,25 +222,6 @@ class SafeElement(GObject.GObject):
             time.year, time.month, time.day, time.hour, time.minute, time.second
         )
         return gtime
-
-    def move_to(self, dest: SafeGroup) -> None:
-        old_location = self.parentgroup.uuid
-        new_location = dest.uuid
-
-        if self.parentgroup == dest:
-            return
-
-        # TODO: we will crash if uuid does not exist
-        if self.is_entry:
-            self._db_manager.db.move_entry(self._element, dest.group)
-        else:
-            self._db_manager.db.move_group(self._element, dest.group)
-
-        self.parentgroup.updated()
-        dest.updated()
-
-        # We use the UUIDs stored before moving the element.
-        self._db_manager.emit("element-moved", self, old_location, new_location)
 
 
 class SafeGroup(SafeElement):

@@ -268,5 +268,4 @@ class DatabaseManager(GObject.GObject):
         _old_location_uuid: UUID,
         _new_location_uuid: UUID,
     ) -> None:
-        self.is_dirty = True
         logging.debug("Element moved safe")

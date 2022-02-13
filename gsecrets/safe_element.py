@@ -203,8 +203,8 @@ class SafeElement(GObject.GObject):
         else:
             self._db_manager.db.move_group(self._element, dest.group)
 
-        self.parentgroup.touch(modify=True)
-        dest.touch(modify=True)
+        self.parentgroup.updated()
+        dest.updated()
 
         # We use the UUIDs stored before moving the element.
         self._db_manager.emit("element-moved", self, old_location, new_location)

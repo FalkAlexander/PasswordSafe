@@ -458,6 +458,13 @@ class Window(Adw.ApplicationWindow):
         action_db.start_database_lock_timer()
         name = action.props.name
 
+        # We don't want to allow actions if the db is locked.
+        # TODO Actions should be disabled instead.
+        if name == "db.lock":
+            action_db.lock_safe()
+        elif action_db.props.database_locked:
+            return
+
         if name == "element.delete":
             action_db.on_element_delete_action()
         elif name == "entry.duplicate":
@@ -472,8 +479,6 @@ class Window(Adw.ApplicationWindow):
             action_db.selection_mode_headerbar.on_selection_action(param)
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_safe()
-        elif name == "db.lock":
-            action_db.lock_safe()
         elif name == "go_back":
             action_db.go_back()
         elif name in ["db.add_entry", "db.add_group"]:

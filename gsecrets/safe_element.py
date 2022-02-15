@@ -166,6 +166,11 @@ class SafeElement(GObject.GObject):
         )
         return gtime
 
+    @GObject.Property(type=int, flags=GObject.ParamFlags.READABLE)
+    def unix_ctime(self):
+        time = self.ctime
+        time.to_unix()
+
     @property
     def ctime(self) -> GLib.DateTime | None:
         """The UTC creation time of the element."""

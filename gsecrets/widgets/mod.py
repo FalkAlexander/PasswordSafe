@@ -15,6 +15,7 @@ from gsecrets.widgets.preferences_row import PreferencesRow
 from gsecrets.widgets.progress_icon import ProgressIcon
 from gsecrets.widgets.recent_files_headerbar import RecentFilesHeaderbar
 from gsecrets.widgets.unlock_database_headerbar import UnlockDatabaseHeaderbar
+from gsecrets.safe_element import SafeElement
 
 
 def load_widgets():
@@ -30,3 +31,4 @@ def load_widgets():
     GObject.type_ensure(ProgressIcon)
     GObject.type_ensure(RecentFilesHeaderbar)
     GObject.type_ensure(UnlockDatabaseHeaderbar)
+    GObject.type_ensure(SafeElement)

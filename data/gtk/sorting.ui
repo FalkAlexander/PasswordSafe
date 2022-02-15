@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkStringSorter" id="asc_sort">
+    <property name="expression">
+      <lookup name="name" type="SafeElement"/>
+    </property>
+  </object>
+  <object class="GtkNumericSorter" id="ctime_sort">
+    <property name="expression">
+      <lookup name="unix_ctime" type="SafeElement"/>
+    </property>
+  </object>
+</interface>

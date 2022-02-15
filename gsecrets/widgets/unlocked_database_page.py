@@ -31,6 +31,7 @@ class UnlockedDatabasePage(Adw.Bin):
         super().__init__()
 
         self.list_model = Gio.ListStore.new(SafeElement)
+        self.sort_model = Gtk.SortListModel.new(self.list_model)
         self.unlocked_database = unlocked_database
         self.group = group
 
@@ -49,7 +50,7 @@ class UnlockedDatabasePage(Adw.Bin):
         unlocked_database.selection_mode_headerbar.connect(
             "clear-selection", self._on_clear_selection
         )
-        self.list_box.bind_model(self.list_model, unlocked_database.listbox_row_factory)
+        self.list_box.bind_model(self.sort_model, unlocked_database.listbox_row_factory)
         self.list_box.connect(
             "row-activated", unlocked_database.on_list_box_row_activated
         )
@@ -70,13 +71,11 @@ class UnlockedDatabasePage(Adw.Bin):
     def on_sort_order_changed(self, settings, key):
         """Callback to be executed when the sorting has been changed."""
         if key == "sort-order":
-            sorting = settings.get_enum("sort-order")
+            sorting = config.get_sort_order()
+            sorter = SortingHat.get_sorter(sorting)
             logging.debug("Sort order changed to %s", sorting)
 
-            sorting = config.get_sort_order()
-            sort_func = SortingHat.get_sort_func(sorting)
-
-            self.list_model.sort(sort_func)
+            self.sort_model.set_sorter(sorter)
 
     def _on_element_removed(
         self,
@@ -191,9 +190,9 @@ class UnlockedDatabasePage(Adw.Bin):
 
     def sort_list_model(self) -> None:
         sorting = config.get_sort_order()
-        sort_func = SortingHat.get_sort_func(sorting)
+        sorter = SortingHat.get_sorter(sorting)
 
-        self.list_model.sort(sort_func)
+        self.sort_model.set_sorter(sorter)
 
     def _on_clear_selection(self, _header: SelectionModeHeaderbar) -> None:
         for row in self.list_box:  # pylint: disable=not-an-iterable

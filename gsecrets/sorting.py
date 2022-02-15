@@ -6,7 +6,7 @@ from __future__ import annotations
 import typing
 from enum import IntEnum
 
-from gi.repository import GLib
+from gi.repository import GLib, Gtk
 
 from gsecrets.safe_element import SafeElement
 
@@ -22,10 +22,21 @@ class SortingHat:
 
     # will be set from just below the class
     sort_funcs: typing.Dict[SortOrder, typing.Callable] = {}
+    sorters: typing.Dict[SortOrder, Gtk.Sorter] = {}
+
+    builder = Gtk.Builder.new_from_resource(
+        "/org/gnome/World/Secrets/gtk/sorting.ui"
+    )
+    asc_sort = builder.get_object("asc_sort")
+    ctime_sort = builder.get_object("ctime_sort")
 
     @staticmethod
     def get_sort_func(order: SortOrder) -> typing.Callable:
         return SortingHat.sort_funcs[order]
+
+    @staticmethod
+    def get_sorter(order: SortOrder) -> Gtk.Sorter:
+        return SortingHat.sorters[order]
 
     @staticmethod
     def sort_by_name_asc(ele1: SafeElement, ele2: SafeElement) -> int:
@@ -77,4 +88,11 @@ SortingHat.sort_funcs = {
     SortingHat.SortOrder.DEC: SortingHat.sort_by_name_dec,
     SortingHat.SortOrder.CTIME_ASC: SortingHat.sort_by_ctime_asc,
     SortingHat.SortOrder.CTIME_DEC: SortingHat.sort_by_ctime_dec,
+}
+
+SortingHat.sorters = {
+    SortingHat.SortOrder.ASC: SortingHat.asc_sort,
+    SortingHat.SortOrder.DEC: SortingHat.asc_sort,
+    SortingHat.SortOrder.CTIME_ASC: SortingHat.ctime_sort,
+    SortingHat.SortOrder.CTIME_DEC: SortingHat.ctime_sort,
 }

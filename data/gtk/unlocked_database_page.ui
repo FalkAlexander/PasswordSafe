@@ -7,20 +7,15 @@
         <child>
           <object class="GtkScrolledWindow" id="scrolled_window">
             <child>
-              <object class="GtkViewport">
-                <property name="scroll_to_focus">True</property>
+              <object class="AdwClamp" id="clamp">
                 <child>
-                  <object class="AdwClamp" id="clamp">
-                    <child>
-                      <object class="GtkListBox" id="list_box">
-                        <property name="name">BrowserListBox</property>
-                        <property name="selection_mode">none</property>
-                        <property name="valign">start</property>
-                        <style>
-                          <class name="boxed-list"/>
-                        </style>
-                      </object>
-                    </child>
+                  <object class="GtkListBox" id="list_box">
+                    <property name="name">BrowserListBox</property>
+                    <property name="selection_mode">none</property>
+                    <property name="valign">start</property>
+                    <style>
+                      <class name="boxed-list"/>
+                    </style>
                   </object>
                 </child>
               </object>

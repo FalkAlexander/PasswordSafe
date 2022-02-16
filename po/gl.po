@@ -1,22 +1,22 @@
 # Galician translation for secrets.
 # Copyright (C) 2022 secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the secrets package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Fran Dieguez <frandieguez@gnome.org>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-01-07 18:55+0000\n"
-"PO-Revision-Date: 2022-01-08 00:50+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2022-02-13 10:38+0000\n"
+"PO-Revision-Date: 2022-01-08 01:11+0100\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Gtranslator\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -339,7 +339,7 @@ msgstr "Copiar"
 
 #: data/gtk/entry_page.ui:77
 msgid "One-_Time Password Secret"
-msgstr ""
+msgstr "Segredo do contrasinal de _uso único"
 
 #: data/gtk/entry_page.ui:97
 msgid "Could not Generate OTP Token"
@@ -606,7 +606,7 @@ msgstr "Sintaxe"
 
 #: data/gtk/references_dialog.ui:231
 msgid "The placeholder syntax for field references is the following:"
-msgstr ""
+msgstr "A sintaxe do marcador para as referencias de campo é a seguinte:"
 
 #: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
 msgid "Show Field Codes"
@@ -760,7 +760,7 @@ msgstr "Caracteres en _minúsculas"
 
 #: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
-msgstr ""
+msgstr "Uasr caracteres en minúsculas a-z ao xerar un contrasinal."
 
 #: data/gtk/settings_dialog.ui:141
 msgid "_Numeric Characters"
@@ -768,7 +768,7 @@ msgstr "Caracteres _numéricos"
 
 #: data/gtk/settings_dialog.ui:142
 msgid "Use numeric characters when generating a password."
-msgstr ""
+msgstr "Usar caracteres numéricos ao xerar un contrasinal."
 
 #: data/gtk/settings_dialog.ui:155
 msgid "_Special Characters"
@@ -776,7 +776,7 @@ msgstr "Caracteres _especiais"
 
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr ""
+msgstr "Usar símbolos ASCII non alfanuméricos ao xerar un contrasinal."
 
 #: data/gtk/settings_dialog.ui:171
 msgid "Passphrase Generation"
@@ -789,12 +789,12 @@ msgstr "Largo da frase de paso"
 #: data/gtk/settings_dialog.ui:175
 #: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
-msgstr ""
+msgstr "Número de palabras a usar cando se xera unha frase de paso."
 
 #: data/gtk/settings_dialog.ui:195
 #: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
-msgstr ""
+msgstr "Separador de palabras a usar ao xerar unha frase de paso."
 
 #: data/gtk/settings_dialog.ui:202
 msgid "Enter Character"
@@ -810,7 +810,7 @@ msgstr "Tempo de espera máximo de bloqueo da caixa forte"
 
 #: data/gtk/settings_dialog.ui:222
 msgid "Lock safe on idle after X minutes."
-msgstr ""
+msgstr "Bloquear a caixa forte cando non haxa actividade durante X minutos."
 
 #: data/gtk/settings_dialog.ui:241
 msgid "Clear Clipboard"
@@ -831,6 +831,10 @@ msgstr "Limpar a lista de caixas fortes abertas recentemente."
 #: data/gtk/unlock_database.ui:7
 msgid "Unlock Safe"
 msgstr "Desbloquear caixa forte"
+
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:303
+msgid "_Select Keyfile"
+msgstr "_Seleccionar ficheiro chave"
 
 #. Menubutton in headerbar for starting the safe creation process
 #: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
@@ -902,6 +906,8 @@ msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
+"Almacene de forma segura os seus contrasinais, notas e datos. <b>Cree</b> ou "
+"<b>importe</b> unha nova caixa forte Keepass."
 
 #. Translators: Secrets is the app name, do not translate
 #: data/org.gnome.World.Secrets.desktop.in.in:4
@@ -931,41 +937,48 @@ msgstr ""
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
-msgstr ""
+msgstr "Reabrir a última base de datos aberta"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
 msgstr ""
+"Abrir automáticamente a pantalla de desbloqueo da última base de datos "
+"aberta, en caso contrario mostrar a pantalla de benvida."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Save every change automatically"
-msgstr ""
+msgstr "Gardar cada cambio automaticamente"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:23
 msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
+"Gardar cada cambio que faga na base de datos instantáneamente. Teña en conta "
+"que non pode desfacer os cambios se o Autogardado está activo."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
-msgstr ""
+msgstr "Bloquear a base de datos despois de X minutos"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:28
 msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
 msgstr ""
+"Bloquea automaticamente a súa base de datos despois de certa cantidade de "
+"minutos para mellorar a seguranza."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Clear clipboard after X seconds"
-msgstr ""
+msgstr "Limpar portapapeis despois de X segundos"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr ""
+"Despois de copiar o contrasinal limpar o portapapeis por razóns de seguranza."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -998,6 +1011,7 @@ msgstr "Lembrar a chave composta"
 #: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
+"Lembrar a última chave composta usada para o desbloqueo de base de datos."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used composite key"
@@ -1005,7 +1019,7 @@ msgstr "Última chave composta usada"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Path to last used key for composite database unlocking."
-msgstr ""
+msgstr "Ruta á última chave usada para o desbloqueo composto da base de datos."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1014,72 +1028,77 @@ msgstr "Lembrar o método de desbloqueo"
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
+"Lembrar o último método de desbloqueo para futuros desbloqueos de bases de "
+"datos."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
-msgstr ""
+msgstr "Facer respaldo da base de datos ao desbloquear"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
 msgstr ""
+"Se se produce un erro ao gardar a base de datos pode atopar un respaldo en "
+"~/.cache/secrets/backups"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
-msgstr ""
+msgstr "Dirección de ordenación dos grupos e entrada"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
-msgstr ""
+msgstr "Ordenación das filas na vista de grupos e entradas."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
-msgstr ""
+msgstr "Usar maiúsculas ao xerar un contrasinal"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
-msgstr ""
+msgstr "Usar caracteres maiúsculas A-Z ao xerar un contrasinal aleatorio."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
-msgstr ""
+msgstr "Usar minúsculas ao xerar un contrasinal"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
-msgstr ""
+msgstr "Usar caracteres minúsculos a-z ao xerar un contrasinal aleatorio."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
-msgstr ""
+msgstr "Usar números ao xerar un contrasinal"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
-msgstr ""
+msgstr "Usar caracteres numéricos 0-9 ao xerar un contrasinal aleatorio."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
-msgstr ""
+msgstr "Usar símbolos ao xerar un contrasinal"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
+"Usar símbolos ASCII non alfanuméricos ao xerar un contrasinal aleatorio."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
-msgstr ""
+msgstr "O largo do contrasinal ao xerar un contrasinal"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
-msgstr ""
+msgstr "Número de caracteres únicos ao xerar un contrasinal."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
-msgstr ""
+msgstr "Número de palabras ao xerar unha frase de paso"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
-msgstr ""
+msgstr "Separador ao xerar unha frase de paso"
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
@@ -1091,18 +1110,21 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
+"Segredos é un xestor de contrasinais que fai uso do formado de KeePass v.4. "
+"Está integrado perfectamente co escritorio GNOME e fornece unha interface "
+"doada e ordenada para a xestión de bases de datos de contrasinais."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:179
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:184
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:52
 msgid "Error: File {} does not exist"
-msgstr ""
+msgstr "Erro: O ficheiro {} non existe"
 
 #: gsecrets/application.py:57
 msgid "Error: Safe {} is already open"
-msgstr ""
+msgstr "Erro: A caixa forte {} xa está aberta"
 
 #: gsecrets/attachment_warning_dialog.py:66
 msgid "Could not Load Attachment"
@@ -1128,25 +1150,25 @@ msgstr "Xerar"
 msgid "Clone"
 msgstr "Clonar"
 
-#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
+#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:375
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Nome de usuario copiado"
 
-#: gsecrets/entry_page.py:274
+#: gsecrets/entry_page.py:279
 msgid "One-time Password Copied"
 msgstr "Contrasinal de un só uso copiado"
 
-#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "A chave do atributo xa existe"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:323
+#: gsecrets/entry_page.py:328
 msgid "Select Attachment"
 msgstr "Seleccionar anexo"
 
-#: gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:331
 msgid "_Add"
 msgstr "_Engadir"
 
@@ -1182,10 +1204,6 @@ msgstr "Produciuse un fallo ao desbloquear a caixa forte"
 msgid "_Try Again"
 msgstr "_Tentar de novo"
 
-#: gsecrets/unlock_database.py:303
-msgid "_Select Keyfile"
-msgstr "_Seleccionar ficheiro chave"
-
 #: gsecrets/unlocked_database.py:277
 msgid "Safe Saved"
 msgstr "Caixa forte gardada"
@@ -1220,7 +1238,7 @@ msgstr "Anexo gardado"
 
 #: gsecrets/widgets/attachment_entry_row.py:64
 msgid "Could not Store Attachment"
-msgstr ""
+msgstr "Non é posíbel gardar o anexo"
 
 #. NOTE: Filechooser title for choosing current used keyfile
 #: gsecrets/widgets/database_settings_dialog.py:129
@@ -1272,7 +1290,7 @@ msgstr[1] "{} _Seleccionados"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
 msgid "Operation Aborted: Deleting Currently Active Group"
-msgstr ""
+msgstr "Operación abortada: Eliminar o grupo activo actualmente"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:114
 msgid "Deletion Completed"
@@ -1280,7 +1298,7 @@ msgstr "Eliminación completada"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:151
 msgid "Operation Aborted: Moving Currently Active Group"
-msgstr ""
+msgstr "Operación abortada: Movendo o grupo activo actualmente"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:169
 msgid "Move Completed"

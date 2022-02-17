@@ -6,7 +6,6 @@ import typing
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
-import gsecrets.config_manager as config
 from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
 from gsecrets.sorting import SortingHat
 
@@ -162,7 +161,7 @@ class Search(Adw.Bin):
         self._result_list.splice(0, n_items, results)
 
         # Sort the results
-        sorting = config.get_sort_order()
+        sorting = SortingHat.SortOrder.ASC
         sort_func = SortingHat.get_sort_func(sorting)
         self._result_list.sort(sort_func)
 

@@ -37,12 +37,12 @@ def db_pwd(path, password):
 
 
 def test_add_group(db_pwd):
-    nr_groups = len(db_pwd.db.groups)
-
     group_name = "a new group"
-    safe_group = db_pwd.add_group_to_database(
-        group_name, None, None, db_pwd.db.root_group)
-    assert len(db_pwd.db.groups) == nr_groups + 1
+    root_group = SafeGroup.get_root(db_pwd)
+    nr_groups = len(root_group.subgroups)
+
+    safe_group = root_group.new_subgroup(group_name, None, "")
+    assert len(root_group.subgroups) == nr_groups + 1
     assert db_pwd.is_dirty is True
     assert isinstance(safe_group, SafeGroup)
 
@@ -57,37 +57,38 @@ def test_add_group(db_pwd):
     assert safe_group.props.name == new_group_name
     assert safe_group.path == [new_group_name]
 
-    new_parent = db_pwd.db.groups[1]
-    assert safe_group.parentgroup.element != new_parent
-    safe_group.move_to(SafeGroup(db_pwd, new_parent))
-    assert safe_group.parentgroup.element == new_parent
+    new_parent = root_group.subgroups[0]
+    assert safe_group.parentgroup != new_parent
+    safe_group.move_to(new_parent)
+    assert safe_group.parentgroup == new_parent
     assert safe_group.path == [new_parent.name, new_group_name]
 
 
 def test_delete_group(db_pwd):
-    nr_groups = len(db_pwd.db.groups)
+    root_group = SafeGroup.get_root(db_pwd)
+
+    nr_groups = len(root_group.subgroups)
     assert nr_groups > 0
 
-    db_pwd.delete_from_database(db_pwd.db.groups[-1])
-    assert len(db_pwd.db.groups) == nr_groups - 1
+    safe_group = root_group.subgroups[-1]
+    safe_group.delete()
+    assert len(root_group.subgroups) == nr_groups - 1
 
-    tmp_group = db_pwd.add_group_to_database(
-        "tmp", None, None, db_pwd.db.root_group)
-    assert len(db_pwd.db.groups) == nr_groups
+    tmp_group = root_group.new_subgroup("tmp", None, "")
+    assert len(root_group.subgroups) == nr_groups
 
-    db_pwd.delete_from_database(tmp_group.element)
-    assert len(db_pwd.db.groups) == nr_groups - 1
+    tmp_group.delete()
+    assert len(root_group.subgroups) == nr_groups - 1
 
 
 def test_add_entry(db_pwd):
-    root_group = db_pwd.db.groups[0]
+    root_group = SafeGroup.get_root(db_pwd)
     nr_entries = len(root_group.entries)
 
     entry_name = "a new group"
     username = "username"
     password = "password"
-    safe_entry = db_pwd.add_entry_to_database(
-        root_group, entry_name, username, password)
+    safe_entry = root_group.new_entry(entry_name, username, password)
     assert len(root_group.entries) == nr_entries + 1
     assert isinstance(safe_entry, SafeEntry)
 
@@ -114,26 +115,27 @@ def test_add_entry(db_pwd):
     safe_entry.props.color = EntryColor.BLUE.value
     assert safe_entry.props.color == EntryColor.BLUE.value
 
-    db_pwd.duplicate_entry(safe_entry.element)
+    safe_entry.duplicate()
     assert len(root_group.entries) == nr_entries + 2
 
-    new_parent = db_pwd.db.groups[1]
-    assert safe_entry.parentgroup.element != new_parent
-    safe_entry.move_to(SafeGroup(db_pwd, new_parent))
-    assert safe_entry.parentgroup.element == new_parent
+    new_parent = root_group.subgroups[0]
+    assert safe_entry.parentgroup != new_parent
+    safe_entry.move_to(new_parent)
+    assert safe_entry.parentgroup == new_parent
     assert safe_entry.path == [new_parent.name, new_entry_name]
 
 
 def test_delete_entry(db_pwd):
-    root_group = db_pwd.db.groups[0]
+    root_group = SafeGroup.get_root(db_pwd)
     nr_entries = len(root_group.entries)
     assert nr_entries > 0
 
-    db_pwd.delete_from_database(root_group.entries[0])
+    first_entry = root_group.entries[0]
+    first_entry.delete()
     assert len(root_group.entries) == nr_entries - 1
 
-    tmp_entry = db_pwd.add_entry_to_database(root_group, "tmp")
+    tmp_entry = root_group.new_entry("tmp")
     assert len(root_group.entries) == nr_entries
 
-    db_pwd.delete_from_database(tmp_entry.element)
+    tmp_entry.delete()
     assert len(root_group.entries) == nr_entries - 1

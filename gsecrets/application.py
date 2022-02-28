@@ -110,7 +110,7 @@ class Application(Adw.Application):
         return -1
 
     def do_activate(self):  # pylint: disable=arguments-differ
-        Gio.Application.do_activate(self)
+        Adw.Application.do_activate(self)
 
         window = self.new_window()
         window.invoke_initial_screen()

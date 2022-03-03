@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-01-12 23:30+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2021-12-05 12:34+0000\n"
 "PO-Revision-Date: 2021-01-12 19:16+0100\n"
 "Last-Translator: Òscar Pérez del Campo <oscarpc@gmail.com>, 2020\n"
 "Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/"
@@ -43,7 +43,7 @@ msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
 msgstr ""
-"És possible que aplicacions externes creïn copies sense encriptar ocultes o "
+"És possible que aplicacions externes creïn copies sense xifrar ocultes o "
 "temporals d'aquest fitxer adjunt! Si us plau, continueu amb precaució."
 
 #. Discard all the changes which the user have made to his keepass safe
@@ -55,6 +55,44 @@ msgstr "_Enrere"
 #: data/attachment_warning_dialog.ui:21
 msgid "_Proceed"
 msgstr "_Continua"
+
+#: data/attribute_entry_row.ui:60
+msgid "Remove attribute"
+msgstr "Suprimeix un atribut"
+
+#: data/color_entry_row.ui:14
+msgid "Color"
+msgstr "Color"
+
+#. Application title in headerbar.
+#. Application name in the headerbar title
+#. Application title in headerbar.
+#: data/create_database_headerbar.ui:6 data/main_window.ui:17
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
+msgid "Password Safe"
+msgstr "Caixa forta de contrasenyes"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#: data/create_database_headerbar.ui:7
+msgid "Create Safe"
+msgstr "Crea una caixa forta"
+
+#: data/create_database_headerbar.ui:43 data/main_window.ui:119
+#: data/unlock_database.ui:16 data/unlocked_headerbar.ui:200
+msgid "_Preferences"
+msgstr "_Preferències"
+
+#: data/create_database_headerbar.ui:47 data/main_window.ui:123
+#: data/unlock_database.ui:20 data/unlocked_headerbar.ui:204
+msgid "_Keyboard Shortcuts"
+msgstr "_Dreceres de teclat"
+
+#. "Password Safe" is the application name
+#: data/create_database_headerbar.ui:51 data/main_window.ui:127
+#: data/unlock_database.ui:24 data/unlocked_headerbar.ui:208
+msgid "_About Password Safe"
+msgstr "_Quant al Caixa forta de contrasenyes"
 
 #: data/create_database.ui:34
 msgid "Protect your safe"
@@ -124,7 +162,7 @@ msgstr "Estableix un fitxer de claus per a la caixa forta"
 
 #. Button to generate a password
 #: data/create_database.ui:409 data/password_generator_popover.ui:189
-#: passwordsafe/create_database.py:125
+#: passwordsafe/create_database.py:126
 #: passwordsafe/database_settings_dialog.py:234
 msgid "_Generate"
 msgstr "_Genera"
@@ -135,43 +173,9 @@ msgstr "Caixa forta creada correctament"
 
 #. Menubutton in headerbar for starting the safe opening process (for existing safe)
 #: data/create_database.ui:457 data/unlock_database.ui:10
-#: data/unlocked_headerbar.ui:189
+#: data/unlocked_headerbar.ui:190
 msgid "_Open Safe"
 msgstr "_Obre la caixa forta"
-
-#. Application title in headerbar.
-#. Application name in the headerbar title
-#. Application title in headerbar.
-#: data/create_database_headerbar.ui:6 data/main_window.ui:17
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
-msgid "Password Safe"
-msgstr "Caixa forta de contrasenyes"
-
-#. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database_headerbar.ui:7
-msgid "Create Safe"
-msgstr "Crea una caixa forta"
-
-#: data/create_database_headerbar.ui:43 data/main_window.ui:119
-#: data/unlock_database.ui:16 data/unlocked_headerbar.ui:199
-msgid "_Preferences"
-msgstr "_Preferències"
-
-#: data/create_database_headerbar.ui:47 data/main_window.ui:123
-#: data/unlock_database.ui:20 data/unlocked_headerbar.ui:203
-msgid "_Keyboard Shortcuts"
-msgstr "_Dreceres de teclat"
-
-#. "Password Safe" is the application name
-#: data/create_database_headerbar.ui:51 data/main_window.ui:127
-#: data/unlock_database.ui:24 data/unlocked_headerbar.ui:207
-msgid "_About Password Safe"
-msgstr "_Quant al Caixa forta de contrasenyes"
-
-#: data/color_entry_row.ui:14
-msgid "Color"
-msgstr "Color"
 
 #: data/database_settings_dialog.ui:61
 msgid "Details"
@@ -198,128 +202,128 @@ msgstr "Versió del KeePass"
 msgid "Creation Date"
 msgstr "Data de creació"
 
-#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:725
+#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:728
 msgid "Encryption Algorithm"
-msgstr "Algorisme d'encriptació"
+msgstr "Algorisme de xifratge"
 
 #: data/database_settings_dialog.ui:196
 msgid "Derivation Algorithm"
 msgstr "Algorisme de derivació"
 
 #. Statistics
-#: data/database_settings_dialog.ui:296
+#: data/database_settings_dialog.ui:299
 msgid "Stats"
 msgstr "Estadístiques"
 
-#: data/database_settings_dialog.ui:316
+#: data/database_settings_dialog.ui:319
 msgid "Number of Groups"
 msgstr "Número de grups"
 
-#: data/database_settings_dialog.ui:333
+#: data/database_settings_dialog.ui:336
 msgid "Passwords"
 msgstr "Contrasenyes"
 
-#: data/database_settings_dialog.ui:350
+#: data/database_settings_dialog.ui:353
 msgid "Number of Entries"
 msgstr "Número d'entrades"
 
-#: data/database_settings_dialog.ui:406 data/settings_dialog.ui:11
+#: data/database_settings_dialog.ui:409 data/settings_dialog.ui:11
 #: data/settings_dialog.ui:15
 msgid "General"
 msgstr "General"
 
-#: data/database_settings_dialog.ui:426 data/password_generator_popover.ui:128
+#: data/database_settings_dialog.ui:429 data/password_generator_popover.ui:128
 #: data/references_dialog.ui:142 data/references_dialog.ui:232
-#: data/settings_dialog.ui:147 data/unlock_database.ui:174
+#: data/settings_dialog.ui:111 data/unlock_database.ui:174
 msgid "Password"
 msgstr "Contrasenya"
 
 #. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:443
+#: data/database_settings_dialog.ui:446
 msgid "_New"
 msgstr "_Nova"
 
-#: data/database_settings_dialog.ui:464 data/database_settings_dialog.ui:465
+#: data/database_settings_dialog.ui:467 data/database_settings_dialog.ui:468
 msgid "Generate Password"
 msgstr "Genera una contrasenya"
 
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:478
+#: data/database_settings_dialog.ui:481
 msgid "C_onfirm"
 msgstr "C_onfirma"
 
 #. Current password
-#: data/database_settings_dialog.ui:510
+#: data/database_settings_dialog.ui:513
 msgid "_Current"
 msgstr "A_ctual"
 
-#: data/database_settings_dialog.ui:559 data/unlock_database.ui:275
+#: data/database_settings_dialog.ui:562 data/unlock_database.ui:275
 #: passwordsafe/database_settings_dialog.py:187
 #: passwordsafe/database_settings_dialog.py:235
 #: passwordsafe/database_settings_dialog.py:239
-#: passwordsafe/unlock_database.py:29
+#: passwordsafe/unlock_database.py:31
 msgid "Keyfile"
 msgstr "Fitxer de claus"
 
-#: data/database_settings_dialog.ui:602
+#: data/database_settings_dialog.ui:605
 msgid "_Select current keyfile"
 msgstr "_Selecciona el fitxer de claus actual"
 
-#: data/database_settings_dialog.ui:660
+#: data/database_settings_dialog.ui:663
 msgid "_Generate new keyfile"
 msgstr "_Genera un nou fitxer de claus"
 
-#: data/database_settings_dialog.ui:680
+#: data/database_settings_dialog.ui:683
 msgid "_Apply Changes"
 msgstr "_Aplica els canvis"
 
-#: data/database_settings_dialog.ui:697
+#: data/database_settings_dialog.ui:700
 msgid "Authentication"
 msgstr "Autenticació"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:751
+#: data/database_settings_dialog.ui:754
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-bit"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:768
+#: data/database_settings_dialog.ui:771
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-bit"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:785
+#: data/database_settings_dialog.ui:788
 msgid "AES: 256-bit"
 msgstr "AES: 256-bit"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:802
+#: data/database_settings_dialog.ui:805
 msgid "Key Derivation Function"
 msgstr "Funció de derivació de claus"
 
-#: data/database_settings_dialog.ui:856
-#: passwordsafe/database_settings_dialog.py:353
-#: passwordsafe/database_settings_dialog.py:375
+#: data/database_settings_dialog.ui:859
+#: passwordsafe/database_settings_dialog.py:357
+#: passwordsafe/database_settings_dialog.py:379
 msgid "Apply Changes"
 msgstr "Aplica els canvis"
 
-#: data/entry_page.ui:28 data/group_page.ui:26
+#: data/entry_page.ui:28 data/group_page.ui:27
 msgid "_Title"
 msgstr "_Títol"
 
-#: data/entry_page.ui:55
+#: data/entry_page.ui:54
 msgid "_Username"
 msgstr "Nom d'_usuari"
 
-#: data/entry_page.ui:94
+#: data/entry_page.ui:92
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/entry_page.ui:131 data/group_page.ui:56
+#: data/entry_page.ui:129 data/group_page.ui:61
 msgid "_Notes"
 msgstr "_Notes"
 
-#: data/entry_page.ui:198
+#: data/entry_page.ui:196
 msgid "Icon"
 msgstr "Icona"
 
@@ -347,13 +351,93 @@ msgstr "Valor"
 msgid "Add attribute"
 msgstr "Afegeix un atribut"
 
-#: data/entry_row.ui:99
+#: data/entry_row.ui:93
 msgid "Copy username to clipboard"
 msgstr "Copia el nom d'usuari al porta-retalls"
 
-#: data/entry_row.ui:115
+#: data/entry_row.ui:108
 msgid "Copy password to clipboard"
 msgstr "Copia la contrasenya al porta-retalls"
+
+#: data/gtk/help-overlay.ui:13
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Aplicació"
+
+#: data/gtk/help-overlay.ui:17
+msgctxt "Shortcut window description"
+msgid "Create safe"
+msgstr "Crea una caixa forta"
+
+#: data/gtk/help-overlay.ui:24
+msgctxt "Shortcut window description"
+msgid "Open safe"
+msgstr "Obre una caixa forta"
+
+#: data/gtk/help-overlay.ui:31
+msgctxt "Shortcut window description"
+msgid "Open preferences"
+msgstr "Obre les preferències"
+
+#: data/gtk/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Mostra les dreceres"
+
+#: data/gtk/help-overlay.ui:45
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Surt"
+
+#: data/gtk/help-overlay.ui:54
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Caixa forta"
+
+#: data/gtk/help-overlay.ui:58
+msgctxt "Shortcut window description"
+msgid "Lock safe"
+msgstr "Bloqueja la caixa forta"
+
+#: data/gtk/help-overlay.ui:65
+msgctxt "Shortcut window description"
+msgid "Save safe"
+msgstr "Desa la caixa forta"
+
+#: data/gtk/help-overlay.ui:72
+msgctxt "Shortcut window description"
+msgid "Open search"
+msgstr "Obre la cerca"
+
+#: data/gtk/help-overlay.ui:79
+msgctxt "Shortcut window description"
+msgid "Create entry"
+msgstr "Crea una nova entrada"
+
+#: data/gtk/help-overlay.ui:86
+msgctxt "Shortcut window description"
+msgid "Create group"
+msgstr "Crea un nou grup"
+
+#: data/gtk/help-overlay.ui:95
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Entrada"
+
+#: data/gtk/help-overlay.ui:99
+msgctxt "Shortcut window description"
+msgid "Copy password"
+msgstr "Copia la contrasenya"
+
+#: data/gtk/help-overlay.ui:106
+msgctxt "Shortcut window description"
+msgid "Copy username"
+msgstr "Copia el nom d'usuari"
+
+#: data/gtk/help-overlay.ui:113
+msgctxt "Shortcut window description"
+msgid "Go back"
+msgstr "Ves enrere"
 
 #: data/main_window.ui:25
 msgid "New…"
@@ -368,17 +452,16 @@ msgid "_Copy"
 msgstr "_Copia"
 
 #: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
-#, fuzzy
 msgid ""
-"Password Safe is a password manager which makes use of the Keepass v.4 "
+"Password Safe is a password manager which makes use of the KeePass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
 "and uncluttered interface for the management of password databases."
 msgstr ""
-"El Password Safe és un gestor de contrasenyes que usa el format del KeePass "
+"El Caixa forta de contrasenyes és un gestor de contrasenyes que usa el format del KeePass "
 "v.4. S'integra perfectament amb l'escriptori GNOME i proporciona una "
 "interfície fàcil i simple per a la gestió de bases de dades de contrasenyes."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:142
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:177
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -545,7 +628,7 @@ msgstr ""
 msgid "Use full-text search"
 msgstr "Utilitza la cerca de text complet"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:92 data/settings_dialog.ui:77
+#: data/org.gnome.PasswordSafe.gschema.xml:92
 msgid "Performs a search across all values of entries."
 msgstr "Realitza una cerca a tots els valors de les entrades."
 
@@ -553,7 +636,7 @@ msgstr "Realitza una cerca a tots els valors de les entrades."
 msgid "Current group search"
 msgstr "Cerca al grup actual"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:97 data/settings_dialog.ui:92
+#: data/org.gnome.PasswordSafe.gschema.xml:97
 msgid "Only search entries in the current group."
 msgstr "Cerca entrades només al grup actual."
 
@@ -597,7 +680,7 @@ msgstr ""
 msgid "Password length when generating a password"
 msgstr "Llargada de les contrasenyes generades"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:122 data/settings_dialog.ui:156
+#: data/org.gnome.PasswordSafe.gschema.xml:122
 msgid "Number of single characters when generating a password."
 msgstr "Nombre de caràcters en generar una contrasenya."
 
@@ -605,7 +688,7 @@ msgstr "Nombre de caràcters en generar una contrasenya."
 msgid "Number of words when generating a passphrase"
 msgstr "Nombre de paraules en generar una frase de contrasenya"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:239
+#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:203
 msgid "Number of words to use when generating a passphrase."
 msgstr "Nombre de paraules per a la frase de contrasenya."
 
@@ -613,7 +696,7 @@ msgstr "Nombre de paraules per a la frase de contrasenya."
 msgid "Separator when generating a passphrase"
 msgstr "Separador a usar en generar una frase de contrasenya"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:256
+#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:220
 msgid "Word separator to use when generating a passphrase."
 msgstr "Separador de paraules en generar una frase de contrasenya."
 
@@ -629,7 +712,7 @@ msgstr "Caràcters"
 msgid "Words"
 msgstr "Paraules"
 
-#: data/password_generator_popover.ui:165 data/settings_dialog.ui:255
+#: data/password_generator_popover.ui:165 data/settings_dialog.ui:219
 msgid "Separator"
 msgstr "Separador"
 
@@ -660,6 +743,28 @@ msgstr "Modificat"
 #: data/properties_dialog.ui:105
 msgid "Created"
 msgstr "Creat"
+
+#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:6
+msgid "Do you want to save all safes with unsaved changes?"
+msgstr "Voleu desar totes les caixes fortes amb canvis no desats?"
+
+#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:7
+msgid "Select the safes you want to save."
+msgstr "Seleccioneu les caixes fortes que vulgueu desar."
+
+#: data/quit_dialog.ui:42
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: data/quit_dialog.ui:49
+msgid "_Quit"
+msgstr "_Surt"
+
+#: data/recent_files_page.ui:37
+msgid "Recent Safes"
+msgstr "Caixes fortes recents"
 
 #: data/references_dialog.ui:20
 msgid "Code"
@@ -718,32 +823,6 @@ msgstr ""
 "Cada entrada té un identificador únic anomenant UUID. El podreu trobar a les "
 "propietats de l'entrada."
 
-#: data/search.ui:79
-msgid "No search results"
-msgstr "Sense resultats de la cerca"
-
-#: data/search.ui:117
-msgid "Enter search term"
-msgstr "Introduïu el terme de cerca"
-
-#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:6
-msgid "Do you want to save all safes with unsaved changes?"
-msgstr "Voleu desar totes les caixes fortes amb canvis no desats?"
-
-#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:7
-msgid "Select the safes you want to save."
-msgstr "Seleccioneu les caixes fortes que vulgueu desar."
-
-#: data/quit_dialog.ui:42
-msgid "_Cancel"
-msgstr "_Cancel·la"
-
-#: data/quit_dialog.ui:49
-msgid "_Quit"
-msgstr "_Surt"
-
 #. Dialog title which informs the user about unsaved changes.
 #: data/save_dialog.ui:7
 msgid "Unsaved Changes"
@@ -768,6 +847,14 @@ msgstr "_No surtis"
 #: data/save_dialog.ui:29
 msgid "_Save and Quit"
 msgstr "_Desa i surt"
+
+#: data/search.ui:70
+msgid "Enter search term"
+msgstr "Introduïu el terme de cerca"
+
+#: data/search.ui:104
+msgid "No search results"
+msgstr "Sense resultats de la cerca"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
 #: data/selection_ui.ui:12
@@ -799,7 +886,7 @@ msgstr "_No mostris la pantalla del primer inici"
 msgid "Reopen last opened safe."
 msgstr "Torna a obrir la darrera caixa forta."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:327
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
 msgid "Safe"
 msgstr "Caixa forta"
 
@@ -811,219 +898,124 @@ msgstr "_Desa automàticament"
 msgid "Save every change automatically."
 msgstr "Desa automàticament cada canvi."
 
-#. Button tooltip in headerbar to open search page
-#: data/settings_dialog.ui:72 data/unlocked_headerbar.ui:89
-msgid "Search"
-msgstr "Cerca"
-
-#: data/settings_dialog.ui:76
-msgid "_Full-Text Search"
-msgstr "_Cerca de text complet"
-
-#: data/settings_dialog.ui:91
-msgid "_Current Group Search"
-msgstr "Cerca al _grup actual"
-
-#: data/settings_dialog.ui:108 data/unlock_database.ui:155
-#: data/unlock_database.ui:253 data/unlock_database.ui:341
+#: data/settings_dialog.ui:72 data/unlock_database.ui:155
+#: data/unlock_database.ui:253 data/unlock_database.ui:342
 msgid "Unlock"
 msgstr "Desbloqueja"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:112
+#: data/settings_dialog.ui:76
 msgid "Remember Composite _Key"
 msgstr "Recorda la clau composta"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:113
+#: data/settings_dialog.ui:77
 msgid "Remember last used composite key."
 msgstr "Recorda la darrera clau composta usada."
 
 #. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:127
+#: data/settings_dialog.ui:91
 msgid "Remember _Unlock Method"
 msgstr "Recorda el mètode de _desbloqueig"
 
-#: data/settings_dialog.ui:128
+#: data/settings_dialog.ui:92
 msgid "Enable faster unlocking."
 msgstr "Activa el desbloqueig ràpid."
 
-#: data/settings_dialog.ui:151
+#: data/settings_dialog.ui:115
 msgid "Password Generation"
 msgstr "Generació de contrasenyes"
 
-#: data/settings_dialog.ui:155
+#: data/settings_dialog.ui:119
 msgid "Password Length"
 msgstr "Longitud de la contrasenya"
 
-#: data/settings_dialog.ui:172
+#: data/settings_dialog.ui:120
+msgid "Number of characters when generating a password."
+msgstr "Nombre de caràcters en generar una contrasenya."
+
+#: data/settings_dialog.ui:136
 msgid "_Uppercase Characters"
 msgstr "Caràcters en _majúscules"
 
-#: data/settings_dialog.ui:173
+#: data/settings_dialog.ui:137
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Utilitza caràcters en majúscules (A-Z) per a generar les contrasenyes."
 
-#: data/settings_dialog.ui:187
+#: data/settings_dialog.ui:151
 msgid "_Lowercase Characters"
 msgstr "Caràcters en m_inúscules"
 
-#: data/settings_dialog.ui:188
+#: data/settings_dialog.ui:152
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Utilitza caràcters en minúscules (a-z) per a generar les contrasenyes."
 
-#: data/settings_dialog.ui:202
+#: data/settings_dialog.ui:166
 msgid "_Numeric Characters"
 msgstr "Caràcters _numèrics"
 
-#: data/settings_dialog.ui:203
+#: data/settings_dialog.ui:167
 msgid "Use numeric characters when generating a password."
 msgstr "Utilitza caràcters numèrics per a generar les contrasenyes."
 
-#: data/settings_dialog.ui:217
+#: data/settings_dialog.ui:181
 msgid "_Special Characters"
 msgstr "Caràcters _especials"
 
-#: data/settings_dialog.ui:218
+#: data/settings_dialog.ui:182
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Utilitza caràcters ASCII no alfanumèrics per a generar contrasenyes."
 
-#: data/settings_dialog.ui:234
+#: data/settings_dialog.ui:198
 msgid "Passphrase Generation"
 msgstr "Generació de la frase de contrasenya"
 
-#: data/settings_dialog.ui:238
+#: data/settings_dialog.ui:202
 msgid "Passphrase Length"
 msgstr "Longitud de la frase de contrasenya"
 
-#: data/settings_dialog.ui:264
+#: data/settings_dialog.ui:228
 msgid "Enter Character"
 msgstr "Introdueix un caràcter"
 
-#: data/settings_dialog.ui:277 data/settings_dialog.ui:281
+#: data/settings_dialog.ui:241 data/settings_dialog.ui:245
 msgid "Security"
 msgstr "Seguretat"
 
-#: data/settings_dialog.ui:285
+#: data/settings_dialog.ui:249
 msgid "Safe Lock Timeout"
 msgstr "Temps de bloqueig de la caixa forta"
 
-#: data/settings_dialog.ui:286
+#: data/settings_dialog.ui:250
 msgid "Lock safe on idle after X minutes."
 msgstr "Bloqueja la caixa forta després de X minuts d'inactivitat."
 
-#: data/settings_dialog.ui:302
+#: data/settings_dialog.ui:266
 msgid "Clear Clipboard"
 msgstr "Neteja el porta-retalls"
 
-#: data/settings_dialog.ui:303
+#: data/settings_dialog.ui:267
 msgid "Clear clipboard after X seconds."
 msgstr "Neteja el porta-retalls després de X segons."
 
-#: data/settings_dialog.ui:319
+#: data/settings_dialog.ui:283
 msgid "_Show Password Fields"
 msgstr "_Mostra els camps de contrasenya"
 
-#: data/settings_dialog.ui:320
+#: data/settings_dialog.ui:284
 msgid "Display passwords in plain text."
 msgstr "Mostra les contrasenyes en text pla."
 
-#: data/settings_dialog.ui:334
+#: data/settings_dialog.ui:298
 msgid "Clear Recent List"
 msgstr "Buida la llista de recents"
 
-#: data/settings_dialog.ui:335
+#: data/settings_dialog.ui:299
 msgid "Clear the recently opened safes list."
 msgstr "Neteja la llista de les darreres caixes fortes obertes."
 
-#: data/shortcuts_overview.ui:13
-msgctxt "Shortcut window description"
-msgid "Application"
-msgstr "Aplicació"
-
-#: data/shortcuts_overview.ui:17
-msgctxt "Shortcut window description"
-msgid "Create safe"
-msgstr "Crea una caixa forta"
-
-#: data/shortcuts_overview.ui:24
-msgctxt "Shortcut window description"
-msgid "Open safe"
-msgstr "Obre una caixa forta"
-
-#: data/shortcuts_overview.ui:31
-msgctxt "Shortcut window description"
-msgid "Open preferences"
-msgstr "Obre les preferències"
-
-#: data/shortcuts_overview.ui:38
-#, fuzzy
-#| msgid "_Keyboard Shortcuts"
-msgctxt "shortcut window"
-msgid "Show Shortcuts"
-msgstr "_Dreceres de teclat"
-
-#: data/shortcuts_overview.ui:45
-msgctxt "Shortcut window description"
-msgid "Quit"
-msgstr "Surt"
-
-#: data/shortcuts_overview.ui:54
-msgctxt "Shortcut window description"
-msgid "Safe"
-msgstr "Caixa forta"
-
-#: data/shortcuts_overview.ui:58
-msgctxt "Shortcut window description"
-msgid "Lock safe"
-msgstr "Bloqueja la caixa forta"
-
-#: data/shortcuts_overview.ui:65
-msgctxt "Shortcut window description"
-msgid "Save safe"
-msgstr "Desa la caixa forta"
-
-#: data/shortcuts_overview.ui:72
-msgctxt "Shortcut window description"
-msgid "Open search"
-msgstr "Obre la cerca"
-
-#: data/shortcuts_overview.ui:79
-msgctxt "Shortcut window description"
-msgid "Create entry"
-msgstr "Crea una nova entrada"
-
-#: data/shortcuts_overview.ui:86
-msgctxt "Shortcut window description"
-msgid "Create group"
-msgstr "Crea un nou grup"
-
-#: data/shortcuts_overview.ui:95
-msgctxt "Shortcut window description"
-msgid "Entry"
-msgstr "Entrada"
-
-#: data/shortcuts_overview.ui:99
-msgctxt "Shortcut window description"
-msgid "Copy password"
-msgstr "Copia la contrasenya"
-
-#: data/shortcuts_overview.ui:106
-msgctxt "Shortcut window description"
-msgid "Copy username"
-msgstr "Copia el nom d'usuari"
-
-#: data/shortcuts_overview.ui:113
-msgctxt "Shortcut window description"
-msgid "Go back"
-msgstr "Ves enrere"
-
-#: data/recent_files_page.ui:37
-msgid "Recent Safes"
-msgstr "Caixes fortes recents"
-
 #. Menubutton in headerbar for starting the safe creation process
-#: data/unlock_database.ui:6 data/unlocked_headerbar.ui:185
+#: data/unlock_database.ui:6 data/unlocked_headerbar.ui:186
 msgid "_New Safe"
 msgstr "_Caixa forta nova"
 
@@ -1051,43 +1043,49 @@ msgstr "_Obre fitxer de claus"
 
 #: data/unlock_database.ui:311
 msgid "Enter password and select keyfile to unlock"
-msgstr "Introduïu la contrasenya i seleccioneu un fitxer de claus a desbloquejar"
+msgstr ""
+"Introduïu la contrasenya i seleccioneu un fitxer de claus a desbloquejar"
 
 #. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:378
+#: data/unlock_database.ui:379
 msgid "Composite"
 msgstr "Composta"
 
-#: data/unlocked_database.ui:72
+#: data/unlocked_database.ui:81
 msgid "Empty group"
 msgstr "Grup buit"
 
-#: data/unlocked_headerbar.ui:59
+#: data/unlocked_headerbar.ui:68 passwordsafe/unlocked_headerbar.py:132
 msgid "Click on a checkbox to select"
 msgstr "Feu clic a una casella de selecció per a marcar-la"
 
+#. Button tooltip in headerbar to open search page
+#: data/unlocked_headerbar.ui:94
+msgid "Search"
+msgstr "Cerca"
+
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_headerbar.ui:105
+#: data/unlocked_headerbar.ui:108
 msgid "Selection Mode"
 msgstr "Mode de selecció"
 
-#: data/unlocked_headerbar.ui:157 passwordsafe/entry_page.py:419
+#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:389
 msgid "_Save"
 msgstr "_Desa"
 
-#: data/unlocked_headerbar.ui:163
+#: data/unlocked_headerbar.ui:161
 msgid "_Lock"
 msgstr "_Bloqueja"
 
-#: data/unlocked_headerbar.ui:168
+#: data/unlocked_headerbar.ui:166
 msgid "So_rting"
 msgstr "O_rdre"
 
-#: data/unlocked_headerbar.ui:170
+#: data/unlocked_headerbar.ui:168
 msgid "_A-Z"
 msgstr "_A-Z"
 
-#: data/unlocked_headerbar.ui:174
+#: data/unlocked_headerbar.ui:173
 msgid "_Z-A"
 msgstr "_Z-A"
 
@@ -1095,39 +1093,39 @@ msgstr "_Z-A"
 msgid "_Last Added"
 msgstr "L'ú_ltim afegit"
 
-#: data/unlocked_headerbar.ui:193
+#: data/unlocked_headerbar.ui:194
 msgid "Sa_fe Settings"
 msgstr "Paràmetres de la caixa _forta"
 
-#: data/unlocked_headerbar.ui:215
+#: data/unlocked_headerbar.ui:216
 msgid "Select _All"
 msgstr "Seleccion_a tots"
 
-#: data/unlocked_headerbar.ui:219
+#: data/unlocked_headerbar.ui:220
 msgid "Select _None"
 msgstr "_No en seleccionis cap"
 
-#: data/unlocked_headerbar.ui:227
+#: data/unlocked_headerbar.ui:228
 msgid "D_uplicate"
 msgstr "D_uplica"
 
-#: data/unlocked_headerbar.ui:231
+#: data/unlocked_headerbar.ui:232
 msgid "_References"
 msgstr "_Referències"
 
-#: data/unlocked_headerbar.ui:235 data/unlocked_headerbar.ui:249
+#: data/unlocked_headerbar.ui:236 data/unlocked_headerbar.ui:250
 msgid "_Properties"
 msgstr "_Propietats"
 
-#: data/unlocked_headerbar.ui:241 data/unlocked_headerbar.ui:255
+#: data/unlocked_headerbar.ui:242 data/unlocked_headerbar.ui:256
 msgid "_Delete"
 msgstr "E_limina"
 
-#: data/unlocked_headerbar.ui:263
+#: data/unlocked_headerbar.ui:264
 msgid "New _Entry"
 msgstr "_Entrada nova"
 
-#: data/unlocked_headerbar.ui:267
+#: data/unlocked_headerbar.ui:268
 msgid "New _Group"
 msgstr "_Grup nou"
 
@@ -1145,25 +1143,25 @@ msgstr ""
 "Deseu de manera segura les vostres contrasenyes, notes i dades. <b>Creeu</b> "
 "o <b>importeu</b> una nova caixa forta de Keepass."
 
-#: passwordsafe/application.py:177
+#: passwordsafe/application.py:183
 msgid "Unable to Quit: Could not save Safe"
 msgstr "Impossible sortir: no s'ha pogut desar la caixa forta"
 
-#: passwordsafe/create_database.py:114
+#: passwordsafe/create_database.py:115
 msgid "Passwords do not match"
 msgstr "Les contrasenyes no coincideixen"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:123
+#: passwordsafe/create_database.py:124
 #: passwordsafe/database_settings_dialog.py:233
 msgid "Choose location for keyfile"
 msgstr "Escolliu una ubicació per al fitxer de claus"
 
-#: passwordsafe/create_database.py:140
+#: passwordsafe/create_database.py:141
 msgid "Generating…"
 msgstr "Generant…"
 
-#: passwordsafe/database_manager.py:301
+#: passwordsafe/database_manager.py:122
 msgid "Clone"
 msgstr "Clona"
 
@@ -1176,158 +1174,171 @@ msgstr "Escolliu el fitxer de claus actual"
 msgid "_Open"
 msgstr "_Obre"
 
-#: passwordsafe/database_settings_dialog.py:309
-#: passwordsafe/database_settings_dialog.py:364
+#: passwordsafe/database_settings_dialog.py:313
+#: passwordsafe/database_settings_dialog.py:368
 msgid "Apply…"
 msgstr "Aplica…"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:406
+#: passwordsafe/database_settings_dialog.py:410
 msgid "Unknown"
 msgstr "Desconegut"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:409
+#: passwordsafe/database_settings_dialog.py:413
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:412
+#: passwordsafe/database_settings_dialog.py:416
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:415
+#: passwordsafe/database_settings_dialog.py:419
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:278 passwordsafe/entry_page.py:338
+#: passwordsafe/entry_page.py:247 passwordsafe/entry_page.py:308
 msgid "Attribute key already exists"
 msgstr "Aquesta clau d'atribut ja existeix"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:369
+#: passwordsafe/entry_page.py:339
 msgid "Select attachment"
 msgstr "Seleccioneu l'adjunt"
 
-#: passwordsafe/entry_page.py:370
+#: passwordsafe/entry_page.py:340
 msgid "_Add"
 msgstr "_Afegir"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:418
+#: passwordsafe/entry_page.py:388
 msgid "Save attachment"
 msgstr "Desa l'adjunt"
 
-#: passwordsafe/entry_row.py:120
-msgid "Password copied to clipboard"
-msgstr "Contrasenya copiada al porta-retalls"
-
-#: passwordsafe/entry_row.py:126
+#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:102
 msgid "Username copied to clipboard"
 msgstr "Nom d'usuari copiat al porta-retalls"
 
-#: passwordsafe/entry_row.py:138 passwordsafe/entry_row.py:149
+#: passwordsafe/entry_row.py:95 passwordsafe/password_entry_row.py:68
+msgid "Password copied to clipboard"
+msgstr "Contrasenya copiada al porta-retalls"
+
+#: passwordsafe/entry_row.py:114 passwordsafe/group_row.py:101
 msgid "Title not specified"
 msgstr "No heu indicat un títol"
 
-#: passwordsafe/group_row.py:49
-msgid "No group title specified"
-msgstr "No heu indicat un títol del grup"
+#: passwordsafe/entry_row.py:125
+msgid "No username specified"
+msgstr "No s'ha especificat un nom d'usuari"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:232
+#: passwordsafe/main_window.py:206
 msgid "Choose a Keepass safe"
 msgstr "Escolliu una caixa forta de Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:242 passwordsafe/main_window.py:332
+#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
 msgid "KeePass 3.1/4 Database"
 msgstr "Base de dades del KeePass 3.1/4"
 
-#. pylint: disable=C0103
-#: passwordsafe/main_window.py:270
+#: passwordsafe/main_window.py:244
 msgid "Could not open file"
 msgstr "No es pot obrir el fitxer"
 
-#: passwordsafe/main_window.py:279
+#: passwordsafe/main_window.py:253
 msgid "Could not open file: Mime type not supported"
 msgstr "No es pot obrir el fitxer: tipus mime no suportat"
 
-#: passwordsafe/main_window.py:289 passwordsafe/unlock_database.py:191
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:193
 msgid "Safe already opened"
 msgstr "Caixa forta ja oberta"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:321
+#: passwordsafe/main_window.py:295
 msgid "Choose location for Keepass safe"
 msgstr "Escolliu una ubicació per a la caixa forta de KeePass"
 
-#: passwordsafe/main_window.py:324
+#: passwordsafe/main_window.py:298
 msgid "_Create"
 msgstr "_Crea"
 
-#: passwordsafe/selection_ui.py:100
+#: passwordsafe/selection_ui.py:75
 msgid "Operation aborted: Deleting currently active group"
 msgstr "Operació avortada: no es pot eliminar el grup actiu"
 
-#: passwordsafe/selection_ui.py:136
+#: passwordsafe/selection_ui.py:87
 msgid "Deletion completed"
 msgstr "Esborrat completat"
 
-#: passwordsafe/selection_ui.py:220
+#: passwordsafe/selection_ui.py:129
+msgid "Operation aborted: Moving currently active group"
+msgstr "Operació interrompuda: no es pot eliminar el grup actiu"
+
+#: passwordsafe/selection_ui.py:146
 msgid "Move completed"
 msgstr "Desplaçament completat"
 
-#: passwordsafe/selection_ui.py:222
-msgid "Skipped moving group into itself"
-msgstr "No s'ha mogut el grup dins d'ell mateix"
-
-#: passwordsafe/unlock_database.py:214
+#: passwordsafe/unlock_database.py:216
 msgid "Choose a keyfile"
 msgstr "Escolliu un fitxer de claus"
 
-#: passwordsafe/unlock_database.py:261
+#: passwordsafe/unlock_database.py:263
 msgid "Choose Keyfile"
 msgstr "Escolliu un fitxer de claus"
 
 #. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:411
+#: passwordsafe/unlock_database.py:413
 msgid "The kdb format is not supported"
 msgstr "El format kbd no està suportat"
 
-#: passwordsafe/unlock_database.py:499 passwordsafe/unlock_database.py:519
-#: passwordsafe/unlock_database.py:533
+#: passwordsafe/unlock_database.py:503 passwordsafe/unlock_database.py:523
+#: passwordsafe/unlock_database.py:537
 msgid "Failed to unlock safe"
 msgstr "No s'ha pogut desbloquejar la caixa forta"
 
-#: passwordsafe/unlock_database.py:528
+#: passwordsafe/unlock_database.py:532
 msgid "Try again"
 msgstr "Torna-ho a provar"
 
-#: passwordsafe/unlocked_database.py:419
+#: passwordsafe/unlocked_database.py:423
 msgid "Safe saved"
 msgstr "Caixa forta desada"
 
-#: passwordsafe/unlocked_database.py:421
+#: passwordsafe/unlocked_database.py:425
 msgid "Could not save Safe"
 msgstr "No s'ha pogut desar la caixa forta"
 
-#: passwordsafe/unlocked_database.py:432
+#: passwordsafe/unlocked_database.py:434
 msgid "Please wait. Another save is running."
 msgstr "Espereu, si us plau. S'està executant una altra operació de desat."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:436
+#: passwordsafe/unlocked_database.py:438
 msgid "No changes made"
 msgstr "Sense canvis"
 
-#: passwordsafe/unlocked_database.py:520
+#: passwordsafe/unlocked_database.py:474
 msgid "Copied to clipboard"
 msgstr "Copiat al porta-retalls"
 
 #. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:643
+#: passwordsafe/unlocked_database.py:550
 msgid "Safe locked due to inactivity"
 msgstr "Caixa forta bloquejada per inactivitat"
 
+#: passwordsafe/unlocked_headerbar.py:135
+msgid "{} Selected entry"
+msgid_plural "{} Selected entries"
+msgstr[0] "{} entrada seleccionada"
+msgstr[1] "{} entrades seleccionades"
+
+#~ msgid "_Full-Text Search"
+#~ msgstr "_Cerca de text complet"
+
+#~ msgid "_Current Group Search"
+#~ msgstr "Cerca al _grup actual"
+
+#~ msgid "Skipped moving group into itself"
+#~ msgstr "No s'ha mogut el grup dins d'ell mateix"

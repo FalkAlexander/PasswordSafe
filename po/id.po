@@ -6,41 +6,42 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PasswordSafe release_5.x\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2021-05-02 10:27+0000\n"
-"PO-Revision-Date: 2021-05-27 19:54+0700\n"
+"Project-Id-Version: secrets master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2022-01-05 23:35+0000\n"
+"PO-Revision-Date: 2022-03-11 22:00+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
-"Plural-Forms: nplurals=2; plural= n!=1;\n"
+"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/about_dialog.ui.in:8 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
+#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Kelola kata sandi Anda"
 
-#: data/about_dialog.ui.in:10
-msgid "Learn more about Password Safe"
-msgstr "Pelajari lebih lanjut tentang Password Safe"
+#. "Secrets" is the application name, do not translate
+#: data/about_dialog.ui.in:9
+msgid "Learn more about Secrets"
+msgstr "Pelajari lebih lanjut tentang Secrets"
 
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:12
+#: data/about_dialog.ui.in:11
 msgid "translator-credits"
 msgstr ""
-"Andika Triwidada <andika@gmail.com>, 2018-2021.\n"
+"Andika Triwidada <andika@gmail.com>, 2018-2022.\n"
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:6
 msgid "Safety Info"
 msgstr "Info Keselamatan"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/attachment_warning_dialog.ui:8
+#: data/gtk/attachment_warning_dialog.ui:7
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -49,773 +50,582 @@ msgstr ""
 "atau sementara dari berkas lampiran ini! Lanjutkan dengan berhati-hati."
 
 #. Discard all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:12
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Back"
 msgstr "_Mundur"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:21
+#: data/gtk/attachment_warning_dialog.ui:16
 msgid "_Proceed"
 msgstr "_Lanjutkan"
 
-#: data/attribute_entry_row.ui:60
-msgid "Remove attribute"
-msgstr "Hapus atribut"
+#: data/gtk/attribute_entry_row.ui:49
+msgid "Remove Attribute"
+msgstr "Hapus Atribut"
 
-#: data/color_entry_row.ui:14
+#: data/gtk/color_entry_row.ui:11
 msgid "Color"
 msgstr "Warna"
 
-#. Application title in headerbar.
-#. Application name in the headerbar title
-#. Application title in headerbar.
-#: data/create_database_headerbar.ui:6 data/main_window.ui:17
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
-msgid "Password Safe"
-msgstr "Password Safe"
-
-#. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database_headerbar.ui:7
-msgid "Create Safe"
-msgstr "Buat Brankas"
-
-#: data/create_database_headerbar.ui:43 data/main_window.ui:119
-#: data/unlock_database.ui:16 data/unlocked_headerbar.ui:200
-msgid "_Preferences"
-msgstr "_Preferensi"
-
-#: data/create_database_headerbar.ui:47 data/main_window.ui:123
-#: data/unlock_database.ui:20 data/unlocked_headerbar.ui:204
-msgid "_Keyboard Shortcuts"
-msgstr "Pintasan Papan Ti_k"
-
-#. "Password Safe" is the application name
-#: data/create_database_headerbar.ui:51 data/main_window.ui:127
-#: data/unlock_database.ui:24 data/unlocked_headerbar.ui:208
-msgid "_About Password Safe"
-msgstr "Tent_ang Password Safe"
-
-#: data/create_database.ui:34
+#: data/gtk/create_database.ui:33
 msgid "Protect your safe"
 msgstr "Lindungi brankas Anda"
 
-#: data/create_database.ui:52 data/password_entry_row.ui:14
+#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "Kata _Sandi"
 
-#: data/create_database.ui:53
+#: data/gtk/create_database.ui:47
 msgid "Use a password to secure your safe."
 msgstr "Menggunakan sebuah kata sandi untuk mengamankan brankas Anda."
 
-#: data/create_database.ui:65
+#: data/gtk/create_database.ui:57
 msgid "_Keyfile"
 msgstr "Berkas _Kunci"
 
-#: data/create_database.ui:66
+#: data/gtk/create_database.ui:58
 msgid "Use a keyfile to secure your safe."
 msgstr "Menggunakan sebuah berkas kunci untuk mengamankan brankas Anda."
 
-#: data/create_database.ui:78
+#: data/gtk/create_database.ui:68
 msgid "_Composite"
 msgstr "_Komposit"
 
-#: data/create_database.ui:79
+#: data/gtk/create_database.ui:69
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr ""
 "Menggunakan kata sandi dalam kombinasi dengan berkas kunci untuk mengamankan "
 "brankas Anda."
 
-#: data/create_database.ui:115
+#: data/gtk/create_database.ui:101
 msgid "Enter Password"
 msgstr "Masukkan Kata Sandi"
 
-#: data/create_database.ui:126
+#: data/gtk/create_database.ui:109
 msgid "Set password for safe."
 msgstr "Atur kata sandi untuk brankas."
 
-#: data/create_database.ui:198
+#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
+#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
+msgid "Generate New Password"
+msgstr "Buat Kata Sandi Baru"
+
+#: data/gtk/create_database.ui:183
 msgid "Password Match Check"
 msgstr "Pemeriksaan Kecocokan Kata Sandi"
 
-#: data/create_database.ui:209
+#: data/gtk/create_database.ui:191
 msgid "Repeat password for safe."
 msgstr "Ulangi kata sandi untuk brankas."
 
-#: data/create_database.ui:288
+#: data/gtk/create_database.ui:248
 msgid "Match Check Failed"
 msgstr "Pemeriksaan Kecocokan Gagal"
 
-#: data/create_database.ui:299
+#: data/gtk/create_database.ui:256
 msgid "Please try again."
 msgstr "Silakan coba lagi."
 
-#: data/create_database.ui:348
+#: data/gtk/create_database.ui:286
 msgid "_Confirm"
 msgstr "_Konfirmasi"
 
-#: data/create_database.ui:388
+#. NOTE: Filechooser title for generating a new keyfile
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
+#: gsecrets/widgets/database_settings_dialog.py:198
 msgid "Generate Keyfile"
 msgstr "Buat Berkas Kunci"
 
-#: data/create_database.ui:399
+#: data/gtk/create_database.ui:329
 msgid "Set keyfile for safe"
 msgstr "Atur berkas kunci untuk brankas"
 
 #. Button to generate a password
-#: data/create_database.ui:409 data/password_generator_popover.ui:189
-#: passwordsafe/create_database.py:126
-#: passwordsafe/database_settings_dialog.py:234
+#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:142
+#: gsecrets/widgets/database_settings_dialog.py:201
 msgid "_Generate"
 msgstr "_Buat"
 
-#: data/create_database.ui:448
+#: data/gtk/create_database.ui:372
 msgid "Safe Successfully Created"
 msgstr "Brankas Berhasil Dibuat"
 
 #. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/create_database.ui:457 data/unlock_database.ui:10
-#: data/unlocked_headerbar.ui:190
+#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
+#: data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "B_uka Brankas"
 
-#: data/database_settings_dialog.ui:61
-msgid "Details"
-msgstr "Rincian"
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
+msgid "Create Safe"
+msgstr "Buat Brankas"
 
-#: data/database_settings_dialog.ui:81
-msgid "Path"
-msgstr "Path"
+#: data/gtk/create_database_headerbar.ui:15
+#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
+#: data/gtk/unlock_database_headerbar.ui:38
+msgid "Back"
+msgstr "Mundur"
 
-#: data/database_settings_dialog.ui:98
-msgid "File Size"
-msgstr "Ukuran Berkas"
+#: data/gtk/create_database_headerbar.ui:20
+#: data/gtk/recent_files_headerbar.ui:42
+#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
+msgid "Main Menu"
+msgstr "Menu Utama"
 
-#: data/database_settings_dialog.ui:115
-msgid "Safe Name"
-msgstr "Nama Brankas"
+#: data/gtk/create_database_headerbar.ui:31
+#: data/gtk/recent_files_headerbar.ui:53
+#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+msgid "_Preferences"
+msgstr "_Preferensi"
 
-#. KeePass is a proper noun
-#: data/database_settings_dialog.ui:145
-msgid "KeePass Version"
-msgstr "Versi KeePass"
+#: data/gtk/create_database_headerbar.ui:35
+#: data/gtk/recent_files_headerbar.ui:57
+#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+msgid "_Keyboard Shortcuts"
+msgstr "Pintasan Papan Ti_k"
 
-#: data/database_settings_dialog.ui:162
-msgid "Creation Date"
-msgstr "Tanggal Pembuatan"
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database_headerbar.ui:39
+#: data/gtk/recent_files_headerbar.ui:61
+#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+msgid "_About Secrets"
+msgstr "Tent_ang Secrets"
 
-#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:725
-msgid "Encryption Algorithm"
-msgstr "Algoritma Enkripsi"
+#: data/gtk/database_settings_dialog.ui:10
+msgid "Authentication"
+msgstr "Autentikasi"
 
-#: data/database_settings_dialog.ui:196
-msgid "Derivation Algorithm"
-msgstr "Algoritma Derivasi"
-
-#. Statistics
-#: data/database_settings_dialog.ui:296
-msgid "Stats"
-msgstr "Statistik"
-
-#: data/database_settings_dialog.ui:316
-msgid "Number of Groups"
-msgstr "Cacah Grup"
-
-#: data/database_settings_dialog.ui:333
-msgid "Passwords"
-msgstr "Kata Sandi"
-
-#: data/database_settings_dialog.ui:350
-msgid "Number of Entries"
-msgstr "Cacah Entri"
-
-#: data/database_settings_dialog.ui:406 data/settings_dialog.ui:11
-#: data/settings_dialog.ui:15
-msgid "General"
-msgstr "Umum"
-
-#: data/database_settings_dialog.ui:426 data/password_generator_popover.ui:128
-#: data/references_dialog.ui:142 data/references_dialog.ui:232
-#: data/settings_dialog.ui:111 data/unlock_database.ui:174
+#: data/gtk/database_settings_dialog.ui:14
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:87
 msgid "Password"
 msgstr "Kata Sandi"
 
 #. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:443
+#: data/gtk/database_settings_dialog.ui:22
+#: data/gtk/recent_files_headerbar.ui:19
 msgid "_New"
 msgstr "_Baru"
 
-#: data/database_settings_dialog.ui:464 data/database_settings_dialog.ui:465
-msgid "Generate Password"
-msgstr "Buat Kata Sandi"
-
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:478
+#: data/gtk/database_settings_dialog.ui:69
 msgid "C_onfirm"
 msgstr "K_onfirmasi"
 
+#: data/gtk/database_settings_dialog.ui:85
+msgid "Confirm New Password"
+msgstr "Konfirmasi Kata Sandi"
+
 #. Current password
-#: data/database_settings_dialog.ui:510
+#: data/gtk/database_settings_dialog.ui:97
 msgid "_Current"
 msgstr "_Kini"
 
-#: data/database_settings_dialog.ui:559 data/unlock_database.ui:275
-#: passwordsafe/database_settings_dialog.py:187
-#: passwordsafe/database_settings_dialog.py:235
-#: passwordsafe/database_settings_dialog.py:239
-#: passwordsafe/unlock_database.py:31
+#: data/gtk/database_settings_dialog.ui:114
+msgid "Enter Current Password"
+msgstr "Masukkan Kata Sandi Saat Ini"
+
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
+#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
 msgid "Keyfile"
 msgstr "Berkas Kunci"
 
-#: data/database_settings_dialog.ui:602
-msgid "_Select current keyfile"
-msgstr "Pilih berka_s kunci saat ini"
+#: data/gtk/database_settings_dialog.ui:161
+msgid "_Select current keyfile if any"
+msgstr "Pilih berka_s kunci saat ini bila ada"
 
-#: data/database_settings_dialog.ui:660
-msgid "_Generate new keyfile"
-msgstr "_Buat berkas kunci baru"
+#: data/gtk/database_settings_dialog.ui:203
+msgid "(Optional) _Generate new keyfile"
+msgstr "(Opsional) _Buat berkas kunci baru"
 
-#: data/database_settings_dialog.ui:680
+#: data/gtk/database_settings_dialog.ui:221
+msgid "Could not Load Keyfile"
+msgstr "Tak bisa Memat Berkas Kunci"
+
+#: data/gtk/database_settings_dialog.ui:231
+#: gsecrets/widgets/database_settings_dialog.py:286
 msgid "_Apply Changes"
 msgstr "Ter_apkan Perubahan"
 
-#: data/database_settings_dialog.ui:697
-msgid "Authentication"
-msgstr "Autentikasi"
+#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/settings_dialog.ui:12
+msgid "General"
+msgstr "Umum"
 
-#. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:751
-msgid "ChaCha20: 256-bit"
-msgstr "ChaCha20: 256-bit"
+#: data/gtk/database_settings_dialog.ui:252
+msgid "Details"
+msgstr "Rincian"
 
-#. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:768
-msgid "Twofish: 256-bit"
-msgstr "Twofish: 256-bit"
+#: data/gtk/database_settings_dialog.ui:255
+msgid "Safe Name"
+msgstr "Nama Brankas"
 
-#. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:785
-msgid "AES: 256-bit"
-msgstr "AES: 256-bit"
+#: data/gtk/database_settings_dialog.ui:260
+msgid "Path"
+msgstr "Path"
 
-#. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:802
-msgid "Key Derivation Function"
-msgstr "Fungsi Derivasi Kunci"
+#: data/gtk/database_settings_dialog.ui:265
+msgid "File Size"
+msgstr "Ukuran Berkas"
 
-#: data/database_settings_dialog.ui:856
-#: passwordsafe/database_settings_dialog.py:357
-#: passwordsafe/database_settings_dialog.py:379
-msgid "Apply Changes"
-msgstr "Terapkan Perubahan"
+#. KeePass is a proper noun
+#: data/gtk/database_settings_dialog.ui:270
+msgid "KeePass Version"
+msgstr "Versi KeePass"
 
-#: data/entry_page.ui:28 data/group_page.ui:27
+#: data/gtk/database_settings_dialog.ui:275
+msgid "Creation Date"
+msgstr "Tanggal Pembuatan"
+
+#: data/gtk/database_settings_dialog.ui:280
+msgid "Encryption Algorithm"
+msgstr "Algoritma Enkripsi"
+
+#: data/gtk/database_settings_dialog.ui:285
+msgid "Derivation Algorithm"
+msgstr "Algoritma Derivasi"
+
+#. Statistics
+#: data/gtk/database_settings_dialog.ui:292
+msgid "Stats"
+msgstr "Statistik"
+
+#: data/gtk/database_settings_dialog.ui:295
+msgid "Number of Entries"
+msgstr "Cacah Entri"
+
+#: data/gtk/database_settings_dialog.ui:300
+msgid "Number of Groups"
+msgstr "Cacah Grup"
+
+#: data/gtk/database_settings_dialog.ui:305
+msgid "Passwords"
+msgstr "Kata Sandi"
+
+#: data/gtk/edit_element_headerbar.ui:22
+msgid "Menu"
+msgstr "Menu"
+
+#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
+msgid "_Properties"
+msgstr "_Properti"
+
+#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
+msgid "_Delete"
+msgstr "_Hapus"
+
+#: data/gtk/edit_element_headerbar.ui:45
+msgid "D_uplicate"
+msgstr "D_uplikatkan"
+
+#: data/gtk/edit_element_headerbar.ui:49
+msgid "_References"
+msgstr "_Rujukan"
+
+#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Judul"
 
-#: data/entry_page.ui:54
+#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
 msgid "_Username"
 msgstr "Nama Pengg_una"
 
-#: data/entry_page.ui:92
+#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
+#: data/gtk/password_entry_row.ui:32
+msgid "Copy"
+msgstr "Salin"
+
+#: data/gtk/entry_page.ui:77
+#| msgid "Secure Password Safe"
+msgid "One-_Time Password Secret"
+msgstr "Rahasia One-_Time Password"
+
+#: data/gtk/entry_page.ui:97
+msgid "Could not Generate OTP Token"
+msgstr "Tidak Bisa Membuat Token OTP"
+
+#: data/gtk/entry_page.ui:111
+#| msgid "Enter Password"
+msgid "_One-Time Password"
+msgstr "_One-Time Password"
+
+#: data/gtk/entry_page.ui:159
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/entry_page.ui:129 data/group_page.ui:61
+#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
+#: data/gtk/references_dialog.ui:185
 msgid "_Notes"
 msgstr "Catata_n"
 
-#: data/entry_page.ui:196
+#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+msgid "Edit in a Window"
+msgstr "Sunting dalam sebuah Jendela"
+
+#: data/gtk/entry_page.ui:241
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/entry_page.ui:231
+#: data/gtk/entry_page.ui:265
 msgid "Attachments"
 msgstr "Lampiran"
 
-#: data/entry_page.ui:271
+#: data/gtk/entry_page.ui:290
 msgid "_Add Attachment"
 msgstr "T_ambahkan Lampiran"
 
-#: data/entry_page.ui:299
+#: data/gtk/entry_page.ui:312
 msgid "Attributes"
 msgstr "Atribut"
 
-#: data/entry_page.ui:318
+#: data/gtk/entry_page.ui:328
 msgid "Key"
 msgstr "Kunci"
 
-#: data/entry_page.ui:325
+#: data/gtk/entry_page.ui:334
 msgid "Value"
 msgstr "Nilai"
 
-#: data/entry_page.ui:338
-msgid "Add attribute"
-msgstr "Tambah atribut"
+#: data/gtk/entry_page.ui:345
+msgid "Add Attribute"
+msgstr "Tambah Atribut"
 
-#: data/entry_row.ui:93
-msgid "Copy username to clipboard"
-msgstr "Salin nama pengguna ke papan klip"
+#: data/gtk/entry_page.ui:369
+msgid "_Expiration Date"
+msgstr "Tanggal K_edaluwarsa"
 
-#: data/entry_row.ui:108
-msgid "Copy password to clipboard"
-msgstr "Salin kata sandi ke papan klip"
+#: data/gtk/entry_page.ui:390
+msgid "_Show More"
+msgstr "Tampilkan Lebih _Banyak"
 
-#: data/gtk/help-overlay.ui:13
+#: data/gtk/entry_row.ui:52
+msgid "Copy Username"
+msgstr "Salin Nama Pengguna"
+
+#: data/gtk/entry_row.ui:59
+msgid "Copy Password"
+msgstr "Salin Kata Sandi"
+
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
+msgid "Expiration Date not Set"
+msgstr "Tanggal Kedaluwarsa Tak Ditata"
+
+#: data/gtk/expiration_date_row.ui:21
+msgid "Remove Expiration Date"
+msgstr "Hapus Tanggal Kedaluwarsa"
+
+#: data/gtk/expiration_date_row.ui:54
+msgid "_Set Expiration Date"
+msgstr "Atur Tanggal Kedaluwar_sa"
+
+#: data/gtk/help-overlay.ui:11
 msgctxt "Shortcut window description"
 msgid "Application"
 msgstr "Aplikasi"
 
-#: data/gtk/help-overlay.ui:17
+#: data/gtk/help-overlay.ui:14
 msgctxt "Shortcut window description"
-msgid "Create safe"
-msgstr "Buat brankas"
+msgid "Create Safe"
+msgstr "Buat Brankas"
 
-#: data/gtk/help-overlay.ui:24
+#: data/gtk/help-overlay.ui:20
 msgctxt "Shortcut window description"
-msgid "Open safe"
-msgstr "Buka brankas"
+msgid "Go Back"
+msgstr "Mundur"
 
-#: data/gtk/help-overlay.ui:31
+#: data/gtk/help-overlay.ui:26
 msgctxt "Shortcut window description"
-msgid "Open preferences"
-msgstr "Buka preferensi"
+msgid "Open Safe"
+msgstr "Buka Brankas"
+
+#: data/gtk/help-overlay.ui:32
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Buka Preferensi"
 
 #: data/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
 msgstr "Tampilkan Pintasan"
 
-#: data/gtk/help-overlay.ui:45
+#: data/gtk/help-overlay.ui:44
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "Tutup Jendela"
+
+#: data/gtk/help-overlay.ui:50
 msgctxt "Shortcut window description"
 msgid "Quit"
 msgstr "Keluar"
 
-#: data/gtk/help-overlay.ui:54
+#: data/gtk/help-overlay.ui:58
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Brankas"
 
-#: data/gtk/help-overlay.ui:58
+#: data/gtk/help-overlay.ui:61
 msgctxt "Shortcut window description"
-msgid "Lock safe"
-msgstr "Kunci brankas"
+msgid "Lock Safe"
+msgstr "Kunci Brankas"
 
-#: data/gtk/help-overlay.ui:65
+#: data/gtk/help-overlay.ui:67
 msgctxt "Shortcut window description"
-msgid "Save safe"
-msgstr "Simpan brankas"
+msgid "Save Safe"
+msgstr "Simpan Brankas"
 
-#: data/gtk/help-overlay.ui:72
+#: data/gtk/help-overlay.ui:73
 msgctxt "Shortcut window description"
-msgid "Open search"
-msgstr "Buka pencarian"
+msgid "Open Search"
+msgstr "Buka Pencarian"
 
 #: data/gtk/help-overlay.ui:79
 msgctxt "Shortcut window description"
-msgid "Create entry"
-msgstr "Buat entri"
+msgid "Create Entry"
+msgstr "Buat Entri"
 
-#: data/gtk/help-overlay.ui:86
+#: data/gtk/help-overlay.ui:85
 msgctxt "Shortcut window description"
-msgid "Create group"
-msgstr "Buat grup"
+msgid "Create Group"
+msgstr "Buat Grup"
 
-#: data/gtk/help-overlay.ui:95
+#: data/gtk/help-overlay.ui:93
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Entri"
 
-#: data/gtk/help-overlay.ui:99
+#: data/gtk/help-overlay.ui:96
 msgctxt "Shortcut window description"
-msgid "Copy password"
-msgstr "Salin kata sandi"
+msgid "Copy Password"
+msgstr "Salin Kata Sandi"
 
-#: data/gtk/help-overlay.ui:106
+#: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
-msgid "Copy username"
-msgstr "Salin nama pengguna"
+msgid "Copy Username"
+msgstr "Salin Nama Pengguna"
 
-#: data/gtk/help-overlay.ui:113
-msgctxt "Shortcut window description"
-msgid "Go back"
-msgstr "Mundur"
-
-#: data/main_window.ui:25
-msgid "New…"
-msgstr "Baru…"
-
-#: data/main_window.ui:38
-msgid "Open…"
-msgstr "Buka…"
-
-#: data/notes_dialog.ui:18
+#: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "_Salin"
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
-msgid ""
-"Password Safe is a password manager which makes use of the KeePass v.4 "
-"format. It integrates perfectly with the GNOME desktop and provides an easy "
-"and uncluttered interface for the management of password databases."
-msgstr ""
-"Password Safe adalah manajer kata sandi yang memanfaatkan format KeePass "
-"v.4. Ini terintegrasi sempurna dengan desktop GNOME dan menyediakan sebuah "
-"antarmuka yang mudah dan rapi untuk manajemen basis data kata sandi."
-
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:163
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
-
-#: data/org.gnome.PasswordSafe.desktop.in.in:4
-msgid "A password manager for GNOME"
-msgstr "Manajer kata sandi untuk GNOME"
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.PasswordSafe.desktop.in.in:13
-msgid "keepass;encrypt;secure;"
-msgstr "keepass;enkripsi;aman;"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:16
-msgid "Use dark GTK theme"
-msgstr "Gunakan tema GTK gelap"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:17
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Menggunakan varian gelap tema GTK+ Anda. Harap dicatat bahwa tidak setiap "
-"tema GTK+ memiliki varian gelap."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:21
-msgid "Reopen last opened database"
-msgstr "Buka kembali basis data yang terakhir dibuka"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:22
-msgid ""
-"Automatically open the unlock screen of the last opened database, otherwise "
-"show the welcome screen."
-msgstr ""
-"Secara otomatis membuka layar basis data yang terakhir dibuka, bila tidak "
-"tampilkan layar selamat datang."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:26
-msgid "Save every change automatically"
-msgstr "Simpan setiap perubahan secara otomatis"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:27
-msgid ""
-"Save every change you made instantly into the database. Please note that you "
-"cannot revert changes if Autosave is enabled."
-msgstr ""
-"Menyimpan setiap perubahan yang Anda buat langsung ke dalam basis data. "
-"Harap dicatat bahwa Anda tidak bisa membatalkan perubahan jika Penyimpanan "
-"Otomatis diaktifkan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:31
-msgid "Lock database after X minutes"
-msgstr "Kunci basis data setelah X menit"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:32
-msgid ""
-"Automatically lock your database after a given amount of minutes to improve "
-"the security."
-msgstr ""
-"Otomatis mengunci basis data Anda setelah sekian menit untuk meningkatkan "
-"keamanan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:36
-msgid "Clear clipboard after X seconds"
-msgstr "Bersihkan papan klip setelah X detik"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:37
-msgid "After copying the password clear the clipboard for security reasons."
-msgstr ""
-"Setelah menyalin kata sandi bersihkan papan klip untuk alasan keamanan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:41
-msgid "Display passwords in plain text"
-msgstr "Tampilkan kata sandi dalam teks polos"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:42
-msgid "Show the passwords in the entry fields by default."
-msgstr "Menampilkan kata sandi di ruas masukan secara bawaan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:46
-msgid "Window size"
-msgstr "Ukuran jendela"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:47
-msgid "Remember the window size."
-msgstr "Ingat ukuran jendela."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:51
-msgid "Last opened database"
-msgstr "Basis data yang terakhir dibuka"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:52
-msgid "Path to the last opened database."
-msgstr "Path ke basis data yang dibuka terakhir."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:56
-msgid "Last opened databases"
-msgstr "Basis data yang terakhir dibuka"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:57
-msgid "A list of the last opened databases."
-msgstr "Daftar basis data yang terakhir dibuka."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:61
-msgid "Remember composite key"
-msgstr "Ingat kunci komposit"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:62
-msgid "Remember last used composite key for database unlocking."
-msgstr "Ingat kunci komposit yang terakhir digunakan untuk membuka basis data."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:66
-msgid "Last used composite key"
-msgstr "Kunci komposit yang terakhir dipakai"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:67
-msgid "Path to last used key for composite database unlocking."
-msgstr ""
-"Path ke kunci yang terakhir digunakan untuk membuka basis data komposit."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:71
-msgid "Remember unlock method"
-msgstr "Ingat metode buka kunci"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:72
-msgid "Remember last used unlock method for future database unlocking."
-msgstr ""
-"Ingat metode buka kunci yang terakhir digunakan untuk membuka basis data di "
-"masa depan."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:76
-msgid "Backup the database on unlock"
-msgstr "Rekam cadangkan basis data saat membuka"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:77
-msgid ""
-"If an error occurs while saving the database, a backup can be found at ~/."
-"cache/passwordsafe/backups"
-msgstr ""
-"Jika terjadi kesalahan saat menyimpan basis data, rekam cadang dapat "
-"ditemukan di ~/.cache/passwordsafe/backups"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:81
-msgid "Sorting order of groups and entries"
-msgstr "Urutan kelompok dan entri"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:82
-msgid "Order of the rows in the groups and entries view."
-msgstr "Urutan baris dalam tilikan grup dan entri."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:86
-msgid "Last used unlock method"
-msgstr "Metode buka kunci yang terakhir digunakan"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:87
-msgid ""
-"Used to store the last used unlock method and to enable a faster unlock "
-"process."
-msgstr ""
-"Digunakan untuk menyimpan metode buka kunci yang terakhir digunakan dan "
-"memfungsikan proses membuka yang lebih cepat."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:91
-msgid "Use full-text search"
-msgstr "Gunakan pencarian teks penuh"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:92
-msgid "Performs a search across all values of entries."
-msgstr "Lakukan pencarian di semua nilai entri."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:96
-msgid "Current group search"
-msgstr "Pencarian grup saat ini"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:97
-msgid "Only search entries in the current group."
-msgstr "Hanya mencari entri dalam grup saat ini."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:101
-msgid "Use uppercases when generating a password"
-msgstr "Gunakan huruf besar ketika membuat kata sandi"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:102
-msgid "Use uppercase characters A-Z when generating a random password."
-msgstr "Gunakan huruf besar A-Z saat menghasilkan kata sandi acak."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:106
-msgid "Use lowercases when generating a password"
-msgstr "Gunakan huruf kecil ketika membuat kata sandi"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:107
-msgid "Use lowercase characters a-z when generating a random password."
-msgstr "Gunakan huruf kecil a-z saat menghasilkan kata sandi acak."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:111
-msgid "Use numbers when generating a password"
-msgstr "Gunakan angka ketika membuat kata sandi"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:112
-msgid "Use numbers 0-9 characters when generating a random password."
-msgstr "Gunakan angka 0-9 saat menghasilkan kata sandi acak."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:116
-msgid "Use symbols when generating a password"
-msgstr "Gunakan simbol ketika membuat kata sandi"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:117
-msgid "Use non-alphanumeric ASCII symbols when generating a random password."
-msgstr ""
-"Gunakan simbol ACSII non-alfanumerik saat menghasilkan kata sandi acak."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:121
-msgid "Password length when generating a password"
-msgstr "Panjang kata sandi saat membuat kata sandi"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:122
-msgid "Number of single characters when generating a password."
-msgstr "Cacah karakter tunggal saat menghasilkan kata sandi."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:126
-msgid "Number of words when generating a passphrase"
-msgstr "Cacah kata saat menghasilkan frasa sandi"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:203
-msgid "Number of words to use when generating a passphrase."
-msgstr "Cacah kata yang digunakan saat menghasilkan frasa sandi."
-
-#: data/org.gnome.PasswordSafe.gschema.xml:131
-msgid "Separator when generating a passphrase"
-msgstr "Pemisah saat menghasilkan frasa sandi"
-
-#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:220
-msgid "Word separator to use when generating a passphrase."
-msgstr "Pemisah kata untuk digunakan saat menghasilkan frasa sandi."
-
-#: data/password_generator_popover.ui:45
+#: data/gtk/password_generator_popover.ui:35
 msgid "Length"
 msgstr "Panjang"
 
-#: data/password_generator_popover.ui:69
+#: data/gtk/password_generator_popover.ui:62
 msgid "Characters"
 msgstr "Karakter"
 
-#: data/password_generator_popover.ui:142
-msgid "Words"
-msgstr "Kata"
-
-#: data/password_generator_popover.ui:165 data/settings_dialog.ui:219
-msgid "Separator"
-msgstr "Pemisah"
-
-#: data/password_generator_popover.ui:176
-msgid "Enter character here…"
-msgstr "Masukkan karakter di sini…"
-
-#: data/password_generator_popover.ui:182
+#: data/gtk/password_generator_popover.ui:111
 msgid "Passphrase"
 msgstr "Frasa sandi"
 
-#: data/properties_dialog.ui:13
+#: data/gtk/password_generator_popover.ui:119
+msgid "Words"
+msgstr "Kata"
+
+#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
+msgid "Separator"
+msgstr "Pemisah"
+
+#: data/gtk/password_generator_popover.ui:154
+msgid "Enter character here…"
+msgstr "Masukkan karakter di sini…"
+
+#: data/gtk/properties_dialog.ui:7
 msgid "Properties"
 msgstr "Properti"
 
-#: data/properties_dialog.ui:42 data/references_dialog.ui:184
+#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/properties_dialog.ui:59
+#: data/gtk/properties_dialog.ui:33
 msgid "Accessed"
 msgstr "Diakses"
 
-#: data/properties_dialog.ui:75
+#: data/gtk/properties_dialog.ui:38
 msgid "Modified"
 msgstr "Diubah"
 
-#: data/properties_dialog.ui:105
+#: data/gtk/properties_dialog.ui:43
 msgid "Created"
 msgstr "Dibuat"
 
-#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:6
-msgid "Do you want to save all safes with unsaved changes?"
-msgstr ""
-"Apakah Anda ingin menyimpan semua brankas dengan perubahan yang belum "
-"disimpan?"
+#: data/gtk/recent_files_headerbar.ui:14
+msgid "New Safe"
+msgstr "Brankas Baru"
 
-#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:7
-msgid "Select the safes you want to save."
-msgstr "Pilih brankas yang Anda ingin simpan."
+#: data/gtk/recent_files_headerbar.ui:27
+msgid "Open Safe"
+msgstr "Buka Brankas"
 
-#: data/quit_dialog.ui:42
-msgid "_Cancel"
-msgstr "_Batal"
+#: data/gtk/recent_files_headerbar.ui:32
+msgid "_Open"
+msgstr "_Buka"
 
-#: data/quit_dialog.ui:49
-msgid "_Quit"
-msgstr "_Keluar"
-
-#: data/recent_files_page.ui:37
+#: data/gtk/recent_files_page.ui:27
 msgid "Recent Safes"
 msgstr "Brankas Baru-baru Ini"
 
-#: data/references_dialog.ui:20
+#: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Kode"
 
-#: data/references_dialog.ui:34 data/references_dialog.ui:338
-#: data/references_dialog.ui:449
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
+#: data/gtk/references_dialog.ui:346
 msgid "Property"
 msgstr "Properti"
 
-#: data/references_dialog.ui:59 data/references_dialog.ui:214
+#: data/gtk/references_dialog.ui:48
 msgid "Title"
 msgstr "Judul"
 
-#: data/references_dialog.ui:84 data/references_dialog.ui:223
+#: data/gtk/references_dialog.ui:69
 msgid "Username"
 msgstr "Nama Pengguna"
 
-#: data/references_dialog.ui:156 data/references_dialog.ui:241
+#: data/gtk/references_dialog.ui:129
 msgid "URL"
 msgstr "URL"
 
-#: data/references_dialog.ui:170 data/references_dialog.ui:250
+#: data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Catatan"
 
-#: data/references_dialog.ui:267
+#: data/gtk/references_dialog.ui:181
+msgid "_URL"
+msgstr "_URL"
+
+#: data/gtk/references_dialog.ui:192
 msgid "References"
 msgstr "Rujukan"
 
-#: data/references_dialog.ui:296
+#: data/gtk/references_dialog.ui:222
 msgid "Syntax"
 msgstr "Sintaks"
 
-#: data/references_dialog.ui:307
+#: data/gtk/references_dialog.ui:231
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Sintaks placeholder untuk rujukan bidang adalah sebagai berikut:"
 
-#: data/references_dialog.ui:337 data/references_dialog.ui:366
+#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
 msgid "Show Field Codes"
 msgstr "Tampilkan Ruas Kode"
 
-#: data/references_dialog.ui:367
+#: data/gtk/references_dialog.ui:277
 msgid "Identifier"
 msgstr "Pengidentifikasi"
 
-#: data/references_dialog.ui:424
+#: data/gtk/references_dialog.ui:335
 msgid "Reference"
 msgstr "Rujukan"
 
-#: data/references_dialog.ui:503
+#: data/gtk/references_dialog.ui:373
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -824,318 +634,276 @@ msgstr ""
 "ditemukan di properti dari entri."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:7
 msgid "Unsaved Changes"
 msgstr "Perubahan Belum Tersimpan"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:8
 msgid "Do you want to write all changes to the safe?"
 msgstr "Apakah Anda ingin menulis semua perubahan ke brankas?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:12
+#: data/gtk/save_dialog.ui:11
 msgid "_Quit Without Saving"
 msgstr "_Keluar Tanpa Menyimpan"
 
 #. _Cancel exiting the program
-#: data/save_dialog.ui:22
+#: data/gtk/save_dialog.ui:20
 msgid "_Don't Quit"
 msgstr "Ja_ngan Keluar"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:29
+#: data/gtk/save_dialog.ui:26
 msgid "_Save and Quit"
 msgstr "_Simpan dan Keluar"
 
-#: data/search.ui:70
-msgid "Enter search term"
-msgstr "Masukkan istilah pencarian"
+#: data/gtk/search.ui:9
+msgid "Enter Search Term"
+msgstr "Masukkan Istilah Pencarian"
 
-#: data/search.ui:104
-msgid "No search results"
-msgstr "Tidak ada hasil pencarian"
+#: data/gtk/search.ui:15
+msgid "No Search Results"
+msgstr "Tak Ada Hasil Pencarian"
+
+#: data/gtk/selection_mode_headerbar.ui:17
+#: gsecrets/widgets/selection_mode_headerbar.py:70
+msgid "_Select Items"
+msgstr "_Pilih Butir"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/selection_ui.ui:12
-msgid "Move selection"
-msgstr "Pindahkan seleksi"
+#: data/gtk/selection_mode_headerbar.ui:29
+msgid "Move Selection"
+msgstr "Pindahkan Seleksi"
+
+#: data/gtk/selection_mode_headerbar.ui:36
+msgid "Paste Selection"
+msgstr "Tempel Seleksi"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/selection_ui.ui:27
-msgid "Delete selection"
-msgstr "Hapus yang dipilih"
+#: data/gtk/selection_mode_headerbar.ui:46
+msgid "Delete Selection"
+msgstr "Hapus Pilihan"
 
-#: data/selection_ui.ui:40
-msgid "Cancel"
-msgstr "Batal"
+#: data/gtk/selection_mode_headerbar.ui:53
+msgid "_Cancel"
+msgstr "_Batal"
 
-#: data/settings_dialog.ui:19
+#: data/gtk/selection_mode_headerbar.ui:66
+msgid "Select _All"
+msgstr "Pilih Semu_a"
+
+#: data/gtk/selection_mode_headerbar.ui:71
+msgid "Select _None"
+msgstr "Pilih Tak Satupu_n"
+
+#: data/gtk/settings_dialog.ui:16
 msgid "_Dark Theme"
 msgstr "Tema _Gelap"
 
-#: data/settings_dialog.ui:20
+#: data/gtk/settings_dialog.ui:17
 msgid "Use dark GTK theme."
 msgstr "Gunakan tema GTK gelap."
 
-#: data/settings_dialog.ui:34
+#: data/gtk/settings_dialog.ui:30
 msgid "_Hide First Start Screen"
 msgstr "_Sembunyikan Layar Pertama Mulai"
 
-#: data/settings_dialog.ui:35
+#: data/gtk/settings_dialog.ui:31
 msgid "Reopen last opened safe."
 msgstr "Buka kembali brankas yang terakhir dibuka."
 
-#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
 msgid "Safe"
 msgstr "Brankas"
 
-#: data/settings_dialog.ui:55
+#: data/gtk/settings_dialog.ui:49
 msgid "_Save Automatically"
 msgstr "_Simpan Secara Otomatis"
 
-#: data/settings_dialog.ui:56
+#: data/gtk/settings_dialog.ui:50
 msgid "Save every change automatically."
 msgstr "Simpan setiap perubahan secara otomatis."
 
-#: data/settings_dialog.ui:72 data/unlock_database.ui:155
-#: data/unlock_database.ui:253 data/unlock_database.ui:342
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
 msgid "Unlock"
 msgstr "Buka Kunci"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:76
+#: data/gtk/settings_dialog.ui:68
 msgid "Remember Composite _Key"
 msgstr "Ingat _Kunci Komposit"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:77
+#: data/gtk/settings_dialog.ui:69
 msgid "Remember last used composite key."
 msgstr "Ingat kunci komposit yang terakhir digunakan."
 
-#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:91
-msgid "Remember _Unlock Method"
-msgstr "Ingat Metode B_uka Kunci"
-
-#: data/settings_dialog.ui:92
-msgid "Enable faster unlocking."
-msgstr "Fungsikan buka kunci lebih cepat."
-
-#: data/settings_dialog.ui:115
+#: data/gtk/settings_dialog.ui:90
 msgid "Password Generation"
 msgstr "Pembuatan Kata Sandi"
 
-#: data/settings_dialog.ui:119
+#: data/gtk/settings_dialog.ui:93
 msgid "Password Length"
 msgstr "Panjang Kata Sandi"
 
-#: data/settings_dialog.ui:120
+#: data/gtk/settings_dialog.ui:94
 msgid "Number of characters when generating a password."
 msgstr "Cacah karakter saat menghasilkan kata sandi."
 
-#: data/settings_dialog.ui:136
+#: data/gtk/settings_dialog.ui:113
 msgid "_Uppercase Characters"
 msgstr "Karakter H_uruf Besar"
 
-#: data/settings_dialog.ui:137
+#: data/gtk/settings_dialog.ui:114
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Gunakan huruf besar A-Z saat menghasilkan kata sandi acak."
 
-#: data/settings_dialog.ui:151
+#: data/gtk/settings_dialog.ui:127
 msgid "_Lowercase Characters"
 msgstr "Karakter Huruf Keci_l"
 
-#: data/settings_dialog.ui:152
+#: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Gunakan huruf kecil a-z saat menghasilkan kata sandi acak."
 
-#: data/settings_dialog.ui:166
+#: data/gtk/settings_dialog.ui:141
 msgid "_Numeric Characters"
 msgstr "Karakter _Numerik"
 
-#: data/settings_dialog.ui:167
+#: data/gtk/settings_dialog.ui:142
 msgid "Use numeric characters when generating a password."
 msgstr "Gunakan angka 0-9 saat menghasilkan kata sandi acak."
 
-#: data/settings_dialog.ui:181
+#: data/gtk/settings_dialog.ui:155
 msgid "_Special Characters"
 msgstr "Karakter Khusu_s"
 
-#: data/settings_dialog.ui:182
+#: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr ""
 "Gunakan simbol ACSII non-alfanumerik saat menghasilkan kata sandi acak."
 
-#: data/settings_dialog.ui:198
+#: data/gtk/settings_dialog.ui:171
 msgid "Passphrase Generation"
 msgstr "Pembuatan Frasa Sandi"
 
-#: data/settings_dialog.ui:202
+#: data/gtk/settings_dialog.ui:174
 msgid "Passphrase Length"
 msgstr "Panjang Frasa Sandi"
 
-#: data/settings_dialog.ui:228
+#: data/gtk/settings_dialog.ui:175
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Number of words to use when generating a passphrase."
+msgstr "Cacah kata yang digunakan saat menghasilkan frasa sandi."
+
+#: data/gtk/settings_dialog.ui:195
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "Pemisah kata untuk digunakan saat menghasilkan frasa sandi."
+
+#: data/gtk/settings_dialog.ui:202
 msgid "Enter Character"
 msgstr "Masukkan Karakter"
 
-#: data/settings_dialog.ui:241 data/settings_dialog.ui:245
+#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
 msgid "Security"
 msgstr "Keamanan"
 
-#: data/settings_dialog.ui:249
+#: data/gtk/settings_dialog.ui:221
 msgid "Safe Lock Timeout"
 msgstr "Tenggang Waktu Mengunci Brankas"
 
-#: data/settings_dialog.ui:250
+#: data/gtk/settings_dialog.ui:222
 msgid "Lock safe on idle after X minutes."
 msgstr "Kunci brankas ketika menganggur setelah X menit."
 
-#: data/settings_dialog.ui:266
+#: data/gtk/settings_dialog.ui:241
 msgid "Clear Clipboard"
 msgstr "Bersihkan Papan Klip"
 
-#: data/settings_dialog.ui:267
+#: data/gtk/settings_dialog.ui:242
 msgid "Clear clipboard after X seconds."
 msgstr "Bersihkan papan klip setelah X detik."
 
-#: data/settings_dialog.ui:283
-msgid "_Show Password Fields"
-msgstr "Tampilkan Rua_s Kata Sandi"
-
-#: data/settings_dialog.ui:284
-msgid "Display passwords in plain text."
-msgstr "Tampilkan kata sandi dalam teks polos."
-
-#: data/settings_dialog.ui:298
+#: data/gtk/settings_dialog.ui:261
 msgid "Clear Recent List"
 msgstr "Hapus Daftar Baru-baru Ini"
 
-#: data/settings_dialog.ui:299
+#: data/gtk/settings_dialog.ui:262
 msgid "Clear the recently opened safes list."
 msgstr "Bersihkan daftar brankas yang baru-baru ini dibuka."
 
+#: data/gtk/unlock_database.ui:7
+msgid "Unlock Safe"
+msgstr "Buka Kunci Brankas"
+
 #. Menubutton in headerbar for starting the safe creation process
-#: data/unlock_database.ui:6 data/unlocked_headerbar.ui:186
+#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
 msgid "_New Safe"
 msgstr "Bra_nkas Baru"
 
-#. Headerbar subtitle for the keepass safe unlock screen.
-#: data/unlock_database.ui:33
-msgid "Open Safe"
-msgstr "Buka Brankas"
-
-#: data/unlock_database.ui:111 data/unlock_database.ui:198
-#: data/unlock_database.ui:299
-msgid "Safe is Locked"
-msgstr "Brankas Terkunci"
-
-#: data/unlock_database.ui:123
-msgid "Enter password to unlock"
-msgstr "Masukkan kata sandi untuk membuka"
-
-#: data/unlock_database.ui:212
-msgid "Select keyfile to unlock"
-msgstr "Pilih berkas kunci untuk membuka"
-
-#: data/unlock_database.ui:239
-msgid "_Open Keyfile"
-msgstr "_Buka Berkas Kunci"
-
-#: data/unlock_database.ui:311
-msgid "Enter password and select keyfile to unlock"
-msgstr "Masukkan kata sandi dan pilih berkas kunci untuk membuka"
-
-#. Composite unlock is a authentication method where both password and keyfile are required
-#: data/unlock_database.ui:379
-msgid "Composite"
-msgstr "Komposit"
-
-#: data/unlocked_database.ui:81
-msgid "Empty group"
-msgstr "Grup kosong"
-
-#: data/unlocked_headerbar.ui:68 passwordsafe/unlocked_headerbar.py:132
-msgid "Click on a checkbox to select"
-msgstr "Klik pada kotak centang untuk memilih"
+#: data/gtk/unlocked_headerbar.ui:13
+msgid "New Entry or Group"
+msgstr "Entri atau Grup Baru"
 
 #. Button tooltip in headerbar to open search page
-#: data/unlocked_headerbar.ui:94
+#: data/gtk/unlocked_headerbar.ui:24
 msgid "Search"
 msgstr "Cari"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_headerbar.ui:108
+#: data/gtk/unlocked_headerbar.ui:31
 msgid "Selection Mode"
 msgstr "Mode Seleksi"
 
-#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:389
+#: data/gtk/unlocked_headerbar.ui:53
 msgid "_Save"
 msgstr "_Simpan"
 
-#: data/unlocked_headerbar.ui:161
+#: data/gtk/unlocked_headerbar.ui:59
 msgid "_Lock"
 msgstr "_Kunci"
 
-#: data/unlocked_headerbar.ui:166
+#: data/gtk/unlocked_headerbar.ui:64
 msgid "So_rting"
 msgstr "Pengu_rutan"
 
-#: data/unlocked_headerbar.ui:168
+#: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
-#: data/unlocked_headerbar.ui:173
+#: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/unlocked_headerbar.ui:178
-msgid "_Last Added"
-msgstr "Terakhi_r Ditambahkan"
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Newest First"
+msgstr "Ter_baru Di Awal"
 
-#: data/unlocked_headerbar.ui:194
+#: data/gtk/unlocked_headerbar.ui:81
+msgid "_Oldest First"
+msgstr "_Tertua Di Awal"
+
+#: data/gtk/unlocked_headerbar.ui:97
 msgid "Sa_fe Settings"
 msgstr "Pengaturan _Brankas"
 
-#: data/unlocked_headerbar.ui:216
-msgid "Select _All"
-msgstr "Pilih Semu_a"
-
-#: data/unlocked_headerbar.ui:220
-msgid "Select _None"
-msgstr "Pilih Tak Satupu_n"
-
-#: data/unlocked_headerbar.ui:228
-msgid "D_uplicate"
-msgstr "D_uplikatkan"
-
-#: data/unlocked_headerbar.ui:232
-msgid "_References"
-msgstr "_Rujukan"
-
-#: data/unlocked_headerbar.ui:236 data/unlocked_headerbar.ui:250
-msgid "_Properties"
-msgstr "_Properti"
-
-#: data/unlocked_headerbar.ui:242 data/unlocked_headerbar.ui:256
-msgid "_Delete"
-msgstr "_Hapus"
-
-#: data/unlocked_headerbar.ui:264
+#: data/gtk/unlocked_headerbar.ui:119
 msgid "New _Entry"
 msgstr "_Entri Baru"
 
-#: data/unlocked_headerbar.ui:268
+#: data/gtk/unlocked_headerbar.ui:123
 msgid "New _Group"
 msgstr "_Grup Baru"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/welcome_page.ui:31
-msgid "Secure Password Safe"
-msgstr "Brankas Kata Sandi yang Aman"
+#: data/gtk/welcome_page.ui:24
+msgid "Secure Secrets"
+msgstr "Amankan Rahasia"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/welcome_page.ui:45
+#: data/gtk/welcome_page.ui:35
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -1143,193 +911,431 @@ msgstr ""
 "Secara aman menyimpan katas sandi, catatan, dan data Anda. <b>Buat</b> atau "
 "<b>impor</b> sebuah brankas Keepass yang baru."
 
-#: passwordsafe/application.py:183
-msgid "Unable to Quit: Could not save Safe"
-msgstr "Tidak Bisa Keluar: Tidak bisa menyimpan Brankas"
+#. Translators: Secrets is the app name, do not translate
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Secrets"
 
-#: passwordsafe/create_database.py:115
-msgid "Passwords do not match"
-msgstr "Kata sandi tidak cocok"
+#: data/org.gnome.World.Secrets.desktop.in.in:5
+msgid "A password manager for GNOME"
+msgstr "Manajer kata sandi untuk GNOME"
 
-#. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:124
-#: passwordsafe/database_settings_dialog.py:233
-msgid "Choose location for keyfile"
-msgstr "Pilih lokasi untuk berkas kunci"
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:14
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;enkripsi;aman;"
 
-#: passwordsafe/create_database.py:141
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Use dark GTK theme"
+msgstr "Gunakan tema GTK gelap"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid ""
+"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+"theme has a dark variant."
+msgstr ""
+"Menggunakan varian gelap tema GTK+ Anda. Harap dicatat bahwa tidak setiap "
+"tema GTK+ memiliki varian gelap."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "Buka kembali basis data yang terakhir dibuka"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Secara otomatis membuka layar basis data yang terakhir dibuka, bila tidak "
+"tampilkan layar selamat datang."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "Simpan setiap perubahan secara otomatis"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Menyimpan setiap perubahan yang Anda buat langsung ke dalam basis data. "
+"Harap dicatat bahwa Anda tidak bisa membatalkan perubahan jika Penyimpanan "
+"Otomatis diaktifkan."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "Kunci basis data setelah X menit"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Otomatis mengunci basis data Anda setelah sekian menit untuk meningkatkan "
+"keamanan."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "Bersihkan papan klip setelah X detik"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr ""
+"Setelah menyalin kata sandi bersihkan papan klip untuk alasan keamanan."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "Ukuran jendela"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "Ingat ukuran jendela."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened database"
+msgstr "Basis data yang terakhir dibuka"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "Path to the last opened database."
+msgstr "Path ke basis data yang dibuka terakhir."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened databases"
+msgstr "Basis data yang terakhir dibuka"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "A list of the last opened databases."
+msgstr "Daftar basis data yang terakhir dibuka."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Remember composite key"
+msgstr "Ingat kunci komposit"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Remember last used composite key for database unlocking."
+msgstr "Ingat kunci komposit yang terakhir digunakan untuk membuka basis data."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Last used composite key"
+msgstr "Kunci komposit yang terakhir dipakai"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid "Path to last used key for composite database unlocking."
+msgstr ""
+"Path ke kunci yang terakhir digunakan untuk membuka basis data komposit."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Remember unlock method"
+msgstr "Ingat metode buka kunci"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"Ingat metode buka kunci yang terakhir digunakan untuk membuka basis data di "
+"masa depan."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Backup the database on unlock"
+msgstr "Rekam cadangkan basis data saat membuka"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/secrets/backups"
+msgstr ""
+"Jika terjadi kesalahan saat menyimpan basis data, rekam cadang dapat "
+"ditemukan di ~/.cache/secrets/backups"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Sorting order of groups and entries"
+msgstr "Urutan kelompok dan entri"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Order of the rows in the groups and entries view."
+msgstr "Urutan baris dalam tilikan grup dan entri."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use uppercases when generating a password"
+msgstr "Gunakan huruf besar ketika membuat kata sandi"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Gunakan huruf besar A-Z saat menghasilkan kata sandi acak."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use lowercases when generating a password"
+msgstr "Gunakan huruf kecil ketika membuat kata sandi"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Gunakan huruf kecil a-z saat menghasilkan kata sandi acak."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Use numbers when generating a password"
+msgstr "Gunakan angka ketika membuat kata sandi"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Gunakan angka 0-9 saat menghasilkan kata sandi acak."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Use symbols when generating a password"
+msgstr "Gunakan simbol ketika membuat kata sandi"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr ""
+"Gunakan simbol ACSII non-alfanumerik saat menghasilkan kata sandi acak."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Password length when generating a password"
+msgstr "Panjang kata sandi saat membuat kata sandi"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Number of single characters when generating a password."
+msgstr "Cacah karakter tunggal saat menghasilkan kata sandi."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Number of words when generating a passphrase"
+msgstr "Cacah kata saat menghasilkan frasa sandi"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
+msgid "Separator when generating a passphrase"
+msgstr "Pemisah saat menghasilkan frasa sandi"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"Secrets adalah manajer kata sandi yang memanfaatkan format KeePass v.4. Ini "
+"terintegrasi sempurna dengan desktop GNOME dan menyediakan sebuah antarmuka "
+"yang mudah dan rapi untuk manajemen basis data kata sandi."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:163
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#: gsecrets/application.py:52
+msgid "Error: File {} does not exist"
+msgstr "Galat: Berkas {} tidak ada"
+
+#: gsecrets/application.py:57
+msgid "Error: Safe {} is already open"
+msgstr "Galat: Brankas {} sudah terbuka"
+
+#: gsecrets/attachment_warning_dialog.py:66
+msgid "Could not Load Attachment"
+msgstr "Tidak Bisa Memuat Lampiran"
+
+#: gsecrets/create_database.py:130
+msgid "Passwords do not Match"
+msgstr "Kata sandi tidak Cocok"
+
+#: gsecrets/create_database.py:158
 msgid "Generating…"
 msgstr "Membuat…"
 
-#: passwordsafe/database_manager.py:122
+#: gsecrets/create_database.py:171
+msgid "Could not Create Keyfile"
+msgstr "Tak Bisa Membuat Berkas Kunci"
+
+#: gsecrets/create_database.py:173
+msgid "Generate"
+msgstr "Buat"
+
+#: gsecrets/database_manager.py:122
 msgid "Clone"
 msgstr "Klon"
 
+#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
+#: gsecrets/entry_row.py:112
+msgid "Username Copied"
+msgstr "Nama Pengguna Disalin"
+
+#: gsecrets/entry_page.py:274
+msgid "One-time Password Copied"
+msgstr "Kata Sandi OTP Disalin"
+
+#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
+msgid "Attribute key Already Exists"
+msgstr "Kunci Atribut Sudah Ada"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: gsecrets/entry_page.py:323
+msgid "Select Attachment"
+msgstr "Pilih Lampiran"
+
+#: gsecrets/entry_page.py:326
+msgid "_Add"
+msgstr "T_ambah"
+
+#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
+msgid "Password Copied"
+msgstr "Kata Sandi Disalin"
+
+#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+msgid "Title not Specified"
+msgstr "Judul tidak Ditentukan"
+
+#: gsecrets/entry_row.py:135
+msgid "Username not specified"
+msgstr "Nama pengguna tidak ditentukan"
+
+#: gsecrets/unlock_database.py:78
+msgid "Select Keyfile"
+msgstr "Pilih Berkas Kunci"
+
+#: gsecrets/unlock_database.py:153
+msgid "Safe {} is Already Open"
+msgstr "Brankas {} Sudah Terbuka"
+
+#: gsecrets/unlock_database.py:231
+msgid "The kdb Format is not Supported"
+msgstr "Format kdb tidak Didukung"
+
+#: gsecrets/unlock_database.py:287
+msgid "Failed to Unlock Safe"
+msgstr "Gagal untuk Membuka Kunci Brankas"
+
+#: gsecrets/unlock_database.py:298
+msgid "_Try Again"
+msgstr "Coba _Lagi"
+
+#: gsecrets/unlock_database.py:303
+msgid "_Select Keyfile"
+msgstr "Pilih Berka_s Kunci"
+
+#: gsecrets/unlocked_database.py:277
+msgid "Safe Saved"
+msgstr "Brankas Disimpan"
+
+#: gsecrets/unlocked_database.py:279
+msgid "Could not Save Safe"
+msgstr "Tak bisa Menyimpan Brankas"
+
+#: gsecrets/unlocked_database.py:289
+msgid "Please Wait. Another Save is Running."
+msgstr "Harap Tunggu. Penyimpanan Lain Sedang Berjalan."
+
+#. NOTE: In-app notification to inform the user that no save
+#. is necessary because there where no changes made
+#: gsecrets/unlocked_database.py:294
+msgid "No Changes Made"
+msgstr "Tidak Ada Perubahan yang Dibuat"
+
+#: gsecrets/unlocked_database.py:333
+msgid "Copied"
+msgstr "Disalin"
+
+#. NOTE: Notification that a safe has been locked.
+#: gsecrets/unlocked_database.py:400
+msgid "Safe Locked due to Inactivity"
+msgstr "Brankas Terkunci karena tidak ada Aktivitas"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: gsecrets/widgets/attachment_entry_row.py:37
+msgid "Save Attachment"
+msgstr "Simpan Lampiran"
+
+#: gsecrets/widgets/attachment_entry_row.py:64
+msgid "Could not Store Attachment"
+msgstr "Tak bisa Menyimpan Lampiran"
+
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/database_settings_dialog.py:182
-msgid "Choose current keyfile"
-msgstr "Pilih berkas kunci saat ini"
-
-#: passwordsafe/database_settings_dialog.py:183
-msgid "_Open"
-msgstr "_Buka"
-
-#: passwordsafe/database_settings_dialog.py:313
-#: passwordsafe/database_settings_dialog.py:368
-msgid "Apply…"
-msgstr "Terapkan…"
+#: gsecrets/widgets/database_settings_dialog.py:129
+msgid "Select Current Keyfile"
+msgstr "Pilih Berkas Kunci Saat Ini"
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:410
+#. Derivation Algorithm
+#: gsecrets/widgets/database_settings_dialog.py:317
+#: gsecrets/widgets/database_settings_dialog.py:331
 msgid "Unknown"
 msgstr "Tak Diketahui"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:413
+#: gsecrets/widgets/database_settings_dialog.py:321
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:416
+#: gsecrets/widgets/database_settings_dialog.py:324
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:419
+#: gsecrets/widgets/database_settings_dialog.py:327
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
-#: passwordsafe/entry_page.py:247 passwordsafe/entry_page.py:308
-msgid "Attribute key already exists"
-msgstr "Kunci atribut sudah ada"
+#. NOTE: Argon2 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:335
+msgid "Argon2"
+msgstr "Argon2"
 
-#. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:339
-msgid "Select attachment"
-msgstr "Pilih lampiran"
+#. NOTE: AES-KDF is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:338
+msgid "AES-KDF"
+msgstr "AES-KDF"
 
-#: passwordsafe/entry_page.py:340
-msgid "_Add"
-msgstr "T_ambah"
+#: gsecrets/widgets/expiration_date_row.py:56
+#: gsecrets/widgets/expiration_date_row.py:62
+msgid "Entry expired"
+msgstr "Entri kedaluwarsa"
 
-#. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:388
-msgid "Save attachment"
-msgstr "Simpan Lampiran"
+#: gsecrets/widgets/selection_mode_headerbar.py:72
+msgid "{} _Selected"
+msgid_plural "{} _Selected"
+msgstr[0] "{} _Dipilih"
 
-#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:102
-msgid "Username copied to clipboard"
-msgstr "Nama pengguna disalin ke papan klip"
+#: gsecrets/widgets/selection_mode_headerbar.py:98
+msgid "Operation Aborted: Deleting Currently Active Group"
+msgstr "Operasi Digugurkan: Menghapus Grup yang Saat Ini Aktif"
 
-#: passwordsafe/entry_row.py:95 passwordsafe/password_entry_row.py:68
-msgid "Password copied to clipboard"
-msgstr "Kata sandi disalin ke papan klip"
+#: gsecrets/widgets/selection_mode_headerbar.py:114
+msgid "Deletion Completed"
+msgstr "Penghapusan Selesai"
 
-#: passwordsafe/entry_row.py:114 passwordsafe/group_row.py:101
-msgid "Title not specified"
-msgstr "Judul tidak ditentukan"
+#: gsecrets/widgets/selection_mode_headerbar.py:151
+msgid "Operation Aborted: Moving Currently Active Group"
+msgstr "Operasi Digugurkan: Memindahkan Grup yang Saat Ini Aktif"
 
-#: passwordsafe/entry_row.py:125
-msgid "No username specified"
-msgstr "Tidak ada nama pengguna yang ditentukan"
+#: gsecrets/widgets/selection_mode_headerbar.py:169
+msgid "Move Completed"
+msgstr "Pemindahan Selesai"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:206
-msgid "Choose a Keepass safe"
-msgstr "Pilih sebuah brankas Keepass"
+#: gsecrets/widgets/window.py:147
+msgid "Select Safe"
+msgstr "Pilih Brankas"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
+#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
 msgid "KeePass 3.1/4 Database"
 msgstr "Basis Data KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:244
-msgid "Could not open file"
-msgstr "Tak bisa membuka berkas"
+#: gsecrets/widgets/window.py:163
+msgid "Any file type"
+msgstr "Sebarang tipe berkas"
 
-#: passwordsafe/main_window.py:253
-msgid "Could not open file: Mime type not supported"
-msgstr "Tak bisa membuka berkas: Tipe mime tak didukung"
+#: gsecrets/widgets/window.py:222
+msgid "Safe is Already Open"
+msgstr "Brankas Sudah Terbuka"
 
-#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:193
-msgid "Safe already opened"
-msgstr "Brankas sudah terbuka"
-
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:295
-msgid "Choose location for Keepass safe"
-msgstr "Pilih lokasi untuk brankas Keepass"
-
-#: passwordsafe/main_window.py:298
+#: gsecrets/widgets/window.py:246
 msgid "_Create"
 msgstr "_Buat"
 
-#: passwordsafe/selection_ui.py:75
-msgid "Operation aborted: Deleting currently active group"
-msgstr "Operasi dibatalkan: Menghapus grup yang saat ini aktif"
+#: gsecrets/widgets/window.py:277
+msgid "Cannot Create Safe: Safe is Already Open"
+msgstr "Tidak Bisa Membuat Brankas: Brankas Sudah Terbuka"
 
-#: passwordsafe/selection_ui.py:87
-msgid "Deletion completed"
-msgstr "Penghapusan selesai"
-
-#: passwordsafe/selection_ui.py:129
-msgid "Operation aborted: Moving currently active group"
-msgstr "Operasi dibatalkan: Memindahkan grup yang saat ini aktif"
-
-#: passwordsafe/selection_ui.py:146
-msgid "Move completed"
-msgstr "Pemindahan selesai"
-
-#: passwordsafe/unlock_database.py:216
-msgid "Choose a keyfile"
-msgstr "Pilih sebuah berkas kunci"
-
-#: passwordsafe/unlock_database.py:263
-msgid "Choose Keyfile"
-msgstr "Pilih Berkas Kunci"
-
-#. NOTE kdb is a an older format for Keepass databases.
-#: passwordsafe/unlock_database.py:413
-msgid "The kdb format is not supported"
-msgstr "Format kdb tidak didukung"
-
-#: passwordsafe/unlock_database.py:503 passwordsafe/unlock_database.py:523
-#: passwordsafe/unlock_database.py:537
-msgid "Failed to unlock safe"
-msgstr "Gagal untuk membuka brankas"
-
-#: passwordsafe/unlock_database.py:532
-msgid "Try again"
-msgstr "Coba lagi"
-
-#: passwordsafe/unlocked_database.py:423
-msgid "Safe saved"
-msgstr "Brankas disimpan"
-
-#: passwordsafe/unlocked_database.py:425
-msgid "Could not save Safe"
-msgstr "Tak bisa menyimpan Brankas"
-
-#: passwordsafe/unlocked_database.py:434
-msgid "Please wait. Another save is running."
-msgstr "Harap tunggu. Penyimpanan lain sedang berjalan."
-
-#. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:438
-msgid "No changes made"
-msgstr "Tidak ada perubahan yang dibuat"
-
-#: passwordsafe/unlocked_database.py:474
-msgid "Copied to clipboard"
-msgstr "Disalin ke papan klip"
-
-#. NOTE: Notification that a safe has been locked.
-#: passwordsafe/unlocked_database.py:550
-msgid "Safe locked due to inactivity"
-msgstr "Brankas terkunci karena tidak ada aktivitas"
-
-#: passwordsafe/unlocked_headerbar.py:135
-msgid "{} Selected entry"
-msgid_plural "{} Selected entries"
-msgstr[0] "{} Entri yang dipilih"
-msgstr[1] "{} Entri yang dipilih"
+#: gsecrets/widgets/window.py:333
+msgid "Could not Create new Safe"
+msgstr "Tak Bisa Membuat Brankas Baru"

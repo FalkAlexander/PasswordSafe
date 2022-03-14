@@ -216,14 +216,17 @@ class UnlockDatabase(Adw.Bin):
         self.spinner.start()
 
         self._set_sensitive(False)
-        unlock_thread = threading.Thread(target=self._open_database_process)
-        unlock_thread.daemon = True
-        unlock_thread.start()
 
-    def _open_database_process(self):
         password = self.password_entry.props.text
         keyfile = self.keyfile_path
 
+        unlock_thread = threading.Thread(
+            target=self._open_database_process, args=[password, keyfile]
+        )
+        unlock_thread.daemon = True
+        unlock_thread.start()
+
+    def _open_database_process(self, password, keyfile):
         if Path(self.database_filepath).suffix == ".kdb":
             GLib.idle_add(self._unlock_failed)
             # NOTE kdb is a an older format for Keepass databases.

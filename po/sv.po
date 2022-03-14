@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-01-05 23:35+0000\n"
-"PO-Revision-Date: 2022-01-06 16:21+0100\n"
+"POT-Creation-Date: 2022-03-14 12:11+0000\n"
+"PO-Revision-Date: 2022-03-14 14:54+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -135,8 +135,8 @@ msgid "_Confirm"
 msgstr "_Bekräfta"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
-#: gsecrets/widgets/database_settings_dialog.py:198
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
+#: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
 msgstr "Generera nyckelfil"
 
@@ -146,8 +146,8 @@ msgstr "Ställ in nyckelfil för kassaskåp"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "_Generera"
 
@@ -163,7 +163,7 @@ msgstr "Ö_ppna kassaskåp"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Skapa kassaskåp"
 
@@ -232,8 +232,8 @@ msgstr "_Aktuellt"
 msgid "Enter Current Password"
 msgstr "Mata in aktuellt lösenord"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
+#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "Nyckelfil"
 
@@ -250,7 +250,7 @@ msgid "Could not Load Keyfile"
 msgstr "Kunde inte läsa in nyckelfil"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:293
 msgid "_Apply Changes"
 msgstr "Ver_kställ ändringar"
 
@@ -373,35 +373,35 @@ msgstr "Redigera i ett fönster"
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:265
+#: data/gtk/entry_page.ui:268
 msgid "Attachments"
 msgstr "Bilagor"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:293
 msgid "_Add Attachment"
 msgstr "_Lägg till bilaga"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:315
 msgid "Attributes"
 msgstr "Attribut"
 
-#: data/gtk/entry_page.ui:328
+#: data/gtk/entry_page.ui:331
 msgid "Key"
 msgstr "Nyckel"
 
-#: data/gtk/entry_page.ui:334
+#: data/gtk/entry_page.ui:337
 msgid "Value"
 msgstr "Värde"
 
-#: data/gtk/entry_page.ui:345
+#: data/gtk/entry_page.ui:348
 msgid "Add Attribute"
 msgstr "Lägg till attribut"
 
-#: data/gtk/entry_page.ui:369
+#: data/gtk/entry_page.ui:372
 msgid "_Expiration Date"
 msgstr "_Utgångsdatum"
 
-#: data/gtk/entry_page.ui:390
+#: data/gtk/entry_page.ui:393
 msgid "_Show More"
 msgstr "_Visa mer"
 
@@ -715,7 +715,7 @@ msgstr "_Dölj första startskärm"
 msgid "Reopen last opened safe."
 msgstr "Öppna det senast öppnade kassaskåpet igen."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
 msgid "Safe"
 msgstr "Kassaskåp"
 
@@ -838,6 +838,10 @@ msgstr "Töm listan över senast öppnade kassaskåp."
 #: data/gtk/unlock_database.ui:7
 msgid "Unlock Safe"
 msgstr "Lås upp kassaskåp"
+
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:306
+msgid "_Select Keyfile"
+msgstr "_Välj nyckelfil"
 
 #. Menubutton in headerbar for starting the safe creation process
 #: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
@@ -1115,7 +1119,7 @@ msgstr ""
 "integrerar perfekt med GNOME-skrivbordet och tillhandahåller ett enkelt och "
 "stilrent gränssnitt för hantering av lösenordsdatabaser."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:163
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1131,45 +1135,45 @@ msgstr "Fel: Kassaskåpet {} är redan öppnat"
 msgid "Could not Load Attachment"
 msgstr "Kunde inte läsa in bilaga"
 
-#: gsecrets/create_database.py:130
+#: gsecrets/create_database.py:67
+msgid "Unable to create database"
+msgstr "Kunde inte skapa databas"
+
+#: gsecrets/create_database.py:157
 msgid "Passwords do not Match"
 msgstr "Lösenord stämmer inte överens"
 
-#: gsecrets/create_database.py:158
+#: gsecrets/create_database.py:185
 msgid "Generating…"
 msgstr "Genererar…"
 
-#: gsecrets/create_database.py:171
+#: gsecrets/create_database.py:198
 msgid "Could not Create Keyfile"
 msgstr "Kunde inte skapa nyckelfil"
 
-#: gsecrets/create_database.py:173
+#: gsecrets/create_database.py:200
 msgid "Generate"
 msgstr "Generera"
 
-#: gsecrets/database_manager.py:122
-msgid "Clone"
-msgstr "Klon"
-
-#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
+#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:375
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Användarnamn kopierat"
 
-#: gsecrets/entry_page.py:274
+#: gsecrets/entry_page.py:279
 msgid "One-time Password Copied"
 msgstr "Engångslösenord kopierat"
 
-#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Attributnyckel finns redan"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:323
+#: gsecrets/entry_page.py:328
 msgid "Select Attachment"
 msgstr "Välj bilaga"
 
-#: gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:331
 msgid "_Add"
 msgstr "_Lägg till"
 
@@ -1185,6 +1189,10 @@ msgstr "Titel inte angiven"
 msgid "Username not specified"
 msgstr "Användarnamn inte angivet"
 
+#: gsecrets/safe_element.py:361
+msgid "Clone"
+msgstr "Klon"
+
 #: gsecrets/unlock_database.py:78
 msgid "Select Keyfile"
 msgstr "Välj nyckelfil"
@@ -1193,46 +1201,42 @@ msgstr "Välj nyckelfil"
 msgid "Safe {} is Already Open"
 msgstr "Kassaskåpet {} är redan öppnat"
 
-#: gsecrets/unlock_database.py:231
+#: gsecrets/unlock_database.py:234
 msgid "The kdb Format is not Supported"
 msgstr "KDB-formatet stöds inte"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:290
 msgid "Failed to Unlock Safe"
 msgstr "Misslyckades med att låsa upp kassaskåp"
 
-#: gsecrets/unlock_database.py:298
+#: gsecrets/unlock_database.py:301
 msgid "_Try Again"
 msgstr "_Försök igen"
 
-#: gsecrets/unlock_database.py:303
-msgid "_Select Keyfile"
-msgstr "_Välj nyckelfil"
-
-#: gsecrets/unlocked_database.py:277
+#: gsecrets/unlocked_database.py:276
 msgid "Safe Saved"
 msgstr "Kassaskåp sparat"
 
-#: gsecrets/unlocked_database.py:279
+#: gsecrets/unlocked_database.py:278
 msgid "Could not Save Safe"
 msgstr "Kunde inte spara kassaskåp"
 
-#: gsecrets/unlocked_database.py:289
+#: gsecrets/unlocked_database.py:288
 msgid "Please Wait. Another Save is Running."
 msgstr "Vänta, en annan sparning körs."
 
 #. NOTE: In-app notification to inform the user that no save
 #. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:294
+#: gsecrets/unlocked_database.py:293
 msgid "No Changes Made"
 msgstr "Inga ändringar gjorda"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:330
 msgid "Copied"
 msgstr "Kopierat"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:400
+#: gsecrets/unlocked_database.py:397
 msgid "Safe Locked due to Inactivity"
 msgstr "Kassaskåp låstes på grund av inaktivitet"
 
@@ -1246,39 +1250,39 @@ msgid "Could not Store Attachment"
 msgstr "Kunde inte lagra bilaga"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:129
+#: gsecrets/widgets/database_settings_dialog.py:131
 msgid "Select Current Keyfile"
 msgstr "Välj aktuell nyckelfil"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:317
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:338
 msgid "Unknown"
 msgstr "Okänd"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:321
+#: gsecrets/widgets/database_settings_dialog.py:328
 msgid "AES 256-bit"
 msgstr "AES 256-bitars"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:331
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitars"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:334
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitars"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:345
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1297,45 +1301,45 @@ msgstr[1] "{} _markerade"
 msgid "Operation Aborted: Deleting Currently Active Group"
 msgstr "Åtgärden avbröts: Tar bort för närvarande aktiv grupp"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:114
+#: gsecrets/widgets/selection_mode_headerbar.py:108
 msgid "Deletion Completed"
 msgstr "Borttagning slutförd"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:151
+#: gsecrets/widgets/selection_mode_headerbar.py:145
 msgid "Operation Aborted: Moving Currently Active Group"
 msgstr "Åtgärden avbröts: Flyttar för närvarande aktiv grupp"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:169
+#: gsecrets/widgets/selection_mode_headerbar.py:160
 msgid "Move Completed"
 msgstr "Flytt slutförd"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:146
 msgid "Select Safe"
 msgstr "Välj kassaskåp"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
+#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4-databas"
 
-#: gsecrets/widgets/window.py:163
+#: gsecrets/widgets/window.py:162
 msgid "Any file type"
 msgstr "Alla filtyper"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:221
 msgid "Safe is Already Open"
 msgstr "Kassaskåp är redan öppnat"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:245
 msgid "_Create"
 msgstr "S_kapa"
 
-#: gsecrets/widgets/window.py:277
+#: gsecrets/widgets/window.py:276
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Kan inte skapa kassaskåp: Kassaskåp är redan öppnat"
 
-#: gsecrets/widgets/window.py:333
+#: gsecrets/widgets/window.py:316
 msgid "Could not Create new Safe"
 msgstr "Kunde inte skapa nytt kassaskåp"
 

@@ -2,15 +2,15 @@
 # Copyright (C) 2020 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
 #
-# Matej Urbančič <mateju@svn.gnome.org>, 2020–.
+# Matej Urbančič <mateju@svn.gnome.org>, 2020–2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/PasswordSafe/issues\n"
-"POT-Creation-Date: 2020-09-27 23:38+0000\n"
-"PO-Revision-Date: 2020-09-28 20:45+0200\n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2022-03-03 14:20+0000\n"
+"PO-Revision-Date: 2022-03-09 11:37+0100\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
@@ -19,469 +19,526 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: data/about_dialog.ui.in:11 data/org.gnome.PasswordSafe.appdata.xml.in.in:9
-#: data/org.gnome.PasswordSafe.desktop.in.in:4
-msgid "A password manager for GNOME"
-msgstr ""
+#: data/about_dialog.ui.in:8 data/org.gnome.PasswordSafe.appdata.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Upravljajte s svojimi gesli"
 
-#: data/about_dialog.ui.in:13
+#: data/about_dialog.ui.in:10
 msgid "Learn more about Password Safe"
-msgstr ""
+msgstr "Podrobnosti o programu Password Safe"
 
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:15
+#: data/about_dialog.ui.in:12
 msgid "translator-credits"
-msgstr "Matej Urbančič <mateju@svn.gnome.org>"
+msgstr "Matej Urbančič <mateju@src.gnome.org>"
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/attachment_warning_dialog.ui:9
+#: data/attachment_warning_dialog.ui:7
 msgid "Safety Info"
-msgstr ""
+msgstr "Varnostni podatki"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/attachment_warning_dialog.ui:10
+#: data/attachment_warning_dialog.ui:8
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
 msgstr ""
+"Možno je, da bodo zunanji programi ustvarili nešifrirane skrite ali začasne "
+"kopije te priložene datoteke! Nadaljujte previdno."
 
 #. Discard all the changes which the user have made to his keepass safe
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/attachment_warning_dialog.ui:23 data/quit_dialog.ui:22
-#: data/unlocked_database.ui:1274
-msgid "Back"
-msgstr "Nazaj"
+#: data/attachment_warning_dialog.ui:12
+msgid "_Back"
+msgstr "_Nazaj"
 
 #. Save all the changes which the user have made to his keepass safe
-#: data/attachment_warning_dialog.ui:36
-msgid "Proceed"
-msgstr ""
+#: data/attachment_warning_dialog.ui:21
+msgid "_Proceed"
+msgstr "_Nadaljuj"
 
-#: data/create_database.ui:74 data/database_settings_dialog.ui:439
-#: data/entry_page.ui:1563 data/entry_page.ui:1699
-#: data/references_dialog.ui:155 data/references_dialog.ui:263
-#: passwordsafe/unlock_database.py:102
-msgid "Password"
-msgstr "Geslo"
+#: data/attribute_entry_row.ui:60
+msgid "Remove attribute"
+msgstr "Odstrani atribut"
 
-#: data/create_database.ui:94
-msgid "Use a password to secure your safe"
-msgstr ""
-
-#: data/create_database.ui:157 data/database_settings_dialog.ui:579
-#: passwordsafe/create_database.py:242 passwordsafe/create_database.py:247
-#: passwordsafe/database_settings_dialog.py:184
-#: passwordsafe/database_settings_dialog.py:219
-#: passwordsafe/database_settings_dialog.py:224
-#: passwordsafe/unlock_database.py:105 passwordsafe/unlock_database.py:310
-#: passwordsafe/unlock_database.py:432
-msgid "Keyfile"
-msgstr ""
-
-#: data/create_database.ui:177
-msgid "Use a keyfile to secure your safe"
-msgstr ""
-
-#. NOTE: Composite unlock is a authentification method where both password and keyfile are required
-#: data/create_database.ui:240 passwordsafe/unlock_database.py:109
-msgid "Composite"
-msgstr "Sestavljeno"
-
-#: data/create_database.ui:260
-msgid "Use a password in combination with a keyfile to secure your safe"
-msgstr ""
-
-#: data/create_database.ui:303
-msgid "Protect your safe"
-msgstr ""
-
-#: data/create_database.ui:415
-msgid "Set password for safe"
-msgstr ""
-
-#: data/create_database.ui:430
-msgid "Enter Password"
-msgstr ""
-
-#: data/create_database.ui:476
-msgid "Password Match Check"
-msgstr ""
-
-#: data/create_database.ui:562
-msgid "Repeat password for safe"
-msgstr ""
-
-#: data/create_database.ui:608
-msgid "Match Check Failed"
-msgstr ""
-
-#: data/create_database.ui:667
-msgid "Please try again"
-msgstr "Poskusite znova"
-
-#. Button to generate a password
-#: data/create_database.ui:788 data/entry_page.ui:1650
-#: passwordsafe/create_database.py:240
-#: passwordsafe/database_settings_dialog.py:217
-msgid "Generate"
-msgstr "Ustvari"
-
-#: data/create_database.ui:817
-msgid "Set keyfile for safe"
-msgstr ""
-
-#: data/create_database.ui:832
-msgid "Generate Keyfile"
-msgstr ""
-
-#: data/create_database.ui:887 data/main_window.ui:200
-#: data/unlock_database.ui:311 data/unlocked_database.ui:976
-msgid "Preferences"
-msgstr "Možnosti"
-
-#: data/create_database.ui:901 data/main_window.ui:214
-#: data/unlock_database.ui:325 data/unlocked_database.ui:990
-msgid "Keyboard Shortcuts"
-msgstr "Tipkovne bližnjice"
-
-#. "Password Safe" is the application name
-#: data/create_database.ui:915 data/main_window.ui:228
-#: data/unlock_database.ui:339 data/unlocked_database.ui:1004
-msgid "About Password Safe"
-msgstr ""
+#: data/color_entry_row.ui:14
+msgid "Color"
+msgstr "Barva"
 
 #. Application title in headerbar.
 #. Application name in the headerbar title
 #. Application title in headerbar.
-#: data/create_database.ui:929 data/main_window.ui:355
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:4
-#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:353
+#: data/create_database_headerbar.ui:6 data/main_window.ui:17
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:5
+#: data/org.gnome.PasswordSafe.desktop.in.in:3 data/unlock_database.ui:32
 msgid "Password Safe"
-msgstr ""
+msgstr "Password Safe"
 
 #. Headerbar subtitle in keepass safe creation routine.
-#: data/create_database.ui:930
+#: data/create_database_headerbar.ui:7
 msgid "Create Safe"
 msgstr "Ustvari sef"
 
-#: data/created_database.ui:24
+#: data/create_database_headerbar.ui:43 data/main_window.ui:119
+#: data/unlock_database.ui:16 data/unlocked_headerbar.ui:200
+msgid "_Preferences"
+msgstr "_Možnosti"
+
+#: data/create_database_headerbar.ui:47 data/main_window.ui:123
+#: data/unlock_database.ui:20 data/unlocked_headerbar.ui:204
+msgid "_Keyboard Shortcuts"
+msgstr "_Tipkovne bližnjice‫"
+
+#. "Password Safe" is the application name
+#: data/create_database_headerbar.ui:51 data/main_window.ui:127
+#: data/unlock_database.ui:24 data/unlocked_headerbar.ui:208
+msgid "_About Password Safe"
+msgstr "_O programu Password Safe"
+
+#: data/create_database.ui:34
+msgid "Protect your safe"
+msgstr "Zaščitite svoj sef"
+
+#: data/create_database.ui:52 data/password_entry_row.ui:14
+msgid "_Password"
+msgstr "_Geslo"
+
+#: data/create_database.ui:53
+msgid "Use a password to secure your safe."
+msgstr "Z geslom zavarujte sef."
+
+#: data/create_database.ui:65
+msgid "_Keyfile"
+msgstr "Datoteka _ključa"
+
+#: data/create_database.ui:66
+msgid "Use a keyfile to secure your safe."
+msgstr "Uporabite datoteko ključa za zavarovanje sefa."
+
+#: data/create_database.ui:78
+msgid "_Composite"
+msgstr "_Sestavljeno"
+
+#: data/create_database.ui:79
+msgid "Use a password in combination with a keyfile to secure your safe."
+msgstr "Zavarujte sef z geslom v kombinaciji z datoteko ključa."
+
+#: data/create_database.ui:115
+msgid "Enter Password"
+msgstr "Vpis gesla"
+
+#: data/create_database.ui:126
+msgid "Set password for safe."
+msgstr "Nastavite geslo za sef."
+
+#: data/create_database.ui:198
+msgid "Password Match Check"
+msgstr "Preverjanje ujemanja gesla"
+
+#: data/create_database.ui:209
+msgid "Repeat password for safe."
+msgstr "Ponovite geslo za sef."
+
+#: data/create_database.ui:288
+msgid "Match Check Failed"
+msgstr "Preverjanje ujemanja je spodletelo"
+
+#: data/create_database.ui:299
+msgid "Please try again."
+msgstr "Poskusite znova."
+
+#: data/create_database.ui:348
+msgid "_Confirm"
+msgstr "_Potrdi"
+
+#: data/create_database.ui:388
+msgid "Generate Keyfile"
+msgstr "Ustvari datoteko ključa"
+
+#: data/create_database.ui:399
+msgid "Set keyfile for safe"
+msgstr "Nastavite datoteko ključa za sef"
+
+#. Button to generate a password
+#: data/create_database.ui:409 data/password_generator_popover.ui:189
+#: passwordsafe/create_database.py:126
+#: passwordsafe/database_settings_dialog.py:234
+msgid "_Generate"
+msgstr "_Ustvari"
+
+#: data/create_database.ui:448
 msgid "Safe Successfully Created"
-msgstr ""
+msgstr "Sef uspešno ustvarjen"
 
-#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
-#. Headerbar subtitle for the keepass safe unlock screen.
-#. Menubutton popover in headerbar for starting the safe opening process (for existing safe)
-#: data/created_database.ui:50 data/unlock_database.ui:286
-#: data/unlock_database.ui:354 data/unlocked_database.ui:937
-msgid "Open Safe"
-msgstr "Odpri sef"
+#. Menubutton in headerbar for starting the safe opening process (for existing safe)
+#: data/create_database.ui:457 data/unlock_database.ui:10
+#: data/unlocked_headerbar.ui:190
+msgid "_Open Safe"
+msgstr "_Odpri sef"
 
-#: data/database_settings_dialog.ui:55
+#: data/database_settings_dialog.ui:61
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: data/database_settings_dialog.ui:80
+#: data/database_settings_dialog.ui:81
 msgid "Path"
 msgstr "Pot"
 
-#: data/database_settings_dialog.ui:97
+#: data/database_settings_dialog.ui:98
 msgid "File Size"
 msgstr "Velikost"
 
-#: data/database_settings_dialog.ui:114
+#: data/database_settings_dialog.ui:115
 msgid "Safe Name"
 msgstr "Ime sefa"
 
 #. KeePass is a proper noun
-#: data/database_settings_dialog.ui:144
+#: data/database_settings_dialog.ui:145
 msgid "KeePass Version"
 msgstr "Različica KeePass"
 
-#: data/database_settings_dialog.ui:161
+#: data/database_settings_dialog.ui:162
 msgid "Creation Date"
 msgstr "Datum ustvarjanja"
 
-#: data/database_settings_dialog.ui:178 data/database_settings_dialog.ui:801
+#: data/database_settings_dialog.ui:179 data/database_settings_dialog.ui:728
 msgid "Encryption Algorithm"
-msgstr ""
+msgstr "Algoritem šifriranja"
 
-#: data/database_settings_dialog.ui:195
+#: data/database_settings_dialog.ui:196
+#, fuzzy
 msgid "Derivation Algorithm"
-msgstr ""
+msgstr "Algoritem izpeljave"
 
 #. Statistics
-#: data/database_settings_dialog.ui:300
+#: data/database_settings_dialog.ui:299
 msgid "Stats"
 msgstr "Statistika"
 
-#: data/database_settings_dialog.ui:325
+#: data/database_settings_dialog.ui:319
 msgid "Number of Groups"
-msgstr ""
+msgstr "Število skupin"
 
-#: data/database_settings_dialog.ui:342
+#: data/database_settings_dialog.ui:336
 msgid "Passwords"
 msgstr "Gesla"
 
-#: data/database_settings_dialog.ui:359
+#: data/database_settings_dialog.ui:353
 msgid "Number of Entries"
-msgstr ""
+msgstr "Število vnosov"
 
-#: data/database_settings_dialog.ui:420 data/settings_dialog.ui:14
-#: data/settings_dialog.ui:19
+#: data/database_settings_dialog.ui:409 data/settings_dialog.ui:11
+#: data/settings_dialog.ui:15
 msgid "General"
 msgstr "Splošno"
 
-#. New password (replacement for an old one)
-#: data/database_settings_dialog.ui:461
-msgid "New"
-msgstr "Novo"
+#: data/database_settings_dialog.ui:429 data/password_generator_popover.ui:128
+#: data/references_dialog.ui:142 data/references_dialog.ui:232
+#: data/settings_dialog.ui:111 data/unlock_database.ui:174
+msgid "Password"
+msgstr "Geslo"
 
-#: data/database_settings_dialog.ui:480 data/database_settings_dialog.ui:481
+#. New password (replacement for an old one)
+#: data/database_settings_dialog.ui:446
+msgid "_New"
+msgstr "_Novo"
+
+#: data/database_settings_dialog.ui:467 data/database_settings_dialog.ui:468
 msgid "Generate Password"
-msgstr ""
+msgstr "Tvori geslo"
 
 #. Retype the new password to confirm
-#: data/database_settings_dialog.ui:494
-msgid "Confirm"
-msgstr "Potrdi"
+#: data/database_settings_dialog.ui:481
+msgid "C_onfirm"
+msgstr "_Potrdi"
 
 #. Current password
-#: data/database_settings_dialog.ui:524
-msgid "Current"
-msgstr "Trenutna"
+#: data/database_settings_dialog.ui:513
+msgid "_Current"
+msgstr "_Trenutno"
 
-#: data/database_settings_dialog.ui:632
-msgid "Select current keyfile"
-msgstr ""
+#: data/database_settings_dialog.ui:562 data/unlock_database.ui:275
+#: passwordsafe/database_settings_dialog.py:187
+#: passwordsafe/database_settings_dialog.py:235
+#: passwordsafe/database_settings_dialog.py:239
+#: passwordsafe/unlock_database.py:31
+msgid "Keyfile"
+msgstr "Datoteka ključa"
 
-#: data/database_settings_dialog.ui:708
-msgid "Generate new keyfile"
-msgstr ""
+#: data/database_settings_dialog.ui:605
+msgid "_Select current keyfile"
+msgstr "_Izberi trenutno datoteko ključa"
 
-#: data/database_settings_dialog.ui:741 data/database_settings_dialog.ui:962
-#: passwordsafe/database_settings_dialog.py:335
-#: passwordsafe/database_settings_dialog.py:357
-msgid "Apply Changes"
-msgstr "Uveljavi spremembe"
+#: data/database_settings_dialog.ui:663
+msgid "_Generate new keyfile"
+msgstr "_Tvori novo datoteko ključa"
 
-#: data/database_settings_dialog.ui:762
+#: data/database_settings_dialog.ui:683
+msgid "_Apply Changes"
+msgstr "_Uveljavi spremembe"
+
+#: data/database_settings_dialog.ui:700
 msgid "Authentication"
 msgstr "Overitev"
 
 #. ChaCha20 is a proper name, do not translate
-#: data/database_settings_dialog.ui:834
+#: data/database_settings_dialog.ui:754
 msgid "ChaCha20: 256-bit"
 msgstr "ChaCha20: 256-bitni"
 
 #. Twofish is a proper name, do not translate
-#: data/database_settings_dialog.ui:851
+#: data/database_settings_dialog.ui:771
 msgid "Twofish: 256-bit"
 msgstr "Twofish: 256-bitni"
 
 #. AES is a proper name, do not translate
-#: data/database_settings_dialog.ui:868
+#: data/database_settings_dialog.ui:788
 msgid "AES: 256-bit"
 msgstr "AES: 256-bitni"
 
 #. https://en.wikipedia.org/wiki/Key_derivation_function
-#: data/database_settings_dialog.ui:893
+#: data/database_settings_dialog.ui:805
+#, fuzzy
 msgid "Key Derivation Function"
-msgstr ""
+msgstr "Funkcija izpeljave ključa"
 
-#: data/entry_page.ui:34
-msgid "Add Attachment"
-msgstr "Dodaj prilogo"
+#: data/database_settings_dialog.ui:859
+#: passwordsafe/database_settings_dialog.py:357
+#: passwordsafe/database_settings_dialog.py:379
+msgid "Apply Changes"
+msgstr "Uveljavi spremembe"
 
-#: data/entry_page.ui:76
-msgid "Attachments"
-msgstr "Priloge"
+#: data/entry_page.ui:28 data/group_page.ui:27
+msgid "_Title"
+msgstr "_Naziv"
 
-#: data/entry_page.ui:163
-msgid "Secret_Photo.png"
-msgstr ""
+#: data/entry_page.ui:54
+msgid "_Username"
+msgstr "_Uporabniško ime"
 
-#: data/entry_page.ui:338
-msgid "Remove attribute"
-msgstr "Odstrani atribut"
+#: data/entry_page.ui:92
+msgid "U_RL"
+msgstr "Naslov _URL"
 
-#: data/entry_page.ui:399
-msgid "Attributes"
-msgstr "Atributi"
+#: data/entry_page.ui:129 data/group_page.ui:61
+msgid "_Notes"
+msgstr "_Opombe"
 
-#: data/entry_page.ui:439
-msgid "Key"
-msgstr "Ključ"
-
-#: data/entry_page.ui:453
-msgid "Value"
-msgstr "Vrednost"
-
-#: data/entry_page.ui:475
-msgid "Add attribute"
-msgstr "Dodaj atribut"
-
-#: data/entry_page.ui:530
-msgid "Color"
-msgstr "Barva"
-
-#: data/entry_page.ui:825
+#: data/entry_page.ui:196
 msgid "Icon"
 msgstr "Ikona"
 
-#: data/entry_page.ui:1197 data/group_page.ui:35 data/references_dialog.ui:65
-#: data/references_dialog.ui:235
-msgid "Title"
-msgstr "Naziv"
+#: data/entry_page.ui:231
+msgid "Attachments"
+msgstr "Priloge"
 
-#: data/entry_page.ui:1282 data/group_page.ui:120 data/references_dialog.ui:185
-#: data/references_dialog.ui:291
-msgid "Notes"
-msgstr "Opombe"
+#: data/entry_page.ui:271
+msgid "_Add Attachment"
+msgstr "Dodaj _prilogo"
 
-#: data/entry_page.ui:1434
-msgid "Length"
-msgstr "Dolžina"
+#: data/entry_page.ui:299
+msgid "Attributes"
+msgstr "Atributi"
 
-#: data/entry_page.ui:1468
-msgid "Characters"
-msgstr "Znaki"
+#: data/entry_page.ui:318
+msgid "Key"
+msgstr "Ključ"
 
-#: data/entry_page.ui:1576
-msgid "Words"
-msgstr "Število besed"
+#: data/entry_page.ui:325
+msgid "Value"
+msgstr "Vrednost"
 
-#: data/entry_page.ui:1609
-msgid "Separator"
-msgstr "Ločilnik"
+#: data/entry_page.ui:338
+msgid "Add attribute"
+msgstr "Dodaj atribut"
 
-#: data/entry_page.ui:1626
-msgid "Enter character here…"
-msgstr ""
+#: data/entry_row.ui:93
+msgid "Copy username to clipboard"
+msgstr "Kopiraj uporabniško ime na odložišče"
 
-#: data/entry_page.ui:1637
-msgid "Passphrase"
-msgstr "Šifrirno geslo"
+#: data/entry_row.ui:108
+msgid "Copy password to clipboard"
+msgstr "Kopiraj geslo na odložišče"
 
-#. Tooltip for button near input field to show or hide the password (clear text)
-#: data/entry_page.ui:1755
-msgid "Show/hide password"
-msgstr ""
+#: data/gtk/help-overlay.ui:13
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Program"
 
-#: data/entry_page.ui:1936 data/references_dialog.ui:170
-#: data/references_dialog.ui:277
-msgid "URL"
-msgstr "Naslov URL"
+#: data/gtk/help-overlay.ui:17
+msgctxt "Shortcut window description"
+msgid "Create safe"
+msgstr "Ustvari sef"
 
-#: data/entry_page.ui:2023 data/references_dialog.ui:92
-#: data/references_dialog.ui:249
-msgid "Username"
-msgstr "Uporabniško ime"
+#: data/gtk/help-overlay.ui:24
+msgctxt "Shortcut window description"
+msgid "Open safe"
+msgstr "Odpre sef"
 
-#. The umbrella sentence of the application on the first start screen
-#: data/main_window.ui:43
-msgid "Secure password safe"
-msgstr ""
+#: data/gtk/help-overlay.ui:31
+msgctxt "Shortcut window description"
+msgid "Open preferences"
+msgstr "Odpre nastavitve"
 
-#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/main_window.ui:62
-msgid ""
-"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
-"b> a new Keepass safe."
-msgstr ""
+#: data/gtk/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Pokaže tipkovne bližnjice‫"
 
-#: data/main_window.ui:269
+#: data/gtk/help-overlay.ui:45
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Konča program"
+
+#: data/gtk/help-overlay.ui:54
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Sef"
+
+#: data/gtk/help-overlay.ui:58
+msgctxt "Shortcut window description"
+msgid "Lock safe"
+msgstr "Zaklene sef"
+
+#: data/gtk/help-overlay.ui:65
+msgctxt "Shortcut window description"
+msgid "Save safe"
+msgstr "Shrani sef"
+
+#: data/gtk/help-overlay.ui:72
+msgctxt "Shortcut window description"
+msgid "Open search"
+msgstr "Odpre iskalno okno"
+
+#: data/gtk/help-overlay.ui:79
+msgctxt "Shortcut window description"
+msgid "Create entry"
+msgstr "Ustvari vnos"
+
+#: data/gtk/help-overlay.ui:86
+msgctxt "Shortcut window description"
+msgid "Create group"
+msgstr "Ustvari skupino"
+
+#: data/gtk/help-overlay.ui:95
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Vnos"
+
+#: data/gtk/help-overlay.ui:99
+msgctxt "Shortcut window description"
+msgid "Copy password"
+msgstr "Kopira geslo"
+
+#: data/gtk/help-overlay.ui:106
+msgctxt "Shortcut window description"
+msgid "Copy username"
+msgstr "Kopira uporabniško ime"
+
+#: data/gtk/help-overlay.ui:113
+msgctxt "Shortcut window description"
+msgid "Go back"
+msgstr "Pojdi nazaj"
+
+#: data/main_window.ui:25
 msgid "New…"
-msgstr "Nov …"
+msgstr "Nov ..."
 
-#: data/main_window.ui:314
+#: data/main_window.ui:38
 msgid "Open…"
-msgstr "Odpri …"
+msgstr "Odpri ..."
 
-#: data/main_window.ui:411
-msgid "Recent Databases"
-msgstr ""
+#: data/notes_dialog.ui:18
+msgid "_Copy"
+msgstr "_Kopiraj"
 
-#: data/notes_dialog.ui:15
-msgid "Copy"
-msgstr "Kopiraj"
-
-#: data/notes_dialog.ui:52
-msgid "Close"
-msgstr "Zapri"
-
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:11
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:12
 msgid ""
-"Password Safe is a password manager which makes use of the Keepass v.4 "
+"Password Safe is a password manager which makes use of the KeePass v.4 "
 "format. It integrates perfectly with the GNOME desktop and provides an easy "
 "and uncluttered interface for the management of password databases."
 msgstr ""
+"Password Safe je upravitelj gesel, ki uporablja zapis KeePass v.4. Popolnoma "
+"se integrira z namizjem GNOME in omogoča enostaven in pregleden vmesnik za "
+"upravljanje zbirk podatkov z gesli."
 
-#: data/org.gnome.PasswordSafe.appdata.xml.in.in:99
+#: data/org.gnome.PasswordSafe.appdata.xml.in.in:177
 msgid "Falk Alexander Seidl"
-msgstr ""
+msgstr "Falk Alexander Seidl"
+
+#: data/org.gnome.PasswordSafe.desktop.in.in:4
+msgid "A password manager for GNOME"
+msgstr "Upravitelj gesel za GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.PasswordSafe.desktop.in.in:13
 msgid "keepass;encrypt;secure;"
-msgstr ""
+msgstr "keepass;šifriraj;varno;"
 
-#: data/org.gnome.PasswordSafe.gschema.xml:16 data/settings_dialog.ui:67
-msgid "Use dark GTK+ theme"
-msgstr ""
+#: data/org.gnome.PasswordSafe.gschema.xml:16
+msgid "Use dark GTK theme"
+msgstr "Uporabi temno temo GTK"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:17
 msgid ""
 "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
 "theme has a dark variant."
 msgstr ""
+"Uporabite temno različico teme GTK+. Upoštevajte, da vsaka tema GTK+ nima "
+"temne inačice."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:21
 msgid "Reopen last opened database"
-msgstr ""
+msgstr "Ponovno odpri nazadnje odprto zbirko podatkov"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:22
 msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
 msgstr ""
+"Samodejno odpre zaslon za odklepanje zadnje odprte zbirke podatkov, sicer "
+"prikaže pozdravni zaslon."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:26 data/settings_dialog.ui:256
+#: data/org.gnome.PasswordSafe.gschema.xml:26
 msgid "Save every change automatically"
-msgstr ""
+msgstr "Samodejno shrani vsako spremembo"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:27
 msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
+"Vsako spremembo, ki ste jo opravili v zbirki podatkov, sproti shrani. Če je "
+"samodejno shranjevanje omogočeno, sprememb ne morete povrniti."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:31
 msgid "Lock database after X minutes"
-msgstr ""
+msgstr "Zakleni zbirko podatkov po X minutah"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:32
 msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
 msgstr ""
+"Samodejno zaklenite zbirko podatkov po določenem času (številu minut), da "
+"povečate varnost."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:36 data/settings_dialog.ui:634
+#: data/org.gnome.PasswordSafe.gschema.xml:36
 msgid "Clear clipboard after X seconds"
-msgstr ""
+msgstr "Počisti odložišče po X sekundah"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:37
 msgid "After copying the password clear the clipboard for security reasons."
-msgstr ""
+msgstr "Po kopiranju gesla počisti odložišče iz varnostnih razlogov."
 
-#: data/org.gnome.PasswordSafe.gschema.xml:41 data/settings_dialog.ui:716
+#: data/org.gnome.PasswordSafe.gschema.xml:41
 msgid "Display passwords in plain text"
-msgstr ""
+msgstr "Pokaži gesla v navadnem besedilu"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:42
 msgid "Show the passwords in the entry fields by default."
-msgstr ""
+msgstr "Privzeto pokaže gesla v poljih vnosa."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:46
 msgid "Window size"
@@ -489,612 +546,794 @@ msgstr "Velikost okna"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:47
 msgid "Remember the window size."
-msgstr ""
+msgstr "Pomni velikost okna."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:51
 msgid "Last opened database"
-msgstr ""
+msgstr "Zadnja odprta zbirka podatkov"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:52
 msgid "Path to the last opened database."
-msgstr ""
+msgstr "Pot do zadnje odprte zbirke podatkov."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:56
 msgid "Last opened databases"
-msgstr ""
+msgstr "Zadnje odprte zbirke podatkov"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:57
 msgid "A list of the last opened databases."
-msgstr ""
+msgstr "Seznam nedavno odprtih zbirk podatkov."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:61
 msgid "Remember composite key"
-msgstr ""
+msgstr "Pomni sestavljeni ključ"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:62
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
+"Pomni nazadnje uporabljen sestavljeni ključ za odklepanje zbirke podatkov."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:66
 msgid "Last used composite key"
-msgstr ""
+msgstr "Nazadnje uporabljen sestavljeni ključ"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:67
 msgid "Path to last used key for composite database unlocking."
 msgstr ""
+"Pot do zadnjega uporabljenega ključa za sestavljeno odklepanje zbirke "
+"podatkov."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:71
 msgid "Remember unlock method"
-msgstr ""
+msgstr "Zapomni si metodo za odklepanje"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:72
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
+"Pomni nazadnje uporabljeno metodo odklepanja za odklepanje zbirke podatkov v "
+"prihodnosti."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:76
 msgid "Backup the database on unlock"
-msgstr ""
+msgstr "Varnostno kopiraj zbirko podatkov ob odklepanju"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:77
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/passwordsafe/backups"
 msgstr ""
+"Če pri shranjevanju zbirke podatkov pride do napake, lahko varnostno kopijo "
+"najdete v ~/.cache/passwordssafe/backups"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:81
 msgid "Sorting order of groups and entries"
-msgstr ""
+msgstr "Vrstni red razvrščanja skupin in vnosov"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:82
 msgid "Order of the rows in the groups and entries view."
-msgstr ""
+msgstr "Vrstni red vrstic v pogledu skupin in vnosov."
 
 #: data/org.gnome.PasswordSafe.gschema.xml:86
 msgid "Last used unlock method"
-msgstr ""
+msgstr "Zadnje uporabljena metoda za odklepanje"
 
 #: data/org.gnome.PasswordSafe.gschema.xml:87
 msgid ""
 "Used to store the last used unlock method and to enable a faster unlock "
 "process."
 msgstr ""
+"Uporabljeno za hrambo nazadnje uporabljene metode odklepanja ter pohitritev "
+"postopka odklepanja."
 
-#: data/override_dialog.ui:8
-msgid "File already exists"
-msgstr "Datoteka že obstaja"
+#: data/org.gnome.PasswordSafe.gschema.xml:91
+msgid "Use full-text search"
+msgstr "Uporabi iskanje po polnem besedilu"
 
-#: data/override_dialog.ui:9
-msgid "Do you want to override it?"
+#: data/org.gnome.PasswordSafe.gschema.xml:92
+msgid "Performs a search across all values of entries."
+msgstr "Izvede iskanje po vseh vrednostih vnosov."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:96
+msgid "Current group search"
+msgstr "Iskanje po trenutni skupini"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:97
+msgid "Only search entries in the current group."
+msgstr "Iščite vnose samo po trenutni skupini."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:101
+msgid "Use uppercases when generating a password"
+msgstr "Pri tvorbi gesla uporabi velike črke"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:102
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Pri tvorbi naključnega gesla uporabite velike črke A-Z."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:106
+msgid "Use lowercases when generating a password"
+msgstr "Pri tvorbi gesla uporabi male črke"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:107
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Pri tvorbi naključnega gesla uporabite male črke a-z."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:111
+msgid "Use numbers when generating a password"
+msgstr "Pri tvorbi gesla uporabi števke"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:112
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Pri tvorbi naključnega gesla uporabite števke 0-9."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:116
+msgid "Use symbols when generating a password"
+msgstr "Pri tvorbi gesla uporabi simbole"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:117
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
+"Pri tvorbi naključnega gesla uporabite simbole ASCII, ki niso alfanumerični."
 
-#: data/override_dialog.ui:22 data/unlocked_database.ui:1452
-msgid "Cancel"
-msgstr "Prekliči"
+#: data/org.gnome.PasswordSafe.gschema.xml:121
+msgid "Password length when generating a password"
+msgstr "Dolžina gesla pri tvorjenju gesla"
 
-#: data/override_dialog.ui:35
-msgid "Override"
-msgstr "Prepiši"
+#: data/org.gnome.PasswordSafe.gschema.xml:122
+msgid "Number of single characters when generating a password."
+msgstr "Število enojnih znakov pri tvorjenju gesla."
 
-#: data/properties_dialog.ui:13 data/unlocked_database.ui:1209
+#: data/org.gnome.PasswordSafe.gschema.xml:126
+msgid "Number of words when generating a passphrase"
+msgstr "Število besed pri tvorjenju šifrirnega gesla"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:127 data/settings_dialog.ui:203
+msgid "Number of words to use when generating a passphrase."
+msgstr "Število besed, uporabljeno pri tvorjenju šifrirnega gesla."
+
+#: data/org.gnome.PasswordSafe.gschema.xml:131
+msgid "Separator when generating a passphrase"
+msgstr "Ločilo pri tvorjenju šifrirnega gesla"
+
+#: data/org.gnome.PasswordSafe.gschema.xml:132 data/settings_dialog.ui:220
+msgid "Word separator to use when generating a passphrase."
+msgstr "Ločilo besed, uporabljeno pri tvorjenju šifrirnega gesla."
+
+#: data/password_generator_popover.ui:45
+msgid "Length"
+msgstr "Dolžina"
+
+#: data/password_generator_popover.ui:69
+msgid "Characters"
+msgstr "Znaki"
+
+#: data/password_generator_popover.ui:142
+msgid "Words"
+msgstr "Število besed"
+
+#: data/password_generator_popover.ui:165 data/settings_dialog.ui:219
+msgid "Separator"
+msgstr "Ločilnik"
+
+#: data/password_generator_popover.ui:176
+msgid "Enter character here…"
+msgstr "Vnesite znak tukaj …"
+
+#: data/password_generator_popover.ui:182
+msgid "Passphrase"
+msgstr "Šifrirno geslo"
+
+#: data/properties_dialog.ui:13
 msgid "Properties"
 msgstr "Lastnosti"
 
-#: data/properties_dialog.ui:48
-msgid "Accessed"
-msgstr "Zadnji dostop"
-
-#: data/properties_dialog.ui:66
-msgid "Modified"
-msgstr "Datum spremembe"
-
-#: data/properties_dialog.ui:85 data/references_dialog.ui:200
+#: data/properties_dialog.ui:42 data/references_dialog.ui:184
 msgid "UUID"
 msgstr "UUID"
 
-#: data/properties_dialog.ui:118
+#: data/properties_dialog.ui:59
+msgid "Accessed"
+msgstr "Zadnji dostop"
+
+#: data/properties_dialog.ui:75
+msgid "Modified"
+msgstr "Datum spremembe"
+
+#: data/properties_dialog.ui:105
 msgid "Created"
 msgstr "Ustvarjeno"
 
-#: data/references_dialog.ui:23
+#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:6
+msgid "Do you want to save all safes with unsaved changes?"
+msgstr "Ali želite shraniti vse sefe z neshranjenimi spremembami?"
+
+#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
+#: data/quit_dialog.ui:7
+msgid "Select the safes you want to save."
+msgstr "Izberite sefe, ki jih želite shraniti."
+
+#: data/quit_dialog.ui:42
+msgid "_Cancel"
+msgstr "_Prekliči"
+
+#: data/quit_dialog.ui:49
+msgid "_Quit"
+msgstr "_Izhod"
+
+#: data/recent_files_page.ui:37
+msgid "Recent Safes"
+msgstr "Nedavni sefi"
+
+#: data/references_dialog.ui:20
 msgid "Code"
 msgstr "Koda"
 
-#: data/references_dialog.ui:38 data/references_dialog.ui:403
-#: data/references_dialog.ui:554
+#: data/references_dialog.ui:34 data/references_dialog.ui:338
+#: data/references_dialog.ui:449
 msgid "Property"
 msgstr "Lastnosti"
 
-#: data/references_dialog.ui:314 data/unlocked_database.ui:1195
+#: data/references_dialog.ui:59 data/references_dialog.ui:214
+msgid "Title"
+msgstr "Naziv"
+
+#: data/references_dialog.ui:84 data/references_dialog.ui:223
+msgid "Username"
+msgstr "Uporabniško ime"
+
+#: data/references_dialog.ui:156 data/references_dialog.ui:241
+msgid "URL"
+msgstr "Naslov URL"
+
+#: data/references_dialog.ui:170 data/references_dialog.ui:250
+msgid "Notes"
+msgstr "Opombe"
+
+#: data/references_dialog.ui:267
 msgid "References"
 msgstr "Sklici"
 
-#: data/references_dialog.ui:346
+#: data/references_dialog.ui:296
 msgid "Syntax"
 msgstr "Skladnja"
 
-#: data/references_dialog.ui:361
+#: data/references_dialog.ui:307
 msgid "The placeholder syntax for field references is the following:"
-msgstr ""
+msgstr "Skladnja ograd za sklicevanje na polja je naslednja:"
 
-#: data/references_dialog.ui:402 data/references_dialog.ui:441
+#: data/references_dialog.ui:337 data/references_dialog.ui:366
 msgid "Show Field Codes"
-msgstr ""
+msgstr "Pokaži kode polj"
 
-#: data/references_dialog.ui:442
+#: data/references_dialog.ui:367
 msgid "Identifier"
 msgstr "Določilo"
 
-#: data/references_dialog.ui:524
+#: data/references_dialog.ui:424
 msgid "Reference"
 msgstr "Sklic"
 
-#: data/references_dialog.ui:631
+#: data/references_dialog.ui:503
 msgid ""
-"Each entry has a unique identifier called UUID.\n"
-"It can be found in the properties of the entry."
+"Each entry has a unique identifier called UUID. It can be found in the "
+"properties of the entry."
 msgstr ""
-
-#. Dialog window title on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:8
-msgid "Do you want to save all safes with unsaved changes?"
-msgstr ""
-
-#. Dialog window subtitle on application quit to inform the user that his safe(s) has unsaved changes with the possibility to select safes he want to save or not.
-#: data/quit_dialog.ui:9
-msgid "Select the safes you want to save."
-msgstr ""
-
-#: data/quit_dialog.ui:35
-msgid "Quit"
-msgstr "Končaj"
+"Vsak vnos ima enkratni identifikator, imenovan UUID. Lahko ga najdete v "
+"lastnostih vnosa."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/save_dialog.ui:8
+#: data/save_dialog.ui:7
 msgid "Unsaved Changes"
 msgstr "Neshranjene spremembe"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/save_dialog.ui:9
+#: data/save_dialog.ui:8
 msgid "Do you want to write all changes to the safe?"
-msgstr ""
+msgstr "Ali želite zapisati vse spremembe v sef?"
 
-#. Discard all the changes which the user have made to his keepass safe
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:12
+msgid "_Quit Without Saving"
+msgstr "_Končaj brez shranjevanja"
+
+#. _Cancel exiting the program
 #: data/save_dialog.ui:22
-msgid "Discard"
-msgstr "Zavrzi"
+msgid "_Don't Quit"
+msgstr "_Ne končaj"
 
-#. Save all the changes which the user have made to his keepass safe
-#: data/save_dialog.ui:35 data/unlocked_database.ui:761
-#: passwordsafe/entry_page.py:652 passwordsafe/main_window.py:380
-msgid "Save"
-msgstr "Shrani"
+#. _Save all the changes which the user have made to his keepass safe
+#: data/save_dialog.ui:29
+msgid "_Save and Quit"
+msgstr "_Shrani in končaj"
 
-#: data/settings_dialog.ui:50
-msgid "Dark Theme"
-msgstr "Temna tema"
-
-#: data/settings_dialog.ui:137
-msgid "Hide First Start Screen"
-msgstr ""
-
-#: data/settings_dialog.ui:154
-msgid "Reopen last opened safe"
-msgstr ""
-
-#: data/settings_dialog.ui:205 data/unlocked_database.ui:860
-#: passwordsafe/main_window.py:382
-#, fuzzy
-msgid "Safe"
-msgstr "Sef"
-
-#: data/settings_dialog.ui:239
-msgid "Save automatically"
-msgstr ""
-
-#: data/settings_dialog.ui:309 data/unlock_database.ui:84
-#: data/unlock_database.ui:226 data/unlock_database.ui:468
-msgid "Unlock"
-msgstr "Odkleni"
-
-#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:343
-msgid "Remember Composite Key"
-msgstr ""
-
-#. A composite key is a authentification method where the user needs both password and keyfile for unlocking his safe
-#: data/settings_dialog.ui:360
-msgid "Remember last used composite key"
-msgstr ""
-
-#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
-#: data/settings_dialog.ui:424
-msgid "Remember Unlock Method"
-msgstr ""
-
-#: data/settings_dialog.ui:441
-msgid "Enable faster unlocking"
-msgstr ""
-
-#: data/settings_dialog.ui:496 data/settings_dialog.ui:501
-msgid "Security"
-msgstr "Varnost"
-
-#: data/settings_dialog.ui:535
-msgid "Safe Lock Timeout"
-msgstr ""
-
-#: data/settings_dialog.ui:552
-msgid "Lock safe on idle after X minutes"
-msgstr ""
-
-#: data/settings_dialog.ui:617
-msgid "Clear Clipboard"
-msgstr "Počisti odložišče"
-
-#: data/settings_dialog.ui:699
-msgid "Show Password Fields"
-msgstr "Pokaži polja gesla"
-
-#: data/settings_dialog.ui:780
-msgid "Clear Recent List"
-msgstr "Počisti seznam nedavnih"
-
-#: data/settings_dialog.ui:797
-msgid "Clear the recently opened safes list"
-msgstr ""
-
-#: data/shortcuts_overview.ui:14
-msgctxt "Shortcut window description"
-msgid "Application"
-msgstr "Program"
-
-#: data/shortcuts_overview.ui:18
-#, fuzzy
-msgctxt "Shortcut window description"
-msgid "Create safe"
-msgstr "Ustvari sef"
-
-#: data/shortcuts_overview.ui:25
-#, fuzzy
-msgctxt "Shortcut window description"
-msgid "Open safe"
-msgstr "Odpri sef"
-
-#: data/shortcuts_overview.ui:32
-msgctxt "Shortcut window description"
-msgid "Open preferences"
-msgstr "Odpre nastavitve"
-
-#: data/shortcuts_overview.ui:41
-#, fuzzy
-msgctxt "Shortcut window description"
-msgid "Safe"
-msgstr "Sef"
-
-#: data/shortcuts_overview.ui:45
-#, fuzzy
-msgctxt "Shortcut window description"
-msgid "Lock safe"
-msgstr "Zaklene sef"
-
-#: data/shortcuts_overview.ui:52
-#, fuzzy
-msgctxt "Shortcut window description"
-msgid "Save safe"
-msgstr "Shrani sef"
-
-#: data/shortcuts_overview.ui:59
-msgctxt "Shortcut window description"
-msgid "Open search"
-msgstr "Odpre iskalno okno"
-
-#: data/shortcuts_overview.ui:66
-msgctxt "Shortcut window description"
-msgid "Create entry"
-msgstr "Ustvari vnos"
-
-#: data/shortcuts_overview.ui:73
-msgctxt "Shortcut window description"
-msgid "Create group"
-msgstr "Ustvari skupino"
-
-#: data/shortcuts_overview.ui:82
-msgctxt "Shortcut window description"
-msgid "Entry"
-msgstr "Vnos"
-
-#: data/shortcuts_overview.ui:86
-msgctxt "Shortcut window description"
-msgid "Copy password"
-msgstr "Kopiraj geslo"
-
-#: data/shortcuts_overview.ui:93
-msgctxt "Shortcut window description"
-msgid "Exit entry page"
-msgstr "Zapre stran vnosa"
-
-#: data/unlock_database.ui:27
-msgid "Enter password and select keyfile to unlock"
-msgstr ""
-
-#: data/unlock_database.ui:43 data/unlock_database.ui:175
-#: data/unlock_database.ui:515
-msgid "Safe is Locked"
-msgstr ""
-
-#: data/unlock_database.ui:159
-msgid "Select keyfile to unlock"
-msgstr ""
-
-#: data/unlock_database.ui:208
-msgid "Open Keyfile"
-msgstr ""
-
-#. Menubutton popover in headerbar for starting the safe creation process
-#: data/unlock_database.ui:272 data/unlocked_database.ui:923
-msgid "New Safe"
-msgstr ""
-
-#: data/unlock_database.ui:499
-msgid "Enter password to unlock"
-msgstr "Vnesite geslo za odklepanje"
-
-#: data/unlock_database.ui:590
-msgid "Failed to unlock safe"
-msgstr ""
-
-#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/unlocked_database.ui:21 data/unlocked_database.ui:1299
-msgid "Selection Mode"
-msgstr "Način izbire"
-
-#. Button tooltip in headerbar to open search page
-#: data/unlocked_database.ui:43
-msgid "Search"
-msgstr "Poišči"
-
-#: data/unlocked_database.ui:211
-msgid "Empty group"
-msgstr "Prazna skupina"
-
-#: data/unlocked_database.ui:267
-msgid "No search results"
-msgstr ""
-
-#: data/unlocked_database.ui:620
+#: data/search.ui:70
 msgid "Enter search term"
-msgstr ""
+msgstr "Vnesite iskalni izraz"
 
-#: data/unlocked_database.ui:683 data/unlocked_database.ui:827
-msgid "Sorting"
-msgstr "Razvrščanje"
-
-#. This string depicts the alphabet from the beginning to the end (first character to last one).
-#: data/unlocked_database.ui:700
-msgid "A-Z"
-msgstr "A–Z"
-
-#. This string depicts the alphabet in reversed order, from the end to the start (last character to first one).
-#: data/unlocked_database.ui:714
-msgid "Z-A"
-msgstr "Z–A"
-
-#. This is a modelbutton in a popover to sort entries by last added
-#: data/unlocked_database.ui:728
-msgid "Last Added"
-msgstr "Nazadnje dodano"
-
-#: data/unlocked_database.ui:783
-msgid "Lock"
-msgstr "Zakleni"
-
-#: data/unlocked_database.ui:874
-msgid "New Entry"
-msgstr "Nov vnos"
-
-#: data/unlocked_database.ui:888
-msgid "New Group"
-msgstr "Nova skupina"
-
-#. Open settings for safe (e.g. password changing)
-#: data/unlocked_database.ui:951
-msgid "Safe Settings"
-msgstr "Shrani nastavitve"
-
-#: data/unlocked_database.ui:1066
-msgid "Local"
-msgstr "Krajevno"
-
-#: data/unlocked_database.ui:1078
-msgid "Full Text"
-msgstr "Polno besedilo"
-
-#: data/unlocked_database.ui:1181
-msgid "Duplicate"
-msgstr "Podvoji"
-
-#: data/unlocked_database.ui:1234
-msgid "Delete"
-msgstr "Izbriši"
+#: data/search.ui:104
+msgid "No search results"
+msgstr "Ni rezultatov iskanja"
 
 #. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/unlocked_database.ui:1415
+#: data/selection_ui.ui:12
 msgid "Move selection"
-msgstr ""
+msgstr "Premakni izbor"
 
 #. Button tooltip in selection mode to delete every selected entry/group
-#: data/unlocked_database.ui:1435
+#: data/selection_ui.ui:27
 msgid "Delete selection"
 msgstr "Izbriši izbor"
 
-#: data/unlocked_database.ui:1482
-msgid "Select all"
-msgstr "Izberi vse"
+#: data/selection_ui.ui:40
+msgid "Cancel"
+msgstr "Prekliči"
 
-#: data/unlocked_database.ui:1496
-msgid "Select none"
-msgstr ""
+#: data/settings_dialog.ui:19
+msgid "_Dark Theme"
+msgstr "_Temna tema"
 
-#: data/unlocked_database.ui:1526
+#: data/settings_dialog.ui:20
+msgid "Use dark GTK theme."
+msgstr "Uporabi temno temo GTK"
+
+#: data/settings_dialog.ui:34
+msgid "_Hide First Start Screen"
+msgstr "_Skrij zaslon dobrodošlice ob prvem zagonu"
+
+#: data/settings_dialog.ui:35
+msgid "Reopen last opened safe."
+msgstr "Ponovno odpri nazadnje odprti sef."
+
+#: data/settings_dialog.ui:51 passwordsafe/main_window.py:301
+msgid "Safe"
+msgstr "Sef"
+
+#: data/settings_dialog.ui:55
+msgid "_Save Automatically"
+msgstr "_Samodejno shrani"
+
+#: data/settings_dialog.ui:56
+msgid "Save every change automatically."
+msgstr "Samodejno shranite vsako spremembo."
+
+#: data/settings_dialog.ui:72 data/unlock_database.ui:155
+#: data/unlock_database.ui:253 data/unlock_database.ui:342
+msgid "Unlock"
+msgstr "Odkleni"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:76
+msgid "Remember Composite _Key"
+msgstr "Pomni sestavljeni _ključ"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/settings_dialog.ui:77
+msgid "Remember last used composite key."
+msgstr "Pomni zadnje uporabljeni sestavljeni ključ."
+
+#. There are 3 unlock methods: password, keyfile, composite (password+keyfile)
+#: data/settings_dialog.ui:91
+msgid "Remember _Unlock Method"
+msgstr "Zapomni si metodo za _odklepanje"
+
+#: data/settings_dialog.ui:92
+msgid "Enable faster unlocking."
+msgstr "Omogočite hitrejše odklepanje."
+
+#: data/settings_dialog.ui:115
+msgid "Password Generation"
+msgstr "Ustvarjalnik gesel"
+
+#: data/settings_dialog.ui:119
+msgid "Password Length"
+msgstr "Dolžina gesla"
+
+#: data/settings_dialog.ui:120
+msgid "Number of characters when generating a password."
+msgstr "Število znakov pri generiranju gesla."
+
+#: data/settings_dialog.ui:136
+msgid "_Uppercase Characters"
+msgstr "_Velike črke"
+
+#: data/settings_dialog.ui:137
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Pri tvorbi gesla uporabite velike črke A-Z."
+
+#: data/settings_dialog.ui:151
+msgid "_Lowercase Characters"
+msgstr "_male črke"
+
+#: data/settings_dialog.ui:152
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Pri tvorbi gesla uporabite male črke a-z."
+
+#: data/settings_dialog.ui:166
+msgid "_Numeric Characters"
+msgstr "_Številski znaki"
+
+#: data/settings_dialog.ui:167
+msgid "Use numeric characters when generating a password."
+msgstr "Pri tvorbi gesla uporabite števke oz. številske znake."
+
+#: data/settings_dialog.ui:181
+msgid "_Special Characters"
+msgstr "_Posebni znaki"
+
+#: data/settings_dialog.ui:182
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr "Pri tvorbi gesla uporabite ne alfanumerične simbole ASCII."
+
+#: data/settings_dialog.ui:198
+msgid "Passphrase Generation"
+msgstr "Ustvarjalnik šifrirnega gesla"
+
+#: data/settings_dialog.ui:202
+msgid "Passphrase Length"
+msgstr "Dolžina šifrirnega gesla"
+
+#: data/settings_dialog.ui:228
+msgid "Enter Character"
+msgstr "Vpiši znak"
+
+#: data/settings_dialog.ui:241 data/settings_dialog.ui:245
+msgid "Security"
+msgstr "Varnost"
+
+#: data/settings_dialog.ui:249
+#, fuzzy
+msgid "Safe Lock Timeout"
+msgstr "Čas za zaklep sefa"
+
+#: data/settings_dialog.ui:250
+msgid "Lock safe on idle after X minutes."
+msgstr "Po X minutah nedejavnosti zaklenite sef."
+
+#: data/settings_dialog.ui:266
+msgid "Clear Clipboard"
+msgstr "Počisti odložišče"
+
+#: data/settings_dialog.ui:267
+msgid "Clear clipboard after X seconds."
+msgstr "Počistite odložišče po X sekundah."
+
+#: data/settings_dialog.ui:283
+msgid "_Show Password Fields"
+msgstr "_Pokaži polja gesla"
+
+#: data/settings_dialog.ui:284
+msgid "Display passwords in plain text."
+msgstr "Pokaže gesla v navadnem besedilu."
+
+#: data/settings_dialog.ui:298
+msgid "Clear Recent List"
+msgstr "Počisti seznam nedavnih"
+
+#: data/settings_dialog.ui:299
+msgid "Clear the recently opened safes list."
+msgstr "Počistite seznam nedavno odprtih sefov."
+
+#. Menubutton in headerbar for starting the safe creation process
+#: data/unlock_database.ui:6 data/unlocked_headerbar.ui:186
+msgid "_New Safe"
+msgstr "_Nov sef"
+
+#. Headerbar subtitle for the keepass safe unlock screen.
+#: data/unlock_database.ui:33
+msgid "Open Safe"
+msgstr "Odpri sef"
+
+#: data/unlock_database.ui:111 data/unlock_database.ui:198
+#: data/unlock_database.ui:299
+msgid "Safe is Locked"
+msgstr "Sef je zaklenjen"
+
+#: data/unlock_database.ui:123
+msgid "Enter password to unlock"
+msgstr "Vnesite geslo za odklepanje"
+
+#: data/unlock_database.ui:212
+msgid "Select keyfile to unlock"
+msgstr "izberite datoteko ključa za odklepanje"
+
+#: data/unlock_database.ui:239
+msgid "_Open Keyfile"
+msgstr "_Odpri datoteko ključa"
+
+#: data/unlock_database.ui:311
+msgid "Enter password and select keyfile to unlock"
+msgstr "Vnesite geslo in izberite datoteko ključa za odklepanje"
+
+#. Composite unlock is a authentication method where both password and keyfile are required
+#: data/unlock_database.ui:379
+msgid "Composite"
+msgstr "Sestavljeno"
+
+#: data/unlocked_database.ui:81
+msgid "Empty group"
+msgstr "Izprazni skupino"
+
+#: data/unlocked_headerbar.ui:68 passwordsafe/unlocked_headerbar.py:132
 msgid "Click on a checkbox to select"
+msgstr "Kliknite potrditveno polje za izbor"
+
+#. Button tooltip in headerbar to open search page
+#: data/unlocked_headerbar.ui:94
+msgid "Search"
+msgstr "Poišči"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/unlocked_headerbar.ui:108
+msgid "Selection Mode"
+msgstr "Način izbire"
+
+#: data/unlocked_headerbar.ui:155 passwordsafe/entry_page.py:389
+msgid "_Save"
+msgstr "_Save"
+
+#: data/unlocked_headerbar.ui:161
+msgid "_Lock"
+msgstr "_Zakleni"
+
+#: data/unlocked_headerbar.ui:166
+msgid "So_rting"
+msgstr "_Razvrščanje"
+
+#: data/unlocked_headerbar.ui:168
+msgid "_A-Z"
+msgstr "_A–Z"
+
+#: data/unlocked_headerbar.ui:173
+msgid "_Z-A"
+msgstr "_Z–A"
+
+#: data/unlocked_headerbar.ui:178
+msgid "_Last Added"
+msgstr "_Nedavno dodano"
+
+#: data/unlocked_headerbar.ui:194
+msgid "Sa_fe Settings"
+msgstr "Nastavitve se_fa"
+
+#: data/unlocked_headerbar.ui:216
+msgid "Select _All"
+msgstr "Izberi _vse"
+
+#: data/unlocked_headerbar.ui:220
+msgid "Select _None"
+msgstr "_Odstrani izbor"
+
+#: data/unlocked_headerbar.ui:228
+msgid "D_uplicate"
+msgstr "_Podvoji"
+
+#: data/unlocked_headerbar.ui:232
+msgid "_References"
+msgstr "_Sklici"
+
+#: data/unlocked_headerbar.ui:236 data/unlocked_headerbar.ui:250
+msgid "_Properties"
+msgstr "_Lastnosti"
+
+#: data/unlocked_headerbar.ui:242 data/unlocked_headerbar.ui:256
+msgid "_Delete"
+msgstr "_Izbriši"
+
+#: data/unlocked_headerbar.ui:264
+msgid "New _Entry"
+msgstr "Nov _vnos"
+
+#: data/unlocked_headerbar.ui:268
+msgid "New _Group"
+msgstr "Nova s_kupina"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/welcome_page.ui:31
+#, fuzzy
+msgid "Secure Password Safe"
+msgstr "Varni Password Safe"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/welcome_page.ui:45
+msgid ""
+"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
+"b> a new Keepass safe."
 msgstr ""
+"Varno shranite gesla, opombe in podatke. <b>Ustvarite</b> ali <b>uvozite</b> "
+"nov sef Keepass."
+
+#: passwordsafe/application.py:183
+msgid "Unable to Quit: Could not save Safe"
+msgstr "Izhod ni možen: sefa ni mogoče shraniti"
+
+#: passwordsafe/create_database.py:115
+msgid "Passwords do not match"
+msgstr "Gesli se ne ujemata"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: passwordsafe/create_database.py:239
-#: passwordsafe/database_settings_dialog.py:216
+#: passwordsafe/create_database.py:124
+#: passwordsafe/database_settings_dialog.py:233
 msgid "Choose location for keyfile"
-msgstr ""
+msgstr "Izberite mesto za datoteko ključa"
 
-#: passwordsafe/create_database.py:259
+#: passwordsafe/create_database.py:141
 msgid "Generating…"
 msgstr "Poteka ustvarjanje …"
 
-#. NOTE: With clone is meant a duplicated object, not the process of cloning/duplication; "the" clone
-#: passwordsafe/database_manager.py:384
+#: passwordsafe/database_manager.py:122
 msgid "Clone"
 msgstr "Kloniraj"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: passwordsafe/database_settings_dialog.py:178
+#: passwordsafe/database_settings_dialog.py:182
 msgid "Choose current keyfile"
-msgstr ""
+msgstr "Izberite trenutno datoteko ključa"
 
-#: passwordsafe/database_settings_dialog.py:179
-msgid "Open"
-msgstr "Odpri"
+#: passwordsafe/database_settings_dialog.py:183
+msgid "_Open"
+msgstr "_Odpri"
 
-#: passwordsafe/database_settings_dialog.py:290
-#: passwordsafe/database_settings_dialog.py:346
+#: passwordsafe/database_settings_dialog.py:313
+#: passwordsafe/database_settings_dialog.py:368
 msgid "Apply…"
-msgstr "Uveljavi …"
+msgstr "Uveljavi ..."
 
 #. Encryption Algorithm
-#: passwordsafe/database_settings_dialog.py:388
+#: passwordsafe/database_settings_dialog.py:410
 msgid "Unknown"
 msgstr "Neznano"
 
 #. NOTE: AES is a proper name
-#: passwordsafe/database_settings_dialog.py:391
+#: passwordsafe/database_settings_dialog.py:413
 msgid "AES 256-bit"
 msgstr "AES 256-bitni"
 
 #. NOTE: ChaCha20 is a proper name
-#: passwordsafe/database_settings_dialog.py:394
+#: passwordsafe/database_settings_dialog.py:416
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitni"
 
 #. NOTE: Twofish is a proper name
-#: passwordsafe/database_settings_dialog.py:397
+#: passwordsafe/database_settings_dialog.py:419
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitni"
 
-#: passwordsafe/entry_page.py:513 passwordsafe/entry_page.py:576
+#: passwordsafe/entry_page.py:247 passwordsafe/entry_page.py:308
 msgid "Attribute key already exists"
-msgstr ""
+msgstr "Ključ atributa že obstaja"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: passwordsafe/entry_page.py:604
+#: passwordsafe/entry_page.py:339
 msgid "Select attachment"
-msgstr "Izbor priloge"
+msgstr "Izberite prilogo"
 
-#: passwordsafe/entry_page.py:605
-msgid "Add"
-msgstr "Dodaj"
+#: passwordsafe/entry_page.py:340
+msgid "_Add"
+msgstr "_Dodaj"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: passwordsafe/entry_page.py:651
+#: passwordsafe/entry_page.py:388
 msgid "Save attachment"
 msgstr "Shrani prilogo"
 
-#: passwordsafe/entry_row.py:64
+#: passwordsafe/entry_page.py:432 passwordsafe/entry_row.py:102
+msgid "Username copied to clipboard"
+msgstr "Uporabniško ime kopirano na odložišče"
+
+#: passwordsafe/entry_row.py:95 passwordsafe/password_entry_row.py:68
+msgid "Password copied to clipboard"
+msgstr "Geslo kopirano na odložišče"
+
+#: passwordsafe/entry_row.py:114 passwordsafe/group_row.py:101
+#, fuzzy
+#| msgid "Title not specified"
 msgid "Title not specified"
 msgstr "Naziv ni določen"
 
-#: passwordsafe/entry_row.py:75
+#: passwordsafe/entry_row.py:125
 msgid "No username specified"
-msgstr ""
-
-#: passwordsafe/group_row.py:37
-msgid "No group title specified"
-msgstr ""
+msgstr "Uporabniško ime ni določeno"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: passwordsafe/main_window.py:297
+#: passwordsafe/main_window.py:206
 msgid "Choose a Keepass safe"
-msgstr ""
+msgstr "Izberite sef Keepass"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: passwordsafe/main_window.py:307 passwordsafe/main_window.py:388
+#: passwordsafe/main_window.py:216 passwordsafe/main_window.py:306
 msgid "KeePass 3.1/4 Database"
-msgstr ""
+msgstr "Zbirka podatkov KeePass 3.1/4"
 
-#: passwordsafe/main_window.py:336
-msgid "Unable to open file \"{}\"."
-msgstr ""
+#: passwordsafe/main_window.py:244
+msgid "Could not open file"
+msgstr "Datoteke ni mogoče odpreti"
 
-#: passwordsafe/main_window.py:339
-msgid "File type {} ({}) is not supported."
-msgstr ""
+#: passwordsafe/main_window.py:253
+msgid "Could not open file: Mime type not supported"
+msgstr "Datoteke ni mogoče odpreti: vrsta MIME ni podprta"
+
+#: passwordsafe/main_window.py:263 passwordsafe/unlock_database.py:193
+msgid "Safe already opened"
+msgstr "Sef je že odprt"
 
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: passwordsafe/main_window.py:379
+#: passwordsafe/main_window.py:295
 msgid "Choose location for Keepass safe"
-msgstr ""
+msgstr "Izberite mesto za sef Keepass"
 
-#: passwordsafe/selection_ui.py:175
+#: passwordsafe/main_window.py:298
+msgid "_Create"
+msgstr "_Ustvari"
+
+#: passwordsafe/selection_ui.py:75
+msgid "Operation aborted: Deleting currently active group"
+msgstr "Operacija je bila ustavljena: brisanje trenutno dejavne skupine"
+
+#: passwordsafe/selection_ui.py:87
 msgid "Deletion completed"
-msgstr ""
+msgstr "Brisanje končano"
 
-#: passwordsafe/selection_ui.py:242
+#: passwordsafe/selection_ui.py:129
+msgid "Operation aborted: Moving currently active group"
+msgstr "Operacija je bila ustavljena: premikanje trenutno dejavne skupine"
+
+#: passwordsafe/selection_ui.py:146
 msgid "Move completed"
-msgstr ""
+msgstr "Premik končan"
 
-#: passwordsafe/selection_ui.py:244
-msgid "Skipped moving group into itself"
-msgstr ""
-
-#: passwordsafe/unlock_database.py:221
-msgid "Database already opened"
-msgstr ""
-
-#. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:308
+#: passwordsafe/unlock_database.py:216
 msgid "Choose a keyfile"
-msgstr ""
+msgstr "Izberite datoteko ključa"
 
-#: passwordsafe/unlock_database.py:361 passwordsafe/unlock_database.py:418
+#: passwordsafe/unlock_database.py:263
+msgid "Choose Keyfile"
+msgstr "Izberite datoteko ključa"
+
+#. NOTE kdb is a an older format for Keepass databases.
+#: passwordsafe/unlock_database.py:413
+msgid "The kdb format is not supported"
+msgstr "Zapis kdb ni podprt"
+
+#: passwordsafe/unlock_database.py:503 passwordsafe/unlock_database.py:523
+#: passwordsafe/unlock_database.py:537
+msgid "Failed to unlock safe"
+msgstr "Odklepanje sefa je spodletelo"
+
+#: passwordsafe/unlock_database.py:532
 msgid "Try again"
 msgstr "Poskusi znova"
 
-#. NOTE: Keyfile filechooser title
-#: passwordsafe/unlock_database.py:427
-msgid "Choose Keyfile"
-msgstr ""
+#: passwordsafe/unlocked_database.py:423
+msgid "Safe saved"
+msgstr "Sef shranjen"
 
-#: passwordsafe/unlocked_database.py:483
-msgid "Database saved"
-msgstr ""
+#: passwordsafe/unlocked_database.py:425
+msgid "Could not save Safe"
+msgstr "Sefa ni mogoče shraniti"
 
-#. NOTE: In-app notification to inform the user that already an unfinished save job is running
-#: passwordsafe/unlocked_database.py:486
+#: passwordsafe/unlocked_database.py:434
 msgid "Please wait. Another save is running."
-msgstr ""
+msgstr "Počakajte. Izvaja se drugo shranjevanje."
 
 #. NOTE: In-app notification to inform the user that no save is necessary because there where no changes made
-#: passwordsafe/unlocked_database.py:489
+#: passwordsafe/unlocked_database.py:438
 msgid "No changes made"
-msgstr "Ni narejenih sprememb"
+msgstr "Ni opravljenih sprememb"
 
-#: passwordsafe/unlocked_database.py:669
+#: passwordsafe/unlocked_database.py:474
 msgid "Copied to clipboard"
-msgstr "Kopirano v odložišče"
+msgstr "Kopirano na odložišče"
 
-#. NOTE: Notification that a safe has been locked, Notification title has the safe file name in it
-#: passwordsafe/unlocked_database.py:824
-#, python-format
-msgid "%s locked"
-msgstr ""
+#. NOTE: Notification that a safe has been locked.
+#: passwordsafe/unlocked_database.py:550
+msgid "Safe locked due to inactivity"
+msgstr "Sef zaklenjen zaradi nedejavnosti"
 
-#: passwordsafe/unlocked_database.py:824
-msgid "Keepass safe locked due to inactivity"
-msgstr ""
+#: passwordsafe/unlocked_headerbar.py:135
+#, fuzzy
+msgid "{} Selected entry"
+msgid_plural "{} Selected entries"
+msgstr[0] "{} _izbran"
+msgstr[1] "{} _izbrana"
+msgstr[2] "{} _izbrani"
+msgstr[3] "{} _izbranih"

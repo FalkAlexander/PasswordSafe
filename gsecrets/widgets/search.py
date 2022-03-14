@@ -151,10 +151,13 @@ class Search(Adw.Bin):
         results = list(db_groups) + list(db_entries)
 
         if len(results) == 0:
-            self.stack.set_visible_child(self._empty_search_page)
+            GLib.idle_add(self._no_results)
             return
 
         GLib.idle_add(self._show_results, results)
+
+    def _no_results(self):
+        self.stack.set_visible_child(self._empty_search_page)
 
     def _show_results(self, results):
         n_items = self._result_list.get_n_items()

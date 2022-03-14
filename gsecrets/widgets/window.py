@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-import threading
 from enum import IntEnum
 from gettext import gettext as _
 
@@ -301,30 +300,14 @@ class Window(Adw.ApplicationWindow):
                 self.create_new_database(filepath)
 
     def create_new_database(self, filepath: str) -> None:
-        """invoked in a separate thread to create a new safe."""
+        """Copy stock database onto filepath."""
         self._spinner.start()
         self._main_view.set_visible_child(self._spinner)
-        creation_thread = threading.Thread(
-            target=self.start_database_creation_routine, args=[filepath]
-        )
-        creation_thread.daemon = True
-        creation_thread.start()
 
-    def start_database_creation_routine(self, filepath):
-        """Copy stock database onto filepath. Most functions are called
-        inside a idle_add, so they get executed in the main thread
-        rather than in the thread where the database is created."""
         stock_db_file: Gio.File = Gio.File.new_for_uri(
             "resource:///org/gnome/World/Secrets/database.kdbx"
         )
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
-
-        def database_created_callback(database_manager):
-            """Callback to be run on the main thread."""
-            self._spinner.stop()
-            create_database = CreateDatabase(self, database_manager)
-            self._create_database_bin.props.child = create_database
-            self.view = self.View.CREATE_DATABASE
 
         def error_callback(err):
             logging.debug("Could not copy new database: %s", err)
@@ -339,16 +322,19 @@ class Window(Adw.ApplicationWindow):
                     raise Exception("IO operation error")
 
             except Exception as err:  # pylint: disable=broad-except
-                GLib.idle_add(error_callback, err)
+                error_callback(err)
             else:
                 try:
                     database_manager = DatabaseManager(
                         filepath, "liufhre86ewoiwejmrcu8owe"
                     )
                 except Exception as err:  # pylint: disable=broad-except
-                    GLib.idle_add(error_callback, err)
+                    error_callback(err)
                 else:
-                    GLib.idle_add(database_created_callback, database_manager)
+                    self._spinner.stop()
+                    create_database = CreateDatabase(self, database_manager)
+                    self._create_database_bin.props.child = create_database
+                    self.view = self.View.CREATE_DATABASE
 
         stock_db_file.copy_async(
             new_db_file,

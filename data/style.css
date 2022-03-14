@@ -7,27 +7,19 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border: 0;
+  border-radius: 0px;
   transition: 0.3s;
+  background: transparent;
 }
 
 #PathbarButton:hover {
   color: @accent_color;
-  box-shadow: none;
-  transition-property: none;
-  border-top: none;
-  box-shadow: 0px -2px 0px alpha(currentColor,0.5) inset;
+  box-shadow: 0px -3px 0px @accent_color inset;
   transition: box-shadow 0.3s;
-  border-radius: 0px;
-  background: transparent;
 }
 
 .PathbarButtonActive {
-  box-shadow: none;
-  transition-property: none;
-  border-top: none;
-  box-shadow: 0px -2px 0px @accent_bg_color inset;
-  border-radius: 0px;
-  background: transparent;
+  box-shadow: 0px -2px 0px @accent_color inset;
 }
 
 /* Entry and group browser page styles */

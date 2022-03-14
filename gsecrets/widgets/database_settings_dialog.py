@@ -52,6 +52,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     current_password_entry = Gtk.Template.Child()
     new_password_entry = Gtk.Template.Child()
 
+    save_id: int | None = None
+
     def __init__(self, unlocked_database):
         super().__init__()
 
@@ -238,6 +240,14 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
             generate_keyfile(keyfile, callback)
 
+    def _on_save_notification(self, dbm, _saved):
+        # TODO Handle errors, possibly with a AdwToast.
+        if self.save_id:
+            dbm.disconnect(self.save_id)
+            self.save_id = None
+
+        self.auth_save_process_finished()
+
     @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):
         new_password = self.new_password_entry.get_text()
@@ -254,18 +264,15 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         button.set_child(spinner)
         button.set_sensitive(False)
 
-        save_thread = threading.Thread(target=self.auth_save_process)
-        save_thread.daemon = True
-        save_thread.start()
+        self.save_id = self.database_manager.connect(
+            "save-notification", self._on_save_notification
+        )
+        self.database_manager.save_database(True)
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):
         self.confirm_password_entry.props.text = password
         self.new_password_entry.props.text = password
-
-    def auth_save_process(self):
-        self.database_manager.save_database()
-        GLib.idle_add(self.auth_save_process_finished)
 
     def auth_save_process_finished(self):
         # Restore all widgets

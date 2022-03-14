@@ -164,6 +164,9 @@ class DatabaseManager(GObject.GObject):
         """returns the database version"""
         return self.db.version
 
+    # TODO This should be renamed to "saved" and it should have a argument
+    # telling whether this should present a notification, probably by saying if
+    # this was an automatic save.
     @GObject.Signal(arg_types=(bool,))
     def save_notification(self, _saved):
         return

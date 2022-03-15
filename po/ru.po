@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-01-26 15:43+0000\n"
-"PO-Revision-Date: 2022-01-30 17:35+1000\n"
+"POT-Creation-Date: 2022-03-14 12:11+0000\n"
+"PO-Revision-Date: 2022-03-14 19:46+0300\n"
 "Last-Translator: Ser82-png <sw@atrus.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -134,8 +134,8 @@ msgid "_Confirm"
 msgstr "_Подтвердить"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
-#: gsecrets/widgets/database_settings_dialog.py:198
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
+#: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
 msgstr "Сгенерировать файл-ключ"
 
@@ -145,8 +145,8 @@ msgstr "Установите файл-ключ чтобы защитить се�
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "_Сгенерировать"
 
@@ -162,7 +162,7 @@ msgstr "_Открыть сейф"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Создать сейф"
 
@@ -231,8 +231,8 @@ msgstr "_Текущий"
 msgid "Enter Current Password"
 msgstr "Введите текущий пароль"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
+#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "Файл-ключ"
 
@@ -249,7 +249,7 @@ msgid "Could not Load Keyfile"
 msgstr "Не удалось загрузить файл-ключ"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:293
 msgid "_Apply Changes"
 msgstr "Применить _изменения"
 
@@ -371,35 +371,35 @@ msgstr "Редактировать в окне"
 msgid "Icon"
 msgstr "Значок"
 
-#: data/gtk/entry_page.ui:265
+#: data/gtk/entry_page.ui:268
 msgid "Attachments"
 msgstr "Вложения"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:293
 msgid "_Add Attachment"
 msgstr "Добавить _вложение"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:315
 msgid "Attributes"
 msgstr "Атрибуты"
 
-#: data/gtk/entry_page.ui:328
+#: data/gtk/entry_page.ui:331
 msgid "Key"
 msgstr "Ключ"
 
-#: data/gtk/entry_page.ui:334
+#: data/gtk/entry_page.ui:337
 msgid "Value"
 msgstr "Значение"
 
-#: data/gtk/entry_page.ui:345
+#: data/gtk/entry_page.ui:348
 msgid "Add Attribute"
 msgstr "Добавить атрибут"
 
-#: data/gtk/entry_page.ui:369
+#: data/gtk/entry_page.ui:372
 msgid "_Expiration Date"
 msgstr "Дата _окончания срока действия"
 
-#: data/gtk/entry_page.ui:390
+#: data/gtk/entry_page.ui:393
 msgid "_Show More"
 msgstr "Показать _больше"
 
@@ -713,7 +713,7 @@ msgstr "Не показывать стартовый _экран"
 msgid "Reopen last opened safe."
 msgstr "Повторно открыть последний открытый сейф."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
 msgid "Safe"
 msgstr "Сейф"
 
@@ -837,7 +837,7 @@ msgstr "Очистить список недавно открытых сейфо
 msgid "Unlock Safe"
 msgstr "Разблокировать сейф"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:303
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:306
 msgid "_Select Keyfile"
 msgstr "_Выбрать файл-ключ"
 
@@ -1119,7 +1119,7 @@ msgstr ""
 "отлично интегрируется с рабочим столом GNOME и предоставляет простой и "
 "лаконичный интерфейс для управления базами данных паролей."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:184
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1135,25 +1135,25 @@ msgstr "Ошибка: Сейф {} уже открыт"
 msgid "Could not Load Attachment"
 msgstr "Не удалось загрузить вложение"
 
-#: gsecrets/create_database.py:130
+#: gsecrets/create_database.py:67
+msgid "Unable to create database"
+msgstr "Невозможно создать базу данных"
+
+#: gsecrets/create_database.py:157
 msgid "Passwords do not Match"
 msgstr "Пароли не совпадают"
 
-#: gsecrets/create_database.py:158
+#: gsecrets/create_database.py:185
 msgid "Generating…"
 msgstr "Создание…"
 
-#: gsecrets/create_database.py:171
+#: gsecrets/create_database.py:198
 msgid "Could not Create Keyfile"
 msgstr "Не удалось создать файл-ключ"
 
-#: gsecrets/create_database.py:173
+#: gsecrets/create_database.py:200
 msgid "Generate"
 msgstr "Сгенерировать"
-
-#: gsecrets/database_manager.py:122
-msgid "Clone"
-msgstr "Клонировать"
 
 #: gsecrets/entry_page.py:238 gsecrets/entry_page.py:375
 #: gsecrets/entry_row.py:112
@@ -1189,6 +1189,10 @@ msgstr "Заголовок не указан"
 msgid "Username not specified"
 msgstr "Не указано имя пользователя"
 
+#: gsecrets/safe_element.py:361
+msgid "Clone"
+msgstr "Клонировать"
+
 #: gsecrets/unlock_database.py:78
 msgid "Select Keyfile"
 msgstr "Выбрать файл-ключ"
@@ -1197,42 +1201,42 @@ msgstr "Выбрать файл-ключ"
 msgid "Safe {} is Already Open"
 msgstr "Сейф {} уже открыт"
 
-#: gsecrets/unlock_database.py:231
+#: gsecrets/unlock_database.py:234
 msgid "The kdb Format is not Supported"
 msgstr "Формат kdb не поддерживается"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:290
 msgid "Failed to Unlock Safe"
 msgstr "Не удалось разблокировать сейф"
 
-#: gsecrets/unlock_database.py:298
+#: gsecrets/unlock_database.py:301
 msgid "_Try Again"
 msgstr "_Попробуйте снова"
 
-#: gsecrets/unlocked_database.py:277
+#: gsecrets/unlocked_database.py:276
 msgid "Safe Saved"
 msgstr "Сейф сохранён"
 
-#: gsecrets/unlocked_database.py:279
+#: gsecrets/unlocked_database.py:278
 msgid "Could not Save Safe"
 msgstr "Не удалось сохранить сейф"
 
-#: gsecrets/unlocked_database.py:289
+#: gsecrets/unlocked_database.py:288
 msgid "Please Wait. Another Save is Running."
 msgstr "Подождите. Выполняется другое сохранение."
 
 #. NOTE: In-app notification to inform the user that no save
 #. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:294
+#: gsecrets/unlocked_database.py:293
 msgid "No Changes Made"
 msgstr "Изменений не было"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:330
 msgid "Copied"
 msgstr "Скопировано"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:400
+#: gsecrets/unlocked_database.py:397
 msgid "Safe Locked due to Inactivity"
 msgstr "Сейф Keepass заблокирован из-за неактивности"
 
@@ -1246,39 +1250,39 @@ msgid "Could not Store Attachment"
 msgstr "Не удалось сохранить вложение"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:129
+#: gsecrets/widgets/database_settings_dialog.py:131
 msgid "Select Current Keyfile"
 msgstr "Выберите текущий файл-ключ"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:317
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:338
 msgid "Unknown"
 msgstr "Неизвестный"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:321
+#: gsecrets/widgets/database_settings_dialog.py:328
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:331
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:334
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:345
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1298,45 +1302,45 @@ msgstr[2] "Снять выбор"
 msgid "Operation Aborted: Deleting Currently Active Group"
 msgstr "Операция прервана: удаление текущей активной группы"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:114
+#: gsecrets/widgets/selection_mode_headerbar.py:108
 msgid "Deletion Completed"
 msgstr "Удаление завершено"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:151
+#: gsecrets/widgets/selection_mode_headerbar.py:145
 msgid "Operation Aborted: Moving Currently Active Group"
 msgstr "Операция прервана: перемещение текущей активной группы"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:169
+#: gsecrets/widgets/selection_mode_headerbar.py:160
 msgid "Move Completed"
 msgstr "Перемещение завершено"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:146
 msgid "Select Safe"
 msgstr "Выбрать сейф"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
+#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
 msgid "KeePass 3.1/4 Database"
 msgstr "База данных KeePass 3.1/4"
 
-#: gsecrets/widgets/window.py:163
+#: gsecrets/widgets/window.py:162
 msgid "Any file type"
 msgstr "Любой тип файлов"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:221
 msgid "Safe is Already Open"
 msgstr "Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:245
 msgid "_Create"
 msgstr "_Создать"
 
-#: gsecrets/widgets/window.py:277
+#: gsecrets/widgets/window.py:276
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Не удалось создать сейф: Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:333
+#: gsecrets/widgets/window.py:316
 msgid "Could not Create new Safe"
 msgstr "Не удалось создать новый сейф"
 

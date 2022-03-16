@@ -164,7 +164,7 @@ class DatabaseManager(GObject.GObject):
         succeeded = False
         try:
             gfile.replace_contents_finish(result)
-        except GLib.Error as err:  # pylint: disable=broad-except
+        except GLib.Error as err:
             logging.error("Could not save database: %s", err)
         else:
             logging.debug("Saved database")

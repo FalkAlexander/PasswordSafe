@@ -360,6 +360,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         if der_alg_priv == "argon2":
             # NOTE: Argon2 is a proper name
             der_alg = _("Argon2")
+        if der_alg_priv == "argon2id":
+            # NOTE: Argon2id is a proper name
+            der_alg = _("Argon2id")
         elif der_alg_priv == "aeskdf":
             # NOTE: AES-KDF is a proper name
             der_alg = _("AES-KDF")

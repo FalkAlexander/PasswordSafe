@@ -21,6 +21,7 @@ Secrets is a password manager which integrates perfectly with the GNOME desktop 
 
 ### Supported Derivation algorithms:
 * Argon2 KDBX4
+* Argon2id KDBX4
 * AES-KDF KDBX 3.1
 
 # Installation

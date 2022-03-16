@@ -2,10 +2,10 @@
 from __future__ import annotations
 
 import logging
-import ntpath
 import os
 import threading
 from gettext import gettext as _
+from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -289,9 +289,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
     def set_detail_values(self):
         # Name
-        self.name_row.props.subtitle = os.path.splitext(
-            ntpath.basename(self.database_manager.path)
-        )[0]
+        self.name_row.props.subtitle = Path(self.database_manager.path).stem
 
         # Path
         path = self.database_manager.path

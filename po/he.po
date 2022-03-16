@@ -2,26 +2,27 @@
 # Copyright (C) 2022 secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the secrets package.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2022.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-01 11:12+0000\n"
-"PO-Revision-Date: 2022-03-02 18:01+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <he@li.org>\n"
+"POT-Creation-Date: 2022-03-16 08:01+0000\n"
+"PO-Revision-Date: 2022-03-16 10:38+0200\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3);\n"
-"X-Generator: Poedit 3.0.1\n"
+"2 : 3)\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
-msgstr "ניהול הסיסמאות שלך"
+msgstr "ניהול הססמאות שלך"
 
 #. "Secrets" is the application name, do not translate
 #: data/about_dialog.ui.in:9
@@ -72,11 +73,11 @@ msgstr "הגנה על הכספת שלך"
 #: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
-msgstr "_סיסמה"
+msgstr "_ססמה"
 
 #: data/gtk/create_database.ui:47
 msgid "Use a password to secure your safe."
-msgstr "להשתמש בסיסמה כדי להגן על הכספת שלך."
+msgstr "להשתמש בססמה כדי להגן על הכספת שלך."
 
 #: data/gtk/create_database.ui:57
 msgid "_Keyfile"
@@ -92,28 +93,28 @@ msgstr "מ_רוכב"
 
 #: data/gtk/create_database.ui:69
 msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr "להשתמש בסיסמה בשילוב עם קובץ מפתח כדי לאבטח את הכספת שלך."
+msgstr "להשתמש בססמה בשילוב עם קובץ מפתח כדי לאבטח את הכספת שלך."
 
 #: data/gtk/create_database.ui:101
 msgid "Enter Password"
-msgstr "נא למלא סיסמה"
+msgstr "נא למלא ססמה"
 
 #: data/gtk/create_database.ui:109
 msgid "Set password for safe."
-msgstr "הגדרת סיסמה לכספת."
+msgstr "הגדרת ססמה לכספת."
 
 #: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
 #: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
 msgid "Generate New Password"
-msgstr "יצירת סיסמה חדשה"
+msgstr "יצירת ססמה חדשה"
 
 #: data/gtk/create_database.ui:183
 msgid "Password Match Check"
-msgstr "בדיקת התאמת סיסמה"
+msgstr "בדיקת התאמת ססמה"
 
 #: data/gtk/create_database.ui:191
 msgid "Repeat password for safe."
-msgstr "חזרה על הסיסמה לכספת."
+msgstr "חזרה על הססמה לכספת."
 
 #: data/gtk/create_database.ui:248
 msgid "Match Check Failed"
@@ -128,8 +129,8 @@ msgid "_Confirm"
 msgstr "_אישור"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
-#: gsecrets/widgets/database_settings_dialog.py:198
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
+#: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
 msgstr "יצירת קובץ מפתח"
 
@@ -139,8 +140,8 @@ msgstr "הגדרת קובץ מפתח לכספת"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "י_צירה"
 
@@ -156,7 +157,7 @@ msgstr "_פתיחת כספת"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "יצירת כספת"
 
@@ -182,14 +183,14 @@ msgstr "ה_עדפות"
 #: data/gtk/recent_files_headerbar.ui:57
 #: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
 msgid "_Keyboard Shortcuts"
-msgstr "קיצורי מקלדת"
+msgstr "_צירופי מקשים"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database_headerbar.ui:39
 #: data/gtk/recent_files_headerbar.ui:61
 #: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
 msgid "_About Secrets"
-msgstr "_על Secrets"
+msgstr "_על אודות Secrets"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -199,7 +200,7 @@ msgstr "אימות"
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
 #: data/gtk/settings_dialog.ui:87
 msgid "Password"
-msgstr "סיסמה"
+msgstr "ססמה"
 
 #. New password (replacement for an old one)
 #: data/gtk/database_settings_dialog.ui:22
@@ -214,7 +215,7 @@ msgstr "_אישור"
 
 #: data/gtk/database_settings_dialog.ui:85
 msgid "Confirm New Password"
-msgstr "אישור הסיסמה החדשה"
+msgstr "אישור הססמה החדשה"
 
 #. Current password
 #: data/gtk/database_settings_dialog.ui:97
@@ -223,10 +224,10 @@ msgstr "_נוכחי"
 
 #: data/gtk/database_settings_dialog.ui:114
 msgid "Enter Current Password"
-msgstr "נא למלא את הסיסמה הנוכחית"
+msgstr "נא למלא את הססמה הנוכחית"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
+#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "קובץ מפתח"
 
@@ -243,7 +244,7 @@ msgid "Could not Load Keyfile"
 msgstr "לא ניתן לטעון קובץ מפתח"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:293
 msgid "_Apply Changes"
 msgstr "ה_חלת השינויים"
 
@@ -271,7 +272,7 @@ msgstr "גודל קובץ"
 #. KeePass is a proper noun
 #: data/gtk/database_settings_dialog.ui:270
 msgid "KeePass Version"
-msgstr "גירסת KeePass"
+msgstr "גרסת KeePass"
 
 #: data/gtk/database_settings_dialog.ui:275
 msgid "Creation Date"
@@ -300,7 +301,7 @@ msgstr "מספר קבוצות"
 
 #: data/gtk/database_settings_dialog.ui:305
 msgid "Passwords"
-msgstr "סיסמאות"
+msgstr "ססמאות"
 
 #: data/gtk/edit_element_headerbar.ui:22
 msgid "Menu"
@@ -338,15 +339,15 @@ msgstr "העתקה"
 
 #: data/gtk/entry_page.ui:77
 msgid "One-_Time Password Secret"
-msgstr "סוד לסיסמה _חד־פעמית"
+msgstr "סוד לססמה _חד־פעמית"
 
 #: data/gtk/entry_page.ui:97
 msgid "Could not Generate OTP Token"
-msgstr "לא ניתן לייצר אסימון סיסמה חד־פעמית"
+msgstr "לא ניתן לייצר אסימון ססמה חד־פעמית"
 
 #: data/gtk/entry_page.ui:111
 msgid "_One-Time Password"
-msgstr "_סיסמה חד־פעמית"
+msgstr "_ססמה חד־פעמית"
 
 #: data/gtk/entry_page.ui:159
 msgid "U_RL"
@@ -403,7 +404,7 @@ msgstr "העתקת שם משתמש"
 
 #: data/gtk/entry_row.ui:59
 msgid "Copy Password"
-msgstr "העתקת סיסמה"
+msgstr "העתקת ססמה"
 
 #: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
 msgid "Expiration Date not Set"
@@ -445,7 +446,7 @@ msgstr "פתיחת העדפות"
 #: data/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "הצגת קיצורי מקלדת"
+msgstr "הצגת צירופי מקשים"
 
 #: data/gtk/help-overlay.ui:44
 msgctxt "Shortcut window description"
@@ -495,7 +496,7 @@ msgstr "רשומה"
 #: data/gtk/help-overlay.ui:96
 msgctxt "Shortcut window description"
 msgid "Copy Password"
-msgstr "העתקת סיסמה"
+msgstr "העתקת ססמה"
 
 #: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
@@ -707,7 +708,7 @@ msgstr "לה_סתיר את מסך הפתיחה הראשוני"
 msgid "Reopen last opened safe."
 msgstr "לפתוח את הכספת האחרונה שנפתחה."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
 msgid "Safe"
 msgstr "כספת"
 
@@ -735,15 +736,15 @@ msgstr "לזכור את המפתח המרוכב האחרון שנעשה בו ש�
 
 #: data/gtk/settings_dialog.ui:90
 msgid "Password Generation"
-msgstr "יצירת סיסמה"
+msgstr "יצירת ססמה"
 
 #: data/gtk/settings_dialog.ui:93
 msgid "Password Length"
-msgstr "אורך הסיסמה"
+msgstr "אורך הססמה"
 
 #: data/gtk/settings_dialog.ui:94
 msgid "Number of characters when generating a password."
-msgstr "מספר התווים בעת יצירת סיסמה."
+msgstr "מספר התווים בעת יצירת ססמה."
 
 #: data/gtk/settings_dialog.ui:113
 msgid "_Uppercase Characters"
@@ -751,7 +752,7 @@ msgstr "אותיות _גדולות"
 
 #: data/gtk/settings_dialog.ui:114
 msgid "Use uppercase characters A-Z when generating a password."
-msgstr "להשתמש באותיות גדולות A-Z בעת יצירת סיסמה."
+msgstr "להשתמש באותיות גדולות A-Z בעת יצירת ססמה."
 
 #: data/gtk/settings_dialog.ui:127
 msgid "_Lowercase Characters"
@@ -759,7 +760,7 @@ msgstr "אותיות _קטנות"
 
 #: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
-msgstr "להשתמש באותיות קטנות a-z בעת יצירת סיסמה."
+msgstr "להשתמש באותיות קטנות a-z בעת יצירת ססמה."
 
 #: data/gtk/settings_dialog.ui:141
 msgid "_Numeric Characters"
@@ -767,7 +768,7 @@ msgstr "תווים מ_ספריים"
 
 #: data/gtk/settings_dialog.ui:142
 msgid "Use numeric characters when generating a password."
-msgstr "להשתמש בתווים מספריים בעת יצירת סיסמה."
+msgstr "להשתמש בתווים מספריים בעת יצירת ססמה."
 
 #: data/gtk/settings_dialog.ui:155
 msgid "_Special Characters"
@@ -775,7 +776,7 @@ msgstr "_תווים מיוחדים"
 
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr "להשתמש בתווי ASCII בלתי מספריים בעת יצירת סיסמה."
+msgstr "להשתמש בתווי ASCII בלתי מספריים בעת יצירת ססמה."
 
 #: data/gtk/settings_dialog.ui:171
 msgid "Passphrase Generation"
@@ -831,7 +832,7 @@ msgstr "פינוי רשימת הכספות שנפתחו לאחרונה."
 msgid "Unlock Safe"
 msgstr "שחרור נעילת כספת"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:303
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:306
 msgid "_Select Keyfile"
 msgstr "בחירת _קובץ מפתח"
 
@@ -905,7 +906,7 @@ msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
-"אחסון מאובטח של הסיסמאות, הפתקיות והנתונים שלך. ניתן <b>ליצור</b> או "
+"אחסון מאובטח של הססמאות, הפתקיות והנתונים שלך. ניתן <b>ליצור</b> או "
 "<b>לייבא</b> כספת KeePass חדשה."
 
 #. Translators: Secrets is the app name, do not translate
@@ -915,12 +916,12 @@ msgstr "סודות"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
-msgstr "מנהל סיסמאות ל־GNOME"
+msgstr "מנהל ססמאות ל־GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:14
 msgid "keepass;encrypt;secure;"
-msgstr "‫keepass;הצפנה;מוצפן;מפתח;מאובטח;אבטחה;סיסמה;סיסמא;ססמה;ססמא;"
+msgstr "‫keepass;הצפנה;מוצפן;מפתח;מאובטח;אבטחה;ססמה;סיסמא;ססמה;ססמא;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Use dark GTK theme"
@@ -975,7 +976,7 @@ msgstr "לפנות את לוח הגזירים לאחר X שניות"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
-msgstr "לאחר העתקת הסיסמה, לפנות את לוח הגזירים מטעמי אבטחה."
+msgstr "לאחר העתקת הססמה, לפנות את לוח הגזירים מטעמי אבטחה."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -1047,43 +1048,43 @@ msgstr "סדר השורות בתצוגת הקבוצות והרשומות."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
-msgstr "להשתמש באותיות גדולות בעת יצירת סיסמה"
+msgstr "להשתמש באותיות גדולות בעת יצירת ססמה"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
-msgstr "להשתמש באותיות גדולות בעת יצירת סיסמה אקראית."
+msgstr "להשתמש באותיות גדולות בעת יצירת ססמה אקראית."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
-msgstr "להשתמש באותיות קטנות בעת יצירת סיסמה"
+msgstr "להשתמש באותיות קטנות בעת יצירת ססמה"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
-msgstr "להשתמש באותיות קטנות a-z בעת יצירת סיסמה אקראית."
+msgstr "להשתמש באותיות קטנות a-z בעת יצירת ססמה אקראית."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
-msgstr "להשתמש במספרים בעת יצירת סיסמה"
+msgstr "להשתמש במספרים בעת יצירת ססמה"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
-msgstr "להשתמש בתווי המספרים 0-‏9 בעת יצירת סיסמה אקראית."
+msgstr "להשתמש בתווי המספרים 0-‏9 בעת יצירת ססמה אקראית."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
-msgstr "להשתמש בסימנים בעת יצירת סיסמה"
+msgstr "להשתמש בסימנים בעת יצירת ססמה"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
-msgstr "להשתמש בתווי ASCII בלתי מספריים בעת יצירת סיסמה אקראית."
+msgstr "להשתמש בתווי ASCII בלתי מספריים בעת יצירת ססמה אקראית."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
-msgstr "אורך הסיסמה בעת יצירת סיסמה"
+msgstr "אורך הססמה בעת יצירת ססמה"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
-msgstr "מספר התווים הבודדים בעת יצירת סיסמה."
+msgstr "מספר התווים הבודדים בעת יצירת ססמה."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
@@ -1103,9 +1104,9 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
-"סודות הוא מנהל סיסמאות שמשתמש במהדורה .4 של תצורת הקבצים KeePass. הוא משתלב "
+"סודות הוא מנהל ססמאות שמשתמש במהדורה .4 של תצורת הקבצים KeePass. הוא משתלב "
 "באופן מושלם עם שולחן העבודה GNOME ומספק מנשק פשוט ובלתי עמוס לניהול מסדי "
-"נתונים של סיסמאות."
+"נתונים של ססמאות."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
 msgid "Falk Alexander Seidl"
@@ -1123,19 +1124,24 @@ msgstr "שגיאה: הכספת {} כבר פתוחה"
 msgid "Could not Load Attachment"
 msgstr "לא ניתן לטעון צרופה"
 
-#: gsecrets/create_database.py:130
-msgid "Passwords do not Match"
-msgstr "הסיסמאות אינן תואמות."
+#: gsecrets/create_database.py:67
+#| msgid "Last opened database"
+msgid "Unable to create database"
+msgstr "לא ניתן ליצור מסד נתונים"
 
-#: gsecrets/create_database.py:158
+#: gsecrets/create_database.py:157
+msgid "Passwords do not Match"
+msgstr "הססמאות אינן תואמות."
+
+#: gsecrets/create_database.py:185
 msgid "Generating…"
 msgstr "נוצר…"
 
-#: gsecrets/create_database.py:171
+#: gsecrets/create_database.py:198
 msgid "Could not Create Keyfile"
 msgstr "לא ניתן ליצור קובץ מפתח"
 
-#: gsecrets/create_database.py:173
+#: gsecrets/create_database.py:200
 msgid "Generate"
 msgstr "יצירה"
 
@@ -1146,7 +1152,7 @@ msgstr "שם המשתמש הועתק"
 
 #: gsecrets/entry_page.py:279
 msgid "One-time Password Copied"
-msgstr "הסיסמה החד־פעמית הועתקה"
+msgstr "הססמה החד־פעמית הועתקה"
 
 #: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
@@ -1163,7 +1169,7 @@ msgstr "הו_ספה"
 
 #: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
 msgid "Password Copied"
-msgstr "הסיסמה הועתקה"
+msgstr "הססמה הועתקה"
 
 #: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
 msgid "Title not Specified"
@@ -1185,42 +1191,42 @@ msgstr "בחירת קובץ מפתח"
 msgid "Safe {} is Already Open"
 msgstr "הכספת {} כבר פתוחה"
 
-#: gsecrets/unlock_database.py:231
+#: gsecrets/unlock_database.py:234
 msgid "The kdb Format is not Supported"
 msgstr "אין תמיכה בתצורת kdb"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:290
 msgid "Failed to Unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
 
-#: gsecrets/unlock_database.py:298
+#: gsecrets/unlock_database.py:301
 msgid "_Try Again"
 msgstr "ל_נסות שוב"
 
-#: gsecrets/unlocked_database.py:277
+#: gsecrets/unlocked_database.py:276
 msgid "Safe Saved"
 msgstr "הכספת נשמרה"
 
-#: gsecrets/unlocked_database.py:279
+#: gsecrets/unlocked_database.py:278
 msgid "Could not Save Safe"
 msgstr "לא ניתן לשמור את הכספת"
 
-#: gsecrets/unlocked_database.py:289
+#: gsecrets/unlocked_database.py:288
 msgid "Please Wait. Another Save is Running."
 msgstr "נא להמתין. שמירה נוספת פועלת."
 
 #. NOTE: In-app notification to inform the user that no save
 #. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:294
+#: gsecrets/unlocked_database.py:293
 msgid "No Changes Made"
 msgstr "לא בוצעו שינויים"
 
-#: gsecrets/unlocked_database.py:331
+#: gsecrets/unlocked_database.py:330
 msgid "Copied"
 msgstr "הועתק"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:398
+#: gsecrets/unlocked_database.py:397
 msgid "Safe Locked due to Inactivity"
 msgstr "הכספת ננעלה עקב חוסר פעילות"
 
@@ -1234,39 +1240,39 @@ msgid "Could not Store Attachment"
 msgstr "לא ניתן לאחסן צרופה"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:129
+#: gsecrets/widgets/database_settings_dialog.py:131
 msgid "Select Current Keyfile"
 msgstr "בחירת קובץ המפתח הנוכחי"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:317
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:338
 msgid "Unknown"
 msgstr "לא ידוע"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:321
+#: gsecrets/widgets/database_settings_dialog.py:328
 msgid "AES 256-bit"
 msgstr "‫AES באורך 256 סיביות"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:331
 msgid "ChaCha20 256-bit"
 msgstr "‫ChaCha20 באורך 256 סיביות"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:334
 msgid "Twofish 256-bit"
 msgstr "‫Twofish באורך 256 סיביות"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:345
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1300,31 +1306,31 @@ msgid "Move Completed"
 msgstr "ההעברה הושלמה"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:146
 msgid "Select Safe"
 msgstr "בחירת כספת"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
+#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
 msgid "KeePass 3.1/4 Database"
 msgstr "מסד נתונים KeePass 3.1/4"
 
-#: gsecrets/widgets/window.py:163
+#: gsecrets/widgets/window.py:162
 msgid "Any file type"
 msgstr "כל סוג של קובץ"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:221
 msgid "Safe is Already Open"
 msgstr "הכספת כבר פתוחה"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:245
 msgid "_Create"
 msgstr "י_צירה"
 
-#: gsecrets/widgets/window.py:277
+#: gsecrets/widgets/window.py:276
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "לא ניתן ליצור כספת: הכספת כבר פתוחה"
 
-#: gsecrets/widgets/window.py:333
+#: gsecrets/widgets/window.py:316
 msgid "Could not Create new Safe"
 msgstr "לא ניתן ליצור כספת חדשה"

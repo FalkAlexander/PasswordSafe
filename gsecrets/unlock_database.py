@@ -233,7 +233,7 @@ class UnlockDatabase(Adw.Bin):
 
     def _open_database_process(self, password, keyfile):
         try:
-            self.database_manager.open(password, keyfile, self.keyfile_hash)
+            self.database_manager.unlock(password, keyfile, self.keyfile_hash)
             GLib.idle_add(self._open_database_success)
         except OSError as err:
             GLib.idle_add(self._unlock_failed, err)

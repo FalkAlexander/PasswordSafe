@@ -326,7 +326,7 @@ class Window(Adw.ApplicationWindow):
             else:
                 database_manager = DatabaseManager(filepath)
                 try:
-                    database_manager.open("liufhre86ewoiwejmrcu8owe")
+                    database_manager.unlock("liufhre86ewoiwejmrcu8owe")
                 except OSError as err:
                     error_callback(err)
                 else:

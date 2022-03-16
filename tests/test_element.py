@@ -24,9 +24,9 @@ def path():
 def db_pwd(path, password):
     db = DatabaseManager(path)
     with pytest.raises(OSError):
-        db.open("wrong password")
+        db.unlock("wrong password")
 
-    db.open(password)
+    db.unlock(password)
     assert db is not None
     assert db.opened is True
     assert db.password == password

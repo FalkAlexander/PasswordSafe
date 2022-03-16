@@ -48,8 +48,8 @@ class DatabaseManager(GObject.GObject):
         self.db: PyKeePass = None
         self.keyfile_hash: str = ""
 
-    def open(self, password: str, keyfile: str = "", keyfile_hash: str = "") -> None:
-        """Open a safe.
+    def unlock(self, password: str, keyfile: str = "", keyfile_hash: str = "") -> None:
+        """Unlocks an opens a safe.
 
         This pykeepass to open a safe database. If the database cannot
         be opened, an exception is raised.

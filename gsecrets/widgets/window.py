@@ -309,11 +309,16 @@ class Window(Adw.ApplicationWindow):
         )
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
 
-        def error_callback(err):
-            logging.debug("Could not copy new database: %s", err)
+        def error_callback():
             self._spinner.stop()
             self.invoke_initial_screen()
             self.send_notification(_("Could not Create new Safe"))
+
+        def success_callback(database_manager):
+            self._spinner.stop()
+            create_database = CreateDatabase(self, database_manager)
+            self._create_database_bin.props.child = create_database
+            self.view = self.View.CREATE_DATABASE
 
         def copy_callback(gfile, result):
             try:
@@ -322,18 +327,15 @@ class Window(Adw.ApplicationWindow):
                     raise Exception("IO operation error")
 
             except Exception as err:  # pylint: disable=broad-except
-                error_callback(err)
+                logging.debug("Could not copy new database: %s", err)
+                error_callback()
             else:
                 database_manager = DatabaseManager(filepath)
-                try:
-                    database_manager.unlock("liufhre86ewoiwejmrcu8owe")
-                except OSError as err:
-                    error_callback(err)
-                else:
-                    self._spinner.stop()
-                    create_database = CreateDatabase(self, database_manager)
-                    self._create_database_bin.props.child = create_database
-                    self.view = self.View.CREATE_DATABASE
+                database_manager.unlock_async(
+                    "liufhre86ewoiwejmrcu8owe",
+                    success_cb=success_callback,
+                    error_cb=error_callback,
+                )
 
         stock_db_file.copy_async(
             new_db_file,

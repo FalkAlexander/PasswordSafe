@@ -5,6 +5,7 @@ import io
 import logging
 import threading
 from pathlib import Path
+from typing import Callable
 from uuid import UUID
 
 from gi.repository import Gio, GLib, GObject
@@ -74,6 +75,35 @@ class DatabaseManager(GObject.GObject):
         else:
             logging.debug("Opening of safe %s was successful", self.path)
             self._opened = True
+
+    def _unlock_wrapper(  # pylint: disable=too-many-arguments
+        self,
+        password: str,
+        keyfile: str = "",
+        keyfile_hash: str = "",
+        success_cb: Callable[[DatabaseManager], None] = None,
+        error_cb: Callable[[], None] = None,
+    ) -> None:
+        try:
+            self.unlock(password, keyfile, keyfile_hash)
+        except OSError:
+            GLib.idle_add(error_cb)
+        else:
+            GLib.idle_add(success_cb, self)
+
+    def unlock_async(  # pylint: disable=too-many-arguments
+        self,
+        password: str,
+        keyfile: str = "",
+        keyfile_hash: str = "",
+        success_cb: Callable[[DatabaseManager], None] = None,
+        error_cb: Callable[[], None] = None,
+    ) -> None:
+        unlock_thread = threading.Thread(
+            target=self._unlock_wrapper,
+            args=[password, keyfile, keyfile_hash, success_cb, error_cb],
+        )
+        unlock_thread.start()
 
     #
     # Database Modifications

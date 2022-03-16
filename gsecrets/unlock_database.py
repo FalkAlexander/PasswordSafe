@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import logging
 import os
-import threading
 import typing
 from gettext import gettext as _
 
@@ -225,21 +224,16 @@ class UnlockDatabase(Adw.Bin):
         password = self.password_entry.props.text
         keyfile = self.keyfile_path
 
-        unlock_thread = threading.Thread(
-            target=self._open_database_process, args=[password, keyfile]
+        self.database_manager.unlock_async(
+            password,
+            keyfile,
+            self.keyfile_hash,
+            self._open_database_success,
+            self._unlock_failed,
         )
-        unlock_thread.daemon = True
-        unlock_thread.start()
 
-    def _open_database_process(self, password, keyfile):
-        try:
-            self.database_manager.unlock(password, keyfile, self.keyfile_hash)
-            GLib.idle_add(self._open_database_success)
-        except OSError as err:
-            GLib.idle_add(self._unlock_failed, err)
-
-    def _open_database_success(self):
-        opened = Gio.File.new_for_path(self.database_manager.path)
+    def _open_database_success(self, database_manager):
+        opened = Gio.File.new_for_path(database_manager.path)
         gsecrets.config_manager.set_last_opened_database(opened.get_uri())
 
         if gsecrets.config_manager.get_remember_composite_key():
@@ -266,7 +260,7 @@ class UnlockDatabase(Adw.Bin):
         gsecrets.config_manager.set_last_opened_list(path_listh)
 
         if self.window.unlocked_db is None:
-            database = UnlockedDatabase(self.window, self.database_manager)
+            database = UnlockedDatabase(self.window, database_manager)
             self.window.unlocked_db = database
             self.window.unlocked_db_bin.props.child = database
 

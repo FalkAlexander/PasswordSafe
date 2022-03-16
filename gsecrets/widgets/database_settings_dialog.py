@@ -7,7 +7,7 @@ import os
 import threading
 from gettext import gettext as _
 
-from gi.repository import Adw, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets.utils import KeyFileFilter
 from gsecrets.utils import format_time, generate_keyfile
@@ -301,14 +301,30 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
         # Path
         path = self.database_manager.database_path
+        gfile = Gio.File.new_for_path(path)
         if "/home/" in path:
             self.path_row.props.subtitle = "~/" + os.path.relpath(path)
         else:
             self.path_row.props.subtitle = path
 
         # Size
-        size = os.path.getsize(path) / 1000
-        self.size_row.props.subtitle = str(size) + " kB"
+        def query_info_cb(gfile, result):
+            try:
+                file_info = gfile.query_info_finish(result)
+            except GLib.Error as err:
+                logging.error("Could not query file info: %s", err)
+            else:
+                size = file_info.get_size()  # In bytes.
+                self.size_row.props.subtitle = GLib.format_size(size)
+
+        attributes = Gio.FILE_ATTRIBUTE_STANDARD_SIZE
+        gfile.query_info_async(
+            attributes,
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            None,
+            query_info_cb,
+        )
 
         # Version
         version = self.database_manager.db.version

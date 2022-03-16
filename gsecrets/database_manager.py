@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import threading
+import io
 import logging
+import threading
 from uuid import UUID
 
 from gi.repository import Gio, GLib, GObject
@@ -53,24 +54,17 @@ class DatabaseManager(GObject.GObject):
     #
 
     # Write all changes to database
+    #
+    # This consists in two parts, we first save it to a byte stream in memory
+    # and then we write the contents of the stream into the database using Gio.
+    # This is done in this way since pykeepass save is not atomic, whereas GFile
+    # operations are.
+    #
+    # Note that certain operations in pykeepass can fail at the middle of the
+    # operation, nuking the database in the process.
     def save_database(self, notification=False):
         if not self.save_running and self.is_dirty:
             self.save_running = True
-
-            # TODO This could be simplified a lot
-            # if a copy of the keyfile was stored in memory.
-            # This would require careful checks for functionality that
-            # modifies the keyfile.
-            if self.db.keyfile:
-                gfile = Gio.File.new_for_path(self.db.keyfile)
-                exists = gfile.query_exists()
-                if not exists:
-                    self.save_running = False
-                    logging.error("Could not find keyfile")
-                    if notification:
-                        self.emit("save-notification", False)
-
-                    return
 
             save_thread = threading.Thread(
                 target=self.save_thread, args=[notification]
@@ -80,23 +74,50 @@ class DatabaseManager(GObject.GObject):
 
     def save_thread(self, notification: bool) -> None:
         succeeded = False
+        stream = io.BytesIO()
         try:
-            self.db.save()
+            self.db.save(filename=stream)
             succeeded = True
         except Exception as err:  # pylint: disable=broad-except
             logging.error("Error occurred while saving database: %s", err)
         finally:
-            GLib.idle_add(self.save_thread_finished, succeeded, notification)
+            GLib.idle_add(self.save_thread_finished, succeeded, notification, stream)
 
-    def save_thread_finished(self, succeeded: bool, notification: bool) -> None:
-        self.save_running = False
+    def save_thread_finished(
+        self, succeeded: bool, notification: bool, stream: io.BytesIO
+    ) -> None:
+        owned_bytes = stream.getvalue()
+        if succeeded and owned_bytes:
+            gfile = Gio.File.new_for_path(self.database_path)
+            gbytes = GLib.Bytes.new(owned_bytes)
+            gfile.replace_contents_bytes_async(
+                gbytes,
+                None,
+                False,
+                Gio.FileCreateFlags.NONE,
+                None,
+                self.replace_contents_cb,
+                notification,
+            )
+        else:
+            self.save_running = False
+            if notification:
+                self.emit("save-notification", False)
 
-        if notification:
-            self.emit("save-notification", succeeded)
-
-        if succeeded:
+    def replace_contents_cb(self, gfile, result, notification):
+        succeeded = False
+        try:
+            gfile.replace_contents_finish(result)
+        except GLib.Error as err:  # pylint: disable=broad-except
+            logging.error("Could not save database: %s", err)
+        else:
             logging.debug("Saved database")
             self.is_dirty = False
+            succeeded = True
+        finally:
+            self.save_running = False
+            if notification:
+                self.emit("save-notification", succeeded)
 
     @property
     def password(self) -> str:

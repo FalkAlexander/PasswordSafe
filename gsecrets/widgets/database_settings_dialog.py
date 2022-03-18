@@ -232,15 +232,40 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
             generate_keyfile(keyfile, callback)
 
+    # TODO Remove pylint disables once libadwaita-1 1.0 lands in the fedora CI image.
     def _on_save(self, database_manager, result):
-        # TODO Handle errors, possibly with a AdwToast.
-        # This pretty much assumes the process went successful.
         try:
-            database_manager.save_finish(result)
+            is_saved = database_manager.save_finish(result)
         except GLib.Error as err:
             logging.error("Could not save Safe %s", err)
+            # pylint: disable=no-member
+            self.add_toast(Adw.Toast.new(_("Could not apply changes")))
+        else:
+            if not is_saved:  # Should be unreachable
+                logging.error("Safe saved without changes")
+                # pylint: disable=no-member
+                self.add_toast(Adw.Toast.new(_("Could not apply changes")))
+                return  # Still executes the finally block
+
+            # pylint: disable=no-member
+            self.add_toast(Adw.Toast.new(_("Changes Applied")))
+
+            # Restore all widgets
+            self.current_password_entry.set_text("")
+            self.new_password_entry.set_text("")
+            self.confirm_password_entry.set_text("")
+
+            self.select_keyfile_button.set_icon_name("document-open-symbolic")
+            self.generate_keyfile_button.set_icon_name("security-high-symbolic")
+
+            self.current_keyfile_hash = None
+            self.current_keyfile_path = None
+            self.new_keyfile_hash = None
+            self.new_keyfile_path = None
         finally:
-            self.auth_save_process_finished()
+            self.set_sensitive(True)
+            self.auth_apply_button.set_sensitive(False)
+            self.auth_apply_button.set_label(_("_Apply Changes"))
 
     @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):
@@ -264,25 +289,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     def on_password_generated(self, _popover, password):
         self.confirm_password_entry.props.text = password
         self.new_password_entry.props.text = password
-
-    def auth_save_process_finished(self):
-        # Restore all widgets
-
-        self.set_sensitive(True)
-        self.current_password_entry.set_text("")
-        self.new_password_entry.set_text("")
-        self.confirm_password_entry.set_text("")
-
-        self.select_keyfile_button.set_icon_name("document-open-symbolic")
-        self.generate_keyfile_button.set_icon_name("security-high-symbolic")
-
-        self.current_keyfile_hash = None
-        self.current_keyfile_path = None
-        self.new_keyfile_hash = None
-        self.new_keyfile_path = None
-
-        self.auth_apply_button.set_label(_("_Apply Changes"))
-        self.auth_apply_button.set_sensitive(False)
 
     def set_detail_values(self):
         # Name

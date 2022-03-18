@@ -275,6 +275,15 @@ class UnlockedDatabase(Gtk.Box):
             else:
                 self.window.send_notification(_("No Changes Made"))
 
+    def on_auto_save(
+        self, database_manager: DatabaseManager, result: Gio.AsyncResult
+    ) -> None:
+        # TODO Does it make sense to present this info to the user?
+        try:
+            database_manager.save_finish(result)
+        except GLib.Error as err:
+            logging.error("Could not automatically save Safe %s", err)
+
     def lock_safe(self):
         self.database_manager.props.locked = True
 
@@ -364,7 +373,7 @@ class UnlockedDatabase(Gtk.Box):
         if locked:
             self.cleanup()
             if gsecrets.config_manager.get_save_automatically():
-                self.save_database()
+                self.auto_save_database()
 
             filepath = self.database_manager.path
             self.window.start_database_opening_routine(filepath)
@@ -437,6 +446,11 @@ class UnlockedDatabase(Gtk.Box):
         """
         self.database_manager.save_async(self.on_save)
 
+    def auto_save_database(self) -> None:
+        """Save the database."""
+        logging.debug("Automatically saving database")
+        self.database_manager.save_async(self.on_auto_save)
+
     def start_database_lock_timer(self):
         if self._lock_timer_handler:
             GLib.source_remove(self._lock_timer_handler)
@@ -458,8 +472,7 @@ class UnlockedDatabase(Gtk.Box):
     def threaded_save_loop(self) -> bool:
         """Saves the safe as long as it returns True."""
         if gsecrets.config_manager.get_save_automatically():
-            logging.debug("Automatically saving")
-            self.save_database()
+            self.auto_save_database()
 
         return GLib.SOURCE_CONTINUE
 

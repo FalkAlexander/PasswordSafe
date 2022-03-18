@@ -68,7 +68,7 @@ class RecentFilesPage(Gtk.Box):
                     return
 
                 if auto_save:
-                    database.save_database()
+                    database.auto_save_database()
 
                 self.props.window.unlocked_db.do_dispose()
                 self.props.window.unlocked_db = None

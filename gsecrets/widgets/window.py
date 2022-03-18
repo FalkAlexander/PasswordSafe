@@ -205,7 +205,7 @@ class Window(Adw.ApplicationWindow):
                         return
 
                     if auto_save:
-                        self.unlocked_db.save_database()
+                        self.unlocked_db.auto_save_database()
 
                     self.unlocked_db.do_dispose()
                     self.unlocked_db = None
@@ -285,7 +285,7 @@ class Window(Adw.ApplicationWindow):
                         window.present()
                     else:
                         if auto_save:
-                            self.unlocked_db.save_database()
+                            self.unlocked_db.auto_save_database()
 
                         self.unlocked_db.do_dispose()
                         self.unlocked_db = None

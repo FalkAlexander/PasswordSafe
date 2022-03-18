@@ -22,7 +22,7 @@ class UnlockDatabaseHeaderbar(Adw.Bin):
         database = self.props.window.unlocked_db
         if database:
             if gsecrets.config_manager.get_save_automatically():
-                database.save_database()
+                database.auto_save_database()
 
             database.cleanup()
 

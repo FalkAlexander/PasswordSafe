@@ -49,7 +49,7 @@ class ExpirationDateRow(Adw.Bin):
         )
         expiry_date = entry.expiry_time  # UTC
 
-        if entry.props.expires:
+        if entry.props.expires and expiry_date:
             self.calendar.select_day(expiry_date.to_local())
             self.action_row.props.title = format_time(expiry_date, hours=False)
             if entry.props.expired:

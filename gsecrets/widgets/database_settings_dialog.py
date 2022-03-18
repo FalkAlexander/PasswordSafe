@@ -52,8 +52,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     current_password_entry = Gtk.Template.Child()
     new_password_entry = Gtk.Template.Child()
 
-    save_id: int | None = None
-
     def __init__(self, unlocked_database):
         super().__init__()
 
@@ -234,13 +232,15 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
             generate_keyfile(keyfile, callback)
 
-    def _on_save_notification(self, dbm, _saved):
+    def _on_save(self, database_manager, result):
         # TODO Handle errors, possibly with a AdwToast.
-        if self.save_id:
-            dbm.disconnect(self.save_id)
-            self.save_id = None
-
-        self.auth_save_process_finished()
+        # This pretty much assumes the process went successful.
+        try:
+            database_manager.save_finish(result)
+        except GLib.Error as err:
+            logging.error("Could not save Safe %s", err)
+        finally:
+            self.auth_save_process_finished()
 
     @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):
@@ -258,10 +258,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         button.set_child(spinner)
         button.set_sensitive(False)
 
-        self.save_id = self.database_manager.connect(
-            "save-notification", self._on_save_notification
-        )
-        self.database_manager.save_database(True)
+        self.database_manager.save_async(self._on_save)
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):

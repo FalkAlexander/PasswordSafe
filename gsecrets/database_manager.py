@@ -3,9 +3,7 @@ from __future__ import annotations
 
 import io
 import logging
-import threading
 from pathlib import Path
-from typing import Callable
 from uuid import UUID
 
 from gi.repository import Gio, GLib, GObject
@@ -105,71 +103,75 @@ class DatabaseManager(GObject.GObject):
     # Database Modifications
     #
 
-    # Write all changes to database
-    #
-    # This consists in two parts, we first save it to a byte stream in memory
-    # and then we write the contents of the stream into the database using Gio.
-    # This is done in this way since pykeepass save is not atomic, whereas GFile
-    # operations are.
-    #
-    # Note that certain operations in pykeepass can fail at the middle of the
-    # operation, nuking the database in the process.
-    def save_database(self, notification=False):
-        if not self.save_running and self.is_dirty:
-            self.save_running = True
+    def save_async(self, callback: Gio.AsyncReadyCallback) -> None:
+        """Write all changes to database
 
-            save_thread = threading.Thread(
-                target=self.save_thread, args=[notification]
-            )
-            save_thread.daemon = False
-            save_thread.start()
+        This consists in two parts, we first save it to a byte stream in memory
+        and then we write the contents of the stream into the database using
+        Gio. This is done in this way since pykeepass save is not atomic,
+        whereas GFile operations are.
 
-    def save_thread(self, notification: bool) -> None:
-        succeeded = False
+        Note that certain operations in pykeepass can fail at the middle of the
+        operation, nuking the database in the process."""
+        task = Gio.Task.new(self, None, callback)
+        task.run_in_thread(self._save_task)
+
+    def _save_task(self, task, _obj, _data, _cancellable):
         stream = io.BytesIO()
+
+        if self.save_running:
+            task.return_boolean(False)
+            logging.debug("Save already running")
+            return
+
+        if not self.is_dirty:
+            task.return_boolean(False)
+            logging.debug("Safe is not dirty")
+            return
+
+        logging.debug("Saving database %s", self.path)
+        self.save_running = True
+
         try:
             self.db.save(filename=stream)
-            succeeded = True
         except Exception as err:  # pylint: disable=broad-except
-            logging.error("Error occurred while saving database: %s", err)
-        finally:
-            GLib.idle_add(self.save_thread_finished, succeeded, notification, stream)
+            err = GLib.Error.new_literal(QUARK, str(err), 2)
+            task.return_error(err)
+        else:
+            owned_bytes = stream.getvalue()
+            if owned_bytes is None:
+                error = GLib.Error.new_literal(QUARK, "Stream is empty", 3)
+                task.return_error(error)
+                return
 
-    def save_thread_finished(
-        self, succeeded: bool, notification: bool, stream: io.BytesIO
-    ) -> None:
-        owned_bytes = stream.getvalue()
-        if succeeded and owned_bytes:
             gfile = Gio.File.new_for_path(self.path)
-            gbytes = GLib.Bytes.new(owned_bytes)
-            gfile.replace_contents_bytes_async(
-                gbytes,
-                None,
-                False,
-                Gio.FileCreateFlags.NONE,
-                None,
-                self.replace_contents_cb,
-                notification,
-            )
-        else:
-            self.save_running = False
-            if notification:
-                self.emit("save-notification", False)
+            try:
+                gfile.replace_contents(
+                    owned_bytes,
+                    None,
+                    False,
+                    Gio.FileCreateFlags.NONE,
+                    None,
+                )
+            except GLib.Error as err:
+                task.return_error(err)
+            else:
+                task.return_boolean(True)
 
-    def replace_contents_cb(self, gfile, result, notification):
-        succeeded = False
+    def save_finish(self, result: Gio.AsyncResult) -> bool:
+        """Finishes save_async, returns whether the safe was saved.
+        Can raise GLib.Error."""
+        self.save_running = False
         try:
-            gfile.replace_contents_finish(result)
+            is_saved = result.propagate_boolean()
         except GLib.Error as err:
-            logging.error("Could not save database: %s", err)
+            raise err
         else:
-            logging.debug("Saved database")
             self.is_dirty = False
-            succeeded = True
-        finally:
-            self.save_running = False
-            if notification:
-                self.emit("save-notification", succeeded)
+            if is_saved:
+                logging.debug("Database %s saved successfully", self.path)
+
+            return is_saved
 
     @property
     def password(self) -> str:
@@ -236,13 +238,6 @@ class DatabaseManager(GObject.GObject):
     def version(self):
         """returns the database version"""
         return self.db.version
-
-    # TODO This should be renamed to "saved" and it should have a argument
-    # telling whether this should present a notification, probably by saying if
-    # this was an automatic save.
-    @GObject.Signal(arg_types=(bool,))
-    def save_notification(self, _saved):
-        return
 
     @GObject.Signal(
         arg_types=(

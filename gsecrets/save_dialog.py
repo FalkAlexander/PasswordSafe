@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Gtk
+import logging
+from gettext import gettext as _
+
+from gi.repository import GLib, Gtk
 
 
 class SaveDialog:
@@ -26,11 +29,19 @@ class SaveDialog:
 
         if response == Gtk.ResponseType.YES:  # Save
             if database:
-                database.database_manager.save_database()
-
-            self.window.save_window_size()
-            self.window.destroy()
+                database.database_manager.save_async(self._on_save)
 
         elif response == Gtk.ResponseType.NO:  # Discard
             self.window.save_window_size()
             self.window.destroy()
+
+    def _on_save(self, database_manager, result):
+        try:
+            is_saved = database_manager.save_finish(result)
+        except GLib.Error as err:
+            self.window.send_notification(_("Could not save Safe"))
+            logging.error("Could not save Safe %s", err)
+        else:
+            if is_saved:
+                self.window.save_window_size()
+                self.window.destroy()

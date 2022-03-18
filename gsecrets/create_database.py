@@ -38,7 +38,6 @@ class CreateDatabase(Adw.Bin):
     open_safe_button = Gtk.Template.Child()
 
     composite = False
-    save_id: int | None = None
 
     def __init__(self, window, dbm):
         super().__init__()
@@ -81,15 +80,17 @@ class CreateDatabase(Adw.Bin):
             self.clear_input_fields()
             self.composite = False
 
-    def _on_save_notification(self, dbm, saved):
-        if saved:
-            self.success_page()
-        else:
+    def _on_save(self, dbm, result):
+        try:
+            is_saved = dbm.save_finish(result)
+        except GLib.Error as err:
+            logging.error("Could not save Safe %s", err)
             self.failure_page()
-
-        if self.save_id:
-            dbm.disconnect(self.save_id)
-            self.save_id = None
+        else:
+            if is_saved:
+                self.success_page()
+            else:  # Unreachable
+                self.failure_page()
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):
@@ -127,10 +128,7 @@ class CreateDatabase(Adw.Bin):
             if self.composite:
                 self.keyfile_generation_page()
             else:
-                self.save_id = self.database_manager.connect(
-                    "save-notification", self._on_save_notification
-                )
-                self.database_manager.save_database(True)
+                self.database_manager.save_async(self._on_save)
         else:
             self.stack.set_visible_child_name("passwords-dont-match")
             self.password_repeat_input1.grab_focus()
@@ -149,10 +147,7 @@ class CreateDatabase(Adw.Bin):
             if self.composite:
                 self.keyfile_generation_page()
             else:
-                self.save_id = self.database_manager.connect(
-                    "save-notification", self._on_save_notification
-                )
-                self.database_manager.save_database(True)
+                self.database_manager.save_async(self._on_save)
         else:
             self.window.send_notification(_("Passwords do not Match"))
             self.clear_input_fields()
@@ -201,10 +196,7 @@ class CreateDatabase(Adw.Bin):
 
                     self.database_manager.keyfile = keyfile_path
                     self.database_manager.keyfile_hash = keyfile_hash
-                    self.save_id = self.database_manager.connect(
-                        "save-notification", self._on_save_notification
-                    )
-                    self.database_manager.save_database(True)
+                    self.database_manager.save_async(self._on_save)
 
             generate_keyfile(keyfile, callback)
 

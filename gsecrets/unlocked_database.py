@@ -40,7 +40,6 @@ class UnlockedDatabase(Gtk.Box):
 
     # Connection handlers
     db_locked_handler: int | None = None
-    db_save_handler: int | None = None
     clipboard_timer_handler: int | None = None
     _current_element: SafeElement | None = None
     _lock_timer_handler: int | None = None
@@ -107,9 +106,6 @@ class UnlockedDatabase(Gtk.Box):
         self.db_locked_handler = self.database_manager.connect(
             "notify::locked", self._on_database_lock_changed
         )
-        self.db_save_handler = self.database_manager.connect(
-            "save-notification", self.on_database_save_notification
-        )
 
         # Sets the menu's save button sensitive property.
         save_action = window.lookup_action("db.save_dirty")
@@ -122,10 +118,6 @@ class UnlockedDatabase(Gtk.Box):
         if self.db_locked_handler:
             self.database_manager.disconnect(self.db_locked_handler)
             self.db_locked_handler = None
-
-        if self.db_save_handler:
-            self.database_manager.disconnect(self.db_save_handler)
-            self.db_save_handler = None
 
         self.search.do_dispose()
 
@@ -269,28 +261,19 @@ class UnlockedDatabase(Gtk.Box):
             safe_entry = list_box_row.safe_entry
             self.show_edit_page(safe_entry)
 
-    def on_database_save_notification(
-        self, _database_manager: DatabaseManager, saved: bool
+    def on_save(
+        self, database_manager: DatabaseManager, result: Gio.AsyncResult
     ) -> None:
-        if saved:
-            self.window.send_notification(_("Safe Saved"))
+        try:
+            is_saved = database_manager.save_finish(result)
+        except GLib.Error as err:
+            logging.error("Could not save Safe: %s", err)
+            self.window.send_notification(_("Could not save Safe"))
         else:
-            self.window.send_notification(_("Could not Save Safe"))
-
-    def save_safe(self):
-        if self.database_manager.is_dirty is True:
-            if self.database_manager.save_running is False:
-                self.save_database(notification=True)
+            if is_saved:
+                self.window.send_notification(_("Safe Saved"))
             else:
-                # NOTE: In-app notification to inform the user that
-                # already an unfinished save job is running
-                self.window.send_notification(
-                    _("Please Wait. Another Save is Running.")
-                )
-        else:
-            # NOTE: In-app notification to inform the user that no save
-            # is necessary because there where no changes made
-            self.window.send_notification(_("No Changes Made"))
+                self.window.send_notification(_("No Changes Made"))
 
     def lock_safe(self):
         self.database_manager.props.locked = True
@@ -447,17 +430,12 @@ class UnlockedDatabase(Gtk.Box):
                 gfile = Gio.File.new_for_path(file_path)
                 gfile.delete_async(GLib.PRIORITY_DEFAULT, None, callback)
 
-    def save_database(self, notification: bool = False) -> None:
+    def save_database(self) -> None:
         """Save the database.
 
-        If auto_save is False, a dialog asking for confirmation
-        will be displayed.
+        Shows a notification after saving.
         """
-        if not self.database_manager.is_dirty or self.database_manager.save_running:
-            return
-
-        logging.debug("Saving database %s", self.database_manager.path)
-        self.database_manager.save_database(notification)
+        self.database_manager.save_async(self.on_save)
 
     def start_database_lock_timer(self):
         if self._lock_timer_handler:

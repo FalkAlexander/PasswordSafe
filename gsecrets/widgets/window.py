@@ -368,11 +368,20 @@ class Window(Adw.ApplicationWindow):
 
         is_database_dirty = self.unlocked_db.database_manager.is_dirty
 
+        def on_save(dbm, result):
+            try:
+                dbm.save_finish(result)
+            except GLib.Error as err:
+                logging.error("Could not save Safe: %s", err)
+                self.send_notification(_("Could not save Safe"))
+            else:
+                self.save_window_size()
+                self.destroy()
+
         if is_database_dirty:
             if gsecrets.config_manager.get_save_automatically():
-                self.unlocked_db.save_database()
-                self.save_window_size()
-                return False
+                self.unlocked_db.database_manager.save_async(on_save)
+                return True  # Do not close the window until saved
 
             save_dialog = SaveDialog(self)
             save_dialog.show()
@@ -466,7 +475,7 @@ class Window(Adw.ApplicationWindow):
         elif name == "db.selection":
             action_db.selection_mode_headerbar.on_selection_action(param)
         elif name in ["db.save", "db.save_dirty"]:
-            action_db.save_safe()
+            action_db.save_database()
         elif name == "go_back":
             action_db.go_back()
         elif name in ["db.add_entry", "db.add_group"]:

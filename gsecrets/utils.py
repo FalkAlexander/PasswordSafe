@@ -3,13 +3,11 @@ from __future__ import annotations
 
 import secrets
 from gettext import gettext as _
-from typing import Callable
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
-import gi
-gi.require_version("Gtk", "4.0")
-from gi.repository import Gio, GLib, Gtk, GObject  # pylint: disable=wrong-import-position  # noqa: E501
+
+from gi.repository import Gio, GLib, Gtk
 
 
 def format_time(time: GLib.DateTime | None, hours: bool = True) -> str:
@@ -28,9 +26,10 @@ def create_random_data(bytes_buffer):
     return secrets.token_bytes(bytes_buffer)
 
 
-def generate_keyfile(
-    gfile: Gio.File, callback: Callable[[GObject.Object, Gio.Task], None]
-) -> None:
+def generate_keyfile(gfile: Gio.File, callback: Gio.AsyncReadyCallback) -> None:
+    """The callback returns a GFile as its source object and the keyfile hash as
+    its user_data. The caller has to run
+    source_object.replace_contents_finish()."""
     key = get_random_bytes(32)
     cipher = AES.new(key, AES.MODE_EAX)
     ciphertext, tag = cipher.encrypt_and_digest(create_random_data(96))  # type: ignore

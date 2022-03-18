@@ -16,6 +16,7 @@ QUARK = GLib.quark_from_string("secrets")
 
 class DatabaseManager(GObject.GObject):
     # pylint: disable=too-many-public-methods
+    # pylint: disable=too-many-instance-attributes
 
     """Implements database functionality that is independent of the UI
 
@@ -34,6 +35,12 @@ class DatabaseManager(GObject.GObject):
     _is_dirty = False  # Does the database need saving?
     save_running = False
     _opened = False
+
+    # Only used for setting the credentials to their actual values in case of
+    # errors.
+    old_password: str = ""
+    old_keyfile: str = ""
+    old_keyfile_hash: str = ""
 
     locked = GObject.Property(type=bool, default=False)
     is_dirty = GObject.Property(type=bool, default=False)
@@ -170,6 +177,48 @@ class DatabaseManager(GObject.GObject):
             self.is_dirty = False
             if is_saved:
                 logging.debug("Database %s saved successfully", self.path)
+
+            return is_saved
+
+    def set_credentials_async(
+        self, password, keyfile="", keyfile_hash="", callback=None
+    ):
+        """Sets credentials for safe
+
+        It does almost the same as save_async, with the difference that
+        correctly handles errors, it won't leave the database in a state where
+        its fields have the incorrect values.
+        """
+
+        def set_credentials_task(task, obj, data, cancellable):
+            self.old_password = self.password
+            self.password = password
+
+            self.old_keyfile = self.keyfile
+            self.keyfile = keyfile
+
+            self.old_keyfile_hash = self.keyfile_hash
+            self.keyfile_hash = keyfile_hash
+
+            self._save_task(task, obj, data, cancellable)
+
+        task = Gio.Task.new(self, None, callback)
+        task.run_in_thread(set_credentials_task)
+
+    def set_credentials_finish(self, result):
+        self.save_running = False
+        try:
+            is_saved = result.propagate_boolean()
+        except GLib.Error as err:
+            self.password = self.old_password
+            self.keyfile = self.old_keyfile
+            self.keyfile_hash = self.old_keyfile_hash
+
+            raise err
+        else:
+            self.is_dirty = False
+            if is_saved:
+                logging.debug("Credentials changed successfully")
 
             return is_saved
 

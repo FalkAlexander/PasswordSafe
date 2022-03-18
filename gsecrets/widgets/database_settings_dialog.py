@@ -20,6 +20,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     __gtype_name__ = "DatabaseSettingsDialog"
 
     new_password: str | None = None
+    current_password: str | None = None
     current_keyfile_hash = None
     current_keyfile_path = None
     new_keyfile_hash = None
@@ -233,16 +234,16 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             generate_keyfile(keyfile, callback)
 
     # TODO Remove pylint disables once libadwaita-1 1.0 lands in the fedora CI image.
-    def _on_save(self, database_manager, result):
+    def _on_set_credentials(self, database_manager, result):
         try:
-            is_saved = database_manager.save_finish(result)
+            is_saved = database_manager.set_credentials_finish(result)
         except GLib.Error as err:
-            logging.error("Could not save Safe %s", err)
+            logging.error("Could not set credentials: %s", err)
             # pylint: disable=no-member
             self.add_toast(Adw.Toast.new(_("Could not apply changes")))
         else:
             if not is_saved:  # Should be unreachable
-                logging.error("Safe saved without changes")
+                logging.error("Credentials set without changes")
                 # pylint: disable=no-member
                 self.add_toast(Adw.Toast.new(_("Could not apply changes")))
                 return  # Still executes the finally block
@@ -271,10 +272,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
     def on_auth_apply_button_clicked(self, button):
         new_password = self.new_password_entry.get_text()
 
-        self.database_manager.password = new_password
-        self.database_manager.keyfile = self.new_keyfile_path
-        self.database_manager.keyfile_hash = self.new_keyfile_hash
-
         # Insensitive entries and buttons
         self.set_sensitive(False)
 
@@ -283,7 +280,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         button.set_child(spinner)
         button.set_sensitive(False)
 
-        self.database_manager.save_async(self._on_save)
+        self.database_manager.set_credentials_async(
+            new_password, self.new_keyfile_path, self.new_keyfile_hash,
+            self._on_set_credentials
+        )
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):

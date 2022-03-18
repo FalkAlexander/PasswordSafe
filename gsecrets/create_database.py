@@ -37,6 +37,8 @@ class CreateDatabase(Adw.Bin):
 
     open_safe_button = Gtk.Template.Child()
 
+    new_password = ""
+
     composite = False
 
     def __init__(self, window, dbm):
@@ -80,17 +82,19 @@ class CreateDatabase(Adw.Bin):
             self.clear_input_fields()
             self.composite = False
 
-    def _on_save(self, dbm, result):
+    def _on_set_credentials(self, dbm, result):
         try:
-            is_saved = dbm.save_finish(result)
+            is_saved = dbm.set_credentials_finish(result)
         except GLib.Error as err:
-            logging.error("Could not save Safe %s", err)
+            logging.error("Could not set credentials: %s", err)
             self.failure_page()
         else:
             if is_saved:
                 self.success_page()
             else:  # Unreachable
                 self.failure_page()
+        finally:
+            self.new_password = ""
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):
@@ -122,13 +126,15 @@ class CreateDatabase(Adw.Bin):
         password_check = self.password_check_input.get_text()
 
         if self.database_manager.compare_passwords(password_check):
-            self.database_manager.password = password_check
+            self.new_password = password_check
 
             self.show_pwc_loading()
             if self.composite:
                 self.keyfile_generation_page()
             else:
-                self.database_manager.save_async(self._on_save)
+                self.database_manager.set_credentials_async(
+                    password_check, callback=self._on_set_credentials
+                )
         else:
             self.stack.set_visible_child_name("passwords-dont-match")
             self.password_repeat_input1.grab_focus()
@@ -141,13 +147,15 @@ class CreateDatabase(Adw.Bin):
         conf_passwd: str = self.password_repeat_input2.get_text()
 
         if self.database_manager.compare_passwords(conf_passwd):
-            self.database_manager.password = conf_passwd
+            self.new_password = conf_passwd
 
             self.show_pwr_loading()
             if self.composite:
                 self.keyfile_generation_page()
             else:
-                self.database_manager.save_async(self._on_save)
+                self.database_manager.set_credentials_async(
+                    self.new_password, callback=self._on_set_credentials,
+                )
         else:
             self.window.send_notification(_("Passwords do not Match"))
             self.clear_input_fields()
@@ -183,6 +191,7 @@ class CreateDatabase(Adw.Bin):
             logging.debug("New keyfile location: %s", keyfile_path)
 
             def callback(gfile, result, keyfile_hash):
+                password = self.new_password
                 try:
                     gfile.replace_contents_finish(result)
                 except GLib.Error as err:
@@ -191,12 +200,13 @@ class CreateDatabase(Adw.Bin):
                     self.generate_keyfile_button.set_sensitive(True)
                     self.generate_keyfile_button.set_label(_("Generate"))
                 else:
-                    if self.composite is False:
-                        self.database_manager.password = None
+                    if not self.composite:
+                        password = ""
 
-                    self.database_manager.keyfile = keyfile_path
-                    self.database_manager.keyfile_hash = keyfile_hash
-                    self.database_manager.save_async(self._on_save)
+                    self.database_manager.set_credentials_async(
+                        password, keyfile_path, keyfile_hash,
+                        self._on_set_credentials,
+                    )
 
             generate_keyfile(keyfile, callback)
 

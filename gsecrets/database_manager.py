@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import io
 import logging
 from pathlib import Path
 
@@ -134,8 +133,6 @@ class DatabaseManager(GObject.Object):
         task.run_in_thread(self._save_task)
 
     def _save_task(self, task, _obj, _data, _cancellable):
-        stream = io.BytesIO()
-
         if self.save_running:
             task.return_boolean(False)
             logging.debug("Save already running")
@@ -150,30 +147,12 @@ class DatabaseManager(GObject.Object):
         self.save_running = True
 
         try:
-            self.db.save(filename=stream)
+            self.db.save()
         except Exception as err:  # pylint: disable=broad-except
             err = GLib.Error.new_literal(QUARK, str(err), 2)
             task.return_error(err)
         else:
-            owned_bytes = stream.getvalue()
-            if owned_bytes is None:
-                error = GLib.Error.new_literal(QUARK, "Stream is empty", 3)
-                task.return_error(error)
-                return
-
-            gfile = Gio.File.new_for_path(self.path)
-            try:
-                gfile.replace_contents(
-                    owned_bytes,
-                    None,
-                    False,
-                    Gio.FileCreateFlags.NONE,
-                    None,
-                )
-            except GLib.Error as err:
-                task.return_error(err)
-            else:
-                task.return_boolean(True)
+            task.return_boolean(True)
 
     def save_finish(self, result: Gio.AsyncResult) -> bool:
         """Finishes save_async, returns whether the safe was saved.

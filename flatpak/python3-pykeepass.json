@@ -7,8 +7,8 @@
     "sources": [
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/f1/08/b4b8f7bce23190ed4f34f4d9cf4f75f8a255f4f4c378296daf4b7027d2cb/pykeepass-4.0.1.tar.gz",
-            "sha256": "eaa2a016c15a81beb6e253a8cb1fe64738b5fb4a28389dcdba621ea538dd814b"
+            "url": "https://files.pythonhosted.org/packages/aa/ec/0fd3b7a3fd368fa0bb87dffca49e4ca95c66feed8dfd475d334609cb96a3/pykeepass-4.0.2.tar.gz",
+            "sha256": "14ee3c1312beb0c187d941ea68294d236de94cd3453abb40f2466ecd081b39ea"
         }
     ],
     "modules": [
@@ -44,13 +44,13 @@
             "name": "python3-construct",
             "buildsystem": "simple",
             "build-commands": [
-                "pip3 install --no-index --no-build-isolation --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"construct==2.10.54\""
+                "pip3 install --no-index --no-build-isolation --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"construct==2.10.68\""
             ],
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/30/2f/e2e6bad1b80f744cf5c2a6d622e3dee698b43e6c040f980ae0ac0edd5e54/construct-2.10.54.tar.gz",
-                    "sha256": "3c130a67f05610557dd1b27e062a7165f92b517f9ed50db880ebe068696fd712"
+                    "url": "https://files.pythonhosted.org/packages/e0/b7/a4a032e94bcfdff481f2e6fecd472794d9da09f474a2185ed33b2c7cad64/construct-2.10.68.tar.gz",
+                    "sha256": "7b2a3fd8e5f597a5aa1d614c3bd516fa065db01704c72a1efaaeec6ef23d8b45"
                 }
             ]
         },

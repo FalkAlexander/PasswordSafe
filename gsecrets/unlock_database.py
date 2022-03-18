@@ -225,11 +225,17 @@ class UnlockDatabase(Adw.Bin):
             password,
             keyfile,
             self.keyfile_hash,
-            self._open_database_success,
-            self._unlock_failed,
+            self._unlock_callback,
         )
 
-    def _open_database_success(self, database_manager):
+    def _unlock_callback(self, database_manager, result):
+        try:
+            database_manager.unlock_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not unlock safe: %s", err)
+            self._unlock_failed()
+            return
+
         opened = Gio.File.new_for_path(database_manager.path)
         gsecrets.config_manager.set_last_opened_database(opened.get_uri())
 

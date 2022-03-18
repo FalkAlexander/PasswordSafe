@@ -13,6 +13,8 @@ from pykeepass import PyKeePass
 
 from gsecrets.safe_element import SafeElement
 
+QUARK = GLib.quark_from_string("secrets")
+
 
 class DatabaseManager(GObject.GObject):
     # pylint: disable=too-many-public-methods
@@ -49,7 +51,13 @@ class DatabaseManager(GObject.GObject):
         self.db: PyKeePass = None
         self.keyfile_hash: str = ""
 
-    def unlock(self, password: str, keyfile: str = "", keyfile_hash: str = "") -> None:
+    def unlock_async(
+        self,
+        password: str,
+        keyfile: str = "",
+        keyfile_hash: str = "",
+        callback: Gio.AsyncReadyCallback = None,
+    ) -> None:
         """Unlocks an opens a safe.
 
         This pykeepass to open a safe database. If the database cannot
@@ -58,52 +66,40 @@ class DatabaseManager(GObject.GObject):
         :param str password: password to use or an empty string
         :param str keyfile: keyfile path to use or an empty string
         :param str keyfile_hash: keyfile_hash to set
+        :param GAsyncReadyCallback: callback run after the unlock operation ends
         """
         self._opened = False
-        self.keyfile_hash = keyfile_hash
 
-        if Path(self._path).suffix == ".kdb":
-            # NOTE kdb is a an older format for Keepass databases.
-            logging.error("The kdb Format is not Supported")
-            raise OSError("The kdb Format is not Supported")
+        def unlock_task(task, _source_object, _task_data, _cancellable):
+            if Path(self._path).suffix == ".kdb":
+                # NOTE kdb is a an older format for Keepass databases.
+                err = GLib.Error.new_literal(
+                    QUARK, "The kdb Format is not Supported", 0
+                )
+                task.return_error(err)
+                return
 
+            try:
+                db = PyKeePass(self.path, password, keyfile)
+            except Exception as err:  # pylint: disable=broad-except
+                err = GLib.Error.new_literal(QUARK, str(err), 1)
+                task.return_error(err)
+            else:
+                self.keyfile_hash = keyfile_hash
+                task.return_value(db)
+
+        task = Gio.Task.new(self, None, callback)
+        task.run_in_thread(unlock_task)
+
+    def unlock_finish(self, result):
         try:
-            self.db = PyKeePass(self.path, password, keyfile)
-        except Exception as err:  # pylint: disable=broad-except
-            logging.debug("Could not open safe: %s", err)
-            raise OSError("Failed to Unlock Safe") from err
+            _success, db = result.propagate_value()
+        except GLib.Error as err:
+            raise err
         else:
-            logging.debug("Opening of safe %s was successful", self.path)
+            self.db = db
             self._opened = True
-
-    def _unlock_wrapper(  # pylint: disable=too-many-arguments
-        self,
-        password: str,
-        keyfile: str = "",
-        keyfile_hash: str = "",
-        success_cb: Callable[[DatabaseManager], None] = None,
-        error_cb: Callable[[], None] = None,
-    ) -> None:
-        try:
-            self.unlock(password, keyfile, keyfile_hash)
-        except OSError:
-            GLib.idle_add(error_cb)
-        else:
-            GLib.idle_add(success_cb, self)
-
-    def unlock_async(  # pylint: disable=too-many-arguments
-        self,
-        password: str,
-        keyfile: str = "",
-        keyfile_hash: str = "",
-        success_cb: Callable[[DatabaseManager], None] = None,
-        error_cb: Callable[[], None] = None,
-    ) -> None:
-        unlock_thread = threading.Thread(
-            target=self._unlock_wrapper,
-            args=[password, keyfile, keyfile_hash, success_cb, error_cb],
-        )
-        unlock_thread.start()
+            logging.debug("Opening of safe %s was successful", self.path)
 
     #
     # Database Modifications

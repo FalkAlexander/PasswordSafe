@@ -309,29 +309,33 @@ class Window(Adw.ApplicationWindow):
         )
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
 
-        def error_callback():
-            self._spinner.stop()
-            self.invoke_initial_screen()
-            self.send_notification(_("Could not Create new Safe"))
-
-        def success_callback(database_manager):
-            self._spinner.stop()
-            create_database = CreateDatabase(self, database_manager)
-            self._create_database_bin.props.child = create_database
-            self.view = self.View.CREATE_DATABASE
+        def unlock_callback(database_manager, result):
+            try:
+                database_manager.unlock_finish(result)
+            except GLib.Error as err:
+                logging.debug("Could not unlock safe: %s", err)
+                self.invoke_initial_screen()
+                self.send_notification(_("Could not Create new Safe"))
+            else:
+                create_database = CreateDatabase(self, database_manager)
+                self._create_database_bin.props.child = create_database
+                self.view = self.View.CREATE_DATABASE
+            finally:
+                self._spinner.stop()
 
         def copy_callback(gfile, result):
             try:
                 gfile.copy_finish(result)
             except GLib.Error as err:
                 logging.debug("Could not copy new database: %s", err)
-                error_callback()
+                self.invoke_initial_screen()
+                self.send_notification(_("Could not Create new Safe"))
+                self._spinner.stop()
             else:
                 database_manager = DatabaseManager(filepath)
                 database_manager.unlock_async(
                     "liufhre86ewoiwejmrcu8owe",
-                    success_cb=success_callback,
-                    error_cb=error_callback,
+                    callback=unlock_callback,
                 )
 
         stock_db_file.copy_async(

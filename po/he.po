@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-16 08:01+0000\n"
-"PO-Revision-Date: 2022-03-16 10:38+0200\n"
+"POT-Creation-Date: 2022-03-18 02:10+0000\n"
+"PO-Revision-Date: 2022-03-18 12:41+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
-"Language-Team: Hebrew <>\n"
+"Language-Team: Hebrew <GNOME Hebrew Translation Project>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +130,7 @@ msgstr "_אישור"
 
 #. NOTE: Filechooser title for generating a new keyfile
 #: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
-#: gsecrets/widgets/database_settings_dialog.py:200
+#: gsecrets/widgets/database_settings_dialog.py:197
 msgid "Generate Keyfile"
 msgstr "יצירת קובץ מפתח"
 
@@ -141,7 +141,7 @@ msgstr "הגדרת קובץ מפתח לכספת"
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
 #: gsecrets/create_database.py:169
-#: gsecrets/widgets/database_settings_dialog.py:203
+#: gsecrets/widgets/database_settings_dialog.py:200
 msgid "_Generate"
 msgstr "י_צירה"
 
@@ -198,7 +198,7 @@ msgstr "אימות"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
 msgid "Password"
 msgstr "ססמה"
 
@@ -227,7 +227,7 @@ msgid "Enter Current Password"
 msgstr "נא למלא את הססמה הנוכחית"
 
 #: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:206
+#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:203
 msgid "Keyfile"
 msgstr "קובץ מפתח"
 
@@ -244,7 +244,7 @@ msgid "Could not Load Keyfile"
 msgstr "לא ניתן לטעון קובץ מפתח"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:293
+#: gsecrets/widgets/database_settings_dialog.py:287
 msgid "_Apply Changes"
 msgstr "ה_חלת השינויים"
 
@@ -832,7 +832,7 @@ msgstr "פינוי רשימת הכספות שנפתחו לאחרונה."
 msgid "Unlock Safe"
 msgstr "שחרור נעילת כספת"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:306
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:286
 msgid "_Select Keyfile"
 msgstr "בחירת _קובץ מפתח"
 
@@ -840,6 +840,15 @@ msgstr "בחירת _קובץ מפתח"
 #: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
 msgid "_New Safe"
 msgstr "כספת _חדשה"
+
+#: data/gtk/unlocked_database_page.ui:28
+msgid "Add elements with the ➕ button."
+msgstr "הוספת רכיבים באמצעות הכפתור ➕."
+
+#: data/gtk/unlocked_database_page.ui:29
+#| msgid "New Entry or Group"
+msgid "Empty Group"
+msgstr "קבוצה ריקה"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
@@ -1120,12 +1129,11 @@ msgstr "שגיאה: הקובץ {} לא קיים"
 msgid "Error: Safe {} is already open"
 msgstr "שגיאה: הכספת {} כבר פתוחה"
 
-#: gsecrets/attachment_warning_dialog.py:66
+#: gsecrets/attachment_warning_dialog.py:64
 msgid "Could not Load Attachment"
 msgstr "לא ניתן לטעון צרופה"
 
 #: gsecrets/create_database.py:67
-#| msgid "Last opened database"
 msgid "Unable to create database"
 msgstr "לא ניתן ליצור מסד נתונים"
 
@@ -1137,15 +1145,15 @@ msgstr "הססמאות אינן תואמות."
 msgid "Generating…"
 msgstr "נוצר…"
 
-#: gsecrets/create_database.py:198
+#: gsecrets/create_database.py:195
 msgid "Could not Create Keyfile"
 msgstr "לא ניתן ליצור קובץ מפתח"
 
-#: gsecrets/create_database.py:200
+#: gsecrets/create_database.py:197
 msgid "Generate"
 msgstr "יצירה"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:375
+#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "שם המשתמש הועתק"
@@ -1183,7 +1191,7 @@ msgstr "שם המשתמש לא צוין"
 msgid "Clone"
 msgstr "שכפול"
 
-#: gsecrets/unlock_database.py:78
+#: gsecrets/unlock_database.py:80
 msgid "Select Keyfile"
 msgstr "בחירת קובץ מפתח"
 
@@ -1191,15 +1199,11 @@ msgstr "בחירת קובץ מפתח"
 msgid "Safe {} is Already Open"
 msgstr "הכספת {} כבר פתוחה"
 
-#: gsecrets/unlock_database.py:234
-msgid "The kdb Format is not Supported"
-msgstr "אין תמיכה בתצורת kdb"
-
-#: gsecrets/unlock_database.py:290
+#: gsecrets/unlock_database.py:272
 msgid "Failed to Unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
 
-#: gsecrets/unlock_database.py:301
+#: gsecrets/unlock_database.py:281
 msgid "_Try Again"
 msgstr "ל_נסות שוב"
 
@@ -1235,7 +1239,7 @@ msgstr "הכספת ננעלה עקב חוסר פעילות"
 msgid "Save Attachment"
 msgstr "שמירת צרופה"
 
-#: gsecrets/widgets/attachment_entry_row.py:64
+#: gsecrets/widgets/attachment_entry_row.py:61
 msgid "Could not Store Attachment"
 msgstr "לא ניתן לאחסן צרופה"
 
@@ -1246,33 +1250,33 @@ msgstr "בחירת קובץ המפתח הנוכחי"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:324
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:332
+#: gsecrets/widgets/database_settings_dialog.py:346
 msgid "Unknown"
 msgstr "לא ידוע"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:328
+#: gsecrets/widgets/database_settings_dialog.py:336
 msgid "AES 256-bit"
 msgstr "‫AES באורך 256 סיביות"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:339
 msgid "ChaCha20 256-bit"
 msgstr "‫ChaCha20 באורך 256 סיביות"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "Twofish 256-bit"
 msgstr "‫Twofish באורך 256 סיביות"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:350
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:353
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1331,6 +1335,9 @@ msgstr "י_צירה"
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "לא ניתן ליצור כספת: הכספת כבר פתוחה"
 
-#: gsecrets/widgets/window.py:316
+#: gsecrets/widgets/window.py:315
 msgid "Could not Create new Safe"
 msgstr "לא ניתן ליצור כספת חדשה"
+
+#~ msgid "The kdb Format is not Supported"
+#~ msgstr "אין תמיכה בתצורת kdb"

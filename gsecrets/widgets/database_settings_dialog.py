@@ -311,7 +311,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         else:
             self.path_row.props.subtitle = path
 
-        # Size
+        # Size & creation date
         def query_info_cb(gfile, result):
             try:
                 file_info = gfile.query_info_finish(result)
@@ -321,7 +321,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                 size = file_info.get_size()  # In bytes.
                 self.size_row.props.subtitle = GLib.format_size(size)
 
-        attributes = Gio.FILE_ATTRIBUTE_STANDARD_SIZE
+                if gdate := file_info.get_creation_date_time():
+                    self.date_row.props.subtitle = format_time(gdate)
+
+        attributes = f"{Gio.FILE_ATTRIBUTE_STANDARD_SIZE},{Gio.FILE_ATTRIBUTE_TIME_CREATED}"
         gfile.query_info_async(
             attributes,
             Gio.FileQueryInfoFlags.NONE,
@@ -333,12 +336,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         # Version
         version = self.database_manager.db.version
         self.version_row.props.subtitle = str(version[0]) + "." + str(version[1])
-
-        # Date
-        # TODO g_file_info_get_creation_date_time introduced in GLib 2.70.
-        epoch_time = os.path.getctime(path)  # Time since UNIX epoch.
-        gdate = GLib.DateTime.new_from_unix_utc(epoch_time)
-        self.date_row.props.subtitle = format_time(gdate)
 
         # Encryption Algorithm
         enc_alg = _("Unknown")

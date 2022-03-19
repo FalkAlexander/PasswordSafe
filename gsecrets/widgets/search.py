@@ -6,6 +6,9 @@ import typing
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
+from pykeepass.entry import Entry
+from pykeepass.group import Group
+
 from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
 from gsecrets.sorting import SortingHat
 
@@ -114,7 +117,6 @@ class Search(Adw.Bin):
         """
         if self._search_text:
             search_thread = threading.Thread(target=self._perform_search)
-            search_thread.daemon = True
             search_thread.start()
         else:
             self.stack.set_visible_child(self._info_search_page)
@@ -125,43 +127,40 @@ class Search(Adw.Bin):
 
         db_manager = self.unlocked_database.database_manager
 
-        def filter_func(element: SafeElement) -> bool:
-            if element.is_group:
+        def filter_func(element: Entry | Group) -> bool:
+            if isinstance(element, Group):
                 fields = [element.name, element.notes]
             else:
-                fields = [element.name, element.notes, element.url, element.username]
+                fields = [element.title, element.notes, element.url, element.username]
 
             for field in fields:
+                if not field:
+                    continue
+
                 if query.lower() in field.lower():
                     return True
 
             return False
 
-        db_entries = filter(
-            filter_func, [SafeEntry(db_manager, e) for e in db_manager.db.entries]
-        )
+        db_entries = filter(filter_func, db_manager.db.entries)
         db_groups = filter(
             filter_func,
-            [
-                SafeGroup(db_manager, g)
-                for g in db_manager.db.groups
-                if not g.is_root_group
-            ],
+            [g for g in db_manager.db.groups if not g.is_root_group],
         )
-        results = list(db_groups) + list(db_entries)
 
-        if len(results) == 0:
-            GLib.idle_add(self._no_results)
-            return
+        GLib.idle_add(self._show_results, db_groups, db_entries, db_manager)
 
-        GLib.idle_add(self._show_results, results)
+    def _show_results(self, db_groups, db_entries, db_manager):
+        entries = [SafeEntry(db_manager, e) for e in db_entries]
+        groups = [SafeGroup(db_manager, g) for g in db_groups]
+        results = entries + groups
+        n_items = len(results)
 
-    def _no_results(self):
-        self.stack.set_visible_child(self._empty_search_page)
+        if n_items == 0:
+            self.stack.set_visible_child(self._empty_search_page)
+            return GLib.SOURCE_REMOVE
 
-    def _show_results(self, results):
-        n_items = self._result_list.get_n_items()
-        self._result_list.splice(0, n_items, results)
+        self._result_list.splice(0, self._result_list.get_n_items(), results)
 
         # Sort the results
         sorting = SortingHat.SortOrder.ASC

@@ -93,6 +93,10 @@ class EntryPage(Adw.Bin):
         copy_password_action.connect("activate", self._on_copy_action)
         self.unlocked_database.window.add_action(copy_password_action)
 
+        copy_otp_action = Gio.SimpleAction.new("entry.copy_otp", None)
+        copy_otp_action.connect("activate", self._on_copy_action)
+        self.unlocked_database.window.add_action(copy_otp_action)
+
     def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:
             GLib.source_remove(self.otp_timer_handler)
@@ -239,6 +243,16 @@ class EntryPage(Adw.Bin):
             )
         elif action.props.name == "entry.copy_password":
             self.password_entry_row.copy_password()
+        elif action.props.name == "entry.copy_otp":
+            safe_entry: SafeEntry = self.unlocked_database.current_element
+            otp_token = safe_entry.otp_token() or ""
+            if otp_token == "":
+                return
+
+            self.unlocked_database.send_to_clipboard(
+                otp_token,
+                _("One-time Password Copied"),
+            )
 
     @Gtk.Template.Callback()
     def on_show_all_properties_button_clicked(self, _widget):

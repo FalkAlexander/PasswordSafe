@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-18 02:10+0000\n"
-"PO-Revision-Date: 2022-03-18 23:28+0000\n"
+"POT-Creation-Date: 2022-03-20 19:39+0000\n"
+"PO-Revision-Date: 2022-03-20 22:16+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -133,8 +133,8 @@ msgid "_Confirm"
 msgstr "_Confirmar"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
-#: gsecrets/widgets/database_settings_dialog.py:197
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Gere o ficheiro-chave"
 
@@ -144,8 +144,8 @@ msgstr "Defina o ficheiro-chave para o cofre"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:169
-#: gsecrets/widgets/database_settings_dialog.py:200
+#: gsecrets/create_database.py:172
+#: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Gerar"
 
@@ -230,8 +230,8 @@ msgstr "At_ual"
 msgid "Enter Current Password"
 msgstr "Introduza a palavra-passe atual"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:203
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
+#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "Ficheiro-chave"
 
@@ -248,7 +248,7 @@ msgid "Could not Load Keyfile"
 msgstr "Não foi possível carregar o ficheiro-chave"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:287
+#: gsecrets/widgets/database_settings_dialog.py:269
 msgid "_Apply Changes"
 msgstr "_Aplicar alterações"
 
@@ -345,6 +345,7 @@ msgstr "Copiar"
 msgid "One-_Time Password Secret"
 msgstr "Segredo de palavra-passe única"
 
+#. OTP is a proper name
 #: data/gtk/entry_page.ui:97
 msgid "Could not Generate OTP Token"
 msgstr "Não foi possível gerar token OTP"
@@ -506,6 +507,11 @@ msgstr "Copiar palavra-passe"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Copiar nome de utilizador"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Copiar palavra-passe única"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
@@ -779,6 +785,7 @@ msgstr "Utilizar caracteres numéricos quando gerar palavras-passe."
 msgid "_Special Characters"
 msgstr "Caracteres es_peciais"
 
+#. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Utilizar símbolos especiais ASCII quando gerar palavras-passe."
@@ -837,7 +844,7 @@ msgstr "Limpar a lista de cofres abertos recentemente."
 msgid "Unlock Safe"
 msgstr "Desbloquear o cofre"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:286
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
 msgid "_Select Keyfile"
 msgstr "_Selecionar ficheiro-chave"
 
@@ -880,10 +887,12 @@ msgstr "_Bloquear"
 msgid "So_rting"
 msgstr "_Ordenação"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
@@ -1147,45 +1156,45 @@ msgstr "Erro: o cofre {} já está aberto"
 msgid "Could not Load Attachment"
 msgstr "Não foi possível carregar anexo"
 
-#: gsecrets/create_database.py:67
+#: gsecrets/create_database.py:68
 msgid "Unable to create database"
 msgstr "Incapaz de criar base de dados"
 
-#: gsecrets/create_database.py:157
+#: gsecrets/create_database.py:160
 msgid "Passwords do not Match"
 msgstr "As palavras-passe não coincidem"
 
-#: gsecrets/create_database.py:185
+#: gsecrets/create_database.py:188
 msgid "Generating…"
 msgstr "A gerar…"
 
-#: gsecrets/create_database.py:195
+#: gsecrets/create_database.py:199
 msgid "Could not Create Keyfile"
 msgstr "Não foi possível criar o ficheiro-chave"
 
-#: gsecrets/create_database.py:197
+#: gsecrets/create_database.py:201
 msgid "Generate"
 msgstr "Gerar"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Nome de utilizador copiado"
 
-#: gsecrets/entry_page.py:279
+#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
 msgid "One-time Password Copied"
 msgstr "Palavra-passe única copiada"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "A chave atribuída já existe"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:342
 msgid "Select Attachment"
 msgstr "Selecionar anexo"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:345
 msgid "_Add"
 msgstr "_Adicionar"
 
@@ -1201,6 +1210,11 @@ msgstr "Título não especificado"
 msgid "Username not specified"
 msgstr "Nome de utilizador não especificado"
 
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
+#: gsecrets/widgets/window.py:376
+msgid "Could not save Safe"
+msgstr "Não foi possível guardar o cofre"
+
 #: gsecrets/safe_element.py:361
 msgid "Clone"
 msgstr "Clonar"
@@ -1213,38 +1227,28 @@ msgstr "Selecionar ficheiro-chave"
 msgid "Safe {} is Already Open"
 msgstr "O cofre {} já está aberto"
 
-#: gsecrets/unlock_database.py:272
+#: gsecrets/unlock_database.py:278
 msgid "Failed to Unlock Safe"
 msgstr "Falha ao desbloquear o cofre"
 
-#: gsecrets/unlock_database.py:281
+#: gsecrets/unlock_database.py:287
 msgid "_Try Again"
 msgstr "_Tentar novamente"
 
-#: gsecrets/unlocked_database.py:276
+#: gsecrets/unlocked_database.py:274
 msgid "Safe Saved"
 msgstr "Cofre guardado"
 
-#: gsecrets/unlocked_database.py:278
-msgid "Could not Save Safe"
-msgstr "Não foi possível guardar o cofre"
-
-#: gsecrets/unlocked_database.py:288
-msgid "Please Wait. Another Save is Running."
-msgstr "Aguarde. Outro processo em execução."
-
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:276
 msgid "No Changes Made"
 msgstr "Não foram feitas alterações"
 
-#: gsecrets/unlocked_database.py:330
+#: gsecrets/unlocked_database.py:322
 msgid "Copied"
 msgstr "Copiado"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:397
+#: gsecrets/unlocked_database.py:389
 msgid "Safe Locked due to Inactivity"
 msgstr "Cofre bloqueado devido à inatividade"
 
@@ -1258,39 +1262,51 @@ msgid "Could not Store Attachment"
 msgstr "Não foi possível armazenar anexo"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:131
+#: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Select Current Keyfile"
 msgstr "_Selecionar o ficheiro-chave atual"
 
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:243
+#: gsecrets/widgets/database_settings_dialog.py:248
+msgid "Could not apply changes"
+msgstr "Não foi possível aplicar alterações"
+
+#. Still executes the finally block
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:252
+msgid "Changes Applied"
+msgstr "Alterações aplicadas"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:332
-#: gsecrets/widgets/database_settings_dialog.py:346
+#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:349
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:336
+#: gsecrets/widgets/database_settings_dialog.py:339
 msgid "AES 256-bit"
 msgstr "AES 256 bits"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256 bits"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:345
 msgid "Twofish 256-bit"
 msgstr "Twofish 256 bits"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:350
+#: gsecrets/widgets/database_settings_dialog.py:353
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:356
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1347,9 +1363,12 @@ msgstr "Cri_ar"
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Não é possível criar cofre: o cofre já está aberto"
 
-#: gsecrets/widgets/window.py:315
+#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
 msgid "Could not Create new Safe"
 msgstr "Não foi possível criar novo cofre"
+
+#~ msgid "Please Wait. Another Save is Running."
+#~ msgstr "Aguarde. Outro processo em execução."
 
 #~ msgid "The kdb Format is not Supported"
 #~ msgstr "O formato kdb não é suportado"

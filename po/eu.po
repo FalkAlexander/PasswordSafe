@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-01-05 23:35+0000\n"
-"PO-Revision-Date: 2022-02-13 10:00+0100\n"
+"POT-Creation-Date: 2022-03-19 22:44+0000\n"
+"PO-Revision-Date: 2022-02-20 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -123,8 +123,8 @@ msgid "_Confirm"
 msgstr "_Berretsi"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
-#: gsecrets/widgets/database_settings_dialog.py:198
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Sortu gako-fitxategia"
 
@@ -134,8 +134,8 @@ msgstr "Ezarri gako-fitxategia kutxa gotorrerako"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: gsecrets/create_database.py:172
+#: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Sortu"
 
@@ -151,7 +151,7 @@ msgstr "_Ireki kutxa gotorra"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
 msgid "Create Safe"
 msgstr "Sortu kutxa gotorra"
 
@@ -192,7 +192,7 @@ msgstr "Autentifikazioa"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
 msgid "Password"
 msgstr "Pasahitza"
 
@@ -220,8 +220,8 @@ msgstr "_Unekoa"
 msgid "Enter Current Password"
 msgstr "Sartu uneko pasahitza"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
+#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "Gako-fitxategia"
 
@@ -238,7 +238,7 @@ msgid "Could not Load Keyfile"
 msgstr "Ezin izan da gako-fitxategia kargatu"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:269
 msgid "_Apply Changes"
 msgstr "_Aplikatu aldaketak"
 
@@ -335,6 +335,7 @@ msgstr "Kopiatu"
 msgid "One-_Time Password Secret"
 msgstr "Denbora _bateko pasahitz-sekretua"
 
+#. OTP is a proper name
 #: data/gtk/entry_page.ui:97
 msgid "Could not Generate OTP Token"
 msgstr "Ezin izan da OTP tokena sortu"
@@ -360,35 +361,35 @@ msgstr "Editatu leiho batean"
 msgid "Icon"
 msgstr "Ikonoa"
 
-#: data/gtk/entry_page.ui:265
+#: data/gtk/entry_page.ui:268
 msgid "Attachments"
 msgstr "Eranskinak"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:293
 msgid "_Add Attachment"
 msgstr "_Gehitu eranskina"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:315
 msgid "Attributes"
 msgstr "Atributuak"
 
-#: data/gtk/entry_page.ui:328
+#: data/gtk/entry_page.ui:331
 msgid "Key"
 msgstr "Gakoa"
 
-#: data/gtk/entry_page.ui:334
+#: data/gtk/entry_page.ui:337
 msgid "Value"
 msgstr "Balioa"
 
-#: data/gtk/entry_page.ui:345
+#: data/gtk/entry_page.ui:348
 msgid "Add Attribute"
 msgstr "Gehitu atributua"
 
-#: data/gtk/entry_page.ui:369
+#: data/gtk/entry_page.ui:372
 msgid "_Expiration Date"
 msgstr "_Iraungitze-data"
 
-#: data/gtk/entry_page.ui:390
+#: data/gtk/entry_page.ui:393
 msgid "_Show More"
 msgstr "E_rakutsi gehiago"
 
@@ -700,7 +701,7 @@ msgstr "Ezkutatu abioko lehen _pantaila"
 msgid "Reopen last opened safe."
 msgstr "Berrireki irekitako azken kutxa gotorra."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
 msgid "Safe"
 msgstr "Kutxa gotorra"
 
@@ -766,6 +767,7 @@ msgstr "Erabili zenbaki-karaktereak pasahitz bat sortzean."
 msgid "_Special Characters"
 msgstr "Karaktere _bereziak"
 
+#. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Erabili alfanumerikoak ez diren ASCII ikurrak pasahitz bat sortzean."
@@ -824,10 +826,22 @@ msgstr "Garbitu azken aldian irekitako kutxa gotorren zerrenda."
 msgid "Unlock Safe"
 msgstr "Desblokeatu kutxa gotorra"
 
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
+msgid "_Select Keyfile"
+msgstr "_Hautatu gako-fitxategia"
+
 #. Menubutton in headerbar for starting the safe creation process
 #: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
 msgid "_New Safe"
 msgstr "_Kutxa gotor berria"
+
+#: data/gtk/unlocked_database_page.ui:28
+msgid "Add elements with the ➕ button."
+msgstr "Gehitu elementuak ➕ botoiarekin."
+
+#: data/gtk/unlocked_database_page.ui:29
+msgid "Empty Group"
+msgstr "Talde hutsa"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
@@ -855,10 +869,12 @@ msgstr "_Blokeatu"
 msgid "So_rting"
 msgstr "O_rdenatu"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
@@ -1082,7 +1098,7 @@ msgid ""
 "uncluttered interface for the management of password databases."
 msgstr "Secrets aplikazioa Keepass v.4 formatua erabiltzen duen pasahitz-kudeatzaile bat da. GNOME mahaigainean ongi integratzen da eta interfaze erraz eta garbia eskaintzen du pasahitzen datu-baseak kudeatzeko."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:163
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1094,49 +1110,49 @@ msgstr "Errorea: {} fitxategia ez da existitzen"
 msgid "Error: Safe {} is already open"
 msgstr "Errorea: {} kutxa gotorra irekita dago lehendik"
 
-#: gsecrets/attachment_warning_dialog.py:66
+#: gsecrets/attachment_warning_dialog.py:64
 msgid "Could not Load Attachment"
 msgstr "Ezin da eranskina kargatu"
 
-#: gsecrets/create_database.py:130
+#: gsecrets/create_database.py:68
+msgid "Unable to create database"
+msgstr "Ezin izan da datu-basea sortu"
+
+#: gsecrets/create_database.py:160
 msgid "Passwords do not Match"
 msgstr "Pasahitzak ez datoz bat"
 
-#: gsecrets/create_database.py:158
+#: gsecrets/create_database.py:188
 msgid "Generating…"
 msgstr "Sortzen…"
 
-#: gsecrets/create_database.py:171
+#: gsecrets/create_database.py:199
 msgid "Could not Create Keyfile"
 msgstr "Ezin da gako-fitxategia sortu"
 
-#: gsecrets/create_database.py:173
+#: gsecrets/create_database.py:201
 msgid "Generate"
 msgstr "Sortu"
 
-#: gsecrets/database_manager.py:122
-msgid "Clone"
-msgstr "Klonatu"
-
-#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
+#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Erabiltzaile-izena kopiatu da"
 
-#: gsecrets/entry_page.py:274
+#: gsecrets/entry_page.py:279
 msgid "One-time Password Copied"
 msgstr "Denbora bateko pasahitza kopiatu da"
 
-#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Atributu-gakoa badago lehendik"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:323
+#: gsecrets/entry_page.py:328
 msgid "Select Attachment"
 msgstr "Hautatu eranskina"
 
-#: gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:331
 msgid "_Add"
 msgstr "_Gehitu"
 
@@ -1152,7 +1168,16 @@ msgstr "Ez da izenburua zehaztu"
 msgid "Username not specified"
 msgstr "Ez da erabiltzaile-izenik zehaztu"
 
-#: gsecrets/unlock_database.py:78
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
+#: gsecrets/widgets/window.py:376
+msgid "Could not save Safe"
+msgstr "Ezin izan da kutxa gotorra gorde"
+
+#: gsecrets/safe_element.py:361
+msgid "Clone"
+msgstr "Klonatu"
+
+#: gsecrets/unlock_database.py:80
 msgid "Select Keyfile"
 msgstr "Hautatu gako-fitxategia"
 
@@ -1160,46 +1185,28 @@ msgstr "Hautatu gako-fitxategia"
 msgid "Safe {} is Already Open"
 msgstr "{} kutxa gotorra irekita dago lehendik"
 
-#: gsecrets/unlock_database.py:231
-msgid "The kdb Format is not Supported"
-msgstr "KDB formatua ez da onartzen"
-
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:278
 msgid "Failed to Unlock Safe"
 msgstr "Huts egin du kutxa gotorra desblokeatzeak"
 
-#: gsecrets/unlock_database.py:298
+#: gsecrets/unlock_database.py:287
 msgid "_Try Again"
 msgstr "_Saiatu berriro"
 
-#: gsecrets/unlock_database.py:303
-msgid "_Select Keyfile"
-msgstr "_Hautatu gako-fitxategia"
-
-#: gsecrets/unlocked_database.py:277
+#: gsecrets/unlocked_database.py:274
 msgid "Safe Saved"
 msgstr "Kutxa gotorra gorde da"
 
-#: gsecrets/unlocked_database.py:279
-msgid "Could not Save Safe"
-msgstr "Ezin izan da kutxa gotorra gorde"
-
-#: gsecrets/unlocked_database.py:289
-msgid "Please Wait. Another Save is Running."
-msgstr "Itxaron. Beste gordetze-eragitea bat exekutatzen ari da."
-
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:294
+#: gsecrets/unlocked_database.py:276
 msgid "No Changes Made"
 msgstr "Ez da aldaketarik egin"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:322
 msgid "Copied"
 msgstr "Kopiatua"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:400
+#: gsecrets/unlocked_database.py:389
 msgid "Safe Locked due to Inactivity"
 msgstr "Kutxa gotorra blokeatu da inaktibo dagoelako"
 
@@ -1208,44 +1215,56 @@ msgstr "Kutxa gotorra blokeatu da inaktibo dagoelako"
 msgid "Save Attachment"
 msgstr "Gorde eranskina"
 
-#: gsecrets/widgets/attachment_entry_row.py:64
+#: gsecrets/widgets/attachment_entry_row.py:61
 msgid "Could not Store Attachment"
 msgstr "Ezin da eranskina gorde"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:129
+#: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Select Current Keyfile"
 msgstr "Hautatu uneko gako-fitxategia"
 
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:243
+#: gsecrets/widgets/database_settings_dialog.py:248
+msgid "Could not apply changes"
+msgstr "Ezin izan dira aldaketak aplikatu"
+
+#. Still executes the finally block
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:252
+msgid "Changes Applied"
+msgstr "Aldaketak aplikatu dira"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:317
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:349
 msgid "Unknown"
 msgstr "Ezezaguna"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:321
+#: gsecrets/widgets/database_settings_dialog.py:339
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:345
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:353
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:356
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1264,47 +1283,53 @@ msgstr[1] "{} _hautatuta"
 msgid "Operation Aborted: Deleting Currently Active Group"
 msgstr "Eragiketa abortatu da: Unean aktibo dagoen taldea ezabatzen"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:114
+#: gsecrets/widgets/selection_mode_headerbar.py:108
 msgid "Deletion Completed"
 msgstr "Ezabatzea osatu da"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:151
+#: gsecrets/widgets/selection_mode_headerbar.py:145
 msgid "Operation Aborted: Moving Currently Active Group"
 msgstr "Eragiketa abortatu da: Unean aktibo dagoen taldea lekuz aldatzen"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:169
+#: gsecrets/widgets/selection_mode_headerbar.py:160
 msgid "Move Completed"
 msgstr "Lekuz aldatzea osatu da"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:146
 msgid "Select Safe"
 msgstr "Hautatu kutxa gotorra"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
+#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 datu-basea"
 
-#: gsecrets/widgets/window.py:163
+#: gsecrets/widgets/window.py:162
 msgid "Any file type"
 msgstr "Edozein fitxategi mota"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:221
 msgid "Safe is Already Open"
 msgstr "Kutxa gotorra dagoeneko irekita dago"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:245
 msgid "_Create"
 msgstr "_Sortu"
 
-#: gsecrets/widgets/window.py:277
+#: gsecrets/widgets/window.py:276
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Ezin da kutxa gotorra sortu: dagoeneko irekita dago"
 
-#: gsecrets/widgets/window.py:333
+#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
 msgid "Could not Create new Safe"
 msgstr "Ezin da kutxa gotor berria sortu"
+
+#~ msgid "The kdb Format is not Supported"
+#~ msgstr "KDB formatua ez da onartzen"
+
+#~ msgid "Please Wait. Another Save is Running."
+#~ msgstr "Itxaron. Beste gordetze-eragitea bat exekutatzen ari da."
 
 #~ msgid "_About Password Safe"
 #~ msgstr "Password Safe aplikazioari _buruz"
@@ -1418,9 +1443,6 @@ msgstr "Ezin da kutxa gotor berria sortu"
 
 #~ msgid "Composite"
 #~ msgstr "Konposatua"
-
-#~ msgid "Empty group"
-#~ msgstr "Hustu taldea"
 
 #~ msgid "Click on a checkbox to select"
 #~ msgstr "Egin klik kontrol-laukian hautatzeko"

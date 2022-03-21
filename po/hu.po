@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-18 02:10+0000\n"
-"PO-Revision-Date: 2022-03-19 21:03+0100\n"
-"Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
+"POT-Creation-Date: 2022-03-20 22:17+0000\n"
+"PO-Revision-Date: 2022-03-21 01:25+0100\n"
+"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Lokalize 19.12.3\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -132,8 +132,8 @@ msgid "_Confirm"
 msgstr "_Megerősítés"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
-#: gsecrets/widgets/database_settings_dialog.py:197
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Kulcsfájl előállítása"
 
@@ -143,8 +143,8 @@ msgstr "Adja meg a széf kulcsfájlját"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:169
-#: gsecrets/widgets/database_settings_dialog.py:200
+#: gsecrets/create_database.py:172
+#: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Előállítás"
 
@@ -229,8 +229,8 @@ msgstr "_Jelenlegi"
 msgid "Enter Current Password"
 msgstr "Adja meg a jelenlegi jelszavát"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:203
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
+#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "Kulcsfájl"
 
@@ -247,9 +247,9 @@ msgid "Could not Load Keyfile"
 msgstr "Nem sikerült betölteni a kulcsfájlt"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:287
+#: gsecrets/widgets/database_settings_dialog.py:269
 msgid "_Apply Changes"
-msgstr "Módosítások _alkalmazása"
+msgstr "Változtatások _alkalmazása"
 
 #: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
@@ -344,6 +344,7 @@ msgstr "Másolás"
 msgid "One-_Time Password Secret"
 msgstr "Egyszer _használatos jelszótitok"
 
+#. OTP is a proper name
 #: data/gtk/entry_page.ui:97
 msgid "Could not Generate OTP Token"
 msgstr "Nem sikerült előállítani az OTP tokent"
@@ -505,6 +506,12 @@ msgstr "Jelszó másolása"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Felhasználónév másolása"
+
+#: data/gtk/help-overlay.ui:108
+#| msgid "_One-Time Password"
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Egyszer használatos jelszó másolása"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
@@ -721,7 +728,7 @@ msgstr "Automatikus _mentés"
 
 #: data/gtk/settings_dialog.ui:50
 msgid "Save every change automatically."
-msgstr "Az összes módosítás automatikus mentése."
+msgstr "Az összes változtatás automatikus mentése."
 
 #: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
 msgid "Unlock"
@@ -777,6 +784,7 @@ msgstr "Szám karakterek használata egy jelszó előállításakor."
 msgid "_Special Characters"
 msgstr "Külö_nleges karakterek"
 
+#. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr ""
@@ -836,7 +844,7 @@ msgstr "A legutóbb megnyitott széfek listájának törlése."
 msgid "Unlock Safe"
 msgstr "Széf feloldása"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:286
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
 msgid "_Select Keyfile"
 msgstr "_Kulcsfájl kiválasztása"
 
@@ -879,10 +887,12 @@ msgstr "_Zárolás"
 msgid "So_rting"
 msgstr "_Rendezés"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
@@ -961,15 +971,15 @@ msgstr ""
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Save every change automatically"
-msgstr "Az összes módosítás automatikus mentése"
+msgstr "Az összes változtatás automatikus mentése"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:23
 msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
-"Az összes módosítás azonnali mentése az adatbázisba. Ne feledje, hogy nem "
-"vonhatja vissza a módosításokat, ha az automatikus mentés engedélyezett."
+"Az összes változtatás azonnali mentése az adatbázisba. Ne feledje, hogy nem "
+"vonhatja vissza a változtatásokat, ha az automatikus mentés engedélyezve van."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
@@ -1149,45 +1159,45 @@ msgstr "Hiba: a(z) {} széf már meg van nyitva"
 msgid "Could not Load Attachment"
 msgstr "Nem sikerült betölteni a mellékletet"
 
-#: gsecrets/create_database.py:67
+#: gsecrets/create_database.py:68
 msgid "Unable to create database"
 msgstr "Nem lehet létrehozni adatbázist"
 
-#: gsecrets/create_database.py:157
+#: gsecrets/create_database.py:160
 msgid "Passwords do not Match"
 msgstr "A jelszavak nem egyeznek"
 
-#: gsecrets/create_database.py:185
+#: gsecrets/create_database.py:188
 msgid "Generating…"
 msgstr "Előállítás…"
 
-#: gsecrets/create_database.py:195
+#: gsecrets/create_database.py:199
 msgid "Could not Create Keyfile"
 msgstr "Nem sikerült létrehozni a kulcsfájlt"
 
-#: gsecrets/create_database.py:197
+#: gsecrets/create_database.py:201
 msgid "Generate"
 msgstr "Előállítás"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Felhasználónév lemásolva"
 
-#: gsecrets/entry_page.py:279
+#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
 msgid "One-time Password Copied"
 msgstr "Egyszer használatos jelszó lemásolva"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "A tulajdonságkulcs már létezik"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:342
 msgid "Select Attachment"
 msgstr "Melléklet kiválasztása"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:345
 msgid "_Add"
 msgstr "Hozzá_adás"
 
@@ -1203,6 +1213,12 @@ msgstr "Cím nincs megadva"
 msgid "Username not specified"
 msgstr "Felhasználónév nincs megadva"
 
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
+#: gsecrets/widgets/window.py:376
+#| msgid "Could not Save Safe"
+msgid "Could not save Safe"
+msgstr "Nem sikerült elmenteni a széfet"
+
 #: gsecrets/safe_element.py:361
 msgid "Clone"
 msgstr "Klónozás"
@@ -1215,38 +1231,28 @@ msgstr "Kulcsfájl kiválasztása"
 msgid "Safe {} is Already Open"
 msgstr "A(z) {} széf már meg van nyitva"
 
-#: gsecrets/unlock_database.py:272
+#: gsecrets/unlock_database.py:278
 msgid "Failed to Unlock Safe"
 msgstr "A széf feloldása sikertelen"
 
-#: gsecrets/unlock_database.py:281
+#: gsecrets/unlock_database.py:287
 msgid "_Try Again"
 msgstr "_Próbálja újra"
 
-#: gsecrets/unlocked_database.py:276
+#: gsecrets/unlocked_database.py:274
 msgid "Safe Saved"
 msgstr "Széf elmentve"
 
-#: gsecrets/unlocked_database.py:278
-msgid "Could not Save Safe"
-msgstr "Nem sikerült elmenteni a széfet"
-
-#: gsecrets/unlocked_database.py:288
-msgid "Please Wait. Another Save is Running."
-msgstr "Kis türelmet. Egy másik mentés is fut."
-
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:276
 msgid "No Changes Made"
-msgstr "Nincsenek módosítások"
+msgstr "Nem történtek változtatások"
 
-#: gsecrets/unlocked_database.py:330
+#: gsecrets/unlocked_database.py:322
 msgid "Copied"
 msgstr "Lemásolva"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:397
+#: gsecrets/unlocked_database.py:389
 msgid "Safe Locked due to Inactivity"
 msgstr "A széf zárolva tétlenség miatt"
 
@@ -1260,39 +1266,53 @@ msgid "Could not Store Attachment"
 msgstr "Nem sikerült eltárolni a mellékletet"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:131
+#: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Select Current Keyfile"
 msgstr "Jelenlegi kulcsfájl kiválasztása"
 
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:243
+#: gsecrets/widgets/database_settings_dialog.py:248
+#| msgid "Could not Save Safe"
+msgid "Could not apply changes"
+msgstr "Nem sikerült alkalmazni a változtatásokat"
+
+#. Still executes the finally block
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:252
+#| msgid "No Changes Made"
+msgid "Changes Applied"
+msgstr "Változtatások alkalmazva"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:332
-#: gsecrets/widgets/database_settings_dialog.py:346
+#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:349
 msgid "Unknown"
 msgstr "Ismeretlen"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:336
+#: gsecrets/widgets/database_settings_dialog.py:339
 msgid "AES 256-bit"
 msgstr "256 bites AES"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "ChaCha20 256-bit"
 msgstr "256 bites ChaCha20"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:345
 msgid "Twofish 256-bit"
 msgstr "256 bites Twofish"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:350
+#: gsecrets/widgets/database_settings_dialog.py:353
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:356
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1349,9 +1369,6 @@ msgstr "_Létrehozás"
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Nem lehet létrehozni a széfet: a széf már meg van nyitva"
 
-#: gsecrets/widgets/window.py:315
+#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
 msgid "Could not Create new Safe"
 msgstr "Nem sikerült új széfet létrehozni"
-
-#~ msgid "The kdb Format is not Supported"
-#~ msgstr "A kdb formátum nem támogatott"

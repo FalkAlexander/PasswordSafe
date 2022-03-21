@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-19 22:44+0000\n"
-"PO-Revision-Date: 2022-03-20 09:37+0800\n"
+"POT-Creation-Date: 2022-03-20 22:17+0000\n"
+"PO-Revision-Date: 2022-03-21 18:39+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -504,6 +504,12 @@ msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "复制用户名"
 
+#: data/gtk/help-overlay.ui:108
+#| msgid "_One-Time Password"
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "复制动态口令"
+
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "复制(_C)"
@@ -846,7 +852,6 @@ msgid "Add elements with the ➕ button."
 msgstr "使用 ➕ 按钮添加元素。"
 
 #: data/gtk/unlocked_database_page.ui:29
-#| msgid "Empty group"
 msgid "Empty Group"
 msgstr "空组"
 
@@ -1146,25 +1151,25 @@ msgstr "无法创建密钥文件"
 msgid "Generate"
 msgstr "生成"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "用户名已复制"
 
-#: gsecrets/entry_page.py:279
+#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
 msgid "One-time Password Copied"
 msgstr "动态口令已复制"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "属性键已存在"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:342
 msgid "Select Attachment"
 msgstr "选择附件"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:345
 msgid "_Add"
 msgstr "添加(_A)"
 
@@ -1182,7 +1187,6 @@ msgstr "未指定用户名"
 
 #: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
 #: gsecrets/widgets/window.py:376
-#| msgid "Could not Save Safe"
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
 
@@ -1240,14 +1244,12 @@ msgstr "选择当前密钥文件"
 #. pylint: disable=no-member
 #: gsecrets/widgets/database_settings_dialog.py:243
 #: gsecrets/widgets/database_settings_dialog.py:248
-#| msgid "Could not Save Safe"
 msgid "Could not apply changes"
 msgstr "无法应用更改"
 
 #. Still executes the finally block
 #. pylint: disable=no-member
 #: gsecrets/widgets/database_settings_dialog.py:252
-#| msgid "No Changes Made"
 msgid "Changes Applied"
 msgstr "更改已应用"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-19 22:44+0000\n"
-"PO-Revision-Date: 2022-03-20 08:42+0200\n"
+"POT-Creation-Date: 2022-03-20 22:17+0000\n"
+"PO-Revision-Date: 2022-03-21 08:51+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -503,6 +503,12 @@ msgstr "Копіювати пароль"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Копіювати ім'я користувача"
+
+#: data/gtk/help-overlay.ui:108
+#| msgid "_One-Time Password"
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Скопіювати одноразовий пароль"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
@@ -1174,25 +1180,25 @@ msgstr "Не вдалося створити файл ключа"
 msgid "Generate"
 msgstr "Створити"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Ім'я користувача скопійовано"
 
-#: gsecrets/entry_page.py:279
+#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
 msgid "One-time Password Copied"
 msgstr "Одноразовий пароль скопійовано"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Ключ атрибута вже існує"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:342
 msgid "Select Attachment"
 msgstr "Виберіть долучення"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:345
 msgid "_Add"
 msgstr "Д_одати"
 
@@ -1210,7 +1216,6 @@ msgstr "Не вказано імені користувача"
 
 #: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
 #: gsecrets/widgets/window.py:376
-#| msgid "Could not Save Safe"
 msgid "Could not save Safe"
 msgstr "Не вдалося зберегти сейф"
 
@@ -1268,14 +1273,12 @@ msgstr "Виберіть поточний файл ключа"
 #. pylint: disable=no-member
 #: gsecrets/widgets/database_settings_dialog.py:243
 #: gsecrets/widgets/database_settings_dialog.py:248
-#| msgid "Could not Save Safe"
 msgid "Could not apply changes"
 msgstr "Не вдалося застосувати зміни"
 
 #. Still executes the finally block
 #. pylint: disable=no-member
 #: gsecrets/widgets/database_settings_dialog.py:252
-#| msgid "No Changes Made"
 msgid "Changes Applied"
 msgstr "Зміни застосовано"
 

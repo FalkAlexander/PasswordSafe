@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
 "POT-Creation-Date: 2022-02-18 11:10+0000\n"
-"PO-Revision-Date: 2022-03-11 01:51+0100\n"
+"PO-Revision-Date: 2022-03-22 08:46+0100\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -259,7 +259,7 @@ msgstr "Detaljer"
 
 #: data/gtk/database_settings_dialog.ui:255
 msgid "Safe Name"
-msgstr "Safenavn"
+msgstr "Safens navn"
 
 #: data/gtk/database_settings_dialog.ui:260
 msgid "Path"
@@ -436,7 +436,7 @@ msgstr "Tilbake"
 #: data/gtk/help-overlay.ui:26
 msgctxt "Shortcut window description"
 msgid "Open Safe"
-msgstr "Åpne safe"
+msgstr "Åpne safen"
 
 #: data/gtk/help-overlay.ui:32
 msgctxt "Shortcut window description"
@@ -471,7 +471,7 @@ msgstr "Lås safen"
 #: data/gtk/help-overlay.ui:67
 msgctxt "Shortcut window description"
 msgid "Save Safe"
-msgstr "Lagre safe"
+msgstr "Lagre safen"
 
 #: data/gtk/help-overlay.ui:73
 msgctxt "Shortcut window description"
@@ -565,7 +565,7 @@ msgstr "_Åpen"
 
 #: data/gtk/recent_files_page.ui:27
 msgid "Recent Safes"
-msgstr "Nylige databaser"
+msgstr "Nylige safer"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
@@ -830,7 +830,7 @@ msgstr "Rensk lista over sist åpnede safer."
 
 #: data/gtk/unlock_database.ui:7
 msgid "Unlock Safe"
-msgstr "Lås opp safe"
+msgstr "Lås opp safen"
 
 #: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:303
 msgid "_Select Keyfile"
@@ -916,7 +916,7 @@ msgstr "Hemmeligheter"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
-msgstr "En passordadministrator for GNOME"
+msgstr "En passordbehandler for GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:14
@@ -937,13 +937,15 @@ msgstr ""
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
-msgstr "Gjenåpne sist brukte safé"
+msgstr "Gjenåpne sist brukte database"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
 msgstr ""
+"Åpne automatisk opplåsingsskjermen til den sist åpnede databasen, ellers vis "
+"velkomstskjermen."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Save every change automatically"
@@ -954,6 +956,8 @@ msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
+"Lagre alle endringer du gjør umiddelbart i databasen. Vær oppmerksom på at "
+"du ikke kan tilbakestille endringer hvis Autolagring er aktivert."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
@@ -964,6 +968,8 @@ msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
 msgstr ""
+"Lås databasen automatisk etter et gitt antall minutter for å forbedre "
+"sikkerheten."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Clear clipboard after X seconds"
@@ -972,6 +978,8 @@ msgstr "Rensk utklippstavle etter X sekunder"
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr ""
+"Lås databasen automatisk etter et gitt antall minutter for å forbedre "
+"sikkerheten."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -983,19 +991,19 @@ msgstr "Husk vindusstørrelsen."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
 msgid "Last opened database"
-msgstr "Sist åpnede safé"
+msgstr "Sist åpnede database"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:43
 msgid "Path to the last opened database."
-msgstr "Sti til sist brukte safé."
+msgstr "Sti til sist brukte database."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Last opened databases"
-msgstr "Sist åpnede saféer"
+msgstr "Sist åpnede databaser"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "A list of the last opened databases."
-msgstr "En liste av sist brukte safé."
+msgstr "En liste av sist brukte databaser."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
@@ -1003,7 +1011,7 @@ msgstr "Husk sammensatt _nøkkel"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
-msgstr "Husk sist brukte sammensatte nøkkel for å låse opp saféen."
+msgstr "Husk sist brukte sammensatte nøkkel for opplåsing av databasen."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used composite key"
@@ -1011,7 +1019,7 @@ msgstr "Husk sist brukte sammensatte nøkkel"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Path to last used key for composite database unlocking."
-msgstr ""
+msgstr "Sti til sist brukte nøkkel for sammensatt opplåsing av database."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1019,21 +1027,23 @@ msgstr "Husk opplåsingsmetode"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
-msgstr ""
+msgstr "Husk sist brukte opplåsingsmetode for fremtidig opplåsing av database."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
-msgstr "Sikkerhetskopier saféen når den låses opp"
+msgstr "Sikkerhetskopier databasen når den låses opp"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
 msgstr ""
+"Hvis en feil oppstår under lagring av databasen, så kan en sikkerhetskopi "
+"finnes på ~/.cache/secrets/backups"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
-msgstr ""
+msgstr "Sorteringsorden for grupper og oppføringer"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
@@ -1097,10 +1107,13 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
+"Hemmeligheter er en passordbehandler som bruker KeePass v.4-formatet. Den "
+"integreres perfekt med GNOME-skrivebordet og gir et enkelt og oversiktlig "
+"grensesnitt for å administrere passorddatabaser."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
 msgid "Falk Alexander Seidl"
-msgstr ""
+msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:52
 msgid "Error: File {} does not exist"
@@ -1304,7 +1317,7 @@ msgstr "Enhver filtype"
 
 #: gsecrets/widgets/window.py:222
 msgid "Safe is Already Open"
-msgstr "Databasen er allerede åpnet"
+msgstr "Safen er allerede åpnet"
 
 #: gsecrets/widgets/window.py:246
 msgid "_Create"
@@ -1312,7 +1325,7 @@ msgstr "_Ny"
 
 #: gsecrets/widgets/window.py:277
 msgid "Cannot Create Safe: Safe is Already Open"
-msgstr "Kan ikke lage ny safe: Safe er allerede åpen"
+msgstr "Kan ikke lage ny safe: Safen er allerede åpen"
 
 #: gsecrets/widgets/window.py:333
 msgid "Could not Create new Safe"

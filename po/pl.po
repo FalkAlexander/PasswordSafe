@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-19 22:44+0000\n"
-"PO-Revision-Date: 2022-03-20 13:05+0100\n"
+"POT-Creation-Date: 2022-03-20 22:17+0000\n"
+"PO-Revision-Date: 2022-03-22 17:27+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -504,6 +504,11 @@ msgstr "Skopiowanie hasła"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Skopiowanie nazwy użytkownika"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Skopiowanie jednorazowego hasła"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
@@ -1165,25 +1170,25 @@ msgstr "Nie można utworzyć pliku klucza"
 msgid "Generate"
 msgstr "Utwórz"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Skopiowano nazwę użytkownika"
 
-#: gsecrets/entry_page.py:279
+#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
 msgid "One-time Password Copied"
 msgstr "Skopiowano jednorazowe hasło"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Klucz atrybutu już istnieje"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:342
 msgid "Select Attachment"
 msgstr "Wybór załącznika"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:345
 msgid "_Add"
 msgstr "_Dodaj"
 

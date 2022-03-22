@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-16 08:01+0000\n"
-"PO-Revision-Date: 2022-03-16 09:52+0100\n"
+"POT-Creation-Date: 2022-03-20 22:17+0000\n"
+"PO-Revision-Date: 2022-03-22 08:44+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -129,8 +129,8 @@ msgid "_Confirm"
 msgstr "Confer_ma"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:166
-#: gsecrets/widgets/database_settings_dialog.py:200
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Genera file chiave"
 
@@ -140,8 +140,8 @@ msgstr "Selezionare il file chiave per la cassaforte"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:169
-#: gsecrets/widgets/database_settings_dialog.py:203
+#: gsecrets/create_database.py:172
+#: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Genera"
 
@@ -198,7 +198,7 @@ msgstr "Autenticazione"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
 msgid "Password"
 msgstr "Password"
 
@@ -226,8 +226,8 @@ msgstr "_Attuale"
 msgid "Enter Current Password"
 msgstr "Immettere password attuale"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:173
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:206
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
+#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "File chiave"
 
@@ -244,7 +244,7 @@ msgid "Could not Load Keyfile"
 msgstr "Impossibile caricare il file chiave"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:293
+#: gsecrets/widgets/database_settings_dialog.py:269
 msgid "_Apply Changes"
 msgstr "_Applica modifiche"
 
@@ -341,6 +341,7 @@ msgstr "Copia"
 msgid "One-_Time Password Secret"
 msgstr "Segreto _password monouso"
 
+#. OTP is a proper name
 #: data/gtk/entry_page.ui:97
 msgid "Could not Generate OTP Token"
 msgstr "Impossibile generare il token OTP"
@@ -502,6 +503,11 @@ msgstr "Copia la password"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Copia il nome utente"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Copia password monouso"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
@@ -774,6 +780,7 @@ msgstr "Usa caratteri numerici per generare una password"
 msgid "_Special Characters"
 msgstr "Cara_tteri speciali"
 
+#. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Usa caratteri ASCII non-alfanumerici per generare una password"
@@ -833,7 +840,7 @@ msgstr "Pulisce l'elenco delle casseforti aperte di recente"
 msgid "Unlock Safe"
 msgstr "Sblocca cassaforte"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:306
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
 msgid "_Select Keyfile"
 msgstr "_Seleziona file chiave"
 
@@ -841,6 +848,14 @@ msgstr "_Seleziona file chiave"
 #: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
 msgid "_New Safe"
 msgstr "_Nuova cassaforte"
+
+#: data/gtk/unlocked_database_page.ui:28
+msgid "Add elements with the ➕ button."
+msgstr "Aggiungere elementi con il pulsante ➕."
+
+#: data/gtk/unlocked_database_page.ui:29
+msgid "Empty Group"
+msgstr "Gruppo vuoto"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
@@ -868,10 +883,12 @@ msgstr "_Blocca"
 msgid "So_rting"
 msgstr "Or_dinamento"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
@@ -1131,49 +1148,49 @@ msgstr "Errore: il file {} non esiste"
 msgid "Error: Safe {} is already open"
 msgstr "Errore: la cassaforte {} è già aperta"
 
-#: gsecrets/attachment_warning_dialog.py:66
+#: gsecrets/attachment_warning_dialog.py:64
 msgid "Could not Load Attachment"
 msgstr "Impossibile caricare l'allegato"
 
-#: gsecrets/create_database.py:67
+#: gsecrets/create_database.py:68
 msgid "Unable to create database"
 msgstr "Impossibile creare il database"
 
-#: gsecrets/create_database.py:157
+#: gsecrets/create_database.py:160
 msgid "Passwords do not Match"
 msgstr "Le password non corrispondono"
 
-#: gsecrets/create_database.py:185
+#: gsecrets/create_database.py:188
 msgid "Generating…"
 msgstr "Generazione…"
 
-#: gsecrets/create_database.py:198
+#: gsecrets/create_database.py:199
 msgid "Could not Create Keyfile"
 msgstr "Impossibile creare il file chiave"
 
-#: gsecrets/create_database.py:200
+#: gsecrets/create_database.py:201
 msgid "Generate"
 msgstr "Genera"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:375
+#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Nome utente copiato"
 
-#: gsecrets/entry_page.py:279
+#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
 msgid "One-time Password Copied"
 msgstr "Password monouso copiata"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Un attributo con questa chiave esiste già"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:342
 msgid "Select Attachment"
 msgstr "Seleziona allegato"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:345
 msgid "_Add"
 msgstr "A_ggiungi"
 
@@ -1189,11 +1206,16 @@ msgstr "Nome non specificato"
 msgid "Username not specified"
 msgstr "Nome utente non specificato"
 
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
+#: gsecrets/widgets/window.py:376
+msgid "Could not save Safe"
+msgstr "Impossibile salvare la cassaforte"
+
 #: gsecrets/safe_element.py:361
 msgid "Clone"
 msgstr "Clona"
 
-#: gsecrets/unlock_database.py:78
+#: gsecrets/unlock_database.py:80
 msgid "Select Keyfile"
 msgstr "Seleziona file chiave"
 
@@ -1201,42 +1223,28 @@ msgstr "Seleziona file chiave"
 msgid "Safe {} is Already Open"
 msgstr "La cassaforte {} è già aperta"
 
-#: gsecrets/unlock_database.py:234
-msgid "The kdb Format is not Supported"
-msgstr "Il formato kdb non è supportato"
-
-#: gsecrets/unlock_database.py:290
+#: gsecrets/unlock_database.py:278
 msgid "Failed to Unlock Safe"
 msgstr "Sblocco della cassaforte non riuscito"
 
-#: gsecrets/unlock_database.py:301
+#: gsecrets/unlock_database.py:287
 msgid "_Try Again"
 msgstr "_Riprova"
 
-#: gsecrets/unlocked_database.py:276
+#: gsecrets/unlocked_database.py:274
 msgid "Safe Saved"
 msgstr "Cassaforte salvata"
 
-#: gsecrets/unlocked_database.py:278
-msgid "Could not Save Safe"
-msgstr "Impossibile salvare la cassaforte"
-
-#: gsecrets/unlocked_database.py:288
-msgid "Please Wait. Another Save is Running."
-msgstr "Attendere: salvataggio già in corso."
-
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:293
+#: gsecrets/unlocked_database.py:276
 msgid "No Changes Made"
 msgstr "Nessuna modifica effettuata"
 
-#: gsecrets/unlocked_database.py:330
+#: gsecrets/unlocked_database.py:322
 msgid "Copied"
 msgstr "Copiato"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:397
+#: gsecrets/unlocked_database.py:389
 msgid "Safe Locked due to Inactivity"
 msgstr "Cassaforte bloccata per inattività"
 
@@ -1245,44 +1253,56 @@ msgstr "Cassaforte bloccata per inattività"
 msgid "Save Attachment"
 msgstr "Salva allegato"
 
-#: gsecrets/widgets/attachment_entry_row.py:64
+#: gsecrets/widgets/attachment_entry_row.py:61
 msgid "Could not Store Attachment"
 msgstr "Impossibile salvare l'allegato"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:131
+#: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Select Current Keyfile"
 msgstr "Seleziona file chiave attuale"
 
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:243
+#: gsecrets/widgets/database_settings_dialog.py:248
+msgid "Could not apply changes"
+msgstr "Impossibile applicare le modifiche"
+
+#. Still executes the finally block
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:252
+msgid "Changes Applied"
+msgstr "Modifiche applicate"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:324
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:349
 msgid "Unknown"
 msgstr "Sconosiuto"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:328
+#: gsecrets/widgets/database_settings_dialog.py:339
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:342
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:334
+#: gsecrets/widgets/database_settings_dialog.py:345
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:353
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:356
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1339,6 +1359,12 @@ msgstr "_Crea"
 msgid "Cannot Create Safe: Safe is Already Open"
 msgstr "Impossibile creare la cassaforte: è già aperta"
 
-#: gsecrets/widgets/window.py:316
+#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
 msgid "Could not Create new Safe"
 msgstr "Impossibile creare una nuova cassaforte"
+
+#~ msgid "The kdb Format is not Supported"
+#~ msgstr "Il formato kdb non è supportato"
+
+#~ msgid "Please Wait. Another Save is Running."
+#~ msgstr "Attendere: salvataggio già in corso."

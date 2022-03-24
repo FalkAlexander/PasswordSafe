@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "Secrets"
+version = "6.2"
+description = "Manage your passwords"
+authors = ["Falk Alexander Seidl <fseidl@gnome.org>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pyotp = "2.6"
+pykeepass = "4.0.1"
+
+# Needed for setuptools-scm
+packaging = "21.3"
+tomli = "1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

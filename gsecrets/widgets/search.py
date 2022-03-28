@@ -44,7 +44,7 @@ class Search(Adw.Bin):
         self._search_text: str = self._search_entry.props.text
         self._result_list.connect("items_changed", self._on_items_changed)
 
-        self._search_entry.set_key_capture_widget(self.unlocked_database.window)
+        self._search_entry.set_key_capture_widget(self.unlocked_database)
 
     def do_dispose(self):
         self._search_entry.set_key_capture_widget(None)

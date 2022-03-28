@@ -516,6 +516,8 @@ class UnlockedDatabase(Gtk.Box):
         else:
             self.show_browser_page(self.current_element)
 
+    # TODO This property does not emit a notify signal when the manager locked
+    # property is updated.
     @GObject.Property(type=bool, default=False)
     def database_locked(self):
         """Get database lock status

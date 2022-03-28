@@ -235,6 +235,9 @@ class EntryPage(Adw.Bin):
         if not self.unlocked_database.in_edit_page:
             return
 
+        if self.unlocked_database.props.database_locked:
+            return
+
         if action.props.name == "entry.copy_user":
             username = self.username_property_value_entry.get_text()
             self.unlocked_database.send_to_clipboard(

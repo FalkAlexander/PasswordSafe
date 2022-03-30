@@ -13,6 +13,27 @@
     ],
     "modules": [
         {
+            "name": "python3-lxml",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --no-index --ignore-installed --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"lxml\""
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "only-arches": ["x86_64"],
+                    "url": "https://files.pythonhosted.org/packages/ce/69/66c2112761ed295a8469c3edf9f68b2f37c878a95fd715cab862d1ec92a1/lxml-4.8.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl",
+                    "sha256": "545bd39c9481f2e3f2727c78c169425efbfb3fbba6e7db4f46a80ebb249819ca"
+                },
+                {
+                    "type": "file",
+                    "only-arches": ["aarch64"],
+                    "url": "https://files.pythonhosted.org/packages/d4/2e/c24f790373c1dae86e0bd5887af2c13641cbe54742c6cb293cb0b5475ecd/lxml-4.8.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.manylinux_2_24_aarch64.whl",
+                    "sha256": "627e79894770783c129cc5e89b947e52aa26e8e0557c7e205368a809da4b7939"
+                }
+            ]
+        },
+        {
             "name": "python3-pycryptodomex",
             "buildsystem": "simple",
             "build-commands": [

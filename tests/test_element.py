@@ -4,6 +4,9 @@ import os
 import pytest
 from pykeepass import PyKeePass
 
+import gi
+
+gi.require_version("Gtk", "4.0")
 
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.safe_element import EntryColor, SafeGroup, SafeEntry, ICONS
@@ -33,6 +36,10 @@ def db_pwd(path, password):
     py_db = PyKeePass(path, password)
     db.db = py_db
     db.password == password
+
+    db.entries.splice(0, 0, [SafeEntry(db, e) for e in db.db.entries])
+    db.groups.splice(0, 0, [SafeGroup(db, g) for g in db.db.groups])
+    db._elements_loaded = True
 
     assert db.locked is False
     assert db.is_dirty is False

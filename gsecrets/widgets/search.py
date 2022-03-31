@@ -6,15 +6,16 @@ import typing
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
-from pykeepass.entry import Entry
 from pykeepass.group import Group
 
-from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
+from gsecrets.safe_element import SafeEntry, SafeGroup
 from gsecrets.sorting import SortingHat
 
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.unlocked_database import UnlockedDatabase
+
+    from pykeepass.entry import Entry
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/search.ui")
@@ -22,8 +23,6 @@ class Search(Adw.Bin):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "Search"
-
-    _result_list = Gio.ListStore.new(SafeElement)
 
     _empty_search_page = Gtk.Template.Child()
     _info_search_page = Gtk.Template.Child()
@@ -42,9 +41,29 @@ class Search(Adw.Bin):
         self._search_entry = self._headerbar.search_entry
 
         self._search_text: str = self._search_entry.props.text
-        self._result_list.connect("items_changed", self._on_items_changed)
 
         self._search_entry.set_key_capture_widget(self.unlocked_database)
+
+        self.results_entries_filter = Gtk.FilterListModel.new(
+            self._db_manager.entries, None
+        )
+        self.results_groups_filter = Gtk.FilterListModel.new(
+            self._db_manager.groups, None
+        )
+
+        # Sort the results
+        sorting = SortingHat.SortOrder.ASC
+        sorter = SortingHat.get_sorter(sorting)
+
+        self._results_entries = Gtk.SortListModel.new(
+            self.results_entries_filter, sorter
+        )
+        self._results_groups = Gtk.SortListModel.new(self.results_groups_filter, sorter)
+
+        flatten = Gio.ListStore.new(Gtk.SortListModel)
+        flatten.splice(0, 0, [self._results_groups, self._results_entries])
+
+        self._result_list = Gtk.FlattenListModel.new(flatten)
 
     def do_dispose(self):
         self._search_entry.set_key_capture_widget(None)
@@ -101,7 +120,8 @@ class Search(Adw.Bin):
                 self._search_changed_id = None
 
             self._search_entry.props.text = ""
-            self._result_list.remove_all()
+            self.results_entries_filter.set_filter(None)
+            self.results_groups_filter.set_filter(None)
 
     def _prepare_search_page(self):
         self.search_list_box.bind_model(
@@ -142,32 +162,25 @@ class Search(Adw.Bin):
 
             return False
 
-        db_entries = filter(filter_func, db_manager.db.entries)
-        db_groups = filter(
-            filter_func,
-            [g for g in db_manager.db.groups if not g.is_root_group],
-        )
+        db_entries = [e.uuid for e in filter(filter_func, db_manager.db.entries)]
+        db_groups = [
+            g.uuid
+            for g in filter(filter_func, db_manager.db.groups)
+            if not g.is_root_group
+        ]
 
-        GLib.idle_add(self._show_results, db_groups, db_entries, db_manager)
+        GLib.idle_add(self._show_results, db_groups, db_entries)
 
-    def _show_results(self, db_groups, db_entries, db_manager):
-        entries = [SafeEntry(db_manager, e) for e in db_entries]
-        groups = [SafeGroup(db_manager, g) for g in db_groups]
-        results = entries + groups
-        n_items = len(results)
+    def _show_results(self, db_groups, db_entries):
+        def filter_func(element: SafeEntry | SafeGroup) -> bool:
+            if element.is_group:
+                return element.uuid in db_groups
 
-        if n_items == 0:
-            self.stack.set_visible_child(self._empty_search_page)
-            return GLib.SOURCE_REMOVE
+            return element.uuid in db_entries
 
-        self._result_list.splice(0, self._result_list.get_n_items(), results)
-
-        # Sort the results
-        sorting = SortingHat.SortOrder.ASC
-        sort_func = SortingHat.get_sort_func(sorting)
-        self._result_list.sort(sort_func)
-
-        self.stack.set_visible_child(self._results_search_page)
+        filter_ = Gtk.CustomFilter.new(filter_func)
+        self.results_groups_filter.set_filter(filter_)
+        self.results_entries_filter.set_filter(filter_)
 
         return GLib.SOURCE_REMOVE
 

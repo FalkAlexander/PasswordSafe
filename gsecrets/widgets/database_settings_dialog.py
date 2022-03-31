@@ -363,10 +363,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.n_passwords_row.props.subtitle = str(self.passwords_number)
 
     def start_stats_thread(self):
-        self.entries_number = len(self.database_manager.db.entries)
-        self.groups_number = len(self.database_manager.db.groups)
+        self.entries_number = len(self.database_manager.entries)
+        self.groups_number = len(self.database_manager.groups)
         self.passwords_number = 0
-        for entry in self.database_manager.db.entries:
+        for entry in self.database_manager.entries:
             if entry.password is not None and entry.password != "":
                 self.passwords_number = self.passwords_number + 1
         GLib.idle_add(self.set_stats_values)

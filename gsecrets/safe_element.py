@@ -11,7 +11,7 @@ from enum import Enum
 from typing import NamedTuple
 from uuid import UUID
 
-from gi.repository import GLib, GObject
+from gi.repository import GLib, GObject, Gio, Gtk
 from pyotp import OTP, TOTP, parse_uri
 
 if typing.TYPE_CHECKING:
@@ -78,34 +78,41 @@ class SafeElement(GObject.GObject):
     def delete(self) -> None:
         """Delete an Element from the database."""
         element = self._element
-        uuid = self.uuid
         parentgroup = self.parentgroup
         if self.is_entry:
             self._db_manager.db.delete_entry(element)
+            found, pos = self._db_manager.entries.find(self)
+            if found:
+                self._db_manager.entries.remove(pos)
         else:
             self._db_manager.db.delete_group(element)
+            found, pos = self._db_manager.groups.find(self)
+            if found:
+                self._db_manager.groups.remove(pos)
 
         parentgroup.updated()
-        self._db_manager.emit("element-removed", uuid)
 
     def move_to(self, dest: SafeGroup) -> None:
-        old_location = self.parentgroup.uuid
-        new_location = dest.uuid
+        old_location = self.parentgroup
 
-        if self.parentgroup == dest:
+        if old_location == dest:
             return
 
-        # TODO: we will crash if uuid does not exist
+        # We signal items changed on the main list store so that the changes are
+        # propagated to the filter models used by each group.
         if self.is_entry:
             self._db_manager.db.move_entry(self._element, dest.group)
+            found, pos = self._db_manager.entries.find(self)
+            if found:
+                self._db_manager.entries.items_changed(pos, 1, 1)
         else:
             self._db_manager.db.move_group(self._element, dest.group)
+            found, pos = self._db_manager.groups.find(self)
+            if found:
+                self._db_manager.groups.items_changed(pos, 1, 1)
 
-        self.parentgroup.updated()
+        old_location.updated()
         dest.updated()
-
-        # We use the UUIDs stored before moving the element.
-        self._db_manager.emit("element-moved", self, old_location, new_location)
 
     @property
     def element(self) -> Entry | Group:
@@ -165,7 +172,27 @@ class SafeElement(GObject.GObject):
         if self.is_root_group:
             return self
 
+        for group in self._db_manager.groups:
+            if group.uuid == self._element.parentgroup.uuid:
+                return group
+
+        logging.error("This should be unreachable: parentgroup")
         return SafeGroup(self._db_manager, self._element.parentgroup)
+
+    @property
+    def parentgroup_uuid(self) -> UUID:
+        """UUID of the parent Group of the element
+
+        This method should be preferred than parentgroup since it does not go
+        through the entire list of elements.
+
+        :returns: parent group
+        :rtype: SafeGroup
+        """
+        if self.is_root_group:
+            return self.uuid
+
+        return self._element.parentgroup.uuid
 
     @property
     def is_root_group(self) -> bool:
@@ -225,6 +252,10 @@ class SafeElement(GObject.GObject):
 
 
 class SafeGroup(SafeElement):
+
+    _entries = None
+    _subgroups = None
+
     def __init__(self, db_manager: DatabaseManager, group: Group) -> None:
         """GObject to handle a safe group.
 
@@ -239,6 +270,11 @@ class SafeGroup(SafeElement):
     def get_root(db_manager: DatabaseManager) -> SafeGroup:
         """Method to obtain the root group."""
         # pylint: disable=no-member
+        for group in db_manager.groups:
+            if group.is_root_group:
+                return group
+
+        logging.error("This should be unreachable: get_root")
         return SafeGroup(db_manager, db_manager.db.root_group)
 
     def new_entry(
@@ -262,7 +298,7 @@ class SafeGroup(SafeElement):
         )
         safe_entry = SafeEntry(self._db_manager, new_entry)
         self.updated()
-        self._db_manager.emit("element-added", safe_entry, self.uuid)
+        self._db_manager.entries.append(safe_entry)
 
         return safe_entry
 
@@ -275,22 +311,41 @@ class SafeGroup(SafeElement):
         )
         safe_group = SafeGroup(self._db_manager, new_group)
         self.updated()
-        self._db_manager.emit("element-added", safe_group, self.uuid)
+        self._db_manager.groups.append(safe_group)
 
         return safe_group
 
     @property
-    def subgroups(self) -> list[SafeGroup]:
-        return [SafeGroup(self._db_manager, group) for group in self._group.subgroups]
+    def subgroups(self) -> Gio.ListModel:
+        if self._subgroups is None:
+            filter_ = Gtk.CustomFilter.new(self._group_filter_func)
+            model = Gtk.FilterListModel.new(self._db_manager.groups, filter_)
+            self._subgroups = model
+
+        return self._subgroups
 
     @property
-    def entries(self) -> list[SafeEntry]:
-        return [SafeEntry(self._db_manager, entry) for entry in self._group.entries]
+    def entries(self) -> Gio.ListModel:
+        if self._entries is None:
+            filter_ = Gtk.CustomFilter.new(self._group_filter_func)
+            model = Gtk.FilterListModel.new(self._db_manager.entries, filter_)
+            self._entries = model
+
+        return self._entries
 
     @property
     def group(self) -> Group:
         """Returns the private pykeepass group."""
         return self._group
+
+    def _entry_filter_func(self, entry: SafeEntry) -> bool:
+        return entry.parentgroup_uuid == self.uuid
+
+    def _group_filter_func(self, group: SafeGroup) -> bool:
+        if group.is_root_group:
+            return False
+
+        return group.parentgroup_uuid == self.uuid
 
 
 class SafeEntry(SafeElement):
@@ -378,7 +433,7 @@ class SafeEntry(SafeElement):
         safe_entry = SafeEntry(self._db_manager, clone_entry)
 
         self.parentgroup.updated()
-        self._db_manager.emit("element-added", safe_entry, safe_entry.parentgroup.uuid)
+        self._db_manager.entries.append(safe_entry)
 
     def _check_expiration(self) -> None:
         """Check expiration

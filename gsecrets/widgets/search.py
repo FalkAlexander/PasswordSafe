@@ -68,13 +68,6 @@ class Search(Adw.Bin):
     def do_dispose(self):
         self._search_entry.set_key_capture_widget(None)
 
-    def _on_items_changed(
-        self, list_model: Gio.ListModel, _pos: int, _removed: int, _added: int
-    ) -> None:
-        if list_model.get_n_items() == 0:
-            if len(self._search_text) < 2:
-                self.stack.set_visible_child(self._info_search_page)
-
     def initialize(self):
         # Search Headerbar
         self._search_entry.connect(
@@ -172,6 +165,14 @@ class Search(Adw.Bin):
         GLib.idle_add(self._show_results, db_groups, db_entries)
 
     def _show_results(self, db_groups, db_entries):
+        if not db_groups and not db_entries:
+            if len(self._search_text) < 2:
+                self.stack.set_visible_child(self._info_search_page)
+            else:
+                self.stack.set_visible_child(self._empty_search_page)
+
+            return GLib.SOURCE_REMOVE
+
         def filter_func(element: SafeEntry | SafeGroup) -> bool:
             if element.is_group:
                 return element.uuid in db_groups
@@ -181,6 +182,8 @@ class Search(Adw.Bin):
         filter_ = Gtk.CustomFilter.new(filter_func)
         self.results_groups_filter.set_filter(filter_)
         self.results_entries_filter.set_filter(filter_)
+
+        self.stack.set_visible_child(self._results_search_page)
 
         return GLib.SOURCE_REMOVE
 

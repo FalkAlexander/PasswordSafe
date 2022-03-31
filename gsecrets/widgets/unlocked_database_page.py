@@ -35,7 +35,7 @@ class UnlockedDatabasePage(Adw.Bin):
         self.group = group
 
         settings = unlocked_database.window.application.settings
-        settings.connect("changed", self.on_sort_order_changed)
+        settings.connect("changed::sort-order", self.on_sort_order_changed)
 
         unlocked_database.database_manager.connect(
             "element-removed", self._on_element_removed
@@ -67,16 +67,15 @@ class UnlockedDatabasePage(Adw.Bin):
         if child:
             child.grab_focus()
 
-    def on_sort_order_changed(self, settings, key):
+    def on_sort_order_changed(self, settings, _key):
         """Callback to be executed when the sorting has been changed."""
-        if key == "sort-order":
-            sorting = settings.get_enum("sort-order")
-            logging.debug("Sort order changed to %s", sorting)
+        sorting = settings.get_enum("sort-order")
+        logging.debug("Sort order changed to %s", sorting)
 
-            sorting = config.get_sort_order()
-            sort_func = SortingHat.get_sort_func(sorting)
+        sorting = config.get_sort_order()
+        sort_func = SortingHat.get_sort_func(sorting)
 
-            self.list_model.sort(sort_func)
+        self.list_model.sort(sort_func)
 
     def _on_element_removed(
         self,

@@ -9,7 +9,7 @@ from uuid import UUID
 from gi.repository import Gio, GLib, GObject
 from pykeepass import PyKeePass
 
-from gsecrets.safe_element import SafeElement
+from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
 
 QUARK = GLib.quark_from_string("secrets")
 
@@ -31,6 +31,7 @@ class DatabaseManager(GObject.GObject):
     """
 
     # self.db contains a `PyKeePass` database
+    _elements_loaded = False
     password_try = ""
     _is_dirty = False  # Does the database need saving?
     save_running = False
@@ -51,6 +52,9 @@ class DatabaseManager(GObject.GObject):
         :param str database_path: The database path
         """
         super().__init__()
+
+        self.entries = Gio.ListStore.new(SafeEntry)
+        self.groups = Gio.ListStore.new(SafeGroup)
 
         self._path = database_path
         self.db: PyKeePass = None
@@ -105,6 +109,12 @@ class DatabaseManager(GObject.GObject):
             self.db = db
             self._opened = True
             logging.debug("Opening of safe %s was successful", self.path)
+
+            if not self._elements_loaded:
+                self.entries.splice(0, 0, [SafeEntry(self, e) for e in db.entries])
+                self.groups.splice(0, 0, [SafeGroup(self, g) for g in db.groups])
+
+                self._elements_loaded = True
 
     #
     # Database Modifications
@@ -287,31 +297,6 @@ class DatabaseManager(GObject.GObject):
     def version(self):
         """returns the database version"""
         return self.db.version
-
-    @GObject.Signal(
-        arg_types=(
-            SafeElement,
-            object,
-        )
-    )
-    def element_added(self, _element: SafeElement, _parent_uuid: UUID) -> None:
-        """Signal emitted when a new element was added to the database
-        it carries the UUID in string format of the parent group to which
-        the entry was added."""
-        logging.debug("Added new element to safe")
-
-    @GObject.Signal(arg_types=(object,))
-    def element_removed(self, element_uuid: UUID) -> None:
-        logging.debug("Element %s removed from safe", element_uuid)
-
-    @GObject.Signal(arg_types=(SafeElement, object, object))
-    def element_moved(
-        self,
-        _moved_element: SafeElement,
-        _old_location_uuid: UUID,
-        _new_location_uuid: UUID,
-    ) -> None:
-        logging.debug("Element moved safe")
 
     @property
     def opened(self) -> bool:

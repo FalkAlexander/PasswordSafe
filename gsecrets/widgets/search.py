@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import threading
 import typing
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
@@ -23,8 +22,6 @@ class Search(Adw.Bin):
 
     __gtype_name__ = "Search"
 
-    _result_list = Gio.ListStore.new(SafeElement)
-
     _empty_search_page = Gtk.Template.Child()
     _info_search_page = Gtk.Template.Child()
     _results_search_page = Gtk.Template.Child()
@@ -42,9 +39,30 @@ class Search(Adw.Bin):
         self._search_entry = self._headerbar.search_entry
 
         self._search_text: str = self._search_entry.props.text
-        self._result_list.connect("items_changed", self._on_items_changed)
 
         self._search_entry.set_key_capture_widget(self.unlocked_database)
+
+        self.results_entries_filter = Gtk.FilterListModel.new(
+            self._db_manager.entries, None
+        )
+        self.results_groups_filter = Gtk.FilterListModel.new(
+            self._db_manager.groups, None
+        )
+
+        # Sort the results
+        sorting = SortingHat.SortOrder.ASC
+        sorter = SortingHat.get_sorter(sorting)
+
+        self._results_entries = Gtk.SortListModel.new(
+            self.results_entries_filter, sorter
+        )
+        self._results_groups = Gtk.SortListModel.new(self.results_groups_filter, sorter)
+
+        flatten = Gio.ListStore.new(Gtk.SortListModel)
+        flatten.splice(0, 0, [self._results_groups, self._results_entries])
+
+        self._result_list = Gtk.FlattenListModel.new(flatten)
+        self._result_list.connect("items-changed", self._on_items_changed)
 
     def do_dispose(self):
         self._search_entry.set_key_capture_widget(None)
@@ -55,6 +73,11 @@ class Search(Adw.Bin):
         if list_model.get_n_items() == 0:
             if len(self._search_text) < 2:
                 self.stack.set_visible_child(self._info_search_page)
+
+            else:
+                self.stack.set_visible_child(self._empty_search_page)
+        else:
+            self.stack.set_visible_child(self._results_search_page)
 
     def initialize(self):
         # Search Headerbar
@@ -101,7 +124,8 @@ class Search(Adw.Bin):
                 self._search_changed_id = None
 
             self._search_entry.props.text = ""
-            self._result_list.remove_all()
+            self.results_entries_filter.set_filter(None)
+            self.results_groups_filter.set_filter(None)
 
     def _prepare_search_page(self):
         self.search_list_box.bind_model(
@@ -116,8 +140,7 @@ class Search(Adw.Bin):
         if the search term is not empty.
         """
         if self._search_text:
-            search_thread = threading.Thread(target=self._perform_search)
-            search_thread.start()
+            self._perform_search()
         else:
             self.stack.set_visible_child(self._info_search_page)
 
@@ -125,13 +148,14 @@ class Search(Adw.Bin):
         """Search for results in the database."""
         query = self._search_text
 
-        db_manager = self.unlocked_database.database_manager
+        def filter_func(element: SafeEntry | SafeGroup) -> bool:
+            if element.is_group:
+                if element.is_root_group:
+                    return False
 
-        def filter_func(element: Entry | Group) -> bool:
-            if isinstance(element, Group):
                 fields = [element.name, element.notes]
             else:
-                fields = [element.title, element.notes, element.url, element.username]
+                fields = [element.name, element.notes, element.url, element.username]
 
             for field in fields:
                 if not field:
@@ -142,34 +166,9 @@ class Search(Adw.Bin):
 
             return False
 
-        db_entries = filter(filter_func, db_manager.db.entries)
-        db_groups = filter(
-            filter_func,
-            [g for g in db_manager.db.groups if not g.is_root_group],
-        )
-
-        GLib.idle_add(self._show_results, db_groups, db_entries, db_manager)
-
-    def _show_results(self, db_groups, db_entries, db_manager):
-        entries = [SafeEntry(db_manager, e) for e in db_entries]
-        groups = [SafeGroup(db_manager, g) for g in db_groups]
-        results = entries + groups
-        n_items = len(results)
-
-        if n_items == 0:
-            self.stack.set_visible_child(self._empty_search_page)
-            return GLib.SOURCE_REMOVE
-
-        self._result_list.splice(0, self._result_list.get_n_items(), results)
-
-        # Sort the results
-        sorting = SortingHat.SortOrder.ASC
-        sort_func = SortingHat.get_sort_func(sorting)
-        self._result_list.sort(sort_func)
-
-        self.stack.set_visible_child(self._results_search_page)
-
-        return GLib.SOURCE_REMOVE
+        filter_ = Gtk.CustomFilter.new(filter_func)
+        self.results_groups_filter.set_filter(filter_)
+        self.results_entries_filter.set_filter(filter_)
 
     # Events
 

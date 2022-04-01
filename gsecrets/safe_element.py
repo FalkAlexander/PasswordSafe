@@ -33,7 +33,7 @@ class EntryColor(Enum):
     BROWN = "BrownColorButton"
 
 
-class SafeElement(GObject.GObject):
+class SafeElement(GObject.Object):
 
     sorted_handler_id: int | None = None
 

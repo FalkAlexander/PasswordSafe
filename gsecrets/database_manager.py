@@ -13,7 +13,7 @@ from gsecrets.safe_element import SafeEntry, SafeGroup
 QUARK = GLib.quark_from_string("secrets")
 
 
-class DatabaseManager(GObject.GObject):
+class DatabaseManager(GObject.Object):
     # pylint: disable=too-many-public-methods
     # pylint: disable=too-many-instance-attributes
 

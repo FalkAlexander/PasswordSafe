@@ -20,7 +20,7 @@
           <object class="GtkBox">
             <property name="spacing">6</property>
             <child>
-              <object class="GtkButton" id="search_button">
+              <object class="GtkToggleButton" id="search_button">
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to open search page">Search</property>
                 <property name="icon_name">system-search-symbolic</property>
                 <property name="action_name">win.db.search</property>

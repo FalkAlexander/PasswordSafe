@@ -23,7 +23,6 @@ from gsecrets.widgets.edit_element_headerbar import EditElementHeaderbar, PageTy
 from gsecrets.widgets.properties_dialog import PropertiesDialog
 from gsecrets.widgets.references_dialog import ReferencesDialog
 from gsecrets.widgets.search import Search
-from gsecrets.widgets.search_headerbar import SearchHeaderbar
 from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 from gsecrets.widgets.unlocked_database_page import UnlockedDatabasePage
 
@@ -51,6 +50,8 @@ class UnlockedDatabase(Gtk.Box):
     _stack = Gtk.Template.Child()
     _unlocked_db_deck = Gtk.Template.Child()
     _unlocked_db_stack = Gtk.Template.Child()
+    search_bar = Gtk.Template.Child()
+    search_entry = Gtk.Template.Child()
 
     selection_mode = GObject.Property(type=bool, default=False)
 
@@ -79,13 +80,11 @@ class UnlockedDatabase(Gtk.Box):
         # Headerbars
         self.edit_entry_headerbar = EditElementHeaderbar(self, PageType.ENTRY)
         self.edit_group_headerbar = EditElementHeaderbar(self, PageType.GROUP)
-        self.search_headerbar = SearchHeaderbar()
         self.selection_mode_headerbar = SelectionModeHeaderbar(self)
         self.headerbar = UnlockedHeaderBar(self)
 
         self.window.add_headerbar(self.edit_entry_headerbar)
         self.window.add_headerbar(self.edit_group_headerbar)
-        self.window.add_headerbar(self.search_headerbar)
         self.window.add_headerbar(self.selection_mode_headerbar)
         self.window.add_headerbar(self.headerbar)
 
@@ -111,6 +110,15 @@ class UnlockedDatabase(Gtk.Box):
         save_action = window.lookup_action("db.save_dirty")
         dbm.bind_property("is-dirty", save_action, "enabled")
 
+        search_action = Gio.PropertyAction.new(
+            "db.search", self, "search-active"
+        )
+        window.add_action(search_action)
+
+        self.search_bar.set_key_capture_widget(self)
+        self.search_bar.connect_entry(self.search_entry)
+        self.bind_property("search-active", self.search_bar, "search-mode-enabled")
+
     def do_dispose(self):
         logging.debug("Database disposed")
         self.cleanup()
@@ -119,11 +127,8 @@ class UnlockedDatabase(Gtk.Box):
             self.database_manager.disconnect(self.db_locked_handler)
             self.db_locked_handler = None
 
-        self.search.do_dispose()
-
         self.edit_entry_headerbar.unparent()
         self.edit_group_headerbar.unparent()
-        self.search_headerbar.unparent()
         self.selection_mode_headerbar.unparent()
         self.headerbar.unparent()
 
@@ -202,7 +207,7 @@ class UnlockedDatabase(Gtk.Box):
     def _update_headerbar(self) -> None:
         """Display the correct headerbar according to search state."""
         if self.props.mode == self.Mode.SEARCH:
-            self.window.set_headerbar(self.search.headerbar)
+            pass
         elif self.props.mode == self.Mode.GROUP_EDIT:
             self.window.set_headerbar(self.edit_group_headerbar)
         elif self.props.mode == self.Mode.ENTRY:
@@ -509,6 +514,13 @@ class UnlockedDatabase(Gtk.Box):
 
         :param value: new search_active
         """
+        if (
+            self.database_manager.props.locked
+            or self.selection_mode
+            or self.in_edit_page
+        ):
+            return
+
         self._search_active = value
         if self._search_active:
             self.props.mode = self.Mode.SEARCH

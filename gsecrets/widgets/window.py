@@ -427,7 +427,6 @@ class Window(Adw.ApplicationWindow):
             "db.add_entry",
             "db.add_group",
             "db.settings",
-            "db.search",
             "go_back",
             "element.delete",
             "entry.duplicate",
@@ -491,14 +490,6 @@ class Window(Adw.ApplicationWindow):
                 action_db.on_add_entry_action()
             else:
                 action_db.on_add_group_action()
-
-        elif name == "db.search":
-            if not (
-                action_db.props.database_locked
-                or action_db.props.selection_mode
-                or action_db.in_edit_page
-            ):
-                action_db.props.search_active = True
 
     def on_about_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         """Invoked when we click "about" in the main menu"""

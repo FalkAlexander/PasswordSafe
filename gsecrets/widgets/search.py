@@ -37,12 +37,9 @@ class Search(Adw.Bin):
         self._db_manager: DatabaseManager = unlocked_database.database_manager
         self._search_changed_id: int | None = None
 
-        self._headerbar = self.unlocked_database.search_headerbar
-        self._search_entry = self._headerbar.search_entry
+        self._search_entry = self.unlocked_database.search_entry
 
         self._search_text: str = self._search_entry.props.text
-
-        self._search_entry.set_key_capture_widget(self.unlocked_database)
 
         self.results_entries_filter = Gtk.FilterListModel.new(
             self._db_manager.entries, None
@@ -64,9 +61,6 @@ class Search(Adw.Bin):
         flatten.splice(0, 0, [self._results_groups, self._results_entries])
 
         self._result_list = Gtk.FlattenListModel.new(flatten)
-
-    def do_dispose(self):
-        self._search_entry.set_key_capture_widget(None)
 
     def initialize(self):
         # Search Headerbar
@@ -207,12 +201,3 @@ class Search(Adw.Bin):
         focus = self.search_list_box.get_focus_child()
         if focus is None:
             first_row.emit("activate")
-
-    @property
-    def headerbar(self) -> Adw.HeaderBar:
-        """Get the search headerbar.
-
-        :returns: the search headerbar
-        :rtype: Adw.Headerbar
-        """
-        return self._headerbar

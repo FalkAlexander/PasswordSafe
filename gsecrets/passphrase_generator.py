@@ -25,7 +25,7 @@ class Passphrase(GObject.Object):
             try:
                 gbytes, _ = gfile.load_bytes_finish(result)
             except GLib.Error as err:
-                logging.debug("Could not read word file: %s", err)
+                logging.debug("Could not read word file: %s", err.message)
             else:
                 word_str: str = gbytes.get_data().decode("utf-8")
                 word_list: list[str] = word_str.split("\n")

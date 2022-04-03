@@ -86,7 +86,7 @@ class CreateDatabase(Adw.Bin):
         try:
             is_saved = dbm.set_credentials_finish(result)
         except GLib.Error as err:
-            logging.error("Could not set credentials: %s", err)
+            logging.error("Could not set credentials: %s", err.message)
             self.failure_page()
         else:
             if is_saved:
@@ -195,7 +195,7 @@ class CreateDatabase(Adw.Bin):
                 try:
                     gfile.replace_contents_finish(result)
                 except GLib.Error as err:
-                    logging.debug("Could not create keyfile: %s", err)
+                    logging.debug("Could not create keyfile: %s", err.message)
                     self.window.send_notification(_("Could not Create Keyfile"))
                     self.generate_keyfile_button.set_sensitive(True)
                     self.generate_keyfile_button.set_label(_("Generate"))

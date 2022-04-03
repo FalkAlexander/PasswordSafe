@@ -267,7 +267,7 @@ class UnlockedDatabase(Gtk.Box):
         try:
             is_saved = database_manager.save_finish(result)
         except GLib.Error as err:
-            logging.error("Could not save Safe: %s", err)
+            logging.error("Could not save Safe: %s", err.message)
             self.window.send_notification(_("Could not save Safe"))
         else:
             if is_saved:
@@ -282,7 +282,7 @@ class UnlockedDatabase(Gtk.Box):
         try:
             database_manager.save_finish(result)
         except GLib.Error as err:
-            logging.error("Could not automatically save Safe %s", err)
+            logging.error("Could not automatically save Safe %s", err.message)
 
     def lock_safe(self):
         self.database_manager.props.locked = True
@@ -430,7 +430,7 @@ class UnlockedDatabase(Gtk.Box):
             try:
                 gfile.delete_finish(result)
             except GLib.Error as err:
-                logging.debug("Could not delete temporal file: %s", err)
+                logging.debug("Could not delete temporal file: %s", err.message)
 
         cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
         for root, _dirs, files in os.walk(cache_dir):

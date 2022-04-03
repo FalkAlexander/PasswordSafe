@@ -367,7 +367,7 @@ class EntryPage(Adw.Bin):
                 try:
                     gbytes, _stream = gfile.load_bytes_finish(result)
                 except GLib.Error as err:
-                    logging.debug("Could not read attachment: %s", err)
+                    logging.debug("Could not read attachment: %s", err.message)
                 else:
                     filename = gfile.get_basename()
                     data = gbytes.get_data()

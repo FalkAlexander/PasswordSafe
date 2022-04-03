@@ -56,7 +56,7 @@ class AttachmentEntryRow(Adw.ActionRow):
         try:
             gfile.replace_contents_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not store attachment: %s", err)
+            logging.debug("Could not store attachment: %s", err.message)
             window = self.get_root()
             window.send_notification(_("Could not Store Attachment"))
 

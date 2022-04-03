@@ -313,7 +313,7 @@ class Window(Adw.ApplicationWindow):
             try:
                 database_manager.unlock_finish(result)
             except GLib.Error as err:
-                logging.debug("Could not unlock safe: %s", err)
+                logging.debug("Could not unlock safe: %s", err.message)
                 self.invoke_initial_screen()
                 self.send_notification(_("Could not Create new Safe"))
             else:
@@ -327,7 +327,7 @@ class Window(Adw.ApplicationWindow):
             try:
                 gfile.copy_finish(result)
             except GLib.Error as err:
-                logging.debug("Could not copy new database: %s", err)
+                logging.debug("Could not copy new database: %s", err.message)
                 self.invoke_initial_screen()
                 self.send_notification(_("Could not Create new Safe"))
                 self._spinner.stop()
@@ -372,7 +372,7 @@ class Window(Adw.ApplicationWindow):
             try:
                 dbm.save_finish(result)
             except GLib.Error as err:
-                logging.error("Could not save Safe: %s", err)
+                logging.error("Could not save Safe: %s", err.message)
                 self.send_notification(_("Could not save Safe"))
             else:
                 self.save_window_size()

@@ -105,7 +105,7 @@ class UnlockDatabase(Adw.Bin):
         try:
             gbytes, _etag = keyfile.load_bytes_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not set keyfile hash: %s", err)
+            logging.debug("Could not set keyfile hash: %s", err.message)
 
             self._wrong_keyfile()
         else:
@@ -232,7 +232,7 @@ class UnlockDatabase(Adw.Bin):
         try:
             database_manager.unlock_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not unlock safe: %s", err)
+            logging.debug("Could not unlock safe: %s", err.message)
             self._unlock_failed()
             return
 
@@ -337,7 +337,7 @@ class UnlockDatabase(Adw.Bin):
             try:
                 gfile.copy_finish(result)
             except GLib.Error as err:
-                logging.warning("Could not save database backup: %s", err)
+                logging.warning("Could not save database backup: %s", err.message)
 
         gfile.copy_async(
             backup,

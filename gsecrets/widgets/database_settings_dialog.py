@@ -158,7 +158,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         try:
             gbytes, _ = gfile.load_bytes_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not set keyfile hash: %s", err)
+            logging.debug("Could not set keyfile hash: %s", err.message)
             self.keyfile_error_revealer.reveal(True)
             self.select_keyfile_button.set_icon_name("document-open-symbolic")
         else:
@@ -224,7 +224,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                     gfile.replace_contents_finish(result)
                 except GLib.Error as err:
                     self.generate_keyfile_button.set_icon_name("security-high-symbolic")
-                    logging.debug("Could not create keyfile: %s", err)
+                    logging.debug("Could not create keyfile: %s", err.message)
                     self.keyfile_error_revealer.reveal(True)
                 else:
                     self.generate_keyfile_button.set_icon_name("object-select-symbolic")
@@ -238,7 +238,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         try:
             is_saved = database_manager.set_credentials_finish(result)
         except GLib.Error as err:
-            logging.error("Could not set credentials: %s", err)
+            logging.error("Could not set credentials: %s", err.message)
             # pylint: disable=no-member
             self.add_toast(Adw.Toast.new(_("Could not apply changes")))
         else:
@@ -307,7 +307,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             try:
                 file_info = gfile.query_info_finish(result)
             except GLib.Error as err:
-                logging.error("Could not query file info: %s", err)
+                logging.error("Could not query file info: %s", err.message)
             else:
                 size = file_info.get_size()  # In bytes.
                 self.size_row.props.subtitle = GLib.format_size(size)

@@ -40,7 +40,7 @@ class SaveDialog:
             is_saved = database_manager.save_finish(result)
         except GLib.Error as err:
             self.window.send_notification(_("Could not save Safe"))
-            logging.error("Could not save Safe %s", err)
+            logging.error("Could not save Safe %s", err.message)
         else:
             if is_saved:
                 self.window.save_window_size()

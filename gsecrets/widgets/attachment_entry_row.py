@@ -58,7 +58,7 @@ class AttachmentEntryRow(Adw.ActionRow):
         except GLib.Error as err:
             logging.debug("Could not store attachment: %s", err.message)
             window = self.get_root()
-            window.send_notification(_("Could not Store Attachment"))
+            window.send_notification(_("Could not store attachment"))
 
     def _on_save_filechooser_response(
         self,

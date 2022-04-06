@@ -314,7 +314,7 @@ class EntryPage(Adw.Bin):
         if safe_entry.has_attribute(key):
             self.attributes_key_entry.add_css_class("error")
             self.unlocked_database.window.send_notification(
-                _("Attribute key Already Exists")
+                _("Attribute key already exists")
             )
             return
 

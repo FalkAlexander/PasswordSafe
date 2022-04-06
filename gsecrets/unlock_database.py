@@ -150,7 +150,7 @@ class UnlockDatabase(Adw.Bin):
 
         if self.is_safe_open_elsewhere():
             self.window.send_notification(
-                _("Safe {} is Already Open".format(self.database_manager.path))
+                _("Safe {} is already open".format(self.database_manager.path))
             )
             return
 
@@ -275,7 +275,7 @@ class UnlockDatabase(Adw.Bin):
     #
 
     def _unlock_failed(self) -> None:
-        self.window.send_notification(_("Failed to Unlock Safe"))
+        self.window.send_notification(_("Failed to unlock Safe"))
 
         self.password_entry.add_css_class("error")
         self._set_sensitive(True)

@@ -271,9 +271,9 @@ class UnlockedDatabase(Gtk.Box):
             self.window.send_notification(_("Could not save Safe"))
         else:
             if is_saved:
-                self.window.send_notification(_("Safe Saved"))
+                self.window.send_notification(_("Safe saved"))
             else:
-                self.window.send_notification(_("No Changes Made"))
+                self.window.send_notification(_("No changes made"))
 
     def on_auto_save(
         self, database_manager: DatabaseManager, result: Gio.AsyncResult
@@ -386,7 +386,7 @@ class UnlockedDatabase(Gtk.Box):
         self.database_manager.props.locked = True
 
         # NOTE: Notification that a safe has been locked.
-        self.window.send_notification(_("Safe Locked due to Inactivity"))
+        self.window.send_notification(_("Safe locked due to inactivity"))
 
     #
     # Helper Methods

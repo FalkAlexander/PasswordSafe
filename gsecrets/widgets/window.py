@@ -218,7 +218,7 @@ class Window(Adw.ApplicationWindow):
                     window.start_database_opening_routine(filepath)
                     window.present()
                 else:
-                    self.send_notification(_("Safe is Already Open"))
+                    self.send_notification(_("Safe is already open"))
 
         else:
             self.start_database_opening_routine(filepath)
@@ -273,7 +273,7 @@ class Window(Adw.ApplicationWindow):
 
                 if is_open:
                     self.send_notification(
-                        _("Cannot Create Safe: Safe is Already Open")
+                        _("Cannot create Safe: Safe is already open")
                     )
                     return
 
@@ -315,7 +315,7 @@ class Window(Adw.ApplicationWindow):
             except GLib.Error as err:
                 logging.debug("Could not unlock safe: %s", err.message)
                 self.invoke_initial_screen()
-                self.send_notification(_("Could not Create new Safe"))
+                self.send_notification(_("Could not create new Safe"))
             else:
                 create_database = CreateDatabase(self, database_manager)
                 self._create_database_bin.props.child = create_database
@@ -329,7 +329,7 @@ class Window(Adw.ApplicationWindow):
             except GLib.Error as err:
                 logging.debug("Could not copy new database: %s", err.message)
                 self.invoke_initial_screen()
-                self.send_notification(_("Could not Create new Safe"))
+                self.send_notification(_("Could not create new Safe"))
                 self._spinner.stop()
             else:
                 database_manager = DatabaseManager(filepath)

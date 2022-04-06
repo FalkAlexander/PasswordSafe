@@ -157,7 +157,7 @@ class CreateDatabase(Adw.Bin):
                     self.new_password, callback=self._on_set_credentials,
                 )
         else:
-            self.window.send_notification(_("Passwords do not Match"))
+            self.window.send_notification(_("Passwords do not match"))
             self.clear_input_fields()
             self.password_repeat_input1.add_css_class("error")
             self.password_repeat_input2.add_css_class("error")
@@ -196,7 +196,7 @@ class CreateDatabase(Adw.Bin):
                     gfile.replace_contents_finish(result)
                 except GLib.Error as err:
                     logging.debug("Could not create keyfile: %s", err.message)
-                    self.window.send_notification(_("Could not Create Keyfile"))
+                    self.window.send_notification(_("Could not create keyfile"))
                     self.generate_keyfile_button.set_sensitive(True)
                     self.generate_keyfile_button.set_label(_("Generate"))
                 else:

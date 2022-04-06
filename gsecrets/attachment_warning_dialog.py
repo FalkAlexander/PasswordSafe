@@ -61,7 +61,7 @@ class AttachmentWarningDialog:
                 gfile.replace_contents_finish(result)
             except GLib.Error as err:
                 logging.debug("Could not load attachment: %s", err.message)
-                window.send_notification(_("Could not Load Attachment"))
+                window.send_notification(_("Could not load attachment"))
             else:
                 Gtk.show_uri(window, gfile.get_uri(), Gdk.CURRENT_TIME)
 

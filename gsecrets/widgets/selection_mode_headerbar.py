@@ -95,7 +95,7 @@ class SelectionModeHeaderbar(Adw.Bin):
                 self.unlocked_database.current_element, group
             ):
                 self.unlocked_database.window.send_notification(
-                    _("Operation Aborted: Deleting Currently Active Group")
+                    _("Operation aborted: deleting currently active group")
                 )
                 return
 
@@ -105,7 +105,7 @@ class SelectionModeHeaderbar(Adw.Bin):
         for group_row in self.groups_selected:
             group_row.safe_group.delete()
 
-        self.unlocked_database.window.send_notification(_("Deletion Completed"))
+        self.unlocked_database.window.send_notification(_("Deletion completed"))
 
         self._clear_all()
 
@@ -142,7 +142,7 @@ class SelectionModeHeaderbar(Adw.Bin):
                 current_element, group
             ):
                 self.unlocked_database.window.send_notification(
-                    _("Operation Aborted: Moving Currently Active Group")
+                    _("Operation aborted: moving currently active group")
                 )
                 self._clear_all()
                 return
@@ -157,7 +157,7 @@ class SelectionModeHeaderbar(Adw.Bin):
             safe_group = group_row.safe_group
             safe_group.move_to(current_element)
 
-        self.unlocked_database.window.send_notification(_("Move Completed"))
+        self.unlocked_database.window.send_notification(_("Move completed"))
         self._clear_all()
 
     def on_selection_action(self, variant: GLib.Variant) -> None:

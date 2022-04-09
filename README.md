@@ -29,7 +29,7 @@ Secrets is a password manager which integrates perfectly with the GNOME desktop 
 </a>
 
 ## Install Development Flatpak
-Download the [latest artifact](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak) and extract it.
+Download the latest artifact for [x86_64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak) or [aarch64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak_aarch64) and extract it.
 To install, open the Flatpak package with GNOME Software. Alternatively, run:
 ```
 flatpak install org.gnome.World.Secrets.Devel.flatpak

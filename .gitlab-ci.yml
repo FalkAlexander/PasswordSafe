@@ -17,8 +17,22 @@ variables:
           - .flatpak-builder/cache/
           - _build/target/
 
-flatpak:
+.flatpak_aarch64:
+  extends: .flatpak
+  image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/aarch64:gnome-nightly'
+  tags:
+    - flatpak-aarch64
+
+flatpak_x86_64:
     extends: .flatpak
+    stage: build
+    variables:
+        APP_ID: org.gnome.World.Secrets.Devel
+        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+        CONFIG_OPTS: "-Dtests=true"
+
+flatpak_aarch64:
+    extends: .flatpak_aarch64
     stage: build
     variables:
         APP_ID: org.gnome.World.Secrets.Devel

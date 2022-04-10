@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-20 22:17+0000\n"
-"PO-Revision-Date: 2022-03-21 08:51+0200\n"
+"POT-Creation-Date: 2022-04-10 15:56+0000\n"
+"PO-Revision-Date: 2022-04-10 23:00+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -505,7 +505,6 @@ msgid "Copy Username"
 msgstr "Копіювати ім'я користувача"
 
 #: data/gtk/help-overlay.ui:108
-#| msgid "_One-Time Password"
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Скопіювати одноразовий пароль"
@@ -1144,7 +1143,7 @@ msgstr ""
 "середовища GNOME і надає простий і незахаращений інтерфейс для керування "
 "базами даних паролів."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:198
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1157,7 +1156,8 @@ msgid "Error: Safe {} is already open"
 msgstr "Помилка: сейф {} вже відкрито"
 
 #: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+#| msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "Не вдалося завантажити долучення"
 
 #: gsecrets/create_database.py:68
@@ -1165,7 +1165,8 @@ msgid "Unable to create database"
 msgstr "Не вдалося створити базу даних"
 
 #: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
+#| msgid "Passwords do not Match"
+msgid "Passwords do not match"
 msgstr "Паролі не збігаються"
 
 #: gsecrets/create_database.py:188
@@ -1173,32 +1174,34 @@ msgid "Generating…"
 msgstr "Створюємо…"
 
 #: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
+#| msgid "Could not Create Keyfile"
+msgid "Could not create keyfile"
 msgstr "Не вдалося створити файл ключа"
 
 #: gsecrets/create_database.py:201
 msgid "Generate"
 msgstr "Створити"
 
-#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:389
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Ім'я користувача скопійовано"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
+#: gsecrets/entry_page.py:257 gsecrets/entry_page.py:296
 msgid "One-time Password Copied"
 msgstr "Одноразовий пароль скопійовано"
 
-#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
+#: gsecrets/entry_page.py:317 gsecrets/widgets/attribute_entry_row.py:69
+#| msgid "Attribute key Already Exists"
+msgid "Attribute key already exists"
 msgstr "Ключ атрибута вже існує"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:342
+#: gsecrets/entry_page.py:345
 msgid "Select Attachment"
 msgstr "Виберіть долучення"
 
-#: gsecrets/entry_page.py:345
+#: gsecrets/entry_page.py:348
 msgid "_Add"
 msgstr "Д_одати"
 
@@ -1228,11 +1231,13 @@ msgid "Select Keyfile"
 msgstr "Вибір файл ключа"
 
 #: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
+#| msgid "Safe {} is Already Open"
+msgid "Safe {} is already open"
 msgstr "Сейф вже відкрито"
 
 #: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
+#| msgid "Failed to Unlock Safe"
+msgid "Failed to unlock Safe"
 msgstr "Не вдалося відімкнути сейф"
 
 #: gsecrets/unlock_database.py:287
@@ -1240,11 +1245,13 @@ msgid "_Try Again"
 msgstr "Сп_робувати ще раз"
 
 #: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
+#| msgid "Safe Saved"
+msgid "Safe saved"
 msgstr "Сейф збережено"
 
 #: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
+#| msgid "No Changes Made"
+msgid "No changes made"
 msgstr "Не було внесено жодних змін"
 
 #: gsecrets/unlocked_database.py:322
@@ -1253,7 +1260,8 @@ msgstr "Скопійовано"
 
 #. NOTE: Notification that a safe has been locked.
 #: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#| msgid "Safe Locked due to Inactivity"
+msgid "Safe locked due to inactivity"
 msgstr "Сейф замкнено через неактивність"
 
 #. NOTE: Filechooser title for downloading an attachment
@@ -1262,7 +1270,8 @@ msgid "Save Attachment"
 msgstr "Зберегти долучення"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
+#| msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "Не вдалося зберегти долучення"
 
 #. NOTE: Filechooser title for choosing current used keyfile
@@ -1328,19 +1337,23 @@ msgstr[2] "{} поз_начених"
 msgstr[3] "{} поз_начений"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
+#| msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
 msgstr "Дію перервано: вилучення поточної активної групи"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
+#| msgid "Deletion Completed"
+msgid "Deletion completed"
 msgstr "Вилучення завершено"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
+#| msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
 msgstr "Дію перервано: пересування поточної активної групи"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
+#| msgid "Move Completed"
+msgid "Move completed"
 msgstr "Пересування завершено"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
@@ -1358,7 +1371,8 @@ msgid "Any file type"
 msgstr "файл будь-якого типу"
 
 #: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
+#| msgid "Safe is Already Open"
+msgid "Safe is already open"
 msgstr "Сейф вже відкрито"
 
 #: gsecrets/widgets/window.py:245
@@ -1366,11 +1380,13 @@ msgid "_Create"
 msgstr "С_творити"
 
 #: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
+#| msgid "Cannot Create Safe: Safe is Already Open"
+msgid "Cannot create Safe: Safe is already open"
 msgstr "Не вдалося створити сейф: сейф вже відкрито"
 
 #: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+#| msgid "Could not Create new Safe"
+msgid "Could not create new Safe"
 msgstr "Не вдалося створити сейф"
 
 #~ msgid "Please Wait. Another Save is Running."

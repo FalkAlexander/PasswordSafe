@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-20 19:49+0000\n"
-"PO-Revision-Date: 2022-03-22 16:29+0100\n"
+"POT-Creation-Date: 2022-04-10 15:56+0000\n"
+"PO-Revision-Date: 2022-04-10 21:23+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -1136,7 +1136,7 @@ msgstr ""
 "integrerar perfekt med GNOME-skrivbordet och tillhandahåller ett enkelt och "
 "stilrent gränssnitt för hantering av lösenordsdatabaser."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:198
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1149,7 +1149,7 @@ msgid "Error: Safe {} is already open"
 msgstr "Fel: Kassaskåpet {} är redan öppnat"
 
 #: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "Kunde inte läsa in bilaga"
 
 #: gsecrets/create_database.py:68
@@ -1157,7 +1157,7 @@ msgid "Unable to create database"
 msgstr "Kunde inte skapa databas"
 
 #: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
+msgid "Passwords do not match"
 msgstr "Lösenord stämmer inte överens"
 
 #: gsecrets/create_database.py:188
@@ -1165,32 +1165,32 @@ msgid "Generating…"
 msgstr "Genererar…"
 
 #: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
+msgid "Could not create keyfile"
 msgstr "Kunde inte skapa nyckelfil"
 
 #: gsecrets/create_database.py:201
 msgid "Generate"
 msgstr "Generera"
 
-#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:389
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Användarnamn kopierat"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
+#: gsecrets/entry_page.py:257 gsecrets/entry_page.py:296
 msgid "One-time Password Copied"
 msgstr "Engångslösenord kopierat"
 
-#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
+#: gsecrets/entry_page.py:317 gsecrets/widgets/attribute_entry_row.py:69
+msgid "Attribute key already exists"
 msgstr "Attributnyckel finns redan"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:342
+#: gsecrets/entry_page.py:345
 msgid "Select Attachment"
 msgstr "Välj bilaga"
 
-#: gsecrets/entry_page.py:345
+#: gsecrets/entry_page.py:348
 msgid "_Add"
 msgstr "_Lägg till"
 
@@ -1220,11 +1220,11 @@ msgid "Select Keyfile"
 msgstr "Välj nyckelfil"
 
 #: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
+msgid "Safe {} is already open"
 msgstr "Kassaskåpet {} är redan öppnat"
 
 #: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
+msgid "Failed to unlock Safe"
 msgstr "Misslyckades med att låsa upp kassaskåp"
 
 #: gsecrets/unlock_database.py:287
@@ -1232,11 +1232,11 @@ msgid "_Try Again"
 msgstr "_Försök igen"
 
 #: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
+msgid "Safe saved"
 msgstr "Kassaskåp sparat"
 
 #: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
+msgid "No changes made"
 msgstr "Inga ändringar gjorda"
 
 #: gsecrets/unlocked_database.py:322
@@ -1245,7 +1245,7 @@ msgstr "Kopierat"
 
 #. NOTE: Notification that a safe has been locked.
 #: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+msgid "Safe locked due to inactivity"
 msgstr "Kassaskåp låstes på grund av inaktivitet"
 
 #. NOTE: Filechooser title for downloading an attachment
@@ -1254,7 +1254,7 @@ msgid "Save Attachment"
 msgstr "Spara bilaga"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "Kunde inte lagra bilaga"
 
 #. NOTE: Filechooser title for choosing current used keyfile
@@ -1318,19 +1318,19 @@ msgstr[0] "{} _markerad"
 msgstr[1] "{} _markerade"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
 msgstr "Åtgärden avbröts: Tar bort för närvarande aktiv grupp"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
+msgid "Deletion completed"
 msgstr "Borttagning slutförd"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
 msgstr "Åtgärden avbröts: Flyttar för närvarande aktiv grupp"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
+msgid "Move completed"
 msgstr "Flytt slutförd"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
@@ -1348,7 +1348,7 @@ msgid "Any file type"
 msgstr "Alla filtyper"
 
 #: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
+msgid "Safe is already open"
 msgstr "Kassaskåp är redan öppnat"
 
 #: gsecrets/widgets/window.py:245
@@ -1356,11 +1356,11 @@ msgid "_Create"
 msgstr "S_kapa"
 
 #: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
+msgid "Cannot create Safe: Safe is already open"
 msgstr "Kan inte skapa kassaskåp: Kassaskåp är redan öppnat"
 
 #: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+msgid "Could not create new Safe"
 msgstr "Kunde inte skapa nytt kassaskåp"
 
 #~ msgid "Please Wait. Another Save is Running."

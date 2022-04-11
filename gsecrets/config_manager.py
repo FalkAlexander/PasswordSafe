@@ -150,8 +150,8 @@ def get_sort_order() -> SortingHat.SortOrder:
     return value
 
 
-def get_last_opened_list():
-    return setting.get_value(LAST_OPENED_LIST)
+def get_last_opened_list() -> list[str]:
+    return setting.get_strv(LAST_OPENED_LIST)
 
 
 def set_last_opened_list(opened_list):

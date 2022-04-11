@@ -246,21 +246,21 @@ class UnlockDatabase(Adw.Bin):
             self.store_backup(opened)
 
         already_added = False
-        path_listh = []
-        for path in gsecrets.config_manager.get_last_opened_list():
-            path_listh.append(path)
-            if path == opened.get_uri():
+        uri_list = []
+        for uri in gsecrets.config_manager.get_last_opened_list():
+            uri_list.append(uri)
+            if uri == opened.get_uri():
                 already_added = True
 
         if not already_added:
-            path_listh.append(opened.get_uri())
+            uri_list.append(opened.get_uri())
         else:
-            path_listh.sort(key=opened.get_uri().__eq__)
+            uri_list.sort(key=opened.get_uri().__eq__)
 
-        if len(path_listh) > 10:
-            path_listh.pop(0)
+        if len(uri_list) > 10:
+            uri_list.pop(0)
 
-        gsecrets.config_manager.set_last_opened_list(path_listh)
+        gsecrets.config_manager.set_last_opened_list(uri_list)
 
         if self.window.unlocked_db is None:
             database = UnlockedDatabase(self.window, database_manager)

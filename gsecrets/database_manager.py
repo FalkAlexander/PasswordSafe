@@ -244,6 +244,9 @@ class DatabaseManager(GObject.Object):
 
         config.set_last_opened_list(uri_list[-10:])
 
+        # Set last opened database.
+        config.set_last_opened_database(uri)
+
         # Add keyfile path to history.
         if not config.get_remember_composite_key():
             return

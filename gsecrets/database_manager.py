@@ -8,6 +8,7 @@ from pathlib import Path
 from gi.repository import Gio, GLib, GObject
 from pykeepass import PyKeePass
 
+import gsecrets.config_manager as config
 from gsecrets.safe_element import SafeEntry, SafeGroup
 
 QUARK = GLib.quark_from_string("secrets")
@@ -230,6 +231,18 @@ class DatabaseManager(GObject.Object):
                 logging.debug("Credentials changed successfully")
 
             return is_saved
+
+    def add_to_history(self) -> None:
+        # Add database uri to history.
+        uri = Gio.File.new_for_path(self._path).get_uri()
+        uri_list = config.get_last_opened_list()
+
+        if uri in uri_list:
+            uri_list.sort(key=uri.__eq__)
+        else:
+            uri_list.append(uri)
+
+        config.set_last_opened_list(uri_list[-10:])
 
     @property
     def password(self) -> str:

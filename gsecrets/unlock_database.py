@@ -245,19 +245,7 @@ class UnlockDatabase(Adw.Bin):
         if gsecrets.config_manager.get_development_backup_mode():
             self.store_backup(opened)
 
-        already_added = False
-        uri_list = []
-        for uri in gsecrets.config_manager.get_last_opened_list():
-            uri_list.append(uri)
-            if uri == opened.get_uri():
-                already_added = True
-
-        if not already_added:
-            uri_list.append(opened.get_uri())
-        else:
-            uri_list.sort(key=opened.get_uri().__eq__)
-
-        gsecrets.config_manager.set_last_opened_list(uri_list[-10:])
+        database_manager.add_to_history()
 
         if self.window.unlocked_db is None:
             database = UnlockedDatabase(self.window, database_manager)

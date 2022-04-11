@@ -155,7 +155,7 @@ def get_last_opened_list() -> list[str]:
 
 
 def set_last_opened_list(opened_list):
-    g_variant = GLib.Variant("as", opened_list)
+    g_variant = GLib.Variant("as", opened_list[-10:])
     setting.set_value(LAST_OPENED_LIST, g_variant)
 
 
@@ -173,7 +173,7 @@ def get_last_used_composite_key():
 
 def set_last_used_composite_key(composite_list):
     last_value = get_last_used_composite_key()
-    g_variant = GLib.Variant("aas", composite_list)
+    g_variant = GLib.Variant("aas", composite_list[-10:])
     # We need to check if the new value differs from the old one. Since lists
     # aren't hasheable we need to turn the inner lists into tuples.
     if [tuple(x) for x in last_value] != [tuple(x) for x in composite_list]:

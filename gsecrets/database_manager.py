@@ -242,7 +242,7 @@ class DatabaseManager(GObject.Object):
         else:
             uri_list.append(uri)
 
-        config.set_last_opened_list(uri_list[-10:])
+        config.set_last_opened_list(uri_list)
 
         # Set last opened database.
         config.set_last_opened_database(uri)

@@ -257,10 +257,7 @@ class UnlockDatabase(Adw.Bin):
         else:
             uri_list.sort(key=opened.get_uri().__eq__)
 
-        if len(uri_list) > 10:
-            uri_list.pop(0)
-
-        gsecrets.config_manager.set_last_opened_list(uri_list)
+        gsecrets.config_manager.set_last_opened_list(uri_list[-10:])
 
         if self.window.unlocked_db is None:
             database = UnlockedDatabase(self.window, database_manager)

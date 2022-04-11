@@ -297,6 +297,7 @@ class SafeEntry(SafeElement):
     # pylint: disable=too-many-instance-attributes, too-many-public-methods
 
     _color_key = "color_prop_LcljUMJZ9X"
+    _expired_id: int | None = None
     _note_key = "Notes"
     _otp: OTP | None = None
     _otp_key = "otp"
@@ -334,7 +335,6 @@ class SafeEntry(SafeElement):
             except ValueError as err:
                 logging.debug(err)
 
-        self._expired_id = 0
         self._check_expiration()
 
     @property
@@ -387,9 +387,9 @@ class SafeEntry(SafeElement):
         If the entry is not expired yet, a timeout is set to regularly
         check if the entry is expired.
         """
-        if self._expired_id > 0:
+        if self._expired_id:
             GLib.source_remove(self._expired_id)
-            self._expired_id = 0
+            self._expired_id = None
 
         if not self.props.expires:
             return
@@ -401,7 +401,7 @@ class SafeEntry(SafeElement):
 
     def _is_expired(self) -> bool:
         if self.props.expired:
-            self._expired_id = 0
+            self._expired_id = None
             self.notify("expired")
             return GLib.SOURCE_REMOVE
 

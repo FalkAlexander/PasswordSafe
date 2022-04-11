@@ -163,6 +163,7 @@ class UnlockDatabase(Adw.Bin):
             and self.database_manager.keyfile_hash == self.keyfile_hash
         ):
             self.database_manager.props.locked = False
+            self.database_manager.add_to_history()
             if gsecrets.config_manager.get_remember_composite_key():
                 self._set_last_used_keyfile()
         else:

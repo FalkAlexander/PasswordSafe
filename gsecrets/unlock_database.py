@@ -164,34 +164,8 @@ class UnlockDatabase(Adw.Bin):
         ):
             self.database_manager.props.locked = False
             self.database_manager.add_to_history()
-            if gsecrets.config_manager.get_remember_composite_key():
-                self._set_last_used_keyfile()
         else:
             self._unlock_failed()
-
-    def _set_last_used_keyfile(self):
-        remove = self.keyfile_path is None
-        pairs = gsecrets.config_manager.get_last_used_composite_key()
-        uri = Gio.File.new_for_path(self.database_manager.path).get_uri()
-        pair_array = []
-        already_added = False
-
-        for pair in pairs:
-            if pair[0] == uri:
-                pair[1] = self.keyfile_path
-                already_added = True
-                if remove:  # We skip adding
-                    continue
-
-            pair_array.append(pair)
-
-        if not already_added and not remove:
-            pair_array.append([uri, self.keyfile_path])
-
-        # We need to check if the new value differs from the old one, since lists
-        # aren't hasheable we need to turn the inner lists into tuples.
-        if {tuple(pair) for pair in pairs} != {tuple(pair) for pair in pair_array}:
-            gsecrets.config_manager.set_last_used_composite_key(pair_array)
 
     def _get_last_used_keyfile(self):
         pairs = gsecrets.config_manager.get_last_used_composite_key()
@@ -239,9 +213,6 @@ class UnlockDatabase(Adw.Bin):
 
         opened = Gio.File.new_for_path(database_manager.path)
         gsecrets.config_manager.set_last_opened_database(opened.get_uri())
-
-        if gsecrets.config_manager.get_remember_composite_key():
-            self._set_last_used_keyfile()
 
         if gsecrets.config_manager.get_development_backup_mode():
             self.store_backup(opened)

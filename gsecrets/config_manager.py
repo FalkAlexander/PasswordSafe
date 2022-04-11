@@ -168,12 +168,16 @@ def set_remember_composite_key(value):
 
 
 def get_last_used_composite_key():
-    return setting.get_value(LAST_USED_COMPOSITE_KEY)
+    return list(setting.get_value(LAST_USED_COMPOSITE_KEY))
 
 
 def set_last_used_composite_key(composite_list):
+    last_value = get_last_used_composite_key()
     g_variant = GLib.Variant("aas", composite_list)
-    setting.set_value(LAST_USED_COMPOSITE_KEY, g_variant)
+    # We need to check if the new value differs from the old one. Since lists
+    # aren't hasheable we need to turn the inner lists into tuples.
+    if [tuple(x) for x in last_value] != [tuple(x) for x in composite_list]:
+        setting.set_value(LAST_USED_COMPOSITE_KEY, g_variant)
 
 
 def get_remember_unlock_method():

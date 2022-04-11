@@ -244,6 +244,21 @@ class DatabaseManager(GObject.Object):
 
         config.set_last_opened_list(uri_list[-10:])
 
+        # Add keyfile path to history.
+        if not config.get_remember_composite_key():
+            return
+
+        def filter_func(pair):
+            return pair[0] != uri
+
+        keyfile_pairs = config.get_last_used_composite_key()
+        new_pairs = list(filter(filter_func, keyfile_pairs))
+
+        if self.keyfile:
+            new_pairs.append([uri, self.keyfile])
+
+        config.set_last_used_composite_key(new_pairs)
+
     @property
     def password(self) -> str:
         """Get the current password or '' if not set"""

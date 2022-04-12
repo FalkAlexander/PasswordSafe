@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-20 22:17+0000\n"
-"PO-Revision-Date: 2022-03-22 19:25+0200\n"
+"POT-Creation-Date: 2022-04-10 15:56+0000\n"
+"PO-Revision-Date: 2022-04-12 23:06+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
-"Language-Team: Hebrew <>\n"
+"Language-Team: Hebrew <GNOME Hebrew Translation Project>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -509,7 +509,6 @@ msgid "Copy Username"
 msgstr "העתקת שם משתמש"
 
 #: data/gtk/help-overlay.ui:108
-#| msgid "_One-Time Password"
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "העתקת ססמה חד־פעמית"
@@ -1130,7 +1129,7 @@ msgstr ""
 "באופן מושלם עם שולחן העבודה GNOME ומספק מנשק פשוט ובלתי עמוס לניהול מסדי "
 "נתונים של ססמאות."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:198
 msgid "Falk Alexander Seidl"
 msgstr "פאלק אלכסנדר זיידל"
 
@@ -1143,7 +1142,8 @@ msgid "Error: Safe {} is already open"
 msgstr "שגיאה: הכספת {} כבר פתוחה"
 
 #: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+#| msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "לא ניתן לטעון צרופה"
 
 #: gsecrets/create_database.py:68
@@ -1151,40 +1151,43 @@ msgid "Unable to create database"
 msgstr "לא ניתן ליצור מסד נתונים"
 
 #: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
-msgstr "הססמאות אינן תואמות."
+#| msgid "Passwords do not Match"
+msgid "Passwords do not match"
+msgstr "הססמאות אינן תואמות"
 
 #: gsecrets/create_database.py:188
 msgid "Generating…"
 msgstr "נוצר…"
 
 #: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
+#| msgid "Could not Create Keyfile"
+msgid "Could not create keyfile"
 msgstr "לא ניתן ליצור קובץ מפתח"
 
 #: gsecrets/create_database.py:201
 msgid "Generate"
 msgstr "יצירה"
 
-#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:389
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "שם המשתמש הועתק"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
+#: gsecrets/entry_page.py:257 gsecrets/entry_page.py:296
 msgid "One-time Password Copied"
 msgstr "הססמה החד־פעמית הועתקה"
 
-#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
+#: gsecrets/entry_page.py:317 gsecrets/widgets/attribute_entry_row.py:69
+#| msgid "Attribute key Already Exists"
+msgid "Attribute key already exists"
 msgstr "מפתח התכונה כבר קיים"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:342
+#: gsecrets/entry_page.py:345
 msgid "Select Attachment"
 msgstr "בחירת צרופה"
 
-#: gsecrets/entry_page.py:345
+#: gsecrets/entry_page.py:348
 msgid "_Add"
 msgstr "הו_ספה"
 
@@ -1202,7 +1205,6 @@ msgstr "שם המשתמש לא צוין"
 
 #: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
 #: gsecrets/widgets/window.py:376
-#| msgid "Could not Save Safe"
 msgid "Could not save Safe"
 msgstr "לא ניתן לשמור את הכספת"
 
@@ -1215,11 +1217,13 @@ msgid "Select Keyfile"
 msgstr "בחירת קובץ מפתח"
 
 #: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
+#| msgid "Safe {} is Already Open"
+msgid "Safe {} is already open"
 msgstr "הכספת {} כבר פתוחה"
 
 #: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
+#| msgid "Failed to Unlock Safe"
+msgid "Failed to unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
 
 #: gsecrets/unlock_database.py:287
@@ -1227,11 +1231,13 @@ msgid "_Try Again"
 msgstr "ל_נסות שוב"
 
 #: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
+#| msgid "Safe Saved"
+msgid "Safe saved"
 msgstr "הכספת נשמרה"
 
 #: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
+#| msgid "No Changes Made"
+msgid "No changes made"
 msgstr "לא בוצעו שינויים"
 
 #: gsecrets/unlocked_database.py:322
@@ -1240,7 +1246,8 @@ msgstr "הועתק"
 
 #. NOTE: Notification that a safe has been locked.
 #: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#| msgid "Safe Locked due to Inactivity"
+msgid "Safe locked due to inactivity"
 msgstr "הכספת ננעלה עקב חוסר פעילות"
 
 #. NOTE: Filechooser title for downloading an attachment
@@ -1249,7 +1256,8 @@ msgid "Save Attachment"
 msgstr "שמירת צרופה"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
+#| msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "לא ניתן לאחסן צרופה"
 
 #. NOTE: Filechooser title for choosing current used keyfile
@@ -1260,14 +1268,12 @@ msgstr "בחירת קובץ המפתח הנוכחי"
 #. pylint: disable=no-member
 #: gsecrets/widgets/database_settings_dialog.py:243
 #: gsecrets/widgets/database_settings_dialog.py:248
-#| msgid "Could not Save Safe"
 msgid "Could not apply changes"
 msgstr "לא ניתן להחיל שינויים"
 
 #. Still executes the finally block
 #. pylint: disable=no-member
 #: gsecrets/widgets/database_settings_dialog.py:252
-#| msgid "No Changes Made"
 msgid "Changes Applied"
 msgstr "הוחלו שינויים"
 
@@ -1317,19 +1323,23 @@ msgstr[2] "{} _נבחרו"
 msgstr[3] "{} _נבחרו"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
+#| msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
 msgstr "הפעולה בוטלה: מחיקת הקבוצה שפעילה כרגע"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
+#| msgid "Deletion Completed"
+msgid "Deletion completed"
 msgstr "המחיקה הושלמה"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
+#| msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
 msgstr "הפעולה בוטלה: העברת הקבוצה שפעילה כרגע"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
+#| msgid "Move Completed"
+msgid "Move completed"
 msgstr "ההעברה הושלמה"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
@@ -1347,7 +1357,8 @@ msgid "Any file type"
 msgstr "כל סוג של קובץ"
 
 #: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
+#| msgid "Safe is Already Open"
+msgid "Safe is already open"
 msgstr "הכספת כבר פתוחה"
 
 #: gsecrets/widgets/window.py:245
@@ -1355,11 +1366,13 @@ msgid "_Create"
 msgstr "י_צירה"
 
 #: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
+#| msgid "Cannot Create Safe: Safe is Already Open"
+msgid "Cannot create Safe: Safe is already open"
 msgstr "לא ניתן ליצור כספת: הכספת כבר פתוחה"
 
 #: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+#| msgid "Could not Create new Safe"
+msgid "Could not create new Safe"
 msgstr "לא ניתן ליצור כספת חדשה"
 
 #~ msgid "Please Wait. Another Save is Running."

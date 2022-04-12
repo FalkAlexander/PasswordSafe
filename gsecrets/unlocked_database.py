@@ -115,7 +115,15 @@ class UnlockedDatabase(Gtk.Box):
         )
         window.add_action(search_action)
 
-        self.search_bar.set_key_capture_widget(self)
+        def on_locked(dbm, _spec):
+            if dbm.locked:
+                self.search_bar.set_key_capture_widget(None)
+            else:
+                self.search_bar.set_key_capture_widget(window)
+
+        dbm.connect("notify::locked", on_locked)
+        self.search_bar.set_key_capture_widget(window)
+
         self.search_bar.connect_entry(self.search_entry)
         self.bind_property("search-active", self.search_bar, "search-mode-enabled")
 

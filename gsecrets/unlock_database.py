@@ -63,7 +63,7 @@ class UnlockDatabase(Adw.Bin):
             self.database_manager = DatabaseManager(filepath)
 
         if gsecrets.config_manager.get_remember_composite_key():
-            self._get_last_used_keyfile()
+            self._set_last_used_keyfile()
 
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
@@ -167,7 +167,7 @@ class UnlockDatabase(Adw.Bin):
         else:
             self._unlock_failed()
 
-    def _get_last_used_keyfile(self):
+    def _set_last_used_keyfile(self):
         pairs = gsecrets.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_manager.path).get_uri()
         if pairs:

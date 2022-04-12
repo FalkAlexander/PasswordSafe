@@ -61,8 +61,8 @@ class UnlockedDatabasePage(Adw.Bin):
             "notify::n-items",
             self.on_listbox_n_items_changed,
         )
-        if not self.list_model.get_item(0):
-            self._stack.set_visible_child(self._empty_group_box)
+        if self.list_model.get_item(0) is None:
+            self._stack.set_visible_child(self.empty_group_box)
 
         unlocked_database.database_manager.connect(
             "sorting_changed", self._on_sorting_changed

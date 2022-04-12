@@ -119,11 +119,14 @@ def set_first_start_screen(value):
     setting.set_boolean(SHOW_START_SCREEN, value)
 
 
-def get_last_opened_database():
+def get_last_opened_database() -> str:
+    """Gets uri of the last opened database, returns the empty string when there
+    is none"""
     return setting.get_string(LAST_OPENED_DB)
 
 
-def set_last_opened_database(value):
+def set_last_opened_database(value: str) -> None:
+    """Sets uri of the last opened database."""
     setting.set_string(LAST_OPENED_DB, value)
 
 
@@ -139,7 +142,7 @@ def get_window_size():
     return setting.get_value(WINDOW_SIZE)
 
 
-def set_window_size(lis):
+def set_window_size(lis: list[int]) -> None:
     g_variant = GLib.Variant("ai", lis)
     setting.set_value(WINDOW_SIZE, g_variant)
 
@@ -151,10 +154,12 @@ def get_sort_order() -> SortingHat.SortOrder:
 
 
 def get_last_opened_list() -> list[str]:
+    """Gets the uris of the last 10 opened databases."""
     return setting.get_strv(LAST_OPENED_LIST)
 
 
 def set_last_opened_list(opened_list):
+    """Sets the uris of the last 10 opened databases."""
     g_variant = GLib.Variant("as", opened_list[-10:])
     setting.set_value(LAST_OPENED_LIST, g_variant)
 
@@ -167,11 +172,14 @@ def set_remember_composite_key(value):
     setting.set_boolean(REMEMBER_COMPOSITE_KEY, value)
 
 
-def get_last_used_composite_key():
+def get_last_used_composite_key() -> list[list[str]]:
+    """Gets history of pairs (uri, keyfile uri) for previously opened databases
+    with a keyfile."""
     return list(setting.get_value(LAST_USED_COMPOSITE_KEY))
 
 
-def set_last_used_composite_key(composite_list):
+def set_last_used_composite_key(composite_list: list[list[str]]) -> None:
+    """Sets history of pairs (uri, keyfile uri)."""
     last_value = get_last_used_composite_key()
     g_variant = GLib.Variant("aas", composite_list[-10:])
     # We need to check if the new value differs from the old one. Since lists

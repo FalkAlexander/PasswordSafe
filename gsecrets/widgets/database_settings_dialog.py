@@ -10,7 +10,7 @@ from pathlib import Path
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets.utils import KeyFileFilter
-from gsecrets.utils import format_time, generate_keyfile
+from gsecrets.utils import format_time, generate_keyfile_async, generate_keyfile_finish
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/database_settings_dialog.ui")
@@ -219,9 +219,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
             keyfile = save_dialog.get_file()
 
-            def callback(gfile, result, keyfile_hash):
+            def callback(gfile, result):
                 try:
-                    gfile.replace_contents_finish(result)
+                    _res, keyfile_hash = generate_keyfile_finish(result)
                 except GLib.Error as err:
                     self.generate_keyfile_button.set_icon_name("security-high-symbolic")
                     logging.debug("Could not create keyfile: %s", err.message)
@@ -229,9 +229,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                 else:
                     self.generate_keyfile_button.set_icon_name("object-select-symbolic")
                     self.new_keyfile_hash = keyfile_hash
-                    self.new_keyfile_path = keyfile.get_path()
+                    self.new_keyfile_path = gfile.get_path()
 
-            generate_keyfile(keyfile, callback)
+            generate_keyfile_async(keyfile, callback)
 
     # TODO Remove pylint disables once libadwaita-1 1.0 lands in the fedora CI image.
     def _on_set_credentials(self, database_manager, result):
@@ -281,8 +281,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         button.set_sensitive(False)
 
         self.database_manager.set_credentials_async(
-            new_password, self.new_keyfile_path, self.new_keyfile_hash,
-            self._on_set_credentials
+            new_password,
+            self.new_keyfile_path,
+            self.new_keyfile_hash,
+            self._on_set_credentials,
         )
 
     @Gtk.Template.Callback()

@@ -7,7 +7,11 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
 
-from gsecrets.utils import KeyFileFilter, generate_keyfile
+from gsecrets.utils import (
+    KeyFileFilter,
+    generate_keyfile_async,
+    generate_keyfile_finish,
+)
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/create_database.ui")
@@ -154,7 +158,8 @@ class CreateDatabase(Adw.Bin):
                 self.keyfile_generation_page()
             else:
                 self.database_manager.set_credentials_async(
-                    self.new_password, callback=self._on_set_credentials,
+                    self.new_password,
+                    callback=self._on_set_credentials,
                 )
         else:
             self.window.send_notification(_("Passwords do not match"))
@@ -190,10 +195,11 @@ class CreateDatabase(Adw.Bin):
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
 
-            def callback(gfile, result, keyfile_hash):
+            def callback(gfile, result):
                 password = self.new_password
+                keyfile_path = gfile.get_path()
                 try:
-                    gfile.replace_contents_finish(result)
+                    _res, keyfile_hash = generate_keyfile_finish(result)
                 except GLib.Error as err:
                     logging.debug("Could not create keyfile: %s", err.message)
                     self.window.send_notification(_("Could not create keyfile"))
@@ -204,11 +210,13 @@ class CreateDatabase(Adw.Bin):
                         password = ""
 
                     self.database_manager.set_credentials_async(
-                        password, keyfile_path, keyfile_hash,
+                        password,
+                        keyfile_path,
+                        keyfile_hash,
                         self._on_set_credentials,
                     )
 
-            generate_keyfile(keyfile, callback)
+            generate_keyfile_async(keyfile, callback)
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:

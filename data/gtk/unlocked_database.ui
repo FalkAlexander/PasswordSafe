@@ -3,25 +3,33 @@
   <template class="UnlockedDatabase" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
-      <object class="GtkSearchBar" id="search_bar">
-        <child>
-          <object class="AdwClamp">
-            <child>
-              <object class="GtkSearchEntry" id="search_entry">
-                <property name="hexpand">True</property>
-                <property name="activates_default">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="GtkStack" id="_unlocked_db_deck">
         <child>
-          <object class="GtkStack" id="_unlocked_db_stack">
+          <object class="GtkBox" id="_main_view">
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkStack" id="_stack">
+              <object class="GtkStack" id="headerbar_stack"/>
+            </child>
+            <child>
+              <object class="GtkSearchBar" id="search_bar">
+                <child>
+                  <object class="AdwClamp">
+                    <child>
+                      <object class="GtkSearchEntry" id="search_entry">
+                        <property name="hexpand">True</property>
+                        <property name="activates_default">True</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStack" id="_unlocked_db_stack">
+                <child>
+                  <object class="GtkStack" id="_stack">
+                  </object>
+                </child>
               </object>
             </child>
           </object>

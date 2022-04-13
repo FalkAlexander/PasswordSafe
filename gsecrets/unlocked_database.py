@@ -46,6 +46,8 @@ class UnlockedDatabase(Gtk.Box):
 
     action_bar = Gtk.Template.Child()
     _edit_page_bin = Gtk.Template.Child()
+    headerbar_stack = Gtk.Template.Child()
+    _main_view = Gtk.Template.Child()
     _stack = Gtk.Template.Child()
     _unlocked_db_deck = Gtk.Template.Child()
     _unlocked_db_stack = Gtk.Template.Child()
@@ -80,8 +82,8 @@ class UnlockedDatabase(Gtk.Box):
         self.selection_mode_headerbar = SelectionModeHeaderbar(self)
         self.headerbar = UnlockedHeaderBar(self)
 
-        self.window.add_headerbar(self.selection_mode_headerbar)
-        self.window.add_headerbar(self.headerbar)
+        self.headerbar_stack.add_child(self.selection_mode_headerbar)
+        self.headerbar_stack.add_child(self.headerbar)
 
         # self.search has to be loaded after the search headerbar.
         self._search_active = False
@@ -129,9 +131,6 @@ class UnlockedDatabase(Gtk.Box):
         if self.db_locked_handler:
             self.database_manager.disconnect(self.db_locked_handler)
             self.db_locked_handler = None
-
-        self.selection_mode_headerbar.unparent()
-        self.headerbar.unparent()
 
     def setup(self):
         self.start_save_loop()
@@ -185,7 +184,7 @@ class UnlockedDatabase(Gtk.Box):
             self._stack.add_named(new_page, page_name)
 
         self._unlocked_db_stack.set_visible_child(self._stack)
-        self._unlocked_db_deck.set_visible_child(self._unlocked_db_stack)
+        self._unlocked_db_deck.set_visible_child(self._main_view)
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP
 
@@ -201,24 +200,14 @@ class UnlockedDatabase(Gtk.Box):
         )
         return boolean
 
-    #
-    # Headerbar
-    #
-
-    def _update_headerbar(self) -> None:
-        """Display the correct headerbar according to search state."""
-        if self.props.mode == self.Mode.SEARCH:
-            pass
-        elif self.props.mode == self.Mode.SELECTION:
-            self.window.set_headerbar(self.selection_mode_headerbar)
-        else:
-            self.window.set_headerbar(self.headerbar)
-
     def _on_selection_mode_changed(
         self, _unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
     ) -> None:
         if self.props.selection_mode:
             self.props.mode = self.Mode.SELECTION
+            self.headerbar_stack.set_visible_child(self.selection_mode_headerbar)
+        else:
+            self.headerbar_stack.set_visible_child(self.headerbar)
 
     #
     # Group and Entry Management
@@ -382,7 +371,6 @@ class UnlockedDatabase(Gtk.Box):
         else:
             self.window.view = self.window.View.UNLOCKED_DATABASE
             self.setup()
-            self._update_headerbar()
 
     def lock_timeout_database(self):
         self.database_manager.props.locked = True
@@ -497,8 +485,7 @@ class UnlockedDatabase(Gtk.Box):
     def search_active(self) -> bool:
         """Property to know if search is active.
 
-        It is used by Search to update the widgets (mainly the
-        headerbar) accordingly.
+        It is used by Search to update the widgets accordingly.
 
         :returns: True is search is active
         :rtype: bool
@@ -543,4 +530,3 @@ class UnlockedDatabase(Gtk.Box):
     @mode.setter  # type: ignore
     def mode(self, new_mode: int) -> None:
         self._mode = new_mode
-        self._update_headerbar()

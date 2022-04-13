@@ -121,7 +121,5 @@ class SettingsDialog(Adw.PreferencesWindow):
     def _on_settings_clear_recents_clicked(self, widget):
         config.set_last_opened_list([])
         config.set_last_opened_database("")
-        if self.window.view == self.window.View.RECENT_FILES:
-            self.window.view = self.window.View.WELCOME
 
         widget.set_sensitive(False)

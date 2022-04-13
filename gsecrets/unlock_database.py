@@ -28,7 +28,6 @@ class UnlockDatabase(Gtk.Box):
 
     database_manager: DatabaseManager = None
 
-    back_button = Gtk.Template.Child()
     clear_button = Gtk.Template.Child()
     keyfile_button = Gtk.Template.Child()
     keyfile_label = Gtk.Template.Child()
@@ -38,7 +37,7 @@ class UnlockDatabase(Gtk.Box):
     spinner = Gtk.Template.Child()
     spinner_stack = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
-    title = Gtk.Template.Child()
+    headerbar = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
@@ -49,8 +48,7 @@ class UnlockDatabase(Gtk.Box):
         self.window = window
 
         # Reset headerbar to initial state if it already exists.
-        self.title.props.title = database_file.get_basename()
-        self.back_button.props.sensitive = True
+        self.headerbar.title.props.title = database_file.get_basename()
 
         self.install_action("clear-keyfile", None, self.on_clear_keyfile)
 
@@ -168,18 +166,6 @@ class UnlockDatabase(Gtk.Box):
         else:
             self._unlock_failed()
 
-    @Gtk.Template.Callback()
-    def _on_back_button_clicked(self, _widget: Gtk.Button) -> None:
-        # TODO Use the go_back action instead.
-        database = self.window.unlocked_db
-        if database:
-            if gsecrets.config_manager.get_save_automatically():
-                database.auto_save_database()
-
-            database.cleanup()
-
-        self.window.view = self.window.View.RECENT_FILES
-
     def _set_last_used_keyfile(self):
         pairs = gsecrets.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_manager.path).get_uri()
@@ -280,7 +266,7 @@ class UnlockDatabase(Gtk.Box):
         self.password_entry.set_sensitive(sensitive)
         self.keyfile_button.set_sensitive(sensitive)
         self.unlock_button.set_sensitive(sensitive)
-        self.back_button.set_sensitive(sensitive)
+        self.headerbar.set_sensitive(sensitive)
 
         self.action_set_enabled("clear-keyfile", sensitive)
 

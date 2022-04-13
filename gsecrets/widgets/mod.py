@@ -4,7 +4,6 @@
 from gi.repository import GObject
 
 from gsecrets.password_generator_popover import PasswordGeneratorPopover
-from gsecrets.recent_files_page import RecentFilesPage
 from gsecrets.unlocked_headerbar import UnlockedHeaderBar
 from gsecrets.welcome_page import WelcomePage
 from gsecrets.widgets.error_revealer import ErrorRevealer
@@ -19,7 +18,6 @@ from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 
 def load_widgets():
     GObject.type_ensure(PasswordGeneratorPopover)
-    GObject.type_ensure(RecentFilesPage)
     GObject.type_ensure(UnlockedHeaderBar)
     GObject.type_ensure(WelcomePage)
     GObject.type_ensure(ErrorRevealer)

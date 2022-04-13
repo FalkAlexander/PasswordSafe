@@ -128,7 +128,7 @@ class Application(Adw.Application):
     def add_global_accelerators(self):
         self.set_accels_for_action("app.quit", ["<Control>q"])
         self.set_accels_for_action("win.settings", ["<Control>comma"])
-        self.set_accels_for_action("win.open_database", ["<Control>o"])
+        self.set_accels_for_action("win.open_database('')", ["<Control>o"])
         self.set_accels_for_action("win.new_database", ["<Control>n"])
         self.set_accels_for_action("win.db.save", ["<Control>s"])
         self.set_accels_for_action("win.db.search", ["<Control>f"])

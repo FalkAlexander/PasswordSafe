@@ -21,7 +21,6 @@ class Window(Adw.ApplicationWindow):
     # pylint: disable=too-many-public-methods
     class View(IntEnum):
         WELCOME = 0
-        RECENT_FILES = 1
         UNLOCK_DATABASE = 2
         UNLOCKED_DATABASE = 3
         CREATE_DATABASE = 4
@@ -32,7 +31,6 @@ class Window(Adw.ApplicationWindow):
 
     _create_database_bin = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
-    _recent_files_page = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
     _toast_overlay = Gtk.Template.Child()
     _unlock_database_bin = Gtk.Template.Child()
@@ -102,7 +100,7 @@ class Window(Adw.ApplicationWindow):
             gfile: Gio.File = Gio.File.new_for_uri(
                 gsecrets.config_manager.get_last_opened_database()
             )
-            if Gio.File.query_exists(gfile):
+            if gfile.query_exists():
                 filepath = gfile.get_path()
                 logging.debug("Opening last opened database: %s", filepath)
                 self.start_database_opening_routine(filepath)
@@ -114,22 +112,19 @@ class Window(Adw.ApplicationWindow):
             self.view = self.View.WELCOME
             return
 
-        if self._recent_files_page.is_empty:
-            logging.debug("No recent files")
-            self.view = self.View.WELCOME
-            return
-
-        self.view = self.View.RECENT_FILES
+        self.view = self.View.WELCOME
 
     #
     # Open Database Methods
     #
 
-    def on_open_database_action(
-        self, _action: Gio.Action, _param: GLib.Variant
-    ) -> None:
+    def on_open_database_action(self, _action: Gio.Action, param: GLib.Variant) -> None:
         """Callback function to open a safe."""
         # pylint: disable=too-many-locals
+        if param and (path := param.get_string()):
+            self._open_database_in_window(path)
+            return
+
         opening_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for opening an existing keepass safe kdbx file
             _("Select Safe"),
@@ -405,7 +400,9 @@ class Window(Adw.ApplicationWindow):
         self.add_action(new_database_action)
         new_database_action.connect("activate", self.on_new_database_action)
 
-        open_database_action = Gio.SimpleAction.new("open_database", None)
+        open_database_action = Gio.SimpleAction.new(
+            "open_database", GLib.VariantType("s")
+        )
         self.add_action(open_database_action)
         open_database_action.connect("activate", self.on_open_database_action)
 
@@ -514,8 +511,6 @@ class Window(Adw.ApplicationWindow):
 
         if new_view == self.View.WELCOME:
             stack.props.visible_child_name = "welcome"
-        elif new_view == self.View.RECENT_FILES:
-            stack.props.visible_child_name = "recent_files"
         elif new_view == self.View.UNLOCK_DATABASE:
             stack.props.visible_child_name = "unlock_database"
         elif new_view == self.View.UNLOCKED_DATABASE:

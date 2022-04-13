@@ -3,8 +3,9 @@ from __future__ import annotations
 
 import typing
 
-from gi.repository import Adw, GObject, Gtk
+from gi.repository import GObject, Gtk
 
+from gsecrets.pathbar import Pathbar
 from gsecrets.widgets.notes_dialog import NotesDialog
 
 if typing.TYPE_CHECKING:
@@ -12,9 +13,11 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/group_page.ui")
-class GroupPage(Adw.Bin):
+class GroupPage(Gtk.Box):
 
     __gtype_name__ = "GroupPage"
+
+    _pathbar_bin = Gtk.Template.Child()
 
     name_property_value_entry = Gtk.Template.Child()
     notes_property_value_entry = Gtk.Template.Child()
@@ -29,6 +32,8 @@ class GroupPage(Adw.Bin):
         # Setup Widgets
         notes_buffer = self.notes_property_value_entry.get_buffer()
 
+        self._pathbar_bin.set_child(Pathbar(unlocked_database))
+
         # Connect Signals
         safe_group.connect("updated", self._on_safe_group_updated)
         safe_group.bind_property(
@@ -42,6 +47,15 @@ class GroupPage(Adw.Bin):
             notes_buffer,
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+
+        self._pathbar_bin.bind_property(
+            "visible",
+            unlocked_database.action_bar,
+            "revealed",
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.INVERT_BOOLEAN
+            | GObject.BindingFlags.SYNC_CREATE,
         )
 
         # Enable Undo. Has to be set to true after the name has been set.

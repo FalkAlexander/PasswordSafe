@@ -5,11 +5,12 @@ import logging
 import typing
 from gettext import gettext as _
 
-from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
+from gi.repository import Gdk, Gio, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
 from gsecrets.password_entry_row import PasswordEntryRow
+from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import ICONS
 from gsecrets.widgets.attachment_entry_row import AttachmentEntryRow
 from gsecrets.widgets.attribute_entry_row import AttributeEntryRow
@@ -21,10 +22,12 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_page.ui")
-class EntryPage(Adw.Bin):
+class EntryPage(Gtk.Box):
     # pylint: disable=too-many-public-methods
 
     __gtype_name__ = "EntryPage"
+
+    _pathbar_bin = Gtk.Template.Child()
 
     name_property_value_entry = Gtk.Template.Child()
 
@@ -78,6 +81,16 @@ class EntryPage(Adw.Bin):
             self.attributes_property_box,
             self.expiration_date_property_box,
         ]
+
+        self._pathbar_bin.set_child(Pathbar(u_d))
+        self._pathbar_bin.bind_property(
+            "visible",
+            u_d.action_bar,
+            "revealed",
+            GObject.BindingFlags.BIDIRECTIONAL
+            | GObject.BindingFlags.INVERT_BOOLEAN
+            | GObject.BindingFlags.SYNC_CREATE,
+        )
 
         self.insert_entry_properties_into_listbox(add_all)
 

@@ -19,7 +19,6 @@ from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
 from gsecrets.unlocked_headerbar import UnlockedHeaderBar
 from gsecrets.widgets.database_settings_dialog import DatabaseSettingsDialog
-from gsecrets.widgets.edit_element_headerbar import EditElementHeaderbar, PageType
 from gsecrets.widgets.properties_dialog import PropertiesDialog
 from gsecrets.widgets.references_dialog import ReferencesDialog
 from gsecrets.widgets.search import Search
@@ -78,13 +77,9 @@ class UnlockedDatabase(Gtk.Box):
         self.action_bar.pack_start(mobile_pathbar)
 
         # Headerbars
-        self.edit_entry_headerbar = EditElementHeaderbar(self, PageType.ENTRY)
-        self.edit_group_headerbar = EditElementHeaderbar(self, PageType.GROUP)
         self.selection_mode_headerbar = SelectionModeHeaderbar(self)
         self.headerbar = UnlockedHeaderBar(self)
 
-        self.window.add_headerbar(self.edit_entry_headerbar)
-        self.window.add_headerbar(self.edit_group_headerbar)
         self.window.add_headerbar(self.selection_mode_headerbar)
         self.window.add_headerbar(self.headerbar)
 
@@ -135,8 +130,6 @@ class UnlockedDatabase(Gtk.Box):
             self.database_manager.disconnect(self.db_locked_handler)
             self.db_locked_handler = None
 
-        self.edit_entry_headerbar.unparent()
-        self.edit_group_headerbar.unparent()
         self.selection_mode_headerbar.unparent()
         self.headerbar.unparent()
 
@@ -216,10 +209,6 @@ class UnlockedDatabase(Gtk.Box):
         """Display the correct headerbar according to search state."""
         if self.props.mode == self.Mode.SEARCH:
             pass
-        elif self.props.mode == self.Mode.GROUP_EDIT:
-            self.window.set_headerbar(self.edit_group_headerbar)
-        elif self.props.mode == self.Mode.ENTRY:
-            self.window.set_headerbar(self.edit_entry_headerbar)
         elif self.props.mode == self.Mode.SELECTION:
             self.window.set_headerbar(self.selection_mode_headerbar)
         else:

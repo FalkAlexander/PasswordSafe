@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 import os
 
-from gi.repository import Adw, Gio, GObject, Gtk
+from gi.repository import Adw, Gio, Gtk
 
 import gsecrets.config_manager as config
 
@@ -14,8 +14,6 @@ class RecentFilesPage(Gtk.Box):
     __gtype_name__ = "RecentFilesPage"
 
     _last_opened_listbox: Gtk.ListBox = Gtk.Template.Child()
-
-    window = GObject.Property(type=Adw.ApplicationWindow)
 
     def __init__(self):
         """Recently opened files page widget
@@ -50,7 +48,8 @@ class RecentFilesPage(Gtk.Box):
 
         Starts opening the database corresponding to the entry."""
         file_path = list_box_row.gfile.get_path()
-        database = self.props.window.unlocked_db
+        window = self.get_root()
+        database = window.unlocked_db
 
         if database:
             auto_save = config.get_save_automatically()
@@ -59,23 +58,23 @@ class RecentFilesPage(Gtk.Box):
 
             if is_dirty and not is_current:
                 app = Gio.Application.get_default()
-                window = app.new_window()
-                window.start_database_opening_routine(file_path)
-                window.present()
+                new_window = app.new_window()
+                new_window.start_database_opening_routine(file_path)
+                new_window.present()
             else:
                 if is_current:
-                    self.props.window.view = self.props.window.view.UNLOCK_DATABASE
+                    window.view = window.view.UNLOCK_DATABASE
                     return
 
                 if auto_save:
                     database.auto_save_database()
 
-                self.props.window.unlocked_db.do_dispose()
-                self.props.window.unlocked_db = None
-                self.props.window.start_database_opening_routine(file_path)
+                window.unlocked_db.do_dispose()
+                window.unlocked_db = None
+                window.start_database_opening_routine(file_path)
 
         else:
-            self.props.window.start_database_opening_routine(file_path)
+            window.start_database_opening_routine(file_path)
 
 
 class RecentFileRow(Adw.ActionRow):

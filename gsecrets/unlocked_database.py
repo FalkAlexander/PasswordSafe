@@ -7,7 +7,7 @@ import typing
 from enum import IntEnum
 from gettext import gettext as _
 
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk
+from gi.repository import Gio, GLib, GObject, Gtk
 
 import gsecrets.config_manager
 from gsecrets import const
@@ -99,7 +99,7 @@ class UnlockedDatabase(Gtk.Box):
 
         self.setup()
 
-        self.clipboard = Gdk.Display.get_default().get_clipboard()
+        self.clipboard = self.get_clipboard()
 
         self.connect("notify::selection-mode", self._on_selection_mode_changed)
         self.db_locked_handler = self.database_manager.connect(

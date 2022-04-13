@@ -3,49 +3,7 @@
   <template class="RecentFilesPage" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
-      <object class="AdwHeaderBar">
-        <property name="title-widget">
-          <object class="AdwWindowTitle"/>
-        </property>
-        <child>
-          <object class="GtkBox">
-            <property name="spacing">6</property>
-            <child>
-              <object class="GtkButton" id="new_file_button">
-                <property name="tooltip_text" translatable="yes">New Safe</property>
-                <property name="action_name">win.new_database</property>
-                <property name="child">
-                  <object class="AdwButtonContent">
-                    <property name="icon_name">list-add-symbolic</property>
-                    <property name="label" translatable="yes">_New</property>
-                    <property name="use-underline">True</property>
-                  </object>
-                </property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="open_file_button">
-                <property name="tooltip_text" translatable="yes">Open Safe</property>
-                <property name="action_name">win.open_database</property>
-                <property name="child">
-                  <object class="AdwButtonContent">
-                    <property name="icon_name">document-open-symbolic</property>
-                    <property name="label" translatable="yes">_Open</property>
-                    <property name="use-underline">True</property>
-                  </object>
-                </property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child type="end">
-          <object class="GtkMenuButton" id="menupopover_button">
-            <property name="tooltip_text" translatable="yes">Main Menu</property>
-            <property name="menu_model">recent_files_menu</property>
-            <property name="icon_name">open-menu-symbolic</property>
-          </object>
-        </child>
-      </object>
+      <object class="LockedHeaderBar"/>
     </child>
     <child>
       <object class="GtkScrolledWindow" id="last_opened_scrolled_window">
@@ -89,20 +47,4 @@
       </object>
     </child>
   </template>
-  <menu id="recent_files_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">win.settings</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes" comments="&quot;Secrets&quot; is the application name, do not translate">_About Secrets</attribute>
-        <attribute name="action">win.about</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>

@@ -291,7 +291,7 @@ class Window(Adw.ApplicationWindow):
     def create_new_database(self, filepath: str) -> None:
         """Copy stock database onto filepath."""
         self._spinner.start()
-        self._main_view.set_visible_child(self._spinner)
+        self._main_view.set_visible_child_name("spinner")
 
         stock_db_file: Gio.File = Gio.File.new_for_uri(
             "resource:///org/gnome/World/Secrets/database.kdbx"

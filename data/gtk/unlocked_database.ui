@@ -3,7 +3,8 @@
   <template class="UnlockedDatabase" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
-      <object class="GtkStack" id="_unlocked_db_deck">
+      <object class="AdwLeaflet" id="_unlocked_db_deck">
+        <property name="can_unfold">False</property>
         <child>
           <object class="GtkBox" id="_main_view">
             <property name="orientation">vertical</property>

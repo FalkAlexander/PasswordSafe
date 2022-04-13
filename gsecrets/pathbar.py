@@ -25,11 +25,15 @@ class Pathbar(Gtk.Box):
             "current-element", self, "current-element", GObject.BindingFlags.SYNC_CREATE
         )
         self.connect("notify::current-element", self._on_current_element_changed)
+        self.setup_widgets()
 
-    def _on_current_element_changed(self, _pathbar, _value):
+    def setup_widgets(self):
         self.clear_pathbar()
         self.build_button_list()
         self.build_pathbar()
+
+    def _on_current_element_changed(self, _pathbar, _value):
+        self.setup_widgets()
 
     def build_button_list(self):
         current_element = self.current_element

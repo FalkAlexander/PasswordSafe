@@ -83,13 +83,12 @@ class EntryPage(Gtk.Box):
         ]
 
         self._pathbar_bin.set_child(Pathbar(u_d))
-        self._pathbar_bin.bind_property(
+
+        u_d.pathbar.bind_property(
             "visible",
-            u_d.action_bar,
-            "revealed",
-            GObject.BindingFlags.BIDIRECTIONAL
-            | GObject.BindingFlags.INVERT_BOOLEAN
-            | GObject.BindingFlags.SYNC_CREATE,
+            self._pathbar_bin,
+            "visible",
+            GObject.BindingFlags.SYNC_CREATE,
         )
 
         self.insert_entry_properties_into_listbox(add_all)

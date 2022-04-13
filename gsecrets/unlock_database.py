@@ -6,7 +6,7 @@ import os
 import typing
 from gettext import gettext as _
 
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Gio, GLib, Gtk
 
 import gsecrets.config_manager
 from gsecrets import const
@@ -18,7 +18,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlock_database.ui")
-class UnlockDatabase(Adw.Bin):
+class UnlockDatabase(Gtk.Box):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "UnlockDatabase"
@@ -28,6 +28,7 @@ class UnlockDatabase(Adw.Bin):
 
     database_manager: DatabaseManager = None
 
+    back_button = Gtk.Template.Child()
     clear_button = Gtk.Template.Child()
     keyfile_button = Gtk.Template.Child()
     keyfile_label = Gtk.Template.Child()
@@ -37,6 +38,7 @@ class UnlockDatabase(Adw.Bin):
     spinner = Gtk.Template.Child()
     spinner_stack = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
+    title = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
@@ -45,11 +47,10 @@ class UnlockDatabase(Adw.Bin):
         filepath = database_file.get_path()
 
         self.window = window
-        self.headerbar = self.window.unlock_database_headerbar
 
         # Reset headerbar to initial state if it already exists.
-        self.headerbar.title.props.title = database_file.get_basename()
-        self.headerbar.back_button.props.sensitive = True
+        self.title.props.title = database_file.get_basename()
+        self.back_button.props.sensitive = True
 
         self.install_action("clear-keyfile", None, self.on_clear_keyfile)
 
@@ -167,6 +168,18 @@ class UnlockDatabase(Adw.Bin):
         else:
             self._unlock_failed()
 
+    @Gtk.Template.Callback()
+    def _on_back_button_clicked(self, _widget: Gtk.Button) -> None:
+        # TODO Use the go_back action instead.
+        database = self.window.unlocked_db
+        if database:
+            if gsecrets.config_manager.get_save_automatically():
+                database.auto_save_database()
+
+            database.cleanup()
+
+        self.window.view = self.window.View.RECENT_FILES
+
     def _set_last_used_keyfile(self):
         pairs = gsecrets.config_manager.get_last_used_composite_key()
         uri = Gio.File.new_for_path(self.database_manager.path).get_uri()
@@ -267,11 +280,9 @@ class UnlockDatabase(Adw.Bin):
         self.password_entry.set_sensitive(sensitive)
         self.keyfile_button.set_sensitive(sensitive)
         self.unlock_button.set_sensitive(sensitive)
+        self.back_button.set_sensitive(sensitive)
 
         self.action_set_enabled("clear-keyfile", sensitive)
-
-        back_button = self.headerbar.back_button
-        back_button.set_sensitive(sensitive)
 
     def on_clear_keyfile(self, _widget, _name, _param):
         self.keyfile_path = None

@@ -1,10 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="UnlockDatabase" parent="AdwBin">
+  <template class="UnlockDatabase" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="AdwHeaderBar">
+        <property name="title-widget">
+          <object class="AdwWindowTitle" id="title"/>
+        </property>
+        <child>
+          <object class="GtkButton" id="back_button">
+            <property name="icon_name">go-previous-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Back</property>
+            <signal name="clicked" handler="_on_back_button_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton" id="menupopover_button">
+            <property name="menu_model">primary_menu</property>
+            <property name="icon_name">open-menu-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Main Menu</property>
+          </object>
+        </child>
+      </object>
+    </child>
     <child>
       <object class="AdwStatusPage" id="status_page">
         <property name="icon_name">org.gnome.World.Secrets</property>
         <property name="title" translatable="yes">Unlock Safe</property>
+        <property name="vexpand">True</property>
         <property name="child">
           <object class="AdwClamp">
             <property name="maximum_size">250</property>
@@ -115,4 +138,30 @@
       </object>
     </child>
   </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe creation process">_New Safe</attribute>
+        <attribute name="action">win.new_database</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes" comments="Menubutton in headerbar for starting the safe opening process (for existing safe)">_Open Safe</attribute>
+        <attribute name="action">win.open_database</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">win.settings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes" comments="&quot;Secrets&quot; is the application name, do not translate">_About Secrets</attribute>
+        <attribute name="action">win.about</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

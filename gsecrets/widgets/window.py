@@ -37,7 +37,6 @@ class Window(Adw.ApplicationWindow):
     _headerbar_stack = Gtk.Template.Child()
     _toast_overlay = Gtk.Template.Child()
     _unlock_database_bin = Gtk.Template.Child()
-    unlock_database_headerbar = Gtk.Template.Child()
     unlocked_db_bin = Gtk.Template.Child()
 
     mobile_layout = GObject.Property(type=bool, default=False)

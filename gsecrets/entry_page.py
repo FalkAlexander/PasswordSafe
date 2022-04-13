@@ -5,7 +5,7 @@ import logging
 import typing
 from gettext import gettext as _
 
-from gi.repository import Gdk, Gio, GLib, GObject, Gtk
+from gi.repository import Gdk, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
@@ -70,6 +70,11 @@ class EntryPage(Gtk.Box):
     otp_timer_handler: int | None = None
 
     def __init__(self, u_d, add_all):
+        # Setup actions, must be done before initializing the template.
+        self.install_action("entry.copy_password", None, self._on_copy_action)
+        self.install_action("entry.copy_user", None, self._on_copy_action)
+        self.install_action("entry.copy_otp", None, self._on_copy_action)
+
         super().__init__()
 
         self.unlocked_database = u_d
@@ -95,19 +100,6 @@ class EntryPage(Gtk.Box):
 
         safe_entry: SafeEntry = self.unlocked_database.current_element
         safe_entry.connect("updated", self._on_safe_entry_updated)
-
-        # Setup actions
-        copy_user_action = Gio.SimpleAction.new("entry.copy_user", None)
-        copy_user_action.connect("activate", self._on_copy_action)
-        self.unlocked_database.window.add_action(copy_user_action)
-
-        copy_password_action = Gio.SimpleAction.new("entry.copy_password", None)
-        copy_password_action.connect("activate", self._on_copy_action)
-        self.unlocked_database.window.add_action(copy_password_action)
-
-        copy_otp_action = Gio.SimpleAction.new("entry.copy_otp", None)
-        copy_otp_action.connect("activate", self._on_copy_action)
-        self.unlocked_database.window.add_action(copy_otp_action)
 
     def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:
@@ -241,24 +233,19 @@ class EntryPage(Gtk.Box):
     # Events
     #
 
-    def _on_copy_action(self, action, _data=None):
-        # FIXME This is not a great solution. The action should be defined in
-        # such a way that it cannot be activated outside of the edit page.
-        if not self.unlocked_database.in_edit_page:
-            return
-
+    def _on_copy_action(self, _widget, action_name, _parameter):
         if self.unlocked_database.props.database_locked:
             return
 
-        if action.props.name == "entry.copy_user":
+        if action_name == "entry.copy_user":
             username = self.username_property_value_entry.get_text()
             self.unlocked_database.send_to_clipboard(
                 username,
                 _("Username copied"),
             )
-        elif action.props.name == "entry.copy_password":
+        elif action_name == "entry.copy_password":
             self.password_entry_row.copy_password()
-        elif action.props.name == "entry.copy_otp":
+        elif action_name == "entry.copy_otp":
             safe_entry: SafeEntry = self.unlocked_database.current_element
             otp_token = safe_entry.otp_token() or ""
             if otp_token == "":

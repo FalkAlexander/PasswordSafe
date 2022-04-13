@@ -136,7 +136,4 @@ class Application(Adw.Application):
         self.set_accels_for_action("win.db.add_entry", ["<Control>e"])
         self.set_accels_for_action("win.db.add_group", ["<Control>g"])
         self.set_accels_for_action("win.go_back", ["Escape"])
-        self.set_accels_for_action("win.entry.copy_password", ["<Control><Shift>c"])
-        self.set_accels_for_action("win.entry.copy_user", ["<Control><Shift>b"])
-        self.set_accels_for_action("win.entry.copy_otp", ["<Control><Shift>t"])
         self.set_accels_for_action("window.close", ["<Control>w"])

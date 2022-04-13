@@ -3,6 +3,28 @@
   <template class="EntryPage" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
+      <object class="GtkShortcutController">
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;&lt;Shift&gt;c</property>
+            <property name="action">action(entry.copy_password)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;&lt;Shift&gt;b</property>
+            <property name="action">action(entry.copy_user)</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">&lt;Control&gt;&lt;Shift&gt;t</property>
+            <property name="action">action(entry.copy_otp)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
       <object class="AdwHeaderBar">
         <property name="title-widget">
           <object class="AdwWindowTitle"/>

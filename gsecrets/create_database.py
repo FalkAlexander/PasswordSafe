@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from gettext import gettext as _
 
-from gi.repository import Adw, GLib, Gtk
+from gi.repository import GLib, Gtk
 
 from gsecrets.utils import (
     KeyFileFilter,
@@ -15,7 +15,7 @@ from gsecrets.utils import (
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/create_database.ui")
-class CreateDatabase(Adw.Bin):
+class CreateDatabase(Gtk.Box):
     """Creates a new Safe when invoked"""
 
     # TODO Add an accelerator for Escape that
@@ -40,6 +40,7 @@ class CreateDatabase(Adw.Bin):
     generate_keyfile_button = Gtk.Template.Child()
 
     open_safe_button = Gtk.Template.Child()
+    back_button = Gtk.Template.Child()
 
     new_password = ""
 
@@ -50,7 +51,6 @@ class CreateDatabase(Adw.Bin):
 
         self.database_manager = dbm
         self.window = window
-        self.back_button = window.create_database_headerbar.back_button
 
         self.back_button.props.sensitive = True
         self.back_button.connect("clicked", self.on_headerbar_back_button_clicked)

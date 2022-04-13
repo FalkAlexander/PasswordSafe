@@ -31,7 +31,6 @@ class Window(Adw.ApplicationWindow):
     unlocked_db = None
 
     _create_database_bin = Gtk.Template.Child()
-    create_database_headerbar = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     _recent_files_page = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()

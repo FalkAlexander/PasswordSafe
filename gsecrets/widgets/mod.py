@@ -6,7 +6,6 @@ from gi.repository import GObject
 from gsecrets.password_generator_popover import PasswordGeneratorPopover
 from gsecrets.recent_files_page import RecentFilesPage
 from gsecrets.welcome_page import WelcomePage
-from gsecrets.widgets.create_database_headerbar import CreateDatabaseHeaderbar
 from gsecrets.widgets.error_revealer import ErrorRevealer
 from gsecrets.widgets.expiration_date_row import ExpirationDateRow
 from gsecrets.widgets.notes_dialog import NotesDialog
@@ -20,7 +19,6 @@ def load_widgets():
     GObject.type_ensure(PasswordGeneratorPopover)
     GObject.type_ensure(RecentFilesPage)
     GObject.type_ensure(WelcomePage)
-    GObject.type_ensure(CreateDatabaseHeaderbar)
     GObject.type_ensure(ErrorRevealer)
     GObject.type_ensure(ExpirationDateRow)
     GObject.type_ensure(NotesDialog)

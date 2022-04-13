@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="CreateDatabase" parent="AdwBin">
+  <template class="CreateDatabase" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="AdwHeaderBar">
+        <property name="title-widget">
+          <object class="AdwWindowTitle">
+            <property name="title">Secrets</property>
+            <property name="subtitle" translatable="yes" comments="Headerbar subtitle in keepass safe creation routine.">Create Safe</property>
+          </object>
+        </property>
+        <child>
+          <object class="GtkButton" id="back_button">
+            <property name="icon_name">go-previous-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Back</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton" id="menupopover_button">
+            <property name="tooltip_text" translatable="yes">Main Menu</property>
+            <property name="menu_model">create_safe_menu</property>
+            <property name="icon_name">open-menu-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
     <child>
       <object class="GtkStack" id="stack">
         <property name="transition_type">slide-left</property>
@@ -396,4 +420,20 @@
       </object>
     </child>
   </template>
+  <menu id="create_safe_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">win.settings</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes" comments="&quot;Secrets&quot; is the application name, do not translate">_About Secrets</attribute>
+        <attribute name="action">win.about</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

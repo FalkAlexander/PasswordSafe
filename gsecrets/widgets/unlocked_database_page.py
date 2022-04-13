@@ -40,7 +40,7 @@ class UnlockedDatabasePage(Adw.Bin):
         self.list_model = Gtk.FlattenListModel.new(flatten)
 
         settings = unlocked_database.window.application.settings
-        settings.connect("changed", self.on_sort_order_changed)
+        settings.connect("changed::sort-order", self.on_sort_order_changed)
 
         unlocked_database.selection_mode_headerbar.connect(
             "clear-selection", self._on_clear_selection
@@ -64,17 +64,16 @@ class UnlockedDatabasePage(Adw.Bin):
         if child:
             child.grab_focus()
 
-    def on_sort_order_changed(self, settings, key):
+    def on_sort_order_changed(self, settings, _key):
         """Callback to be executed when the sorting has been changed."""
-        if key == "sort-order":
-            sorting = settings.get_enum("sort-order")
-            logging.debug("Sort order changed to %s", sorting)
+        sorting = settings.get_enum("sort-order")
+        logging.debug("Sort order changed to %s", sorting)
 
-            sorting = config.get_sort_order()
-            sorter = SortingHat.get_sorter(sorting)
+        sorting = config.get_sort_order()
+        sorter = SortingHat.get_sorter(sorting)
 
-            self.entries.set_sorter(sorter)
-            self.groups.set_sorter(sorter)
+        self.entries.set_sorter(sorter)
+        self.groups.set_sorter(sorter)
 
     def on_listbox_items_changed(
         self,

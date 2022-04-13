@@ -13,7 +13,6 @@ from gsecrets.widgets.notes_dialog import NotesDialog
 from gsecrets.widgets.password_level_bar import PasswordLevelBar
 from gsecrets.widgets.preferences_row import PreferencesRow
 from gsecrets.widgets.progress_icon import ProgressIcon
-from gsecrets.widgets.recent_files_headerbar import RecentFilesHeaderbar
 from gsecrets.widgets.unlock_database_headerbar import UnlockDatabaseHeaderbar
 
 
@@ -28,5 +27,4 @@ def load_widgets():
     GObject.type_ensure(PasswordLevelBar)
     GObject.type_ensure(PreferencesRow)
     GObject.type_ensure(ProgressIcon)
-    GObject.type_ensure(RecentFilesHeaderbar)
     GObject.type_ensure(UnlockDatabaseHeaderbar)

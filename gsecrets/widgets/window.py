@@ -34,7 +34,6 @@ class Window(Adw.ApplicationWindow):
     _main_view = Gtk.Template.Child()
     _recent_files_page = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
-    _headerbar_stack = Gtk.Template.Child()
     _toast_overlay = Gtk.Template.Child()
     _unlock_database_bin = Gtk.Template.Child()
     unlocked_db_bin = Gtk.Template.Child()
@@ -56,14 +55,6 @@ class Window(Adw.ApplicationWindow):
     def send_notification(self, notification: str) -> None:
         toast = Adw.Toast.new(notification)
         self._toast_overlay.add_toast(toast)
-
-    def set_headerbar(self, headerbar: Adw.HeaderBar) -> None:
-        self.add_headerbar(headerbar)
-        self._headerbar_stack.set_visible_child(headerbar)
-
-    def add_headerbar(self, headerbar: Adw.HeaderBar) -> None:
-        if not self._headerbar_stack.get_page(headerbar):
-            self._headerbar_stack.add_child(headerbar)
 
     def assemble_window(self) -> None:
         window_size = gsecrets.config_manager.get_window_size()
@@ -518,21 +509,16 @@ class Window(Adw.ApplicationWindow):
     @view.setter  # type: ignore
     def view(self, new_view: View) -> None:
         stack = self._main_view
-        headerbar_stack = self._headerbar_stack
 
         self._view = new_view
 
         if new_view == self.View.WELCOME:
             stack.props.visible_child_name = "welcome"
-            headerbar_stack.props.visible_child_name = "recent_files"
         elif new_view == self.View.RECENT_FILES:
             stack.props.visible_child_name = "recent_files"
-            headerbar_stack.props.visible_child_name = "recent_files"
         elif new_view == self.View.UNLOCK_DATABASE:
             stack.props.visible_child_name = "unlock_database"
-            headerbar_stack.props.visible_child_name = "unlock_database"
         elif new_view == self.View.UNLOCKED_DATABASE:
             stack.props.visible_child_name = "unlocked"
         elif new_view == self.View.CREATE_DATABASE:
             stack.props.visible_child_name = "create_database"
-            headerbar_stack.props.visible_child_name = "create_database"

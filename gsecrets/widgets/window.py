@@ -281,7 +281,7 @@ class Window(Adw.ApplicationWindow):
                     if is_dirty and not auto_save:
                         app = Gio.Application.get_default()
                         window = app.new_window()
-                        window.start_database_creation_routine(filepath)
+                        window.create_new_database(filepath)
                         window.present()
                     else:
                         if auto_save:
@@ -293,7 +293,7 @@ class Window(Adw.ApplicationWindow):
                 else:
                     app = Gio.Application.get_default()
                     window = app.new_window()
-                    window.start_database_creation_routine(filepath)
+                    window.create_new_database(filepath)
                     window.present()
 
             else:

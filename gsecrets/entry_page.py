@@ -242,7 +242,7 @@ class EntryPage(Adw.Bin):
             username = self.username_property_value_entry.get_text()
             self.unlocked_database.send_to_clipboard(
                 username,
-                _("Username Copied"),
+                _("Username copied"),
             )
         elif action.props.name == "entry.copy_password":
             self.password_entry_row.copy_password()
@@ -254,7 +254,7 @@ class EntryPage(Adw.Bin):
 
             self.unlocked_database.send_to_clipboard(
                 otp_token,
-                _("One-time Password Copied"),
+                _("One-time password copied"),
             )
 
     @Gtk.Template.Callback()
@@ -293,7 +293,7 @@ class EntryPage(Adw.Bin):
         otp_token = safe_entry.otp_token() or ""
         self.unlocked_database.send_to_clipboard(
             otp_token,
-            _("One-time Password Copied"),
+            _("One-time password copied"),
         )
 
     #
@@ -386,7 +386,7 @@ class EntryPage(Adw.Bin):
     def _on_copy_secondary_button_clicked(self, widget, _icon_pos, _data=None):
         self.unlocked_database.send_to_clipboard(
             widget.get_text(),
-            _("Username Copied"),
+            _("Username copied"),
         )
 
     def show_row(self, row: Gtk.ListBoxRow, non_empty: bool, add_all: bool) -> None:

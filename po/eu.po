@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-19 22:44+0000\n"
-"PO-Revision-Date: 2022-02-20 10:00+0100\n"
+"POT-Creation-Date: 2022-04-14 16:52+0000\n"
+"PO-Revision-Date: 2024-04-16 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -123,7 +123,7 @@ msgid "_Confirm"
 msgstr "_Berretsi"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:174
 #: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Sortu gako-fitxategia"
@@ -134,7 +134,7 @@ msgstr "Ezarri gako-fitxategia kutxa gotorrerako"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:172
+#: gsecrets/create_database.py:177
 #: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Sortu"
@@ -156,7 +156,7 @@ msgid "Create Safe"
 msgstr "Sortu kutxa gotorra"
 
 #: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
+#: data/gtk/edit_element_headerbar.ui:13
 #: data/gtk/unlock_database_headerbar.ui:38
 msgid "Back"
 msgstr "Atzera"
@@ -220,8 +220,8 @@ msgstr "_Unekoa"
 msgid "Enter Current Password"
 msgstr "Sartu uneko pasahitza"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
-#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
+#: gsecrets/utils.py:76 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "Gako-fitxategia"
 
@@ -497,6 +497,11 @@ msgstr "Kopiatu pasahitza"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Kopiatu erabiltzaile-izena"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Kopiatu denbora bateko pasahitza"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
@@ -826,7 +831,7 @@ msgstr "Garbitu azken aldian irekitako kutxa gotorren zerrenda."
 msgid "Unlock Safe"
 msgstr "Desblokeatu kutxa gotorra"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:248
 msgid "_Select Keyfile"
 msgstr "_Hautatu gako-fitxategia"
 
@@ -1098,7 +1103,7 @@ msgid ""
 "uncluttered interface for the management of password databases."
 msgstr "Secrets aplikazioa Keepass v.4 formatua erabiltzen duen pasahitz-kudeatzaile bat da. GNOME mahaigainean ongi integratzen da eta interfaze erraz eta garbia eskaintzen du pasahitzen datu-baseak kudeatzeko."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:204
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1111,53 +1116,53 @@ msgid "Error: Safe {} is already open"
 msgstr "Errorea: {} kutxa gotorra irekita dago lehendik"
 
 #: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "Ezin da eranskina kargatu"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:72
 msgid "Unable to create database"
 msgstr "Ezin izan da datu-basea sortu"
 
-#: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
+#: gsecrets/create_database.py:165
+msgid "Passwords do not match"
 msgstr "Pasahitzak ez datoz bat"
 
-#: gsecrets/create_database.py:188
+#: gsecrets/create_database.py:193
 msgid "Generating…"
 msgstr "Sortzen…"
 
-#: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
+#: gsecrets/create_database.py:205
+msgid "Could not create keyfile"
 msgstr "Ezin da gako-fitxategia sortu"
 
-#: gsecrets/create_database.py:201
+#: gsecrets/create_database.py:207
 msgid "Generate"
 msgstr "Sortu"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:389
 #: gsecrets/entry_row.py:112
-msgid "Username Copied"
+msgid "Username copied"
 msgstr "Erabiltzaile-izena kopiatu da"
 
-#: gsecrets/entry_page.py:279
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:257 gsecrets/entry_page.py:296
+msgid "One-time password copied"
 msgstr "Denbora bateko pasahitza kopiatu da"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
+#: gsecrets/entry_page.py:317 gsecrets/widgets/attribute_entry_row.py:69
+msgid "Attribute key already exists"
 msgstr "Atributu-gakoa badago lehendik"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:345
 msgid "Select Attachment"
 msgstr "Hautatu eranskina"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:348
 msgid "_Add"
 msgstr "_Gehitu"
 
 #: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+msgid "Password copied"
 msgstr "Pasahitza kopiatu da"
 
 #: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
@@ -1168,12 +1173,12 @@ msgstr "Ez da izenburua zehaztu"
 msgid "Username not specified"
 msgstr "Ez da erabiltzaile-izenik zehaztu"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:284
 #: gsecrets/widgets/window.py:376
 msgid "Could not save Safe"
 msgstr "Ezin izan da kutxa gotorra gorde"
 
-#: gsecrets/safe_element.py:361
+#: gsecrets/safe_element.py:416
 msgid "Clone"
 msgstr "Klonatu"
 
@@ -1182,32 +1187,32 @@ msgid "Select Keyfile"
 msgstr "Hautatu gako-fitxategia"
 
 #: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
+msgid "Safe {} is already open"
 msgstr "{} kutxa gotorra irekita dago lehendik"
 
-#: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
+#: gsecrets/unlock_database.py:234
+msgid "Failed to unlock Safe"
 msgstr "Huts egin du kutxa gotorra desblokeatzeak"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:243
 msgid "_Try Again"
 msgstr "_Saiatu berriro"
 
-#: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
+#: gsecrets/unlocked_database.py:287
+msgid "Safe saved"
 msgstr "Kutxa gotorra gorde da"
 
-#: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
+#: gsecrets/unlocked_database.py:289
+msgid "No changes made"
 msgstr "Ez da aldaketarik egin"
 
-#: gsecrets/unlocked_database.py:322
+#: gsecrets/unlocked_database.py:335
 msgid "Copied"
 msgstr "Kopiatua"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:402
+msgid "Safe locked due to inactivity"
 msgstr "Kutxa gotorra blokeatu da inaktibo dagoelako"
 
 #. NOTE: Filechooser title for downloading an attachment
@@ -1216,7 +1221,7 @@ msgid "Save Attachment"
 msgstr "Gorde eranskina"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "Ezin da eranskina gorde"
 
 #. NOTE: Filechooser title for choosing current used keyfile
@@ -1238,33 +1243,33 @@ msgstr "Aldaketak aplikatu dira"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:335
-#: gsecrets/widgets/database_settings_dialog.py:349
+#: gsecrets/widgets/database_settings_dialog.py:337
+#: gsecrets/widgets/database_settings_dialog.py:351
 msgid "Unknown"
 msgstr "Ezezaguna"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:341
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:344
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:347
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:355
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:356
+#: gsecrets/widgets/database_settings_dialog.py:358
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1280,19 +1285,19 @@ msgstr[0] "{} _hautatuta"
 msgstr[1] "{} _hautatuta"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
 msgstr "Eragiketa abortatu da: Unean aktibo dagoen taldea ezabatzen"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
+msgid "Deletion completed"
 msgstr "Ezabatzea osatu da"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
 msgstr "Eragiketa abortatu da: Unean aktibo dagoen taldea lekuz aldatzen"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
+msgid "Move completed"
 msgstr "Lekuz aldatzea osatu da"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
@@ -1310,7 +1315,7 @@ msgid "Any file type"
 msgstr "Edozein fitxategi mota"
 
 #: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
+msgid "Safe is already open"
 msgstr "Kutxa gotorra dagoeneko irekita dago"
 
 #: gsecrets/widgets/window.py:245
@@ -1318,11 +1323,11 @@ msgid "_Create"
 msgstr "_Sortu"
 
 #: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
+msgid "Cannot create Safe: Safe is already open"
 msgstr "Ezin da kutxa gotorra sortu: dagoeneko irekita dago"
 
 #: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+msgid "Could not create new Safe"
 msgstr "Ezin da kutxa gotor berria sortu"
 
 #~ msgid "The kdb Format is not Supported"

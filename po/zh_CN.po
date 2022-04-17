@@ -9,15 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-20 22:17+0000\n"
-"PO-Revision-Date: 2022-03-21 18:39+0800\n"
+"POT-Creation-Date: 2022-04-14 16:52+0000\n"
+"PO-Revision-Date: 2022-04-16 15:36+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 41.0\n"
+"X-Generator: Gtranslator 42.0\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
@@ -129,7 +129,7 @@ msgid "_Confirm"
 msgstr "确认(_C)"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:174
 #: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "生成密钥文件"
@@ -140,7 +140,7 @@ msgstr "设置保险箱密钥文件"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:172
+#: gsecrets/create_database.py:177
 #: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "生成(_G)"
@@ -162,7 +162,7 @@ msgid "Create Safe"
 msgstr "创建保险箱"
 
 #: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
+#: data/gtk/edit_element_headerbar.ui:13
 #: data/gtk/unlock_database_headerbar.ui:38
 msgid "Back"
 msgstr "后退"
@@ -226,8 +226,8 @@ msgstr "当前(_C)"
 msgid "Enter Current Password"
 msgstr "输入当前密码"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
-#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
+#: gsecrets/utils.py:76 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "密钥文件"
 
@@ -505,7 +505,6 @@ msgid "Copy Username"
 msgstr "复制用户名"
 
 #: data/gtk/help-overlay.ui:108
-#| msgid "_One-Time Password"
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "复制动态口令"
@@ -838,7 +837,7 @@ msgstr "清除最近打开的保险箱列表。"
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:248
 msgid "_Select Keyfile"
 msgstr "选择密钥文件(_S)"
 
@@ -1115,7 +1114,7 @@ msgstr ""
 "秘密是一个使用 KeePass v.4 格式的密码管理器。与 GNOME 桌面完美集成并提供简"
 "易、整洁的界面来管理密码数据库。"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:204
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1128,53 +1127,53 @@ msgid "Error: Safe {} is already open"
 msgstr "错误：保险箱 {} 已打开"
 
 #: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "无法加载附件"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:72
 msgid "Unable to create database"
 msgstr "无法创建数据库"
 
-#: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
+#: gsecrets/create_database.py:165
+msgid "Passwords do not match"
 msgstr "密码不匹配"
 
-#: gsecrets/create_database.py:188
+#: gsecrets/create_database.py:193
 msgid "Generating…"
 msgstr "正在生成…"
 
-#: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
+#: gsecrets/create_database.py:205
+msgid "Could not create keyfile"
 msgstr "无法创建密钥文件"
 
-#: gsecrets/create_database.py:201
+#: gsecrets/create_database.py:207
 msgid "Generate"
 msgstr "生成"
 
-#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:389
 #: gsecrets/entry_row.py:112
-msgid "Username Copied"
+msgid "Username copied"
 msgstr "用户名已复制"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:257 gsecrets/entry_page.py:296
+msgid "One-time password copied"
 msgstr "动态口令已复制"
 
-#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
+#: gsecrets/entry_page.py:317 gsecrets/widgets/attribute_entry_row.py:69
+msgid "Attribute key already exists"
 msgstr "属性键已存在"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:342
+#: gsecrets/entry_page.py:345
 msgid "Select Attachment"
 msgstr "选择附件"
 
-#: gsecrets/entry_page.py:345
+#: gsecrets/entry_page.py:348
 msgid "_Add"
 msgstr "添加(_A)"
 
 #: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+msgid "Password copied"
 msgstr "密码已复制"
 
 #: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
@@ -1185,12 +1184,12 @@ msgstr "未指定标题"
 msgid "Username not specified"
 msgstr "未指定用户名"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:284
 #: gsecrets/widgets/window.py:376
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
 
-#: gsecrets/safe_element.py:361
+#: gsecrets/safe_element.py:416
 msgid "Clone"
 msgstr "克隆"
 
@@ -1199,32 +1198,32 @@ msgid "Select Keyfile"
 msgstr "选择密钥文件"
 
 #: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
+msgid "Safe {} is already open"
 msgstr "保险箱 {} 已打开"
 
-#: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
+#: gsecrets/unlock_database.py:234
+msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:243
 msgid "_Try Again"
 msgstr "重试(_T)"
 
-#: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
+#: gsecrets/unlocked_database.py:287
+msgid "Safe saved"
 msgstr "保险箱已保存"
 
-#: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
+#: gsecrets/unlocked_database.py:289
+msgid "No changes made"
 msgstr "未作更改"
 
-#: gsecrets/unlocked_database.py:322
+#: gsecrets/unlocked_database.py:335
 msgid "Copied"
 msgstr "已复制"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:402
+msgid "Safe locked due to inactivity"
 msgstr "保险箱因无活动已被锁定"
 
 #. NOTE: Filechooser title for downloading an attachment
@@ -1233,7 +1232,7 @@ msgid "Save Attachment"
 msgstr "保存附件"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "无法存储附件"
 
 #. NOTE: Filechooser title for choosing current used keyfile
@@ -1255,33 +1254,33 @@ msgstr "更改已应用"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:335
-#: gsecrets/widgets/database_settings_dialog.py:349
+#: gsecrets/widgets/database_settings_dialog.py:337
+#: gsecrets/widgets/database_settings_dialog.py:351
 msgid "Unknown"
 msgstr "未知"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:341
 msgid "AES 256-bit"
 msgstr "AES 256 位"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:344
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256 位"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:347
 msgid "Twofish 256-bit"
 msgstr "Twofish 256 位"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:355
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:356
+#: gsecrets/widgets/database_settings_dialog.py:358
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1296,19 +1295,19 @@ msgid_plural "{} _Selected"
 msgstr[0] "已选择 {} 项(_S)"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
 msgstr "操作中止：正在删除当前活动分组"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
+msgid "Deletion completed"
 msgstr "删除完毕"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
 msgstr "操作中止：正在移动当前活动分组"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
+msgid "Move completed"
 msgstr "移动完毕"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
@@ -1326,7 +1325,7 @@ msgid "Any file type"
 msgstr "任何文件类型"
 
 #: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
+msgid "Safe is already open"
 msgstr "保险箱已打开"
 
 #: gsecrets/widgets/window.py:245
@@ -1334,11 +1333,11 @@ msgid "_Create"
 msgstr "创建(_C)"
 
 #: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
+msgid "Cannot create Safe: Safe is already open"
 msgstr "无法创建保险箱：保险箱已打开"
 
 #: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+msgid "Could not create new Safe"
 msgstr "无法创建新保险箱"
 
 #~ msgid "The kdb Format is not Supported"

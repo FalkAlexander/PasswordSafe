@@ -137,6 +137,9 @@
                                 <property name="tooltip_text" translatable="yes">Copy</property>
                                 <property name="icon_name">edit-copy-symbolic</property>
                                 <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
                               </object>
                             </child>
                           </object>

@@ -43,7 +43,7 @@ dependency('glib-2.0', version: '>= 2.66')
 dependency('gio-2.0', version: '>= 2.66')
 dependency('gobject-introspection-1.0', version: '>=1.66.0')
 dependency('gtk4', version: '>=4.6.2')  # Needed for scroll-to-focus on Vierports
-dependency('libadwaita-1', version: '>=1.0.0')
+dependency('libadwaita-1', version: '>=1.2.alpha')
 dependency('pwquality', version: '>=1.4.0')
 
 python_dir = python_bin.get_install_dir()

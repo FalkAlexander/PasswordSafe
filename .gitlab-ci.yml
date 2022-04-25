@@ -34,6 +34,7 @@ flatpak_x86_64:
 flatpak_aarch64:
     extends: .flatpak_aarch64
     stage: build
+    allow_failure: true
     variables:
         APP_ID: org.gnome.World.Secrets.Devel
         RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"

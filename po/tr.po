@@ -1,17 +1,17 @@
-# Turkish translation for PasswordSafe.
-# Copyright (C) 2018-2020 PasswordSafe's COPYRIGHT HOLDER
+# Turkish translation for Secrets.
+# Copyright (C) 2018-2022 Secrets's COPYRIGHT HOLDER
 #
-# This file is distributed under the same license as the PasswordSafe package.
+# This file is distributed under the same license as the Secrets package.
 # Serdar Sağlam <teknomobil@yandex.com>, 2018
-# Sabri Ünal <libreajans@gmail.com>, 2020
 # Emin Tufan Çetin <etcetin@gmail.com>, 2018, 2020, 2021, 2022.
+# Sabri Ünal <libreajans@gmail.com>, 2020, 2022
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PasswordSafe master\n"
+"Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-19 22:44+0000\n"
-"PO-Revision-Date: 2022-03-20 22:23+0300\n"
+"POT-Creation-Date: 2022-04-25 04:00+0000\n"
+"PO-Revision-Date: 2022-04-27 20:11+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -61,7 +61,7 @@ msgstr "_Geri"
 msgid "_Proceed"
 msgstr "_Sürdür"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:9
 msgid "Remove Attribute"
 msgstr "Özniteliği Kaldır"
 
@@ -69,129 +69,122 @@ msgstr "Özniteliği Kaldır"
 msgid "Color"
 msgstr "Renk"
 
-#: data/gtk/create_database.ui:33
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:226
+msgid "Create Safe"
+msgstr "Kasa Oluştur"
+
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:36
+#: data/gtk/group_page.ui:14
+msgid "Back"
+msgstr "Geri"
+
+#: data/gtk/create_database.ui:21 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:38
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+#: data/gtk/create_database.ui:57
 msgid "Protect your safe"
 msgstr "Kasanızı koruyun"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:70 data/gtk/password_entry_row.ui:12
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Parola"
 
-#: data/gtk/create_database.ui:47
+#: data/gtk/create_database.ui:71
 msgid "Use a password to secure your safe."
 msgstr "Kasanızı korumak için parola kullanın."
 
-#: data/gtk/create_database.ui:57
+#: data/gtk/create_database.ui:81
 msgid "_Keyfile"
 msgstr "_Anahtar Dosyası"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:82
 msgid "Use a keyfile to secure your safe."
 msgstr "Kasanızı korumak için anahtar dosyası kullanın."
 
-#: data/gtk/create_database.ui:68
+#: data/gtk/create_database.ui:92
 msgid "_Composite"
 msgstr "_Birleşik"
 
-#: data/gtk/create_database.ui:69
+#: data/gtk/create_database.ui:93
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "Kasanızı korumak için anahtar dosyası ile birlikte parola kullanın."
 
-#: data/gtk/create_database.ui:101
+#: data/gtk/create_database.ui:125
 msgid "Enter Password"
 msgstr "Parola Gir"
 
-#: data/gtk/create_database.ui:109
+#: data/gtk/create_database.ui:133
 msgid "Set password for safe."
 msgstr "Kasa için parola belirle."
 
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
+#: data/gtk/create_database.ui:158 data/gtk/database_settings_dialog.ui:42
 #: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
 msgid "Generate New Password"
 msgstr "Yeni Parola Oluştur"
 
-#: data/gtk/create_database.ui:183
+#: data/gtk/create_database.ui:207
 msgid "Password Match Check"
 msgstr "Parola Eşleşme Denetimi"
 
-#: data/gtk/create_database.ui:191
+#: data/gtk/create_database.ui:215
 msgid "Repeat password for safe."
 msgstr "Kasa için parolayı yinele."
 
-#: data/gtk/create_database.ui:248
+#: data/gtk/create_database.ui:272
 msgid "Match Check Failed"
 msgstr "Eşleşme Denetimi Başarısız"
 
-#: data/gtk/create_database.ui:256
+#: data/gtk/create_database.ui:280
 msgid "Please try again."
 msgstr "Lütfen yeniden deneyin."
 
-#: data/gtk/create_database.ui:286
+#: data/gtk/create_database.ui:310
 msgid "_Confirm"
 msgstr "_Onayla"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: data/gtk/create_database.ui:345 gsecrets/create_database.py:174
 #: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Anahtar Dosyası Oluştur"
 
-#: data/gtk/create_database.ui:329
+#: data/gtk/create_database.ui:353
 msgid "Set keyfile for safe"
 msgstr "Kasa için anahtar dosyası ayarla"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:172
+#: data/gtk/create_database.ui:363 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:177
 #: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Oluştur"
 
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:396
 msgid "Safe Successfully Created"
 msgstr "Kasa Başarıyla Oluşturuldu"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:404 data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "Kasayı _Aç"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
-msgid "Create Safe"
-msgstr "Kasa Oluştur"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Geri"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Ana Menü"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:426 data/gtk/locked_headerbar.ui:37
+#: data/gtk/unlocked_headerbar.ui:104
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:430 data/gtk/locked_headerbar.ui:41
+#: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:434 data/gtk/locked_headerbar.ui:45
+#: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
 msgstr "Secrets _Hakkında"
 
@@ -201,13 +194,12 @@ msgstr "Doğrulama"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:27
 msgid "Password"
 msgstr "Parola"
 
 #. New password (replacement for an old one)
 #: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
 msgid "_New"
 msgstr "_Yeni"
 
@@ -229,8 +221,8 @@ msgstr "_Şimdiki"
 msgid "Enter Current Password"
 msgstr "Geçerli Parolayı Gir"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
-#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
+#: gsecrets/utils.py:76 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "Anahtar dosyası"
 
@@ -306,107 +298,111 @@ msgstr "Küme Sayısı"
 msgid "Passwords"
 msgstr "Parolalar"
 
-#: data/gtk/edit_element_headerbar.ui:22
+#: data/gtk/entry_page.ui:45 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Menü"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "_Özellikler"
-
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "_Sil"
-
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "Y_inele"
-
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "_Referanslar"
-
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/entry_page.ui:74 data/gtk/group_page.ui:50
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Başlık"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
+#: data/gtk/entry_page.ui:97 data/gtk/references_dialog.ui:173
 msgid "_Username"
 msgstr "_Kullanıcı Adı"
 
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
+#: data/gtk/entry_page.ui:108 data/gtk/entry_page.ui:185
 #: data/gtk/password_entry_row.ui:32
 msgid "Copy"
 msgstr "Kopyala"
 
-#: data/gtk/entry_page.ui:77
+#: data/gtk/entry_page.ui:125
 msgid "One-_Time Password Secret"
 msgstr "Tek _Kullanımlık Parola Gizi"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:97
+#: data/gtk/entry_page.ui:145
 msgid "Could not Generate OTP Token"
 msgstr "OTP Belirteci Oluşturulamadı"
 
-#: data/gtk/entry_page.ui:111
+#: data/gtk/entry_page.ui:159
 msgid "_One-Time Password"
 msgstr "_Tek Kullanımlık Parola"
 
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:210
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
+#: data/gtk/entry_page.ui:222
+msgid "Open Address"
+msgstr "Adresi Aç"
+
+#: data/gtk/entry_page.ui:240 data/gtk/group_page.ui:76
 #: data/gtk/references_dialog.ui:185
 msgid "_Notes"
 msgstr "_Notlar"
 
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:252 data/gtk/group_page.ui:87
 msgid "Edit in a Window"
 msgstr "Pencerede Düzenle"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:292
 msgid "Icon"
 msgstr "Simge"
 
-#: data/gtk/entry_page.ui:268
+#: data/gtk/entry_page.ui:319
 msgid "Attachments"
 msgstr "Ekler"
 
-#: data/gtk/entry_page.ui:293
+#: data/gtk/entry_page.ui:344
 msgid "_Add Attachment"
 msgstr "Ek _Ekle"
 
-#: data/gtk/entry_page.ui:315
+#: data/gtk/entry_page.ui:366
 msgid "Attributes"
 msgstr "Öznitelikler"
 
-#: data/gtk/entry_page.ui:331
+#: data/gtk/entry_page.ui:382
 msgid "Key"
 msgstr "Anahtar"
 
-#: data/gtk/entry_page.ui:337
+#: data/gtk/entry_page.ui:388
 msgid "Value"
 msgstr "Değer"
 
-#: data/gtk/entry_page.ui:348
+#: data/gtk/entry_page.ui:399
 msgid "Add Attribute"
 msgstr "Öznitelik Ekle"
 
-#: data/gtk/entry_page.ui:372
+#: data/gtk/entry_page.ui:425
 msgid "_Expiration Date"
 msgstr "_Son Kullanım Tarihi"
 
-#: data/gtk/entry_page.ui:393
+#: data/gtk/entry_page.ui:446
 msgid "_Show More"
 msgstr "Daha Çoğunu _Göster"
 
-#: data/gtk/entry_row.ui:52
+#: data/gtk/entry_page.ui:465
+msgid "D_uplicate"
+msgstr "Y_inele"
+
+#: data/gtk/entry_page.ui:469
+msgid "_References"
+msgstr "_Referanslar"
+
+#: data/gtk/entry_page.ui:473 data/gtk/group_page.ui:127
+msgid "_Properties"
+msgstr "_Özellikler"
+
+#: data/gtk/entry_page.ui:479 data/gtk/group_page.ui:133
+msgid "_Delete"
+msgstr "_Sil"
+
+#: data/gtk/entry_row.ui:53
 msgid "Copy Username"
 msgstr "Kullanıcı Adını Kopyala"
 
-#: data/gtk/entry_row.ui:59
+#: data/gtk/entry_row.ui:63
 msgid "Copy Password"
 msgstr "Parolayı Kopyala"
 
@@ -414,11 +410,11 @@ msgstr "Parolayı Kopyala"
 msgid "Expiration Date not Set"
 msgstr "Son Kullanım Tarihi Belirlenmedi"
 
-#: data/gtk/expiration_date_row.ui:21
+#: data/gtk/expiration_date_row.ui:24
 msgid "Remove Expiration Date"
 msgstr "Son Kullanım Tarihini Kaldır"
 
-#: data/gtk/expiration_date_row.ui:54
+#: data/gtk/expiration_date_row.ui:57
 msgid "_Set Expiration Date"
 msgstr "Son Kullanım Tarihi _Belirle"
 
@@ -507,6 +503,19 @@ msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Kullanıcı Adını Kopyala"
 
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Tek Kullanımlık Parolayı Kopyala"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Aç"
+
+#: data/gtk/locked_headerbar.ui:31 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "_Yeni Kasa"
+
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "_Kopyala"
@@ -554,22 +563,6 @@ msgstr "Düzenlendi"
 #: data/gtk/properties_dialog.ui:43
 msgid "Created"
 msgstr "Oluştur"
-
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Yeni Kasa"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Kasayı Aç"
-
-#: data/gtk/recent_files_headerbar.ui:32
-msgid "_Open"
-msgstr "_Aç"
-
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Son Kasalar"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
@@ -712,7 +705,7 @@ msgstr "İlk Başlatma Ekranını _Gizle"
 msgid "Reopen last opened safe."
 msgstr "Son açılan kasayı yeniden aç."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:232
 msgid "Safe"
 msgstr "Kasa"
 
@@ -724,7 +717,7 @@ msgstr "Kendiliğinden _Kaydet"
 msgid "Save every change automatically."
 msgstr "Her değişikliği kendiliğinden kaydet."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:33
 msgid "Unlock"
 msgstr "Kilit Aç"
 
@@ -833,18 +826,13 @@ msgstr "Son Listeyi Temizle"
 msgid "Clear the recently opened safes list."
 msgstr "Son açılan kasa listesini temizle."
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
 msgstr "Kasa Kilidini Aç"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:247
 msgid "_Select Keyfile"
 msgstr "Anahtar Dosyası _Seç"
-
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "_Yeni Kasa"
 
 #: data/gtk/unlocked_database_page.ui:28
 msgid "Add elements with the ➕ button."
@@ -898,25 +886,25 @@ msgstr "Önce _Yeni"
 msgid "_Oldest First"
 msgstr "Önce _Eski"
 
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "Sa_fe Settings"
 msgstr "_Kasa Ayarları"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:120
 msgid "New _Entry"
 msgstr "Yeni _Girdi"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:124
 msgid "New _Group"
 msgstr "Yeni _Küme"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:30
 msgid "Secure Secrets"
 msgstr "Sırlar Güvende"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
+#: data/gtk/welcome_page.ui:41
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -1129,7 +1117,7 @@ msgstr ""
 "masaüstüyle kusursuzca tümleşir ve parola veri tabanlarının yönetimi için "
 "kolay ve düzenli arayüz sunar."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:204
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1142,54 +1130,54 @@ msgid "Error: Safe {} is already open"
 msgstr "Hata: {} kasası zaten açık"
 
 #: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "Ek yüklenemedi"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:72
 msgid "Unable to create database"
 msgstr "Veri tabanı oluşturulamadı"
 
-#: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
+#: gsecrets/create_database.py:165
+msgid "Passwords do not match"
 msgstr "Parola Eşleşmiyor"
 
-#: gsecrets/create_database.py:188
+#: gsecrets/create_database.py:193
 msgid "Generating…"
 msgstr "Oluştur…"
 
-#: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
-msgstr "Anahtar Dosyası Oluşturulamadı"
+#: gsecrets/create_database.py:205
+msgid "Could not create keyfile"
+msgstr "Anahtar dosyası oluşturulamadı"
 
-#: gsecrets/create_database.py:201
+#: gsecrets/create_database.py:207
 msgid "Generate"
 msgstr "Oluştur"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:244 gsecrets/entry_page.py:388
 #: gsecrets/entry_row.py:112
-msgid "Username Copied"
-msgstr "Kullanıcı Adı Kopyalandı"
+msgid "Username copied"
+msgstr "Kullanıcı adı kopyalandı"
 
-#: gsecrets/entry_page.py:279
-msgid "One-time Password Copied"
-msgstr "Tek Kullanımlık Parola Kopyalandı"
+#: gsecrets/entry_page.py:256 gsecrets/entry_page.py:295
+msgid "One-time password copied"
+msgstr "Tek kullanımlık parola kopyalandı"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
+#: gsecrets/entry_page.py:316
+msgid "Attribute key already exists"
 msgstr "Öznitelik anahtarı zaten var"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:344
 msgid "Select Attachment"
 msgstr "Ek Seç"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:347
 msgid "_Add"
 msgstr "_Ekle"
 
 #: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
-msgstr "Parola Kopyalandı"
+msgid "Password copied"
+msgstr "Parola kopyalandı"
 
 #: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
 msgid "Title not Specified"
@@ -1199,46 +1187,50 @@ msgstr "Başlık belirtilmedi"
 msgid "Username not specified"
 msgstr "Kullanıcı adı belirtilmedi"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
-#: gsecrets/widgets/window.py:376
-msgid "Could not save Safe"
-msgstr "Kasa kaydedilemedi"
+#: gsecrets/recent_files_menu.py:34
+msgid "Recent Files"
+msgstr "Son Dosyalar"
 
-#: gsecrets/safe_element.py:361
+#: gsecrets/safe_element.py:416
 msgid "Clone"
 msgstr "Klonla"
 
-#: gsecrets/unlock_database.py:80
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:262
+#: gsecrets/widgets/window.py:360
+msgid "Could not save Safe"
+msgstr "Kasa kaydedilemedi"
+
+#: gsecrets/unlock_database.py:79
 msgid "Select Keyfile"
 msgstr "Anahtar Dosyası Seç"
 
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
-msgstr "{} Kasası Zaten Açık"
+#: gsecrets/unlock_database.py:152
+msgid "Safe {} is already open"
+msgstr "{} kasası zaten açık"
 
-#: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
-msgstr "Kasa Kilidi Açılamadı"
+#: gsecrets/unlock_database.py:233
+msgid "Failed to unlock Safe"
+msgstr "Kasa kilidi açılamadı"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:242
 msgid "_Try Again"
 msgstr "_Yeniden Dene"
 
-#: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
-msgstr "Kasa Kaydedildi"
+#: gsecrets/unlocked_database.py:265
+msgid "Safe saved"
+msgstr "Kasa kaydedildi"
 
-#: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
-msgstr "Değişiklik Yapılmadı"
+#: gsecrets/unlocked_database.py:267
+msgid "No changes made"
+msgstr "Değişiklik yapılmadı"
 
-#: gsecrets/unlocked_database.py:322
+#: gsecrets/unlocked_database.py:313
 msgid "Copied"
 msgstr "Kopyalandı"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:379
+msgid "Safe locked due to inactivity"
 msgstr "Kasa durgunluktan kilitlendi"
 
 #. NOTE: Filechooser title for downloading an attachment
@@ -1247,8 +1239,8 @@ msgid "Save Attachment"
 msgstr "Eki Kaydet"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
-msgstr "Ek Depolanamadı"
+msgid "Could not store attachment"
+msgstr "Ek depolanamadı"
 
 #. NOTE: Filechooser title for choosing current used keyfile
 #: gsecrets/widgets/database_settings_dialog.py:130
@@ -1269,33 +1261,33 @@ msgstr "Değişiklikler Uygulandı"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:335
-#: gsecrets/widgets/database_settings_dialog.py:349
+#: gsecrets/widgets/database_settings_dialog.py:337
+#: gsecrets/widgets/database_settings_dialog.py:351
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:341
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:344
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:347
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:355
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:356
+#: gsecrets/widgets/database_settings_dialog.py:358
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1310,50 +1302,56 @@ msgid_plural "{} _Selected"
 msgstr[0] "{} _Seçildi"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
-msgstr "İşlem İptal Edildi: Geçerli Aktif Kümeyi Sil"
+msgid "Operation aborted: deleting currently active group"
+msgstr "İşlem iptal edildi: geçerli aktif kümeyi sil"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
-msgstr "Silme Tamamlandı"
+msgid "Deletion completed"
+msgstr "Silme tamamlandı"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
-msgstr "İşlem İptal Edildi: Geçerli Aktif Kümeyi Taşı"
+msgid "Operation aborted: moving currently active group"
+msgstr "İşlem iptal edildi: geçerli aktif kümeyi taşı"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
-msgstr "Taşıma Tamamlandı"
+msgid "Move completed"
+msgstr "Taşıma tamamlandı"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:130
 msgid "Select Safe"
 msgstr "Kasa Seç"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
+#: gsecrets/widgets/window.py:141 gsecrets/widgets/window.py:237
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 Veri Tabanı"
 
-#: gsecrets/widgets/window.py:162
+#: gsecrets/widgets/window.py:146
 msgid "Any file type"
 msgstr "Herhangi dosya türü"
 
-#: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
-msgstr "Kasa Zaten Açık"
+#: gsecrets/widgets/window.py:205
+msgid "Safe is already open"
+msgstr "Kasa zaten açık"
 
-#: gsecrets/widgets/window.py:245
+#: gsecrets/widgets/window.py:229
 msgid "_Create"
 msgstr "_Oluştur"
 
-#: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
-msgstr "Kasa Oluşturulamadı: Kasa Zaten Açık"
+#: gsecrets/widgets/window.py:260
+msgid "Cannot create Safe: Safe is already open"
+msgstr "Kasa oluşturulamadı: Kasa zaten açık"
 
-#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:316
+msgid "Could not create new Safe"
 msgstr "Yeni kasa oluşturulamadı"
+
+#~ msgid "New Safe"
+#~ msgstr "Yeni Kasa"
+
+#~ msgid "Open Safe"
+#~ msgstr "Kasayı Aç"
 
 #~ msgid "Preferences"
 #~ msgstr "Tercihler"

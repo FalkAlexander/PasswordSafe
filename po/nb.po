@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-22 07:53+0000\n"
-"PO-Revision-Date: 2022-03-22 16:14+0100\n"
+"POT-Creation-Date: 2022-04-26 09:57+0000\n"
+"PO-Revision-Date: 2022-04-27 11:09+0200\n"
 "Last-Translator: John Erling Blad <jeblad@gmail.com>\n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb\n"
@@ -58,7 +58,7 @@ msgstr "_Tilbake"
 msgid "_Proceed"
 msgstr "_Fortsett"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:9
 msgid "Remove Attribute"
 msgstr "Fjern attributt"
 
@@ -66,129 +66,122 @@ msgstr "Fjern attributt"
 msgid "Color"
 msgstr "Farge"
 
-#: data/gtk/create_database.ui:33
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:226
+msgid "Create Safe"
+msgstr "Ny safe"
+
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:36
+#: data/gtk/group_page.ui:14
+msgid "Back"
+msgstr "Tilbake"
+
+#: data/gtk/create_database.ui:21 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:38
+msgid "Main Menu"
+msgstr "Hovedmeny"
+
+#: data/gtk/create_database.ui:57
 msgid "Protect your safe"
 msgstr "Beskytt din safe"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:70 data/gtk/password_entry_row.ui:12
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Passord"
 
-#: data/gtk/create_database.ui:47
+#: data/gtk/create_database.ui:71
 msgid "Use a password to secure your safe."
 msgstr "Bruk et passord for å sikre din safe."
 
-#: data/gtk/create_database.ui:57
+#: data/gtk/create_database.ui:81
 msgid "_Keyfile"
 msgstr "_Nøkkelfil"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:82
 msgid "Use a keyfile to secure your safe."
 msgstr "Bruk en nøkkelfil for å sikre din safe."
 
-#: data/gtk/create_database.ui:68
+#: data/gtk/create_database.ui:92
 msgid "_Composite"
 msgstr "_Sammensatt"
 
-#: data/gtk/create_database.ui:69
+#: data/gtk/create_database.ui:93
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "Bruk et passord sammen med en nøkkelfil for å sikre din safe."
 
-#: data/gtk/create_database.ui:101
+#: data/gtk/create_database.ui:125
 msgid "Enter Password"
 msgstr "Skriv inn passord"
 
-#: data/gtk/create_database.ui:109
+#: data/gtk/create_database.ui:133
 msgid "Set password for safe."
 msgstr "Sett passord for safen."
 
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
+#: data/gtk/create_database.ui:158 data/gtk/database_settings_dialog.ui:42
 #: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
 msgid "Generate New Password"
 msgstr "Generer nytt passord"
 
-#: data/gtk/create_database.ui:183
+#: data/gtk/create_database.ui:207
 msgid "Password Match Check"
 msgstr "Passord verifikasjon"
 
-#: data/gtk/create_database.ui:191
+#: data/gtk/create_database.ui:215
 msgid "Repeat password for safe."
 msgstr "Gjenta passordet for safen."
 
-#: data/gtk/create_database.ui:248
+#: data/gtk/create_database.ui:272
 msgid "Match Check Failed"
 msgstr "Kunne ikke verifisere"
 
-#: data/gtk/create_database.ui:256
+#: data/gtk/create_database.ui:280
 msgid "Please try again."
 msgstr "Vennligst prøv på nytt."
 
-#: data/gtk/create_database.ui:286
+#: data/gtk/create_database.ui:310
 msgid "_Confirm"
 msgstr "_Bekreft"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: data/gtk/create_database.ui:345 gsecrets/create_database.py:174
 #: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Skap nøkkelfil"
 
-#: data/gtk/create_database.ui:329
+#: data/gtk/create_database.ui:353
 msgid "Set keyfile for safe"
 msgstr "Sett nøkkelfil for safen"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:172
+#: data/gtk/create_database.ui:363 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:177
 #: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Generer"
 
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:396
 msgid "Safe Successfully Created"
 msgstr "Safen ble opprettet"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:404 data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "_Åpne safe"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
-msgid "Create Safe"
-msgstr "Ny safe"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Tilbake"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Hovedmeny"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:426 data/gtk/locked_headerbar.ui:37
+#: data/gtk/unlocked_headerbar.ui:104
 msgid "_Preferences"
 msgstr "_Egenskaper"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:430 data/gtk/locked_headerbar.ui:41
+#: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastatursnarveier"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:434 data/gtk/locked_headerbar.ui:45
+#: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
 msgstr "_Om Hemmeligheter"
 
@@ -198,13 +191,12 @@ msgstr "Autentiser"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:27
 msgid "Password"
 msgstr "Passord"
 
 #. New password (replacement for an old one)
 #: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
 msgid "_New"
 msgstr "_Lag"
 
@@ -226,8 +218,8 @@ msgstr "Nåværende"
 msgid "Enter Current Password"
 msgstr "Skriv inn nåværende passord"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
-#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
+#: gsecrets/utils.py:76 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "Nøkkelfil"
 
@@ -303,107 +295,111 @@ msgstr "Antall grupper"
 msgid "Passwords"
 msgstr "Passord"
 
-#: data/gtk/edit_element_headerbar.ui:22
+#: data/gtk/entry_page.ui:45 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Meny"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "_Egenskaper"
-
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "_Slett"
-
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "D_ublett"
-
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "_Referanser"
-
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/entry_page.ui:74 data/gtk/group_page.ui:50
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Tittel"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
+#: data/gtk/entry_page.ui:97 data/gtk/references_dialog.ui:173
 msgid "_Username"
 msgstr "_Brukernavn"
 
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
+#: data/gtk/entry_page.ui:108 data/gtk/entry_page.ui:185
 #: data/gtk/password_entry_row.ui:32
 msgid "Copy"
 msgstr "Kopi"
 
-#: data/gtk/entry_page.ui:77
+#: data/gtk/entry_page.ui:125
 msgid "One-_Time Password Secret"
 msgstr "Engangspassord-hemmelighet (OTP)"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:97
+#: data/gtk/entry_page.ui:145
 msgid "Could not Generate OTP Token"
 msgstr "Kunne ikke generere OTP-token"
 
-#: data/gtk/entry_page.ui:111
+#: data/gtk/entry_page.ui:159
 msgid "_One-Time Password"
 msgstr "_Engangspassord"
 
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:210
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
+#: data/gtk/entry_page.ui:222
+msgid "Open Address"
+msgstr "Åpen adresse"
+
+#: data/gtk/entry_page.ui:240 data/gtk/group_page.ui:76
 #: data/gtk/references_dialog.ui:185
 msgid "_Notes"
 msgstr "_Notater"
 
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:252 data/gtk/group_page.ui:87
 msgid "Edit in a Window"
 msgstr "Rediger i et vindu"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:292
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:268
+#: data/gtk/entry_page.ui:319
 msgid "Attachments"
 msgstr "Vedlegg"
 
-#: data/gtk/entry_page.ui:293
+#: data/gtk/entry_page.ui:344
 msgid "_Add Attachment"
 msgstr "_Legg til vedlegg"
 
-#: data/gtk/entry_page.ui:315
+#: data/gtk/entry_page.ui:366
 msgid "Attributes"
 msgstr "Attributter"
 
-#: data/gtk/entry_page.ui:331
+#: data/gtk/entry_page.ui:382
 msgid "Key"
 msgstr "Nøkkel"
 
-#: data/gtk/entry_page.ui:337
+#: data/gtk/entry_page.ui:388
 msgid "Value"
 msgstr "Verdi"
 
-#: data/gtk/entry_page.ui:348
+#: data/gtk/entry_page.ui:399
 msgid "Add Attribute"
 msgstr "Legg til attributt"
 
-#: data/gtk/entry_page.ui:372
+#: data/gtk/entry_page.ui:425
 msgid "_Expiration Date"
 msgstr "_Utløpsdato"
 
-#: data/gtk/entry_page.ui:393
+#: data/gtk/entry_page.ui:446
 msgid "_Show More"
 msgstr "_Vis mere"
 
-#: data/gtk/entry_row.ui:52
+#: data/gtk/entry_page.ui:465
+msgid "D_uplicate"
+msgstr "D_ublett"
+
+#: data/gtk/entry_page.ui:469
+msgid "_References"
+msgstr "_Referanser"
+
+#: data/gtk/entry_page.ui:473 data/gtk/group_page.ui:127
+msgid "_Properties"
+msgstr "_Egenskaper"
+
+#: data/gtk/entry_page.ui:479 data/gtk/group_page.ui:133
+msgid "_Delete"
+msgstr "_Slett"
+
+#: data/gtk/entry_row.ui:53
 msgid "Copy Username"
 msgstr "Kopier brukernavn"
 
-#: data/gtk/entry_row.ui:59
+#: data/gtk/entry_row.ui:63
 msgid "Copy Password"
 msgstr "Kopier passord"
 
@@ -411,11 +407,11 @@ msgstr "Kopier passord"
 msgid "Expiration Date not Set"
 msgstr "Ingen utløpsdato"
 
-#: data/gtk/expiration_date_row.ui:21
+#: data/gtk/expiration_date_row.ui:24
 msgid "Remove Expiration Date"
 msgstr "Fjern utløpsdato"
 
-#: data/gtk/expiration_date_row.ui:54
+#: data/gtk/expiration_date_row.ui:57
 msgid "_Set Expiration Date"
 msgstr "_Sett utløpsdato"
 
@@ -509,6 +505,14 @@ msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Kopier engangspassord"
 
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Åpen"
+
+#: data/gtk/locked_headerbar.ui:31 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "_Ny safe"
+
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "_Kopi"
@@ -556,22 +560,6 @@ msgstr "Endret"
 #: data/gtk/properties_dialog.ui:43
 msgid "Created"
 msgstr "Opprettet"
-
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Ny safe"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Åpne safe"
-
-#: data/gtk/recent_files_headerbar.ui:32
-msgid "_Open"
-msgstr "_Åpen"
-
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Nylige safer"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
@@ -714,7 +702,7 @@ msgstr "_Skjul første oppstartsvindu"
 msgid "Reopen last opened safe."
 msgstr "Gjenåpne sist brukte safe."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:232
 msgid "Safe"
 msgstr "Safe"
 
@@ -726,7 +714,7 @@ msgstr "_Lagre automatisk"
 msgid "Save every change automatically."
 msgstr "Lagre hver endring automatisk."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:33
 msgid "Unlock"
 msgstr "Lås opp"
 
@@ -835,18 +823,13 @@ msgstr "Rensk siste liste"
 msgid "Clear the recently opened safes list."
 msgstr "Rensk lista over sist åpnede safer."
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
 msgstr "Lås opp safen"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:247
 msgid "_Select Keyfile"
 msgstr "_Velg nøkkelfil"
-
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "_Ny safe"
 
 #: data/gtk/unlocked_database_page.ui:28
 msgid "Add elements with the ➕ button."
@@ -900,25 +883,25 @@ msgstr "_Nyeste først"
 msgid "_Oldest First"
 msgstr "_Eldste først"
 
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "Sa_fe Settings"
 msgstr "Sa_fe innstillinger"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:120
 msgid "New _Entry"
 msgstr "Ny _oppføring"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:124
 msgid "New _Group"
 msgstr "Ny _gruppe"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:30
 msgid "Secure Secrets"
 msgstr "Sikre Hemmeligheter"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
+#: data/gtk/welcome_page.ui:41
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -1126,7 +1109,7 @@ msgstr ""
 "integreres perfekt med GNOME-skrivebordet og gir et enkelt og oversiktlig "
 "grensesnitt for å administrere passorddatabaser."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:204
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1139,53 +1122,53 @@ msgid "Error: Safe {} is already open"
 msgstr "Feil: Safe {} er allerede åpen"
 
 #: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "Kunne ikke laste vedlegg"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:72
 msgid "Unable to create database"
 msgstr "Kan ikke opprette database"
 
-#: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
+#: gsecrets/create_database.py:165
+msgid "Passwords do not match"
 msgstr "Passord stemmer ikke overens"
 
-#: gsecrets/create_database.py:188
+#: gsecrets/create_database.py:193
 msgid "Generating…"
 msgstr "Genererer…"
 
-#: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
+#: gsecrets/create_database.py:205
+msgid "Could not create keyfile"
 msgstr "Kunne ikke lage ny nøkkelfil"
 
-#: gsecrets/create_database.py:201
+#: gsecrets/create_database.py:207
 msgid "Generate"
 msgstr "Generer"
 
-#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
+#: gsecrets/entry_page.py:244 gsecrets/entry_page.py:388
 #: gsecrets/entry_row.py:112
-msgid "Username Copied"
+msgid "Username copied"
 msgstr "Brukernavn kopiert"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:256 gsecrets/entry_page.py:295
+msgid "One-time password copied"
 msgstr "Engangspassord kopiert"
 
-#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
+#: gsecrets/entry_page.py:316
+msgid "Attribute key already exists"
 msgstr "Attributtnøkkel finnes allerede"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:342
+#: gsecrets/entry_page.py:344
 msgid "Select Attachment"
 msgstr "Velg vedlegg"
 
-#: gsecrets/entry_page.py:345
+#: gsecrets/entry_page.py:347
 msgid "_Add"
 msgstr "_Legg til"
 
 #: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+msgid "Password copied"
 msgstr "Passord kopiert"
 
 #: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
@@ -1196,46 +1179,50 @@ msgstr "Tittel er ikke angitt"
 msgid "Username not specified"
 msgstr "Ingen brukernavn er angitt"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
-#: gsecrets/widgets/window.py:376
-msgid "Could not save Safe"
-msgstr "Kunne ikke lagre safen"
+#: gsecrets/recent_files_menu.py:34
+msgid "Recent Files"
+msgstr "Nylige filer"
 
-#: gsecrets/safe_element.py:361
+#: gsecrets/safe_element.py:416
 msgid "Clone"
 msgstr "Klone"
 
-#: gsecrets/unlock_database.py:80
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:262
+#: gsecrets/widgets/window.py:360
+msgid "Could not save Safe"
+msgstr "Kunne ikke lagre safen"
+
+#: gsecrets/unlock_database.py:79
 msgid "Select Keyfile"
 msgstr "Velg nøkkelfil"
 
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
-msgstr "Safe {} er allerede åpen"
+#: gsecrets/unlock_database.py:152
+msgid "Safe {} is already open"
+msgstr "Safen {} er allerede åpen"
 
-#: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
+#: gsecrets/unlock_database.py:233
+msgid "Failed to unlock Safe"
 msgstr "Kunne ikke låse opp safen"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:242
 msgid "_Try Again"
 msgstr "_Prøv på nytt"
 
-#: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
+#: gsecrets/unlocked_database.py:265
+msgid "Safe saved"
 msgstr "Safe lagret"
 
-#: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
+#: gsecrets/unlocked_database.py:267
+msgid "No changes made"
 msgstr "Ingen endringer gjort"
 
-#: gsecrets/unlocked_database.py:322
+#: gsecrets/unlocked_database.py:313
 msgid "Copied"
 msgstr "Kopiert"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:379
+msgid "Safe locked due to inactivity"
 msgstr "Safen er låst på grunn av inaktivitet"
 
 #. NOTE: Filechooser title for downloading an attachment
@@ -1244,7 +1231,7 @@ msgid "Save Attachment"
 msgstr "Lagre vedlegg"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "Kunne ikke lagre vedlegg"
 
 #. NOTE: Filechooser title for choosing current used keyfile
@@ -1266,33 +1253,33 @@ msgstr "Endringer gjort"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:335
-#: gsecrets/widgets/database_settings_dialog.py:349
+#: gsecrets/widgets/database_settings_dialog.py:337
+#: gsecrets/widgets/database_settings_dialog.py:351
 msgid "Unknown"
 msgstr "Ukjent"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:341
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:344
 msgid "ChaCha20 256-bit"
 msgstr "CHACHA20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:347
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:355
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:356
+#: gsecrets/widgets/database_settings_dialog.py:358
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1308,50 +1295,56 @@ msgstr[0] "{} Valgt"
 msgstr[1] "{} Valgte"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
 msgstr "Operasjon avbrutt: Sletter den aktive gruppen"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
+msgid "Deletion completed"
 msgstr "Sletting gjennomført"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
 msgstr "Operasjon avbrutt: Flytter den aktive gruppen"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
+msgid "Move completed"
 msgstr "Flytting ferdig"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:130
 msgid "Select Safe"
 msgstr "Velg safe"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
+#: gsecrets/widgets/window.py:141 gsecrets/widgets/window.py:237
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 databaser"
 
-#: gsecrets/widgets/window.py:162
+#: gsecrets/widgets/window.py:146
 msgid "Any file type"
 msgstr "Enhver filtype"
 
-#: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
+#: gsecrets/widgets/window.py:205
+msgid "Safe is already open"
 msgstr "Safen er allerede åpnet"
 
-#: gsecrets/widgets/window.py:245
+#: gsecrets/widgets/window.py:229
 msgid "_Create"
 msgstr "_Ny"
 
-#: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
+#: gsecrets/widgets/window.py:260
+msgid "Cannot create Safe: Safe is already open"
 msgstr "Kan ikke lage ny safe: Safen er allerede åpen"
 
-#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:316
+msgid "Could not create new Safe"
 msgstr "Kunne ikke lage ny safe"
+
+#~ msgid "New Safe"
+#~ msgstr "Ny safe"
+
+#~ msgid "Open Safe"
+#~ msgstr "Åpne safe"
 
 #~ msgid "The kdb Format is not Supported"
 #~ msgstr "Kdb-formatet er ikke støttet"

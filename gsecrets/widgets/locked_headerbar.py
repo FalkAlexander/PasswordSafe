@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from gi.repository import Adw, Gio, Gtk
 
-import gsecrets.config_manager as config
 from gsecrets import const
 from gsecrets.recent_files_menu import RecentFilesMenu
 
@@ -25,11 +24,11 @@ class LockedHeaderBar(Adw.Bin):
         )
 
     def set_menu(self):
-        if config.get_last_opened_list():
-            menu = RecentFilesMenu().menu
-            self.split_button.set_menu_model(menu)
-        else:
+        menu = RecentFilesMenu()
+        if menu.is_empty:
             self.split_button.set_menu_model(None)
+        else:
+            self.split_button.set_menu_model(menu.menu)
 
     def on_settings_changed(self, _settings, _key):
         self.set_menu()

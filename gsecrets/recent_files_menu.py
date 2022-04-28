@@ -19,6 +19,7 @@ class RecentFilesMenu:
 
         self.menu = Gio.Menu.new()
         self.section = Gio.Menu.new()
+        self.is_empty = True
 
         for path_uri in reversed(config.get_last_opened_list()):
             gfile: Gio.File = Gio.File.new_for_uri(path_uri)
@@ -30,6 +31,7 @@ class RecentFilesMenu:
             basename = os.path.splitext(gfile.get_basename())[0]
             path = gfile.get_path()
             self.section.append(basename, f"win.open_database::{path}")
+            self.is_empty = False
 
         self.menu.append_section(_("Recent Files"), self.section)
         self.menu.freeze()

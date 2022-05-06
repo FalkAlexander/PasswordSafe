@@ -192,6 +192,10 @@ class CreateDatabase(Gtk.Box):
             self.generate_keyfile_button.set_sensitive(False)
             self.generate_keyfile_button.set_label(_("Generating…"))
             keyfile = dialog.get_file()
+            if keyfile is None:
+                logging.debug("No file selected")
+                return
+
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
 

@@ -152,6 +152,10 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         select_dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             keyfile = select_dialog.get_file()
+            if keyfile is None:
+                logging.debug("No file selected")
+                return
+
             keyfile.load_bytes_async(None, self.load_bytes_callback)
 
     def load_bytes_callback(self, gfile, result):
@@ -218,6 +222,9 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.generate_keyfile_button.set_child(spinner)
 
             keyfile = save_dialog.get_file()
+            if keyfile is None:
+                logging.debug("No file selected")
+                return
 
             def callback(gfile, result):
                 try:

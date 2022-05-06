@@ -162,6 +162,10 @@ class Window(Adw.ApplicationWindow):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             db_gfile = dialog.get_file()
+            if db_gfile is None:
+                logging.debug("No file selected")
+                return
+
             db_filename = db_gfile.get_path()
             logging.debug("File selected: %s", db_filename)
 
@@ -248,7 +252,12 @@ class Window(Adw.ApplicationWindow):
     ) -> None:
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
-            filepath = dialog.get_file().get_path()
+            gfile = dialog.get_file()
+            if gfile is None:
+                logging.debug("No file selected")
+                return
+
+            filepath = gfile.get_path()
             if self.unlocked_db:
                 auto_save = gsecrets.config_manager.get_save_automatically()
                 is_dirty = self.unlocked_db.database_manager.is_dirty

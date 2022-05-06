@@ -88,6 +88,10 @@ class UnlockDatabase(Gtk.Box):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             keyfile = dialog.get_file()
+            if keyfile is None:
+                logging.debug("No file selected")
+                return
+
             self.set_keyfile(keyfile)
 
     def set_keyfile(self, keyfile: Gio.File) -> None:

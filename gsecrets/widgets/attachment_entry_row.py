@@ -69,6 +69,10 @@ class AttachmentEntryRow(Adw.ActionRow):
         dialog.destroy()
         if response == Gtk.ResponseType.ACCEPT:
             gfile = dialog.get_file()
+            if gfile is None:
+                logging.debug("No file selected")
+                return
+
             bytes_buffer = self.entry.get_attachment_content(self.attachment)
             gbytes = GLib.Bytes.new(bytes_buffer)
 

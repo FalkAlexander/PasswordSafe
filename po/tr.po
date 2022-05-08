@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-19 22:44+0000\n"
-"PO-Revision-Date: 2022-03-20 22:23+0300\n"
+"POT-Creation-Date: 2022-04-14 14:26+0000\n"
+"PO-Revision-Date: 2022-04-30 17:06+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -506,6 +506,11 @@ msgstr "Parolayı Kopyala"
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Kullanıcı Adını Kopyala"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Tek Kullanımlık Parolayı Kopyala"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
@@ -1129,7 +1134,7 @@ msgstr ""
 "masaüstüyle kusursuzca tümleşir ve parola veri tabanlarının yönetimi için "
 "kolay ve düzenli arayüz sunar."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:198
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1165,25 +1170,25 @@ msgstr "Anahtar Dosyası Oluşturulamadı"
 msgid "Generate"
 msgstr "Oluştur"
 
-#: gsecrets/entry_page.py:238 gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:389
 #: gsecrets/entry_row.py:112
 msgid "Username Copied"
 msgstr "Kullanıcı Adı Kopyalandı"
 
-#: gsecrets/entry_page.py:279
+#: gsecrets/entry_page.py:257 gsecrets/entry_page.py:296
 msgid "One-time Password Copied"
 msgstr "Tek Kullanımlık Parola Kopyalandı"
 
-#: gsecrets/entry_page.py:300 gsecrets/widgets/attribute_entry_row.py:69
+#: gsecrets/entry_page.py:317 gsecrets/widgets/attribute_entry_row.py:69
 msgid "Attribute key Already Exists"
 msgstr "Öznitelik anahtarı zaten var"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:328
+#: gsecrets/entry_page.py:345
 msgid "Select Attachment"
 msgstr "Ek Seç"
 
-#: gsecrets/entry_page.py:331
+#: gsecrets/entry_page.py:348
 msgid "_Add"
 msgstr "_Ekle"
 

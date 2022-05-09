@@ -2,22 +2,22 @@
 # Copyright (C) 2018 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
 # Andika Triwidada <atriwidada@gnome.org>, 2018.
-# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-01-05 23:35+0000\n"
-"PO-Revision-Date: 2022-03-11 22:00+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2022-05-05 13:05+0000\n"
+"PO-Revision-Date: 2022-05-09 09:31+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -33,7 +33,7 @@ msgstr "Pelajari lebih lanjut tentang Secrets"
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2018-2022.\n"
-"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020, 2022."
 
 #. Dialog title which informs the user about unsaved changes.
 #: data/gtk/attachment_warning_dialog.ui:6
@@ -59,7 +59,7 @@ msgstr "_Mundur"
 msgid "_Proceed"
 msgstr "_Lanjutkan"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:9
 msgid "Remove Attribute"
 msgstr "Hapus Atribut"
 
@@ -67,131 +67,124 @@ msgstr "Hapus Atribut"
 msgid "Color"
 msgstr "Warna"
 
-#: data/gtk/create_database.ui:33
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:226
+msgid "Create Safe"
+msgstr "Buat Brankas"
+
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:36
+#: data/gtk/group_page.ui:14
+msgid "Back"
+msgstr "Mundur"
+
+#: data/gtk/create_database.ui:21 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:38
+msgid "Main Menu"
+msgstr "Menu Utama"
+
+#: data/gtk/create_database.ui:57
 msgid "Protect your safe"
 msgstr "Lindungi brankas Anda"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:70 data/gtk/password_entry_row.ui:12
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "Kata _Sandi"
 
-#: data/gtk/create_database.ui:47
+#: data/gtk/create_database.ui:71
 msgid "Use a password to secure your safe."
 msgstr "Menggunakan sebuah kata sandi untuk mengamankan brankas Anda."
 
-#: data/gtk/create_database.ui:57
+#: data/gtk/create_database.ui:81
 msgid "_Keyfile"
 msgstr "Berkas _Kunci"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:82
 msgid "Use a keyfile to secure your safe."
 msgstr "Menggunakan sebuah berkas kunci untuk mengamankan brankas Anda."
 
-#: data/gtk/create_database.ui:68
+#: data/gtk/create_database.ui:92
 msgid "_Composite"
 msgstr "_Komposit"
 
-#: data/gtk/create_database.ui:69
+#: data/gtk/create_database.ui:93
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr ""
 "Menggunakan kata sandi dalam kombinasi dengan berkas kunci untuk mengamankan "
 "brankas Anda."
 
-#: data/gtk/create_database.ui:101
+#: data/gtk/create_database.ui:125
 msgid "Enter Password"
 msgstr "Masukkan Kata Sandi"
 
-#: data/gtk/create_database.ui:109
+#: data/gtk/create_database.ui:133
 msgid "Set password for safe."
 msgstr "Atur kata sandi untuk brankas."
 
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
+#: data/gtk/create_database.ui:158 data/gtk/database_settings_dialog.ui:42
 #: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
 msgid "Generate New Password"
 msgstr "Buat Kata Sandi Baru"
 
-#: data/gtk/create_database.ui:183
+#: data/gtk/create_database.ui:207
 msgid "Password Match Check"
 msgstr "Pemeriksaan Kecocokan Kata Sandi"
 
-#: data/gtk/create_database.ui:191
+#: data/gtk/create_database.ui:215
 msgid "Repeat password for safe."
 msgstr "Ulangi kata sandi untuk brankas."
 
-#: data/gtk/create_database.ui:248
+#: data/gtk/create_database.ui:272
 msgid "Match Check Failed"
 msgstr "Pemeriksaan Kecocokan Gagal"
 
-#: data/gtk/create_database.ui:256
+#: data/gtk/create_database.ui:280
 msgid "Please try again."
 msgstr "Silakan coba lagi."
 
-#: data/gtk/create_database.ui:286
+#: data/gtk/create_database.ui:310
 msgid "_Confirm"
 msgstr "_Konfirmasi"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
-#: gsecrets/widgets/database_settings_dialog.py:198
+#: data/gtk/create_database.ui:345 gsecrets/create_database.py:174
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Generate Keyfile"
 msgstr "Buat Berkas Kunci"
 
-#: data/gtk/create_database.ui:329
+#: data/gtk/create_database.ui:353
 msgid "Set keyfile for safe"
 msgstr "Atur berkas kunci untuk brankas"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: data/gtk/create_database.ui:363 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:177
+#: gsecrets/widgets/database_settings_dialog.py:199
 msgid "_Generate"
 msgstr "_Buat"
 
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:396
 msgid "Safe Successfully Created"
 msgstr "Brankas Berhasil Dibuat"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:404 data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "B_uka Brankas"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
-msgid "Create Safe"
-msgstr "Buat Brankas"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Mundur"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Menu Utama"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:426 data/gtk/locked_headerbar.ui:37
+#: data/gtk/unlocked_headerbar.ui:104
 msgid "_Preferences"
 msgstr "_Preferensi"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:430 data/gtk/locked_headerbar.ui:41
+#: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
 msgstr "Pintasan Papan Ti_k"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:434 data/gtk/locked_headerbar.ui:45
+#: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
 msgstr "Tent_ang Secrets"
 
@@ -201,13 +194,12 @@ msgstr "Autentikasi"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:27
 msgid "Password"
 msgstr "Kata Sandi"
 
 #. New password (replacement for an old one)
 #: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
 msgid "_New"
 msgstr "_Baru"
 
@@ -229,8 +221,8 @@ msgstr "_Kini"
 msgid "Enter Current Password"
 msgstr "Masukkan Kata Sandi Saat Ini"
 
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
+#: gsecrets/utils.py:76 gsecrets/widgets/database_settings_dialog.py:202
 msgid "Keyfile"
 msgstr "Berkas Kunci"
 
@@ -247,7 +239,7 @@ msgid "Could not Load Keyfile"
 msgstr "Tak bisa Memat Berkas Kunci"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:269
 msgid "_Apply Changes"
 msgstr "Ter_apkan Perubahan"
 
@@ -306,108 +298,111 @@ msgstr "Cacah Grup"
 msgid "Passwords"
 msgstr "Kata Sandi"
 
-#: data/gtk/edit_element_headerbar.ui:22
+#: data/gtk/entry_page.ui:45 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Menu"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "_Properti"
-
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "_Hapus"
-
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "D_uplikatkan"
-
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "_Rujukan"
-
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/entry_page.ui:74 data/gtk/group_page.ui:50
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Judul"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
+#: data/gtk/entry_page.ui:97 data/gtk/references_dialog.ui:173
 msgid "_Username"
 msgstr "Nama Pengg_una"
 
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
+#: data/gtk/entry_page.ui:108 data/gtk/entry_page.ui:185
 #: data/gtk/password_entry_row.ui:32
 msgid "Copy"
 msgstr "Salin"
 
-#: data/gtk/entry_page.ui:77
-#| msgid "Secure Password Safe"
+#: data/gtk/entry_page.ui:125
 msgid "One-_Time Password Secret"
 msgstr "Rahasia One-_Time Password"
 
-#: data/gtk/entry_page.ui:97
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:145
 msgid "Could not Generate OTP Token"
 msgstr "Tidak Bisa Membuat Token OTP"
 
-#: data/gtk/entry_page.ui:111
-#| msgid "Enter Password"
+#: data/gtk/entry_page.ui:159
 msgid "_One-Time Password"
 msgstr "_One-Time Password"
 
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:210
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
+#: data/gtk/entry_page.ui:222
+msgid "Open Address"
+msgstr "Buka Alamat"
+
+#: data/gtk/entry_page.ui:240 data/gtk/group_page.ui:76
 #: data/gtk/references_dialog.ui:185
 msgid "_Notes"
 msgstr "Catata_n"
 
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:252 data/gtk/group_page.ui:87
 msgid "Edit in a Window"
 msgstr "Sunting dalam sebuah Jendela"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:292
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:265
+#: data/gtk/entry_page.ui:319
 msgid "Attachments"
 msgstr "Lampiran"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:344
 msgid "_Add Attachment"
 msgstr "T_ambahkan Lampiran"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:366
 msgid "Attributes"
 msgstr "Atribut"
 
-#: data/gtk/entry_page.ui:328
+#: data/gtk/entry_page.ui:382
 msgid "Key"
 msgstr "Kunci"
 
-#: data/gtk/entry_page.ui:334
+#: data/gtk/entry_page.ui:388
 msgid "Value"
 msgstr "Nilai"
 
-#: data/gtk/entry_page.ui:345
+#: data/gtk/entry_page.ui:399
 msgid "Add Attribute"
 msgstr "Tambah Atribut"
 
-#: data/gtk/entry_page.ui:369
+#: data/gtk/entry_page.ui:425
 msgid "_Expiration Date"
 msgstr "Tanggal K_edaluwarsa"
 
-#: data/gtk/entry_page.ui:390
+#: data/gtk/entry_page.ui:446
 msgid "_Show More"
 msgstr "Tampilkan Lebih _Banyak"
 
-#: data/gtk/entry_row.ui:52
+#: data/gtk/entry_page.ui:465
+msgid "D_uplicate"
+msgstr "D_uplikatkan"
+
+#: data/gtk/entry_page.ui:469
+msgid "_References"
+msgstr "_Rujukan"
+
+#: data/gtk/entry_page.ui:473 data/gtk/group_page.ui:127
+msgid "_Properties"
+msgstr "_Properti"
+
+#: data/gtk/entry_page.ui:479 data/gtk/group_page.ui:133
+msgid "_Delete"
+msgstr "_Hapus"
+
+#: data/gtk/entry_row.ui:53
 msgid "Copy Username"
 msgstr "Salin Nama Pengguna"
 
-#: data/gtk/entry_row.ui:59
+#: data/gtk/entry_row.ui:63
 msgid "Copy Password"
 msgstr "Salin Kata Sandi"
 
@@ -415,11 +410,11 @@ msgstr "Salin Kata Sandi"
 msgid "Expiration Date not Set"
 msgstr "Tanggal Kedaluwarsa Tak Ditata"
 
-#: data/gtk/expiration_date_row.ui:21
+#: data/gtk/expiration_date_row.ui:24
 msgid "Remove Expiration Date"
 msgstr "Hapus Tanggal Kedaluwarsa"
 
-#: data/gtk/expiration_date_row.ui:54
+#: data/gtk/expiration_date_row.ui:57
 msgid "_Set Expiration Date"
 msgstr "Atur Tanggal Kedaluwar_sa"
 
@@ -508,6 +503,19 @@ msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Salin Nama Pengguna"
 
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Salin Kata Sandi Satu Kali"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Buka"
+
+#: data/gtk/locked_headerbar.ui:31 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "Bra_nkas Baru"
+
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "_Salin"
@@ -555,22 +563,6 @@ msgstr "Diubah"
 #: data/gtk/properties_dialog.ui:43
 msgid "Created"
 msgstr "Dibuat"
-
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Brankas Baru"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Buka Brankas"
-
-#: data/gtk/recent_files_headerbar.ui:32
-msgid "_Open"
-msgstr "_Buka"
-
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Brankas Baru-baru Ini"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
@@ -713,7 +705,7 @@ msgstr "_Sembunyikan Layar Pertama Mulai"
 msgid "Reopen last opened safe."
 msgstr "Buka kembali brankas yang terakhir dibuka."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:232
 msgid "Safe"
 msgstr "Brankas"
 
@@ -725,7 +717,7 @@ msgstr "_Simpan Secara Otomatis"
 msgid "Save every change automatically."
 msgstr "Simpan setiap perubahan secara otomatis."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:33
 msgid "Unlock"
 msgstr "Buka Kunci"
 
@@ -779,6 +771,7 @@ msgstr "Gunakan angka 0-9 saat menghasilkan kata sandi acak."
 msgid "_Special Characters"
 msgstr "Karakter Khusu_s"
 
+#. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr ""
@@ -834,14 +827,21 @@ msgstr "Hapus Daftar Baru-baru Ini"
 msgid "Clear the recently opened safes list."
 msgstr "Bersihkan daftar brankas yang baru-baru ini dibuka."
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
 msgstr "Buka Kunci Brankas"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "Bra_nkas Baru"
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:247
+msgid "_Select Keyfile"
+msgstr "Pilih Berka_s Kunci"
+
+#: data/gtk/unlocked_database_page.ui:28
+msgid "Add elements with the ➕ button."
+msgstr "Tambah elemen dengan tombol ➕."
+
+#: data/gtk/unlocked_database_page.ui:29
+msgid "Empty Group"
+msgstr "Grup Kosong"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
@@ -869,10 +869,12 @@ msgstr "_Kunci"
 msgid "So_rting"
 msgstr "Pengu_rutan"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Z"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Z-A"
@@ -885,25 +887,25 @@ msgstr "Ter_baru Di Awal"
 msgid "_Oldest First"
 msgstr "_Tertua Di Awal"
 
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "Sa_fe Settings"
 msgstr "Pengaturan _Brankas"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:120
 msgid "New _Entry"
 msgstr "_Entri Baru"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:124
 msgid "New _Group"
 msgstr "_Grup Baru"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:30
 msgid "Secure Secrets"
 msgstr "Amankan Rahasia"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
+#: data/gtk/welcome_page.ui:41
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
@@ -1117,7 +1119,7 @@ msgstr ""
 "terintegrasi sempurna dengan desktop GNOME dan menyediakan sebuah antarmuka "
 "yang mudah dan rapi untuk manajemen basis data kata sandi."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:163
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:204
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1129,55 +1131,55 @@ msgstr "Galat: Berkas {} tidak ada"
 msgid "Error: Safe {} is already open"
 msgstr "Galat: Brankas {} sudah terbuka"
 
-#: gsecrets/attachment_warning_dialog.py:66
-msgid "Could not Load Attachment"
-msgstr "Tidak Bisa Memuat Lampiran"
+#: gsecrets/attachment_warning_dialog.py:64
+msgid "Could not load attachment"
+msgstr "Tak bisa memuat lampiran"
 
-#: gsecrets/create_database.py:130
-msgid "Passwords do not Match"
-msgstr "Kata sandi tidak Cocok"
+#: gsecrets/create_database.py:72
+msgid "Unable to create database"
+msgstr "Tak bisa membuat basis data"
 
-#: gsecrets/create_database.py:158
+#: gsecrets/create_database.py:165
+msgid "Passwords do not match"
+msgstr "Kata sandi tidak cocok"
+
+#: gsecrets/create_database.py:193
 msgid "Generating…"
 msgstr "Membuat…"
 
-#: gsecrets/create_database.py:171
-msgid "Could not Create Keyfile"
-msgstr "Tak Bisa Membuat Berkas Kunci"
+#: gsecrets/create_database.py:205
+msgid "Could not create keyfile"
+msgstr "Tak bisa membuat berkas kunci"
 
-#: gsecrets/create_database.py:173
+#: gsecrets/create_database.py:207
 msgid "Generate"
 msgstr "Buat"
 
-#: gsecrets/database_manager.py:122
-msgid "Clone"
-msgstr "Klon"
-
-#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
+#: gsecrets/entry_page.py:244 gsecrets/entry_page.py:388
 #: gsecrets/entry_row.py:112
-msgid "Username Copied"
-msgstr "Nama Pengguna Disalin"
+msgid "Username copied"
+msgstr "Nama pengguna disalin"
 
-#: gsecrets/entry_page.py:274
-msgid "One-time Password Copied"
-msgstr "Kata Sandi OTP Disalin"
+#: gsecrets/entry_page.py:256 gsecrets/entry_page.py:295
+msgid "One-time password copied"
+msgstr "Kata sandi satu kali disalin"
 
-#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
-msgstr "Kunci Atribut Sudah Ada"
+#: gsecrets/entry_page.py:316
+msgid "Attribute key already exists"
+msgstr "Kunci atribut sudah ada"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:323
+#: gsecrets/entry_page.py:344
 msgid "Select Attachment"
 msgstr "Pilih Lampiran"
 
-#: gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:347
 msgid "_Add"
 msgstr "T_ambah"
 
 #: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
-msgstr "Kata Sandi Disalin"
+msgid "Password copied"
+msgstr "Kata sandi disalin"
 
 #: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
 msgid "Title not Specified"
@@ -1187,100 +1189,107 @@ msgstr "Judul tidak Ditentukan"
 msgid "Username not specified"
 msgstr "Nama pengguna tidak ditentukan"
 
-#: gsecrets/unlock_database.py:78
+#: gsecrets/recent_files_menu.py:34
+msgid "Recent Files"
+msgstr "Berkas terkini"
+
+#: gsecrets/safe_element.py:416
+msgid "Clone"
+msgstr "Klon"
+
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:262
+#: gsecrets/widgets/window.py:360
+msgid "Could not save Safe"
+msgstr "Tak bisa menyimpan Brankas"
+
+#: gsecrets/unlock_database.py:79
 msgid "Select Keyfile"
 msgstr "Pilih Berkas Kunci"
 
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
-msgstr "Brankas {} Sudah Terbuka"
+#: gsecrets/unlock_database.py:152
+msgid "Safe {} is already open"
+msgstr "Brankas {} sudah terbuka"
 
-#: gsecrets/unlock_database.py:231
-msgid "The kdb Format is not Supported"
-msgstr "Format kdb tidak Didukung"
+#: gsecrets/unlock_database.py:233
+msgid "Failed to unlock Safe"
+msgstr "Gagal membuka kunci Brankas"
 
-#: gsecrets/unlock_database.py:287
-msgid "Failed to Unlock Safe"
-msgstr "Gagal untuk Membuka Kunci Brankas"
-
-#: gsecrets/unlock_database.py:298
+#: gsecrets/unlock_database.py:242
 msgid "_Try Again"
 msgstr "Coba _Lagi"
 
-#: gsecrets/unlock_database.py:303
-msgid "_Select Keyfile"
-msgstr "Pilih Berka_s Kunci"
+#: gsecrets/unlocked_database.py:265
+msgid "Safe saved"
+msgstr "Brankas disimpan"
 
-#: gsecrets/unlocked_database.py:277
-msgid "Safe Saved"
-msgstr "Brankas Disimpan"
+#: gsecrets/unlocked_database.py:267
+msgid "No changes made"
+msgstr "Tidak ada perubahan yang dibuat"
 
-#: gsecrets/unlocked_database.py:279
-msgid "Could not Save Safe"
-msgstr "Tak bisa Menyimpan Brankas"
-
-#: gsecrets/unlocked_database.py:289
-msgid "Please Wait. Another Save is Running."
-msgstr "Harap Tunggu. Penyimpanan Lain Sedang Berjalan."
-
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:294
-msgid "No Changes Made"
-msgstr "Tidak Ada Perubahan yang Dibuat"
-
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:313
 msgid "Copied"
 msgstr "Disalin"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:400
-msgid "Safe Locked due to Inactivity"
-msgstr "Brankas Terkunci karena tidak ada Aktivitas"
+#: gsecrets/unlocked_database.py:379
+msgid "Safe locked due to inactivity"
+msgstr "Brankas terkunci karena tidak ada aktivitas"
 
 #. NOTE: Filechooser title for downloading an attachment
 #: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
 msgstr "Simpan Lampiran"
 
-#: gsecrets/widgets/attachment_entry_row.py:64
-msgid "Could not Store Attachment"
-msgstr "Tak bisa Menyimpan Lampiran"
+#: gsecrets/widgets/attachment_entry_row.py:61
+msgid "Could not store attachment"
+msgstr "Tak bisa menyimpan lampiran"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:129
+#: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Select Current Keyfile"
 msgstr "Pilih Berkas Kunci Saat Ini"
 
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:243
+#: gsecrets/widgets/database_settings_dialog.py:248
+msgid "Could not apply changes"
+msgstr "Tak bisa menerapkan perubahan"
+
+#. Still executes the finally block
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:252
+msgid "Changes Applied"
+msgstr "Perubahan yang Diterapkan"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:317
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:337
+#: gsecrets/widgets/database_settings_dialog.py:351
 msgid "Unknown"
 msgstr "Tak Diketahui"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:321
+#: gsecrets/widgets/database_settings_dialog.py:341
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:344
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:347
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:355
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:358
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1295,47 +1304,59 @@ msgid_plural "{} _Selected"
 msgstr[0] "{} _Dipilih"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
-msgstr "Operasi Digugurkan: Menghapus Grup yang Saat Ini Aktif"
+msgid "Operation aborted: deleting currently active group"
+msgstr "Operasi dibatalkan: menghapus grup yang saat ini aktif"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:114
-msgid "Deletion Completed"
-msgstr "Penghapusan Selesai"
+#: gsecrets/widgets/selection_mode_headerbar.py:108
+msgid "Deletion completed"
+msgstr "Penghapusan selesai"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:151
-msgid "Operation Aborted: Moving Currently Active Group"
-msgstr "Operasi Digugurkan: Memindahkan Grup yang Saat Ini Aktif"
+#: gsecrets/widgets/selection_mode_headerbar.py:145
+msgid "Operation aborted: moving currently active group"
+msgstr "Operasi dibatalkan: memindahkan grup yang saat ini aktif"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:169
-msgid "Move Completed"
-msgstr "Pemindahan Selesai"
+#: gsecrets/widgets/selection_mode_headerbar.py:160
+msgid "Move completed"
+msgstr "Pemindahan selesai"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:130
 msgid "Select Safe"
 msgstr "Pilih Brankas"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
+#: gsecrets/widgets/window.py:141 gsecrets/widgets/window.py:237
 msgid "KeePass 3.1/4 Database"
 msgstr "Basis Data KeePass 3.1/4"
 
-#: gsecrets/widgets/window.py:163
+#: gsecrets/widgets/window.py:146
 msgid "Any file type"
 msgstr "Sebarang tipe berkas"
 
-#: gsecrets/widgets/window.py:222
-msgid "Safe is Already Open"
-msgstr "Brankas Sudah Terbuka"
+#: gsecrets/widgets/window.py:205
+msgid "Safe is already open"
+msgstr "Brankas sudah terbuka"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:229
 msgid "_Create"
 msgstr "_Buat"
 
-#: gsecrets/widgets/window.py:277
-msgid "Cannot Create Safe: Safe is Already Open"
-msgstr "Tidak Bisa Membuat Brankas: Brankas Sudah Terbuka"
+#: gsecrets/widgets/window.py:260
+msgid "Cannot create Safe: Safe is already open"
+msgstr "Tak bisa membuat Brankas: Brankas sudah terbuka"
 
-#: gsecrets/widgets/window.py:333
-msgid "Could not Create new Safe"
-msgstr "Tak Bisa Membuat Brankas Baru"
+#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:316
+msgid "Could not create new Safe"
+msgstr "Tak bisa membuat Brankas baru"
+
+#~ msgid "New Safe"
+#~ msgstr "Brankas Baru"
+
+#~ msgid "Open Safe"
+#~ msgstr "Buka Brankas"
+
+#~ msgid "The kdb Format is not Supported"
+#~ msgstr "Format kdb tidak Didukung"
+
+#~ msgid "Please Wait. Another Save is Running."
+#~ msgstr "Harap Tunggu. Penyimpanan Lain Sedang Berjalan."

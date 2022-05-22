@@ -99,7 +99,7 @@ class EntryPage(Gtk.Box):
         self.insert_entry_properties_into_listbox(add_all)
 
         safe_entry: SafeEntry = self.unlocked_database.current_element
-        safe_entry.connect("updated", self._on_safe_entry_updated)
+        safe_entry.updated.connect(self._on_safe_entry_updated)
 
     def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:

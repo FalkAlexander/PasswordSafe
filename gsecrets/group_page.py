@@ -35,7 +35,7 @@ class GroupPage(Gtk.Box):
         self._pathbar_bin.set_child(Pathbar(unlocked_database))
 
         # Connect Signals
-        safe_group.connect("updated", self._on_safe_group_updated)
+        safe_group.updated.connect(self._on_safe_group_updated)
         safe_group.bind_property(
             "name",
             self.name_property_value_entry,

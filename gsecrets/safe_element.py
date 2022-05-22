@@ -313,11 +313,20 @@ class SafeEntry(SafeElement):
 
         self._attachments: list[Attachment] = entry.attachments or []
 
-        self._attributes: dict[str, str] = {
-            key: value
-            for key, value in entry.custom_properties.items()
-            if key not in (self._color_key, self._note_key, self._otp_key)
-        }
+        # NOTE Can fail at libpykeepass, see
+        # https://github.com/libkeepass/pykeepass/issues/254
+        # TODO Read as many attributes as possible until we see an error.
+        try:
+            attributes = {
+                key: value
+                for key, value in entry.custom_properties.items()
+                if key not in (self._color_key, self._note_key, self._otp_key)
+            }
+        except Exception as err:  # pylint: disable=broad-except
+            logging.error("Could not read attributes: %s", err)
+            attributes = {}
+
+        self._attributes: dict[str, str] = attributes
 
         color_value: str = entry.get_custom_property(self._color_key)
         self._color: str = color_value or EntryColor.NONE.value

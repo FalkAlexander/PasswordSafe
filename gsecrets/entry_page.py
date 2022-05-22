@@ -306,6 +306,15 @@ class EntryPage(Gtk.Box):
         key = self.attributes_key_entry.get_text()
         value = self.attributes_value_entry.get_text()
 
+        # TODO Remove once https://github.com/libkeepass/pykeepass/issues/254 is
+        # fixed
+        if '"' in key or "'" in key:
+            self.attributes_key_entry.add_css_class("error")
+            self.unlocked_database.window.send_notification(
+                _("Attribute key contains an illegal character")
+            )
+            return
+
         if key == "" or key is None:
             self.attributes_key_entry.add_css_class("error")
             return

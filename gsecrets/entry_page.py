@@ -307,6 +307,10 @@ class EntryPage(Adw.Bin):
         key = self.attributes_key_entry.get_text()
         value = self.attributes_value_entry.get_text()
 
+        if '"' in key or "'" in key:
+            self.attributes_key_entry.add_css_class("error")
+            return
+
         if key == "" or key is None:
             self.attributes_key_entry.add_css_class("error")
             return

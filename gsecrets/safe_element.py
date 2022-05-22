@@ -62,12 +62,13 @@ class SafeElement(GObject.GObject):
 
         return False
 
-    @GObject.Signal()
+    @GObject.Signal(flags=GObject.SignalFlags.ACTION)
     def updated(self):
         """Signal used to tell whenever there have been any changed that should
         be reflected on the main list box or edit page."""
         self._db_manager.is_dirty = True
         self.touch(modify=True)
+        self.emit(self.updated)
         logging.debug("Safe element updated")
 
     def touch(self, modify: bool = False) -> None:

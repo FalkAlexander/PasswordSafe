@@ -73,6 +73,15 @@ class Window(Adw.ApplicationWindow):
             else:
                 manager.props.color_scheme = Adw.ColorScheme.DEFAULT
 
+    def do_enable_debugging(  # pylint: disable=arguments-differ
+        self, toggle: bool
+    ) -> bool:
+        if not self.application.development_mode:
+            logging.warning("The inspector is not enabled in non-development builds")
+            return False
+
+        return Adw.ApplicationWindow.do_enable_debugging(self, toggle)
+
     def do_size_allocate(
         self, width: int, height: int, baseline: int
     ) -> None:  # pylint: disable=arguments-differ

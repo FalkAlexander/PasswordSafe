@@ -60,7 +60,7 @@ class Window(Adw.ApplicationWindow):
 
         self.apply_theme()
 
-        if Gio.Application.get_default().development_mode:
+        if self.props.application.development_mode:
             self.add_css_class("devel")
 
     def apply_theme(self) -> None:
@@ -192,7 +192,7 @@ class Window(Adw.ApplicationWindow):
 
             if is_locked:
                 if is_dirty and not is_current:
-                    app = Gio.Application.get_default()
+                    app = self.props.application
                     window = app.new_window()
                     window.start_database_opening_routine(filepath)
                     window.present()
@@ -210,7 +210,7 @@ class Window(Adw.ApplicationWindow):
 
             else:
                 if not is_current:
-                    app = Gio.Application.get_default()
+                    app = self.props.application
                     window = app.new_window()
                     window.start_database_opening_routine(filepath)
                     window.present()
@@ -281,7 +281,7 @@ class Window(Adw.ApplicationWindow):
 
                 if is_locked:
                     if is_dirty and not auto_save:
-                        app = Gio.Application.get_default()
+                        app = self.props.application
                         window = app.new_window()
                         window.create_new_database(filepath)
                         window.present()
@@ -293,7 +293,7 @@ class Window(Adw.ApplicationWindow):
                         self.unlocked_db = None
                         self.create_new_database(filepath)
                 else:
-                    app = Gio.Application.get_default()
+                    app = self.props.application
                     window = app.new_window()
                     window.create_new_database(filepath)
                     window.present()

@@ -1,28 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkMessageDialog" id="dialog">
-    <property name="destroy_with_parent">True</property>
-    <property name="message_type">warning</property>
-    <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Safety Info</property>
-    <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">It is possible that external applications will create unencrypted hidden or temporary copies of this attachment file! Please proceed with caution.</property>
-    <child type="action">
-      <object class="GtkButton" id="back_button">
-        <property name="label" translatable="yes" comments="Discard all the changes which the user have made to his keepass safe">_Back</property>
-        <property name="use_underline">True</property>
-      </object>
-    </child>
-    <child type="action">
-      <object class="GtkButton" id="proceed_button">
-        <property name="label" translatable="yes" comments="Save all the changes which the user have made to his keepass safe">_Proceed</property>
-        <property name="use_underline">True</property>
-        <style>
-          <class name="destructive-action"/>
-        </style>
-      </object>
-    </child>
-    <action-widgets>
-      <action-widget default="true" response="ok">proceed_button</action-widget>
-      <action-widget response="cancel">back_button</action-widget>
-    </action-widgets>
-  </object>
+  <template class="AttachmentWarningDialog" parent="AdwMessageDialog">
+    <property name="heading" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Safety Info</property>
+    <property name="body" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">It is possible that external applications will create unencrypted hidden or temporary copies of this attachment file! Please proceed with caution.</property>
+    <property name="default-response">proceed</property>
+    <signal name="response::proceed" handler="_on_proceed"/>
+    <responses>
+      <response id="back" translatable="yes">_Back</response>
+      <response id="proceed" translatable="yes">_Proceed</response>
+    </responses>
+  </template>
 </interface>

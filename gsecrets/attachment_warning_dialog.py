@@ -6,7 +6,7 @@ import os
 import typing
 from gettext import gettext as _
 
-from gi.repository import Gdk, Gio, GLib, Gtk
+from gi.repository import Adw, Gdk, Gio, GLib, Gtk
 
 from gsecrets import const
 
@@ -16,36 +16,28 @@ if typing.TYPE_CHECKING:
     from gsecrets.entry_page import EntryPage  # pylint: disable=ungrouped-imports
 
 
-class AttachmentWarningDialog:
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attachment_warning_dialog.ui")
+class AttachmentWarningDialog(Adw.MessageDialog):
+
+    __gtype_name__ = "AttachmentWarningDialog"
+
     def __init__(self, entry_page: EntryPage, attachment: Attachment) -> None:
         """Dialog to confirm opening an attachment
 
         :param entry_page: entry page
         """
+        super().__init__(transient_for=entry_page.unlocked_database.window)
+
         self.__unlocked_database = entry_page.unlocked_database
         self.__attachment = attachment
 
-        # Setup Widgets
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/World/Secrets/gtk/attachment_warning_dialog.ui"
+    @Gtk.Template.Callback()
+    def _on_proceed(self, _dialog, _response):
+        attachment = self.__attachment
+        u_db = self.__unlocked_database
+        self.__open_tmp_file(
+            u_db.database_manager.db.binaries[attachment.id], attachment.filename
         )
-        self._dialog = builder.get_object("dialog")
-        self._dialog.connect("response", self._on_warning_dialog_response)
-        self._dialog.set_modal(True)
-        self._dialog.set_transient_for(self.__unlocked_database.window)
-
-    def show(self):
-        self._dialog.show()
-
-    def _on_warning_dialog_response(self, dialog, response):
-        dialog.close()
-
-        if response == Gtk.ResponseType.OK:
-            attachment = self.__attachment
-            u_db = self.__unlocked_database
-            self.__open_tmp_file(
-                u_db.database_manager.db.binaries[attachment.id], attachment.filename
-            )
 
     def __open_tmp_file(self, bytes_buffer, filename):
         cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")

@@ -344,7 +344,7 @@ class EntryPage(Gtk.Box):
             self.on_add_attachment_row_clicked()
         else:
             attachment = list_box_row.attachment
-            AttachmentWarningDialog(self, attachment).show()
+            AttachmentWarningDialog(self, attachment).present()
 
     def on_add_attachment_row_clicked(self):
         self.unlocked_database.start_database_lock_timer()

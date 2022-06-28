@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkMessageDialog" id="dialog">
-    <property name="modal">True</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="message_type">question</property>
-    <property name="text" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Unsaved Changes</property>
-    <property name="secondary_text" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">Do you want to write all changes to the safe?</property>
-    <child type="action">
-      <object class="GtkButton" id="discard_button">
-        <property name="label" translatable="yes" comments="_Discard all the changes which the user have made to his keepass safe">_Quit Without Saving</property>
-        <property name="use_underline">True</property>
-        <style>
-          <class name="destructive-action"/>
-        </style>
-      </object>
-    </child>
-    <child type="action">
-      <object class="GtkButton" id="cancel_button">
-        <property name="label" translatable="yes" comments="_Cancel exiting the program">_Don&apos;t Quit</property>
-        <property name="use_underline">True</property>
-      </object>
-    </child>
-    <child type="action">
-      <object class="GtkButton" id="save_button">
-        <property name="label" translatable="yes" comments="_Save all the changes which the user have made to his keepass safe">_Save and Quit</property>
-        <property name="use_underline">True</property>
-      </object>
-    </child>
-    <action-widgets>
-      <action-widget response="no">discard_button</action-widget>
-      <action-widget response="cancel">cancel_button</action-widget>
-      <action-widget response="yes" default="true">save_button</action-widget>
-    </action-widgets>
-  </object>
+  <template class="SaveDialog" parent="AdwMessageDialog">
+    <property name="heading" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Unsaved Changes</property>
+    <property name="body" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">Do you want to write all changes to the safe?</property>
+    <property name="default-response">save</property>
+    <signal name="response::discard" handler="_on_discard"/>
+    <signal name="response::save" handler="_on_save"/>
+    <responses>
+      <response id="discard" translatable="yes" appearance="destructive" comments="_Discard all the changes which the user have made to his keepass safe">_Quit Without Saving</response>
+      <response id="cancel" translatable="yes" comments="_Cancel exiting the program">_Don&apos;t Quit</response>
+      <response id="save" translatable="yes" comments="_Save all the changes which the user have made to his keepass safe">_Save and Quit</response>
+    </responses>
+  </template>
 </interface>

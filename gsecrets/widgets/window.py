@@ -386,7 +386,7 @@ class Window(Adw.ApplicationWindow):
                 return True  # Do not close the window until saved
 
             save_dialog = SaveDialog(self)
-            save_dialog.show()
+            save_dialog.present()
             return True
 
         self.save_window_size()

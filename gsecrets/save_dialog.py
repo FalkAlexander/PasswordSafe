@@ -4,38 +4,30 @@ from __future__ import annotations
 import logging
 from gettext import gettext as _
 
-from gi.repository import GLib, Gtk
+from gi.repository import Adw, GLib, Gtk
 
 
-class SaveDialog:
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/save_dialog.ui")
+class SaveDialog(Adw.MessageDialog):
+
+    __gtype_name__ = "SaveDialog"
+
     def __init__(self, window):
+        super().__init__(transient_for=window)
+
         self.window = window
 
-        builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/World/Secrets/gtk/save_dialog.ui"
-        )
-        self._dialog = builder.get_object("dialog")
-        self._dialog.set_transient_for(window)
-        self._dialog.connect("response", self._on_dialog_response)
+    @Gtk.Template.Callback()
+    def _on_discard(self, _dialog, _response):
+        self.window.save_window_size()
+        self.window.destroy()
 
-    def show(self):
-        self._dialog.show()
+    @Gtk.Template.Callback()
+    def _on_save(self, _dialog, _response):
+        if (database := self.window.unlocked_db):
+            database.database_manager.save_async(self._save_finished)
 
-    def _on_dialog_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType
-    ) -> None:
-        database = self.window.unlocked_db
-        dialog.close()
-
-        if response == Gtk.ResponseType.YES:  # Save
-            if database:
-                database.database_manager.save_async(self._on_save)
-
-        elif response == Gtk.ResponseType.NO:  # Discard
-            self.window.save_window_size()
-            self.window.destroy()
-
-    def _on_save(self, database_manager, result):
+    def _save_finished(self, database_manager, result):
         try:
             is_saved = database_manager.save_finish(result)
         except GLib.Error as err:

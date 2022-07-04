@@ -393,8 +393,7 @@ class SafeEntry(SafeElement):
         self._url: str = entry.url or ""
         self._username: str = entry.username or ""
 
-        otp_uri = entry.get_custom_property("otp")
-        if otp_uri:
+        if (otp_uri := entry.otp):
             try:
                 self._otp = parse_uri(otp_uri)
             except ValueError as err:
@@ -624,7 +623,8 @@ class SafeEntry(SafeElement):
         if not otp and self._otp:
             # Delete existing
             self._otp = None
-            self._element.delete_custom_property("otp")
+            # NOTE the opt property doesn't accept None.
+            self._element.otp = ""
             self.updated()
         elif self._otp and self._otp.secret != otp:
             # Changing an existing OTP
@@ -636,7 +636,7 @@ class SafeEntry(SafeElement):
             updated = True
 
         if updated:
-            self._element.set_custom_property("otp", self._otp.provisioning_uri())
+            self._element.otp = self._otp.provisioning_uri()
             self.updated()
 
     def otp_interval(self) -> int:

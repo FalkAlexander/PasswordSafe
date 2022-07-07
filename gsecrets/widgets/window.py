@@ -502,7 +502,7 @@ class Window(Adw.ApplicationWindow):
         )
         about_dialog = builder.get_object("about_dialog")
         about_dialog.set_transient_for(self)
-        about_dialog.show()
+        about_dialog.present()
 
     def on_settings_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         SettingsDialog(self).present()

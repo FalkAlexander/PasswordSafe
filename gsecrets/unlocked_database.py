@@ -175,8 +175,7 @@ class UnlockedDatabase(Gtk.Box):
         self.start_database_lock_timer()
         page_name = group.uuid.urn
 
-        page = self._stack.get_child_by_name(page_name)
-        if page:
+        if (page := self._stack.get_child_by_name(page_name)):
             self.props.current_element = page.group
         else:
             self.props.current_element = group
@@ -229,6 +228,10 @@ class UnlockedDatabase(Gtk.Box):
         """
         element_uuid = self.props.current_element.uuid
         return self._stack.get_child_by_name(element_uuid.urn)
+
+    def delete_page(self, element):
+        if (page := self._stack.get_child_by_name(element.uuid.urn)):
+            self._stack.remove(page)
 
     #
     # Events
@@ -293,14 +296,10 @@ class UnlockedDatabase(Gtk.Box):
     def on_element_delete_action(self) -> None:
         """Delete the visible entry from the menu."""
         parent_group = self.props.current_element.parentgroup
-        uuid = self.props.current_element.element.uuid.urn
+        self.delete_page(self.props.current_element)
         self.props.current_element.delete()
 
         self.show_browser_page(parent_group)
-
-        page = self._stack.get_child_by_name(uuid)
-        if page:
-            self._stack.remove(page)
 
     def on_entry_duplicate_action(self):
         self.props.current_element.duplicate()

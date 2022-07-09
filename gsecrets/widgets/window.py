@@ -32,7 +32,7 @@ class Window(Adw.ApplicationWindow):
     _create_database_bin = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     _spinner = Gtk.Template.Child()
-    _toast_overlay = Gtk.Template.Child()
+    toast_overlay = Gtk.Template.Child()
     _unlock_database_bin = Gtk.Template.Child()
     unlocked_db_bin = Gtk.Template.Child()
 
@@ -52,7 +52,7 @@ class Window(Adw.ApplicationWindow):
 
     def send_notification(self, notification: str) -> None:
         toast = Adw.Toast.new(notification)
-        self._toast_overlay.add_toast(toast)
+        self.toast_overlay.add_toast(toast)
 
     def assemble_window(self) -> None:
         window_size = gsecrets.config_manager.get_window_size()
@@ -431,6 +431,7 @@ class Window(Adw.ApplicationWindow):
             "db.add_entry",
             "db.add_group",
             "db.settings",
+            "db.undo_delete",
             "go_back",
             "element.delete",
             "entry.duplicate",
@@ -477,6 +478,8 @@ class Window(Adw.ApplicationWindow):
             action_db.show_database_settings()
         elif name == "db.selection":
             action_db.selection_mode_headerbar.on_selection_action(param)
+        elif name == "db.undo_delete":
+            action_db.undo_delete()
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_database()
         elif name == "go_back":

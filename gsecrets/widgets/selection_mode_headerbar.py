@@ -99,15 +99,25 @@ class SelectionModeHeaderbar(Adw.Bin):
                 )
                 return
 
+        # List of possible undos
+        undo_elements = []
         for entry_row in self.entries_selected:
-            self.unlocked_database.delete_page(entry_row.safe_entry)
-            entry_row.safe_entry.trash()
+            element = entry_row.safe_entry
+            parent = element.parentgroup
+            if entry_row.safe_entry.trash():
+                self.unlocked_database.delete_page(element)
+            else:
+                undo_elements.append((element, parent))
 
         for group_row in self.groups_selected:
-            self.unlocked_database.delete_page(group_row.safe_group)
-            group_row.safe_group.trash()
+            element = group_row.safe_group
+            parent = element.parentgroup
+            if group_row.safe_group.trash():
+                self.unlocked_database.delete_page(element)
+            else:
+                undo_elements.append((element, parent))
 
-        self.unlocked_database.window.send_notification(_("Deletion completed"))
+        self.unlocked_database.deleted_notification(undo_elements)
 
         self._clear_all()
 

@@ -6,8 +6,9 @@ import os
 import typing
 from enum import IntEnum
 from gettext import gettext as _
+from gettext import ngettext
 
-from gi.repository import Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
 import gsecrets.config_manager
 from gsecrets import const
@@ -28,6 +29,12 @@ from gsecrets.widgets.unlocked_database_page import UnlockedDatabasePage
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.widgets.window import Window
+
+
+class UndoData:
+    def __init__(self, elements, toast):
+        self.elements = elements
+        self.toast = toast
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database.ui")
@@ -55,6 +62,7 @@ class UnlockedDatabase(Gtk.Box):
     search_entry = Gtk.Template.Child()
 
     selection_mode = GObject.Property(type=bool, default=False)
+    undo_data: UndoData | None = None
 
     class Mode(IntEnum):
         ENTRY = 0
@@ -295,11 +303,55 @@ class UnlockedDatabase(Gtk.Box):
 
     def on_element_delete_action(self) -> None:
         """Delete the visible entry from the menu."""
+        element = self.props.current_element
         parent_group = self.props.current_element.parentgroup
-        self.delete_page(self.props.current_element)
-        self.props.current_element.trash()
+        if element.trash():
+            self.delete_page(element)
+            elements = []
+        else:
+            elements = [(element, parent_group)]
+
+        self.deleted_notification(elements)
 
         self.show_browser_page(parent_group)
+
+    def deleted_notification(self, elements):
+        n_del = len(elements)
+        if n_del:
+            label = ngettext(
+                # pylint: disable=consider-using-f-string
+                "Element deleted",
+                "{} Elements deleted".format(n_del),
+                n_del,
+            )
+        else:
+            label = _("Deletion completed")
+
+        toast = Adw.Toast.new(label)
+
+        if n_del:
+            toast.props.button_label = _("Undo")
+            toast.props.action_name = _("win.db.undo_delete")
+
+        if (data := self.undo_data):
+            data.toast.dismiss()
+
+        def dismissed_db(toast):
+            if (data := self.undo_data):
+                if data.toast == toast:
+                    self.undo_data = None
+
+        toast.connect("dismissed", dismissed_db)
+
+        self.undo_data = UndoData(elements, toast)
+        self.window.toast_overlay.add_toast(toast)
+
+    def undo_delete(self):
+        if (data := self.undo_data):
+            for element, element_parent in data.elements:
+                element.move_to(element_parent)
+
+            self.undo_data = None
 
     def on_entry_duplicate_action(self):
         self.props.current_element.duplicate()

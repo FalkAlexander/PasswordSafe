@@ -93,6 +93,43 @@ class SafeElement(GObject.Object):
 
         parentgroup.updated()
 
+    def trash(self) -> bool:
+        """Delete an Element from the database.
+
+        Returns if the element was deleted.
+        """
+        element = self._element
+        parentgroup = self.parentgroup
+        if parentgroup.is_trash_bin:
+            self.delete()
+            return True
+
+        if self.is_trash_bin:
+            self.delete()
+            self._db_manager.trash_bin = None
+            return True
+
+        trash_bin_missing = SafeGroup.get_trash_bin(self._db_manager) is None
+
+        if self.is_entry:
+            self._db_manager.db.trash_entry(element)
+            found, pos = self._db_manager.entries.find(self)
+            if found:
+                self._db_manager.entries.items_changed(pos, 1, 1)
+        else:
+            self._db_manager.db.trash_group(element)
+            found, pos = self._db_manager.groups.find(self)
+            if found:
+                self._db_manager.groups.items_changed(pos, 1, 1)
+
+        # We add the trash bin if it was not present already
+        if trash_bin_missing:
+            trash_bin = SafeGroup.get_trash_bin(self._db_manager)
+            self._db_manager.groups.append(trash_bin)
+
+        parentgroup.updated()
+        return False
+
     def move_to(self, dest: SafeGroup) -> None:
         old_location = self.parentgroup
 
@@ -203,6 +240,13 @@ class SafeElement(GObject.Object):
         return self._element.is_root_group
 
     @property
+    def is_trash_bin(self) -> bool:
+        if (trash_bin_inner := self._db_manager.db.recyclebin_group):
+            return self.uuid == trash_bin_inner.uuid
+
+        return False
+
+    @property
     def uuid(self) -> UUID:
         """UUID of the element
 
@@ -277,6 +321,18 @@ class SafeGroup(SafeElement):
 
         logging.error("This should be unreachable: get_root")
         return SafeGroup(db_manager, db_manager.db.root_group)
+
+    @staticmethod
+    def get_trash_bin(db_manager: DatabaseManager) -> SafeGroup | None:
+        if (trash_bin := db_manager.trash_bin):
+            return trash_bin
+
+        if (trash_bin_inner := db_manager.db.recyclebin_group):
+            trash_bin = SafeGroup(db_manager, trash_bin_inner)
+            db_manager.trash_bin = trash_bin
+            return trash_bin
+
+        return None
 
     def new_entry(
         self, title: str = "", username: str = "", password: str = ""

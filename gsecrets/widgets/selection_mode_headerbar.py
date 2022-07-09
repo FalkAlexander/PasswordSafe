@@ -101,11 +101,11 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         for entry_row in self.entries_selected:
             self.unlocked_database.delete_page(entry_row.safe_entry)
-            entry_row.safe_entry.delete()
+            entry_row.safe_entry.trash()
 
         for group_row in self.groups_selected:
             self.unlocked_database.delete_page(group_row.safe_group)
-            group_row.safe_group.delete()
+            group_row.safe_group.trash()
 
         self.unlocked_database.window.send_notification(_("Deletion completed"))
 

@@ -99,27 +99,68 @@ class SelectionModeHeaderbar(Adw.Bin):
                 )
                 return
 
-        # List of possible undos
-        undo_elements = []
+        # Before deleting we check if there is a mix of elements in the trash
+        # bin and regular elements
+        in_trash = False
+        outside_trash = False
         for entry_row in self.entries_selected:
             element = entry_row.safe_entry
             parent = element.parentgroup
-            if entry_row.safe_entry.trash():
-                self.unlocked_database.delete_page(element)
+            if parent.is_trash_bin:
+                in_trash = True
             else:
-                undo_elements.append((element, parent))
+                outside_trash = True
 
         for group_row in self.groups_selected:
             element = group_row.safe_group
             parent = element.parentgroup
-            if group_row.safe_group.trash():
-                self.unlocked_database.delete_page(element)
+            if parent.is_trash_bin or element.is_trash_bin:
+                in_trash = True
             else:
-                undo_elements.append((element, parent))
+                outside_trash = True
 
-        self.unlocked_database.deleted_notification(undo_elements)
+        mixed = in_trash and outside_trash
 
-        self._clear_all()
+        def delete_elements():
+            # List of possible undos
+            undo_elements = []
+            for entry_row in self.entries_selected:
+                element = entry_row.safe_entry
+                parent = element.parentgroup
+                if entry_row.safe_entry.trash():
+                    self.unlocked_database.delete_page(element)
+                else:
+                    undo_elements.append((element, parent))
+
+            for group_row in self.groups_selected:
+                element = group_row.safe_group
+                parent = element.parentgroup
+                if group_row.safe_group.trash():
+                    self.unlocked_database.delete_page(element)
+                else:
+                    undo_elements.append((element, parent))
+
+            self.unlocked_database.deleted_notification(undo_elements)
+            self._clear_all()
+
+        if mixed:
+            def response_delete_cb(dialog, response):
+                delete_elements()
+
+            dialog = Adw.MessageDialog.new(
+                self.get_root(),
+                _("Warning"),
+                _(
+                    "You are deleting elements in the trash bin, these deletions cannot be undone."  # pylint: disable=line-too-long # noqa: E501
+                ),
+            )
+            dialog.add_response("cancel", _("Cancel"))
+            dialog.add_response("delete", _("Delete"))
+            dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
+            dialog.connect("response::delete", response_delete_cb)
+            dialog.present()
+        else:
+            delete_elements()
 
     @Gtk.Template.Callback()
     def _on_cut_button_clicked(self, _widget):

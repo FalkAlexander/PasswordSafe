@@ -22,6 +22,7 @@ from gsecrets.unlocked_headerbar import UnlockedHeaderBar
 from gsecrets.widgets.database_settings_dialog import DatabaseSettingsDialog
 from gsecrets.widgets.properties_dialog import PropertiesDialog
 from gsecrets.widgets.references_dialog import ReferencesDialog
+from gsecrets.widgets.saving_conflict_dialog import SavingConflictDialog
 from gsecrets.widgets.search import Search
 from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 from gsecrets.widgets.unlocked_database_page import UnlockedDatabasePage
@@ -525,36 +526,31 @@ class UnlockedDatabase(Gtk.Box):
         Shows a notification after saving.
         """
         def on_check_file_changes(dbm, result):
-            try:
-                changed = dbm.check_file_changes_finish(result)
-            except GLib.Error as err:
-                logging.error("Could not monitor file changes: %s", err.message)
-            else:
-                if changed:
-                    def on_response_save(_dialog, _response):
-                        self.database_manager.save_async(self.on_save)
-
-                    dialog = Adw.MessageDialog.new(
-                        self.window,
-                        _("Warning"),
-                        _(
-                            "The database was modified from somewhere else. Saving will overwrite the file with our current version."  # pylint: disable=line-too-long # noqa: E501
-                        ),
-                    )
-                    dialog.add_response("cancel", _("Cancel"))
-                    dialog.add_response("save", _("Save"))
-                    dialog.set_response_appearance("save", Adw.ResponseAppearance.DESTRUCTIVE)
-                    dialog.connect("response::save", on_response_save)
-                    dialog.present()
-                else:
-                    self.database_manager.save_async(self.on_save)
+            self.on_check_file_changes(dbm, result, self.on_save)
 
         self.database_manager.check_file_changes_async(on_check_file_changes)
 
     def auto_save_database(self) -> None:
         """Save the database."""
         logging.debug("Automatically saving database")
-        self.database_manager.save_async(self.on_auto_save)
+
+        def on_check_file_changes(dbm, result):
+            self.on_check_file_changes(dbm, result, self.on_auto_save)
+
+        self.database_manager.check_file_changes_async(on_check_file_changes)
+
+    def on_check_file_changes(self, dbm, result, on_save_callback):
+        try:
+            conflicts = dbm.check_file_changes_finish(result)
+        except GLib.Error as err:
+            logging.error("Could not monitor file changes: %s", err.message)
+            self.window.send_notification(_("Could not save Safe"))
+        else:
+            if conflicts:
+                dialog = SavingConflictDialog(self.window, dbm, on_save_callback)
+                dialog.present()
+            else:
+                self.database_manager.save_async(on_save_callback)
 
     def start_database_lock_timer(self):
         if self._lock_timer_handler:

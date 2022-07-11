@@ -23,6 +23,7 @@
           <object class="GtkToggleButton" id="_search_button">
             <property name="halign">end</property>
             <property name="icon_name">system-search-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Search</property>
             <signal name="toggled" handler="_on_search_button_toggled"/>
             <child>
               <object class="GtkShortcutController">

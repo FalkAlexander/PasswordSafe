@@ -169,6 +169,7 @@
                             <property name="valign">start</property>
                             <property name="hexpand">True</property>
                             <property name="icon_name">go-next-symbolic</property>
+                            <property name="tooltip_text" translatable="yes">Next</property>
                             <signal name="clicked" handler="on_password_creation_button_clicked" swapped="no"/>
                           </object>
                         </child>
@@ -238,6 +239,7 @@
                         <property name="hexpand">True</property>
                         <signal name="clicked" handler="on_password_check_button_clicked" swapped="no"/>
                         <property name="icon_name">object-select-symbolic</property>
+                        <property name="tooltip_text" translatable="yes">Check</property>
                       </object>
                     </child>
                     <style>

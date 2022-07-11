@@ -376,6 +376,7 @@ class UnlockedDatabase(Gtk.Box):
         clear_clipboard_time = gsecrets.config_manager.get_clear_clipboard()
 
         def callback():
+            GLib.source_remove(self.clipboard_timer_handler)
             self.clipboard_timer_handler = None
             self.clipboard.set_content(None)
 

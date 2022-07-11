@@ -74,6 +74,7 @@ class EntryPage(Gtk.Box):
         self.install_action("entry.copy_password", None, self._on_copy_action)
         self.install_action("entry.copy_user", None, self._on_copy_action)
         self.install_action("entry.copy_otp", None, self._on_copy_action)
+        self.install_action("entry.copy_url", None, self._on_copy_action)
 
         super().__init__()
 
@@ -245,6 +246,12 @@ class EntryPage(Gtk.Box):
             )
         elif action_name == "entry.copy_password":
             self.password_entry_row.copy_password()
+        elif action_name == "entry.copy_url":
+            url = self.url_property_value_entry.get_text()
+            self.unlocked_database.send_to_clipboard(
+                url,
+                _("Address copied"),
+            )
         elif action_name == "entry.copy_otp":
             safe_entry: SafeEntry = self.unlocked_database.current_element
             otp_token = safe_entry.otp_token() or ""

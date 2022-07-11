@@ -36,6 +36,10 @@ class DatabaseManager(GObject.Object):
     save_running = False
     _opened = False
 
+    # Used for checking if there are changes in the file.
+    file_size: int | None = None
+    file_mtime: int | None = None
+
     # Only used for setting the credentials to their actual values in case of
     # errors.
     old_password: str = ""
@@ -96,6 +100,7 @@ class DatabaseManager(GObject.Object):
                 task.return_error(err)
             else:
                 self.keyfile_hash = keyfile_hash
+                self._update_file_monitor()
                 task.return_value(db)
 
         task = Gio.Task.new(self, None, callback)
@@ -154,6 +159,7 @@ class DatabaseManager(GObject.Object):
             err = GLib.Error.new_literal(QUARK, str(err), 2)
             task.return_error(err)
         else:
+            self._update_file_monitor()
             task.return_boolean(True)
 
     def save_finish(self, result: Gio.AsyncResult) -> bool:
@@ -242,6 +248,54 @@ class DatabaseManager(GObject.Object):
             new_pairs.append([uri, self.keyfile])
 
         config.set_last_used_composite_key(new_pairs)
+
+    def _update_file_monitor(self):
+        """Updates the modified time and size of the database file, this is a
+        blocking operation."""
+        gfile = Gio.File.new_for_path(self._path)
+        attributes = (
+            f"{Gio.FILE_ATTRIBUTE_STANDARD_SIZE},{Gio.FILE_ATTRIBUTE_TIME_MODIFIED}"
+        )
+        try:
+            info = gfile.query_info(attributes, Gio.FileQueryInfoFlags.NONE, None)
+        except GLib.Error as err:
+            logging.error("Could not read file size: %s", err.message)
+        else:
+            self.file_size = info.get_size()
+            self.file_mtime = info.get_modification_date_time().to_unix()
+
+    def check_file_changes_async(self, callback: Gio.AsyncReadyCallback) -> None:
+        task = Gio.Task.new(self, None, callback)
+        task.run_in_thread(self._check_file_changes_task)
+
+    def _check_file_changes_task(self, task, _obj, _data, _cancellable):
+        gfile = Gio.File.new_for_path(self._path)
+        attributes = (
+            f"{Gio.FILE_ATTRIBUTE_STANDARD_SIZE},{Gio.FILE_ATTRIBUTE_TIME_MODIFIED}"
+        )
+        try:
+            info = gfile.query_info(attributes, Gio.FileQueryInfoFlags.NONE, None)
+        except GLib.Error as err:
+            err = GLib.Error.new_literal(QUARK, str(err), 3)
+            task.return_error(err)
+        else:
+            if (
+                self.file_size != info.get_size()
+                or self.file_mtime != info.get_modification_date_time().to_unix()
+            ):
+                task.return_boolean(True)
+            else:
+                task.return_boolean(False)
+
+    def check_file_changes_finish(self, result: Gio.AsyncResult) -> bool:
+        """Finishes check_file_changes_async.
+        Returns whether the file was changed, can raise GLib.Error."""
+        try:
+            changed = result.propagate_boolean()
+        except GLib.Error as err:
+            raise err
+        else:
+            return changed
 
     @property
     def password(self) -> str:

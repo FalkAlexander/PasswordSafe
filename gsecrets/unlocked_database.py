@@ -524,7 +524,32 @@ class UnlockedDatabase(Gtk.Box):
 
         Shows a notification after saving.
         """
-        self.database_manager.save_async(self.on_save)
+        def on_check_file_changes(dbm, result):
+            try:
+                changed = dbm.check_file_changes_finish(result)
+            except GLib.Error as err:
+                logging.error("Could not monitor file changes: %s", err.message)
+            else:
+                if changed:
+                    def on_response_save(_dialog, _response):
+                        self.database_manager.save_async(self.on_save)
+
+                    dialog = Adw.MessageDialog.new(
+                        self.window,
+                        _("Warning"),
+                        _(
+                            "The database was modified from somewhere else. Saving will overwrite the file with our current version."  # pylint: disable=line-too-long # noqa: E501
+                        ),
+                    )
+                    dialog.add_response("cancel", _("Cancel"))
+                    dialog.add_response("save", _("Save"))
+                    dialog.set_response_appearance("save", Adw.ResponseAppearance.DESTRUCTIVE)
+                    dialog.connect("response::save", on_response_save)
+                    dialog.present()
+                else:
+                    self.database_manager.save_async(self.on_save)
+
+        self.database_manager.check_file_changes_async(on_check_file_changes)
 
     def auto_save_database(self) -> None:
         """Save the database."""

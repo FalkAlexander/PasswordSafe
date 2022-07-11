@@ -17,7 +17,7 @@ class PathbarButton(Gtk.Button):
 
         assert isinstance(element, SafeElement)
 
-        self.set_name("PathbarButton")
+        self.add_css_class("pathbar-button")
         self.add_css_class("flat")
 
         self.is_group = element.is_group
@@ -32,4 +32,4 @@ class PathbarButton(Gtk.Button):
         )
 
     def set_active_style(self):
-        self.add_css_class("PathbarButtonActive")
+        self.add_css_class("pathbar-button-active")

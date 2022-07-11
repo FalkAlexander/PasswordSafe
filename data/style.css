@@ -3,7 +3,7 @@
 
 /* Pathbar button styles */
 
-#PathbarButton {
+.pathbar-button {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border: 0;
@@ -12,13 +12,13 @@
   background: transparent;
 }
 
-#PathbarButton:hover {
+.pathbar-button:hover {
   color: @accent_color;
   box-shadow: 0px -3px 0px @accent_color inset;
   transition: box-shadow 0.3s;
 }
 
-.PathbarButtonActive {
+.pathbar-button-active {
   box-shadow: 0px -2px 0px @accent_color inset;
 }
 

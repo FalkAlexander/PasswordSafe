@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import os
 import secrets
+import stat
 import typing
 from gettext import gettext as _
 
@@ -39,13 +41,16 @@ def generate_keyfile_sync(gfile: Gio.File) -> str:
     contents = cipher.nonce + tag + ciphertext  # type: ignore
     keyfile_hash = GLib.compute_checksum_for_data(GLib.ChecksumType.SHA1, contents)
 
+    flags = Gio.FileCreateFlags.REPLACE_DESTINATION | Gio.FileCreateFlags.PRIVATE
     gfile.replace_contents(
         contents,
         None,
         False,
-        Gio.FileCreateFlags.REPLACE_DESTINATION,
+        flags,
         None,
     )
+    # Sets the file as read-only
+    os.chmod(gfile.get_path(), stat.S_IREAD)
 
     return keyfile_hash
 

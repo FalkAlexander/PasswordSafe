@@ -289,9 +289,10 @@ class EntryPage(Gtk.Box):
         safe_entry.props.icon = icon
 
     @Gtk.Template.Callback()
-    def on_link_secondary_button_clicked(self, widget, _position, _data=None):
+    def on_visit_url_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
-        Gtk.show_uri(self.unlocked_database.window, widget.get_text(), Gdk.CURRENT_TIME)
+        url = self.url_property_value_entry.get_text()
+        Gtk.show_uri(self.unlocked_database.window, url, Gdk.CURRENT_TIME)
 
     @Gtk.Template.Callback()
     def on_otp_copy_button_clicked(self, _button):
@@ -402,6 +403,13 @@ class EntryPage(Gtk.Box):
         self.unlocked_database.send_to_clipboard(
             widget.get_text(),
             _("Username copied"),
+        )
+
+    @Gtk.Template.Callback()
+    def on_copy_url_button_clicked(self, widget, _icon_pos, _data=None):
+        self.unlocked_database.send_to_clipboard(
+            widget.get_text(),
+            _("Address copied"),
         )
 
     def show_row(self, row: Gtk.ListBoxRow, non_empty: bool, add_all: bool) -> None:

@@ -222,12 +222,27 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="url_property_value_entry">
-                        <property name="input_purpose">url</property>
-                        <property name="secondary_icon_name">external-link-symbolic</property>
-                        <property name="secondary_icon_tooltip_text" translatable="yes">Open Address</property>
-                        <property name="enable_undo">False</property>
-                        <signal name="icon-press" handler="on_link_secondary_button_clicked" swapped="no"/>
+                      <object class="GtkBox">
+                        <child>
+                          <object class="GtkEntry" id="url_property_value_entry">
+                            <property name="hexpand">True</property>
+                            <property name="input_purpose">url</property>
+                            <property name="secondary_icon_name">edit-copy-symbolic</property>
+                            <property name="secondary_icon_tooltip_text" translatable="yes">Open Address</property>
+                            <property name="enable_undo">False</property>
+                            <signal name="icon-press" handler="on_copy_url_button_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="icon_name">external-link-symbolic</property>
+                            <property name="tooltip_text" translatable="yes">Open Address</property>
+                            <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="linked"/>
+                        </style>
                       </object>
                     </child>
                   </object>

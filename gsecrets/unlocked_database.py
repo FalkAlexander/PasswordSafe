@@ -332,7 +332,7 @@ class UnlockedDatabase(Gtk.Box):
 
         if n_del:
             toast.props.button_label = _("Undo")
-            toast.props.action_name = _("win.db.undo_delete")
+            toast.props.action_name = "win.db.undo_delete"
 
         if (data := self.undo_data):
             data.toast.dismiss()

@@ -72,6 +72,8 @@ class GroupRow(Adw.ActionRow):
 
     @Gtk.Template.Callback()
     def on_selection_checkbox_toggled(self, _widget):
+        self.unlocked_database.start_database_lock_timer()
+
         if self.selection_checkbox.get_active():
             self.unlocked_database.selection_mode_headerbar.add_group(self)
         else:

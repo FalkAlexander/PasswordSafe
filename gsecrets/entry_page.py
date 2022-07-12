@@ -348,6 +348,7 @@ class EntryPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_attachment_list_box_activated(self, _widget, list_box_row):
+        self.unlocked_database.start_database_lock_timer()
         if list_box_row.get_name() == "AddAttachmentRow":
             self.on_add_attachment_row_clicked()
         else:

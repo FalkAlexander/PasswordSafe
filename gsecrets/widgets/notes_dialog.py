@@ -65,6 +65,7 @@ class NotesDialog(Gtk.Window):
 
         if self.__search_stopped is True:
             return
+
         self.__toggle_search_bar()
 
     def __toggle_search_bar(self):

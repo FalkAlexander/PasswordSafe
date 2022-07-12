@@ -240,22 +240,18 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
             generate_keyfile_async(keyfile, callback)
 
-    # TODO Remove pylint disables once libadwaita-1 1.0 lands in the fedora CI image.
     def _on_set_credentials(self, database_manager, result):
         try:
             is_saved = database_manager.set_credentials_finish(result)
         except GLib.Error as err:
             logging.error("Could not set credentials: %s", err.message)
-            # pylint: disable=no-member
             self.add_toast(Adw.Toast.new(_("Could not apply changes")))
         else:
             if not is_saved:  # Should be unreachable
                 logging.error("Credentials set without changes")
-                # pylint: disable=no-member
                 self.add_toast(Adw.Toast.new(_("Could not apply changes")))
                 return  # Still executes the finally block
 
-            # pylint: disable=no-member
             self.add_toast(Adw.Toast.new(_("Changes Applied")))
 
             # Restore all widgets

@@ -153,9 +153,13 @@ class UnlockedDatabase(Gtk.Box):
 
     def listbox_row_factory(self, element: SafeElement) -> Gtk.Widget:
         if element.is_entry:
-            return EntryRow(self, element)
+            row = EntryRow(self)
+            row.safe_entry = element
+            return row
 
-        return GroupRow(self, element)
+        row = GroupRow(self)
+        row.safe_group = element
+        return row
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.start_database_lock_timer()

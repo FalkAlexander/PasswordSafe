@@ -21,18 +21,17 @@ class GroupRow(Adw.ActionRow):
     selection_checkbox = Gtk.Template.Child()
     edit_button = Gtk.Template.Child()
 
-    def __init__(self, unlocked_database, safe_group):
+    _safe_group = None
+
+    signals = GObject.SignalGroup.new(SafeGroup)
+
+    def __init__(self, unlocked_database):
         super().__init__()
 
-        assert isinstance(safe_group, SafeGroup)
         self.unlocked_database = unlocked_database
-        self.safe_group = safe_group
-        self.assemble_group_row()
 
-    def assemble_group_row(self):
         # Name title
-        self.safe_group.connect("notify::name", self._on_group_name_changed)
-        self._on_group_name_changed(self.safe_group, None)
+        self.signals.connect("notify::name", self._on_group_name_changed)
 
         # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
@@ -89,9 +88,13 @@ class GroupRow(Adw.ActionRow):
         self.unlocked_database.show_edit_page(self.safe_group)
 
     def _on_group_name_changed(
-        self, _safe_group: SafeGroup, _value: GObject.ParamSpec
+        self, signals: GLib.SignalGroup, _value: GObject.ParamSpec
     ) -> None:
-        group_name = GLib.markup_escape_text(self.safe_group.name)
+        if group := signals.dup_target():
+            self._update_name(group)
+
+    def _update_name(self, group):
+        group_name = GLib.markup_escape_text(group.name)
         if group_name:
             self.remove_css_class("italic-title")
             self.props.title = group_name
@@ -103,3 +106,13 @@ class GroupRow(Adw.ActionRow):
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):
         self.unlocked_database.props.selection_mode = True
         self.selection_checkbox.props.active = not self.selection_checkbox.props.active
+
+    @property
+    def safe_group(self) -> SafeGroup | None:
+        return self._safe_group
+
+    @safe_group.setter  # type: ignore
+    def safe_group(self, group: SafeGroup) -> None:
+        self._safe_group = group
+        self.signals.props.target = group
+        self._update_name(group)

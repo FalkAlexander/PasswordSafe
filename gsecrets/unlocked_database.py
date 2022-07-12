@@ -64,7 +64,7 @@ class UnlockedDatabase(Gtk.Box):
     search_bar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
 
-    selection_mode = GObject.Property(type=bool, default=False)
+    _selection_mode: bool = False
     undo_data: UndoData | None = None
 
     class Mode(IntEnum):
@@ -109,7 +109,6 @@ class UnlockedDatabase(Gtk.Box):
 
         self.clipboard = self.get_clipboard()
 
-        self.connect("notify::selection-mode", self._on_selection_mode_changed)
         self.db_locked_handler = self.database_manager.connect(
             "notify::locked", self._on_database_lock_changed
         )
@@ -208,18 +207,18 @@ class UnlockedDatabase(Gtk.Box):
         )
         return boolean
 
-    def _on_selection_mode_changed(
-        self, _unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
-    ) -> None:
-        if self.props.selection_mode:
+    @GObject.Property(type=bool, default=False)
+    def selection_mode(self) -> bool:
+        return self._selection_mode
+
+    @selection_mode.setter  # type: ignore
+    def selection_mode(self, selection_mode: bool) -> None:
+        self._selection_mode = selection_mode
+        if selection_mode:
             self.props.mode = self.Mode.SELECTION
             self.headerbar_stack.set_visible_child(self.selection_mode_headerbar)
         else:
             self.headerbar_stack.set_visible_child(self.headerbar)
-
-    #
-    # Group and Entry Management
-    #
 
     @GObject.Property(type=SafeElement)
     def current_element(self) -> SafeElement:

@@ -59,9 +59,6 @@ class SelectionModeHeaderbar(Adw.Bin):
         unlocked_database.connect(
             "notify::selection-mode", self._on_selection_mode_changed
         )
-        unlocked_database.bind_property(
-            "selection-mode", self, "visible", GObject.BindingFlags.SYNC_CREATE
-        )
         self.connect("notify::selected-elements", self.on_selected_entries_changed)
 
     def on_selected_entries_changed(self, selection_ui, _value):

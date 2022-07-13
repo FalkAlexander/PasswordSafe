@@ -10,6 +10,9 @@ variables:
     BUNDLE: "org.gnome.World.Secrets.Devel.flatpak"
     MANIFEST_PATH: "flatpak/org.gnome.World.Secrets.Devel.json"
     FLATPAK_MODULE: "secrets"
+    APP_ID: "org.gnome.World.Secrets.Devel"
+    RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+    CONFIG_OPTS: "-Dtests=true"
 
 .flatpak_cache_template: &flatpak_cache
     cache:
@@ -18,28 +21,14 @@ variables:
           - .flatpak-builder/cache/
           - _build/target/
 
-.flatpak_aarch64:
-  extends: .flatpak
-  image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/aarch64:gnome-nightly'
-  tags:
-    - flatpak-aarch64
-
 flatpak_x86_64:
-    extends: .flatpak
+    extends: .flatpak@x86_64
     stage: build
-    variables:
-        APP_ID: org.gnome.World.Secrets.Devel
-        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
-        CONFIG_OPTS: "-Dtests=true"
 
 flatpak_aarch64:
-    extends: .flatpak_aarch64
+    extends: .flatpak@aarch64
     stage: build
     allow_failure: true
-    variables:
-        APP_ID: org.gnome.World.Secrets.Devel
-        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
-        CONFIG_OPTS: "-Dtests=true"
 
 codespell:
   stage: check

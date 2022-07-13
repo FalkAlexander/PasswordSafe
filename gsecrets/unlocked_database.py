@@ -255,7 +255,7 @@ class UnlockedDatabase(Gtk.Box):
             safe_group = list_box_row.safe_group
             self.show_browser_page(safe_group)
         else:
-            if self.selection_mode:
+            if self._selection_mode:
                 active = list_box_row.selection_checkbox.props.active
                 list_box_row.selection_checkbox.props.active = not active
                 return

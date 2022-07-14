@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-05-22 11:45+0000\n"
-"PO-Revision-Date: 2022-06-01 12:36+0300\n"
+"POT-Creation-Date: 2022-07-11 19:21+0000\n"
+"PO-Revision-Date: 2022-07-14 14:14+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
 "Language: he\n"
@@ -20,17 +20,12 @@ msgstr ""
 "2 : 3)\n"
 "X-Generator: Gtranslator 40.0\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "ניהול הססמאות שלך"
 
-#. "Secrets" is the application name, do not translate
-#: data/about_dialog.ui.in:9
-msgid "Learn more about Secrets"
-msgstr "מידע נוסף על סודות"
-
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:11
+#: data/about_dialog.ui.in:10
 msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
@@ -38,13 +33,18 @@ msgstr ""
 "\n"
 "<a href=\"https://l10n.gnome.org/teams/he/\">מיזם תרגום GNOME לעברית</a>"
 
+#. Translators: Secrets is the app name, do not translate
+#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "סודות"
+
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:4
 msgid "Safety Info"
 msgstr "מידע על בטיחות"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:5
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -52,13 +52,11 @@ msgstr ""
 "בהחלט ייתכן שיישומים חיצוניים יצרו עותקים בלתי מוצפנים או נסתרים של הקובץ "
 "המצורף (צרופה) הזה! נא להמשיך תוך נקיטת משנה זהירות."
 
-#. Discard all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:10
+#: data/gtk/attachment_warning_dialog.ui:9
 msgid "_Back"
 msgstr "ח_זרה"
 
-#. Save all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:16
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
 msgstr "_קדימה"
 
@@ -72,11 +70,11 @@ msgstr "צבע"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:230
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:239
 msgid "Create Safe"
 msgstr "יצירת כספת"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:36
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:42
 #: data/gtk/group_page.ui:14
 msgid "Back"
 msgstr "חזרה"
@@ -128,63 +126,71 @@ msgstr "הגדרת ססמה לכספת."
 msgid "Generate New Password"
 msgstr "יצירת ססמה חדשה"
 
-#: data/gtk/create_database.ui:207
+#: data/gtk/create_database.ui:172
+msgid "Next"
+msgstr "הבא"
+
+#: data/gtk/create_database.ui:208
 msgid "Password Match Check"
 msgstr "בדיקת התאמת ססמה"
 
-#: data/gtk/create_database.ui:215
+#: data/gtk/create_database.ui:216
 msgid "Repeat password for safe."
 msgstr "חזרה על הססמה לכספת."
 
-#: data/gtk/create_database.ui:272
+#: data/gtk/create_database.ui:242
+msgid "Check"
+msgstr "בדיקה"
+
+#: data/gtk/create_database.ui:274
 msgid "Match Check Failed"
 msgstr "בדיקת ההתאמה נכשלה"
 
-#: data/gtk/create_database.ui:280
+#: data/gtk/create_database.ui:282
 msgid "Please try again."
 msgstr "נא לנסות שוב."
 
-#: data/gtk/create_database.ui:310
+#: data/gtk/create_database.ui:312
 msgid "_Confirm"
 msgstr "_אישור"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:345 gsecrets/create_database.py:174
+#: data/gtk/create_database.ui:347 gsecrets/create_database.py:174
 #: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
 msgstr "יצירת קובץ מפתח"
 
-#: data/gtk/create_database.ui:353
+#: data/gtk/create_database.ui:355
 msgid "Set keyfile for safe"
 msgstr "הגדרת קובץ מפתח לכספת"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:363 data/gtk/password_generator_popover.ui:165
+#: data/gtk/create_database.ui:365 data/gtk/password_generator_popover.ui:165
 #: gsecrets/create_database.py:177
 #: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "י_צירה"
 
-#: data/gtk/create_database.ui:396
+#: data/gtk/create_database.ui:398
 msgid "Safe Successfully Created"
 msgstr "הכספת נוצרה בהצלחה"
 
-#: data/gtk/create_database.ui:404 data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:406 data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "_פתיחת כספת"
 
-#: data/gtk/create_database.ui:426 data/gtk/locked_headerbar.ui:37
+#: data/gtk/create_database.ui:428 data/gtk/locked_headerbar.ui:37
 #: data/gtk/unlocked_headerbar.ui:104
 msgid "_Preferences"
 msgstr "ה_עדפות"
 
-#: data/gtk/create_database.ui:430 data/gtk/locked_headerbar.ui:41
+#: data/gtk/create_database.ui:432 data/gtk/locked_headerbar.ui:41
 #: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
 msgstr "_צירופי מקשים"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:434 data/gtk/locked_headerbar.ui:45
+#: data/gtk/create_database.ui:436 data/gtk/locked_headerbar.ui:45
 #: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
 msgstr "_על אודות Secrets"
@@ -223,7 +229,7 @@ msgid "Enter Current Password"
 msgstr "נא למלא את הססמה הנוכחית"
 
 #: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
-#: gsecrets/utils.py:76 gsecrets/widgets/database_settings_dialog.py:206
+#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "קובץ מפתח"
 
@@ -299,103 +305,103 @@ msgstr "מספר קבוצות"
 msgid "Passwords"
 msgstr "ססמאות"
 
-#: data/gtk/entry_page.ui:45 data/gtk/group_page.ui:23
+#: data/gtk/entry_page.ui:51 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "תפריט"
 
-#: data/gtk/entry_page.ui:74 data/gtk/group_page.ui:50
+#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:50
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_כותרת"
 
-#: data/gtk/entry_page.ui:97 data/gtk/references_dialog.ui:173
+#: data/gtk/entry_page.ui:103 data/gtk/references_dialog.ui:173
 msgid "_Username"
 msgstr "_שם משתמש"
 
-#: data/gtk/entry_page.ui:108 data/gtk/entry_page.ui:185
-#: data/gtk/password_entry_row.ui:32
+#: data/gtk/entry_page.ui:114 data/gtk/entry_page.ui:191
+#: data/gtk/entry_page.ui:231 data/gtk/password_entry_row.ui:32
 msgid "Copy"
 msgstr "העתקה"
 
-#: data/gtk/entry_page.ui:125
+#: data/gtk/entry_page.ui:131
 msgid "One-_Time Password Secret"
 msgstr "סוד לססמה _חד־פעמית"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:145
+#: data/gtk/entry_page.ui:151
 msgid "Could not Generate OTP Token"
 msgstr "לא ניתן לייצר אסימון ססמה חד־פעמית"
 
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:165
 msgid "_One-Time Password"
 msgstr "_ססמה חד־פעמית"
 
-#: data/gtk/entry_page.ui:210
+#: data/gtk/entry_page.ui:216
 msgid "U_RL"
 msgstr "_כתובת"
 
-#: data/gtk/entry_page.ui:222
+#: data/gtk/entry_page.ui:239
 msgid "Open Address"
 msgstr "פתיחת כתובת"
 
-#: data/gtk/entry_page.ui:240 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:261 data/gtk/group_page.ui:76
 #: data/gtk/references_dialog.ui:185
 msgid "_Notes"
 msgstr "ה_ערות"
 
-#: data/gtk/entry_page.ui:252 data/gtk/group_page.ui:87
+#: data/gtk/entry_page.ui:273 data/gtk/group_page.ui:87
 msgid "Edit in a Window"
 msgstr "עריכה בחלון"
 
-#: data/gtk/entry_page.ui:292
+#: data/gtk/entry_page.ui:313
 msgid "Icon"
 msgstr "סמל"
 
-#: data/gtk/entry_page.ui:319
+#: data/gtk/entry_page.ui:340
 msgid "Attachments"
 msgstr "צרופות"
 
-#: data/gtk/entry_page.ui:344
+#: data/gtk/entry_page.ui:365
 msgid "_Add Attachment"
 msgstr "הוספת _צרופה"
 
-#: data/gtk/entry_page.ui:366
+#: data/gtk/entry_page.ui:387
 msgid "Attributes"
 msgstr "מאפיינים"
 
-#: data/gtk/entry_page.ui:382
+#: data/gtk/entry_page.ui:403
 msgid "Key"
 msgstr "מפתח"
 
-#: data/gtk/entry_page.ui:388
+#: data/gtk/entry_page.ui:409
 msgid "Value"
 msgstr "ערך"
 
-#: data/gtk/entry_page.ui:399
+#: data/gtk/entry_page.ui:420
 msgid "Add Attribute"
 msgstr "הוספת ערך"
 
-#: data/gtk/entry_page.ui:425
+#: data/gtk/entry_page.ui:446
 msgid "_Expiration Date"
 msgstr "_תאריך התפוגה"
 
-#: data/gtk/entry_page.ui:446
+#: data/gtk/entry_page.ui:467
 msgid "_Show More"
 msgstr "להציג _עוד"
 
-#: data/gtk/entry_page.ui:465
+#: data/gtk/entry_page.ui:486
 msgid "D_uplicate"
 msgstr "_שכפול"
 
-#: data/gtk/entry_page.ui:469
+#: data/gtk/entry_page.ui:490
 msgid "_References"
 msgstr "ה_פניה"
 
-#: data/gtk/entry_page.ui:473 data/gtk/group_page.ui:127
+#: data/gtk/entry_page.ui:494 data/gtk/group_page.ui:127
 msgid "_Properties"
 msgstr "מ_אפיינים"
 
-#: data/gtk/entry_page.ui:479 data/gtk/group_page.ui:133
+#: data/gtk/entry_page.ui:500 data/gtk/group_page.ui:133
 msgid "_Delete"
 msgstr "מ_חיקה"
 
@@ -411,13 +417,22 @@ msgstr "העתקת ססמה"
 msgid "Expiration Date not Set"
 msgstr "לא הוגדר תאריך תפוגה"
 
-#: data/gtk/expiration_date_row.ui:24
+#: data/gtk/expiration_date_row.ui:17
+#| msgid "_Set Expiration Date"
+msgid "Edit Expiration Date"
+msgstr "עריכת תאריך התפוגה"
+
+#: data/gtk/expiration_date_row.ui:25
 msgid "Remove Expiration Date"
 msgstr "הסרת תאריך התפוגה"
 
-#: data/gtk/expiration_date_row.ui:57
+#: data/gtk/expiration_date_row.ui:58
 msgid "_Set Expiration Date"
 msgstr "ה_גדרת תאריך התפוגה"
+
+#: data/gtk/group_row.ui:51
+msgid "Edit"
+msgstr "_עריכה"
 
 #: data/gtk/help-overlay.ui:11
 msgctxt "Shortcut window description"
@@ -500,11 +515,17 @@ msgid "Copy Password"
 msgstr "העתקת ססמה"
 
 #: data/gtk/help-overlay.ui:102
+#| msgid "Open Address"
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "העתקת כתובת"
+
+#: data/gtk/help-overlay.ui:108
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "העתקת שם משתמש"
 
-#: data/gtk/help-overlay.ui:108
+#: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "העתקת ססמה חד־פעמית"
@@ -520,6 +541,11 @@ msgstr "כספת _חדשה"
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "ה_עתקה"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:26 data/gtk/unlocked_headerbar.ui:24
+msgid "Search"
+msgstr "חיפוש"
 
 #: data/gtk/password_generator_popover.ui:35
 msgid "Length"
@@ -627,27 +653,27 @@ msgstr ""
 "הרשומה."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:4
 msgid "Unsaved Changes"
 msgstr "שינויים שלא נשמרו"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
 msgstr "לכתוב את כל השינויים לכספת?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:10
 msgid "_Quit Without Saving"
 msgstr "ל_צאת בלי לשמור"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:20
+#: data/gtk/save_dialog.ui:11
 msgid "_Don't Quit"
 msgstr "_לא לצאת"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:26
+#: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
 msgstr "ל_שמור ולצאת"
 
@@ -706,7 +732,7 @@ msgstr "לה_סתיר את מסך הפתיחה הראשוני"
 msgid "Reopen last opened safe."
 msgstr "לפתוח את הכספת האחרונה שנפתחה."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:236
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:245
 msgid "Safe"
 msgstr "כספת"
 
@@ -827,6 +853,10 @@ msgstr "פינוי רשימת אחרונים"
 msgid "Clear the recently opened safes list."
 msgstr "פינוי רשימת הכספות שנפתחו לאחרונה."
 
+#: data/gtk/settings_dialog.ui:269 data/gtk/unlock_database.ui:108
+msgid "Clear"
+msgstr "ניקוי"
+
 #: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
 msgstr "שחרור נעילת כספת"
@@ -835,22 +865,17 @@ msgstr "שחרור נעילת כספת"
 msgid "_Select Keyfile"
 msgstr "בחירת _קובץ מפתח"
 
-#: data/gtk/unlocked_database_page.ui:28
+#: data/gtk/unlocked_database_page.ui:31
 msgid "Add elements with the ➕ button."
 msgstr "הוספת רכיבים באמצעות הכפתור ➕."
 
-#: data/gtk/unlocked_database_page.ui:29
+#: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
 msgstr "קבוצה ריקה"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
 msgstr "רשומה או קבוצה חדשה"
-
-#. Button tooltip in headerbar to open search page
-#: data/gtk/unlocked_headerbar.ui:24
-msgid "Search"
-msgstr "חיפוש"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
 #: data/gtk/unlocked_headerbar.ui:31
@@ -912,11 +937,6 @@ msgid ""
 msgstr ""
 "אחסון מאובטח של הססמאות, הפתקיות והנתונים שלך. ניתן <b>ליצור</b> או "
 "<b>לייבא</b> כספת KeePass חדשה."
-
-#. Translators: Secrets is the app name, do not translate
-#: data/org.gnome.World.Secrets.desktop.in.in:4
-msgid "Secrets"
-msgstr "סודות"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
@@ -1112,7 +1132,7 @@ msgstr ""
 "באופן מושלם עם שולחן העבודה GNOME ומספק מנשק פשוט ובלתי עמוס לניהול מסדי "
 "נתונים של ססמאות."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:209
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:223
 msgid "Falk Alexander Seidl"
 msgstr "פאלק אלכסנדר זיידל"
 
@@ -1124,7 +1144,7 @@ msgstr "שגיאה: הקובץ {} לא קיים"
 msgid "Error: Safe {} is already open"
 msgstr "שגיאה: הכספת {} כבר פתוחה"
 
-#: gsecrets/attachment_warning_dialog.py:64
+#: gsecrets/attachment_warning_dialog.py:56
 msgid "Could not load attachment"
 msgstr "לא ניתן לטעון צרופה"
 
@@ -1148,29 +1168,34 @@ msgstr "לא ניתן ליצור קובץ מפתח"
 msgid "Generate"
 msgstr "יצירה"
 
-#: gsecrets/entry_page.py:244 gsecrets/entry_page.py:397
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:405
 #: gsecrets/entry_row.py:112
 msgid "Username copied"
 msgstr "שם המשתמש הועתק"
 
-#: gsecrets/entry_page.py:256 gsecrets/entry_page.py:295
+#: gsecrets/entry_page.py:253 gsecrets/entry_page.py:412
+#| msgid "Username copied"
+msgid "Address copied"
+msgstr "כתובת הועתקה"
+
+#: gsecrets/entry_page.py:263 gsecrets/entry_page.py:303
 msgid "One-time password copied"
 msgstr "הססמה החד־פעמית הועתקה"
 
-#: gsecrets/entry_page.py:314
+#: gsecrets/entry_page.py:322
 msgid "Attribute key contains an illegal character"
 msgstr "מפתח התכונה מכיל תווים לא חוקיים"
 
-#: gsecrets/entry_page.py:325
+#: gsecrets/entry_page.py:333
 msgid "Attribute key already exists"
 msgstr "מפתח התכונה כבר קיים"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:353
+#: gsecrets/entry_page.py:361
 msgid "Select Attachment"
 msgstr "בחירת צרופה"
 
-#: gsecrets/entry_page.py:356
+#: gsecrets/entry_page.py:364
 msgid "_Add"
 msgstr "הו_ספה"
 
@@ -1190,12 +1215,12 @@ msgstr "שם המשתמש לא צוין"
 msgid "Recent Files"
 msgstr "קבצים אחרונים"
 
-#: gsecrets/safe_element.py:425
+#: gsecrets/safe_element.py:481
 msgid "Clone"
 msgstr "שכפול"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:262
-#: gsecrets/widgets/window.py:369
+#: gsecrets/save_dialog.py:34 gsecrets/unlocked_database.py:274
+#: gsecrets/widgets/window.py:378
 msgid "Could not save Safe"
 msgstr "לא ניתן לשמור את הכספת"
 
@@ -1216,20 +1241,37 @@ msgstr "שחרור נעילת הכספת נכשל"
 msgid "_Try Again"
 msgstr "ל_נסות שוב"
 
-#: gsecrets/unlocked_database.py:265
+#: gsecrets/unlocked_database.py:277
 msgid "Safe saved"
 msgstr "הכספת נשמרה"
 
-#: gsecrets/unlocked_database.py:267
+#: gsecrets/unlocked_database.py:279
 msgid "No changes made"
 msgstr "לא בוצעו שינויים"
 
-#: gsecrets/unlocked_database.py:313
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlocked_database.py:324
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "פריט אחד נמחק"
+msgstr[1] "‏{} פריטים נמחקו"
+msgstr[2] "שני פריטים נמחקו"
+msgstr[3] "‏{} פריטים נמחקו"
+
+#: gsecrets/unlocked_database.py:329
+msgid "Deletion completed"
+msgstr "המחיקה הושלמה"
+
+#: gsecrets/unlocked_database.py:334
+msgid "Undo"
+msgstr "ביטול"
+
+#: gsecrets/unlocked_database.py:365
 msgid "Copied"
 msgstr "הועתק"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:379
+#: gsecrets/unlocked_database.py:460
 msgid "Safe locked due to inactivity"
 msgstr "הכספת ננעלה עקב חוסר פעילות"
 
@@ -1288,7 +1330,6 @@ msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:365
-#| msgid "Argon2"
 msgid "Argon2id"
 msgstr "Argon2id"
 
@@ -1314,47 +1355,65 @@ msgstr[3] "{} _נבחרו"
 msgid "Operation aborted: deleting currently active group"
 msgstr "הפעולה בוטלה: מחיקת הקבוצה שפעילה כרגע"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion completed"
-msgstr "המחיקה הושלמה"
+#: gsecrets/widgets/selection_mode_headerbar.py:152
+msgid "Warning"
+msgstr "אזהרה"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:145
+#: gsecrets/widgets/selection_mode_headerbar.py:154
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+
+#: gsecrets/widgets/selection_mode_headerbar.py:157
+#| msgid "_Cancel"
+msgid "Cancel"
+msgstr "ביטול"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:158
+#| msgid "_Delete"
+msgid "Delete"
+msgstr "מחיקה"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:198
 msgid "Operation aborted: moving currently active group"
 msgstr "הפעולה בוטלה: העברת הקבוצה שפעילה כרגע"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:160
+#: gsecrets/widgets/selection_mode_headerbar.py:213
 msgid "Move completed"
 msgstr "ההעברה הושלמה"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:130
+#: gsecrets/widgets/window.py:139
 msgid "Select Safe"
 msgstr "בחירת כספת"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:141 gsecrets/widgets/window.py:241
+#: gsecrets/widgets/window.py:150 gsecrets/widgets/window.py:250
 msgid "KeePass 3.1/4 Database"
 msgstr "מסד נתונים KeePass 3.1/4"
 
-#: gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:155
 msgid "Any file type"
 msgstr "כל סוג של קובץ"
 
-#: gsecrets/widgets/window.py:209
+#: gsecrets/widgets/window.py:218
 msgid "Safe is already open"
 msgstr "הכספת כבר פתוחה"
 
-#: gsecrets/widgets/window.py:233
+#: gsecrets/widgets/window.py:242
 msgid "_Create"
 msgstr "י_צירה"
 
-#: gsecrets/widgets/window.py:269
+#: gsecrets/widgets/window.py:278
 msgid "Cannot create Safe: Safe is already open"
 msgstr "לא ניתן ליצור כספת: הכספת כבר פתוחה"
 
-#: gsecrets/widgets/window.py:311 gsecrets/widgets/window.py:325
+#: gsecrets/widgets/window.py:320 gsecrets/widgets/window.py:334
 msgid "Could not create new Safe"
 msgstr "לא ניתן ליצור כספת חדשה"
+
+#~ msgid "Learn more about Secrets"
+#~ msgstr "מידע נוסף על סודות"
 
 #~ msgid "New Safe"
 #~ msgstr "כספת חדשה"

@@ -13,11 +13,14 @@ class AttributeEntryRow(Adw.EntryRow):
 
     __gtype_name__ = "AttributeEntryRow"
 
-    def __init__(self, entry: SafeEntry, key: str, value: str) -> None:
+    def __init__(
+            self, entry: SafeEntry, key: str, value: str, list_box: Gtk.ListBox
+    ) -> None:
         super().__init__()
 
         self.entry = entry
         self.key = key
+        self.list_box = list_box
 
         self.props.title = key
         if value:
@@ -26,8 +29,7 @@ class AttributeEntryRow(Adw.EntryRow):
     @Gtk.Template.Callback()
     def _on_remove_button_clicked(self, _button):
         self.entry.delete_attribute(self.key)
-        list_box = self.get_parent()
-        list_box.remove(self)
+        self.list_box.remove(self)
 
     @Gtk.Template.Callback()
     def _on_apply(self, row):

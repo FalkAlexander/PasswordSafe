@@ -226,7 +226,9 @@ class EntryPage(Gtk.Box):
         :param str value: property value
         """
         safe_entry = self.unlocked_database.current_element
-        attribute_row = AttributeEntryRow(safe_entry, key, value)
+        attribute_row = AttributeEntryRow(
+            safe_entry, key, value, self.attribute_list_box
+        )
 
         self.attribute_list_box.prepend(attribute_row)
 

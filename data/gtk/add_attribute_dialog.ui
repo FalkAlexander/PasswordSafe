@@ -4,7 +4,7 @@
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
     <property name="default_width">450</property>
-    <property name="default_height">240</property>
+    <property name="default_height">360</property>
     <property name="title" translatable="yes">Add Attribute</property>
     <child>
       <object class="GtkShortcutController">
@@ -50,6 +50,12 @@
                             <child>
                               <object class="AdwEntryRow" id="_value_entry">
                                 <property name="title" translatable="yes">Value</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwSwitchRow" id="_protected_switch">
+                                <property name="title" translatable="yes">Sensitive</property>
+                                <property name="subtitle" translatable="yes">Contains sensitive data.</property>
                               </object>
                             </child>
                           </object>

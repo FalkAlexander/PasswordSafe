@@ -666,7 +666,7 @@ class SafeEntry(SafeElement):
         """
         return key in self._attributes
 
-    def set_attribute(self, key: str, value: str) -> None:
+    def set_attribute(self, key: str, value: str, protected: bool = False) -> None:
         """Add or replace an entry attribute
 
         :param str key: attribute key
@@ -675,7 +675,7 @@ class SafeEntry(SafeElement):
         if self.props.attributes.get(key) == value:
             return
 
-        self._entry.set_custom_property(key, value)
+        self._entry.set_custom_property(key, value, protect=protected)
         self._attributes[key] = value
         self.updated()
         self.notify("attributes")
@@ -692,6 +692,12 @@ class SafeEntry(SafeElement):
         self._attributes.pop(key)
         self.updated()
         self.notify("attributes")
+
+    def is_attribute_protected(self, key: str) -> bool:
+        """Returns whether the attribute with a specific key is protected
+
+        If there is no such key returns False."""
+        return self.entry.is_custom_property_protected(key)
 
     @GObject.Property(type=str, default=EntryColor.NONE.value)
     def color(self) -> str:

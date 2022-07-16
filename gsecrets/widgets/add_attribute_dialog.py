@@ -13,10 +13,11 @@ class AddAttributeDialog(Adw.Window):
     __gtype_name__ = "AddAttributeDialog"
 
     _key_entry = Gtk.Template.Child()
+    _protected_switch = Gtk.Template.Child()
     _value_entry = Gtk.Template.Child()
     _toast_overlay = Gtk.Template.Child()
 
-    add_attribute = GObject.Signal(arg_types=(str, str, ))
+    add_attribute = GObject.Signal(arg_types=(str, str, bool, ))
 
     def __init__(self, parent, db_manager, entry):
         super().__init__()
@@ -51,9 +52,10 @@ class AddAttributeDialog(Adw.Window):
             return
 
         value = self._value_entry.props.text
+        protected = self._protected_switch.props.active
 
-        self.entry.set_attribute(key, value)
-        self.emit(self.add_attribute, key, value)
+        self.entry.set_attribute(key, value, protected)
+        self.emit(self.add_attribute, key, value, protected)
         self.close()
 
     def _on_locked(self, database_manager, _value):

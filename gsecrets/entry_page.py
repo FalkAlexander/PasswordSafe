@@ -12,6 +12,7 @@ from gsecrets.color_widget import ColorEntryRow
 from gsecrets.password_entry_row import PasswordEntryRow
 from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import ICONS
+from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
 from gsecrets.widgets.attachment_entry_row import AttachmentEntryRow
 from gsecrets.widgets.attribute_entry_row import AttributeEntryRow
 from gsecrets.widgets.entry_page_icon import EntryPageIcon
@@ -56,17 +57,14 @@ class EntryPage(Gtk.Box):
     attachment_property_box = Gtk.Template.Child()
     attachment_list_box = Gtk.Template.Child()
 
-    attributes_key_entry = Gtk.Template.Child()
     attribute_list_box = Gtk.Template.Child()
     attributes_property_box = Gtk.Template.Child()
-    attributes_value_entry = Gtk.Template.Child()
 
     expiration_date_property_box = Gtk.Template.Child()
     expiration_date_row = Gtk.Template.Child()
 
     show_all_button = Gtk.Template.Child()
 
-    attribute_property_row_list: list[Gtk.ListBoxRow] = []
     otp_timer_handler: int | None = None
 
     def __init__(self, u_d, add_all):
@@ -75,6 +73,9 @@ class EntryPage(Gtk.Box):
         self.install_action("entry.copy_user", None, self._on_copy_action)
         self.install_action("entry.copy_otp", None, self._on_copy_action)
         self.install_action("entry.copy_url", None, self._on_copy_action)
+        self.install_action(
+            "entry.add_attribute", None, self._on_attributes_add_button_activated
+        )
 
         super().__init__()
 
@@ -227,8 +228,7 @@ class EntryPage(Gtk.Box):
         safe_entry = self.unlocked_database.current_element
         attribute_row = AttributeEntryRow(safe_entry, key, value)
 
-        self.attribute_list_box.append(attribute_row)
-        self.attribute_property_row_list.append(attribute_row)
+        self.attribute_list_box.prepend(attribute_row)
 
     #
     # Events
@@ -303,44 +303,17 @@ class EntryPage(Gtk.Box):
             _("One-time password copied"),
         )
 
-    #
-    # Additional Attributes
-    #
+    def _on_attributes_add_button_activated(self, _widget, _action_name, _pspec):
+        window = self.unlocked_database.window
+        entry = self.unlocked_database.current_element
+        db_manager = self.unlocked_database.database_manager
+        dialog = AddAttributeDialog(window, db_manager, entry)
 
-    @Gtk.Template.Callback()
-    def on_attributes_add_button_clicked(self, _widget):
-        safe_entry: SafeEntry = self.unlocked_database.current_element
+        def on_add_attribute(_dialog, key, value):
+            self.add_attribute_property_row(key, value)
 
-        key = self.attributes_key_entry.get_text()
-        value = self.attributes_value_entry.get_text()
-
-        # TODO Remove once https://github.com/libkeepass/pykeepass/issues/254 is
-        # fixed
-        if '"' in key or "'" in key:
-            self.attributes_key_entry.add_css_class("error")
-            self.unlocked_database.window.send_notification(
-                _("Attribute key contains an illegal character")
-            )
-            return
-
-        if key == "" or key is None:
-            self.attributes_key_entry.add_css_class("error")
-            return
-
-        if safe_entry.has_attribute(key):
-            self.attributes_key_entry.add_css_class("error")
-            self.unlocked_database.window.send_notification(
-                _("Attribute key already exists")
-            )
-            return
-
-        self.attributes_key_entry.remove_css_class("error")
-
-        self.attributes_key_entry.set_text("")
-        self.attributes_value_entry.set_text("")
-
-        safe_entry.set_attribute(key, value)
-        self.add_attribute_property_row(key, value)
+        dialog.connect("add_attribute", on_add_attribute)
+        dialog.present()
 
     #
     # Attachment Handling

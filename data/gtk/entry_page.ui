@@ -135,61 +135,21 @@
                   <object class="PasswordEntryRow" id="password_entry_row"/>
                 </child>
                 <child>
-                  <object class="GtkBox" id="otp_property_box">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel" id="otp_property_name_label">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">One-_Time Password Secret</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">otp_property_value_entry</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="otp_entry_box">
-                        <property name="hexpand">True</property>
-                        <property name="orientation">vertical</property>
-                        <child>
-                          <object class="GtkPasswordEntry" id="otp_property_value_entry">
-                            <property name="hexpand">True</property>
-                            <property name="show_peek_icon">True</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="ErrorRevealer" id="otp_error_revealer">
-                            <property name="label" translatable="yes" comments="OTP is a proper name">Could not Generate OTP Token</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox" id="otp_token_box">
-                    <property name="visible">False</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="label" translatable="yes">_One-Time Password</property>
-                        <property name="halign">start</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">otp_copy_button</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
+                  <object class="AdwPreferencesGroup">
+                    <property name="title" translatable="yes">One-Time Password</property>
                     <child>
                       <object class="GtkListBox">
                         <property name="selection_mode">none</property>
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
                         <child>
                           <object class="AdwActionRow" id="otp_token_row">
+                            <property name="visible">False</property>
                             <property name="activatable_widget">otp_copy_button</property>
+                            <style>
+                              <class name="otp-action-row"/>
+                            </style>
                             <child>
                               <object class="GtkImage">
                                 <property name="paintable">
@@ -211,10 +171,17 @@
                             </child>
                           </object>
                         </child>
-                        <style>
-                          <class name="boxed-list"/>
-                          <class name="otp-action-row"/>
-                        </style>
+                        <child>
+                          <object class="AdwPasswordEntryRow" id="otp_secret_entry_row">
+                            <property name="title" translatable="yes">One-_Time Password Secret</property>
+                            <property name="use_underline">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="ErrorRevealer" id="otp_error_revealer">
+                        <property name="label" translatable="yes" comments="OTP is a proper name">Could not Generate OTP Token</property>
                       </object>
                     </child>
                   </object>

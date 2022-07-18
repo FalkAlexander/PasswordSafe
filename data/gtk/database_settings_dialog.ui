@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="DatabaseSettingsDialog" parent="AdwPreferencesWindow">
-    <property name="default_height">510</property>
-    <property name="default_width">360</property>
+    <property name="default_height">550</property>
+    <property name="default_width">400</property>
     <property name="search-enabled">False</property>
     <child>
       <object class="AdwPreferencesPage">
@@ -13,121 +13,42 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Password</property>
             <child>
-              <object class="GtkGrid">
-                <property name="row_spacing">6</property>
-                <property name="column_spacing">12</property>
+              <object class="AdwPasswordEntryRow" id="new_password_entry">
+                <property name="title" translatable="yes">New Password</property>
+                <signal name="changed" handler="on_password_entry_changed"/>
                 <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes" comments="New password (replacement for an old one)">_New</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">new_password_entry</property>
-                    <property name="justify">right</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">1</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox">
-                    <child>
-                      <object class="GtkPasswordEntry" id="new_password_entry">
-                        <property name="name">new_entry</property>
-                        <property name="hexpand">True</property>
-                        <property name="show_peek_icon">True</property>
-                        <property name="placeholder_text" translatable="yes">Generate New Password</property>
-                        <signal name="changed" handler="on_password_entry_changed"/>
+                  <object class="GtkMenuButton">
+                    <property name="valign">center</property>
+                    <property name="icon_name">security-high-symbolic</property>
+                    <property name="tooltip_text" translatable="yes">Generate New Password</property>
+                    <property name="popover">
+                      <object class="PasswordGeneratorPopover">
+                        <signal name="generated" handler="on_password_generated" swapped="no"/>
                       </object>
-                    </child>
-                    <child>
-                      <object class="GtkMenuButton">
-                        <property name="icon_name">security-high-symbolic</property>
-                        <property name="tooltip_text" translatable="yes">Generate New Password</property>
-                        <property name="popover">
-                          <object class="PasswordGeneratorPopover">
-                            <signal name="generated" handler="on_password_generated" swapped="no"/>
-                          </object>
-                        </property>
-                      </object>
-                    </child>
+                    </property>
                     <style>
-                      <class name="linked"/>
+                      <class name="flat"/>
                     </style>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">1</property>
-                    </layout>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes" comments="Retype the new password to confirm">C_onfirm</property>
-                    <property name="justify">right</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">confirm_password_entry</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">2</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkPasswordEntry" id="confirm_password_entry">
-                    <property name="hexpand">True</property>
-                    <property name="placeholder_text" translatable="yes">Confirm New Password</property>
-                    <property name="show_peek_icon">True</property>
-                    <signal name="changed" handler="on_password_entry_changed"/>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">2</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="halign">end</property>
-                    <property name="label" translatable="yes" comments="Current password">_Current</property>
-                    <property name="use_underline">True</property>
-                    <property name="mnemonic_widget">current_password_entry</property>
-                    <property name="justify">right</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">0</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkPasswordEntry" id="current_password_entry">
-                    <property name="hexpand">True</property>
-                    <property name="show_peek_icon">True</property>
-                    <property name="placeholder_text" translatable="yes">Enter Current Password</property>
-                    <signal name="changed" handler="on_password_entry_changed"/>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">0</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
-                  <object class="PasswordLevelBar" id="level_bar">
-                    <property name="password" bind-source="new_password_entry" bind-property="text"/>
-                    <layout>
-                      <property name="column">1</property>
-                      <property name="row">3</property>
-                    </layout>
-                  </object>
-                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPasswordEntryRow" id="confirm_password_entry">
+                <property name="title" translatable="yes">Confirm New Password</property>
+                <signal name="changed" handler="on_password_entry_changed"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPasswordEntryRow" id="current_password_entry">
+                <property name="title" translatable="yes">Current Password</property>
+                <signal name="changed" handler="on_password_entry_changed"/>
+              </object>
+            </child>
+            <child>
+              <object class="PasswordLevelBar" id="level_bar">
+                <property name="margin_top">6</property>
+                <property name="password" bind-source="new_password_entry" bind-property="text"/>
               </object>
             </child>
           </object>

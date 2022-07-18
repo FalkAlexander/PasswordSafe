@@ -41,7 +41,7 @@ class EntryPage(Gtk.Box):
     otp_secret_entry_row = Gtk.Template.Child()
     otp_token_row = Gtk.Template.Child()
 
-    notes_property_box = Gtk.Template.Child()
+    notes_preferences_group = Gtk.Template.Child()
     notes_property_value_entry = Gtk.Template.Child()
 
     color_property_bin = Gtk.Template.Child()
@@ -75,7 +75,7 @@ class EntryPage(Gtk.Box):
 
         self.unlocked_database = u_d
         self.toggeable_widget_list = [
-            self.notes_property_box,
+            self.notes_preferences_group,
             self.attachment_property_box,
             self.attributes_property_box,
             self.expiration_date_property_box,
@@ -159,7 +159,7 @@ class EntryPage(Gtk.Box):
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
         self.notes_property_value_entry.set_buffer(textbuffer)
-        self.show_row(self.notes_property_box, safe_entry.notes, add_all)
+        self.show_row(self.notes_preferences_group, safe_entry.notes, add_all)
 
         # Color
         self.color_property_bin.set_child(

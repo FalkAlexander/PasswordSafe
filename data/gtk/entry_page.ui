@@ -236,18 +236,8 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkBox" id="attachment_property_box">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel" id="attachment_property_name_label">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">Attachments</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
+                  <object class="AdwPreferencesGroup" id="attachments_preferences_group">
+                    <property name="title" translatable="yes">Attachments</property>
                     <child>
                       <object class="GtkListBox" id="attachment_list_box">
                         <property name="selection_mode">none</property>

@@ -48,7 +48,7 @@ class EntryPage(Gtk.Box):
 
     icon_entry_box = Gtk.Template.Child()
 
-    attachment_property_box = Gtk.Template.Child()
+    attachments_preferences_group = Gtk.Template.Child()
     attachment_list_box = Gtk.Template.Child()
 
     attribute_list_box = Gtk.Template.Child()
@@ -76,7 +76,7 @@ class EntryPage(Gtk.Box):
         self.unlocked_database = u_d
         self.toggeable_widget_list = [
             self.notes_preferences_group,
-            self.attachment_property_box,
+            self.attachments_preferences_group,
             self.attributes_property_box,
             self.expiration_date_property_box,
         ]
@@ -186,7 +186,9 @@ class EntryPage(Gtk.Box):
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
 
-        self.show_row(self.attachment_property_box, safe_entry.attachments, add_all)
+        self.show_row(
+            self.attachments_preferences_group, safe_entry.attachments, add_all
+        )
 
         # Attributes
         self.show_row(self.attributes_property_box, safe_entry.attributes, add_all)

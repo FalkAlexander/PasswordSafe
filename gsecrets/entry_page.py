@@ -32,15 +32,13 @@ class EntryPage(Gtk.Box):
 
     title_entry_row = Gtk.Template.Child()
     username_entry_row = Gtk.Template.Child()
+    url_entry_row = Gtk.Template.Child()
 
     password_entry_row = Gtk.Template.Child()
 
     otp_token_box = Gtk.Template.Child()
     otp_token_row = Gtk.Template.Child()
     otp_progress_icon = Gtk.Template.Child()
-
-    url_property_box = Gtk.Template.Child()
-    url_property_value_entry = Gtk.Template.Child()
 
     otp_error_revealer = Gtk.Template.Child()
     otp_property_box = Gtk.Template.Child()
@@ -80,7 +78,6 @@ class EntryPage(Gtk.Box):
 
         self.unlocked_database = u_d
         self.toggeable_widget_list = [
-            self.url_property_box,
             self.otp_property_box,
             self.notes_property_box,
             self.attachment_property_box,
@@ -145,12 +142,10 @@ class EntryPage(Gtk.Box):
         # Url
         safe_entry.bind_property(
             "url",
-            self.url_property_value_entry,
+            self.url_entry_row,
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
-        self.show_row(self.url_property_box, safe_entry.url, add_all)
-        self.url_property_value_entry.props.enable_undo = True
 
         # OTP (secret)
         safe_entry.bind_property(
@@ -245,7 +240,7 @@ class EntryPage(Gtk.Box):
         elif action_name == "entry.copy_password":
             self.password_entry_row.copy_password()
         elif action_name == "entry.copy_url":
-            url = self.url_property_value_entry.get_text()
+            url = self.url_entry_row.props.text
             self.unlocked_database.send_to_clipboard(
                 url,
                 _("Address copied"),
@@ -289,7 +284,7 @@ class EntryPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_visit_url_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
-        url = self.url_property_value_entry.get_text()
+        url = self.url_entry_row.props.text
         window = self.unlocked_database.window
         if validators.url(url):
             Gtk.show_uri(window, url, Gdk.CURRENT_TIME)
@@ -387,9 +382,10 @@ class EntryPage(Gtk.Box):
         )
 
     @Gtk.Template.Callback()
-    def on_copy_url_button_clicked(self, widget, _icon_pos, _data=None):
+    def _on_url_copy_button_clicked(self, _button):
+        url = self.url_entry_row.props.text
         self.unlocked_database.send_to_clipboard(
-            widget.get_text(),
+            url,
             _("Address copied"),
         )
 

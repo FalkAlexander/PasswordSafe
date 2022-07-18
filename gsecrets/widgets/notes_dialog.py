@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+from gettext import gettext as _
+
 from gi.repository import GObject, Gtk
 
 
@@ -12,7 +14,10 @@ class NotesDialog(Gtk.Window):
 
     _search_bar = Gtk.Template.Child()
     _search_button = Gtk.Template.Child()
+    _toast_overlay = Gtk.Template.Child()
     _value_entry = Gtk.Template.Child()
+
+    clipboard_timer_handler: None | int = None
 
     def __init__(self, unlocked_database, safe_entry):
         super().__init__()
@@ -52,11 +57,19 @@ class NotesDialog(Gtk.Window):
     @Gtk.Template.Callback()
     def _on_copy_button_clicked(self, _button):
         notes_buffer = self.__notes_buffer
+        bounds = notes_buffer.get_selection_bounds()
+        if bounds:
+            message = _("Selection copied")
+            start, end = bounds[0], bounds[1]
+        else:
+            message = ""
+            start = notes_buffer.get_start_iter()
+            end = notes_buffer.get_end_iter()
 
         self.__unlocked_database.send_to_clipboard(
-            notes_buffer.get_text(
-                notes_buffer.get_start_iter(), notes_buffer.get_end_iter(), False
-            )
+            notes_buffer.get_text(start, end, False),
+            message=message,
+            toast_overlay=self._toast_overlay,
         )
 
     @Gtk.Template.Callback()

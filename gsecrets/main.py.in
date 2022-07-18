@@ -5,6 +5,7 @@ import sys
 import os
 import locale
 import gettext
+import concurrent.futures
 from gettext import gettext as _
 
 import gi
@@ -55,10 +56,10 @@ def main():
 
     from gsecrets.application import Application
 
-    app = Application()
-
-    exit_status = app.run(sys.argv)
-    sys.exit(exit_status)
+    with concurrent.futures.ProcessPoolExecutor(max_workers=1) as executor:
+        app = Application(executor)
+        exit_status = app.run(sys.argv)
+        sys.exit(exit_status)
 
 
 if __name__ == "__main__":

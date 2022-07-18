@@ -17,7 +17,7 @@ class Application(Adw.Application):
     application_id = const.APP_ID
     settings = Gio.Settings.new(application_id)
 
-    def __init__(self, *args, **_kwargs):
+    def __init__(self, executor, *args, **_kwargs):
         super().__init__(
             *args,
             application_id=self.application_id,
@@ -35,6 +35,8 @@ class Application(Adw.Application):
             "Enable debug logging",
             None,
         )
+
+        self.executor = executor
 
     def do_startup(self):  # pylint: disable=arguments-differ
         Adw.Application.do_startup(self)

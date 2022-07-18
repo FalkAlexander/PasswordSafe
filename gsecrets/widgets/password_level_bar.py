@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from gi.repository import GObject, Gtk
 
-from gsecrets.password_generator import strength
+from gsecrets.password_generator import strength_async
 
 
 class PasswordLevelBar(Gtk.LevelBar):
@@ -33,4 +33,8 @@ class PasswordLevelBar(Gtk.LevelBar):
     @password.setter  # type: ignore
     def password(self, password: str) -> None:
         self._password = password
-        self.props.value = strength(password)
+
+        def on_password(strength):
+            self.props.value = strength
+
+        strength_async(password, on_password)

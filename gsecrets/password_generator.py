@@ -4,6 +4,7 @@ from __future__ import annotations
 import secrets
 import string
 
+from gi.repository import Gio
 from zxcvbn import zxcvbn
 
 
@@ -66,3 +67,12 @@ def strength(password: str) -> int:
         return zxcvbn(password)["score"]
 
     return 0
+
+
+def strength_async(password, callback):
+    def cb_wrapper(future):
+        callback(future.result())
+
+    executor = Gio.Application.get_default().executor
+    future = executor.submit(strength, password)
+    future.add_done_callback(cb_wrapper)

@@ -31,10 +31,9 @@ class EntryPage(Gtk.Box):
     _pathbar_bin = Gtk.Template.Child()
 
     title_entry_row = Gtk.Template.Child()
-    username_entry_row = Gtk.Template.Child()
     url_entry_row = Gtk.Template.Child()
 
-    password_entry_row = Gtk.Template.Child()
+    credentials_group = Gtk.Template.Child()
 
     otp_error_revealer = Gtk.Template.Child()
     otp_preferences_group = Gtk.Template.Child()
@@ -118,18 +117,8 @@ class EntryPage(Gtk.Box):
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
 
-        # Username
-        safe_entry.bind_property(
-            "username",
-            self.username_entry_row,
-            "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
-        )
-
-        value = safe_entry.username != ""
-
-        # Password
-        self.password_entry_row.unlocked_database = self.unlocked_database
+        # Credentials Group
+        self.credentials_group.unlocked_database = self.unlocked_database
 
         # OTP (token)
         safe_entry.connect("notify::otp", self.otp_update)
@@ -243,13 +232,13 @@ class EntryPage(Gtk.Box):
             return
 
         if action_name == "entry.copy_user":
-            username = self.username_entry_row.props.text
+            username = self.credentials_group.username
             self.unlocked_database.send_to_clipboard(
                 username,
                 _("Username copied"),
             )
         elif action_name == "entry.copy_password":
-            self.password_entry_row.copy_password()
+            self.credentials_group.copy_password()
         elif action_name == "entry.copy_url":
             url = self.url_entry_row.props.text
             self.unlocked_database.send_to_clipboard(
@@ -381,14 +370,6 @@ class EntryPage(Gtk.Box):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         attachment_row = AttachmentEntryRow(safe_entry, attachment)
         self.attachment_list_box.append(attachment_row)
-
-    @Gtk.Template.Callback()
-    def _on_username_copy_button_clicked(self, _button):
-        username = self.username_entry_row.props.text
-        self.unlocked_database.send_to_clipboard(
-            username,
-            _("Username copied"),
-        )
 
     @Gtk.Template.Callback()
     def _on_url_copy_button_clicked(self, _button):

@@ -3,10 +3,10 @@
 
 from gi.repository import GObject
 
-from gsecrets.password_entry_row import PasswordEntryRow
 from gsecrets.password_generator_popover import PasswordGeneratorPopover
 from gsecrets.unlocked_headerbar import UnlockedHeaderBar
 from gsecrets.welcome_page import WelcomePage
+from gsecrets.widgets.credentials_group import CredentialsGroup
 from gsecrets.widgets.error_revealer import ErrorRevealer
 from gsecrets.widgets.expiration_date_row import ExpirationDateRow
 from gsecrets.widgets.locked_headerbar import LockedHeaderBar
@@ -18,7 +18,7 @@ from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 
 
 def load_widgets():
-    GObject.type_ensure(PasswordEntryRow)
+    GObject.type_ensure(CredentialsGroup)
     GObject.type_ensure(PasswordGeneratorPopover)
     GObject.type_ensure(UnlockedHeaderBar)
     GObject.type_ensure(WelcomePage)

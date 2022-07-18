@@ -4,7 +4,7 @@ from __future__ import annotations
 import typing
 from gettext import gettext as _
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 from gsecrets.unlocked_database import UnlockedDatabase
 
@@ -13,20 +13,24 @@ if typing.TYPE_CHECKING:
     from gsecrets.safe_element import SafeEntry
 
 
-@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/password_entry_row.ui")
-class PasswordEntryRow(Gtk.Box):
-    """Widget to set the password of an entry."""
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/credentials_group.ui")
+class CredentialsGroup(Adw.PreferencesGroup):
+    """Widget to set the username and password of an entry."""
 
-    __gtype_name__ = "PasswordEntryRow"
+    __gtype_name__ = "CredentialsGroup"
 
-    _generate_password_button = Gtk.Template.Child()
-    _password_level_bar = Gtk.Template.Child()
-    _password_entry_row = Gtk.Template.Child()
     _copy_password_button = Gtk.Template.Child()
+    _generate_password_button = Gtk.Template.Child()
+    _password_entry_row = Gtk.Template.Child()
+    _username_entry_row = Gtk.Template.Child()
 
     _unlocked_database: UnlockedDatabase | None = None
 
-    @GObject.Property(type=UnlockedDatabase)
+    @property
+    def username(self):
+        return self._username_entry_row.props.text
+
+    @property
     def unlocked_database(self) -> UnlockedDatabase:
         return self._unlocked_database
 
@@ -37,7 +41,19 @@ class PasswordEntryRow(Gtk.Box):
         self._unlocked_database = unlocked_database
 
         self._password_entry_row.props.text = self._safe_entry.props.password
-        self._password_entry_row.bind_property("text", self._safe_entry, "password")
+
+        self._safe_entry.bind_property(
+            "username",
+            self._username_entry_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+        self._safe_entry.bind_property(
+            "password",
+            self._password_entry_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
 
     @Gtk.Template.Callback()
     def _on_copy_password_button_clicked(self, _widget: Gtk.Button) -> None:
@@ -58,6 +74,15 @@ class PasswordEntryRow(Gtk.Box):
         """
         if self._unlocked_database:
             self._unlocked_database.start_database_lock_timer()
+
+    @Gtk.Template.Callback()
+    def _on_username_copy_button_clicked(self, _button):
+        if self._unlocked_database:
+            username = self._username_entry_row.props.text
+            self._unlocked_database.send_to_clipboard(
+                username,
+                _("Username copied"),
+            )
 
     def copy_password(self) -> None:
         if self._unlocked_database:

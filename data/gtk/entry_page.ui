@@ -70,23 +70,6 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwEntryRow" id="username_entry_row">
-                    <property name="title" translatable="yes">_Username</property>
-                    <property name="use_underline">True</property>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="valign">center</property>
-                        <property name="tooltip_text" translatable="yes">Copy</property>
-                        <property name="icon_name">edit-copy-symbolic</property>
-                        <signal name="clicked" handler="_on_username_copy_button_clicked" swapped="no"/>
-                        <style>
-                          <class name="flat"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
                   <object class="AdwEntryRow" id="url_entry_row">
                     <property name="title" translatable="yes">U_RL</property>
                     <property name="use_underline">True</property>
@@ -122,11 +105,7 @@
           </object>
         </child>
         <child>
-          <object class="AdwPreferencesGroup">
-            <child>
-              <object class="PasswordEntryRow" id="password_entry_row"/>
-            </child>
-          </object>
+          <object class="CredentialsGroup" id="credentials_group"/>
         </child>
         <child>
           <object class="AdwPreferencesGroup" id="otp_preferences_group">

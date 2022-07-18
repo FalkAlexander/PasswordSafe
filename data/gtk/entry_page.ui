@@ -131,6 +131,7 @@
         <child>
           <object class="AdwPreferencesGroup" id="otp_preferences_group">
             <property name="title" translatable="yes">One-Time Password</property>
+            <property name="visible">False</property>
             <child>
               <object class="GtkListBox">
                 <property name="selection_mode">none</property>
@@ -182,6 +183,7 @@
         </child>
         <child>
           <object class="AdwPreferencesGroup" id="notes_preferences_group">
+            <property name="visible">False</property>
             <property name="title" translatable="yes">Notes</property>
             <property name="header-suffix">
               <object class="GtkButton" id="notes_detach_button">
@@ -236,6 +238,7 @@
         <child>
           <object class="AdwPreferencesGroup" id="attachments_preferences_group">
             <property name="title" translatable="yes">Attachments</property>
+            <property name="visible">False</property>
             <child>
               <object class="GtkListBox" id="attachment_list_box">
                 <property name="selection_mode">none</property>
@@ -273,6 +276,7 @@
         <child>
           <object class="AdwPreferencesGroup" id="attributes_preferences_group">
             <property name="title" translatable="yes">Attributes</property>
+            <property name="visible">False</property>
             <child>
               <object class="GtkListBox" id="attribute_list_box">
                 <property name="selection_mode">none</property>
@@ -309,6 +313,7 @@
         </child>
         <child>
           <object class="AdwPreferencesGroup" id="expiration_date_preferences_group">
+            <property name="visible">False</property>
             <property name="title" translatable="yes">Expiration Date</property>
             <child>
               <object class="ExpirationDateRow" id="expiration_date_row"/>

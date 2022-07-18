@@ -15,16 +15,16 @@ class PasswordLevelBar(Gtk.LevelBar):
     def __init__(self) -> None:
         super().__init__()
 
-        self.props.max_value = 5.0
+        self.props.max_value = 4.0
         self.props.mode = Gtk.LevelBarMode.DISCRETE
 
         # Values in a discrete mode are rounded
         # instead of using a floor function.
-        self.add_offset_value("insecure", 1.49)
-        self.add_offset_value("weak", 2.49)
-        self.add_offset_value("medium", 3.49)
-        self.add_offset_value("strong", 4.49)
-        self.add_offset_value("secure", 5.0)
+        self.add_offset_value("insecure", 0.49)
+        self.add_offset_value("weak", 1.49)
+        self.add_offset_value("medium", 2.49)
+        self.add_offset_value("strong", 3.49)
+        self.add_offset_value("secure", 4.0)
 
     @GObject.Property(type=str, default="")
     def password(self) -> str:

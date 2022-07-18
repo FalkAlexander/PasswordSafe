@@ -4,7 +4,7 @@ from __future__ import annotations
 import secrets
 import string
 
-import pwquality
+from zxcvbn import zxcvbn
 
 
 def generate(
@@ -53,25 +53,16 @@ def generate(
     return "".join([secrets.choice(characters) for _ in range(0, length)])
 
 
-def strength(password: str) -> float:
-    """Get strength of a password between 0 and 5.
+def strength(password: str) -> int:
+    """Get strength of a password between 0 and 4.
 
     The higher the score is, the more secure the password is.
 
     :param str password: password to test
-    :returns: strength of password or None on pwquality error
-    :rtype: float
+    :returns: strength of password
+    :rtype: int
     """
-    # TODO The settings should be set so the strength of the
-    # password is still being computed on certain errors.
-    # For the list of error codes see:
-    # https://github.com/libpwquality/libpwquality/blob/master/src/pwquality.h
-    try:
-        if password:
-            score = pwquality.PWQSettings().check(password)
-        else:
-            score = 0
-    except pwquality.PWQError:
-        score = 0
+    if password:
+        return zxcvbn(password)["score"]
 
-    return score / 20
+    return 0

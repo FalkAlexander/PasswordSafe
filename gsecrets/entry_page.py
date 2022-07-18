@@ -37,6 +37,7 @@ class EntryPage(Gtk.Box):
     password_entry_row = Gtk.Template.Child()
 
     otp_error_revealer = Gtk.Template.Child()
+    otp_preferences_group = Gtk.Template.Child()
     otp_progress_icon = Gtk.Template.Child()
     otp_secret_entry_row = Gtk.Template.Child()
     otp_token_row = Gtk.Template.Child()
@@ -75,6 +76,7 @@ class EntryPage(Gtk.Box):
 
         self.unlocked_database = u_d
         self.toggeable_widget_list = [
+            self.otp_preferences_group,
             self.notes_preferences_group,
             self.attachments_preferences_group,
             self.attributes_preferences_group,
@@ -133,6 +135,7 @@ class EntryPage(Gtk.Box):
         safe_entry.connect("notify::otp", self.otp_update)
         if safe_entry.otp_token():
             self.otp_update(safe_entry, None)
+            self.show_row(self.otp_preferences_group, True, add_all)
 
         # Url
         safe_entry.bind_property(

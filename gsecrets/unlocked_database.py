@@ -356,7 +356,12 @@ class UnlockedDatabase(Gtk.Box):
 
         self.show_browser_page(parent_group)
 
-    def send_to_clipboard(self, text: str, message: str = "") -> None:
+    def send_to_clipboard(
+        self,
+        text: str,
+        message: str = "",
+        toast_overlay: Adw.ToastOverlay | None = None,
+    ) -> None:
         if not message:
             message = _("Copied")
 
@@ -373,14 +378,20 @@ class UnlockedDatabase(Gtk.Box):
 
         self.clipboard.set(text)
 
-        self.window.send_notification(message)
+        if toast_overlay:
+            window = toast_overlay.get_root()
+            toast = Adw.Toast.new(message)
+            toast_overlay.add_toast(toast)
+        else:
+            window = self.window
+            self.window.send_notification(message)
 
         clear_clipboard_time = gsecrets.config_manager.get_clear_clipboard()
 
         def callback():
             GLib.source_remove(self.clipboard_timer_handler)
             self.clipboard_timer_handler = None
-            if self.window.props.is_active:
+            if window.props.is_active:
                 self.clipboard.set_content(None)
             else:
                 def on_is_active(window, _pspec):

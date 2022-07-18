@@ -176,10 +176,6 @@ class UnlockedDatabase(Gtk.Box):
         self._edit_page_bin.set_child(page)
         self._unlocked_db_deck.set_visible_child(self._edit_page_bin)
 
-        # Grab the focus of the Title entry.
-        # It is done here so that the Entry has a Window.
-        page.name_property_value_entry.grab_focus_without_selecting()
-
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
         page_name = group.uuid.urn

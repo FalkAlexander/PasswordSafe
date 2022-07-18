@@ -71,51 +71,36 @@
                 <property name="spacing">12</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkBox" id="name_property_box">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
+                  <object class="GtkListBox">
+                    <property name="selection_mode">none</property>
                     <child>
-                      <object class="GtkLabel" id="name_property_name_label">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">_Title</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">name_property_value_entry</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkEntry" id="name_property_value_entry">
+                      <object class="AdwEntryRow" id="title_entry_row">
                         <property name="input_purpose">name</property>
                         <property name="enable_undo">False</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox" id="username_property_box">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel" id="username_property_name_label">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">_Username</property>
+                        <property name="title" translatable="yes">_Title</property>
                         <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">username_property_value_entry</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
                       </object>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="username_property_value_entry">
-                        <property name="secondary_icon_name">edit-copy-symbolic</property>
-                        <property name="secondary_icon_tooltip_text" translatable="yes">Copy</property>
-                        <property name="enable_undo">False</property>
-                        <signal name="icon-press" handler="_on_copy_secondary_button_clicked" swapped="no"/>
+                      <object class="AdwEntryRow" id="username_entry_row">
+                        <property name="title" translatable="yes">_Username</property>
+                        <property name="use_underline">True</property>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="valign">center</property>
+                            <property name="tooltip_text" translatable="yes">Copy</property>
+                            <property name="icon_name">edit-copy-symbolic</property>
+                            <signal name="clicked" handler="_on_username_copy_button_clicked" swapped="no"/>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
                     </child>
+                    <style>
+                      <class name="boxed-list"/>
+                    </style>
                   </object>
                 </child>
                 <child>

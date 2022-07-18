@@ -31,9 +31,8 @@ class EntryPage(Gtk.Box):
 
     _pathbar_bin = Gtk.Template.Child()
 
-    name_property_value_entry = Gtk.Template.Child()
-
-    username_property_value_entry = Gtk.Template.Child()
+    title_entry_row = Gtk.Template.Child()
+    username_entry_row = Gtk.Template.Child()
 
     password_property_bin = Gtk.Template.Child()
 
@@ -120,22 +119,20 @@ class EntryPage(Gtk.Box):
         # Create the name_property_row
         safe_entry.bind_property(
             "name",
-            self.name_property_value_entry,
+            self.title_entry_row,
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
-        self.name_property_value_entry.props.enable_undo = True
 
         # Username
         safe_entry.bind_property(
             "username",
-            self.username_property_value_entry,
+            self.username_entry_row,
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
 
         value = safe_entry.username != ""
-        self.username_property_value_entry.props.enable_undo = True
 
         # Password
         self.password_entry_row = PasswordEntryRow(self.unlocked_database)
@@ -242,7 +239,7 @@ class EntryPage(Gtk.Box):
             return
 
         if action_name == "entry.copy_user":
-            username = self.username_property_value_entry.get_text()
+            username = self.username_entry_row.props.text
             self.unlocked_database.send_to_clipboard(
                 username,
                 _("Username copied"),
@@ -384,9 +381,10 @@ class EntryPage(Gtk.Box):
         self.attachment_list_box.prepend(attachment_row)
 
     @Gtk.Template.Callback()
-    def _on_copy_secondary_button_clicked(self, widget, _icon_pos, _data=None):
+    def _on_username_copy_button_clicked(self, _button):
+        username = self.username_entry_row.props.text
         self.unlocked_database.send_to_clipboard(
-            widget.get_text(),
+            username,
             _("Username copied"),
         )
 

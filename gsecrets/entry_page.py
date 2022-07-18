@@ -232,7 +232,7 @@ class EntryPage(Gtk.Box):
             safe_entry, key, value, self.attribute_list_box
         )
 
-        self.attribute_list_box.prepend(attribute_row)
+        self.attribute_list_box.append(attribute_row)
 
     #
     # Events
@@ -380,7 +380,7 @@ class EntryPage(Gtk.Box):
     def add_attachment_row(self, attachment):
         safe_entry: SafeEntry = self.unlocked_database.current_element
         attachment_row = AttachmentEntryRow(safe_entry, attachment)
-        self.attachment_list_box.prepend(attachment_row)
+        self.attachment_list_box.append(attachment_row)
 
     @Gtk.Template.Callback()
     def _on_username_copy_button_clicked(self, _button):

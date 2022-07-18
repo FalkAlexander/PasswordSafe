@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import typing
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 from gsecrets.safe_element import EntryColor
 if typing.TYPE_CHECKING:
@@ -52,7 +52,7 @@ class ColorButton(Gtk.FlowBoxChild):
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/color_entry_row.ui")
-class ColorEntryRow(Gtk.Box):
+class ColorEntryRow(Adw.PreferencesGroup):
 
     __gtype_name__ = "ColorEntryRow"
 

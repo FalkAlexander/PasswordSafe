@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="ColorEntryRow" parent="GtkBox">
+  <template class="ColorEntryRow" parent="AdwPreferencesGroup">
+    <property name="title" translatable="yes">Color</property>
     <child>
-      <object class="GtkBox">
-        <property name="orientation">vertical</property>
-        <property name="spacing">12</property>
-        <child>
-          <object class="GtkLabel" id="color_property_name_label">
-            <property name="halign">start</property>
-            <property name="label" translatable="yes">Color</property>
-            <style>
-              <class name="dim-label"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkFlowBox" id="_flowbox">
-            <property name="min-children-per-line">4</property>
-            <property name="max-children-per-line">8</property>
-            <property name="row-spacing">12</property>
-            <property name="column-spacing">6</property>
-            <property name="selection-mode">single</property>
-            <signal name="child-activated" handler="_on_color_activated" swapped="no"/>
-          </object>
-        </child>
+      <object class="GtkFlowBox" id="_flowbox">
+        <property name="min-children-per-line">4</property>
+        <property name="max-children-per-line">8</property>
+        <property name="row-spacing">12</property>
+        <property name="column-spacing">6</property>
+        <property name="selection-mode">single</property>
+        <signal name="child-activated" handler="_on_color_activated" swapped="no"/>
       </object>
     </child>
   </template>

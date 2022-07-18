@@ -10,7 +10,6 @@ from gi.repository import Gdk, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
-from gsecrets.password_entry_row import PasswordEntryRow
 from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import ICONS
 from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
@@ -34,7 +33,7 @@ class EntryPage(Gtk.Box):
     title_entry_row = Gtk.Template.Child()
     username_entry_row = Gtk.Template.Child()
 
-    password_property_bin = Gtk.Template.Child()
+    password_entry_row = Gtk.Template.Child()
 
     otp_token_box = Gtk.Template.Child()
     otp_token_row = Gtk.Template.Child()
@@ -135,8 +134,7 @@ class EntryPage(Gtk.Box):
         value = safe_entry.username != ""
 
         # Password
-        self.password_entry_row = PasswordEntryRow(self.unlocked_database)
-        self.password_property_bin.set_child(self.password_entry_row)
+        self.password_entry_row.unlocked_database = self.unlocked_database
 
         # OTP (token)
         safe_entry.connect("notify::otp", self.otp_update)

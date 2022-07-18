@@ -19,8 +19,8 @@ class GroupPage(Gtk.Box):
 
     _pathbar_bin = Gtk.Template.Child()
 
-    name_property_value_entry = Gtk.Template.Child()
-    notes_property_value_entry = Gtk.Template.Child()
+    title_entry_row = Gtk.Template.Child()
+    notes_text_view = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
         super().__init__()
@@ -30,7 +30,7 @@ class GroupPage(Gtk.Box):
         safe_group = self.unlocked_database.current_element
 
         # Setup Widgets
-        notes_buffer = self.notes_property_value_entry.get_buffer()
+        notes_buffer = self.notes_text_view.get_buffer()
 
         self._pathbar_bin.set_child(Pathbar(unlocked_database))
 
@@ -38,7 +38,7 @@ class GroupPage(Gtk.Box):
         safe_group.updated.connect(self._on_safe_group_updated)
         safe_group.bind_property(
             "name",
-            self.name_property_value_entry,
+            self.title_entry_row,
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
@@ -57,9 +57,6 @@ class GroupPage(Gtk.Box):
             | GObject.BindingFlags.INVERT_BOOLEAN
             | GObject.BindingFlags.SYNC_CREATE,
         )
-
-        # Enable Undo. Has to be set to true after the name has been set.
-        self.name_property_value_entry.set_enable_undo(True)
 
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):

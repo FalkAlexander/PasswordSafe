@@ -219,18 +219,8 @@
                   <object class="AdwBin" id="color_property_bin"/>
                 </child>
                 <child>
-                  <object class="GtkBox" id="icon_property_box">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel" id="icon_property_name_label">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">Icon</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
+                  <object class="AdwPreferencesGroup">
+                    <property name="title" translatable="yes">Icon</property>
                     <child>
                       <object class="GtkFlowBox" id="icon_entry_box">
                         <property name="selection-mode">single</property>

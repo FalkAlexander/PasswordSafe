@@ -543,6 +543,7 @@ class SafeEntry(SafeElement):
         attachment = self._entry.add_attachment(attachment_id, filename)
         self._attachments.append(attachment)
         self.updated()
+        self.notify("attachments")
 
         return attachment
 
@@ -553,6 +554,7 @@ class SafeEntry(SafeElement):
         """
         self._db_manager.db.delete_binary(attachment.id)
         self._attachments.remove(attachment)
+        self.notify("attachments")
         self.updated()
 
     def get_attachment(self, id_: str) -> Attachment | None:
@@ -592,9 +594,13 @@ class SafeEntry(SafeElement):
         :param str key: attribute key
         :param str value: attribute value
         """
+        if self.props.attributes.get(key) == value:
+            return
+
         self._entry.set_custom_property(key, value)
         self._attributes[key] = value
         self.updated()
+        self.notify("attributes")
 
     def delete_attribute(self, key: str) -> None:
         """Delete an attribute
@@ -607,6 +613,7 @@ class SafeEntry(SafeElement):
         self._entry.delete_custom_property(key)
         self._attributes.pop(key)
         self.updated()
+        self.notify("attributes")
 
     @GObject.Property(type=str, default=EntryColor.NONE.value)
     def color(self) -> str:

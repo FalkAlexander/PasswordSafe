@@ -186,6 +186,11 @@ class EntryPage(Gtk.Box):
         )
 
         # Attachments
+        def on_attributes_notify(entry, _pspec):
+            self.attribute_list_box.props.visible = len(entry.attributes) > 0
+
+        self.attribute_list_box.props.visible = len(safe_entry.attributes) > 0
+        safe_entry.connect("notify::attributes", on_attributes_notify)
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
 
@@ -194,6 +199,11 @@ class EntryPage(Gtk.Box):
         )
 
         # Attributes
+        def on_attachments_notify(entry, _pspec):
+            self.attachment_list_box.props.visible = len(entry.attachments) > 0
+
+        self.attachment_list_box.props.visible = len(safe_entry.attachments) > 0
+        safe_entry.connect("notify::attachments", on_attachments_notify)
         self.show_row(self.attributes_preferences_group, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():

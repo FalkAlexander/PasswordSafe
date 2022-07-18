@@ -401,9 +401,11 @@ class UnlockedDatabase(Gtk.Box):
                     "Could not clear the clipboard, it will clear on new focus"
                 )
                 self.clipboard_last_content = self.clipboard.get_content()
-                self.on_is_active_handler = self.window.connect(
+                self.on_is_active_handler = window.connect(
                     "notify::is-active", on_is_active
                 )
+
+            return GLib.SOURCE_REMOVE
 
         self.clipboard_timer_handler = GLib.timeout_add_seconds(
             clear_clipboard_time, callback

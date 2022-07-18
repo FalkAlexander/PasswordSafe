@@ -54,7 +54,7 @@ class EntryPage(Gtk.Box):
     attribute_list_box = Gtk.Template.Child()
     attributes_preferences_group = Gtk.Template.Child()
 
-    expiration_date_property_box = Gtk.Template.Child()
+    expiration_date_preferences_group = Gtk.Template.Child()
     expiration_date_row = Gtk.Template.Child()
 
     show_all_button = Gtk.Template.Child()
@@ -78,7 +78,7 @@ class EntryPage(Gtk.Box):
             self.notes_preferences_group,
             self.attachments_preferences_group,
             self.attributes_preferences_group,
-            self.expiration_date_property_box,
+            self.expiration_date_preferences_group,
         ]
 
         self._pathbar_bin.set_child(Pathbar(u_d))
@@ -198,7 +198,9 @@ class EntryPage(Gtk.Box):
 
         # Expiration Date
         self.expiration_date_row.props.safe_entry = safe_entry
-        self.show_row(self.expiration_date_property_box, safe_entry.expires, add_all)
+        self.show_row(
+            self.expiration_date_preferences_group, safe_entry.expires, add_all
+        )
 
         # Show more row
         for widget in self.toggeable_widget_list:

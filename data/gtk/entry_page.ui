@@ -239,33 +239,20 @@
           <object class="AdwPreferencesGroup" id="attachments_preferences_group">
             <property name="title" translatable="yes">Attachments</property>
             <property name="visible">False</property>
+            <property name="header-suffix">
+              <object class="GtkButton">
+                <signal name="clicked" handler="_on_add_attachment_button_clicked" swapped="no"/>
+                <property name="icon_name">list-add-symbolic</property>
+                <property name="tooltip_text" translatable="yes">Add Attachment</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </property>
             <child>
               <object class="GtkListBox" id="attachment_list_box">
                 <property name="selection_mode">none</property>
                 <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
-                <child>
-                  <object class="GtkListBoxRow" id="add_attachment_row">
-                    <property name="name">AddAttachmentRow</property>
-                    <property name="height_request">50</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="spacing">6</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon_name">list-add-symbolic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">_Add Attachment</property>
-                            <property name="use_underline">True</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
                 <style>
                   <class name="boxed-list"/>
                 </style>
@@ -277,36 +264,22 @@
           <object class="AdwPreferencesGroup" id="attributes_preferences_group">
             <property name="title" translatable="yes">Attributes</property>
             <property name="visible">False</property>
+            <property name="header-suffix">
+              <object class="GtkButton">
+                <property name="action_name">entry.add_attribute</property>
+                <property name="icon_name">list-add-symbolic</property>
+                <property name="tooltip_text" translatable="yes">Add Attribute</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </property>
             <child>
               <object class="GtkListBox" id="attribute_list_box">
                 <property name="selection_mode">none</property>
                 <style>
                   <class name="boxed-list"/>
                 </style>
-                <child>
-                  <object class="GtkListBoxRow">
-                    <property name="action_name">entry.add_attribute</property>
-                    <property name="height_request">50</property>
-                    <property name="activatable">True</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="halign">center</property>
-                        <property name="spacing">6</property>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="icon_name">list-add-symbolic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="label" translatable="yes">_Add Attribute</property>
-                            <property name="use_underline">True</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
               </object>
             </child>
           </object>

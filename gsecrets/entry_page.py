@@ -324,13 +324,11 @@ class EntryPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_attachment_list_box_activated(self, _widget, list_box_row):
         self.unlocked_database.start_database_lock_timer()
-        if list_box_row.get_name() == "AddAttachmentRow":
-            self.on_add_attachment_row_clicked()
-        else:
-            attachment = list_box_row.attachment
-            AttachmentWarningDialog(self, attachment).present()
+        attachment = list_box_row.attachment
+        AttachmentWarningDialog(self, attachment).present()
 
-    def on_add_attachment_row_clicked(self):
+    @Gtk.Template.Callback()
+    def _on_add_attachment_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for selecting attachment file

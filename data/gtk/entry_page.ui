@@ -273,18 +273,8 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkBox" id="attributes_property_box">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">6</property>
-                    <child>
-                      <object class="GtkLabel" id="attributes_property_name_label">
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">Attributes</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
+                  <object class="AdwPreferencesGroup" id="attributes_preferences_group">
+                    <property name="title" translatable="yes">Attributes</property>
                     <child>
                       <object class="GtkListBox" id="attribute_list_box">
                         <property name="selection_mode">none</property>

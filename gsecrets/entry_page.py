@@ -52,7 +52,7 @@ class EntryPage(Gtk.Box):
     attachment_list_box = Gtk.Template.Child()
 
     attribute_list_box = Gtk.Template.Child()
-    attributes_property_box = Gtk.Template.Child()
+    attributes_preferences_group = Gtk.Template.Child()
 
     expiration_date_property_box = Gtk.Template.Child()
     expiration_date_row = Gtk.Template.Child()
@@ -77,7 +77,7 @@ class EntryPage(Gtk.Box):
         self.toggeable_widget_list = [
             self.notes_preferences_group,
             self.attachments_preferences_group,
-            self.attributes_property_box,
+            self.attributes_preferences_group,
             self.expiration_date_property_box,
         ]
 
@@ -191,7 +191,7 @@ class EntryPage(Gtk.Box):
         )
 
         # Attributes
-        self.show_row(self.attributes_property_box, safe_entry.attributes, add_all)
+        self.show_row(self.attributes_preferences_group, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
             self.add_attribute_property_row(key, value)

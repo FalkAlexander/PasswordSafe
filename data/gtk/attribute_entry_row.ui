@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="AttributeEntryRow" parent="AdwEntryRow">
-    <property name="show_apply_button">True</property>
-    <signal name="apply" handler="_on_apply" swapped="no"/>
+    <signal name="changed" handler="_on_changed" swapped="no"/>
     <child>
       <object class="GtkButton">
         <property name="valign">center</property>

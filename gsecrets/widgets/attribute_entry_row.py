@@ -32,5 +32,5 @@ class AttributeEntryRow(Adw.EntryRow):
         self.list_box.remove(self)
 
     @Gtk.Template.Callback()
-    def _on_apply(self, row):
+    def _on_changed(self, row):
         self.entry.set_attribute(self.key, row.get_text())

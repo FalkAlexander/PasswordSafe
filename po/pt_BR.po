@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-11 19:21+0000\n"
-"PO-Revision-Date: 2022-07-15 11:53-0300\n"
+"POT-Creation-Date: 2022-07-16 15:55+0000\n"
+"PO-Revision-Date: 2022-07-18 22:59-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -38,6 +38,33 @@ msgstr ""
 #: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Secrets"
+
+#: data/gtk/add_attribute_dialog.ui:12
+msgid "Add Attribute"
+msgstr "Adicionar atributo"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Key"
+msgstr "Chave"
+
+#: data/gtk/add_attribute_dialog.ui:55
+msgid "Value"
+msgstr "Valor"
+
+#: data/gtk/add_attribute_dialog.ui:62
+#| msgid "_Add"
+msgid "Add"
+msgstr "Adicionar"
+
+#: data/gtk/attachment_entry_row.ui:9
+#| msgid "Could not load attachment"
+msgid "Download Attachment"
+msgstr "Baixar anexo"
+
+#: data/gtk/attachment_entry_row.ui:20
+#| msgid "Save Attachment"
+msgid "Remove Attachment"
+msgstr "Remover anexo"
 
 #. Dialog title which informs the user about unsaved changes.
 #: data/gtk/attachment_warning_dialog.ui:4
@@ -248,7 +275,7 @@ msgid "Could not Load Keyfile"
 msgstr "Não foi possível carregar arquivo de chave"
 
 #: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:276
+#: gsecrets/widgets/database_settings_dialog.py:272
 msgid "_Apply Changes"
 msgstr "_Aplicar alterações"
 
@@ -371,39 +398,32 @@ msgstr "_Adicionar anexo"
 msgid "Attributes"
 msgstr "Atributos"
 
-#: data/gtk/entry_page.ui:403
-msgid "Key"
-msgstr "Chave"
+#: data/gtk/entry_page.ui:416
+#| msgid "Add Attribute"
+msgid "_Add Attribute"
+msgstr "_Adicionar atributo"
 
-#: data/gtk/entry_page.ui:409
-msgid "Value"
-msgstr "Valor"
-
-#: data/gtk/entry_page.ui:420
-msgid "Add Attribute"
-msgstr "Adicionar atributo"
-
-#: data/gtk/entry_page.ui:446
+#: data/gtk/entry_page.ui:435
 msgid "_Expiration Date"
 msgstr "Data de _expiração"
 
-#: data/gtk/entry_page.ui:467
+#: data/gtk/entry_page.ui:456
 msgid "_Show More"
 msgstr "_Mostrar mais"
 
-#: data/gtk/entry_page.ui:486
+#: data/gtk/entry_page.ui:475
 msgid "D_uplicate"
 msgstr "D_uplicar"
 
-#: data/gtk/entry_page.ui:490
+#: data/gtk/entry_page.ui:479
 msgid "_References"
 msgstr "_Referências"
 
-#: data/gtk/entry_page.ui:494 data/gtk/group_page.ui:127
+#: data/gtk/entry_page.ui:483 data/gtk/group_page.ui:127
 msgid "_Properties"
 msgstr "_Propriedades"
 
-#: data/gtk/entry_page.ui:500 data/gtk/group_page.ui:133
+#: data/gtk/entry_page.ui:489 data/gtk/group_page.ui:133
 msgid "_Delete"
 msgstr "E_xcluir"
 
@@ -420,7 +440,6 @@ msgid "Expiration Date not Set"
 msgstr "Data de expiração não definida"
 
 #: data/gtk/expiration_date_row.ui:17
-#| msgid "_Set Expiration Date"
 msgid "Edit Expiration Date"
 msgstr "Edita a data de expiração"
 
@@ -517,7 +536,6 @@ msgid "Copy Password"
 msgstr "Copia a senha"
 
 #: data/gtk/help-overlay.ui:102
-#| msgid "Open Address"
 msgctxt "Shortcut window description"
 msgid "Copy Address"
 msgstr "Copia o endereço"
@@ -1181,48 +1199,66 @@ msgstr "Não foi possível criar arquivo de chave"
 msgid "Generate"
 msgstr "Gerar"
 
-#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:405
-#: gsecrets/entry_row.py:112
+#: gsecrets/entry_page.py:247 gsecrets/entry_page.py:381
+#: gsecrets/entry_row.py:114
 msgid "Username copied"
 msgstr "Nome de usuário copiado"
 
-#: gsecrets/entry_page.py:253 gsecrets/entry_page.py:412
-#| msgid "Username copied"
+#: gsecrets/entry_page.py:255 gsecrets/entry_page.py:388
 msgid "Address copied"
 msgstr "Endereço copiado"
 
-#: gsecrets/entry_page.py:263 gsecrets/entry_page.py:303
+#: gsecrets/entry_page.py:265 gsecrets/entry_page.py:305
 msgid "One-time password copied"
 msgstr "Senha descartável copiada"
 
-#: gsecrets/entry_page.py:322
-msgid "Attribute key contains an illegal character"
-msgstr "A chave de atributo contém um caractere ilegal"
-
-#: gsecrets/entry_page.py:333
-msgid "Attribute key already exists"
-msgstr "Já existe chave de atributo"
-
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:361
+#: gsecrets/entry_page.py:337
 msgid "Select Attachment"
 msgstr "Selecionar anexo"
 
-#: gsecrets/entry_page.py:364
+#: gsecrets/entry_page.py:340
 msgid "_Add"
 msgstr "_Adicionar"
 
-#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
+#: gsecrets/entry_row.py:107 gsecrets/password_entry_row.py:64
 msgid "Password copied"
 msgstr "Senha copiada"
 
-#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+#: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
 msgid "Title not Specified"
 msgstr "Título não especificado"
 
-#: gsecrets/entry_row.py:135
+#: gsecrets/entry_row.py:137
 msgid "Username not specified"
 msgstr "Nome de usuário não especificado"
+
+#: gsecrets/password_generator_popover.py:77
+#| msgid "_Lowercase Characters"
+msgid "Lowercase"
+msgstr "Minúsculos"
+
+#: gsecrets/password_generator_popover.py:80
+#| msgid "_Uppercase Characters"
+msgid "Uppercase"
+msgstr "Maiúsculos"
+
+#: gsecrets/password_generator_popover.py:83
+#| msgid "Number of Groups"
+msgid "Numbers"
+msgstr "Números"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Symbols"
+msgstr "Símbolos"
+
+#: gsecrets/password_generator_popover.py:119
+msgid "Exclude"
+msgstr "Excluir"
+
+#: gsecrets/password_generator_popover.py:121
+msgid "Include"
+msgstr "Incluir"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1286,6 +1322,14 @@ msgstr "Copiado"
 msgid "Safe locked due to inactivity"
 msgstr "Cofre bloqueado devido a inatividade"
 
+#: gsecrets/widgets/add_attribute_dialog.py:38
+msgid "Attribute key contains an illegal character"
+msgstr "A chave de atributo contém um caractere ilegal"
+
+#: gsecrets/widgets/add_attribute_dialog.py:49
+msgid "Attribute key already exists"
+msgstr "Já existe chave de atributo"
+
 #. NOTE: Filechooser title for downloading an attachment
 #: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
@@ -1300,52 +1344,50 @@ msgstr "Não foi possível armazenar o anexo"
 msgid "Select Current Keyfile"
 msgstr "Selecionar arquivo de chave atual"
 
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:250
-#: gsecrets/widgets/database_settings_dialog.py:255
+#: gsecrets/widgets/database_settings_dialog.py:248
+#: gsecrets/widgets/database_settings_dialog.py:252
 msgid "Could not apply changes"
 msgstr "Não foi possível aplicar as alterações"
 
 #. Still executes the finally block
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:259
+#: gsecrets/widgets/database_settings_dialog.py:255
 msgid "Changes Applied"
 msgstr "Alterações aplicadas"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:344
-#: gsecrets/widgets/database_settings_dialog.py:358
+#: gsecrets/widgets/database_settings_dialog.py:340
+#: gsecrets/widgets/database_settings_dialog.py:354
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:348
+#: gsecrets/widgets/database_settings_dialog.py:344
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:351
+#: gsecrets/widgets/database_settings_dialog.py:347
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:350
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:362
+#: gsecrets/widgets/database_settings_dialog.py:358
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:365
+#: gsecrets/widgets/database_settings_dialog.py:361
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:364
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1376,12 +1418,10 @@ msgstr ""
 "desfeita."
 
 #: gsecrets/widgets/selection_mode_headerbar.py:157
-#| msgid "_Cancel"
 msgid "Cancel"
 msgstr "Cancelar"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:158
-#| msgid "_Delete"
 msgid "Delete"
 msgstr "Excluir"
 

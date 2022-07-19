@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-16 15:55+0000\n"
-"PO-Revision-Date: 2022-07-16 22:42+0300\n"
+"POT-Creation-Date: 2022-07-19 15:35+0000\n"
+"PO-Revision-Date: 2022-07-19 19:19+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -50,12 +50,10 @@ msgid "Add"
 msgstr "Додати"
 
 #: data/gtk/attachment_entry_row.ui:9
-#| msgid "Could not load attachment"
 msgid "Download Attachment"
 msgstr "Отримати долучення"
 
 #: data/gtk/attachment_entry_row.ui:20
-#| msgid "Save Attachment"
 msgid "Remove Attachment"
 msgstr "Вилучити долучення"
 
@@ -143,8 +141,8 @@ msgstr "Введіть пароль"
 msgid "Set password for safe."
 msgstr "Встановлення пароля для сейфа."
 
-#: data/gtk/create_database.ui:158 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
+#: data/gtk/create_database.ui:158 data/gtk/database_settings_dialog.ui:23
+#: data/gtk/password_entry_row.ui:39
 msgid "Generate New Password"
 msgstr "Створення пароля"
 
@@ -227,103 +225,94 @@ msgstr "Розпізнавання"
 msgid "Password"
 msgstr "Пароль"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-msgid "_New"
-msgstr "С_творити"
+#: data/gtk/database_settings_dialog.ui:17
+#| msgid "Password"
+msgid "New Password"
+msgstr "Новий пароль"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "П_ідтвердити"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:38
 msgid "Confirm New Password"
 msgstr "Підтвердження нового пароля"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "_Поточний"
+#: data/gtk/database_settings_dialog.ui:44
+#| msgid "Enter Current Password"
+msgid "Current Password"
+msgstr "Поточний пароль"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "Введіть поточний пароль"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "Файл ключа"
 
-#: data/gtk/database_settings_dialog.ui:161
+#: data/gtk/database_settings_dialog.ui:82
 msgid "_Select current keyfile if any"
 msgstr "Ви_беріть поточний файл ключа, якщо такий є"
 
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:124
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Необов'язково) С_творити файл ключа"
 
-#: data/gtk/database_settings_dialog.ui:221
+#: data/gtk/database_settings_dialog.ui:142
 msgid "Could not Load Keyfile"
 msgstr "Не вдалося завантажити файл ключа"
 
-#: data/gtk/database_settings_dialog.ui:231
+#: data/gtk/database_settings_dialog.ui:152
 #: gsecrets/widgets/database_settings_dialog.py:272
 msgid "_Apply Changes"
 msgstr "З_астосувати зміни"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Загальне"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Details"
 msgstr "Подробиці"
 
-#: data/gtk/database_settings_dialog.ui:255
+#: data/gtk/database_settings_dialog.ui:176
 msgid "Safe Name"
 msgstr "Назва сейфа"
 
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:181
 msgid "Path"
 msgstr "Шлях"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:186
 msgid "File Size"
 msgstr "Розмір файла"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:191
 msgid "KeePass Version"
 msgstr "Версія KeePass"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:196
 msgid "Creation Date"
 msgstr "Дата створення"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:201
 msgid "Encryption Algorithm"
 msgstr "Алгоритм шифрування"
 
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:206
 msgid "Derivation Algorithm"
 msgstr "Алгоритм для похідних"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:213
 msgid "Stats"
 msgstr "Статистика"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:216
 msgid "Number of Entries"
 msgstr "Кількість записів"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:221
 msgid "Number of Groups"
 msgstr "Кількість груп"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Passwords"
 msgstr "Паролі"
 
@@ -392,7 +381,6 @@ msgid "Attributes"
 msgstr "Атрибути"
 
 #: data/gtk/entry_page.ui:416
-#| msgid "Add Attribute"
 msgid "_Add Attribute"
 msgstr "_Додати атрибут"
 
@@ -1167,11 +1155,11 @@ msgstr ""
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
-#: gsecrets/application.py:52
+#: gsecrets/application.py:54
 msgid "Error: File {} does not exist"
 msgstr "Помилка: файл {} не існує"
 
-#: gsecrets/application.py:57
+#: gsecrets/application.py:59
 msgid "Error: Safe {} is already open"
 msgstr "Помилка: сейф {} вже відкрито"
 
@@ -1234,17 +1222,14 @@ msgid "Username not specified"
 msgstr "Не вказано імені користувача"
 
 #: gsecrets/password_generator_popover.py:77
-#| msgid "_Lowercase Characters"
 msgid "Lowercase"
 msgstr "Нижній регістр"
 
 #: gsecrets/password_generator_popover.py:80
-#| msgid "_Uppercase Characters"
 msgid "Uppercase"
 msgstr "Верхній регістр"
 
 #: gsecrets/password_generator_popover.py:83
-#| msgid "Number of Groups"
 msgid "Numbers"
 msgstr "Цифри"
 
@@ -1466,6 +1451,15 @@ msgstr "Не вдалося створити сейф: сейф вже відк�
 #: gsecrets/widgets/window.py:320 gsecrets/widgets/window.py:334
 msgid "Could not create new Safe"
 msgstr "Не вдалося створити сейф"
+
+#~ msgid "_New"
+#~ msgstr "С_творити"
+
+#~ msgid "C_onfirm"
+#~ msgstr "П_ідтвердити"
+
+#~ msgid "_Current"
+#~ msgstr "_Поточний"
 
 #~ msgid "win.db.undo_delete"
 #~ msgstr "win.db.undo_delete"

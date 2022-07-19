@@ -30,6 +30,7 @@ message('Looking for dependencies')
 python_bin = python.find_installation('python3', modules:[
   'pykeepass',
   'pyotp',
+  'validators',
   'zxcvbn',
 ])
 if not python_bin.found()

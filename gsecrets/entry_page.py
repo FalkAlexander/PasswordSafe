@@ -5,6 +5,7 @@ import logging
 import typing
 from gettext import gettext as _
 
+import validators
 from gi.repository import Gdk, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
@@ -294,7 +295,15 @@ class EntryPage(Gtk.Box):
     def on_visit_url_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         url = self.url_property_value_entry.get_text()
-        Gtk.show_uri(self.unlocked_database.window, url, Gdk.CURRENT_TIME)
+        window = self.unlocked_database.window
+        if validators.url(url):
+            Gtk.show_uri(window, url, Gdk.CURRENT_TIME)
+        else:
+            url = "https://" + url
+            if validators.url(url):
+                Gtk.show_uri(window, url, Gdk.CURRENT_TIME)
+            else:
+                window.send_notification(_("The address is not valid"))
 
     @Gtk.Template.Callback()
     def on_otp_copy_button_clicked(self, _button):

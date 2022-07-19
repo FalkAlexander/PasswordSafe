@@ -23,7 +23,7 @@ class SavingConflictDialog(Adw.MessageDialog):
         self.props.heading = _("Conflicts While Saving")
         self.props.body = _(
             # TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
-            "The safe was modified from somewhere else. Saving will overwrite the file with our current version.\n\n You can also make a backup of their version of the safe."  # pylint: disable=line-too-long # noqa: E501
+            "The safe was modified from somewhere else. Saving will overwrite the safe with our current version.\n\n You can also make a backup of their version of the safe."  # pylint: disable=line-too-long # noqa: E501
         )
 
         gfile = Gio.File.new_for_path(db_manager.path)
@@ -32,7 +32,7 @@ class SavingConflictDialog(Adw.MessageDialog):
         self.add_response("cancel", _("_Cancel"))
         # TRANSLATORS backup and save current safe.
         self.add_response("backup", _("_Back up and Save"))
-        self.add_response("save", _("_Save and Overwrite"))
+        self.add_response("save", _("_Save"))
         self.set_response_appearance(
             "save", Adw.ResponseAppearance.DESTRUCTIVE
         )

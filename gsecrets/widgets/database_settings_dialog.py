@@ -273,8 +273,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
     @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):
-        new_password = self.new_password_entry.get_text()
-
         # Insensitive entries and buttons
         self.set_sensitive(False)
 
@@ -283,12 +281,38 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         button.set_child(spinner)
         button.set_sensitive(False)
 
-        self.database_manager.set_credentials_async(
-            new_password,
-            self.new_keyfile_path,
-            self.new_keyfile_hash,
-            self._on_set_credentials,
+        self.database_manager.check_file_changes_async(
+            self.on_check_file_changes
         )
+
+    def on_check_file_changes(self, dbm, result):
+        try:
+            conflicts = dbm.check_file_changes_finish(result)
+        except GLib.Error as err:
+            logging.error("Could not monitor file changes: %s", err.message)
+            toast = _("Could not change credentials")
+            self.add_toast(toast)
+        else:
+            if conflicts:
+                dialog = Adw.MessageDialog.new(
+                    self,
+                    _("Conflicts While Saving"),
+                    _("The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.")  # pylint: disable=line-too-long # noqa: E501
+                )
+                dialog.add_response("ok", _("Ok"))
+                dialog.present()
+            else:
+                new_password = self.new_password_entry.props.text
+                self.database_manager.set_credentials_async(
+                    new_password,
+                    self.new_keyfile_path,
+                    self.new_keyfile_hash,
+                    self._on_set_credentials,
+                )
+        finally:
+            self.set_sensitive(True)
+            self.auth_apply_button.set_sensitive(False)
+            self.auth_apply_button.set_label(_("_Apply Changes"))
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):

@@ -29,5 +29,4 @@ class QuitConflictDialog(SavingConflictDialog):
         self.connect("response::discard", self._on_response_discard)
 
     def _on_response_discard(self, _dialog, _response):
-        self.window.save_window_size()
-        self.window.destroy()
+        self.window.force_close()

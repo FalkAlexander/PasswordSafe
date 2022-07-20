@@ -357,6 +357,15 @@ class Window(Adw.ApplicationWindow):
         logging.debug("Saving window geometry: (%s, %s)", width, height)
         gsecrets.config_manager.set_window_size([width, height])
 
+    def force_close(self):
+        """Method to close a window with unsaved changes.
+
+        Should only be called from SaveDialog and QuitConflictDialog."""
+        if unlocked_db := self.unlocked_db:
+            unlocked_db.database_manager.is_dirty = False
+
+        self.close()
+
     def do_close_request(self) -> bool:  # pylint: disable=arguments-differ
         """This is invoked when the window close button is pressed.
 

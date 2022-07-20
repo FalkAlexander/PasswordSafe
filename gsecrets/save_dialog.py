@@ -19,8 +19,7 @@ class SaveDialog(Adw.MessageDialog):
 
     @Gtk.Template.Callback()
     def _on_discard(self, _dialog, _response):
-        self.window.save_window_size()
-        self.window.destroy()
+        self.window.force_close()
 
     @Gtk.Template.Callback()
     def _on_save(self, _dialog, _response):

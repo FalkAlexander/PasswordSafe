@@ -13,6 +13,7 @@ from gsecrets.database_manager import DatabaseManager
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
 from gsecrets.unlock_database import UnlockDatabase
+from gsecrets.widgets.quit_conflict_dialog import QuitConflictDialog
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/window.ui")
@@ -368,7 +369,8 @@ class Window(Adw.ApplicationWindow):
             self.save_window_size()
             return False
 
-        is_database_dirty = self.unlocked_db.database_manager.is_dirty
+        dbm = self.unlocked_db.database_manager
+        is_database_dirty = dbm.is_dirty
 
         def on_save(dbm, result):
             try:
@@ -380,13 +382,25 @@ class Window(Adw.ApplicationWindow):
                 self.save_window_size()
                 self.destroy()
 
-        if is_database_dirty:
-            if gsecrets.config_manager.get_save_automatically():
-                self.unlocked_db.database_manager.save_async(on_save)
-                return True  # Do not close the window until saved
+        def on_check_file_changes(dbm, result):
+            try:
+                conflicts = dbm.check_file_changes_finish(result)
+            except GLib.Error as err:
+                logging.error("Could not monitor file changes: %s", err.message)
+                self.send_notification(_("Could not save safe"))
+            else:
+                if conflicts:
+                    dialog = QuitConflictDialog(self, dbm, on_save)
+                    dialog.present()
+                else:
+                    if gsecrets.config_manager.get_save_automatically():
+                        self.unlocked_db.database_manager.save_async(on_save)
+                    else:
+                        save_dialog = SaveDialog(self)
+                        save_dialog.present()
 
-            save_dialog = SaveDialog(self)
-            save_dialog.present()
+        if is_database_dirty:
+            dbm.check_file_changes_async(on_check_file_changes)
             return True
 
         self.save_window_size()

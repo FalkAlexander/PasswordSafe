@@ -84,6 +84,13 @@ class CredentialsGroup(Adw.PreferencesGroup):
                 _("Username copied"),
             )
 
+    @Gtk.Template.Callback()
+    def _on_apply(self, _entry_row):
+        if u_db := self._unlocked_database:
+            u_db.window.send_notification(_("Saved in history"))
+
+        self._safe_entry.save_history()
+
     def copy_password(self) -> None:
         if self._unlocked_database:
             password: str = self._password_entry_row.props.text

@@ -35,5 +35,7 @@ class SaveDialog(Adw.MessageDialog):
             logging.error("Could not save Safe %s", err.message)
         else:
             if is_saved:
-                self.window.save_window_size()
-                self.window.destroy()
+                self.window.close()
+            else:
+                # This shouldn't happen
+                self.window.send_notification(_("Could not save Safe"))

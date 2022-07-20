@@ -374,13 +374,16 @@ class Window(Adw.ApplicationWindow):
 
         def on_save(dbm, result):
             try:
-                dbm.save_finish(result)
+                is_saved = dbm.save_finish(result)
             except GLib.Error as err:
                 logging.error("Could not save Safe: %s", err.message)
                 self.send_notification(_("Could not save Safe"))
             else:
-                self.save_window_size()
-                self.destroy()
+                if is_saved:
+                    self.close()
+                else:
+                    # This shouldn't happen
+                    self.send_notification(_("Could not save Safe"))
 
         def on_check_file_changes(dbm, result):
             try:

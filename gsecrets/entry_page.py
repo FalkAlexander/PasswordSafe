@@ -68,9 +68,8 @@ class EntryPage(Gtk.Box):
         self.install_action("entry.copy_user", None, self._on_copy_action)
         self.install_action("entry.copy_otp", None, self._on_copy_action)
         self.install_action("entry.copy_url", None, self._on_copy_action)
-        self.install_action(
-            "entry.add_attribute", None, self._on_attributes_add_button_activated
-        )
+        self.install_action("entry.add_attribute", None, self._on_add_attribute)
+        self.install_action("entry.add_attachment", None, self._on_add_attachment)
         self.install_action(
             "entry.password_history", None, self._on_password_history_action
         )
@@ -186,11 +185,6 @@ class EntryPage(Gtk.Box):
         )
 
         # Attachments
-        def on_attributes_notify(entry, _pspec):
-            self.attribute_list_box.props.visible = len(entry.attributes) > 0
-
-        self.attribute_list_box.props.visible = len(safe_entry.attributes) > 0
-        safe_entry.connect("notify::attributes", on_attributes_notify)
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
 
@@ -199,11 +193,6 @@ class EntryPage(Gtk.Box):
         )
 
         # Attributes
-        def on_attachments_notify(entry, _pspec):
-            self.attachment_list_box.props.visible = len(entry.attachments) > 0
-
-        self.attachment_list_box.props.visible = len(safe_entry.attachments) > 0
-        safe_entry.connect("notify::attachments", on_attachments_notify)
         self.show_row(self.attributes_preferences_group, safe_entry.attributes, add_all)
 
         for key, value in safe_entry.attributes.items():
@@ -338,7 +327,7 @@ class EntryPage(Gtk.Box):
             _("One-time password copied"),
         )
 
-    def _on_attributes_add_button_activated(self, _widget, _action_name, _pspec):
+    def _on_add_attribute(self, _widget, _action_name, _pspec):
         window = self.unlocked_database.window
         entry = self.unlocked_database.current_element
         db_manager = self.unlocked_database.database_manager
@@ -360,8 +349,7 @@ class EntryPage(Gtk.Box):
         attachment = list_box_row.attachment
         AttachmentWarningDialog(self, attachment).present()
 
-    @Gtk.Template.Callback()
-    def _on_add_attachment_button_clicked(self, _button):
+    def _on_add_attachment(self, _widget, _action_name, _pspec):
         self.unlocked_database.start_database_lock_timer()
         select_dialog = Gtk.FileChooserNative.new(
             # NOTE: Filechooser title for selecting attachment file

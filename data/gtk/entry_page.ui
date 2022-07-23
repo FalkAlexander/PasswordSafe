@@ -230,23 +230,11 @@
           <object class="AdwPreferencesGroup" id="attachments_preferences_group">
             <property name="title" translatable="yes">Attachments</property>
             <property name="visible">False</property>
-            <property name="header-suffix">
-              <object class="GtkButton">
-                <signal name="clicked" handler="_on_add_attachment_button_clicked" swapped="no"/>
-                <property name="icon_name">list-add-symbolic</property>
-                <property name="tooltip_text" translatable="yes">Add Attachment</property>
-                <style>
-                  <class name="flat"/>
-                </style>
-              </object>
-            </property>
             <child>
-              <object class="GtkListBox" id="attachment_list_box">
-                <property name="selection_mode">none</property>
+              <object class="AddListBox" id="attachment_list_box">
+                <property name="label" translatable="yes">_Add Attachment</property>
+                <property name="action_name">entry.add_attachment</property>
                 <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
-                <style>
-                  <class name="boxed-list"/>
-                </style>
               </object>
             </child>
           </object>
@@ -255,22 +243,10 @@
           <object class="AdwPreferencesGroup" id="attributes_preferences_group">
             <property name="title" translatable="yes">Attributes</property>
             <property name="visible">False</property>
-            <property name="header-suffix">
-              <object class="GtkButton">
-                <property name="action_name">entry.add_attribute</property>
-                <property name="icon_name">list-add-symbolic</property>
-                <property name="tooltip_text" translatable="yes">Add Attribute</property>
-                <style>
-                  <class name="flat"/>
-                </style>
-              </object>
-            </property>
             <child>
-              <object class="GtkListBox" id="attribute_list_box">
-                <property name="selection_mode">none</property>
-                <style>
-                  <class name="boxed-list"/>
-                </style>
+              <object class="AddListBox" id="attribute_list_box">
+                <property name="action_name">entry.add_attribute</property>
+                <property name="label" translatable="yes">_Add Attribute</property>
               </object>
             </child>
           </object>

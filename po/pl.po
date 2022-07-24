@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-16 15:55+0000\n"
-"PO-Revision-Date: 2022-07-17 14:25+0200\n"
+"POT-Creation-Date: 2022-07-23 11:13+0000\n"
+"PO-Revision-Date: 2022-07-24 17:08+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -81,21 +81,21 @@ msgstr "_Wstecz"
 msgid "_Proceed"
 msgstr "_Kontynuuj"
 
-#: data/gtk/attribute_entry_row.ui:9
+#: data/gtk/attribute_entry_row.ui:8
 msgid "Remove Attribute"
 msgstr "Usuwa atrybut"
 
-#: data/gtk/color_entry_row.ui:11
+#: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Kolor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:239
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:240
 msgid "Create Safe"
 msgstr "Utworzenie sejfu"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:42
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
 #: data/gtk/group_page.ui:14
 msgid "Back"
 msgstr "Wstecz"
@@ -109,7 +109,7 @@ msgstr "Menu główne"
 msgid "Protect your safe"
 msgstr "Ochrona sejfu"
 
-#: data/gtk/create_database.ui:70 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:70 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Hasło"
@@ -142,8 +142,8 @@ msgstr "Wpisanie hasła"
 msgid "Set password for safe."
 msgstr "Ustawienie hasła dla sejfu."
 
-#: data/gtk/create_database.ui:158 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
+#: data/gtk/create_database.ui:158 data/gtk/credentials_group.ui:43
+#: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "Utworzenie nowego hasła"
 
@@ -216,6 +216,16 @@ msgstr "_Skróty klawiszowe"
 msgid "_About Secrets"
 msgstr "_O programie"
 
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Nazwa użytkownika"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
+#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/history_row.ui:25
+msgid "Copy"
+msgstr "Kopiuje"
+
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
 msgstr "Uwierzytelnianie"
@@ -226,195 +236,184 @@ msgstr "Uwierzytelnianie"
 msgid "Password"
 msgstr "Hasło"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-msgid "_New"
-msgstr "_Nowe"
+#: data/gtk/database_settings_dialog.ui:17
+msgid "New Password"
+msgstr "Nowe hasło"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "_Potwierdzenie"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:38
 msgid "Confirm New Password"
 msgstr "Potwierdzenie nowego hasła"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "_Obecne"
+#: data/gtk/database_settings_dialog.ui:44
+msgid "Current Password"
+msgstr "Obecne hasło"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "Wpisanie obecnego hasła"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "Plik klucza"
 
-#: data/gtk/database_settings_dialog.ui:161
+#: data/gtk/database_settings_dialog.ui:82
 msgid "_Select current keyfile if any"
 msgstr "_Wybór obecnego pliku klucza, jeśli jakiś istnieje"
 
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:124
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Opcjonalne) _Utworzenie nowego pliku klucza"
 
-#: data/gtk/database_settings_dialog.ui:221
+#: data/gtk/database_settings_dialog.ui:142
 msgid "Could not Load Keyfile"
 msgstr "Nie można wczytać pliku klucza"
 
-#: data/gtk/database_settings_dialog.ui:231
+#: data/gtk/database_settings_dialog.ui:152
 #: gsecrets/widgets/database_settings_dialog.py:272
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "_Apply Changes"
 msgstr "_Zastosuj zmiany"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Ogólne"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Details"
 msgstr "Szczegóły"
 
-#: data/gtk/database_settings_dialog.ui:255
+#: data/gtk/database_settings_dialog.ui:176
 msgid "Safe Name"
 msgstr "Nazwa sejfu"
 
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:181
 msgid "Path"
 msgstr "Ścieżka"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:186
 msgid "File Size"
 msgstr "Rozmiar pliku"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:191
 msgid "KeePass Version"
 msgstr "Wersja KeePass"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:196
 msgid "Creation Date"
 msgstr "Data utworzenia"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:201
 msgid "Encryption Algorithm"
 msgstr "Algorytm szyfrowania"
 
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:206
 msgid "Derivation Algorithm"
 msgstr "Algorytm różniczkowania"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:213
 msgid "Stats"
 msgstr "Statystyki"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:216
 msgid "Number of Entries"
 msgstr "Liczba wpisów"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:221
 msgid "Number of Groups"
 msgstr "Liczba grup"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Passwords"
 msgstr "Hasła"
 
-#: data/gtk/entry_page.ui:51 data/gtk/group_page.ui:23
+#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Menu"
 
-#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:50
+#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Tytuł"
 
-#: data/gtk/entry_page.ui:103 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "_Nazwa użytkownika"
+#: data/gtk/entry_page.ui:86
+msgid "U_RL"
+msgstr "_Adres URL"
 
-#: data/gtk/entry_page.ui:114 data/gtk/entry_page.ui:191
-#: data/gtk/entry_page.ui:231 data/gtk/password_entry_row.ui:32
-msgid "Copy"
-msgstr "Kopiuje"
+#: data/gtk/entry_page.ui:103
+msgid "Open Address"
+msgstr "Otwiera adres"
 
-#: data/gtk/entry_page.ui:131
+#: data/gtk/entry_page.ui:124
+msgid "One-Time Password"
+msgstr "Jednorazowe hasło"
+
+#: data/gtk/entry_page.ui:162
 msgid "One-_Time Password Secret"
 msgstr "_Sekret jednorazowego hasła"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:151
+#: data/gtk/entry_page.ui:170
 msgid "Could not Generate OTP Token"
 msgstr "Nie można utworzyć tokena OTP"
 
-#: data/gtk/entry_page.ui:165
-msgid "_One-Time Password"
-msgstr "_Jednorazowe hasło"
+#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Uwagi"
 
-#: data/gtk/entry_page.ui:216
-msgid "U_RL"
-msgstr "_Adres URL"
-
-#: data/gtk/entry_page.ui:239
-msgid "Open Address"
-msgstr "Otwiera adres"
-
-#: data/gtk/entry_page.ui:261 data/gtk/group_page.ui:76
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "_Uwagi"
-
-#: data/gtk/entry_page.ui:273 data/gtk/group_page.ui:87
+#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "Modyfikuje w oknie"
 
-#: data/gtk/entry_page.ui:313
+#: data/gtk/entry_page.ui:214
 msgid "Icon"
 msgstr "Ikona"
 
-#: data/gtk/entry_page.ui:340
+#: data/gtk/entry_page.ui:231
 msgid "Attachments"
 msgstr "Załączniki"
 
-#: data/gtk/entry_page.ui:365
+#: data/gtk/entry_page.ui:235
 msgid "_Add Attachment"
 msgstr "_Dodaj załącznik"
 
-#: data/gtk/entry_page.ui:387
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Atrybuty"
 
-#: data/gtk/entry_page.ui:416
+#: data/gtk/entry_page.ui:249
 msgid "_Add Attribute"
 msgstr "_Dodaj atrybut"
 
-#: data/gtk/entry_page.ui:435
-msgid "_Expiration Date"
-msgstr "Data _wygaśnięcia"
+#: data/gtk/entry_page.ui:257
+msgid "Expiration Date"
+msgstr "Data wygaśnięcia"
 
-#: data/gtk/entry_page.ui:456
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "_Więcej"
 
-#: data/gtk/entry_page.ui:475
+#: data/gtk/entry_page.ui:290
 msgid "D_uplicate"
 msgstr "Po_wiel"
 
-#: data/gtk/entry_page.ui:479
+#: data/gtk/entry_page.ui:294
 msgid "_References"
 msgstr "_Odniesienia"
 
-#: data/gtk/entry_page.ui:483 data/gtk/group_page.ui:127
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Właściwości"
 
-#: data/gtk/entry_page.ui:489 data/gtk/group_page.ui:133
+#: data/gtk/entry_page.ui:304
+msgid "_Save in History"
+msgstr "_Zapisz w historii"
+
+#: data/gtk/entry_page.ui:308
+msgid "Show _History"
+msgstr "Wyświetl _historię"
+
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
 msgid "_Delete"
 msgstr "_Usuń"
 
@@ -541,6 +540,28 @@ msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Skopiowanie jednorazowego hasła"
 
+#: data/gtk/help-overlay.ui:120
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Wyświetlenie historii"
+
+#: data/gtk/help-overlay.ui:126
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Zapisanie w historii"
+
+#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+msgid "Show Text"
+msgstr "Wyświetla tekst"
+
+#: data/gtk/history_row.ui:36
+msgid "Remove from History"
+msgstr "Usuwa z historii"
+
+#: data/gtk/history_window.ui:9
+msgid "Password History"
+msgstr "Historia haseł"
+
 #: data/gtk/locked_headerbar.ui:14
 msgid "_Open"
 msgstr "_Otwórz"
@@ -623,13 +644,13 @@ msgstr "Nazwa użytkownika"
 msgid "URL"
 msgstr "Adres URL"
 
-#: data/gtk/references_dialog.ui:141
-msgid "Notes"
-msgstr "Uwagi"
-
 #: data/gtk/references_dialog.ui:181
 msgid "_URL"
 msgstr "Adres _URL"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Uwagi"
 
 #: data/gtk/references_dialog.ui:192
 msgid "References"
@@ -674,7 +695,7 @@ msgid "Do you want to write all changes to the safe?"
 msgstr "Zapisać wszystkie zmiany do sejfu?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:10
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
 msgid "_Quit Without Saving"
 msgstr "Zakończ _bez zapisywania"
 
@@ -716,6 +737,7 @@ msgid "Delete Selection"
 msgstr "Usuwa zaznaczenie"
 
 #: data/gtk/selection_mode_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:32
 msgid "_Cancel"
 msgstr "_Anuluj"
 
@@ -743,7 +765,7 @@ msgstr "_Ukrycie ekranu pierwszego uruchomienia"
 msgid "Reopen last opened safe."
 msgstr "Ponowne otwieranie ostatnio otwartego sejfu."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:245
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Sejf"
 
@@ -894,6 +916,8 @@ msgid "Selection Mode"
 msgstr "Tryb zaznaczania"
 
 #: data/gtk/unlocked_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: gsecrets/widgets/saving_conflict_dialog.py:51
 msgid "_Save"
 msgstr "_Zapisz"
 
@@ -1151,15 +1175,15 @@ msgstr ""
 "się ze środowiskiem GNOME i zapewnia łatwy i prosty interfejs do zarządzania "
 "bazami haseł."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:223
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
-#: gsecrets/application.py:52
+#: gsecrets/application.py:54
 msgid "Error: File {} does not exist"
 msgstr "Błąd: plik {} nie istnieje"
 
-#: gsecrets/application.py:57
+#: gsecrets/application.py:59
 msgid "Error: Safe {} is already open"
 msgstr "Błąd: sejf {} jest już otwarty"
 
@@ -1187,29 +1211,37 @@ msgstr "Nie można utworzyć pliku klucza"
 msgid "Generate"
 msgstr "Utwórz"
 
-#: gsecrets/entry_page.py:247 gsecrets/entry_page.py:381
-#: gsecrets/entry_row.py:114
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
+msgid "Saved in history"
+msgstr "Zapisano w historii"
+
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
+#: gsecrets/widgets/credentials_group.py:84
 msgid "Username copied"
 msgstr "Skopiowano nazwę użytkownika"
 
-#: gsecrets/entry_page.py:255 gsecrets/entry_page.py:388
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
 msgid "Address copied"
 msgstr "Skopiowano adres"
 
-#: gsecrets/entry_page.py:265 gsecrets/entry_page.py:305
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Skopiowano jednorazowe hasło"
 
+#: gsecrets/entry_page.py:319
+msgid "The address is not valid"
+msgstr "Adres jest nieprawidłowy"
+
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:337
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Wybór załącznika"
 
-#: gsecrets/entry_page.py:340
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "_Dodaj"
 
-#: gsecrets/entry_row.py:107 gsecrets/password_entry_row.py:64
+#: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
 msgid "Password copied"
 msgstr "Skopiowano hasło"
 
@@ -1249,12 +1281,14 @@ msgstr "Używane"
 msgid "Recent Files"
 msgstr "Ostatnio używane pliki"
 
-#: gsecrets/safe_element.py:481
+#: gsecrets/safe_element.py:483
 msgid "Clone"
 msgstr "Kopia"
 
-#: gsecrets/save_dialog.py:34 gsecrets/unlocked_database.py:274
-#: gsecrets/widgets/window.py:378
+#. This shouldn't happen
+#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:547
+#: gsecrets/widgets/window.py:389 gsecrets/widgets/window.py:395
 msgid "Could not save Safe"
 msgstr "Nie można zapisać sejfu"
 
@@ -1275,36 +1309,36 @@ msgstr "Odblokowanie sejfu się nie powiodło"
 msgid "_Try Again"
 msgstr "_Spróbuj ponownie"
 
-#: gsecrets/unlocked_database.py:277
+#: gsecrets/unlocked_database.py:274
 msgid "Safe saved"
 msgstr "Zapisano sejf"
 
-#: gsecrets/unlocked_database.py:279
+#: gsecrets/unlocked_database.py:276
 msgid "No changes made"
 msgstr "Nie wprowadzono zmian"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:324
+#: gsecrets/unlocked_database.py:321
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Usunięto element"
 msgstr[1] "Usunięto {} elementy"
 msgstr[2] "Usunięto {} elementów"
 
-#: gsecrets/unlocked_database.py:329
+#: gsecrets/unlocked_database.py:326
 msgid "Deletion completed"
 msgstr "Ukończono usunięcie"
 
-#: gsecrets/unlocked_database.py:334
+#: gsecrets/unlocked_database.py:331
 msgid "Undo"
 msgstr "Cofnij"
 
-#: gsecrets/unlocked_database.py:365
+#: gsecrets/unlocked_database.py:367
 msgid "Copied"
 msgstr "Skopiowano"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:460
+#: gsecrets/unlocked_database.py:470
 msgid "Safe locked due to inactivity"
 msgstr "Zablokowano sejf z powodu nieaktywności"
 
@@ -1340,40 +1374,62 @@ msgstr "Nie można zastosować zmian"
 msgid "Changes Applied"
 msgstr "Zastosowano zmiany"
 
+#: gsecrets/widgets/database_settings_dialog.py:293
+msgid "Could not change credentials"
+msgstr "Nie można zmienić danych uwierzytelniających"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:299
+#: gsecrets/widgets/saving_conflict_dialog.py:23
+msgid "Conflicts While Saving"
+msgstr "Konflikty podczas zapisywania"
+
+#: gsecrets/widgets/database_settings_dialog.py:300
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"Sejf został zmodyfikowany w innym programie. Proszę rozwiązać te konflikty "
+"w głównym oknie podczas zapisywania."
+
+#: gsecrets/widgets/database_settings_dialog.py:302
+msgid "Ok"
+msgstr "OK"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:340
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:378
 msgid "Unknown"
 msgstr "Nieznany"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:344
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "AES 256-bit"
 msgstr "256-bitowy AES"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:347
+#: gsecrets/widgets/database_settings_dialog.py:371
 msgid "ChaCha20 256-bit"
 msgstr "256-bitowy ChaCha20"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:350
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Twofish 256-bit"
 msgstr "256-bitowy Twofish"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:358
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:361
+#: gsecrets/widgets/database_settings_dialog.py:385
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:388
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1381,6 +1437,57 @@ msgstr "AES-KDF"
 #: gsecrets/widgets/expiration_date_row.py:62
 msgid "Entry expired"
 msgstr "Wpis wygasł"
+
+#: gsecrets/widgets/history_row.py:44
+msgid "Hide Text"
+msgstr "Ukrywa tekst"
+
+#: gsecrets/widgets/notes_dialog.py:62
+msgid "Selection copied"
+msgstr "Skopiowano zaznaczenie"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:19
+msgid "Unsaved Changes Conflict"
+msgstr "Konflikt niezapisanych zmian"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Save and Quit"
+msgstr "Zapisz i zakończ"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Back up, Save, and Quit"
+msgstr "Wykonaj kopię zapasową, zapisz i zakończ"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:23
+msgid "Don't Quit"
+msgstr "Anuluj"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:26
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"Sejf został zmodyfikowany w innym programie. Zapisanie zastąpi wersję "
+"z innego programu obecną wersją z tego programu.\n"
+"\n"
+" Można także wykonać kopię zapasową wersji sejfu z innego programu."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Back up and Save"
+msgstr "_Wykonaj kopię zapasową i zapisz"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:48
+msgid "Save Backup"
+msgstr "Zapis kopii zapasowej"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:64
+msgid "Could not backup safe"
+msgstr "Nie można wykonać kopii zapasowej sejfu"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
@@ -1419,31 +1526,35 @@ msgid "Move completed"
 msgstr "Ukończono przeniesienie"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:139
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Wybór sejfu"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:150 gsecrets/widgets/window.py:250
+#: gsecrets/widgets/window.py:151 gsecrets/widgets/window.py:251
 msgid "KeePass 3.1/4 Database"
 msgstr "Baza danych KeePass 3.1/4"
 
-#: gsecrets/widgets/window.py:155
+#: gsecrets/widgets/window.py:156
 msgid "Any file type"
 msgstr "Dowolny typ pliku"
 
-#: gsecrets/widgets/window.py:218
+#: gsecrets/widgets/window.py:219
 msgid "Safe is already open"
 msgstr "Sejf jest już otwarty"
 
-#: gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:243
 msgid "_Create"
 msgstr "_Utwórz"
 
-#: gsecrets/widgets/window.py:278
+#: gsecrets/widgets/window.py:279
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Nie można utworzyć sejfu: sejf jest już otwarty"
 
-#: gsecrets/widgets/window.py:320 gsecrets/widgets/window.py:334
+#: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
 msgid "Could not create new Safe"
 msgstr "Nie można utworzyć nowego sejfu"
+
+#: gsecrets/widgets/window.py:402
+msgid "Could not save safe"
+msgstr "Nie można zapisać sejfu"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-20 14:00+0000\n"
-"PO-Revision-Date: 2022-07-21 09:39+0300\n"
+"POT-Creation-Date: 2022-07-23 11:13+0000\n"
+"PO-Revision-Date: 2022-07-24 09:14+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -33,7 +33,7 @@ msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 msgid "Secrets"
 msgstr "Секрети"
 
-#: data/gtk/add_attribute_dialog.ui:12 data/gtk/entry_page.ui:262
+#: data/gtk/add_attribute_dialog.ui:12
 msgid "Add Attribute"
 msgstr "Додати атрибут"
 
@@ -372,45 +372,48 @@ msgstr "Піктограма"
 msgid "Attachments"
 msgstr "Долучення"
 
-#: data/gtk/entry_page.ui:237
-msgid "Add Attachment"
-msgstr "Додати долучення"
+#: data/gtk/entry_page.ui:235
+#| msgid "Add Attachment"
+msgid "_Add Attachment"
+msgstr "_Додати долучення"
 
-#: data/gtk/entry_page.ui:256
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Атрибути"
 
-#: data/gtk/entry_page.ui:281
+#: data/gtk/entry_page.ui:249
+msgid "_Add Attribute"
+msgstr "_Додати атрибут"
+
+#: data/gtk/entry_page.ui:257
 msgid "Expiration Date"
 msgstr "Строк дії"
 
-#: data/gtk/entry_page.ui:297
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "_Показати більше"
 
-#: data/gtk/entry_page.ui:314
+#: data/gtk/entry_page.ui:290
 msgid "D_uplicate"
 msgstr "Зд_ублювати"
 
-#: data/gtk/entry_page.ui:318
+#: data/gtk/entry_page.ui:294
 msgid "_References"
 msgstr "П_осилання"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Властивості"
 
-#: data/gtk/entry_page.ui:328
-#| msgid "_Save and Quit"
+#: data/gtk/entry_page.ui:304
 msgid "_Save in History"
 msgstr "З_берегти у журналі"
 
-#: data/gtk/entry_page.ui:332
-#| msgid "_Show More"
+#: data/gtk/entry_page.ui:308
 msgid "Show _History"
 msgstr "Показати _журнал"
 
-#: data/gtk/entry_page.ui:338 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
 msgid "_Delete"
 msgstr "В_илучити"
 
@@ -538,19 +541,16 @@ msgid "Copy One-Time Password"
 msgstr "Скопіювати одноразовий пароль"
 
 #: data/gtk/help-overlay.ui:120
-#| msgid "_Show More"
 msgctxt "Shortcut window description"
 msgid "Show History"
 msgstr "Показати журнал"
 
 #: data/gtk/help-overlay.ui:126
-#| msgid "_Save and Quit"
 msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Зберегти у журналі"
 
 #: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
-#| msgid "_Show More"
 msgid "Show Text"
 msgstr "Показати текст"
 
@@ -559,7 +559,6 @@ msgid "Remove from History"
 msgstr "Вилучити із журналу"
 
 #: data/gtk/history_window.ui:9
-#| msgid "Passwords"
 msgid "Password History"
 msgstr "Історія паролів"
 
@@ -1222,34 +1221,33 @@ msgstr "Не вдалося створити файл ключа"
 msgid "Generate"
 msgstr "Створити"
 
-#: gsecrets/entry_page.py:255 gsecrets/widgets/credentials_group.py:90
-#| msgid "_Save and Quit"
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
 msgid "Saved in history"
 msgstr "Збережено у журналі"
 
-#: gsecrets/entry_page.py:272 gsecrets/entry_row.py:114
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
 #: gsecrets/widgets/credentials_group.py:84
 msgid "Username copied"
 msgstr "Ім'я користувача скопійовано"
 
-#: gsecrets/entry_page.py:280 gsecrets/entry_page.py:413
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
 msgid "Address copied"
 msgstr "Адресу скопійовано"
 
-#: gsecrets/entry_page.py:290 gsecrets/entry_page.py:338
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Одноразовий пароль скопійовано"
 
-#: gsecrets/entry_page.py:330
+#: gsecrets/entry_page.py:319
 msgid "The address is not valid"
 msgstr "Адреса є некоректною"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:368
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Виберіть долучення"
 
-#: gsecrets/entry_page.py:371
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "Д_одати"
 
@@ -1388,7 +1386,6 @@ msgid "Changes Applied"
 msgstr "Зміни застосовано"
 
 #: gsecrets/widgets/database_settings_dialog.py:293
-#| msgid "Could not apply changes"
 msgid "Could not change credentials"
 msgstr "Не вдалося змінити реєстраційні дані"
 
@@ -1403,8 +1400,8 @@ msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
 msgstr ""
-"Сейф було змінено сторонньою програмою. Будь ласка, усуньте ці конфлікти у"
-" головному вікні під час збереження."
+"Сейф було змінено сторонньою програмою. Будь ласка, усуньте ці конфлікти у "
+"головному вікні під час збереження."
 
 #: gsecrets/widgets/database_settings_dialog.py:302
 msgid "Ok"
@@ -1462,22 +1459,18 @@ msgstr "Позначене скопійовано"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:19
-#| msgid "Unsaved Changes"
 msgid "Unsaved Changes Conflict"
 msgstr "Конфлікт із незбереженими змінами"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:21
-#| msgid "_Save and Quit"
 msgid "Save and Quit"
 msgstr "Зберегти та вийти"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:22
-#| msgid "_Save and Quit"
 msgid "Back up, Save, and Quit"
 msgstr "Створити резервну копію, зберегти і вийти"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:23
-#| msgid "_Don't Quit"
 msgid "Don't Quit"
 msgstr "Не виходити"
 
@@ -1489,11 +1482,11 @@ msgid ""
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
-"Сейф було змінено сторонньою програмою. Збереження даних призведе до"
-" перезапису сторонньої версії сейфа поточною версією у цій програмі.\n"
+"Сейф було змінено сторонньою програмою. Збереження даних призведе до "
+"перезапису сторонньої версії сейфа поточною версією у цій програмі.\n"
 "\n"
-" Ви також можете створити резервну копію сейфа у версії зі сторонньої"
-" програми."
+" Ви також можете створити резервну копію сейфа у версії зі сторонньої "
+"програми."
 
 #. TRANSLATORS backup and save current safe.
 #: gsecrets/widgets/saving_conflict_dialog.py:34
@@ -1505,7 +1498,6 @@ msgid "Save Backup"
 msgstr "Зберегти резервну копію"
 
 #: gsecrets/widgets/saving_conflict_dialog.py:64
-#| msgid "Could not save Safe"
 msgid "Could not backup safe"
 msgstr "Не вдалося створити резервну копію сейфа"
 
@@ -1579,12 +1571,8 @@ msgid "Could not create new Safe"
 msgstr "Не вдалося створити сейф"
 
 #: gsecrets/widgets/window.py:402
-#| msgid "Could not save Safe"
 msgid "Could not save safe"
 msgstr "Не вдалося зберегти сейф"
-
-#~ msgid "_Add Attribute"
-#~ msgstr "_Додати атрибут"
 
 #~ msgid "_New"
 #~ msgstr "С_творити"

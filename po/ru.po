@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-20 14:00+0000\n"
-"PO-Revision-Date: 2022-07-20 17:36+0300\n"
+"POT-Creation-Date: 2022-07-23 11:13+0000\n"
+"PO-Revision-Date: 2022-07-23 15:05+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Secrets"
 msgstr "Secrets"
 
-#: data/gtk/add_attribute_dialog.ui:12 data/gtk/entry_page.ui:262
+#: data/gtk/add_attribute_dialog.ui:12
 msgid "Add Attribute"
 msgstr "Добавить атрибут"
 
@@ -378,43 +378,47 @@ msgstr "Значок"
 msgid "Attachments"
 msgstr "Вложения"
 
-#: data/gtk/entry_page.ui:237
-msgid "Add Attachment"
-msgstr "Добавить вложение"
+#: data/gtk/entry_page.ui:235
+msgid "_Add Attachment"
+msgstr "_Добавить вложение"
 
-#: data/gtk/entry_page.ui:256
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Атрибуты"
 
-#: data/gtk/entry_page.ui:281
+#: data/gtk/entry_page.ui:249
+msgid "_Add Attribute"
+msgstr "_Добавить атрибут"
+
+#: data/gtk/entry_page.ui:257
 msgid "Expiration Date"
 msgstr "Дата истечения"
 
-#: data/gtk/entry_page.ui:297
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "Показать _больше"
 
-#: data/gtk/entry_page.ui:314
+#: data/gtk/entry_page.ui:290
 msgid "D_uplicate"
 msgstr "_Дубликат"
 
-#: data/gtk/entry_page.ui:318
+#: data/gtk/entry_page.ui:294
 msgid "_References"
 msgstr "Сс_ылки"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Свойства"
 
-#: data/gtk/entry_page.ui:328
+#: data/gtk/entry_page.ui:304
 msgid "_Save in History"
 msgstr "_Сохранить в истории"
 
-#: data/gtk/entry_page.ui:332
+#: data/gtk/entry_page.ui:308
 msgid "Show _History"
 msgstr "Показать _историю"
 
-#: data/gtk/entry_page.ui:338 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
 msgid "_Delete"
 msgstr "У_далить"
 
@@ -1210,33 +1214,33 @@ msgstr "Не удалось создать файл-ключ"
 msgid "Generate"
 msgstr "Сгенерировать"
 
-#: gsecrets/entry_page.py:255 gsecrets/widgets/credentials_group.py:90
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
 msgid "Saved in history"
 msgstr "Сохранено в истории"
 
-#: gsecrets/entry_page.py:272 gsecrets/entry_row.py:114
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
 #: gsecrets/widgets/credentials_group.py:84
 msgid "Username copied"
 msgstr "Имя пользователя скопировано"
 
-#: gsecrets/entry_page.py:280 gsecrets/entry_page.py:413
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
 msgid "Address copied"
 msgstr "Адрес скопирован"
 
-#: gsecrets/entry_page.py:290 gsecrets/entry_page.py:338
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Одноразовый пароль скопирован"
 
-#: gsecrets/entry_page.py:330
+#: gsecrets/entry_page.py:319
 msgid "The address is not valid"
 msgstr "Адрес недействителен"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:368
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Выбрать вложение"
 
-#: gsecrets/entry_page.py:371
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "_Добавить"
 
@@ -1557,9 +1561,6 @@ msgstr "Не удалось создать новый сейф"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Не удалось сохранить сейф"
-
-#~ msgid "_Add Attribute"
-#~ msgstr "_Добавить атрибут"
 
 #~ msgid "_New"
 #~ msgstr "_Создать"

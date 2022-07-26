@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-20 08:05+0000\n"
-"PO-Revision-Date: 2022-07-20 10:22+0100\n"
+"POT-Creation-Date: 2022-07-23 11:13+0000\n"
+"PO-Revision-Date: 2022-07-26 14:38+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Secrets"
 msgstr "Segredos"
 
-#: data/gtk/add_attribute_dialog.ui:12 data/gtk/entry_page.ui:262
+#: data/gtk/add_attribute_dialog.ui:12
 msgid "Add Attribute"
 msgstr "Adicionar atributo"
 
@@ -93,7 +93,7 @@ msgstr "Cor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:239
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:240
 msgid "Create Safe"
 msgstr "Criar cofre"
 
@@ -270,6 +270,7 @@ msgstr "Não foi possível carregar o ficheiro-chave"
 
 #: data/gtk/database_settings_dialog.ui:152
 #: gsecrets/widgets/database_settings_dialog.py:272
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "_Apply Changes"
 msgstr "_Aplicar alterações"
 
@@ -375,43 +376,47 @@ msgstr "Ícone"
 msgid "Attachments"
 msgstr "Anexos"
 
-#: data/gtk/entry_page.ui:237
-msgid "Add Attachment"
-msgstr "Adicionar anexo"
+#: data/gtk/entry_page.ui:235
+msgid "_Add Attachment"
+msgstr "_Adicionar anexo"
 
-#: data/gtk/entry_page.ui:256
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Atributos"
 
-#: data/gtk/entry_page.ui:281
+#: data/gtk/entry_page.ui:249
+msgid "_Add Attribute"
+msgstr "_Adicionar atributo"
+
+#: data/gtk/entry_page.ui:257
 msgid "Expiration Date"
 msgstr "Data de expiração"
 
-#: data/gtk/entry_page.ui:297
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "Mostrar mai_s"
 
-#: data/gtk/entry_page.ui:314
+#: data/gtk/entry_page.ui:290
 msgid "D_uplicate"
 msgstr "D_uplicar"
 
-#: data/gtk/entry_page.ui:318
+#: data/gtk/entry_page.ui:294
 msgid "_References"
 msgstr "_Referências"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Propriedades"
 
-#: data/gtk/entry_page.ui:328
+#: data/gtk/entry_page.ui:304
 msgid "_Save in History"
 msgstr "_Guardar no histórico"
 
-#: data/gtk/entry_page.ui:332
+#: data/gtk/entry_page.ui:308
 msgid "Show _History"
 msgstr "Mostrar _histórico"
 
-#: data/gtk/entry_page.ui:338 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
 msgid "_Delete"
 msgstr "_Eliminar"
 
@@ -694,7 +699,7 @@ msgid "Do you want to write all changes to the safe?"
 msgstr "Quer gravar todas as alterações no cofre?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:10
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
 msgid "_Quit Without Saving"
 msgstr "_Sair sem guardar"
 
@@ -736,6 +741,7 @@ msgid "Delete Selection"
 msgstr "Eliminar seleção"
 
 #: data/gtk/selection_mode_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:32
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -763,7 +769,7 @@ msgstr "_Ocultar o ecrã de início"
 msgid "Reopen last opened safe."
 msgstr "Reabrir o último cofre aberto."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:245
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Cofre"
 
@@ -914,6 +920,8 @@ msgid "Selection Mode"
 msgstr "Modo seleção"
 
 #: data/gtk/unlocked_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: gsecrets/widgets/saving_conflict_dialog.py:51
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -1173,7 +1181,7 @@ msgstr ""
 "interface fácil e acessível para a gestão de bases de dados de palavras-"
 "passe."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1209,33 +1217,33 @@ msgstr "Não foi possível criar o ficheiro-chave"
 msgid "Generate"
 msgstr "Gerar"
 
-#: gsecrets/entry_page.py:255 gsecrets/widgets/credentials_group.py:90
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
 msgid "Saved in history"
 msgstr "Guardado no histórico"
 
-#: gsecrets/entry_page.py:272 gsecrets/entry_row.py:114
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
 #: gsecrets/widgets/credentials_group.py:84
 msgid "Username copied"
 msgstr "Nome de utilizador copiado"
 
-#: gsecrets/entry_page.py:280 gsecrets/entry_page.py:413
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
 msgid "Address copied"
 msgstr "Endereço copiado"
 
-#: gsecrets/entry_page.py:290 gsecrets/entry_page.py:338
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Palavra-passe única copiada"
 
-#: gsecrets/entry_page.py:330
+#: gsecrets/entry_page.py:319
 msgid "The address is not valid"
 msgstr "O endereço não é válido"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:368
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Selecionar anexo"
 
-#: gsecrets/entry_page.py:371
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "_Adicionar"
 
@@ -1283,8 +1291,10 @@ msgstr "Ficheiros recentes"
 msgid "Clone"
 msgstr "Clonar"
 
-#: gsecrets/save_dialog.py:34 gsecrets/unlocked_database.py:270
-#: gsecrets/widgets/window.py:378
+#. This shouldn't happen
+#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:547
+#: gsecrets/widgets/window.py:389 gsecrets/widgets/window.py:395
 msgid "Could not save Safe"
 msgstr "Não foi possível guardar o cofre"
 
@@ -1305,35 +1315,35 @@ msgstr "Falha ao desbloquear o cofre"
 msgid "_Try Again"
 msgstr "_Tentar novamente"
 
-#: gsecrets/unlocked_database.py:273
+#: gsecrets/unlocked_database.py:274
 msgid "Safe saved"
 msgstr "Cofre guardado"
 
-#: gsecrets/unlocked_database.py:275
+#: gsecrets/unlocked_database.py:276
 msgid "No changes made"
 msgstr "Não foram feitas alterações"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:320
+#: gsecrets/unlocked_database.py:321
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Elemento eliminado"
 msgstr[1] "{} Elementos eliminados"
 
-#: gsecrets/unlocked_database.py:325
+#: gsecrets/unlocked_database.py:326
 msgid "Deletion completed"
 msgstr "Eliminação concluída"
 
-#: gsecrets/unlocked_database.py:330
+#: gsecrets/unlocked_database.py:331
 msgid "Undo"
 msgstr "Anular"
 
-#: gsecrets/unlocked_database.py:366
+#: gsecrets/unlocked_database.py:367
 msgid "Copied"
 msgstr "Copiado"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:469
+#: gsecrets/unlocked_database.py:470
 msgid "Safe locked due to inactivity"
 msgstr "Cofre bloqueado devido à inatividade"
 
@@ -1369,40 +1379,62 @@ msgstr "Não foi possível aplicar alterações"
 msgid "Changes Applied"
 msgstr "Alterações aplicadas"
 
+#: gsecrets/widgets/database_settings_dialog.py:293
+msgid "Could not change credentials"
+msgstr "Não foi possível alterar as credenciais"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:299
+#: gsecrets/widgets/saving_conflict_dialog.py:23
+msgid "Conflicts While Saving"
+msgstr "Conflitos ao guardar"
+
+#: gsecrets/widgets/database_settings_dialog.py:300
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"O cofre foi modificado a partir de outro local. Resolva estes conflitos a "
+"partir da janela principal ao guardar."
+
+#: gsecrets/widgets/database_settings_dialog.py:302
+msgid "Ok"
+msgstr "Aceitar"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:340
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:378
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:344
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "AES 256-bit"
 msgstr "AES 256 bits"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:347
+#: gsecrets/widgets/database_settings_dialog.py:371
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256 bits"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:350
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Twofish 256-bit"
 msgstr "Twofish 256 bits"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:358
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:361
+#: gsecrets/widgets/database_settings_dialog.py:385
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:388
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1418,6 +1450,49 @@ msgstr "Ocultar texto"
 #: gsecrets/widgets/notes_dialog.py:62
 msgid "Selection copied"
 msgstr "Seleção copiada"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:19
+msgid "Unsaved Changes Conflict"
+msgstr "Conflito de alterações não guardadas"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Save and Quit"
+msgstr "Guardar e sair"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Back up, Save, and Quit"
+msgstr "Efetuar backup, guardar e sair"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:23
+msgid "Don't Quit"
+msgstr "Não sair"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:26
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"O cofre foi modificado a partir de outro local. O guardar irá substituir a "
+"sua versão do cofre com a nossa versão atual.\n"
+"\n"
+" Pode também efetuar um backup da sua versão do cofre."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Back up and Save"
+msgstr "Efetuar backup e guardar"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:48
+msgid "Save Backup"
+msgstr "Guardar backup"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:64
+msgid "Could not backup safe"
+msgstr "Não foi possível efetuar backup do cofre"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
@@ -1457,34 +1532,38 @@ msgid "Move completed"
 msgstr "Mover concluído"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:139
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Selecionar cofre"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:150 gsecrets/widgets/window.py:250
+#: gsecrets/widgets/window.py:151 gsecrets/widgets/window.py:251
 msgid "KeePass 3.1/4 Database"
 msgstr "Base de dados KeePass 3.1/4"
 
-#: gsecrets/widgets/window.py:155
+#: gsecrets/widgets/window.py:156
 msgid "Any file type"
 msgstr "Qualquer tipo de ficheiro"
 
-#: gsecrets/widgets/window.py:218
+#: gsecrets/widgets/window.py:219
 msgid "Safe is already open"
 msgstr "O cofre já está aberto"
 
-#: gsecrets/widgets/window.py:242
+#: gsecrets/widgets/window.py:243
 msgid "_Create"
 msgstr "Cri_ar"
 
-#: gsecrets/widgets/window.py:278
+#: gsecrets/widgets/window.py:279
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Não é possível criar cofre: o cofre já está aberto"
 
-#: gsecrets/widgets/window.py:320 gsecrets/widgets/window.py:334
+#: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
 msgid "Could not create new Safe"
 msgstr "Não foi possível criar novo cofre"
+
+#: gsecrets/widgets/window.py:402
+msgid "Could not save safe"
+msgstr "Não foi possível guardar o cofre"
 
 #~ msgid "_New"
 #~ msgstr "_Nova"
@@ -1494,9 +1573,6 @@ msgstr "Não foi possível criar novo cofre"
 
 #~ msgid "_Current"
 #~ msgstr "At_ual"
-
-#~ msgid "_Add Attribute"
-#~ msgstr "_Adicionar atributo"
 
 #~ msgid "win.db.undo_delete"
 #~ msgstr "win.db.undo_delete"

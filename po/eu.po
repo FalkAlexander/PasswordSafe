@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-20 14:00+0000\n"
-"PO-Revision-Date: 2022-07-23 10:00+0100\n"
+"POT-Creation-Date: 2022-07-23 11:13+0000\n"
+"PO-Revision-Date: 2022-08-07 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -30,7 +30,7 @@ msgstr "translator-credits"
 msgid "Secrets"
 msgstr "Secrets"
 
-#: data/gtk/add_attribute_dialog.ui:12 data/gtk/entry_page.ui:262
+#: data/gtk/add_attribute_dialog.ui:12
 msgid "Add Attribute"
 msgstr "Gehitu atributua"
 
@@ -366,43 +366,47 @@ msgstr "Ikonoa"
 msgid "Attachments"
 msgstr "Eranskinak"
 
-#: data/gtk/entry_page.ui:237
-msgid "Add Attachment"
-msgstr "Gehitu eranskina"
+#: data/gtk/entry_page.ui:235
+msgid "_Add Attachment"
+msgstr "_Gehitu eranskina"
 
-#: data/gtk/entry_page.ui:256
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Atributuak"
 
-#: data/gtk/entry_page.ui:281
+#: data/gtk/entry_page.ui:249
+msgid "_Add Attribute"
+msgstr "_Gehitu atributua"
+
+#: data/gtk/entry_page.ui:257
 msgid "Expiration Date"
 msgstr "Iraungitze-data"
 
-#: data/gtk/entry_page.ui:297
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "E_rakutsi gehiago"
 
-#: data/gtk/entry_page.ui:314
+#: data/gtk/entry_page.ui:290
 msgid "D_uplicate"
 msgstr "_Bikoiztu"
 
-#: data/gtk/entry_page.ui:318
+#: data/gtk/entry_page.ui:294
 msgid "_References"
 msgstr "_Erreferentziak"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Propietateak"
 
-#: data/gtk/entry_page.ui:328
+#: data/gtk/entry_page.ui:304
 msgid "_Save in History"
 msgstr "Gorde _historian"
 
-#: data/gtk/entry_page.ui:332
+#: data/gtk/entry_page.ui:308
 msgid "Show _History"
 msgstr "Erakutsi h_istoria"
 
-#: data/gtk/entry_page.ui:338 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
 msgid "_Delete"
 msgstr "Ez_abatu"
 
@@ -1176,33 +1180,33 @@ msgstr "Ezin da gako-fitxategia sortu"
 msgid "Generate"
 msgstr "Sortu"
 
-#: gsecrets/entry_page.py:255 gsecrets/widgets/credentials_group.py:90
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
 msgid "Saved in history"
 msgstr "Gorde historian"
 
-#: gsecrets/entry_page.py:272 gsecrets/entry_row.py:114
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
 #: gsecrets/widgets/credentials_group.py:84
 msgid "Username copied"
 msgstr "Erabiltzaile-izena kopiatu da"
 
-#: gsecrets/entry_page.py:280 gsecrets/entry_page.py:413
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
 msgid "Address copied"
 msgstr "Helbidea kopiatu da"
 
-#: gsecrets/entry_page.py:290 gsecrets/entry_page.py:338
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Denbora bateko pasahitza kopiatu da"
 
-#: gsecrets/entry_page.py:330
+#: gsecrets/entry_page.py:319
 msgid "The address is not valid"
 msgstr "Helbidea ez da baliozkoa"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:368
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Hautatu eranskina"
 
-#: gsecrets/entry_page.py:371
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "_Gehitu"
 

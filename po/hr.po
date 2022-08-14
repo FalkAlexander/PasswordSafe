@@ -1,32 +1,36 @@
 # Croatian translation for PasswordSafe.
 # Copyright (C) 2020 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
-# Milo Ivir <mail@milotype.de>, 2020., 2021., 2022.
+# Milo Ivir <mail@milotype.de>, 2020., 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
 "POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-08-09 22:03+0200\n"
+"PO-Revision-Date: 2022-08-14 14:42+0200\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
-msgstr "Upravljaj svojim lozinkama"
+msgstr "Upravljajte svojim lozinkama"
 
 #. Add your name to the translator credits list
 #: data/about_dialog.ui.in:10
 msgid "translator-credits"
-msgstr "Milo Ivir <mail@milotype.de>"
+msgstr ""
+"Launchpad Contributions:\n"
+"  gogo https://launchpad.net/~trebelnik-stefina\n"
+"\n"
+"Milo Ivir <mail@milotype.de>"
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
@@ -68,12 +72,12 @@ msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
 msgstr ""
-"Moguće je da će vanjska aplikacija stvoriti nešifrirane skrivene ili "
-"privremene kopije ove datoteke! Nastavi s oprezom."
+"Moguće je da će vanjske aplikacije stvoriti nešifrirane skrivene ili "
+"privremene kopije ove datoteke privitka! Nastavite s oprezom."
 
 #: data/gtk/attachment_warning_dialog.ui:9
 msgid "_Back"
-msgstr "Na_trag"
+msgstr "_Natrag"
 
 #: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
@@ -105,53 +109,53 @@ msgstr "Glavni izbornik"
 
 #: data/gtk/create_database.ui:57
 msgid "Protect your safe"
-msgstr "Zaštiti svoj trezor"
+msgstr "Zaštita trezora"
 
 #: data/gtk/create_database.ui:70 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
-msgstr "_Lozinka"
+msgstr "_Lozinkom"
 
 #: data/gtk/create_database.ui:71
 msgid "Use a password to secure your safe."
-msgstr "Zaštiti trezor pomoću lozinke."
+msgstr "Zaštitite trezor pomoću lozinke."
 
 #: data/gtk/create_database.ui:81
 msgid "_Keyfile"
-msgstr "_Datoteka ključeva"
+msgstr "_Datotekom ključa"
 
 #: data/gtk/create_database.ui:82
 msgid "Use a keyfile to secure your safe."
-msgstr "Zaštiti trezor pomoću datoteke ključeva."
+msgstr "Zaštitite trezor pomoću datoteke ključa."
 
 #: data/gtk/create_database.ui:92
 msgid "_Composite"
-msgstr "_Sastavljeno"
+msgstr "_Sastavljanjem"
 
 #: data/gtk/create_database.ui:93
 msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr "Zaštiti trezor pomoću kombinacije lozinke i datoteke ključeva."
+msgstr "Zaštitite trezor pomoću kombinacije lozinke i datoteke ključa."
 
 #: data/gtk/create_database.ui:125
 msgid "Enter Password"
-msgstr "Upiši lozinku"
+msgstr "Upis lozinke"
 
 #: data/gtk/create_database.ui:133
 msgid "Set password for safe."
-msgstr "Postavi lozinku za trezor."
+msgstr "Postavite lozinku za trezor."
 
 #: data/gtk/create_database.ui:158 data/gtk/credentials_group.ui:43
 #: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
-msgstr "Generiraj novu lozinku"
+msgstr "Stvori lozinku"
 
 #: data/gtk/create_database.ui:172
 msgid "Next"
-msgstr "Dalje"
+msgstr "Sljedeće"
 
 #: data/gtk/create_database.ui:208
 msgid "Password Match Check"
-msgstr "Provjera poklapanja lozinki"
+msgstr "Provjera podudaranja lozinki"
 
 #: data/gtk/create_database.ui:216
 msgid "Repeat password for safe."
@@ -163,11 +167,11 @@ msgstr "Provjeri"
 
 #: data/gtk/create_database.ui:274
 msgid "Match Check Failed"
-msgstr "Neuspjela provjera poklapanja"
+msgstr "Neuspjela provjera podudaranja"
 
 #: data/gtk/create_database.ui:282
 msgid "Please try again."
-msgstr "Pokušaj ponovo."
+msgstr "Pokušaj ponovno."
 
 #: data/gtk/create_database.ui:312
 msgid "_Confirm"
@@ -177,18 +181,18 @@ msgstr "_Potvrdi"
 #: data/gtk/create_database.ui:347 gsecrets/create_database.py:174
 #: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
-msgstr "Generiraj datoteku ključeva"
+msgstr "Stvori datoteku ključa"
 
 #: data/gtk/create_database.ui:355
 msgid "Set keyfile for safe"
-msgstr "Postavi datoteku ključeva za trezor"
+msgstr "Postavi datoteku ključa za trezor"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:365 data/gtk/password_generator_popover.ui:165
 #: gsecrets/create_database.py:177
 #: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
-msgstr "_Generiraj"
+msgstr "_Stvori"
 
 #: data/gtk/create_database.ui:398
 msgid "Safe Successfully Created"
@@ -206,13 +210,13 @@ msgstr "_Osobitosti"
 #: data/gtk/create_database.ui:432 data/gtk/locked_headerbar.ui:41
 #: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
-msgstr "_Tipkovnički prečaci"
+msgstr "_Prečaci tipkovnice"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:436 data/gtk/locked_headerbar.ui:45
 #: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
-msgstr "_O aplikaciji „Tajne”"
+msgstr "_O Tajnama"
 
 #: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
 msgid "_Username"
@@ -226,7 +230,7 @@ msgstr "Kopiraj"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
-msgstr "Autentifikacija"
+msgstr "Ovjera"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
@@ -244,24 +248,24 @@ msgstr "Potvrdi novu lozinku"
 
 #: data/gtk/database_settings_dialog.ui:44
 msgid "Current Password"
-msgstr "Trenutačna lozinka"
+msgstr "Trenutna lozinka"
 
 #: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
-msgstr "Datoteka ključeva"
+msgstr "Datoteka ključa"
 
 #: data/gtk/database_settings_dialog.ui:82
 msgid "_Select current keyfile if any"
-msgstr "_Odaberi trenutačnu datoteku ključeva ako postoji"
+msgstr "_Odaberi trenutnu datoteku ključa ako postoji"
 
 #: data/gtk/database_settings_dialog.ui:124
 msgid "(Optional) _Generate new keyfile"
-msgstr "(Opcionalno) _Generiraj novu datoteku ključeva"
+msgstr "(Neobavezno) _Stvori novu datoteku ključa"
 
 #: data/gtk/database_settings_dialog.ui:142
 msgid "Could not Load Keyfile"
-msgstr "Neuspjelo učitavanje datoteke ključeva"
+msgstr "Nemoguće učitavanje datoteke ključa"
 
 #: data/gtk/database_settings_dialog.ui:152
 #: gsecrets/widgets/database_settings_dialog.py:272
@@ -272,19 +276,19 @@ msgstr "_Primijeni promjene"
 #: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
-msgstr "Opće"
+msgstr "Općenito"
 
 #: data/gtk/database_settings_dialog.ui:173
 msgid "Details"
-msgstr "Detalji"
+msgstr "Pojedinosti"
 
 #: data/gtk/database_settings_dialog.ui:176
 msgid "Safe Name"
-msgstr "Ime trezora"
+msgstr "Naziv trezora"
 
 #: data/gtk/database_settings_dialog.ui:181
 msgid "Path"
-msgstr "Staza"
+msgstr "Putanja"
 
 #: data/gtk/database_settings_dialog.ui:186
 msgid "File Size"
@@ -293,7 +297,7 @@ msgstr "Veličina datoteke"
 #. KeePass is a proper noun
 #: data/gtk/database_settings_dialog.ui:191
 msgid "KeePass Version"
-msgstr "KeePass verzija"
+msgstr "KeePass inačica"
 
 #: data/gtk/database_settings_dialog.ui:196
 msgid "Creation Date"
@@ -301,11 +305,11 @@ msgstr "Datum stvaranja"
 
 #: data/gtk/database_settings_dialog.ui:201
 msgid "Encryption Algorithm"
-msgstr "Algoritam za šifriranje"
+msgstr "Algoritam šifriranja"
 
 #: data/gtk/database_settings_dialog.ui:206
 msgid "Derivation Algorithm"
-msgstr "Algoritam derivacije"
+msgstr "Algoritam izvođenja"
 
 #. Statistics
 #: data/gtk/database_settings_dialog.ui:213
@@ -314,7 +318,7 @@ msgstr "Statistika"
 
 #: data/gtk/database_settings_dialog.ui:216
 msgid "Number of Entries"
-msgstr "Broj zapisa"
+msgstr "Broj unosa"
 
 #: data/gtk/database_settings_dialog.ui:221
 msgid "Number of Groups"
@@ -352,7 +356,7 @@ msgstr "_Tajna jednokratne lozinke"
 #. OTP is a proper name
 #: data/gtk/entry_page.ui:170
 msgid "Could not Generate OTP Token"
-msgstr "Neuspjelo generiranje tokena jednokratne lozinke"
+msgstr "Nemoguće stvaranje OTP tokena"
 
 #: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
 #: data/gtk/references_dialog.ui:141
@@ -389,7 +393,7 @@ msgstr "Datum isteka"
 
 #: data/gtk/entry_page.ui:273
 msgid "_Show More"
-msgstr "Prikaži _više"
+msgstr "_Prikaži više"
 
 #: data/gtk/entry_page.ui:290
 msgid "D_uplicate"
@@ -405,19 +409,19 @@ msgstr "_Svojstva"
 
 #: data/gtk/entry_page.ui:304
 msgid "_Save in History"
-msgstr "Spre_mi u povijest"
+msgstr "Spremi u povijest"
 
 #: data/gtk/entry_page.ui:308
 msgid "Show _History"
-msgstr "P_rikaži povijest"
+msgstr "Prikaži _povijest"
 
 #: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
 msgid "_Delete"
-msgstr "_Izbriši"
+msgstr "_Obriši"
 
 #: data/gtk/entry_row.ui:53
 msgid "Copy Username"
-msgstr "Kopiraj korisničko ime"
+msgstr "Kopiraj ime korisnika"
 
 #: data/gtk/entry_row.ui:63
 msgid "Copy Password"
@@ -437,7 +441,7 @@ msgstr "Ukloni datum isteka"
 
 #: data/gtk/expiration_date_row.ui:58
 msgid "_Set Expiration Date"
-msgstr "Postavi datum _isteka"
+msgstr "_Postavi datum isteka"
 
 #: data/gtk/group_row.ui:51
 msgid "Edit"
@@ -471,7 +475,7 @@ msgstr "Otvori osobitosti"
 #: data/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
 msgid "Show Shortcuts"
-msgstr "Prikaži tipkovničke prečace"
+msgstr "Prikaži prečace tipkovnice"
 
 #: data/gtk/help-overlay.ui:44
 msgctxt "Shortcut window description"
@@ -481,7 +485,7 @@ msgstr "Zatvori prozor"
 #: data/gtk/help-overlay.ui:50
 msgctxt "Shortcut window description"
 msgid "Quit"
-msgstr "Zatvori aplikaciju"
+msgstr "Zatvori"
 
 #: data/gtk/help-overlay.ui:58
 msgctxt "Shortcut window description"
@@ -506,7 +510,7 @@ msgstr "Otvori pretragu"
 #: data/gtk/help-overlay.ui:79
 msgctxt "Shortcut window description"
 msgid "Create Entry"
-msgstr "Stvori zapis"
+msgstr "Stvori unos"
 
 #: data/gtk/help-overlay.ui:85
 msgctxt "Shortcut window description"
@@ -516,7 +520,7 @@ msgstr "Stvori grupu"
 #: data/gtk/help-overlay.ui:93
 msgctxt "Shortcut window description"
 msgid "Entry"
-msgstr "Zapis"
+msgstr "Unos"
 
 #: data/gtk/help-overlay.ui:96
 msgctxt "Shortcut window description"
@@ -558,7 +562,7 @@ msgstr "Ukloni iz povijesti"
 
 #: data/gtk/history_window.ui:9
 msgid "Password History"
-msgstr "Povijest lozinki"
+msgstr "Povijest lozinka"
 
 #: data/gtk/locked_headerbar.ui:14
 msgid "_Open"
@@ -587,7 +591,7 @@ msgstr "Znakovi"
 
 #: data/gtk/password_generator_popover.ui:111
 msgid "Passphrase"
-msgstr "Tajni izraz"
+msgstr "Datoteka lozinke"
 
 #: data/gtk/password_generator_popover.ui:119
 msgid "Words"
@@ -595,11 +599,11 @@ msgstr "Riječi"
 
 #: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
 msgid "Separator"
-msgstr "Znak razdvajanja"
+msgstr "Razdjelnik"
 
 #: data/gtk/password_generator_popover.ui:154
 msgid "Enter character here…"
-msgstr "Ovdje upiši znak …"
+msgstr "Ovdje upiši znak…"
 
 #: data/gtk/properties_dialog.ui:7
 msgid "Properties"
@@ -632,7 +636,7 @@ msgstr "Svojstvo"
 
 #: data/gtk/references_dialog.ui:48
 msgid "Title"
-msgstr "Naslov"
+msgstr "Naziv"
 
 #: data/gtk/references_dialog.ui:69
 msgid "Username"
@@ -664,7 +668,7 @@ msgstr "Sintaksa rezerviranog mjesta za reference polja je sljedeća:"
 
 #: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
 msgid "Show Field Codes"
-msgstr "Prikaži kodove polja"
+msgstr "Prikaži kôdove polja"
 
 #: data/gtk/references_dialog.ui:277
 msgid "Identifier"
@@ -679,8 +683,8 @@ msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
 msgstr ""
-"Svaki zapis ima jedinstveni identifikator, tzv. UUID. Može se pronaći u "
-"svojstvima zapisa."
+"Svaki unos ima jedinstveni identifikator, tzv. UUID. Može se pronaći u "
+"svojstvima unosa."
 
 #. Dialog title which informs the user about unsaved changes.
 #: data/gtk/save_dialog.ui:4
@@ -690,7 +694,7 @@ msgstr "Nespremljene promjene"
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
 #: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
-msgstr "Želiš li zapisati sve promjene u trezor?"
+msgstr "Želite li zapisati sve promjene u trezor?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
@@ -705,15 +709,15 @@ msgstr "_Nemoj zatvoriti"
 #. _Save all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
-msgstr "_Spremi i zatvori aplikaciju"
+msgstr "_Spremi i zatvori"
 
 #: data/gtk/search.ui:9
 msgid "Enter Search Term"
-msgstr "Upiši traženi pojam"
+msgstr "Upiši izraz pretrage"
 
 #: data/gtk/search.ui:15
 msgid "No Search Results"
-msgstr "Nema rezultata pretrage"
+msgstr "Nema pronađenih rezultata"
 
 #: data/gtk/selection_mode_headerbar.ui:17
 #: gsecrets/widgets/selection_mode_headerbar.py:70
@@ -727,25 +731,25 @@ msgstr "Premjesti odabir"
 
 #: data/gtk/selection_mode_headerbar.ui:36
 msgid "Paste Selection"
-msgstr "Umetni odabir"
+msgstr "Zalijepi odabir"
 
 #. Button tooltip in selection mode to delete every selected entry/group
 #: data/gtk/selection_mode_headerbar.ui:46
 msgid "Delete Selection"
-msgstr "Izbriši odabir"
+msgstr "Obriši odabir"
 
 #: data/gtk/selection_mode_headerbar.ui:53
 #: gsecrets/widgets/saving_conflict_dialog.py:32
 msgid "_Cancel"
-msgstr "O_dustani"
+msgstr "_Odustani"
 
 #: data/gtk/selection_mode_headerbar.ui:66
 msgid "Select _All"
-msgstr "Oz_nači sve"
+msgstr "Odaberi _sve"
 
 #: data/gtk/selection_mode_headerbar.ui:71
 msgid "Select _None"
-msgstr "O_dznači sve"
+msgstr "Ukloni _odabir"
 
 #: data/gtk/settings_dialog.ui:16
 msgid "_Dark Theme"
@@ -761,7 +765,7 @@ msgstr "_Sakrij prozor prvog pokretanja"
 
 #: data/gtk/settings_dialog.ui:31
 msgid "Reopen last opened safe."
-msgstr "Ponovo otvori zadnji otvoreni trezor."
+msgstr "Ponovno otvori posljednji otvoreni trezor."
 
 #: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:246
 msgid "Safe"
@@ -769,7 +773,7 @@ msgstr "Trezor"
 
 #: data/gtk/settings_dialog.ui:49
 msgid "_Save Automatically"
-msgstr "Automatski _spremi"
+msgstr "_Spremi automatski"
 
 #: data/gtk/settings_dialog.ui:50
 msgid "Save every change automatically."
@@ -782,24 +786,24 @@ msgstr "Otključaj"
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
 #: data/gtk/settings_dialog.ui:68
 msgid "Remember Composite _Key"
-msgstr "Zapamti sastavljani _ključ"
+msgstr "Zapamti sastavljeni _ključ"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
 #: data/gtk/settings_dialog.ui:69
 msgid "Remember last used composite key."
-msgstr "Zapamti zadnji korišteni sastavljeni ključ."
+msgstr "Zapamti posljednji korišteni sastavljeni ključ."
 
 #: data/gtk/settings_dialog.ui:90
 msgid "Password Generation"
-msgstr "Generiranje lozinke"
+msgstr "Stvaranje lozinke"
 
 #: data/gtk/settings_dialog.ui:93
 msgid "Password Length"
-msgstr "Broj znakova lozinke"
+msgstr "Duljina lozinke"
 
 #: data/gtk/settings_dialog.ui:94
 msgid "Number of characters when generating a password."
-msgstr "Broj znakova za generiranje lozinke."
+msgstr "Broj znakova za stvaranje lozinke."
 
 #: data/gtk/settings_dialog.ui:113
 msgid "_Uppercase Characters"
@@ -807,7 +811,7 @@ msgstr "_Velika slova"
 
 #: data/gtk/settings_dialog.ui:114
 msgid "Use uppercase characters A-Z when generating a password."
-msgstr "Koristi velika slova A-Z za generiranje lozinke."
+msgstr "Koristi velika slova A-Z za stvaranje lozinke."
 
 #: data/gtk/settings_dialog.ui:127
 msgid "_Lowercase Characters"
@@ -815,15 +819,15 @@ msgstr "_Mala slova"
 
 #: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
-msgstr "Koristi mala slova a-z za generiranje lozinke."
+msgstr "Koristi mala slova a-z za stvaranje lozinke."
 
 #: data/gtk/settings_dialog.ui:141
 msgid "_Numeric Characters"
-msgstr "_Numerički znakovi"
+msgstr "_Brojčani znakovi"
 
 #: data/gtk/settings_dialog.ui:142
 msgid "Use numeric characters when generating a password."
-msgstr "Koristi numeričke znakove za generiranje lozinke."
+msgstr "Koristi brojčane znakove za generiranje lozinke."
 
 #: data/gtk/settings_dialog.ui:155
 msgid "_Special Characters"
@@ -832,25 +836,25 @@ msgstr "_Posebni znakovi"
 #. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
-msgstr "Koristi ne-alfanumeričke ASCII znakove za generiranje lozinke."
+msgstr "Koristi ASCII znakove koji nisu slovno-brojčani za stvaranje lozinke."
 
 #: data/gtk/settings_dialog.ui:171
 msgid "Passphrase Generation"
-msgstr "Generiranje tajnog izraza"
+msgstr "Stvaranje tajnog izraza"
 
 #: data/gtk/settings_dialog.ui:174
 msgid "Passphrase Length"
-msgstr "Broj znakova tajnog izraza"
+msgstr "Duljina tajnog izraza"
 
 #: data/gtk/settings_dialog.ui:175
 #: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
-msgstr "Broj riječi za generiranje tajnog izraza."
+msgstr "Broj riječi za stvaranje tajnog izraza."
 
 #: data/gtk/settings_dialog.ui:195
 #: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
-msgstr "Znak razdvajanja za generiranje tajnog izraza."
+msgstr "Znak razdvajanja za stvaranje tajnog izraza."
 
 #: data/gtk/settings_dialog.ui:202
 msgid "Enter Character"
@@ -870,23 +874,23 @@ msgstr "Zaključaj trezor nakon x minuta neaktivnosti."
 
 #: data/gtk/settings_dialog.ui:241
 msgid "Clear Clipboard"
-msgstr "Isprazni međuspremnik"
+msgstr "Obriši međuspremnik"
 
 #: data/gtk/settings_dialog.ui:242
 msgid "Clear clipboard after X seconds."
-msgstr "Isprazni međuspremnik nakon x sekunda."
+msgstr "Obriši međuspremnik nakon x sekundi."
 
 #: data/gtk/settings_dialog.ui:261
 msgid "Clear Recent List"
-msgstr "Isprazni popis nedavnih"
+msgstr "Obriši popis nedavnih"
 
 #: data/gtk/settings_dialog.ui:262
 msgid "Clear the recently opened safes list."
-msgstr "Isprazni popis nedavno otvorenih trezora."
+msgstr "Obriši popis nedavno otvorenih trezora."
 
 #: data/gtk/settings_dialog.ui:269 data/gtk/unlock_database.ui:108
 msgid "Clear"
-msgstr "Izprazni"
+msgstr "Obriši"
 
 #: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
@@ -894,11 +898,11 @@ msgstr "Otključaj trezor"
 
 #: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
 msgid "_Select Keyfile"
-msgstr "_Odaberi datoteku ključeva"
+msgstr "_Odaberi datoteku ključa"
 
 #: data/gtk/unlocked_database_page.ui:31
 msgid "Add elements with the ➕ button."
-msgstr "Dodaj elemente pomoću gumba ➕."
+msgstr "Dodaj elemente sa ➕ tipkom."
 
 #: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
@@ -906,12 +910,12 @@ msgstr "Prazna grupa"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
-msgstr "Novi zapis ili grupa"
+msgstr "Novi unos ili grupa"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
 #: data/gtk/unlocked_headerbar.ui:31
 msgid "Selection Mode"
-msgstr "Modus označavanja"
+msgstr "Način odabira"
 
 #: data/gtk/unlocked_headerbar.ui:53
 #: gsecrets/widgets/saving_conflict_dialog.py:35
@@ -939,11 +943,11 @@ msgstr "_Z-A"
 
 #: data/gtk/unlocked_headerbar.ui:76
 msgid "_Newest First"
-msgstr "Najprije naj_novije"
+msgstr "_Prvo najnovije"
 
 #: data/gtk/unlocked_headerbar.ui:81
 msgid "_Oldest First"
-msgstr "Najprije naj_starije"
+msgstr "_Prvog najstarije"
 
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "Sa_fe Settings"
@@ -951,7 +955,7 @@ msgstr "_Postavke trezora"
 
 #: data/gtk/unlocked_headerbar.ui:120
 msgid "New _Entry"
-msgstr "Novi _zapis"
+msgstr "Novi _unos"
 
 #: data/gtk/unlocked_headerbar.ui:124
 msgid "New _Group"
@@ -960,7 +964,7 @@ msgstr "Nova _grupa"
 #. The umbrella sentence of the application on the first start screen
 #: data/gtk/welcome_page.ui:30
 msgid "Secure Secrets"
-msgstr "Sigurne tajne"
+msgstr "Osigurajte tajne"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
 #: data/gtk/welcome_page.ui:41
@@ -968,12 +972,12 @@ msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
-"Spremi lozinke, bilješke i podatke na siguran način. <b>Stvori</b> ili "
+"Spremite bilješke, lozinke i podatke na siguran način. <b>Stvori</b> ili "
 "<b>uvezi</b> novi KeePass trezor."
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
-msgstr "Upravljač lozinki za GNOME"
+msgstr "Upravitelj lozinki za GNOME"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:14
@@ -988,20 +992,18 @@ msgstr "Koristi tamnu GTK temu"
 msgid ""
 "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
 "theme has a dark variant."
-msgstr ""
-"Koristi tamnu inačicu GTK+ teme. Napomena: Tamna tema ne postoji za svaku GTK"
-"+ temu."
+msgstr "Koristite tamnu inačicu GTK+ teme. Svaka GTK+ tema nema tamnu inačicu."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
-msgstr "Ponovo otvori zadnju otvorenu bazu podataka"
+msgstr "Ponovno otvori posljednju otvorenu bazu podataka"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
 msgstr ""
-"Automatski otvori prozor otključavanja zadnje otvorene baze podataka, u "
+"Automatski otvori prozor otključavanja posljednje otvorene baze podataka, u "
 "suprotnom prikaži prozor dobrodošlice."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
@@ -1013,8 +1015,8 @@ msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
-"Spremi bazu podataka pri svakoj promjeni. Ako je automatsko spremanje "
-"aktivirano, promjene se ne mogu poništiti."
+"Spremi bazu podataka pri svakoj promjeni. Ne možete poništiti promjene ako "
+"je automatsko spremanje omogućeno."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
@@ -1025,16 +1027,16 @@ msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
 msgstr ""
-"Za veću sigurnost, automatski zaključaj bazu podataka nakon određenog broja "
-"minuta."
+"Automatski zaključaj bazu podataka nakon određenog broja minuta za "
+"poboljšanje sigurnosti."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Clear clipboard after X seconds"
-msgstr "Isprazni međuspremnik nakon x sekunda"
+msgstr "Obriši međuspremnik nakon x sekunda"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
-msgstr "Nakon kopiranja lozinke, iz sigurnosnih razloga isprazni međuspremnik."
+msgstr "Nakon kopiranja lozinke obriši međuspremnik zbog sigurnosnih razloga."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -1046,28 +1048,29 @@ msgstr "Zapamti veličinu prozora."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
 msgid "Last opened database"
-msgstr "Zadnja otvorena baza podataka"
+msgstr "Posljednja otvorena baza podataka"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:43
 msgid "Path to the last opened database."
-msgstr "Staza do zadnje otvorene baze podataka."
+msgstr "Putanja do posljednje otvorene baze podataka."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Last opened databases"
-msgstr "Zadnje otvorene baze podataka"
+msgstr "Posljednje otvorene baze podataka"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "A list of the last opened databases."
-msgstr "Popis zadnjih otvorenih baza podataka."
+msgstr "Popis posljednjih otvorenih baza podataka."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
-msgstr "Zapamti sastavljani ključ"
+msgstr "Zapamti sastavljeni ključ"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
-"Zapamti zadnji korišteni sastavljani ključ za otključavanje baze podataka."
+"Zapamti posljednji korišteni sastavljeni ključ za otključavanje baze "
+"podataka."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used composite key"
@@ -1075,7 +1078,8 @@ msgstr "Zadnji korišteni sastavljeni ključ"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Path to last used key for composite database unlocking."
-msgstr "Staza do zadnjeg korištenog sastavljanog ključ za otključavanje."
+msgstr ""
+"Putanja do posljednjeg korištenog sastavljenog ključa za otključavanje."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1084,8 +1088,8 @@ msgstr "Zapamti način otključavanja"
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
-"Zapamti zadnji korišteni način otključavanja za buduća otključavanja baze "
-"podataka."
+"Zapamti posljednji korišteni način otključavanja za buduća otključavanja "
+"baze podataka."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
@@ -1096,69 +1100,70 @@ msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
 msgstr ""
-"Ako se tijekom spremanja baze podataka dogodi greška, sigurnosnu kopiju "
-"možeš pronaći u ~/.cache/secrets/backups"
+"Ako se pri spremanju baze podataka dogodi greška, sigurnosnu kopija se može "
+"pronaći u ~/.cache/secrets/backups"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
-msgstr "Redoslijed grupa i zapisa"
+msgstr "Redoslijed grupa i unosa"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
-msgstr "Redoslijed redaka u prikazu grupa i zapisa."
+msgstr "Redoslijed redova u prikazu grupa i unosa."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
-msgstr "Koristi velika slova za generiranje lozinke"
+msgstr "Koristi velika slova za stvaranje lozinke"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
-msgstr "Koristi velika slova A-Z za generiranje slučajne lozinke."
+msgstr "Koristi velika slova A-Z za stvaranje naizmjenične lozinke."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
-msgstr "Koristi mala slova za generiranje lozinke"
+msgstr "Koristi mala slova za stvaranje lozinke"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
-msgstr "Koristi mala slova a-z za generiranje slučajne lozinke."
+msgstr "Koristi mala slova a-z za stvaranje naizmjenične lozinke."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
-msgstr "Koristi brojke za generiranje lozinke"
+msgstr "Koristi brojeve za stvaranje lozinke"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
-msgstr "Koristi brojke 0-9 za generiranje slučajne lozinke."
+msgstr "Koristi brojeve 0-9 za stvaranje naizmjenične lozinke."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
-msgstr "Koristi simbole za generiranje lozinke"
+msgstr "Koristi simbole za stvaranje lozinke"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
-"Koristi ne-alfanumeričke ASCII znakove za generiranje slučajne lozinke."
+"Koristi ASCII znakove koji nisu slovno-brojčani za stvaranje naizmjenične "
+"lozinke."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
-msgstr "Broj znakova za generiranje lozinke"
+msgstr "Broj znakova za stvaranje lozinke"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
-msgstr "Broj znakova za generiranje lozinke."
+msgstr "Broj znakova za stvaranje lozinke."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
-msgstr "Broj riječi za generiranje tajnog izraza"
+msgstr "Broj riječi za stvaranje tajnog izraza"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
-msgstr "Znak razdvajanja za generiranje tajnog izraza"
+msgstr "Znak razdvajanja za stvaranje tajnog izraza"
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
-msgstr "@IME@"
+msgstr "@NAME@"
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
 msgid ""
@@ -1166,9 +1171,9 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
-"„Tajne” je aaplikacija za upravljanje lozinkama koji koristi KeePass format "
-"v.4. Savršeno se integrira s radnom površinom GNOME i pruža jednostavno i "
-"uredno sučelje za upravljanje bazama podataka za lozinke."
+"Tajne je upravitelj lozinkama koji koristi KeePass v.4 format. Savršeno se "
+"integrira u GNOME radno okruženje i pruža jednostavno i pregledno sučelje za "
+"upravljanje bazama podataka lozinka."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
 msgid "Falk Alexander Seidl"
@@ -1184,48 +1189,48 @@ msgstr "Greška: Trezor {} je već otvoren"
 
 #: gsecrets/attachment_warning_dialog.py:56
 msgid "Could not load attachment"
-msgstr "Neuspjelo učitavanje privitka"
+msgstr "Nemoguće učitavanje privitka"
 
 #: gsecrets/create_database.py:72
 msgid "Unable to create database"
-msgstr "Nije moguće stvoriti bazu podataka"
+msgstr "Nemoguće otvaranje baze podataka"
 
 #: gsecrets/create_database.py:165
 msgid "Passwords do not match"
-msgstr "Lozinke se ne poklapaju"
+msgstr "Lozinke se ne podudaraju"
 
 #: gsecrets/create_database.py:193
 msgid "Generating…"
-msgstr "Generiranje …"
+msgstr "Stvaranje…"
 
 #: gsecrets/create_database.py:209
 msgid "Could not create keyfile"
-msgstr "Neuspjelo stvaranje datoteke ključeva"
+msgstr "Nemoguće stvaranje datoteke ključa"
 
 #: gsecrets/create_database.py:211
 msgid "Generate"
-msgstr "Generiraj"
+msgstr "Stvori"
 
 #: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
 msgid "Saved in history"
-msgstr "Spremljeno u povijest"
+msgstr "Spremljeno u povijesti"
 
 #: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
 #: gsecrets/widgets/credentials_group.py:84
 msgid "Username copied"
-msgstr "Korisničko ime kopirano"
+msgstr "Korisničko ime je kopirano"
 
 #: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
 msgid "Address copied"
-msgstr "Adresa kopirana"
+msgstr "Adresa je kopirana"
 
 #: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
 msgid "One-time password copied"
-msgstr "Jednokratna lozinka kopirana"
+msgstr "Jednokratna lozinka je kopirana"
 
 #: gsecrets/entry_page.py:319
 msgid "The address is not valid"
-msgstr "Adresa nije ispravna"
+msgstr "Adresa nije valjana"
 
 #. NOTE: Filechooser title for selecting attachment file
 #: gsecrets/entry_page.py:356
@@ -1238,15 +1243,15 @@ msgstr "_Dodaj"
 
 #: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
 msgid "Password copied"
-msgstr "Lozinka kopirana"
+msgstr "Lozinka je kopirana"
 
 #: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
 msgid "Title not Specified"
-msgstr "Naslov nije određen"
+msgstr "Naziv nije naveden"
 
 #: gsecrets/entry_row.py:137
 msgid "Username not specified"
-msgstr "Korisničko ime nije određeno"
+msgstr "Korisničko ime nije navedeno"
 
 #: gsecrets/password_generator_popover.py:77
 msgid "Lowercase"
@@ -1266,11 +1271,11 @@ msgstr "Simboli"
 
 #: gsecrets/password_generator_popover.py:119
 msgid "Exclude"
-msgstr "Isključi"
+msgstr "Izuzmi"
 
 #: gsecrets/password_generator_popover.py:121
 msgid "Include"
-msgstr "Uključi"
+msgstr "Obuhvati"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1285,11 +1290,11 @@ msgstr "Kloniraj"
 #: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:547
 #: gsecrets/widgets/window.py:389 gsecrets/widgets/window.py:395
 msgid "Could not save Safe"
-msgstr "Neuspjelo spremanje trezora"
+msgstr "Nemoguće spremanje trezora"
 
 #: gsecrets/unlock_database.py:79
 msgid "Select Keyfile"
-msgstr "Odaberi datoteku ključeva"
+msgstr "Stvori datoteku ključa"
 
 #. pylint: disable=consider-using-f-string
 #: gsecrets/unlock_database.py:157
@@ -1302,7 +1307,7 @@ msgstr "Neuspjelo otključavanje trezora"
 
 #: gsecrets/unlock_database.py:247
 msgid "_Try Again"
-msgstr "Po_kušaj ponovo"
+msgstr "_Pokušaj ponovno"
 
 #: gsecrets/unlocked_database.py:274
 msgid "Safe saved"
@@ -1310,19 +1315,19 @@ msgstr "Trezor je spremljen"
 
 #: gsecrets/unlocked_database.py:276
 msgid "No changes made"
-msgstr "Ništa nije promijenjeno"
+msgstr "Nema promjena"
 
 #. pylint: disable=consider-using-f-string
 #: gsecrets/unlocked_database.py:321
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
-msgstr[0] "Element deleted"
-msgstr[1] "{} elementa izbrisana"
-msgstr[2] "{} elemenata izbrisano"
+msgstr[0] "{} element je obrisan"
+msgstr[1] "{} elementa su obrisana"
+msgstr[2] "{} elemenata je obrisano"
 
 #: gsecrets/unlocked_database.py:326
 msgid "Deletion completed"
-msgstr "Brisanje završeno"
+msgstr "Brisanje je završeno"
 
 #: gsecrets/unlocked_database.py:331
 msgid "Undo"
@@ -1339,7 +1344,7 @@ msgstr "Trezor je zaključan zbog neaktivnosti"
 
 #: gsecrets/widgets/add_attribute_dialog.py:38
 msgid "Attribute key contains an illegal character"
-msgstr "Ključ svojstava sadrži nevažeći znak"
+msgstr "Ključ svojstva sadrži nedopuštene znakove"
 
 #: gsecrets/widgets/add_attribute_dialog.py:49
 msgid "Attribute key already exists"
@@ -1352,17 +1357,17 @@ msgstr "Spremi privitak"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
 msgid "Could not store attachment"
-msgstr "Neuspjelo spremanje privitka"
+msgstr "Nemoguće spremanje trezora"
 
 #. NOTE: Filechooser title for choosing current used keyfile
 #: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Select Current Keyfile"
-msgstr "Odaberi trenutačnu datoteku ključeva"
+msgstr "Odaberi trenutnu datoteku ključa"
 
 #: gsecrets/widgets/database_settings_dialog.py:248
 #: gsecrets/widgets/database_settings_dialog.py:252
 msgid "Could not apply changes"
-msgstr "Neuspjela primjena promjena"
+msgstr "Nemoguće primjenjivanje promjena"
 
 #. Still executes the finally block
 #: gsecrets/widgets/database_settings_dialog.py:255
@@ -1371,21 +1376,21 @@ msgstr "Promjene su primijenjene"
 
 #: gsecrets/widgets/database_settings_dialog.py:293
 msgid "Could not change credentials"
-msgstr "Neuspjelo mijenjanje podataka prijave"
+msgstr "Nemoguća promjena vjerodajnica"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
 #: gsecrets/widgets/database_settings_dialog.py:299
 #: gsecrets/widgets/saving_conflict_dialog.py:23
 msgid "Conflicts While Saving"
-msgstr "Konflikti tijekom spremanja"
+msgstr "Greška pri spremanju"
 
 #: gsecrets/widgets/database_settings_dialog.py:300
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
 msgstr ""
-"Trezor je modificiran s nekog drugog mjesta. Riješi probleme u glavnom "
-"prozoru prilikom spremanja."
+"Trezor je promijenjen s nekog drugog mjesta. Razriješite taj problem iz "
+"glavnog prozora pri spremanju."
 
 #: gsecrets/widgets/database_settings_dialog.py:302
 msgid "Ok"
@@ -1431,7 +1436,7 @@ msgstr "AES-KDF"
 #: gsecrets/widgets/expiration_date_row.py:56
 #: gsecrets/widgets/expiration_date_row.py:62
 msgid "Entry expired"
-msgstr "Zapis istekao"
+msgstr "Unos je istekao"
 
 #: gsecrets/widgets/history_row.py:44
 msgid "Hide Text"
@@ -1439,24 +1444,24 @@ msgstr "Sakrij tekst"
 
 #: gsecrets/widgets/notes_dialog.py:62
 msgid "Selection copied"
-msgstr "Odabir kopiran"
+msgstr "Odabir je kopiran"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:19
 msgid "Unsaved Changes Conflict"
-msgstr "Konflikt nespremljenih promjena"
+msgstr "Problem nespremljenih promjena"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:21
 msgid "Save and Quit"
-msgstr "Spremi i zatvori aplikaciju"
+msgstr "_Spremi i zatvori"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:22
 msgid "Back up, Save, and Quit"
-msgstr "Spremi sigurnosnu kopiju, spremi i zatvori aplikaciju"
+msgstr "Sigurnosno kopiraj, spremi i zatvori"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:23
 msgid "Don't Quit"
-msgstr "Nemoj zatvoriti aplikaciju"
+msgstr "Ne zatvaraj"
 
 #. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
 #: gsecrets/widgets/saving_conflict_dialog.py:26
@@ -1466,15 +1471,15 @@ msgid ""
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
-"Trezor je modificiran s nekog drugog mjesta. Spremanjem će se njihova "
-"verzija trezora prepisati s našom trenutačnom verzijom.\n"
+"Trezor je promijenjen s nekog drugog mjesta. Spremanje će prebrisati njihovu "
+"inačicu trezora s našom trenutnom inačicom.\n"
 "\n"
-" Moguće je i spremiti sigurnosnu kopiju njihove verzije trezora."
+"Možete stvoriti sigurnosnu kopiju njihove inačice trezora."
 
 #. TRANSLATORS backup and save current safe.
 #: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Back up and Save"
-msgstr "_Spremi sigurnosnu kopiju i spremi"
+msgstr "_Sigurnosno kopiraj i spremi"
 
 #: gsecrets/widgets/saving_conflict_dialog.py:48
 msgid "Save Backup"
@@ -1482,18 +1487,18 @@ msgstr "Spremi sigurnosnu kopiju"
 
 #: gsecrets/widgets/saving_conflict_dialog.py:64
 msgid "Could not backup safe"
-msgstr "Neuspjelo spremanje sigurnosne kopije trezora"
+msgstr "Nemoguće spremanje trezora"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
-msgstr[0] "{} _odabrani"
-msgstr[1] "{} _odabrana"
-msgstr[2] "{} _odabranih"
+msgstr[0] "{} odabran unos"
+msgstr[1] "{} odabrana unosa"
+msgstr[2] "{} odabranih unosa"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
 msgid "Operation aborted: deleting currently active group"
-msgstr "Operacija je prekinuta: trenutačno aktivna grupa se briše"
+msgstr "Ranja je prekinuta: brisanje trenutno aktivne grupe"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:152
 msgid "Warning"
@@ -1502,7 +1507,7 @@ msgstr "Upozorenje"
 #: gsecrets/widgets/selection_mode_headerbar.py:154
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
-msgstr "Brišeš elemente u kanti za smeće, ta se brisanja ne mogu poništiti."
+msgstr "Brišete elemente u smeću, to brisanje se ne može poništiti."
 
 #: gsecrets/widgets/selection_mode_headerbar.py:157
 msgid "Cancel"
@@ -1510,15 +1515,15 @@ msgstr "Odustani"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:158
 msgid "Delete"
-msgstr "Izbriši"
+msgstr "Obriši"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:198
 msgid "Operation aborted: moving currently active group"
-msgstr "Operacija je prekinuta: trenutačno aktivna grupa se premješta"
+msgstr "Radnja je prekinuta: premještanje trenutno aktivne grupe"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:213
 msgid "Move completed"
-msgstr "Premještanje završeno"
+msgstr "Premještanje je završeno"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
 #: gsecrets/widgets/window.py:140
@@ -1528,11 +1533,11 @@ msgstr "Odaberi trezor"
 #. NOTE: KeePass + version number is a proper name, do not translate
 #: gsecrets/widgets/window.py:151 gsecrets/widgets/window.py:251
 msgid "KeePass 3.1/4 Database"
-msgstr "Baza podataka KeePass 3.1/4"
+msgstr "KeePass 3.1/4 baza podatakaq"
 
 #: gsecrets/widgets/window.py:156
 msgid "Any file type"
-msgstr "Bilo koja vrsta datoteke"
+msgstr "Sve vrste datoteke"
 
 #: gsecrets/widgets/window.py:219
 msgid "Safe is already open"
@@ -1548,20 +1553,174 @@ msgstr "Nemoguće stvaranje trezora: Trezor je već otvoren"
 
 #: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
 msgid "Could not create new Safe"
-msgstr "Neuspjelo stvaranje novog trezora"
+msgstr "Nemoguće stvaranje novog trezora"
 
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
-msgstr "Neuspjelo spremanje trezora"
+msgstr "Nemoguće spremanje trezora"
 
-#~ msgid "Learn more about Secrets"
-#~ msgstr "Saznajte više o aplikaciji „Tajne”"
+#~ msgid "Learn more about Password Safe"
+#~ msgstr "Saznaj više o programu „Trezor za lozinke”"
+
+#~ msgid "_About Password Safe"
+#~ msgstr "_O programu Trezor za lozinke"
 
 #~ msgid "_New"
-#~ msgstr "_Novo"
+#~ msgstr "_Nova"
 
 #~ msgid "C_onfirm"
 #~ msgstr "P_otvrdi"
 
 #~ msgid "_Current"
 #~ msgstr "_Trenutačna"
+
+#~ msgid "ChaCha20: 256-bit"
+#~ msgstr "ChaCha20: 256-bitni"
+
+#~ msgid "Twofish: 256-bit"
+#~ msgstr "Twofish: 256-bitni"
+
+#~ msgid "AES: 256-bit"
+#~ msgstr "AES: 256-bitni"
+
+#~ msgid "Key Derivation Function"
+#~ msgstr "Funkcija za izvođenje ključeva"
+
+#~ msgid "Apply Changes"
+#~ msgstr "Primijeni promjene"
+
+#~ msgid "Copy username to clipboard"
+#~ msgstr "Kopiraj korisničko ime u međuspremnik"
+
+#~ msgid "Copy password to clipboard"
+#~ msgstr "Kopiraj lozinku u međuspremnik"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Create safe"
+#~ msgstr "Stvori trezor"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Open safe"
+#~ msgstr "Otvori trezor"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Go back"
+#~ msgstr "Idi natrag"
+
+#~ msgid "New…"
+#~ msgstr "Nova …"
+
+#~ msgid "Open…"
+#~ msgstr "Otvori …"
+
+#~ msgid "Display passwords in plain text"
+#~ msgstr "Prikaži lozinke kao tekst"
+
+#~ msgid "Show the passwords in the entry fields by default."
+#~ msgstr "Standardno prikaži lozinke u poljima zapisa."
+
+#~ msgid "Last used unlock method"
+#~ msgstr "Zadnji korišteni način otključavanja"
+
+#~ msgid ""
+#~ "Used to store the last used unlock method and to enable a faster unlock "
+#~ "process."
+#~ msgstr ""
+#~ "Koristi se za spremanje zadnjeg korištenog načina otključavanja, čime se "
+#~ "omogućuje brže otklučavanje."
+
+#~ msgid "Use full-text search"
+#~ msgstr "Koristi pretraživanje teksta"
+
+#~ msgid "Performs a search across all values of entries."
+#~ msgstr "Pretražuje sve vrijednosti zapisa."
+
+#~ msgid "Current group search"
+#~ msgstr "Pretraživanje trenutačne grupe"
+
+#~ msgid "Only search entries in the current group."
+#~ msgstr "Pretraži samo zapise u trenutačnoj grupi."
+
+#~ msgid "Do you want to save all safes with unsaved changes?"
+#~ msgstr "Želiš li spremiti sve trezore s nespremljenim promjenama?"
+
+#~ msgid "Select the safes you want to save."
+#~ msgstr "Odaberi trezore koje želiš spremiti."
+
+#~ msgid "_Quit"
+#~ msgstr "_Zatvori program"
+
+#~ msgid "Remember _Unlock Method"
+#~ msgstr "Zapamti način _otključavanja"
+
+#~ msgid "Enable faster unlocking."
+#~ msgstr "Omogući brže otključavanje."
+
+#~ msgid "_Show Password Fields"
+#~ msgstr "_Prikaži polja lozinke"
+
+#~ msgid "Display passwords in plain text."
+#~ msgstr "Prikaži lozinke kao tekst."
+
+#~ msgid "Safe is Locked"
+#~ msgstr "Trezor je zaključan"
+
+#~ msgid "Enter password to unlock"
+#~ msgstr "Za otključavanje, upiši lozinku"
+
+#~ msgid "Select keyfile to unlock"
+#~ msgstr "Za otključavanje, odaberi datoteku ključa"
+
+#~ msgid "_Open Keyfile"
+#~ msgstr "_Otvori datoteku ključa"
+
+#~ msgid "Enter password and select keyfile to unlock"
+#~ msgstr "Za otključavanje, upiši lozinku i odaberi datoteku ključa"
+
+#~ msgid "Composite"
+#~ msgstr "Sastavljeno"
+
+#~ msgid "Click on a checkbox to select"
+#~ msgstr "Odaberi pritiskom na potvrdni okvir"
+
+#~ msgid "_Last Added"
+#~ msgstr "Za_dnji dodani"
+
+#~ msgid "Unable to Quit: Could not save Safe"
+#~ msgstr "Neuspjelo zatvaranje programa: Neuspjelo spremanje trezora"
+
+#~ msgid "Choose location for keyfile"
+#~ msgstr "Odaberi mjesto datoteke ključa"
+
+#~ msgid "Choose current keyfile"
+#~ msgstr "Odaberi trenutačnu datoteku ključa"
+
+#~ msgid "Apply…"
+#~ msgstr "Primijeni …"
+
+#~ msgid "Password copied to clipboard"
+#~ msgstr "Lozinka kopirana u međuspremnik"
+
+#~ msgid "Choose a Keepass safe"
+#~ msgstr "Odaberi jedan KeePass trezor"
+
+#~ msgid "Could not open file: Mime type not supported"
+#~ msgstr "Neuspjelo otvaranje datoteke: Mime vrsta nije podržana"
+
+#~ msgid "Choose location for Keepass safe"
+#~ msgstr "Odaberi mjesto za KeePass trezor"
+
+#~ msgid "Choose a keyfile"
+#~ msgstr "Odaberi datoteku ključa"
+
+#~ msgid "Choose Keyfile"
+#~ msgstr "Odaberi datoteku ključa"
+
+#~ msgid "The kdb format is not supported"
+#~ msgstr "kdb format nije podržan"
+
+#~ msgid "Please wait. Another save is running."
+#~ msgstr "Pričekaj. U tijeku je jedno drugo spremanje."
+
+#~ msgid "Copied to clipboard"
+#~ msgstr "Kopirano u međuspremnik"

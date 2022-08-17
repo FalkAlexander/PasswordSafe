@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-05-22 11:45+0000\n"
-"PO-Revision-Date: 2022-05-22 16:37+0200\n"
+"POT-Creation-Date: 2022-07-23 11:13+0000\n"
+"PO-Revision-Date: 2022-08-17 10:42+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -17,19 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Hantera dina lösenord"
 
-#. "Secrets" is the application name, do not translate
-#: data/about_dialog.ui.in:9
-msgid "Learn more about Secrets"
-msgstr "Lär dig mer om Secrets"
-
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:11
+#: data/about_dialog.ui.in:10
 msgid "translator-credits"
 msgstr ""
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
@@ -38,13 +33,42 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
+#. Translators: Secrets is the app name, do not translate
+#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Secrets"
+
+#: data/gtk/add_attribute_dialog.ui:12
+msgid "Add Attribute"
+msgstr "Lägg till attribut"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Key"
+msgstr "Nyckel"
+
+#: data/gtk/add_attribute_dialog.ui:55
+msgid "Value"
+msgstr "Värde"
+
+#: data/gtk/add_attribute_dialog.ui:62
+msgid "Add"
+msgstr "Lägg till"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "Hämta bilaga"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "Ta bort bilaga"
+
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:4
 msgid "Safety Info"
 msgstr "Säkerhetsinformation"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:5
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -52,31 +76,29 @@ msgstr ""
 "Det är möjligt att externa program kommer att skapa okrypterade dolda eller "
 "temporära kopior av denna bilagefil! Fortsätt med aktsamhet."
 
-#. Discard all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:10
+#: data/gtk/attachment_warning_dialog.ui:9
 msgid "_Back"
 msgstr "_Bakåt"
 
-#. Save all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:16
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
 msgstr "_Fortsätt"
 
-#: data/gtk/attribute_entry_row.ui:9
+#: data/gtk/attribute_entry_row.ui:8
 msgid "Remove Attribute"
 msgstr "Ta bort attribut"
 
-#: data/gtk/color_entry_row.ui:11
+#: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Färg"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:230
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:240
 msgid "Create Safe"
 msgstr "Skapa kassaskåp"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:36
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
 #: data/gtk/group_page.ui:14
 msgid "Back"
 msgstr "Bakåt"
@@ -90,7 +112,7 @@ msgstr "Huvudmeny"
 msgid "Protect your safe"
 msgstr "Skydda ditt kassaskåp"
 
-#: data/gtk/create_database.ui:70 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:70 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Lösenord"
@@ -125,71 +147,89 @@ msgstr "Ange lösenord"
 msgid "Set password for safe."
 msgstr "Ställ in lösenord för kassaskåp."
 
-#: data/gtk/create_database.ui:158 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
+#: data/gtk/create_database.ui:158 data/gtk/credentials_group.ui:43
+#: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "Generera nytt lösenord"
 
-#: data/gtk/create_database.ui:207
+#: data/gtk/create_database.ui:172
+msgid "Next"
+msgstr "Nästa"
+
+#: data/gtk/create_database.ui:208
 msgid "Password Match Check"
 msgstr "Kontroll att lösenord överensstämmer"
 
-#: data/gtk/create_database.ui:215
+#: data/gtk/create_database.ui:216
 msgid "Repeat password for safe."
 msgstr "Upprepa lösenord för kassaskåp."
 
-#: data/gtk/create_database.ui:272
+#: data/gtk/create_database.ui:242
+msgid "Check"
+msgstr "Kontrollera"
+
+#: data/gtk/create_database.ui:274
 msgid "Match Check Failed"
 msgstr "Kontroll av överensstämmelse misslyckades"
 
-#: data/gtk/create_database.ui:280
+#: data/gtk/create_database.ui:282
 msgid "Please try again."
 msgstr "Försök igen."
 
-#: data/gtk/create_database.ui:310
+#: data/gtk/create_database.ui:312
 msgid "_Confirm"
 msgstr "_Bekräfta"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:345 gsecrets/create_database.py:174
+#: data/gtk/create_database.ui:347 gsecrets/create_database.py:174
 #: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
 msgstr "Generera nyckelfil"
 
-#: data/gtk/create_database.ui:353
+#: data/gtk/create_database.ui:355
 msgid "Set keyfile for safe"
 msgstr "Ställ in nyckelfil för kassaskåp"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:363 data/gtk/password_generator_popover.ui:165
+#: data/gtk/create_database.ui:365 data/gtk/password_generator_popover.ui:165
 #: gsecrets/create_database.py:177
 #: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "_Generera"
 
-#: data/gtk/create_database.ui:396
+#: data/gtk/create_database.ui:398
 msgid "Safe Successfully Created"
 msgstr "Kassaskåp skapades"
 
-#: data/gtk/create_database.ui:404 data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:406 data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "Ö_ppna kassaskåp"
 
-#: data/gtk/create_database.ui:426 data/gtk/locked_headerbar.ui:37
+#: data/gtk/create_database.ui:428 data/gtk/locked_headerbar.ui:37
 #: data/gtk/unlocked_headerbar.ui:104
 msgid "_Preferences"
 msgstr "_Inställningar"
 
-#: data/gtk/create_database.ui:430 data/gtk/locked_headerbar.ui:41
+#: data/gtk/create_database.ui:432 data/gtk/locked_headerbar.ui:41
 #: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
 msgstr "_Tangentbordsgenvägar"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:434 data/gtk/locked_headerbar.ui:45
+#: data/gtk/create_database.ui:436 data/gtk/locked_headerbar.ui:45
 #: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
 msgstr "_Om Secrets"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Användarnamn"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
+#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/history_row.ui:25
+msgid "Copy"
+msgstr "Kopiera"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -201,204 +241,185 @@ msgstr "Autentisering"
 msgid "Password"
 msgstr "Lösenord"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-msgid "_New"
-msgstr "_Nytt"
+#: data/gtk/database_settings_dialog.ui:17
+msgid "New Password"
+msgstr "Nytt lösenord"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "_Bekräfta"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:38
 msgid "Confirm New Password"
 msgstr "Bekräfta nytt lösenord"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "_Aktuellt"
+#: data/gtk/database_settings_dialog.ui:44
+msgid "Current Password"
+msgstr "Aktuellt lösenord"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "Mata in aktuellt lösenord"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:181
-#: gsecrets/utils.py:76 gsecrets/widgets/database_settings_dialog.py:206
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
+#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "Nyckelfil"
 
-#: data/gtk/database_settings_dialog.ui:161
+#: data/gtk/database_settings_dialog.ui:82
 msgid "_Select current keyfile if any"
 msgstr "_Välj aktuell nyckelfil om någon finns"
 
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:124
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Valfritt) _Generera ny nyckelfil"
 
-#: data/gtk/database_settings_dialog.ui:221
+#: data/gtk/database_settings_dialog.ui:142
 msgid "Could not Load Keyfile"
 msgstr "Kunde inte läsa in nyckelfil"
 
-#: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:276
+#: data/gtk/database_settings_dialog.ui:152
+#: gsecrets/widgets/database_settings_dialog.py:272
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "_Apply Changes"
 msgstr "Ver_kställ ändringar"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Allmänt"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Details"
 msgstr "Detaljer"
 
-#: data/gtk/database_settings_dialog.ui:255
+#: data/gtk/database_settings_dialog.ui:176
 msgid "Safe Name"
 msgstr "Namn på kassaskåp"
 
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:181
 msgid "Path"
 msgstr "Sökväg"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:186
 msgid "File Size"
 msgstr "Filstorlek"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:191
 msgid "KeePass Version"
 msgstr "KeePass-version"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:196
 msgid "Creation Date"
 msgstr "Datum för skapande"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:201
 msgid "Encryption Algorithm"
 msgstr "Krypteringsalgoritm"
 
 # https://it-ord.idg.se/ord/key-derivation-function/
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:206
 msgid "Derivation Algorithm"
 msgstr "Genereringsalgoritm"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:213
 msgid "Stats"
 msgstr "Statistik"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:216
 msgid "Number of Entries"
 msgstr "Antal poster"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:221
 msgid "Number of Groups"
 msgstr "Antal grupper"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Passwords"
 msgstr "Lösenord"
 
-#: data/gtk/entry_page.ui:45 data/gtk/group_page.ui:23
+#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Meny"
 
-#: data/gtk/entry_page.ui:74 data/gtk/group_page.ui:50
+#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Titel"
 
-#: data/gtk/entry_page.ui:97 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "_Användarnamn"
+#: data/gtk/entry_page.ui:86
+msgid "U_RL"
+msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:108 data/gtk/entry_page.ui:185
-#: data/gtk/password_entry_row.ui:32
-msgid "Copy"
-msgstr "Kopiera"
+#: data/gtk/entry_page.ui:103
+msgid "Open Address"
+msgstr "Öppna adress"
 
-#: data/gtk/entry_page.ui:125
+#: data/gtk/entry_page.ui:124
+msgid "One-Time Password"
+msgstr "Engångslösenord"
+
+#: data/gtk/entry_page.ui:162
 msgid "One-_Time Password Secret"
 msgstr "En_gångslösenordshemlighet"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:145
+#: data/gtk/entry_page.ui:170
 msgid "Could not Generate OTP Token"
 msgstr "Kunde inte generera engångslösenordstoken"
 
-#: data/gtk/entry_page.ui:159
-msgid "_One-Time Password"
-msgstr "_Engångslösenord"
+#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Anteckningar"
 
-#: data/gtk/entry_page.ui:210
-msgid "U_RL"
-msgstr "U_RL"
-
-#: data/gtk/entry_page.ui:222
-msgid "Open Address"
-msgstr "Öppna adress"
-
-#: data/gtk/entry_page.ui:240 data/gtk/group_page.ui:76
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "A_nteckningar"
-
-#: data/gtk/entry_page.ui:252 data/gtk/group_page.ui:87
+#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "Redigera i ett fönster"
 
-#: data/gtk/entry_page.ui:292
+#: data/gtk/entry_page.ui:214
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:319
+#: data/gtk/entry_page.ui:231
 msgid "Attachments"
 msgstr "Bilagor"
 
-#: data/gtk/entry_page.ui:344
+#: data/gtk/entry_page.ui:235
 msgid "_Add Attachment"
 msgstr "_Lägg till bilaga"
 
-#: data/gtk/entry_page.ui:366
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Attribut"
 
-#: data/gtk/entry_page.ui:382
-msgid "Key"
-msgstr "Nyckel"
+#: data/gtk/entry_page.ui:249
+msgid "_Add Attribute"
+msgstr "_Lägg till attribut"
 
-#: data/gtk/entry_page.ui:388
-msgid "Value"
-msgstr "Värde"
+#: data/gtk/entry_page.ui:257
+msgid "Expiration Date"
+msgstr "Utgångsdatum"
 
-#: data/gtk/entry_page.ui:399
-msgid "Add Attribute"
-msgstr "Lägg till attribut"
-
-#: data/gtk/entry_page.ui:425
-msgid "_Expiration Date"
-msgstr "_Utgångsdatum"
-
-#: data/gtk/entry_page.ui:446
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "_Visa mer"
 
-#: data/gtk/entry_page.ui:465
+#: data/gtk/entry_page.ui:290
 msgid "D_uplicate"
 msgstr "_Duplicera"
 
-#: data/gtk/entry_page.ui:469
+#: data/gtk/entry_page.ui:294
 msgid "_References"
 msgstr "_Referenser"
 
-#: data/gtk/entry_page.ui:473 data/gtk/group_page.ui:127
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Egenskaper"
 
-#: data/gtk/entry_page.ui:479 data/gtk/group_page.ui:133
+#: data/gtk/entry_page.ui:304
+msgid "_Save in History"
+msgstr "_Spara i historik"
+
+#: data/gtk/entry_page.ui:308
+msgid "Show _History"
+msgstr "Visa _historik"
+
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
 msgid "_Delete"
 msgstr "_Ta bort"
 
@@ -414,13 +435,21 @@ msgstr "Kopiera lösenord"
 msgid "Expiration Date not Set"
 msgstr "Utgångsdatum har inte ställts in"
 
-#: data/gtk/expiration_date_row.ui:24
+#: data/gtk/expiration_date_row.ui:17
+msgid "Edit Expiration Date"
+msgstr "Redigera utgångsdatum"
+
+#: data/gtk/expiration_date_row.ui:25
 msgid "Remove Expiration Date"
 msgstr "Ta bort utgångsdatum"
 
-#: data/gtk/expiration_date_row.ui:57
+#: data/gtk/expiration_date_row.ui:58
 msgid "_Set Expiration Date"
 msgstr "_Ställ in utgångsdatum"
+
+#: data/gtk/group_row.ui:51
+msgid "Edit"
+msgstr "Redigera"
 
 #: data/gtk/help-overlay.ui:11
 msgctxt "Shortcut window description"
@@ -504,13 +533,40 @@ msgstr "Kopiera lösenord"
 
 #: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
-msgid "Copy Username"
-msgstr "Kopiera användarnamn"
+msgid "Copy Address"
+msgstr "Kopiera adress"
 
 #: data/gtk/help-overlay.ui:108
 msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "Kopiera användarnamn"
+
+#: data/gtk/help-overlay.ui:114
+msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Kopiera engångslösenord"
+
+#: data/gtk/help-overlay.ui:120
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Visa historik"
+
+#: data/gtk/help-overlay.ui:126
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Spara i historik"
+
+#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+msgid "Show Text"
+msgstr "Visa text"
+
+#: data/gtk/history_row.ui:36
+msgid "Remove from History"
+msgstr "Ta bort från historik"
+
+#: data/gtk/history_window.ui:9
+msgid "Password History"
+msgstr "Lösenordshistorik"
 
 #: data/gtk/locked_headerbar.ui:14
 msgid "_Open"
@@ -523,6 +579,11 @@ msgstr "_Nytt kassaskåp"
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "_Kopiera"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:26 data/gtk/unlocked_headerbar.ui:24
+msgid "Search"
+msgstr "Sök"
 
 #: data/gtk/password_generator_popover.ui:35
 msgid "Length"
@@ -589,13 +650,13 @@ msgstr "Användarnamn"
 msgid "URL"
 msgstr "URL"
 
-#: data/gtk/references_dialog.ui:141
-msgid "Notes"
-msgstr "Anteckningar"
-
 #: data/gtk/references_dialog.ui:181
 msgid "_URL"
 msgstr "_URL"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "A_nteckningar"
 
 #: data/gtk/references_dialog.ui:192
 msgid "References"
@@ -630,27 +691,27 @@ msgstr ""
 "postens egenskaper."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:4
 msgid "Unsaved Changes"
 msgstr "Osparade ändringar"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
 msgstr "Vill du skriva alla ändringar till kassaskåpet?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
 msgid "_Quit Without Saving"
 msgstr "_Avsluta utan att spara"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:20
+#: data/gtk/save_dialog.ui:11
 msgid "_Don't Quit"
 msgstr "Avsluta _inte"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:26
+#: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
 msgstr "_Spara och avsluta"
 
@@ -682,6 +743,7 @@ msgid "Delete Selection"
 msgstr "Ta bort markering"
 
 #: data/gtk/selection_mode_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:32
 msgid "_Cancel"
 msgstr "A_vbryt"
 
@@ -709,7 +771,7 @@ msgstr "_Dölj första startskärm"
 msgid "Reopen last opened safe."
 msgstr "Öppna det senast öppnade kassaskåpet igen."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:236
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Kassaskåp"
 
@@ -830,6 +892,10 @@ msgstr "Töm lista över senaste"
 msgid "Clear the recently opened safes list."
 msgstr "Töm listan över senast öppnade kassaskåp."
 
+#: data/gtk/settings_dialog.ui:269 data/gtk/unlock_database.ui:108
+msgid "Clear"
+msgstr "Töm"
+
 #: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
 msgstr "Lås upp kassaskåp"
@@ -838,11 +904,11 @@ msgstr "Lås upp kassaskåp"
 msgid "_Select Keyfile"
 msgstr "_Välj nyckelfil"
 
-#: data/gtk/unlocked_database_page.ui:28
+#: data/gtk/unlocked_database_page.ui:31
 msgid "Add elements with the ➕ button."
 msgstr "Lägg till element med ➕-knappen."
 
-#: data/gtk/unlocked_database_page.ui:29
+#: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
 msgstr "Tom grupp"
 
@@ -850,17 +916,14 @@ msgstr "Tom grupp"
 msgid "New Entry or Group"
 msgstr "Ny post eller grupp"
 
-#. Button tooltip in headerbar to open search page
-#: data/gtk/unlocked_headerbar.ui:24
-msgid "Search"
-msgstr "Sök"
-
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
 #: data/gtk/unlocked_headerbar.ui:31
 msgid "Selection Mode"
 msgstr "Markeringsläge"
 
 #: data/gtk/unlocked_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: gsecrets/widgets/saving_conflict_dialog.py:51
 msgid "_Save"
 msgstr "_Spara"
 
@@ -915,11 +978,6 @@ msgid ""
 msgstr ""
 "Lagra säkert dina lösenord, anteckningar och data. <b>Skapa</b> eller "
 "<b>importera</b> ett nytt Keepass-kassaskåp."
-
-#. Translators: Secrets is the app name, do not translate
-#: data/org.gnome.World.Secrets.desktop.in.in:4
-msgid "Secrets"
-msgstr "Secrets"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
@@ -1119,19 +1177,19 @@ msgstr ""
 "integrerar perfekt med GNOME-skrivbordet och tillhandahåller ett enkelt och "
 "stilrent gränssnitt för hantering av lösenordsdatabaser."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:209
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
-#: gsecrets/application.py:52
+#: gsecrets/application.py:54
 msgid "Error: File {} does not exist"
 msgstr "Fel: Filen {} finns inte"
 
-#: gsecrets/application.py:57
+#: gsecrets/application.py:59
 msgid "Error: Safe {} is already open"
 msgstr "Fel: Kassaskåpet {} är redan öppnat"
 
-#: gsecrets/attachment_warning_dialog.py:64
+#: gsecrets/attachment_warning_dialog.py:56
 msgid "Could not load attachment"
 msgstr "Kunde inte läsa in bilaga"
 
@@ -1155,54 +1213,84 @@ msgstr "Kunde inte skapa nyckelfil"
 msgid "Generate"
 msgstr "Generera"
 
-#: gsecrets/entry_page.py:244 gsecrets/entry_page.py:397
-#: gsecrets/entry_row.py:112
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
+msgid "Saved in history"
+msgstr "Sparat i historiken"
+
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
+#: gsecrets/widgets/credentials_group.py:84
 msgid "Username copied"
 msgstr "Användarnamn kopierat"
 
-#: gsecrets/entry_page.py:256 gsecrets/entry_page.py:295
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
+msgid "Address copied"
+msgstr "Adress kopierad"
+
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Engångslösenord kopierat"
 
-#: gsecrets/entry_page.py:314
-msgid "Attribute key contains an illegal character"
-msgstr "Attributnyckel innehåller ett ogiltigt tecken"
-
-#: gsecrets/entry_page.py:325
-msgid "Attribute key already exists"
-msgstr "Attributnyckel finns redan"
+#: gsecrets/entry_page.py:319
+msgid "The address is not valid"
+msgstr "Adressen är inte giltig"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:353
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Välj bilaga"
 
-#: gsecrets/entry_page.py:356
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "_Lägg till"
 
-#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
+#: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
 msgid "Password copied"
 msgstr "Lösenord kopierat"
 
-#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+#: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
 msgid "Title not Specified"
 msgstr "Titel inte angiven"
 
-#: gsecrets/entry_row.py:135
+#: gsecrets/entry_row.py:137
 msgid "Username not specified"
 msgstr "Användarnamn inte angivet"
+
+#: gsecrets/password_generator_popover.py:77
+msgid "Lowercase"
+msgstr "Gemener"
+
+#: gsecrets/password_generator_popover.py:80
+msgid "Uppercase"
+msgstr "Versaler"
+
+#: gsecrets/password_generator_popover.py:83
+msgid "Numbers"
+msgstr "Siffror"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Symbols"
+msgstr "Symboler"
+
+#: gsecrets/password_generator_popover.py:119
+msgid "Exclude"
+msgstr "Exkludera"
+
+#: gsecrets/password_generator_popover.py:121
+msgid "Include"
+msgstr "Inkludera"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Senaste filer"
 
-#: gsecrets/safe_element.py:425
+#: gsecrets/safe_element.py:483
 msgid "Clone"
 msgstr "Klon"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:262
-#: gsecrets/widgets/window.py:369
+#. This shouldn't happen
+#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:547
+#: gsecrets/widgets/window.py:389 gsecrets/widgets/window.py:395
 msgid "Could not save Safe"
 msgstr "Kunde inte spara kassaskåp"
 
@@ -1223,22 +1311,45 @@ msgstr "Misslyckades med att låsa upp kassaskåp"
 msgid "_Try Again"
 msgstr "_Försök igen"
 
-#: gsecrets/unlocked_database.py:265
+#: gsecrets/unlocked_database.py:274
 msgid "Safe saved"
 msgstr "Kassaskåp sparat"
 
-#: gsecrets/unlocked_database.py:267
+#: gsecrets/unlocked_database.py:276
 msgid "No changes made"
 msgstr "Inga ändringar gjorda"
 
-#: gsecrets/unlocked_database.py:313
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlocked_database.py:321
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "Element borttaget"
+msgstr[1] "{} element borttagna"
+
+#: gsecrets/unlocked_database.py:326
+msgid "Deletion completed"
+msgstr "Borttagning slutförd"
+
+#: gsecrets/unlocked_database.py:331
+msgid "Undo"
+msgstr "Ångra"
+
+#: gsecrets/unlocked_database.py:367
 msgid "Copied"
 msgstr "Kopierat"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:379
+#: gsecrets/unlocked_database.py:470
 msgid "Safe locked due to inactivity"
 msgstr "Kassaskåp låstes på grund av inaktivitet"
+
+#: gsecrets/widgets/add_attribute_dialog.py:38
+msgid "Attribute key contains an illegal character"
+msgstr "Attributnyckel innehåller ett ogiltigt tecken"
+
+#: gsecrets/widgets/add_attribute_dialog.py:49
+msgid "Attribute key already exists"
+msgstr "Attributnyckel finns redan"
 
 #. NOTE: Filechooser title for downloading an attachment
 #: gsecrets/widgets/attachment_entry_row.py:37
@@ -1254,53 +1365,72 @@ msgstr "Kunde inte lagra bilaga"
 msgid "Select Current Keyfile"
 msgstr "Välj aktuell nyckelfil"
 
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:250
-#: gsecrets/widgets/database_settings_dialog.py:255
+#: gsecrets/widgets/database_settings_dialog.py:248
+#: gsecrets/widgets/database_settings_dialog.py:252
 msgid "Could not apply changes"
 msgstr "Kunde inte tillämpa ändringar"
 
 #. Still executes the finally block
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:259
+#: gsecrets/widgets/database_settings_dialog.py:255
 msgid "Changes Applied"
 msgstr "Ändringar tillämpade"
 
+#: gsecrets/widgets/database_settings_dialog.py:293
+msgid "Could not change credentials"
+msgstr "Kunde inte ändra autentiseringsuppgifter"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:299
+#: gsecrets/widgets/saving_conflict_dialog.py:23
+msgid "Conflicts While Saving"
+msgstr "Konflikter under sparande"
+
+#: gsecrets/widgets/database_settings_dialog.py:300
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"Kassaskåpet ändrades från någon annanstans. Lös dessa konflikter från "
+"huvudfönstret under sparande."
+
+#: gsecrets/widgets/database_settings_dialog.py:302
+msgid "Ok"
+msgstr "OK"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:344
-#: gsecrets/widgets/database_settings_dialog.py:358
+#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:378
 msgid "Unknown"
 msgstr "Okänd"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:348
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "AES 256-bit"
 msgstr "AES 256-bitars"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:351
+#: gsecrets/widgets/database_settings_dialog.py:371
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitars"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitars"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:362
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:365
-#| msgid "Argon2"
+#: gsecrets/widgets/database_settings_dialog.py:385
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:388
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1308,6 +1438,57 @@ msgstr "AES-KDF"
 #: gsecrets/widgets/expiration_date_row.py:62
 msgid "Entry expired"
 msgstr "Post utgången"
+
+#: gsecrets/widgets/history_row.py:44
+msgid "Hide Text"
+msgstr "Dölj text"
+
+#: gsecrets/widgets/notes_dialog.py:62
+msgid "Selection copied"
+msgstr "Markering kopierad"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:19
+msgid "Unsaved Changes Conflict"
+msgstr "Konflikt mellan osparade ändringar"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Save and Quit"
+msgstr "Spara och avsluta"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Back up, Save, and Quit"
+msgstr "Säkerhetskopiera, spara och avsluta"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:23
+msgid "Don't Quit"
+msgstr "Avsluta inte"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:26
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"Kassaskåpet ändrades från någon annanstans. Att spara kommer skriva över den "
+"versionen av kassaskåpet med vår version.\n"
+"\n"
+" Du kan också göra en säkerhetskopia av den andra versionen av kassaskåpet."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Back up and Save"
+msgstr "Sä_kerhetskopiera och spara"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:48
+msgid "Save Backup"
+msgstr "Spara säkerhetskopia"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:64
+msgid "Could not backup safe"
+msgstr "Kunde inte säkerhetskopiera kassaskåp"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
@@ -1319,47 +1500,77 @@ msgstr[1] "{} _markerade"
 msgid "Operation aborted: deleting currently active group"
 msgstr "Åtgärden avbröts: Tar bort för närvarande aktiv grupp"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion completed"
-msgstr "Borttagning slutförd"
+#: gsecrets/widgets/selection_mode_headerbar.py:152
+msgid "Warning"
+msgstr "Varning"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:145
+#: gsecrets/widgets/selection_mode_headerbar.py:154
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"Du tar bort element i papperskorgen, dessa borttagningar kan inte ångras."
+
+#: gsecrets/widgets/selection_mode_headerbar.py:157
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:158
+msgid "Delete"
+msgstr "Ta bort"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:198
 msgid "Operation aborted: moving currently active group"
 msgstr "Åtgärden avbröts: Flyttar för närvarande aktiv grupp"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:160
+#: gsecrets/widgets/selection_mode_headerbar.py:213
 msgid "Move completed"
 msgstr "Flytt slutförd"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:130
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Välj kassaskåp"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:141 gsecrets/widgets/window.py:241
+#: gsecrets/widgets/window.py:151 gsecrets/widgets/window.py:251
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4-databas"
 
-#: gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:156
 msgid "Any file type"
 msgstr "Alla filtyper"
 
-#: gsecrets/widgets/window.py:209
+#: gsecrets/widgets/window.py:219
 msgid "Safe is already open"
 msgstr "Kassaskåp är redan öppnat"
 
-#: gsecrets/widgets/window.py:233
+#: gsecrets/widgets/window.py:243
 msgid "_Create"
 msgstr "S_kapa"
 
-#: gsecrets/widgets/window.py:269
+#: gsecrets/widgets/window.py:279
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Kan inte skapa kassaskåp: Kassaskåp är redan öppnat"
 
-#: gsecrets/widgets/window.py:311 gsecrets/widgets/window.py:325
+#: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
 msgid "Could not create new Safe"
 msgstr "Kunde inte skapa nytt kassaskåp"
+
+#: gsecrets/widgets/window.py:402
+msgid "Could not save safe"
+msgstr "Kunde inte spara kassaskåp"
+
+#~ msgid "_New"
+#~ msgstr "_Nytt"
+
+#~ msgid "C_onfirm"
+#~ msgstr "_Bekräfta"
+
+#~ msgid "_Current"
+#~ msgstr "_Aktuellt"
+
+#~ msgid "Learn more about Secrets"
+#~ msgstr "Lär dig mer om Secrets"
 
 #~ msgid "New Safe"
 #~ msgstr "Nytt kassaskåp"
@@ -1459,9 +1670,6 @@ msgstr "Kunde inte skapa nytt kassaskåp"
 #~ msgid "_Quit"
 #~ msgstr "_Avsluta"
 
-#~ msgid "Cancel"
-#~ msgstr "Avbryt"
-
 #~ msgid "Remember _Unlock Method"
 #~ msgstr "Kom ihåg _upplåsningsmetod"
 
@@ -1549,9 +1757,6 @@ msgstr "Kunde inte skapa nytt kassaskåp"
 #~ msgid "Skipped moving group into itself"
 #~ msgstr "Hoppade över att flytta in grupp i sig själv"
 
-#~ msgid "Add"
-#~ msgstr "Lägg till"
-
 #~ msgid "Save"
 #~ msgstr "Spara"
 
@@ -1619,9 +1824,6 @@ msgstr "Kunde inte skapa nytt kassaskåp"
 
 #~ msgid "Settings"
 #~ msgstr "Inställningar"
-
-#~ msgid "Edit"
-#~ msgstr "Redigera"
 
 #~ msgid "Create password…"
 #~ msgstr "Skapa lösenord…"

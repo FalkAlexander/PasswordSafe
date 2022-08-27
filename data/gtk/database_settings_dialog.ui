@@ -8,7 +8,7 @@
       <object class="AdwPreferencesPage">
         <property name="name">auth_page</property>
         <property name="title" translatable="yes">Authentication</property>
-        <property name="icon_name">security-high-symbolic</property>
+        <property name="icon_name">dice3-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Password</property>
@@ -19,7 +19,7 @@
                 <child>
                   <object class="GtkMenuButton">
                     <property name="valign">center</property>
-                    <property name="icon_name">security-high-symbolic</property>
+                    <property name="icon_name">dice3-symbolic</property>
                     <property name="tooltip_text" translatable="yes">Generate New Password</property>
                     <property name="popover">
                       <object class="PasswordGeneratorPopover">
@@ -111,7 +111,7 @@
                         <property name="height_request">50</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
-                        <property name="icon_name">security-high-symbolic</property>
+                        <property name="icon_name">dice3-symbolic</property>
                         <signal name="clicked" handler="on_keyfile_generator_button_clicked"/>
                         <style>
                           <class name="circular"/>

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-01-08 00:14+0000\n"
-"PO-Revision-Date: 2022-01-08 14:37+0000\n"
+"POT-Creation-Date: 2022-07-23 11:13+0000\n"
+"PO-Revision-Date: 2022-09-07 18:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -15,179 +15,215 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 21.12.3\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Sýslaðu með lykilorðin þín"
 
-#. "Secrets" is the application name, do not translate
-#: data/about_dialog.ui.in:9
-msgid "Learn more about Secrets"
-msgstr "Fræðstu meira um Secrets"
-
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:11
+#: data/about_dialog.ui.in:10
 msgid "translator-credits"
 msgstr "Sveinn í Felli, sv1@fellsnet.is, 2022"
 
+#. Translators: Secrets is the app name, do not translate
+#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Leyndarmál"
+
+#: data/gtk/add_attribute_dialog.ui:12
+msgid "Add Attribute"
+msgstr "Bæta við eigindi"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Key"
+msgstr "Lykill"
+
+#: data/gtk/add_attribute_dialog.ui:55
+msgid "Value"
+msgstr "Gildi"
+
+#: data/gtk/add_attribute_dialog.ui:62
+#| msgid "_Add"
+msgid "Add"
+msgstr "Bæta við"
+
+#: data/gtk/attachment_entry_row.ui:9
+#| msgid "Could not Load Attachment"
+msgid "Download Attachment"
+msgstr "Sækja viðhengi"
+
+#: data/gtk/attachment_entry_row.ui:20
+#| msgid "Save Attachment"
+msgid "Remove Attachment"
+msgstr "Fjarlægja viðhengi"
+
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:4
 msgid "Safety Info"
 msgstr "Öryggisupplýsingar"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:5
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
 msgstr ""
-"Það er mögulegt að utanaðkomandi forrit útbúi ódulrituð falin afrit eða"
-" bráðabirgðaafrit af þessari viðhengisskrá! Haltu varlega áfram."
+"Það er mögulegt að utanaðkomandi forrit útbúi ódulrituð falin afrit eða "
+"bráðabirgðaafrit af þessari viðhengisskrá! Haltu varlega áfram."
 
-#. Discard all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:10
+#: data/gtk/attachment_warning_dialog.ui:9
 msgid "_Back"
 msgstr "_Til baka"
 
-#. Save all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:16
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
 msgstr "_Halda áfram"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:8
 msgid "Remove Attribute"
 msgstr "Fjarlægja eigindi"
 
-#: data/gtk/color_entry_row.ui:11
+#: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Litur"
 
-#: data/gtk/create_database.ui:33
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:240
+msgid "Create Safe"
+msgstr "Búa til öryggishólf"
+
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
+#: data/gtk/group_page.ui:14
+msgid "Back"
+msgstr "Til baka"
+
+#: data/gtk/create_database.ui:21 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:38
+msgid "Main Menu"
+msgstr "Aðalvalmynd"
+
+#: data/gtk/create_database.ui:57
 msgid "Protect your safe"
 msgstr "Verndaðu öryggishólfið þitt"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:70 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Lykilorð"
 
-#: data/gtk/create_database.ui:47
+#: data/gtk/create_database.ui:71
 msgid "Use a password to secure your safe."
 msgstr "Notaðu lykilorð til að vernda öryggishólfið þitt."
 
-#: data/gtk/create_database.ui:57
+#: data/gtk/create_database.ui:81
 msgid "_Keyfile"
 msgstr "Ly_kilskrá"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:82
 msgid "Use a keyfile to secure your safe."
 msgstr "Notaðu lykilskrá til að vernda öryggishólfið þitt."
 
-#: data/gtk/create_database.ui:68
+#: data/gtk/create_database.ui:92
 msgid "_Composite"
 msgstr "Sa_msett"
 
-#: data/gtk/create_database.ui:69
+#: data/gtk/create_database.ui:93
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "Notaðu lykilorð ásamt lykilskrá til að vernda öryggishólfið þitt."
 
-#: data/gtk/create_database.ui:101
+#: data/gtk/create_database.ui:125
 msgid "Enter Password"
 msgstr "Settu inn lykilorð"
 
-#: data/gtk/create_database.ui:109
+#: data/gtk/create_database.ui:133
 msgid "Set password for safe."
 msgstr "Settu lykilorð fyrir öryggishólf."
 
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
+#: data/gtk/create_database.ui:158 data/gtk/credentials_group.ui:43
+#: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "Útbúa nýtt lykilorð"
 
-#: data/gtk/create_database.ui:183
+#: data/gtk/create_database.ui:172
+msgid "Next"
+msgstr "Næsta"
+
+#: data/gtk/create_database.ui:208
 msgid "Password Match Check"
 msgstr "Prófun samsvörunar lykilorða"
 
-#: data/gtk/create_database.ui:191
+#: data/gtk/create_database.ui:216
 msgid "Repeat password for safe."
 msgstr "Endurtaktu lykilorð fyrir öryggishólf."
 
-#: data/gtk/create_database.ui:248
+#: data/gtk/create_database.ui:242
+msgid "Check"
+msgstr ""
+
+#: data/gtk/create_database.ui:274
 msgid "Match Check Failed"
 msgstr "Prófun samsvörunar mistókst"
 
-#: data/gtk/create_database.ui:256
+#: data/gtk/create_database.ui:282
 msgid "Please try again."
 msgstr "Endilega reyndu aftur."
 
-#: data/gtk/create_database.ui:286
+#: data/gtk/create_database.ui:312
 msgid "_Confirm"
 msgstr "Stað_festa"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
-#: gsecrets/widgets/database_settings_dialog.py:198
+#: data/gtk/create_database.ui:347 gsecrets/create_database.py:174
+#: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
 msgstr "Útbúa lykilskrá"
 
-#: data/gtk/create_database.ui:329
+#: data/gtk/create_database.ui:355
 msgid "Set keyfile for safe"
 msgstr "Settu lykilskrá fyrir öryggishólf"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: data/gtk/create_database.ui:365 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:177
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "Út_búa"
 
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:398
 msgid "Safe Successfully Created"
 msgstr "Tókst að búa til öryggishólf"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:406 data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "_Opna öryggishólf"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
-msgid "Create Safe"
-msgstr "Búa til öryggishólf"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Til baka"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Aðalvalmynd"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:428 data/gtk/locked_headerbar.ui:37
+#: data/gtk/unlocked_headerbar.ui:104
 msgid "_Preferences"
 msgstr "_Kjörstillingar"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:432 data/gtk/locked_headerbar.ui:41
+#: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
 msgstr "Flýtily_klar"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:436 data/gtk/locked_headerbar.ui:45
+#: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
 msgstr "_Um Secrets-lyklaumsýsluna"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "Notan_danafn"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
+#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/history_row.ui:25
+msgid "Copy"
+msgstr "Afrita"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -195,211 +231,203 @@ msgstr "Auðkenning"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:27
 msgid "Password"
 msgstr "Lykilorð"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
-msgid "_New"
-msgstr "_Nýtt"
+#: data/gtk/database_settings_dialog.ui:17
+#| msgid "Password"
+msgid "New Password"
+msgstr "Nýtt lykilorð"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "Stað_festa"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:38
 msgid "Confirm New Password"
 msgstr "Staðfesta nýtt lykilorð"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "Nú_gildandi"
+#: data/gtk/database_settings_dialog.ui:44
+#| msgid "Enter Current Password"
+msgid "Current Password"
+msgstr "Núverandi lykilorð"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "Settu inn núgildandi lykilorð"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
+#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "Lykilskrá"
 
-#: data/gtk/database_settings_dialog.ui:161
+#: data/gtk/database_settings_dialog.ui:82
 msgid "_Select current keyfile if any"
 msgstr "_Veldu núgildandi lykilskrá ef einhver er"
 
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:124
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Valkvætt) _Búa til nýja lykilskrá"
 
-#: data/gtk/database_settings_dialog.ui:221
+#: data/gtk/database_settings_dialog.ui:142
 msgid "Could not Load Keyfile"
 msgstr "Gat ekki hlaðið inn lykilskrá"
 
-#: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: data/gtk/database_settings_dialog.ui:152
+#: gsecrets/widgets/database_settings_dialog.py:272
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "_Apply Changes"
 msgstr "Virkj_a breytingar"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Almennt"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Details"
 msgstr "Nánar"
 
-#: data/gtk/database_settings_dialog.ui:255
+#: data/gtk/database_settings_dialog.ui:176
 msgid "Safe Name"
 msgstr "Heiti öryggishólfs"
 
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:181
 msgid "Path"
 msgstr "Slóð"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:186
 msgid "File Size"
 msgstr "Skráarstærð"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:191
 msgid "KeePass Version"
 msgstr "Útgáfa KeePass"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:196
 msgid "Creation Date"
 msgstr "Upprunadagsetning"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:201
 msgid "Encryption Algorithm"
 msgstr "Dulritunaralgrím"
 
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:206
 msgid "Derivation Algorithm"
 msgstr "Afleiðualgrím (derivation algorithm)"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:213
 msgid "Stats"
 msgstr "Tölfræði"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:216
 msgid "Number of Entries"
 msgstr "Fjöldi færslna"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:221
 msgid "Number of Groups"
 msgstr "Fjöldi hópa"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Passwords"
 msgstr "Lykilorð"
 
-#: data/gtk/edit_element_headerbar.ui:22
+#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Valmynd"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "_Eiginleikar"
-
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "_Eyða"
-
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "Tvö_falda"
-
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "Tilvísani_r"
-
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Titill"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "Notan_danafn"
-
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
-#: data/gtk/password_entry_row.ui:32
-msgid "Copy"
-msgstr "Afrita"
-
-#: data/gtk/entry_page.ui:77
-msgid "One-_Time Password Secret"
-msgstr "Eins-skiptis lykilorðs leyndarmál"
-
-#: data/gtk/entry_page.ui:97
-msgid "Could not Generate OTP Token"
-msgstr "Gat ekki útbúið OTP-teikn"
-
-#: data/gtk/entry_page.ui:111
-msgid "_One-Time Password"
-msgstr "Eins-skiptis lykil_orð"
-
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:86
 msgid "U_RL"
 msgstr "U_RL-slóð"
 
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "_Minnispunktar"
+#: data/gtk/entry_page.ui:103
+msgid "Open Address"
+msgstr "Opna vistfang"
 
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:124
+#| msgid "_One-Time Password"
+msgid "One-Time Password"
+msgstr "Eins-skiptis lykilorð"
+
+#: data/gtk/entry_page.ui:162
+msgid "One-_Time Password Secret"
+msgstr "Eins-skiptis lykilorðs leyndarmál"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:170
+msgid "Could not Generate OTP Token"
+msgstr "Gat ekki útbúið OTP-teikn"
+
+#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Minnispunktar"
+
+#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "Breyta í glugga"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:214
 msgid "Icon"
 msgstr "Táknmynd"
 
-#: data/gtk/entry_page.ui:265
+#: data/gtk/entry_page.ui:231
 msgid "Attachments"
 msgstr "Viðhengi"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:235
 msgid "_Add Attachment"
 msgstr "Bæt_a við viðhengi"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Eigindi"
 
-#: data/gtk/entry_page.ui:328
-msgid "Key"
-msgstr "Lykill"
+#: data/gtk/entry_page.ui:249
+#| msgid "Add Attribute"
+msgid "_Add Attribute"
+msgstr "Bæt_a við eigindi"
 
-#: data/gtk/entry_page.ui:334
-msgid "Value"
-msgstr "Gildi"
+#: data/gtk/entry_page.ui:257
+#| msgid "_Expiration Date"
+msgid "Expiration Date"
+msgstr "Gildir til"
 
-#: data/gtk/entry_page.ui:345
-msgid "Add Attribute"
-msgstr "Bæta við eigindi"
-
-#: data/gtk/entry_page.ui:369
-msgid "_Expiration Date"
-msgstr "_Gildistími"
-
-#: data/gtk/entry_page.ui:390
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "_Birta meira"
 
-#: data/gtk/entry_row.ui:52
+#: data/gtk/entry_page.ui:290
+msgid "D_uplicate"
+msgstr "Tvö_falda"
+
+#: data/gtk/entry_page.ui:294
+msgid "_References"
+msgstr "Tilvísani_r"
+
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
+msgid "_Properties"
+msgstr "_Eiginleikar"
+
+#: data/gtk/entry_page.ui:304
+#| msgid "_Save and Quit"
+msgid "_Save in History"
+msgstr "Vi_sta í ferilskrá"
+
+#: data/gtk/entry_page.ui:308
+#| msgid "_Show More"
+msgid "Show _History"
+msgstr "Sýna _feril"
+
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
+msgid "_Delete"
+msgstr "_Eyða"
+
+#: data/gtk/entry_row.ui:53
 msgid "Copy Username"
 msgstr "Afrita notandanafn"
 
-#: data/gtk/entry_row.ui:59
+#: data/gtk/entry_row.ui:63
 msgid "Copy Password"
 msgstr "Afrita lykilorð"
 
@@ -407,13 +435,22 @@ msgstr "Afrita lykilorð"
 msgid "Expiration Date not Set"
 msgstr "Engin gildislok tilgreind"
 
-#: data/gtk/expiration_date_row.ui:21
+#: data/gtk/expiration_date_row.ui:17
+#| msgid "_Set Expiration Date"
+msgid "Edit Expiration Date"
+msgstr "Breyta gildistíma"
+
+#: data/gtk/expiration_date_row.ui:25
 msgid "Remove Expiration Date"
 msgstr "Fjarlægja gildistíma"
 
-#: data/gtk/expiration_date_row.ui:54
+#: data/gtk/expiration_date_row.ui:58
 msgid "_Set Expiration Date"
 msgstr "_Setja gildistíma"
+
+#: data/gtk/group_row.ui:51
+msgid "Edit"
+msgstr "Breyta"
 
 #: data/gtk/help-overlay.ui:11
 msgctxt "Shortcut window description"
@@ -497,12 +534,62 @@ msgstr "Afrita lykilorð"
 
 #: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Afrita vistfang"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Afrita notandanafn"
+
+#: data/gtk/help-overlay.ui:114
+#| msgid "_One-Time Password"
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Afrita eins-skiptis lykilorð"
+
+#: data/gtk/help-overlay.ui:120
+#| msgid "_Show More"
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Sýna feril"
+
+#: data/gtk/help-overlay.ui:126
+#| msgid "_Save and Quit"
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Vista í ferilskrá"
+
+#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+#| msgid "_Show More"
+msgid "Show Text"
+msgstr "Birta texta"
+
+#: data/gtk/history_row.ui:36
+msgid "Remove from History"
+msgstr "Fjarlægja úr ferilskrá"
+
+#: data/gtk/history_window.ui:9
+#| msgid "Passwords"
+msgid "Password History"
+msgstr "Ferill lykilorða"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Opna"
+
+#: data/gtk/locked_headerbar.ui:31 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "_Nýtt öryggishólf"
 
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "A_frita"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:26 data/gtk/unlocked_headerbar.ui:24
+msgid "Search"
+msgstr "Leita"
 
 #: data/gtk/password_generator_popover.ui:35
 msgid "Length"
@@ -548,22 +635,6 @@ msgstr "Breytt"
 msgid "Created"
 msgstr "Búið til"
 
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Nýtt öryggishólf"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Opna öryggishólf"
-
-#: data/gtk/recent_files_headerbar.ui:32
-msgid "_Open"
-msgstr "_Opna"
-
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Nýleg öryggishólf"
-
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Kóði"
@@ -585,13 +656,13 @@ msgstr "Notandanafn"
 msgid "URL"
 msgstr "Slóð"
 
-#: data/gtk/references_dialog.ui:141
-msgid "Notes"
-msgstr "Minnispunktar"
-
 #: data/gtk/references_dialog.ui:181
 msgid "_URL"
 msgstr "_URL-slóð"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Minnispunktar"
 
 #: data/gtk/references_dialog.ui:192
 msgid "References"
@@ -623,31 +694,31 @@ msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
 msgstr ""
-"Hver færsla er með sértækt auðkenni sem kallast UUID. Það má sjá í"
-" eiginleikum færslunnar."
+"Hver færsla er með sértækt auðkenni sem kallast UUID. Það má sjá í "
+"eiginleikum færslunnar."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:4
 msgid "Unsaved Changes"
 msgstr "Óvistaðar breytingar"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
 msgstr "Viltu vista allar breytingar á öryggishólfinu?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
 msgid "_Quit Without Saving"
 msgstr "_Hætta án þess að vista"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:20
+#: data/gtk/save_dialog.ui:11
 msgid "_Don't Quit"
 msgstr "_Ekki hætta"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:26
+#: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
 msgstr "Vi_sta og hætta"
 
@@ -679,6 +750,7 @@ msgid "Delete Selection"
 msgstr "Eyða vali"
 
 #: data/gtk/selection_mode_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:32
 msgid "_Cancel"
 msgstr "_Hætta við"
 
@@ -706,7 +778,7 @@ msgstr "_Fela fyrsta upphafsskjá"
 msgid "Reopen last opened safe."
 msgstr "Opna aftur síðast opnaða öryggishólfið."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Öruggt"
 
@@ -718,7 +790,7 @@ msgstr "Vi_sta sjálfkrafa"
 msgid "Save every change automatically."
 msgstr "Vista allar breytingar sjálfkrafa."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:33
 msgid "Unlock"
 msgstr "Aflæsa"
 
@@ -772,6 +844,7 @@ msgstr "Nota tölustafi við gerð lykilorðs."
 msgid "_Special Characters"
 msgstr "_Sérstafir"
 
+#. ASCII is a proper name
 #: data/gtk/settings_dialog.ui:156
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Nota ASCII-táknstafi (ekki bók- eða tölustafir) við gerð lykilorðs."
@@ -826,23 +899,30 @@ msgstr "Hreinsa lista yfir nýlegt"
 msgid "Clear the recently opened safes list."
 msgstr "Hreinsa lista yfir nýlega opnuð öryggishólf."
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/settings_dialog.ui:269 data/gtk/unlock_database.ui:108
+msgid "Clear"
+msgstr "Hreinsa"
+
+#: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
 msgstr "Aflæsa öryggishólfi"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "_Nýtt öryggishólf"
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+msgid "_Select Keyfile"
+msgstr "_Veldu lykilskrá"
+
+#: data/gtk/unlocked_database_page.ui:31
+msgid "Add elements with the ➕ button."
+msgstr "Bættu við atriðum með ➕ hnappnum."
+
+#: data/gtk/unlocked_database_page.ui:32
+#| msgid "New Entry or Group"
+msgid "Empty Group"
+msgstr "Tómur hópur"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
 msgstr "Ný færsla eða hópur"
-
-#. Button tooltip in headerbar to open search page
-#: data/gtk/unlocked_headerbar.ui:24
-msgid "Search"
-msgstr "Leita"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
 #: data/gtk/unlocked_headerbar.ui:31
@@ -850,6 +930,8 @@ msgid "Selection Mode"
 msgstr "Valhamur"
 
 #: data/gtk/unlocked_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: gsecrets/widgets/saving_conflict_dialog.py:51
 msgid "_Save"
 msgstr "Vi_sta"
 
@@ -861,10 +943,12 @@ msgstr "_Læsa"
 msgid "So_rting"
 msgstr "_Röðun"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:66
 msgid "_A-Z"
 msgstr "_A-Ö"
 
+#. This is an alphabetical order for entries
 #: data/gtk/unlocked_headerbar.ui:71
 msgid "_Z-A"
 msgstr "_Ö-A"
@@ -877,36 +961,31 @@ msgstr "_Nýjast fyrst"
 msgid "_Oldest First"
 msgstr "_Elsta fyrst"
 
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "Sa_fe Settings"
 msgstr "Stillingar öryggishól_fs"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:120
 msgid "New _Entry"
 msgstr "Ný _færsla"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:124
 msgid "New _Group"
 msgstr "Nýr _hópur"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:30
 msgid "Secure Secrets"
 msgstr "Örugg leyndarmál"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
+#: data/gtk/welcome_page.ui:41
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
-"Geymdu lykilorðin þín, minnispunkta og önnur gögn á öruggan hátt. <b>útbúðu<"
-"/b> eða <b>flyttu inn</b> nýtt Keepass-öryggishólf."
-
-#. Translators: Secrets is the app name, do not translate
-#: data/org.gnome.World.Secrets.desktop.in.in:4
-msgid "Secrets"
-msgstr "Leyndarmál"
+"Geymdu lykilorðin þín, minnispunkta og önnur gögn á öruggan hátt. <b>útbúðu</"
+"b> eða <b>flyttu inn</b> nýtt Keepass-öryggishólf."
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
@@ -926,8 +1005,8 @@ msgid ""
 "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
 "theme has a dark variant."
 msgstr ""
-"Nota dökkt afbrigði af GTK+ þema. Athugaðu að ekki eru öll GTK+ þemu með"
-" dökkt afbrigði."
+"Nota dökkt afbrigði af GTK+ þema. Athugaðu að ekki eru öll GTK+ þemu með "
+"dökkt afbrigði."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -938,8 +1017,8 @@ msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
 msgstr ""
-"Opna sjálfkrafa aflæsingaskjá síðast opnaða gagnagrunnsins, annars á að birta"
-" upphafsskjárinn."
+"Opna sjálfkrafa aflæsingaskjá síðast opnaða gagnagrunnsins, annars á að "
+"birta upphafsskjárinn."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Save every change automatically"
@@ -950,8 +1029,8 @@ msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
-"Vista allar breytingar sem þú gerir sjálfkrafa inn í gagnagrunninn. Athugaðu"
-" að þú getur ekki afturkallað breyingar ef þú ert með sjálfvirka vistun virka."
+"Vista allar breytingar sem þú gerir sjálfkrafa inn í gagnagrunninn. Athugaðu "
+"að þú getur ekki afturkallað breyingar ef þú ert með sjálfvirka vistun virka."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
@@ -1021,8 +1100,8 @@ msgstr "Muna aðferð við aflæsingu"
 #: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
-"Muna þá aðferð við aflæsingu sem síðast var notuð fyrir síðari tíma aflæsinga"
-" gagnagrunna."
+"Muna þá aðferð við aflæsingu sem síðast var notuð fyrir síðari tíma "
+"aflæsinga gagnagrunna."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
@@ -1033,8 +1112,8 @@ msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
 msgstr ""
-"Ef villa kemur upp við að vista gagnagrunninn, er hægt að finna öryggisafrit"
-" í ~/.cache/secrets/backups"
+"Ef villa kemur upp við að vista gagnagrunninn, er hægt að finna öryggisafrit "
+"í ~/.cache/secrets/backups"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
@@ -1103,174 +1182,287 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
-"Secrets er lykilorðastýring sem nýtir KeePass v.4 sniðið. Það er fullkomlega"
-" samtvinnað GNOME-skjáborðinu og kemur með auðveldu og hreinlegu viðmóti til"
-" að sýsla með lykilorðagagnagrunna."
+"Secrets er lykilorðastýring sem nýtir KeePass v.4 sniðið. Það er fullkomlega "
+"samtvinnað GNOME-skjáborðinu og kemur með auðveldu og hreinlegu viðmóti til "
+"að sýsla með lykilorðagagnagrunna."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:179
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
-#: gsecrets/application.py:52
+#: gsecrets/application.py:54
 msgid "Error: File {} does not exist"
 msgstr "Villa: Skráin {} er ekki til"
 
-#: gsecrets/application.py:57
+#: gsecrets/application.py:59
 msgid "Error: Safe {} is already open"
 msgstr "Villa: Öryggishólfið \"{}\" er þegar opið"
 
-#: gsecrets/attachment_warning_dialog.py:66
-msgid "Could not Load Attachment"
+#: gsecrets/attachment_warning_dialog.py:56
+#| msgid "Could not Load Attachment"
+msgid "Could not load attachment"
 msgstr "Gat ekki hlaðið inn viðhengi"
 
-#: gsecrets/create_database.py:130
-msgid "Passwords do not Match"
+#: gsecrets/create_database.py:72
+#| msgid "Last opened database"
+msgid "Unable to create database"
+msgstr "Get ekki útbúið gagnagrunn"
+
+#: gsecrets/create_database.py:165
+#| msgid "Passwords do not Match"
+msgid "Passwords do not match"
 msgstr "Lykilorðin stemma ekki"
 
-#: gsecrets/create_database.py:158
+#: gsecrets/create_database.py:193
 msgid "Generating…"
 msgstr "Útbý…"
 
-#: gsecrets/create_database.py:171
-msgid "Could not Create Keyfile"
+#: gsecrets/create_database.py:209
+#| msgid "Could not Create Keyfile"
+msgid "Could not create keyfile"
 msgstr "Gat ekki búið til lykilskrá"
 
-#: gsecrets/create_database.py:173
+#: gsecrets/create_database.py:211
 msgid "Generate"
 msgstr "Útbúa"
 
-#: gsecrets/database_manager.py:122
-msgid "Clone"
-msgstr "Klóna"
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
+#| msgid "_Save and Quit"
+msgid "Saved in history"
+msgstr "Vistað í ferilskrá"
 
-#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
-#: gsecrets/entry_row.py:112
-msgid "Username Copied"
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
+#: gsecrets/widgets/credentials_group.py:84
+#| msgid "Username Copied"
+msgid "Username copied"
 msgstr "Notandanafn afritað"
 
-#: gsecrets/entry_page.py:274
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
+msgid "Address copied"
+msgstr "Vistfang afritað"
+
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
+#| msgid "One-time Password Copied"
+msgid "One-time password copied"
 msgstr "Eins-skiptis lykilorð afritað"
 
-#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
-msgstr "Eigindalykill er þegar til staðar"
+#: gsecrets/entry_page.py:319
+msgid "The address is not valid"
+msgstr "Vistfangið er ekki gilt"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:323
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Veldu viðhengi"
 
-#: gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "Bæt_a við"
 
-#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+#: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
+#| msgid "Password Copied"
+msgid "Password copied"
 msgstr "Lykilorð afritað"
 
-#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+#: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
 msgid "Title not Specified"
 msgstr "Titill ekki tilgreindur"
 
-#: gsecrets/entry_row.py:135
+#: gsecrets/entry_row.py:137
 msgid "Username not specified"
 msgstr "Notandanafn ekki tilgreint"
 
-#: gsecrets/unlock_database.py:78
+#: gsecrets/password_generator_popover.py:77
+#| msgid "_Lowercase Characters"
+msgid "Lowercase"
+msgstr "Lágstafa"
+
+#: gsecrets/password_generator_popover.py:80
+#| msgid "_Uppercase Characters"
+msgid "Uppercase"
+msgstr "Hástafa"
+
+#: gsecrets/password_generator_popover.py:83
+#| msgid "Number of Groups"
+msgid "Numbers"
+msgstr "Tölur"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Symbols"
+msgstr "Tákn"
+
+#: gsecrets/password_generator_popover.py:119
+msgid "Exclude"
+msgstr "Undanskilja"
+
+#: gsecrets/password_generator_popover.py:121
+msgid "Include"
+msgstr "Taka með"
+
+#: gsecrets/recent_files_menu.py:36
+#| msgid "Recent Safes"
+msgid "Recent Files"
+msgstr "Nýlegar skrár"
+
+#: gsecrets/safe_element.py:483
+msgid "Clone"
+msgstr "Klóna"
+
+#. This shouldn't happen
+#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:547
+#: gsecrets/widgets/window.py:389 gsecrets/widgets/window.py:395
+#| msgid "Could not Save Safe"
+msgid "Could not save Safe"
+msgstr "Gat ekki vistað öryggishólf"
+
+#: gsecrets/unlock_database.py:79
 msgid "Select Keyfile"
 msgstr "Veldu lykilskrá"
 
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlock_database.py:157
+#| msgid "Safe {} is Already Open"
+msgid "Safe {} is already open"
 msgstr "Öryggishólfið \"{}\" er þegar opið"
 
-#: gsecrets/unlock_database.py:231
-msgid "The kdb Format is not Supported"
-msgstr "Ekki er stuðningur við kdb-sniðið"
-
-#: gsecrets/unlock_database.py:287
-msgid "Failed to Unlock Safe"
+#: gsecrets/unlock_database.py:238
+#| msgid "Failed to Unlock Safe"
+msgid "Failed to unlock Safe"
 msgstr "Mistókst að aflæsa öryggishólfi"
 
-#: gsecrets/unlock_database.py:298
+#: gsecrets/unlock_database.py:247
 msgid "_Try Again"
 msgstr "Re_yndu aftur"
 
-#: gsecrets/unlock_database.py:303
-msgid "_Select Keyfile"
-msgstr "_Veldu lykilskrá"
-
-#: gsecrets/unlocked_database.py:277
-msgid "Safe Saved"
+#: gsecrets/unlocked_database.py:274
+#| msgid "Safe Saved"
+msgid "Safe saved"
 msgstr "Öryggishólf vistað"
 
-#: gsecrets/unlocked_database.py:279
-msgid "Could not Save Safe"
-msgstr "Gat ekki vistað öryggishólf"
+#: gsecrets/unlocked_database.py:276
+#| msgid "No Changes Made"
+msgid "No changes made"
+msgstr "Engar breytingar gerðar"
 
-#: gsecrets/unlocked_database.py:289
-msgid "Please Wait. Another Save is Running."
-msgstr "Hinkraðu aðeins. Önnur vistunaraðgerð er í gangi."
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlocked_database.py:321
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] ""
+msgstr[1] ""
 
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:294
-msgid "No Changes Made"
-msgstr "Engar breytingar voru gerðar"
+#: gsecrets/unlocked_database.py:326
+#| msgid "Deletion Completed"
+msgid "Deletion completed"
+msgstr "Eyðingu lokið"
 
-#: gsecrets/unlocked_database.py:333
+#: gsecrets/unlocked_database.py:331
+msgid "Undo"
+msgstr "Afturkalla"
+
+#: gsecrets/unlocked_database.py:367
 msgid "Copied"
 msgstr "Afritað"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:400
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:470
+#| msgid "Safe Locked due to Inactivity"
+msgid "Safe locked due to inactivity"
 msgstr "Öryggishólfi læst vegna aðgerðaleysis"
+
+#: gsecrets/widgets/add_attribute_dialog.py:38
+msgid "Attribute key contains an illegal character"
+msgstr "Eigindalykill inniheldur ógildan staf"
+
+#: gsecrets/widgets/add_attribute_dialog.py:49
+#| msgid "Attribute key Already Exists"
+msgid "Attribute key already exists"
+msgstr "Eigindalykill er þegar til staðar"
 
 #. NOTE: Filechooser title for downloading an attachment
 #: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
 msgstr "Vista viðhengi"
 
-#: gsecrets/widgets/attachment_entry_row.py:64
-msgid "Could not Store Attachment"
+#: gsecrets/widgets/attachment_entry_row.py:61
+#| msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "Gat ekki geymt viðhengi"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:129
+#: gsecrets/widgets/database_settings_dialog.py:130
 msgid "Select Current Keyfile"
 msgstr "Veldu núgildandi lykilskrá"
 
+#: gsecrets/widgets/database_settings_dialog.py:248
+#: gsecrets/widgets/database_settings_dialog.py:252
+#| msgid "Could not Save Safe"
+msgid "Could not apply changes"
+msgstr "Gat ekki framkvæmt breytingar"
+
+#. Still executes the finally block
+#: gsecrets/widgets/database_settings_dialog.py:255
+#| msgid "No Changes Made"
+msgid "Changes Applied"
+msgstr "Breytingar framkvæmdar"
+
+#: gsecrets/widgets/database_settings_dialog.py:293
+#| msgid "Could not Create Keyfile"
+msgid "Could not change credentials"
+msgstr "Tókst ekki að breyta auðkennum"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:299
+#: gsecrets/widgets/saving_conflict_dialog.py:23
+msgid "Conflicts While Saving"
+msgstr "Árekstrar við að vista"
+
+#: gsecrets/widgets/database_settings_dialog.py:300
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+
+#: gsecrets/widgets/database_settings_dialog.py:302
+msgid "Ok"
+msgstr "Í lagi"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:317
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:378
 msgid "Unknown"
 msgstr "Óþekkt"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:321
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "AES 256-bit"
 msgstr "AES 256-bita"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:371
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bita"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bita"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "Argon2"
 msgstr "Argon2"
 
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:385
+#| msgid "Argon2"
+msgid "Argon2id"
+msgstr "Argon2id"
+
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:388
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1279,6 +1471,59 @@ msgstr "AES-KDF"
 msgid "Entry expired"
 msgstr "Færsla útrunnin"
 
+#: gsecrets/widgets/history_row.py:44
+msgid "Hide Text"
+msgstr "Fela texta"
+
+#: gsecrets/widgets/notes_dialog.py:62
+#| msgid "Selection Mode"
+msgid "Selection copied"
+msgstr "Val afritað"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:19
+#| msgid "Unsaved Changes"
+msgid "Unsaved Changes Conflict"
+msgstr "Árekstrar í óvistuðum breytingum"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+#| msgid "_Save and Quit"
+msgid "Save and Quit"
+msgstr "Vista og hætta"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+#| msgid "_Save and Quit"
+msgid "Back up, Save, and Quit"
+msgstr "Taka öryggisafrit, vista og hætta"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:23
+#| msgid "_Don't Quit"
+msgid "Don't Quit"
+msgstr "Ekki hætta"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:26
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Back up and Save"
+msgstr "Ta_ka öryggisafrit og vista"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:48
+msgid "Save Backup"
+msgstr "Vista öryggisafrit"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:64
+#| msgid "Could not Save Safe"
+msgid "Could not backup safe"
+msgstr "Gat ekki öryggisafritað öryggishólf"
+
 #: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
@@ -1286,47 +1531,97 @@ msgstr[0] "{} _valin"
 msgstr[1] "{} _valdar"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
-msgstr "Hætt við aðgerð: Eyða virkum hópi"
+#| msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
+msgstr "Hætt við aðgerð: eyða virkum hópi"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:114
-msgid "Deletion Completed"
-msgstr "Eyðingu lokið"
+#: gsecrets/widgets/selection_mode_headerbar.py:152
+msgid "Warning"
+msgstr "Aðvörun"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:151
-msgid "Operation Aborted: Moving Currently Active Group"
-msgstr "Hætt við aðgerð: Færa virkan hóp"
+#: gsecrets/widgets/selection_mode_headerbar.py:154
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
 
-#: gsecrets/widgets/selection_mode_headerbar.py:169
-msgid "Move Completed"
-msgstr "Flutningi lokið"
+#: gsecrets/widgets/selection_mode_headerbar.py:157
+#| msgid "_Cancel"
+msgid "Cancel"
+msgstr "Hætta við"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:158
+#| msgid "_Delete"
+msgid "Delete"
+msgstr "Eyða"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:198
+#| msgid "Operation Aborted: Moving Currently Active Group"
+msgid "Operation aborted: moving currently active group"
+msgstr "Hætt við aðgerð: færa virkan hóp"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:213
+#| msgid "Move Completed"
+msgid "Move completed"
+msgstr "Færslu lokið"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Veldu öryggishólf"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
+#: gsecrets/widgets/window.py:151 gsecrets/widgets/window.py:251
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4 gagnagrunnur"
 
-#: gsecrets/widgets/window.py:163
+#: gsecrets/widgets/window.py:156
 msgid "Any file type"
 msgstr "Hvaða skráartegund sem er"
 
-#: gsecrets/widgets/window.py:222
-msgid "Safe is Already Open"
+#: gsecrets/widgets/window.py:219
+#| msgid "Safe is Already Open"
+msgid "Safe is already open"
 msgstr "Öryggishólfið er þegar opið"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:243
 msgid "_Create"
 msgstr "_Búa til"
 
-#: gsecrets/widgets/window.py:277
-msgid "Cannot Create Safe: Safe is Already Open"
+#: gsecrets/widgets/window.py:279
+#| msgid "Cannot Create Safe: Safe is Already Open"
+msgid "Cannot create Safe: Safe is already open"
 msgstr "Get ekki búið til öryggishólf: Öryggishólfið er þegar opið"
 
-#: gsecrets/widgets/window.py:333
-msgid "Could not Create new Safe"
+#: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
+#| msgid "Could not Create new Safe"
+msgid "Could not create new Safe"
 msgstr "Gat ekki búið til nýtt öryggishólf"
+
+#: gsecrets/widgets/window.py:402
+#| msgid "Could not Save Safe"
+msgid "Could not save safe"
+msgstr "Gat ekki vistað öryggishól"
+
+#~ msgid "Learn more about Secrets"
+#~ msgstr "Fræðstu meira um Secrets"
+
+#~ msgid "_New"
+#~ msgstr "_Nýtt"
+
+#~ msgid "C_onfirm"
+#~ msgstr "Stað_festa"
+
+#~ msgid "_Current"
+#~ msgstr "Nú_gildandi"
+
+#~ msgid "New Safe"
+#~ msgstr "Nýtt öryggishólf"
+
+#~ msgid "Open Safe"
+#~ msgstr "Opna öryggishólf"
+
+#~ msgid "The kdb Format is not Supported"
+#~ msgstr "Ekki er stuðningur við kdb-sniðið"
+
+#~ msgid "Please Wait. Another Save is Running."
+#~ msgstr "Hinkraðu aðeins. Önnur vistunaraðgerð er í gangi."

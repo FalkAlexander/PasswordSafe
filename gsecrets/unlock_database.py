@@ -41,6 +41,8 @@ class UnlockDatabase(Gtk.Box):
     unlock_button = Gtk.Template.Child()
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
+        self.install_action("clear-keyfile", None, self.on_clear_keyfile)
+
         super().__init__()
 
         filepath = database_file.get_path()
@@ -49,8 +51,6 @@ class UnlockDatabase(Gtk.Box):
 
         # Reset headerbar to initial state if it already exists.
         self.headerbar.title.props.title = database_file.get_basename()
-
-        self.install_action("clear-keyfile", None, self.on_clear_keyfile)
 
         database = self.window.unlocked_db
         if database:

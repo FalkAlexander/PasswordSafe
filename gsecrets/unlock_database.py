@@ -241,6 +241,9 @@ class UnlockDatabase(Gtk.Box):
         self._set_sensitive(True)
         self._reset_unlock_button()
 
+        # Regrab the focus of the entry.
+        self.password_entry.grab_focus()
+
     def _wrong_keyfile(self):
         self.keyfile_button.add_css_class("destructive-action")
 

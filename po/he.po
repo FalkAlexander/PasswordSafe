@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-07-24 21:33+0300\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2022-09-08 14:14+0000\n"
+"PO-Revision-Date: 2022-09-21 11:34+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
-"2 : 3)\n"
-"X-Generator: Gtranslator 40.0\n"
+"2 : 3);\n"
+"X-Generator: Poedit 3.1\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -51,17 +51,14 @@ msgid "Value"
 msgstr "ערך"
 
 #: data/gtk/add_attribute_dialog.ui:62
-#| msgid "_Add"
 msgid "Add"
 msgstr "הוספה"
 
 #: data/gtk/attachment_entry_row.ui:9
-#| msgid "Could not load attachment"
 msgid "Download Attachment"
 msgstr "הורדת צרופה"
 
 #: data/gtk/attachment_entry_row.ui:20
-#| msgid "Save Attachment"
 msgid "Remove Attachment"
 msgstr "הסרת צרופה"
 
@@ -243,7 +240,6 @@ msgid "Password"
 msgstr "ססמה"
 
 #: data/gtk/database_settings_dialog.ui:17
-#| msgid "Password"
 msgid "New Password"
 msgstr "ססמה חדשה"
 
@@ -252,7 +248,6 @@ msgid "Confirm New Password"
 msgstr "אישור הססמה החדשה"
 
 #: data/gtk/database_settings_dialog.ui:44
-#| msgid "Enter Current Password"
 msgid "Current Password"
 msgstr "ססמה נוכחית"
 
@@ -352,7 +347,6 @@ msgid "Open Address"
 msgstr "פתיחת כתובת"
 
 #: data/gtk/entry_page.ui:124
-#| msgid "_One-Time Password"
 msgid "One-Time Password"
 msgstr "ססמה חד־פעמית"
 
@@ -391,12 +385,10 @@ msgid "Attributes"
 msgstr "מאפיינים"
 
 #: data/gtk/entry_page.ui:249
-#| msgid "Add Attribute"
 msgid "_Add Attribute"
 msgstr "_הוספת ערך"
 
 #: data/gtk/entry_page.ui:257
-#| msgid "_Expiration Date"
 msgid "Expiration Date"
 msgstr "תאריך תפוגה"
 
@@ -417,12 +409,10 @@ msgid "_Properties"
 msgstr "מ_אפיינים"
 
 #: data/gtk/entry_page.ui:304
-#| msgid "_Save and Quit"
 msgid "_Save in History"
 msgstr "_שמירה בהיסטוריה"
 
 #: data/gtk/entry_page.ui:308
-#| msgid "_Show More"
 msgid "Show _History"
 msgstr "הצגת _היסטוריה"
 
@@ -554,19 +544,16 @@ msgid "Copy One-Time Password"
 msgstr "העתקת ססמה חד־פעמית"
 
 #: data/gtk/help-overlay.ui:120
-#| msgid "_Show More"
 msgctxt "Shortcut window description"
 msgid "Show History"
 msgstr "הצגת היסטוריה"
 
 #: data/gtk/help-overlay.ui:126
-#| msgid "_Save and Quit"
 msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "שמירה בהיסטוריה"
 
 #: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
-#| msgid "_Show More"
 msgid "Show Text"
 msgstr "הצגת טקסט"
 
@@ -575,7 +562,6 @@ msgid "Remove from History"
 msgstr "הסרה מההיסטוריה"
 
 #: data/gtk/history_window.ui:9
-#| msgid "Passwords"
 msgid "Password History"
 msgstr "היסטוריית ססמאות"
 
@@ -1221,7 +1207,6 @@ msgid "Generate"
 msgstr "יצירה"
 
 #: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
-#| msgid "_Save and Quit"
 msgid "Saved in history"
 msgstr "שמירה בהיסטוריה"
 
@@ -1264,17 +1249,14 @@ msgid "Username not specified"
 msgstr "שם המשתמש לא צוין"
 
 #: gsecrets/password_generator_popover.py:77
-#| msgid "_Lowercase Characters"
 msgid "Lowercase"
 msgstr "אותיות קטנות"
 
 #: gsecrets/password_generator_popover.py:80
-#| msgid "_Uppercase Characters"
 msgid "Uppercase"
 msgstr "אותיות גדולות"
 
 #: gsecrets/password_generator_popover.py:83
-#| msgid "Number of Groups"
 msgid "Numbers"
 msgstr "מספרים"
 
@@ -1389,7 +1371,6 @@ msgid "Changes Applied"
 msgstr "הוחלו שינויים"
 
 #: gsecrets/widgets/database_settings_dialog.py:293
-#| msgid "Could not apply changes"
 msgid "Could not change credentials"
 msgstr "לא ניתן לשנות אישורים"
 
@@ -1456,28 +1437,23 @@ msgid "Hide Text"
 msgstr "הסתרת טקסט"
 
 #: gsecrets/widgets/notes_dialog.py:62
-#| msgid "Selection Mode"
 msgid "Selection copied"
 msgstr "הבחירה הועתקה"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:19
-#| msgid "Unsaved Changes"
 msgid "Unsaved Changes Conflict"
 msgstr "התנגשות בשינויים שלא נשמרו"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:21
-#| msgid "_Save and Quit"
 msgid "Save and Quit"
 msgstr "שמירה ויציאה"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:22
-#| msgid "_Save and Quit"
 msgid "Back up, Save, and Quit"
 msgstr "גיבוי, שמירה ויציאה"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:23
-#| msgid "_Don't Quit"
 msgid "Don't Quit"
 msgstr "לא לצאת"
 
@@ -1504,7 +1480,6 @@ msgid "Save Backup"
 msgstr "שמירת גיבוי"
 
 #: gsecrets/widgets/saving_conflict_dialog.py:64
-#| msgid "Could not save Safe"
 msgid "Could not backup safe"
 msgstr "לא ניתן לגבות את הכספת"
 
@@ -1527,7 +1502,7 @@ msgstr "אזהרה"
 #: gsecrets/widgets/selection_mode_headerbar.py:154
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
-msgstr ""
+msgstr "פעולה זו תמחק רכיבים מסל האשפה, מדובר בפעולה בלתי הפיכה."
 
 #: gsecrets/widgets/selection_mode_headerbar.py:157
 msgid "Cancel"
@@ -1576,7 +1551,6 @@ msgid "Could not create new Safe"
 msgstr "לא ניתן ליצור כספת חדשה"
 
 #: gsecrets/widgets/window.py:402
-#| msgid "Could not save Safe"
 msgid "Could not save safe"
 msgstr "לא ניתן לשמור את הכספת"
 

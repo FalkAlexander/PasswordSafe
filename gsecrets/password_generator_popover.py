@@ -66,24 +66,30 @@ class PasswordGeneratorPopover(Gtk.Popover):
         self.set_tooltips()
 
     def set_tooltips(self):
-        text = "{} {}"
-
         use_uppercase: bool = self._high_letter_toggle_btn.props.active
         use_lowercase: bool = self._low_letter_toggle_button.props.active
         use_numbers: bool = self._number_toggle_button.props.active
         use_symbols: bool = self._special_toggle_button.props.active
 
         self._low_letter_toggle_button.set_tooltip_text(
-            text.format(_format_bool(use_lowercase), _("Lowercase"))
+            # TRANSLATORS This will be used in conjunction with either Include
+            # or Exclude. e.g. Include Lowercase.
+            _("{} Lowercase").format(_format_bool(use_lowercase))
         )
         self._high_letter_toggle_btn.set_tooltip_text(
-            text.format(_format_bool(use_uppercase), _("Uppercase"))
+            # TRANSLATORS This will be used in conjunction with either Include
+            # or Exclude. e.g. Exclude Uppercase.
+            _("{} Uppercase").format(_format_bool(use_uppercase))
         )
         self._number_toggle_button.set_tooltip_text(
-            text.format(_format_bool(use_numbers), _("Numbers"))
+            # TRANSLATORS This will be used in conjunction with either Include
+            # or Exclude. e.g. Include Numbers.
+            _("{} Numbers").format(_format_bool(use_numbers))
         )
         self._special_toggle_button.set_tooltip_text(
-            text.format(_format_bool(use_symbols), _("Symbols"))
+            # TRANSLATORS This will be used in conjunction with either Include
+            # or Exclude. e.g. Include Symbols.
+            _("{} Symbols").format(_format_bool(use_symbols))
         )
 
     @Gtk.Template.Callback()
@@ -116,6 +122,10 @@ class PasswordGeneratorPopover(Gtk.Popover):
 
 def _format_bool(boolean):
     if boolean:
+        # TRANSLATORS This will be used in conjunction with one of Lowercase,
+        # Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
         return _("Exclude")
 
+    # TRANSLATORS This will be used in conjunction with one of Lowercase,
+    # Uppercase, Numbers, or Symbols. eg. Include Lowercase.
     return _("Include")

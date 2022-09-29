@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-09-27 14:46+0000\n"
-"PO-Revision-Date: 2022-09-28 13:13+0200\n"
+"POT-Creation-Date: 2022-09-28 15:31+0000\n"
+"PO-Revision-Date: 2022-09-29 10:19+0200\n"
 "Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -1271,33 +1271,45 @@ msgstr "Kein Titel angegeben"
 msgid "Username not specified"
 msgstr "Kein Benutzername angegeben"
 
-# Kontext: Optionen zur Passwortgenerierung (Mit/Ohne Kleinbuchstaben)
+# Kontext: Optionen zur Passwortgenerierung
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Lowercase.
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Kleinbuchstaben"
+msgid "{} Lowercase"
+msgstr "{} Kleinbuchstaben"
 
-# Kontext: Optionen zur Passwortgenerierung (Mit/Ohne Großbuchstaben)
-#: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Großbuchstaben"
+# Kontext: Optionen zur Passwortgenerierung
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:82
+msgid "{} Uppercase"
+msgstr "{} Großbuchstaben"
+
+# Kontext: Optionen zur Passwortgenerierung
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:87
+msgid "{} Numbers"
+msgstr "{} Ziffern"
+
+# Kontext: Optionen zur Passwortgenerierung
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:92
+msgid "{} Symbols"
+msgstr "{} Sonderzeichen"
 
 # Kontext: Optionen zur Passwortgenerierung (Mit/Ohne Ziffern)
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Ziffern"
-
-# Kontext: Optionen zur Passwortgenerierung (Mit/Ohne Sonderzeichen)
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Sonderzeichen"
-
-# Kontext: Optionen zur Passwortgenerierung (Mit/Ohne Ziffern)
-#: gsecrets/password_generator_popover.py:119
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
+#: gsecrets/password_generator_popover.py:127
 msgid "Exclude"
 msgstr "Ohne"
 
 # Kontext: Optionen zur Passwortgenerierung (Mit/Ohne Ziffern)
-#: gsecrets/password_generator_popover.py:121
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
+#: gsecrets/password_generator_popover.py:131
 msgid "Include"
 msgstr "Mit"
 

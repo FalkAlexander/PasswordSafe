@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-09-07 02:32+0200\n"
+"POT-Creation-Date: 2022-09-28 15:31+0000\n"
+"PO-Revision-Date: 2022-09-29 18:45+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -49,17 +49,14 @@ msgid "Value"
 msgstr "Érték"
 
 #: data/gtk/add_attribute_dialog.ui:62
-#| msgid "_Add"
 msgid "Add"
 msgstr "Hozzáadás"
 
 #: data/gtk/attachment_entry_row.ui:9
-#| msgid "Could not Load Attachment"
 msgid "Download Attachment"
 msgstr "Melléklet letöltése"
 
 #: data/gtk/attachment_entry_row.ui:20
-#| msgid "Save Attachment"
 msgid "Remove Attachment"
 msgstr "Melléklet eltávolítása"
 
@@ -242,7 +239,6 @@ msgid "Password"
 msgstr "Jelszó"
 
 #: data/gtk/database_settings_dialog.ui:17
-#| msgid "Password"
 msgid "New Password"
 msgstr "Új jelszó"
 
@@ -251,7 +247,6 @@ msgid "Confirm New Password"
 msgstr "Új jelszó megerősítése"
 
 #: data/gtk/database_settings_dialog.ui:44
-#| msgid "Enter Current Password"
 msgid "Current Password"
 msgstr "Jelenlegi jelszó"
 
@@ -351,7 +346,6 @@ msgid "Open Address"
 msgstr "Cím megnyitása"
 
 #: data/gtk/entry_page.ui:124
-#| msgid "_One-Time Password"
 msgid "One-Time Password"
 msgstr "Egyszer használatos jelszó"
 
@@ -390,12 +384,10 @@ msgid "Attributes"
 msgstr "Tulajdonságok"
 
 #: data/gtk/entry_page.ui:249
-#| msgid "Add Attribute"
 msgid "_Add Attribute"
 msgstr "_Tulajdonság hozzáadása"
 
 #: data/gtk/entry_page.ui:257
-#| msgid "_Expiration Date"
 msgid "Expiration Date"
 msgstr "Lejárati dátum"
 
@@ -416,12 +408,10 @@ msgid "_Properties"
 msgstr "_Tulajdonságok"
 
 #: data/gtk/entry_page.ui:304
-#| msgid "_Save and Quit"
 msgid "_Save in History"
 msgstr "_Mentés az előzményekbe"
 
 #: data/gtk/entry_page.ui:308
-#| msgid "_Show More"
 msgid "Show _History"
 msgstr "_Előzmények megjelenítése"
 
@@ -442,7 +432,6 @@ msgid "Expiration Date not Set"
 msgstr "Lejárati dátum nincs beállítva"
 
 #: data/gtk/expiration_date_row.ui:17
-#| msgid "_Set Expiration Date"
 msgid "Edit Expiration Date"
 msgstr "Lejárati dátum szerkesztése"
 
@@ -554,19 +543,16 @@ msgid "Copy One-Time Password"
 msgstr "Egyszer használatos jelszó másolása"
 
 #: data/gtk/help-overlay.ui:120
-#| msgid "_Show More"
 msgctxt "Shortcut window description"
 msgid "Show History"
 msgstr "Előzmények megjelenítése"
 
 #: data/gtk/help-overlay.ui:126
-#| msgid "_Save and Quit"
 msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Mentés az előzményekbe"
 
 #: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
-#| msgid "_Show More"
 msgid "Show Text"
 msgstr "Szöveg megjelenítése"
 
@@ -575,7 +561,6 @@ msgid "Remove from History"
 msgstr "Eltávolítás az előzményekből"
 
 #: data/gtk/history_window.ui:9
-#| msgid "Passwords"
 msgid "Password History"
 msgstr "Jelszóelőzmények"
 
@@ -912,7 +897,7 @@ msgstr "Törlés"
 msgid "Unlock Safe"
 msgstr "Széf feloldása"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "_Kulcsfájl kiválasztása"
 
@@ -1211,7 +1196,6 @@ msgid "Error: Safe {} is already open"
 msgstr "Hiba: a(z) {} széf már meg van nyitva"
 
 #: gsecrets/attachment_warning_dialog.py:56
-#| msgid "Could not Load Attachment"
 msgid "Could not load attachment"
 msgstr "Nem sikerült betölteni a mellékletet"
 
@@ -1220,7 +1204,6 @@ msgid "Unable to create database"
 msgstr "Nem lehet létrehozni adatbázist"
 
 #: gsecrets/create_database.py:165
-#| msgid "Passwords do not Match"
 msgid "Passwords do not match"
 msgstr "A jelszavak nem egyeznek"
 
@@ -1229,7 +1212,6 @@ msgid "Generating…"
 msgstr "Előállítás…"
 
 #: gsecrets/create_database.py:209
-#| msgid "Could not Create Keyfile"
 msgid "Could not create keyfile"
 msgstr "Nem sikerült létrehozni a kulcsfájlt"
 
@@ -1238,13 +1220,11 @@ msgid "Generate"
 msgstr "Előállítás"
 
 #: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
-#| msgid "_Save and Quit"
 msgid "Saved in history"
 msgstr "Mentve az előzményekbe"
 
 #: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
 #: gsecrets/widgets/credentials_group.py:84
-#| msgid "Username Copied"
 msgid "Username copied"
 msgstr "Felhasználónév lemásolva"
 
@@ -1253,7 +1233,6 @@ msgid "Address copied"
 msgstr "Cím lemásolva"
 
 #: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
-#| msgid "One-time Password Copied"
 msgid "One-time password copied"
 msgstr "Egyszer használatos jelszó lemásolva"
 
@@ -1271,7 +1250,6 @@ msgid "_Add"
 msgstr "Hozzá_adás"
 
 #: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
-#| msgid "Password Copied"
 msgid "Password copied"
 msgstr "Jelszó lemásolva"
 
@@ -1283,35 +1261,47 @@ msgstr "Cím nincs megadva"
 msgid "Username not specified"
 msgstr "Felhasználónév nincs megadva"
 
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Lowercase.
 #: gsecrets/password_generator_popover.py:77
-#| msgid "_Lowercase Characters"
-msgid "Lowercase"
-msgstr "Kisbetű"
+#| msgid "Lowercase"
+msgid "{} Lowercase"
+msgstr "Kisbetű {}"
 
-#: gsecrets/password_generator_popover.py:80
-#| msgid "_Uppercase Characters"
-msgid "Uppercase"
-msgstr "Nagybetű"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:82
+#| msgid "Uppercase"
+msgid "{} Uppercase"
+msgstr "Nagybetű {}"
 
-#: gsecrets/password_generator_popover.py:83
-#| msgid "Number of Groups"
-msgid "Numbers"
-msgstr "Számok"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:87
+#| msgid "Numbers"
+msgid "{} Numbers"
+msgstr "Számok {}"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Szimbólumok"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:92
+#| msgid "Symbols"
+msgid "{} Symbols"
+msgstr "Szimbólumok {}"
 
-#: gsecrets/password_generator_popover.py:119
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
+#: gsecrets/password_generator_popover.py:127
 msgid "Exclude"
-msgstr "Kizárás"
+msgstr "kizárása"
 
-#: gsecrets/password_generator_popover.py:121
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
+#: gsecrets/password_generator_popover.py:131
 msgid "Include"
-msgstr "Tartalmazás"
+msgstr "tartalmazása"
 
 #: gsecrets/recent_files_menu.py:36
-#| msgid "Recent Safes"
 msgid "Recent Files"
 msgstr "Legutóbbi fájlok"
 
@@ -1332,26 +1322,22 @@ msgstr "Kulcsfájl kiválasztása"
 
 #. pylint: disable=consider-using-f-string
 #: gsecrets/unlock_database.py:157
-#| msgid "Safe {} is Already Open"
 msgid "Safe {} is already open"
 msgstr "A(z) {} széf már meg van nyitva"
 
 #: gsecrets/unlock_database.py:238
-#| msgid "Failed to Unlock Safe"
 msgid "Failed to unlock Safe"
 msgstr "A széf feloldása sikertelen"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Próbálja újra"
 
 #: gsecrets/unlocked_database.py:274
-#| msgid "Safe Saved"
 msgid "Safe saved"
 msgstr "Széf elmentve"
 
 #: gsecrets/unlocked_database.py:276
-#| msgid "No Changes Made"
 msgid "No changes made"
 msgstr "Nem történtek változtatások"
 
@@ -1363,7 +1349,6 @@ msgstr[0] "Elem törölve"
 msgstr[1] "{} elem törölve"
 
 #: gsecrets/unlocked_database.py:326
-#| msgid "Deletion Completed"
 msgid "Deletion completed"
 msgstr "Törlés befejezve"
 
@@ -1377,7 +1362,6 @@ msgstr "Lemásolva"
 
 #. NOTE: Notification that a safe has been locked.
 #: gsecrets/unlocked_database.py:470
-#| msgid "Safe Locked due to Inactivity"
 msgid "Safe locked due to inactivity"
 msgstr "A széf zárolva tétlenség miatt"
 
@@ -1386,7 +1370,6 @@ msgid "Attribute key contains an illegal character"
 msgstr "A tulajdonságkulcs nem megengedett karaktert tartalmaz"
 
 #: gsecrets/widgets/add_attribute_dialog.py:49
-#| msgid "Attribute key Already Exists"
 msgid "Attribute key already exists"
 msgstr "A tulajdonságkulcs már létezik"
 
@@ -1396,7 +1379,6 @@ msgid "Save Attachment"
 msgstr "Melléklet mentése"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-#| msgid "Could not Store Attachment"
 msgid "Could not store attachment"
 msgstr "Nem sikerült eltárolni a mellékletet"
 
@@ -1416,7 +1398,6 @@ msgid "Changes Applied"
 msgstr "Változtatások alkalmazva"
 
 #: gsecrets/widgets/database_settings_dialog.py:293
-#| msgid "Could not apply changes"
 msgid "Could not change credentials"
 msgstr "Nem sikerült megváltoztatni a hitelesítési adatokat"
 
@@ -1431,8 +1412,8 @@ msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
 msgstr ""
-"A széfet valahonnan máshonnan módosították. A mentéskor oldja fel ezeket az"
-" ütközéseket a főablakból."
+"A széfet valahonnan máshonnan módosították. A mentéskor oldja fel ezeket az "
+"ütközéseket a főablakból."
 
 #: gsecrets/widgets/database_settings_dialog.py:302
 msgid "Ok"
@@ -1467,7 +1448,6 @@ msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:385
-#| msgid "Argon2"
 msgid "Argon2id"
 msgstr "Argon2id"
 
@@ -1486,28 +1466,23 @@ msgid "Hide Text"
 msgstr "Szöveg elrejtése"
 
 #: gsecrets/widgets/notes_dialog.py:62
-#| msgid "Selection Mode"
 msgid "Selection copied"
 msgstr "Kijelölés lemásolva"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:19
-#| msgid "Unsaved Changes"
 msgid "Unsaved Changes Conflict"
 msgstr "Mentetlen változtatásütközések"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:21
-#| msgid "_Save and Quit"
 msgid "Save and Quit"
 msgstr "Mentés és kilépés"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:22
-#| msgid "_Save and Quit"
 msgid "Back up, Save, and Quit"
 msgstr "Biztonsági mentés készítés, mentés és kilépés"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:23
-#| msgid "_Don't Quit"
 msgid "Don't Quit"
 msgstr "Ne lépjen ki"
 
@@ -1519,8 +1494,8 @@ msgid ""
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
-"A széfet valahonnan máshonnan módosították. A mentés felülírja az általuk"
-" mentett verziójú széfet a mi jelenlegi verziónkkal.\n"
+"A széfet valahonnan máshonnan módosították. A mentés felülírja az általuk "
+"mentett verziójú széfet a mi jelenlegi verziónkkal.\n"
 "\n"
 " Az általuk mentett verziójú széfről is készíthet biztonsági mentést."
 
@@ -1534,7 +1509,6 @@ msgid "Save Backup"
 msgstr "Biztonsági mentés mentése"
 
 #: gsecrets/widgets/saving_conflict_dialog.py:64
-#| msgid "Could not save Safe"
 msgid "Could not backup safe"
 msgstr "Nem sikerült biztonsági mentést készíteni a széfről"
 
@@ -1545,7 +1519,6 @@ msgstr[0] "{} _kiválaszva"
 msgstr[1] "{} _kiválaszva"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-#| msgid "Operation Aborted: Deleting Currently Active Group"
 msgid "Operation aborted: deleting currently active group"
 msgstr "Művelet megszakítva: a jelenleg aktív csoport törlése"
 
@@ -1559,22 +1532,18 @@ msgid ""
 msgstr "A kukából töröl elemeket, ezeket a törléseket nem lehet visszavonni."
 
 #: gsecrets/widgets/selection_mode_headerbar.py:157
-#| msgid "_Cancel"
 msgid "Cancel"
 msgstr "Mégse"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:158
-#| msgid "_Delete"
 msgid "Delete"
 msgstr "Törlés"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:198
-#| msgid "Operation Aborted: Moving Currently Active Group"
 msgid "Operation aborted: moving currently active group"
 msgstr "Művelet megszakítva: a jelenleg aktív csoport áthelyezése"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:213
-#| msgid "Move Completed"
 msgid "Move completed"
 msgstr "Áthelyezés befejezve"
 
@@ -1593,7 +1562,6 @@ msgid "Any file type"
 msgstr "Bármilyen fájltípus"
 
 #: gsecrets/widgets/window.py:219
-#| msgid "Safe is Already Open"
 msgid "Safe is already open"
 msgstr "A széf már meg van nyitva"
 
@@ -1602,16 +1570,13 @@ msgid "_Create"
 msgstr "_Létrehozás"
 
 #: gsecrets/widgets/window.py:279
-#| msgid "Cannot Create Safe: Safe is Already Open"
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Nem lehet létrehozni a széfet: a széf már meg van nyitva"
 
 #: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
-#| msgid "Could not Create new Safe"
 msgid "Could not create new Safe"
 msgstr "Nem sikerült új széfet létrehozni"
 
 #: gsecrets/widgets/window.py:402
-#| msgid "Could not save Safe"
 msgid "Could not save safe"
 msgstr "Nem sikerült elmenteni a széfet"

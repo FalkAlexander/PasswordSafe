@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-07-23 15:05+0300\n"
+"POT-Creation-Date: 2022-09-28 15:31+0000\n"
+"PO-Revision-Date: 2022-09-28 19:56+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -899,7 +899,7 @@ msgstr "Очистить"
 msgid "Unlock Safe"
 msgstr "Разблокировать сейф"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "_Выбрать файл-ключ"
 
@@ -1256,27 +1256,39 @@ msgstr "Заголовок не указан"
 msgid "Username not specified"
 msgstr "Не указано имя пользователя"
 
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Lowercase.
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Нижний регистр"
+msgid "{} Lowercase"
+msgstr "{} строчные буквы"
 
-#: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Верхний регистр"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:82
+msgid "{} Uppercase"
+msgstr "{} заглавные буквы"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Числа"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:87
+msgid "{} Numbers"
+msgstr "{} числа"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Символы"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:92
+msgid "{} Symbols"
+msgstr "{} символы"
 
-#: gsecrets/password_generator_popover.py:119
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
+#: gsecrets/password_generator_popover.py:127
 msgid "Exclude"
 msgstr "Исключить"
 
-#: gsecrets/password_generator_popover.py:121
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
+#: gsecrets/password_generator_popover.py:131
 msgid "Include"
 msgstr "Включить"
 
@@ -1308,7 +1320,7 @@ msgstr "Сейф {} уже открыт"
 msgid "Failed to unlock Safe"
 msgstr "Не удалось разблокировать сейф"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Попробуйте снова"
 

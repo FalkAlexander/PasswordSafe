@@ -235,6 +235,7 @@ class UnlockDatabase(Gtk.Box):
         self.window.send_notification(_("Failed to unlock Safe"))
 
         self.password_entry.add_css_class("error")
+        self.password_entry.delete_text(0, -1)
         self._set_sensitive(True)
         self._reset_unlock_button()
 

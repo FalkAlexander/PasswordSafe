@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-09-28 15:31+0000\n"
-"PO-Revision-Date: 2022-09-28 19:30+0300\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-10-15 17:50+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1184,7 +1184,7 @@ msgstr ""
 "середовища GNOME і надає простий і незахаращений інтерфейс для керування "
 "базами даних паролів."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1262,45 +1262,45 @@ msgstr "Не вказано заголовок"
 msgid "Username not specified"
 msgstr "Не вказано імені користувача"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Lowercase.
+#: gsecrets/password_generator_popover.py:75
+#| msgid "{} Lowercase"
+msgid "Include Lowercase"
+msgstr "Включити нижній регістр"
+
 #: gsecrets/password_generator_popover.py:77
-#| msgid "Lowercase"
-msgid "{} Lowercase"
-msgstr "{} нижній регістр"
+#| msgid "{} Lowercase"
+msgid "Exclude Lowercase"
+msgstr "Виключити нижній регістр"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:80
+#| msgid "{} Uppercase"
+msgid "Include Uppercase"
+msgstr "Включити верхній регістр"
+
 #: gsecrets/password_generator_popover.py:82
-#| msgid "Uppercase"
-msgid "{} Uppercase"
-msgstr "{} верхній регістр"
+#| msgid "{} Uppercase"
+msgid "Exclude Uppercase"
+msgstr "Виключити верхній регістр"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:85
+#| msgid "{} Numbers"
+msgid "Include Numbers"
+msgstr "Включити цифри"
+
 #: gsecrets/password_generator_popover.py:87
-#| msgid "Numbers"
-msgid "{} Numbers"
-msgstr "{} цифри"
+#| msgid "{} Numbers"
+msgid "Exclude Numbers"
+msgstr "Виключити цифри"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:90
+#| msgid "{} Symbols"
+msgid "Include Symbols"
+msgstr "Включити символи"
+
 #: gsecrets/password_generator_popover.py:92
-#| msgid "Symbols"
-msgid "{} Symbols"
-msgstr "{} символи"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
-#: gsecrets/password_generator_popover.py:127
-msgid "Exclude"
-msgstr "Виключити"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
-#: gsecrets/password_generator_popover.py:131
-msgid "Include"
-msgstr "Включити"
+#| msgid "{} Symbols"
+msgid "Exclude Symbols"
+msgstr "Виключити символи"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1588,6 +1588,12 @@ msgstr "Не вдалося створити сейф"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Не вдалося зберегти сейф"
+
+#~ msgid "Exclude"
+#~ msgstr "Виключити"
+
+#~ msgid "Include"
+#~ msgstr "Включити"
 
 #~ msgid "_New"
 #~ msgstr "С_творити"

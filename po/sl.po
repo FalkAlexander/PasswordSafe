@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-09-28 15:31+0000\n"
-"PO-Revision-Date: 2022-10-03 15:38+0200\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-10-16 08:23+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -1177,7 +1177,7 @@ msgstr ""
 "integrira z namizjem GNOME in omogoča enostaven in pregleden vmesnik za "
 "upravljanje zbirk podatkov z gesli."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1255,41 +1255,37 @@ msgstr "Naziv ni določen"
 msgid "Username not specified"
 msgstr "Uporabniško ime ni določeno"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Lowercase.
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Vključi male črke"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "{} Lowercase"
-msgstr "Male črke {}"
+msgid "Exclude Lowercase"
+msgstr "Izključi male črke"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:80
+msgid "Include Uppercase"
+msgstr "Vključi velike črke"
+
 #: gsecrets/password_generator_popover.py:82
-msgid "{} Uppercase"
-msgstr "Velike črke {}"
+msgid "Exclude Uppercase"
+msgstr "Izključi velike črke"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Vključi številke"
+
 #: gsecrets/password_generator_popover.py:87
-msgid "{} Numbers"
-msgstr "Številke {}"
+msgid "Exclude Numbers"
+msgstr "Izključi številke"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Vključi simbole"
+
 #: gsecrets/password_generator_popover.py:92
-msgid "{} Symbols"
-msgstr "Simboli {}"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
-#: gsecrets/password_generator_popover.py:127
-msgid "Exclude"
-msgstr "Izključi"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
-#: gsecrets/password_generator_popover.py:131
-msgid "Include"
-msgstr "Vključi"
+msgid "Exclude Symbols"
+msgstr "Izključi simbole"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"

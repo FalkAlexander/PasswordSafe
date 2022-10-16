@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-08-07 10:00+0100\n"
+"POT-Creation-Date: 2022-10-05 07:12+0000\n"
+"PO-Revision-Date: 2022-10-16 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -885,7 +885,7 @@ msgstr "Garbitu"
 msgid "Unlock Safe"
 msgstr "Desblokeatu kutxa gotorra"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "_Hautatu gako-fitxategia"
 
@@ -979,7 +979,7 @@ msgstr "Erabili GTK gai iluna"
 msgid ""
 "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
 "theme has a dark variant."
-msgstr "Erabil izure GTK+ gaiaren aldaera iluna. Kontuan izan GTK+ gai batzuk ez dutela aldaera iluna."
+msgstr "Erabil zure GTK+ gaiaren aldaera iluna. Kontuan izan GTK+ gai batzuk ez dutela aldaera iluna."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1222,27 +1222,39 @@ msgstr "Ez da izenburua zehaztu"
 msgid "Username not specified"
 msgstr "Ez da erabiltzaile-izenik zehaztu"
 
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Lowercase.
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Minuskulak"
+msgid "{} Lowercase"
+msgstr "{} minuskulak"
 
-#: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Maiuskulak"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:82
+msgid "{} Uppercase"
+msgstr "{} maiuskulak"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Zenbakiak"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:87
+msgid "{} Numbers"
+msgstr "{} zenbakiak"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Ikurrak"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:92
+msgid "{} Symbols"
+msgstr "{} ikurrak"
 
-#: gsecrets/password_generator_popover.py:119
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
+#: gsecrets/password_generator_popover.py:127
 msgid "Exclude"
 msgstr "Baztertu"
 
-#: gsecrets/password_generator_popover.py:121
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
+#: gsecrets/password_generator_popover.py:131
 msgid "Include"
 msgstr "Sartu"
 
@@ -1274,7 +1286,7 @@ msgstr "{} kutxa gotorra irekita dago lehendik"
 msgid "Failed to unlock Safe"
 msgstr "Huts egin du kutxa gotorra desblokeatzeak"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Saiatu berriro"
 
@@ -1438,7 +1450,7 @@ msgid ""
 " You can also make a backup of their version of the safe."
 msgstr "Kutxa gotorra beste tokiren batetik aldatu da. Orain gordetzen baduzu, horrek kutxa gotorraren besteen bertsioak gainidatziko ditu zure bertsioarekin.\n"
 "\n"
-"Bestela, kutxa gotor, seguruutxa gotorraren besteen bertsioen babeskopia bat egitea aukeratu dezakezu."
+" Kutxa gotorraren bere bertsioaren babeskopia bat ere egin dezakezu."
 
 #. TRANSLATORS backup and save current safe.
 #: gsecrets/widgets/saving_conflict_dialog.py:34

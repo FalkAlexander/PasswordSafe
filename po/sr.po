@@ -2,15 +2,15 @@
 # Copyright © 2018 PasswordSafe's COPYRIGHT HOLDER
 # This file is distributed under the same license as the PasswordSafe package.
 # Марко Костић <marko.m.kostic@gmail.com>, 2018.
-# Мирослав Николић <miroslavnikolić@rocketmail.com>, 2021–2022.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2021–2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-08-09 22:49+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolić@rocketmail.com>\n"
+"POT-Creation-Date: 2022-10-05 07:12+0000\n"
+"PO-Revision-Date: 2022-10-19 10:31+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <српски <gnome-sr@googlegroups.org>>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -54,12 +54,10 @@ msgid "Add"
 msgstr "Додај"
 
 #: data/gtk/attachment_entry_row.ui:9
-#| msgid "Could not Load Attachment"
 msgid "Download Attachment"
 msgstr "Преузми прилог"
 
 #: data/gtk/attachment_entry_row.ui:20
-#| msgid "Save Attachment"
 msgid "Remove Attachment"
 msgstr "Уклони прилог"
 
@@ -241,7 +239,6 @@ msgid "Password"
 msgstr "Лозинка"
 
 #: data/gtk/database_settings_dialog.ui:17
-#| msgid "Password"
 msgid "New Password"
 msgstr "Нова лозинка"
 
@@ -250,7 +247,6 @@ msgid "Confirm New Password"
 msgstr "Потврдите нову лозинку"
 
 #: data/gtk/database_settings_dialog.ui:44
-#| msgid "Enter Current Password"
 msgid "Current Password"
 msgstr "Текућа лозинка"
 
@@ -350,7 +346,6 @@ msgid "Open Address"
 msgstr "Отвори адресу"
 
 #: data/gtk/entry_page.ui:124
-#| msgid "_One-Time Password"
 msgid "One-Time Password"
 msgstr "Једнократна лозинка"
 
@@ -389,12 +384,10 @@ msgid "Attributes"
 msgstr "Особине"
 
 #: data/gtk/entry_page.ui:249
-#| msgid "Add Attribute"
 msgid "_Add Attribute"
 msgstr "_Додај особину"
 
 #: data/gtk/entry_page.ui:257
-#| msgid "_Expiration Date"
 msgid "Expiration Date"
 msgstr "Датум истека"
 
@@ -415,12 +408,10 @@ msgid "_Properties"
 msgstr "Сво_јства"
 
 #: data/gtk/entry_page.ui:304
-#| msgid "_Save and Quit"
 msgid "_Save in History"
 msgstr "_Сачувај у историјату"
 
 #: data/gtk/entry_page.ui:308
-#| msgid "_Show More"
 msgid "Show _History"
 msgstr "_Прикажи историјат"
 
@@ -441,7 +432,6 @@ msgid "Expiration Date not Set"
 msgstr "Датум истека није постављен"
 
 #: data/gtk/expiration_date_row.ui:17
-#| msgid "_Set Expiration Date"
 msgid "Edit Expiration Date"
 msgstr "Уреди датум истека"
 
@@ -548,25 +538,21 @@ msgid "Copy Username"
 msgstr "Умножите корисничко име"
 
 #: data/gtk/help-overlay.ui:114
-#| msgid "_One-Time Password"
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Умножи једнократну лозинку"
 
 #: data/gtk/help-overlay.ui:120
-#| msgid "_Show More"
 msgctxt "Shortcut window description"
 msgid "Show History"
 msgstr "Прикажи историјат"
 
 #: data/gtk/help-overlay.ui:126
-#| msgid "_Save and Quit"
 msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Сачувај у историјату"
 
 #: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
-#| msgid "_Show More"
 msgid "Show Text"
 msgstr "Прикажи текст"
 
@@ -575,7 +561,6 @@ msgid "Remove from History"
 msgstr "Уклони из историјата"
 
 #: data/gtk/history_window.ui:9
-#| msgid "Passwords"
 msgid "Password History"
 msgstr "Историјат лозинке"
 
@@ -911,7 +896,7 @@ msgstr "Очисти"
 msgid "Unlock Safe"
 msgstr "Откључај Сеф"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "_Изабери датотеку кључа"
 
@@ -920,7 +905,6 @@ msgid "Add elements with the ➕ button."
 msgstr "Додајте елементе дугметом ➕."
 
 #: data/gtk/unlocked_database_page.ui:32
-#| msgid "Empty group"
 msgid "Empty Group"
 msgstr "Празна група"
 
@@ -1202,17 +1186,14 @@ msgid "Error: Safe {} is already open"
 msgstr "Грешка: Сеф „{}“ је већ отворен"
 
 #: gsecrets/attachment_warning_dialog.py:56
-#| msgid "Could not Load Attachment"
 msgid "Could not load attachment"
 msgstr "Не могу да учитам прилог"
 
 #: gsecrets/create_database.py:72
-#| msgid "Last opened database"
 msgid "Unable to create database"
 msgstr "Не могу да направим базу података"
 
 #: gsecrets/create_database.py:165
-#| msgid "Passwords do not Match"
 msgid "Passwords do not match"
 msgstr "Лозинке се не подударају"
 
@@ -1221,7 +1202,6 @@ msgid "Generating…"
 msgstr "Правим…"
 
 #: gsecrets/create_database.py:209
-#| msgid "Could not Create Keyfile"
 msgid "Could not create keyfile"
 msgstr "Не могу да направим датотеку кључа"
 
@@ -1230,13 +1210,11 @@ msgid "Generate"
 msgstr "Направи"
 
 #: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
-#| msgid "_Save and Quit"
 msgid "Saved in history"
 msgstr "Сачувано у историјату"
 
 #: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
 #: gsecrets/widgets/credentials_group.py:84
-#| msgid "Username Copied"
 msgid "Username copied"
 msgstr "Корисничко име је умножено"
 
@@ -1245,7 +1223,6 @@ msgid "Address copied"
 msgstr "Адреса је умножена"
 
 #: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
-#| msgid "One-time Password Copied"
 msgid "One-time password copied"
 msgstr "Једнократна лозинка је умножена"
 
@@ -1263,7 +1240,6 @@ msgid "_Add"
 msgstr "_Додај"
 
 #: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
-#| msgid "Password Copied"
 msgid "Password copied"
 msgstr "Лозинка је умножена"
 
@@ -1275,35 +1251,47 @@ msgstr "Назив није наведен"
 msgid "Username not specified"
 msgstr "Корисничко име није наведено"
 
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Lowercase.
 #: gsecrets/password_generator_popover.py:77
-#| msgid "_Lowercase Characters"
-msgid "Lowercase"
-msgstr "Мала слова"
+#| msgid "Lowercase"
+msgid "{} Lowercase"
+msgstr "{} мала слова"
 
-#: gsecrets/password_generator_popover.py:80
-#| msgid "_Uppercase Characters"
-msgid "Uppercase"
-msgstr "Велика слова"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:82
+#| msgid "Uppercase"
+msgid "{} Uppercase"
+msgstr "{} велика слова"
 
-#: gsecrets/password_generator_popover.py:83
-#| msgid "Number of Groups"
-msgid "Numbers"
-msgstr "Бројеви"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:87
+#| msgid "Numbers"
+msgid "{} Numbers"
+msgstr "{} бројеве"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Симболи"
+#. TRANSLATORS This will be used in conjunction with either Include
+#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:92
+#| msgid "Symbols"
+msgid "{} Symbols"
+msgstr "{} симболе"
 
-#: gsecrets/password_generator_popover.py:119
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
+#: gsecrets/password_generator_popover.py:127
 msgid "Exclude"
 msgstr "Искључи"
 
-#: gsecrets/password_generator_popover.py:121
+#. TRANSLATORS This will be used in conjunction with one of Lowercase,
+#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
+#: gsecrets/password_generator_popover.py:131
 msgid "Include"
 msgstr "Укључи"
 
 #: gsecrets/recent_files_menu.py:36
-#| msgid "Recent Safes"
 msgid "Recent Files"
 msgstr "Недавне датотеке"
 
@@ -1315,7 +1303,6 @@ msgstr "Клонирај"
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:547
 #: gsecrets/widgets/window.py:389 gsecrets/widgets/window.py:395
-#| msgid "Could not Save Safe"
 msgid "Could not save Safe"
 msgstr "Не могу да сачувам Сеф"
 
@@ -1325,26 +1312,22 @@ msgstr "Изаберите датотеку кључа"
 
 #. pylint: disable=consider-using-f-string
 #: gsecrets/unlock_database.py:157
-#| msgid "Safe {} is Already Open"
 msgid "Safe {} is already open"
 msgstr "Сеф „{}“ је већ отворен"
 
 #: gsecrets/unlock_database.py:238
-#| msgid "Failed to Unlock Safe"
 msgid "Failed to unlock Safe"
 msgstr "Нисам успео да откључам Сеф"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Покушај поново"
 
 #: gsecrets/unlocked_database.py:274
-#| msgid "Safe Saved"
 msgid "Safe saved"
 msgstr "Сеф је сачуван"
 
 #: gsecrets/unlocked_database.py:276
-#| msgid "No Changes Made"
 msgid "No changes made"
 msgstr "Нема начињених измена"
 
@@ -1358,7 +1341,6 @@ msgstr[2] "{} елемената је обрисано"
 msgstr[3] "Један елемент је обрисан"
 
 #: gsecrets/unlocked_database.py:326
-#| msgid "Deletion Completed"
 msgid "Deletion completed"
 msgstr "Брисање је обављено"
 
@@ -1372,7 +1354,6 @@ msgstr "Умножено"
 
 #. NOTE: Notification that a safe has been locked.
 #: gsecrets/unlocked_database.py:470
-#| msgid "Safe Locked due to Inactivity"
 msgid "Safe locked due to inactivity"
 msgstr "Сеф је закључан због неактивности"
 
@@ -1381,7 +1362,6 @@ msgid "Attribute key contains an illegal character"
 msgstr "Кључ особине садржи неисправан знак"
 
 #: gsecrets/widgets/add_attribute_dialog.py:49
-#| msgid "Attribute key Already Exists"
 msgid "Attribute key already exists"
 msgstr "Кључ особине већ постоји"
 
@@ -1391,7 +1371,6 @@ msgid "Save Attachment"
 msgstr "Сачувајте прилог"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-#| msgid "Could not Store Attachment"
 msgid "Could not store attachment"
 msgstr "Не могу да причувам прилог"
 
@@ -1402,18 +1381,15 @@ msgstr "Изаберите тренутну датотеку кључа"
 
 #: gsecrets/widgets/database_settings_dialog.py:248
 #: gsecrets/widgets/database_settings_dialog.py:252
-#| msgid "Could not Save Safe"
 msgid "Could not apply changes"
 msgstr "Не могу да применим измене"
 
 #. Still executes the finally block
 #: gsecrets/widgets/database_settings_dialog.py:255
-#| msgid "No Changes Made"
 msgid "Changes Applied"
 msgstr "Измене су примењене"
 
 #: gsecrets/widgets/database_settings_dialog.py:293
-#| msgid "Could not Create Keyfile"
 msgid "Could not change credentials"
 msgstr "Не могу да изменим уверења"
 
@@ -1464,7 +1440,6 @@ msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:385
-#| msgid "Argon2"
 msgid "Argon2id"
 msgstr "Argon2id"
 
@@ -1483,28 +1458,23 @@ msgid "Hide Text"
 msgstr "Сакриј текст"
 
 #: gsecrets/widgets/notes_dialog.py:62
-#| msgid "Selection Mode"
 msgid "Selection copied"
 msgstr "Избор је умножен"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:19
-#| msgid "Unsaved Changes"
 msgid "Unsaved Changes Conflict"
 msgstr "Сукоб несачуваних измена"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:21
-#| msgid "_Save and Quit"
 msgid "Save and Quit"
 msgstr "Сачувај и изађи"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:22
-#| msgid "_Save and Quit"
 msgid "Back up, Save, and Quit"
 msgstr "Направи резерву, сачувај и изађи"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:23
-#| msgid "_Don't Quit"
 msgid "Don't Quit"
 msgstr "Не затварај"
 
@@ -1531,7 +1501,6 @@ msgid "Save Backup"
 msgstr "Сачувај резерву"
 
 #: gsecrets/widgets/saving_conflict_dialog.py:64
-#| msgid "Could not Save Safe"
 msgid "Could not backup safe"
 msgstr "Не могу да направим резерву Сефа"
 
@@ -1544,7 +1513,6 @@ msgstr[2] "{} _изабраних уноса"
 msgstr[3] "_Један изабрани унос"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-#| msgid "Operation Aborted: Deleting Currently Active Group"
 msgid "Operation aborted: deleting currently active group"
 msgstr "Радња је прекинута: бришем тренутно активну групу"
 
@@ -1562,17 +1530,14 @@ msgid "Cancel"
 msgstr "Откажи"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:158
-#| msgid "_Delete"
 msgid "Delete"
 msgstr "Обриши"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:198
-#| msgid "Operation Aborted: Moving Currently Active Group"
 msgid "Operation aborted: moving currently active group"
 msgstr "Радња је прекинута: премештам тренутно активну групу"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:213
-#| msgid "Move Completed"
 msgid "Move completed"
 msgstr "Премештање је обављено"
 
@@ -1591,7 +1556,6 @@ msgid "Any file type"
 msgstr "Било која врста датотеке"
 
 #: gsecrets/widgets/window.py:219
-#| msgid "Safe is Already Open"
 msgid "Safe is already open"
 msgstr "Сеф је већ отворен"
 
@@ -1600,17 +1564,14 @@ msgid "_Create"
 msgstr "_Направи"
 
 #: gsecrets/widgets/window.py:279
-#| msgid "Cannot Create Safe: Safe is Already Open"
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Не могу да направим Сеф: Сеф је већ отворен"
 
 #: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
-#| msgid "Could not Create new Safe"
 msgid "Could not create new Safe"
 msgstr "Не могу да направим нови Сеф"
 
 #: gsecrets/widgets/window.py:402
-#| msgid "Could not Save Safe"
 msgid "Could not save safe"
 msgstr "Не могу да сачувам Сеф"
 

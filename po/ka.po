@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-26 13:40+0000\n"
-"PO-Revision-Date: 2022-07-27 17:21+0200\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-10-26 05:34+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -687,7 +687,7 @@ msgstr "შეუნახავი ცვლილებები"
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
 #: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
-msgstr ""
+msgstr "გნებავთ ყველა ცვლილების სეიფში ჩაწერა?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
@@ -808,7 +808,7 @@ msgstr "პაროლში დიდი სიმბოლოების გ
 
 #: data/gtk/settings_dialog.ui:127
 msgid "_Lowercase Characters"
-msgstr "პატარა სიმბოლოები"
+msgstr "ქვედა რეგისტრის სიმბოლოები"
 
 #: data/gtk/settings_dialog.ui:128
 msgid "Use lowercase characters a-z when generating a password."
@@ -889,7 +889,7 @@ msgstr "გაწმენდა"
 msgid "Unlock Safe"
 msgstr "სეიფის გაღება"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "_აირჩიეთ გასაღების ფაილი"
 
@@ -1148,7 +1148,7 @@ msgid ""
 "uncluttered interface for the management of password databases."
 msgstr ""
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1226,29 +1226,37 @@ msgstr "სათაური მითითებული არაა"
 msgid "Username not specified"
 msgstr "მომხმარებლის სახელი მითითებული არაა"
 
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "ქვედა რეგისტრის ჩათვლით"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "პატარა სიმბოლოები"
+msgid "Exclude Lowercase"
+msgstr "ქვედა რეგისტრის ჩაუთვლელად"
 
 #: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "დიდი სიმბოლოები"
+msgid "Include Uppercase"
+msgstr "მაღალი რეგისტრის ჩათვლით"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "რაოდენობა"
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "მაღალი რეგისტრის ჩაუთვლელად"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "სიმბოლოები"
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "რიცხვების ჩათვლით"
 
-#: gsecrets/password_generator_popover.py:119
-msgid "Exclude"
-msgstr "გამორიცხვა"
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "რიცხვების ჩაუთვლელად"
 
-#: gsecrets/password_generator_popover.py:121
-msgid "Include"
-msgstr "ჩართვა"
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "სიმბოლოების ჩათვლით"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "სიმბოლოების ჩაუთვლელად"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1278,7 +1286,7 @@ msgstr "სეიფი უკვე ღიაა: {}"
 msgid "Failed to unlock Safe"
 msgstr "სეიფის გაღების შეცდომა"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_თავიდან სცადეთ"
 
@@ -1294,7 +1302,7 @@ msgstr "ცვლილებების გარეშე"
 #: gsecrets/unlocked_database.py:321
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
-msgstr[0] ""
+msgstr[0] "{} ელემენტი წაიშალა"
 
 #: gsecrets/unlocked_database.py:326
 msgid "Deletion completed"
@@ -1353,7 +1361,7 @@ msgstr "მომხმარებლის/პაროლის შეცვ�
 #: gsecrets/widgets/database_settings_dialog.py:299
 #: gsecrets/widgets/saving_conflict_dialog.py:23
 msgid "Conflicts While Saving"
-msgstr ""
+msgstr "კონფლიქტი შენახვისას"
 
 #: gsecrets/widgets/database_settings_dialog.py:300
 msgid ""
@@ -1521,6 +1529,12 @@ msgstr "ახალი სეიფის შექმნის შეცდო
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "სეიფის შენახვის შეცდომა"
+
+#~ msgid "Exclude"
+#~ msgstr "გამორიცხვა"
+
+#~ msgid "Include"
+#~ msgstr "ჩართვა"
 
 #~ msgid "Learn more about Secrets"
 #~ msgstr "შეიტყვეთ მეტი Secrets-ის შესახებ"

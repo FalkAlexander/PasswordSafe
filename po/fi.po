@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-09-28 15:31+0000\n"
-"PO-Revision-Date: 2022-09-29 15:33+0300\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-10-27 21:17+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -1170,7 +1170,7 @@ msgstr ""
 "tiedostomuotoa. Se yhdistyy Gnome-työpöydälle ja tarjoaa selkeän sekä "
 "helppokäyttöisen käyttöliittymän salasanatietokantojen hallintaan."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1248,45 +1248,37 @@ msgstr "Otsikkoa ei ole määritetty"
 msgid "Username not specified"
 msgstr "Käyttäjätunnusta ei ole määritetty"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Lowercase.
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Sisällytä pienet kirjaimet"
+
 #: gsecrets/password_generator_popover.py:77
-#| msgid "Lowercase"
-msgid "{} Lowercase"
-msgstr "{} pienet kirjaimet"
+msgid "Exclude Lowercase"
+msgstr "Älä käytä pieniä kirjaimia"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:80
+msgid "Include Uppercase"
+msgstr "Sisällytä isot kirjaimet"
+
 #: gsecrets/password_generator_popover.py:82
-#| msgid "Uppercase"
-msgid "{} Uppercase"
-msgstr "{} isot kirjaimet"
+msgid "Exclude Uppercase"
+msgstr "Älä käytä isoja kirjaimia"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Sisällytä numerot"
+
 #: gsecrets/password_generator_popover.py:87
-#| msgid "Numbers"
-msgid "{} Numbers"
-msgstr "{} numerot"
+msgid "Exclude Numbers"
+msgstr "Älä käytä numeroita"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Sisällytä symbolit"
+
 #: gsecrets/password_generator_popover.py:92
-#| msgid "Symbols"
-msgid "{} Symbols"
-msgstr "{} symbolit"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
-#: gsecrets/password_generator_popover.py:127
-msgid "Exclude"
-msgstr "Sulje pois"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
-#: gsecrets/password_generator_popover.py:131
-msgid "Include"
-msgstr "Sisällytä"
+msgid "Exclude Symbols"
+msgstr "Älä käytä symboleja"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1568,6 +1560,12 @@ msgstr "Uutta säilöä ei voitu luoda"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Säilöä ei voitu tallentaa"
+
+#~ msgid "Exclude"
+#~ msgstr "Sulje pois"
+
+#~ msgid "Include"
+#~ msgstr "Sisällytä"
 
 #~ msgid "Learn more about Secrets"
 #~ msgstr "Lisätietoja Salaisuuksista"

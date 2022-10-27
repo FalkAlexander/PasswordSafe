@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-09-09 20:51+0000\n"
-"PO-Revision-Date: 2022-09-11 15:06-0400\n"
-"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-10-20 21:38+0800\n"
+"Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -891,7 +891,7 @@ msgstr "清空"
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "选择密钥文件(_S)"
 
@@ -1155,7 +1155,7 @@ msgstr ""
 "秘密是一个使用 KeePass v.4 格式的密码管理器。与 GNOME 桌面完美集成并提供简"
 "易、整洁的界面来管理密码数据库。"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1233,29 +1233,37 @@ msgstr "未指定标题"
 msgid "Username not specified"
 msgstr "未指定用户名"
 
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "包含小写字符"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "小写字符"
+msgid "Exclude Lowercase"
+msgstr "排除小写字符"
 
 #: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "大写字符"
+msgid "Include Uppercase"
+msgstr "包含大写字符"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "数字"
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "排除大写字符"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "符号"
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "包含数字"
 
-#: gsecrets/password_generator_popover.py:119
-msgid "Exclude"
-msgstr "排除"
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "排除数字"
 
-#: gsecrets/password_generator_popover.py:121
-msgid "Include"
-msgstr "包括"
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "包含符号"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "排除符号"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1285,7 +1293,7 @@ msgstr "保险箱 {} 已打开"
 msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "重试(_T)"
 
@@ -1531,6 +1539,12 @@ msgstr "无法创建新保险箱"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
+
+#~ msgid "Exclude"
+#~ msgstr "排除"
+
+#~ msgid "Include"
+#~ msgstr "包括"
 
 #~ msgid "Learn more about Secrets"
 #~ msgstr "了解关于秘密的更多信息"

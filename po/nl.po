@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-03-20 19:39+0000\n"
-"PO-Revision-Date: 2022-03-25 16:54+0100\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-11-02 19:36+0100\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -17,33 +17,56 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Uw wachtwoorden beheren"
 
-#. "Secrets" is the application name, do not translate
-#: data/about_dialog.ui.in:9
-msgid "Learn more about Secrets"
-msgstr "Kom meer te weten over Wachtwoordkluis"
-
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:11
+#: data/about_dialog.ui.in:10
 msgid "translator-credits"
 msgstr ""
 "Nathan Follens <nfollens@gnome.org>\n"
 "Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
-"\n"
 "Meer info over Gnome-NL http://nl.gnome.org"
 
+#. Translators: Secrets is the app name, do not translate
+#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Wachtwoordkluis"
+
+#: data/gtk/add_attribute_dialog.ui:12
+msgid "Add Attribute"
+msgstr "Attribuut toevoegen"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Key"
+msgstr "Sleutel"
+
+#: data/gtk/add_attribute_dialog.ui:55
+msgid "Value"
+msgstr "Waarde"
+
+#: data/gtk/add_attribute_dialog.ui:62
+msgid "Add"
+msgstr "Toevoegen"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "Bijlage downloaden"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "Bijlage verwijderen"
+
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:4
 msgid "Safety Info"
 msgstr "Veiligheidsinfo"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:5
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -51,151 +74,160 @@ msgstr ""
 "Externe toepassingen kunnen mogelijk onversleutelde verborgen of tijdelijke "
 "kopieën van dit bijlagebestand aanmaken! Wees dus voorzichtig."
 
-#. Discard all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:10
+#: data/gtk/attachment_warning_dialog.ui:9
 msgid "_Back"
 msgstr "V_orige"
 
-#. Save all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:16
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
 msgstr "_Verder"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:8
 msgid "Remove Attribute"
 msgstr "Attribuut verwijderen"
 
-#: data/gtk/color_entry_row.ui:11
+#: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Kleur"
 
-#: data/gtk/create_database.ui:33
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:240
+msgid "Create Safe"
+msgstr "Kluis aanmaken"
+
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
+#: data/gtk/group_page.ui:14
+msgid "Back"
+msgstr "Vorige"
+
+#: data/gtk/create_database.ui:21 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:38
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: data/gtk/create_database.ui:57
 msgid "Protect your safe"
 msgstr "Beveilig uw kluis"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:70 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "Wa_chtwoord"
 
-#: data/gtk/create_database.ui:47
+#: data/gtk/create_database.ui:71
 msgid "Use a password to secure your safe."
 msgstr "Gebruik een wachtwoord om uw kluis te beveiligen."
 
-#: data/gtk/create_database.ui:57
+#: data/gtk/create_database.ui:81
 msgid "_Keyfile"
 msgstr "_Sleutelbestand"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:82
 msgid "Use a keyfile to secure your safe."
 msgstr "Gebruik een sleutelbestand om uw kluis te beveiligen."
 
-#: data/gtk/create_database.ui:68
+#: data/gtk/create_database.ui:92
 msgid "_Composite"
 msgstr "_Samengesteld"
 
-#: data/gtk/create_database.ui:69
+#: data/gtk/create_database.ui:93
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr ""
 "Gebruik een wachtwoord in combinatie met een sleutelbestand om uw kluis te "
 "beveiligen."
 
-#: data/gtk/create_database.ui:101
+#: data/gtk/create_database.ui:125
 msgid "Enter Password"
 msgstr "Voer wachtwoord in"
 
-#: data/gtk/create_database.ui:109
+#: data/gtk/create_database.ui:133
 msgid "Set password for safe."
 msgstr "Stel een wachtwoord in voor uw kluis."
 
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
+#: data/gtk/create_database.ui:158 data/gtk/credentials_group.ui:43
+#: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "Nieuw wachtwoord genereren"
 
-#: data/gtk/create_database.ui:183
+#: data/gtk/create_database.ui:172
+msgid "Next"
+msgstr "Volgende"
+
+#: data/gtk/create_database.ui:208
 msgid "Password Match Check"
 msgstr "Voer wachtwoord opnieuw in"
 
-#: data/gtk/create_database.ui:191
+#: data/gtk/create_database.ui:216
 msgid "Repeat password for safe."
 msgstr "Herhaal het wachtwoord voor uw kluis."
 
-#: data/gtk/create_database.ui:248
+#: data/gtk/create_database.ui:242
+msgid "Check"
+msgstr "Controleren"
+
+#: data/gtk/create_database.ui:274
 msgid "Match Check Failed"
 msgstr "Wachtwoorden komen niet overeen"
 
-#: data/gtk/create_database.ui:256
+#: data/gtk/create_database.ui:282
 msgid "Please try again."
 msgstr "Probeer het opnieuw."
 
-#: data/gtk/create_database.ui:286
+#: data/gtk/create_database.ui:312
 msgid "_Confirm"
 msgstr "_Bevestigen"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
-#: gsecrets/widgets/database_settings_dialog.py:196
+#: data/gtk/create_database.ui:347 gsecrets/create_database.py:174
+#: gsecrets/widgets/database_settings_dialog.py:200
 msgid "Generate Keyfile"
 msgstr "Sleutelbestand genereren"
 
-#: data/gtk/create_database.ui:329
+#: data/gtk/create_database.ui:355
 msgid "Set keyfile for safe"
 msgstr "Stel sleutelbestand in voor kluis"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:172
-#: gsecrets/widgets/database_settings_dialog.py:199
+#: data/gtk/create_database.ui:365 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:177
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "_Genereren"
 
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:398
 msgid "Safe Successfully Created"
 msgstr "Kluis aangemaakt"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:406 data/gtk/unlocked_headerbar.ui:93
 msgid "_Open Safe"
 msgstr "Kluis _openen"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:242
-msgid "Create Safe"
-msgstr "Kluis aanmaken"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Vorige"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Hoofdmenu"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:428 data/gtk/locked_headerbar.ui:37
+#: data/gtk/unlocked_headerbar.ui:104
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:432 data/gtk/locked_headerbar.ui:41
+#: data/gtk/unlocked_headerbar.ui:108
 msgid "_Keyboard Shortcuts"
 msgstr "_Sneltoetsen"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:436 data/gtk/locked_headerbar.ui:45
+#: data/gtk/unlocked_headerbar.ui:112
 msgid "_About Secrets"
 msgstr "_Over Wachtwoordkluis"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "Gebr_uikersnaam"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
+#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/history_row.ui:25
+msgid "Copy"
+msgstr "Kopiëren"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -203,212 +235,196 @@ msgstr "Aanmeldingscontrole"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:27
 msgid "Password"
 msgstr "Wachtwoord"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
-msgid "_New"
-msgstr "_Nieuw"
+#: data/gtk/database_settings_dialog.ui:17
+msgid "New Password"
+msgstr "Nieuw wachtwoord"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "B_evestigen"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:38
 msgid "Confirm New Password"
 msgstr "Nieuw wachtwoord bevestigen"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "_Huidig"
+#: data/gtk/database_settings_dialog.ui:44
+msgid "Current Password"
+msgstr "Huidig wachtwoord"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "Huidig wachtwoord invoeren"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
-#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:202
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
+#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:206
 msgid "Keyfile"
 msgstr "Sleutelbestand"
 
-#: data/gtk/database_settings_dialog.ui:161
+#: data/gtk/database_settings_dialog.ui:82
 msgid "_Select current keyfile if any"
 msgstr "Huidig sleutelbestand _selecteren indien aanwezig"
 
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:124
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Optioneel) Nieuw sleutelbestand _genereren"
 
-#: data/gtk/database_settings_dialog.ui:221
+#: data/gtk/database_settings_dialog.ui:142
 msgid "Could not Load Keyfile"
 msgstr "Kon sleutelbestand niet laden"
 
-#: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:269
+#: data/gtk/database_settings_dialog.ui:152
+#: gsecrets/widgets/database_settings_dialog.py:272
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "_Apply Changes"
 msgstr "Wijzigingen toep_assen"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Algemeen"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:173
 msgid "Details"
 msgstr "Gegevens"
 
-#: data/gtk/database_settings_dialog.ui:255
+#: data/gtk/database_settings_dialog.ui:176
 msgid "Safe Name"
 msgstr "Naam van kluis"
 
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:181
 msgid "Path"
 msgstr "Pad"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:186
 msgid "File Size"
 msgstr "Bestandsgrootte"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:191
 msgid "KeePass Version"
 msgstr "KeePass-versie"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:196
 msgid "Creation Date"
 msgstr "Aanmaakdatum"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:201
 msgid "Encryption Algorithm"
 msgstr "Versleutelingsalgoritme"
 
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:206
 msgid "Derivation Algorithm"
 msgstr "Afleidingsalgoritme"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:213
 msgid "Stats"
 msgstr "Statistieken"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:216
 msgid "Number of Entries"
 msgstr "Aantal items"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:221
 msgid "Number of Groups"
 msgstr "Aantal groepen"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Passwords"
 msgstr "Wachtwoorden"
 
-#: data/gtk/edit_element_headerbar.ui:22
+#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Menu"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "_Eigenschappen"
-
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "Verwij_deren"
-
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "D_upliceren"
-
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "Ve_rwijzingen"
-
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Titel"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "Gebr_uikersnaam"
+#: data/gtk/entry_page.ui:86
+msgid "U_RL"
+msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
-#: data/gtk/password_entry_row.ui:32
-msgid "Copy"
-msgstr "Kopiëren"
+#: data/gtk/entry_page.ui:103
+msgid "Open Address"
+msgstr "Adres openen"
 
-#: data/gtk/entry_page.ui:77
+#: data/gtk/entry_page.ui:124
+msgid "One-Time Password"
+msgstr "Eenmalig wachtwoord"
+
+#: data/gtk/entry_page.ui:162
 msgid "One-_Time Password Secret"
 msgstr "_Eenmalig wachtwoord Wachtwoordkluis"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:97
+#: data/gtk/entry_page.ui:170
 msgid "Could not Generate OTP Token"
 msgstr "Kon OTP-token niet genereren"
 
-#: data/gtk/entry_page.ui:111
-msgid "_One-Time Password"
-msgstr "_Eenmalig wachtwoord"
+#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Opmerkingen"
 
-#: data/gtk/entry_page.ui:159
-msgid "U_RL"
-msgstr "U_RL"
-
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "Op_merkingen"
-
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "In een venster bewerken"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:214
 msgid "Icon"
 msgstr "Pictogram"
 
-#: data/gtk/entry_page.ui:268
+#: data/gtk/entry_page.ui:231
 msgid "Attachments"
 msgstr "Bijlagen"
 
-#: data/gtk/entry_page.ui:293
+#: data/gtk/entry_page.ui:235
 msgid "_Add Attachment"
 msgstr "Bijl_age toevoegen"
 
-#: data/gtk/entry_page.ui:315
+#: data/gtk/entry_page.ui:244
 msgid "Attributes"
 msgstr "Attributen"
 
-#: data/gtk/entry_page.ui:331
-msgid "Key"
-msgstr "Sleutel"
+#: data/gtk/entry_page.ui:249
+msgid "_Add Attribute"
+msgstr "_Attribuut toevoegen"
 
-#: data/gtk/entry_page.ui:337
-msgid "Value"
-msgstr "Waarde"
+#: data/gtk/entry_page.ui:257
+msgid "Expiration Date"
+msgstr "Verloopdatum"
 
-#: data/gtk/entry_page.ui:348
-msgid "Add Attribute"
-msgstr "Attribuut toevoegen"
-
-#: data/gtk/entry_page.ui:372
-msgid "_Expiration Date"
-msgstr "_Verloopdatum"
-
-#: data/gtk/entry_page.ui:393
+#: data/gtk/entry_page.ui:273
 msgid "_Show More"
 msgstr "_Meer weergeven"
 
-#: data/gtk/entry_row.ui:52
+#: data/gtk/entry_page.ui:290
+msgid "D_uplicate"
+msgstr "D_upliceren"
+
+#: data/gtk/entry_page.ui:294
+msgid "_References"
+msgstr "Ve_rwijzingen"
+
+#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
+msgid "_Properties"
+msgstr "_Eigenschappen"
+
+#: data/gtk/entry_page.ui:304
+msgid "_Save in History"
+msgstr "Op_slaan in geschiedenis"
+
+#: data/gtk/entry_page.ui:308
+msgid "Show _History"
+msgstr "Gesc_hiedenis tonen"
+
+#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
+msgid "_Delete"
+msgstr "Verwij_deren"
+
+#: data/gtk/entry_row.ui:53
 msgid "Copy Username"
 msgstr "Gebruikersnaam kopiëren"
 
-#: data/gtk/entry_row.ui:59
+#: data/gtk/entry_row.ui:63
 msgid "Copy Password"
 msgstr "Wachtwoord kopiëren"
 
@@ -416,13 +432,21 @@ msgstr "Wachtwoord kopiëren"
 msgid "Expiration Date not Set"
 msgstr "Verloopdatum niet ingesteld"
 
-#: data/gtk/expiration_date_row.ui:21
+#: data/gtk/expiration_date_row.ui:17
+msgid "Edit Expiration Date"
+msgstr "Verloopdatum bewerken"
+
+#: data/gtk/expiration_date_row.ui:25
 msgid "Remove Expiration Date"
 msgstr "Verloopdatum verwijderen"
 
-#: data/gtk/expiration_date_row.ui:54
+#: data/gtk/expiration_date_row.ui:58
 msgid "_Set Expiration Date"
 msgstr "Verloopdatum i_nstellen"
+
+#: data/gtk/group_row.ui:51
+msgid "Edit"
+msgstr "Bewerken"
 
 #: data/gtk/help-overlay.ui:11
 msgctxt "Shortcut window description"
@@ -507,17 +531,57 @@ msgstr "Wachtwoord kopiëren"
 
 #: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Adres kopiëren"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Gebruikersnaam kopiëren"
 
-#: data/gtk/help-overlay.ui:108
+#: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Eenmalig wachtwoord kopiëren"
 
+#: data/gtk/help-overlay.ui:120
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Geschiedenis tonen"
+
+#: data/gtk/help-overlay.ui:126
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Opslaan in geschiedenis"
+
+#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+msgid "Show Text"
+msgstr "Tekst tonen"
+
+#: data/gtk/history_row.ui:36
+msgid "Remove from History"
+msgstr "Verwijderen uit geschiedenis"
+
+#: data/gtk/history_window.ui:9
+msgid "Password History"
+msgstr "Wachtwoordgeschiedenis"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Openen"
+
+#: data/gtk/locked_headerbar.ui:31 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "_Nieuwe kluis"
+
 #: data/gtk/notes_dialog.ui:14
 msgid "_Copy"
 msgstr "_Kopiëren"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:26 data/gtk/unlocked_headerbar.ui:24
+msgid "Search"
+msgstr "Zoeken"
 
 #: data/gtk/password_generator_popover.ui:35
 msgid "Length"
@@ -563,22 +627,6 @@ msgstr "Aangepast"
 msgid "Created"
 msgstr "Aangemaakt"
 
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Nieuwe kluis"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Kluis openen"
-
-#: data/gtk/recent_files_headerbar.ui:32
-msgid "_Open"
-msgstr "_Openen"
-
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Recente kluizen"
-
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Code"
@@ -600,13 +648,13 @@ msgstr "Gebruikersnaam"
 msgid "URL"
 msgstr "URL"
 
-#: data/gtk/references_dialog.ui:141
-msgid "Notes"
-msgstr "Opmerkingen"
-
 #: data/gtk/references_dialog.ui:181
 msgid "_URL"
 msgstr "_URL"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "Op_merkingen"
 
 #: data/gtk/references_dialog.ui:192
 msgid "References"
@@ -641,27 +689,27 @@ msgstr ""
 "worden in de eigenschappen van het item."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:4
 msgid "Unsaved Changes"
-msgstr "Onopgeslagen wijzigingen"
+msgstr "Niet-opgeslagen wijzigingen"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
 msgstr "Wilt u alle wijzigingen aan de kluis opslaan?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
 msgid "_Quit Without Saving"
 msgstr "_Afsluiten zonder opslaan"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:20
+#: data/gtk/save_dialog.ui:11
 msgid "_Don't Quit"
 msgstr "_Niet afsluiten"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:26
+#: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
 msgstr "Op_slaan en sluiten"
 
@@ -693,6 +741,7 @@ msgid "Delete Selection"
 msgstr "Selectie verwijderen"
 
 #: data/gtk/selection_mode_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:32
 msgid "_Cancel"
 msgstr "_Annuleren"
 
@@ -720,7 +769,7 @@ msgstr "Eerste-start-sc_herm verbergen"
 msgid "Reopen last opened safe."
 msgstr "Laatst geopende kluis opnieuw openen."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:248
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:246
 msgid "Safe"
 msgstr "Kluis"
 
@@ -732,7 +781,7 @@ msgstr "Automatisch op_slaan"
 msgid "Save every change automatically."
 msgstr "Iedere wijziging automatisch opslaan."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:33
 msgid "Unlock"
 msgstr "Ontgrendelen"
 
@@ -844,24 +893,23 @@ msgstr "Recente lijst wissen"
 msgid "Clear the recently opened safes list."
 msgstr "De lijst met recent geopende kluizen wissen."
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/settings_dialog.ui:269 data/gtk/unlock_database.ui:108
+msgid "Clear"
+msgstr "Wissen"
+
+#: data/gtk/unlock_database.ui:11
 msgid "Unlock Safe"
 msgstr "Kluis ontgrendelen"
 
-#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:292
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "Sleutelbestand _selecteren"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "_Nieuwe kluis"
-
-#: data/gtk/unlocked_database_page.ui:28
+#: data/gtk/unlocked_database_page.ui:31
 msgid "Add elements with the ➕ button."
 msgstr "Voeg elementen toe met de ➕-knop."
 
-#: data/gtk/unlocked_database_page.ui:29
+#: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
 msgstr "Lege groep"
 
@@ -869,17 +917,14 @@ msgstr "Lege groep"
 msgid "New Entry or Group"
 msgstr "Nieuw element of groep"
 
-#. Button tooltip in headerbar to open search page
-#: data/gtk/unlocked_headerbar.ui:24
-msgid "Search"
-msgstr "Zoeken"
-
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
 #: data/gtk/unlocked_headerbar.ui:31
 msgid "Selection Mode"
 msgstr "Selectiemodus"
 
 #: data/gtk/unlocked_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: gsecrets/widgets/saving_conflict_dialog.py:51
 msgid "_Save"
 msgstr "Op_slaan"
 
@@ -909,36 +954,31 @@ msgstr "_Nieuwste eerst"
 msgid "_Oldest First"
 msgstr "_Oudste eerst"
 
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "Sa_fe Settings"
 msgstr "_Kluisinstellingen"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:120
 msgid "New _Entry"
 msgstr "Nieuw it_em"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:124
 msgid "New _Group"
 msgstr "Nieuwe _groep"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:30
 msgid "Secure Secrets"
 msgstr "Wachtwoordkluis beveiligen"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
+#: data/gtk/welcome_page.ui:41
 msgid ""
 "Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
 "b> a new Keepass safe."
 msgstr ""
 "Bewaar uw wachtwoorden, notities en gegevens op een veilige manier. <b>Maak "
 "een nieuwe Keepass-kluis aan</b> of <b>importeer er een</b>."
-
-#. Translators: Secrets is the app name, do not translate
-#: data/org.gnome.World.Secrets.desktop.in.in:4
-msgid "Secrets"
-msgstr "Wachtwoordkluis"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
@@ -1147,118 +1187,188 @@ msgstr ""
 "v.4-formaat. Hij integreert perfect met het Gnome-bureaublad en biedt een "
 "eenvoudige en duidelijke interface voor het beheer van wachtwoorddatabases."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:189
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
-#: gsecrets/application.py:52
+#: gsecrets/application.py:54
 msgid "Error: File {} does not exist"
 msgstr "Fout: Bestand {} bestaat niet"
 
-#: gsecrets/application.py:57
+#: gsecrets/application.py:59
 msgid "Error: Safe {} is already open"
 msgstr "Fout: Kluis {} reeds geopend"
 
-#: gsecrets/attachment_warning_dialog.py:64
-msgid "Could not Load Attachment"
+#: gsecrets/attachment_warning_dialog.py:56
+msgid "Could not load attachment"
 msgstr "Kon bijlage niet laden"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:72
 msgid "Unable to create database"
 msgstr "Kan database niet aanmaken"
 
-#: gsecrets/create_database.py:160
-msgid "Passwords do not Match"
+#: gsecrets/create_database.py:165
+msgid "Passwords do not match"
 msgstr "Wachtwoorden komen niet overeen"
 
-#: gsecrets/create_database.py:188
+#: gsecrets/create_database.py:193
 msgid "Generating…"
 msgstr "Bezig met genereren…"
 
-#: gsecrets/create_database.py:199
-msgid "Could not Create Keyfile"
+#: gsecrets/create_database.py:209
+msgid "Could not create keyfile"
 msgstr "Kon sleutelbestand niet aanmaken"
 
-#: gsecrets/create_database.py:201
+#: gsecrets/create_database.py:211
 msgid "Generate"
 msgstr "Genereren"
 
-#: gsecrets/entry_page.py:242 gsecrets/entry_page.py:386
-#: gsecrets/entry_row.py:112
-msgid "Username Copied"
+#: gsecrets/entry_page.py:244 gsecrets/widgets/credentials_group.py:90
+msgid "Saved in history"
+msgstr "Opgeslagen in geschiedenis"
+
+#: gsecrets/entry_page.py:261 gsecrets/entry_row.py:114
+#: gsecrets/widgets/credentials_group.py:84
+msgid "Username copied"
 msgstr "Gebruikersnaam gekopieerd"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_page.py:293
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:269 gsecrets/entry_page.py:401
+msgid "Address copied"
+msgstr "Adres gekopieerd"
+
+#: gsecrets/entry_page.py:279 gsecrets/entry_page.py:327
+msgid "One-time password copied"
 msgstr "Eenmalig wachtwoord gekopieerd"
 
-# Of is het het attribuut 'sleutel'?
-#: gsecrets/entry_page.py:314 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
-msgstr "Attribuutsleutel bestaat al"
+#: gsecrets/entry_page.py:319
+msgid "The address is not valid"
+msgstr "Het adres is niet geldig"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:342
+#: gsecrets/entry_page.py:356
 msgid "Select Attachment"
 msgstr "Selecteer een bijlage"
 
-#: gsecrets/entry_page.py:345
+#: gsecrets/entry_page.py:359
 msgid "_Add"
 msgstr "_Toevoegen"
 
-#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+#: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
+msgid "Password copied"
 msgstr "Wachtwoord gekopieerd"
 
-#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+#: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
 msgid "Title not Specified"
 msgstr "Titel niet opgegeven"
 
-#: gsecrets/entry_row.py:135
+#: gsecrets/entry_row.py:137
 msgid "Username not specified"
 msgstr "Gebruikersnaam niet opgegeven"
 
-#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
-#: gsecrets/widgets/window.py:376
-msgid "Could not save Safe"
-msgstr "Kon kluis niet opslaan"
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Met kleine letters"
 
-#: gsecrets/safe_element.py:361
+#: gsecrets/password_generator_popover.py:77
+msgid "Exclude Lowercase"
+msgstr "Zonder kleine letters"
+
+#: gsecrets/password_generator_popover.py:80
+msgid "Include Uppercase"
+msgstr "Met hoofdletters"
+
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "Zonder hoofdletters"
+
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Met cijfers"
+
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "Zonder cijfers"
+
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Met symbolen"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "Zonder symbolen"
+
+#: gsecrets/recent_files_menu.py:36
+msgid "Recent Files"
+msgstr "Recente bestanden"
+
+#: gsecrets/safe_element.py:483
 msgid "Clone"
 msgstr "Klonen"
 
-#: gsecrets/unlock_database.py:80
+#. This shouldn't happen
+#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:547
+#: gsecrets/widgets/window.py:389 gsecrets/widgets/window.py:395
+msgid "Could not save Safe"
+msgstr "Kon kluis niet opslaan"
+
+#: gsecrets/unlock_database.py:79
 msgid "Select Keyfile"
 msgstr "Sleutelbestand selecteren"
 
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
-msgstr "Kluis {} reeds geopend"
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlock_database.py:157
+msgid "Safe {} is already open"
+msgstr "Kluis {} is reeds geopend"
 
-#: gsecrets/unlock_database.py:278
-msgid "Failed to Unlock Safe"
+#: gsecrets/unlock_database.py:238
+msgid "Failed to unlock Safe"
 msgstr "Ontgrendelen van kluis mislukt"
 
-#: gsecrets/unlock_database.py:287
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Opnieuw proberen"
 
 #: gsecrets/unlocked_database.py:274
-msgid "Safe Saved"
+msgid "Safe saved"
 msgstr "Kluis opgeslagen"
 
 #: gsecrets/unlocked_database.py:276
-msgid "No Changes Made"
+msgid "No changes made"
 msgstr "Geen wijzigingen aangebracht"
 
-#: gsecrets/unlocked_database.py:322
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlocked_database.py:321
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "Element verwijderd"
+msgstr[1] "{} elementen verwijderd"
+
+#: gsecrets/unlocked_database.py:326
+msgid "Deletion completed"
+msgstr "Verwijderen voltooid"
+
+#: gsecrets/unlocked_database.py:331
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: gsecrets/unlocked_database.py:367
 msgid "Copied"
 msgstr "Gekopieerd"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:389
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:470
+msgid "Safe locked due to inactivity"
 msgstr "Kluis vergrendeld wegens inactiviteit"
+
+#: gsecrets/widgets/add_attribute_dialog.py:38
+msgid "Attribute key contains an illegal character"
+msgstr "De attribuutsleutel bevat een ongeldig teken"
+
+# Of is het het attribuut 'sleutel'?
+#: gsecrets/widgets/add_attribute_dialog.py:49
+msgid "Attribute key already exists"
+msgstr "Attribuutsleutel bestaat al"
 
 #. NOTE: Filechooser title for downloading an attachment
 #: gsecrets/widgets/attachment_entry_row.py:37
@@ -1266,7 +1376,7 @@ msgid "Save Attachment"
 msgstr "Bijlage opslaan"
 
 #: gsecrets/widgets/attachment_entry_row.py:61
-msgid "Could not Store Attachment"
+msgid "Could not store attachment"
 msgstr "Kon bijlage niet opslaan"
 
 #. NOTE: Filechooser title for choosing current used keyfile
@@ -1274,47 +1384,73 @@ msgstr "Kon bijlage niet opslaan"
 msgid "Select Current Keyfile"
 msgstr "Huidig sleutelbestand selecteren"
 
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:243
 #: gsecrets/widgets/database_settings_dialog.py:248
+#: gsecrets/widgets/database_settings_dialog.py:252
 msgid "Could not apply changes"
 msgstr "Kon wijzigingen niet toepassen"
 
 #. Still executes the finally block
-#. pylint: disable=no-member
-#: gsecrets/widgets/database_settings_dialog.py:252
+#: gsecrets/widgets/database_settings_dialog.py:255
 msgid "Changes Applied"
 msgstr "Wijzigingen toegepast"
 
+#: gsecrets/widgets/database_settings_dialog.py:293
+msgid "Could not change credentials"
+msgstr "Kon referenties niet wijzigen"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:299
+#: gsecrets/widgets/saving_conflict_dialog.py:23
+msgid "Conflicts While Saving"
+msgstr "Conflicten bij opslaan"
+
+#: gsecrets/widgets/database_settings_dialog.py:300
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"De kluis is vanop een andere locatie gewijzigd. Los deze conflicten op in "
+"het hoofdvenster wanneer u opslaat."
+
+#: gsecrets/widgets/database_settings_dialog.py:302
+msgid "Ok"
+msgstr "Oké"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:335
-#: gsecrets/widgets/database_settings_dialog.py:349
+#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:378
 msgid "Unknown"
 msgstr "Onbekend"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:339
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:371
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:345
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:353
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "Argon2"
 msgstr "Argon2"
 
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:385
+#| msgid "Argon2"
+msgid "Argon2id"
+msgstr "Argon2id"
+
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:356
+#: gsecrets/widgets/database_settings_dialog.py:388
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1323,6 +1459,57 @@ msgstr "AES-KDF"
 msgid "Entry expired"
 msgstr "Element verlopen"
 
+#: gsecrets/widgets/history_row.py:44
+msgid "Hide Text"
+msgstr "Tekst verbergen"
+
+#: gsecrets/widgets/notes_dialog.py:62
+msgid "Selection copied"
+msgstr "Selectie gekopieerd"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:19
+msgid "Unsaved Changes Conflict"
+msgstr "Conflict met niet-opgeslagen wijzigingen"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Save and Quit"
+msgstr "Opslaan en sluiten"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Back up, Save, and Quit"
+msgstr "Back-up maken, opslaan en sluiten"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:23
+msgid "Don't Quit"
+msgstr "Niet sluiten"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:26
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"De kluis is vanop een andere locatie gewijzigd. Door op te slaan wordt hun "
+"versie van de kluis overschreven met de onze.\n"
+"\n"
+"U kunt ook een back-up van hun versie van de kluis maken."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Back up and Save"
+msgstr "_Back-up maken en opslaan"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:48
+msgid "Save Backup"
+msgstr "Back-up opslaan"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:64
+msgid "Could not backup safe"
+msgstr "Kon geen back-up van kluis maken"
+
 #: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
@@ -1330,50 +1517,87 @@ msgstr[0] "{} geselecteerd"
 msgstr[1] "{} geselecteerd"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
+msgid "Operation aborted: deleting currently active group"
 msgstr "Bewerking afgebroken: huidig actieve groep wordt verwijderd"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:108
-msgid "Deletion Completed"
-msgstr "Verwijderen voltooid"
+#: gsecrets/widgets/selection_mode_headerbar.py:152
+msgid "Warning"
+msgstr "Waarschuwing"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:145
-msgid "Operation Aborted: Moving Currently Active Group"
+#: gsecrets/widgets/selection_mode_headerbar.py:154
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"U verwijdert elementen in de prullenbak, deze verwijderingen kunnen niet "
+"ongedaan gemaakt worden."
+
+#: gsecrets/widgets/selection_mode_headerbar.py:157
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:158
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:198
+msgid "Operation aborted: moving currently active group"
 msgstr "Bewerking afgebroken: huidig actieve groep wordt verplaatst"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:160
-msgid "Move Completed"
+#: gsecrets/widgets/selection_mode_headerbar.py:213
+msgid "Move completed"
 msgstr "Verplaatsen voltooid"
 
 #. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Kluis selecteren"
 
 #. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:253
+#: gsecrets/widgets/window.py:151 gsecrets/widgets/window.py:251
 msgid "KeePass 3.1/4 Database"
 msgstr "KeePass 3.1/4-database"
 
-#: gsecrets/widgets/window.py:162
+#: gsecrets/widgets/window.py:156
 msgid "Any file type"
 msgstr "Elk bestandstype"
 
-#: gsecrets/widgets/window.py:221
-msgid "Safe is Already Open"
-msgstr "Kluis reeds geopend"
+#: gsecrets/widgets/window.py:219
+msgid "Safe is already open"
+msgstr "Kluis is reeds geopend"
 
-#: gsecrets/widgets/window.py:245
+#: gsecrets/widgets/window.py:243
 msgid "_Create"
 msgstr "_Aanmaken"
 
-#: gsecrets/widgets/window.py:276
-msgid "Cannot Create Safe: Safe is Already Open"
-msgstr "Kluis kan niet worden aangemaakt: kluis is reeds geopend"
+#: gsecrets/widgets/window.py:279
+msgid "Cannot create Safe: Safe is already open"
+msgstr "Kan kluis niet aanmaken: kluis is reeds geopend"
 
-#: gsecrets/widgets/window.py:318 gsecrets/widgets/window.py:332
-msgid "Could not Create new Safe"
+#: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:335
+msgid "Could not create new Safe"
 msgstr "Kon nieuwe kluis niet aanmaken"
+
+#: gsecrets/widgets/window.py:402
+msgid "Could not save safe"
+msgstr "Kon kluis niet opslaan"
+
+#~ msgid "Learn more about Secrets"
+#~ msgstr "Kom meer te weten over Wachtwoordkluis"
+
+#~ msgid "_New"
+#~ msgstr "_Nieuw"
+
+#~ msgid "C_onfirm"
+#~ msgstr "B_evestigen"
+
+#~ msgid "_Current"
+#~ msgstr "_Huidig"
+
+#~ msgid "New Safe"
+#~ msgstr "Nieuwe kluis"
+
+#~ msgid "Open Safe"
+#~ msgstr "Kluis openen"
 
 #~| msgid "The kdb format is not supported"
 #~ msgid "The kdb Format is not Supported"
@@ -1461,9 +1685,6 @@ msgstr "Kon nieuwe kluis niet aanmaken"
 
 #~ msgid "_Quit"
 #~ msgstr "A_fsluiten"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuleren"
 
 #~ msgid "Remember _Unlock Method"
 #~ msgstr "Ontgrendelingsmethode ontho_uden"
@@ -1575,9 +1796,6 @@ msgstr "Kon nieuwe kluis niet aanmaken"
 
 #~ msgid "Z-A"
 #~ msgstr "Z-A"
-
-#~ msgid "Add"
-#~ msgstr "Toevoegen"
 
 #~ msgid "No group title specified"
 #~ msgstr "Geen groepstitel opgegeven"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-08-07 19:13+0000\n"
-"PO-Revision-Date: 2022-08-11 11:14+0700\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-11-04 09:22+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.1\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -897,7 +897,7 @@ msgstr "Bersihkan"
 msgid "Unlock Safe"
 msgstr "Buka Kunci Brankas"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "Pilih Berka_s Kunci"
 
@@ -1177,7 +1177,7 @@ msgstr ""
 "terintegrasi sempurna dengan desktop GNOME dan menyediakan sebuah antarmuka "
 "yang mudah dan rapi untuk manajemen basis data kata sandi."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1255,29 +1255,37 @@ msgstr "Judul tidak Ditentukan"
 msgid "Username not specified"
 msgstr "Nama pengguna tidak ditentukan"
 
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Sertakan Huruf Kecil"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Huruf Kecil"
+msgid "Exclude Lowercase"
+msgstr "Kecualikan Huruf Kecil"
 
 #: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Huruf Besar"
+msgid "Include Uppercase"
+msgstr "Sertakan Huruf Besar"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Angka"
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "Kecualikan Huruf Besar"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Simbol"
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Sertakan Angka"
 
-#: gsecrets/password_generator_popover.py:119
-msgid "Exclude"
-msgstr "Kecualikan"
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "Kecualikan Angka"
 
-#: gsecrets/password_generator_popover.py:121
-msgid "Include"
-msgstr "Termasuk"
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Sertakan Simbol"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "Kecualikan Simbol"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1307,7 +1315,7 @@ msgstr "Brankas {} sudah terbuka"
 msgid "Failed to unlock Safe"
 msgstr "Gagal membuka kunci Brankas"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "Coba _Lagi"
 
@@ -1558,6 +1566,12 @@ msgstr "Tak bisa membuat Brankas baru"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Tak bisa menyimpan brankas"
+
+#~ msgid "Exclude"
+#~ msgstr "Kecualikan"
+
+#~ msgid "Include"
+#~ msgstr "Termasuk"
 
 #~ msgid "Learn more about Secrets"
 #~ msgstr "Pelajari lebih lanjut tentang Secrets"

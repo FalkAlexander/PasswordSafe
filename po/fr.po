@@ -4,21 +4,22 @@
 # Julien Humbert <julroy67@gmail.com>, 2019-2020.
 # Claude Paroz <claude@2xlibre.net>, 2022.
 # Charles Monzat <charles.monzat@free.fr>, 2022.
+# Alexandre Franke <afranke@gnome.org>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-09-25 11:49+0000\n"
-"PO-Revision-Date: 2022-09-26 17:01+0200\n"
-"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-11-09 08:59+0100\n"
+"Last-Translator: Alexandre Franke <afranke@gnome.org>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 40.0\n"
+"X-Generator: Gtranslator 42.0\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -1198,7 +1199,7 @@ msgstr ""
 "v. 4. Il s’intègre parfaitement au bureau GNOME et fournit une interface "
 "simple et épurée pour la gestion des bases de données de mots de passe."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1276,29 +1277,37 @@ msgstr "Aucun titre indiqué"
 msgid "Username not specified"
 msgstr "Aucun nom d’utilisateur indiqué"
 
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Inclure les minuscules"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Minuscules"
+msgid "Exclude Lowercase"
+msgstr "Exclure les minuscules"
 
 #: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Majuscules"
+msgid "Include Uppercase"
+msgstr "Inclure les majuscules"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Nombres"
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "Exclure les majuscules"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Symboles"
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Inclure les nombres"
 
-#: gsecrets/password_generator_popover.py:119
-msgid "Exclude"
-msgstr "Exclure"
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "Exclure les nombres"
 
-#: gsecrets/password_generator_popover.py:121
-msgid "Include"
-msgstr "Inclure"
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Inclure les symboles"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "Exclure les symboles"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1581,6 +1590,12 @@ msgstr "Impossible de créer le nouveau coffre-fort"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Impossible d’enregistrer le coffre-fort"
+
+#~ msgid "Exclude"
+#~ msgstr "Exclure"
+
+#~ msgid "Include"
+#~ msgstr "Inclure"
 
 #~ msgid "_New"
 #~ msgstr "_Nouveau"

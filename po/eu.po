@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-10-05 07:12+0000\n"
-"PO-Revision-Date: 2022-10-16 10:00+0100\n"
+"POT-Creation-Date: 2022-10-16 20:33+0000\n"
+"PO-Revision-Date: 2022-11-20 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -376,7 +376,7 @@ msgstr "Atributuak"
 
 #: data/gtk/entry_page.ui:249
 msgid "_Add Attribute"
-msgstr "_Gehitu atributua"
+msgstr "a_Gehitu atributua"
 
 #: data/gtk/entry_page.ui:257
 msgid "Expiration Date"
@@ -979,7 +979,7 @@ msgstr "Erabili GTK gai iluna"
 msgid ""
 "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
 "theme has a dark variant."
-msgstr "Erabil zure GTK+ gaiaren aldaera iluna. Kontuan izan GTK+ gai batzuk ez dutela aldaera iluna."
+msgstr "Erabil izure GTK+ gaiaren aldaera iluna. Kontuan izan GTK+ gai batzuk ez dutela aldaera iluna."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1144,7 +1144,7 @@ msgid ""
 "uncluttered interface for the management of password databases."
 msgstr "Secrets aplikazioa Keepass v.4 formatua erabiltzen duen pasahitz-kudeatzaile bat da. GNOME mahaigainean ongi integratzen da eta interfaze erraz eta garbia eskaintzen du pasahitzen datu-baseak kudeatzeko."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1222,41 +1222,37 @@ msgstr "Ez da izenburua zehaztu"
 msgid "Username not specified"
 msgstr "Ez da erabiltzaile-izenik zehaztu"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Lowercase.
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Sartu minuskulak"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "{} Lowercase"
-msgstr "{} minuskulak"
+msgid "Exclude Lowercase"
+msgstr "Baztertu minuskulak"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:80
+msgid "Include Uppercase"
+msgstr "Sartu maiuskulak"
+
 #: gsecrets/password_generator_popover.py:82
-msgid "{} Uppercase"
-msgstr "{} maiuskulak"
+msgid "Exclude Uppercase"
+msgstr "Baztertu maiuskulak"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Sartu zenbakiak"
+
 #: gsecrets/password_generator_popover.py:87
-msgid "{} Numbers"
-msgstr "{} zenbakiak"
+msgid "Exclude Numbers"
+msgstr "Baztertu zenbakiak"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Sartu ikurrak"
+
 #: gsecrets/password_generator_popover.py:92
-msgid "{} Symbols"
-msgstr "{} ikurrak"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
-#: gsecrets/password_generator_popover.py:127
-msgid "Exclude"
-msgstr "Baztertu"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
-#: gsecrets/password_generator_popover.py:131
-msgid "Include"
-msgstr "Sartu"
+msgid "Exclude Symbols"
+msgstr "Baztertu ikurrak"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1450,7 +1446,7 @@ msgid ""
 " You can also make a backup of their version of the safe."
 msgstr "Kutxa gotorra beste tokiren batetik aldatu da. Orain gordetzen baduzu, horrek kutxa gotorraren besteen bertsioak gainidatziko ditu zure bertsioarekin.\n"
 "\n"
-" Kutxa gotorraren bere bertsioaren babeskopia bat ere egin dezakezu."
+"Bestela, kutxa gotor, seguruutxa gotorraren besteen bertsioen babeskopia bat egitea aukeratu dezakezu."
 
 #. TRANSLATORS backup and save current safe.
 #: gsecrets/widgets/saving_conflict_dialog.py:34
@@ -1533,6 +1529,12 @@ msgstr "Ezin da kutxa gotor berria sortu"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Ezin izan da kutxa gotorra gorde"
+
+#~ msgid "Exclude"
+#~ msgstr "Baztertu"
+
+#~ msgid "Include"
+#~ msgstr "Sartu"
 
 #~ msgid "Learn more about Secrets"
 #~ msgstr "Ikasi gehiago Secrets aplikazioari buruz"

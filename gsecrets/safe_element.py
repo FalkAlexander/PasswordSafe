@@ -202,6 +202,15 @@ class SafeElement(GObject.Object):
                 self._element.title = new_name
                 self._db_manager.emit("sorting_changed", True)
 
+            if self.is_entry:
+                found, pos = self._db_manager.entries.find(self)
+                if found:
+                    self._db_manager.entries.items_changed(pos, 1, 1)
+            else:
+                found, pos = self._db_manager.groups.find(self)
+                if found:
+                    self._db_manager.groups.items_changed(pos, 1, 1)
+
             self.updated()
 
     @GObject.Property(type=str, default="")

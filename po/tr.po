@@ -1,5 +1,4 @@
 # Turkish translation for Secrets.
-#
 # Copyright (C) 2018-2022 Secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Secrets package.
 #
@@ -11,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-26 13:40+0000\n"
-"PO-Revision-Date: 2022-07-27 09:44+0300\n"
+"POT-Creation-Date: 2022-10-23 17:32+0000\n"
+"PO-Revision-Date: 2022-10-24 01:32+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -31,7 +30,8 @@ msgstr "Parolalarınızı yönetin"
 msgid "translator-credits"
 msgstr ""
 "Emin Tufan Çetin <etcetin@gmail.com>\n"
-"Serdar Sağlam <teknomobil@yandex.com>"
+"Serdar Sağlam <teknomobil@yandex.com>\n"
+"Sabri Ünal <libreajans@gmail.com>"
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
@@ -323,7 +323,7 @@ msgstr "Girdi Sayısı"
 
 #: data/gtk/database_settings_dialog.ui:221
 msgid "Number of Groups"
-msgstr "Küme Sayısı"
+msgstr "Grup Sayısı"
 
 #: data/gtk/database_settings_dialog.ui:226
 msgid "Passwords"
@@ -516,7 +516,7 @@ msgstr "Girdi Oluştur"
 #: data/gtk/help-overlay.ui:85
 msgctxt "Shortcut window description"
 msgid "Create Group"
-msgstr "Küme Oluştur"
+msgstr "Grup Oluştur"
 
 #: data/gtk/help-overlay.ui:93
 msgctxt "Shortcut window description"
@@ -592,7 +592,7 @@ msgstr "Karakterler"
 
 #: data/gtk/password_generator_popover.ui:111
 msgid "Passphrase"
-msgstr "Parola"
+msgstr "Parola Metni"
 
 #: data/gtk/password_generator_popover.ui:119
 msgid "Words"
@@ -897,7 +897,7 @@ msgstr "Temizle"
 msgid "Unlock Safe"
 msgstr "Kasa Kilidini Aç"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "Anahtar Dosyası _Seç"
 
@@ -907,11 +907,11 @@ msgstr "➕ düğmesiyle öge ekle."
 
 #: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
-msgstr "Boş Küme"
+msgstr "Boş Grup"
 
 #: data/gtk/unlocked_headerbar.ui:13
 msgid "New Entry or Group"
-msgstr "Yeni Girdi veya Küme"
+msgstr "Yeni Girdi veya Grup"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
 #: data/gtk/unlocked_headerbar.ui:31
@@ -960,7 +960,7 @@ msgstr "Yeni _Girdi"
 
 #: data/gtk/unlocked_headerbar.ui:124
 msgid "New _Group"
-msgstr "Yeni _Küme"
+msgstr "Yeni _Grup"
 
 #. The umbrella sentence of the application on the first start screen
 #: data/gtk/welcome_page.ui:30
@@ -1107,11 +1107,11 @@ msgstr ""
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
-msgstr "Kümelerin ve girdilerin sıralama düzeni"
+msgstr "Grupların ve girdilerin sıralama düzeni"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
-msgstr "Kümeler ve girdiler görünümündeki satırların düzeni."
+msgstr "Gruplar ve girdiler görünümündeki satırların düzeni."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
@@ -1176,7 +1176,7 @@ msgstr ""
 "masaüstüyle kusursuzca tümleşir ve parola veri tabanlarının yönetimi için "
 "kolay ve düzenli arayüz sunar."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1248,35 +1248,43 @@ msgstr "Parola kopyalandı"
 
 #: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
 msgid "Title not Specified"
-msgstr "Başlık belirtilmedi"
+msgstr "Başlık Belirtilmedi"
 
 #: gsecrets/entry_row.py:137
 msgid "Username not specified"
 msgstr "Kullanıcı adı belirtilmedi"
 
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Küçük Karakter İçer"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Küçük Karakterler"
+msgid "Exclude Lowercase"
+msgstr "Küçük Karakter İçermesin"
 
 #: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Büyük Karakterler"
+msgid "Include Uppercase"
+msgstr "Büyük Karakter İçer"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Sayılar"
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "Büyük Karakter İçermesin"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Simgeler"
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Sayı İçersin"
 
-#: gsecrets/password_generator_popover.py:119
-msgid "Exclude"
-msgstr "Dışla"
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "Sayı İçermesin"
 
-#: gsecrets/password_generator_popover.py:121
-msgid "Include"
-msgstr "Ekle"
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Sembol İçersin"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "Sembol İçermesin"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1306,7 +1314,7 @@ msgstr "{} kasası zaten açık"
 msgid "Failed to unlock Safe"
 msgstr "Kasa kilidi açılamadı"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Yeniden Dene"
 
@@ -1495,7 +1503,7 @@ msgstr[0] "{} _Seçildi"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
 msgid "Operation aborted: deleting currently active group"
-msgstr "İşlem iptal edildi: geçerli aktif kümeyi sil"
+msgstr "İşlem iptal edildi: geçerli aktif grubu sil"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:152
 msgid "Warning"
@@ -1517,7 +1525,7 @@ msgstr "Sil"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:198
 msgid "Operation aborted: moving currently active group"
-msgstr "İşlem iptal edildi: geçerli aktif kümeyi taşı"
+msgstr "İşlem iptal edildi: geçerli aktif grubu taşı"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:213
 msgid "Move completed"

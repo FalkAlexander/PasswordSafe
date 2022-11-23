@@ -125,37 +125,24 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.current_keyfile_hash = None
             return
 
-        select_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for choosing current used keyfile
-            _("Select Current Keyfile"),
-            self,
-            Gtk.FileChooserAction.OPEN,
-            None,
-            None,
-        )
-        select_dialog.set_modal(True)
+        file_filter = KeyFileFilter().file_filter
 
-        ffilter = KeyFileFilter().file_filter
-        select_dialog.add_filter(ffilter)
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(file_filter)
 
-        select_dialog.connect(
-            "response", self._on_select_filechooser_response, select_dialog
-        )
-        select_dialog.show()
+        dialog = Gtk.FileDialog.new()
+        dialog.props.filters = filters
+        # NOTE: Filechooser title for choosing current used keyfile
+        dialog.props.title = _("Select Current Keyfile")
 
-    def _on_select_filechooser_response(
-        self,
-        select_dialog: Gtk.Dialog,
-        response: Gtk.ResponseType,
-        _dialog: Gtk.Dialog,
-    ) -> None:
-        select_dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
-            keyfile = select_dialog.get_file()
-            if keyfile is None:
-                logging.debug("No file selected")
-                return
+        dialog.open(self, None, self._on_select_filechooser_response)
 
+    def _on_select_filechooser_response(self, dialog, result):
+        try:
+            keyfile = dialog.open_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not open file: %s", err.message)
+        else:
             keyfile.load_bytes_async(None, self.load_bytes_callback)
 
     def load_bytes_callback(self, gfile, result):
@@ -196,36 +183,33 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.new_keyfile_hash = None
             return
 
-        save_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for generating a new keyfile
-            _("Generate Keyfile"),
+        file_filter = KeyFileFilter().file_filter
+
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(file_filter)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.props.filters = filters
+        # NOTE: Filechooser title for generating a new keyfile
+        dialog.props.title = _("Generate Keyfile")
+        dialog.props.accept_label = _("_Generate")
+        dialog.props.initial_name = _("Keyfile")
+
+        dialog.save(
             self,
-            Gtk.FileChooserAction.SAVE,
-            _("_Generate"),
             None,
+            self._on_filechooser_response,
         )
-        save_dialog.set_current_name(_("Keyfile"))
-        save_dialog.set_modal(True)
 
-        ffilter = KeyFileFilter().file_filter
-        save_dialog.add_filter(ffilter)
-
-        save_dialog.connect("response", self._on_filechooser_response, save_dialog)
-        save_dialog.show()
-
-    def _on_filechooser_response(
-        self, save_dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
-    ) -> None:
-        save_dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
+    def _on_filechooser_response(self, dialog, result):
+        try:
+            keyfile = dialog.save_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not save file: %s", err.message)
+        else:
             spinner = Gtk.Spinner()
             spinner.start()
             self.generate_keyfile_button.set_child(spinner)
-
-            keyfile = save_dialog.get_file()
-            if keyfile is None:
-                logging.debug("No file selected")
-                return
 
             def callback(gfile, result):
                 try:

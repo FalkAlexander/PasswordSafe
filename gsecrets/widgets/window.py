@@ -134,54 +134,36 @@ class Window(Adw.ApplicationWindow):
             self._open_database_in_window(path)
             return
 
-        opening_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for opening an existing keepass safe kdbx file
-            _("Select Safe"),
-            self,
-            Gtk.FileChooserAction.OPEN,
-            None,
-            None,
-        )
-
         keepass_filter = Gtk.FileFilter()
         keepass_filter.add_mime_type("application/x-keepass2")
         keepass_filter.add_pattern("*.kdbx")
         # NOTE: KeePass + version number is a proper name, do not translate
         keepass_filter.set_name(_("KeePass 3.1/4 Database"))
-        opening_dialog.add_filter(keepass_filter)
 
         binary_filter = Gtk.FileFilter()
         binary_filter.add_mime_type("application/octet-stream")
         binary_filter.set_name(_("Any file type"))
-        opening_dialog.add_filter(binary_filter)
 
-        opening_dialog.connect(
-            "response",
-            self._on_open_filechooser_response,
-            opening_dialog,
-        )
-        opening_dialog.show()
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(keepass_filter)
+        filters.append(binary_filter)
 
-    def _on_open_filechooser_response(
-        self,
-        dialog: Gtk.Dialog,
-        response: Gtk.ResponseType,
-        _dialog: Gtk.Dialog,
-    ) -> None:
-        dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
-            db_gfile = dialog.get_file()
-            if db_gfile is None:
-                logging.debug("No file selected")
-                return
+        dialog = Gtk.FileDialog.new()
+        dialog.props.title = _("Select Safe")
+        dialog.props.filters = filters
 
+        dialog.open(self, None, self._on_open_filechooser_response)
+
+    def _on_open_filechooser_response(self, dialog, result):
+        try:
+            db_gfile = dialog.open_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not open file: %s", err.message)
+        else:
             db_filename = db_gfile.get_path()
             logging.debug("File selected: %s", db_filename)
 
             self._open_database_in_window(db_filename)
-
-        elif response == Gtk.ResponseType.CANCEL:
-            logging.debug("File selection canceled")
 
     def _open_database_in_window(self, filepath):
         if self.unlocked_db:
@@ -235,38 +217,30 @@ class Window(Adw.ApplicationWindow):
 
     def on_new_database_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         """Callback function to create a new safe."""
-        creation_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for creating a new keepass safe kdbx file
-            _("Create Safe"),
-            self,
-            Gtk.FileChooserAction.SAVE,
-            _("_Create"),
-            None,
-        )
-        creation_dialog.set_current_name(_("Safe") + ".kdbx")
-        creation_dialog.set_modal(True)
-
         filter_text = Gtk.FileFilter()
         # NOTE: KeePass + version number is a proper name, do not translate
         filter_text.set_name(_("KeePass 3.1/4 Database"))
         filter_text.add_mime_type("application/x-keepass2")
-        creation_dialog.add_filter(filter_text)
 
-        creation_dialog.connect(
-            "response", self._on_create_filechooser_response, creation_dialog
-        )
-        creation_dialog.show()
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(filter_text)
 
-    def _on_create_filechooser_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
-    ) -> None:
-        dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
-            gfile = dialog.get_file()
-            if gfile is None:
-                logging.debug("No file selected")
-                return
+        dialog = Gtk.FileDialog.new()
+        # NOTE: Filechooser title for creating a new keepass safe kdbx file
+        dialog.props.title = _("Create Safe")
+        dialog.props.filters = filters
+        dialog.props.accept_label = _("_Create")
+        # NOTE: Safe as in strongbox
+        dialog.props.initial_name = _("Safe") + ".kdbx"
 
+        dialog.save(self, None, self._on_create_filechooser_response)
+
+    def _on_create_filechooser_response(self, dialog, result):
+        try:
+            gfile = dialog.save_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not save file: %s", err.message)
+        else:
             filepath = gfile.get_path()
             if self.unlocked_db:
                 auto_save = gsecrets.config_manager.get_save_automatically()

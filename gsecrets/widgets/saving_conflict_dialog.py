@@ -44,17 +44,15 @@ class SavingConflictDialog(Adw.MessageDialog):
         self.db_manager.save_async(self.save_callback)
 
     def _on_response_backup(self, _message_dialog, _response, file_name):
-        dialog = Gtk.FileChooserNative.new(
-            _("Save Backup"),
+        dialog = Gtk.FileDialog.new()
+        dialog.props.title = _("Save Backup")
+        dialog.props.initial_name = f"{file_name}-backup.kdbx"
+
+        dialog.save(
             self.window,
-            Gtk.FileChooserAction.SAVE,
-            _("_Save"),
             None,
+            self._on_filechooser_response,
         )
-        dialog.set_modal(True)
-        dialog.set_current_name(f"{file_name}-backup.kdbx")
-        dialog.connect("response", self._on_filechooser_response, dialog)
-        dialog.show()
 
     def _on_copy_backup(self, gfile, result):
         try:
@@ -65,13 +63,12 @@ class SavingConflictDialog(Adw.MessageDialog):
         else:
             self.db_manager.save_async(self.save_callback)
 
-    def _on_filechooser_response(self, _dialog, response, dialog):
-        dest = dialog.get_file()
-        dialog.destroy()
-        if dest is None:
-            return
-
-        if response == Gtk.ResponseType.ACCEPT:
+    def _on_filechooser_response(self, dialog, result):
+        try:
+            dest = dialog.save_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not save file: %s", err.message)
+        else:
             gfile = Gio.File.new_for_path(self.db_manager.path)
             gfile.copy_async(
                 dest,

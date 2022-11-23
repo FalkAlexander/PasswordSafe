@@ -32,19 +32,16 @@ class AttachmentEntryRow(Adw.ActionRow):
     @Gtk.Template.Callback()
     def _on_download_button_clicked(self, _button):
         window = self.get_root()
-        save_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for downloading an attachment
-            _("Save Attachment"),
-            window,
-            Gtk.FileChooserAction.SAVE,
-            None,
-            None,
-        )
-        save_dialog.set_current_name(self.attachment.filename)
-        save_dialog.set_modal(True)
+        dialog = Gtk.FileDialog.new()
+        # NOTE: Filechooser title for downloading an attachment
+        dialog.props.title = _("Save Attachment")
+        dialog.props.initial_name = self.attachment.filename
 
-        save_dialog.connect("response", self._on_save_filechooser_response, save_dialog)
-        save_dialog.show()
+        dialog.save(
+            window,
+            None,
+            self._on_save_filechooser_response,
+        )
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _button):
@@ -60,19 +57,12 @@ class AttachmentEntryRow(Adw.ActionRow):
             window = self.get_root()
             window.send_notification(_("Could not store attachment"))
 
-    def _on_save_filechooser_response(
-        self,
-        dialog: Gtk.Dialog,
-        response: Gtk.ResponseType,
-        _dialog: Gtk.Dialog,
-    ) -> None:
-        dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
-            gfile = dialog.get_file()
-            if gfile is None:
-                logging.debug("No file selected")
-                return
-
+    def _on_save_filechooser_response(self, dialog, result):
+        try:
+            gfile = dialog.save_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not save file: %s", err.message)
+        else:
             bytes_buffer = self.entry.get_attachment_content(self.attachment)
             gbytes = GLib.Bytes.new(bytes_buffer)
 

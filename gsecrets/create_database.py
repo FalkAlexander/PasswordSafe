@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from gettext import gettext as _
 
-from gi.repository import GLib, Gtk
+from gi.repository import Gio, GLib, Gtk
 
 from gsecrets.utils import (
     KeyFileFilter,
@@ -169,31 +169,29 @@ class CreateDatabase(Gtk.Box):
     @Gtk.Template.Callback()
     def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
         """cb invoked when we create a new keyfile for a newly created Safe"""
-        keyfile_dlg = Gtk.FileChooserNative.new(
-            _("Generate Keyfile"),
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(KeyFileFilter().file_filter)
+
+        dialog = Gtk.FileDialog.new()
+        dialog.props.filters = filters
+        dialog.props.title = _("Generate Keyfile")
+        dialog.props.accept_label = _("_Generate")
+        dialog.props.initial_name = _("Keyfile")
+
+        dialog.save(
             self.window,
-            Gtk.FileChooserAction.SAVE,
-            _("_Generate"),
             None,
+            self._on_filechooser_response,
         )
-        keyfile_dlg.set_modal(True)
-        keyfile_dlg.set_current_name(_("Keyfile"))
-        keyfile_dlg.add_filter(KeyFileFilter().file_filter)
 
-        keyfile_dlg.connect("response", self._on_filechooser_response, keyfile_dlg)
-        keyfile_dlg.show()
-
-    def _on_filechooser_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
-    ) -> None:
-        dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
+    def _on_filechooser_response(self, dialog, result):
+        try:
+            keyfile = dialog.save_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not save file: %s", err.message)
+        else:
             self.generate_keyfile_button.set_sensitive(False)
             self.generate_keyfile_button.set_label(_("Generating…"))
-            keyfile = dialog.get_file()
-            if keyfile is None:
-                logging.debug("No file selected")
-                return
 
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)

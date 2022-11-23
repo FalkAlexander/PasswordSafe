@@ -349,27 +349,24 @@ class EntryPage(Gtk.Box):
 
     def _on_add_attachment(self, _widget, _action_name, _pspec):
         self.unlocked_database.start_database_lock_timer()
-        select_dialog = Gtk.FileChooserNative.new(
-            # NOTE: Filechooser title for selecting attachment file
-            _("Select Attachment"),
+
+        dialog = Gtk.FileDialog.new()
+        # NOTE: Filechooser title for selecting attachment file
+        dialog.props.title = _("Select Attachments")
+        dialog.props.accept_label = _("_Add")
+
+        dialog.open_multiple(
             self.unlocked_database.window,
-            Gtk.FileChooserAction.OPEN,
-            _("_Add"),
             None,
+            self._on_select_filechooser_response,
         )
-        select_dialog.set_modal(True)
-        select_dialog.set_select_multiple(True)
 
-        select_dialog.connect(
-            "response", self._on_select_filechooser_response, select_dialog
-        )
-        select_dialog.show()
-
-    def _on_select_filechooser_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
-    ) -> None:
-        dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
+    def _on_select_filechooser_response(self, dialog, result):
+        try:
+            files = dialog.open_multiple_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not open files: %s", err.message)
+        else:
             safe_entry: SafeEntry = self.unlocked_database.current_element
 
             def callback(gfile, result):
@@ -383,7 +380,7 @@ class EntryPage(Gtk.Box):
                     new_attachment = safe_entry.add_attachment(data, filename)
                     self.add_attachment_row(new_attachment)
 
-            for attachment in dialog.get_files():
+            for attachment in files:
                 attachment.load_bytes_async(None, callback)
 
     def add_attachment_row(self, attachment):

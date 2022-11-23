@@ -73,23 +73,21 @@ class UnlockDatabase(Gtk.Box):
     @Gtk.Template.Callback()
     def _on_keyfile_button_clicked(self, _widget):
         """cb invoked when we unlock a database via keyfile"""
-        dialog = Gtk.FileChooserNative.new(
-            _("Select Keyfile"), self.window, Gtk.FileChooserAction.OPEN, None, None
-        )
-        dialog.add_filter(KeyFileFilter().file_filter)
-        dialog.connect("response", self.on_dialog_response, dialog)
-        dialog.show()
+        filters = Gio.ListStore.new(Gtk.FileFilter)
+        filters.append(KeyFileFilter().file_filter)
 
-    def on_dialog_response(
-        self, dialog: Gtk.Dialog, response: Gtk.ResponseType, _dialog: Gtk.Dialog
-    ) -> None:
-        dialog.destroy()
-        if response == Gtk.ResponseType.ACCEPT:
-            keyfile = dialog.get_file()
-            if keyfile is None:
-                logging.debug("No file selected")
-                return
+        dialog = Gtk.FileDialog.new()
+        dialog.props.filters = filters
+        dialog.props.title = _("Select Keyfile")
 
+        dialog.open(self.window, None, self.on_dialog_response)
+
+    def on_dialog_response(self, dialog, result):
+        try:
+            keyfile = dialog.open_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not open file: %s", err.message)
+        else:
             self.set_keyfile(keyfile)
 
     def set_keyfile(self, keyfile: Gio.File) -> None:

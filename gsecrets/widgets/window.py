@@ -228,6 +228,7 @@ class Window(Adw.ApplicationWindow):
         unlock_db = UnlockDatabase(self, database)
         self._unlock_database_bin.props.child = unlock_db
         self.view = self.View.UNLOCK_DATABASE
+        unlock_db.grab_entry_focus()
 
     #
     # Create Database Methods

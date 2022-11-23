@@ -67,9 +67,7 @@ class UnlockDatabase(Gtk.Box):
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
 
-    def do_realize(self):  # pylint: disable=arguments-differ
-        Gtk.Widget.do_realize(self)
-
+    def grab_entry_focus(self):
         self.password_entry.grab_focus()
 
     @Gtk.Template.Callback()

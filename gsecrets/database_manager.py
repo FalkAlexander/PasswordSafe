@@ -76,7 +76,7 @@ class DatabaseManager(GObject.Object):
         keyfile_hash: str = "",
         callback: Gio.AsyncReadyCallback = None,
     ) -> None:
-        """Unlocks an opens a safe.
+        """Unlocks and opens a safe.
 
         This pykeepass to open a safe database. If the database cannot
         be opened, an exception is raised.

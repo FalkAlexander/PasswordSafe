@@ -51,6 +51,9 @@ class DatabaseManager(GObject.Object):
     locked = GObject.Property(type=bool, default=False)
     is_dirty = GObject.Property(type=bool, default=False)
 
+    # To be emitted when the elements list model needs to be re sorted.
+    sorting_changed = GObject.Signal(arg_types=(bool,))
+
     def __init__(self, database_path: str) -> None:
         """Initialize the database handling logic.
 

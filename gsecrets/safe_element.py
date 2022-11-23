@@ -175,8 +175,10 @@ class SafeElement(GObject.Object):
             self._name = new_name
             if self.is_group:
                 self._element.name = new_name
+                self._db_manager.emit("sorting_changed", False)
             else:
                 self._element.title = new_name
+                self._db_manager.emit("sorting_changed", True)
 
             self.updated()
 

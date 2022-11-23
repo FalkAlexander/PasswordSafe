@@ -27,10 +27,11 @@ class UnlockedDatabasePage(Adw.Bin):
         super().__init__()
 
         sorting = config.get_sort_order()
-        sorter = SortingHat.get_sorter(sorting)
+        self.entry_sorter = SortingHat.get_sorter(sorting)
+        self.group_sorter = SortingHat.get_sorter(sorting)
 
-        self.entries = Gtk.SortListModel.new(group.entries, sorter)
-        self.groups = Gtk.SortListModel.new(group.subgroups, sorter)
+        self.entries = Gtk.SortListModel.new(group.entries, self.entry_sorter)
+        self.groups = Gtk.SortListModel.new(group.subgroups, self.group_sorter)
 
         self.unlocked_database = unlocked_database
         self.group = group
@@ -56,6 +57,10 @@ class UnlockedDatabasePage(Adw.Bin):
         if not self.list_model.get_item(0):
             self.stack.set_visible_child(self.empty_group_box)
 
+        unlocked_database.database_manager.connect(
+            "sorting_changed", self._on_sorting_changed
+        )
+
     def do_map(self):  # pylint: disable=arguments-differ
         # FIXME This is a hacky way of having the focus on
         # the listbox.
@@ -64,16 +69,23 @@ class UnlockedDatabasePage(Adw.Bin):
         if child:
             child.grab_focus()
 
+    def _on_sorting_changed(self, _db_manager, is_entry):
+        if is_entry:
+            self.entry_sorter.changed(Gtk.SorterChange.DIFFERENT)
+        else:
+            self.group_sorter.changed(Gtk.SorterChange.DIFFERENT)
+
     def on_sort_order_changed(self, settings, _key):
         """Callback to be executed when the sorting has been changed."""
         sorting = settings.get_enum("sort-order")
         logging.debug("Sort order changed to %s", sorting)
 
         sorting = config.get_sort_order()
-        sorter = SortingHat.get_sorter(sorting)
+        self.entry_sorter = SortingHat.get_sorter(sorting)
+        self.group_sorter = SortingHat.get_sorter(sorting)
 
-        self.entries.set_sorter(sorter)
-        self.groups.set_sorter(sorter)
+        self.entries.set_sorter(self.entry_sorter)
+        self.groups.set_sorter(self.group_sorter)
 
     def on_listbox_items_changed(
         self,

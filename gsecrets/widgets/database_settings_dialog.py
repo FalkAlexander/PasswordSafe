@@ -166,6 +166,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.keyfile_error_revealer.reveal(True)
             self.select_keyfile_button.set_icon_name("document-open-symbolic")
         else:
+            self.keyfile_error_revealer.reveal(False)
             keyfile_hash = GLib.compute_checksum_for_bytes(
                 GLib.ChecksumType.SHA1, gbytes
             )
@@ -237,6 +238,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                     self.generate_keyfile_button.set_icon_name("object-select-symbolic")
                     self.new_keyfile_hash = keyfile_hash
                     self.new_keyfile_path = gfile.get_path()
+                    self.keyfile_error_revealer.reveal(False)
 
             generate_keyfile_async(keyfile, callback)
 

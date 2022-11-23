@@ -55,7 +55,9 @@ class Search(Adw.Bin):
         self._results_entries = Gtk.SortListModel.new(
             self.results_entries_filter, sorter
         )
-        self._results_groups = Gtk.SortListModel.new(self.results_groups_filter, sorter)
+        self._results_groups = Gtk.SortListModel.new(
+            self.results_groups_filter, sorter
+        )
 
         flatten = Gio.ListStore.new(Gtk.SortListModel)
         flatten.splice(0, 0, [self._results_groups, self._results_entries])

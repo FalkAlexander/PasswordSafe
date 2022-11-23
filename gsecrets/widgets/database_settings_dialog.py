@@ -190,7 +190,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
         # We reset the button if we previously failed.
         if button.props.icon_name == "object-select-symbolic":
-            button.props.icon_name = "security-high-symbolic"
+            button.props.icon_name = "dice3-symbolic"
             self.new_keyfile_path = None
             self.new_keyfile_hash = None
             return
@@ -230,7 +230,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                 try:
                     _res, keyfile_hash = generate_keyfile_finish(result)
                 except GLib.Error as err:
-                    self.generate_keyfile_button.set_icon_name("security-high-symbolic")
+                    self.generate_keyfile_button.set_icon_name("dice3-symbolic")
                     logging.debug("Could not create keyfile: %s", err.message)
                     self.keyfile_error_revealer.reveal(True)
                 else:
@@ -260,7 +260,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.confirm_password_entry.set_text("")
 
             self.select_keyfile_button.set_icon_name("document-open-symbolic")
-            self.generate_keyfile_button.set_icon_name("security-high-symbolic")
+            self.generate_keyfile_button.set_icon_name("dice3-symbolic")
 
             self.current_keyfile_hash = None
             self.current_keyfile_path = None

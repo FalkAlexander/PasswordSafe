@@ -119,8 +119,6 @@ class Window(Adw.ApplicationWindow):
         # Display the screen with last opened files (or welcome page)
         if not gsecrets.config_manager.get_last_opened_list():
             logging.debug("No recent files saved")
-            self.view = self.View.WELCOME
-            return
 
         self.view = self.View.WELCOME
 

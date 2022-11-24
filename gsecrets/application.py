@@ -6,6 +6,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
+import gsecrets.config_manager as config
 from gsecrets import const
 from gsecrets.widgets.mod import load_widgets
 from gsecrets.widgets.window import Window
@@ -44,6 +45,8 @@ class Application(Adw.Application):
 
         self.setup_actions()
         self.add_global_accelerators()
+
+        migrate_last_opened_list()
 
         load_widgets()
 
@@ -150,3 +153,16 @@ class Application(Adw.Application):
         self.set_accels_for_action("win.db.add_group", ["<Control>g"])
         self.set_accels_for_action("win.go_back", ["Escape"])
         self.set_accels_for_action("window.close", ["<Control>w"])
+
+
+# TODO Remove for 8.0. Also remove the gschema and fns in config.
+def migrate_last_opened_list():
+    if config_list := config.get_last_opened_list():
+        logging.debug("Migrating recent files")
+        recents = Gtk.RecentManager.get_default()
+        for uri in config_list:
+            gfile = Gio.File.new_for_uri(uri)
+            if gfile.query_exists():
+                recents.add_item(uri)
+
+        config.set_last_opened_list([])

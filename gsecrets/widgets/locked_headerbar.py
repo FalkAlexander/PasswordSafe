@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Adw, Gio, Gtk
+from gi.repository import Adw, Gtk
 
-from gsecrets import const
 from gsecrets.recent_files_menu import RecentFilesMenu
 
 
@@ -12,15 +11,13 @@ class LockedHeaderBar(Adw.Bin):
     title = Gtk.Template.Child()
     split_button = Gtk.Template.Child()
 
-    settings = Gio.Settings.new(const.APP_ID)
+    recents = Gtk.RecentManager.get_default()
 
     def __init__(self):
         super().__init__()
 
         self.set_menu()
-        self.settings.connect(
-            "changed::last-opened-list", self.on_settings_changed
-        )
+        self.recents.connect("changed", self.on_settings_changed)
 
     def set_menu(self):
         menu = RecentFilesMenu()
@@ -29,5 +26,5 @@ class LockedHeaderBar(Adw.Bin):
         else:
             self.split_button.set_menu_model(menu.menu)
 
-    def on_settings_changed(self, _settings, _key):
+    def on_settings_changed(self, _recents):
         self.set_menu()

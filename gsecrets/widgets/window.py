@@ -103,19 +103,14 @@ class Window(Adw.ApplicationWindow):
         """
         if gsecrets.config_manager.get_first_start_screen():
             # simply load the last opened file
-            filepath = None
-            gfile: Gio.File = Gio.File.new_for_uri(
-                gsecrets.config_manager.get_last_opened_database()
-            )
-            if gfile.query_exists():
+            uri = gsecrets.config_manager.get_last_opened_database()
+            gfile: Gio.File = Gio.File.new_for_uri(uri)
+            recents = Gtk.RecentManager.get_default()
+            if gfile.query_exists() and recents.has_item(uri):
                 filepath = gfile.get_path()
                 logging.debug("Opening last opened database: %s", filepath)
                 self.start_database_opening_routine(filepath)
                 return
-
-        # Display the screen with last opened files (or welcome page)
-        if not gsecrets.config_manager.get_last_opened_list():
-            logging.debug("No recent files saved")
 
         self.view = self.View.WELCOME
 

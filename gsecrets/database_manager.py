@@ -6,7 +6,7 @@ import json
 import logging
 from pathlib import Path
 
-from gi.repository import Gio, GLib, GObject
+from gi.repository import Gio, GLib, GObject, Gtk
 from pykeepass import PyKeePass
 
 import gsecrets.config_manager as config
@@ -228,16 +228,10 @@ class DatabaseManager(GObject.Object):
         return is_saved
 
     def add_to_history(self) -> None:
-        # Add database uri to history.
         uri = Gio.File.new_for_path(self._path).get_uri()
-        uri_list = config.get_last_opened_list()
 
-        if uri in uri_list:
-            uri_list.sort(key=uri.__eq__)
-        else:
-            uri_list.append(uri)
-
-        config.set_last_opened_list(uri_list)
+        recents = Gtk.RecentManager.get_default()
+        recents.add_item(uri)
 
         # Set last opened database.
         config.set_last_opened_database(uri)

@@ -2,12 +2,11 @@
 from __future__ import annotations
 
 import logging
-import os
 from gettext import gettext as _
 
-from gi.repository import Gio
+from gi.repository import Gio, GLib, Gtk
 
-import gsecrets.config_manager as config
+from gsecrets.recent_manager import RecentManager
 
 
 class RecentFilesMenu:
@@ -21,17 +20,24 @@ class RecentFilesMenu:
         self.section = Gio.Menu.new()
         self.is_empty = True
 
-        for path_uri in reversed(config.get_last_opened_list()):
-            gfile: Gio.File = Gio.File.new_for_uri(path_uri)
-            # TODO Remove the file from config if it does not exist.
-            if not gfile.query_exists():
-                logging.info("Ignoring nonexistent recent file: %s", gfile.get_path())
-                continue  # only work with existing files
+        recents = RecentManager.get_default()
+        to_remove = []
 
-            basename = os.path.splitext(gfile.get_basename())[0]
-            path = gfile.get_path()
+        for item in reversed(recents.get_items()):
+            if not item.exists():
+                path = item.path
+                logging.info("Ignoring nonexistent recent file: %s", path)
+                to_remove.append(path)
+                continue
+
+            basename = item.basename()
+            path = item.path
             self.section.append(basename, f"win.open_database::{path}")
             self.is_empty = False
+
+        # We remove items after we are done iterating to avoid undefined
+        # behaviour.
+        recents.remove_items(to_remove)
 
         self.menu.append_section(_("Recent Files"), self.section)
         self.menu.freeze()

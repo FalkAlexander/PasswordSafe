@@ -10,6 +10,7 @@ from gi.repository import Adw, Gio, GLib, GObject, Gtk
 import gsecrets.config_manager
 from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
+from gsecrets.recent_manager import RecentManager
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
 from gsecrets.unlock_database import UnlockDatabase
@@ -107,19 +108,32 @@ class Window(Adw.ApplicationWindow):
         """
         if gsecrets.config_manager.get_first_start_screen():
             # simply load the last opened file
-            filepath = None
-            gfile: Gio.File = Gio.File.new_for_uri(
-                gsecrets.config_manager.get_last_opened_database()
-            )
+            recents = RecentManager.get_default()
+            if recents.is_initialized:
+                self.invoke_initial_screen_inner()
+            else:
+                def initialized_cb(_recents):
+                    self.invoke_initial_screen_inner()
+
+                recents.initialized.connect(initialized_cb)
+
+        # Display the screen with last opened files (or welcome page)
+        recents = RecentManager.get_default()
+        if recents.is_empty():
+            logging.debug("No recent files saved")
+
+        self.view = self.View.WELCOME
+
+    def invoke_initial_screen_inner(self) -> None:
+        recents = RecentManager.get_default()
+        if item := recents.get_last_opened():
+            uri = item.uri()
+            gfile: Gio.File = Gio.File.new_for_uri(uri)
             if gfile.query_exists():
-                filepath = gfile.get_path()
+                filepath = item.path
                 logging.debug("Opening last opened database: %s", filepath)
                 self.start_database_opening_routine(filepath)
                 return
-
-        # Display the screen with last opened files (or welcome page)
-        if not gsecrets.config_manager.get_last_opened_list():
-            logging.debug("No recent files saved")
 
         self.view = self.View.WELCOME
 

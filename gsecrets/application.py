@@ -6,8 +6,10 @@ from gettext import gettext as _
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
+import gsecrets.config_manager as config
 from gsecrets import const
 from gsecrets.widgets.mod import load_widgets
+from gsecrets.recent_manager import RecentManager
 from gsecrets.widgets.window import Window
 
 
@@ -16,6 +18,7 @@ class Application(Adw.Application):
     development_mode = const.IS_DEVEL
     application_id = const.APP_ID
     settings = Gio.Settings.new(application_id)
+    recent_manager = None
 
     def __init__(self, executor, *args, **_kwargs):
         super().__init__(
@@ -45,6 +48,8 @@ class Application(Adw.Application):
 
         self.setup_actions()
         self.add_global_accelerators()
+
+        self.recent_manager = RecentManager()
 
         load_widgets()
 

@@ -4,10 +4,11 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 
-from gi.repository import Gio, GLib, GObject
+from gi.repository import Gio, GLib, GObject, Gtk
 from pykeepass import PyKeePass
 
 import gsecrets.config_manager as config
+from gsecrets.recent_manager import RecentManager
 from gsecrets.safe_element import SafeEntry, SafeGroup
 
 QUARK = GLib.quark_from_string("secrets")
@@ -224,34 +225,12 @@ class DatabaseManager(GObject.Object):
             return is_saved
 
     def add_to_history(self) -> None:
-        # Add database uri to history.
-        uri = Gio.File.new_for_path(self._path).get_uri()
-        uri_list = config.get_last_opened_list()
-
-        if uri in uri_list:
-            uri_list.sort(key=uri.__eq__)
-        else:
-            uri_list.append(uri)
-
-        config.set_last_opened_list(uri_list)
-
-        # Set last opened database.
-        config.set_last_opened_database(uri)
-
-        # Add keyfile path to history.
+        recents = RecentManager.get_default()
+        keyfile = self.keyfile
         if not config.get_remember_composite_key():
-            return
+            keyfile = None
 
-        def filter_func(pair):
-            return pair[0] != uri
-
-        keyfile_pairs = config.get_last_used_composite_key()
-        new_pairs = list(filter(filter_func, keyfile_pairs))
-
-        if self.keyfile:
-            new_pairs.append([uri, self.keyfile])
-
-        config.set_last_used_composite_key(new_pairs)
+        recents.add_item(self._path, keyfile)
 
     def _update_file_monitor(self):
         """Updates the modified time and size of the database file, this is a

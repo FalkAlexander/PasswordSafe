@@ -52,8 +52,7 @@ class UnlockDatabase(Gtk.Box):
         # Reset headerbar to initial state if it already exists.
         self.headerbar.title.props.title = database_file.get_basename()
 
-        database = self.window.unlocked_db
-        if database:
+        if database := self.window.unlocked_db:
             is_current = database.database_manager.path == filepath
             if is_current:
                 self.database_manager = database.database_manager
@@ -131,10 +130,9 @@ class UnlockDatabase(Gtk.Box):
            current window."""
         is_current = False
         db_path = self.database_manager.path  # type: ignore
-        database = self.window.unlocked_db
         is_open = self.window.application.is_safe_open(db_path)
 
-        if database:
+        if database := self.window.unlocked_db:
             is_current = database.database_manager.path == db_path
 
         return is_open and not is_current

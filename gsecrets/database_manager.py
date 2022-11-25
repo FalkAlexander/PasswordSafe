@@ -46,7 +46,7 @@ class DatabaseManager(GObject.Object):
     old_keyfile: str = ""
     old_keyfile_hash: str = ""
 
-    trash_bin = None
+    trash_bin: SafeGroup | None = None
 
     locked = GObject.Property(type=bool, default=False)
     is_dirty = GObject.Property(type=bool, default=False)

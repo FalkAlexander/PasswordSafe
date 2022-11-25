@@ -104,7 +104,7 @@ class UnlockedDatabase(Gtk.Box):
         self.search.initialize()
 
         # Browser Mode
-        self.show_browser_page(self.current_element)
+        self.show_browser_page(self.current_element)  # type: ignore
 
         self.setup()
 

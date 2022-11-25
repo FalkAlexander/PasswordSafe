@@ -26,7 +26,7 @@ class UnlockDatabase(Gtk.Box):
     keyfile_path = None
     _keyfile_hash = None
 
-    database_manager: DatabaseManager = None
+    database_manager: DatabaseManager | None = None
 
     clear_button = Gtk.Template.Child()
     keyfile_button = Gtk.Template.Child()
@@ -132,7 +132,7 @@ class UnlockDatabase(Gtk.Box):
         """Returns True if the safe is already open but not in the
            current window."""
         is_current = False
-        db_path = self.database_manager.path
+        db_path = self.database_manager.path  # type: ignore
         database = self.window.unlocked_db
         is_open = self.window.application.is_safe_open(db_path)
 

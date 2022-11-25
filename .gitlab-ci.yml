@@ -48,7 +48,7 @@ mypy:
   script:
     - dnf install -y pip
     - pip install mypy pyotp
-    - mypy --ignore-missing-imports --disallow-incomplete-defs gsecrets
+    - mypy --ignore-missing-imports --disallow-incomplete-defs --explicit-package-bases gsecrets
 
 pylint:
   stage: check

@@ -31,12 +31,12 @@ class CredentialsGroup(Adw.PreferencesGroup):
         return self._username_entry_row.props.text
 
     @property
-    def unlocked_database(self) -> UnlockedDatabase:
+    def unlocked_database(self) -> UnlockedDatabase | None:
         return self._unlocked_database
 
     @unlocked_database.setter  # type: ignore
     def unlocked_database(self, unlocked_database: UnlockedDatabase) -> None:
-        self._safe_entry: SafeEntry = unlocked_database.current_element
+        self._safe_entry: SafeEntry = unlocked_database.current_element  # type: ignore
         self._db_manager: DatabaseManager = unlocked_database.database_manager
         self._unlocked_database = unlocked_database
 

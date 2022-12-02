@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-07-24 12:07+0200\n"
-"Last-Translator: maite guix <maite.guix@me.com>\n"
+"POT-Creation-Date: 2022-11-23 20:23+0000\n"
+"PO-Revision-Date: 2022-12-11 12:07+0200\n"
+"Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/"
 "ca)\n"
 "Language: ca_ES\n"
@@ -542,7 +542,7 @@ msgstr "Copia el nom d'usuari"
 #: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
-msgstr "_Copia la contrasenya d'un sol ús"
+msgstr "Copia la contrasenya d'un sol ús"
 
 #: data/gtk/help-overlay.ui:120
 msgctxt "Shortcut window description"
@@ -898,7 +898,7 @@ msgstr "Neteja"
 msgid "Unlock Safe"
 msgstr "Desbloqueja la caixa forta"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "_Selecciona el fitxer de clau"
 
@@ -1182,7 +1182,7 @@ msgstr ""
 "S'integra perfectament amb l'escriptori GNOME i proporciona una interfície "
 "fàcil i simple per a la gestió de bases de dades de contrasenyes."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1260,29 +1260,37 @@ msgstr "No heu especificat cap títol"
 msgid "Username not specified"
 msgstr "No s'ha especificat cap nom d'usuari"
 
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Inclou les minúscules"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Minúscules"
+msgid "Exclude Lowercase"
+msgstr "Exclou les minúscules"
 
 #: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Majúscules"
+msgid "Include Uppercase"
+msgstr "Inclou les majúscules"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Números"
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "Exclou les majúscules"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Símbols"
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Exclou els números"
 
-#: gsecrets/password_generator_popover.py:119
-msgid "Exclude"
-msgstr "Exclou"
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "Exclou els números"
 
-#: gsecrets/password_generator_popover.py:121
-msgid "Include"
-msgstr "Inclou"
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Inclou els símbols"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "Exclou els símbols"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1312,7 +1320,7 @@ msgstr "Caixa forta {} ja oberta"
 msgid "Failed to unlock Safe"
 msgstr "No s'ha pogut desbloquejar la caixa forta"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Torna-ho a provar"
 
@@ -1565,27 +1573,3 @@ msgstr "No s'ha pogut crear una caixa forta nova"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "No s'ha pogut desar la caixa forta"
-
-#~ msgid "_New"
-#~ msgstr "_Nova"
-
-#~ msgid "C_onfirm"
-#~ msgstr "C_onfirma"
-
-#~ msgid "_Current"
-#~ msgstr "A_ctual"
-
-#~ msgid "Learn more about Secrets"
-#~ msgstr "Més informació sobre el Secrets"
-
-#~ msgid "New Safe"
-#~ msgstr "Caixa forta nova"
-
-#~ msgid "Open Safe"
-#~ msgstr "Obre una caixa forta"
-
-#~ msgid "The kdb Format is not Supported"
-#~ msgstr "El format kbd no és compatible"
-
-#~ msgid "Please Wait. Another Save is Running."
-#~ msgstr "S'està executant una altra operació de desat."

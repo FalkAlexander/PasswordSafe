@@ -262,38 +262,53 @@ class SafeElement(GObject.Object):
     @property
     def atime(self) -> GLib.DateTime | None:
         """The UTC accessed time of the element."""
-        time = self._element.atime
-        if not time:
+        try:
+            time = self._element.atime
+        except OverflowError:
+            logging.error("Accessed time for %s is invalid", self.name)
             return None
+        else:
+            if not time:
+                return None
 
-        gtime = GLib.DateTime.new_utc(
-            time.year, time.month, time.day, time.hour, time.minute, time.second
-        )
-        return gtime
+            gtime = GLib.DateTime.new_utc(
+                time.year, time.month, time.day, time.hour, time.minute, time.second
+            )
+            return gtime
 
     @property
     def ctime(self) -> GLib.DateTime | None:
         """The UTC creation time of the element."""
-        time = self._element.ctime
-        if not time:
+        try:
+            time = self._element.ctime
+        except OverflowError:
+            logging.error("Creation time for %s is invalid", self.name)
             return None
+        else:
+            if not time:
+                return None
 
-        gtime = GLib.DateTime.new_utc(
-            time.year, time.month, time.day, time.hour, time.minute, time.second
-        )
-        return gtime
+            gtime = GLib.DateTime.new_utc(
+                time.year, time.month, time.day, time.hour, time.minute, time.second
+            )
+            return gtime
 
     @property
     def mtime(self) -> GLib.DateTime | None:
         """The UTC modified time of the element."""
-        time = self._element.mtime
-        if not time:
+        try:
+            time = self._element.mtime
+        except OverflowError:
+            logging.error("Modified time for %s is invalid", self.name)
             return None
+        else:
+            if not time:
+                return None
 
-        gtime = GLib.DateTime.new_utc(
-            time.year, time.month, time.day, time.hour, time.minute, time.second
-        )
-        return gtime
+            gtime = GLib.DateTime.new_utc(
+                time.year, time.month, time.day, time.hour, time.minute, time.second
+            )
+            return gtime
 
 
 class SafeGroup(SafeElement):

@@ -745,7 +745,7 @@ class SafeEntry(SafeElement):
                 return self._otp.now()
             except binascii.Error:
                 logging.debug(
-                    "Error cought in OTP token generation (likely invalid "
+                    "Error caught in OTP token generation (likely invalid "
                     "base32 secret)."
                 )
 

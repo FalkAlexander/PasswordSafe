@@ -111,6 +111,7 @@ class Search(Adw.Bin):
             self._search_entry.props.text = ""
             self.results_entries_filter.set_filter(None)
             self.results_groups_filter.set_filter(None)
+            self.stack.set_visible_child(self._info_search_page)
 
     def _prepare_search_page(self):
         self.search_list_box.bind_model(

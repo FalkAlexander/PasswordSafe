@@ -125,11 +125,11 @@ class Search(Adw.Bin):
         """Update the overlays and start a search
         if the search term is not empty.
         """
-        if self._search_text:
-            search_thread = threading.Thread(target=self._perform_search)
-            search_thread.start()
-        else:
-            self.stack.set_visible_child(self._info_search_page)
+        search_thread = threading.Thread(target=self._perform_search)
+        search_thread.start()
+
+    def _end_search(self):
+        self.unlocked_database.props.search_active = False
 
     def _perform_search(self):
         """Search for results in the database."""
@@ -188,8 +188,11 @@ class Search(Adw.Bin):
 
     def _on_search_changed(self, search_entry):
         self.unlocked_database.start_database_lock_timer()
-        self._search_text = search_entry.props.text
-        self._start_search()
+        if search_text := search_entry.props.text:
+            self._search_text = search_text
+            self._start_search()
+        else:
+            self._end_search()
 
     def on_headerbar_search_entry_enter_pressed(self, _widget):
         self.unlocked_database.start_database_lock_timer()

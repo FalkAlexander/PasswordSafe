@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
+# pylint: disable=too-many-lines
 from __future__ import annotations
 
 import binascii
@@ -80,54 +81,77 @@ class SafeElement(GObject.Object):
         """Delete an Element from the database."""
         element = self._element
         parentgroup = self.parentgroup
+
+        self.delete_inner()
+
         if self.is_entry:
             self._db_manager.db.delete_entry(element)
+        else:
+            self._db_manager.db.delete_group(element)
+
+        parentgroup.updated()
+
+    def delete_inner(self) -> None:
+        """Recursively removes items from our wrapper of the database."""
+        if self.is_entry:
             found, pos = self._db_manager.entries.find(self)
             if found:
                 self._db_manager.entries.remove(pos)
         else:
-            self._db_manager.db.delete_group(element)
+            while entry := self.entries.get_item(0):  # pylint: disable=no-member
+                entry.delete_inner()
+
+            while group := self.subgroups.get_item(0):  # pylint: disable=no-member
+                group.delete_inner()
+
             found, pos = self._db_manager.groups.find(self)
             if found:
                 self._db_manager.groups.remove(pos)
 
-        parentgroup.updated()
-
     def trash(self) -> bool:
-        """Delete an Element from the database.
+        """Thrash an Element from the database.
 
-        Returns if the element was deleted.
+        Returns if the element was deleted instead of being sent to the trash
+        bin.
         """
         element = self._element
         parentgroup = self.parentgroup
-        if parentgroup.is_trash_bin:
-            self.delete()
-            return True
+
+        if trash_bin := self._db_manager.trash_bin:
+            if (
+                self._db_manager.parent_checker(self, trash_bin)
+                and not self.is_trash_bin
+            ):
+                self.delete()
+                return True
 
         if self.is_trash_bin:
             self.delete()
             self._db_manager.trash_bin = None
             return True
 
-        trash_bin_missing = SafeGroup.get_trash_bin(self._db_manager) is None
+        trash_bin_missing = self._db_manager.trash_bin is None
 
         if self.is_entry:
             self._db_manager.db.trash_entry(element)
-            found, pos = self._db_manager.entries.find(self)
-            if found:
-                self._db_manager.entries.items_changed(pos, 1, 1)
+            parentgroup.filter_changed(True)
         else:
             self._db_manager.db.trash_group(element)
-            found, pos = self._db_manager.groups.find(self)
-            if found:
-                self._db_manager.groups.items_changed(pos, 1, 1)
+            parentgroup.filter_changed(False)
 
         # We add the trash bin if it was not present already
         if trash_bin_missing:
-            trash_bin = SafeGroup.get_trash_bin(self._db_manager)
-            self._db_manager.groups.append(trash_bin)
+            if trash_bin_inner := self._db_manager.db.recyclebin_group:
+                trash_bin = SafeGroup(self._db_manager, trash_bin_inner)
+                self._db_manager.trash_bin = trash_bin
+                self._db_manager.groups.append(trash_bin)
+                trash_bin.parentgroup.update()
+
+        if trash_bin := self._db_manager.trash_bin:
+            trash_bin.filter_changed(self.is_entry)
 
         parentgroup.updated()
+
         return False
 
     def move_to(self, dest: SafeGroup) -> None:
@@ -140,14 +164,12 @@ class SafeElement(GObject.Object):
         # propagated to the filter models used by each group.
         if self.is_entry:
             self._db_manager.db.move_entry(self._element, dest.group)
-            found, pos = self._db_manager.entries.find(self)
-            if found:
-                self._db_manager.entries.items_changed(pos, 1, 1)
+            dest.filter_changed(True)
+            old_location.filter_changed(True)
         else:
             self._db_manager.db.move_group(self._element, dest.group)
-            found, pos = self._db_manager.groups.find(self)
-            if found:
-                self._db_manager.groups.items_changed(pos, 1, 1)
+            dest.filter_changed(False)
+            old_location.filter_changed(False)
 
         old_location.updated()
         dest.updated()
@@ -243,7 +265,7 @@ class SafeElement(GObject.Object):
 
     @property
     def is_trash_bin(self) -> bool:
-        if (trash_bin_inner := self._db_manager.db.recyclebin_group):
+        if trash_bin_inner := self._db_manager.db.recyclebin_group:
             return self.uuid == trash_bin_inner.uuid
 
         return False
@@ -316,7 +338,9 @@ class SafeElement(GObject.Object):
 class SafeGroup(SafeElement):
 
     _entries = None
+    _entries_filter = None
     _subgroups = None
+    _subgroups_filter = None
 
     def __init__(self, db_manager: DatabaseManager, group: Group) -> None:
         """GObject to handle a safe group.
@@ -332,24 +356,15 @@ class SafeGroup(SafeElement):
     def get_root(db_manager: DatabaseManager) -> SafeGroup:
         """Method to obtain the root group."""
         # pylint: disable=no-member
+        if root := db_manager.root:
+            return root
+
         for group in db_manager.groups:
             if group.is_root_group:
                 return group
 
         logging.error("This should be unreachable: get_root")
         return SafeGroup(db_manager, db_manager.db.root_group)
-
-    @staticmethod
-    def get_trash_bin(db_manager: DatabaseManager) -> SafeGroup | None:
-        if (trash_bin := db_manager.trash_bin):
-            return trash_bin
-
-        if (trash_bin_inner := db_manager.db.recyclebin_group):
-            trash_bin = SafeGroup(db_manager, trash_bin_inner)
-            db_manager.trash_bin = trash_bin
-            return trash_bin
-
-        return None
 
     def new_entry(
         self, title: str = "", username: str = "", password: str = ""
@@ -389,21 +404,50 @@ class SafeGroup(SafeElement):
 
         return safe_group
 
+    def filter_changed(self, is_entry: bool) -> None:
+        if is_entry:
+            if self._entries_filter is None:
+                self.init_entries()
+
+            self._entries_filter.changed(Gtk.FilterChange.DIFFERENT)  # type: ignore
+        else:
+            if self._subgroups_filter is None:
+                self.init_subgroups()
+
+            self._subgroups_filter.changed(Gtk.FilterChange.DIFFERENT)  # type: ignore
+
+    def init_subgroups(self):
+        self._subgroups_filter = Gtk.CustomFilter.new(self._group_filter_func)
+        self._subgroups = Gtk.FilterListModel.new(
+            self._db_manager.groups, self._subgroups_filter
+        )
+
+        # We need to find the trash bin.
+        if self.is_root_group:
+            self._db_manager.root = self
+
+            if not self._db_manager.trash_bin:
+                for group in self._db_manager.groups:
+                    if group.is_trash_bin:
+                        self._db_manager.trash_bin = group
+
+    def init_entries(self):
+        self._entries_filter = Gtk.CustomFilter.new(self._group_filter_func)
+        self._entries = Gtk.FilterListModel.new(
+            self._db_manager.entries, self._entries_filter
+        )
+
     @property
     def subgroups(self) -> Gio.ListModel:
         if self._subgroups is None:
-            filter_ = Gtk.CustomFilter.new(self._group_filter_func)
-            model = Gtk.FilterListModel.new(self._db_manager.groups, filter_)
-            self._subgroups = model
+            self.init_subgroups()
 
         return self._subgroups
 
     @property
     def entries(self) -> Gio.ListModel:
         if self._entries is None:
-            filter_ = Gtk.CustomFilter.new(self._group_filter_func)
-            model = Gtk.FilterListModel.new(self._db_manager.entries, filter_)
-            self._entries = model
+            self.init_entries()
 
         return self._entries
 
@@ -468,7 +512,7 @@ class SafeEntry(SafeElement):
         self._url: str = entry.url or ""
         self._username: str = entry.username or ""
 
-        if (otp_uri := entry.otp):
+        if otp_uri := entry.otp:
             try:
                 self._otp = parse_uri(otp_uri)
             except ValueError as err:
@@ -486,8 +530,7 @@ class SafeEntry(SafeElement):
         return self._entry
 
     def duplicate(self):
-        """Duplicate an entry
-        """
+        """Duplicate an entry"""
         title: str = self.name or ""
         username: str = self.username or ""
         password: str = self.password or ""
@@ -838,8 +881,10 @@ class SafeEntry(SafeElement):
             self.updated()
 
     @GObject.Property(
-        type=bool, default=False, flags=GObject.ParamFlags.READABLE
-        | GObject.ParamFlags.EXPLICIT_NOTIFY)
+        type=bool,
+        default=False,
+        flags=GObject.ParamFlags.READABLE | GObject.ParamFlags.EXPLICIT_NOTIFY,
+    )
     def expired(self):
         return self.entry.expired
 

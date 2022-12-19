@@ -14,7 +14,7 @@ class AttributeEntryRow(Adw.EntryRow):
     __gtype_name__ = "AttributeEntryRow"
 
     def __init__(
-            self, entry: SafeEntry, key: str, value: str, list_box: Gtk.ListBox
+        self, entry: SafeEntry, key: str, value: str, list_box: Gtk.ListBox
     ) -> None:
         super().__init__()
 

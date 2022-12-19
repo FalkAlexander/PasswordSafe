@@ -13,6 +13,7 @@ from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.unlocked_database import UnlockedDatabase
 from gsecrets.utils import KeyFileFilter
+
 if typing.TYPE_CHECKING:
     from gsecrets.widgets.window import Window
 
@@ -127,7 +128,7 @@ class UnlockDatabase(Gtk.Box):
 
     def is_safe_open_elsewhere(self) -> bool:
         """Returns True if the safe is already open but not in the
-           current window."""
+        current window."""
         is_current = False
         db_path = self.database_manager.path  # type: ignore
         is_open = self.window.application.is_safe_open(db_path)

@@ -181,7 +181,7 @@ class UnlockedDatabase(Gtk.Box):
         self.start_database_lock_timer()
         page_name = group.uuid.urn
 
-        if (page := self._stack.get_child_by_name(page_name)):
+        if page := self._stack.get_child_by_name(page_name):
             self.props.current_element = page.group
         else:
             self.props.current_element = group
@@ -236,7 +236,7 @@ class UnlockedDatabase(Gtk.Box):
         return self._stack.get_child_by_name(element_uuid.urn)
 
     def delete_page(self, element):
-        if (page := self._stack.get_child_by_name(element.uuid.urn)):
+        if page := self._stack.get_child_by_name(element.uuid.urn):
             self._stack.remove(page)
 
     #
@@ -331,11 +331,11 @@ class UnlockedDatabase(Gtk.Box):
             toast.props.button_label = _("Undo")
             toast.props.action_name = "win.db.undo_delete"
 
-        if (data := self.undo_data):
+        if data := self.undo_data:
             data.toast.dismiss()
 
         def dismissed_db(toast):
-            if (data := self.undo_data):
+            if data := self.undo_data:
                 if data.toast == toast:
                     self.undo_data = None
 
@@ -345,7 +345,7 @@ class UnlockedDatabase(Gtk.Box):
         self.window.toast_overlay.add_toast(toast)
 
     def undo_delete(self):
-        if (data := self.undo_data):
+        if data := self.undo_data:
             for element, element_parent in data.elements:
                 element.move_to(element_parent)
 
@@ -395,6 +395,7 @@ class UnlockedDatabase(Gtk.Box):
             if window.props.is_active:
                 self.clipboard.set_content(None)
             else:
+
                 def on_is_active(window, _pspec):
                     if self.on_is_active_handler:
                         window.disconnect(self.on_is_active_handler)
@@ -525,6 +526,7 @@ class UnlockedDatabase(Gtk.Box):
 
         Shows a notification after saving.
         """
+
         def on_check_file_changes(dbm, result):
             self.on_check_file_changes(dbm, result, self.on_save)
 

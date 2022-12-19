@@ -6,6 +6,7 @@ import typing
 from gi.repository import Adw, GObject, Gtk
 
 from gsecrets.safe_element import EntryColor
+
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.safe_element import SafeEntry
@@ -37,7 +38,7 @@ class ColorButton(Gtk.FlowBoxChild):
 
     @property
     def color(self) -> str:
-        """"Color of the widget."""
+        """Color of the widget."""
         return self._color.value
 
     @Gtk.Template.Callback()

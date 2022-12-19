@@ -240,9 +240,7 @@ class EntryPage(Gtk.Box):
         safe_entry = self.unlocked_database.current_element
         safe_entry.save_history()
 
-        self.unlocked_database.window.send_notification(
-            _("Saved in history")
-        )
+        self.unlocked_database.window.send_notification(_("Saved in history"))
 
     def _on_history_saved(self, entry):
         if not entry.history:

@@ -23,7 +23,7 @@ class SaveDialog(Adw.MessageDialog):
 
     @Gtk.Template.Callback()
     def _on_save(self, _dialog, _response):
-        if (database := self.window.unlocked_db):
+        if database := self.window.unlocked_db:
             database.database_manager.save_async(self._save_finished)
 
     def _save_finished(self, database_manager, result):

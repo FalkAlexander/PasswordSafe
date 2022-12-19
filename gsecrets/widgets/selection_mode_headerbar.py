@@ -144,6 +144,7 @@ class SelectionModeHeaderbar(Adw.Bin):
             self._clear_all()
 
         if mixed:
+
             def response_delete_cb(dialog, response):
                 delete_elements()
 

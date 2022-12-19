@@ -6,7 +6,7 @@ import os
 import typing
 from gettext import gettext as _
 
-from gi.repository import Adw, Gdk, Gio, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets import const
 
@@ -48,15 +48,6 @@ class AttachmentWarningDialog(Adw.MessageDialog):
 
         gfile = Gio.File.new_for_path(file_path)
 
-        def callback(gfile, result):
-            try:
-                gfile.replace_contents_finish(result)
-            except GLib.Error as err:
-                logging.debug("Could not load attachment: %s", err.message)
-                window.send_notification(_("Could not load attachment"))
-            else:
-                Gtk.show_uri(window, gfile.get_uri(), Gdk.CURRENT_TIME)
-
         contents = GLib.Bytes.new(bytes_buffer)
         gfile.replace_contents_bytes_async(
             contents,
@@ -64,5 +55,28 @@ class AttachmentWarningDialog(Adw.MessageDialog):
             False,
             Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION,
             None,
-            callback,
+            _callback,
+            window,
         )
+
+
+def _callback(gfile, result, window):
+    try:
+        gfile.replace_contents_finish(result)
+    except GLib.Error as err:
+        logging.debug("Could not load attachment: %s", err.message)
+        window.send_notification(_("Could not load attachment"))
+    else:
+        launcher = Gtk.FileLauncher.new(gfile)
+        launcher.launch(window, None, _on_launch, window)
+
+
+def _on_launch(launcher, result, window):
+    try:
+        launcher.launch_finish(result)
+    except GLib.Error as err:
+        logging.debug(
+            "Could not launch attachment file: %s",
+            err.message
+        )
+        window.send_notification(_("Could not load attachment"))

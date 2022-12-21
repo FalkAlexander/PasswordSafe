@@ -61,13 +61,11 @@ class UnlockedDatabasePage(Adw.Bin):
             "sorting_changed", self._on_sorting_changed
         )
 
-    def do_map(self):  # pylint: disable=arguments-differ
-        # FIXME This is a hacky way of having the focus on
-        # the listbox.
-        Gtk.Widget.do_map(self)
-        child = self.list_box.get_first_child()
-        if child:
-            child.grab_focus()
+    def do_grab_focus(self):  # pylint: disable=arguments-differ
+        if child := self.list_box.get_first_child():
+            return child.grab_focus()
+
+        return Gtk.Widget.do_grab_focus(self)
 
     def _on_sorting_changed(self, _db_manager, is_entry):
         if is_entry:

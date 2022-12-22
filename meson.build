@@ -60,7 +60,7 @@ application_id = project_id
 if get_option('profile') == 'development'
     profile = 'Devel'
     application_id = '@0@.Devel'.format(application_id)
-    version =  ''.join([run_command(['git', 'describe', '--long', '--tags']).stdout().strip()])
+    version =  ''.join([run_command('git', 'describe', '--long', '--tags', check: false).stdout().strip()])
 else
     profile = ''
     version = meson.project_version()

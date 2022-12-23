@@ -18,10 +18,6 @@ from gsecrets.utils import (
 class CreateDatabase(Gtk.Box):
     """Creates a new Safe when invoked"""
 
-    # TODO Add an accelerator for Escape that
-    # calls on_headerbar_back_button_clicked().
-    # Can be done on GTK 4 with GtkShortcutController.
-
     __gtype_name__ = "CreateDatabase"
 
     stack = Gtk.Template.Child()
@@ -79,6 +75,9 @@ class CreateDatabase(Gtk.Box):
         """Back button: Always goes back to the page in which you select the
         authentication method. In the case we are already in that page
         we kill this page."""
+        self.go_back()
+
+    def go_back(self):
         if self.stack.get_visible_child_name() == "select_auth_method":
             self.window.invoke_initial_screen()
         else:

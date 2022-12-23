@@ -28,6 +28,7 @@ class Window(Adw.ApplicationWindow):
 
     __gtype_name__ = "Window"
 
+    _create_view = None
     unlocked_db = None
 
     _create_database_bin = Gtk.Template.Child()
@@ -321,6 +322,7 @@ class Window(Adw.ApplicationWindow):
             else:
                 create_database = CreateDatabase(self, database_manager)
                 self._create_database_bin.props.child = create_database
+                self._create_view = create_database
                 self.view = self.View.CREATE_DATABASE
             finally:
                 self._spinner.stop()
@@ -443,6 +445,10 @@ class Window(Adw.ApplicationWindow):
         self.add_action(new_database_action)
         new_database_action.connect("activate", self.on_new_database_action)
 
+        go_back_action = Gio.SimpleAction.new("go_back", None)
+        self.add_action(go_back_action)
+        go_back_action.connect("activate", self.on_go_back_action)
+
         open_database_action = Gio.SimpleAction.new(
             "open_database", GLib.VariantType("s")
         )
@@ -457,7 +463,6 @@ class Window(Adw.ApplicationWindow):
             "db.add_group",
             "db.settings",
             "db.undo_delete",
-            "go_back",
             "element.delete",
             "entry.duplicate",
             "entry.references",
@@ -507,8 +512,6 @@ class Window(Adw.ApplicationWindow):
             action_db.undo_delete()
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_database()
-        elif name == "go_back":
-            action_db.go_back()
         elif name in ["db.add_entry", "db.add_group"]:
             if (
                 action_db.props.database_locked
@@ -534,6 +537,15 @@ class Window(Adw.ApplicationWindow):
 
     def on_settings_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         SettingsDialog(self).present()
+
+    def on_go_back_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
+        if self.view == self.View.CREATE_DATABASE:
+            if create_view := self._create_view:
+                create_view.go_back()
+        else:
+            if action_db := self.unlocked_db:
+                if not action_db.props.database_locked:
+                    action_db.go_back()
 
     @Gtk.Template.Callback()
     def on_back_button_pressed(

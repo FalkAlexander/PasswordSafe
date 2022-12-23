@@ -51,8 +51,8 @@ class UnlockedDatabasePage(Adw.Bin):
             "row-activated", unlocked_database.on_list_box_row_activated
         )
         self.list_model.connect(
-            "items-changed",
-            self.on_listbox_items_changed,
+            "notify::n-items",
+            self.on_listbox_n_items_changed,
         )
         if not self.list_model.get_item(0):
             self.stack.set_visible_child(self.empty_group_box)
@@ -85,13 +85,7 @@ class UnlockedDatabasePage(Adw.Bin):
         self.entries.set_sorter(self.entry_sorter)
         self.groups.set_sorter(self.group_sorter)
 
-    def on_listbox_items_changed(
-        self,
-        listmodel,
-        _position,
-        _removed,
-        _added,
-    ):
+    def on_listbox_n_items_changed(self, listmodel, _pspec,):
         if not listmodel.get_n_items():
             self.stack.set_visible_child(self.empty_group_box)
         else:

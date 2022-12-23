@@ -80,7 +80,7 @@ class CreateDatabase(Gtk.Box):
         authentication method. In the case we are already in that page
         we kill this page."""
         if self.stack.get_visible_child_name() == "select_auth_method":
-            self.window.view = self.window.View.WELCOME
+            self.window.invoke_initial_screen()
         else:
             self.stack.set_visible_child_name("select_auth_method")
             self.clear_input_fields()

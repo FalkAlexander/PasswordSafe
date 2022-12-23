@@ -396,6 +396,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         self.n_groups_row.props.subtitle = str(self.groups_number)
         self.n_passwords_row.props.subtitle = str(self.passwords_number)
 
+        return GLib.SOURCE_REMOVE
+
     def start_stats_thread(self):
         self.entries_number = len(self.database_manager.entries)
         self.groups_number = len(self.database_manager.groups)

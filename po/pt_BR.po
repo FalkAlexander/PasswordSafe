@@ -5,21 +5,27 @@
 # Enrico Nicoletto <hiko@duck.com>, 2020-2022.
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2018-2022.
+# Leônidas Araújo <leorusvellt@hotmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-09-28 15:31+0000\n"
-"PO-Revision-Date: 2022-09-28 13:01-0300\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2022-11-22 07:42-0300\n"
+"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"X-Generator: Gtranslator 40.0\n"
+"X-DL-Team: pt_BR\n"
+"X-DL-Module: secrets\n"
+"X-DL-Branch: master\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -1183,7 +1189,7 @@ msgstr ""
 "se integra perfeitamente ao ambiente GNOME e fornece um interface fácil e "
 "organizada para gerenciar os bancos de dados de senha."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1261,41 +1267,45 @@ msgstr "Título não especificado"
 msgid "Username not specified"
 msgstr "Nome de usuário não especificado"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Lowercase.
+#: gsecrets/password_generator_popover.py:75
+#| msgid "{} Lowercase"
+msgid "Include Lowercase"
+msgstr "Incluir letras minúsculas"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "{} Lowercase"
-msgstr "{} minúsculas"
+#| msgid "{} Lowercase"
+msgid "Exclude Lowercase"
+msgstr "Excluir letras minúsculas"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Exclude Uppercase.
+#: gsecrets/password_generator_popover.py:80
+#| msgid "{} Uppercase"
+msgid "Include Uppercase"
+msgstr "Incluir maiúsculas"
+
 #: gsecrets/password_generator_popover.py:82
-msgid "{} Uppercase"
-msgstr "{} maiúsculas"
+#| msgid "{} Uppercase"
+msgid "Exclude Uppercase"
+msgstr "Excluir maiúsculas"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Numbers.
+#: gsecrets/password_generator_popover.py:85
+#| msgid "{} Numbers"
+msgid "Include Numbers"
+msgstr "Incluir números"
+
 #: gsecrets/password_generator_popover.py:87
-msgid "{} Numbers"
-msgstr "{} números"
+#| msgid "{} Numbers"
+msgid "Exclude Numbers"
+msgstr "Excluir números"
 
-#. TRANSLATORS This will be used in conjunction with either Include
-#. or Exclude. e.g. Include Symbols.
+#: gsecrets/password_generator_popover.py:90
+#| msgid "{} Symbols"
+msgid "Include Symbols"
+msgstr "Incluir símbolos"
+
 #: gsecrets/password_generator_popover.py:92
-msgid "{} Symbols"
-msgstr "{} símbolos"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Exclude Lowercase.
-#: gsecrets/password_generator_popover.py:127
-msgid "Exclude"
-msgstr "Excluir"
-
-#. TRANSLATORS This will be used in conjunction with one of Lowercase,
-#. Uppercase, Numbers, or Symbols. eg. Include Lowercase.
-#: gsecrets/password_generator_popover.py:131
-msgid "Include"
-msgstr "Incluir"
+#| msgid "{} Symbols"
+msgid "Exclude Symbols"
+msgstr "Excluir símbolos"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1578,3 +1588,9 @@ msgstr "Não foi possível criar novo cofre"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Não foi possível salvar o cofre"
+
+#~ msgid "Exclude"
+#~ msgstr "Excluir"
+
+#~ msgid "Include"
+#~ msgstr "Incluir"

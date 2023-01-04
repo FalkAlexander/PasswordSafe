@@ -1,17 +1,17 @@
 # Danish translation for Secrets.
-# Copyright (C) 2019 Secrets COPYRIGHT HOLDER
+# Copyright (C) 2019, 2022-2023 Secrets COPYRIGHT HOLDER
 # This file is distributed under the same license as the Secrets package.
 #
 # scootergrisen, 2019-2021.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2022.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2022-2023.
 #
 # scootergrisen: afprøv strenge med "_" så der ikke er flere der bruger samme tegn
 msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-07-23 11:13+0000\n"
-"PO-Revision-Date: 2022-08-03 17:36+0200\n"
+"POT-Creation-Date: 2022-10-15 08:49+0000\n"
+"PO-Revision-Date: 2023-01-01 18:42+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -904,7 +904,7 @@ msgstr "Ryd"
 msgid "Unlock Safe"
 msgstr "Lås boks op"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:252
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:255
 msgid "_Select Keyfile"
 msgstr "_Vælg nøglefil"
 
@@ -1189,7 +1189,7 @@ msgstr ""
 "formatet. Programmet integrerer perfekt med GNOME-skrivebordet og giver en "
 "let og ryddelig brugerflade til håndtering af adgangskodedatabaser."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:225
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1267,29 +1267,37 @@ msgstr "Der er ikke angivet nogen titel"
 msgid "Username not specified"
 msgstr "Der er ikke angivet noget brugernavn"
 
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Medtag små bogstaver"
+
 #: gsecrets/password_generator_popover.py:77
-msgid "Lowercase"
-msgstr "Små bogstaver"
+msgid "Exclude Lowercase"
+msgstr "Udelad små bogstaver"
 
 #: gsecrets/password_generator_popover.py:80
-msgid "Uppercase"
-msgstr "Store bogstaver"
+msgid "Include Uppercase"
+msgstr "Medtag store bogstaver"
 
-#: gsecrets/password_generator_popover.py:83
-msgid "Numbers"
-msgstr "Tal"
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "Udelad store bogstaver"
 
-#: gsecrets/password_generator_popover.py:86
-msgid "Symbols"
-msgstr "Symboler"
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Medtag tal"
 
-#: gsecrets/password_generator_popover.py:119
-msgid "Exclude"
-msgstr "Ekskludér"
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "Udelad tal"
 
-#: gsecrets/password_generator_popover.py:121
-msgid "Include"
-msgstr "Inkludér"
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Medtag symboler"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "Udelad symboler"
 
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
@@ -1319,7 +1327,7 @@ msgstr "Boksen {} er allerede åben"
 msgid "Failed to unlock Safe"
 msgstr "Kunne ikke låse boksen op"
 
-#: gsecrets/unlock_database.py:247
+#: gsecrets/unlock_database.py:250
 msgid "_Try Again"
 msgstr "_Prøv igen"
 
@@ -1401,7 +1409,9 @@ msgstr "Konflikt ved forsøg på at gemme"
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
-msgstr "Boksen blev ændret et andet sted fra. Løs venligst disse konflikter fra hovedvinduet, når du gemmer."
+msgstr ""
+"Boksen blev ændret et andet sted fra. Løs venligst disse konflikter fra "
+"hovedvinduet, når du gemmer."
 
 #: gsecrets/widgets/database_settings_dialog.py:302
 msgid "Ok"
@@ -1482,7 +1492,8 @@ msgid ""
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
-"Boksen blev ændret andetsteds. Hvis du gemmer, overskrives deres version af boksen med vores version.\n"
+"Boksen blev ændret andetsteds. Hvis du gemmer, overskrives deres version af "
+"boksen med vores version.\n"
 "\n"
 "Du kan også oprette en sikkerhedskopi af deres udgave af boksen."
 
@@ -1568,6 +1579,12 @@ msgstr "Kunne ikke oprette ny boks"
 #: gsecrets/widgets/window.py:402
 msgid "Could not save safe"
 msgstr "Kunne ikke gemme boks"
+
+#~ msgid "Exclude"
+#~ msgstr "Ekskludér"
+
+#~ msgid "Include"
+#~ msgstr "Inkludér"
 
 #~ msgid "Learn more about Secrets"
 #~ msgstr "Lær mere om Secrets"

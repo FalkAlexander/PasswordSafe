@@ -145,7 +145,7 @@ class SafeElement(GObject.Object):
                 trash_bin = SafeGroup(self._db_manager, trash_bin_inner)
                 self._db_manager.trash_bin = trash_bin
                 self._db_manager.groups.append(trash_bin)
-                trash_bin.parentgroup.update()
+                trash_bin.parentgroup.updated()
 
         if trash_bin := self._db_manager.trash_bin:
             trash_bin.filter_changed(self.is_entry)

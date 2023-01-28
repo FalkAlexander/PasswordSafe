@@ -207,7 +207,7 @@ class EntryPage(Gtk.Box):
         # Show more row
         for widget in self.toggeable_widget_list:
             if not widget.get_visible():
-                self.show_all_preferences_group.show()
+                self.show_all_preferences_group.props.visible = True
                 break
 
     def add_attribute_property_row(self, key, value):
@@ -284,7 +284,7 @@ class EntryPage(Gtk.Box):
         for widget in self.toggeable_widget_list:
             widget.set_visible(True)
 
-        self.show_all_preferences_group.hide()
+        self.show_all_preferences_group.props.visible = False
 
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):
@@ -422,21 +422,21 @@ class EntryPage(Gtk.Box):
         if otp_token:
             remaining_time = safe_entry.otp_lifespan() / safe_entry.otp_interval()
             self.otp_progress_icon.props.progress = remaining_time
-            self.otp_token_row.show()
+            self.otp_token_row.props.visible = True
             self.otp_token_row.props.title = otp_token
             self.otp_timer_handler = GObject.timeout_add(
                 100, self.otp_update, safe_entry, None
             )
         else:
-            self.otp_token_row.hide()
+            self.otp_token_row.props.visible = False
 
         if not otp_token and safe_entry.props.otp:
             self.otp_error_revealer.reveal(True)
-            self.otp_token_row.hide()
+            self.otp_token_row.props.visible = False
             self.otp_secret_entry_row.add_css_class("error")
         else:
             self.otp_error_revealer.reveal(False)
-            self.otp_token_row.show()
+            self.otp_token_row.props.visible = True
             self.otp_secret_entry_row.remove_css_class("error")
 
         return GLib.SOURCE_CONTINUE

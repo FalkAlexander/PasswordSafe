@@ -1,0 +1,1601 @@
+# Korean translation for secrets.
+# Copyright (C) 2022 secrets's COPYRIGHT HOLDER
+# This file is distributed under the same license as the secrets package.
+# Seong-ho Cho <shcho@gnome.org>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: secrets release_6.x\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2023-01-25 21:57+0000\n"
+"PO-Revision-Date: 2023-01-27 03:14+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"Language-Team: Korean <gnome-kr@googlegroups.com>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "암호 정보를 관리합니다"
+
+#. "Secrets" is the application name, do not translate
+#: data/about_dialog.ui.in:9
+msgid "Learn more about Secrets"
+msgstr "Secrets 더 알아보기"
+
+#. Add your name to the translator credits list
+#: data/about_dialog.ui.in:11
+msgid "translator-credits"
+msgstr "조성호 <shcho@gnome.org>"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/attachment_warning_dialog.ui:6
+msgid "Safety Info"
+msgstr "안전 정보"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/attachment_warning_dialog.ui:7
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"외부 프로그램이 암호화하지 않고 숨기거나 이 첨부 파일의 임시 사본을 만들 수 "
+"있습니다! 위험을 감수하고 진행하십시오."
+
+#. Discard all the changes which the user have made to his keepass safe
+#: data/gtk/attachment_warning_dialog.ui:10
+msgid "_Back"
+msgstr "뒤로(_B)"
+
+#. Save all the changes which the user have made to his keepass safe
+#: data/gtk/attachment_warning_dialog.ui:16
+msgid "_Proceed"
+msgstr "진행(_P)"
+
+#: data/gtk/attribute_entry_row.ui:49
+msgid "Remove Attribute"
+msgstr "속성 제거"
+
+#: data/gtk/color_entry_row.ui:11
+msgid "Color"
+msgstr "색상"
+
+#: data/gtk/create_database.ui:33
+msgid "Protect your safe"
+msgstr "안전을 지켜줍니다"
+
+#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/references_dialog.ui:177
+msgid "_Password"
+msgstr "암호(_P)"
+
+#: data/gtk/create_database.ui:47
+msgid "Use a password to secure your safe."
+msgstr "안전을 지키려면 암호를 사용하십시오."
+
+#: data/gtk/create_database.ui:57
+msgid "_Keyfile"
+msgstr "키 파일(_K)"
+
+#: data/gtk/create_database.ui:58
+msgid "Use a keyfile to secure your safe."
+msgstr "안전을 지키려면 키 파일을 사용하십시오."
+
+#: data/gtk/create_database.ui:68
+msgid "_Composite"
+msgstr "합성(_C)"
+
+#: data/gtk/create_database.ui:69
+msgid "Use a password in combination with a keyfile to secure your safe."
+msgstr "안전을 지키려면 암호와 키파일을 조합하여 사용하십시오."
+
+#: data/gtk/create_database.ui:101
+msgid "Enter Password"
+msgstr "암호를 입력하십시오"
+
+#: data/gtk/create_database.ui:109
+msgid "Set password for safe."
+msgstr "안전 키용 암호를 설정합니다."
+
+#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
+#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
+msgid "Generate New Password"
+msgstr "새 암호 만들기"
+
+#: data/gtk/create_database.ui:183
+msgid "Password Match Check"
+msgstr "암호 일치 검사"
+
+#: data/gtk/create_database.ui:191
+msgid "Repeat password for safe."
+msgstr "안전 키용 암호를 한번 더 입력하십시오."
+
+#: data/gtk/create_database.ui:248
+msgid "Match Check Failed"
+msgstr "일치 검사 실패"
+
+#: data/gtk/create_database.ui:256
+msgid "Please try again."
+msgstr "다시 시도하십시오."
+
+#: data/gtk/create_database.ui:286
+msgid "_Confirm"
+msgstr "확인(_C)"
+
+#. NOTE: Filechooser title for generating a new keyfile
+#: data/gtk/create_database.ui:321 gsecrets/create_database.py:169
+#: gsecrets/widgets/database_settings_dialog.py:200
+msgid "Generate Keyfile"
+msgstr "키 파일 생성"
+
+#: data/gtk/create_database.ui:329
+msgid "Set keyfile for safe"
+msgstr "안전 키용 키 파일 설정"
+
+#. Button to generate a password
+#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:172
+#: gsecrets/widgets/database_settings_dialog.py:203
+msgid "_Generate"
+msgstr "생성(_G)"
+
+#: data/gtk/create_database.ui:372
+msgid "Safe Successfully Created"
+msgstr "안전 키 만들기에 성공했습니다"
+
+#. Menubutton in headerbar for starting the safe opening process (for existing safe)
+#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
+#: data/gtk/unlocked_headerbar.ui:93
+msgid "_Open Safe"
+msgstr "안전 키 열기(_O)"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:246
+msgid "Create Safe"
+msgstr "안전 키 만들기"
+
+#: data/gtk/create_database_headerbar.ui:15
+#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
+#: data/gtk/unlock_database_headerbar.ui:38
+msgid "Back"
+msgstr "뒤로"
+
+#: data/gtk/create_database_headerbar.ui:20
+#: data/gtk/recent_files_headerbar.ui:42
+#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
+msgid "Main Menu"
+msgstr "주 메뉴"
+
+#: data/gtk/create_database_headerbar.ui:31
+#: data/gtk/recent_files_headerbar.ui:53
+#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+msgid "_Preferences"
+msgstr "기본 설정(_P)"
+
+#: data/gtk/create_database_headerbar.ui:35
+#: data/gtk/recent_files_headerbar.ui:57
+#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+msgid "_Keyboard Shortcuts"
+msgstr "키보드 바로 가기 키(_K)"
+
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database_headerbar.ui:39
+#: data/gtk/recent_files_headerbar.ui:61
+#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+msgid "_About Secrets"
+msgstr "시크릿 정보(_A)"
+
+#: data/gtk/database_settings_dialog.ui:10
+msgid "Authentication"
+msgstr "인증"
+
+#: data/gtk/database_settings_dialog.ui:14
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:22
+msgid "Password"
+msgstr "암호"
+
+#. New password (replacement for an old one)
+#: data/gtk/database_settings_dialog.ui:22
+#: data/gtk/recent_files_headerbar.ui:19
+msgid "_New"
+msgstr "새로 만들기(_N)"
+
+#. Retype the new password to confirm
+#: data/gtk/database_settings_dialog.ui:69
+msgid "C_onfirm"
+msgstr "확인(_O)"
+
+#: data/gtk/database_settings_dialog.ui:85
+msgid "Confirm New Password"
+msgstr "새 암호 확인"
+
+#. Current password
+#: data/gtk/database_settings_dialog.ui:97
+msgid "_Current"
+msgstr "현재(_C)"
+
+#: data/gtk/database_settings_dialog.ui:114
+msgid "Enter Current Password"
+msgstr "현재 암호 입력"
+
+#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:176
+#: gsecrets/utils.py:57 gsecrets/widgets/database_settings_dialog.py:206
+msgid "Keyfile"
+msgstr "키파일"
+
+#: data/gtk/database_settings_dialog.ui:161
+msgid "_Select current keyfile if any"
+msgstr "현재 키 파일 선택(_S)"
+
+#: data/gtk/database_settings_dialog.ui:203
+msgid "(Optional) _Generate new keyfile"
+msgstr "(추가) 새 키 파일 생성(_G)"
+
+#: data/gtk/database_settings_dialog.ui:221
+msgid "Could not Load Keyfile"
+msgstr "키 파일을 가져올 수 없습니다"
+
+#: data/gtk/database_settings_dialog.ui:231
+#: gsecrets/widgets/database_settings_dialog.py:276
+msgid "_Apply Changes"
+msgstr "바뀐 설정 적용(_A)"
+
+#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/settings_dialog.ui:12
+msgid "General"
+msgstr "일반"
+
+#: data/gtk/database_settings_dialog.ui:252
+msgid "Details"
+msgstr "세부 정보"
+
+#: data/gtk/database_settings_dialog.ui:255
+msgid "Safe Name"
+msgstr "안전 이름"
+
+#: data/gtk/database_settings_dialog.ui:260
+msgid "Path"
+msgstr "경로"
+
+#: data/gtk/database_settings_dialog.ui:265
+msgid "File Size"
+msgstr "파일 크기"
+
+#. KeePass is a proper noun
+#: data/gtk/database_settings_dialog.ui:270
+msgid "KeePass Version"
+msgstr "KeePass 버전"
+
+#: data/gtk/database_settings_dialog.ui:275
+msgid "Creation Date"
+msgstr "생성 일자"
+
+#: data/gtk/database_settings_dialog.ui:280
+msgid "Encryption Algorithm"
+msgstr "암호화 알고리즘"
+
+#: data/gtk/database_settings_dialog.ui:285
+msgid "Derivation Algorithm"
+msgstr "파생 알고리즘"
+
+#. Statistics
+#: data/gtk/database_settings_dialog.ui:292
+msgid "Stats"
+msgstr "현황"
+
+#: data/gtk/database_settings_dialog.ui:295
+msgid "Number of Entries"
+msgstr "항목 갯수"
+
+#: data/gtk/database_settings_dialog.ui:300
+msgid "Number of Groups"
+msgstr "그룹 갯수"
+
+#: data/gtk/database_settings_dialog.ui:305
+msgid "Passwords"
+msgstr "암호"
+
+#: data/gtk/edit_element_headerbar.ui:22
+msgid "Menu"
+msgstr "메뉴"
+
+#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
+msgid "_Properties"
+msgstr "속성(_P)"
+
+#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
+msgid "_Delete"
+msgstr "삭제(_D)"
+
+#: data/gtk/edit_element_headerbar.ui:45
+msgid "D_uplicate"
+msgstr "복제(_U)"
+
+#: data/gtk/edit_element_headerbar.ui:49
+msgid "_References"
+msgstr "참고(_R)"
+
+#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/references_dialog.ui:169
+msgid "_Title"
+msgstr "제목(_T)"
+
+#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "사용자 이름(_U)"
+
+#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
+#: data/gtk/password_entry_row.ui:32
+msgid "Copy"
+msgstr "복사"
+
+#: data/gtk/entry_page.ui:77
+msgid "One-_Time Password Secret"
+msgstr "1회용 암호 비밀글(_T)"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:97
+msgid "Could not Generate OTP Token"
+msgstr "OTP 토큰을 만들 수 없습니다"
+
+#: data/gtk/entry_page.ui:111
+msgid "_One-Time Password"
+msgstr "1회용 암호(_O)"
+
+#: data/gtk/entry_page.ui:159
+msgid "U_RL"
+msgstr "주소(_R)"
+
+#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "메모(_N)"
+
+#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+msgid "Edit in a Window"
+msgstr "창에서 편집"
+
+#: data/gtk/entry_page.ui:241
+msgid "Icon"
+msgstr "아이콘"
+
+#: data/gtk/entry_page.ui:268
+msgid "Attachments"
+msgstr "첨부"
+
+#: data/gtk/entry_page.ui:293
+msgid "_Add Attachment"
+msgstr "첨부 추가(_A)"
+
+#: data/gtk/entry_page.ui:315
+msgid "Attributes"
+msgstr "속성"
+
+#: data/gtk/entry_page.ui:331
+msgid "Key"
+msgstr "키"
+
+#: data/gtk/entry_page.ui:337
+msgid "Value"
+msgstr "값"
+
+#: data/gtk/entry_page.ui:348
+msgid "Add Attribute"
+msgstr "속성 추가"
+
+#: data/gtk/entry_page.ui:372
+msgid "_Expiration Date"
+msgstr "유효 기한(_E)"
+
+#: data/gtk/entry_page.ui:393
+msgid "_Show More"
+msgstr "더 보이기(_S)"
+
+#: data/gtk/entry_row.ui:52
+msgid "Copy Username"
+msgstr "사용자 이름 복사"
+
+#: data/gtk/entry_row.ui:59
+msgid "Copy Password"
+msgstr "암호 복사"
+
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
+msgid "Expiration Date not Set"
+msgstr "유효 일자를 설정하지 않았습니다"
+
+#: data/gtk/expiration_date_row.ui:21
+msgid "Remove Expiration Date"
+msgstr "유효 일자 제거"
+
+#: data/gtk/expiration_date_row.ui:54
+msgid "_Set Expiration Date"
+msgstr "유효 일자 설정(_S)"
+
+#: data/gtk/help-overlay.ui:11
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "프로그램"
+
+#: data/gtk/help-overlay.ui:14
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "안전 키 만들기"
+
+#: data/gtk/help-overlay.ui:20
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "뒤로 이동"
+
+#: data/gtk/help-overlay.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "안전 키 열기"
+
+#: data/gtk/help-overlay.ui:32
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "기본 설정 열기"
+
+#: data/gtk/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "바로 가기 키 표시"
+
+#: data/gtk/help-overlay.ui:44
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "창 닫기"
+
+#: data/gtk/help-overlay.ui:50
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "끝내기"
+
+#: data/gtk/help-overlay.ui:58
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "안전 키"
+
+#: data/gtk/help-overlay.ui:61
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "안전 키 잠금"
+
+#: data/gtk/help-overlay.ui:67
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "안전 키 저장"
+
+#: data/gtk/help-overlay.ui:73
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "검색 열기"
+
+#: data/gtk/help-overlay.ui:79
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "항목 생성"
+
+#: data/gtk/help-overlay.ui:85
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "그룹 생성"
+
+#: data/gtk/help-overlay.ui:93
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "항목"
+
+#: data/gtk/help-overlay.ui:96
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "암호 복사"
+
+#: data/gtk/help-overlay.ui:102
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "사용자 이름 복사"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "1회용 암호 복사"
+
+#: data/gtk/notes_dialog.ui:14
+msgid "_Copy"
+msgstr "복사(_C)"
+
+#: data/gtk/password_generator_popover.ui:35
+msgid "Length"
+msgstr "길이"
+
+#: data/gtk/password_generator_popover.ui:62
+msgid "Characters"
+msgstr "문자"
+
+#: data/gtk/password_generator_popover.ui:111
+msgid "Passphrase"
+msgstr "암호"
+
+#: data/gtk/password_generator_popover.ui:119
+msgid "Words"
+msgstr "단어"
+
+#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
+msgid "Separator"
+msgstr "구분자"
+
+#: data/gtk/password_generator_popover.ui:154
+msgid "Enter character here…"
+msgstr "여기에 문자를 입력하십시오…"
+
+#: data/gtk/properties_dialog.ui:7
+msgid "Properties"
+msgstr "속성"
+
+#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "UUID"
+
+#: data/gtk/properties_dialog.ui:33
+msgid "Accessed"
+msgstr "접근 일시"
+
+#: data/gtk/properties_dialog.ui:38
+msgid "Modified"
+msgstr "수정 일시"
+
+#: data/gtk/properties_dialog.ui:43
+msgid "Created"
+msgstr "생성 일시"
+
+#: data/gtk/recent_files_headerbar.ui:14
+msgid "New Safe"
+msgstr "새 안전 키"
+
+#: data/gtk/recent_files_headerbar.ui:27
+msgid "Open Safe"
+msgstr "안전 키 열기"
+
+#: data/gtk/recent_files_headerbar.ui:32
+msgid "_Open"
+msgstr "열기(_O)"
+
+#: data/gtk/recent_files_page.ui:27
+msgid "Recent Safes"
+msgstr "최근 안전 키"
+
+#: data/gtk/references_dialog.ui:15
+msgid "Code"
+msgstr "코드"
+
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
+#: data/gtk/references_dialog.ui:346
+msgid "Property"
+msgstr "속성"
+
+#: data/gtk/references_dialog.ui:48
+msgid "Title"
+msgstr "제목"
+
+#: data/gtk/references_dialog.ui:69
+msgid "Username"
+msgstr "사용자 이름"
+
+#: data/gtk/references_dialog.ui:129
+msgid "URL"
+msgstr "주소"
+
+#: data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "참고"
+
+#: data/gtk/references_dialog.ui:181
+msgid "_URL"
+msgstr "주소(_U)"
+
+#: data/gtk/references_dialog.ui:192
+msgid "References"
+msgstr "참고"
+
+#: data/gtk/references_dialog.ui:222
+msgid "Syntax"
+msgstr "문법"
+
+#: data/gtk/references_dialog.ui:231
+msgid "The placeholder syntax for field references is the following:"
+msgstr "입력 칸 참고용 입력 자리 문법은 다음과 같습니다:"
+
+#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
+msgid "Show Field Codes"
+msgstr "필드 코드 표시"
+
+#: data/gtk/references_dialog.ui:277
+msgid "Identifier"
+msgstr "식별자"
+
+#: data/gtk/references_dialog.ui:335
+msgid "Reference"
+msgstr "참고"
+
+#: data/gtk/references_dialog.ui:373
+msgid ""
+"Each entry has a unique identifier called UUID. It can be found in the "
+"properties of the entry."
+msgstr ""
+"각 항목에는 UUID라고 하는 유일 식별자가 있습니다. 항목 속성에서 찾아볼 수 있"
+"습니다."
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/save_dialog.ui:7
+msgid "Unsaved Changes"
+msgstr "저장하지 않은 바뀐 내용이 있습니다"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/save_dialog.ui:8
+msgid "Do you want to write all changes to the safe?"
+msgstr "안전 키에 바뀐 모든 내용을 기록하시겠습니까?"
+
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:11
+msgid "_Quit Without Saving"
+msgstr "저장하지 않고 끝내기(_Q)"
+
+#. _Cancel exiting the program
+#: data/gtk/save_dialog.ui:20
+msgid "_Don't Quit"
+msgstr "끝내지 않음(_D)"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:26
+msgid "_Save and Quit"
+msgstr "저장하고 끝내기(_S)"
+
+#: data/gtk/search.ui:9
+msgid "Enter Search Term"
+msgstr "검색 단어를 입력하십시오"
+
+#: data/gtk/search.ui:15
+msgid "No Search Results"
+msgstr "검색 결과가 없습니다"
+
+#: data/gtk/selection_mode_headerbar.ui:17
+#: gsecrets/widgets/selection_mode_headerbar.py:70
+msgid "_Select Items"
+msgstr "항목 선택(_S)"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/selection_mode_headerbar.ui:29
+msgid "Move Selection"
+msgstr "선택 항목 이동"
+
+#: data/gtk/selection_mode_headerbar.ui:36
+msgid "Paste Selection"
+msgstr "선택 항목 붙여넣기"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/selection_mode_headerbar.ui:46
+msgid "Delete Selection"
+msgstr "선택 항목 삭제"
+
+#: data/gtk/selection_mode_headerbar.ui:53
+msgid "_Cancel"
+msgstr "취소(_C)"
+
+#: data/gtk/selection_mode_headerbar.ui:66
+msgid "Select _All"
+msgstr "모두 선택(_A)"
+
+#: data/gtk/selection_mode_headerbar.ui:71
+msgid "Select _None"
+msgstr "선택 안함(_N)"
+
+#: data/gtk/settings_dialog.ui:16
+msgid "_Dark Theme"
+msgstr "어두움 테마(_D)"
+
+#: data/gtk/settings_dialog.ui:17
+msgid "Use dark GTK theme."
+msgstr "어두움 GTK 테마를 사용합니다."
+
+#: data/gtk/settings_dialog.ui:30
+msgid "_Hide First Start Screen"
+msgstr "처음 시작 화면 숨기기(_H)"
+
+#: data/gtk/settings_dialog.ui:31
+msgid "Reopen last opened safe."
+msgstr "최근 연 안전 키를 다시 엽니다."
+
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:252
+msgid "Safe"
+msgstr "안전 키"
+
+#: data/gtk/settings_dialog.ui:49
+msgid "_Save Automatically"
+msgstr "자동으로 저장(_S)"
+
+#: data/gtk/settings_dialog.ui:50
+msgid "Save every change automatically."
+msgstr "매번 바뀌는 설정을 자동으로 저장합니다."
+
+#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+msgid "Unlock"
+msgstr "잠금 해제"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:68
+msgid "Remember Composite _Key"
+msgstr "합성 키 기억(_K)"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:69
+msgid "Remember last used composite key."
+msgstr "최근 사용한 합성키를 기억합니다."
+
+#: data/gtk/settings_dialog.ui:90
+msgid "Password Generation"
+msgstr "암호 생성"
+
+#: data/gtk/settings_dialog.ui:93
+msgid "Password Length"
+msgstr "암호 길이"
+
+#: data/gtk/settings_dialog.ui:94
+msgid "Number of characters when generating a password."
+msgstr "암호를 생성할 때 활용할 문자 갯수입니다."
+
+#: data/gtk/settings_dialog.ui:113
+msgid "_Uppercase Characters"
+msgstr "대문자(_U)"
+
+#: data/gtk/settings_dialog.ui:114
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "암호를 생성할 때 A-Z 대문자를 활용합니다."
+
+#: data/gtk/settings_dialog.ui:127
+msgid "_Lowercase Characters"
+msgstr "소문자(_L)"
+
+#: data/gtk/settings_dialog.ui:128
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "암호를 생성할 때 a-z 소문자를 활용합니다."
+
+#: data/gtk/settings_dialog.ui:141
+msgid "_Numeric Characters"
+msgstr "숫자 문자(_N)"
+
+#: data/gtk/settings_dialog.ui:142
+msgid "Use numeric characters when generating a password."
+msgstr "암호를 생성할 때 숫자를 활용합니다."
+
+#: data/gtk/settings_dialog.ui:155
+msgid "_Special Characters"
+msgstr "특수 문자(_S)"
+
+#. ASCII is a proper name
+#: data/gtk/settings_dialog.ui:156
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr "암호를 생성할 때 문자, 숫자가 아닌 ASCII 기호를 활용합니다."
+
+#: data/gtk/settings_dialog.ui:171
+msgid "Passphrase Generation"
+msgstr "암호 생성"
+
+#: data/gtk/settings_dialog.ui:174
+msgid "Passphrase Length"
+msgstr "암호 길이"
+
+#: data/gtk/settings_dialog.ui:175
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Number of words to use when generating a passphrase."
+msgstr "암호를 생성할 때 사용할 단어 갯수입니다."
+
+#: data/gtk/settings_dialog.ui:195
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "암호를 생성할 때 사용할 단어 구분자입니다."
+
+#: data/gtk/settings_dialog.ui:202
+msgid "Enter Character"
+msgstr "문자 입력"
+
+#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
+msgid "Security"
+msgstr "보안"
+
+#: data/gtk/settings_dialog.ui:221
+msgid "Safe Lock Timeout"
+msgstr "안전 키 잠금 제한시간"
+
+#: data/gtk/settings_dialog.ui:222
+msgid "Lock safe on idle after X minutes."
+msgstr "X분 후 대기 모드로 안전 키를 잠급니다."
+
+#: data/gtk/settings_dialog.ui:241
+msgid "Clear Clipboard"
+msgstr "클립보드 지우기"
+
+#: data/gtk/settings_dialog.ui:242
+msgid "Clear clipboard after X seconds."
+msgstr "X초 후 클립보드를 지웁니다."
+
+#: data/gtk/settings_dialog.ui:261
+msgid "Clear Recent List"
+msgstr "최근 목록 정리"
+
+#: data/gtk/settings_dialog.ui:262
+msgid "Clear the recently opened safes list."
+msgstr "최근 연 안전 키 목록을 지웁니다."
+
+#: data/gtk/unlock_database.ui:7
+msgid "Unlock Safe"
+msgstr "안전 키 잠금 해제"
+
+#: data/gtk/unlock_database.ui:77 gsecrets/unlock_database.py:296
+msgid "_Select Keyfile"
+msgstr "키 파일 선택(_S)"
+
+#. Menubutton in headerbar for starting the safe creation process
+#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
+msgid "_New Safe"
+msgstr "새 안전 키(_N)"
+
+#: data/gtk/unlocked_database_page.ui:28
+msgid "Add elements with the ➕ button."
+msgstr "➕ 단추로 항목을 추가하십시오."
+
+#: data/gtk/unlocked_database_page.ui:29
+msgid "Empty Group"
+msgstr "빈 그룹"
+
+#: data/gtk/unlocked_headerbar.ui:13
+msgid "New Entry or Group"
+msgstr "새 항목 또는 그룹"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/unlocked_headerbar.ui:24
+msgid "Search"
+msgstr "검색"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/gtk/unlocked_headerbar.ui:31
+msgid "Selection Mode"
+msgstr "선택 모드"
+
+#: data/gtk/unlocked_headerbar.ui:53
+msgid "_Save"
+msgstr "저장(_S)"
+
+#: data/gtk/unlocked_headerbar.ui:59
+msgid "_Lock"
+msgstr "잠금(_L)"
+
+#: data/gtk/unlocked_headerbar.ui:64
+msgid "So_rting"
+msgstr "정렬(_R)"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:66
+msgid "_A-Z"
+msgstr "A-Z(_A)"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:71
+msgid "_Z-A"
+msgstr "Z-A(_Z)"
+
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Newest First"
+msgstr "최신순(_N)"
+
+#: data/gtk/unlocked_headerbar.ui:81
+msgid "_Oldest First"
+msgstr "과거순(_O)"
+
+#: data/gtk/unlocked_headerbar.ui:97
+msgid "Sa_fe Settings"
+msgstr "설정을 안전하게 보호(_F)"
+
+#: data/gtk/unlocked_headerbar.ui:119
+msgid "New _Entry"
+msgstr "새 항목(_E)"
+
+#: data/gtk/unlocked_headerbar.ui:123
+msgid "New _Group"
+msgstr "새 그룹(_G)"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/gtk/welcome_page.ui:24
+msgid "Secure Secrets"
+msgstr "시크릿 보호"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/gtk/welcome_page.ui:35
+msgid ""
+"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
+"b> a new Keepass safe."
+msgstr ""
+"암호, 메모, 데이터를 안전하게 저장합니다. 새 키패스를 안전하게 <b>만들</b>거"
+"나 <b>가져오</b>십시오."
+
+#. Translators: Secrets is the app name, do not translate
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "시크릿"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:5
+msgid "A password manager for GNOME"
+msgstr "그놈용 암호 관리자"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:14
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;키패스;encrypt;암호화;암호;secure;보안;안전;"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Use dark GTK theme"
+msgstr "어두움 GTK 테마 사용"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid ""
+"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+"theme has a dark variant."
+msgstr ""
+"GTK+ 테마 어두움 변형 버전을 활용합니다. 모든 GTK+ 테마에 어두움 변형 버전이 "
+"있는건 아님을 참고 하십시오."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "최근 연 데이터베이스 다시 열기"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"최근 연 데이터베이스의 잠금 해제 화면을 자동으로 엽니다. 아니면 환경 화면을 "
+"보여줍니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "바뀌는 모든 설정 자동으로 저장"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"설정을 매번 바꾸는대로 즉시 데이터베이스에 저장합니다. 자동 저장을 활성화했"
+"을 경우 바뀐 내용을 되돌릴 수 없음을 참고하십시오."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "X분 후 데이터베이스 잠그기"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"보안성 개선을 위해 주어진 분 단위 시간 후 자동으로 데이터베이스를 잠급니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "X초 후 클립보드 지우기"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "암호 복사 후 보안을 위해 클립보드를 지웁니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "창 크기"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "창 크기를 기억합니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened database"
+msgstr "최근 연 데이터베이스"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "Path to the last opened database."
+msgstr "최근에 연 데이터베이스의 경로입니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Last opened databases"
+msgstr "최근 연 데이터베이스"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "A list of the last opened databases."
+msgstr "최근에 연 데이터베이스의 목록입니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Remember composite key"
+msgstr "합성 키 기억"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Remember last used composite key for database unlocking."
+msgstr "데이터베이스 잠금 해제에 최근 사용한 합성 키를 기억합니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Last used composite key"
+msgstr "최근 사용한 합성 키"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid "Path to last used key for composite database unlocking."
+msgstr "데이터베이스 잠금 해제에 최근 사용한 경로입니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Remember unlock method"
+msgstr "잠금 해제 방식 기억"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"앞으로 데이터베이스를 잠금 해제할 때 활용할 최근 잠금 해제 방식을 기억합니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Backup the database on unlock"
+msgstr "잠금 해제시 데이터베이스 백업"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/secrets/backups"
+msgstr ""
+"데이터베이스 저장 도중 오류가 날 경우를 대비하며, 백업은 ~/.cache/secrets/"
+"backups 위치에 저장합니다"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Sorting order of groups and entries"
+msgstr "그룹 및 항목 정렬 순서"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Order of the rows in the groups and entries view."
+msgstr "그룹 및 항목 보기 행 순서입니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use uppercases when generating a password"
+msgstr "암호 생성시 대문자 사용"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "임의 암호 생성시 A-Z 대문자를 사용합니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use lowercases when generating a password"
+msgstr "암호 생성시 소문자 사용"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "임의 암호 생성시 a-z 소문자를 사용합니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Use numbers when generating a password"
+msgstr "암호 생성시 숫자 사용"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "임의 암호 생성시 0-9 문자를 사용합니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Use symbols when generating a password"
+msgstr "암호 생성시 특수문자 사용"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr "임의 암호 생성시 숫자, 문자가 아닌 ASCII 기호를 사용합니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Password length when generating a password"
+msgstr "암호 생성 길이"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Number of single characters when generating a password."
+msgstr "암호를 생성할 때 단일 문자 갯수입니다."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Number of words when generating a passphrase"
+msgstr "암호 생성 단어 수"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
+msgid "Separator when generating a passphrase"
+msgstr "암호 생성 구분자"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"시크릿은 KeePass v.4 형식을 사용하여 만든 암호 관리자입니다. 그놈 데스크톱에 "
+"완벽하게 어우러지며, 암호 데이터베이스 관리에 사용하기 쉽고 깔끔한 인터페이스"
+"를 제공합니다."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:209
+msgid "Falk Alexander Seidl"
+msgstr "Falk Alexander Seidl"
+
+#: gsecrets/application.py:52
+msgid "Error: File {} does not exist"
+msgstr "오류: {} 파일이 없습니다"
+
+#: gsecrets/application.py:57
+msgid "Error: Safe {} is already open"
+msgstr "오류: {} 안전 키를 이미 열었습니다"
+
+#: gsecrets/attachment_warning_dialog.py:64
+msgid "Could not Load Attachment"
+msgstr "첨부를 불러올 수 없습니다"
+
+#: gsecrets/create_database.py:68
+msgid "Unable to create database"
+msgstr "데이터베이스를 만들 수 없습니다"
+
+#: gsecrets/create_database.py:160
+msgid "Passwords do not Match"
+msgstr "암호가 일치하지 않습니다"
+
+#: gsecrets/create_database.py:188
+msgid "Generating…"
+msgstr "만드는 중…"
+
+#: gsecrets/create_database.py:203
+msgid "Could not Create Keyfile"
+msgstr "키 파일을 만들 수 없습니다"
+
+#: gsecrets/create_database.py:205
+msgid "Generate"
+msgstr "생성"
+
+#: gsecrets/entry_page.py:245 gsecrets/entry_page.py:389
+#: gsecrets/entry_row.py:112
+msgid "Username Copied"
+msgstr "사용자 이름을 복사했습니다"
+
+#: gsecrets/entry_page.py:257 gsecrets/entry_page.py:296
+msgid "One-time Password Copied"
+msgstr "1회용 암호를 복사했습니다"
+
+#: gsecrets/entry_page.py:317 gsecrets/widgets/attribute_entry_row.py:69
+msgid "Attribute key Already Exists"
+msgstr "속성 키가 이미 있습니다"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: gsecrets/entry_page.py:345
+msgid "Select Attachment"
+msgstr "첨부 선택"
+
+#: gsecrets/entry_page.py:348
+msgid "_Add"
+msgstr "추가(_A)"
+
+#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
+msgid "Password Copied"
+msgstr "암호를 복사했습니다"
+
+#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+msgid "Title not Specified"
+msgstr "제목이 없습니다"
+
+#: gsecrets/entry_row.py:135
+msgid "Username not specified"
+msgstr "사용자 이름이 없습니다"
+
+#: gsecrets/save_dialog.py:42 gsecrets/unlocked_database.py:271
+#: gsecrets/widgets/window.py:385
+msgid "Could not save Safe"
+msgstr "안전 키를 저장할 수 없습니다"
+
+#: gsecrets/safe_element.py:361
+msgid "Clone"
+msgstr "복제"
+
+#: gsecrets/unlock_database.py:80
+msgid "Select Keyfile"
+msgstr "키 파일 선택"
+
+#: gsecrets/unlock_database.py:157
+msgid "Safe {} is Already Open"
+msgstr "{} 안전 키를 이미 열었습니다"
+
+#: gsecrets/unlock_database.py:282
+msgid "Failed to Unlock Safe"
+msgstr "안전 키 잠금 해제 실패"
+
+#: gsecrets/unlock_database.py:291
+msgid "_Try Again"
+msgstr "다시 시도(_T)"
+
+#: gsecrets/unlocked_database.py:274
+msgid "Safe Saved"
+msgstr "안전 키를 저장했습니다"
+
+#: gsecrets/unlocked_database.py:276
+msgid "No Changes Made"
+msgstr "바뀐 내용이 없습니다"
+
+#: gsecrets/unlocked_database.py:322
+msgid "Copied"
+msgstr "복사함"
+
+#. NOTE: Notification that a safe has been locked.
+#: gsecrets/unlocked_database.py:389
+msgid "Safe Locked due to Inactivity"
+msgstr "안전 키를 활용하지 않아 잠궜습니다."
+
+#. NOTE: Filechooser title for downloading an attachment
+#: gsecrets/widgets/attachment_entry_row.py:37
+msgid "Save Attachment"
+msgstr "첨부 저장"
+
+#: gsecrets/widgets/attachment_entry_row.py:61
+msgid "Could not Store Attachment"
+msgstr "첨부를 저장할 수 없습니다"
+
+#. NOTE: Filechooser title for choosing current used keyfile
+#: gsecrets/widgets/database_settings_dialog.py:130
+msgid "Select Current Keyfile"
+msgstr "현재 키파일 선택"
+
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:250
+#: gsecrets/widgets/database_settings_dialog.py:255
+msgid "Could not apply changes"
+msgstr "바뀐 설정을 적용할 수 없습니다"
+
+#. Still executes the finally block
+#. pylint: disable=no-member
+#: gsecrets/widgets/database_settings_dialog.py:259
+msgid "Changes Applied"
+msgstr "바뀐 설정을 적용했습니다"
+
+#. Encryption Algorithm
+#. Derivation Algorithm
+#: gsecrets/widgets/database_settings_dialog.py:342
+#: gsecrets/widgets/database_settings_dialog.py:356
+msgid "Unknown"
+msgstr "알 수 없음"
+
+#. NOTE: AES is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:346
+msgid "AES 256-bit"
+msgstr "AES 256비트"
+
+#. NOTE: ChaCha20 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:349
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256비트"
+
+#. NOTE: Twofish is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:352
+msgid "Twofish 256-bit"
+msgstr "Twofish 256비트"
+
+#. NOTE: Argon2 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:360
+msgid "Argon2"
+msgstr "Argon2"
+
+#. NOTE: AES-KDF is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:363
+msgid "AES-KDF"
+msgstr "AES-KDF"
+
+#: gsecrets/widgets/expiration_date_row.py:56
+#: gsecrets/widgets/expiration_date_row.py:62
+msgid "Entry expired"
+msgstr "항목 유효 기간 지남"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:72
+msgid "{} _Selected"
+msgid_plural "{} _Selected"
+msgstr[0] "선택 항목 {}개(_S)"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:98
+msgid "Operation Aborted: Deleting Currently Active Group"
+msgstr "동작 취소: 현재 활성 상태의 그룹을 삭제합니다"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:108
+msgid "Deletion Completed"
+msgstr "삭제 완료"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:145
+msgid "Operation Aborted: Moving Currently Active Group"
+msgstr "동작 취소: 현재 활성 상태의 그룹을 이동합니다"
+
+#: gsecrets/widgets/selection_mode_headerbar.py:160
+msgid "Move Completed"
+msgstr "이동 완료"
+
+#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
+#: gsecrets/widgets/window.py:146
+msgid "Select Safe"
+msgstr "안전 키 선택"
+
+#. NOTE: KeePass + version number is a proper name, do not translate
+#: gsecrets/widgets/window.py:157 gsecrets/widgets/window.py:257
+msgid "KeePass 3.1/4 Database"
+msgstr "KeePass 3.1/4 데이터베이스"
+
+#: gsecrets/widgets/window.py:162
+msgid "Any file type"
+msgstr "임의 파일 형식"
+
+#: gsecrets/widgets/window.py:225
+msgid "Safe is Already Open"
+msgstr "안전 키를 이미 열었습니다"
+
+#: gsecrets/widgets/window.py:249
+msgid "_Create"
+msgstr "만들기(_C)"
+
+#: gsecrets/widgets/window.py:285
+msgid "Cannot Create Safe: Safe is Already Open"
+msgstr "안전 키를 만들 수 없음: 안전 키를 이미 열었습니다"
+
+#: gsecrets/widgets/window.py:327 gsecrets/widgets/window.py:341
+msgid "Could not Create new Safe"
+msgstr "새 안전 키를 만들 수 없음"
+
+#~ msgid "Add"
+#~ msgstr "추가"
+
+#~ msgid "Download Attachment"
+#~ msgstr "첨부 다운로드"
+
+#~ msgid "Remove Attachment"
+#~ msgstr "첨부 제거"
+
+#~ msgid "Next"
+#~ msgstr "다음"
+
+#~ msgid "Check"
+#~ msgstr "검사"
+
+#~ msgid "New Password"
+#~ msgstr "새 암호"
+
+#~ msgid "Current Password"
+#~ msgstr "현재 암호"
+
+#~ msgid "Open Address"
+#~ msgstr "주소 열기"
+
+#~ msgid "One-Time Password"
+#~ msgstr "1회용 암호"
+
+#~ msgid "_Add Attribute"
+#~ msgstr "속성 추가(_A)"
+
+#~ msgid "Expiration Date"
+#~ msgstr "유효 일자"
+
+#~ msgid "_Save in History"
+#~ msgstr "기록에 저장(_S)"
+
+#~ msgid "Show _History"
+#~ msgstr "기록 보이기(_H)"
+
+#~ msgid "Edit Expiration Date"
+#~ msgstr "유효 일자 편집"
+
+#~ msgid "Edit"
+#~ msgstr "편집"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Copy Address"
+#~ msgstr "주소 복사"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Show History"
+#~ msgstr "기록 표시"
+
+#~ msgctxt "Shortcut window description"
+#~ msgid "Save in History"
+#~ msgstr "기록에 저장"
+
+#~ msgid "Show Text"
+#~ msgstr "텍스트 표시"
+
+#~ msgid "Remove from History"
+#~ msgstr "기록에서 제거"
+
+#~ msgid "Password History"
+#~ msgstr "암호 기록"
+
+#~ msgid "Clear"
+#~ msgstr "지우기"
+
+#~ msgid "Could not load attachment"
+#~ msgstr "첨부를 가져올 수 없습니다"
+
+#~ msgid "Passwords do not match"
+#~ msgstr "암호가 일치하지 않습니다"
+
+#~ msgid "Could not create keyfile"
+#~ msgstr "키 파일을 만들 수 없습니다"
+
+#~ msgid "Saved in history"
+#~ msgstr "기록에 저장했습니다"
+
+#~ msgid "Username copied"
+#~ msgstr "사용자 이름을 복사했습니다"
+
+#~ msgid "Address copied"
+#~ msgstr "주소를 복사했습니다"
+
+#~ msgid "One-time password copied"
+#~ msgstr "1회용 암호를 복사했습니다"
+
+#~ msgid "The address is not valid"
+#~ msgstr "적절한 주소가 아닙니다"
+
+#~ msgid "Password copied"
+#~ msgstr "암호를 복사했습니다"
+
+#~ msgid "Include Lowercase"
+#~ msgstr "소문자 포함"
+
+#~ msgid "Exclude Lowercase"
+#~ msgstr "소문자 제외"
+
+#~ msgid "Include Uppercase"
+#~ msgstr "대문자 포함"
+
+#~ msgid "Exclude Uppercase"
+#~ msgstr "대문자 제외"
+
+#~ msgid "Include Numbers"
+#~ msgstr "숫자 포함"
+
+#~ msgid "Exclude Numbers"
+#~ msgstr "숫자 제외"
+
+#~ msgid "Include Symbols"
+#~ msgstr "특수문자 포함"
+
+#~ msgid "Exclude Symbols"
+#~ msgstr "특수문자 제외"
+
+#~ msgid "Recent Files"
+#~ msgstr "최근 파일"
+
+#~ msgid "Safe {} is already open"
+#~ msgstr "{} 안전 키를 이미 열었습니다"
+
+#~ msgid "Failed to unlock Safe"
+#~ msgstr "안전 키 잠금 해제에 실패했습니다"
+
+#~ msgid "Safe saved"
+#~ msgstr "안전 키를 저장했습니다"
+
+#~ msgid "No changes made"
+#~ msgstr "바뀐 내용 없음"
+
+#~ msgid "Element deleted"
+#~ msgid_plural "{} Elements deleted"
+#~ msgstr[0] "항목 {}개를 삭제했습니다"
+
+#~ msgid "Deletion completed"
+#~ msgstr "삭제 완료"
+
+#~ msgid "Undo"
+#~ msgstr "실행 취소"
+
+#~ msgid "Safe locked due to inactivity"
+#~ msgstr "비활성 상태여서 안전 키를 잠궜습니다"
+
+#~ msgid "Attribute key contains an illegal character"
+#~ msgstr "속성 키에 부적절한 문자가 들어있습니다"
+
+#~ msgid "Attribute key already exists"
+#~ msgstr "속성 키가 이미 있습니다"
+
+#~ msgid "Could not store attachment"
+#~ msgstr "첨부를 보관할 수 없습니다"
+
+#~ msgid "Could not change credentials"
+#~ msgstr "인증 정보를 바꿀 수 없습니다"
+
+#~ msgid "Conflicts While Saving"
+#~ msgstr "저장 중 중복 요소 발견"
+
+#~ msgid ""
+#~ "The safe was modified from somewhere else. Please resolve these conflicts "
+#~ "from the main window when saving."
+#~ msgstr ""
+#~ "다른 어딘가에서 안전 키를 수정했습니다. 저장할 때 메인 창에서 이 문제를 해"
+#~ "결하십시오."
+
+#~ msgid "Ok"
+#~ msgstr "확인"
+
+#~ msgid "Argon2id"
+#~ msgstr "Argon2id"
+
+#~ msgid "Hide Text"
+#~ msgstr "텍스트 숨기기"
+
+#~ msgid "Selection copied"
+#~ msgstr "선택 항목 복사함"
+
+#~ msgid "Unsaved Changes Conflict"
+#~ msgstr "바뀐 중복 설정을 저장하지 않았습니다"
+
+#~ msgid "Save and Quit"
+#~ msgstr "저장하고 끝내기"
+
+#~ msgid "Back up, Save, and Quit"
+#~ msgstr "백업, 저장 후 끝내기"
+
+#~ msgid "Don't Quit"
+#~ msgstr "끝내지 않음"
+
+#~ msgid ""
+#~ "The safe was modified from somewhere else. Saving will overwrite their "
+#~ "version of the safe with our current version.\n"
+#~ "\n"
+#~ " You can also make a backup of their version of the safe."
+#~ msgstr ""
+#~ "다른 어딘가에서 안전 키를 수정했습니다. 해당 버전을 현재 버전의 안전 키로 "
+#~ "덮어씁니다.\n"
+#~ "\n"
+#~ "해당 버전의 안전 키 백업본을 만들 수도 있습니다."
+
+#~ msgid "_Back up and Save"
+#~ msgstr "백업하고 저장(_B)"
+
+#~ msgid "Save Backup"
+#~ msgstr "백업 저장"
+
+#~ msgid "Could not backup safe"
+#~ msgstr "안전 키를 백업하지 못했습니다"
+
+#~ msgid "Operation aborted: deleting currently active group"
+#~ msgstr "동작 취소함: 현재 활성 상태의 그룹을 삭제하고 있습니다"
+
+#~ msgid "Warning"
+#~ msgstr "경고"
+
+#~ msgid ""
+#~ "You are deleting elements in the trash bin, these deletions cannot be "
+#~ "undone."
+#~ msgstr ""
+#~ "휴지통의 항목을 삭제하고 있습니다. 이 삭제 동작은 되돌릴 수 없습니다."
+
+#~ msgid "Cancel"
+#~ msgstr "취소"
+
+#~ msgid "Delete"
+#~ msgstr "삭제"
+
+#~ msgid "Operation aborted: moving currently active group"
+#~ msgstr "동작 취소함: 현재 활성 상태의 그룹을 이동하고 있습니다"
+
+#~ msgid "Move completed"
+#~ msgstr "이동 완료"
+
+#~ msgid "Safe is already open"
+#~ msgstr "안전 키를 이미 열었습니다"
+
+#~ msgid "Cannot create Safe: Safe is already open"
+#~ msgstr "안전 키를 만들 수 없습니다: 안전 키를 이미 열었습니다"
+
+#~ msgid "Could not create new Safe"
+#~ msgstr "새 안전 키를 만들 수 없습니다"
+
+#~ msgid "Could not save safe"
+#~ msgstr "안전 키를 저장할 수 없습니다"

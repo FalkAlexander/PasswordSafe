@@ -6,7 +6,7 @@ import typing
 from gettext import gettext as _
 
 import validators
-from gi.repository import Gdk, GLib, GObject, Gtk
+from gi.repository import GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
@@ -302,19 +302,26 @@ class EntryPage(Gtk.Box):
         safe_entry = self.unlocked_database.current_element
         safe_entry.props.icon = icon
 
+    def _on_launch(self, launcher, result, window):
+        try:
+            launcher.launch_finish(result)
+        except GLib.Error as err:
+            logging.debug("Could not launch uri: %s", err.message)
+            window.send_notification(_("Could not launch url"))
+
     @Gtk.Template.Callback()
     def on_visit_url_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         url = self.url_entry_row.props.text
         window = self.unlocked_database.window
-        if validators.url(url):
-            Gtk.show_uri(window, url, Gdk.CURRENT_TIME)
-        else:
+        if not validators.url(url):
             url = "https://" + url
-            if validators.url(url):
-                Gtk.show_uri(window, url, Gdk.CURRENT_TIME)
-            else:
+            if not validators.url(url):
                 window.send_notification(_("The address is not valid"))
+                return
+
+        launcher = Gtk.UriLauncher.new(url)
+        launcher.launch(window, None, self._on_launch, window)
 
     @Gtk.Template.Callback()
     def on_otp_copy_button_clicked(self, _button):

@@ -1,5 +1,14 @@
+<a href="https://flathub.org/apps/details/org.gnome.World.Secrets">
+<img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" />
+</a>
+
 # Secrets
-Secrets is a password manager which integrates perfectly with the GNOME desktop and provides an easy and uncluttered interface for the management of password databases.
+<img src="https://gitlab.gnome.org/World/secrets/raw/master/data/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg" width="128" height="128" />
+<p>Manage your passwords</p>
+
+A password manager which integrates perfectly with the GNOME desktop and
+provides an easy and uncluttered interface for the management of password
+databases.
 
 <img src="https://gitlab.gnome.org/World/secrets/-/raw/master/screenshots/browser.png" width="800px" />
 
@@ -24,16 +33,11 @@ Secrets is a password manager which integrates perfectly with the GNOME desktop 
 * Argon2id KDBX4
 * AES-KDF KDBX 3.1
 
-# Installation
-<a href="https://flathub.org/apps/details/org.gnome.World.Secrets">
-<img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" />
-</a>
-
 ## Install Development Flatpak
 Download the latest artifact for [x86_64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak) or [aarch64](https://gitlab.gnome.org/World/secrets/-/jobs/artifacts/master/download?job=flatpak_aarch64) and extract it.
 To install, open the Flatpak package with GNOME Software. Alternatively, run:
 ```
-flatpak install org.gnome.World.Secrets.Devel.flatpak
+flatpak install --user ./org.gnome.World.Secrets.Devel.flatpak
 ```
 
 ## Building locally
@@ -51,8 +55,13 @@ see the [general guide](https://wiki.gnome.org/Newcomers/BuildProject)
 for building GNOME apps with Flatpak and GNOME Builder.
 
 ### Translations
-Helping to translate Secrets or add support to a new language is very welcome.
+Helping to translate Secrets or add support to a new language is welcome.
 You can find everything you need at: [l10n.gnome.org/module/secrets/](https://l10n.gnome.org/module/secrets/)
 
-# Contact
-You can contact through chat (Matrix protocol) on [#secrets:gnome.org](https://matrix.to/#/#secrets:gnome.org) channel.
+## Getting in touch
+If you have any questions regarding the use or development of Secrets, please
+join us on our [#secrets:gnome.org](https://matrix.to/#/#secrets:gnome.org)
+channel.
+
+## Code Of Conduct
+This project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct).

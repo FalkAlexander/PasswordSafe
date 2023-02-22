@@ -172,38 +172,59 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Details</property>
             <child>
-              <object class="PreferencesRow" id="name_row">
+              <object class="AdwActionRow" id="name_row">
                 <property name="title" translatable="yes">Safe Name</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="path_row">
+              <object class="AdwActionRow" id="path_row">
                 <property name="title" translatable="yes">Path</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="size_row">
+              <object class="AdwActionRow" id="size_row">
                 <property name="title" translatable="yes">File Size</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="version_row">
+              <object class="AdwActionRow" id="version_row">
                 <property name="title" translatable="yes" comments="KeePass is a proper noun">KeePass Version</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="date_row">
+              <object class="AdwActionRow" id="date_row">
                 <property name="title" translatable="yes">Creation Date</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="encryption_algorithm_row">
+              <object class="AdwActionRow" id="encryption_algorithm_row">
                 <property name="title" translatable="yes">Encryption Algorithm</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="derivation_algorithm_row">
+              <object class="AdwActionRow" id="derivation_algorithm_row">
                 <property name="title" translatable="yes">Derivation Algorithm</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
           </object>
@@ -212,18 +233,27 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes" comments="Statistics">Stats</property>
             <child>
-              <object class="PreferencesRow" id="n_entries_row">
+              <object class="AdwActionRow" id="n_entries_row">
                 <property name="title" translatable="yes">Number of Entries</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="n_groups_row">
+              <object class="AdwActionRow" id="n_groups_row">
                 <property name="title" translatable="yes">Number of Groups</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="n_passwords_row">
+              <object class="AdwActionRow" id="n_passwords_row">
                 <property name="title" translatable="yes">Passwords</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
           </object>

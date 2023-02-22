@@ -24,23 +24,35 @@
         <child>
           <object class="AdwPreferencesGroup">
             <child>
-              <object class="PreferencesRow" id="_uuid_row">
+              <object class="AdwActionRow" id="_uuid_row">
                 <property name="title" translatable="yes">UUID</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="_accessed_row">
+              <object class="AdwActionRow" id="_accessed_row">
                 <property name="title" translatable="yes">Accessed</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="_modified_row">
+              <object class="AdwActionRow" id="_modified_row">
                 <property name="title" translatable="yes">Modified</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
             <child>
-              <object class="PreferencesRow" id="_created_row">
+              <object class="AdwActionRow" id="_created_row">
                 <property name="title" translatable="yes">Created</property>
+                <style>
+                  <class name="property"/>
+                </style>
               </object>
             </child>
           </object>

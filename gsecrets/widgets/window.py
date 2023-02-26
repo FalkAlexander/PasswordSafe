@@ -137,8 +137,8 @@ class Window(Adw.ApplicationWindow):
         keepass_filter = Gtk.FileFilter()
         keepass_filter.add_mime_type("application/x-keepass2")
         keepass_filter.add_pattern("*.kdbx")
-        # NOTE: KeePass + version number is a proper name, do not translate
-        keepass_filter.set_name(_("KeePass 3.1/4 Database"))
+        # TRANSLATORS Safe as in strongbox.
+        keepass_filter.set_name("KeePass 3.1/4 " + _("Safe"))
 
         binary_filter = Gtk.FileFilter()
         binary_filter.add_mime_type("application/octet-stream")
@@ -218,8 +218,8 @@ class Window(Adw.ApplicationWindow):
     def on_new_database_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         """Callback function to create a new safe."""
         filter_text = Gtk.FileFilter()
-        # NOTE: KeePass + version number is a proper name, do not translate
-        filter_text.set_name(_("KeePass 3.1/4 Database"))
+        # TRANSLATORS Safe as in strongbox.
+        filter_text.set_name("KeePass 3.1/4 " + _("Safe"))
         filter_text.add_mime_type("application/x-keepass2")
 
         filters = Gio.ListStore.new(Gtk.FileFilter)

@@ -5,6 +5,17 @@
     <child>
       <object class="GtkButton">
         <property name="valign">center</property>
+        <property name="tooltip_text" translatable="yes">Copy Attribute</property>
+        <property name="icon_name">edit-copy-symbolic</property>
+        <signal name="clicked" handler="_on_copy_button_clicked" swapped="no"/>
+        <style>
+          <class name="flat"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkButton">
+        <property name="valign">center</property>
         <property name="tooltip_text" translatable="yes">Remove Attribute</property>
         <property name="icon_name">user-trash-symbolic</property>
         <signal name="clicked" handler="_on_remove_button_clicked" swapped="no"/>

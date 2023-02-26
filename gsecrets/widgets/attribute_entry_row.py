@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import typing
+from gettext import gettext as _
 from gi.repository import Adw, Gtk
 
 if typing.TYPE_CHECKING:
@@ -30,6 +31,13 @@ class AttributeEntryRow(Adw.EntryRow):
     def _on_remove_button_clicked(self, _button):
         self.entry.delete_attribute(self.key)
         self.list_box.remove(self)
+
+    @Gtk.Template.Callback()
+    def _on_copy_button_clicked(self, _row):
+        clipboard = self.get_clipboard()
+        clipboard.set(self.props.text)
+        window = self.get_root()
+        window.send_notification(_("Attribute copied"))
 
     @Gtk.Template.Callback()
     def _on_changed(self, row):

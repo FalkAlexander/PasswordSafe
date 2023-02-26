@@ -11,14 +11,11 @@ if typing.TYPE_CHECKING:
 
 
 class ProtectedAttributeEntryRow:
-    def __init__(
-        self, entry: SafeEntry, key: str, value: str, listbox: Gtk.ListBox
-    ) -> None:
+    def __init__(self, entry: SafeEntry, key: str, value: str) -> None:
         super().__init__()
 
         self._entry = entry
         self._key = key
-        self._list_box = listbox
 
         self.row = Adw.PasswordEntryRow.new()
 
@@ -44,7 +41,6 @@ class ProtectedAttributeEntryRow:
 
     def _on_remove_button_clicked(self, _button):
         self._entry.delete_attribute(self._key)
-        self._list_box.remove(self.row)
 
     def _on_changed(self, row):
         self._entry.set_attribute(self._key, row.props.text, True)

@@ -15,6 +15,8 @@ from uuid import UUID
 from gi.repository import GLib, GObject, Gio, Gtk
 from pyotp import OTP, TOTP, parse_uri
 
+from gsecrets.attributes_model import AttributesModel
+
 if typing.TYPE_CHECKING:
     from pykeepass.attachment import Attachment
     from pykeepass.entry import Entry
@@ -502,7 +504,7 @@ class SafeEntry(SafeElement):
             logging.error("Could not read attributes: %s", err)
             attributes = {}
 
-        self._attributes: dict[str, str] = attributes
+        self._attributes = AttributesModel(attributes)
 
         color_value: str = entry.get_custom_property(self._color_key)
         self._color: str = color_value or EntryColor.NONE.value
@@ -656,7 +658,7 @@ class SafeEntry(SafeElement):
         return self._db_manager.db.binaries[attachment.id]
 
     @GObject.Property(type=object, flags=GObject.ParamFlags.READABLE)
-    def attributes(self) -> dict[str, str]:
+    def attributes(self) -> AttributesModel:
         return self._attributes
 
     def has_attribute(self, key: str) -> bool:
@@ -664,7 +666,7 @@ class SafeEntry(SafeElement):
 
         :param str key: attribute key to check
         """
-        return key in self._attributes
+        return self._attributes.has_attribute(key)
 
     def set_attribute(self, key: str, value: str, protected: bool = False) -> None:
         """Add or replace an entry attribute
@@ -676,7 +678,7 @@ class SafeEntry(SafeElement):
             return
 
         self._entry.set_custom_property(key, value, protect=protected)
-        self._attributes[key] = value
+        self._attributes.insert(key, value)
         self.updated()
         self.notify("attributes")
 

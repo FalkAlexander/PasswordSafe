@@ -196,10 +196,14 @@ class EntryPage(Adw.Bin):
         # Attributes
         self.show_row(self.attributes_preferences_group, safe_entry.attributes, add_all)
 
-        for key, value in safe_entry.attributes.items():
-            self.add_attribute_property_row(
-                key, value, safe_entry.is_attribute_protected(key)
-            )
+        def factory(item):
+            key, value = item.key, item.value
+            if safe_entry.is_attribute_protected(key):
+                return ProtectedAttributeEntryRow(safe_entry, key, value).row
+
+            return AttributeEntryRow(safe_entry, key, value)
+
+        self.attribute_list_box.set_model(safe_entry.attributes, factory)
 
         # Expiration Date
         self.expiration_date_row.props.safe_entry = safe_entry
@@ -212,24 +216,6 @@ class EntryPage(Adw.Bin):
             if not widget.get_visible():
                 self.show_all_preferences_group.props.visible = True
                 break
-
-    def add_attribute_property_row(self, key, value, protected=False):
-        """Add an attribute to the attributes list view.
-
-        :param str key: property name
-        :param str value: property value
-        """
-        safe_entry = self.props.safe_entry
-        if protected:
-            attribute_row = ProtectedAttributeEntryRow(
-                safe_entry, key, value, self.attribute_list_box
-            ).row
-        else:
-            attribute_row = AttributeEntryRow(
-                safe_entry, key, value, self.attribute_list_box
-            )
-
-        self.attribute_list_box.append(attribute_row)
 
     #
     # Events
@@ -345,11 +331,6 @@ class EntryPage(Adw.Bin):
         entry = self.props.safe_entry
         db_manager = self.unlocked_database.database_manager
         dialog = AddAttributeDialog(window, db_manager, entry)
-
-        def on_add_attribute(_dialog, key, value, protected):
-            self.add_attribute_property_row(key, value, protected)
-
-        dialog.add_attribute.connect(on_add_attribute)  # pylint: disable=no-member
         dialog.present()
 
     #

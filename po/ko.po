@@ -1,21 +1,21 @@
 # Korean translation for secrets.
 # Copyright (C) 2022 secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the secrets package.
-# Seong-ho Cho <shcho@gnome.org>, 2022.
+# Seong-ho Cho <shcho@gnome.org>, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-12-25 07:19+0000\n"
-"PO-Revision-Date: 2022-12-29 18:01+0900\n"
+"POT-Creation-Date: 2023-02-26 13:24+0000\n"
+"PO-Revision-Date: 2023-03-04 19:53+0900\n"
+"Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "X-Generator: Poedit 2.3.1\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
@@ -88,7 +88,7 @@ msgstr "색상"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:240
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:230
 msgid "Create Safe"
 msgstr "안전 키 만들기"
 
@@ -102,114 +102,114 @@ msgstr "뒤로"
 msgid "Main Menu"
 msgstr "주 메뉴"
 
-#: data/gtk/create_database.ui:57
+#: data/gtk/create_database.ui:58
 msgid "Protect your safe"
 msgstr "안전을 지켜줍니다"
 
-#: data/gtk/create_database.ui:70 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:71 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "암호(_P)"
 
-#: data/gtk/create_database.ui:71
+#: data/gtk/create_database.ui:72
 msgid "Use a password to secure your safe."
 msgstr "안전을 지키려면 암호를 사용하십시오."
 
-#: data/gtk/create_database.ui:81
+#: data/gtk/create_database.ui:82
 msgid "_Keyfile"
 msgstr "키 파일(_K)"
 
-#: data/gtk/create_database.ui:82
+#: data/gtk/create_database.ui:83
 msgid "Use a keyfile to secure your safe."
 msgstr "안전을 지키려면 키 파일을 사용하십시오."
 
-#: data/gtk/create_database.ui:92
+#: data/gtk/create_database.ui:93
 msgid "_Composite"
 msgstr "합성(_C)"
 
-#: data/gtk/create_database.ui:93
+#: data/gtk/create_database.ui:94
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "안전을 지키려면 암호와 키파일을 조합하여 사용하십시오."
 
-#: data/gtk/create_database.ui:125
+#: data/gtk/create_database.ui:126
 msgid "Enter Password"
 msgstr "암호를 입력하십시오"
 
-#: data/gtk/create_database.ui:133
+#: data/gtk/create_database.ui:134
 msgid "Set password for safe."
 msgstr "안전 키용 암호를 설정합니다."
 
-#: data/gtk/create_database.ui:158 data/gtk/credentials_group.ui:43
+#: data/gtk/create_database.ui:159 data/gtk/credentials_group.ui:43
 #: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "새 암호 만들기"
 
-#: data/gtk/create_database.ui:172
+#: data/gtk/create_database.ui:173
 msgid "Next"
 msgstr "다음"
 
-#: data/gtk/create_database.ui:208
+#: data/gtk/create_database.ui:209
 msgid "Password Match Check"
 msgstr "암호 일치 검사"
 
-#: data/gtk/create_database.ui:216
+#: data/gtk/create_database.ui:217
 msgid "Repeat password for safe."
 msgstr "안전 키용 암호를 한번 더 입력하십시오."
 
-#: data/gtk/create_database.ui:242
+#: data/gtk/create_database.ui:243
 msgid "Check"
 msgstr "검사"
 
-#: data/gtk/create_database.ui:274
+#: data/gtk/create_database.ui:275
 msgid "Match Check Failed"
 msgstr "일치 검사 실패"
 
-#: data/gtk/create_database.ui:282
+#: data/gtk/create_database.ui:283
 msgid "Please try again."
 msgstr "다시 시도하십시오."
 
-#: data/gtk/create_database.ui:312
+#: data/gtk/create_database.ui:313
 msgid "_Confirm"
 msgstr "확인(_C)"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:347 gsecrets/create_database.py:173
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: data/gtk/create_database.ui:348 gsecrets/create_database.py:177
+#: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "키 파일 생성"
 
-#: data/gtk/create_database.ui:355
+#: data/gtk/create_database.ui:356
 msgid "Set keyfile for safe"
 msgstr "안전 키용 키 파일 설정"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:365 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:176
-#: gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/create_database.ui:366 data/gtk/password_generator_popover.ui:165
+#: gsecrets/create_database.py:178
+#: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "생성(_G)"
 
-#: data/gtk/create_database.ui:398
+#: data/gtk/create_database.ui:399
 msgid "Safe Successfully Created"
 msgstr "안전 키 만들기에 성공했습니다"
 
-#: data/gtk/create_database.ui:406 data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:407 data/gtk/unlocked_headerbar.ui:94
 msgid "_Open Safe"
 msgstr "안전 키 열기(_O)"
 
-#: data/gtk/create_database.ui:428 data/gtk/locked_headerbar.ui:37
-#: data/gtk/unlocked_headerbar.ui:104
+#: data/gtk/create_database.ui:429 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:105
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: data/gtk/create_database.ui:432 data/gtk/locked_headerbar.ui:41
-#: data/gtk/unlocked_headerbar.ui:108
+#: data/gtk/create_database.ui:433 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:109
 msgid "_Keyboard Shortcuts"
 msgstr "키보드 바로 가기 키(_K)"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:436 data/gtk/locked_headerbar.ui:45
-#: data/gtk/unlocked_headerbar.ui:112
+#: data/gtk/create_database.ui:437 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:113
 msgid "_About Secrets"
 msgstr "시크릿 정보(_A)"
 
@@ -245,8 +245,8 @@ msgstr "새 암호 확인"
 msgid "Current Password"
 msgstr "현재 암호"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:180
-#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:207
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:179
+#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "키파일"
 
@@ -263,8 +263,8 @@ msgid "Could not Load Keyfile"
 msgstr "키 파일을 가져올 수 없습니다"
 
 #: data/gtk/database_settings_dialog.ui:152
-#: gsecrets/widgets/database_settings_dialog.py:274
-#: gsecrets/widgets/database_settings_dialog.py:317
+#: gsecrets/widgets/database_settings_dialog.py:258
+#: gsecrets/widgets/database_settings_dialog.py:301
 msgid "_Apply Changes"
 msgstr "바뀐 설정 적용(_A)"
 
@@ -281,45 +281,45 @@ msgstr "세부 정보"
 msgid "Safe Name"
 msgstr "안전 이름"
 
-#: data/gtk/database_settings_dialog.ui:181
+#: data/gtk/database_settings_dialog.ui:184
 msgid "Path"
 msgstr "경로"
 
-#: data/gtk/database_settings_dialog.ui:186
+#: data/gtk/database_settings_dialog.ui:193
 msgid "File Size"
 msgstr "파일 크기"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:191
+#: data/gtk/database_settings_dialog.ui:201
 msgid "KeePass Version"
 msgstr "KeePass 버전"
 
-#: data/gtk/database_settings_dialog.ui:196
+#: data/gtk/database_settings_dialog.ui:209
 msgid "Creation Date"
 msgstr "생성 일자"
 
-#: data/gtk/database_settings_dialog.ui:201
+#: data/gtk/database_settings_dialog.ui:217
 msgid "Encryption Algorithm"
 msgstr "암호화 알고리즘"
 
-#: data/gtk/database_settings_dialog.ui:206
+#: data/gtk/database_settings_dialog.ui:225
 msgid "Derivation Algorithm"
 msgstr "파생 알고리즘"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:213
+#: data/gtk/database_settings_dialog.ui:235
 msgid "Stats"
 msgstr "현황"
 
-#: data/gtk/database_settings_dialog.ui:216
+#: data/gtk/database_settings_dialog.ui:238
 msgid "Number of Entries"
 msgstr "항목 갯수"
 
-#: data/gtk/database_settings_dialog.ui:221
+#: data/gtk/database_settings_dialog.ui:246
 msgid "Number of Groups"
 msgstr "그룹 갯수"
 
-#: data/gtk/database_settings_dialog.ui:226
+#: data/gtk/database_settings_dialog.ui:254
 msgid "Passwords"
 msgstr "암호"
 
@@ -563,7 +563,7 @@ msgstr "암호 기록"
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: data/gtk/locked_headerbar.ui:31 data/gtk/unlocked_headerbar.ui:89
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:90
 msgid "_New Safe"
 msgstr "새 안전 키(_N)"
 
@@ -608,15 +608,15 @@ msgstr "속성"
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:33
+#: data/gtk/properties_dialog.ui:37
 msgid "Accessed"
 msgstr "접근 일시"
 
-#: data/gtk/properties_dialog.ui:38
+#: data/gtk/properties_dialog.ui:45
 msgid "Modified"
 msgstr "수정 일시"
 
-#: data/gtk/properties_dialog.ui:43
+#: data/gtk/properties_dialog.ui:53
 msgid "Created"
 msgstr "생성 일시"
 
@@ -762,7 +762,10 @@ msgstr "처음 시작 화면 숨기기(_H)"
 msgid "Reopen last opened safe."
 msgstr "최근 연 안전 키를 다시 엽니다."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:246
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:141
+#: gsecrets/widgets/window.py:222 gsecrets/widgets/window.py:234
 msgid "Safe"
 msgstr "안전 키"
 
@@ -891,7 +894,7 @@ msgstr "지우기"
 msgid "Unlock Safe"
 msgstr "안전 키 잠금 해제"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:253
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:251
 msgid "_Select Keyfile"
 msgstr "키 파일 선택(_S)"
 
@@ -912,47 +915,46 @@ msgstr "새 항목 또는 그룹"
 msgid "Selection Mode"
 msgstr "선택 모드"
 
-#: data/gtk/unlocked_headerbar.ui:53
+#: data/gtk/unlocked_headerbar.ui:54
 #: gsecrets/widgets/saving_conflict_dialog.py:35
-#: gsecrets/widgets/saving_conflict_dialog.py:51
 msgid "_Save"
 msgstr "저장(_S)"
 
-#: data/gtk/unlocked_headerbar.ui:59
+#: data/gtk/unlocked_headerbar.ui:60
 msgid "_Lock"
 msgstr "잠금(_L)"
 
-#: data/gtk/unlocked_headerbar.ui:64
+#: data/gtk/unlocked_headerbar.ui:65
 msgid "So_rting"
 msgstr "정렬(_R)"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:66
+#: data/gtk/unlocked_headerbar.ui:67
 msgid "_A-Z"
 msgstr "A-Z(_A)"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:71
+#: data/gtk/unlocked_headerbar.ui:72
 msgid "_Z-A"
 msgstr "Z-A(_Z)"
 
-#: data/gtk/unlocked_headerbar.ui:76
+#: data/gtk/unlocked_headerbar.ui:77
 msgid "_Newest First"
 msgstr "최신순(_N)"
 
-#: data/gtk/unlocked_headerbar.ui:81
+#: data/gtk/unlocked_headerbar.ui:82
 msgid "_Oldest First"
 msgstr "과거순(_O)"
 
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:99
 msgid "Sa_fe Settings"
 msgstr "설정을 안전하게 보호(_F)"
 
-#: data/gtk/unlocked_headerbar.ui:120
+#: data/gtk/unlocked_headerbar.ui:121
 msgid "New _Entry"
 msgstr "새 항목(_E)"
 
-#: data/gtk/unlocked_headerbar.ui:124
+#: data/gtk/unlocked_headerbar.ui:125
 msgid "New _Group"
 msgstr "새 그룹(_G)"
 
@@ -1165,7 +1167,7 @@ msgstr ""
 "완벽하게 어우러지며, 암호 데이터베이스 관리에 사용하기 쉽고 깔끔한 인터페이스"
 "를 제공합니다."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:224
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:234
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1177,7 +1179,8 @@ msgstr "오류: {} 파일이 없습니다"
 msgid "Error: Safe {} is already open"
 msgstr "오류: {} 안전 키를 이미 열었습니다"
 
-#: gsecrets/attachment_warning_dialog.py:56
+#: gsecrets/attachment_warning_dialog.py:68
+#: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
 msgstr "첨부를 가져올 수 없습니다"
 
@@ -1189,15 +1192,15 @@ msgstr "데이터베이스를 만들 수 없습니다"
 msgid "Passwords do not match"
 msgstr "암호가 일치하지 않습니다"
 
-#: gsecrets/create_database.py:192
+#: gsecrets/create_database.py:194
 msgid "Generating…"
 msgstr "만드는 중…"
 
-#: gsecrets/create_database.py:208
+#: gsecrets/create_database.py:206
 msgid "Could not create keyfile"
 msgstr "키 파일을 만들 수 없습니다"
 
-#: gsecrets/create_database.py:210
+#: gsecrets/create_database.py:208
 msgid "Generate"
 msgstr "생성"
 
@@ -1210,24 +1213,28 @@ msgstr "기록에 저장했습니다"
 msgid "Username copied"
 msgstr "사용자 이름을 복사했습니다"
 
-#: gsecrets/entry_page.py:267 gsecrets/entry_page.py:399
+#: gsecrets/entry_page.py:267 gsecrets/entry_page.py:403
 msgid "Address copied"
 msgstr "주소를 복사했습니다"
 
-#: gsecrets/entry_page.py:277 gsecrets/entry_page.py:325
+#: gsecrets/entry_page.py:277 gsecrets/entry_page.py:332
 msgid "One-time password copied"
 msgstr "1회용 암호를 복사했습니다"
 
-#: gsecrets/entry_page.py:317
+#: gsecrets/entry_page.py:310
+msgid "Could not launch url"
+msgstr "URL 접속을 시작하지 못했습니다"
+
+#: gsecrets/entry_page.py:320
 msgid "The address is not valid"
 msgstr "적절한 주소가 아닙니다"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:354
-msgid "Select Attachment"
-msgstr "첨부 선택"
+#: gsecrets/entry_page.py:362
+msgid "Select Attachments"
+msgstr "첨부 파일 선택"
 
-#: gsecrets/entry_page.py:357
+#: gsecrets/entry_page.py:363
 msgid "_Add"
 msgstr "추가(_A)"
 
@@ -1286,24 +1293,24 @@ msgstr "복제"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:549
-#: gsecrets/widgets/window.py:390 gsecrets/widgets/window.py:396
+#: gsecrets/widgets/window.py:364 gsecrets/widgets/window.py:370
 msgid "Could not save Safe"
 msgstr "안전 키를 저장할 수 없습니다"
 
-#: gsecrets/unlock_database.py:77
+#: gsecrets/unlock_database.py:81
 msgid "Select Keyfile"
 msgstr "키 파일 선택"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:154
+#: gsecrets/unlock_database.py:152
 msgid "Safe {} is already open"
 msgstr "{} 안전 키를 이미 열었습니다"
 
-#: gsecrets/unlock_database.py:235
+#: gsecrets/unlock_database.py:233
 msgid "Failed to unlock Safe"
 msgstr "안전 키 잠금 해제에 실패했습니다"
 
-#: gsecrets/unlock_database.py:248
+#: gsecrets/unlock_database.py:246
 msgid "_Try Again"
 msgstr "다시 시도(_T)"
 
@@ -1351,36 +1358,36 @@ msgstr "속성 키가 이미 있습니다"
 msgid "Save Attachment"
 msgstr "첨부 저장"
 
-#: gsecrets/widgets/attachment_entry_row.py:61
+#: gsecrets/widgets/attachment_entry_row.py:58
 msgid "Could not store attachment"
 msgstr "첨부를 보관할 수 없습니다"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:130
+#: gsecrets/widgets/database_settings_dialog.py:136
 msgid "Select Current Keyfile"
 msgstr "현재 키파일 선택"
 
-#: gsecrets/widgets/database_settings_dialog.py:250
-#: gsecrets/widgets/database_settings_dialog.py:254
+#: gsecrets/widgets/database_settings_dialog.py:234
+#: gsecrets/widgets/database_settings_dialog.py:238
 msgid "Could not apply changes"
 msgstr "바뀐 설정을 적용할 수 없습니다"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:257
+#: gsecrets/widgets/database_settings_dialog.py:241
 msgid "Changes Applied"
 msgstr "바뀐 설정을 적용했습니다"
 
-#: gsecrets/widgets/database_settings_dialog.py:295
+#: gsecrets/widgets/database_settings_dialog.py:279
 msgid "Could not change credentials"
 msgstr "인증 정보를 바꿀 수 없습니다"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:301
+#: gsecrets/widgets/database_settings_dialog.py:285
 #: gsecrets/widgets/saving_conflict_dialog.py:23
 msgid "Conflicts While Saving"
 msgstr "저장 중 중복 요소 발견"
 
-#: gsecrets/widgets/database_settings_dialog.py:302
+#: gsecrets/widgets/database_settings_dialog.py:286
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1388,44 +1395,44 @@ msgstr ""
 "다른 어딘가에서 안전 키를 수정했습니다. 저장할 때 메인 창에서 이 문제를 해결"
 "하십시오."
 
-#: gsecrets/widgets/database_settings_dialog.py:304
+#: gsecrets/widgets/database_settings_dialog.py:288
 msgid "Ok"
 msgstr "확인"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:366
-#: gsecrets/widgets/database_settings_dialog.py:380
+#: gsecrets/widgets/database_settings_dialog.py:350
+#: gsecrets/widgets/database_settings_dialog.py:364
 msgid "Unknown"
 msgstr "알 수 없음"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:370
+#: gsecrets/widgets/database_settings_dialog.py:354
 msgid "AES 256-bit"
 msgstr "AES 256비트"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:373
+#: gsecrets/widgets/database_settings_dialog.py:357
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256비트"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:376
+#: gsecrets/widgets/database_settings_dialog.py:360
 msgid "Twofish 256-bit"
 msgstr "Twofish 256비트"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:384
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:387
+#: gsecrets/widgets/database_settings_dialog.py:371
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:390
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1481,7 +1488,7 @@ msgstr "백업하고 저장(_B)"
 msgid "Save Backup"
 msgstr "백업 저장"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:64
+#: gsecrets/widgets/saving_conflict_dialog.py:62
 msgid "Could not backup safe"
 msgstr "안전 키를 백업하지 못했습니다"
 
@@ -1519,36 +1526,33 @@ msgstr "동작 취소함: 현재 활성 상태의 그룹을 이동하고 있습�
 msgid "Move completed"
 msgstr "이동 완료"
 
-#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:139
-msgid "Select Safe"
-msgstr "안전 키 선택"
-
-#. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:150 gsecrets/widgets/window.py:251
-msgid "KeePass 3.1/4 Database"
-msgstr "KeePass 3.1/4 데이터베이스"
-
-#: gsecrets/widgets/window.py:155
+#: gsecrets/widgets/window.py:145
 msgid "Any file type"
 msgstr "임의 파일 형식"
 
-#: gsecrets/widgets/window.py:218
+#: gsecrets/widgets/window.py:152
+msgid "Select Safe"
+msgstr "안전 키 선택"
+
+#: gsecrets/widgets/window.py:200
 msgid "Safe is already open"
 msgstr "안전 키를 이미 열었습니다"
 
-#: gsecrets/widgets/window.py:243
+#: gsecrets/widgets/window.py:232
 msgid "_Create"
 msgstr "만들기(_C)"
 
-#: gsecrets/widgets/window.py:279
+#: gsecrets/widgets/window.py:253
 msgid "Cannot create Safe: Safe is already open"
 msgstr "안전 키를 만들 수 없습니다: 안전 키를 이미 열었습니다"
 
-#: gsecrets/widgets/window.py:321 gsecrets/widgets/window.py:336
+#: gsecrets/widgets/window.py:295 gsecrets/widgets/window.py:310
 msgid "Could not create new Safe"
 msgstr "새 안전 키를 만들 수 없습니다"
 
-#: gsecrets/widgets/window.py:403
+#: gsecrets/widgets/window.py:377
 msgid "Could not save safe"
 msgstr "안전 키를 저장할 수 없습니다"
+
+#~ msgid "KeePass 3.1/4 Database"
+#~ msgstr "KeePass 3.1/4 데이터베이스"

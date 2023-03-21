@@ -98,22 +98,9 @@ levelbar block.secure {
   background-color: @green_4;
 }
 
-scrolledwindow.entry {
-  background-color: alpha(currentColor, .1);
-  border-radius: 6px;
-}
-
-scrolledwindow.entry:focus-within {
-  outline-color: alpha(@accent_color, .5);
-  outline-width: 2px;
-  outline-offset: -2px;
-  outline-style: solid;
-}
-
-scrolledwindow.entry textview,
-scrolledwindow.entry textview text {
+scrolledwindow textview.inline,
+scrolledwindow textview.inline text {
   background: none;
-  color: inherit;
 }
 
 textview {

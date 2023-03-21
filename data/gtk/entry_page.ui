@@ -193,10 +193,13 @@
                   <object class="GtkTextView" id="notes_property_value_entry">
                     <property name="hexpand">True</property>
                     <property name="wrap_mode">word</property>
+                    <style>
+                      <class name="inline"/>
+                    </style>
                   </object>
                 </child>
                 <style>
-                  <class name="entry"/>
+                  <class name="card"/>
                 </style>
               </object>
             </child>

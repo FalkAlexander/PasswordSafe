@@ -89,7 +89,7 @@ if appstreamcli.found()
   test (
     'Validate metainfo file',
     appstreamcli,
-    args: ['validate-relax', '--nonet', join_paths(meson.current_build_dir (), application_id + '.metainfo.xml')]
+    args: ['validate', '--nonet', join_paths(meson.current_build_dir (), application_id + '.metainfo.xml')]
   )
 endif
 

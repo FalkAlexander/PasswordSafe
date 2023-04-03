@@ -67,6 +67,11 @@ class UnlockDatabase(Gtk.Box):
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
 
+    def do_unmap(self):  # pylint: disable=arguments-differ
+        Gtk.Widget.do_unmap(self)
+        self.keyfile_spinner.props.spinning = False
+        self.spinner.props.spinning = False
+
     def grab_entry_focus(self):
         self.password_entry.grab_focus()
 

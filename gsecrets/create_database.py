@@ -55,6 +55,11 @@ class CreateDatabase(Gtk.Box):
         Gtk.Widget.do_realize(self)
         self.password_action_row.grab_focus()
 
+    def do_unmap(self):  # pylint: disable=arguments-differ
+        Gtk.Widget.do_unmap(self)
+        self.password_check_button.props.icon_name = "object-select-symbolic"
+        self.password_repeat_button.props.label = _("_Confirm")
+
     def success_page(self):
         self.stack.set_visible_child_name("safe-successfully-create")
         # TODO This should be improved upon. Widgets should not

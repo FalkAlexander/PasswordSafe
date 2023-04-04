@@ -307,7 +307,7 @@ class EntryPage(Gtk.Box):
             launcher.launch_finish(result)
         except GLib.Error as err:
             logging.debug("Could not launch uri: %s", err.message)
-            window.send_notification(_("Could not launch url"))
+            window.send_notification(_("Could not open URL"))
 
     @Gtk.Template.Callback()
     def on_visit_url_button_clicked(self, _button):

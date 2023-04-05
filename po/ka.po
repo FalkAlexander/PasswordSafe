@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-02-26 13:24+0000\n"
-"PO-Revision-Date: 2023-02-26 20:08+0100\n"
+"POT-Creation-Date: 2023-04-04 12:05+0000\n"
+"PO-Revision-Date: 2023-04-05 06:40+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -92,7 +92,7 @@ msgstr "ფერი"
 msgid "Create Safe"
 msgstr "სეიფის შექმნა"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:55
 #: data/gtk/group_page.ui:14
 msgid "Back"
 msgstr "უკან"
@@ -168,12 +168,12 @@ msgstr "პაროლის დამთხვევის შემოწმ�
 msgid "Please try again."
 msgstr "კიდევ სცადეთ."
 
-#: data/gtk/create_database.ui:313
+#: data/gtk/create_database.ui:313 gsecrets/create_database.py:61
 msgid "_Confirm"
 msgstr "_დადასტურება"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:348 gsecrets/create_database.py:177
+#: data/gtk/create_database.ui:348 gsecrets/create_database.py:182
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "გასაღების ფაილის გენერაცია"
@@ -184,7 +184,7 @@ msgstr "სეიფზე გასაღების ფაილის მი
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:366 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:178
+#: gsecrets/create_database.py:183
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_გენერაცია"
@@ -218,7 +218,7 @@ msgid "_Username"
 msgstr "_მომხმარებელი"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:151
 #: data/gtk/history_row.ui:25
 msgid "Copy"
 msgstr "კოპირება"
@@ -245,7 +245,7 @@ msgstr "პაროლი (დადასტურება)"
 msgid "Current Password"
 msgstr "მიმდინარე პაროლი"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:179
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "გასაღების ფაილი"
@@ -323,94 +323,94 @@ msgstr "ჯგუფების რაოდენობა"
 msgid "Passwords"
 msgstr "პაროლები"
 
-#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
+#: data/gtk/entry_page.ui:64 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "მენიუ"
 
-#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
+#: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_სათაური"
 
-#: data/gtk/entry_page.ui:86
+#: data/gtk/entry_page.ui:87
 msgid "U_RL"
 msgstr "_URL"
 
-#: data/gtk/entry_page.ui:103
+#: data/gtk/entry_page.ui:104
 msgid "Open Address"
 msgstr "მისამართის გახსნა"
 
-#: data/gtk/entry_page.ui:124
+#: data/gtk/entry_page.ui:125
 msgid "One-Time Password"
 msgstr "ერთჯერადი პაროლი"
 
-#: data/gtk/entry_page.ui:162
+#: data/gtk/entry_page.ui:163
 msgid "One-_Time Password Secret"
 msgstr "ერთჯერადი პაროლი"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:170
+#: data/gtk/entry_page.ui:171
 msgid "Could not Generate OTP Token"
 msgstr "ერთჯერადი კოდის შექმნის შეცდომა"
 
-#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/entry_page.ui:179 data/gtk/group_page.ui:43
 #: data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "შენიშვნები"
 
-#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
+#: data/gtk/entry_page.ui:183 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "ფანჯრის ჩასწორება"
 
-#: data/gtk/entry_page.ui:214
+#: data/gtk/entry_page.ui:218
 msgid "Icon"
 msgstr "_ხატულა"
 
-#: data/gtk/entry_page.ui:231
+#: data/gtk/entry_page.ui:235
 msgid "Attachments"
 msgstr "დანართი"
 
-#: data/gtk/entry_page.ui:235
+#: data/gtk/entry_page.ui:239
 msgid "_Add Attachment"
 msgstr "_მიმაგრების დამატება"
 
-#: data/gtk/entry_page.ui:244
+#: data/gtk/entry_page.ui:248
 msgid "Attributes"
 msgstr "ატრიბუტები"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:253
 msgid "_Add Attribute"
 msgstr "ატრიბუტის დამატება"
 
-#: data/gtk/entry_page.ui:257
+#: data/gtk/entry_page.ui:261
 msgid "Expiration Date"
 msgstr "_ვადა"
 
-#: data/gtk/entry_page.ui:273
+#: data/gtk/entry_page.ui:277
 msgid "_Show More"
 msgstr "_მეტის ჩვენება"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:294
 msgid "D_uplicate"
 msgstr "_დუბლირება"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:298
 msgid "_References"
 msgstr "_ბმები"
 
-#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:79
 msgid "_Properties"
 msgstr "_თვისებები"
 
-#: data/gtk/entry_page.ui:304
+#: data/gtk/entry_page.ui:308
 msgid "_Save in History"
 msgstr "_ისტორიაში შენახვა"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "_მეტის ჩვენება"
 
-#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:85
 msgid "_Delete"
 msgstr "სამუ_დამოდ წაშლა"
 
@@ -892,7 +892,7 @@ msgstr "გაწმენდა"
 msgid "Unlock Safe"
 msgstr "სეიფის გაღება"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:251
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_აირჩიეთ გასაღების ფაილი"
 
@@ -1023,7 +1023,7 @@ msgstr "ბუფერის გასუფთავება X წამი�
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
-msgstr ""
+msgstr "უსაფრთხოების მიზნით პაროლის კოპირების შემდეგ ბუფერის გასუფთავება."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
@@ -1056,6 +1056,7 @@ msgstr "კომპოზიტური გასაღების დამ�
 #: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
+"ბოლოს ბაზის განბლოკვისთვის გამოყენებული კომპოზიტური გასაღების დამახსოვრება."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used composite key"
@@ -1063,7 +1064,7 @@ msgstr "ბოლოს გამოყენებული კომპოზ�
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Path to last used key for composite database unlocking."
-msgstr ""
+msgstr "კომპოზიტური ბაზის განბლოკვისთვის გამოყენებული ბოლო გასაღების ბილიკი."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1097,7 +1098,7 @@ msgstr "პაროლში დიდი სიმბოლოების გ
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
-msgstr ""
+msgstr "შემთხვევით დაგენერირებულ პაროლში A-Z სიმბოლოების გამოყენება."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
@@ -1105,7 +1106,7 @@ msgstr "პაროლში დიდი სიმბოლოების გ
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
-msgstr ""
+msgstr "შემთხვევით დაგენერირებულ პაროლში a-z სიმბოლოების გამოყენება."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
@@ -1113,11 +1114,11 @@ msgstr "პაროლში ციფრების გამოყენე�
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
-msgstr ""
+msgstr "შემთხვევით დაგენერირებულ პაროლში 0-9 სიმბოლოების გამოყენება."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
-msgstr ""
+msgstr "პაროლების გენერაციისას სიმბოლოების გამოყენება"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
@@ -1150,7 +1151,7 @@ msgid ""
 "uncluttered interface for the management of password databases."
 msgstr ""
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:234
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1167,23 +1168,23 @@ msgstr "შეცდომა: სეიფი უკვე ღიაა: {}"
 msgid "Could not load attachment"
 msgstr "მიმაგრებული ფაილის ჩატვირთვის შეცდომა"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:73
 msgid "Unable to create database"
 msgstr "მონაცემთა ბაზის შექმნის შეცდომა"
 
-#: gsecrets/create_database.py:164
+#: gsecrets/create_database.py:169
 msgid "Passwords do not match"
 msgstr "პაროლები არ ემთხვევა"
 
-#: gsecrets/create_database.py:194
+#: gsecrets/create_database.py:199
 msgid "Generating…"
 msgstr "გენერაცია…"
 
-#: gsecrets/create_database.py:206
+#: gsecrets/create_database.py:211
 msgid "Could not create keyfile"
 msgstr "გასაღების ფაილის შექმნის შეცდომა"
 
-#: gsecrets/create_database.py:208
+#: gsecrets/create_database.py:213
 msgid "Generate"
 msgstr "გენერაცია"
 
@@ -1205,8 +1206,8 @@ msgid "One-time password copied"
 msgstr "ერთჯერადი პაროლი კოპირებულია"
 
 #: gsecrets/entry_page.py:310
-msgid "Could not launch url"
-msgstr "ბმულის გაშვება შეუძლებელია"
+msgid "Could not open URL"
+msgstr "URL-ის გახსნის შეცდომა"
 
 #: gsecrets/entry_page.py:320
 msgid "The address is not valid"
@@ -1280,20 +1281,20 @@ msgstr "კლონირება"
 msgid "Could not save Safe"
 msgstr "სეიფის შენახვის შეცდომა"
 
-#: gsecrets/unlock_database.py:81
+#: gsecrets/unlock_database.py:86
 msgid "Select Keyfile"
 msgstr "აირჩიეთ გასაღების ფაილი"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:152
+#: gsecrets/unlock_database.py:157
 msgid "Safe {} is already open"
 msgstr "სეიფი უკვე ღიაა: {}"
 
-#: gsecrets/unlock_database.py:233
+#: gsecrets/unlock_database.py:238
 msgid "Failed to unlock Safe"
 msgstr "სეიფის გაღების შეცდომა"
 
-#: gsecrets/unlock_database.py:246
+#: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "_თავიდან სცადეთ"
 
@@ -1486,6 +1487,7 @@ msgstr "გაფრთხილება"
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr ""
+"ცდილობთ სანაგვე ყუთიდან ელემენტები წაშალოთ. ამ ქმედებას ვერ დააბრუნებთ."
 
 #: gsecrets/widgets/selection_mode_headerbar.py:158
 msgid "Cancel"
@@ -1530,6 +1532,9 @@ msgstr "ახალი სეიფის შექმნის შეცდო
 #: gsecrets/widgets/window.py:377
 msgid "Could not save safe"
 msgstr "სეიფის შენახვის შეცდომა"
+
+#~ msgid "Could not launch url"
+#~ msgstr "ბმულის გაშვება შეუძლებელია"
 
 #~ msgid "KeePass 3.1/4 Database"
 #~ msgstr "KeePass 3.1/4 ბაზა"

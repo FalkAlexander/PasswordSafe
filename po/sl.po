@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-02-26 13:24+0000\n"
-"PO-Revision-Date: 2023-02-26 21:32+0100\n"
+"POT-Creation-Date: 2023-04-04 12:05+0000\n"
+"PO-Revision-Date: 2023-04-07 23:22+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -98,7 +98,7 @@ msgstr "Barva"
 msgid "Create Safe"
 msgstr "Ustvari sef"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:55
 #: data/gtk/group_page.ui:14
 msgid "Back"
 msgstr "Nazaj"
@@ -174,12 +174,12 @@ msgstr "Preverjanje ujemanja je spodletelo"
 msgid "Please try again."
 msgstr "Poskusite znova."
 
-#: data/gtk/create_database.ui:313
+#: data/gtk/create_database.ui:313 gsecrets/create_database.py:61
 msgid "_Confirm"
 msgstr "_Potrdi"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:348 gsecrets/create_database.py:177
+#: data/gtk/create_database.ui:348 gsecrets/create_database.py:182
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "Ustvari datoteko ključa"
@@ -190,7 +190,7 @@ msgstr "Nastavite datoteko ključa za sef"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:366 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:178
+#: gsecrets/create_database.py:183
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_Ustvari"
@@ -224,7 +224,7 @@ msgid "_Username"
 msgstr "_Uporabniško ime"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:151
 #: data/gtk/history_row.ui:25
 msgid "Copy"
 msgstr "Kopiraj"
@@ -251,7 +251,7 @@ msgstr "P_otrdi novo geslo"
 msgid "Current Password"
 msgstr "Trenutno geslo"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:179
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Datoteka ključa"
@@ -329,94 +329,94 @@ msgstr "Število skupin"
 msgid "Passwords"
 msgstr "Gesla"
 
-#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
+#: data/gtk/entry_page.ui:64 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Meni"
 
-#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
+#: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Naziv"
 
-#: data/gtk/entry_page.ui:86
+#: data/gtk/entry_page.ui:87
 msgid "U_RL"
 msgstr "Naslov _URL"
 
-#: data/gtk/entry_page.ui:103
+#: data/gtk/entry_page.ui:104
 msgid "Open Address"
 msgstr "Odpri naslov"
 
-#: data/gtk/entry_page.ui:124
+#: data/gtk/entry_page.ui:125
 msgid "One-Time Password"
 msgstr "Enkratno geslo"
 
-#: data/gtk/entry_page.ui:162
+#: data/gtk/entry_page.ui:163
 msgid "One-_Time Password Secret"
 msgstr "_Geselska skrivnost za enkratno rabo"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:170
+#: data/gtk/entry_page.ui:171
 msgid "Could not Generate OTP Token"
 msgstr "Žetona OTP ni bilo mogoče ustvariti"
 
-#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/entry_page.ui:179 data/gtk/group_page.ui:43
 #: data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Opombe"
 
-#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
+#: data/gtk/entry_page.ui:183 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "Uredi v oknu"
 
-#: data/gtk/entry_page.ui:214
+#: data/gtk/entry_page.ui:218
 msgid "Icon"
 msgstr "Ikona"
 
-#: data/gtk/entry_page.ui:231
+#: data/gtk/entry_page.ui:235
 msgid "Attachments"
 msgstr "Priloge"
 
-#: data/gtk/entry_page.ui:235
+#: data/gtk/entry_page.ui:239
 msgid "_Add Attachment"
 msgstr "Dodaj _prilogo"
 
-#: data/gtk/entry_page.ui:244
+#: data/gtk/entry_page.ui:248
 msgid "Attributes"
 msgstr "Atributi"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:253
 msgid "_Add Attribute"
 msgstr "_Dodaj atribut"
 
-#: data/gtk/entry_page.ui:257
+#: data/gtk/entry_page.ui:261
 msgid "Expiration Date"
 msgstr "Datum preteka"
 
-#: data/gtk/entry_page.ui:273
+#: data/gtk/entry_page.ui:277
 msgid "_Show More"
 msgstr "Pokaži več _podrobnosti"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:294
 msgid "D_uplicate"
 msgstr "_Podvoji"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:298
 msgid "_References"
 msgstr "_Sklici"
 
-#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:79
 msgid "_Properties"
 msgstr "_Lastnosti"
 
-#: data/gtk/entry_page.ui:304
+#: data/gtk/entry_page.ui:308
 msgid "_Save in History"
 msgstr "_Shrani v zgodovino"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "Po_kaži zgodovino"
 
-#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:85
 msgid "_Delete"
 msgstr "_Izbriši"
 
@@ -900,7 +900,7 @@ msgstr "Počisti"
 msgid "Unlock Safe"
 msgstr "Odkleni sef"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:251
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "Izbor datoteke _ključa"
 
@@ -1179,7 +1179,7 @@ msgstr ""
 "integrira z namizjem GNOME in omogoča enostaven in pregleden vmesnik za "
 "upravljanje zbirk podatkov z gesli."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:234
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1196,23 +1196,23 @@ msgstr "Napaka: sef {} je že odprt"
 msgid "Could not load attachment"
 msgstr "Nalaganje priloge ni uspelo"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:73
 msgid "Unable to create database"
 msgstr "Zbirke podatkov ni mogoče ustvariti"
 
-#: gsecrets/create_database.py:164
+#: gsecrets/create_database.py:169
 msgid "Passwords do not match"
 msgstr "Gesli se ne ujemata"
 
-#: gsecrets/create_database.py:194
+#: gsecrets/create_database.py:199
 msgid "Generating…"
 msgstr "Poteka ustvarjanje …"
 
-#: gsecrets/create_database.py:206
+#: gsecrets/create_database.py:211
 msgid "Could not create keyfile"
 msgstr "Datoteke ključa ni mogoče ustvariti"
 
-#: gsecrets/create_database.py:208
+#: gsecrets/create_database.py:213
 msgid "Generate"
 msgstr "Ustvari"
 
@@ -1234,8 +1234,8 @@ msgid "One-time password copied"
 msgstr "Enkratno geslo je uspešno kopirano"
 
 #: gsecrets/entry_page.py:310
-msgid "Could not launch url"
-msgstr "URL-ja ni bilo mogoče zagnati"
+msgid "Could not open URL"
+msgstr "Ni mogoče odpreti naslova URL"
 
 #: gsecrets/entry_page.py:320
 msgid "The address is not valid"
@@ -1309,20 +1309,20 @@ msgstr "Kloniraj"
 msgid "Could not save Safe"
 msgstr "Sefa ni mogoče shraniti"
 
-#: gsecrets/unlock_database.py:81
+#: gsecrets/unlock_database.py:86
 msgid "Select Keyfile"
 msgstr "izbor datoteke ključa"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:152
+#: gsecrets/unlock_database.py:157
 msgid "Safe {} is already open"
 msgstr "Sef {} je že odprt"
 
-#: gsecrets/unlock_database.py:233
+#: gsecrets/unlock_database.py:238
 msgid "Failed to unlock Safe"
 msgstr "Odklepanje sefa je spodletelo"
 
-#: gsecrets/unlock_database.py:246
+#: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "_Poskusi znova"
 

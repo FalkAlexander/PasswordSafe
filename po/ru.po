@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-02-26 13:24+0000\n"
-"PO-Revision-Date: 2023-02-26 19:05+0300\n"
+"POT-Creation-Date: 2023-04-04 12:05+0000\n"
+"PO-Revision-Date: 2023-04-04 15:57+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Artem Polishchuk <ego.cordatus@gmail.com>, 2018\n"
 "Stas Solovey <whats_up@tut.by>, 2018\n"
 "Ser82-png <sw@atrus.ru>, 2022\n"
-"Aleksandr Melman <alexmelman88@gmail.com>, 2022"
+"Aleksandr Melman <alexmelman88@gmail.com>, 2022-2023"
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
@@ -100,7 +100,7 @@ msgstr "Цвет"
 msgid "Create Safe"
 msgstr "Создать сейф"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:55
 #: data/gtk/group_page.ui:14
 msgid "Back"
 msgstr "Назад"
@@ -176,12 +176,12 @@ msgstr "Сбой при проверке соответствия"
 msgid "Please try again."
 msgstr "Попробуйте ещё раз."
 
-#: data/gtk/create_database.ui:313
+#: data/gtk/create_database.ui:313 gsecrets/create_database.py:61
 msgid "_Confirm"
 msgstr "_Подтвердить"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:348 gsecrets/create_database.py:177
+#: data/gtk/create_database.ui:348 gsecrets/create_database.py:182
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "Создать файл-ключ"
@@ -192,7 +192,7 @@ msgstr "Установите файл-ключ чтобы защитить се�
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:366 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:178
+#: gsecrets/create_database.py:183
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_Создать"
@@ -226,7 +226,7 @@ msgid "_Username"
 msgstr "_Имя пользователя"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:151
 #: data/gtk/history_row.ui:25
 msgid "Copy"
 msgstr "Копировать"
@@ -253,7 +253,7 @@ msgstr "Подтвердить новый пароль"
 msgid "Current Password"
 msgstr "Текущий пароль"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:179
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Файл-ключ"
@@ -331,94 +331,94 @@ msgstr "Количество групп"
 msgid "Passwords"
 msgstr "Пароли"
 
-#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
+#: data/gtk/entry_page.ui:64 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Меню"
 
-#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
+#: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "За_головок"
 
-#: data/gtk/entry_page.ui:86
+#: data/gtk/entry_page.ui:87
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:103
+#: data/gtk/entry_page.ui:104
 msgid "Open Address"
 msgstr "Открыть адрес"
 
-#: data/gtk/entry_page.ui:124
+#: data/gtk/entry_page.ui:125
 msgid "One-Time Password"
 msgstr "Одноразовый пароль"
 
-#: data/gtk/entry_page.ui:162
+#: data/gtk/entry_page.ui:163
 msgid "One-_Time Password Secret"
 msgstr "Защита одно_разовым паролем"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:170
+#: data/gtk/entry_page.ui:171
 msgid "Could not Generate OTP Token"
 msgstr "Не удалось создать одноразовый пароль"
 
-#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/entry_page.ui:179 data/gtk/group_page.ui:43
 #: data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Заметки"
 
-#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
+#: data/gtk/entry_page.ui:183 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "Редактировать в окне"
 
-#: data/gtk/entry_page.ui:214
+#: data/gtk/entry_page.ui:218
 msgid "Icon"
 msgstr "Значок"
 
-#: data/gtk/entry_page.ui:231
+#: data/gtk/entry_page.ui:235
 msgid "Attachments"
 msgstr "Вложения"
 
-#: data/gtk/entry_page.ui:235
+#: data/gtk/entry_page.ui:239
 msgid "_Add Attachment"
 msgstr "_Добавить вложение"
 
-#: data/gtk/entry_page.ui:244
+#: data/gtk/entry_page.ui:248
 msgid "Attributes"
 msgstr "Атрибуты"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:253
 msgid "_Add Attribute"
 msgstr "_Добавить атрибут"
 
-#: data/gtk/entry_page.ui:257
+#: data/gtk/entry_page.ui:261
 msgid "Expiration Date"
 msgstr "Дата истечения"
 
-#: data/gtk/entry_page.ui:273
+#: data/gtk/entry_page.ui:277
 msgid "_Show More"
 msgstr "Показать _больше"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:294
 msgid "D_uplicate"
 msgstr "_Дубликат"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:298
 msgid "_References"
 msgstr "Сс_ылки"
 
-#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:79
 msgid "_Properties"
 msgstr "_Свойства"
 
-#: data/gtk/entry_page.ui:304
+#: data/gtk/entry_page.ui:308
 msgid "_Save in History"
 msgstr "_Сохранить в истории"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "Показать _историю"
 
-#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:85
 msgid "_Delete"
 msgstr "У_далить"
 
@@ -902,7 +902,7 @@ msgstr "Очистить"
 msgid "Unlock Safe"
 msgstr "Разблокировать сейф"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:251
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_Выбрать файл-ключ"
 
@@ -1180,7 +1180,7 @@ msgstr ""
 "отлично интегрируется с рабочим столом GNOME и предоставляет простой и "
 "лаконичный интерфейс для управления базами данных паролей."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:234
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1197,23 +1197,23 @@ msgstr "Ошибка: Сейф {} уже открыт"
 msgid "Could not load attachment"
 msgstr "Не удалось загрузить вложение"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:73
 msgid "Unable to create database"
 msgstr "Невозможно создать базу данных"
 
-#: gsecrets/create_database.py:164
+#: gsecrets/create_database.py:169
 msgid "Passwords do not match"
 msgstr "Пароли не совпадают"
 
-#: gsecrets/create_database.py:194
+#: gsecrets/create_database.py:199
 msgid "Generating…"
 msgstr "Создание…"
 
-#: gsecrets/create_database.py:206
+#: gsecrets/create_database.py:211
 msgid "Could not create keyfile"
 msgstr "Не удалось создать файл-ключ"
 
-#: gsecrets/create_database.py:208
+#: gsecrets/create_database.py:213
 msgid "Generate"
 msgstr "Создать"
 
@@ -1235,8 +1235,8 @@ msgid "One-time password copied"
 msgstr "Одноразовый пароль скопирован"
 
 #: gsecrets/entry_page.py:310
-msgid "Could not launch url"
-msgstr "Не удалось запустить url"
+msgid "Could not open URL"
+msgstr "Не удалось открыть URL"
 
 #: gsecrets/entry_page.py:320
 msgid "The address is not valid"
@@ -1310,20 +1310,20 @@ msgstr "Клонировать"
 msgid "Could not save Safe"
 msgstr "Не удалось сохранить сейф"
 
-#: gsecrets/unlock_database.py:81
+#: gsecrets/unlock_database.py:86
 msgid "Select Keyfile"
 msgstr "Выбрать файл-ключ"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:152
+#: gsecrets/unlock_database.py:157
 msgid "Safe {} is already open"
 msgstr "Сейф {} уже открыт"
 
-#: gsecrets/unlock_database.py:233
+#: gsecrets/unlock_database.py:238
 msgid "Failed to unlock Safe"
 msgstr "Не удалось разблокировать сейф"
 
-#: gsecrets/unlock_database.py:246
+#: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "_Попробуйте снова"
 
@@ -1570,6 +1570,9 @@ msgstr "Не удалось создать новый сейф"
 #: gsecrets/widgets/window.py:377
 msgid "Could not save safe"
 msgstr "Не удалось сохранить сейф"
+
+#~ msgid "Could not launch url"
+#~ msgstr "Не удалось запустить url"
 
 #~ msgid "KeePass 3.1/4 Database"
 #~ msgstr "База данных KeePass 3.1/4"

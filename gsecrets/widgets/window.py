@@ -60,20 +60,8 @@ class Window(Adw.ApplicationWindow):
         window_size = gsecrets.config_manager.get_window_size()
         self.set_default_size(window_size[0], window_size[1])
 
-        self.apply_theme()
-
         if self.props.application.development_mode:
             self.add_css_class("devel")
-
-    def apply_theme(self) -> None:
-        """Set the bright/dark theme depending on the configuration"""
-        manager = Adw.StyleManager.get_default()
-        if not manager.props.system_supports_color_schemes:
-            dark_theme = gsecrets.config_manager.get_dark_theme()
-            if dark_theme:
-                manager.props.color_scheme = Adw.ColorScheme.PREFER_DARK
-            else:
-                manager.props.color_scheme = Adw.ColorScheme.DEFAULT
 
     def do_enable_debugging(  # pylint: disable=arguments-differ
         self, toggle: bool

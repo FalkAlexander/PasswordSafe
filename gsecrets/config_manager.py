@@ -9,7 +9,6 @@ from gsecrets.sorting import SortingHat
 setting = Gio.Settings.new(const.APP_ID)
 
 CLEAR_CLIPBOARD = "clear-clipboard"
-DARK_THEME = "dark-theme"
 DB_LOCK_TIMEOUT = "database-lock-timeout"
 SHOW_START_SCREEN = "first-start-screen"
 LAST_OPENED_DB = "last-opened-database"
@@ -93,14 +92,6 @@ def get_clear_clipboard():
 
 def set_clear_clipboard(value):
     setting.set_int(CLEAR_CLIPBOARD, value)
-
-
-def get_dark_theme():
-    return setting.get_boolean(DARK_THEME)
-
-
-def set_dark_theme(value):
-    setting.set_boolean(DARK_THEME, value)
 
 
 def get_database_lock_timeout():

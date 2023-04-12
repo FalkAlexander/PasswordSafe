@@ -142,15 +142,3 @@ textview {
 .icon-flowbox flowboxchild:selected:hover {
   background: alpha(currentColor, .19);
 }
-
-/* TODO Remove when the following MR langs
-   https://gitlab.gnome.org/GNOME/libadwaita/-/merge_requests/745 */
-list row.property label.title {
-  opacity: 0.55;
-  font-size: smaller;
-}
-
-list row.property label.subtitle {
-  font-size: 11pt;
-  opacity: 1;
-}

@@ -7,7 +7,7 @@ from gi.repository import Adw, GObject, Gtk
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/add_attribute_dialog.ui")
-class AddAttributeDialog(Gtk.Window):
+class AddAttributeDialog(Adw.Window):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "AddAttributeDialog"

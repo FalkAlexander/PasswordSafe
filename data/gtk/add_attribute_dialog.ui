@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="AddAttributeDialog" parent="GtkWindow">
+  <template class="AddAttributeDialog" parent="AdwWindow">
     <property name="modal">True</property>
     <property name="destroy_with_parent">True</property>
     <property name="default_width">450</property>
-    <property name="default_height">300</property>
-    <property name="titlebar">
-      <object class="GtkHeaderBar">
-        <property name="title-widget">
-          <object class="AdwWindowTitle">
-            <property name="title" translatable="yes">Add Attribute</property>
-          </object>
-        </property>
-      </object>
-    </property>
+    <property name="default_height">240</property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -25,47 +16,60 @@
       </object>
     </child>
     <child>
-      <object class="AdwToastOverlay" id="_toast_overlay">
-        <child>
-          <object class="GtkScrolledWindow">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">Add Attribute</property>
+              </object>
+            </property>
+          </object>
+        </child>
+        <property name="content">
+          <object class="AdwToastOverlay" id="_toast_overlay">
             <child>
-              <object class="AdwClamp">
-                <property name="margin_top">12</property>
-                <property name="margin_bottom">12</property>
-                <property name="margin_start">12</property>
-                <property name="margin_end">12</property>
+              <object class="GtkScrolledWindow">
                 <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">12</property>
+                  <object class="AdwClamp">
+                    <property name="margin_top">12</property>
+                    <property name="margin_bottom">12</property>
+                    <property name="margin_start">12</property>
+                    <property name="margin_end">12</property>
                     <child>
-                      <object class="GtkListBox">
-                        <property name="selection-mode">none</property>
-                        <property name="valign">start</property>
-                        <style>
-                          <class name="boxed-list"/>
-                        </style>
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">12</property>
                         <child>
-                          <object class="AdwEntryRow" id="_key_entry">
-                            <property name="title" translatable="yes">Key</property>
+                          <object class="GtkListBox">
+                            <property name="selection-mode">none</property>
+                            <property name="valign">start</property>
+                            <style>
+                              <class name="boxed-list"/>
+                            </style>
+                            <child>
+                              <object class="AdwEntryRow" id="_key_entry">
+                                <property name="title" translatable="yes">Key</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwEntryRow" id="_value_entry">
+                                <property name="title" translatable="yes">Value</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child>
-                          <object class="AdwEntryRow" id="_value_entry">
-                            <property name="title" translatable="yes">Value</property>
+                          <object class="GtkButton">
+                            <property name="label" translatable="yes">Add</property>
+                            <signal name="clicked" handler="_on_add_button_clicked" swapped="no"/>
+                            <property name="halign">center</property>
+                            <style>
+                              <class name="suggested-action"/>
+                              <class name="pill"/>
+                            </style>
                           </object>
                         </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">Add</property>
-                        <signal name="clicked" handler="_on_add_button_clicked" swapped="no"/>
-                        <property name="halign">center</property>
-                        <style>
-                          <class name="suggested-action"/>
-                          <class name="pill"/>
-                        </style>
                       </object>
                     </child>
                   </object>
@@ -73,7 +77,7 @@
               </object>
             </child>
           </object>
-        </child>
+        </property>
       </object>
     </child>
   </template>

@@ -56,23 +56,18 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Password Generation</property>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwSpinRow" id="_generator_length_spin_row">
                 <property name="title" translatable="yes">Password Length</property>
                 <property name="subtitle" translatable="yes">Number of characters when generating a password.</property>
                 <property name="selectable">False</property>
-                <child>
-                  <object class="GtkSpinButton" id="_generator_length_spin_button">
-                    <property name="valign">center</property>
-                    <property name="numeric">True</property>
-                    <property name="adjustment">
-                      <object class="GtkAdjustment">
-                       <property name="lower">1</property>
-                       <property name="upper">500</property>
-                       <property name="step_increment">1</property>
-                      </object>
-                    </property>
+                <property name="numeric">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">1</property>
+                    <property name="upper">500</property>
+                    <property name="step_increment">1</property>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
             <child>
@@ -113,23 +108,18 @@
           <object class="AdwPreferencesGroup">
             <property name="title" translatable="yes">Passphrase Generation</property>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwSpinRow" id="_generator_words_spin_row">
                 <property name="title" translatable="yes">Passphrase Length</property>
                 <property name="subtitle" translatable="yes">Number of words to use when generating a passphrase.</property>
                 <property name="selectable">False</property>
-                <child>
-                  <object class="GtkSpinButton" id="_generator_words_spin_button">
-                    <property name="valign">center</property>
-                    <property name="numeric">True</property>
-                    <property name="adjustment">
-                      <object class="GtkAdjustment">
-                       <property name="lower">1</property>
-                       <property name="upper">99</property>
-                       <property name="step_increment">1</property>
-                      </object>
-                    </property>
+                <property name="numeric">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">1</property>
+                    <property name="upper">99</property>
+                    <property name="step_increment">1</property>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
             <child>
@@ -160,43 +150,33 @@
           <object class="AdwPreferencesGroup" id="settings_section_security">
             <property name="title" translatable="yes">Security</property>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwSpinRow" id="_lockdb_spin_row">
                 <property name="title" translatable="yes">Safe Lock Timeout</property>
                 <property name="subtitle" translatable="yes">Lock safe on idle after X minutes.</property>
                 <property name="selectable">False</property>
-                <child>
-                  <object class="GtkSpinButton" id="_lockdb_spin_button">
-                    <property name="valign">center</property>
-                    <property name="numeric">True</property>
-                    <property name="adjustment">
-                      <object class="GtkAdjustment">
-                       <property name="lower">1</property>
-                       <property name="upper">60</property>
-                       <property name="step_increment">1</property>
-                      </object>
-                    </property>
+                <property name="numeric">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">1</property>
+                    <property name="upper">60</property>
+                    <property name="step_increment">1</property>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
             <child>
-              <object class="AdwActionRow">
+              <object class="AdwSpinRow" id="_clearcb_spin_row">
                 <property name="title" translatable="yes">Clear Clipboard</property>
                 <property name="subtitle" translatable="yes">Clear clipboard after X seconds.</property>
                 <property name="selectable">False</property>
-                <child>
-                  <object class="GtkSpinButton" id="_clearcb_spin_button">
-                    <property name="valign">center</property>
-                    <property name="numeric">True</property>
-                    <property name="adjustment">
-                      <object class="GtkAdjustment">
-                       <property name="lower">1</property>
-                       <property name="upper">300</property>
-                       <property name="step_increment">1</property>
-                      </object>
-                    </property>
+                <property name="numeric">True</property>
+                <property name="adjustment">
+                  <object class="GtkAdjustment">
+                    <property name="lower">1</property>
+                    <property name="upper">300</property>
+                    <property name="step_increment">1</property>
                   </object>
-                </child>
+                </property>
               </object>
             </child>
             <child>

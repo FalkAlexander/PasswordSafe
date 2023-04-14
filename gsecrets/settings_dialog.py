@@ -11,11 +11,12 @@ class SettingsDialog(Adw.PreferencesWindow):
     __gtype_name__ = "SettingsDialog"
 
     _clear_button = Gtk.Template.Child()
-    _clearcb_spin_button = Gtk.Template.Child()
-    _generator_length_spin_button = Gtk.Template.Child()
+    _clearcb_spin_row = Gtk.Template.Child()
+    _generator_length_spin_row = Gtk.Template.Child()
+
     _generator_separator_entry = Gtk.Template.Child()
-    _generator_words_spin_button = Gtk.Template.Child()
-    _lockdb_spin_button = Gtk.Template.Child()
+    _generator_words_spin_row = Gtk.Template.Child()
+    _lockdb_spin_row = Gtk.Template.Child()
 
     def __init__(self, window):
         super().__init__()
@@ -41,7 +42,7 @@ class SettingsDialog(Adw.PreferencesWindow):
         # Password Generator
         settings.bind(
             "generator-length",
-            self._generator_length_spin_button,
+            self._generator_length_spin_row,
             "value",
             Gio.SettingsBindFlags.DEFAULT,
         )
@@ -61,7 +62,7 @@ class SettingsDialog(Adw.PreferencesWindow):
         # Passphrase Generation
         settings.bind(
             "generator-words",
-            self._generator_words_spin_button,
+            self._generator_words_spin_row,
             "value",
             Gio.SettingsBindFlags.DEFAULT,
         )
@@ -75,13 +76,13 @@ class SettingsDialog(Adw.PreferencesWindow):
         # Security
         settings.bind(
             "database-lock-timeout",
-            self._lockdb_spin_button,
+            self._lockdb_spin_row,
             "value",
             Gio.SettingsBindFlags.DEFAULT,
         )
         settings.bind(
             "clear-clipboard",
-            self._clearcb_spin_button,
+            self._clearcb_spin_row,
             "value",
             Gio.SettingsBindFlags.DEFAULT,
         )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="PropertiesDialog" parent="GtkWindow">
+  <template class="PropertiesDialog" parent="AdwWindow">
     <property name="default_width">360</property>
     <property name="default_height">240</property>
     <property name="destroy-with-parent">True</property>
@@ -16,48 +16,55 @@
       </object>
     </child>
     <child>
-      <object class="AdwClamp">
-        <property name="margin_bottom">18</property>
-        <property name="margin_top">18</property>
-        <property name="margin_start">18</property>
-        <property name="margin_end">18</property>
-        <child>
-          <object class="AdwPreferencesGroup">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar"/>
+        </child>
+        <property name="content">
+          <object class="AdwClamp">
+            <property name="margin_bottom">18</property>
+            <property name="margin_top">18</property>
+            <property name="margin_start">18</property>
+            <property name="margin_end">18</property>
             <child>
-              <object class="AdwActionRow" id="_uuid_row">
-                <property name="title" translatable="yes">UUID</property>
-                <property name="subtitle-selectable">True</property>
-                <style>
-                  <class name="property"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow" id="_accessed_row">
-                <property name="title" translatable="yes">Accessed</property>
-                <style>
-                  <class name="property"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow" id="_modified_row">
-                <property name="title" translatable="yes">Modified</property>
-                <style>
-                  <class name="property"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow" id="_created_row">
-                <property name="title" translatable="yes">Created</property>
-                <style>
-                  <class name="property"/>
-                </style>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwActionRow" id="_uuid_row">
+                    <property name="title" translatable="yes">UUID</property>
+                    <property name="subtitle-selectable">True</property>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow" id="_accessed_row">
+                    <property name="title" translatable="yes">Accessed</property>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow" id="_modified_row">
+                    <property name="title" translatable="yes">Modified</property>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow" id="_created_row">
+                    <property name="title" translatable="yes">Created</property>
+                    <style>
+                      <class name="property"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
-        </child>
+        </property>
       </object>
     </child>
   </template>

@@ -25,6 +25,9 @@ class SettingsDialog(Adw.PreferencesWindow):
         self.props.transient_for = self.window
         self._set_config_values()
 
+        delegate = self._generator_separator_entry.get_delegate()
+        delegate.props.max_length = 1
+
     def _set_config_values(self):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-statements

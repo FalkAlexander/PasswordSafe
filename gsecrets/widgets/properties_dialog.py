@@ -2,13 +2,13 @@
 """Responsible for displaying the Entry/Group Properties"""
 from __future__ import annotations
 
-from gi.repository import Gtk
+from gi.repository import Adw, Gtk
 
 from gsecrets.utils import format_time
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/properties_dialog.ui")
-class PropertiesDialog(Gtk.Window):
+class PropertiesDialog(Adw.Window):
     """Displays a modal dialog with Entry/Group Properties"""
 
     __gtype_name__ = "PropertiesDialog"

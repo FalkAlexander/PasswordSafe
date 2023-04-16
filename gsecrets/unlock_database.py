@@ -6,7 +6,7 @@ import os
 import typing
 from gettext import gettext as _
 
-from gi.repository import Gio, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk
 
 import gsecrets.config_manager
 from gsecrets import const
@@ -19,7 +19,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlock_database.ui")
-class UnlockDatabase(Gtk.Box):
+class UnlockDatabase(Adw.Bin):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "UnlockDatabase"

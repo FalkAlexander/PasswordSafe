@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-02-26 13:24+0000\n"
-"PO-Revision-Date: 2023-03-06 22:37+0100\n"
+"POT-Creation-Date: 2023-04-04 12:05+0000\n"
+"PO-Revision-Date: 2023-04-04 16:46+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -98,7 +98,7 @@ msgstr "Färg"
 msgid "Create Safe"
 msgstr "Skapa kassaskåp"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:54
+#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:55
 #: data/gtk/group_page.ui:14
 msgid "Back"
 msgstr "Bakåt"
@@ -176,12 +176,12 @@ msgstr "Kontroll av överensstämmelse misslyckades"
 msgid "Please try again."
 msgstr "Försök igen."
 
-#: data/gtk/create_database.ui:313
+#: data/gtk/create_database.ui:313 gsecrets/create_database.py:61
 msgid "_Confirm"
 msgstr "_Bekräfta"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:348 gsecrets/create_database.py:177
+#: data/gtk/create_database.ui:348 gsecrets/create_database.py:182
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "Generera nyckelfil"
@@ -192,7 +192,7 @@ msgstr "Ställ in nyckelfil för kassaskåp"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:366 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:178
+#: gsecrets/create_database.py:183
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_Generera"
@@ -226,7 +226,7 @@ msgid "_Username"
 msgstr "_Användarnamn"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:150
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:151
 #: data/gtk/history_row.ui:25
 msgid "Copy"
 msgstr "Kopiera"
@@ -253,7 +253,7 @@ msgstr "Bekräfta nytt lösenord"
 msgid "Current Password"
 msgstr "Aktuellt lösenord"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:179
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Nyckelfil"
@@ -332,94 +332,94 @@ msgstr "Antal grupper"
 msgid "Passwords"
 msgstr "Lösenord"
 
-#: data/gtk/entry_page.ui:63 data/gtk/group_page.ui:23
+#: data/gtk/entry_page.ui:64 data/gtk/group_page.ui:23
 msgid "Menu"
 msgstr "Meny"
 
-#: data/gtk/entry_page.ui:80 data/gtk/group_page.ui:35
+#: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Titel"
 
-#: data/gtk/entry_page.ui:86
+#: data/gtk/entry_page.ui:87
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:103
+#: data/gtk/entry_page.ui:104
 msgid "Open Address"
 msgstr "Öppna adress"
 
-#: data/gtk/entry_page.ui:124
+#: data/gtk/entry_page.ui:125
 msgid "One-Time Password"
 msgstr "Engångslösenord"
 
-#: data/gtk/entry_page.ui:162
+#: data/gtk/entry_page.ui:163
 msgid "One-_Time Password Secret"
 msgstr "En_gångslösenordshemlighet"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:170
+#: data/gtk/entry_page.ui:171
 msgid "Could not Generate OTP Token"
 msgstr "Kunde inte generera engångslösenordstoken"
 
-#: data/gtk/entry_page.ui:178 data/gtk/group_page.ui:43
+#: data/gtk/entry_page.ui:179 data/gtk/group_page.ui:43
 #: data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Anteckningar"
 
-#: data/gtk/entry_page.ui:182 data/gtk/group_page.ui:47
+#: data/gtk/entry_page.ui:183 data/gtk/group_page.ui:47
 msgid "Edit in a Window"
 msgstr "Redigera i ett fönster"
 
-#: data/gtk/entry_page.ui:214
+#: data/gtk/entry_page.ui:218
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:231
+#: data/gtk/entry_page.ui:235
 msgid "Attachments"
 msgstr "Bilagor"
 
-#: data/gtk/entry_page.ui:235
+#: data/gtk/entry_page.ui:239
 msgid "_Add Attachment"
 msgstr "_Lägg till bilaga"
 
-#: data/gtk/entry_page.ui:244
+#: data/gtk/entry_page.ui:248
 msgid "Attributes"
 msgstr "Attribut"
 
-#: data/gtk/entry_page.ui:249
+#: data/gtk/entry_page.ui:253
 msgid "_Add Attribute"
 msgstr "_Lägg till attribut"
 
-#: data/gtk/entry_page.ui:257
+#: data/gtk/entry_page.ui:261
 msgid "Expiration Date"
 msgstr "Utgångsdatum"
 
-#: data/gtk/entry_page.ui:273
+#: data/gtk/entry_page.ui:277
 msgid "_Show More"
 msgstr "_Visa mer"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:294
 msgid "D_uplicate"
 msgstr "_Duplicera"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:298
 msgid "_References"
 msgstr "_Referenser"
 
-#: data/gtk/entry_page.ui:298 data/gtk/group_page.ui:76
+#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:79
 msgid "_Properties"
 msgstr "_Egenskaper"
 
-#: data/gtk/entry_page.ui:304
+#: data/gtk/entry_page.ui:308
 msgid "_Save in History"
 msgstr "_Spara i historik"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:312
 msgid "Show _History"
 msgstr "Visa _historik"
 
-#: data/gtk/entry_page.ui:314 data/gtk/group_page.ui:82
+#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:85
 msgid "_Delete"
 msgstr "_Ta bort"
 
@@ -903,7 +903,7 @@ msgstr "Töm"
 msgid "Unlock Safe"
 msgstr "Lås upp kassaskåp"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:251
+#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_Välj nyckelfil"
 
@@ -1179,7 +1179,7 @@ msgstr ""
 "integrerar perfekt med GNOME-skrivbordet och tillhandahåller ett enkelt och "
 "stilrent gränssnitt för hantering av lösenordsdatabaser."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:234
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1196,23 +1196,23 @@ msgstr "Fel: Kassaskåpet {} är redan öppnat"
 msgid "Could not load attachment"
 msgstr "Kunde inte läsa in bilaga"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:73
 msgid "Unable to create database"
 msgstr "Kunde inte skapa databas"
 
-#: gsecrets/create_database.py:164
+#: gsecrets/create_database.py:169
 msgid "Passwords do not match"
 msgstr "Lösenord stämmer inte överens"
 
-#: gsecrets/create_database.py:194
+#: gsecrets/create_database.py:199
 msgid "Generating…"
 msgstr "Genererar…"
 
-#: gsecrets/create_database.py:206
+#: gsecrets/create_database.py:211
 msgid "Could not create keyfile"
 msgstr "Kunde inte skapa nyckelfil"
 
-#: gsecrets/create_database.py:208
+#: gsecrets/create_database.py:213
 msgid "Generate"
 msgstr "Generera"
 
@@ -1234,7 +1234,7 @@ msgid "One-time password copied"
 msgstr "Engångslösenord kopierat"
 
 #: gsecrets/entry_page.py:310
-msgid "Could not launch url"
+msgid "Could not open URL"
 msgstr "Kunde inte öppna URL"
 
 #: gsecrets/entry_page.py:320
@@ -1309,20 +1309,20 @@ msgstr "Klon"
 msgid "Could not save Safe"
 msgstr "Kunde inte spara kassaskåp"
 
-#: gsecrets/unlock_database.py:81
+#: gsecrets/unlock_database.py:86
 msgid "Select Keyfile"
 msgstr "Välj nyckelfil"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:152
+#: gsecrets/unlock_database.py:157
 msgid "Safe {} is already open"
 msgstr "Kassaskåpet {} är redan öppnat"
 
-#: gsecrets/unlock_database.py:233
+#: gsecrets/unlock_database.py:238
 msgid "Failed to unlock Safe"
 msgstr "Misslyckades med att låsa upp kassaskåp"
 
-#: gsecrets/unlock_database.py:246
+#: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "_Försök igen"
 
@@ -1568,6 +1568,9 @@ msgstr "Kunde inte skapa nytt kassaskåp"
 #: gsecrets/widgets/window.py:377
 msgid "Could not save safe"
 msgstr "Kunde inte spara kassaskåp"
+
+#~ msgid "Could not launch url"
+#~ msgstr "Kunde inte öppna URL"
 
 #~ msgid "KeePass 3.1/4 Database"
 #~ msgstr "KeePass 3.1/4-databas"

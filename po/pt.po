@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-04-04 12:05+0000\n"
-"PO-Revision-Date: 2023-04-05 11:13+0100\n"
+"POT-Creation-Date: 2023-04-28 21:20+0000\n"
+"PO-Revision-Date: 2023-05-03 14:07+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -93,7 +93,7 @@ msgstr "Cor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:230
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:218
 msgid "Create Safe"
 msgstr "Criar cofre"
 
@@ -199,23 +199,23 @@ msgstr "_Gerar"
 msgid "Safe Successfully Created"
 msgstr "Cofre criado com sucesso"
 
-#: data/gtk/create_database.ui:407 data/gtk/unlocked_headerbar.ui:94
+#: data/gtk/create_database.ui:407 data/gtk/unlocked_headerbar.ui:86
 msgid "_Open Safe"
 msgstr "_Abrir cofre"
 
 #: data/gtk/create_database.ui:429 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:105
+#: data/gtk/unlocked_headerbar.ui:97
 msgid "_Preferences"
 msgstr "_Preferências"
 
 #: data/gtk/create_database.ui:433 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:109
+#: data/gtk/unlocked_headerbar.ui:101
 msgid "_Keyboard Shortcuts"
 msgstr "_Teclas de atalho"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:437 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:113
+#: data/gtk/unlocked_headerbar.ui:105
 msgid "_About Secrets"
 msgstr "_Acerca do Segredos"
 
@@ -235,7 +235,7 @@ msgstr "Autenticação"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:27
+#: data/gtk/settings_dialog.ui:72 data/gtk/unlock_database.ui:27
 msgid "Password"
 msgstr "Palavra-passe"
 
@@ -329,9 +329,9 @@ msgstr "Número de grupos"
 msgid "Passwords"
 msgstr "Palavras-passe"
 
-#: data/gtk/entry_page.ui:64 data/gtk/group_page.ui:23
-msgid "Menu"
-msgstr "Menu"
+#: data/gtk/entry_page.ui:64
+msgid "Entry Menu"
+msgstr "Menu de entrada"
 
 #: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
@@ -443,6 +443,10 @@ msgstr "Remover data de expiração"
 #: data/gtk/expiration_date_row.ui:58
 msgid "_Set Expiration Date"
 msgstr "_Definir data de expiração"
+
+#: data/gtk/group_page.ui:23
+msgid "Group Menu"
+msgstr "Menu de grupo"
 
 #: data/gtk/group_row.ui:51
 msgid "Edit"
@@ -569,7 +573,7 @@ msgstr "Histórico de palavras-passe"
 msgid "_Open"
 msgstr "_Abrir"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:90
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:82
 msgid "_New Safe"
 msgstr "_Novo cofre"
 
@@ -598,7 +602,7 @@ msgstr "Frase-passe"
 msgid "Words"
 msgstr "Palavras"
 
-#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
+#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:179
 msgid "Separator"
 msgstr "Separador"
 
@@ -753,147 +757,139 @@ msgstr "Selecion_ar tudo"
 msgid "Select _None"
 msgstr "Não selecionar _nada"
 
-#: data/gtk/settings_dialog.ui:16
-msgid "_Dark Theme"
-msgstr "_Tema escuro"
-
-#: data/gtk/settings_dialog.ui:17
-msgid "Use dark GTK theme."
-msgstr "Utilizar o tema escuro GTK+."
-
-#: data/gtk/settings_dialog.ui:30
+#: data/gtk/settings_dialog.ui:15
 msgid "_Hide First Start Screen"
 msgstr "_Ocultar o ecrã de início"
 
-#: data/gtk/settings_dialog.ui:31
+#: data/gtk/settings_dialog.ui:16
 msgid "Reopen last opened safe."
 msgstr "Reabrir o último cofre aberto."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:141
-#: gsecrets/widgets/window.py:222 gsecrets/widgets/window.py:234
+#: data/gtk/settings_dialog.ui:31 gsecrets/widgets/window.py:129
+#: gsecrets/widgets/window.py:210 gsecrets/widgets/window.py:222
 msgid "Safe"
 msgstr "Cofre"
 
-#: data/gtk/settings_dialog.ui:49
+#: data/gtk/settings_dialog.ui:34
 msgid "_Save Automatically"
 msgstr "A_uto-gravar"
 
-#: data/gtk/settings_dialog.ui:50
+#: data/gtk/settings_dialog.ui:35
 msgid "Save every change automatically."
 msgstr "Gravar todas as alterações automaticamente."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:33
+#: data/gtk/settings_dialog.ui:50 data/gtk/unlock_database.ui:33
 msgid "Unlock"
 msgstr "Desbloquear"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:68
+#: data/gtk/settings_dialog.ui:53
 msgid "Remember Composite _Key"
 msgstr "_Lembrar da chave composta"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:69
+#: data/gtk/settings_dialog.ui:54
 msgid "Remember last used composite key."
 msgstr "Lembrar da última chave composta usada."
 
-#: data/gtk/settings_dialog.ui:90
+#: data/gtk/settings_dialog.ui:75
 msgid "Password Generation"
 msgstr "Geração de palavras-passe"
 
-#: data/gtk/settings_dialog.ui:93
+#: data/gtk/settings_dialog.ui:78
 msgid "Password Length"
 msgstr "Tamanho das palavras-passe"
 
-#: data/gtk/settings_dialog.ui:94
+#: data/gtk/settings_dialog.ui:79
 msgid "Number of characters when generating a password."
 msgstr "Número de caracteres ao gerar uma palavra-passe."
 
-#: data/gtk/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:98
 msgid "_Uppercase Characters"
 msgstr "Caracteres _maiúsculos"
 
-#: data/gtk/settings_dialog.ui:114
+#: data/gtk/settings_dialog.ui:99
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Utilizar caracteres maiúsculos A-Z quando gerar palavras-passe."
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:112
 msgid "_Lowercase Characters"
 msgstr "Caracteres mi_núsculos"
 
-#: data/gtk/settings_dialog.ui:128
+#: data/gtk/settings_dialog.ui:113
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Utilizar caracteres minúsculos a-z quando gerar palavras-passe."
 
-#: data/gtk/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:126
 msgid "_Numeric Characters"
 msgstr "Caracteres numé_ricos"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:127
 msgid "Use numeric characters when generating a password."
 msgstr "Utilizar caracteres numéricos quando gerar palavras-passe."
 
-#: data/gtk/settings_dialog.ui:155
+#: data/gtk/settings_dialog.ui:140
 msgid "_Special Characters"
 msgstr "Caracteres es_peciais"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:156
+#: data/gtk/settings_dialog.ui:141
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Utilizar símbolos especiais ASCII quando gerar palavras-passe."
 
-#: data/gtk/settings_dialog.ui:171
+#: data/gtk/settings_dialog.ui:156
 msgid "Passphrase Generation"
 msgstr "Geração de frases-passe"
 
-#: data/gtk/settings_dialog.ui:174
+#: data/gtk/settings_dialog.ui:159
 msgid "Passphrase Length"
 msgstr "Tamanho das frases-passe"
 
-#: data/gtk/settings_dialog.ui:175
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/gtk/settings_dialog.ui:160
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of words to use when generating a passphrase."
 msgstr "Número de palavras a utilizar ao gerar uma frase-passe."
 
-#: data/gtk/settings_dialog.ui:195
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
+#: data/gtk/settings_dialog.ui:180
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Word separator to use when generating a passphrase."
 msgstr "Separador de palavras a utilizar ao gerar uma frase-passe."
 
-#: data/gtk/settings_dialog.ui:202
+#: data/gtk/settings_dialog.ui:187
 msgid "Enter Character"
 msgstr "Introduzir carácter"
 
-#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
+#: data/gtk/settings_dialog.ui:200 data/gtk/settings_dialog.ui:203
 msgid "Security"
 msgstr "Segurança"
 
-#: data/gtk/settings_dialog.ui:221
+#: data/gtk/settings_dialog.ui:206
 msgid "Safe Lock Timeout"
 msgstr "Compasso de espera para atuar o bloqueio de segurança"
 
-#: data/gtk/settings_dialog.ui:222
+#: data/gtk/settings_dialog.ui:207
 msgid "Lock safe on idle after X minutes."
 msgstr "Bloqueio de segurança do cofre atua após X minutos."
 
-#: data/gtk/settings_dialog.ui:241
+#: data/gtk/settings_dialog.ui:226
 msgid "Clear Clipboard"
 msgstr "Limpar a área de transferência"
 
-#: data/gtk/settings_dialog.ui:242
+#: data/gtk/settings_dialog.ui:227
 msgid "Clear clipboard after X seconds."
 msgstr "Limpar a área de transferência após X segundos."
 
-#: data/gtk/settings_dialog.ui:261
+#: data/gtk/settings_dialog.ui:246
 msgid "Clear Recent List"
 msgstr "Limpar a lista de recentes"
 
-#: data/gtk/settings_dialog.ui:262
+#: data/gtk/settings_dialog.ui:247
 msgid "Clear the recently opened safes list."
 msgstr "Limpar a lista de cofres abertos recentemente."
 
-#: data/gtk/settings_dialog.ui:269 data/gtk/unlock_database.ui:108
+#: data/gtk/settings_dialog.ui:254 data/gtk/unlock_database.ui:108
 msgid "Clear"
 msgstr "Limpar"
 
@@ -922,48 +918,48 @@ msgstr "Nova entrada ou grupo"
 msgid "Selection Mode"
 msgstr "Modo seleção"
 
-#: data/gtk/unlocked_headerbar.ui:54
-#: gsecrets/widgets/saving_conflict_dialog.py:35
-msgid "_Save"
-msgstr "_Guardar"
-
-#: data/gtk/unlocked_headerbar.ui:60
-msgid "_Lock"
-msgstr "_Bloquear"
-
-#: data/gtk/unlocked_headerbar.ui:65
+#: data/gtk/unlocked_headerbar.ui:57
 msgid "So_rting"
 msgstr "_Ordenação"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:67
+#: data/gtk/unlocked_headerbar.ui:59
 msgid "_A-Z"
 msgstr "_A-Z"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:72
+#: data/gtk/unlocked_headerbar.ui:64
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/gtk/unlocked_headerbar.ui:77
+#: data/gtk/unlocked_headerbar.ui:69
 msgid "_Newest First"
 msgstr "O mais rece_nte primeiro"
 
-#: data/gtk/unlocked_headerbar.ui:82
+#: data/gtk/unlocked_headerbar.ui:74
 msgid "_Oldest First"
 msgstr "_O mais antigo primeiro"
 
-#: data/gtk/unlocked_headerbar.ui:99
+#: data/gtk/unlocked_headerbar.ui:91
 msgid "Sa_fe Settings"
 msgstr "Definições do co_fre"
 
-#: data/gtk/unlocked_headerbar.ui:121
+#: data/gtk/unlocked_headerbar.ui:113
 msgid "New _Entry"
 msgstr "Nova _entrada"
 
-#: data/gtk/unlocked_headerbar.ui:125
+#: data/gtk/unlocked_headerbar.ui:117
 msgid "New _Group"
 msgstr "Novo _grupo"
+
+#: data/gtk/unlocked_headerbar.ui:136
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+msgid "_Save"
+msgstr "_Guardar"
+
+#: data/gtk/unlocked_headerbar.ui:151
+msgid "_Lock"
+msgstr "_Bloquear"
 
 #. The umbrella sentence of the application on the first start screen
 #: data/gtk/welcome_page.ui:30
@@ -989,22 +985,10 @@ msgid "keepass;encrypt;secure;"
 msgstr "keepass;encriptar;assegurar;cifrar;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
-msgid "Use dark GTK theme"
-msgstr "Utilizar o tema noturno GTK+"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Utilizar a variante escura de seu tema GTK+. Note que todo tema GTK+ possui "
-"uma variante escura."
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
 msgstr "Reabrir a última base de dados aberta"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:18
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
@@ -1012,11 +996,11 @@ msgstr ""
 "Abrir automaticamente o ecrã de desbloqueio da última base de dados aberta, "
 "caso contrário, mostrar o ecrã de boas-vindas."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:22
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Save every change automatically"
 msgstr "Gravar todas alterações automaticamente"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:23
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
@@ -1024,11 +1008,11 @@ msgstr ""
 "Grava todas alterações que fez instantaneamente na base de dados. Note que "
 "não pode revertê-las se Auto-gravar estiver ativo."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:27
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Lock database after X minutes"
 msgstr "Bloquear base de dados após X minutos"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:28
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
 msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
@@ -1036,72 +1020,72 @@ msgstr ""
 "Automaticamente bloqueia sua base de dados após alguns minutos para "
 "incrementar a segurança."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:32
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Clear clipboard after X seconds"
 msgstr "Limpar área de transferência após X segundos"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:33
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr ""
 "Como medida de segurança, limpa a área de transferência após copiar a "
 "palavra-passe."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:37
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Window size"
 msgstr "Tamanho da janela"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:38
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "Remember the window size."
 msgstr "Memorizar o tamanho da janela."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:42
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Last opened database"
 msgstr "Última base de dados aberta"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
 msgid "Path to the last opened database."
 msgstr "Caminho para a última base de dados aberta."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
 msgid "Last opened databases"
 msgstr "Última bases de dados aberta"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
 msgid "A list of the last opened databases."
 msgstr "Uma lista dos últimos bancos de dados abertos."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Remember composite key"
 msgstr "Lembrar chave composta"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
 "Lembra a última chave composta utilizada num desbloqueio de base de dados."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Last used composite key"
 msgstr "Última chave composta utilizada"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Path to last used key for composite database unlocking."
 msgstr ""
 "Caminho para a última chave composta utilizada num desbloqueio de base de "
 "dados."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Remember unlock method"
 msgstr "Lembrar método de desbloqueio"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Remember last used unlock method for future database unlocking."
 msgstr "Lembrar último método de desbloqueio usado para desbloqueios futuros."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Backup the database on unlock"
 msgstr "Salvaguardar a base de dados ao desbloqueá-la"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
@@ -1109,62 +1093,62 @@ msgstr ""
 "Caso ocorra uma falha na gravação da base de dados, uma cópia de segurança "
 "pode ser encontrada em ~/.cache/secrets/backups"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Sorting order of groups and entries"
 msgstr "Ordenar os grupos e entradas"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid "Order of the rows in the groups and entries view."
 msgstr "Ordem das colunas na vista de grupos e entradas."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Use uppercases when generating a password"
 msgstr "Utilizar maiúsculas quando gerar palavras-passe"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr ""
 "Utilizar caracteres maiúsculos A-Z quando gerar um palavra-passe aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use lowercases when generating a password"
 msgstr "Utilizar minúsculas quando gerar palavras-passe"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr ""
 "Utilizar caracteres minúsculos a-z quando gerar um palavra-passe aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use numbers when generating a password"
 msgstr "Utilizar números quando gerar palavras-passe"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr "Utilizar números 0-9 quando gerar um palavra-passe aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use symbols when generating a password"
 msgstr "Utilizar símbolos quando gerar palavras-passe"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
 "Utilizar símbolos especiais ASCII quando gerar um palavra-passe aleatória."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Password length when generating a password"
 msgstr "Tamanho da palavra-passe quando gerar palavras-passe"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Number of single characters when generating a password."
 msgstr "Número de caracteres únicos ao gerar uma palavra-passe."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Number of words when generating a passphrase"
 msgstr "Número de palavras quando gerar uma frase-passe"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:107
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Separator when generating a passphrase"
 msgstr "Separador quando gerar uma frase-passe"
 
@@ -1309,7 +1293,7 @@ msgstr "Clonar"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:549
-#: gsecrets/widgets/window.py:364 gsecrets/widgets/window.py:370
+#: gsecrets/widgets/window.py:352 gsecrets/widgets/window.py:358
 msgid "Could not save Safe"
 msgstr "Não foi possível guardar o cofre"
 
@@ -1546,33 +1530,52 @@ msgstr "Operação abortada: a mover grupo atualmente ativo"
 msgid "Move completed"
 msgstr "Mover concluído"
 
-#: gsecrets/widgets/window.py:145
+#: gsecrets/widgets/window.py:133
 msgid "Any file type"
 msgstr "Qualquer tipo de ficheiro"
 
-#: gsecrets/widgets/window.py:152
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Selecionar cofre"
 
-#: gsecrets/widgets/window.py:200
+#: gsecrets/widgets/window.py:188
 msgid "Safe is already open"
 msgstr "O cofre já está aberto"
 
-#: gsecrets/widgets/window.py:232
+#: gsecrets/widgets/window.py:220
 msgid "_Create"
 msgstr "Cri_ar"
 
-#: gsecrets/widgets/window.py:253
+#: gsecrets/widgets/window.py:241
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Não é possível criar cofre: o cofre já está aberto"
 
-#: gsecrets/widgets/window.py:295 gsecrets/widgets/window.py:310
+#: gsecrets/widgets/window.py:283 gsecrets/widgets/window.py:298
 msgid "Could not create new Safe"
 msgstr "Não foi possível criar novo cofre"
 
-#: gsecrets/widgets/window.py:377
+#: gsecrets/widgets/window.py:365
 msgid "Could not save safe"
 msgstr "Não foi possível guardar o cofre"
+
+#~ msgid "Menu"
+#~ msgstr "Menu"
+
+#~ msgid "_Dark Theme"
+#~ msgstr "_Tema escuro"
+
+#~ msgid "Use dark GTK theme."
+#~ msgstr "Utilizar o tema escuro GTK+."
+
+#~ msgid "Use dark GTK theme"
+#~ msgstr "Utilizar o tema noturno GTK+"
+
+#~ msgid ""
+#~ "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+#~ "theme has a dark variant."
+#~ msgstr ""
+#~ "Utilizar a variante escura de seu tema GTK+. Note que todo tema GTK+ "
+#~ "possui uma variante escura."
 
 #~ msgid "Could not launch url"
 #~ msgstr "Não foi possível iniciar o url"

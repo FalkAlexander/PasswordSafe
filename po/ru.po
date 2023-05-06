@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PasswordSafe package.
 # Artem Polishchuk <ego.cordatus@gmail.com>, 2018.
 # Stas Solovey <whats_up@tut.by>, 2018.
-# Ser82-png <sw@atrus.ru>, 2022
+# Ser82-png <asvmail.as@gmail.com>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-04-04 12:05+0000\n"
-"PO-Revision-Date: 2023-04-04 15:57+0300\n"
-"Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
+"POT-Creation-Date: 2023-04-28 21:20+0000\n"
+"PO-Revision-Date: 2023-04-29 08:59+1000\n"
+"Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -31,7 +31,7 @@ msgid "translator-credits"
 msgstr ""
 "Artem Polishchuk <ego.cordatus@gmail.com>, 2018\n"
 "Stas Solovey <whats_up@tut.by>, 2018\n"
-"Ser82-png <sw@atrus.ru>, 2022\n"
+"Ser82-png <asvmail.as@gmail.com>, 2022\n"
 "Aleksandr Melman <alexmelman88@gmail.com>, 2022-2023"
 
 #. Translators: Secrets is the app name, do not translate
@@ -96,7 +96,7 @@ msgstr "Цвет"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:230
+#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:218
 msgid "Create Safe"
 msgstr "Создать сейф"
 
@@ -201,23 +201,23 @@ msgstr "_Создать"
 msgid "Safe Successfully Created"
 msgstr "Сейф успешно создан"
 
-#: data/gtk/create_database.ui:407 data/gtk/unlocked_headerbar.ui:94
+#: data/gtk/create_database.ui:407 data/gtk/unlocked_headerbar.ui:86
 msgid "_Open Safe"
 msgstr "_Открыть сейф"
 
 #: data/gtk/create_database.ui:429 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:105
+#: data/gtk/unlocked_headerbar.ui:97
 msgid "_Preferences"
 msgstr "_Параметры"
 
 #: data/gtk/create_database.ui:433 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:109
+#: data/gtk/unlocked_headerbar.ui:101
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:437 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:113
+#: data/gtk/unlocked_headerbar.ui:105
 msgid "_About Secrets"
 msgstr "_О приложении"
 
@@ -237,7 +237,7 @@ msgstr "Аутентификация"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87 data/gtk/unlock_database.ui:27
+#: data/gtk/settings_dialog.ui:72 data/gtk/unlock_database.ui:27
 msgid "Password"
 msgstr "Пароль"
 
@@ -331,9 +331,9 @@ msgstr "Количество групп"
 msgid "Passwords"
 msgstr "Пароли"
 
-#: data/gtk/entry_page.ui:64 data/gtk/group_page.ui:23
-msgid "Menu"
-msgstr "Меню"
+#: data/gtk/entry_page.ui:64
+msgid "Entry Menu"
+msgstr "Меню записи"
 
 #: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
 #: data/gtk/references_dialog.ui:169
@@ -392,7 +392,7 @@ msgstr "_Добавить атрибут"
 
 #: data/gtk/entry_page.ui:261
 msgid "Expiration Date"
-msgstr "Дата истечения"
+msgstr "Дата окончания срока действия"
 
 #: data/gtk/entry_page.ui:277
 msgid "_Show More"
@@ -432,19 +432,23 @@ msgstr "Копировать пароль"
 
 #: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
 msgid "Expiration Date not Set"
-msgstr "Дата истечения не установлена"
+msgstr "Дата окончания срока действия не установлена"
 
 #: data/gtk/expiration_date_row.ui:17
 msgid "Edit Expiration Date"
-msgstr "Редактировать дату истечения"
+msgstr "Редактировать дату окончания срока действия"
 
 #: data/gtk/expiration_date_row.ui:25
 msgid "Remove Expiration Date"
-msgstr "Удалить дату истечения"
+msgstr "Удалить дату окончания срока действия"
 
 #: data/gtk/expiration_date_row.ui:58
 msgid "_Set Expiration Date"
-msgstr "_Установить дату истечения"
+msgstr "_Установить дату окончания"
+
+#: data/gtk/group_page.ui:23
+msgid "Group Menu"
+msgstr "Меню группы"
 
 #: data/gtk/group_row.ui:51
 msgid "Edit"
@@ -571,7 +575,7 @@ msgstr "История паролей"
 msgid "_Open"
 msgstr "О_ткрыть"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:90
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:82
 msgid "_New Safe"
 msgstr "_Новый сейф"
 
@@ -600,7 +604,7 @@ msgstr "Ключевая фраза"
 msgid "Words"
 msgstr "Слова"
 
-#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
+#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:179
 msgid "Separator"
 msgstr "Разделитель"
 
@@ -754,147 +758,139 @@ msgstr "Выбрать _все"
 msgid "Select _None"
 msgstr "Отменить вы_бор"
 
-#: data/gtk/settings_dialog.ui:16
-msgid "_Dark Theme"
-msgstr "_Тёмная тема"
-
-#: data/gtk/settings_dialog.ui:17
-msgid "Use dark GTK theme."
-msgstr "Использовать тёмную тему GTK."
-
-#: data/gtk/settings_dialog.ui:30
+#: data/gtk/settings_dialog.ui:15
 msgid "_Hide First Start Screen"
 msgstr "Не показывать стартовый _экран"
 
-#: data/gtk/settings_dialog.ui:31
+#: data/gtk/settings_dialog.ui:16
 msgid "Reopen last opened safe."
 msgstr "Повторно открыть последний открытый сейф."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:141
-#: gsecrets/widgets/window.py:222 gsecrets/widgets/window.py:234
+#: data/gtk/settings_dialog.ui:31 gsecrets/widgets/window.py:129
+#: gsecrets/widgets/window.py:210 gsecrets/widgets/window.py:222
 msgid "Safe"
 msgstr "Сейф"
 
-#: data/gtk/settings_dialog.ui:49
+#: data/gtk/settings_dialog.ui:34
 msgid "_Save Automatically"
 msgstr "Сохранять _автоматически"
 
-#: data/gtk/settings_dialog.ui:50
+#: data/gtk/settings_dialog.ui:35
 msgid "Save every change automatically."
 msgstr "Автоматически сохранять каждое изменение."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:33
+#: data/gtk/settings_dialog.ui:50 data/gtk/unlock_database.ui:33
 msgid "Unlock"
 msgstr "Разблокировать"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:68
+#: data/gtk/settings_dialog.ui:53
 msgid "Remember Composite _Key"
 msgstr "Запоминать составной _ключ"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:69
+#: data/gtk/settings_dialog.ui:54
 msgid "Remember last used composite key."
 msgstr "Запоминать последний использованный составной ключ."
 
-#: data/gtk/settings_dialog.ui:90
+#: data/gtk/settings_dialog.ui:75
 msgid "Password Generation"
 msgstr "Создание пароля"
 
-#: data/gtk/settings_dialog.ui:93
+#: data/gtk/settings_dialog.ui:78
 msgid "Password Length"
 msgstr "Длина пароля"
 
-#: data/gtk/settings_dialog.ui:94
+#: data/gtk/settings_dialog.ui:79
 msgid "Number of characters when generating a password."
 msgstr "Количество символов при создании пароля."
 
-#: data/gtk/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:98
 msgid "_Uppercase Characters"
 msgstr "_Заглавные буквы"
 
-#: data/gtk/settings_dialog.ui:114
+#: data/gtk/settings_dialog.ui:99
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Использовать заглавные буквы от A до Z при создании пароля."
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:112
 msgid "_Lowercase Characters"
 msgstr "_Строчные буквы"
 
-#: data/gtk/settings_dialog.ui:128
+#: data/gtk/settings_dialog.ui:113
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Использовать строчные буквы от a до z при создании пароля."
 
-#: data/gtk/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:126
 msgid "_Numeric Characters"
 msgstr "_Цифры"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:127
 msgid "Use numeric characters when generating a password."
 msgstr "Использовать цифры при создании пароля."
 
-#: data/gtk/settings_dialog.ui:155
+#: data/gtk/settings_dialog.ui:140
 msgid "_Special Characters"
 msgstr "_Специальные символы"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:156
+#: data/gtk/settings_dialog.ui:141
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Использовать специальные символы ASCII при создании пароля."
 
-#: data/gtk/settings_dialog.ui:171
+#: data/gtk/settings_dialog.ui:156
 msgid "Passphrase Generation"
 msgstr "Создание ключевой фразы"
 
-#: data/gtk/settings_dialog.ui:174
+#: data/gtk/settings_dialog.ui:159
 msgid "Passphrase Length"
 msgstr "Длина ключевой фразы"
 
-#: data/gtk/settings_dialog.ui:175
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/gtk/settings_dialog.ui:160
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of words to use when generating a passphrase."
 msgstr "Количество слов, используемых при создании ключевой фразы."
 
-#: data/gtk/settings_dialog.ui:195
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
+#: data/gtk/settings_dialog.ui:180
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Word separator to use when generating a passphrase."
 msgstr "Разделитель слов, используемый при создании ключевой фразы."
 
-#: data/gtk/settings_dialog.ui:202
+#: data/gtk/settings_dialog.ui:187
 msgid "Enter Character"
 msgstr "Введите символ"
 
-#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
+#: data/gtk/settings_dialog.ui:200 data/gtk/settings_dialog.ui:203
 msgid "Security"
 msgstr "Безопасность"
 
-#: data/gtk/settings_dialog.ui:221
+#: data/gtk/settings_dialog.ui:206
 msgid "Safe Lock Timeout"
 msgstr "Тайм-аут блокировки сейфа"
 
-#: data/gtk/settings_dialog.ui:222
+#: data/gtk/settings_dialog.ui:207
 msgid "Lock safe on idle after X minutes."
 msgstr "Блокировать сейф при простое после X минут."
 
-#: data/gtk/settings_dialog.ui:241
+#: data/gtk/settings_dialog.ui:226
 msgid "Clear Clipboard"
 msgstr "Очистить буфер обмена"
 
-#: data/gtk/settings_dialog.ui:242
+#: data/gtk/settings_dialog.ui:227
 msgid "Clear clipboard after X seconds."
 msgstr "Очистить буфер обмена через X секунд."
 
-#: data/gtk/settings_dialog.ui:261
+#: data/gtk/settings_dialog.ui:246
 msgid "Clear Recent List"
 msgstr "Очистить недавний список"
 
-#: data/gtk/settings_dialog.ui:262
+#: data/gtk/settings_dialog.ui:247
 msgid "Clear the recently opened safes list."
 msgstr "Очистить список недавно открытых сейфов."
 
-#: data/gtk/settings_dialog.ui:269 data/gtk/unlock_database.ui:108
+#: data/gtk/settings_dialog.ui:254 data/gtk/unlock_database.ui:108
 msgid "Clear"
 msgstr "Очистить"
 
@@ -923,48 +919,48 @@ msgstr "Новая запись или группа"
 msgid "Selection Mode"
 msgstr "Режим выбора"
 
-#: data/gtk/unlocked_headerbar.ui:54
-#: gsecrets/widgets/saving_conflict_dialog.py:35
-msgid "_Save"
-msgstr "_Сохранить"
-
-#: data/gtk/unlocked_headerbar.ui:60
-msgid "_Lock"
-msgstr "_Заблокировать"
-
-#: data/gtk/unlocked_headerbar.ui:65
+#: data/gtk/unlocked_headerbar.ui:57
 msgid "So_rting"
 msgstr "Со_ртировать"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:67
+#: data/gtk/unlocked_headerbar.ui:59
 msgid "_A-Z"
 msgstr "_A-Z"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:72
+#: data/gtk/unlocked_headerbar.ui:64
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/gtk/unlocked_headerbar.ui:77
+#: data/gtk/unlocked_headerbar.ui:69
 msgid "_Newest First"
 msgstr "Сначала _новые"
 
-#: data/gtk/unlocked_headerbar.ui:82
+#: data/gtk/unlocked_headerbar.ui:74
 msgid "_Oldest First"
 msgstr "Сначала _старые"
 
-#: data/gtk/unlocked_headerbar.ui:99
+#: data/gtk/unlocked_headerbar.ui:91
 msgid "Sa_fe Settings"
 msgstr "_Настройки сейфа"
 
-#: data/gtk/unlocked_headerbar.ui:121
+#: data/gtk/unlocked_headerbar.ui:113
 msgid "New _Entry"
 msgstr "Новая _запись"
 
-#: data/gtk/unlocked_headerbar.ui:125
+#: data/gtk/unlocked_headerbar.ui:117
 msgid "New _Group"
 msgstr "Новая _группа"
+
+#: data/gtk/unlocked_headerbar.ui:136
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+msgid "_Save"
+msgstr "_Сохранить"
+
+#: data/gtk/unlocked_headerbar.ui:151
+msgid "_Lock"
+msgstr "_Заблокировать"
 
 #. The umbrella sentence of the application on the first start screen
 #: data/gtk/welcome_page.ui:30
@@ -990,22 +986,10 @@ msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;шифрование;защита;пароль;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
-msgid "Use dark GTK theme"
-msgstr "Использовать тёмную тему GTK+"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Использовать тёмный вариант вашей темы GTK+. Обратите внимание, что не "
-"каждая тема GTK+ имеет тёмный вариант."
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
 msgstr "Повторно открыть последнюю открытую базу данных"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:18
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
@@ -1013,11 +997,11 @@ msgstr ""
 "Автоматически открывать экран разблокировки последней открытой базы данных, "
 "иначе показывать экран приветствия."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:22
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Save every change automatically"
 msgstr "Автоматически сохранять каждое изменение"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:23
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
@@ -1026,11 +1010,11 @@ msgstr ""
 "внимание: вы не сможете отменять изменения, если включена функция "
 "автосохранения."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:27
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Lock database after X minutes"
 msgstr "Заблокировать базу данных через X минут"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:28
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
 msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
@@ -1038,71 +1022,71 @@ msgstr ""
 "Автоматически блокировать базу данных по истечении заданного количества "
 "минут для повышения безопасности."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:32
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Clear clipboard after X seconds"
 msgstr "Очистить буфер обмена через X секунд"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:33
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr ""
 "После копирования пароля очистите буфер обмена из соображений безопасности."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:37
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Window size"
 msgstr "Размер окна"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:38
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "Remember the window size."
 msgstr "Запоминать размер окна."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:42
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Last opened database"
 msgstr "Последняя открытая база данных"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
 msgid "Path to the last opened database."
 msgstr "Путь к последней открытой базе данных."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
 msgid "Last opened databases"
 msgstr "Последние открытые базы данных"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
 msgid "A list of the last opened databases."
 msgstr "Список последних открытых баз данных."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Remember composite key"
 msgstr "Запоминать составной ключ"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
 "Запоминать последний, использованный составной ключ для разблокировки базы "
 "данных."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Last used composite key"
 msgstr "Последний использованный составной ключ"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Path to last used key for composite database unlocking."
 msgstr ""
 "Путь к последнему, использованному ключу для разблокировки составной базы."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Remember unlock method"
 msgstr "Запоминать метод разблокировки"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Remember last used unlock method for future database unlocking."
 msgstr "Запоминать последний, использованный метод разблокировки базы данных."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Backup the database on unlock"
 msgstr "Резервное копирование базы данных при разблокировке"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
@@ -1110,59 +1094,59 @@ msgstr ""
 "В случае возникновения ошибки при сохранении базы данных резервную копию "
 "можно найти в ~/.cache/secrets/backups"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Sorting order of groups and entries"
 msgstr "Порядок сортировки групп и записей"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid "Order of the rows in the groups and entries view."
 msgstr "Порядок строк в видах группы и записи."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Use uppercases when generating a password"
 msgstr "Используйте заглавные буквы при создании пароля"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr "Используйте заглавные буквы от A до Z при создании случайного пароля."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use lowercases when generating a password"
 msgstr "Используйте строчные буквы при создании пароля"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr "Используйте строчные буквы от a до z при создании случайного пароля."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use numbers when generating a password"
 msgstr "Используйте цифры при создании пароля"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr "Используйте цифры от 0 до 9 при создании случайного пароля."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use symbols when generating a password"
 msgstr "Используйте символы при создании пароля"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr "Используйте специальные символы ASCII при создании случайного пароля."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Password length when generating a password"
 msgstr "Длина создаваемого пароля"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Number of single characters when generating a password."
 msgstr "Количество одиночных символов создаваемого пароля."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Number of words when generating a passphrase"
 msgstr "Количество слов создаваемой ключевой фразы"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:107
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Separator when generating a passphrase"
 msgstr "Разделитель слов в создаваемой ключевой фразе"
 
@@ -1306,7 +1290,7 @@ msgstr "Клонировать"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:549
-#: gsecrets/widgets/window.py:364 gsecrets/widgets/window.py:370
+#: gsecrets/widgets/window.py:352 gsecrets/widgets/window.py:358
 msgid "Could not save Safe"
 msgstr "Не удалось сохранить сейф"
 
@@ -1543,33 +1527,52 @@ msgstr "Операция прервана: перемещение текущей
 msgid "Move completed"
 msgstr "Перемещение завершено"
 
-#: gsecrets/widgets/window.py:145
+#: gsecrets/widgets/window.py:133
 msgid "Any file type"
 msgstr "Любой тип файлов"
 
-#: gsecrets/widgets/window.py:152
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Выбрать сейф"
 
-#: gsecrets/widgets/window.py:200
+#: gsecrets/widgets/window.py:188
 msgid "Safe is already open"
 msgstr "Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:232
+#: gsecrets/widgets/window.py:220
 msgid "_Create"
 msgstr "_Создать"
 
-#: gsecrets/widgets/window.py:253
+#: gsecrets/widgets/window.py:241
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Не удалось создать сейф: Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:295 gsecrets/widgets/window.py:310
+#: gsecrets/widgets/window.py:283 gsecrets/widgets/window.py:298
 msgid "Could not create new Safe"
 msgstr "Не удалось создать новый сейф"
 
-#: gsecrets/widgets/window.py:377
+#: gsecrets/widgets/window.py:365
 msgid "Could not save safe"
 msgstr "Не удалось сохранить сейф"
+
+#~ msgid "Menu"
+#~ msgstr "Меню"
+
+#~ msgid "_Dark Theme"
+#~ msgstr "_Тёмная тема"
+
+#~ msgid "Use dark GTK theme."
+#~ msgstr "Использовать тёмную тему GTK."
+
+#~ msgid "Use dark GTK theme"
+#~ msgstr "Использовать тёмную тему GTK+"
+
+#~ msgid ""
+#~ "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+#~ "theme has a dark variant."
+#~ msgstr ""
+#~ "Использовать тёмный вариант вашей темы GTK+. Обратите внимание, что не "
+#~ "каждая тема GTK+ имеет тёмный вариант."
 
 #~ msgid "Could not launch url"
 #~ msgstr "Не удалось запустить url"

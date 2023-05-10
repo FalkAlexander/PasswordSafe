@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Gtk, Gio
+from gi.repository import Adw, Gtk, Gio
 
 from gsecrets.safe_element import SafeElement
 from gsecrets.widgets.history_row import HistoryRow
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/history_window.ui")
-class HistoryWindow(Gtk.Window):
+class HistoryWindow(Adw.Window):
 
     __gtype_name__ = "HistoryWindow"
 

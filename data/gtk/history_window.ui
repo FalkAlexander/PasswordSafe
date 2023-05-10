@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="HistoryWindow" parent="GtkWindow">
+  <template class="HistoryWindow" parent="AdwWindow">
     <property name="modal">True</property>
     <property name="default_width">400</property>
     <property name="default_height">500</property>
     <property name="width_request">360</property>
     <property name="height_request">400</property>
-    <property name="title" translatable="yes">Password History</property>
     <property name="destroy_with_parent">True</property>
     <child>
       <object class="GtkShortcutController">
@@ -19,20 +18,33 @@
       </object>
     </child>
     <child>
-      <object class="GtkScrolledWindow">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle">
+                <property name="title" translatable="yes">Password History</property>
+              </object>
+            </property>
+          </object>
+        </child>
         <child>
-          <object class="AdwClamp">
-            <property name="margin-bottom">18</property>
-            <property name="margin-start">12</property>
-            <property name="margin-end">12</property>
-            <property name="margin-top">18</property>
+          <object class="GtkScrolledWindow">
             <child>
-              <object class="GtkListBox" id="listbox">
-                <property name="selection-mode">none</property>
-                <property name="valign">start</property>
-                <style>
-                  <class name="content"/>
-                </style>
+              <object class="AdwClamp">
+                <property name="margin-bottom">18</property>
+                <property name="margin-start">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-top">18</property>
+                <child>
+                  <object class="GtkListBox" id="listbox">
+                    <property name="selection-mode">none</property>
+                    <property name="valign">start</property>
+                    <style>
+                      <class name="content"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

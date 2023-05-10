@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from gettext import gettext as _
 
-from gi.repository import Gio, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets.utils import (
     KeyFileFilter,
@@ -15,7 +15,7 @@ from gsecrets.utils import (
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/create_database.ui")
-class CreateDatabase(Gtk.Box):
+class CreateDatabase(Adw.Bin):
     """Creates a new Safe when invoked"""
 
     __gtype_name__ = "CreateDatabase"

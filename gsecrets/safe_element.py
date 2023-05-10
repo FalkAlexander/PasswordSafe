@@ -291,14 +291,14 @@ class SafeElement(GObject.Object):
         except OverflowError:
             logging.error("Accessed time for %s is invalid", self.name)
             return None
-        else:
-            if not time:
-                return None
 
-            gtime = GLib.DateTime.new_utc(
-                time.year, time.month, time.day, time.hour, time.minute, time.second
-            )
-            return gtime
+        if not time:
+            return None
+
+        gtime = GLib.DateTime.new_utc(
+            time.year, time.month, time.day, time.hour, time.minute, time.second
+        )
+        return gtime
 
     @property
     def ctime(self) -> GLib.DateTime | None:
@@ -308,14 +308,14 @@ class SafeElement(GObject.Object):
         except OverflowError:
             logging.error("Creation time for %s is invalid", self.name)
             return None
-        else:
-            if not time:
-                return None
 
-            gtime = GLib.DateTime.new_utc(
-                time.year, time.month, time.day, time.hour, time.minute, time.second
-            )
-            return gtime
+        if not time:
+            return None
+
+        gtime = GLib.DateTime.new_utc(
+            time.year, time.month, time.day, time.hour, time.minute, time.second
+        )
+        return gtime
 
     @property
     def mtime(self) -> GLib.DateTime | None:
@@ -325,14 +325,14 @@ class SafeElement(GObject.Object):
         except OverflowError:
             logging.error("Modified time for %s is invalid", self.name)
             return None
-        else:
-            if not time:
-                return None
 
-            gtime = GLib.DateTime.new_utc(
-                time.year, time.month, time.day, time.hour, time.minute, time.second
-            )
-            return gtime
+        if not time:
+            return None
+
+        gtime = GLib.DateTime.new_utc(
+            time.year, time.month, time.day, time.hour, time.minute, time.second
+        )
+        return gtime
 
 
 class SafeGroup(SafeElement):

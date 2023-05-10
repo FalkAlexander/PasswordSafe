@@ -115,16 +115,16 @@ class DatabaseManager(GObject.Object):
             _success, db = result.propagate_value()
         except GLib.Error as err:
             raise err
-        else:
-            self.db = db
-            self._opened = True
-            logging.debug("Opening of safe %s was successful", self.path)
 
-            if not self._elements_loaded:
-                self.entries.splice(0, 0, [SafeEntry(self, e) for e in db.entries])
-                self.groups.splice(0, 0, [SafeGroup(self, g) for g in db.groups])
+        self.db = db
+        self._opened = True
+        logging.debug("Opening of safe %s was successful", self.path)
 
-                self._elements_loaded = True
+        if not self._elements_loaded:
+            self.entries.splice(0, 0, [SafeEntry(self, e) for e in db.entries])
+            self.groups.splice(0, 0, [SafeGroup(self, g) for g in db.groups])
+
+            self._elements_loaded = True
 
     #
     # Database Modifications
@@ -174,12 +174,12 @@ class DatabaseManager(GObject.Object):
             is_saved = result.propagate_boolean()
         except GLib.Error as err:
             raise err
-        else:
-            self.is_dirty = False
-            if is_saved:
-                logging.debug("Database %s saved successfully", self.path)
 
-            return is_saved
+        self.is_dirty = False
+        if is_saved:
+            logging.debug("Database %s saved successfully", self.path)
+
+        return is_saved
 
     def set_credentials_async(
         self, password, keyfile="", keyfile_hash="", callback=None
@@ -216,12 +216,12 @@ class DatabaseManager(GObject.Object):
             self.keyfile_hash = self.old_keyfile_hash
 
             raise err
-        else:
-            self.is_dirty = False
-            if is_saved:
-                logging.debug("Credentials changed successfully")
 
-            return is_saved
+        self.is_dirty = False
+        if is_saved:
+            logging.debug("Credentials changed successfully")
+
+        return is_saved
 
     def add_to_history(self) -> None:
         # Add database uri to history.
@@ -298,8 +298,8 @@ class DatabaseManager(GObject.Object):
             changed = result.propagate_boolean()
         except GLib.Error as err:
             raise err
-        else:
-            return changed
+
+        return changed
 
     @property
     def password(self) -> str:

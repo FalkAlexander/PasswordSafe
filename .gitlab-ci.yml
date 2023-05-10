@@ -54,7 +54,6 @@ pylint:
   stage: check
   script:
     - dnf install -y 'dnf-command(copr)'
-    - dnf install -y libadwaita-devel gtk4-devel pip pylint python3-gobject-devel python3-pykeepass
-    - pip install pyotp validators zxcvbn
+    - dnf install -y libadwaita-devel gtk4-devel pylint python3-gobject-devel python3-pykeepass python3-pyotp python3-zxcvbn python3-validators
     - mv gsecrets/const.py.in gsecrets/const.py  # We need a dummy file
     - pylint --rcfile=.pylintrc gsecrets

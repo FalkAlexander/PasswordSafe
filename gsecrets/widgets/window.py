@@ -72,18 +72,6 @@ class Window(Adw.ApplicationWindow):
 
         return Adw.ApplicationWindow.do_enable_debugging(self, toggle)
 
-    def do_size_allocate(
-        self, width: int, height: int, baseline: int
-    ) -> None:  # pylint: disable=arguments-differ
-        # pylint: disable=arguments-differ
-        """Handler for resizing event. It is used to check if
-        the layout needs to be updated."""
-        new_mobile_layout = width < 700
-        if new_mobile_layout != self.props.mobile_layout:
-            self.props.mobile_layout = new_mobile_layout
-
-        Adw.ApplicationWindow.do_size_allocate(self, width, height, baseline)
-
     def invoke_initial_screen(self) -> None:
         """Present the first start screen if required or autoload files
 

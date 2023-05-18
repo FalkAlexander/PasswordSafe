@@ -72,8 +72,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     action_bar = Gtk.Template.Child()
     headerbar_stack = Gtk.Template.Child()
-    _stack = Gtk.Template.Child()
-    _navigation_view = Gtk.Template.Child()
+    _nav_view = Gtk.Template.Child()
+    _unlocked_db_deck = Gtk.Template.Child()
     _unlocked_db_stack = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
@@ -206,20 +206,18 @@ class UnlockedDatabase(Adw.BreakpointBin):
         else:
             self._set_current_element_after_pop(group)
 
-    def _set_current_element_after_pop(self, group):
-        page_name = group.uuid.urn
-        if page := self._stack.get_child_by_name(page_name):
-            self.props.current_element = page.group
+        if page := self._nav_view.find_page(page_name):
+            self.props.current_element = page.props.child.group
+            self._nav_view.pop_to_tag(page_name, False)
         else:
             self.props.current_element = group
-            new_page = UnlockedDatabasePage(self, group)
-            self._stack.add_named(new_page, page_name)
+            db_page = UnlockedDatabasePage(self, group)
+            new_page = Adw.NavigationPage.new_with_tag(db_page, page_name, page_name)
+            self._nav_view.push(new_page, False)
 
-        self._unlocked_db_stack.set_visible_child(self._stack)
+        self._unlocked_db_stack.set_visible_child(self._nav_view)
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP
-
-        self._stack.set_visible_child_name(page_name)
 
     def _on_selection_mode_changed(
         self, _unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
@@ -249,11 +247,12 @@ class UnlockedDatabase(Adw.BreakpointBin):
         :rtype: Gtk.Widget
         """
         element_uuid = self.props.current_element.uuid
-        return self._stack.get_child_by_name(element_uuid.urn)
+        page = self._nav_view.find_page(element_uuid.urn)
+        return page.props.child
 
     def delete_page(self, element):
-        if page := self._stack.get_child_by_name(element.uuid.urn):
-            self._stack.remove(page)
+        if page := self._nav_view.find_page(element.uuid.urn):
+            self._nav_view.remove(page)
 
     #
     # Events

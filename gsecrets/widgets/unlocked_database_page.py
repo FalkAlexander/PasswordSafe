@@ -107,12 +107,6 @@ class UnlockedDatabasePage(Adw.Bin):
 
         self.unlocked_database.show_edit_page(element)
 
-    def do_grab_focus(self):  # pylint: disable=arguments-differ
-        if child := self.list_box.get_first_child():
-            return child.grab_focus()
-
-        return Gtk.Widget.do_grab_focus(self)
-
     def _on_sorting_changed(self, _db_manager, is_entry):
         if is_entry:
             self.entry_sorter.changed(Gtk.SorterChange.DIFFERENT)

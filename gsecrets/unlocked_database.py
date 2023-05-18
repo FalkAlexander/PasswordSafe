@@ -39,7 +39,7 @@ class UndoData:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database.ui")
-class UnlockedDatabase(Gtk.Box):
+class UnlockedDatabase(Adw.BreakpointBin):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
     __gtype_name__ = "UnlockedDatabase"
@@ -56,14 +56,14 @@ class UnlockedDatabase(Gtk.Box):
     session_handler_id: int | None = None
 
     action_bar = Gtk.Template.Child()
-    _edit_page_bin = Gtk.Template.Child()
     headerbar_stack = Gtk.Template.Child()
-    _main_view = Gtk.Template.Child()
     _stack = Gtk.Template.Child()
     _unlocked_db_deck = Gtk.Template.Child()
     _unlocked_db_stack = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
+    toolbar_view = Gtk.Template.Child()
+    _select_entry_status_page = Gtk.Template.Child()
 
     selection_mode = GObject.Property(type=bool, default=False)
     undo_data: UndoData | None = None
@@ -85,10 +85,8 @@ class UnlockedDatabase(Gtk.Box):
         self.props.current_element = root_group
         self._mode = self.Mode.GROUP
 
-        # Actionbar has to be setup before edit entry & group headerbars.
-        mobile_pathbar = Pathbar(self)
-        self.pathbar = Pathbar(self)
-        self.action_bar.pack_start(mobile_pathbar)
+        pathbar = Pathbar(self)
+        self.action_bar.pack_start(pathbar)
 
         # Headerbars
         self.selection_mode_headerbar = SelectionModeHeaderbar(self)
@@ -102,6 +100,8 @@ class UnlockedDatabase(Gtk.Box):
         self.search: Search = Search(self)
         self._unlocked_db_stack.add_named(self.search, "search")
         self.search.initialize()
+
+        self._select_entry_status_page.props.icon_name = f"{const.APP_ID}-symbolic"
 
         # Browser Mode
         self.show_browser_page(self.current_element)  # type: ignore
@@ -163,7 +163,6 @@ class UnlockedDatabase(Gtk.Box):
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.start_database_lock_timer()
-        self.props.current_element = element
 
         if self.props.search_active:
             self.props.search_active = False
@@ -178,8 +177,9 @@ class UnlockedDatabase(Gtk.Box):
             page = EntryPage(self, element, new)
             self.props.mode = self.Mode.ENTRY
 
-        self._edit_page_bin.set_child(page)
-        self._unlocked_db_deck.set_visible_child(self._edit_page_bin)
+        page = Adw.NavigationPage.new(page, "")
+        self._unlocked_db_deck.set_content(page)
+        self._unlocked_db_deck.push_content(True)
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
@@ -193,7 +193,6 @@ class UnlockedDatabase(Gtk.Box):
             self._stack.add_named(new_page, page_name)
 
         self._unlocked_db_stack.set_visible_child(self._stack)
-        self._unlocked_db_deck.set_visible_child(self._main_view)
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP
 

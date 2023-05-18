@@ -1,45 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="UnlockedDatabase" parent="GtkBox">
-    <property name="orientation">vertical</property>
+  <template class="UnlockedDatabase" parent="AdwBreakpointBin">
+    <property name="width-request">360</property>
+    <property name="height-request">360</property>
     <child>
-      <object class="AdwLeaflet" id="_unlocked_db_deck">
-        <property name="can_unfold">False</property>
-        <child>
-          <object class="AdwToolbarView" id="_main_view">
-            <child type="top">
-              <object class="GtkStack" id="headerbar_stack"/>
-            </child>
-            <child type="top">
-              <object class="GtkSearchBar" id="search_bar">
-                <child>
-                  <object class="AdwClamp">
+      <object class="AdwBreakpoint">
+        <condition>max-width: 360</condition>
+        <setter object="_unlocked_db_deck" property="collapsed">True</setter>
+      </object>
+    </child>
+    <child>
+      <object class="AdwNavigationSplitView" id="_unlocked_db_deck">
+        <property name="sidebar">
+          <object class="AdwNavigationPage">
+            <property name="child">
+              <object class="AdwToolbarView" id="toolbar_view">
+                <child type="top">
+                  <object class="GtkStack" id="headerbar_stack"/>
+                </child>
+                <child type="top">
+                  <object class="GtkSearchBar" id="search_bar">
                     <child>
                       <object class="GtkSearchEntry" id="search_entry">
-                        <property name="hexpand">True</property>
                         <property name="activates_default">True</property>
                       </object>
                     </child>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkStack" id="_unlocked_db_stack">
                 <child>
-                  <object class="GtkStack" id="_stack">
+                  <object class="GtkStack" id="_unlocked_db_stack">
+                    <child>
+                      <object class="GtkStack" id="_stack"/>
+                    </child>
+                  </object>
+                </child>
+                <child type="bottom">
+                  <object class="GtkActionBar" id="action_bar"/>
+                </child>
+              </object>
+            </property>
+          </object>
+        </property>
+        <property name="content">
+          <object class="AdwNavigationPage">
+            <property name="child">
+              <object class="AdwToolbarView">
+                <child type="top">
+                  <object class="AdwHeaderBar">
+                    <property name="show-title">False</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwStatusPage" id="_select_entry_status_page">
+                    <property name="title" translatable="yes">Select an Entry</property>
                   </object>
                 </child>
               </object>
-            </child>
-            <child type="bottom">
-              <object class="GtkActionBar" id="action_bar"/>
-            </child>
+            </property>
           </object>
-        </child>
-        <child>
-          <object class="AdwBin" id="_edit_page_bin"/>
-        </child>
+        </property>
       </object>
     </child>
   </template>

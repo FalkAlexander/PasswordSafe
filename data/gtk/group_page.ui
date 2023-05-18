@@ -5,7 +5,9 @@
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar">
-            <property name="show-title">False</property>
+            <property name="title-widget">
+              <object class="AdwWindowTitle" id="_window_title"/>
+            </property>
             <child type="end">
               <object class="GtkMenuButton" id="_secondary_menu_button">
                 <property name="icon_name">view-more-symbolic</property>

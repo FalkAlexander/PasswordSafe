@@ -8,7 +8,6 @@ from logging import debug
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
-from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import SafeElement
 
 if typing.TYPE_CHECKING:
@@ -36,22 +35,12 @@ class SelectionModeHeaderbar(Adw.Bin):
     _cut_paste_button_stack = Gtk.Template.Child()
     _delete_button = Gtk.Template.Child()
     _paste_button = Gtk.Template.Child()
-    _pathbar_bin = Gtk.Template.Child()
     _selection_options_button = Gtk.Template.Child()
 
     selected_elements = GObject.Property(type=int, default=0)
 
     def __init__(self, unlocked_database):
         super().__init__()
-
-        pathbar = Pathbar(unlocked_database)
-        self._pathbar_bin.set_child(pathbar)
-        unlocked_database.action_bar.bind_property(
-            "revealed",
-            pathbar,
-            "visible",
-            GObject.BindingFlags.INVERT_BOOLEAN | GObject.BindingFlags.SYNC_CREATE,
-        )
 
         self.unlocked_database = unlocked_database
 

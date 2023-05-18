@@ -13,6 +13,7 @@ class GroupPage(Adw.Bin):
 
     title_entry_row = Gtk.Template.Child()
     notes_text_view = Gtk.Template.Child()
+    _window_title = Gtk.Template.Child()
 
     safe_group = GObject.Property(type=SafeGroup)
 
@@ -38,6 +39,12 @@ class GroupPage(Adw.Bin):
             "notes",
             notes_buffer,
             "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+        safe_group.bind_property(
+            "name",
+            self._window_title,
+            "title",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
 

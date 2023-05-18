@@ -199,16 +199,6 @@ class UnlockedDatabase(Gtk.Box):
 
         self._stack.set_visible_child_name(page_name)
 
-    @property
-    def in_edit_page(self) -> bool:
-        """Returns true if the current visible page is either
-        the Group edit page or Entry edit page."""
-
-        boolean: bool = (
-            self._unlocked_db_deck.props.visible_child == self._edit_page_bin
-        )
-        return boolean
-
     def _on_selection_mode_changed(
         self, _unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
     ) -> None:
@@ -619,7 +609,6 @@ class UnlockedDatabase(Gtk.Box):
         if (
             self.database_manager.props.locked
             or self.selection_mode
-            or self.in_edit_page
         ):
             return
 

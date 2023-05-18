@@ -466,7 +466,6 @@ class Window(Adw.ApplicationWindow):
             if (
                 action_db.props.database_locked
                 or action_db.props.selection_mode
-                or action_db.in_edit_page
                 or action_db.props.search_active
             ):
                 return

@@ -231,9 +231,6 @@ class EntryPage(Adw.Bin):
         window.present()
 
     def _on_save_in_history_action(self, _widget, _action, _param):
-        if not self.unlocked_database.in_edit_page:
-            return
-
         safe_entry = self.props.safe_entry
         safe_entry.save_history()
 

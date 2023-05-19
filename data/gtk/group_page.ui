@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="GroupPage" parent="GtkBox">
-    <property name="orientation">vertical</property>
+  <template class="GroupPage" parent="AdwBin">
     <child>
-      <object class="AdwHeaderBar">
-        <property name="title-widget">
-          <object class="AdwWindowTitle"/>
-        </property>
-        <child>
-          <object class="GtkButton">
-            <property name="action_name">win.go_back</property>
-            <property name="icon_name">go-previous-symbolic</property>
-            <property name="tooltip_text" translatable="yes">Back</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwBin" id="_pathbar_bin"/>
-        </child>
-        <child type="end">
-          <object class="GtkMenuButton" id="_secondary_menu_button">
-            <property name="icon_name">view-more-symbolic</property>
-            <property name="tooltip_text" translatable="yes">Group Menu</property>
-            <property name="menu_model">group_menu</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <child>
-          <object class="AdwPreferencesGroup">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle"/>
+            </property>
             <child>
-              <object class="AdwEntryRow" id="title_entry_row">
-                <property name="title" translatable="yes">_Title</property>
-                <property name="use_underline">True</property>
+              <object class="GtkButton">
+                <property name="action_name">win.go_back</property>
+                <property name="icon_name">go-previous-symbolic</property>
+                <property name="tooltip_text" translatable="yes">Back</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwBin" id="_pathbar_bin"/>
+            </child>
+            <child type="end">
+              <object class="GtkMenuButton" id="_secondary_menu_button">
+                <property name="icon_name">view-more-symbolic</property>
+                <property name="tooltip_text" translatable="yes">Group Menu</property>
+                <property name="menu_model">group_menu</property>
               </object>
             </child>
           </object>
         </child>
         <child>
-          <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Notes</property>
-            <property name="header_suffix">
-              <object class="GtkButton" id="notes_detach_button">
-                <property name="icon_name">focus-windows-symbolic</property>
-                <property name="tooltip_text" translatable="yes">Edit in a Window</property>
-                <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
-                <style>
-                  <class name="flat"/>
-                </style>
-              </object>
-            </property>
+          <object class="AdwPreferencesPage">
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="height_request">180</property>
+              <object class="AdwPreferencesGroup">
                 <child>
-                  <object class="GtkTextView" id="notes_text_view">
-                    <property name="hexpand">True</property>
-                    <property name="wrap_mode">word</property>
+                  <object class="AdwEntryRow" id="title_entry_row">
+                    <property name="title" translatable="yes">_Title</property>
+                    <property name="use_underline">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Notes</property>
+                <property name="header_suffix">
+                  <object class="GtkButton" id="notes_detach_button">
+                    <property name="icon_name">focus-windows-symbolic</property>
+                    <property name="tooltip_text" translatable="yes">Edit in a Window</property>
+                    <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
                     <style>
-                      <class name="inline"/>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </property>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="height_request">180</property>
+                    <child>
+                      <object class="GtkTextView" id="notes_text_view">
+                        <property name="hexpand">True</property>
+                        <property name="wrap_mode">word</property>
+                        <style>
+                          <class name="inline"/>
+                        </style>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="card"/>
                     </style>
                   </object>
                 </child>
-                <style>
-                  <class name="card"/>
-                </style>
               </object>
             </child>
           </object>

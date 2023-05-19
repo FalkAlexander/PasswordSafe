@@ -170,7 +170,7 @@ class UnlockedDatabase(Gtk.Box):
         element.touch()
 
         if element.is_group:
-            page = GroupPage(self)
+            page = GroupPage(self, element)
             self.props.mode = self.Mode.GROUP_EDIT
         else:
             page = EntryPage(self, element, new)

@@ -1,15 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-import typing
-
 from gi.repository import GObject, Gtk
 
 from gsecrets.pathbar import Pathbar
+from gsecrets.safe_element import SafeGroup
 from gsecrets.widgets.notes_dialog import NotesDialog
-
-if typing.TYPE_CHECKING:
-    from gsecrets.safe_element import SafeGroup
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/group_page.ui")
@@ -22,12 +18,14 @@ class GroupPage(Gtk.Box):
     title_entry_row = Gtk.Template.Child()
     notes_text_view = Gtk.Template.Child()
 
-    def __init__(self, unlocked_database):
-        super().__init__()
+    safe_group = GObject.Property(type=SafeGroup)
+
+    def __init__(self, unlocked_database, safe_group):
+        super().__init__(safe_group=safe_group)
 
         self.unlocked_database = unlocked_database
 
-        safe_group = self.unlocked_database.current_element
+        safe_group = self.props.safe_group
 
         # Setup Widgets
         notes_buffer = self.notes_text_view.get_buffer()
@@ -61,7 +59,7 @@ class GroupPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
-        safe_group = self.unlocked_database.current_element
+        safe_group = self.props.safe_group
         NotesDialog(self.unlocked_database, safe_group).present()
 
     def _on_safe_group_updated(self, _safe_group: SafeGroup) -> None:

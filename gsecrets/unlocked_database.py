@@ -19,13 +19,13 @@ from gsecrets.group_row import GroupRow
 from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
 from gsecrets.unlocked_headerbar import UnlockedHeaderBar
+from gsecrets.widgets.browsing_panel import BrowsingPanel
 from gsecrets.widgets.database_settings_dialog import DatabaseSettingsDialog
 from gsecrets.widgets.properties_dialog import PropertiesDialog
 from gsecrets.widgets.references_dialog import ReferencesDialog
 from gsecrets.widgets.saving_conflict_dialog import SavingConflictDialog
 from gsecrets.widgets.search import Search
 from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
-from gsecrets.widgets.unlocked_database_page import UnlockedDatabasePage
 
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
@@ -74,7 +74,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
     headerbar_stack = Gtk.Template.Child()
     _nav_view = Gtk.Template.Child()
     _unlocked_db_deck = Gtk.Template.Child()
-    _unlocked_db_stack = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
     toolbar_view = Gtk.Template.Child()
@@ -199,19 +198,13 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
-        page_name = group.uuid.urn
-        if page := self._nav_view.get_visible_page():
+        if panel := self.toolbar_view.props.content:
             self.props.current_element = group
-            page.props.child.visit_group(group)
+            panel.visit_group(group)
         else:
             self.props.current_element = group
-            db_page = UnlockedDatabasePage(self, group)
-            new_page = Adw.NavigationPage.new_with_tag(db_page, page_name, page_name)
-            self._nav_view.push(new_page, False)
-
-        self._unlocked_db_stack.set_visible_child(self._nav_view)
-        if not self.props.selection_mode:
-            self.props.mode = self.Mode.GROUP
+            panel = BrowsingPanel(self, group)
+            self.toolbar_view.props.content = panel
 
     def _on_selection_mode_changed(
         self, _unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
@@ -637,7 +630,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self._search_active = value
         if self._search_active:
             self.props.mode = self.Mode.SEARCH
-            self._unlocked_db_stack.set_visible_child_name("search")
         else:
             self.show_browser_page(self.current_element)
 

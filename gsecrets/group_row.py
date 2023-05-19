@@ -18,7 +18,6 @@ class GroupRow(Adw.Bin):
 
     _checkbox_revealer = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
-    edit_button = Gtk.Template.Child()
 
     _safe_group = None
 
@@ -47,12 +46,6 @@ class GroupRow(Adw.Bin):
             self._checkbox_revealer,
             "reveal-child",
             GObject.BindingFlags.SYNC_CREATE,
-        )
-        self.unlocked_database.bind_property(
-            "selection_mode",
-            self.edit_button,
-            "sensitive",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
         )
 
     @GObject.Property(type=SafeGroup)
@@ -99,13 +92,13 @@ class GroupRow(Adw.Bin):
             self.unlocked_database.selection_mode_headerbar.remove_group(group)
 
     @Gtk.Template.Callback()
-    def on_group_edit_button_clicked(self, _button: Gtk.Button) -> None:
+    def on_navigate_button_clicked(self, _button: Gtk.Button) -> None:
         """Edit button in a GroupRow was clicked
 
         button: The edit button in the GroupRow"""
         self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
 
-        self.unlocked_database.show_edit_page(self._safe_group)
+        self.unlocked_database.show_browser_page(self._safe_group)
 
     def _on_group_name_changed(
         self, safe_group: SafeGroup, _value: GObject.ParamSpec

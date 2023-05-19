@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="EntryPage" parent="GtkBox">
-    <property name="orientation">vertical</property>
+  <template class="EntryPage" parent="AdwBin">
     <child>
       <object class="GtkShortcutController">
         <property name="scope">global</property>
@@ -44,243 +43,247 @@
       </object>
     </child>
     <child>
-      <object class="AdwHeaderBar">
-        <property name="title-widget">
-          <object class="AdwWindowTitle"/>
-        </property>
-        <child>
-          <object class="GtkButton">
-            <property name="action_name">win.go_back</property>
-            <property name="icon_name">go-previous-symbolic</property>
-            <property name="tooltip_text" translatable="yes">Back</property>
-          </object>
-        </child>
-        <child>
-          <object class="AdwBin" id="_pathbar_bin"/>
-        </child>
-        <child type="end">
-          <object class="GtkMenuButton" id="_secondary_menu_button">
-            <property name="icon_name">view-more-symbolic</property>
-            <property name="tooltip_text" translatable="yes">Entry Menu</property>
-            <property name="menu_model">entry_menu</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <child>
-          <object class="AdwPreferencesGroup">
-            <child>
-              <object class="GtkListBox">
-                <property name="selection_mode">none</property>
-                <child>
-                  <object class="AdwEntryRow" id="title_entry_row">
-                    <property name="input_purpose">name</property>
-                    <property name="enable_undo">False</property>
-                    <property name="title" translatable="yes">_Title</property>
-                    <property name="use_underline">True</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwEntryRow" id="url_entry_row">
-                    <property name="title" translatable="yes">U_RL</property>
-                    <property name="use_underline">True</property>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="valign">center</property>
-                        <property name="icon_name">edit-copy-symbolic</property>
-                        <property name="tooltip_text" translatable="yes">Copy</property>
-                        <signal name="clicked" handler="_on_url_copy_button_clicked" swapped="no"/>
-                        <style>
-                          <class name="flat"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="valign">center</property>
-                        <property name="icon_name">external-link-symbolic</property>
-                        <property name="tooltip_text" translatable="yes">Open Address</property>
-                        <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
-                        <style>
-                          <class name="flat"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <style>
-                  <class name="boxed-list"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="CredentialsGroup" id="credentials_group"/>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="otp_preferences_group">
-            <property name="title" translatable="yes">One-Time Password</property>
-            <property name="visible">False</property>
-            <child>
-              <object class="GtkListBox">
-                <property name="selection_mode">none</property>
-                <style>
-                  <class name="boxed-list"/>
-                </style>
-                <child>
-                  <object class="AdwActionRow" id="otp_token_row">
-                    <property name="visible">False</property>
-                    <property name="activatable_widget">otp_copy_button</property>
-                    <style>
-                      <class name="otp-action-row"/>
-                    </style>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="paintable">
-                          <object class="ProgressIcon" id="otp_progress_icon"/>
-                        </property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="otp_copy_button">
-                        <property name="valign">center</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Copy</property>
-                        <property name="icon_name">edit-copy-symbolic</property>
-                        <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
-                        <style>
-                          <class name="flat"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPasswordEntryRow" id="otp_secret_entry_row">
-                    <property name="title" translatable="yes">One-_Time Password Secret</property>
-                    <property name="use_underline">True</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="ErrorRevealer" id="otp_error_revealer">
-                <property name="label" translatable="yes" comments="OTP is a proper name">Could not Generate OTP Token</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="notes_preferences_group">
-            <property name="visible">False</property>
-            <property name="title" translatable="yes">Notes</property>
-            <property name="header-suffix">
-              <object class="GtkButton" id="notes_detach_button">
-                <property name="icon_name">focus-windows-symbolic</property>
-                <property name="tooltip_text" translatable="yes">Edit in a Window</property>
-                <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
-                <style>
-                  <class name="flat"/>
-                </style>
-              </object>
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="AdwWindowTitle"/>
             </property>
             <child>
-              <object class="GtkScrolledWindow">
-                <property name="height_request">180</property>
+              <object class="GtkButton">
+                <property name="action_name">win.go_back</property>
+                <property name="icon_name">go-previous-symbolic</property>
+                <property name="tooltip_text" translatable="yes">Back</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwBin" id="_pathbar_bin"/>
+            </child>
+            <child type="end">
+              <object class="GtkMenuButton" id="_secondary_menu_button">
+                <property name="icon_name">view-more-symbolic</property>
+                <property name="tooltip_text" translatable="yes">Entry Menu</property>
+                <property name="menu_model">entry_menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesPage">
+            <child>
+              <object class="AdwPreferencesGroup">
                 <child>
-                  <object class="GtkTextView" id="notes_property_value_entry">
-                    <property name="hexpand">True</property>
-                    <property name="wrap_mode">word</property>
+                  <object class="GtkListBox">
+                    <property name="selection_mode">none</property>
+                    <child>
+                      <object class="AdwEntryRow" id="title_entry_row">
+                        <property name="input_purpose">name</property>
+                        <property name="enable_undo">False</property>
+                        <property name="title" translatable="yes">_Title</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwEntryRow" id="url_entry_row">
+                        <property name="title" translatable="yes">U_RL</property>
+                        <property name="use_underline">True</property>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="valign">center</property>
+                            <property name="icon_name">edit-copy-symbolic</property>
+                            <property name="tooltip_text" translatable="yes">Copy</property>
+                            <signal name="clicked" handler="_on_url_copy_button_clicked" swapped="no"/>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="valign">center</property>
+                            <property name="icon_name">external-link-symbolic</property>
+                            <property name="tooltip_text" translatable="yes">Open Address</property>
+                            <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
                     <style>
-                      <class name="inline"/>
+                      <class name="boxed-list"/>
                     </style>
                   </object>
                 </child>
-                <style>
-                  <class name="card"/>
-                </style>
               </object>
             </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup">
             <child>
-              <object class="AdwBin" id="color_property_bin"/>
+              <object class="CredentialsGroup" id="credentials_group"/>
             </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Icon</property>
             <child>
-              <object class="GtkFlowBox" id="icon_entry_box">
-                <property name="selection-mode">single</property>
-                <property name="max-children-per-line">10</property>
-                <property name="min-children-per-line">5</property>
-                <property name="row-spacing">6</property>
-                <property name="column-spacing">6</property>
-                <style>
-                  <class name="icon-flowbox"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="attachments_preferences_group">
-            <property name="title" translatable="yes">Attachments</property>
-            <property name="visible">False</property>
-            <child>
-              <object class="AddListBox" id="attachment_list_box">
-                <property name="label" translatable="yes">_Add Attachment</property>
-                <property name="action_name">entry.add_attachment</property>
-                <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="attributes_preferences_group">
-            <property name="title" translatable="yes">Attributes</property>
-            <property name="visible">False</property>
-            <child>
-              <object class="AddListBox" id="attribute_list_box">
-                <property name="action_name">entry.add_attribute</property>
-                <property name="label" translatable="yes">_Add Attribute</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="expiration_date_preferences_group">
-            <property name="visible">False</property>
-            <property name="title" translatable="yes">Expiration Date</property>
-            <child>
-              <object class="ExpirationDateRow" id="expiration_date_row"/>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwPreferencesGroup" id="show_all_preferences_group">
-            <property name="visible">False</property>
-            <child>
-              <object class="GtkButton" id="show_all_button">
-                <property name="halign">center</property>
-                <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
+              <object class="AdwPreferencesGroup" id="otp_preferences_group">
+                <property name="title" translatable="yes">One-Time Password</property>
+                <property name="visible">False</property>
                 <child>
-                  <object class="AdwButtonContent">
-                    <property name="icon_name">view-more-symbolic</property>
-                    <property name="label" translatable="yes">_Show More</property>
-                    <property name="use_underline">True</property>
+                  <object class="GtkListBox">
+                    <property name="selection_mode">none</property>
+                    <style>
+                      <class name="boxed-list"/>
+                    </style>
+                    <child>
+                      <object class="AdwActionRow" id="otp_token_row">
+                        <property name="visible">False</property>
+                        <property name="activatable_widget">otp_copy_button</property>
+                        <style>
+                          <class name="otp-action-row"/>
+                        </style>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="paintable">
+                              <object class="ProgressIcon" id="otp_progress_icon"/>
+                            </property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="otp_copy_button">
+                            <property name="valign">center</property>
+                            <property name="receives_default">True</property>
+                            <property name="tooltip_text" translatable="yes">Copy</property>
+                            <property name="icon_name">edit-copy-symbolic</property>
+                            <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPasswordEntryRow" id="otp_secret_entry_row">
+                        <property name="title" translatable="yes">One-_Time Password Secret</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
-                <style>
-                  <class name="flat"/>
-                </style>
+                <child>
+                  <object class="ErrorRevealer" id="otp_error_revealer">
+                    <property name="label" translatable="yes" comments="OTP is a proper name">Could not Generate OTP Token</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup" id="notes_preferences_group">
+                <property name="visible">False</property>
+                <property name="title" translatable="yes">Notes</property>
+                <property name="header-suffix">
+                  <object class="GtkButton" id="notes_detach_button">
+                    <property name="icon_name">focus-windows-symbolic</property>
+                    <property name="tooltip_text" translatable="yes">Edit in a Window</property>
+                    <signal name="clicked" handler="on_notes_detach_button_clicked" swapped="no"/>
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </property>
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="height_request">180</property>
+                    <child>
+                      <object class="GtkTextView" id="notes_property_value_entry">
+                        <property name="hexpand">True</property>
+                        <property name="wrap_mode">word</property>
+                        <style>
+                          <class name="inline"/>
+                        </style>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="card"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <child>
+                  <object class="AdwBin" id="color_property_bin"/>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Icon</property>
+                <child>
+                  <object class="GtkFlowBox" id="icon_entry_box">
+                    <property name="selection-mode">single</property>
+                    <property name="max-children-per-line">10</property>
+                    <property name="min-children-per-line">5</property>
+                    <property name="row-spacing">6</property>
+                    <property name="column-spacing">6</property>
+                    <style>
+                      <class name="icon-flowbox"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup" id="attachments_preferences_group">
+                <property name="title" translatable="yes">Attachments</property>
+                <property name="visible">False</property>
+                <child>
+                  <object class="AddListBox" id="attachment_list_box">
+                    <property name="label" translatable="yes">_Add Attachment</property>
+                    <property name="action_name">entry.add_attachment</property>
+                    <signal name="row-activated" handler="on_attachment_list_box_activated" swapped="no"/>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup" id="attributes_preferences_group">
+                <property name="title" translatable="yes">Attributes</property>
+                <property name="visible">False</property>
+                <child>
+                  <object class="AddListBox" id="attribute_list_box">
+                    <property name="action_name">entry.add_attribute</property>
+                    <property name="label" translatable="yes">_Add Attribute</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup" id="expiration_date_preferences_group">
+                <property name="visible">False</property>
+                <property name="title" translatable="yes">Expiration Date</property>
+                <child>
+                  <object class="ExpirationDateRow" id="expiration_date_row"/>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="AdwPreferencesGroup" id="show_all_preferences_group">
+                <property name="visible">False</property>
+                <child>
+                  <object class="GtkButton" id="show_all_button">
+                    <property name="halign">center</property>
+                    <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
+                    <child>
+                      <object class="AdwButtonContent">
+                        <property name="icon_name">view-more-symbolic</property>
+                        <property name="label" translatable="yes">_Show More</property>
+                        <property name="use_underline">True</property>
+                      </object>
+                    </child>
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

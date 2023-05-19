@@ -5,7 +5,7 @@ import logging
 from gettext import gettext as _
 
 import validators
-from gi.repository import GLib, GObject, Gtk
+from gi.repository import Adw, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
@@ -21,7 +21,7 @@ from gsecrets.widgets.notes_dialog import NotesDialog
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_page.ui")
-class EntryPage(Gtk.Box):
+class EntryPage(Adw.Bin):
     # pylint: disable=too-many-public-methods
 
     __gtype_name__ = "EntryPage"

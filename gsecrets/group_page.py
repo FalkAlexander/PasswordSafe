@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import SafeGroup
@@ -9,7 +9,7 @@ from gsecrets.widgets.notes_dialog import NotesDialog
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/group_page.ui")
-class GroupPage(Gtk.Box):
+class GroupPage(Adw.Bin):
 
     __gtype_name__ = "GroupPage"
 

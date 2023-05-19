@@ -184,10 +184,9 @@ class UnlockedDatabase(Adw.BreakpointBin):
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
         page_name = group.uuid.urn
-
-        if page := self._nav_view.find_page(page_name):
-            self.props.current_element = page.props.child.group
-            self._nav_view.pop_to_tag(page_name, False)
+        if page := self._nav_view.get_visible_page():
+            self.props.current_element = group
+            page.props.child.visit_group(group)
         else:
             self.props.current_element = group
             db_page = UnlockedDatabasePage(self, group)

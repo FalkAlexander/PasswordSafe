@@ -10,6 +10,8 @@ import gsecrets.config_manager as config
 from gsecrets.entry_row import EntryRow
 from gsecrets.group_row import GroupRow
 from gsecrets.sorting import SortingHat
+from gsecrets.selection import Selection
+from gsecrets.safe_element import SafeGroup
 
 if typing.TYPE_CHECKING:
     from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
@@ -32,18 +34,30 @@ class UnlockedDatabasePage(Adw.Bin):
         self.entry_sorter = SortingHat.get_sorter(sorting)
         self.group_sorter = SortingHat.get_sorter(sorting)
 
-        self.entries = Gtk.SortListModel.new(group.entries, self.entry_sorter)
-        self.groups = Gtk.SortListModel.new(group.subgroups, self.group_sorter)
+        dbm = unlocked_database.database_manager
+        root = SafeGroup.get_root(dbm)
+
+        self.current_group = root
+
+        self.entries = Gtk.SortListModel.new(dbm.entries, self.entry_sorter)
+        self.groups = Gtk.SortListModel.new(dbm.groups, self.group_sorter)
 
         self.unlocked_database = unlocked_database
         self.group = group
 
         flatten = Gio.ListStore.new(Gtk.SortListModel)
         flatten.splice(0, 0, [self.groups, self.entries])
-        self.list_model = Gtk.FlattenListModel.new(flatten)
-        self.selection_model = Gtk.SingleSelection(
-            autoselect=False, can_unselect=True, model=self.list_model
-        )
+
+        flatten_model = Gtk.FlattenListModel.new(flatten)
+
+        def filter_fn(item):
+            return item.parentgroup == self.current_group and not item.is_root_group
+
+        self.filter_ = Gtk.CustomFilter.new(filter_fn)
+
+        self.list_model = Gtk.FilterListModel.new(flatten_model, self.filter_)
+
+        self.selection_model = Selection(self.list_model, unlocked_database)
         self.selection_model.connect("notify::selected-item", self.on_selected_item_changed)
 
         settings = unlocked_database.window.application.settings
@@ -134,3 +148,7 @@ class UnlockedDatabasePage(Adw.Bin):
     def _on_clear_selection(self, _header: SelectionModeHeaderbar) -> None:
         for element in self.list_model:
             element.props.selected = False
+
+    def visit_group(self, group):
+        self.current_group = group
+        self.filter_.changed(Gtk.FilterChange.DIFFERENT)

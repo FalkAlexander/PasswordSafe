@@ -14,41 +14,50 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/group_row.ui")
 class GroupRow(Adw.ActionRow):
-
     __gtype_name__ = "GroupRow"
 
     _checkbox_revealer = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
     edit_button = Gtk.Template.Child()
 
-    def __init__(self, unlocked_database, safe_group):
+    _safe_group = None
+
+    def __init__(self, unlocked_database):
         super().__init__()
 
-        assert isinstance(safe_group, SafeGroup)
+        self._signals = GObject.SignalGroup.new(SafeGroup)
+
+        self._signals.connect_closure(
+            "notify::name", self._on_group_name_changed, False
+        )
+
         self.unlocked_database = unlocked_database
-        self.safe_group = safe_group
-        self.assemble_group_row()
 
-    def assemble_group_row(self):
-        # Name title
-        self.safe_group.connect("notify::name", self._on_group_name_changed)
-        self._on_group_name_changed(self.safe_group, None)
-
-        # Selection Mode Checkboxes
         self.unlocked_database.bind_property(
             "selection_mode",
             self._checkbox_revealer,
             "reveal-child",
             GObject.BindingFlags.SYNC_CREATE,
         )
-
-        # Edit Button
         self.unlocked_database.bind_property(
             "selection_mode",
             self.edit_button,
             "sensitive",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
         )
+
+    @GObject.Property(type=SafeGroup)
+    def safe_group(self):
+        return self._safe_group
+
+    @safe_group.setter  # type: ignore
+    def safe_group(self, element):
+        assert isinstance(element, SafeGroup)
+
+        self._safe_group = element
+        self._signals.props.target = element
+
+        self._on_group_name_changed(element, None)
 
     @Gtk.Template.Callback()
     def _on_group_row_button_pressed(
@@ -86,12 +95,12 @@ class GroupRow(Adw.ActionRow):
         button: The edit button in the GroupRow"""
         self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
 
-        self.unlocked_database.show_edit_page(self.safe_group)
+        self.unlocked_database.show_edit_page(self._safe_group)
 
     def _on_group_name_changed(
-        self, _safe_group: SafeGroup, _value: GObject.ParamSpec
+        self, safe_group: SafeGroup, _value: GObject.ParamSpec
     ) -> None:
-        group_name = GLib.markup_escape_text(self.safe_group.name)
+        group_name = GLib.markup_escape_text(safe_group.name)
         if group_name:
             self.remove_css_class("italic-title")
             self.props.title = group_name

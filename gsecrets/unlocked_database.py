@@ -157,7 +157,9 @@ class UnlockedDatabase(Gtk.Box):
             row.props.safe_entry = element
             return row
 
-        return GroupRow(self, element)
+        row = GroupRow(self)
+        row.props.safe_group = element
+        return row
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.start_database_lock_timer()

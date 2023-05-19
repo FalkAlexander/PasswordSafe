@@ -17,10 +17,10 @@ if typing.TYPE_CHECKING:
     from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
 
 
-@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database_page.ui")
-class UnlockedDatabasePage(Adw.Bin):
+@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/browsing_panel.ui")
+class BrowsingPanel(Adw.Bin):
 
-    __gtype_name__ = "UnlockedDatabasePage"
+    __gtype_name__ = "BrowsingPanel"
 
     empty_group_box = Gtk.Template.Child()
     list_view = Gtk.Template.Child()
@@ -53,7 +53,11 @@ class UnlockedDatabasePage(Adw.Bin):
         def filter_fn(item):
             return item.parentgroup == self.current_group and not item.is_root_group
 
+        def search_filter_fn(item):
+            return item.parentgroup == self.current_group and not item.is_root_group
+
         self.filter_ = Gtk.CustomFilter.new(filter_fn)
+        self.search_filter = Gtk.CustomFilter.new(search_filter_fn)
 
         self.list_model = Gtk.FilterListModel.new(flatten_model, self.filter_)
 

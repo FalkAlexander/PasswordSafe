@@ -6,12 +6,11 @@
       <object class="AdwLeaflet" id="_unlocked_db_deck">
         <property name="can_unfold">False</property>
         <child>
-          <object class="GtkBox" id="_main_view">
-            <property name="orientation">vertical</property>
-            <child>
+          <object class="AdwToolbarView" id="_main_view">
+            <child type="top">
               <object class="GtkStack" id="headerbar_stack"/>
             </child>
-            <child>
+            <child type="top">
               <object class="GtkSearchBar" id="search_bar">
                 <child>
                   <object class="AdwClamp">
@@ -33,16 +32,14 @@
                 </child>
               </object>
             </child>
+            <child type="bottom">
+              <object class="GtkActionBar" id="action_bar"/>
+            </child>
           </object>
         </child>
         <child>
           <object class="AdwBin" id="_edit_page_bin"/>
         </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkActionBar" id="action_bar">
-        <property name="valign">end</property>
       </object>
     </child>
   </template>

@@ -199,16 +199,10 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
-        self._unlocked_db_stack.set_visible_child(self._stack)
-        if self._navigation_view.props.visible_page == self._edit_page:
-            # pop triggers _on_edit_page_hidden via the hidden signal.
-            self._navigation_view.pop()
-        else:
-            self._set_current_element_after_pop(group)
-
-        if page := self._nav_view.find_page(page_name):
-            self.props.current_element = page.props.child.group
-            self._nav_view.pop_to_tag(page_name, False)
+        page_name = group.uuid.urn
+        if page := self._nav_view.get_visible_page():
+            self.props.current_element = group
+            page.props.child.visit_group(group)
         else:
             self.props.current_element = group
             db_page = UnlockedDatabasePage(self, group)

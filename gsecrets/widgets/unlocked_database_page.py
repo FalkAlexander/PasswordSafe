@@ -111,7 +111,7 @@ class UnlockedDatabasePage(Adw.Bin):
             database.props.search_active = False
 
         if element.is_group:
-            self.unlocked_database.show_browser_page(element)
+            self.unlocked_database.show_edit_page(element)
             return
 
         if database.props.selection_mode:

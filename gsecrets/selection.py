@@ -2,12 +2,12 @@
 
 from gi.repository import Gio, GLib, GObject, Gtk
 
-from gsecrets.safe_element import SafeEntry
+from gsecrets.safe_element import SafeElement
 
 
 class Selection(GObject.Object, Gio.ListModel, Gtk.SelectionModel):
 
-    selected_item = GObject.Property(type=SafeEntry)
+    selected_item = GObject.Property(type=SafeElement)
 
     def __init__(self, model, unlocked_db):
         super().__init__()
@@ -33,11 +33,8 @@ class Selection(GObject.Object, Gio.ListModel, Gtk.SelectionModel):
     def do_is_selected(self, pos):
         return self.inner.is_selected(pos)
 
-    def do_select_item(self, pos, _):
+    def do_select_item(self, pos, _unselect_rest):
         elem = self.model.get_item(pos)
-        if elem.is_group:
-            self.unlocked_db.show_browser_page(elem)
-            return False
 
         self.inner.set_selected(pos)
         self.props.selected_item = elem

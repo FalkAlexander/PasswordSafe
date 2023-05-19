@@ -68,11 +68,11 @@
           </object>
         </child>
         <child>
-          <object class="GtkButton" id="edit_button">
+          <object class="GtkButton">
             <property name="valign">center</property>
-            <property name="tooltip_text" translatable="yes">Edit</property>
-            <property name="icon_name">document-edit-symbolic</property>
-            <signal name="clicked" handler="on_group_edit_button_clicked" swapped="no"/>
+            <property name="tooltip_text" translatable="yes">Navigate To</property>
+            <property name="icon_name">go-next-symbolic</property>
+            <signal name="clicked" handler="on_navigate_button_clicked" swapped="no"/>
             <style>
               <class name="flat"/>
             </style>

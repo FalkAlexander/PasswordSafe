@@ -6,11 +6,11 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GObject, Gtk
 
+from gsecrets.safe_element import SafeEntry
 from gsecrets.unlocked_database import UnlockedDatabase
 
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
-    from gsecrets.safe_element import SafeEntry
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/credentials_group.ui")
@@ -26,9 +26,33 @@ class CredentialsGroup(Adw.PreferencesGroup):
 
     _unlocked_database: UnlockedDatabase | None = None
 
+    _safe_entry = None
+
     @property
     def username(self):
         return self._username_entry_row.props.text
+
+    @GObject.Property(type=SafeEntry)
+    def entry(self):
+        return self._safe_entry
+
+    @entry.setter  # type: ignore
+    def entry(self, entry):
+        self._safe_entry = entry
+        self._password_entry_row.props.text = entry.props.password
+
+        entry.bind_property(
+            "username",
+            self._username_entry_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+        entry.bind_property(
+            "password",
+            self._password_entry_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
 
     @property
     def unlocked_database(self) -> UnlockedDatabase | None:
@@ -36,24 +60,8 @@ class CredentialsGroup(Adw.PreferencesGroup):
 
     @unlocked_database.setter  # type: ignore
     def unlocked_database(self, unlocked_database: UnlockedDatabase) -> None:
-        self._safe_entry: SafeEntry = unlocked_database.current_element  # type: ignore
         self._db_manager: DatabaseManager = unlocked_database.database_manager
         self._unlocked_database = unlocked_database
-
-        self._password_entry_row.props.text = self._safe_entry.props.password
-
-        self._safe_entry.bind_property(
-            "username",
-            self._username_entry_row,
-            "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
-        )
-        self._safe_entry.bind_property(
-            "password",
-            self._password_entry_row,
-            "text",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
-        )
 
     @Gtk.Template.Callback()
     def _on_copy_password_button_clicked(self, _widget: Gtk.Button) -> None:

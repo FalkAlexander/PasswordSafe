@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-import typing
 from gettext import gettext as _
 
 import validators
@@ -12,15 +11,13 @@ from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
 from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import ICONS
+from gsecrets.safe_element import SafeEntry
 from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
 from gsecrets.widgets.attachment_entry_row import AttachmentEntryRow
 from gsecrets.widgets.attribute_entry_row import AttributeEntryRow
 from gsecrets.widgets.entry_page_icon import EntryPageIcon
 from gsecrets.widgets.history_window import HistoryWindow
 from gsecrets.widgets.notes_dialog import NotesDialog
-
-if typing.TYPE_CHECKING:
-    from gsecrets.safe_element import SafeEntry
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_page.ui")
@@ -62,7 +59,9 @@ class EntryPage(Gtk.Box):
 
     otp_timer_handler: int | None = None
 
-    def __init__(self, u_d, add_all):
+    safe_entry = GObject.Property(type=SafeEntry)
+
+    def __init__(self, u_d, entry, add_all):
         # Setup actions, must be done before initializing the template.
         self.install_action("entry.copy_password", None, self._on_copy_action)
         self.install_action("entry.copy_user", None, self._on_copy_action)
@@ -77,7 +76,7 @@ class EntryPage(Gtk.Box):
             "entry.save_in_history", None, self._on_save_in_history_action
         )
 
-        super().__init__()
+        super().__init__(safe_entry=entry)
 
         self.unlocked_database = u_d
         self.toggeable_widget_list = [
@@ -99,7 +98,7 @@ class EntryPage(Gtk.Box):
 
         self.insert_entry_properties_into_listbox(add_all)
 
-        safe_entry: SafeEntry = self.unlocked_database.current_element
+        safe_entry: SafeEntry = self.props.safe_entry
         safe_entry.updated.connect(self._on_safe_entry_updated)
 
         safe_entry.history_saved.connect(self._on_history_saved)
@@ -117,7 +116,7 @@ class EntryPage(Gtk.Box):
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
         # pylint: disable=too-many-statements
-        safe_entry: SafeEntry = self.unlocked_database.current_element
+        safe_entry = self.props.safe_entry
 
         # Create the name_property_row
         safe_entry.bind_property(
@@ -129,6 +128,7 @@ class EntryPage(Gtk.Box):
 
         # Credentials Group
         self.credentials_group.unlocked_database = self.unlocked_database
+        self.credentials_group.props.entry = self.props.safe_entry
 
         # OTP (token)
         safe_entry.connect("notify::otp", self.otp_update)
@@ -216,7 +216,7 @@ class EntryPage(Gtk.Box):
         :param str key: property name
         :param str value: property value
         """
-        safe_entry = self.unlocked_database.current_element
+        safe_entry = self.props.safe_entry
         attribute_row = AttributeEntryRow(
             safe_entry, key, value, self.attribute_list_box
         )
@@ -228,7 +228,7 @@ class EntryPage(Gtk.Box):
     #
 
     def _on_password_history_action(self, _widget, _action, _param):
-        safe_entry = self.unlocked_database.current_element
+        safe_entry = self.props.safe_entry
 
         window = HistoryWindow(safe_entry, self.unlocked_database)
         window.present()
@@ -237,7 +237,7 @@ class EntryPage(Gtk.Box):
         if not self.unlocked_database.in_edit_page:
             return
 
-        safe_entry = self.unlocked_database.current_element
+        safe_entry = self.props.safe_entry
         safe_entry.save_history()
 
         self.unlocked_database.window.send_notification(_("Saved in history"))
@@ -267,7 +267,7 @@ class EntryPage(Gtk.Box):
                 _("Address copied"),
             )
         elif action_name == "entry.copy_otp":
-            safe_entry: SafeEntry = self.unlocked_database.current_element
+            safe_entry: SafeEntry = self.props.safe_entry
             otp_token = safe_entry.otp_token() or ""
             if otp_token == "":
                 return
@@ -289,7 +289,7 @@ class EntryPage(Gtk.Box):
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
-        safe_entry = self.unlocked_database.current_element
+        safe_entry = self.props.safe_entry
         NotesDialog(self.unlocked_database, safe_entry).present()
 
     def on_entry_icon_button_toggled(self, flowbox):
@@ -299,7 +299,7 @@ class EntryPage(Gtk.Box):
         selected_row = flowbox.get_selected_children()[0]
         icon = selected_row.get_name()
 
-        safe_entry = self.unlocked_database.current_element
+        safe_entry = self.props.safe_entry
         safe_entry.props.icon = icon
 
     def _on_launch(self, launcher, result, window):
@@ -325,7 +325,7 @@ class EntryPage(Gtk.Box):
 
     @Gtk.Template.Callback()
     def on_otp_copy_button_clicked(self, _button):
-        safe_entry: SafeEntry = self.unlocked_database.current_element
+        safe_entry: SafeEntry = self.props.safe_entry
         otp_token = safe_entry.otp_token() or ""
         self.unlocked_database.send_to_clipboard(
             otp_token,
@@ -334,7 +334,7 @@ class EntryPage(Gtk.Box):
 
     def _on_add_attribute(self, _widget, _action_name, _pspec):
         window = self.unlocked_database.window
-        entry = self.unlocked_database.current_element
+        entry = self.props.safe_entry
         db_manager = self.unlocked_database.database_manager
         dialog = AddAttributeDialog(window, db_manager, entry)
 
@@ -374,7 +374,7 @@ class EntryPage(Gtk.Box):
         except GLib.Error as err:
             logging.debug("Could not open files: %s", err.message)
         else:
-            safe_entry: SafeEntry = self.unlocked_database.current_element
+            safe_entry: SafeEntry = self.props.safe_entry
 
             def callback(gfile, result):
                 try:
@@ -391,7 +391,7 @@ class EntryPage(Gtk.Box):
                 attachment.load_bytes_async(None, callback)
 
     def add_attachment_row(self, attachment):
-        safe_entry: SafeEntry = self.unlocked_database.current_element
+        safe_entry: SafeEntry = self.props.safe_entry
         attachment_row = AttachmentEntryRow(safe_entry, attachment)
         self.attachment_list_box.append(attachment_row)
 

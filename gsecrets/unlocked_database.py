@@ -171,7 +171,7 @@ class UnlockedDatabase(Gtk.Box):
             page = GroupPage(self)
             self.props.mode = self.Mode.GROUP_EDIT
         else:
-            page = EntryPage(self, new)
+            page = EntryPage(self, element, new)
             self.props.mode = self.Mode.ENTRY
 
         self._edit_page_bin.set_child(page)

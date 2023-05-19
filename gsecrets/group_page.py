@@ -3,7 +3,6 @@ from __future__ import annotations
 
 from gi.repository import Adw, GObject, Gtk
 
-from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import SafeGroup
 from gsecrets.widgets.notes_dialog import NotesDialog
 
@@ -12,8 +11,6 @@ from gsecrets.widgets.notes_dialog import NotesDialog
 class GroupPage(Adw.Bin):
 
     __gtype_name__ = "GroupPage"
-
-    _pathbar_bin = Gtk.Template.Child()
 
     title_entry_row = Gtk.Template.Child()
     notes_text_view = Gtk.Template.Child()
@@ -30,8 +27,6 @@ class GroupPage(Adw.Bin):
         # Setup Widgets
         notes_buffer = self.notes_text_view.get_buffer()
 
-        self._pathbar_bin.set_child(Pathbar(unlocked_database))
-
         # Connect Signals
         safe_group.updated.connect(self._on_safe_group_updated)
         safe_group.bind_property(
@@ -45,15 +40,6 @@ class GroupPage(Adw.Bin):
             notes_buffer,
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
-        )
-
-        self._pathbar_bin.bind_property(
-            "visible",
-            unlocked_database.action_bar,
-            "revealed",
-            GObject.BindingFlags.BIDIRECTIONAL
-            | GObject.BindingFlags.INVERT_BOOLEAN
-            | GObject.BindingFlags.SYNC_CREATE,
         )
 
     @Gtk.Template.Callback()

@@ -9,7 +9,6 @@ from gi.repository import Adw, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
-from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import ICONS
 from gsecrets.safe_element import SafeEntry
 from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
@@ -26,8 +25,6 @@ class EntryPage(Adw.Bin):
     # pylint: disable=too-many-public-methods
 
     __gtype_name__ = "EntryPage"
-
-    _pathbar_bin = Gtk.Template.Child()
 
     title_entry_row = Gtk.Template.Child()
     url_entry_row = Gtk.Template.Child()
@@ -87,16 +84,6 @@ class EntryPage(Adw.Bin):
             self.attributes_preferences_group,
             self.expiration_date_preferences_group,
         ]
-
-        self._pathbar_bin.set_child(Pathbar(u_d))
-
-        u_d.action_bar.bind_property(
-            "revealed",
-            self._pathbar_bin,
-            "visible",
-            GObject.BindingFlags.INVERT_BOOLEAN
-            | GObject.BindingFlags.SYNC_CREATE,
-        )
 
         self.insert_entry_properties_into_listbox(add_all)
 

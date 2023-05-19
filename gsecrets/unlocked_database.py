@@ -153,7 +153,9 @@ class UnlockedDatabase(Gtk.Box):
 
     def listbox_row_factory(self, element: SafeElement) -> Gtk.Widget:
         if element.is_entry:
-            return EntryRow(self, element)
+            row = EntryRow(self)
+            row.props.safe_entry = element
+            return row
 
         return GroupRow(self, element)
 

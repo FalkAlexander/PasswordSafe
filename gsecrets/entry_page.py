@@ -52,6 +52,8 @@ class EntryPage(Adw.Bin):
     expiration_date_preferences_group = Gtk.Template.Child()
     expiration_date_row = Gtk.Template.Child()
 
+    _window_title = Gtk.Template.Child()
+
     show_all_preferences_group = Gtk.Template.Child()
 
     otp_timer_handler: int | None = None
@@ -92,6 +94,13 @@ class EntryPage(Adw.Bin):
         safe_entry.history_saved.connect(self._on_history_saved)
         if not safe_entry.history:
             self.action_set_enabled("entry.password_history", False)
+
+        safe_entry.bind_property(
+            "name",
+            self._window_title,
+            "title",
+            GObject.BindingFlags.SYNC_CREATE,
+        )
 
     def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:

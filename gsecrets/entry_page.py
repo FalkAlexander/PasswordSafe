@@ -96,12 +96,19 @@ class EntryPage(Adw.Bin):
         if not safe_entry.history:
             self.action_set_enabled("entry.password_history", False)
 
-        safe_entry.bind_property(
-            "name",
-            self._window_title,
-            "title",
-            GObject.BindingFlags.SYNC_CREATE,
-        )
+        safe_entry.connect("notify::name", self._on_name_notify)
+        self._set_title(safe_entry)
+
+    def _set_title(self, entry):
+        if entry.parentgroup.is_root_group:
+            title = entry.name
+        else:
+            title = f"{entry.parentgroup.name} ⟩ {entry.name}"
+
+        self._window_title.props.title = title
+
+    def _on_name_notify(self, entry, _pspec):
+        self._set_title(entry)
 
     def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:

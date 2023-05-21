@@ -18,12 +18,9 @@ class EntryRow(Adw.Bin):
 
     __gtype_name__ = "EntryRow"
 
-    _checkbox_revealer = Gtk.Template.Child()
+    _prefix_stack = Gtk.Template.Child()
     _entry_icon = Gtk.Template.Child()
-    selection_checkbox = Gtk.Template.Child()
-    _entry_copy_user_button = Gtk.Template.Child()
-    _entry_copy_pass_button = Gtk.Template.Child()
-    _entry_copy_otp_button = Gtk.Template.Child()
+    _selection_checkbox = Gtk.Template.Child()
 
     _safe_entry = None
 
@@ -44,9 +41,15 @@ class EntryRow(Adw.Bin):
         )
         self._bindings.bind(
             "selected",
-            self.selection_checkbox,
+            self._selection_checkbox,
             "active",
-            GObject.BindingFlags.BIDIRECTIONAL,
+            GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.SYNC_CREATE,
+        )
+        self._bindings.bind(
+            "sensitive",
+            self,
+            "sensitive",
+            GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.SYNC_CREATE,
         )
 
         self._signals.connect_closure(
@@ -67,15 +70,15 @@ class EntryRow(Adw.Bin):
         self._signals.connect_closure(
             "notify::expired", self._on_entry_notify_expired, False
         )
+        self._signals.connect_closure(
+            "notify::selected", self._on_selected_notify, False
+        )
 
         self.unlocked_database = database
         self.db_manager = database.database_manager
 
-        self.unlocked_database.bind_property(
-            "selection_mode",
-            self._checkbox_revealer,
-            "reveal-child",
-            GObject.BindingFlags.SYNC_CREATE,
+        self.unlocked_database.connect(
+            "notify::selection-mode", self._on_selection_mode_notify
         )
 
     @GObject.Property(type=SafeEntry)
@@ -95,6 +98,7 @@ class EntryRow(Adw.Bin):
         self._on_entry_opt_token_changed(element, None)
         self._on_entry_color_changed(element, None)
         self._on_entry_notify_expired(element, None)
+        self._on_selection_mode_notify(self.unlocked_database, None)
 
     def _on_entry_notify_expired(self, safe_entry, _gparam):
         if safe_entry.expired and safe_entry.props.expires:
@@ -114,23 +118,20 @@ class EntryRow(Adw.Bin):
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()
 
-        if not db_view.props.search_active:
-            if db_view.props.selection_mode:
-                selected = self._safe_entry.props.selected
-                self._safe_entry.props.selected = not selected
-            else:
-                db_view.props.selection_mode = True
-                self._safe_entry.props.selected = True
+        if db_view.props.selection_mode:
+            selected = self._safe_entry.selected  # type: ignore
+            self._safe_entry.selected = not selected  # type: ignore
+        else:
+            db_view.props.selection_mode = True
+            self._safe_entry.selected = True  # type: ignore
 
-    @Gtk.Template.Callback()
-    def on_selection_checkbox_toggled(self, _widget):
+    def _on_selected_notify(self, entry, _pspec):
         self.unlocked_database.start_database_lock_timer()
 
-        entry = self._safe_entry
         if entry.props.selected:
-            self.unlocked_database.selection_mode_headerbar.add_entry(entry)
+            self.unlocked_database.add_selection(entry)
         else:
-            self.unlocked_database.selection_mode_headerbar.remove_entry(entry)
+            self.unlocked_database.remove_selection(entry)
 
     @Gtk.Template.Callback()
     def on_entry_copy_pass_button_clicked(self, _button):
@@ -195,6 +196,16 @@ class EntryRow(Adw.Bin):
 
         color = safe_entry.props.color
         self._entry_icon.add_css_class(color)
+
+    def _on_selection_mode_notify(self, unlocked_db, _pspec):
+        selection_mode = unlocked_db.props.selection_mode
+
+        if selection_mode:
+            visible_child = self._selection_checkbox
+        else:
+            visible_child = self._entry_icon
+
+        self._prefix_stack.props.visible_child = visible_child
 
     @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):

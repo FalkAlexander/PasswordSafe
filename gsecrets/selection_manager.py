@@ -3,10 +3,8 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
-from gettext import ngettext
-from logging import debug
 
-from gi.repository import Adw, Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gio, GObject
 
 from gsecrets.safe_element import SafeElement
 
@@ -14,13 +12,8 @@ if typing.TYPE_CHECKING:
     from gsecrets.unlocked_database import UnlockedDatabase
 
 
-@Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/selection_mode_headerbar.ui")
-class SelectionModeHeaderbar(Adw.Bin):
-    __gtype_name__ = "SelectionModeHeaderbar"
-
-    unlocked_database = NotImplemented
-
-    _cut_mode = True
+class SelectionManager(GObject.Object):
+    __gtype_name__ = "SelectionManager"
 
     entries_selected: list[SafeElement] = []
     groups_selected: list[SafeElement] = []
@@ -30,13 +23,8 @@ class SelectionModeHeaderbar(Adw.Bin):
 
     hidden_rows = Gio.ListStore.new(SafeElement)
 
-    _cut_button = Gtk.Template.Child()
-    _cut_paste_button_stack = Gtk.Template.Child()
-    _delete_button = Gtk.Template.Child()
-    _paste_button = Gtk.Template.Child()
-    _selection_options_button = Gtk.Template.Child()
-
     selected_elements = GObject.Property(type=int, default=0)
+    cut_mode = GObject.Property(type=bool, default=True)
 
     def __init__(self, unlocked_database):
         super().__init__()
@@ -46,34 +34,16 @@ class SelectionModeHeaderbar(Adw.Bin):
         unlocked_database.connect(
             "notify::selection-mode", self._on_selection_mode_changed
         )
-        unlocked_database.bind_property(
-            "selection-mode", self, "visible", GObject.BindingFlags.SYNC_CREATE
-        )
-        self.connect("notify::selected-elements", self.on_selected_entries_changed)
-
-    def on_selected_entries_changed(self, selection_ui, _value):
-        new_number = selection_ui.props.selected_elements
-        if new_number == 0:
-            label = _("_Select Items")
-        else:
-            label = ngettext("{} _Selected", "{} _Selected", new_number).format(
-                new_number
-            )
-
-        self._selection_options_button.props.label = label
 
     def _on_selection_mode_changed(
         self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
     ) -> None:
-        if not unlocked_database.selection_mode:
+        if not unlocked_database.props.selection_mode:
             self._clear_all()
 
     # Events
 
-    @Gtk.Template.Callback()
-    def _on_delete_button_clicked(self, _widget):
-        self.unlocked_database.start_database_lock_timer()
-
+    def delete_selection(self):
         # Abort the operation if there is a groups which is in the pathbar,
         # i.e. if it is a parent of the current view.
         for safe_group in self.groups_selected:
@@ -110,16 +80,12 @@ class SelectionModeHeaderbar(Adw.Bin):
             undo_elements = []
             for element in self.entries_selected:
                 parent = element.parentgroup
-                if element.trash():
-                    self.unlocked_database.delete_page(element)
-                else:
+                if not element.trash():
                     undo_elements.append((element, parent))
 
             for element in self.groups_selected:
                 parent = element.parentgroup
-                if element.trash():
-                    self.unlocked_database.delete_page(element)
-                else:
+                if not element.trash():
                     undo_elements.append((element, parent))
 
             self.unlocked_database.deleted_notification(undo_elements)
@@ -127,7 +93,7 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         if mixed:
 
-            def response_delete_cb(dialog, response):
+            def response_delete_cb(dialog, _response):
                 delete_elements()
 
             dialog = Adw.AlertDialog.new(
@@ -144,30 +110,20 @@ class SelectionModeHeaderbar(Adw.Bin):
         else:
             delete_elements()
 
-    @Gtk.Template.Callback()
-    def _on_cut_button_clicked(self, _widget):
-        self.unlocked_database.start_database_lock_timer()
-
+    def cut_selection(self):
         self.entries_cut = self.entries_selected
         self.groups_cut = self.groups_selected
         for group in self.groups_selected:
             group.props.sensitive = False
             self.hidden_rows.append(group)
+
         for entry in self.entries_selected:
             entry.props.sensitive = False
             self.hidden_rows.append(entry)
 
-        # Do not allow to delete the entries or rows
-        # that were selected to be cut.
-        if self.entries_selected or self.groups_selected:
-            self._delete_button.set_sensitive(False)
-
         self.props.cut_mode = False
 
-    @Gtk.Template.Callback()
-    def _on_paste_button_clicked(self, _widget):
-        self.unlocked_database.start_database_lock_timer()
-
+    def paste_selection(self):
         # Abort the entire operation if one of the selected groups is a parent of
         # the current group.
         for safe_group in self.groups_cut:
@@ -191,16 +147,6 @@ class SelectionModeHeaderbar(Adw.Bin):
 
         self.unlocked_database.window.send_notification(_("Move completed"))
         self._clear_all()
-
-    def on_selection_action(self, variant: GLib.Variant) -> None:
-        self.unlocked_database.start_database_lock_timer()
-
-        selection_type = variant.get_string()
-        page = self.unlocked_database.get_current_page()
-
-        selected = selection_type == "all"
-        for element in page.list_model:
-            element.props.selected = selected
 
     # Helpers
 
@@ -243,46 +189,37 @@ class SelectionModeHeaderbar(Adw.Bin):
         self._update_selection()
 
     def _update_selection(self) -> None:
-        non_empty_selection = self.entries_selected or self.groups_selected
-        self._cut_button.set_sensitive(non_empty_selection)
-        self._delete_button.set_sensitive(non_empty_selection)
-
-        self.props.selected_elements = len(self.entries_selected) + len(
+        self.selected_elements = len(self.entries_selected) + len(
             self.groups_selected
         )
 
     def _clear_all(self) -> None:
         """Resets everything to the default state"""
-        self.props.selected_elements = 0
-        self.props.cut_mode = True
+        self.selected_elements = 0
+        self.cut_mode = True
         self.entries_cut.clear()
         self.groups_cut.clear()
+
+        for group in reversed(self.groups_selected):
+            group.selected = False
+
+        for entry in reversed(self.entries_selected):
+            entry.selected = False
+
         self.entries_selected.clear()
         self.groups_selected.clear()
-        self._delete_button.set_sensitive(False)
-        self._cut_button.set_sensitive(False)
+
         for element in self.hidden_rows:
             element.props.sensitive = True
 
         self.hidden_rows.remove_all()
-        self.emit("clear-selection")
 
-    @GObject.Signal()
     def clear_selection(self):
         """Signal emitted to tell all list models that they should unselect
         their entries. It differs from the action app.selection.none, since
         the later removes selected entries only for the visible listbox."""
-        debug("Clear selection signal emitted")
+        for element in reversed(self.entries_selected):
+            element.props.selected = False
 
-    @GObject.Property(type=bool, default=True)
-    def cut_mode(self) -> bool:
-        return self._cut_mode
-
-    @cut_mode.setter  # type: ignore
-    def cut_mode(self, mode: bool) -> None:
-        stack = self._cut_paste_button_stack
-        self._cut_mode = mode
-        if mode:
-            stack.set_visible_child(self._cut_button)
-        else:
-            stack.set_visible_child(self._paste_button)
+        for element in reversed(self.groups_selected):
+            element.props.selected = False

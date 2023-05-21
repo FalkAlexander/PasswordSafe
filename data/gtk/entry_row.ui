@@ -19,31 +19,23 @@
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
         <child>
-          <object class="GtkBox">
-            <child>
-              <object class="GtkRevealer" id="_checkbox_revealer">
-                <property name="transition_type">slide-right</property>
-                <child>
-                  <object class="GtkCheckButton" id="selection_checkbox">
-                    <property name="margin_end">12</property>
-                    <property name="valign">center</property>
-                    <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
-                    <property name="accessible-role">presentation</property>
-                    <style>
-                      <class name="selection-mode"/>
-                    </style>
-                  </object>
-                </child>
-              </object>
-            </child>
+          <object class="GtkStack" id="_prefix_stack">
+            <property name="transition_type">crossfade</property>
             <child>
               <object class="GtkImage" id="_entry_icon">
                 <property name="icon_name">application-x-executable-symbolic</property>
-                <property name="width_request">32</property>
-                <property name="height_request">32</property>
-                <property name="valign">center</property>
+                <property name="width_request">28</property>
+                <property name="height_request">28</property>
+                <property name="accessible-role">presentation</property>
                 <style>
                   <class name="circular-icon"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkCheckButton" id="_selection_checkbox">
+                <style>
+                  <class name="selection-mode"/>
                 </style>
               </object>
             </child>

@@ -41,12 +41,20 @@ class GroupPage(Adw.Bin):
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
-        safe_group.bind_property(
-            "name",
-            self._window_title,
-            "title",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
-        )
+
+        safe_group.connect("notify::name", self._on_name_notify)
+        self._set_title(safe_group)
+
+    def _set_title(self, group):
+        if group.parentgroup.is_root_group:
+            title = group.name
+        else:
+            title = f"{group.parentgroup.name}  ⟩ {group.name}"
+
+        self._window_title.props.title = title
+
+    def _on_name_notify(self, group, _pspec):
+        self._set_title(group)
 
     @Gtk.Template.Callback()
     def on_notes_detach_button_clicked(self, _button):

@@ -6,11 +6,11 @@
     <child>
       <object class="AdwBreakpoint">
         <condition>max-width: 720</condition>
-        <setter object="_unlocked_db_deck" property="collapsed">True</setter>
+        <setter object="_split_view" property="collapsed">True</setter>
       </object>
     </child>
     <child>
-      <object class="AdwNavigationSplitView" id="_unlocked_db_deck">
+      <object class="AdwNavigationSplitView" id="_split_view">
         <property name="max-sidebar-width">360</property>
         <property name="sidebar-width-fraction">0.33</property>
         <property name="sidebar">
@@ -19,33 +19,104 @@
             <property name="child">
               <object class="AdwToolbarView" id="toolbar_view">
                 <child type="top">
-                  <object class="GtkStack" id="headerbar_stack"/>
-                </child>
-                <child type="top">
-                  <object class="GtkSearchBar" id="search_bar">
+                  <object class="GtkStack" id="headerbar_stack">
                     <child>
-                      <object class="GtkSearchEntry" id="search_entry">
-                        <property name="activates_default">True</property>
+                      <object class="AdwHeaderBar" id="_selection_mode_headerbar">
+                        <property name="show_end_title_buttons">False</property>
+                        <property name="show_start_title_buttons">False</property>
+                        <property name="title_widget">
+                          <object class="AdwWindowTitle" id="_selection_mode_title">
+                            <property name="title" translatable="yes">Select Items</property>
+                          </object>
+                        </property>
+                        <child type="end">
+                          <object class="GtkButton">
+                            <property name="label" translatable="yes">_Cancel</property>
+                            <property name="use_underline">True</property>
+                            <signal name="clicked" handler="_on_selection_cancel_clicked" swapped="no"/>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
                 </child>
-                <child>
-                  <object class="GtkStack" id="_unlocked_db_stack">
+                <child type="top">
+                  <object class="GtkSearchBar" id="_search_bar">
+                    <accessibility>
+                      <property name="label" translatable="yes">Search Safe</property>
+                    </accessibility>
                     <child>
-                      <object class="AdwNavigationView" id="_nav_view"/>
+                      <object class="GtkSearchEntry" id="_search_entry">
+                        <property name="activates_default">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="placeholder_text" translatable="yes">Search Safe</property>
+                        <accessibility>
+                          <relation name="labelled-by">_search_bar</relation>
+                        </accessibility>
+                      </object>
                     </child>
                   </object>
                 </child>
                 <child type="bottom">
-                  <object class="GtkActionBar" id="action_bar"/>
+                  <object class="GtkStack" id="_bottom_bar_stack">
+                    <child>
+                      <object class="GtkActionBar" id="_browser_view_action_bar">
+                        <child type="end">
+                          <object class="GtkMenuButton">
+                            <property name="menu_model">_add_button_menu</property>
+                            <property name="icon_name">list-add-symbolic</property>
+                            <property name="tooltip_text" translatable="yes">New Entry or Group</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkActionBar" id="_selection_mode_action_bar">
+                        <child>
+                          <object class="GtkButton" id="_clear_selection_button">
+                            <property name="label" translatable="yes">_Clear</property>
+                            <property name="sensitive">False</property>
+                            <property name="use_underline">True</property>
+                            <signal name="clicked" handler="_on_clear_selection_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <child type="end">
+                          <object class="GtkButton" id="_delete_selection_button">
+                            <property name="sensitive">False</property>
+                            <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete Selection</property>
+                            <property name="icon_name">user-trash-symbolic</property>
+                            <signal name="clicked" handler="_on_delete_selection_clicked" swapped="no"/>
+                          </object>
+                        </child>
+                        <child type="end">
+                          <object class="GtkStack" id="_cut_paste_button_stack">
+                            <child>
+                              <object class="GtkButton" id="_cut_selection_button">
+                                <property name="sensitive">False</property>
+                                <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move Selection</property>
+                                <property name="icon_name">edit-cut-symbolic</property>
+                                <signal name="clicked" handler="_on_cut_selection_clicked" swapped="no"/>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="_paste_selection_button">
+                                <property name="tooltip_text" translatable="yes">Paste Selection</property>
+                                <property name="icon_name">edit-paste-symbolic</property>
+                                <signal name="clicked" handler="_on_paste_selection_clicked" swapped="no"/>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
                 </child>
               </object>
             </property>
           </object>
         </property>
         <property name="content">
-          <object class="AdwNavigationPage">
+          <object class="AdwNavigationPage" id="_empty_page">
             <property name="child">
               <object class="AdwToolbarView">
                 <child type="top">
@@ -68,4 +139,16 @@
       </object>
     </child>
   </template>
+  <menu id="_add_button_menu">
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>New _Entry</attribute>
+        <attribute name='action'>win.db.add_entry</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>New _Group</attribute>
+        <attribute name='action'>win.db.add_group</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

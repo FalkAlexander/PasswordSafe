@@ -507,11 +507,7 @@ class Window(Adw.ApplicationWindow):
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_database()
         elif name in ["db.add_entry", "db.add_group"]:
-            if (
-                action_db.props.database_locked
-                or action_db.props.selection_mode
-                or action_db.props.search_active
-            ):
+            if action_db.props.database_locked or action_db.props.selection_mode:
                 return
 
             if action_db.props.search_active:

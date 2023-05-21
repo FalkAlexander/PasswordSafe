@@ -141,6 +141,8 @@ class SafeElement(GObject.Object):
             self._db_manager.db.trash_group(element)
             parentgroup.filter_changed(False)
 
+        parentgroup.emit_children_changed(1, 0)
+
         # We add the trash bin if it was not present already
         if trash_bin_missing:
             if trash_bin_inner := self._db_manager.db.recyclebin_group:
@@ -148,9 +150,11 @@ class SafeElement(GObject.Object):
                 self._db_manager.trash_bin = trash_bin
                 self._db_manager.groups.append(trash_bin)
                 trash_bin.parentgroup.updated()
+                trash_bin.parentgroup.emit_children_changed(0, 1)
 
         if trash_bin := self._db_manager.trash_bin:
             trash_bin.filter_changed(self.is_entry)
+            trash_bin.emit_children_changed(0, 1)
 
         parentgroup.updated()
 
@@ -172,6 +176,9 @@ class SafeElement(GObject.Object):
             self._db_manager.db.move_group(self._element, dest.group)
             dest.filter_changed(False)
             old_location.filter_changed(False)
+
+        old_location.emit_children_changed(1, 0)
+        dest.emit_children_changed(0, 1)
 
         old_location.updated()
         dest.updated()
@@ -344,6 +351,8 @@ class SafeGroup(SafeElement):
     _subgroups = None
     _subgroups_filter = None
 
+    children_changed = GObject.Signal(arg_types=(int, int,))
+
     def __init__(self, db_manager: DatabaseManager, group: Group) -> None:
         """GObject to handle a safe group.
 
@@ -353,6 +362,12 @@ class SafeGroup(SafeElement):
         super().__init__(db_manager, group)
 
         self._group: Group = group
+
+        if self.is_root_group:
+            self._db_manager.root = self
+
+        if self.is_trash_bin:
+            self._db_manager.trash_bin = self
 
     @staticmethod
     def get_root(db_manager: DatabaseManager) -> SafeGroup:
@@ -424,15 +439,6 @@ class SafeGroup(SafeElement):
             self._db_manager.groups, self._subgroups_filter
         )
 
-        # We need to find the trash bin.
-        if self.is_root_group:
-            self._db_manager.root = self
-
-            if not self._db_manager.trash_bin:
-                for group in self._db_manager.groups:
-                    if group.is_trash_bin:
-                        self._db_manager.trash_bin = group
-
     def init_entries(self):
         self._entries_filter = Gtk.CustomFilter.new(self._group_filter_func)
         self._entries = Gtk.FilterListModel.new(
@@ -466,6 +472,9 @@ class SafeGroup(SafeElement):
             return False
 
         return group.parentgroup_uuid == self.uuid
+
+    def emit_children_changed(self, removed, added):
+        self.emit(self.children_changed, removed, added)
 
 
 class SafeEntry(SafeElement):

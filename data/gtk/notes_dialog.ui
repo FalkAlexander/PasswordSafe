@@ -1,45 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="NotesDialog" parent="GtkWindow">
+  <template class="NotesDialog" parent="AdwWindow">
     <property name="default_width">500</property>
     <property name="default_height">450</property>
     <property name="destroy-with-parent">True</property>
-    <property name="titlebar">
-      <object class="GtkHeaderBar">
-        <property name="title-widget">
-          <object class="AdwWindowTitle"/>
-        </property>
-        <child>
-          <object class="GtkButton" id="copy_button">
-            <property name="label" translatable="yes">_Copy</property>
-            <property name="use_underline">True</property>
-            <signal name="clicked" handler="_on_copy_button_clicked"/>
-            <style>
-              <class name="suggested-action"/>
-            </style>
-          </object>
-        </child>
-        <child type="end">
-          <object class="GtkToggleButton" id="_search_button">
-            <property name="halign">end</property>
-            <property name="icon_name">system-search-symbolic</property>
-            <property name="tooltip_text" translatable="yes">Search</property>
-            <signal name="toggled" handler="_on_search_button_toggled"/>
-            <child>
-              <object class="GtkShortcutController">
-                <property name="scope">global</property>
-                <child>
-                  <object class="GtkShortcut">
-                    <property name="trigger">&lt;Control&gt;f</property>
-                    <property name="action">activate</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -53,9 +17,42 @@
     <child>
       <object class="AdwToastOverlay" id="_toast_overlay">
         <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
+          <object class="AdwToolbarView">
+            <child type="top">
+              <object class="AdwHeaderBar">
+                <property name="show_title">False</property>
+                <child>
+                  <object class="GtkButton" id="copy_button">
+                    <property name="label" translatable="yes">_Copy</property>
+                    <property name="use_underline">True</property>
+                    <signal name="clicked" handler="_on_copy_button_clicked"/>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkToggleButton" id="_search_button">
+                    <property name="halign">end</property>
+                    <property name="icon_name">system-search-symbolic</property>
+                    <property name="tooltip_text" translatable="yes">Search</property>
+                    <signal name="toggled" handler="_on_search_button_toggled"/>
+                    <child>
+                      <object class="GtkShortcutController">
+                        <property name="scope">global</property>
+                        <child>
+                          <object class="GtkShortcut">
+                            <property name="trigger">&lt;Control&gt;f</property>
+                            <property name="action">activate</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="top">
               <object class="GtkSearchBar" id="_search_bar">
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">

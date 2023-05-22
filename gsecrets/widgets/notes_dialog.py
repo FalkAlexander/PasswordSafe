@@ -3,11 +3,11 @@ from __future__ import annotations
 
 from gettext import gettext as _
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/notes_dialog.ui")
-class NotesDialog(Gtk.Window):
+class NotesDialog(Adw.Window):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "NotesDialog"

@@ -190,6 +190,7 @@
   <template class="ReferencesDialog" parent="AdwWindow">
     <property name="destroy-with-parent">True</property>
     <property name="default_height">200</property>
+    <property name="title" translatable="yes">References</property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -203,13 +204,7 @@
     <child>
       <object class="AdwToolbarView">
         <child type="top">
-          <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">References</property>
-              </object>
-            </property>
-          </object>
+          <object class="AdwHeaderBar"/>
         </child>
         <property name="content">
           <object class="AdwClamp">

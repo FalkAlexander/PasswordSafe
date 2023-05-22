@@ -65,6 +65,7 @@
                     </child>
                     <child>
                       <object class="GtkListBox" id="methods_list_box">
+                        <property name="selection_mode">none</property>
                         <signal name="row-activated" handler="on_auth_chooser_row_activated" swapped="no"/>
                         <child>
                           <object class="AdwActionRow" id="password_action_row">
@@ -74,7 +75,6 @@
                             <property name="icon_name">document-edit-symbolic</property>
                             <property name="use_underline">True</property>
                             <property name="activatable">True</property>
-                            <property name="selectable">False</property>
                           </object>
                         </child>
                         <child>
@@ -85,7 +85,6 @@
                             <property name="icon_name">dialog-password-symbolic</property>
                             <property name="use_underline">True</property>
                             <property name="activatable">True</property>
-                            <property name="selectable">False</property>
                           </object>
                         </child>
                         <child>
@@ -96,7 +95,6 @@
                             <property name="icon_name">insert-link-symbolic</property>
                             <property name="use_underline">True</property>
                             <property name="activatable">True</property>
-                            <property name="selectable">False</property>
                           </object>
                         </child>
                         <style>

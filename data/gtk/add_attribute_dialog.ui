@@ -5,6 +5,7 @@
     <property name="destroy_with_parent">True</property>
     <property name="default_width">450</property>
     <property name="default_height">240</property>
+    <property name="title" translatable="yes">Add Attribute</property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -18,13 +19,7 @@
     <child>
       <object class="AdwToolbarView">
         <child type="top">
-          <object class="AdwHeaderBar">
-            <property name="title-widget">
-              <object class="AdwWindowTitle">
-                <property name="title" translatable="yes">Add Attribute</property>
-              </object>
-            </property>
-          </object>
+          <object class="AdwHeaderBar"/>
         </child>
         <property name="content">
           <object class="AdwToastOverlay" id="_toast_overlay">

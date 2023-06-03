@@ -26,7 +26,7 @@ artists = '\n'.join([
                    ])
 
 message('Looking for dependencies')
-# We need pykeepass>=4.0.3 and pyotp>=2.4.0.
+# We need pykeepass>=4.0.4 and pyotp>=2.4.0.
 python_bin = python.find_installation('python3', modules:[
   'pykeepass',
   'pyotp',

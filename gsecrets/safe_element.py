@@ -897,7 +897,14 @@ class SafeEntry(SafeElement):
 
         Returns None when there isn't an expiration date.
         """
-        time = self.entry.expiry_time
+        try:
+            time = self.entry.expiry_time
+        except Exception as err:  # pylint: disable=broad-except
+            logging.error(
+                "Could not read expiry date from %s: %s", self.name, err
+            )
+            return None
+
         if not time:
             return None
 

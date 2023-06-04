@@ -3,9 +3,7 @@
   <template class="UnlockedHeaderBar" parent="AdwBin">
     <child>
       <object class="AdwHeaderBar">
-        <property name="title-widget">
-          <object class="AdwWindowTitle"/>
-        </property>
+        <property name="show_title">False</property>
         <child>
           <object class="GtkMenuButton" id="_add_button">
             <property name="menu_model">_add_button_menu</property>

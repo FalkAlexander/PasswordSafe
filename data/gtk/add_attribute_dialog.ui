@@ -62,9 +62,10 @@
                         </child>
                         <child>
                           <object class="GtkButton">
-                            <property name="label" translatable="yes">Add</property>
+                            <property name="label" translatable="yes">_Add</property>
                             <signal name="clicked" handler="_on_add_button_clicked" swapped="no"/>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <style>
                               <class name="suggested-action"/>
                               <class name="pill"/>

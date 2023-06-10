@@ -390,6 +390,7 @@ class UnlockedDatabase(Gtk.Box):
         def callback():
             if window.props.is_active:
                 if clipboard_last_content == self.clipboard.get_content():
+                    logging.debug("Clipboard cleared")
                     self.clipboard.set_content(None)
             else:
                 logging.debug(

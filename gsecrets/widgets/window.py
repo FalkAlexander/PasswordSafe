@@ -162,7 +162,7 @@ class Window(Adw.ApplicationWindow):
                     if auto_save:
                         self.unlocked_db.auto_save_database()
 
-                    self.unlocked_db.do_dispose()
+                    self.unlocked_db.inner_dispose()
                     self.unlocked_db = None
                     self.start_database_opening_routine(filepath)
 
@@ -240,7 +240,7 @@ class Window(Adw.ApplicationWindow):
                         if auto_save:
                             self.unlocked_db.auto_save_database()
 
-                        self.unlocked_db.do_dispose()
+                        self.unlocked_db.inner_dispose()
                         self.unlocked_db = None
                         self.create_new_database(filepath)
                 else:

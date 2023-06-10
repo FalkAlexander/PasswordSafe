@@ -132,7 +132,7 @@ class UnlockedDatabase(Gtk.Box):
         self.search_bar.connect_entry(self.search_entry)
         self.bind_property("search-active", self.search_bar, "search-mode-enabled")
 
-    def do_dispose(self):
+    def inner_dispose(self):
         logging.debug("Database disposed")
         self.cleanup()
 

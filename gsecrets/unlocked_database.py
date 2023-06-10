@@ -8,7 +8,7 @@ from enum import IntEnum
 from gettext import gettext as _
 from gettext import ngettext
 
-from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
 import gsecrets.config_manager
 from gsecrets import const
@@ -47,7 +47,6 @@ class UnlockedDatabase(Gtk.Box):
     # Connection handlers
     db_locked_handler: int | None = None
     # Used only to delete the clipboard if the window is not active.
-    clipboard_last_content: Gdk.ContentProvider | None = None
     on_is_active_handler: int | None = None
     _current_element: SafeElement | None = None
     _lock_timer_handler: int | None = None
@@ -371,7 +370,6 @@ class UnlockedDatabase(Gtk.Box):
 
         self.start_database_lock_timer()
 
-        self.clipboard_last_content = None
         if self.on_is_active_handler:
             self.disconnect(self.on_is_active_handler)
             self.on_is_active_handler = None
@@ -387,11 +385,16 @@ class UnlockedDatabase(Gtk.Box):
             self.window.send_notification(message)
 
         clear_clipboard_time = gsecrets.config_manager.get_clear_clipboard()
+        clipboard_last_content = self.clipboard.get_content()
 
         def callback():
             if window.props.is_active:
-                self.clipboard.set_content(None)
+                if clipboard_last_content == self.clipboard.get_content():
+                    self.clipboard.set_content(None)
             else:
+                logging.debug(
+                    "Could not clear the clipboard, it will clear on new focus"
+                )
 
                 def on_is_active(window, _pspec):
                     if self.on_is_active_handler:
@@ -399,18 +402,12 @@ class UnlockedDatabase(Gtk.Box):
                         self.on_is_active_handler = None
 
                     # Only clear clipboard if we set ourselves the content.
-                    if self.clipboard_last_content == self.clipboard.get_content():
+                    if clipboard_last_content == self.clipboard.get_content():
                         logging.debug("Clipboard cleared")
                         self.clipboard.set_content(None)
                     else:
                         logging.debug("Clipboard not cleared: Content set not by us")
 
-                    self.clipboard_last_content = None
-
-                logging.debug(
-                    "Could not clear the clipboard, it will clear on new focus"
-                )
-                self.clipboard_last_content = self.clipboard.get_content()
                 self.on_is_active_handler = window.connect(
                     "notify::is-active", on_is_active
                 )

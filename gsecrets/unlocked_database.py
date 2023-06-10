@@ -405,8 +405,6 @@ class UnlockedDatabase(Gtk.Box):
                     if clipboard_last_content == self.clipboard.get_content():
                         logging.debug("Clipboard cleared")
                         self.clipboard.set_content(None)
-                    else:
-                        logging.debug("Clipboard not cleared: Content set not by us")
 
                 self.on_is_active_handler = window.connect(
                     "notify::is-active", on_is_active

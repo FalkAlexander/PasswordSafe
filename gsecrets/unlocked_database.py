@@ -477,8 +477,6 @@ class UnlockedDatabase(Gtk.Box):
         """
         logging.debug("Cleaning database %s", self.database_manager.path)
 
-        self.clipboard.set_content(None)
-
         if self._lock_timer_handler:
             GLib.source_remove(self._lock_timer_handler)
             self._lock_timer_handler = None

@@ -48,7 +48,6 @@ class UnlockedDatabase(Gtk.Box):
     db_locked_handler: int | None = None
     # Used only to delete the clipboard if the window is not active.
     clipboard_last_content: Gdk.ContentProvider | None = None
-    clipboard_timer_handler: int | None = None
     on_is_active_handler: int | None = None
     _current_element: SafeElement | None = None
     _lock_timer_handler: int | None = None
@@ -372,10 +371,6 @@ class UnlockedDatabase(Gtk.Box):
 
         self.start_database_lock_timer()
 
-        if self.clipboard_timer_handler:
-            GLib.source_remove(self.clipboard_timer_handler)
-            self.clipboard_timer_handler = None
-
         self.clipboard_last_content = None
         if self.on_is_active_handler:
             self.disconnect(self.on_is_active_handler)
@@ -394,8 +389,6 @@ class UnlockedDatabase(Gtk.Box):
         clear_clipboard_time = gsecrets.config_manager.get_clear_clipboard()
 
         def callback():
-            GLib.source_remove(self.clipboard_timer_handler)
-            self.clipboard_timer_handler = None
             if window.props.is_active:
                 self.clipboard.set_content(None)
             else:
@@ -424,9 +417,7 @@ class UnlockedDatabase(Gtk.Box):
 
             return GLib.SOURCE_REMOVE
 
-        self.clipboard_timer_handler = GLib.timeout_add_seconds(
-            clear_clipboard_time, callback
-        )
+        GLib.timeout_add_seconds(clear_clipboard_time, callback)
 
     def show_database_settings(self) -> None:
         DatabaseSettingsDialog(self).present()
@@ -489,10 +480,7 @@ class UnlockedDatabase(Gtk.Box):
         """
         logging.debug("Cleaning database %s", self.database_manager.path)
 
-        if self.clipboard_timer_handler:
-            GLib.source_remove(self.clipboard_timer_handler)
-            self.clipboard_timer_handler = None
-            self.clipboard.set_content(None)
+        self.clipboard.set_content(None)
 
         if self._lock_timer_handler:
             GLib.source_remove(self._lock_timer_handler)

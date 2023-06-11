@@ -4,7 +4,6 @@
     <property name="orientation">vertical</property>
     <child>
       <object class="AdwNavigationView" id="_navigation_view">
-        <signal name="popped" handler="_on_popped" swapped="no"/>
         <child>
           <object class="AdwNavigationPage">
             <child>
@@ -42,7 +41,9 @@
           </object>
         </child>
         <child>
-          <object class="AdwNavigationPage" id="_edit_page"/>
+          <object class="AdwNavigationPage" id="_edit_page">
+            <signal name="hidden" handler="_on_edit_page_hidden" swapped="no"/>
+          </object>
         </child>
       </object>
     </child>

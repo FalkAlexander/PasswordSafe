@@ -668,6 +668,6 @@ class UnlockedDatabase(Gtk.Box):
         self._mode = new_mode
 
     @Gtk.Template.Callback()
-    def _on_popped(self, _view, _page):
+    def _on_edit_page_hidden(self, _page):
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP

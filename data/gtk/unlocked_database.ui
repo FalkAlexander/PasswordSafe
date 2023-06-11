@@ -3,42 +3,46 @@
   <template class="UnlockedDatabase" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
-      <object class="AdwLeaflet" id="_unlocked_db_deck">
-        <property name="can_unfold">False</property>
+      <object class="AdwNavigationView" id="_navigation_view">
+        <signal name="popped" handler="_on_popped" swapped="no"/>
         <child>
-          <object class="AdwToolbarView" id="_main_view">
-            <child type="top">
-              <object class="GtkStack" id="headerbar_stack"/>
-            </child>
-            <child type="top">
-              <object class="GtkSearchBar" id="search_bar">
-                <child>
-                  <object class="AdwClamp">
+          <object class="AdwNavigationPage">
+            <child>
+              <object class="AdwToolbarView" id="_main_view">
+                <child type="top">
+                  <object class="GtkStack" id="headerbar_stack"/>
+                </child>
+                <child type="top">
+                  <object class="GtkSearchBar" id="search_bar">
                     <child>
-                      <object class="GtkSearchEntry" id="search_entry">
-                        <property name="hexpand">True</property>
-                        <property name="activates_default">True</property>
+                      <object class="AdwClamp">
+                        <child>
+                          <object class="GtkSearchEntry" id="search_entry">
+                            <property name="hexpand">True</property>
+                            <property name="activates_default">True</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkStack" id="_unlocked_db_stack">
                 <child>
-                  <object class="GtkStack" id="_stack">
+                  <object class="GtkStack" id="_unlocked_db_stack">
+                    <child>
+                      <object class="GtkStack" id="_stack">
+                      </object>
+                    </child>
                   </object>
                 </child>
+                <child type="bottom">
+                  <object class="GtkActionBar" id="action_bar"/>
+                </child>
               </object>
-            </child>
-            <child type="bottom">
-              <object class="GtkActionBar" id="action_bar"/>
             </child>
           </object>
         </child>
         <child>
-          <object class="AdwBin" id="_edit_page_bin"/>
+          <object class="AdwNavigationPage" id="_edit_page"/>
         </child>
       </object>
     </child>

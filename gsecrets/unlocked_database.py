@@ -54,11 +54,11 @@ class UnlockedDatabase(Gtk.Box):
     session_handler_id: int | None = None
 
     action_bar = Gtk.Template.Child()
-    _edit_page_bin = Gtk.Template.Child()
+    _edit_page = Gtk.Template.Child()
     headerbar_stack = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
     _stack = Gtk.Template.Child()
-    _unlocked_db_deck = Gtk.Template.Child()
+    _navigation_view = Gtk.Template.Child()
     _unlocked_db_stack = Gtk.Template.Child()
     search_bar = Gtk.Template.Child()
     search_entry = Gtk.Template.Child()
@@ -176,8 +176,8 @@ class UnlockedDatabase(Gtk.Box):
             page = EntryPage(self, element, new)
             self.props.mode = self.Mode.ENTRY
 
-        self._edit_page_bin.set_child(page)
-        self._unlocked_db_deck.set_visible_child(self._edit_page_bin)
+        self._edit_page.set_child(page)
+        self._navigation_view.push(self._edit_page)
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
@@ -191,7 +191,7 @@ class UnlockedDatabase(Gtk.Box):
             self._stack.add_named(new_page, page_name)
 
         self._unlocked_db_stack.set_visible_child(self._stack)
-        self._unlocked_db_deck.set_visible_child(self._main_view)
+        self._navigation_view.pop()
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP
 
@@ -203,7 +203,7 @@ class UnlockedDatabase(Gtk.Box):
         the Group edit page or Entry edit page."""
 
         boolean: bool = (
-            self._unlocked_db_deck.props.visible_child == self._edit_page_bin
+            self._navigation_view.props.visible_page == self._edit_page
         )
         return boolean
 
@@ -629,3 +629,8 @@ class UnlockedDatabase(Gtk.Box):
     @mode.setter  # type: ignore
     def mode(self, new_mode: int) -> None:
         self._mode = new_mode
+
+    @Gtk.Template.Callback()
+    def _on_popped(self, _view, _page):
+        if not self.props.selection_mode:
+            self.props.mode = self.Mode.GROUP

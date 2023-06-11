@@ -6,6 +6,7 @@
       <object class="AdwNavigationView" id="_navigation_view">
         <child>
           <object class="AdwNavigationPage">
+            <property name="title" translatable="yes">Browser</property>
             <child>
               <object class="AdwToolbarView" id="_main_view">
                 <child type="top">
@@ -42,6 +43,7 @@
         </child>
         <child>
           <object class="AdwNavigationPage" id="_edit_page">
+            <property name="title" translatable="yes">Edit</property>
             <signal name="hidden" handler="_on_edit_page_hidden" swapped="no"/>
           </object>
         </child>

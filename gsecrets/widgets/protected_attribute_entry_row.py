@@ -40,7 +40,11 @@ class ProtectedAttributeEntryRow:
         self.row.add_suffix(button)
 
     def _on_remove_button_clicked(self, _button):
+        window = self.row.get_root()
         self._entry.delete_attribute(self._key)
+        window.unlocked_db.attribute_deleted(
+            self._entry, self._key, self.row.props.text, True
+        )
 
     def _on_changed(self, row):
         self._entry.set_attribute(self._key, row.props.text, True)

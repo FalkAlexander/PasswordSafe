@@ -38,6 +38,23 @@ class UndoData:
         self.toast = toast
 
 
+class AttributeUndoData:
+    # pylint: disable=too-many-arguments
+    def __init__(
+        self,
+        toast: Adw.Toast,
+        entry: SafeEntry,
+        key: str,
+        value: str,
+        protected: bool = False,
+    ):
+        self.toast = toast
+        self.key = key
+        self.value = value
+        self.entry = entry
+        self.protected = protected
+
+
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database.ui")
 class UnlockedDatabase(Gtk.Box):
     # pylint: disable=too-many-instance-attributes
@@ -65,6 +82,7 @@ class UnlockedDatabase(Gtk.Box):
 
     selection_mode = GObject.Property(type=bool, default=False)
     undo_data: UndoData | None = None
+    attribute_undo_data: AttributeUndoData | None = None
 
     class Mode(IntEnum):
         ENTRY = 0
@@ -352,6 +370,25 @@ class UnlockedDatabase(Gtk.Box):
                 element.move_to(element_parent)
 
             self.undo_data = None
+
+    def attribute_deleted(self, entry, key, value, protected):
+        toast = Adw.Toast.new(_("Attribute deleted"))
+        toast.props.button_label = _("Undo")
+        toast.props.action_name = "win.db.undo_attribute_delete"
+
+        if data := self.attribute_undo_data:
+            data.toast.dismiss()
+
+        undo_data = AttributeUndoData(toast, entry, key, value, protected)
+        self.attribute_undo_data = undo_data
+        self.window.toast_overlay.add_toast(toast)
+
+    def undo_attribute_delete(self):
+        if data := self.attribute_undo_data:
+            data.toast.dismiss()
+            data.entry.set_attribute(data.key, data.value, data.protected)
+
+            self.attribute_undo_data = None
 
     def on_entry_duplicate_action(self):
         self.props.current_element.duplicate()

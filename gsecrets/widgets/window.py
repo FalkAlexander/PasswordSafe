@@ -413,6 +413,7 @@ class Window(Adw.ApplicationWindow):
             "db.add_group",
             "db.settings",
             "db.undo_delete",
+            "db.undo_attribute_delete",
             "element.delete",
             "entry.duplicate",
             "entry.references",
@@ -460,6 +461,8 @@ class Window(Adw.ApplicationWindow):
             action_db.selection_mode_headerbar.on_selection_action(param)
         elif name == "db.undo_delete":
             action_db.undo_delete()
+        elif name == "db.undo_attribute_delete":
+            action_db.undo_attribute_delete()
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_database()
         elif name in ["db.add_entry", "db.add_group"]:

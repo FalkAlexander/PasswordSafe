@@ -26,7 +26,11 @@ class AttributeEntryRow(Adw.EntryRow):
 
     @Gtk.Template.Callback()
     def _on_remove_button_clicked(self, _button):
+        window = self.get_root()
         self.entry.delete_attribute(self.key)
+        window.unlocked_db.attribute_deleted(
+            self.entry, self.key, self.props.text, False
+        )
 
     @Gtk.Template.Callback()
     def _on_copy_button_clicked(self, _row):

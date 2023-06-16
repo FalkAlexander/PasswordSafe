@@ -73,6 +73,9 @@
                           <object class="GtkButton" id="keyfile_button">
                             <signal name="clicked" handler="_on_keyfile_button_clicked" swapped="no"/>
                             <property name="hexpand">True</property>
+                            <accessibility>
+                              <relation name="labelled-by">keyfile_label</relation>
+                            </accessibility>
                             <child>
                               <object class="GtkStack" id="keyfile_stack">
                                 <child>

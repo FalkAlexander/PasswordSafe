@@ -191,6 +191,8 @@
     <property name="destroy-with-parent">True</property>
     <property name="title" translatable="yes">References</property>
     <property name="default_height">200</property>
+    <property name="width_request">300</property>
+    <property name="height_request">270</property>
     <child>
       <object class="GtkShortcutController">
         <child>
@@ -231,6 +233,7 @@
                   <object class="GtkLabel">
                     <property name="halign">start</property>
                     <property name="label" translatable="yes">The placeholder syntax for field references is the following:</property>
+                    <property name="wrap">True</property>
                     <style>
                       <class name="dim-label"/>
                     </style>
@@ -251,6 +254,7 @@
                         <property name="tooltip_text" translatable="yes">Show Field Codes</property>
                         <property name="label" translatable="yes">Property</property>
                         <property name="ellipsize">end</property>
+                        <property name="wrap">True</property>
                         <attributes>
                           <attribute name="underline" value="True"/>
                         </attributes>

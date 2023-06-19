@@ -81,7 +81,7 @@
               <object class="GtkStackPage">
                 <property name="name">password-creation</property>
                 <property name="child">
-                  <object class="AdwStatusPage">
+                  <object class="AdwStatusPage" id="enter_password_status">
                     <property name="icon_name">document-edit-symbolic</property>
                     <property name="title" translatable="yes">Enter Password</property>
                     <property name="description" translatable="yes">Set password for safe.</property>
@@ -98,6 +98,9 @@
                                 <property name="halign">end</property>
                                 <property name="show-peek-icon">True</property>
                                 <signal name="activate" handler="on_password_creation_button_clicked" swapped="no"/>
+                                <accessibility>
+                                  <relation name="labelled-by">enter_password_status</relation>
+                                </accessibility>
                               </object>
                             </child>
                             <child>
@@ -140,7 +143,7 @@
               <object class="GtkStackPage">
                 <property name="name">check-password</property>
                 <property name="child">
-                  <object class="AdwStatusPage">
+                  <object class="AdwStatusPage" id="check_password_status">
                     <property name="icon_name">error-correct-symbolic</property>
                     <property name="title" translatable="yes">Password Match Check</property>
                     <property name="description" translatable="yes">Repeat password for safe.</property>
@@ -152,6 +155,9 @@
                             <property name="width_request">250</property>
                             <property name="show-peek-icon">True</property>
                             <signal name="activate" handler="on_password_check_button_clicked" swapped="no"/>
+                            <accessibility>
+                              <relation name="labelled-by">check_password_status</relation>
+                            </accessibility>
                           </object>
                         </child>
                         <child>
@@ -190,6 +196,9 @@
                               <object class="GtkPasswordEntry" id="password_repeat_input1">
                                 <property name="show-peek-icon">True</property>
                                 <property name="width_request">250</property>
+                                <accessibility>
+                                  <property name="label" translatable="yes">Enter Password</property>
+                                </accessibility>
                               </object>
                             </child>
                             <child>
@@ -197,6 +206,9 @@
                                 <property name="show-peek-icon">True</property>
                                 <property name="width_request">250</property>
                                 <signal name="activate" handler="on_password_repeat_input_activate" swapped="no"/>
+                                <accessibility>
+                                  <property name="label" translatable="yes">Repeat Password</property>
+                                </accessibility>
                               </object>
                             </child>
                             <style>

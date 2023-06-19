@@ -27,6 +27,9 @@
                             <property name="show-peek-icon">True</property>
                             <property name="placeholder_text" translatable="yes">Password</property>
                             <signal name="activate" handler="_on_password_entry_activate" swapped="no"/>
+                            <accessibility>
+                              <relation name="labelled-by">status_page</relation>
+                            </accessibility>
                           </object>
                         </child>
                         <child>

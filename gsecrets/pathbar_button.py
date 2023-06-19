@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Gtk.Button representing a path element in the pathbar"""
+from gettext import gettext as _
+
 from gi.repository import GObject, Gtk
 
 from gsecrets.safe_element import SafeElement
@@ -25,6 +27,7 @@ class PathbarButton(Gtk.Button):
 
         if element.is_root_group:
             self.set_icon_name("go-home-symbolic")
+            self.props.tooltip_text = _("Root Group")
             return
 
         self.element.bind_property(

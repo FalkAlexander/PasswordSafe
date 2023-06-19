@@ -35,8 +35,6 @@ class UnlockDatabase(Adw.Bin):
     keyfile_spinner = Gtk.Template.Child()
     keyfile_stack = Gtk.Template.Child()
     password_entry = Gtk.Template.Child()
-    spinner = Gtk.Template.Child()
-    spinner_stack = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
@@ -45,6 +43,8 @@ class UnlockDatabase(Adw.Bin):
         self.install_action("clear-keyfile", None, self.on_clear_keyfile)
 
         super().__init__()
+
+        self.spinner = Gtk.Spinner.new()
 
         filepath = database_file.get_path()
 
@@ -192,7 +192,7 @@ class UnlockDatabase(Adw.Bin):
     #
 
     def _open_database(self):
-        self.spinner_stack.props.visible_child_name = "spinner"
+        self.unlock_button.props.child = self.spinner
         self.spinner.start()
 
         self._set_sensitive(False)
@@ -257,7 +257,7 @@ class UnlockDatabase(Adw.Bin):
 
     def _reset_unlock_button(self):
         self.spinner.stop()
-        self.spinner_stack.props.visible_child_name = "image"
+        self.unlock_button.props.icon_name = "changes-allow-symbolic"
 
     def _reset_page(self):
         self.keyfile_path = None

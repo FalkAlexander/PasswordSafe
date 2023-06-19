@@ -35,6 +35,25 @@ class EntryColor(Enum):
     PURPLE = "PurpleColorButton"
     BROWN = "BrownColorButton"
 
+    def to_translatable(self):  # pylint: disable=too-many-return-statements
+        match self:
+            case EntryColor.NONE:
+                return _("White")
+            case EntryColor.BLUE:
+                return _("Blue")
+            case EntryColor.GREEN:
+                return _("Green")
+            case EntryColor.YELLOW:
+                return _("Yellow")
+            case EntryColor.ORANGE:
+                return _("Orange")
+            case EntryColor.RED:
+                return _("Red")
+            case EntryColor.PURPLE:
+                return _("Purple")
+            case EntryColor.BROWN:
+                return _("Brown")
+
 
 class SafeElement(GObject.Object):
 

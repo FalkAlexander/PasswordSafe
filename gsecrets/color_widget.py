@@ -35,6 +35,7 @@ class ColorButton(Gtk.FlowBoxChild):
 
         self.bind_property("selected", self._selected_image, "visible")
         self.props.selected = selected
+        self.props.tooltip_text = color.to_translatable()
 
     @property
     def color(self) -> str:

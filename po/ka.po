@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-16 06:36+0000\n"
-"PO-Revision-Date: 2023-06-17 06:10+0200\n"
+"POT-Creation-Date: 2023-06-19 04:41+0000\n"
+"PO-Revision-Date: 2023-06-19 20:10+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -883,7 +883,7 @@ msgstr "უახლესების სიის გასუფთავე�
 msgid "Clear the recently opened safes list."
 msgstr "ბოლოს გახსნილი სეიფების სიის გასუფთავება."
 
-#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:109
+#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:112
 msgid "Clear"
 msgstr "გაწმენდა"
 
@@ -891,7 +891,7 @@ msgstr "გაწმენდა"
 msgid "Unlock Safe"
 msgstr "სეიფის გაღება"
 
-#: data/gtk/unlock_database.ui:83 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:86 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_აირჩიეთ გასაღების ფაილი"
 
@@ -987,6 +987,8 @@ msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
 msgstr ""
+"ბოლოს გახსნილი ბაზის განბლოკვის ეკრანის ავტომატური გახსნა. არადა მისალმების "
+"ეკრანის ჩვენება."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Save every change automatically"
@@ -997,6 +999,8 @@ msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
+"ყველა ცვლილების მყისიერი გადატანა მონაცემთა ბაზაში. გაითვალისწინეთ, რომ "
+"ცვლილებების დაბრუნება შეუძლებელია, თუ ავტომატური შენახვა ჩართულია."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Lock database after X minutes"
@@ -1007,6 +1011,8 @@ msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
 msgstr ""
+"უსაფრთხოების მიზნით მონაცემთა ბაზის ჩაკეტვა მითითებული რაოდენობის წუთების "
+"შემდეგ."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Clear clipboard after X seconds"
@@ -1064,6 +1070,8 @@ msgstr "განბლოკვის მეთოდის დამახს�
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
+"განბლოკვის ბოლოს გამოყენებული მეთოდის დამახსოვრება მომავალში ბაზების "
+"განბლოკვის ასაჩქარებლად."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Backup the database on unlock"
@@ -1074,6 +1082,8 @@ msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
 msgstr ""
+"ბაზის შენახვისას შეცდომის შემთხვევაში მარქაფის პოვნა შეგიძლიათ ბილიკზე ~/."
+"cache/secrets/backups"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Sorting order of groups and entries"
@@ -1145,6 +1155,9 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
+"Secrets პაროლების მმართველია, რომელიც KeePass v.4 ფორმატს იყენებს. ის "
+"შესანიშნავადაა ჩაშენებული სამუშაო მაგიდა GNOME-ში და პაროლების მართვის "
+"მარტივ და გასაგებ ინტერფეისს მოგაწოდებთ."
 
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
 msgid "Falk Alexander Seidl"
@@ -1376,6 +1389,8 @@ msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
 msgstr ""
+"სეიფი სადღაც სხვაგან შეიცვალა. შენახვისას შემდეგი კონფლიქტების გადაჭრა "
+"მოგიწევთ."
 
 #: gsecrets/widgets/database_settings_dialog.py:288
 msgid "Ok"
@@ -1456,6 +1471,10 @@ msgid ""
 "\n"
 " You can also make a backup of their version of the safe."
 msgstr ""
+"სეიფი სადღაც სხვაგან შეიცვალა. ამის შენახვის შემთხვევაში ბაზას თავზე ჩვენი "
+"ვერსია გადაეწერება.\n"
+"\n"
+"უსაფრთხოებისთვის შეგიძლიათ ამ ვერსიის მარქაფი შექმნათ."
 
 #. TRANSLATORS backup and save current safe.
 #: gsecrets/widgets/saving_conflict_dialog.py:34

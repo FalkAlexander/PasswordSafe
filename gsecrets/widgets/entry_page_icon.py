@@ -13,4 +13,5 @@ class EntryPageIcon(Gtk.FlowBoxChild):
         super().__init__()
 
         self.image.props.icon_name = icon_name
+        self.props.tooltip_text = icon_name
         self.set_name(icon_number)

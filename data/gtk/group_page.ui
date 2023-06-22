@@ -50,6 +50,9 @@
                       <object class="GtkTextView" id="notes_text_view">
                         <property name="hexpand">True</property>
                         <property name="wrap_mode">word</property>
+                        <accessibility>
+                          <relation name="labelled-by">notes_group</relation>
+                        </accessibility>
                         <style>
                           <class name="inline"/>
                         </style>

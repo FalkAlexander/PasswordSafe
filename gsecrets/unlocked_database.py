@@ -56,7 +56,7 @@ class AttributeUndoData:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database.ui")
-class UnlockedDatabase(Gtk.Box):
+class UnlockedDatabase(Adw.Bin):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
     __gtype_name__ = "UnlockedDatabase"

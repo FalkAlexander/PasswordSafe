@@ -67,6 +67,9 @@
                     <property name="placeholder-text" translatable="yes">Search</property>
                     <signal name="search-changed" handler="_on_search_entry_changed"/>
                     <signal name="stop-search" handler="_on_search_stopped"/>
+                    <accessibility>
+                      <relation name="labelled-by">_search_bar</relation>
+                    </accessibility>
                   </object>
                 </child>
               </object>

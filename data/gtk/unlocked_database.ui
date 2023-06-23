@@ -13,6 +13,9 @@
                 </child>
                 <child type="top">
                   <object class="GtkSearchBar" id="search_bar">
+                    <accessibility>
+                      <property name="label" translatable="yes">Search</property>
+                    </accessibility>
                     <child>
                       <object class="AdwClamp">
                         <child>
@@ -20,6 +23,9 @@
                             <property name="hexpand">True</property>
                             <property name="activates_default">True</property>
                             <property name="placeholder-text" translatable="yes">Search</property>
+                            <accessibility>
+                              <relation name="labelled-by">search_bar</relation>
+                            </accessibility>
                           </object>
                         </child>
                       </object>

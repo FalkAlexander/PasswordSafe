@@ -8,7 +8,12 @@
             <property name="title" translatable="yes">Expiration Date not Set</property>
             <property name="activatable_widget">edit_button</property>
             <property name="selectable">False</property>
-            <property name="icon_name">x-office-calendar-symbolic</property>
+            <child type="prefix">
+              <object class="GtkImage">
+                <property name="icon_name">x-office-calendar-symbolic</property>
+                <property name="accessible-role">presentation</property>
+              </object>
+            </child>
             <child>
               <object class="GtkMenuButton" id="edit_button">
                 <property name="popover">popover</property>

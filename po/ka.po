@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-19 04:41+0000\n"
-"PO-Revision-Date: 2023-06-19 20:10+0200\n"
+"POT-Creation-Date: 2023-06-23 23:05+0000\n"
+"PO-Revision-Date: 2023-06-24 07:59+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -28,7 +28,8 @@ msgid "translator-credits"
 msgstr "მთარგმნელის შესახებ"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "საიდუმლოები"
 
@@ -367,7 +368,7 @@ msgid "Could not Generate OTP Token"
 msgstr "ერთჯერადი კოდის შექმნის შეცდომა"
 
 #: data/gtk/entry_page.ui:171 data/gtk/group_page.ui:35
-#: data/gtk/references_dialog.ui:141
+#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "შენიშვნები"
 
@@ -427,11 +428,15 @@ msgstr "_მეტის ჩვენება"
 msgid "_Delete"
 msgstr "სამუ_დამოდ წაშლა"
 
-#: data/gtk/entry_row.ui:53
+#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
+msgid "Select"
+msgstr "აირჩიეთ"
+
+#: data/gtk/entry_row.ui:54
 msgid "Copy Username"
 msgstr "მომხმარებლის სახელის კოპირება"
 
-#: data/gtk/entry_row.ui:63
+#: data/gtk/entry_row.ui:64
 msgid "Copy Password"
 msgstr "პაროლის კოპირება"
 
@@ -439,15 +444,15 @@ msgstr "პაროლის კოპირება"
 msgid "Expiration Date not Set"
 msgstr "ვადა დაყენებული არაა"
 
-#: data/gtk/expiration_date_row.ui:17
+#: data/gtk/expiration_date_row.ui:22
 msgid "Edit Expiration Date"
 msgstr "ვადის დაყენება"
 
-#: data/gtk/expiration_date_row.ui:25
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "ვადის წაშლა"
 
-#: data/gtk/expiration_date_row.ui:58
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "ვადის დაყენება"
 
@@ -455,7 +460,7 @@ msgstr "ვადის დაყენება"
 msgid "Group Menu"
 msgstr "ჯგუფის მენიუ"
 
-#: data/gtk/group_row.ui:51 data/gtk/unlocked_database.ui:46
+#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
 msgid "Edit"
 msgstr "რედაქტირება"
 
@@ -585,12 +590,12 @@ msgstr "_გახსნა"
 msgid "_New Safe"
 msgstr "_ახალი სეიფი"
 
-#: data/gtk/notes_dialog.ui:29
+#: data/gtk/notes_dialog.ui:30
 msgid "_Copy"
 msgstr "კოპირება"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:41 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "ძებნა"
 
@@ -610,23 +615,23 @@ msgstr "კოდური ფრაზა"
 msgid "Words"
 msgstr "სიტყვა"
 
-#: data/gtk/properties_dialog.ui:7
+#: data/gtk/properties_dialog.ui:9
 msgid "Properties"
 msgstr "პარამეტრები"
 
-#: data/gtk/properties_dialog.ui:33 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:42
+#: data/gtk/properties_dialog.ui:47
 msgid "Accessed"
 msgstr "ბოლო წვდომა"
 
-#: data/gtk/properties_dialog.ui:50
+#: data/gtk/properties_dialog.ui:55
 msgid "Modified"
 msgstr "შეცვლილია"
 
-#: data/gtk/properties_dialog.ui:58
+#: data/gtk/properties_dialog.ui:63
 msgid "Created"
 msgstr "შექმნილია"
 
@@ -634,8 +639,8 @@ msgstr "შექმნილია"
 msgid "Code"
 msgstr "კოდი"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:252
-#: data/gtk/references_dialog.ui:348
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
+#: data/gtk/references_dialog.ui:352
 msgid "Property"
 msgstr "პარამეტრი"
 
@@ -663,27 +668,27 @@ msgstr "_შენიშვნები"
 msgid "References"
 msgstr "ბმები"
 
-#: data/gtk/references_dialog.ui:224
+#: data/gtk/references_dialog.ui:226
 msgid "Syntax"
 msgstr "სინტაქსი"
 
-#: data/gtk/references_dialog.ui:233
+#: data/gtk/references_dialog.ui:235
 msgid "The placeholder syntax for field references is the following:"
 msgstr "ადგილის დამკავებელი სინტაქსი ველის ბმებისთვის შემდეგია:"
 
-#: data/gtk/references_dialog.ui:251 data/gtk/references_dialog.ui:278
+#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
 msgid "Show Field Codes"
 msgstr "ველის კოდების ჩვენება"
 
-#: data/gtk/references_dialog.ui:279
+#: data/gtk/references_dialog.ui:283
 msgid "Identifier"
 msgstr "იდენტიფიკატორი"
 
-#: data/gtk/references_dialog.ui:337
+#: data/gtk/references_dialog.ui:341
 msgid "Reference"
 msgstr "ბმა"
 
-#: data/gtk/references_dialog.ui:375
+#: data/gtk/references_dialog.ui:379
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -883,7 +888,7 @@ msgstr "უახლესების სიის გასუფთავე�
 msgid "Clear the recently opened safes list."
 msgstr "ბოლოს გახსნილი სეიფების სიის გასუფთავება."
 
-#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:112
+#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:91
 msgid "Clear"
 msgstr "გაწმენდა"
 
@@ -891,11 +896,11 @@ msgstr "გაწმენდა"
 msgid "Unlock Safe"
 msgstr "სეიფის გაღება"
 
-#: data/gtk/unlock_database.ui:86 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:65 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_აირჩიეთ გასაღების ფაილი"
 
-#: data/gtk/unlocked_database.ui:9
+#: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "ბრაუზერი"
 
@@ -1270,11 +1275,47 @@ msgstr "სიმბოლოების ჩათვლით"
 msgid "Exclude Symbols"
 msgstr "სიმბოლოების ჩაუთვლელად"
 
+#: gsecrets/pathbar_button.py:30
+msgid "Root Group"
+msgstr "ძირითადი ჯგუფი"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "ბოლო ფაილები"
 
-#: gsecrets/safe_element.py:548
+#: gsecrets/safe_element.py:41
+msgid "White"
+msgstr "თეთრი"
+
+#: gsecrets/safe_element.py:43
+msgid "Blue"
+msgstr "ლურჯი"
+
+#: gsecrets/safe_element.py:45
+msgid "Green"
+msgstr "მწვანე"
+
+#: gsecrets/safe_element.py:47
+msgid "Yellow"
+msgstr "ყვითელი"
+
+#: gsecrets/safe_element.py:49
+msgid "Orange"
+msgstr "ნარინჯისფერი"
+
+#: gsecrets/safe_element.py:51
+msgid "Red"
+msgstr "წითელი"
+
+#: gsecrets/safe_element.py:53
+msgid "Purple"
+msgstr "იისფერი"
+
+#: gsecrets/safe_element.py:55
+msgid "Brown"
+msgstr "ყავისფერი"
+
+#: gsecrets/safe_element.py:567
 msgid "Clone"
 msgstr "კლონირება"
 

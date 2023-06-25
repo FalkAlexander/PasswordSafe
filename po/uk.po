@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-16 06:36+0000\n"
-"PO-Revision-Date: 2023-06-18 21:49+0300\n"
+"POT-Creation-Date: 2023-06-23 23:05+0000\n"
+"PO-Revision-Date: 2023-06-25 16:16+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -29,7 +29,8 @@ msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Секрети"
 
@@ -89,7 +90,6 @@ msgstr "П_родовжити"
 
 #: data/gtk/attribute_entry_row.ui:8
 #: gsecrets/widgets/protected_attribute_entry_row.py:28
-#| msgid "Attributes"
 msgid "Copy Attribute"
 msgstr "Копіювати атрибут"
 
@@ -370,7 +370,7 @@ msgid "Could not Generate OTP Token"
 msgstr "Не вдалося створити жетон OTP"
 
 #: data/gtk/entry_page.ui:171 data/gtk/group_page.ui:35
-#: data/gtk/references_dialog.ui:141
+#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Нотатки"
 
@@ -430,11 +430,16 @@ msgstr "Показати _журнал"
 msgid "_Delete"
 msgstr "В_илучити"
 
-#: data/gtk/entry_row.ui:53
+#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
+#| msgid "Select _All"
+msgid "Select"
+msgstr "Вибрати"
+
+#: data/gtk/entry_row.ui:54
 msgid "Copy Username"
 msgstr "Копіювати ім'я користувача"
 
-#: data/gtk/entry_row.ui:63
+#: data/gtk/entry_row.ui:64
 msgid "Copy Password"
 msgstr "Копіювати пароль"
 
@@ -442,15 +447,15 @@ msgstr "Копіювати пароль"
 msgid "Expiration Date not Set"
 msgstr "Завершення строку дії не встановлено"
 
-#: data/gtk/expiration_date_row.ui:17
+#: data/gtk/expiration_date_row.ui:22
 msgid "Edit Expiration Date"
 msgstr "Змінити строк дії"
 
-#: data/gtk/expiration_date_row.ui:25
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "Вилучити завершення строку дії"
 
-#: data/gtk/expiration_date_row.ui:58
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "_Встановити дату закінчення"
 
@@ -458,7 +463,7 @@ msgstr "_Встановити дату закінчення"
 msgid "Group Menu"
 msgstr "Меню групи"
 
-#: data/gtk/group_row.ui:51 data/gtk/unlocked_database.ui:46
+#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
 msgid "Edit"
 msgstr "Змінити"
 
@@ -588,12 +593,12 @@ msgstr "_Відкрити"
 msgid "_New Safe"
 msgstr "С_творити сейф"
 
-#: data/gtk/notes_dialog.ui:29
+#: data/gtk/notes_dialog.ui:30
 msgid "_Copy"
 msgstr "_Копіювати"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:41 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Пошук"
 
@@ -613,23 +618,23 @@ msgstr "Пароль"
 msgid "Words"
 msgstr "Слова"
 
-#: data/gtk/properties_dialog.ui:7
+#: data/gtk/properties_dialog.ui:9
 msgid "Properties"
 msgstr "Властивості"
 
-#: data/gtk/properties_dialog.ui:33 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:42
+#: data/gtk/properties_dialog.ui:47
 msgid "Accessed"
 msgstr "Доступ"
 
-#: data/gtk/properties_dialog.ui:50
+#: data/gtk/properties_dialog.ui:55
 msgid "Modified"
 msgstr "Змінено"
 
-#: data/gtk/properties_dialog.ui:58
+#: data/gtk/properties_dialog.ui:63
 msgid "Created"
 msgstr "Створено"
 
@@ -637,8 +642,8 @@ msgstr "Створено"
 msgid "Code"
 msgstr "Код"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:252
-#: data/gtk/references_dialog.ui:348
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
+#: data/gtk/references_dialog.ui:352
 msgid "Property"
 msgstr "Властивість"
 
@@ -666,27 +671,27 @@ msgstr "_Нотатки"
 msgid "References"
 msgstr "Посилання"
 
-#: data/gtk/references_dialog.ui:224
+#: data/gtk/references_dialog.ui:226
 msgid "Syntax"
 msgstr "Синтаксис"
 
-#: data/gtk/references_dialog.ui:233
+#: data/gtk/references_dialog.ui:235
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Синтаксис замінників для посилань на поля є таким:"
 
-#: data/gtk/references_dialog.ui:251 data/gtk/references_dialog.ui:278
+#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
 msgid "Show Field Codes"
 msgstr "Показувати коди полів"
 
-#: data/gtk/references_dialog.ui:279
+#: data/gtk/references_dialog.ui:283
 msgid "Identifier"
 msgstr "Ідентифікатор"
 
-#: data/gtk/references_dialog.ui:337
+#: data/gtk/references_dialog.ui:341
 msgid "Reference"
 msgstr "Посилання"
 
-#: data/gtk/references_dialog.ui:375
+#: data/gtk/references_dialog.ui:379
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -889,7 +894,7 @@ msgstr "Спорожнити список нещодавніх сейфів"
 msgid "Clear the recently opened safes list."
 msgstr "Спорожнити список нещодавно відкритих сейфів."
 
-#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:109
+#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:91
 msgid "Clear"
 msgstr "Спорожнити"
 
@@ -897,11 +902,11 @@ msgstr "Спорожнити"
 msgid "Unlock Safe"
 msgstr "Відімкнути сейф"
 
-#: data/gtk/unlock_database.ui:83 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:65 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "Ви_брати файл ключа"
 
-#: data/gtk/unlocked_database.ui:9
+#: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "Навігатор"
 
@@ -972,7 +977,6 @@ msgstr "Безпечні секрети"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
 #: data/gtk/welcome_page.ui:12
-#| msgid "Choose a Keepass safe"
 msgid "Create or import a new Keepass safe"
 msgstr "Створити або імпортувати новий сейф Keepass"
 
@@ -1288,11 +1292,49 @@ msgstr "Включити символи"
 msgid "Exclude Symbols"
 msgstr "Виключити символи"
 
+#: gsecrets/pathbar_button.py:30
+#| msgid "Empty Group"
+msgid "Root Group"
+msgstr "Коренева група"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Нещодавні файли"
 
-#: gsecrets/safe_element.py:548
+#: gsecrets/safe_element.py:41
+msgid "White"
+msgstr "Білий"
+
+#: gsecrets/safe_element.py:43
+msgid "Blue"
+msgstr "Синій"
+
+#: gsecrets/safe_element.py:45
+msgid "Green"
+msgstr "Зелений"
+
+#: gsecrets/safe_element.py:47
+msgid "Yellow"
+msgstr "Жовтий"
+
+#: gsecrets/safe_element.py:49
+msgid "Orange"
+msgstr "Помаранчевий"
+
+#: gsecrets/safe_element.py:51
+msgid "Red"
+msgstr "Червоний"
+
+#: gsecrets/safe_element.py:53
+msgid "Purple"
+msgstr "Пурпуровий"
+
+#: gsecrets/safe_element.py:55
+#| msgid "Browser"
+msgid "Brown"
+msgstr "Коричневий"
+
+#: gsecrets/safe_element.py:567
 msgid "Clone"
 msgstr "Клонувати"
 
@@ -1346,7 +1388,6 @@ msgid "Undo"
 msgstr "Скасувати"
 
 #: gsecrets/unlocked_database.py:375
-#| msgid "Attributes"
 msgid "Attribute deleted"
 msgstr "Атрибут вилучено"
 
@@ -1378,7 +1419,6 @@ msgstr "Не вдалося зберегти долучення"
 
 #: gsecrets/widgets/attribute_entry_row.py:40
 #: gsecrets/widgets/protected_attribute_entry_row.py:57
-#| msgid "Attributes"
 msgid "Attribute copied"
 msgstr "Атрибут скопійовано"
 

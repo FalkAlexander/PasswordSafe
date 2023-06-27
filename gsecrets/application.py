@@ -12,7 +12,6 @@ from gsecrets.widgets.window import Window
 
 
 class Application(Adw.Application):
-
     development_mode = const.IS_DEVEL
     application_id = const.APP_ID
     settings = Gio.Settings.new(application_id)

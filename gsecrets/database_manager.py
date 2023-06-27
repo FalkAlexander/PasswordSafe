@@ -332,7 +332,11 @@ class DatabaseManager(GObject.Object):
     # Check if entry with title in group exists
     def check_entry_in_group_exists(self, title, group):
         entry = self.db.find_entries(
-            title=title, group=group, recursive=False, history=False, first=True
+            title=title,
+            group=group,
+            recursive=False,
+            history=False,
+            first=True,
         )
         if entry is None:
             return False

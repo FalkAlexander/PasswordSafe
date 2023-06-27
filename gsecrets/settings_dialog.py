@@ -7,7 +7,6 @@ from gsecrets.const import APP_ID
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/settings_dialog.ui")
 class SettingsDialog(Adw.PreferencesWindow):
-
     __gtype_name__ = "SettingsDialog"
 
     _clear_button = Gtk.Template.Child()

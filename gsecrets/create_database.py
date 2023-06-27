@@ -33,16 +33,16 @@ class CreateDatabase(Adw.Bin):
         self.database_manager = dbm
         self.window = window
         generator = Gtk.MenuButton()
-        generator.set_icon_name('dice3-symbolic')
+        generator.set_icon_name("dice3-symbolic")
         generator_popover = PasswordGeneratorPopover()
         generator.set_popover(generator_popover)
         generator.set_tooltip_text(_("Generate New Password"))
         generator.add_css_class("flat")
         generator.set_valign(Gtk.Align.CENTER)
-        generator_popover.connect('generated', self._on_password_generated)
+        generator_popover.connect("generated", self._on_password_generated)
         self.password_row.add_suffix(generator)
-        self.password_row.connect('changed', self._on_password_changed)
-        self.password_confirm_row.connect('changed', self._on_password_changed)
+        self.password_row.connect("changed", self._on_password_changed)
+        self.password_confirm_row.connect("changed", self._on_password_changed)
 
         self.back_button.props.sensitive = True
         self.back_button.connect("clicked", self.on_headerbar_back_button_clicked)
@@ -119,14 +119,15 @@ class CreateDatabase(Adw.Bin):
             password=self.password_confirm_row.props.text,
             keyfile=keyfile,
             keyfile_hash=keyfile_hash,
-            callback=self._on_set_credentials)
+            callback=self._on_set_credentials,
+        )
 
     @Gtk.Template.Callback()
     def _on_create_button_clicked(self, _button: Gtk.Button) -> None:
         self.stack.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
-            self.database_manager.get_salt(),
-            self._on_generate_composite_key)
+            self.database_manager.get_salt(), self._on_generate_composite_key
+        )
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:

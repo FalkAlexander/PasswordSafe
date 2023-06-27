@@ -9,7 +9,6 @@ from gsecrets.widgets.saving_conflict_dialog import SavingConflictDialog
 
 
 class QuitConflictDialog(SavingConflictDialog):
-
     __gtype_name__ = "QuitConflictDialog"
 
     def __init__(self, window, db_manager, save_callback):

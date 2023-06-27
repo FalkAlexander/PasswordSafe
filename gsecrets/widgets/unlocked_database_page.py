@@ -15,7 +15,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database_page.ui")
 class UnlockedDatabasePage(Adw.Bin):
-
     __gtype_name__ = "UnlockedDatabasePage"
 
     empty_group_box = Gtk.Template.Child()

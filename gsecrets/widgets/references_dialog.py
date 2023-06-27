@@ -6,7 +6,6 @@ from gi.repository import Adw, Gio, GLib, Gtk
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/references_dialog.ui")
 class ReferencesDialog(Adw.Window):
-
     __gtype_name__ = "ReferencesDialog"
 
     __property = "P"

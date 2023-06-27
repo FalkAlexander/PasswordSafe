@@ -9,7 +9,6 @@ from gi.repository import Adw, GLib, Gtk
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/save_dialog.ui")
 class SaveDialog(Adw.MessageDialog):
-
     __gtype_name__ = "SaveDialog"
 
     def __init__(self, window):

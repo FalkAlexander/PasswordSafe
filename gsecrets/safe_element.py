@@ -56,7 +56,6 @@ class EntryColor(Enum):
 
 
 class SafeElement(GObject.Object):
-
     sorted_handler_id: int | None = None
 
     def __init__(self, db_manager: DatabaseManager, element: Entry | Group):
@@ -357,7 +356,6 @@ class SafeElement(GObject.Object):
 
 
 class SafeGroup(SafeElement):
-
     _entries = None
     _entries_filter = None
     _subgroups = None

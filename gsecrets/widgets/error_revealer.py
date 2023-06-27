@@ -8,7 +8,6 @@ DURATION = 3.0
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/error_revealer.ui")
 class ErrorRevealer(Adw.Bin):
-
     __gtype_name__ = "ErrorRevealer"
 
     _revealer = Gtk.Template.Child()

@@ -7,7 +7,6 @@ from gsecrets.recent_files_menu import RecentFilesMenu
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/locked_headerbar.ui")
 class LockedHeaderBar(Adw.Bin):
-
     __gtype_name__ = "LockedHeaderBar"
 
     title = Gtk.Template.Child()

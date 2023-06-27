@@ -10,7 +10,6 @@ from gsecrets.utils import format_time
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/history_row.ui")
 class HistoryRow(Adw.ActionRow):
-
     __gtype_name__ = "HistoryRow"
 
     visibility_button = Gtk.Template.Child()

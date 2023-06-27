@@ -9,7 +9,6 @@ from gsecrets.widgets.history_row import HistoryRow
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/history_window.ui")
 class HistoryWindow(Adw.Window):
-
     __gtype_name__ = "HistoryWindow"
 
     listbox = Gtk.Template.Child()

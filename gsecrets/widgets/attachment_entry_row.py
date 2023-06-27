@@ -14,7 +14,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attachment_entry_row.ui")
 class AttachmentEntryRow(Adw.ActionRow):
-
     __gtype_name__ = "AttachmentEntryRow"
 
     download_button = Gtk.Template.Child()

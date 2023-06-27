@@ -5,7 +5,6 @@ from gi.repository import GObject, Gdk, Gtk, Graphene
 
 
 class ProgressIcon(GObject.Object, Gdk.Paintable, Gtk.SymbolicPaintable):
-
     __gtype_name__ = "ProgressIcon"
 
     _progress: float = 0.0

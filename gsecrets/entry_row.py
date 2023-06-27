@@ -15,7 +15,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_row.ui")
 class EntryRow(Adw.ActionRow):
-
     __gtype_name__ = "EntryRow"
 
     _checkbox_revealer = Gtk.Template.Child()
@@ -31,7 +30,10 @@ class EntryRow(Adw.ActionRow):
         self._bindings = GObject.BindingGroup.new()
 
         self._bindings.bind(
-            "icon-name", self._entry_icon, "icon-name", GObject.BindingFlags.SYNC_CREATE
+            "icon-name",
+            self._entry_icon,
+            "icon-name",
+            GObject.BindingFlags.SYNC_CREATE,
         )
 
         self._signals.connect_closure(

@@ -22,7 +22,10 @@ class Pathbar(Gtk.Box):
         self.database_manager = unlocked_database.database_manager
 
         unlocked_database.bind_property(
-            "current-element", self, "current-element", GObject.BindingFlags.SYNC_CREATE
+            "current-element",
+            self,
+            "current-element",
+            GObject.BindingFlags.SYNC_CREATE,
         )
         self.connect("notify::current-element", self._on_current_element_changed)
         self.setup_widgets()

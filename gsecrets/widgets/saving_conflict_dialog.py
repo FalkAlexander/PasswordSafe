@@ -9,7 +9,6 @@ from gi.repository import Adw, Gio, GLib, Gtk
 
 
 class SavingConflictDialog(Adw.MessageDialog):
-
     __gtype_name__ = "SavingConflictDialog"
 
     def __init__(self, window, db_manager, save_callback):

@@ -95,6 +95,9 @@ class SettingsDialog(Adw.PreferencesWindow):
             self._clear_button.props.sensitive = False
 
         # Unlock
+        lock_on_session_lock = settings.create_action("lock-on-session-lock")
+        action_group.add_action(lock_on_session_lock)
+
         remember_composite_key_action = settings.create_action("remember-composite-key")
         action_group.add_action(remember_composite_key_action)
         remember_composite_key_action.connect(

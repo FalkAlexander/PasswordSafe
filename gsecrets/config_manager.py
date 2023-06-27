@@ -28,6 +28,11 @@ GENERATOR_USE_SYMBOLS = "generator-use-symbols"
 GENERATOR_LENGTH = "generator-length"
 GENERATOR_WORDS = "generator-words"
 GENERATOR_SEPARATOR = "generator-separator"
+LOCK_ON_SESSION_LOCK = "lock-on-session-lock"
+
+
+def get_lock_on_session_lock() -> bool:
+    return setting.get_boolean(LOCK_ON_SESSION_LOCK)
 
 
 def get_generator_use_uppercase() -> bool:

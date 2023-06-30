@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-04-28 21:20+0000\n"
-"PO-Revision-Date: 2023-04-29 08:59+1000\n"
+"POT-Creation-Date: 2023-06-24 06:01+0000\n"
+"PO-Revision-Date: 2023-06-24 19:48+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -35,25 +35,34 @@ msgstr ""
 "Aleksandr Melman <alexmelman88@gmail.com>, 2022-2023"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Secrets"
 
-#: data/gtk/add_attribute_dialog.ui:12
+#: data/gtk/add_attribute_dialog.ui:8
 msgid "Add Attribute"
 msgstr "Добавить атрибут"
 
-#: data/gtk/add_attribute_dialog.ui:50
+#: data/gtk/add_attribute_dialog.ui:47
 msgid "Key"
 msgstr "Ключ"
 
-#: data/gtk/add_attribute_dialog.ui:55
+#: data/gtk/add_attribute_dialog.ui:52
 msgid "Value"
 msgstr "Значение"
 
-#: data/gtk/add_attribute_dialog.ui:62
-msgid "Add"
-msgstr "Добавить"
+#: data/gtk/add_attribute_dialog.ui:57
+msgid "Sensitive"
+msgstr "Уязвимый"
+
+#: data/gtk/add_attribute_dialog.ui:58
+msgid "Contains sensitive data."
+msgstr "Содержит конфиденциальные данные."
+
+#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:352
+msgid "_Add"
+msgstr "_Добавить"
 
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
@@ -87,6 +96,12 @@ msgid "_Proceed"
 msgstr "_Продолжить"
 
 #: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "Копировать атрибут"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
 msgid "Remove Attribute"
 msgstr "Удалить атрибут"
 
@@ -96,128 +111,127 @@ msgstr "Цвет"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:218
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:206
 msgid "Create Safe"
 msgstr "Создать сейф"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:55
-#: data/gtk/group_page.ui:14
+#: data/gtk/create_database.ui:17
 msgid "Back"
 msgstr "Назад"
 
-#: data/gtk/create_database.ui:21 data/gtk/locked_headerbar.ui:20
-#: data/gtk/unlocked_headerbar.ui:38
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:36
 msgid "Main Menu"
 msgstr "Главное меню"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:38
 msgid "Protect your safe"
 msgstr "Защитите свой сейф"
 
-#: data/gtk/create_database.ui:71 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:47 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Пароль"
 
-#: data/gtk/create_database.ui:72
+#: data/gtk/create_database.ui:48
 msgid "Use a password to secure your safe."
 msgstr "Использовать пароль чтобы защитить сейф."
 
-#: data/gtk/create_database.ui:82
+#: data/gtk/create_database.ui:56
 msgid "_Keyfile"
 msgstr "Файл-_ключ"
 
-#: data/gtk/create_database.ui:83
+#: data/gtk/create_database.ui:57
 msgid "Use a keyfile to secure your safe."
 msgstr "Использовать файл-ключ чтобы защитить сейф."
 
-#: data/gtk/create_database.ui:93
+#: data/gtk/create_database.ui:65
 msgid "_Composite"
 msgstr "_Комбинированный"
 
-#: data/gtk/create_database.ui:94
+#: data/gtk/create_database.ui:66
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "Использовать пароль в сочетании с файл-ключом чтобы защитить сейф."
 
-#: data/gtk/create_database.ui:126
+#: data/gtk/create_database.ui:86
 msgid "Enter Password"
 msgstr "Введите пароль"
 
-#: data/gtk/create_database.ui:134
+#: data/gtk/create_database.ui:87
 msgid "Set password for safe."
 msgstr "Установите пароль для сейфа."
 
-#: data/gtk/create_database.ui:159 data/gtk/credentials_group.ui:43
+#: data/gtk/create_database.ui:106 data/gtk/credentials_group.ui:43
 #: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "Создать новый пароль"
 
-#: data/gtk/create_database.ui:173
+#: data/gtk/create_database.ui:119
 msgid "Next"
 msgstr "Далее"
 
-#: data/gtk/create_database.ui:209
+#: data/gtk/create_database.ui:145
 msgid "Password Match Check"
 msgstr "Проверка соответствия пароля"
 
-#: data/gtk/create_database.ui:217
+#: data/gtk/create_database.ui:146
 msgid "Repeat password for safe."
 msgstr "Повторите пароль для сейфа."
 
-#: data/gtk/create_database.ui:243
+#: data/gtk/create_database.ui:160
 msgid "Check"
 msgstr "Проверка"
 
-#: data/gtk/create_database.ui:275
+#: data/gtk/create_database.ui:179
 msgid "Match Check Failed"
 msgstr "Сбой при проверке соответствия"
 
-#: data/gtk/create_database.ui:283
+#: data/gtk/create_database.ui:180
 msgid "Please try again."
 msgstr "Попробуйте ещё раз."
 
-#: data/gtk/create_database.ui:313 gsecrets/create_database.py:61
+#: data/gtk/create_database.ui:209 gsecrets/create_database.py:61
 msgid "_Confirm"
 msgstr "_Подтвердить"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:348 gsecrets/create_database.py:182
+#: data/gtk/create_database.ui:230 gsecrets/create_database.py:182
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "Создать файл-ключ"
 
-#: data/gtk/create_database.ui:356
+#: data/gtk/create_database.ui:231
 msgid "Set keyfile for safe"
 msgstr "Установите файл-ключ чтобы защитить сейф"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:366 data/gtk/password_generator_popover.ui:165
+#: data/gtk/create_database.ui:234 data/gtk/password_generator_popover.ui:132
 #: gsecrets/create_database.py:183
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_Создать"
 
-#: data/gtk/create_database.ui:399
+#: data/gtk/create_database.ui:254
 msgid "Safe Successfully Created"
 msgstr "Сейф успешно создан"
 
-#: data/gtk/create_database.ui:407 data/gtk/unlocked_headerbar.ui:86
+#: data/gtk/create_database.ui:257 data/gtk/unlocked_headerbar.ui:84
 msgid "_Open Safe"
 msgstr "_Открыть сейф"
 
-#: data/gtk/create_database.ui:429 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/create_database.ui:279 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:95
 msgid "_Preferences"
 msgstr "_Параметры"
 
-#: data/gtk/create_database.ui:433 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:101
+#: data/gtk/create_database.ui:283 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:99
 msgid "_Keyboard Shortcuts"
 msgstr "_Комбинации клавиш"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:437 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:105
+#: data/gtk/create_database.ui:287 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:103
 msgid "_About Secrets"
 msgstr "_О приложении"
 
@@ -226,7 +240,7 @@ msgid "_Username"
 msgstr "_Имя пользователя"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:151
+#: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:143
 #: data/gtk/history_row.ui:25
 msgid "Copy"
 msgstr "Копировать"
@@ -237,7 +251,7 @@ msgstr "Аутентификация"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:72 data/gtk/unlock_database.ui:27
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:28
 msgid "Password"
 msgstr "Пароль"
 
@@ -331,102 +345,106 @@ msgstr "Количество групп"
 msgid "Passwords"
 msgstr "Пароли"
 
-#: data/gtk/entry_page.ui:64
+#: data/gtk/entry_page.ui:56
 msgid "Entry Menu"
 msgstr "Меню записи"
 
-#: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
+#: data/gtk/entry_page.ui:73 data/gtk/group_page.ui:27
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "За_головок"
 
-#: data/gtk/entry_page.ui:87
+#: data/gtk/entry_page.ui:79
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:104
+#: data/gtk/entry_page.ui:96
 msgid "Open Address"
 msgstr "Открыть адрес"
 
-#: data/gtk/entry_page.ui:125
+#: data/gtk/entry_page.ui:117
 msgid "One-Time Password"
 msgstr "Одноразовый пароль"
 
-#: data/gtk/entry_page.ui:163
+#: data/gtk/entry_page.ui:155
 msgid "One-_Time Password Secret"
 msgstr "Защита одно_разовым паролем"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:171
+#: data/gtk/entry_page.ui:163
 msgid "Could not Generate OTP Token"
 msgstr "Не удалось создать одноразовый пароль"
 
-#: data/gtk/entry_page.ui:179 data/gtk/group_page.ui:43
-#: data/gtk/references_dialog.ui:141
+#: data/gtk/entry_page.ui:171 data/gtk/group_page.ui:35
+#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Заметки"
 
-#: data/gtk/entry_page.ui:183 data/gtk/group_page.ui:47
+#: data/gtk/entry_page.ui:175 data/gtk/group_page.ui:39
 msgid "Edit in a Window"
 msgstr "Редактировать в окне"
 
-#: data/gtk/entry_page.ui:218
+#: data/gtk/entry_page.ui:210
 msgid "Icon"
 msgstr "Значок"
 
-#: data/gtk/entry_page.ui:235
+#: data/gtk/entry_page.ui:227
 msgid "Attachments"
 msgstr "Вложения"
 
-#: data/gtk/entry_page.ui:239
+#: data/gtk/entry_page.ui:231
 msgid "_Add Attachment"
 msgstr "_Добавить вложение"
 
-#: data/gtk/entry_page.ui:248
+#: data/gtk/entry_page.ui:240
 msgid "Attributes"
 msgstr "Атрибуты"
 
-#: data/gtk/entry_page.ui:253
+#: data/gtk/entry_page.ui:245
 msgid "_Add Attribute"
 msgstr "_Добавить атрибут"
 
-#: data/gtk/entry_page.ui:261
+#: data/gtk/entry_page.ui:253
 msgid "Expiration Date"
 msgstr "Дата окончания срока действия"
 
-#: data/gtk/entry_page.ui:277
+#: data/gtk/entry_page.ui:269
 msgid "_Show More"
 msgstr "Показать _больше"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:288
 msgid "D_uplicate"
 msgstr "_Дубликат"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:292
 msgid "_References"
 msgstr "Сс_ылки"
 
-#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:79
+#: data/gtk/entry_page.ui:296 data/gtk/group_page.ui:73
 msgid "_Properties"
 msgstr "_Свойства"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:302
 msgid "_Save in History"
 msgstr "_Сохранить в истории"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:306
 msgid "Show _History"
 msgstr "Показать _историю"
 
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:85
+#: data/gtk/entry_page.ui:312 data/gtk/group_page.ui:79
 msgid "_Delete"
 msgstr "У_далить"
 
-#: data/gtk/entry_row.ui:53
+#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
+msgid "Select"
+msgstr "Выбрать"
+
+#: data/gtk/entry_row.ui:54
 msgid "Copy Username"
 msgstr "Копировать имя пользователя"
 
-#: data/gtk/entry_row.ui:63
+#: data/gtk/entry_row.ui:64
 msgid "Copy Password"
 msgstr "Копировать пароль"
 
@@ -434,23 +452,23 @@ msgstr "Копировать пароль"
 msgid "Expiration Date not Set"
 msgstr "Дата окончания срока действия не установлена"
 
-#: data/gtk/expiration_date_row.ui:17
+#: data/gtk/expiration_date_row.ui:22
 msgid "Edit Expiration Date"
 msgstr "Редактировать дату окончания срока действия"
 
-#: data/gtk/expiration_date_row.ui:25
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "Удалить дату окончания срока действия"
 
-#: data/gtk/expiration_date_row.ui:58
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "_Установить дату окончания"
 
-#: data/gtk/group_page.ui:23
+#: data/gtk/group_page.ui:15
 msgid "Group Menu"
 msgstr "Меню группы"
 
-#: data/gtk/group_row.ui:51
+#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -567,7 +585,7 @@ msgstr "Показать текст"
 msgid "Remove from History"
 msgstr "Удалить из истории"
 
-#: data/gtk/history_window.ui:9
+#: data/gtk/history_window.ui:10
 msgid "Password History"
 msgstr "История паролей"
 
@@ -575,60 +593,53 @@ msgstr "История паролей"
 msgid "_Open"
 msgstr "О_ткрыть"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:82
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
+#: data/gtk/welcome_page.ui:15
 msgid "_New Safe"
 msgstr "_Новый сейф"
 
-#: data/gtk/notes_dialog.ui:14
+#: data/gtk/notes_dialog.ui:30
 msgid "_Copy"
 msgstr "_Копировать"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:26 data/gtk/unlocked_headerbar.ui:24
+#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Поиск"
 
-#: data/gtk/password_generator_popover.ui:35
+#: data/gtk/password_generator_popover.ui:32
 msgid "Length"
 msgstr "Длина"
 
-#: data/gtk/password_generator_popover.ui:62
+#: data/gtk/password_generator_popover.ui:50
 msgid "Characters"
 msgstr "Символы"
 
-#: data/gtk/password_generator_popover.ui:111
+#: data/gtk/password_generator_popover.ui:94
 msgid "Passphrase"
 msgstr "Ключевая фраза"
 
-#: data/gtk/password_generator_popover.ui:119
+#: data/gtk/password_generator_popover.ui:103
 msgid "Words"
 msgstr "Слова"
 
-#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:179
-msgid "Separator"
-msgstr "Разделитель"
-
-#: data/gtk/password_generator_popover.ui:154
-msgid "Enter character here…"
-msgstr "Введите символ здесь…"
-
-#: data/gtk/properties_dialog.ui:7
+#: data/gtk/properties_dialog.ui:9
 msgid "Properties"
 msgstr "Свойства"
 
-#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:37
+#: data/gtk/properties_dialog.ui:47
 msgid "Accessed"
 msgstr "Доступен"
 
-#: data/gtk/properties_dialog.ui:45
+#: data/gtk/properties_dialog.ui:55
 msgid "Modified"
 msgstr "Изменён"
 
-#: data/gtk/properties_dialog.ui:53
+#: data/gtk/properties_dialog.ui:63
 msgid "Created"
 msgstr "Создан"
 
@@ -636,8 +647,8 @@ msgstr "Создан"
 msgid "Code"
 msgstr "Код"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
-#: data/gtk/references_dialog.ui:346
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
+#: data/gtk/references_dialog.ui:352
 msgid "Property"
 msgstr "Свойство"
 
@@ -665,27 +676,27 @@ msgstr "_Заметки"
 msgid "References"
 msgstr "Ссылки"
 
-#: data/gtk/references_dialog.ui:222
+#: data/gtk/references_dialog.ui:226
 msgid "Syntax"
 msgstr "Синтаксис"
 
-#: data/gtk/references_dialog.ui:231
+#: data/gtk/references_dialog.ui:235
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Синтаксис заполнителя для ссылок поля следующий:"
 
-#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
+#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
 msgid "Show Field Codes"
 msgstr "Отображать коды полей"
 
-#: data/gtk/references_dialog.ui:277
+#: data/gtk/references_dialog.ui:283
 msgid "Identifier"
 msgstr "Идентификатор"
 
-#: data/gtk/references_dialog.ui:335
+#: data/gtk/references_dialog.ui:341
 msgid "Reference"
 msgstr "Ссылка"
 
-#: data/gtk/references_dialog.ui:373
+#: data/gtk/references_dialog.ui:379
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -768,139 +779,138 @@ msgstr "Повторно открыть последний открытый се
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:31 gsecrets/widgets/window.py:129
-#: gsecrets/widgets/window.py:210 gsecrets/widgets/window.py:222
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
+#: gsecrets/widgets/window.py:198 gsecrets/widgets/window.py:210
 msgid "Safe"
 msgstr "Сейф"
 
-#: data/gtk/settings_dialog.ui:34
+#: data/gtk/settings_dialog.ui:28
 msgid "_Save Automatically"
 msgstr "Сохранять _автоматически"
 
-#: data/gtk/settings_dialog.ui:35
+#: data/gtk/settings_dialog.ui:29
 msgid "Save every change automatically."
 msgstr "Автоматически сохранять каждое изменение."
 
-#: data/gtk/settings_dialog.ui:50 data/gtk/unlock_database.ui:33
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:34
 msgid "Unlock"
 msgstr "Разблокировать"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:53
+#: data/gtk/settings_dialog.ui:41
 msgid "Remember Composite _Key"
 msgstr "Запоминать составной _ключ"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:54
+#: data/gtk/settings_dialog.ui:42
 msgid "Remember last used composite key."
 msgstr "Запоминать последний использованный составной ключ."
 
-#: data/gtk/settings_dialog.ui:75
+#: data/gtk/settings_dialog.ui:57
 msgid "Password Generation"
 msgstr "Создание пароля"
 
-#: data/gtk/settings_dialog.ui:78
+#: data/gtk/settings_dialog.ui:60
 msgid "Password Length"
 msgstr "Длина пароля"
 
-#: data/gtk/settings_dialog.ui:79
+#: data/gtk/settings_dialog.ui:61
 msgid "Number of characters when generating a password."
 msgstr "Количество символов при создании пароля."
 
-#: data/gtk/settings_dialog.ui:98
+#: data/gtk/settings_dialog.ui:75
 msgid "_Uppercase Characters"
 msgstr "_Заглавные буквы"
 
-#: data/gtk/settings_dialog.ui:99
+#: data/gtk/settings_dialog.ui:76
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Использовать заглавные буквы от A до Z при создании пароля."
 
-#: data/gtk/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:83
 msgid "_Lowercase Characters"
 msgstr "_Строчные буквы"
 
-#: data/gtk/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:84
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Использовать строчные буквы от a до z при создании пароля."
 
-#: data/gtk/settings_dialog.ui:126
+#: data/gtk/settings_dialog.ui:91
 msgid "_Numeric Characters"
 msgstr "_Цифры"
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:92
 msgid "Use numeric characters when generating a password."
 msgstr "Использовать цифры при создании пароля."
 
-#: data/gtk/settings_dialog.ui:140
+#: data/gtk/settings_dialog.ui:99
 msgid "_Special Characters"
 msgstr "_Специальные символы"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:100
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Использовать специальные символы ASCII при создании пароля."
 
-#: data/gtk/settings_dialog.ui:156
+#: data/gtk/settings_dialog.ui:109
 msgid "Passphrase Generation"
 msgstr "Создание ключевой фразы"
 
-#: data/gtk/settings_dialog.ui:159
+#: data/gtk/settings_dialog.ui:112
 msgid "Passphrase Length"
 msgstr "Длина ключевой фразы"
 
-#: data/gtk/settings_dialog.ui:160
+#: data/gtk/settings_dialog.ui:113
 #: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of words to use when generating a passphrase."
 msgstr "Количество слов, используемых при создании ключевой фразы."
 
-#: data/gtk/settings_dialog.ui:180
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
-msgid "Word separator to use when generating a passphrase."
-msgstr "Разделитель слов, используемый при создании ключевой фразы."
+#: data/gtk/settings_dialog.ui:127
+msgid "Separator"
+msgstr "Разделитель"
 
-#: data/gtk/settings_dialog.ui:187
-msgid "Enter Character"
-msgstr "Введите символ"
-
-#: data/gtk/settings_dialog.ui:200 data/gtk/settings_dialog.ui:203
+#: data/gtk/settings_dialog.ui:137 data/gtk/settings_dialog.ui:140
 msgid "Security"
 msgstr "Безопасность"
 
-#: data/gtk/settings_dialog.ui:206
+#: data/gtk/settings_dialog.ui:143
 msgid "Safe Lock Timeout"
 msgstr "Тайм-аут блокировки сейфа"
 
-#: data/gtk/settings_dialog.ui:207
+#: data/gtk/settings_dialog.ui:144
 msgid "Lock safe on idle after X minutes."
 msgstr "Блокировать сейф при простое после X минут."
 
-#: data/gtk/settings_dialog.ui:226
+#: data/gtk/settings_dialog.ui:158
 msgid "Clear Clipboard"
 msgstr "Очистить буфер обмена"
 
-#: data/gtk/settings_dialog.ui:227
+#: data/gtk/settings_dialog.ui:159
 msgid "Clear clipboard after X seconds."
 msgstr "Очистить буфер обмена через X секунд."
 
-#: data/gtk/settings_dialog.ui:246
+#: data/gtk/settings_dialog.ui:173
 msgid "Clear Recent List"
 msgstr "Очистить недавний список"
 
-#: data/gtk/settings_dialog.ui:247
+#: data/gtk/settings_dialog.ui:174
 msgid "Clear the recently opened safes list."
 msgstr "Очистить список недавно открытых сейфов."
 
-#: data/gtk/settings_dialog.ui:254 data/gtk/unlock_database.ui:108
+#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:91
 msgid "Clear"
 msgstr "Очистить"
 
-#: data/gtk/unlock_database.ui:11
+#: data/gtk/unlock_database.ui:12
 msgid "Unlock Safe"
 msgstr "Разблокировать сейф"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:65 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_Выбрать файл-ключ"
+
+#: data/gtk/unlocked_database.ui:8
+msgid "Browser"
+msgstr "Обзор"
 
 #: data/gtk/unlocked_database_page.ui:31
 msgid "Add elements with the ➕ button."
@@ -910,71 +920,67 @@ msgstr "Добавить элементы с помощью кнопки ➕."
 msgid "Empty Group"
 msgstr "Пустая группа"
 
-#: data/gtk/unlocked_headerbar.ui:13
+#: data/gtk/unlocked_headerbar.ui:11
 msgid "New Entry or Group"
 msgstr "Новая запись или группа"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/gtk/unlocked_headerbar.ui:31
+#: data/gtk/unlocked_headerbar.ui:29
 msgid "Selection Mode"
 msgstr "Режим выбора"
 
-#: data/gtk/unlocked_headerbar.ui:57
+#: data/gtk/unlocked_headerbar.ui:55
 msgid "So_rting"
 msgstr "Со_ртировать"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:59
+#: data/gtk/unlocked_headerbar.ui:57
 msgid "_A-Z"
 msgstr "_A-Z"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:64
+#: data/gtk/unlocked_headerbar.ui:62
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/gtk/unlocked_headerbar.ui:69
+#: data/gtk/unlocked_headerbar.ui:67
 msgid "_Newest First"
 msgstr "Сначала _новые"
 
-#: data/gtk/unlocked_headerbar.ui:74
+#: data/gtk/unlocked_headerbar.ui:72
 msgid "_Oldest First"
 msgstr "Сначала _старые"
 
-#: data/gtk/unlocked_headerbar.ui:91
+#: data/gtk/unlocked_headerbar.ui:89
 msgid "Sa_fe Settings"
 msgstr "_Настройки сейфа"
 
-#: data/gtk/unlocked_headerbar.ui:113
+#: data/gtk/unlocked_headerbar.ui:111
 msgid "New _Entry"
 msgstr "Новая _запись"
 
-#: data/gtk/unlocked_headerbar.ui:117
+#: data/gtk/unlocked_headerbar.ui:115
 msgid "New _Group"
 msgstr "Новая _группа"
 
-#: data/gtk/unlocked_headerbar.ui:136
+#: data/gtk/unlocked_headerbar.ui:134
 #: gsecrets/widgets/saving_conflict_dialog.py:35
 msgid "_Save"
 msgstr "_Сохранить"
 
-#: data/gtk/unlocked_headerbar.ui:151
+#: data/gtk/unlocked_headerbar.ui:149
 msgid "_Lock"
 msgstr "_Заблокировать"
 
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:30
+#: data/gtk/welcome_page.ui:11
 msgid "Secure Secrets"
 msgstr "Защищенные секреты"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:41
-msgid ""
-"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
-"b> a new Keepass safe."
-msgstr ""
-"Надёжно храните свои пароли, заметки и данные. <b>Создайте</b> или "
-"<b>импортируйте</b> новый сейф Keepass."
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "Создайте новый или импортируйте имеющийся сейф Keepass"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
@@ -1150,6 +1156,10 @@ msgstr "Количество слов создаваемой ключевой ф
 msgid "Separator when generating a passphrase"
 msgstr "Разделитель слов в создаваемой ключевой фразе"
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Word separator to use when generating a passphrase."
+msgstr "Разделитель слов, используемый при создании ключевой фразы."
+
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@NAME@"
@@ -1170,7 +1180,7 @@ msgstr "Falk Alexander Seidl"
 
 #: gsecrets/application.py:54
 msgid "Error: File {} does not exist"
-msgstr "Ошибка: Файл \"%s\" не существует"
+msgstr "Ошибка: Файл {} не существует"
 
 #: gsecrets/application.py:59
 msgid "Error: Safe {} is already open"
@@ -1201,49 +1211,45 @@ msgstr "Не удалось создать файл-ключ"
 msgid "Generate"
 msgstr "Создать"
 
-#: gsecrets/entry_page.py:243 gsecrets/widgets/credentials_group.py:90
+#: gsecrets/entry_page.py:237 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
 msgstr "Сохранено в истории"
 
-#: gsecrets/entry_page.py:259 gsecrets/entry_row.py:114
-#: gsecrets/widgets/credentials_group.py:84
+#: gsecrets/entry_page.py:253 gsecrets/entry_row.py:123
+#: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Имя пользователя скопировано"
 
-#: gsecrets/entry_page.py:267 gsecrets/entry_page.py:403
+#: gsecrets/entry_page.py:261 gsecrets/entry_page.py:392
 msgid "Address copied"
 msgstr "Адрес скопирован"
 
-#: gsecrets/entry_page.py:277 gsecrets/entry_page.py:332
+#: gsecrets/entry_page.py:271 gsecrets/entry_page.py:326
 msgid "One-time password copied"
 msgstr "Одноразовый пароль скопирован"
 
-#: gsecrets/entry_page.py:310
+#: gsecrets/entry_page.py:304
 msgid "Could not open URL"
 msgstr "Не удалось открыть URL"
 
-#: gsecrets/entry_page.py:320
+#: gsecrets/entry_page.py:314
 msgid "The address is not valid"
 msgstr "Адрес недействителен"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:362
+#: gsecrets/entry_page.py:351
 msgid "Select Attachments"
 msgstr "Выбрать вложения"
 
-#: gsecrets/entry_page.py:363
-msgid "_Add"
-msgstr "_Добавить"
-
-#: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
+#: gsecrets/entry_row.py:116 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Пароль скопирован"
 
-#: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
+#: gsecrets/entry_row.py:135 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "Заголовок не указан"
 
-#: gsecrets/entry_row.py:137
+#: gsecrets/entry_row.py:146
 msgid "Username not specified"
 msgstr "Не указано имя пользователя"
 
@@ -1279,18 +1285,54 @@ msgstr "Включить символы"
 msgid "Exclude Symbols"
 msgstr "Исключить символы"
 
+#: gsecrets/pathbar_button.py:30
+msgid "Root Group"
+msgstr "Корневая группа"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Недавние файлы"
 
-#: gsecrets/safe_element.py:546
+#: gsecrets/safe_element.py:41
+msgid "White"
+msgstr "Белый"
+
+#: gsecrets/safe_element.py:43
+msgid "Blue"
+msgstr "Синий"
+
+#: gsecrets/safe_element.py:45
+msgid "Green"
+msgstr "Зелёный"
+
+#: gsecrets/safe_element.py:47
+msgid "Yellow"
+msgstr "Жёлтый"
+
+#: gsecrets/safe_element.py:49
+msgid "Orange"
+msgstr "Оранжевый"
+
+#: gsecrets/safe_element.py:51
+msgid "Red"
+msgstr "Красный"
+
+#: gsecrets/safe_element.py:53
+msgid "Purple"
+msgstr "Пурпурный"
+
+#: gsecrets/safe_element.py:55
+msgid "Brown"
+msgstr "Коричневый"
+
+#: gsecrets/safe_element.py:567
 msgid "Clone"
-msgstr "Клонировать"
+msgstr "Клон"
 
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
-#: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:549
-#: gsecrets/widgets/window.py:352 gsecrets/widgets/window.py:358
+#: gsecrets/unlocked_database.py:291 gsecrets/unlocked_database.py:572
+#: gsecrets/widgets/window.py:340 gsecrets/widgets/window.py:346
 msgid "Could not save Safe"
 msgstr "Не удалось сохранить сейф"
 
@@ -1311,44 +1353,48 @@ msgstr "Не удалось разблокировать сейф"
 msgid "_Try Again"
 msgstr "_Попробуйте снова"
 
-#: gsecrets/unlocked_database.py:274
+#: gsecrets/unlocked_database.py:294
 msgid "Safe saved"
 msgstr "Сейф сохранён"
 
-#: gsecrets/unlocked_database.py:276
+#: gsecrets/unlocked_database.py:296
 msgid "No changes made"
 msgstr "Изменений не было"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:321
+#: gsecrets/unlocked_database.py:341
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Элемент удален"
 msgstr[1] "{} элемента удалено"
 msgstr[2] "{} элементов удалено"
 
-#: gsecrets/unlocked_database.py:326
+#: gsecrets/unlocked_database.py:346
 msgid "Deletion completed"
 msgstr "Удаление завершено"
 
-#: gsecrets/unlocked_database.py:331
+#: gsecrets/unlocked_database.py:351 gsecrets/unlocked_database.py:376
 msgid "Undo"
 msgstr "Вернуть"
 
-#: gsecrets/unlocked_database.py:367
+#: gsecrets/unlocked_database.py:375
+msgid "Attribute deleted"
+msgstr "Атрибут удалён"
+
+#: gsecrets/unlocked_database.py:406
 msgid "Copied"
 msgstr "Скопировано"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:471
+#: gsecrets/unlocked_database.py:499
 msgid "Safe locked due to inactivity"
 msgstr "Сейф заблокирован из-за бездействия"
 
-#: gsecrets/widgets/add_attribute_dialog.py:38
+#: gsecrets/widgets/add_attribute_dialog.py:37
 msgid "Attribute key contains an illegal character"
 msgstr "Ключ атрибута содержит недопустимый символ"
 
-#: gsecrets/widgets/add_attribute_dialog.py:49
+#: gsecrets/widgets/add_attribute_dialog.py:48
 msgid "Attribute key already exists"
 msgstr "Ключ атрибута уже существует"
 
@@ -1360,6 +1406,11 @@ msgstr "Сохранить вложение"
 #: gsecrets/widgets/attachment_entry_row.py:58
 msgid "Could not store attachment"
 msgstr "Не удалось сохранить вложение"
+
+#: gsecrets/widgets/attribute_entry_row.py:40
+#: gsecrets/widgets/protected_attribute_entry_row.py:57
+msgid "Attribute copied"
+msgstr "Атрибут скопирован"
 
 #. NOTE: Filechooser title for choosing current used keyfile
 #: gsecrets/widgets/database_settings_dialog.py:136
@@ -1527,33 +1578,49 @@ msgstr "Операция прервана: перемещение текущей
 msgid "Move completed"
 msgstr "Перемещение завершено"
 
-#: gsecrets/widgets/window.py:133
+#: gsecrets/widgets/window.py:121
 msgid "Any file type"
 msgstr "Любой тип файлов"
 
-#: gsecrets/widgets/window.py:140
+#: gsecrets/widgets/window.py:128
 msgid "Select Safe"
 msgstr "Выбрать сейф"
 
-#: gsecrets/widgets/window.py:188
+#: gsecrets/widgets/window.py:176
 msgid "Safe is already open"
 msgstr "Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:220
+#: gsecrets/widgets/window.py:208
 msgid "_Create"
 msgstr "_Создать"
 
-#: gsecrets/widgets/window.py:241
+#: gsecrets/widgets/window.py:229
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Не удалось создать сейф: Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:283 gsecrets/widgets/window.py:298
+#: gsecrets/widgets/window.py:271 gsecrets/widgets/window.py:286
 msgid "Could not create new Safe"
 msgstr "Не удалось создать новый сейф"
 
-#: gsecrets/widgets/window.py:365
+#: gsecrets/widgets/window.py:353
 msgid "Could not save safe"
 msgstr "Не удалось сохранить сейф"
+
+#~ msgid "Add"
+#~ msgstr "Добавить"
+
+#~ msgid "Enter character here…"
+#~ msgstr "Введите символ здесь…"
+
+#~ msgid "Enter Character"
+#~ msgstr "Введите символ"
+
+#~ msgid ""
+#~ "Securely store your passwords, notes and data. <b>Create</b> or "
+#~ "<b>import</b> a new Keepass safe."
+#~ msgstr ""
+#~ "Надёжно храните свои пароли, заметки и данные. <b>Создайте</b> или "
+#~ "<b>импортируйте</b> новый сейф Keepass."
 
 #~ msgid "Menu"
 #~ msgstr "Меню"
@@ -1748,9 +1815,6 @@ msgstr "Не удалось сохранить сейф"
 
 #~ msgid "No group title specified"
 #~ msgstr "Не указано название группы"
-
-#~ msgid "Choose a Keepass safe"
-#~ msgstr "Выберите сейф Keepass"
 
 #~ msgid "Choose location for Keepass safe"
 #~ msgstr "Выберите местоположение для сейфа Keepass"

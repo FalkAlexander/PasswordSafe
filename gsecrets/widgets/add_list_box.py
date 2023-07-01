@@ -18,6 +18,7 @@ class AddListBox(Gtk.ListBox):
         self.add_css_class("boxed-list")
 
         icon = Gtk.Image.new_from_icon_name("list-add-symbolic")
+        icon.props.accessible_role = Gtk.AccessibleRole.PRESENTATION
         label = Gtk.Label.new("")
         label.props.use_underline = True
 

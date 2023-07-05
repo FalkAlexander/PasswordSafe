@@ -272,6 +272,10 @@ class UnlockDatabase(Adw.Bin):
         self._reset_unlock_button()
 
     def _set_sensitive(self, sensitive):
+        delegate = self.password_entry.get_delegate()
+        if delegate.has_focus() and not sensitive:
+            self.window.props.focus_widget = None
+
         self.password_entry.set_sensitive(sensitive)
         self.keyfile_button.set_sensitive(sensitive)
         self.unlock_button.set_sensitive(sensitive)

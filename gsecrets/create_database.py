@@ -55,11 +55,6 @@ class CreateDatabase(Adw.Bin):
         Gtk.Widget.do_realize(self)
         self.password_action_row.grab_focus()
 
-    def do_unmap(self):  # pylint: disable=arguments-differ
-        Gtk.Widget.do_unmap(self)
-        self.password_check_button.props.icon_name = "object-select-symbolic"
-        self.password_repeat_button.props.label = _("_Confirm")
-
     def success_page(self):
         self.stack.set_visible_child_name("safe-successfully-create")
         # TODO This should be improved upon. Widgets should not
@@ -103,6 +98,8 @@ class CreateDatabase(Adw.Bin):
                 self.failure_page()
         finally:
             self.new_password = ""
+            self.stop_pwc_loading()
+            self.stop_pwr_loading()
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):
@@ -136,10 +133,10 @@ class CreateDatabase(Adw.Bin):
         if self.database_manager.compare_passwords(password_check):
             self.new_password = password_check
 
-            self.show_pwc_loading()
             if self.composite:
                 self.keyfile_generation_page()
             else:
+                self.show_pwc_loading()
                 self.database_manager.set_credentials_async(
                     password_check, callback=self._on_set_credentials
                 )
@@ -157,10 +154,10 @@ class CreateDatabase(Adw.Bin):
         if self.database_manager.compare_passwords(conf_passwd):
             self.new_password = conf_passwd
 
-            self.show_pwr_loading()
             if self.composite:
                 self.keyfile_generation_page()
             else:
+                self.show_pwr_loading()
                 self.database_manager.set_credentials_async(
                     self.new_password,
                     callback=self._on_set_credentials,
@@ -240,6 +237,11 @@ class CreateDatabase(Adw.Bin):
         password_check_button.set_sensitive(False)
         self.password_check_input.set_sensitive(False)
 
+    def stop_pwc_loading(self):
+        self.password_check_button.props.icon_name = "object-select-symbolic"
+        self.password_check_button.props.sensitive = True
+        self.password_check_input.props.sensitive = True
+
     def show_pwr_loading(self):
         password_repeat_button = self.password_repeat_button
         spinner = Gtk.Spinner()
@@ -248,6 +250,12 @@ class CreateDatabase(Adw.Bin):
         password_repeat_button.set_sensitive(False)
         self.password_repeat_input1.set_sensitive(False)
         self.password_repeat_input2.set_sensitive(False)
+
+    def stop_pwr_loading(self):
+        self.password_repeat_button.props.label = _("_Confirm")
+        self.password_repeat_button.props.sensitive = True
+        self.password_repeat_input1.props.sensitive = True
+        self.password_repeat_input2.props.sensitive = True
 
     def clear_input_fields(self) -> None:
         """Empty all Entry textfields"""

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-16 06:36+0000\n"
-"PO-Revision-Date: 2023-06-19 11:40+0700\n"
+"POT-Creation-Date: 2023-06-23 23:05+0000\n"
+"PO-Revision-Date: 2023-07-06 19:26+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -31,7 +31,8 @@ msgstr ""
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020, 2022, 2023."
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Secrets"
 
@@ -372,7 +373,7 @@ msgid "Could not Generate OTP Token"
 msgstr "Tidak Bisa Membuat Token OTP"
 
 #: data/gtk/entry_page.ui:171 data/gtk/group_page.ui:35
-#: data/gtk/references_dialog.ui:141
+#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Catatan"
 
@@ -432,11 +433,15 @@ msgstr "Tampilkan _Riwayat"
 msgid "_Delete"
 msgstr "_Hapus"
 
-#: data/gtk/entry_row.ui:53
+#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
+msgid "Select"
+msgstr "Pilih"
+
+#: data/gtk/entry_row.ui:54
 msgid "Copy Username"
 msgstr "Salin Nama Pengguna"
 
-#: data/gtk/entry_row.ui:63
+#: data/gtk/entry_row.ui:64
 msgid "Copy Password"
 msgstr "Salin Kata Sandi"
 
@@ -444,15 +449,15 @@ msgstr "Salin Kata Sandi"
 msgid "Expiration Date not Set"
 msgstr "Tanggal Kedaluwarsa Tak Ditata"
 
-#: data/gtk/expiration_date_row.ui:17
+#: data/gtk/expiration_date_row.ui:22
 msgid "Edit Expiration Date"
 msgstr "Sunting Tanggal Kedaluwarsa"
 
-#: data/gtk/expiration_date_row.ui:25
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "Hapus Tanggal Kedaluwarsa"
 
-#: data/gtk/expiration_date_row.ui:58
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "Atur Tanggal Kedaluwar_sa"
 
@@ -460,7 +465,7 @@ msgstr "Atur Tanggal Kedaluwar_sa"
 msgid "Group Menu"
 msgstr "Menu Grup"
 
-#: data/gtk/group_row.ui:51 data/gtk/unlocked_database.ui:46
+#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
 msgid "Edit"
 msgstr "Sunting"
 
@@ -590,12 +595,12 @@ msgstr "_Buka"
 msgid "_New Safe"
 msgstr "Bra_nkas Baru"
 
-#: data/gtk/notes_dialog.ui:29
+#: data/gtk/notes_dialog.ui:30
 msgid "_Copy"
 msgstr "_Salin"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:41 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Cari"
 
@@ -615,23 +620,23 @@ msgstr "Frasa sandi"
 msgid "Words"
 msgstr "Kata"
 
-#: data/gtk/properties_dialog.ui:7
+#: data/gtk/properties_dialog.ui:9
 msgid "Properties"
 msgstr "Properti"
 
-#: data/gtk/properties_dialog.ui:33 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:42
+#: data/gtk/properties_dialog.ui:47
 msgid "Accessed"
 msgstr "Diakses"
 
-#: data/gtk/properties_dialog.ui:50
+#: data/gtk/properties_dialog.ui:55
 msgid "Modified"
 msgstr "Diubah"
 
-#: data/gtk/properties_dialog.ui:58
+#: data/gtk/properties_dialog.ui:63
 msgid "Created"
 msgstr "Dibuat"
 
@@ -639,8 +644,8 @@ msgstr "Dibuat"
 msgid "Code"
 msgstr "Kode"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:252
-#: data/gtk/references_dialog.ui:348
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
+#: data/gtk/references_dialog.ui:352
 msgid "Property"
 msgstr "Properti"
 
@@ -668,27 +673,27 @@ msgstr "Catata_n"
 msgid "References"
 msgstr "Rujukan"
 
-#: data/gtk/references_dialog.ui:224
+#: data/gtk/references_dialog.ui:226
 msgid "Syntax"
 msgstr "Sintaks"
 
-#: data/gtk/references_dialog.ui:233
+#: data/gtk/references_dialog.ui:235
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Sintaks placeholder untuk rujukan bidang adalah sebagai berikut:"
 
-#: data/gtk/references_dialog.ui:251 data/gtk/references_dialog.ui:278
+#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
 msgid "Show Field Codes"
 msgstr "Tampilkan Ruas Kode"
 
-#: data/gtk/references_dialog.ui:279
+#: data/gtk/references_dialog.ui:283
 msgid "Identifier"
 msgstr "Pengidentifikasi"
 
-#: data/gtk/references_dialog.ui:337
+#: data/gtk/references_dialog.ui:341
 msgid "Reference"
 msgstr "Rujukan"
 
-#: data/gtk/references_dialog.ui:375
+#: data/gtk/references_dialog.ui:379
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -889,7 +894,7 @@ msgstr "Hapus Daftar Baru-baru Ini"
 msgid "Clear the recently opened safes list."
 msgstr "Bersihkan daftar brankas yang baru-baru ini dibuka."
 
-#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:109
+#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:91
 msgid "Clear"
 msgstr "Bersihkan"
 
@@ -897,11 +902,11 @@ msgstr "Bersihkan"
 msgid "Unlock Safe"
 msgstr "Buka Kunci Brankas"
 
-#: data/gtk/unlock_database.ui:83 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:65 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "Pilih Berka_s Kunci"
 
-#: data/gtk/unlocked_database.ui:9
+#: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "Peramban"
 
@@ -1279,11 +1284,47 @@ msgstr "Sertakan Simbol"
 msgid "Exclude Symbols"
 msgstr "Kecualikan Simbol"
 
+#: gsecrets/pathbar_button.py:30
+msgid "Root Group"
+msgstr "Grup Akar"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Berkas terkini"
 
-#: gsecrets/safe_element.py:548
+#: gsecrets/safe_element.py:41
+msgid "White"
+msgstr "Putih"
+
+#: gsecrets/safe_element.py:43
+msgid "Blue"
+msgstr "Biru"
+
+#: gsecrets/safe_element.py:45
+msgid "Green"
+msgstr "Hijau"
+
+#: gsecrets/safe_element.py:47
+msgid "Yellow"
+msgstr "Kuning"
+
+#: gsecrets/safe_element.py:49
+msgid "Orange"
+msgstr "Oranye"
+
+#: gsecrets/safe_element.py:51
+msgid "Red"
+msgstr "Merah"
+
+#: gsecrets/safe_element.py:53
+msgid "Purple"
+msgstr "Ungu"
+
+#: gsecrets/safe_element.py:55
+msgid "Brown"
+msgstr "Coklat"
+
+#: gsecrets/safe_element.py:567
 msgid "Clone"
 msgstr "Klon"
 

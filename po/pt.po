@@ -1,5 +1,5 @@
 # Portuguese translation for Secrets.
-# Copyright (C) 2022 Secrets COPYRIGHT HOLDER
+# Copyright (C) 2023 Secrets COPYRIGHT HOLDER
 # This file is distributed under the same license as the Secrets package.
 # Manuela Silva <mmsrs@sky.com>, 2019.
 # Juliano de Souza Camargo <julianosc@protonmail.com>, 2020, 2021.
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-16 06:36+0000\n"
-"PO-Revision-Date: 2023-06-23 17:40+0100\n"
+"POT-Creation-Date: 2023-06-23 23:05+0000\n"
+"PO-Revision-Date: 2023-07-12 15:17+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -33,7 +33,8 @@ msgstr ""
 "Juliano de Souza Camargo <julianosc@pm.me>"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Segredos"
 
@@ -373,7 +374,7 @@ msgid "Could not Generate OTP Token"
 msgstr "Não foi possível gerar token OTP"
 
 #: data/gtk/entry_page.ui:171 data/gtk/group_page.ui:35
-#: data/gtk/references_dialog.ui:141
+#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Notas"
 
@@ -433,11 +434,15 @@ msgstr "Mostrar _histórico"
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: data/gtk/entry_row.ui:53
+#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
+msgid "Select"
+msgstr "Selecionar"
+
+#: data/gtk/entry_row.ui:54
 msgid "Copy Username"
 msgstr "Copiar nome de utilizador"
 
-#: data/gtk/entry_row.ui:63
+#: data/gtk/entry_row.ui:64
 msgid "Copy Password"
 msgstr "Copiar palavra-passe"
 
@@ -445,15 +450,15 @@ msgstr "Copiar palavra-passe"
 msgid "Expiration Date not Set"
 msgstr "Data de expiração não definida"
 
-#: data/gtk/expiration_date_row.ui:17
+#: data/gtk/expiration_date_row.ui:22
 msgid "Edit Expiration Date"
 msgstr "Editar data de expiração"
 
-#: data/gtk/expiration_date_row.ui:25
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "Remover data de expiração"
 
-#: data/gtk/expiration_date_row.ui:58
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "_Definir data de expiração"
 
@@ -461,7 +466,7 @@ msgstr "_Definir data de expiração"
 msgid "Group Menu"
 msgstr "Menu de grupo"
 
-#: data/gtk/group_row.ui:51 data/gtk/unlocked_database.ui:46
+#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
 msgid "Edit"
 msgstr "Editar"
 
@@ -591,12 +596,12 @@ msgstr "_Abrir"
 msgid "_New Safe"
 msgstr "_Novo cofre"
 
-#: data/gtk/notes_dialog.ui:29
+#: data/gtk/notes_dialog.ui:30
 msgid "_Copy"
 msgstr "_Copiar"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:41 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Procurar"
 
@@ -616,23 +621,23 @@ msgstr "Frase-passe"
 msgid "Words"
 msgstr "Palavras"
 
-#: data/gtk/properties_dialog.ui:7
+#: data/gtk/properties_dialog.ui:9
 msgid "Properties"
 msgstr "Propriedades"
 
-#: data/gtk/properties_dialog.ui:33 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:42
+#: data/gtk/properties_dialog.ui:47
 msgid "Accessed"
 msgstr "Acedida"
 
-#: data/gtk/properties_dialog.ui:50
+#: data/gtk/properties_dialog.ui:55
 msgid "Modified"
 msgstr "Alterada"
 
-#: data/gtk/properties_dialog.ui:58
+#: data/gtk/properties_dialog.ui:63
 msgid "Created"
 msgstr "Criada"
 
@@ -640,8 +645,8 @@ msgstr "Criada"
 msgid "Code"
 msgstr "Código"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:252
-#: data/gtk/references_dialog.ui:348
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
+#: data/gtk/references_dialog.ui:352
 msgid "Property"
 msgstr "Propriedade"
 
@@ -669,28 +674,28 @@ msgstr "_Notas"
 msgid "References"
 msgstr "Referências"
 
-#: data/gtk/references_dialog.ui:224
+#: data/gtk/references_dialog.ui:226
 msgid "Syntax"
 msgstr "Sintaxe"
 
-#: data/gtk/references_dialog.ui:233
+#: data/gtk/references_dialog.ui:235
 msgid "The placeholder syntax for field references is the following:"
 msgstr ""
 "A sintaxe do elemento de substituição para referências de campo é a seguinte:"
 
-#: data/gtk/references_dialog.ui:251 data/gtk/references_dialog.ui:278
+#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
 msgid "Show Field Codes"
 msgstr "Ver campo de códigos"
 
-#: data/gtk/references_dialog.ui:279
+#: data/gtk/references_dialog.ui:283
 msgid "Identifier"
 msgstr "Identificador"
 
-#: data/gtk/references_dialog.ui:337
+#: data/gtk/references_dialog.ui:341
 msgid "Reference"
 msgstr "Referência"
 
-#: data/gtk/references_dialog.ui:375
+#: data/gtk/references_dialog.ui:379
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -890,7 +895,7 @@ msgstr "Limpar a lista de recentes"
 msgid "Clear the recently opened safes list."
 msgstr "Limpar a lista de cofres abertos recentemente."
 
-#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:109
+#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:91
 msgid "Clear"
 msgstr "Limpar"
 
@@ -898,11 +903,11 @@ msgstr "Limpar"
 msgid "Unlock Safe"
 msgstr "Desbloquear o cofre"
 
-#: data/gtk/unlock_database.ui:83 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:65 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_Selecionar ficheiro-chave"
 
-#: data/gtk/unlocked_database.ui:9
+#: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "Navegador"
 
@@ -1283,11 +1288,47 @@ msgstr "Incluir símbolos"
 msgid "Exclude Symbols"
 msgstr "Excluir símbolos"
 
+#: gsecrets/pathbar_button.py:30
+msgid "Root Group"
+msgstr "Grupo Root"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Ficheiros recentes"
 
-#: gsecrets/safe_element.py:548
+#: gsecrets/safe_element.py:41
+msgid "White"
+msgstr "Branco"
+
+#: gsecrets/safe_element.py:43
+msgid "Blue"
+msgstr "Azul"
+
+#: gsecrets/safe_element.py:45
+msgid "Green"
+msgstr "Verde"
+
+#: gsecrets/safe_element.py:47
+msgid "Yellow"
+msgstr "Amarelo"
+
+#: gsecrets/safe_element.py:49
+msgid "Orange"
+msgstr "Laranja"
+
+#: gsecrets/safe_element.py:51
+msgid "Red"
+msgstr "Vermelho"
+
+#: gsecrets/safe_element.py:53
+msgid "Purple"
+msgstr "Roxo"
+
+#: gsecrets/safe_element.py:55
+msgid "Brown"
+msgstr "Castanho"
+
+#: gsecrets/safe_element.py:567
 msgid "Clone"
 msgstr "Clonar"
 

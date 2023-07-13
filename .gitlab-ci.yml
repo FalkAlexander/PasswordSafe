@@ -30,6 +30,15 @@ flatpak_aarch64:
     stage: build
     allow_failure: true
 
+publish-nightly@x86_64:
+  extends: '.publish_nightly'
+  needs: ['flatpak_x86_64']
+
+publish-nightly@aarch64:
+  extends: '.publish_nightly'
+  needs: ['flatpak_aarch64']
+  allow_failure: true
+
 codespell:
   stage: check
   script:

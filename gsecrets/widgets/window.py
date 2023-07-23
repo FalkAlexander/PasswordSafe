@@ -136,10 +136,12 @@ class Window(Adw.ApplicationWindow):
         except GLib.Error as err:
             logging.debug("Could not open file: %s", err.message)
         else:
-            db_filename = db_gfile.get_path()
-            logging.debug("File selected: %s", db_filename)
-
-            self._open_database_in_window(db_filename)
+            if db_filename := db_gfile.get_path():
+                logging.debug("File selected: %s", db_filename)
+                self._open_database_in_window(db_filename)
+            else:
+                logging.error("File does not have a path, is in a virtual file system?")
+                self.send_notification(_("File does not have a valid path"))
 
     def _open_database_in_window(self, filepath):
         if self.unlocked_db:

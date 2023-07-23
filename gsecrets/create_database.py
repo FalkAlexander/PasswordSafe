@@ -57,6 +57,7 @@ class CreateDatabase(Adw.Bin):
 
     def success_page(self):
         self.stack.set_visible_child_name("safe-successfully-create")
+        self.clear_input_fields()
         # TODO This should be improved upon. Widgets should not
         # modify widgets outside of their scope.
         self.back_button.props.sensitive = False

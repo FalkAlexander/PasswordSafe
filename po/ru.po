@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-24 06:01+0000\n"
-"PO-Revision-Date: 2023-06-24 19:48+1000\n"
+"POT-Creation-Date: 2023-07-23 13:55+0000\n"
+"PO-Revision-Date: 2023-08-03 00:19+1000\n"
 "Last-Translator: Ser82-png <asvmail.as@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -111,7 +111,7 @@ msgstr "Цвет"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:206
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
 msgid "Create Safe"
 msgstr "Создать сейф"
 
@@ -190,12 +190,12 @@ msgstr "Сбой при проверке соответствия"
 msgid "Please try again."
 msgstr "Попробуйте ещё раз."
 
-#: data/gtk/create_database.ui:209 gsecrets/create_database.py:61
+#: data/gtk/create_database.ui:209 gsecrets/create_database.py:255
 msgid "_Confirm"
 msgstr "_Подтвердить"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:230 gsecrets/create_database.py:182
+#: data/gtk/create_database.ui:230 gsecrets/create_database.py:179
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "Создать файл-ключ"
@@ -206,7 +206,7 @@ msgstr "Установите файл-ключ чтобы защитить се�
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:234 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:183
+#: gsecrets/create_database.py:180
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_Создать"
@@ -267,7 +267,7 @@ msgstr "Подтвердить новый пароль"
 msgid "Current Password"
 msgstr "Текущий пароль"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Файл-ключ"
@@ -276,72 +276,72 @@ msgstr "Файл-ключ"
 msgid "_Select current keyfile if any"
 msgstr "_Выберите текущий файл-ключ, если он есть"
 
-#: data/gtk/database_settings_dialog.ui:124
+#: data/gtk/database_settings_dialog.ui:125
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Опционально) _Создать новый файл-ключ"
 
-#: data/gtk/database_settings_dialog.ui:142
+#: data/gtk/database_settings_dialog.ui:143
 msgid "Could not Load Keyfile"
 msgstr "Не удалось загрузить файл-ключ"
 
-#: data/gtk/database_settings_dialog.ui:152
+#: data/gtk/database_settings_dialog.ui:153
 #: gsecrets/widgets/database_settings_dialog.py:258
 #: gsecrets/widgets/database_settings_dialog.py:301
 msgid "_Apply Changes"
 msgstr "Применить _изменения"
 
-#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Общие"
 
-#: data/gtk/database_settings_dialog.ui:173
+#: data/gtk/database_settings_dialog.ui:174
 msgid "Details"
 msgstr "Подробности"
 
-#: data/gtk/database_settings_dialog.ui:176
+#: data/gtk/database_settings_dialog.ui:177
 msgid "Safe Name"
-msgstr "Имя сейфа"
+msgstr "Название сейфа"
 
-#: data/gtk/database_settings_dialog.ui:184
+#: data/gtk/database_settings_dialog.ui:185
 msgid "Path"
 msgstr "Путь"
 
-#: data/gtk/database_settings_dialog.ui:193
+#: data/gtk/database_settings_dialog.ui:194
 msgid "File Size"
 msgstr "Размер файла"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:201
+#: data/gtk/database_settings_dialog.ui:202
 msgid "KeePass Version"
 msgstr "Версия KeePass"
 
-#: data/gtk/database_settings_dialog.ui:209
+#: data/gtk/database_settings_dialog.ui:210
 msgid "Creation Date"
 msgstr "Дата создания"
 
-#: data/gtk/database_settings_dialog.ui:217
+#: data/gtk/database_settings_dialog.ui:218
 msgid "Encryption Algorithm"
 msgstr "Алгоритм шифрования"
 
-#: data/gtk/database_settings_dialog.ui:225
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Derivation Algorithm"
 msgstr "Алгоритм формирования"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:235
+#: data/gtk/database_settings_dialog.ui:236
 msgid "Stats"
 msgstr "Статистика"
 
-#: data/gtk/database_settings_dialog.ui:238
+#: data/gtk/database_settings_dialog.ui:239
 msgid "Number of Entries"
 msgstr "Количество записей"
 
-#: data/gtk/database_settings_dialog.ui:246
+#: data/gtk/database_settings_dialog.ui:247
 msgid "Number of Groups"
 msgstr "Количество групп"
 
-#: data/gtk/database_settings_dialog.ui:254
+#: data/gtk/database_settings_dialog.ui:255
 msgid "Passwords"
 msgstr "Пароли"
 
@@ -426,7 +426,7 @@ msgstr "_Свойства"
 
 #: data/gtk/entry_page.ui:302
 msgid "_Save in History"
-msgstr "_Сохранить в истории"
+msgstr "Со_хранить в истории"
 
 #: data/gtk/entry_page.ui:306
 msgid "Show _History"
@@ -440,11 +440,11 @@ msgstr "У_далить"
 msgid "Select"
 msgstr "Выбрать"
 
-#: data/gtk/entry_row.ui:54
+#: data/gtk/entry_row.ui:55
 msgid "Copy Username"
 msgstr "Копировать имя пользователя"
 
-#: data/gtk/entry_row.ui:64
+#: data/gtk/entry_row.ui:65
 msgid "Copy Password"
 msgstr "Копировать пароль"
 
@@ -468,7 +468,7 @@ msgstr "_Установить дату окончания"
 msgid "Group Menu"
 msgstr "Меню группы"
 
-#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
+#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:46
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -603,7 +603,8 @@ msgid "_Copy"
 msgstr "_Копировать"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:64
+#: data/gtk/unlocked_database.ui:22 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Поиск"
 
@@ -780,7 +781,7 @@ msgstr "Повторно открыть последний открытый се
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
 #: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
-#: gsecrets/widgets/window.py:198 gsecrets/widgets/window.py:210
+#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
 msgid "Safe"
 msgstr "Сейф"
 
@@ -1191,23 +1192,23 @@ msgstr "Ошибка: Сейф {} уже открыт"
 msgid "Could not load attachment"
 msgstr "Не удалось загрузить вложение"
 
-#: gsecrets/create_database.py:73
+#: gsecrets/create_database.py:68
 msgid "Unable to create database"
 msgstr "Невозможно создать базу данных"
 
-#: gsecrets/create_database.py:169
+#: gsecrets/create_database.py:166
 msgid "Passwords do not match"
 msgstr "Пароли не совпадают"
 
-#: gsecrets/create_database.py:199
+#: gsecrets/create_database.py:196
 msgid "Generating…"
 msgstr "Создание…"
 
-#: gsecrets/create_database.py:211
+#: gsecrets/create_database.py:208
 msgid "Could not create keyfile"
 msgstr "Не удалось создать файл-ключ"
 
-#: gsecrets/create_database.py:213
+#: gsecrets/create_database.py:210
 msgid "Generate"
 msgstr "Создать"
 
@@ -1332,7 +1333,7 @@ msgstr "Клон"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:291 gsecrets/unlocked_database.py:572
-#: gsecrets/widgets/window.py:340 gsecrets/widgets/window.py:346
+#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
 msgid "Could not save Safe"
 msgstr "Не удалось сохранить сейф"
 
@@ -1586,23 +1587,27 @@ msgstr "Любой тип файлов"
 msgid "Select Safe"
 msgstr "Выбрать сейф"
 
-#: gsecrets/widgets/window.py:176
+#: gsecrets/widgets/window.py:144
+msgid "File does not have a valid path"
+msgstr "Нет корректного пути к файлу"
+
+#: gsecrets/widgets/window.py:178
 msgid "Safe is already open"
 msgstr "Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "_Create"
 msgstr "_Создать"
 
-#: gsecrets/widgets/window.py:229
+#: gsecrets/widgets/window.py:231
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Не удалось создать сейф: Сейф уже открыт"
 
-#: gsecrets/widgets/window.py:271 gsecrets/widgets/window.py:286
+#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
 msgid "Could not create new Safe"
 msgstr "Не удалось создать новый сейф"
 
-#: gsecrets/widgets/window.py:353
+#: gsecrets/widgets/window.py:355
 msgid "Could not save safe"
 msgstr "Не удалось сохранить сейф"
 

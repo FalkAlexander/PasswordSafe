@@ -199,8 +199,15 @@ class UnlockedDatabase(Adw.Bin):
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
-        page_name = group.uuid.urn
+        self._unlocked_db_stack.set_visible_child(self._stack)
+        if self._navigation_view.props.visible_page == self._edit_page:
+            # pop triggers _on_edit_page_hidden via the hidden signal.
+            self._navigation_view.pop()
+        else:
+            self._set_current_element_after_pop(group)
 
+    def _set_current_element_after_pop(self, group):
+        page_name = group.uuid.urn
         if page := self._stack.get_child_by_name(page_name):
             self.props.current_element = page.group
         else:
@@ -208,8 +215,6 @@ class UnlockedDatabase(Adw.Bin):
             new_page = UnlockedDatabasePage(self, group)
             self._stack.add_named(new_page, page_name)
 
-        self._unlocked_db_stack.set_visible_child(self._stack)
-        self._navigation_view.pop()
         if not self.props.selection_mode:
             self.props.mode = self.Mode.GROUP
 
@@ -669,5 +674,6 @@ class UnlockedDatabase(Adw.Bin):
 
     @Gtk.Template.Callback()
     def _on_edit_page_hidden(self, _page):
-        if not self.props.selection_mode:
-            self.props.mode = self.Mode.GROUP
+        # Makes sure that current_element is set correctly.
+        parent = self.props.current_element.parentgroup
+        self._set_current_element_after_pop(parent)

@@ -58,6 +58,9 @@
             </child>
             <child type="top">
               <object class="GtkSearchBar" id="_search_bar">
+                <accessibility>
+                  <relation name="labelled-by">_search_button</relation>
+                </accessibility>
                 <child>
                   <object class="GtkSearchEntry" id="search_entry">
                     <property name="width_chars">26</property>
@@ -75,6 +78,9 @@
                     <property name="wrap_mode">word</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
+                    <accessibility>
+                      <relation name="labelled-by">NotesDialog</relation>
+                    </accessibility>
                   </object>
                 </child>
               </object>

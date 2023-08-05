@@ -10,6 +10,9 @@
         <property name="column-spacing">6</property>
         <property name="selection-mode">single</property>
         <signal name="child-activated" handler="_on_color_activated" swapped="no"/>
+        <accessibility>
+          <relation name="labelled-by">ColorEntryRow</relation>
+        </accessibility>
       </object>
     </child>
   </template>

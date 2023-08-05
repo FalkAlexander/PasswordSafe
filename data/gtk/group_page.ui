@@ -31,7 +31,7 @@
               </object>
             </child>
             <child>
-              <object class="AdwPreferencesGroup">
+              <object class="AdwPreferencesGroup" id="notes_group">
                 <property name="title" translatable="yes">Notes</property>
                 <property name="header_suffix">
                   <object class="GtkButton" id="notes_detach_button">
@@ -53,6 +53,9 @@
                         <style>
                           <class name="inline"/>
                         </style>
+                        <accessibility>
+                          <relation name="labelled-by">notes_group</relation>
+                        </accessibility>
                       </object>
                     </child>
                     <style>

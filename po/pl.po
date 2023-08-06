@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-23 23:05+0000\n"
-"PO-Revision-Date: 2023-06-25 13:25+0200\n"
+"POT-Creation-Date: 2023-07-23 13:55+0000\n"
+"PO-Revision-Date: 2023-08-06 15:07+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -106,7 +106,7 @@ msgstr "Kolor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:206
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
 msgid "Create Safe"
 msgstr "Utworzenie sejfu"
 
@@ -185,12 +185,12 @@ msgstr "Sprawdzenie się nie powiodło"
 msgid "Please try again."
 msgstr "Proszę spróbować ponownie."
 
-#: data/gtk/create_database.ui:209 gsecrets/create_database.py:61
+#: data/gtk/create_database.ui:209 gsecrets/create_database.py:255
 msgid "_Confirm"
 msgstr "_Potwierdź"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:230 gsecrets/create_database.py:182
+#: data/gtk/create_database.ui:230 gsecrets/create_database.py:179
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "Utworzenie pliku klucza"
@@ -201,7 +201,7 @@ msgstr "Ustawienie pliku klucza dla sejfu"
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:234 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:183
+#: gsecrets/create_database.py:180
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_Utwórz"
@@ -262,7 +262,7 @@ msgstr "Potwierdzenie nowego hasła"
 msgid "Current Password"
 msgstr "Obecne hasło"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Plik klucza"
@@ -271,72 +271,72 @@ msgstr "Plik klucza"
 msgid "_Select current keyfile if any"
 msgstr "_Wybór obecnego pliku klucza, jeśli jakiś istnieje"
 
-#: data/gtk/database_settings_dialog.ui:124
+#: data/gtk/database_settings_dialog.ui:125
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Opcjonalne) _Utworzenie nowego pliku klucza"
 
-#: data/gtk/database_settings_dialog.ui:142
+#: data/gtk/database_settings_dialog.ui:143
 msgid "Could not Load Keyfile"
 msgstr "Nie można wczytać pliku klucza"
 
-#: data/gtk/database_settings_dialog.ui:152
+#: data/gtk/database_settings_dialog.ui:153
 #: gsecrets/widgets/database_settings_dialog.py:258
 #: gsecrets/widgets/database_settings_dialog.py:301
 msgid "_Apply Changes"
 msgstr "_Zastosuj zmiany"
 
-#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Ogólne"
 
-#: data/gtk/database_settings_dialog.ui:173
+#: data/gtk/database_settings_dialog.ui:174
 msgid "Details"
 msgstr "Szczegóły"
 
-#: data/gtk/database_settings_dialog.ui:176
+#: data/gtk/database_settings_dialog.ui:177
 msgid "Safe Name"
 msgstr "Nazwa sejfu"
 
-#: data/gtk/database_settings_dialog.ui:184
+#: data/gtk/database_settings_dialog.ui:185
 msgid "Path"
 msgstr "Ścieżka"
 
-#: data/gtk/database_settings_dialog.ui:193
+#: data/gtk/database_settings_dialog.ui:194
 msgid "File Size"
 msgstr "Rozmiar pliku"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:201
+#: data/gtk/database_settings_dialog.ui:202
 msgid "KeePass Version"
 msgstr "Wersja KeePass"
 
-#: data/gtk/database_settings_dialog.ui:209
+#: data/gtk/database_settings_dialog.ui:210
 msgid "Creation Date"
 msgstr "Data utworzenia"
 
-#: data/gtk/database_settings_dialog.ui:217
+#: data/gtk/database_settings_dialog.ui:218
 msgid "Encryption Algorithm"
 msgstr "Algorytm szyfrowania"
 
-#: data/gtk/database_settings_dialog.ui:225
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Derivation Algorithm"
 msgstr "Algorytm różniczkowania"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:235
+#: data/gtk/database_settings_dialog.ui:236
 msgid "Stats"
 msgstr "Statystyki"
 
-#: data/gtk/database_settings_dialog.ui:238
+#: data/gtk/database_settings_dialog.ui:239
 msgid "Number of Entries"
 msgstr "Liczba wpisów"
 
-#: data/gtk/database_settings_dialog.ui:246
+#: data/gtk/database_settings_dialog.ui:247
 msgid "Number of Groups"
 msgstr "Liczba grup"
 
-#: data/gtk/database_settings_dialog.ui:254
+#: data/gtk/database_settings_dialog.ui:255
 msgid "Passwords"
 msgstr "Hasła"
 
@@ -435,11 +435,11 @@ msgstr "_Usuń"
 msgid "Select"
 msgstr "Zaznacza"
 
-#: data/gtk/entry_row.ui:54
+#: data/gtk/entry_row.ui:55
 msgid "Copy Username"
 msgstr "Kopiuje nazwę użytkownika"
 
-#: data/gtk/entry_row.ui:64
+#: data/gtk/entry_row.ui:65
 msgid "Copy Password"
 msgstr "Kopiuje hasło"
 
@@ -463,7 +463,7 @@ msgstr "_Ustaw datę wygaśnięcia"
 msgid "Group Menu"
 msgstr "Menu grupy"
 
-#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
+#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:46
 msgid "Edit"
 msgstr "Modyfikuje"
 
@@ -598,7 +598,8 @@ msgid "_Copy"
 msgstr "S_kopiuj"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:64
+#: data/gtk/unlocked_database.ui:22 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Wyszukuje"
 
@@ -775,7 +776,7 @@ msgstr "Ponowne otwieranie ostatnio otwartego sejfu."
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
 #: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
-#: gsecrets/widgets/window.py:198 gsecrets/widgets/window.py:210
+#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
 msgid "Safe"
 msgstr "Sejf"
 
@@ -1188,23 +1189,23 @@ msgstr "Błąd: sejf {} jest już otwarty"
 msgid "Could not load attachment"
 msgstr "Nie można wczytać załącznika"
 
-#: gsecrets/create_database.py:73
+#: gsecrets/create_database.py:68
 msgid "Unable to create database"
 msgstr "Nie można utworzyć bazy danych"
 
-#: gsecrets/create_database.py:169
+#: gsecrets/create_database.py:166
 msgid "Passwords do not match"
 msgstr "Hasła się nie zgadzają"
 
-#: gsecrets/create_database.py:199
+#: gsecrets/create_database.py:196
 msgid "Generating…"
 msgstr "Tworzenie…"
 
-#: gsecrets/create_database.py:211
+#: gsecrets/create_database.py:208
 msgid "Could not create keyfile"
 msgstr "Nie można utworzyć pliku klucza"
 
-#: gsecrets/create_database.py:213
+#: gsecrets/create_database.py:210
 msgid "Generate"
 msgstr "Utwórz"
 
@@ -1329,7 +1330,7 @@ msgstr "Kopia"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:291 gsecrets/unlocked_database.py:572
-#: gsecrets/widgets/window.py:340 gsecrets/widgets/window.py:346
+#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
 msgid "Could not save Safe"
 msgstr "Nie można zapisać sejfu"
 
@@ -1583,22 +1584,26 @@ msgstr "Dowolny typ pliku"
 msgid "Select Safe"
 msgstr "Wybór sejfu"
 
-#: gsecrets/widgets/window.py:176
+#: gsecrets/widgets/window.py:144
+msgid "File does not have a valid path"
+msgstr "Plik nie ma prawidłowej ścieżki"
+
+#: gsecrets/widgets/window.py:178
 msgid "Safe is already open"
 msgstr "Sejf jest już otwarty"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "_Create"
 msgstr "_Utwórz"
 
-#: gsecrets/widgets/window.py:229
+#: gsecrets/widgets/window.py:231
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Nie można utworzyć sejfu: sejf jest już otwarty"
 
-#: gsecrets/widgets/window.py:271 gsecrets/widgets/window.py:286
+#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
 msgid "Could not create new Safe"
 msgstr "Nie można utworzyć nowego sejfu"
 
-#: gsecrets/widgets/window.py:353
+#: gsecrets/widgets/window.py:355
 msgid "Could not save safe"
 msgstr "Nie można zapisać sejfu"

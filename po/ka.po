@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-06-23 23:05+0000\n"
-"PO-Revision-Date: 2023-06-24 07:59+0200\n"
+"POT-Creation-Date: 2023-07-23 13:55+0000\n"
+"PO-Revision-Date: 2023-08-23 07:44+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -103,7 +103,7 @@ msgstr "ფერი"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:206
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
 msgid "Create Safe"
 msgstr "სეიფის შექმნა"
 
@@ -182,12 +182,12 @@ msgstr "პაროლის დამთხვევის შემოწმ�
 msgid "Please try again."
 msgstr "კიდევ სცადეთ."
 
-#: data/gtk/create_database.ui:209 gsecrets/create_database.py:61
+#: data/gtk/create_database.ui:209 gsecrets/create_database.py:255
 msgid "_Confirm"
 msgstr "_დადასტურება"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:230 gsecrets/create_database.py:182
+#: data/gtk/create_database.ui:230 gsecrets/create_database.py:179
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "გასაღების ფაილის გენერაცია"
@@ -198,7 +198,7 @@ msgstr "სეიფზე გასაღების ფაილის მი
 
 #. Button to generate a password
 #: data/gtk/create_database.ui:234 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:183
+#: gsecrets/create_database.py:180
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_გენერაცია"
@@ -259,7 +259,7 @@ msgstr "პაროლი (დადასტურება)"
 msgid "Current Password"
 msgstr "მიმდინარე პაროლი"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "გასაღების ფაილი"
@@ -268,72 +268,72 @@ msgstr "გასაღების ფაილი"
 msgid "_Select current keyfile if any"
 msgstr "არსებობის განმავლობაში აირჩიეთ გასაღების მიმდინარე ფაილი"
 
-#: data/gtk/database_settings_dialog.ui:124
+#: data/gtk/database_settings_dialog.ui:125
 msgid "(Optional) _Generate new keyfile"
 msgstr "(არასავალდებულო) _გასაღების ახალი ფაილის გენერაცია"
 
-#: data/gtk/database_settings_dialog.ui:142
+#: data/gtk/database_settings_dialog.ui:143
 msgid "Could not Load Keyfile"
 msgstr "გასაღების ფაილის ჩატვირთვის შეცდომა"
 
-#: data/gtk/database_settings_dialog.ui:152
+#: data/gtk/database_settings_dialog.ui:153
 #: gsecrets/widgets/database_settings_dialog.py:258
 #: gsecrets/widgets/database_settings_dialog.py:301
 msgid "_Apply Changes"
 msgstr "_ცვლილებების გადატარება"
 
-#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "მთავარი"
 
-#: data/gtk/database_settings_dialog.ui:173
+#: data/gtk/database_settings_dialog.ui:174
 msgid "Details"
 msgstr "დეტალები"
 
-#: data/gtk/database_settings_dialog.ui:176
+#: data/gtk/database_settings_dialog.ui:177
 msgid "Safe Name"
 msgstr "სეიფის სახელი"
 
-#: data/gtk/database_settings_dialog.ui:184
+#: data/gtk/database_settings_dialog.ui:185
 msgid "Path"
 msgstr "მისამართი"
 
-#: data/gtk/database_settings_dialog.ui:193
+#: data/gtk/database_settings_dialog.ui:194
 msgid "File Size"
 msgstr "ფაილის ზომა"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:201
+#: data/gtk/database_settings_dialog.ui:202
 msgid "KeePass Version"
 msgstr "KeePass-ის ვერსია"
 
-#: data/gtk/database_settings_dialog.ui:209
+#: data/gtk/database_settings_dialog.ui:210
 msgid "Creation Date"
 msgstr "შეცვლის თარიღის მიხედვით"
 
-#: data/gtk/database_settings_dialog.ui:217
+#: data/gtk/database_settings_dialog.ui:218
 msgid "Encryption Algorithm"
 msgstr "დაშიფვრის ალგორითმი"
 
-#: data/gtk/database_settings_dialog.ui:225
+#: data/gtk/database_settings_dialog.ui:226
 msgid "Derivation Algorithm"
 msgstr "ყურადღების გადასატანი ალგორითმი"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:235
+#: data/gtk/database_settings_dialog.ui:236
 msgid "Stats"
 msgstr "სტატისტიკა"
 
-#: data/gtk/database_settings_dialog.ui:238
+#: data/gtk/database_settings_dialog.ui:239
 msgid "Number of Entries"
 msgstr "ჩანაწერების რაოდენობა"
 
-#: data/gtk/database_settings_dialog.ui:246
+#: data/gtk/database_settings_dialog.ui:247
 msgid "Number of Groups"
 msgstr "ჯგუფების რაოდენობა"
 
-#: data/gtk/database_settings_dialog.ui:254
+#: data/gtk/database_settings_dialog.ui:255
 msgid "Passwords"
 msgstr "პაროლები"
 
@@ -432,11 +432,11 @@ msgstr "სამუ_დამოდ წაშლა"
 msgid "Select"
 msgstr "აირჩიეთ"
 
-#: data/gtk/entry_row.ui:54
+#: data/gtk/entry_row.ui:55
 msgid "Copy Username"
 msgstr "მომხმარებლის სახელის კოპირება"
 
-#: data/gtk/entry_row.ui:64
+#: data/gtk/entry_row.ui:65
 msgid "Copy Password"
 msgstr "პაროლის კოპირება"
 
@@ -460,7 +460,7 @@ msgstr "ვადის დაყენება"
 msgid "Group Menu"
 msgstr "ჯგუფის მენიუ"
 
-#: data/gtk/group_row.ui:52 data/gtk/unlocked_database.ui:45
+#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:46
 msgid "Edit"
 msgstr "რედაქტირება"
 
@@ -595,7 +595,8 @@ msgid "_Copy"
 msgstr "კოპირება"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:42 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:64
+#: data/gtk/unlocked_database.ui:22 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "ძებნა"
 
@@ -772,7 +773,7 @@ msgstr "ბოლოს გახსნილი სეიფის გახს
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
 #: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
-#: gsecrets/widgets/window.py:198 gsecrets/widgets/window.py:210
+#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
 msgid "Safe"
 msgstr "უსაფრთხო"
 
@@ -1181,23 +1182,23 @@ msgstr "შეცდომა: სეიფი უკვე ღიაა: {}"
 msgid "Could not load attachment"
 msgstr "მიმაგრებული ფაილის ჩატვირთვის შეცდომა"
 
-#: gsecrets/create_database.py:73
+#: gsecrets/create_database.py:68
 msgid "Unable to create database"
 msgstr "მონაცემთა ბაზის შექმნის შეცდომა"
 
-#: gsecrets/create_database.py:169
+#: gsecrets/create_database.py:166
 msgid "Passwords do not match"
 msgstr "პაროლები არ ემთხვევა"
 
-#: gsecrets/create_database.py:199
+#: gsecrets/create_database.py:196
 msgid "Generating…"
 msgstr "გენერაცია…"
 
-#: gsecrets/create_database.py:211
+#: gsecrets/create_database.py:208
 msgid "Could not create keyfile"
 msgstr "გასაღების ფაილის შექმნის შეცდომა"
 
-#: gsecrets/create_database.py:213
+#: gsecrets/create_database.py:210
 msgid "Generate"
 msgstr "გენერაცია"
 
@@ -1322,7 +1323,7 @@ msgstr "კლონირება"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:291 gsecrets/unlocked_database.py:572
-#: gsecrets/widgets/window.py:340 gsecrets/widgets/window.py:346
+#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
 msgid "Could not save Safe"
 msgstr "სეიფის შენახვის შეცდომა"
 
@@ -1573,23 +1574,27 @@ msgstr "ფაილის ნებისმიერი ტიპი"
 msgid "Select Safe"
 msgstr "აირჩიეთ სეიფი"
 
-#: gsecrets/widgets/window.py:176
+#: gsecrets/widgets/window.py:144
+msgid "File does not have a valid path"
+msgstr "ფაილის ბილიკი არასწორია"
+
+#: gsecrets/widgets/window.py:178
 msgid "Safe is already open"
 msgstr "სეიფი უკვე ღიაა"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:210
 msgid "_Create"
 msgstr "შექმნა"
 
-#: gsecrets/widgets/window.py:229
+#: gsecrets/widgets/window.py:231
 msgid "Cannot create Safe: Safe is already open"
 msgstr "სეიფის შექმნა შეუძლებელია: სეიფი უკვე ღიაა"
 
-#: gsecrets/widgets/window.py:271 gsecrets/widgets/window.py:286
+#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
 msgid "Could not create new Safe"
 msgstr "ახალი სეიფის შექმნის შეცდომა"
 
-#: gsecrets/widgets/window.py:353
+#: gsecrets/widgets/window.py:355
 msgid "Could not save safe"
 msgstr "სეიფის შენახვის შეცდომა"
 

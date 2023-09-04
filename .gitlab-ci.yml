@@ -12,7 +12,6 @@ variables:
     FLATPAK_MODULE: "secrets"
     APP_ID: "org.gnome.World.Secrets.Devel"
     RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
-    CONFIG_OPTS: "-Dtests=true"
 
 .flatpak_cache_template: &flatpak_cache
     cache:

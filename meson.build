@@ -72,11 +72,7 @@ gettext_package = meson.project_name()
 subdir('data')
 subdir('po')
 subdir('gsecrets')
-
-if get_option('tests')
-    pytest = find_program(['pytest', 'pytest-3'], required : true)
-    subdir('tests')
-endif
+subdir('tests')
 
 gnome.post_install(
   gtk_update_icon_cache: true,

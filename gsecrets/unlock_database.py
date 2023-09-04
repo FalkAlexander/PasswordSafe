@@ -12,6 +12,7 @@ import gsecrets.config_manager
 from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.unlocked_database import UnlockedDatabase
+from gsecrets.utils import compare_passwords
 
 if typing.TYPE_CHECKING:
     from gsecrets.widgets.window import Window
@@ -115,7 +116,7 @@ class UnlockDatabase(Adw.Bin):
             return
 
         if (
-            entered_pwd == self.database_manager.password
+            compare_passwords(entered_pwd, self.database_manager.password)
             and self.database_manager.keyfile_hash == self.keyfile_hash
         ):
             self.database_manager.props.locked = False

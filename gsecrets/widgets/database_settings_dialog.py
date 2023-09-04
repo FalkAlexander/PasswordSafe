@@ -10,7 +10,12 @@ from pathlib import Path
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets.utils import KeyFileFilter
-from gsecrets.utils import format_time, generate_keyfile_async, generate_keyfile_finish
+from gsecrets.utils import (
+    compare_passwords,
+    format_time,
+    generate_keyfile_async,
+    generate_keyfile_finish,
+)
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/database_settings_dialog.ui")
@@ -105,13 +110,16 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         current_hash = self.current_keyfile_hash
         current_password = self.current_password_entry.get_text()
 
-        return database_hash == current_hash and database_password == current_password
+        passwords_match = compare_passwords(database_password, current_password)
+        hashes_match = database_hash == current_hash
+
+        return hashes_match and passwords_match
 
     def passwords_coincide(self) -> bool:
         new_password = self.new_password_entry.get_text()
         repeat_password = self.confirm_password_entry.get_text()
 
-        return repeat_password == new_password and new_password
+        return compare_passwords(new_password, repeat_password)
 
     @Gtk.Template.Callback()
     def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:

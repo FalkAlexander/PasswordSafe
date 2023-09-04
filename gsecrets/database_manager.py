@@ -11,6 +11,7 @@ from pykeepass import PyKeePass
 
 import gsecrets.config_manager as config
 from gsecrets.safe_element import SafeEntry, SafeGroup
+from gsecrets.utils import compare_passwords
 
 QUARK = GLib.quark_from_string("secrets")
 
@@ -356,9 +357,7 @@ class DatabaseManager(GObject.Object):
         It also does not allow empty passwords.
         :returns: True if passwords match and are non-empty.
         """
-        if password2 and self.password_try == password2:
-            return True
-        return False
+        return compare_passwords(self.password_try, password2)
 
     def parent_checker(self, current_group, moved_group):
         """Returns True if moved_group is an ancestor of current_group"""

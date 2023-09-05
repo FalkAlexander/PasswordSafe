@@ -12,6 +12,8 @@ from gsecrets.safe_element import SafeEntry, SafeGroup
 from gsecrets.sorting import SortingHat
 
 if typing.TYPE_CHECKING:
+    import uuid
+
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.unlocked_database import UnlockedDatabase
 
@@ -47,6 +49,20 @@ class Search(Adw.Bin):
         self.results_groups_filter = Gtk.FilterListModel.new(
             self._db_manager.groups, None
         )
+
+        # Parameters of the previous search query
+        self.query: str = ""
+        self.db_groups: list[uuid.UUID] = []
+        self.db_entries: list[uuid.UUID] = []
+
+        def entry_filter(element: SafeEntry) -> bool:
+            return element.uuid in self.db_entries
+
+        def group_filter(element: SafeGroup) -> bool:
+            return element.uuid in self.db_groups
+
+        self.entry_filter = Gtk.CustomFilter.new(entry_filter)
+        self.group_filter = Gtk.CustomFilter.new(group_filter)
 
         # Sort the results
         sorting = SortingHat.SortOrder.ASC
@@ -102,6 +118,8 @@ class Search(Adw.Bin):
                 "search-changed", self._on_search_changed
             )
             self._search_entry.grab_focus()
+            self.results_entries_filter.set_filter(self.entry_filter)
+            self.results_groups_filter.set_filter(self.group_filter)
 
         else:
             if self._search_changed_id is not None:
@@ -159,9 +177,20 @@ class Search(Adw.Bin):
             if not g.is_root_group
         ]
 
-        GLib.idle_add(self._show_results, db_groups, db_entries)
+        if query in self.query:
+            change = Gtk.FilterChange.LESS_STRICT
+        if self.query and self.query in query:
+            change = Gtk.FilterChange.MORE_STRICT
+        else:
+            change = Gtk.FilterChange.DIFFERENT
 
-    def _show_results(self, db_groups, db_entries):
+        self.db_groups = db_groups
+        self.db_entries = db_entries
+        self.query = query
+
+        GLib.idle_add(self._show_results, db_groups, db_entries, change)
+
+    def _show_results(self, db_groups, db_entries, change):
         if not db_groups and not db_entries:
             if len(self._search_text) < 2:
                 self.stack.set_visible_child(self._info_search_page)
@@ -170,15 +199,8 @@ class Search(Adw.Bin):
 
             return GLib.SOURCE_REMOVE
 
-        def filter_func(element: SafeEntry | SafeGroup) -> bool:
-            if element.is_group:
-                return element.uuid in db_groups
-
-            return element.uuid in db_entries
-
-        filter_ = Gtk.CustomFilter.new(filter_func)
-        self.results_groups_filter.set_filter(filter_)
-        self.results_entries_filter.set_filter(filter_)
+        self.entry_filter.changed(change)
+        self.group_filter.changed(change)
 
         self.stack.set_visible_child(self._results_search_page)
 

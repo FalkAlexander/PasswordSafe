@@ -64,6 +64,9 @@ class Search(Adw.Bin):
         self.entry_filter = Gtk.CustomFilter.new(entry_filter)
         self.group_filter = Gtk.CustomFilter.new(group_filter)
 
+        self.results_entries_filter.set_filter(self.entry_filter)
+        self.results_groups_filter.set_filter(self.group_filter)
+
         # Sort the results
         sorting = SortingHat.SortOrder.ASC
         sorter = SortingHat.get_sorter(sorting)
@@ -118,8 +121,6 @@ class Search(Adw.Bin):
                 "search-changed", self._on_search_changed
             )
             self._search_entry.grab_focus()
-            self.results_entries_filter.set_filter(self.entry_filter)
-            self.results_groups_filter.set_filter(self.group_filter)
 
         else:
             if self._search_changed_id is not None:
@@ -127,8 +128,6 @@ class Search(Adw.Bin):
                 self._search_changed_id = None
 
             self._search_entry.props.text = ""
-            self.results_entries_filter.set_filter(None)
-            self.results_groups_filter.set_filter(None)
             self.stack.set_visible_child(self._info_search_page)
 
     def _prepare_search_page(self):

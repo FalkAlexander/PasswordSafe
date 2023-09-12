@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-07-23 13:55+0000\n"
-"PO-Revision-Date: 2023-09-02 11:34+0800\n"
+"POT-Creation-Date: 2023-09-04 20:59+0000\n"
+"PO-Revision-Date: 2023-09-11 16:31+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -147,7 +147,7 @@ msgstr "组合(_C)"
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr "组合使用密码和密钥文件保护您的保险箱。"
 
-#: data/gtk/create_database.ui:86
+#: data/gtk/create_database.ui:86 data/gtk/create_database.ui:200
 msgid "Enter Password"
 msgstr "输入密码"
 
@@ -155,76 +155,80 @@ msgstr "输入密码"
 msgid "Set password for safe."
 msgstr "设置保险箱密码。"
 
-#: data/gtk/create_database.ui:106 data/gtk/credentials_group.ui:43
+#: data/gtk/create_database.ui:109 data/gtk/credentials_group.ui:43
 #: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "生成新密码"
 
-#: data/gtk/create_database.ui:119
+#: data/gtk/create_database.ui:122
 msgid "Next"
 msgstr "下一步"
 
-#: data/gtk/create_database.ui:145
+#: data/gtk/create_database.ui:148
 msgid "Password Match Check"
 msgstr "密码匹配检查"
 
-#: data/gtk/create_database.ui:146
+#: data/gtk/create_database.ui:149
 msgid "Repeat password for safe."
 msgstr "重复保险箱密码。"
 
-#: data/gtk/create_database.ui:160
+#: data/gtk/create_database.ui:166
 msgid "Check"
 msgstr "检查"
 
-#: data/gtk/create_database.ui:179
+#: data/gtk/create_database.ui:185
 msgid "Match Check Failed"
 msgstr "匹配检查失败"
 
-#: data/gtk/create_database.ui:180
+#: data/gtk/create_database.ui:186
 msgid "Please try again."
 msgstr "请重试。"
 
-#: data/gtk/create_database.ui:209 gsecrets/create_database.py:255
+#: data/gtk/create_database.ui:210
+msgid "Repeat Password"
+msgstr "重复密码"
+
+#: data/gtk/create_database.ui:221 gsecrets/create_database.py:256
 msgid "_Confirm"
 msgstr "确认(_C)"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:230 gsecrets/create_database.py:179
+#: data/gtk/create_database.ui:242 gsecrets/create_database.py:180
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "生成密钥文件"
 
-#: data/gtk/create_database.ui:231
+#: data/gtk/create_database.ui:243
 msgid "Set keyfile for safe"
 msgstr "设置保险箱密钥文件"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:234 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:180
+#: data/gtk/create_database.ui:246 data/gtk/password_generator_popover.ui:132
+#: gsecrets/create_database.py:181
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "生成(_G)"
 
-#: data/gtk/create_database.ui:254
+#: data/gtk/create_database.ui:266
 msgid "Safe Successfully Created"
 msgstr "保险箱创建成功"
 
-#: data/gtk/create_database.ui:257 data/gtk/unlocked_headerbar.ui:84
+#: data/gtk/create_database.ui:269 data/gtk/unlocked_headerbar.ui:84
 msgid "_Open Safe"
 msgstr "打开保险箱(_O)"
 
-#: data/gtk/create_database.ui:279 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:95
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: data/gtk/create_database.ui:283 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:99
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:287 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:103
 msgid "_About Secrets"
 msgstr "关于秘密(_A)"
@@ -234,8 +238,8 @@ msgid "_Username"
 msgstr "用户名(_U)"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:143
-#: data/gtk/history_row.ui:25
+#: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
+#: data/gtk/history_row.ui:25 data/gtk/references_dialog.ui:360
 msgid "Copy"
 msgstr "复制"
 
@@ -261,7 +265,7 @@ msgstr "确认新密码"
 msgid "Current Password"
 msgstr "当前密码"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:181
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:182
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "密钥文件"
@@ -306,36 +310,36 @@ msgid "File Size"
 msgstr "文件大小"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:202
+#: data/gtk/database_settings_dialog.ui:203
 msgid "KeePass Version"
 msgstr "KeePass 版本"
 
-#: data/gtk/database_settings_dialog.ui:210
+#: data/gtk/database_settings_dialog.ui:212
 msgid "Creation Date"
 msgstr "创建日期"
 
-#: data/gtk/database_settings_dialog.ui:218
+#: data/gtk/database_settings_dialog.ui:220
 msgid "Encryption Algorithm"
 msgstr "加密算法"
 
-#: data/gtk/database_settings_dialog.ui:226
+#: data/gtk/database_settings_dialog.ui:228
 msgid "Derivation Algorithm"
 msgstr "派生算法"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:236
+#: data/gtk/database_settings_dialog.ui:238
 msgid "Stats"
 msgstr "统计信息"
 
-#: data/gtk/database_settings_dialog.ui:239
+#: data/gtk/database_settings_dialog.ui:241
 msgid "Number of Entries"
 msgstr "项数"
 
-#: data/gtk/database_settings_dialog.ui:247
+#: data/gtk/database_settings_dialog.ui:250
 msgid "Number of Groups"
 msgstr "组数"
 
-#: data/gtk/database_settings_dialog.ui:255
+#: data/gtk/database_settings_dialog.ui:259
 msgid "Passwords"
 msgstr "密码"
 
@@ -360,73 +364,73 @@ msgstr "打开地址"
 msgid "One-Time Password"
 msgstr "动态口令"
 
-#: data/gtk/entry_page.ui:155
+#: data/gtk/entry_page.ui:156
 msgid "One-_Time Password Secret"
 msgstr "动态口令秘密(_T)"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:163
+#: data/gtk/entry_page.ui:164
 msgid "Could not Generate OTP Token"
 msgstr "无法生成动态口令令牌"
 
-#: data/gtk/entry_page.ui:171 data/gtk/group_page.ui:35
+#: data/gtk/entry_page.ui:172 data/gtk/group_page.ui:35
 #: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "备注"
 
-#: data/gtk/entry_page.ui:175 data/gtk/group_page.ui:39
+#: data/gtk/entry_page.ui:176 data/gtk/group_page.ui:39
 msgid "Edit in a Window"
 msgstr "在窗口中编辑"
 
-#: data/gtk/entry_page.ui:210
+#: data/gtk/entry_page.ui:217
 msgid "Icon"
 msgstr "图标"
 
-#: data/gtk/entry_page.ui:227
+#: data/gtk/entry_page.ui:237
 msgid "Attachments"
 msgstr "附件"
 
-#: data/gtk/entry_page.ui:231
+#: data/gtk/entry_page.ui:241
 msgid "_Add Attachment"
 msgstr "添加附件(_A)"
 
-#: data/gtk/entry_page.ui:240
+#: data/gtk/entry_page.ui:250
 msgid "Attributes"
 msgstr "属性"
 
-#: data/gtk/entry_page.ui:245
+#: data/gtk/entry_page.ui:255
 msgid "_Add Attribute"
 msgstr "添加属性(_A)"
 
-#: data/gtk/entry_page.ui:253
+#: data/gtk/entry_page.ui:263
 msgid "Expiration Date"
 msgstr "过期日期"
 
-#: data/gtk/entry_page.ui:269
+#: data/gtk/entry_page.ui:279
 msgid "_Show More"
 msgstr "显示更多(_S)"
 
-#: data/gtk/entry_page.ui:288
+#: data/gtk/entry_page.ui:298
 msgid "D_uplicate"
 msgstr "复制(_U)"
 
-#: data/gtk/entry_page.ui:292
+#: data/gtk/entry_page.ui:302
 msgid "_References"
 msgstr "引用(_R)"
 
-#: data/gtk/entry_page.ui:296 data/gtk/group_page.ui:73
+#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:79
 msgid "_Properties"
 msgstr "属性(_P)"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:312
 msgid "_Save in History"
 msgstr "保存到历史(_S)"
 
-#: data/gtk/entry_page.ui:306
+#: data/gtk/entry_page.ui:316
 msgid "Show _History"
 msgstr "显示历史(_H)"
 
-#: data/gtk/entry_page.ui:312 data/gtk/group_page.ui:79
+#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:85
 msgid "_Delete"
 msgstr "删除(_D)"
 
@@ -462,7 +466,7 @@ msgstr "设置过期日期(_S)"
 msgid "Group Menu"
 msgstr "分组菜单"
 
-#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:46
+#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:52
 msgid "Edit"
 msgstr "编辑"
 
@@ -597,8 +601,9 @@ msgid "_Copy"
 msgstr "复制(_C)"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:64
-#: data/gtk/unlocked_database.ui:22 data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:67
+#: data/gtk/unlocked_database.ui:17 data/gtk/unlocked_database.ui:25
+#: data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "搜索"
 
@@ -630,11 +635,11 @@ msgstr "UUID"
 msgid "Accessed"
 msgstr "访问时间"
 
-#: data/gtk/properties_dialog.ui:55
+#: data/gtk/properties_dialog.ui:56
 msgid "Modified"
 msgstr "修改时间"
 
-#: data/gtk/properties_dialog.ui:63
+#: data/gtk/properties_dialog.ui:65
 msgid "Created"
 msgstr "创建时间"
 
@@ -691,7 +696,7 @@ msgstr "标识符"
 msgid "Reference"
 msgstr "引用"
 
-#: data/gtk/references_dialog.ui:379
+#: data/gtk/references_dialog.ui:380
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -785,7 +790,7 @@ msgstr "自动保存(_S)"
 msgid "Save every change automatically."
 msgstr "自动保存所有更改。"
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:34
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:37
 msgid "Unlock"
 msgstr "解锁"
 
@@ -853,7 +858,7 @@ msgid "Passphrase Length"
 msgstr "密码短语长度"
 
 #: data/gtk/settings_dialog.ui:113
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "生成密码短语时要使用的单词数量。"
 
@@ -874,22 +879,30 @@ msgid "Lock safe on idle after X minutes."
 msgstr "在空闲几分钟后锁定保险箱。"
 
 #: data/gtk/settings_dialog.ui:158
+msgid "Lock on _Session Lock"
+msgstr "在会话锁定时锁定(_S)"
+
+#: data/gtk/settings_dialog.ui:159
+msgid "Automatically lock when the session is locked."
+msgstr "当会话锁定时自动锁定。"
+
+#: data/gtk/settings_dialog.ui:166
 msgid "Clear Clipboard"
 msgstr "清除剪贴板"
 
-#: data/gtk/settings_dialog.ui:159
+#: data/gtk/settings_dialog.ui:167
 msgid "Clear clipboard after X seconds."
 msgstr "在几秒后清除剪贴板。"
 
-#: data/gtk/settings_dialog.ui:173
+#: data/gtk/settings_dialog.ui:181
 msgid "Clear Recent List"
 msgstr "清除最近列表"
 
-#: data/gtk/settings_dialog.ui:174
+#: data/gtk/settings_dialog.ui:182
 msgid "Clear the recently opened safes list."
 msgstr "清除最近打开的保险箱列表。"
 
-#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:91
+#: data/gtk/settings_dialog.ui:189 data/gtk/unlock_database.ui:94
 msgid "Clear"
 msgstr "清空"
 
@@ -897,7 +910,7 @@ msgstr "清空"
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
 
-#: data/gtk/unlock_database.ui:65 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:68 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "选择密钥文件(_S)"
 
@@ -985,159 +998,167 @@ msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;加密;保护;密码;安全;"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Lock on session lock"
+msgstr "在会话锁定时锁定"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock the safe when the session is locked."
+msgstr "当会话锁定时自动锁定保险箱。"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
 msgstr "重新打开上次打开的数据库"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
 "Automatically open the unlock screen of the last opened database, otherwise "
 "show the welcome screen."
 msgstr "自动打开上一次打开的数据库的解锁界面，否则显示欢迎界面。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:17
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Save every change automatically"
 msgstr "自动保存所有更改"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:18
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
 msgid ""
 "Save every change you made instantly into the database. Please note that you "
 "cannot revert changes if Autosave is enabled."
 msgstr ""
 "将您做出的每个更改立即保存到数据库。请注意在启用自动保存时，您无法还原更改。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:22
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
 msgid "Lock database after X minutes"
 msgstr "在几分钟后锁定数据库"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:23
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
 msgid ""
 "Automatically lock your database after a given amount of minutes to improve "
 "the security."
 msgstr "在给定的分钟数后自动锁定您的数据库，以提升安全性。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:27
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Clear clipboard after X seconds"
 msgstr "在几秒后清除剪贴板"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:28
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr "出于安全考虑，在复制密码后清除剪贴板。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:32
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
 msgstr "窗口大小"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:33
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
 msgid "Remember the window size."
 msgstr "记住窗口大小。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:37
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
 msgid "Last opened database"
 msgstr "上次打开的数据库"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:38
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
 msgid "Path to the last opened database."
 msgstr "上一次打开的数据库的路径。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:42
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
 msgid "Last opened databases"
 msgstr "上次打开的数据库"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:43
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "A list of the last opened databases."
 msgstr "上一次打开的数据库的列表。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:47
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
 msgstr "记住组合密钥"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Remember last used composite key for database unlocking."
 msgstr "记住上一次解锁数据库使用的组合密钥。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Last used composite key"
 msgstr "上次使用的组合密钥"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Path to last used key for composite database unlocking."
 msgstr "上一次解锁数据库所用组合密钥的路径。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
 msgstr "记住解锁方式"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid "Remember last used unlock method for future database unlocking."
 msgstr "记住上一次使用的解锁方式，用于之后的数据库解锁。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Backup the database on unlock"
 msgstr "解锁时备份数据库"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
 msgstr "如果在保存数据库时出错，可以在 ~/.cache/secrets/backups 找到备份"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Sorting order of groups and entries"
 msgstr "分组和项目的排列顺序"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Order of the rows in the groups and entries view."
 msgstr "分组和项目视图中的行顺序。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use uppercases when generating a password"
 msgstr "生成密码时使用大写字母"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr "生成随机密码时使用大写字符 A-Z。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use lowercases when generating a password"
 msgstr "生成密码时使用小写字母"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr "生成随机密码时使用小写字符 a-z。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use numbers when generating a password"
 msgstr "生成密码时使用数字"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr "生成随机密码时使用数字 0-9 字符。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Use symbols when generating a password"
 msgstr "生成密码时使用符号"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr "生成随机密码时使用非字母或数字的 ASCII 符号。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Password length when generating a password"
 msgstr "生成密码时的密码长度"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of single characters when generating a password."
 msgstr "生成密码时单个字符的数量。"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Number of words when generating a passphrase"
 msgstr "生成密码短语时的单词数量"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:107
 msgid "Separator when generating a passphrase"
 msgstr "生成密码短语时的分隔符"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
 msgid "Word separator to use when generating a passphrase."
 msgstr "生成密码短语时要使用的单词分隔符。"
 
@@ -1171,23 +1192,23 @@ msgstr "错误：保险箱 {} 已打开"
 msgid "Could not load attachment"
 msgstr "无法加载附件"
 
-#: gsecrets/create_database.py:68
+#: gsecrets/create_database.py:69
 msgid "Unable to create database"
 msgstr "无法创建数据库"
 
-#: gsecrets/create_database.py:166
+#: gsecrets/create_database.py:167
 msgid "Passwords do not match"
 msgstr "密码不匹配"
 
-#: gsecrets/create_database.py:196
+#: gsecrets/create_database.py:197
 msgid "Generating…"
 msgstr "正在生成…"
 
-#: gsecrets/create_database.py:208
+#: gsecrets/create_database.py:209
 msgid "Could not create keyfile"
 msgstr "无法创建密钥文件"
 
-#: gsecrets/create_database.py:210
+#: gsecrets/create_database.py:211
 msgid "Generate"
 msgstr "生成"
 
@@ -1311,7 +1332,7 @@ msgstr "克隆"
 
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
-#: gsecrets/unlocked_database.py:291 gsecrets/unlocked_database.py:572
+#: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
 #: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
@@ -1333,38 +1354,38 @@ msgstr "保险箱解锁失败"
 msgid "_Try Again"
 msgstr "重试(_T)"
 
-#: gsecrets/unlocked_database.py:294
+#: gsecrets/unlocked_database.py:299
 msgid "Safe saved"
 msgstr "保险箱已保存"
 
-#: gsecrets/unlocked_database.py:296
+#: gsecrets/unlocked_database.py:301
 msgid "No changes made"
 msgstr "未作更改"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:341
+#: gsecrets/unlocked_database.py:346
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "{} 项元素已删除"
 
-#: gsecrets/unlocked_database.py:346
+#: gsecrets/unlocked_database.py:351
 msgid "Deletion completed"
 msgstr "删除完毕"
 
-#: gsecrets/unlocked_database.py:351 gsecrets/unlocked_database.py:376
+#: gsecrets/unlocked_database.py:356 gsecrets/unlocked_database.py:381
 msgid "Undo"
 msgstr "撤消"
 
-#: gsecrets/unlocked_database.py:375
+#: gsecrets/unlocked_database.py:380
 msgid "Attribute deleted"
 msgstr "属性已删除"
 
-#: gsecrets/unlocked_database.py:406
+#: gsecrets/unlocked_database.py:411
 msgid "Copied"
 msgstr "已复制"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:499
+#: gsecrets/unlocked_database.py:508
 msgid "Safe locked due to inactivity"
 msgstr "保险箱因无活动已被锁定"
 

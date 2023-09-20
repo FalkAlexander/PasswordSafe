@@ -1,5 +1,5 @@
 project('secrets',
-        version: '7.3',
+        version: '8.0',
         meson_version: '>= 0.59',
         license: 'GPL-3.0-only'
        )
@@ -26,7 +26,7 @@ artists = '\n'.join([
                    ])
 
 message('Looking for dependencies')
-# We need pykeepass>=4.0.5 and pyotp>=2.4.0.
+# We need pykeepass>=4.0.6 and pyotp>=2.4.0.
 python_bin = python.find_installation('python3', modules:[
   'pykeepass',
   'pyotp',

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-09-04 20:59+0000\n"
-"PO-Revision-Date: 2023-09-16 16:02+0200\n"
+"POT-Creation-Date: 2023-10-01 07:31+0000\n"
+"PO-Revision-Date: 2023-10-01 14:44+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -56,7 +56,7 @@ msgstr "Prywatne"
 msgid "Contains sensitive data."
 msgstr "Zawiera prywatne dane."
 
-#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:352
+#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:353
 msgid "_Add"
 msgstr "_Dodaj"
 
@@ -214,23 +214,23 @@ msgstr "_Utwórz"
 msgid "Safe Successfully Created"
 msgstr "Pomyślnie utworzono sejf"
 
-#: data/gtk/create_database.ui:269 data/gtk/unlocked_headerbar.ui:84
+#: data/gtk/create_database.ui:269
 msgid "_Open Safe"
 msgstr "_Otwórz sejf"
 
 #: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:95
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Preferencje"
 
 #: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:99
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Skróty klawiszowe"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_O programie"
 
@@ -508,70 +508,75 @@ msgstr "Zamknięcie okna"
 
 #: data/gtk/help-overlay.ui:50
 msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Nowe okno"
+
+#: data/gtk/help-overlay.ui:56
+msgctxt "Shortcut window description"
 msgid "Quit"
 msgstr "Zakończenie działania"
 
-#: data/gtk/help-overlay.ui:58
+#: data/gtk/help-overlay.ui:64
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Sejf"
 
-#: data/gtk/help-overlay.ui:61
+#: data/gtk/help-overlay.ui:67
 msgctxt "Shortcut window description"
 msgid "Lock Safe"
 msgstr "Zablokowanie sejfu"
 
-#: data/gtk/help-overlay.ui:67
+#: data/gtk/help-overlay.ui:73
 msgctxt "Shortcut window description"
 msgid "Save Safe"
 msgstr "Zapisanie sejfu"
 
-#: data/gtk/help-overlay.ui:73
+#: data/gtk/help-overlay.ui:79
 msgctxt "Shortcut window description"
 msgid "Open Search"
 msgstr "Otwarcie wyszukiwania"
 
-#: data/gtk/help-overlay.ui:79
+#: data/gtk/help-overlay.ui:85
 msgctxt "Shortcut window description"
 msgid "Create Entry"
 msgstr "Utworzenie wpisu"
 
-#: data/gtk/help-overlay.ui:85
+#: data/gtk/help-overlay.ui:91
 msgctxt "Shortcut window description"
 msgid "Create Group"
 msgstr "Utworzenie grupy"
 
-#: data/gtk/help-overlay.ui:93
+#: data/gtk/help-overlay.ui:99
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Wpis"
 
-#: data/gtk/help-overlay.ui:96
+#: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
 msgid "Copy Password"
 msgstr "Skopiowanie hasła"
 
-#: data/gtk/help-overlay.ui:102
+#: data/gtk/help-overlay.ui:108
 msgctxt "Shortcut window description"
 msgid "Copy Address"
 msgstr "Skopiowanie adresu"
 
-#: data/gtk/help-overlay.ui:108
+#: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Skopiowanie nazwy użytkownika"
 
-#: data/gtk/help-overlay.ui:114
+#: data/gtk/help-overlay.ui:120
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Skopiowanie jednorazowego hasła"
 
-#: data/gtk/help-overlay.ui:120
+#: data/gtk/help-overlay.ui:126
 msgctxt "Shortcut window description"
 msgid "Show History"
 msgstr "Wyświetlenie historii"
 
-#: data/gtk/help-overlay.ui:126
+#: data/gtk/help-overlay.ui:132
 msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Zapisanie w historii"
@@ -960,24 +965,28 @@ msgstr "Od naj_nowszych"
 msgid "_Oldest First"
 msgstr "Od naj_starszych"
 
-#: data/gtk/unlocked_headerbar.ui:89
+#: data/gtk/unlocked_headerbar.ui:84
+msgid "New _Window"
+msgstr "Nowe _okno"
+
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "_Ustawienia sejfu"
 
-#: data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "_Nowy wpis"
 
-#: data/gtk/unlocked_headerbar.ui:115
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "Nowa gr_upa"
 
-#: data/gtk/unlocked_headerbar.ui:134
+#: data/gtk/unlocked_headerbar.ui:133
 #: gsecrets/widgets/saving_conflict_dialog.py:35
 msgid "_Save"
 msgstr "_Zapisz"
 
-#: data/gtk/unlocked_headerbar.ui:149
+#: data/gtk/unlocked_headerbar.ui:148
 msgid "_Lock"
 msgstr "Za_blokuj"
 
@@ -1000,6 +1009,10 @@ msgstr "Menedżer haseł dla środowiska GNOME"
 msgid "keepass;encrypt;secure;"
 msgstr ""
 "keepass;hasło;hasła;szyfrowanie;zaszyfruj;bezpieczeństwo;zabezpieczenia;"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:21
+msgid "New Window"
+msgstr "Nowe okno"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1193,7 +1206,7 @@ msgstr ""
 "się ze środowiskiem GNOME i zapewnia łatwy i prosty interfejs do zarządzania "
 "bazami haseł."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:251
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1230,33 +1243,33 @@ msgstr "Nie można utworzyć pliku klucza"
 msgid "Generate"
 msgstr "Utwórz"
 
-#: gsecrets/entry_page.py:237 gsecrets/widgets/credentials_group.py:98
+#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
 msgstr "Zapisano w historii"
 
-#: gsecrets/entry_page.py:253 gsecrets/entry_row.py:123
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Skopiowano nazwę użytkownika"
 
-#: gsecrets/entry_page.py:261 gsecrets/entry_page.py:392
+#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
 msgid "Address copied"
 msgstr "Skopiowano adres"
 
-#: gsecrets/entry_page.py:271 gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Skopiowano jednorazowe hasło"
 
-#: gsecrets/entry_page.py:304
+#: gsecrets/entry_page.py:305
 msgid "Could not open URL"
 msgstr "Nie można otworzyć adresu URL"
 
-#: gsecrets/entry_page.py:314
+#: gsecrets/entry_page.py:315
 msgid "The address is not valid"
 msgstr "Adres jest nieprawidłowy"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:351
+#: gsecrets/entry_page.py:352
 msgid "Select Attachments"
 msgstr "Wybór załączników"
 

@@ -12,7 +12,7 @@ import gsecrets.config_manager
 from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.unlocked_database import UnlockedDatabase
-from gsecrets.utils import KeyFileFilter
+from gsecrets.provider.providers import generate_composite_key
 
 if typing.TYPE_CHECKING:
     from gsecrets.widgets.window import Window
@@ -24,24 +24,16 @@ class UnlockDatabase(Adw.Bin):
 
     __gtype_name__ = "UnlockDatabase"
 
-    keyfile_path = None
-    _keyfile_hash = None
-
     database_manager: DatabaseManager | None = None
 
-    clear_button = Gtk.Template.Child()
-    keyfile_button = Gtk.Template.Child()
-    keyfile_label = Gtk.Template.Child()
-    keyfile_spinner = Gtk.Template.Child()
-    keyfile_stack = Gtk.Template.Child()
     password_entry = Gtk.Template.Child()
+    key_group = Gtk.Template.Child()
+    provider_group = Gtk.Template.Child()
     status_page = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
-        self.install_action("clear-keyfile", None, self.on_clear_keyfile)
-
         super().__init__()
 
         self.spinner = Gtk.Spinner.new()
@@ -49,6 +41,8 @@ class UnlockDatabase(Adw.Bin):
         filepath = database_file.get_path()
 
         self.window = window
+        self.keyfile = None
+        self.keyfile_hash = None
 
         # Reset headerbar to initial state if it already exists.
         self.headerbar.title.props.title = database_file.get_basename()
@@ -59,75 +53,24 @@ class UnlockDatabase(Adw.Bin):
                 self.database_manager = database.database_manager
 
         if not self.database_manager:
-            self.database_manager = DatabaseManager(filepath)
-
-        if gsecrets.config_manager.get_remember_composite_key():
-            self._set_last_used_keyfile()
+            self.database_manager = DatabaseManager(window.key_providers, filepath)
 
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
 
+        self.window.set_default_widget(self.unlock_button)
+
+        for key_provider in self.window.key_providers:
+            if key_provider.available:
+                widget = key_provider.create_unlock_widget(self.database_manager)
+                self.key_group.add(widget)
+
     def do_unmap(self):  # pylint: disable=arguments-differ
         Gtk.Widget.do_unmap(self)
-        self.keyfile_spinner.props.spinning = False
         self.spinner.props.spinning = False
 
     def grab_entry_focus(self):
         self.password_entry.grab_focus()
-
-    @Gtk.Template.Callback()
-    def _on_keyfile_button_clicked(self, _widget):
-        """cb invoked when we unlock a database via keyfile"""
-        filters = Gio.ListStore.new(Gtk.FileFilter)
-        filters.append(KeyFileFilter().file_filter)
-
-        dialog = Gtk.FileDialog.new()
-        dialog.props.filters = filters
-        dialog.props.title = _("Select Keyfile")
-
-        dialog.open(self.window, None, self.on_dialog_response)
-
-    def on_dialog_response(self, dialog, result):
-        try:
-            keyfile = dialog.open_finish(result)
-        except GLib.Error as err:
-            logging.debug("Could not open file: %s", err.message)
-        else:
-            self.set_keyfile(keyfile)
-
-    def set_keyfile(self, keyfile: Gio.File) -> None:
-        self.keyfile_path = keyfile.get_path()
-        keyfile.load_bytes_async(None, self.load_keyfile_callback)
-
-        self.keyfile_stack.props.visible_child_name = "spinner"
-        self.keyfile_spinner.start()
-        self.keyfile_button.props.sensitive = False
-
-        logging.debug("Keyfile selected: %s", keyfile.get_path())
-
-    def load_keyfile_callback(self, keyfile, result):
-        try:
-            gbytes, _etag = keyfile.load_bytes_finish(result)
-        except GLib.Error as err:
-            logging.debug("Could not set keyfile hash: %s", err.message)
-
-            self._wrong_keyfile()
-        else:
-            keyfile_hash = GLib.compute_checksum_for_bytes(
-                GLib.ChecksumType.SHA1, gbytes
-            )
-            file_path = keyfile.get_path()
-            basename = keyfile.get_basename()
-            if keyfile_hash:
-                self.keyfile_hash = keyfile_hash
-                self.keyfile_path = file_path
-
-            self._reset_keyfile_button()
-            self.keyfile_label.set_label(basename)
-        finally:
-            self.keyfile_stack.props.visible_child_name = "label"
-            self.keyfile_spinner.stop()
-            self.keyfile_button.props.sensitive = True
 
     def is_safe_open_elsewhere(self) -> bool:
         """Returns True if the safe is already open but not in the
@@ -142,13 +85,12 @@ class UnlockDatabase(Adw.Bin):
         return is_open and not is_current
 
     @Gtk.Template.Callback()
-    def _on_password_entry_activate(self, _entry):
-        self.unlock_button.activate()
-
-    @Gtk.Template.Callback()
     def _on_unlock_button_clicked(self, _widget):
         entered_pwd = self.password_entry.get_text()
-        if not (entered_pwd or self.keyfile_path):
+        composite_key, self.keyfile, self.keyfile_hash = \
+            generate_composite_key(self.window.key_providers)
+
+        if not (entered_pwd or composite_key):
             return
 
         if self.is_safe_open_elsewhere():
@@ -171,22 +113,6 @@ class UnlockDatabase(Adw.Bin):
         else:
             self._unlock_failed()
 
-    def _set_last_used_keyfile(self):
-        pairs = gsecrets.config_manager.get_last_used_composite_key()
-        uri = Gio.File.new_for_path(self.database_manager.path).get_uri()
-        if pairs:
-            keyfile_path = None
-
-            for pair in pairs:
-                if pair[0] == uri:
-                    keyfile_path = pair[1]
-                    break
-
-            if keyfile_path is not None:
-                keyfile = Gio.File.new_for_path(keyfile_path)
-                if keyfile.query_exists():
-                    self.set_keyfile(keyfile)
-
     #
     # Open Database
     #
@@ -198,11 +124,10 @@ class UnlockDatabase(Adw.Bin):
         self._set_sensitive(False)
 
         password = self.password_entry.props.text
-        keyfile = self.keyfile_path
 
         self.database_manager.unlock_async(
             password,
-            keyfile,
+            self.keyfile,
             self.keyfile_hash,
             self._unlock_callback,
         )
@@ -245,22 +170,11 @@ class UnlockDatabase(Adw.Bin):
         # Regrab the focus of the entry.
         self.password_entry.grab_focus()
 
-    def _wrong_keyfile(self):
-        self.keyfile_button.add_css_class("destructive-action")
-
-        self.keyfile_label.set_label(_("_Try Again"))
-
-    def _reset_keyfile_button(self):
-        self.keyfile_button.remove_css_class("destructive-action")
-
-        self.keyfile_label.set_label(_("_Select Keyfile"))
-
     def _reset_unlock_button(self):
         self.spinner.stop()
-        self.unlock_button.props.icon_name = "changes-allow-symbolic"
+        self.unlock_button.props.label = _("Unlock")
 
     def _reset_page(self):
-        self.keyfile_path = None
         self.keyfile_hash = None
 
         self.password_entry.set_text("")
@@ -268,7 +182,6 @@ class UnlockDatabase(Adw.Bin):
 
         self._set_sensitive(True)
 
-        self._reset_keyfile_button()
         self._reset_unlock_button()
 
     def _set_sensitive(self, sensitive):
@@ -276,18 +189,11 @@ class UnlockDatabase(Adw.Bin):
         if delegate.has_focus() and not sensitive:
             self.window.props.focus_widget = None
 
-        self.password_entry.set_sensitive(sensitive)
-        self.keyfile_button.set_sensitive(sensitive)
+        for key in self.key_group:
+            key.set_sensitive(sensitive)
+
         self.unlock_button.set_sensitive(sensitive)
         self.headerbar.set_sensitive(sensitive)
-
-        self.action_set_enabled("clear-keyfile", sensitive)
-
-    def on_clear_keyfile(self, _widget, _name, _param):
-        self.keyfile_path = None
-        self.keyfile_hash = None
-
-        self._reset_keyfile_button()
 
     def store_backup(self, gfile):
         cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "backup")
@@ -315,11 +221,3 @@ class UnlockDatabase(Adw.Bin):
             callback,
         )
 
-    @property
-    def keyfile_hash(self) -> str | None:
-        return self._keyfile_hash
-
-    @keyfile_hash.setter  # type: ignore
-    def keyfile_hash(self, keyfile_hash: str | None) -> None:
-        self._keyfile_hash = keyfile_hash
-        self.clear_button.props.visible = keyfile_hash is not None

@@ -10,6 +10,7 @@ from gi.repository import Adw, Gio, GLib, GObject, Gtk
 import gsecrets.config_manager
 from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
+from gsecrets.provider.providers import create_key_providers
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
 from gsecrets.unlock_database import UnlockDatabase
@@ -43,6 +44,8 @@ class Window(Adw.ApplicationWindow):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.key_providers = create_key_providers(self)
 
         self.application = self.get_application()
 
@@ -288,7 +291,7 @@ class Window(Adw.ApplicationWindow):
                 self.send_notification(_("Could not create new Safe"))
                 self._spinner.stop()
             else:
-                database_manager = DatabaseManager(filepath)
+                database_manager = DatabaseManager(self.key_providers, filepath)
                 database_manager.unlock_async(
                     "liufhre86ewoiwejmrcu8owe",
                     callback=unlock_callback,

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
@@ -55,7 +56,7 @@ class DatabaseManager(GObject.Object):
     # To be emitted when the elements list model needs to be re sorted.
     sorting_changed = GObject.Signal(arg_types=(bool,))
 
-    def __init__(self, database_path: str) -> None:
+    def __init__(self, key_providers: list, database_path: str) -> None:
         """Initialize the database handling logic.
 
         :param str database_path: The database path
@@ -65,6 +66,7 @@ class DatabaseManager(GObject.Object):
         self.entries = Gio.ListStore.new(SafeEntry)
         self.groups = Gio.ListStore.new(SafeGroup)
 
+        self._key_providers = key_providers
         self._path = database_path
         self.db: PyKeePass = None
         self.keyfile_hash: str = ""
@@ -242,16 +244,16 @@ class DatabaseManager(GObject.Object):
         if not config.get_remember_composite_key():
             return
 
-        def filter_func(pair):
-            return pair[0] != uri
+        keyprovider_pairs = config.get_last_used_key_provider()
 
-        keyfile_pairs = config.get_last_used_composite_key()
-        new_pairs = list(filter(filter_func, keyfile_pairs))
+        data = {}
+        for key_provider in self._key_providers:
+            if key_provider.available and key_provider.key:
+                provider_config = key_provider.config()
+                data[type(key_provider).__name__] = provider_config
 
-        if self.keyfile:
-            new_pairs.append([uri, self.keyfile])
-
-        config.set_last_used_composite_key(new_pairs)
+        keyprovider_pairs[uri] = json.dumps(data)
+        config.set_last_used_key_provider(keyprovider_pairs)
 
     def _update_file_monitor(self):
         """Updates the modified time and size of the database file, this is a

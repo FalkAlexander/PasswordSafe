@@ -108,7 +108,7 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     def _on_remember_composite_key(self, action, _param):
         if not action.props.state:
-            config.set_last_used_composite_key([])
+            config.set_last_used_key_provider({})
 
     def _on_settings_clear_recents_clicked(self, widget):
         config.set_last_opened_list([])

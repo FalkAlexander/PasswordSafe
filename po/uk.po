@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-01 07:31+0000\n"
-"PO-Revision-Date: 2023-10-01 14:14+0300\n"
+"POT-Creation-Date: 2023-10-05 06:20+0000\n"
+"PO-Revision-Date: 2023-10-05 20:08+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -506,8 +506,6 @@ msgid "Close Window"
 msgstr "Закрити вікно"
 
 #: data/gtk/help-overlay.ui:50
-#| msgctxt "Shortcut window description"
-#| msgid "Close Window"
 msgctxt "Shortcut window description"
 msgid "New Window"
 msgstr "Створити вікно"
@@ -922,17 +920,19 @@ msgstr "Спорожнити"
 msgid "Unlock Safe"
 msgstr "Відімкнути сейф"
 
-#: data/gtk/unlock_database.ui:68 gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "Ви_брати файл ключа"
+#: data/gtk/unlock_database.ui:68
+#| msgid "_Select Keyfile"
+msgid "_Select Keyfile…"
+msgstr "Ви_брати файл ключа…"
 
 #: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "Навігатор"
 
 #: data/gtk/unlocked_database_page.ui:31
-msgid "Add elements with the ➕ button."
-msgstr "Додайте елементи за допомогою кнопки ➕."
+#| msgid "Add elements with the ➕ button."
+msgid "Add elements with the ➕ button"
+msgstr "Додайте елементи за допомогою кнопки ➕"
 
 #: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
@@ -970,8 +970,6 @@ msgid "_Oldest First"
 msgstr "Н_айстаріші першими"
 
 #: data/gtk/unlocked_headerbar.ui:84
-#| msgctxt "Shortcut window description"
-#| msgid "Close Window"
 msgid "New _Window"
 msgstr "Створити _вікно"
 
@@ -1016,8 +1014,6 @@ msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;кіпас;шифрування;шифр;безпека;захист;"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:21
-#| msgctxt "Shortcut window description"
-#| msgid "Close Window"
 msgid "New Window"
 msgstr "Створити вікно"
 
@@ -1399,6 +1395,10 @@ msgstr "Не вдалося відімкнути сейф"
 #: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "Сп_робувати ще раз"
+
+#: gsecrets/unlock_database.py:256
+msgid "_Select Keyfile"
+msgstr "Ви_брати файл ключа"
 
 #: gsecrets/unlocked_database.py:299
 msgid "Safe saved"

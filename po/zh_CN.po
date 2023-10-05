@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-01 07:31+0000\n"
-"PO-Revision-Date: 2023-10-02 19:18+0800\n"
+"POT-Creation-Date: 2023-10-05 06:20+0000\n"
+"PO-Revision-Date: 2023-10-05 20:37+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 45.1\n"
+"X-Generator: Gtranslator 45.2\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -915,17 +915,17 @@ msgstr "清空"
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
 
-#: data/gtk/unlock_database.ui:68 gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "选择密钥文件(_S)"
+#: data/gtk/unlock_database.ui:68
+msgid "_Select Keyfile…"
+msgstr "选择密钥文件(_S)…"
 
 #: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "浏览器"
 
 #: data/gtk/unlocked_database_page.ui:31
-msgid "Add elements with the ➕ button."
-msgstr "使用 ➕ 按钮添加元素。"
+msgid "Add elements with the ➕ button"
+msgstr "使用 ➕ 按钮添加元素"
 
 #: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
@@ -1366,6 +1366,10 @@ msgstr "保险箱解锁失败"
 #: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "重试(_T)"
+
+#: gsecrets/unlock_database.py:256
+msgid "_Select Keyfile"
+msgstr "选择密钥文件(_S)"
 
 #: gsecrets/unlocked_database.py:299
 msgid "Safe saved"

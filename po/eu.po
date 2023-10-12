@@ -6,8 +6,8 @@
 msgid ""
 msgstr "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-09-04 20:59+0000\n"
-"PO-Revision-Date: 2023-09-12 10:00+0100\n"
+"POT-Creation-Date: 2023-10-05 06:20+0000\n"
+"PO-Revision-Date: 2023-10-12 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -51,7 +51,7 @@ msgstr "Kontuzkoa"
 msgid "Contains sensitive data."
 msgstr "Kontuzko datuak ditu."
 
-#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:352
+#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:353
 msgid "_Add"
 msgstr "_Gehitu"
 
@@ -207,23 +207,23 @@ msgstr "_Sortu"
 msgid "Safe Successfully Created"
 msgstr "Kutxa gotorra ongi sortu da"
 
-#: data/gtk/create_database.ui:269 data/gtk/unlocked_headerbar.ui:84
+#: data/gtk/create_database.ui:269
 msgid "_Open Safe"
 msgstr "_Ireki kutxa gotorra"
 
 #: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:95
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Hobespenak"
 
 #: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:99
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "Las_ter-teklak"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "Secrets aplikazioari _buruz"
 
@@ -501,70 +501,75 @@ msgstr "Itxi leihoa"
 
 #: data/gtk/help-overlay.ui:50
 msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Leiho berria"
+
+#: data/gtk/help-overlay.ui:56
+msgctxt "Shortcut window description"
 msgid "Quit"
 msgstr "Irten"
 
-#: data/gtk/help-overlay.ui:58
+#: data/gtk/help-overlay.ui:64
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Kutxa gotorra"
 
-#: data/gtk/help-overlay.ui:61
+#: data/gtk/help-overlay.ui:67
 msgctxt "Shortcut window description"
 msgid "Lock Safe"
 msgstr "Blokeatu kutxa gotorra"
 
-#: data/gtk/help-overlay.ui:67
+#: data/gtk/help-overlay.ui:73
 msgctxt "Shortcut window description"
 msgid "Save Safe"
 msgstr "Gorde kutxa gotorra"
 
-#: data/gtk/help-overlay.ui:73
+#: data/gtk/help-overlay.ui:79
 msgctxt "Shortcut window description"
 msgid "Open Search"
 msgstr "Ireki bilaketa"
 
-#: data/gtk/help-overlay.ui:79
+#: data/gtk/help-overlay.ui:85
 msgctxt "Shortcut window description"
 msgid "Create Entry"
 msgstr "Sortu sarrera"
 
-#: data/gtk/help-overlay.ui:85
+#: data/gtk/help-overlay.ui:91
 msgctxt "Shortcut window description"
 msgid "Create Group"
 msgstr "Sortu taldea"
 
-#: data/gtk/help-overlay.ui:93
+#: data/gtk/help-overlay.ui:99
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Sarrera"
 
-#: data/gtk/help-overlay.ui:96
+#: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
 msgid "Copy Password"
 msgstr "Kopiatu pasahitza"
 
-#: data/gtk/help-overlay.ui:102
+#: data/gtk/help-overlay.ui:108
 msgctxt "Shortcut window description"
 msgid "Copy Address"
 msgstr "Kopiatu helbidea"
 
-#: data/gtk/help-overlay.ui:108
+#: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Kopiatu erabiltzaile-izena"
 
-#: data/gtk/help-overlay.ui:114
+#: data/gtk/help-overlay.ui:120
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Kopiatu denbora bateko pasahitza"
 
-#: data/gtk/help-overlay.ui:120
+#: data/gtk/help-overlay.ui:126
 msgctxt "Shortcut window description"
 msgid "Show History"
 msgstr "Erakutsi historia"
 
-#: data/gtk/help-overlay.ui:126
+#: data/gtk/help-overlay.ui:132
 msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Gorde historian"
@@ -904,17 +909,17 @@ msgstr "Garbitu"
 msgid "Unlock Safe"
 msgstr "Desblokeatu kutxa gotorra"
 
-#: data/gtk/unlock_database.ui:68 gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "_Hautatu gako-fitxategia"
+#: data/gtk/unlock_database.ui:68
+msgid "_Select Keyfile…"
+msgstr "_Hautatu gako-fitxategia…"
 
 #: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "Arakatzailea"
 
 #: data/gtk/unlocked_database_page.ui:31
-msgid "Add elements with the ➕ button."
-msgstr "Gehitu elementuak ➕ botoiarekin."
+msgid "Add elements with the ➕ button"
+msgstr "Gehitu elementuak ➕ botoiarekin"
 
 #: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
@@ -951,24 +956,28 @@ msgstr "_Berriena lehena"
 msgid "_Oldest First"
 msgstr "Za_harrena lehena"
 
-#: data/gtk/unlocked_headerbar.ui:89
+#: data/gtk/unlocked_headerbar.ui:84
+msgid "New _Window"
+msgstr "_Leiho berria"
+
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "Kut_xa gotorren ezarpenak"
 
-#: data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "_Sarrera berria"
 
-#: data/gtk/unlocked_headerbar.ui:115
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "_Talde berria"
 
-#: data/gtk/unlocked_headerbar.ui:134
+#: data/gtk/unlocked_headerbar.ui:133
 #: gsecrets/widgets/saving_conflict_dialog.py:35
 msgid "_Save"
 msgstr "_Gorde"
 
-#: data/gtk/unlocked_headerbar.ui:149
+#: data/gtk/unlocked_headerbar.ui:148
 msgid "_Lock"
 msgstr "_Blokeatu"
 
@@ -990,6 +999,10 @@ msgstr "Pasahitzen kudeatzailea GNOMErako"
 #: data/org.gnome.World.Secrets.desktop.in.in:14
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;zifratu;segurua;"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:21
+msgid "New Window"
+msgstr "Leiho berria"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1166,7 +1179,7 @@ msgid ""
 "uncluttered interface for the management of password databases."
 msgstr "Secrets aplikazioa Keepass v.4 formatua erabiltzen duen pasahitz-kudeatzaile bat da. GNOME mahaigainean ongi integratzen da eta interfaze erraz eta garbia eskaintzen du pasahitzen datu-baseak kudeatzeko."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:251
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1203,33 +1216,33 @@ msgstr "Ezin da gako-fitxategia sortu"
 msgid "Generate"
 msgstr "Sortu"
 
-#: gsecrets/entry_page.py:237 gsecrets/widgets/credentials_group.py:98
+#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
 msgstr "Gorde historian"
 
-#: gsecrets/entry_page.py:253 gsecrets/entry_row.py:123
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Erabiltzaile-izena kopiatu da"
 
-#: gsecrets/entry_page.py:261 gsecrets/entry_page.py:392
+#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
 msgid "Address copied"
 msgstr "Helbidea kopiatu da"
 
-#: gsecrets/entry_page.py:271 gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Denbora bateko pasahitza kopiatu da"
 
-#: gsecrets/entry_page.py:304
+#: gsecrets/entry_page.py:305
 msgid "Could not open URL"
 msgstr "Ezin izan da URLa irakurri"
 
-#: gsecrets/entry_page.py:314
+#: gsecrets/entry_page.py:315
 msgid "The address is not valid"
 msgstr "Helbidea ez da baliozkoa"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:351
+#: gsecrets/entry_page.py:352
 msgid "Select Attachments"
 msgstr "Hautatu eranskinak"
 
@@ -1344,6 +1357,10 @@ msgstr "Huts egin du kutxa gotorra desblokeatzeak"
 #: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "_Saiatu berriro"
+
+#: gsecrets/unlock_database.py:256
+msgid "_Select Keyfile"
+msgstr "_Hautatu gako-fitxategia"
 
 #: gsecrets/unlocked_database.py:299
 msgid "Safe saved"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-05 06:20+0000\n"
-"PO-Revision-Date: 2023-10-05 20:08+0300\n"
+"POT-Creation-Date: 2023-10-16 21:50+0000\n"
+"PO-Revision-Date: 2023-10-17 09:48+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -239,7 +239,7 @@ msgstr "_Користувач"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
 #: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
-#: data/gtk/history_row.ui:25 data/gtk/references_dialog.ui:360
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:360
 msgid "Copy"
 msgstr "Копіювати"
 
@@ -399,8 +399,9 @@ msgid "Attributes"
 msgstr "Атрибути"
 
 #: data/gtk/entry_page.ui:255
-msgid "_Add Attribute"
-msgstr "_Додати атрибут"
+#| msgid "Add Attribute"
+msgid "Add Attr_ibute"
+msgstr "Додати атри_бут"
 
 #: data/gtk/entry_page.ui:263
 msgid "Expiration Date"
@@ -580,11 +581,11 @@ msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Зберегти у журналі"
 
-#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
 msgid "Show Text"
 msgstr "Показати текст"
 
-#: data/gtk/history_row.ui:36
+#: data/gtk/history_row.ui:39
 msgid "Remove from History"
 msgstr "Вилучити із журналу"
 
@@ -921,7 +922,6 @@ msgid "Unlock Safe"
 msgstr "Відімкнути сейф"
 
 #: data/gtk/unlock_database.ui:68
-#| msgid "_Select Keyfile"
 msgid "_Select Keyfile…"
 msgstr "Ви_брати файл ключа…"
 
@@ -930,7 +930,6 @@ msgid "Browser"
 msgstr "Навігатор"
 
 #: data/gtk/unlocked_database_page.ui:31
-#| msgid "Add elements with the ➕ button."
 msgid "Add elements with the ➕ button"
 msgstr "Додайте елементи за допомогою кнопки ➕"
 
@@ -1217,7 +1216,7 @@ msgstr ""
 "середовища GNOME і надає простий і незахаращений інтерфейс для керування "
 "базами даних паролів."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:251
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1661,6 +1660,9 @@ msgstr "Не вдалося створити сейф"
 #: gsecrets/widgets/window.py:355
 msgid "Could not save safe"
 msgstr "Не вдалося зберегти сейф"
+
+#~ msgid "_Add Attribute"
+#~ msgstr "_Додати атрибут"
 
 #~ msgid "Add"
 #~ msgstr "Додати"

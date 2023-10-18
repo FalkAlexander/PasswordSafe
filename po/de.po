@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-05 06:20+0000\n"
-"PO-Revision-Date: 2023-10-05 09:52+0200\n"
+"POT-Creation-Date: 2023-10-16 21:50+0000\n"
+"PO-Revision-Date: 2023-10-18 19:42+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -255,7 +255,7 @@ msgstr "_Benutzername"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
 #: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
-#: data/gtk/history_row.ui:25 data/gtk/references_dialog.ui:360
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:360
 msgid "Copy"
 msgstr "Kopieren"
 
@@ -415,8 +415,8 @@ msgid "Attributes"
 msgstr "Attribute"
 
 #: data/gtk/entry_page.ui:255
-msgid "_Add Attribute"
-msgstr "_Attribut hinzufügen"
+msgid "Add Attr_ibute"
+msgstr "Attr_ibut hinzufügen"
 
 #: data/gtk/entry_page.ui:263
 msgid "Expiration Date"
@@ -597,11 +597,11 @@ msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "In der Chronik speichern"
 
-#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
 msgid "Show Text"
 msgstr "Text anzeigen"
 
-#: data/gtk/history_row.ui:36
+#: data/gtk/history_row.ui:39
 msgid "Remove from History"
 msgstr "Aus der Chronik entfernen"
 
@@ -1224,7 +1224,7 @@ msgstr ""
 "und stellt eine einfache und übersichtliche Schnittstelle für die Verwaltung "
 "von Passwortdatenbanken bereit."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:251
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1672,6 +1672,9 @@ msgstr "Neuer Safe konnte nicht erstellt werden"
 #: gsecrets/widgets/window.py:355
 msgid "Could not save safe"
 msgstr "Safe konnte nicht gespeichert werden"
+
+#~ msgid "_Add Attribute"
+#~ msgstr "_Attribut hinzufügen"
 
 #~ msgid "Add"
 #~ msgstr "Hinzufügen"

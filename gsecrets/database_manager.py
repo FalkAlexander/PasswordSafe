@@ -376,3 +376,7 @@ class DatabaseManager(GObject.Object):
     @property
     def path(self) -> str:
         return self._path
+
+    def get_salt(self) -> bytes:
+        db = PyKeePass(self.path, None, None, decrypt=False)
+        return db.database_salt

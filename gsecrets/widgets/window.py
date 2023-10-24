@@ -10,7 +10,7 @@ from gi.repository import Adw, Gio, GLib, GObject, Gtk
 import gsecrets.config_manager
 from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
-from gsecrets.provider.providers import create_key_providers
+from gsecrets.provider.providers import Providers
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
 from gsecrets.unlock_database import UnlockDatabase
@@ -45,7 +45,7 @@ class Window(Adw.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.key_providers = create_key_providers(self)
+        self.key_providers = Providers(self)
 
         self.application = self.get_application()
 
@@ -55,9 +55,16 @@ class Window(Adw.ApplicationWindow):
         if self.application.development_mode is True:
             gsecrets.config_manager.set_development_backup_mode(True)
 
-    def send_notification(self, notification: str) -> None:
+    def send_notification(self, notification: str, persistent: bool = False) -> Adw.Toast:
         toast = Adw.Toast.new(notification)
+        if persistent:
+            toast.set_timeout(0)
+
         self.toast_overlay.add_toast(toast)
+        return toast
+
+    def close_notification(self, toast: Adw.Toast) -> None:
+        toast.dismiss()
 
     def assemble_window(self) -> None:
         window_size = gsecrets.config_manager.get_window_size()

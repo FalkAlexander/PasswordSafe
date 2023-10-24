@@ -100,14 +100,15 @@ class FileProvider(BaseProvider):
 
     def load_keyfile_callback(self, keyfile, result):
         try:
-            self.raw_key, _etag = keyfile.load_bytes_finish(result)
+            key, _etag = keyfile.load_bytes_finish(result)
         except GLib.Error as err:
             logging.error("Could not set keyfile hash: %s", err.message)
             self.window.send_notification(_("Could not load keyfile"))
         else:
             keyfile_hash = GLib.compute_checksum_for_bytes(
-                GLib.ChecksumType.SHA1, self.raw_key
+                GLib.ChecksumType.SHA1, key
             )
+            self.raw_key = key.get_data()
             file_path = keyfile.get_path()
             basename = keyfile.get_basename()
             if keyfile_hash:

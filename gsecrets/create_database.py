@@ -7,7 +7,6 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GLib, Gtk
 
-from gsecrets.provider.providers import generate_composite_key
 from gsecrets.password_generator_popover import PasswordGeneratorPopover
 
 
@@ -46,7 +45,7 @@ class CreateDatabase(Adw.Bin):
 
         self.back_button.props.sensitive = True
         self.back_button.connect("clicked", self.on_headerbar_back_button_clicked)
-        for key_provider in self.window.key_providers:
+        for key_provider in self.window.key_providers.get_key_providers():
             if key_provider.available:
                 self.provider_group.add(key_provider.create_database_row())
 
@@ -100,16 +99,20 @@ class CreateDatabase(Adw.Bin):
         self.password_row.props.text = password
         self.password_confirm_row.props.text = password
 
-    @Gtk.Template.Callback()
-    def _on_create_button_clicked(self, _widget: Gtk.Button) -> None:
+    def _on_generate_composite_key(self, providers, result):
         _, keyfile_path, keyfile_hash = \
-            generate_composite_key(self.window.key_providers)
+            self.window.key_providers.generate_composite_key_finish(result)
 
         self.database_manager.set_credentials_async(
             password=self.password_confirm_row.props.text,
             keyfile=keyfile_path,
             keyfile_hash=keyfile_hash,
             callback=self._on_set_credentials)
+
+
+    @Gtk.Template.Callback()
+    def _on_create_button_clicked(self, _widget: Gtk.Button) -> None:
+        self.window.key_providers.generate_composite_key_async(self.database_manager.get_salt(), self._on_generate_composite_key)
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:
@@ -120,5 +123,5 @@ class CreateDatabase(Adw.Bin):
         self.password_row.set_text("")
         self.password_confirm_row.set_text("")
 
-        for key_provider in self.window.key_providers:
+        for key_provider in self.window.key_providers.get_key_providers():
             key_provider.clear_input_fields()

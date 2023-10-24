@@ -12,7 +12,6 @@ import gsecrets.config_manager
 from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.unlocked_database import UnlockedDatabase
-from gsecrets.provider.providers import generate_composite_key
 
 if typing.TYPE_CHECKING:
     from gsecrets.widgets.window import Window
@@ -53,14 +52,14 @@ class UnlockDatabase(Adw.Bin):
                 self.database_manager = database.database_manager
 
         if not self.database_manager:
-            self.database_manager = DatabaseManager(window.key_providers, filepath)
+            self.database_manager = DatabaseManager(window.key_providers.get_key_providers(), filepath)
 
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
 
         self.window.set_default_widget(self.unlock_button)
 
-        for key_provider in self.window.key_providers:
+        for key_provider in self.window.key_providers.get_key_providers():
             if key_provider.available:
                 widget = key_provider.create_unlock_widget(self.database_manager)
                 self.key_group.add(widget)
@@ -84,12 +83,17 @@ class UnlockDatabase(Adw.Bin):
 
         return is_open and not is_current
 
-    @Gtk.Template.Callback()
-    def _on_unlock_button_clicked(self, _widget):
-        entered_pwd = self.password_entry.get_text()
-        composite_key, self.keyfile, self.keyfile_hash = \
-            generate_composite_key(self.window.key_providers)
+    def _on_generated_composite_key(self, providers, result):
+        try:
+            data = providers.generate_composite_key_finish(result)
+            composite_key = data[0]
+            self.keyfile = data[1]
+            self.keyfile_hash = data[2]
+        except GLib.Error as err:
+            logging.debug("Could not generate composite key: %s", err.message)
+            return
 
+        entered_pwd = self.password_entry.get_text()
         if not (entered_pwd or composite_key):
             return
 
@@ -112,6 +116,10 @@ class UnlockDatabase(Adw.Bin):
             self.database_manager.add_to_history()
         else:
             self._unlock_failed()
+
+    @Gtk.Template.Callback()
+    def _on_unlock_button_clicked(self, _widget):
+        self.window.key_providers.generate_composite_key_async(self.database_manager.get_salt(), self._on_generated_composite_key)
 
     #
     # Open Database

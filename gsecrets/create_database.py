@@ -101,7 +101,7 @@ class CreateDatabase(Adw.Bin):
 
     def _on_generate_composite_key(self, providers, result):
         _, keyfile_path, keyfile_hash = \
-            self.window.key_providers.generate_composite_key_finish(result)
+            providers.generate_composite_key_finish(result)
 
         self.database_manager.set_credentials_async(
             password=self.password_confirm_row.props.text,
@@ -109,10 +109,11 @@ class CreateDatabase(Adw.Bin):
             keyfile_hash=keyfile_hash,
             callback=self._on_set_credentials)
 
-
     @Gtk.Template.Callback()
     def _on_create_button_clicked(self, _widget: Gtk.Button) -> None:
-        self.window.key_providers.generate_composite_key_async(self.database_manager.get_salt(), self._on_generate_composite_key)
+        self.window.key_providers.generate_composite_key_async(
+            self.database_manager.get_salt(),
+            self._on_generate_composite_key)
 
     @Gtk.Template.Callback()
     def on_finish_button_clicked(self, _widget: Gtk.Button) -> None:

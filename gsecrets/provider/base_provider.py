@@ -7,7 +7,7 @@ class BaseProvider:
     def available(self) -> bool:
         return False
 
-    def generate_key(self, _salt) -> bool:
+    def generate_key(self, _salt: bytes) -> bool:
         return False
 
     @property

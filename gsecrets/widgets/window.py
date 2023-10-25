@@ -55,7 +55,9 @@ class Window(Adw.ApplicationWindow):
         if self.application.development_mode is True:
             gsecrets.config_manager.set_development_backup_mode(True)
 
-    def send_notification(self, notification: str, persistent: bool = False) -> Adw.Toast:
+    def send_notification(self,
+                          notification: str,
+                          persistent: bool = False) -> Adw.Toast:
         toast = Adw.Toast.new(notification)
         if persistent:
             toast.set_timeout(0)

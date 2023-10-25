@@ -2,13 +2,14 @@
     "name": "python3-pykeepass",
     "buildsystem": "simple",
     "build-commands": [
-        "pip3 install --no-index --no-build-isolation --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} pykeepass"
+        "python3 setup.py build",
+        "python3 setup.py install --skip-build --prefix=/app --root=/ --optimize=1"
     ],
     "sources": [
         {
-            "type": "file",
-            "url": "https://files.pythonhosted.org/packages/da/fc/c18840739e2a3b0cac6d2adeda6518f3336cc7b7db52bf5ebb7c37497a12/pykeepass-4.0.6.tar.gz",
-            "sha256": "d19cc8349084e4b37eb2d9338f5fde99611c4184fa9d71d31d796356488ef548"
+            "type": "git",
+            "url": "https://github.com/libkeepass/pykeepass.git",
+            "commit": "8fc97084d5eee7b17eadc0a509c5671098fe43f9"
         }
     ],
     "modules": [

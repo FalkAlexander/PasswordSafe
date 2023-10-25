@@ -16,6 +16,7 @@ from gsecrets.provider.base_provider import BaseProvider
 
 
 class FileProvider(BaseProvider):
+    # pylint: disable=too-many-instance-attributes
     def __init__(self, window):
         super().__init__()
 

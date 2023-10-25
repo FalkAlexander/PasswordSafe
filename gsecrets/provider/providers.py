@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
 import logging
 from gi.repository import Adw, GLib, Gio, GObject
 from gsecrets.provider.file_provider import FileProvider
@@ -7,11 +8,13 @@ KEY_PROVIDERS = [
     FileProvider,
 ]
 
+
 class Providers(GObject.Object):
     def __init__(self, window: Adw.ApplicationWindow):
         super().__init__()
 
         self.providers = []
+        self.salt: bytes = b'\0'
 
         for key_provider in KEY_PROVIDERS:
             self.providers.append(key_provider(window))
@@ -20,9 +23,9 @@ class Providers(GObject.Object):
         return self.providers
 
     def generate_composite_key_async(self,
-                                     salt,
-                                     callback = None,
-                                     cancellable = None) -> None:
+                                     salt: bytes,
+                                     callback: Gio.AsyncReadyCallback,
+                                     cancellable: GLib.Cancellable = None) -> None:
         """Generate composite key
 
         Traverse all available key providers and request each raw_key.

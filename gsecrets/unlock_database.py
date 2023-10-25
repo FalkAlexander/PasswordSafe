@@ -62,7 +62,7 @@ class UnlockDatabase(Adw.Bin):
         for key_provider in self.window.key_providers.get_key_providers():
             if key_provider.available:
                 widget = key_provider.create_unlock_widget(self.database_manager)
-                self.key_group.add(widget)
+                self.provider_group.add(widget)
 
     def do_unmap(self):  # pylint: disable=arguments-differ
         Gtk.Widget.do_unmap(self)

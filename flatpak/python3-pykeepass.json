@@ -2,8 +2,7 @@
     "name": "python3-pykeepass",
     "buildsystem": "simple",
     "build-commands": [
-        "python3 setup.py build",
-        "python3 setup.py install --skip-build --prefix=/app --root=/ --optimize=1"
+        "pip3 install --no-index --no-build-isolation --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} ."
     ],
     "sources": [
         {

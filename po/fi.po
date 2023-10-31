@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-09-04 20:59+0000\n"
-"PO-Revision-Date: 2023-09-17 17:20+0300\n"
+"POT-Creation-Date: 2023-10-16 21:50+0000\n"
+"PO-Revision-Date: 2023-10-31 20:33+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -53,7 +53,7 @@ msgstr "Arkaluonteinen"
 msgid "Contains sensitive data."
 msgstr "Sisältää arkaluonteista tietoa."
 
-#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:352
+#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:353
 msgid "_Add"
 msgstr "_Lisää"
 
@@ -211,23 +211,23 @@ msgstr "_Luo"
 msgid "Safe Successfully Created"
 msgstr "Säilö luotu onnistuneesti"
 
-#: data/gtk/create_database.ui:269 data/gtk/unlocked_headerbar.ui:84
+#: data/gtk/create_database.ui:269
 msgid "_Open Safe"
 msgstr "_Avaa säilö"
 
 #: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:95
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Asetukset"
 
 #: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:99
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_Tietoja - Salaisuudet"
 
@@ -237,7 +237,7 @@ msgstr "_Käyttäjätunnus"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
 #: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
-#: data/gtk/history_row.ui:25 data/gtk/references_dialog.ui:360
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:360
 msgid "Copy"
 msgstr "Kopioi"
 
@@ -397,8 +397,8 @@ msgid "Attributes"
 msgstr "Attribuutit"
 
 #: data/gtk/entry_page.ui:255
-msgid "_Add Attribute"
-msgstr "_Lisää attribuutti"
+msgid "Add Attr_ibute"
+msgstr "Lisää attr_ibuutti"
 
 #: data/gtk/entry_page.ui:263
 msgid "Expiration Date"
@@ -505,79 +505,84 @@ msgstr "Sulje ikkuna"
 
 #: data/gtk/help-overlay.ui:50
 msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Uusi ikkuna"
+
+#: data/gtk/help-overlay.ui:56
+msgctxt "Shortcut window description"
 msgid "Quit"
 msgstr "Lopeta"
 
-#: data/gtk/help-overlay.ui:58
+#: data/gtk/help-overlay.ui:64
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Säilö"
 
-#: data/gtk/help-overlay.ui:61
+#: data/gtk/help-overlay.ui:67
 msgctxt "Shortcut window description"
 msgid "Lock Safe"
 msgstr "Lukitse säilö"
 
-#: data/gtk/help-overlay.ui:67
+#: data/gtk/help-overlay.ui:73
 msgctxt "Shortcut window description"
 msgid "Save Safe"
 msgstr "Tallenna säilö"
 
-#: data/gtk/help-overlay.ui:73
+#: data/gtk/help-overlay.ui:79
 msgctxt "Shortcut window description"
 msgid "Open Search"
 msgstr "Avaa haku"
 
-#: data/gtk/help-overlay.ui:79
+#: data/gtk/help-overlay.ui:85
 msgctxt "Shortcut window description"
 msgid "Create Entry"
 msgstr "Luo tietue"
 
-#: data/gtk/help-overlay.ui:85
+#: data/gtk/help-overlay.ui:91
 msgctxt "Shortcut window description"
 msgid "Create Group"
 msgstr "Luo ryhmä"
 
-#: data/gtk/help-overlay.ui:93
+#: data/gtk/help-overlay.ui:99
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Tietue"
 
-#: data/gtk/help-overlay.ui:96
+#: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
 msgid "Copy Password"
 msgstr "Kopioi salasana"
 
-#: data/gtk/help-overlay.ui:102
+#: data/gtk/help-overlay.ui:108
 msgctxt "Shortcut window description"
 msgid "Copy Address"
 msgstr "Kopioi osoite"
 
-#: data/gtk/help-overlay.ui:108
+#: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Kopioi käyttäjätunnus"
 
-#: data/gtk/help-overlay.ui:114
+#: data/gtk/help-overlay.ui:120
 msgctxt "Shortcut window description"
 msgid "Copy One-Time Password"
 msgstr "Kopioi kertakäyttösalasana"
 
-#: data/gtk/help-overlay.ui:120
+#: data/gtk/help-overlay.ui:126
 msgctxt "Shortcut window description"
 msgid "Show History"
 msgstr "Näytä historia"
 
-#: data/gtk/help-overlay.ui:126
+#: data/gtk/help-overlay.ui:132
 msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Tallenna historiaan"
 
-#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
 msgid "Show Text"
 msgstr "Näytä teksti"
 
-#: data/gtk/history_row.ui:36
+#: data/gtk/history_row.ui:39
 msgid "Remove from History"
 msgstr "Poista historiasta"
 
@@ -910,17 +915,17 @@ msgstr "Tyhjennä"
 msgid "Unlock Safe"
 msgstr "Avaa säilön lukitus"
 
-#: data/gtk/unlock_database.ui:68 gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "_Valitse avaintiedosto"
+#: data/gtk/unlock_database.ui:68
+msgid "_Select Keyfile…"
+msgstr "_Valitse avaintiedosto…"
 
 #: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "Selain"
 
 #: data/gtk/unlocked_database_page.ui:31
-msgid "Add elements with the ➕ button."
-msgstr "Lisää tietueita ➕ -painikkeella."
+msgid "Add elements with the ➕ button"
+msgstr "Lisää tietueita ➕ -painikkeella"
 
 #: data/gtk/unlocked_database_page.ui:32
 msgid "Empty Group"
@@ -958,24 +963,28 @@ msgstr "_Uusin ensin"
 msgid "_Oldest First"
 msgstr "_Vanhin ensin"
 
-#: data/gtk/unlocked_headerbar.ui:89
+#: data/gtk/unlocked_headerbar.ui:84
+msgid "New _Window"
+msgstr "Uusi _ikkuna"
+
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "_Säilön asetukset"
 
-#: data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "_Uusi tietue"
 
-#: data/gtk/unlocked_headerbar.ui:115
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "Uusi _ryhmä"
 
-#: data/gtk/unlocked_headerbar.ui:134
+#: data/gtk/unlocked_headerbar.ui:133
 #: gsecrets/widgets/saving_conflict_dialog.py:35
 msgid "_Save"
 msgstr "_Tallenna"
 
-#: data/gtk/unlocked_headerbar.ui:149
+#: data/gtk/unlocked_headerbar.ui:148
 msgid "_Lock"
 msgstr "_Lukitse"
 
@@ -997,6 +1006,10 @@ msgstr "Salasanojen hallintasovellus Gnomelle"
 #: data/org.gnome.World.Secrets.desktop.in.in:14
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;encrypt;secure;"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:21
+msgid "New Window"
+msgstr "Uusi ikkuna"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -1188,7 +1201,7 @@ msgstr ""
 "tiedostomuotoa. Se yhdistyy Gnome-työpöydälle ja tarjoaa selkeän sekä "
 "helppokäyttöisen käyttöliittymän salasanatietokantojen hallintaan."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:239
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1225,33 +1238,33 @@ msgstr "Avaintiedostoa ei voitu luoda"
 msgid "Generate"
 msgstr "Luo"
 
-#: gsecrets/entry_page.py:237 gsecrets/widgets/credentials_group.py:98
+#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
 msgstr "Tallennettu historiaan"
 
-#: gsecrets/entry_page.py:253 gsecrets/entry_row.py:123
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Käyttäjätunnus kopioitu"
 
-#: gsecrets/entry_page.py:261 gsecrets/entry_page.py:392
+#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
 msgid "Address copied"
 msgstr "Osoite kopioitu"
 
-#: gsecrets/entry_page.py:271 gsecrets/entry_page.py:326
+#: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
 msgid "One-time password copied"
 msgstr "Kertakäyttösalasana kopioitu"
 
-#: gsecrets/entry_page.py:304
+#: gsecrets/entry_page.py:305
 msgid "Could not open URL"
 msgstr "Osoitetta ei voitu avata"
 
-#: gsecrets/entry_page.py:314
+#: gsecrets/entry_page.py:315
 msgid "The address is not valid"
 msgstr "Osoite ei ole kelvollinen"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:351
+#: gsecrets/entry_page.py:352
 msgid "Select Attachments"
 msgstr "Valitse liitteet"
 
@@ -1366,6 +1379,10 @@ msgstr "Säilön lukituksen avaaminen epäonnistui"
 #: gsecrets/unlock_database.py:251
 msgid "_Try Again"
 msgstr "_Yritä uudelleen"
+
+#: gsecrets/unlock_database.py:256
+msgid "_Select Keyfile"
+msgstr "_Valitse avaintiedosto"
 
 #: gsecrets/unlocked_database.py:299
 msgid "Safe saved"
@@ -1622,6 +1639,9 @@ msgstr "Uutta säilöä ei voitu luoda"
 #: gsecrets/widgets/window.py:355
 msgid "Could not save safe"
 msgstr "Säilöä ei voitu tallentaa"
+
+#~ msgid "_Add Attribute"
+#~ msgstr "_Lisää attribuutti"
 
 #~ msgid "Add"
 #~ msgstr "Lisää"

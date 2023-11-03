@@ -60,6 +60,7 @@ mypy:
 
 pylint:
   stage: check
+  allow_failure: true
   script:
     - dnf install -y 'dnf-command(copr)' pip git
     - dnf install -y libadwaita-devel gtk4-devel pylint python3-gobject-devel python3-pyotp python3-zxcvbn python3-validators

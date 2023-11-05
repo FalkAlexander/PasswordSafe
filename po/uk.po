@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-16 21:50+0000\n"
-"PO-Revision-Date: 2023-10-17 09:48+0300\n"
+"POT-Creation-Date: 2023-11-03 20:26+0000\n"
+"PO-Revision-Date: 2023-11-05 20:21+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -29,7 +29,7 @@ msgid "translator-credits"
 msgstr "Юрій Чорноіван <yurchor@ukr.net>"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:8
 #: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Секрети"
@@ -104,7 +104,7 @@ msgstr "Колір"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:220
 msgid "Create Safe"
 msgstr "Створення сейфа"
 
@@ -121,114 +121,45 @@ msgstr "Головне меню"
 msgid "Protect your safe"
 msgstr "Захистіть ваш сейф"
 
-#: data/gtk/create_database.ui:47 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:51 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "Па_роль"
 
-#: data/gtk/create_database.ui:48
-msgid "Use a password to secure your safe."
-msgstr "Скористатися паролем для захисту вашого сейфа."
+#: data/gtk/create_database.ui:58
+#| msgid "Confirm New Password"
+msgid "_Confirm Password"
+msgstr "_Підтвердити пароль"
 
-#: data/gtk/create_database.ui:56
-msgid "_Keyfile"
-msgstr "_Файл ключа"
+#: data/gtk/create_database.ui:78 data/gtk/unlock_database.ui:34
+msgid "Additional Credentials"
+msgstr "Додаткові реєстраційні дані"
 
-#: data/gtk/create_database.ui:57
-msgid "Use a keyfile to secure your safe."
-msgstr "Скористатися ключем для захисту вашого сейфа."
+#: data/gtk/create_database.ui:84
+#| msgid "Created"
+msgid "Create"
+msgstr "Створити"
 
-#: data/gtk/create_database.ui:65
-msgid "_Composite"
-msgstr "Сумі_щення"
-
-#: data/gtk/create_database.ui:66
-msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr ""
-"Скористатися паролем у поєднанні із файлом ключа для захисту вашого сейфа."
-
-#: data/gtk/create_database.ui:86 data/gtk/create_database.ui:200
-msgid "Enter Password"
-msgstr "Введіть пароль"
-
-#: data/gtk/create_database.ui:87
-msgid "Set password for safe."
-msgstr "Встановлення пароля для сейфа."
-
-#: data/gtk/create_database.ui:109 data/gtk/credentials_group.ui:43
-#: data/gtk/database_settings_dialog.ui:23
-msgid "Generate New Password"
-msgstr "Створення пароля"
-
-#: data/gtk/create_database.ui:122
-msgid "Next"
-msgstr "Далі"
-
-#: data/gtk/create_database.ui:148
-msgid "Password Match Check"
-msgstr "Перевірка відповідності паролів"
-
-#: data/gtk/create_database.ui:149
-msgid "Repeat password for safe."
-msgstr "Повторіть пароль до сейфа."
-
-#: data/gtk/create_database.ui:166
-msgid "Check"
-msgstr "Перевірити"
-
-#: data/gtk/create_database.ui:185
-msgid "Match Check Failed"
-msgstr "Перевірку відповідності не пройдено"
-
-#: data/gtk/create_database.ui:186
-msgid "Please try again."
-msgstr "Будь ласка, повторіть спробу."
-
-#: data/gtk/create_database.ui:210
-msgid "Repeat Password"
-msgstr "Повторіть пароль"
-
-#: data/gtk/create_database.ui:221 gsecrets/create_database.py:256
-msgid "_Confirm"
-msgstr "_Підтвердити"
-
-#. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:242 gsecrets/create_database.py:180
-#: gsecrets/widgets/database_settings_dialog.py:194
-msgid "Generate Keyfile"
-msgstr "Створити файл ключа"
-
-#: data/gtk/create_database.ui:243
-msgid "Set keyfile for safe"
-msgstr "Встановіть файл ключа до сейфа"
-
-#. Button to generate a password
-#: data/gtk/create_database.ui:246 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:181
-#: gsecrets/widgets/database_settings_dialog.py:195
-msgid "_Generate"
-msgstr "С_творити"
-
-#: data/gtk/create_database.ui:266
+#: data/gtk/create_database.ui:107
 msgid "Safe Successfully Created"
 msgstr "Сейф успішно створено"
 
-#: data/gtk/create_database.ui:269
+#: data/gtk/create_database.ui:110
 msgid "_Open Safe"
 msgstr "_Відкрити сейф"
 
-#: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:132 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Налаштування"
 
-#: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:136 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_Про «Секрети»"
@@ -243,13 +174,18 @@ msgstr "_Користувач"
 msgid "Copy"
 msgstr "Копіювати"
 
+#: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
+#: gsecrets/create_database.py:38
+msgid "Generate New Password"
+msgstr "Створення пароля"
+
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
 msgstr "Розпізнавання"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:26
 msgid "Password"
 msgstr "Пароль"
 
@@ -265,8 +201,10 @@ msgstr "Підтвердження нового пароля"
 msgid "Current Password"
 msgstr "Поточний пароль"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:182
-#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
+#: data/gtk/database_settings_dialog.ui:58
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:132
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:81
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Файл ключа"
 
@@ -399,7 +337,6 @@ msgid "Attributes"
 msgstr "Атрибути"
 
 #: data/gtk/entry_page.ui:255
-#| msgid "Add Attribute"
 msgid "Add Attr_ibute"
 msgstr "Додати атри_бут"
 
@@ -629,6 +566,13 @@ msgstr "Пароль"
 msgid "Words"
 msgstr "Слова"
 
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:132
+#: gsecrets/provider/file_provider.py:196
+#: gsecrets/widgets/database_settings_dialog.py:195
+msgid "_Generate"
+msgstr "С_творити"
+
 #: data/gtk/properties_dialog.ui:9
 msgid "Properties"
 msgstr "Властивості"
@@ -787,8 +731,8 @@ msgstr "Повторно відкрити останній відкритий с
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
-#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:129
+#: gsecrets/widgets/window.py:212 gsecrets/widgets/window.py:224
 msgid "Safe"
 msgstr "Безпечний"
 
@@ -800,7 +744,8 @@ msgstr "З_берігати автоматично"
 msgid "Save every change automatically."
 msgstr "Зберігати усі зміни автоматично."
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:37
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:40
+#: gsecrets/unlock_database.py:187
 msgid "Unlock"
 msgstr "Відімкнути"
 
@@ -913,17 +858,13 @@ msgstr "Спорожнити список нещодавніх сейфів"
 msgid "Clear the recently opened safes list."
 msgstr "Спорожнити список нещодавно відкритих сейфів."
 
-#: data/gtk/settings_dialog.ui:189 data/gtk/unlock_database.ui:94
+#: data/gtk/settings_dialog.ui:189
 msgid "Clear"
 msgstr "Спорожнити"
 
 #: data/gtk/unlock_database.ui:12
 msgid "Unlock Safe"
 msgstr "Відімкнути сейф"
-
-#: data/gtk/unlock_database.ui:68
-msgid "_Select Keyfile…"
-msgstr "Ви_брати файл ключа…"
 
 #: data/gtk/unlocked_database.ui:8
 msgid "Browser"
@@ -1105,13 +1046,14 @@ msgstr ""
 "даних."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Останній використаний суміщений ключ"
+#| msgid "Last used composite key"
+msgid "Last used key provider"
+msgstr "Останній використаний надавач ключа"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr ""
-"Шлях до останнього використаного ключа для відмикання суміщеної бази даних."
+#| msgid "Path to last used key for composite database unlocking."
+msgid "Key provider for composite database unlocking."
+msgstr "Надавач ключа для відмикання суміщеної бази даних."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1233,25 +1175,13 @@ msgstr "Помилка: сейф {} вже відкрито"
 msgid "Could not load attachment"
 msgstr "Не вдалося завантажити долучення"
 
-#: gsecrets/create_database.py:69
-msgid "Unable to create database"
-msgstr "Не вдалося створити базу даних"
-
-#: gsecrets/create_database.py:167
+#: gsecrets/create_database.py:63
 msgid "Passwords do not match"
 msgstr "Паролі не збігаються"
 
-#: gsecrets/create_database.py:197
-msgid "Generating…"
-msgstr "Створюємо…"
-
-#: gsecrets/create_database.py:209
-msgid "Could not create keyfile"
-msgstr "Не вдалося створити файл ключа"
-
-#: gsecrets/create_database.py:211
-msgid "Generate"
-msgstr "Створити"
+#: gsecrets/create_database.py:78
+msgid "Unable to create database"
+msgstr "Не вдалося створити базу даних"
 
 #: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
@@ -1331,6 +1261,41 @@ msgstr "Виключити символи"
 msgid "Root Group"
 msgstr "Коренева група"
 
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+msgid "Select Keyfile"
+msgstr "Вибір файл ключа"
+
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:143
+#| msgid "Select Keyfile"
+msgid "Clear Keyfile"
+msgstr "Очистити файл ключа"
+
+#: gsecrets/provider/file_provider.py:70
+#| msgid "Select Keyfile"
+msgid "Select keyfile"
+msgstr "Вибір файла ключа"
+
+#: gsecrets/provider/file_provider.py:107
+#| msgid "Could not Load Keyfile"
+msgid "Could not load keyfile"
+msgstr "Не вдалося завантажити файл ключа"
+
+#. NOTE: Filechooser title for generating a new keyfile
+#: gsecrets/provider/file_provider.py:136
+#: gsecrets/provider/file_provider.py:195
+#: gsecrets/widgets/database_settings_dialog.py:194
+msgid "Generate Keyfile"
+msgstr "Створити файл ключа"
+
+#: gsecrets/provider/file_provider.py:160
+#| msgid "Use a keyfile to secure your safe."
+msgid "Use a file to increase security"
+msgstr "Скористатися файлом для підвищення захисту"
+
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "Не вдалося створити файл ключа"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Нещодавні файли"
@@ -1374,30 +1339,18 @@ msgstr "Клонувати"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
+#: gsecrets/widgets/window.py:354 gsecrets/widgets/window.py:360
 msgid "Could not save Safe"
 msgstr "Не вдалося зберегти сейф"
 
-#: gsecrets/unlock_database.py:86
-msgid "Select Keyfile"
-msgstr "Вибір файл ключа"
-
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:157
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "Сейф вже відкрито"
 
-#: gsecrets/unlock_database.py:238
+#: gsecrets/unlock_database.py:175
 msgid "Failed to unlock Safe"
 msgstr "Не вдалося відімкнути сейф"
-
-#: gsecrets/unlock_database.py:251
-msgid "_Try Again"
-msgstr "Сп_робувати ще раз"
-
-#: gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "Ви_брати файл ключа"
 
 #: gsecrets/unlocked_database.py:299
 msgid "Safe saved"
@@ -1629,37 +1582,98 @@ msgstr "Дію перервано: пересування поточної ак�
 msgid "Move completed"
 msgstr "Пересування завершено"
 
-#: gsecrets/widgets/window.py:121
+#: gsecrets/widgets/window.py:133
 msgid "Any file type"
 msgstr "файл будь-якого типу"
 
-#: gsecrets/widgets/window.py:128
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "Виберіть сейф"
 
-#: gsecrets/widgets/window.py:144
+#: gsecrets/widgets/window.py:156
 msgid "File does not have a valid path"
 msgstr "Файл не має коректного шляху"
 
-#: gsecrets/widgets/window.py:178
+#: gsecrets/widgets/window.py:190
 msgid "Safe is already open"
 msgstr "Сейф вже відкрито"
 
-#: gsecrets/widgets/window.py:210
+#: gsecrets/widgets/window.py:222
 msgid "_Create"
 msgstr "С_творити"
 
-#: gsecrets/widgets/window.py:231
+#: gsecrets/widgets/window.py:243
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Не вдалося створити сейф: сейф вже відкрито"
 
-#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
+#: gsecrets/widgets/window.py:285 gsecrets/widgets/window.py:300
 msgid "Could not create new Safe"
 msgstr "Не вдалося створити сейф"
 
-#: gsecrets/widgets/window.py:355
+#: gsecrets/widgets/window.py:367
 msgid "Could not save safe"
 msgstr "Не вдалося зберегти сейф"
+
+#~ msgid "Use a password to secure your safe."
+#~ msgstr "Скористатися паролем для захисту вашого сейфа."
+
+#~ msgid "_Keyfile"
+#~ msgstr "_Файл ключа"
+
+#~ msgid "_Composite"
+#~ msgstr "Сумі_щення"
+
+#~ msgid "Use a password in combination with a keyfile to secure your safe."
+#~ msgstr ""
+#~ "Скористатися паролем у поєднанні із файлом ключа для захисту вашого сейфа."
+
+#~ msgid "Enter Password"
+#~ msgstr "Введіть пароль"
+
+#~ msgid "Set password for safe."
+#~ msgstr "Встановлення пароля для сейфа."
+
+#~ msgid "Next"
+#~ msgstr "Далі"
+
+#~ msgid "Password Match Check"
+#~ msgstr "Перевірка відповідності паролів"
+
+#~ msgid "Repeat password for safe."
+#~ msgstr "Повторіть пароль до сейфа."
+
+#~ msgid "Check"
+#~ msgstr "Перевірити"
+
+#~ msgid "Match Check Failed"
+#~ msgstr "Перевірку відповідності не пройдено"
+
+#~ msgid "Please try again."
+#~ msgstr "Будь ласка, повторіть спробу."
+
+#~ msgid "Repeat Password"
+#~ msgstr "Повторіть пароль"
+
+#~ msgid "_Confirm"
+#~ msgstr "_Підтвердити"
+
+#~ msgid "Set keyfile for safe"
+#~ msgstr "Встановіть файл ключа до сейфа"
+
+#~ msgid "_Select Keyfile…"
+#~ msgstr "Ви_брати файл ключа…"
+
+#~ msgid "Generating…"
+#~ msgstr "Створюємо…"
+
+#~ msgid "Generate"
+#~ msgstr "Створити"
+
+#~ msgid "_Try Again"
+#~ msgstr "Сп_робувати ще раз"
+
+#~ msgid "_Select Keyfile"
+#~ msgstr "Ви_брати файл ключа"
 
 #~ msgid "_Add Attribute"
 #~ msgstr "_Додати атрибут"

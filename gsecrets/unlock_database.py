@@ -31,6 +31,7 @@ class UnlockDatabase(Adw.Bin):
     status_page = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
+    banner = Gtk.Template.Child()
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
         super().__init__()
@@ -86,13 +87,16 @@ class UnlockDatabase(Adw.Bin):
         return is_open and not is_current
 
     def _on_generated_composite_key(self, providers, result):
+        self.unlock_button.set_sensitive(True)
+
         try:
             data = providers.generate_composite_key_finish(result)
             composite_key = data[0]
             self.keyfile = data[1]
             self.keyfile_hash = data[2]
         except GLib.Error as err:
-            logging.debug("Could not generate composite key: %s", err.message)
+            logging.error("Could not generate composite key: %s", err.message)
+            self.window.send_notification(_("Failed to generate composite key"))
             return
 
         entered_pwd = self.password_entry.get_text()
@@ -120,7 +124,11 @@ class UnlockDatabase(Adw.Bin):
             self._unlock_failed()
 
     @Gtk.Template.Callback()
-    def _on_unlock_button_clicked(self, _widget):
+    def _on_unlock_button_clicked(self, widget: Gtk.Button) -> None:
+        if not self.database_manager:
+            return
+
+        widget.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
             self.database_manager.get_salt(),
             self._on_generated_composite_key)
@@ -232,3 +240,10 @@ class UnlockDatabase(Adw.Bin):
             None,
             callback,
         )
+
+    def show_banner(self, label: str) -> None:
+        self.banner.set_title(label)
+        self.banner.set_revealed(True)
+
+    def close_banner(self):
+        self.banner.set_revealed(False)

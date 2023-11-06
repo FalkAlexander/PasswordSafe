@@ -1,0 +1,19 @@
+{
+    "name": "python3-python-yubico",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"python-yubico\" --no-build-isolation"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/00/2a/e9b3ab5f28de7cea5abca2c71ede72c9cf99c7357542ef53614369a99cec/python-yubico-1.3.3.tar.gz",
+            "sha256": "d8466427aa5922ac5d4b7e9c65b693108427cf537d653d68cb212c0713e8e6f5"
+        },
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/15/a8/4982498b2ab44d1fcd5c49f07ea3795eab01601dc143b009d333fcace3b9/pyusb-1.2.1-py3-none-any.whl",
+            "sha256": "2b4c7cb86dbadf044dfb9d3a4ff69fd217013dbe78a792177a3feb172449ea36"
+        }
+    ]
+}

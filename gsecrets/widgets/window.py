@@ -55,15 +55,23 @@ class Window(Adw.ApplicationWindow):
         if self.application.development_mode is True:
             gsecrets.config_manager.set_development_backup_mode(True)
 
-    def send_notification(self,
-                          notification: str,
-                          persistent: bool = False) -> Adw.Toast:
+    def send_notification(self, notification: str) -> None:
         toast = Adw.Toast.new(notification)
-        if persistent:
-            toast.set_timeout(0)
-
         self.toast_overlay.add_toast(toast)
-        return toast
+
+    def show_banner(self, label: str) -> None:
+        if self.view == self.View.UNLOCK_DATABASE:
+            self._unlock_database_bin.props.child.show_banner(label)
+        elif self.view == self.View.CREATE_DATABASE:
+            if create_view := self._create_view:
+                create_view.show_banner(label)
+
+    def close_banner(self):
+        if self.view == self.View.UNLOCK_DATABASE:
+            self._unlock_database_bin.props.child.close_banner()
+        elif self.view == self.View.CREATE_DATABASE:
+            if create_view := self._create_view:
+                create_view.close_banner()
 
     def close_notification(self, toast: Adw.Toast) -> None:
         toast.dismiss()

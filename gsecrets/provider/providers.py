@@ -3,9 +3,11 @@ from __future__ import annotations
 import logging
 from gi.repository import Adw, GLib, Gio, GObject
 from gsecrets.provider.file_provider import FileProvider
+from gsecrets.provider.yubikey_provider import YubiKeyProvider
 
 KEY_PROVIDERS = [
     FileProvider,
+    YubiKeyProvider,
 ]
 
 
@@ -44,9 +46,13 @@ class Providers(GObject.Object):
             # have a key.
             for provider in self.providers:
                 logging.debug("Generate key for %s", type(provider).__name__)
-                if provider.generate_key(self.salt):
-                    logging.debug("Adding key from %s", type(provider).__name__)
-                    raw_key += provider.key
+                try:
+                    if provider.generate_key(self.salt):
+                        logging.debug("Adding key from %s", type(provider).__name__)
+                        raw_key += provider.key
+                except ValueError as err:
+                    task.return_error(GLib.Error(str(err)))
+                    return
 
             if len(raw_key) == 0:
                 logging.debug("No key providers in use, returning None")

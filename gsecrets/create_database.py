@@ -25,6 +25,7 @@ class CreateDatabase(Adw.Bin):
     open_safe_button = Gtk.Template.Child()
     back_button = Gtk.Template.Child()
     match_hint = Gtk.Template.Child()
+    banner = Gtk.Template.Child()
 
     def __init__(self, window, dbm):
         super().__init__()
@@ -100,17 +101,29 @@ class CreateDatabase(Adw.Bin):
         self.password_confirm_row.props.text = password
 
     def _on_generate_composite_key(self, providers, result):
-        _, keyfile_path, keyfile_hash = \
-            providers.generate_composite_key_finish(result)
+        self.stack.set_sensitive(True)
+
+        keyfile = None
+        keyfile_hash = None
+
+        try:
+            data = providers.generate_composite_key_finish(result)
+            keyfile = data[1]
+            keyfile_hash = data[2]
+        except GLib.Error as ex:
+            logging.warning("Failed to generate composite key: %s", str(ex))
+            self.window.send_notification(_("Failed to generate composite key"))
+            return
 
         self.database_manager.set_credentials_async(
             password=self.password_confirm_row.props.text,
-            keyfile=keyfile_path,
+            keyfile=keyfile,
             keyfile_hash=keyfile_hash,
             callback=self._on_set_credentials)
 
     @Gtk.Template.Callback()
-    def _on_create_button_clicked(self, _widget: Gtk.Button) -> None:
+    def _on_create_button_clicked(self, _button: Gtk.Button) -> None:
+        self.stack.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
             self.database_manager.get_salt(),
             self._on_generate_composite_key)
@@ -126,3 +139,10 @@ class CreateDatabase(Adw.Bin):
 
         for key_provider in self.window.key_providers.get_key_providers():
             key_provider.clear_input_fields()
+
+    def show_banner(self, label: str) -> None:
+        self.banner.set_title(label)
+        self.banner.set_revealed(True)
+
+    def close_banner(self):
+        self.banner.set_revealed(False)

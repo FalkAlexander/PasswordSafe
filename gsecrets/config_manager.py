@@ -187,7 +187,7 @@ def get_last_used_key_provider() -> dict:
 
 
 def set_last_used_key_provider(provider_list: dict) -> None:
-    """Sets history dict of key provieder."""
+    """Sets history dict of key provider."""
     setting.set_string(LAST_USED_KEY_PROVIDER, json.dumps(provider_list))
 
 

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-05 06:20+0000\n"
-"PO-Revision-Date: 2023-10-05 20:37+0800\n"
+"POT-Creation-Date: 2023-11-03 20:31+0000\n"
+"PO-Revision-Date: 2023-11-06 12:50+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 45.2\n"
+"X-Generator: Gtranslator 45.3\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -105,7 +105,7 @@ msgstr "颜色"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:220
 msgid "Create Safe"
 msgstr "创建保险箱"
 
@@ -122,113 +122,43 @@ msgstr "主菜单"
 msgid "Protect your safe"
 msgstr "保护您的保险箱"
 
-#: data/gtk/create_database.ui:47 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:51 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "密码(_P)"
 
-#: data/gtk/create_database.ui:48
-msgid "Use a password to secure your safe."
-msgstr "使用密码保护您的保险箱。"
+#: data/gtk/create_database.ui:58
+msgid "_Confirm Password"
+msgstr "确认密码(_C)"
 
-#: data/gtk/create_database.ui:56
-msgid "_Keyfile"
-msgstr "密钥文件(_K)"
+#: data/gtk/create_database.ui:78 data/gtk/unlock_database.ui:34
+msgid "Additional Credentials"
+msgstr "附加的证书"
 
-#: data/gtk/create_database.ui:57
-msgid "Use a keyfile to secure your safe."
-msgstr "使用密钥文件保护您的保险箱。"
+#: data/gtk/create_database.ui:84
+msgid "Create"
+msgstr "创建"
 
-#: data/gtk/create_database.ui:65
-msgid "_Composite"
-msgstr "组合(_C)"
-
-#: data/gtk/create_database.ui:66
-msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr "组合使用密码和密钥文件保护您的保险箱。"
-
-#: data/gtk/create_database.ui:86 data/gtk/create_database.ui:200
-msgid "Enter Password"
-msgstr "输入密码"
-
-#: data/gtk/create_database.ui:87
-msgid "Set password for safe."
-msgstr "设置保险箱密码。"
-
-#: data/gtk/create_database.ui:109 data/gtk/credentials_group.ui:43
-#: data/gtk/database_settings_dialog.ui:23
-msgid "Generate New Password"
-msgstr "生成新密码"
-
-#: data/gtk/create_database.ui:122
-msgid "Next"
-msgstr "下一步"
-
-#: data/gtk/create_database.ui:148
-msgid "Password Match Check"
-msgstr "密码匹配检查"
-
-#: data/gtk/create_database.ui:149
-msgid "Repeat password for safe."
-msgstr "重复保险箱密码。"
-
-#: data/gtk/create_database.ui:166
-msgid "Check"
-msgstr "检查"
-
-#: data/gtk/create_database.ui:185
-msgid "Match Check Failed"
-msgstr "匹配检查失败"
-
-#: data/gtk/create_database.ui:186
-msgid "Please try again."
-msgstr "请重试。"
-
-#: data/gtk/create_database.ui:210
-msgid "Repeat Password"
-msgstr "重复密码"
-
-#: data/gtk/create_database.ui:221 gsecrets/create_database.py:256
-msgid "_Confirm"
-msgstr "确认(_C)"
-
-#. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:242 gsecrets/create_database.py:180
-#: gsecrets/widgets/database_settings_dialog.py:194
-msgid "Generate Keyfile"
-msgstr "生成密钥文件"
-
-#: data/gtk/create_database.ui:243
-msgid "Set keyfile for safe"
-msgstr "设置保险箱密钥文件"
-
-#. Button to generate a password
-#: data/gtk/create_database.ui:246 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:181
-#: gsecrets/widgets/database_settings_dialog.py:195
-msgid "_Generate"
-msgstr "生成(_G)"
-
-#: data/gtk/create_database.ui:266
+#: data/gtk/create_database.ui:107
 msgid "Safe Successfully Created"
 msgstr "保险箱创建成功"
 
-#: data/gtk/create_database.ui:269
+#: data/gtk/create_database.ui:110
 msgid "_Open Safe"
 msgstr "打开保险箱(_O)"
 
-#: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:132 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:136 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "关于秘密(_A)"
@@ -239,9 +169,14 @@ msgstr "用户名(_U)"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
 #: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
-#: data/gtk/history_row.ui:25 data/gtk/references_dialog.ui:360
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:360
 msgid "Copy"
 msgstr "复制"
+
+#: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
+#: gsecrets/create_database.py:38
+msgid "Generate New Password"
+msgstr "生成新密码"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -249,7 +184,7 @@ msgstr "认证"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:26
 msgid "Password"
 msgstr "密码"
 
@@ -265,8 +200,10 @@ msgstr "确认新密码"
 msgid "Current Password"
 msgstr "当前密码"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:182
-#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
+#: data/gtk/database_settings_dialog.ui:58
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:132
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:81
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "密钥文件"
 
@@ -399,8 +336,8 @@ msgid "Attributes"
 msgstr "属性"
 
 #: data/gtk/entry_page.ui:255
-msgid "_Add Attribute"
-msgstr "添加属性(_A)"
+msgid "Add Attr_ibute"
+msgstr "添加属性(_I)"
 
 #: data/gtk/entry_page.ui:263
 msgid "Expiration Date"
@@ -580,11 +517,11 @@ msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "保存到历史"
 
-#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
 msgid "Show Text"
 msgstr "显示文本"
 
-#: data/gtk/history_row.ui:36
+#: data/gtk/history_row.ui:39
 msgid "Remove from History"
 msgstr "从历史移除"
 
@@ -597,7 +534,7 @@ msgid "_Open"
 msgstr "打开(_O)"
 
 #: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
-#: data/gtk/welcome_page.ui:15
+#: data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "新建保险箱(_N)"
 
@@ -627,6 +564,13 @@ msgstr "密码短语"
 #: data/gtk/password_generator_popover.ui:103
 msgid "Words"
 msgstr "单词"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:132
+#: gsecrets/provider/file_provider.py:196
+#: gsecrets/widgets/database_settings_dialog.py:195
+msgid "_Generate"
+msgstr "生成(_G)"
 
 #: data/gtk/properties_dialog.ui:9
 msgid "Properties"
@@ -782,8 +726,8 @@ msgstr "重新打开上次打开的保险箱。"
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
-#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:129
+#: gsecrets/widgets/window.py:212 gsecrets/widgets/window.py:224
 msgid "Safe"
 msgstr "保险箱"
 
@@ -795,7 +739,8 @@ msgstr "自动保存(_S)"
 msgid "Save every change automatically."
 msgstr "自动保存所有更改。"
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:37
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:40
+#: gsecrets/unlock_database.py:187
 msgid "Unlock"
 msgstr "解锁"
 
@@ -907,17 +852,13 @@ msgstr "清除最近列表"
 msgid "Clear the recently opened safes list."
 msgstr "清除最近打开的保险箱列表。"
 
-#: data/gtk/settings_dialog.ui:189 data/gtk/unlock_database.ui:94
+#: data/gtk/settings_dialog.ui:189
 msgid "Clear"
 msgstr "清空"
 
 #: data/gtk/unlock_database.ui:12
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
-
-#: data/gtk/unlock_database.ui:68
-msgid "_Select Keyfile…"
-msgstr "选择密钥文件(_S)…"
 
 #: data/gtk/unlocked_database.ui:8
 msgid "Browser"
@@ -1090,12 +1031,12 @@ msgid "Remember last used composite key for database unlocking."
 msgstr "记住上一次解锁数据库使用的组合密钥。"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "上次使用的组合密钥"
+msgid "Last used key provider"
+msgstr "上次使用的密钥提供者"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr "上一次解锁数据库所用组合密钥的路径。"
+msgid "Key provider for composite database unlocking."
+msgstr "用于解锁合成数据库的密钥提供者。"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1188,7 +1129,7 @@ msgstr ""
 "秘密是一个使用 KeePass v.4 格式的密码管理器。与 GNOME 桌面完美集成并提供简"
 "易、整洁的界面来管理密码数据库。"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:251
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
@@ -1205,25 +1146,13 @@ msgstr "错误：保险箱 {} 已打开"
 msgid "Could not load attachment"
 msgstr "无法加载附件"
 
-#: gsecrets/create_database.py:69
-msgid "Unable to create database"
-msgstr "无法创建数据库"
-
-#: gsecrets/create_database.py:167
+#: gsecrets/create_database.py:63
 msgid "Passwords do not match"
 msgstr "密码不匹配"
 
-#: gsecrets/create_database.py:197
-msgid "Generating…"
-msgstr "正在生成…"
-
-#: gsecrets/create_database.py:209
-msgid "Could not create keyfile"
-msgstr "无法创建密钥文件"
-
-#: gsecrets/create_database.py:211
-msgid "Generate"
-msgstr "生成"
+#: gsecrets/create_database.py:78
+msgid "Unable to create database"
+msgstr "无法创建数据库"
 
 #: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
@@ -1303,6 +1232,37 @@ msgstr "排除符号"
 msgid "Root Group"
 msgstr "根分组"
 
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+msgid "Select Keyfile"
+msgstr "选择密钥文件"
+
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:143
+msgid "Clear Keyfile"
+msgstr "清除密钥文件"
+
+#: gsecrets/provider/file_provider.py:70
+msgid "Select keyfile"
+msgstr "选择密钥文件"
+
+#: gsecrets/provider/file_provider.py:107
+msgid "Could not load keyfile"
+msgstr "无法加载密钥文件"
+
+#. NOTE: Filechooser title for generating a new keyfile
+#: gsecrets/provider/file_provider.py:136
+#: gsecrets/provider/file_provider.py:195
+#: gsecrets/widgets/database_settings_dialog.py:194
+msgid "Generate Keyfile"
+msgstr "生成密钥文件"
+
+#: gsecrets/provider/file_provider.py:160
+msgid "Use a file to increase security"
+msgstr "使用文件来增加安全性"
+
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "无法创建密钥文件"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "最近的文件"
@@ -1346,30 +1306,18 @@ msgstr "克隆"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
+#: gsecrets/widgets/window.py:354 gsecrets/widgets/window.py:360
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
 
-#: gsecrets/unlock_database.py:86
-msgid "Select Keyfile"
-msgstr "选择密钥文件"
-
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:157
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "保险箱 {} 已打开"
 
-#: gsecrets/unlock_database.py:238
+#: gsecrets/unlock_database.py:175
 msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
-
-#: gsecrets/unlock_database.py:251
-msgid "_Try Again"
-msgstr "重试(_T)"
-
-#: gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "选择密钥文件(_S)"
 
 #: gsecrets/unlocked_database.py:299
 msgid "Safe saved"
@@ -1589,37 +1537,100 @@ msgstr "操作中止：正在移动当前活动分组"
 msgid "Move completed"
 msgstr "移动完毕"
 
-#: gsecrets/widgets/window.py:121
+#: gsecrets/widgets/window.py:133
 msgid "Any file type"
 msgstr "任何文件类型"
 
-#: gsecrets/widgets/window.py:128
+#: gsecrets/widgets/window.py:140
 msgid "Select Safe"
 msgstr "选择保险箱"
 
-#: gsecrets/widgets/window.py:144
+#: gsecrets/widgets/window.py:156
 msgid "File does not have a valid path"
 msgstr "文件不具有有效路径"
 
-#: gsecrets/widgets/window.py:178
+#: gsecrets/widgets/window.py:190
 msgid "Safe is already open"
 msgstr "保险箱已打开"
 
-#: gsecrets/widgets/window.py:210
+#: gsecrets/widgets/window.py:222
 msgid "_Create"
 msgstr "创建(_C)"
 
-#: gsecrets/widgets/window.py:231
+#: gsecrets/widgets/window.py:243
 msgid "Cannot create Safe: Safe is already open"
 msgstr "无法创建保险箱：保险箱已打开"
 
-#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
+#: gsecrets/widgets/window.py:285 gsecrets/widgets/window.py:300
 msgid "Could not create new Safe"
 msgstr "无法创建新保险箱"
 
-#: gsecrets/widgets/window.py:355
+#: gsecrets/widgets/window.py:367
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
+
+#~ msgid "Use a password to secure your safe."
+#~ msgstr "使用密码保护您的保险箱。"
+
+#~ msgid "_Keyfile"
+#~ msgstr "密钥文件(_K)"
+
+#~ msgid "_Composite"
+#~ msgstr "组合(_C)"
+
+#~ msgid "Use a password in combination with a keyfile to secure your safe."
+#~ msgstr "组合使用密码和密钥文件保护您的保险箱。"
+
+#~ msgid "Enter Password"
+#~ msgstr "输入密码"
+
+#~ msgid "Set password for safe."
+#~ msgstr "设置保险箱密码。"
+
+#~ msgid "Next"
+#~ msgstr "下一步"
+
+#~ msgid "Password Match Check"
+#~ msgstr "密码匹配检查"
+
+#~ msgid "Repeat password for safe."
+#~ msgstr "重复保险箱密码。"
+
+#~ msgid "Check"
+#~ msgstr "检查"
+
+#~ msgid "Match Check Failed"
+#~ msgstr "匹配检查失败"
+
+#~ msgid "Please try again."
+#~ msgstr "请重试。"
+
+#~ msgid "Repeat Password"
+#~ msgstr "重复密码"
+
+#~ msgid "_Confirm"
+#~ msgstr "确认(_C)"
+
+#~ msgid "Set keyfile for safe"
+#~ msgstr "设置保险箱密钥文件"
+
+#~ msgid "_Select Keyfile…"
+#~ msgstr "选择密钥文件(_S)…"
+
+#~ msgid "Generating…"
+#~ msgstr "正在生成…"
+
+#~ msgid "Generate"
+#~ msgstr "生成"
+
+#~ msgid "_Try Again"
+#~ msgstr "重试(_T)"
+
+#~ msgid "_Select Keyfile"
+#~ msgstr "选择密钥文件(_S)"
+
+#~ msgid "_Add Attribute"
+#~ msgstr "添加属性(_A)"
 
 #~ msgid "Add"
 #~ msgstr "添加"

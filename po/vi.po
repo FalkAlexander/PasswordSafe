@@ -1,43 +1,76 @@
 # This file is distributed under the same license as the Secrets package.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2020-2022.
 # Antoine Đỗ <do.antoine@disroot.org>, 2021.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2020-2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Secrets master\n"
+"Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2022-01-08 14:38+0000\n"
-"PO-Revision-Date: 2022-01-09 15:26+0700\n"
+"POT-Creation-Date: 2023-11-07 18:26+0000\n"
+"PO-Revision-Date: 2023-11-11 15:10+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
-"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
+"Language-Team: Vietnamese <Vietnamese <gnome-vi-list@gnome.org>>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 42.0\n"
 
-#: data/about_dialog.ui.in:7 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
 msgstr "Quản lý các mật khẩu của bạn"
 
-#. "Secrets" is the application name, do not translate
-#: data/about_dialog.ui.in:9
-msgid "Learn more about Secrets"
-msgstr "Tìm hiểu thêm về Secrets"
-
 #. Add your name to the translator credits list
-#: data/about_dialog.ui.in:11
+#: data/about_dialog.ui.in:10
 msgid "translator-credits"
 msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
 
+#. Translators: Secrets is the app name, do not translate
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Secrets"
+
+#: data/gtk/add_attribute_dialog.ui:8
+msgid "Add Attribute"
+msgstr "Thêm thuộc tính"
+
+#: data/gtk/add_attribute_dialog.ui:47
+msgid "Key"
+msgstr "Khóa"
+
+#: data/gtk/add_attribute_dialog.ui:52
+msgid "Value"
+msgstr "Giá trị"
+
+#: data/gtk/add_attribute_dialog.ui:57
+msgid "Sensitive"
+msgstr "Nhạy cảm"
+
+#: data/gtk/add_attribute_dialog.ui:58
+msgid "Contains sensitive data."
+msgstr "Chứa dữ liệu nhạy cảm."
+
+#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:353
+msgid "_Add"
+msgstr "_Thêm"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "Tải đính kèm"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "Xóa đính kèm"
+
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/attachment_warning_dialog.ui:6
+#: data/gtk/attachment_warning_dialog.ui:4
 msgid "Safety Info"
 msgstr "Thông tin an toàn"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/attachment_warning_dialog.ui:7
+#: data/gtk/attachment_warning_dialog.ui:5
 msgid ""
 "It is possible that external applications will create unencrypted hidden or "
 "temporary copies of this attachment file! Please proceed with caution."
@@ -45,150 +78,102 @@ msgstr ""
 "Có thể các ứng dụng bên ngoài sẽ tạo ra các bản sao ẩn hoặc tạm thời không "
 "được mã hóa của tệp đính kèm này! Vui lòng tiến hành thận trọng."
 
-#. Discard all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:10
+#: data/gtk/attachment_warning_dialog.ui:9
 msgid "_Back"
 msgstr "_Quay lại"
 
-#. Save all the changes which the user have made to his keepass safe
-#: data/gtk/attachment_warning_dialog.ui:16
+#: data/gtk/attachment_warning_dialog.ui:10
 msgid "_Proceed"
 msgstr "Đã _xử lý"
 
-#: data/gtk/attribute_entry_row.ui:49
+#: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "Sao chép thuộc tính"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
 msgid "Remove Attribute"
 msgstr "Xóa bỏ thuộc tính"
 
-#: data/gtk/color_entry_row.ui:11
+#: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Màu sắc"
 
-#: data/gtk/create_database.ui:33
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:220
+msgid "Create Safe"
+msgstr "Tạo két"
+
+#: data/gtk/create_database.ui:17
+msgid "Back"
+msgstr "Quay lại"
+
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:36
+msgid "Main Menu"
+msgstr "Trình đơn chính"
+
+#: data/gtk/create_database.ui:38
 msgid "Protect your safe"
 msgstr "Bảo vệ két của bạn"
 
-#: data/gtk/create_database.ui:46 data/gtk/password_entry_row.ui:12
+#: data/gtk/create_database.ui:51 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Mật khẩu"
 
-#: data/gtk/create_database.ui:47
-msgid "Use a password to secure your safe."
-msgstr "Sử dụng mật khẩu để đảm bảo an toàn cho két của bạn."
-
-#: data/gtk/create_database.ui:57
-msgid "_Keyfile"
-msgstr "Tập tin _khóa"
-
 #: data/gtk/create_database.ui:58
-msgid "Use a keyfile to secure your safe."
-msgstr "Sử dụng tập tin khóa để đảm bảo an toàn cho két của bạn."
+msgid "_Confirm Password"
+msgstr "Xác nhận mật khẩu"
 
-#: data/gtk/create_database.ui:68
-msgid "_Composite"
-msgstr "_Hỗn hợp"
+#: data/gtk/create_database.ui:78 data/gtk/unlock_database.ui:34
+msgid "Additional Credentials"
+msgstr "Các giấy ủy nhiêm thêm"
 
-#: data/gtk/create_database.ui:69
-msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr ""
-"Sử dụng mật khẩu kết hợp với tập tin khóa để đảm bảo an toàn cho két của bạn."
+#: data/gtk/create_database.ui:84
+msgid "Create"
+msgstr "Tạo"
 
-#: data/gtk/create_database.ui:101
-msgid "Enter Password"
-msgstr "Nhập mật khẩu"
-
-#: data/gtk/create_database.ui:109
-msgid "Set password for safe."
-msgstr "Đặt mật khẩu cho két của bạn."
-
-#: data/gtk/create_database.ui:134 data/gtk/database_settings_dialog.ui:42
-#: data/gtk/database_settings_dialog.ui:49 data/gtk/password_entry_row.ui:39
-msgid "Generate New Password"
-msgstr "Tạo mật khẩu mới"
-
-#: data/gtk/create_database.ui:183
-msgid "Password Match Check"
-msgstr "Kiểm tra Khớp cặp Mật khẩu"
-
-#: data/gtk/create_database.ui:191
-msgid "Repeat password for safe."
-msgstr "Lặp lại mật khẩu cho két."
-
-#: data/gtk/create_database.ui:248
-msgid "Match Check Failed"
-msgstr "Kiểm tra khớp cặp gặp lỗi"
-
-#: data/gtk/create_database.ui:256
-msgid "Please try again."
-msgstr "Vui lòng thử lại."
-
-#: data/gtk/create_database.ui:286
-msgid "_Confirm"
-msgstr "Xác _nhận"
-
-#. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:321 gsecrets/create_database.py:139
-#: gsecrets/widgets/database_settings_dialog.py:198
-msgid "Generate Keyfile"
-msgstr "Tạo tập tin khóa"
-
-#: data/gtk/create_database.ui:329
-msgid "Set keyfile for safe"
-msgstr "Đặt tập tin khóa cho két"
-
-#. Button to generate a password
-#: data/gtk/create_database.ui:339 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:142
-#: gsecrets/widgets/database_settings_dialog.py:201
-msgid "_Generate"
-msgstr "Tạ_o"
-
-#: data/gtk/create_database.ui:372
+#: data/gtk/create_database.ui:107
 msgid "Safe Successfully Created"
 msgstr "Két đã được tạo thành công"
 
-#. Menubutton in headerbar for starting the safe opening process (for existing safe)
-#: data/gtk/create_database.ui:380 data/gtk/unlock_database_headerbar.ui:10
-#: data/gtk/unlocked_headerbar.ui:93
+#: data/gtk/create_database.ui:110
 msgid "_Open Safe"
 msgstr "Mở _Két"
 
-#. Headerbar subtitle in keepass safe creation routine.
-#. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database_headerbar.ui:9 gsecrets/widgets/window.py:243
-msgid "Create Safe"
-msgstr "Tạo két"
-
-#: data/gtk/create_database_headerbar.ui:15
-#: data/gtk/edit_element_headerbar.ui:13 data/gtk/search_headerbar.ui:11
-#: data/gtk/unlock_database_headerbar.ui:38
-msgid "Back"
-msgstr "Quay lại"
-
-#: data/gtk/create_database_headerbar.ui:20
-#: data/gtk/recent_files_headerbar.ui:42
-#: data/gtk/unlock_database_headerbar.ui:46 data/gtk/unlocked_headerbar.ui:38
-msgid "Main Menu"
-msgstr "Trình đơn chính"
-
-#: data/gtk/create_database_headerbar.ui:31
-#: data/gtk/recent_files_headerbar.ui:53
-#: data/gtk/unlock_database_headerbar.ui:16 data/gtk/unlocked_headerbar.ui:103
+#: data/gtk/create_database.ui:132 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Tùy thích"
 
-#: data/gtk/create_database_headerbar.ui:35
-#: data/gtk/recent_files_headerbar.ui:57
-#: data/gtk/unlock_database_headerbar.ui:20 data/gtk/unlocked_headerbar.ui:107
+#: data/gtk/create_database.ui:136 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Phím tắt bàn phím"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database_headerbar.ui:39
-#: data/gtk/recent_files_headerbar.ui:61
-#: data/gtk/unlock_database_headerbar.ui:24 data/gtk/unlocked_headerbar.ui:111
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "Giới thiệ_u về Secrets"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "Tài _khoản"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
+#: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:360
+msgid "Copy"
+msgstr "Sao chép"
+
+#: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
+#: gsecrets/create_database.py:38
+msgid "Generate New Password"
+msgstr "Tạo mật khẩu mới"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -196,211 +181,202 @@ msgstr "Xác thực"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:87
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:26
 msgid "Password"
 msgstr "Mật khẩu"
 
-#. New password (replacement for an old one)
-#: data/gtk/database_settings_dialog.ui:22
-#: data/gtk/recent_files_headerbar.ui:19
-msgid "_New"
-msgstr "Két _mới"
+#: data/gtk/database_settings_dialog.ui:17
+msgid "New Password"
+msgstr "Mật khẩu mới"
 
-#. Retype the new password to confirm
-#: data/gtk/database_settings_dialog.ui:69
-msgid "C_onfirm"
-msgstr "Xá_c nhận"
-
-#: data/gtk/database_settings_dialog.ui:85
+#: data/gtk/database_settings_dialog.ui:38
 msgid "Confirm New Password"
 msgstr "Xác nhận lại mật khẩu mới"
 
-#. Current password
-#: data/gtk/database_settings_dialog.ui:97
-msgid "_Current"
-msgstr "H_iện tại"
+#: data/gtk/database_settings_dialog.ui:44
+msgid "Current Password"
+msgstr "Mật khẩu hiện tại"
 
-#: data/gtk/database_settings_dialog.ui:114
-msgid "Enter Current Password"
-msgstr "Nhập mật khẩu hiện tại"
-
-#: data/gtk/database_settings_dialog.ui:137 gsecrets/create_database.py:146
-#: gsecrets/utils.py:58 gsecrets/widgets/database_settings_dialog.py:204
+#: data/gtk/database_settings_dialog.ui:58
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:132
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:81
+#: gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Tập tin khóa"
 
-#: data/gtk/database_settings_dialog.ui:161
+#: data/gtk/database_settings_dialog.ui:82
 msgid "_Select current keyfile if any"
 msgstr "_Chọn tập tin khóa hiện tại nếu có"
 
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:125
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Tùy chọn) Tạo tậ_p tin khóa mới"
 
-#: data/gtk/database_settings_dialog.ui:221
+#: data/gtk/database_settings_dialog.ui:143
 msgid "Could not Load Keyfile"
 msgstr "Không thể tải tập tin chứa khóa"
 
-#: data/gtk/database_settings_dialog.ui:231
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: data/gtk/database_settings_dialog.ui:153
+#: gsecrets/widgets/database_settings_dialog.py:258
+#: gsecrets/widgets/database_settings_dialog.py:301
 msgid "_Apply Changes"
 msgstr "Áp dụng tha_y đổi"
 
-#: data/gtk/database_settings_dialog.ui:248 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Chung"
 
-#: data/gtk/database_settings_dialog.ui:252
+#: data/gtk/database_settings_dialog.ui:174
 msgid "Details"
 msgstr "Chi tiết"
 
-#: data/gtk/database_settings_dialog.ui:255
+#: data/gtk/database_settings_dialog.ui:177
 msgid "Safe Name"
 msgstr "Tên Két"
 
-#: data/gtk/database_settings_dialog.ui:260
+#: data/gtk/database_settings_dialog.ui:185
 msgid "Path"
 msgstr "Đường dẫn"
 
-#: data/gtk/database_settings_dialog.ui:265
+#: data/gtk/database_settings_dialog.ui:194
 msgid "File Size"
 msgstr "Kích cỡ tập tin"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:270
+#: data/gtk/database_settings_dialog.ui:203
 msgid "KeePass Version"
 msgstr "Phiên bản Keepass"
 
-#: data/gtk/database_settings_dialog.ui:275
+#: data/gtk/database_settings_dialog.ui:212
 msgid "Creation Date"
 msgstr "Ngày tạo"
 
-#: data/gtk/database_settings_dialog.ui:280
+#: data/gtk/database_settings_dialog.ui:220
 msgid "Encryption Algorithm"
 msgstr "Thuật toán mã hóa"
 
-#: data/gtk/database_settings_dialog.ui:285
+#: data/gtk/database_settings_dialog.ui:228
 msgid "Derivation Algorithm"
 msgstr "Thuật toán dẫn xuất"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:292
+#: data/gtk/database_settings_dialog.ui:238
 msgid "Stats"
 msgstr "Thống kê"
 
-#: data/gtk/database_settings_dialog.ui:295
+#: data/gtk/database_settings_dialog.ui:241
 msgid "Number of Entries"
 msgstr "Số mục tin"
 
-#: data/gtk/database_settings_dialog.ui:300
+#: data/gtk/database_settings_dialog.ui:250
 msgid "Number of Groups"
 msgstr "Số nhóm"
 
-#: data/gtk/database_settings_dialog.ui:305
+#: data/gtk/database_settings_dialog.ui:259
 msgid "Passwords"
 msgstr "Mật khẩu"
 
-#: data/gtk/edit_element_headerbar.ui:22
-msgid "Menu"
-msgstr "Trình đơn"
+#: data/gtk/entry_page.ui:56
+msgid "Entry Menu"
+msgstr "Trình đơn mục tin"
 
-#: data/gtk/edit_element_headerbar.ui:31 data/gtk/edit_element_headerbar.ui:53
-msgid "_Properties"
-msgstr "Th_uộc tính"
-
-#: data/gtk/edit_element_headerbar.ui:37 data/gtk/edit_element_headerbar.ui:59
-msgid "_Delete"
-msgstr "_Xóa bỏ"
-
-#: data/gtk/edit_element_headerbar.ui:45
-msgid "D_uplicate"
-msgstr "N_hân đôi"
-
-#: data/gtk/edit_element_headerbar.ui:49
-msgid "_References"
-msgstr "Tù_y chọn"
-
-#: data/gtk/entry_page.ui:26 data/gtk/group_page.ui:24
+#: data/gtk/entry_page.ui:73 data/gtk/group_page.ui:27
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Tựa đề"
 
-#: data/gtk/entry_page.ui:49 data/gtk/references_dialog.ui:173
-msgid "_Username"
-msgstr "Tài _khoản"
-
-#: data/gtk/entry_page.ui:60 data/gtk/entry_page.ui:137
-#: data/gtk/password_entry_row.ui:32
-msgid "Copy"
-msgstr "Sao chép"
-
-#: data/gtk/entry_page.ui:77
-msgid "One-_Time Password Secret"
-msgstr "Mật khẩu Secret dùng một _lần"
-
-#: data/gtk/entry_page.ui:97
-msgid "Could not Generate OTP Token"
-msgstr "Không thể tạo thẻ OTP"
-
-#: data/gtk/entry_page.ui:111
-msgid "_One-Time Password"
-msgstr "Mật khẩu dùng _một lần"
-
-#: data/gtk/entry_page.ui:159
+#: data/gtk/entry_page.ui:79
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:189 data/gtk/group_page.ui:50
-#: data/gtk/references_dialog.ui:185
-msgid "_Notes"
-msgstr "_Ghi chú"
+#: data/gtk/entry_page.ui:96
+msgid "Open Address"
+msgstr "Mở địa chỉ"
 
-#: data/gtk/entry_page.ui:201 data/gtk/group_page.ui:61
+#: data/gtk/entry_page.ui:117
+msgid "One-Time Password"
+msgstr "Mật khẩu dùng một lần"
+
+#: data/gtk/entry_page.ui:156
+msgid "One-_Time Password Secret"
+msgstr "Mật khẩu Secret dùng một _lần"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:164
+msgid "Could not Generate OTP Token"
+msgstr "Không thể tạo thẻ OTP"
+
+#: data/gtk/entry_page.ui:172 data/gtk/group_page.ui:35
+#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Ghi chú"
+
+#: data/gtk/entry_page.ui:176 data/gtk/group_page.ui:39
 msgid "Edit in a Window"
 msgstr "Chỉnh sửa trong một cửa sổ"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:217
 msgid "Icon"
 msgstr "Biểu tượng"
 
-#: data/gtk/entry_page.ui:265
+#: data/gtk/entry_page.ui:237
 msgid "Attachments"
 msgstr "Đính kèm"
 
-#: data/gtk/entry_page.ui:290
+#: data/gtk/entry_page.ui:241
 msgid "_Add Attachment"
 msgstr "Thê_m đính kèm"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:250
 msgid "Attributes"
 msgstr "Thuộc tính"
 
-#: data/gtk/entry_page.ui:328
-msgid "Key"
-msgstr "Khóa"
+#: data/gtk/entry_page.ui:255
+msgid "Add Attr_ibute"
+msgstr "Thêm _thuộc tính"
 
-#: data/gtk/entry_page.ui:334
-msgid "Value"
-msgstr "Giá trị"
+#: data/gtk/entry_page.ui:263
+msgid "Expiration Date"
+msgstr "Ngày hết hạn"
 
-#: data/gtk/entry_page.ui:345
-msgid "Add Attribute"
-msgstr "Thêm thuộc tính"
-
-#: data/gtk/entry_page.ui:369
-msgid "_Expiration Date"
-msgstr "Ngày _hết hạn"
-
-#: data/gtk/entry_page.ui:390
+#: data/gtk/entry_page.ui:279
 msgid "_Show More"
 msgstr "_Hiển thị thêm"
 
-#: data/gtk/entry_row.ui:52
+#: data/gtk/entry_page.ui:298
+msgid "D_uplicate"
+msgstr "N_hân đôi"
+
+#: data/gtk/entry_page.ui:302
+msgid "_References"
+msgstr "Tù_y chọn"
+
+#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:79
+msgid "_Properties"
+msgstr "Th_uộc tính"
+
+#: data/gtk/entry_page.ui:312
+msgid "_Save in History"
+msgstr "_Lưu trong lịch sử"
+
+#: data/gtk/entry_page.ui:316
+msgid "Show _History"
+msgstr "Hiển thị lịc_h sử"
+
+#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:85
+msgid "_Delete"
+msgstr "_Xóa bỏ"
+
+#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
+msgid "Select"
+msgstr "Chọn"
+
+#: data/gtk/entry_row.ui:55
 msgid "Copy Username"
 msgstr "Sao chép tài khoản"
 
-#: data/gtk/entry_row.ui:59
+#: data/gtk/entry_row.ui:65
 msgid "Copy Password"
 msgstr "Sao chép mật khẩu"
 
@@ -408,13 +384,25 @@ msgstr "Sao chép mật khẩu"
 msgid "Expiration Date not Set"
 msgstr "Ngày hết hạn chưa được đặt"
 
-#: data/gtk/expiration_date_row.ui:21
+#: data/gtk/expiration_date_row.ui:22
+msgid "Edit Expiration Date"
+msgstr "Sửa ngày hết hạn"
+
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "Xóa bỏ ngày hết hạn"
 
-#: data/gtk/expiration_date_row.ui:54
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "Đặ_t ngày tạo hết hạn"
+
+#: data/gtk/group_page.ui:15
+msgid "Group Menu"
+msgstr "Trình đơn nhóm"
+
+#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:52
+msgid "Edit"
+msgstr "Chỉnh sửa"
 
 #: data/gtk/help-overlay.ui:11
 msgctxt "Shortcut window description"
@@ -439,7 +427,7 @@ msgstr "Mở két"
 #: data/gtk/help-overlay.ui:32
 msgctxt "Shortcut window description"
 msgid "Open Preferences"
-msgstr "Mở Tùy thích"
+msgstr "Mở tùy thích"
 
 #: data/gtk/help-overlay.ui:38
 msgctxt "shortcut window"
@@ -453,124 +441,160 @@ msgstr "Đóng cửa sổ"
 
 #: data/gtk/help-overlay.ui:50
 msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Cửa sổ mới"
+
+#: data/gtk/help-overlay.ui:56
+msgctxt "Shortcut window description"
 msgid "Quit"
 msgstr "Thoát"
 
-#: data/gtk/help-overlay.ui:58
+#: data/gtk/help-overlay.ui:64
 msgctxt "Shortcut window description"
 msgid "Safe"
 msgstr "Két"
 
-#: data/gtk/help-overlay.ui:61
+#: data/gtk/help-overlay.ui:67
 msgctxt "Shortcut window description"
 msgid "Lock Safe"
 msgstr "Khóa két"
 
-#: data/gtk/help-overlay.ui:67
+#: data/gtk/help-overlay.ui:73
 msgctxt "Shortcut window description"
 msgid "Save Safe"
 msgstr "Lưu két"
 
-#: data/gtk/help-overlay.ui:73
+#: data/gtk/help-overlay.ui:79
 msgctxt "Shortcut window description"
 msgid "Open Search"
 msgstr "Mở hộp thoại Tìm kiếm"
 
-#: data/gtk/help-overlay.ui:79
+#: data/gtk/help-overlay.ui:85
 msgctxt "Shortcut window description"
 msgid "Create Entry"
 msgstr "Tạo mục tin"
 
-#: data/gtk/help-overlay.ui:85
+#: data/gtk/help-overlay.ui:91
 msgctxt "Shortcut window description"
 msgid "Create Group"
 msgstr "Tạo nhóm"
 
-#: data/gtk/help-overlay.ui:93
+#: data/gtk/help-overlay.ui:99
 msgctxt "Shortcut window description"
 msgid "Entry"
 msgstr "Mục tin"
 
-#: data/gtk/help-overlay.ui:96
+#: data/gtk/help-overlay.ui:102
 msgctxt "Shortcut window description"
 msgid "Copy Password"
 msgstr "Sao chép mật khẩu"
 
-#: data/gtk/help-overlay.ui:102
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Sao chép địa chỉ"
+
+#: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
 msgid "Copy Username"
 msgstr "Sao chép tài khoản"
 
-#: data/gtk/notes_dialog.ui:14
-msgid "_Copy"
-msgstr "_Sao chép"
+#: data/gtk/help-overlay.ui:120
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Sao chép mật khẩu dùng một lần"
 
-#: data/gtk/password_generator_popover.ui:35
-msgid "Length"
-msgstr "Độ dài"
+#: data/gtk/help-overlay.ui:126
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Hiển thị lịch sử"
 
-#: data/gtk/password_generator_popover.ui:62
-msgid "Characters"
-msgstr "Ký tự"
+#: data/gtk/help-overlay.ui:132
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Lưu trong lịch sử"
 
-#: data/gtk/password_generator_popover.ui:111
-msgid "Passphrase"
-msgstr "Cụm từ mật khẩu"
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
+msgid "Show Text"
+msgstr "Hiện văn bản"
 
-#: data/gtk/password_generator_popover.ui:119
-msgid "Words"
-msgstr "Từ"
+#: data/gtk/history_row.ui:39
+msgid "Remove from History"
+msgstr "Xóa khỏi lịch sử"
 
-#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:194
-msgid "Separator"
-msgstr "Bộ phân cách"
+#: data/gtk/history_window.ui:10
+msgid "Password History"
+msgstr "Lịch sử Mật khẩu"
 
-#: data/gtk/password_generator_popover.ui:154
-msgid "Enter character here…"
-msgstr "Nhập các ký tự vào đây…"
-
-#: data/gtk/properties_dialog.ui:7
-msgid "Properties"
-msgstr "Thuộc tính"
-
-#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
-msgid "UUID"
-msgstr "UUID"
-
-#: data/gtk/properties_dialog.ui:33
-msgid "Accessed"
-msgstr "Lúc xem"
-
-#: data/gtk/properties_dialog.ui:38
-msgid "Modified"
-msgstr "Lúc sửa"
-
-#: data/gtk/properties_dialog.ui:43
-msgid "Created"
-msgstr "Lúc tạo"
-
-#: data/gtk/recent_files_headerbar.ui:14
-msgid "New Safe"
-msgstr "Két mới"
-
-#: data/gtk/recent_files_headerbar.ui:27
-msgid "Open Safe"
-msgstr "Mở két"
-
-#: data/gtk/recent_files_headerbar.ui:32
+#: data/gtk/locked_headerbar.ui:14
 msgid "_Open"
 msgstr "_Mở"
 
-#: data/gtk/recent_files_page.ui:27
-msgid "Recent Safes"
-msgstr "Cơ sở dữ liệu Mới dùng"
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
+#: data/gtk/welcome_page.ui:18
+msgid "_New Safe"
+msgstr "Két _mới"
+
+#: data/gtk/notes_dialog.ui:30
+msgid "_Copy"
+msgstr "_Sao chép"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:67
+#: data/gtk/unlocked_database.ui:17 data/gtk/unlocked_database.ui:25
+#: data/gtk/unlocked_headerbar.ui:22
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: data/gtk/password_generator_popover.ui:32
+msgid "Length"
+msgstr "Độ dài"
+
+#: data/gtk/password_generator_popover.ui:50
+msgid "Characters"
+msgstr "Ký tự"
+
+#: data/gtk/password_generator_popover.ui:94
+msgid "Passphrase"
+msgstr "Cụm từ mật khẩu"
+
+#: data/gtk/password_generator_popover.ui:103
+msgid "Words"
+msgstr "Từ"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:132
+#: gsecrets/provider/file_provider.py:196
+#: gsecrets/widgets/database_settings_dialog.py:195
+msgid "_Generate"
+msgstr "Tạ_o"
+
+#: data/gtk/properties_dialog.ui:9
+msgid "Properties"
+msgstr "Thuộc tính"
+
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "UUID"
+
+#: data/gtk/properties_dialog.ui:47
+msgid "Accessed"
+msgstr "Lúc xem"
+
+#: data/gtk/properties_dialog.ui:56
+msgid "Modified"
+msgstr "Lúc sửa"
+
+#: data/gtk/properties_dialog.ui:65
+msgid "Created"
+msgstr "Lúc tạo"
 
 #: data/gtk/references_dialog.ui:15
 msgid "Code"
 msgstr "Mã"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
-#: data/gtk/references_dialog.ui:346
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
+#: data/gtk/references_dialog.ui:352
 msgid "Property"
 msgstr "Thuộc tính"
 
@@ -586,39 +610,39 @@ msgstr "Tài khoản"
 msgid "URL"
 msgstr "URL"
 
-#: data/gtk/references_dialog.ui:141
-msgid "Notes"
-msgstr "Ghi chú"
-
 #: data/gtk/references_dialog.ui:181
 msgid "_URL"
 msgstr "_URL"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Ghi chú"
 
 #: data/gtk/references_dialog.ui:192
 msgid "References"
 msgstr "Tùy thích"
 
-#: data/gtk/references_dialog.ui:222
+#: data/gtk/references_dialog.ui:226
 msgid "Syntax"
 msgstr "Cú pháp"
 
-#: data/gtk/references_dialog.ui:231
+#: data/gtk/references_dialog.ui:235
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Cú pháp chỗ dành sẵn cho tham chiếu trường như sau:"
 
-#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
+#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
 msgid "Show Field Codes"
 msgstr "Hiện mã trường"
 
-#: data/gtk/references_dialog.ui:277
+#: data/gtk/references_dialog.ui:283
 msgid "Identifier"
 msgstr "Định danh"
 
-#: data/gtk/references_dialog.ui:335
+#: data/gtk/references_dialog.ui:341
 msgid "Reference"
 msgstr "Tùy thích"
 
-#: data/gtk/references_dialog.ui:373
+#: data/gtk/references_dialog.ui:380
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -627,27 +651,27 @@ msgstr ""
 "thấy trong các thuộc tính của mục tin."
 
 #. Dialog title which informs the user about unsaved changes.
-#: data/gtk/save_dialog.ui:7
+#: data/gtk/save_dialog.ui:4
 msgid "Unsaved Changes"
 msgstr "Thay đổi chưa lưu"
 
 #. Dialog subtitle which informs the user about unsaved changes more detailed.
-#: data/gtk/save_dialog.ui:8
+#: data/gtk/save_dialog.ui:5
 msgid "Do you want to write all changes to the safe?"
 msgstr "Bạn có muốn ghi tất cả các thay đổi vào két không?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
 msgid "_Quit Without Saving"
 msgstr "Thoát mà _Không Lưu lại"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:20
+#: data/gtk/save_dialog.ui:11
 msgid "_Don't Quit"
 msgstr "Đừn_g Thoát"
 
 #. _Save all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:26
+#: data/gtk/save_dialog.ui:12
 msgid "_Save and Quit"
 msgstr "_Lưu và Thoát"
 
@@ -679,234 +703,239 @@ msgid "Delete Selection"
 msgstr "Xóa cái được chọn"
 
 #: data/gtk/selection_mode_headerbar.ui:53
+#: gsecrets/widgets/saving_conflict_dialog.py:32
 msgid "_Cancel"
 msgstr "_Hủy"
 
 #: data/gtk/selection_mode_headerbar.ui:66
 msgid "Select _All"
-msgstr "Chọn _Tất cả"
+msgstr "Chọn _tất cả"
 
 #: data/gtk/selection_mode_headerbar.ui:71
 msgid "Select _None"
 msgstr "Không chọn _Gì cả"
 
-#: data/gtk/settings_dialog.ui:16
-msgid "_Dark Theme"
-msgstr "Chủ đề _tối"
-
-#: data/gtk/settings_dialog.ui:17
-msgid "Use dark GTK theme."
-msgstr "Dùng chủ đề GTK tối."
-
-#: data/gtk/settings_dialog.ui:30
+#: data/gtk/settings_dialog.ui:15
 msgid "_Hide First Start Screen"
 msgstr "Không Hiển thị _Màn hình Chạy lần đầu"
 
-#: data/gtk/settings_dialog.ui:31
+#: data/gtk/settings_dialog.ui:16
 msgid "Reopen last opened safe."
 msgstr "Mở lại két mở cuối cùng."
 
-#: data/gtk/settings_dialog.ui:46 gsecrets/widgets/window.py:249
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:129
+#: gsecrets/widgets/window.py:212 gsecrets/widgets/window.py:224
 msgid "Safe"
 msgstr "Két"
 
-#: data/gtk/settings_dialog.ui:49
+#: data/gtk/settings_dialog.ui:28
 msgid "_Save Automatically"
 msgstr "Tự động Lư_u"
 
-#: data/gtk/settings_dialog.ui:50
+#: data/gtk/settings_dialog.ui:29
 msgid "Save every change automatically."
 msgstr "Tự động lưu mỗi khi có thay đổi."
 
-#: data/gtk/settings_dialog.ui:65 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:40
+#: gsecrets/unlock_database.py:187
 msgid "Unlock"
 msgstr "Mở khóa"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:68
+#: data/gtk/settings_dialog.ui:41
 msgid "Remember Composite _Key"
 msgstr "Nhớ Khó_a Tổ hợp"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:69
+#: data/gtk/settings_dialog.ui:42
 msgid "Remember last used composite key."
 msgstr "Nhớ tổ hợp khóa dùng lần cuối."
 
-#: data/gtk/settings_dialog.ui:90
+#: data/gtk/settings_dialog.ui:57
 msgid "Password Generation"
 msgstr "Tạo mật khẩu"
 
-#: data/gtk/settings_dialog.ui:93
+#: data/gtk/settings_dialog.ui:60
 msgid "Password Length"
 msgstr "Độ dài mật khẩu"
 
-#: data/gtk/settings_dialog.ui:94
+#: data/gtk/settings_dialog.ui:61
 msgid "Number of characters when generating a password."
 msgstr "Số lượng ký tự dùng khi tạo mật khẩu."
 
-#: data/gtk/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:75
 msgid "_Uppercase Characters"
 msgstr "Ký tự H_OA"
 
-#: data/gtk/settings_dialog.ui:114
+#: data/gtk/settings_dialog.ui:76
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Sử dụng ký tự chữ hoa A-Z khi tạo mật khẩu."
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:83
 msgid "_Lowercase Characters"
 msgstr "Ký tự thườn_g"
 
-#: data/gtk/settings_dialog.ui:128
+#: data/gtk/settings_dialog.ui:84
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Sử dụng ký tự chữ thường a-z khi tạo mật khẩu."
 
-#: data/gtk/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:91
 msgid "_Numeric Characters"
 msgstr "Ký tự chữ _số"
 
-#: data/gtk/settings_dialog.ui:142
+#: data/gtk/settings_dialog.ui:92
 msgid "Use numeric characters when generating a password."
 msgstr "Sử dụng ký tự chữ số khi tạo mật khẩu."
 
-#: data/gtk/settings_dialog.ui:155
+#: data/gtk/settings_dialog.ui:99
 msgid "_Special Characters"
 msgstr "Ký tự Đặc _biệt"
 
-#: data/gtk/settings_dialog.ui:156
+#. ASCII is a proper name
+#: data/gtk/settings_dialog.ui:100
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Sử dụng ký hiệu ASCII không phải chữ và số khi tạo mật khẩu."
 
-#: data/gtk/settings_dialog.ui:171
+#: data/gtk/settings_dialog.ui:109
 msgid "Passphrase Generation"
 msgstr "Tạo cụm từ mật khẩu"
 
-#: data/gtk/settings_dialog.ui:174
+#: data/gtk/settings_dialog.ui:112
 msgid "Passphrase Length"
 msgstr "Độ dài cụm từ mật khẩu"
 
-#: data/gtk/settings_dialog.ui:175
+#: data/gtk/settings_dialog.ui:113
 #: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Number of words to use when generating a passphrase."
 msgstr "Số từ được dùng khi tạo cụm từ mật khẩu."
 
-#: data/gtk/settings_dialog.ui:195
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
-msgid "Word separator to use when generating a passphrase."
-msgstr "Bộ phân tách từ khi tạo cụm mật khẩu."
+#: data/gtk/settings_dialog.ui:127
+msgid "Separator"
+msgstr "Bộ phân cách"
 
-#: data/gtk/settings_dialog.ui:202
-msgid "Enter Character"
-msgstr "Nhập ký tự"
-
-#: data/gtk/settings_dialog.ui:215 data/gtk/settings_dialog.ui:218
+#: data/gtk/settings_dialog.ui:137 data/gtk/settings_dialog.ui:140
 msgid "Security"
 msgstr "Bảo mật"
 
-#: data/gtk/settings_dialog.ui:221
+#: data/gtk/settings_dialog.ui:143
 msgid "Safe Lock Timeout"
 msgstr "Thời gian tối đa không dùng sẽ khóa két"
 
-#: data/gtk/settings_dialog.ui:222
+#: data/gtk/settings_dialog.ui:144
 msgid "Lock safe on idle after X minutes."
 msgstr "Khóa két sau X phút khi hệ thống không làm gì."
 
-#: data/gtk/settings_dialog.ui:241
+#: data/gtk/settings_dialog.ui:158
+msgid "Lock on _Session Lock"
+msgstr "Khóa khi _Phiên làm việc bị khóa"
+
+#: data/gtk/settings_dialog.ui:159
+msgid "Automatically lock when the session is locked."
+msgstr "Tự động khóa khi phiên làm việc bị khóa."
+
+#: data/gtk/settings_dialog.ui:166
 msgid "Clear Clipboard"
 msgstr "Xóa Clipboard"
 
-#: data/gtk/settings_dialog.ui:242
+#: data/gtk/settings_dialog.ui:167
 msgid "Clear clipboard after X seconds."
 msgstr "Xóa clipboard sau X phút."
 
-#: data/gtk/settings_dialog.ui:261
+#: data/gtk/settings_dialog.ui:181
 msgid "Clear Recent List"
 msgstr "Xóa danh sách mới dùng"
 
-#: data/gtk/settings_dialog.ui:262
+#: data/gtk/settings_dialog.ui:182
 msgid "Clear the recently opened safes list."
 msgstr "Xóa sạch danh sách lưu các két mới mở gần đây."
 
-#: data/gtk/unlock_database.ui:7
+#: data/gtk/settings_dialog.ui:189
+msgid "Clear"
+msgstr "Xoá trắng"
+
+#: data/gtk/unlock_database.ui:12
 msgid "Unlock Safe"
 msgstr "Mở khóa Két"
 
-#. Menubutton in headerbar for starting the safe creation process
-#: data/gtk/unlock_database_headerbar.ui:6 data/gtk/unlocked_headerbar.ui:89
-msgid "_New Safe"
-msgstr "Két _mới"
+#: data/gtk/unlocked_database.ui:8
+msgid "Browser"
+msgstr "Trình duyệt"
 
-#: data/gtk/unlocked_headerbar.ui:13
+#: data/gtk/unlocked_database_page.ui:31
+msgid "Add elements with the ➕ button"
+msgstr "Thêm phần tử với nút ➕"
+
+#: data/gtk/unlocked_database_page.ui:32
+msgid "Empty Group"
+msgstr "Nhóm rỗng"
+
+#: data/gtk/unlocked_headerbar.ui:11
 msgid "New Entry or Group"
 msgstr "Mục tin hay Nhóm mới"
 
-#. Button tooltip in headerbar to open search page
-#: data/gtk/unlocked_headerbar.ui:24
-msgid "Search"
-msgstr "Tìm kiếm"
-
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/gtk/unlocked_headerbar.ui:31
+#: data/gtk/unlocked_headerbar.ui:29
 msgid "Selection Mode"
 msgstr "Chế độ chọn"
 
-#: data/gtk/unlocked_headerbar.ui:53
-msgid "_Save"
-msgstr "_Lưu"
-
-#: data/gtk/unlocked_headerbar.ui:59
-msgid "_Lock"
-msgstr "_Khóa"
-
-#: data/gtk/unlocked_headerbar.ui:64
+#: data/gtk/unlocked_headerbar.ui:55
 msgid "So_rting"
 msgstr "Sắp _xếp"
 
-#: data/gtk/unlocked_headerbar.ui:66
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:57
 msgid "_A-Z"
 msgstr "_A-Z"
 
-#: data/gtk/unlocked_headerbar.ui:71
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:62
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/gtk/unlocked_headerbar.ui:76
+#: data/gtk/unlocked_headerbar.ui:67
 msgid "_Newest First"
 msgstr "Hiện mới _nhất trước"
 
-#: data/gtk/unlocked_headerbar.ui:81
+#: data/gtk/unlocked_headerbar.ui:72
 msgid "_Oldest First"
 msgstr "Hiện _cũ nhất trước"
 
-#: data/gtk/unlocked_headerbar.ui:97
+#: data/gtk/unlocked_headerbar.ui:84
+msgid "New _Window"
+msgstr "Cửa sổ _mới"
+
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "Sa_fe Settings"
 msgstr "_Cài đặt Két"
 
-#: data/gtk/unlocked_headerbar.ui:119
+#: data/gtk/unlocked_headerbar.ui:110
 msgid "New _Entry"
 msgstr "Đề _mục Mới"
 
-#: data/gtk/unlocked_headerbar.ui:123
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Group"
 msgstr "_Nhóm Mới"
 
+#: data/gtk/unlocked_headerbar.ui:133
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+msgid "_Save"
+msgstr "_Lưu"
+
+#: data/gtk/unlocked_headerbar.ui:148
+msgid "_Lock"
+msgstr "_Khóa"
+
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:24
+#: data/gtk/welcome_page.ui:11
 msgid "Secure Secrets"
 msgstr "Secure Secrets"
 
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
-#: data/gtk/welcome_page.ui:35
-msgid ""
-"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
-"b> a new Keepass safe."
-msgstr ""
-"Lưu trữ an toàn mật khẩu, ghi chú và dữ liệu của bạn. <b>Tạo</b> hoặc "
-"<b>nhập</b> một két KeePass mới."
-
-#. Translators: Secrets is the app name, do not translate
-#: data/org.gnome.World.Secrets.desktop.in.in:4
-msgid "Secrets"
-msgstr "Secrets"
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "Tạo mới hoặc nhập một két Keepass"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
@@ -918,17 +947,17 @@ msgid "keepass;encrypt;secure;"
 msgstr ""
 "keepass;encrypt;secure;mã hóa;ma hoa;an toàn;an toàn;mật khẩu;mat khau;"
 
+#: data/org.gnome.World.Secrets.desktop.in.in:21
+msgid "New Window"
+msgstr "Cửa sổ mới"
+
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
-msgid "Use dark GTK theme"
-msgstr "Dùng chủ đề GTK tối"
+msgid "Lock on session lock"
+msgstr "Khóa trên khóa phiên"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid ""
-"Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
-"theme has a dark variant."
-msgstr ""
-"Sử dụng biến thể tối của chủ đề GTK+ của bạn. Vui lòng chú ý rằng không phải "
-"chủ đề GTK+ cũng có biến thể tối."
+msgid "Automatically lock the safe when the session is locked."
+msgstr "Tự động khóa két khi phiên làm việc bị khóa."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1007,13 +1036,12 @@ msgid "Remember last used composite key for database unlocking."
 msgstr "Nhớ phương tổ hợp khóa dùng lần cuối để mở khóa cơ sở dữ liệu."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Tổ hợp khóa được sử dụng lần cuối"
+msgid "Last used key provider"
+msgstr "Bộ cung cấp Khóa được sử dụng lần cuối"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr ""
-"Đường dẫn đến khóa được sử dụng cuối cùng để mở khóa cơ sở dữ liệu tổng hợp."
+msgid "Key provider for composite database unlocking."
+msgstr "Bộ cung cấp khóa cho khóa cơ sở dữ liệu tổng hợp."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1094,6 +1122,10 @@ msgstr "Số từ khi tạo mật khẩu"
 msgid "Separator when generating a passphrase"
 msgstr "Bộ phân tách khi tạo cụm mật khẩu"
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:108
+msgid "Word separator to use when generating a passphrase."
+msgstr "Bộ phân tách từ khi tạo cụm mật khẩu."
+
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@TÊN@"
@@ -1108,170 +1140,324 @@ msgstr ""
 "Nó được tích hợp hoàn hảo với môi trường máy tính để bàn GNOME và cung cấp "
 "một giao diện gọn gàng cho quản lý cơ sở dữ liệu mật khẩu."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:179
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
 msgid "Falk Alexander Seidl"
 msgstr "Falk Alexander Seidl"
 
-#: gsecrets/application.py:52
+#: gsecrets/application.py:54
 msgid "Error: File {} does not exist"
 msgstr "Lỗi: Tập tin {} không tồn tại"
 
-#: gsecrets/application.py:57
+#: gsecrets/application.py:59
 msgid "Error: Safe {} is already open"
 msgstr "Lỗi: Két {} đang được mở rồi"
 
-#: gsecrets/attachment_warning_dialog.py:66
-msgid "Could not Load Attachment"
-msgstr "Không thể tải dữ liệu đính kèm"
+#: gsecrets/attachment_warning_dialog.py:68
+#: gsecrets/attachment_warning_dialog.py:82
+msgid "Could not load attachment"
+msgstr "Không thể tải đính kèm"
 
-#: gsecrets/create_database.py:130
-msgid "Passwords do not Match"
+#: gsecrets/create_database.py:63
+msgid "Passwords do not match"
 msgstr "Mật khẩu không khớp nhau"
 
-#: gsecrets/create_database.py:158
-msgid "Generating…"
-msgstr "Đang tạo…"
+#: gsecrets/create_database.py:78
+msgid "Unable to create database"
+msgstr "Không thể tạo cơ sở dữ liệu"
 
-#: gsecrets/create_database.py:171
-msgid "Could not Create Keyfile"
-msgstr "Không thể tạo tập tin chứa khóa"
+#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
+msgid "Saved in history"
+msgstr "Lưu trong lịch sử"
 
-#: gsecrets/create_database.py:173
-msgid "Generate"
-msgstr "Tạo"
-
-#: gsecrets/database_manager.py:122
-msgid "Clone"
-msgstr "Nhân đôi"
-
-#: gsecrets/entry_page.py:233 gsecrets/entry_page.py:370
-#: gsecrets/entry_row.py:112
-msgid "Username Copied"
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
+#: gsecrets/widgets/credentials_group.py:92
+msgid "Username copied"
 msgstr "Tài khoản đã được chép"
 
-#: gsecrets/entry_page.py:274
-msgid "One-time Password Copied"
+#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
+msgid "Address copied"
+msgstr "Địa chỉ đã được chép"
+
+#: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
+msgid "One-time password copied"
 msgstr "Mật khẩu dùng một lần đã được chép"
 
-#: gsecrets/entry_page.py:295 gsecrets/widgets/attribute_entry_row.py:69
-msgid "Attribute key Already Exists"
-msgstr "Khóa thuộc tính đã sẵn có"
+#: gsecrets/entry_page.py:305
+msgid "Could not open URL"
+msgstr "Không thể mở URL"
+
+#: gsecrets/entry_page.py:315
+msgid "The address is not valid"
+msgstr "Địa chỉ không hợp lệ"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:323
-msgid "Select Attachment"
-msgstr "Chọn tập tin đính kèm"
+#: gsecrets/entry_page.py:352
+msgid "Select Attachments"
+msgstr "Chọn các tập tin đính kèm"
 
-#: gsecrets/entry_page.py:326
-msgid "_Add"
-msgstr "_Thêm"
-
-#: gsecrets/entry_row.py:105 gsecrets/password_entry_row.py:64
-msgid "Password Copied"
+#: gsecrets/entry_row.py:116 gsecrets/widgets/credentials_group.py:107
+msgid "Password copied"
 msgstr "Mật khẩu đã được chép"
 
-#: gsecrets/entry_row.py:124 gsecrets/group_row.py:98
+#: gsecrets/entry_row.py:135 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "Chưa có tiêu đề"
 
-#: gsecrets/entry_row.py:135
+#: gsecrets/entry_row.py:146
 msgid "Username not specified"
 msgstr "Chưa chỉ định tài khoản"
 
-#: gsecrets/unlock_database.py:78
+#: gsecrets/password_generator_popover.py:75
+msgid "Include Lowercase"
+msgstr "Gồm chữ thường"
+
+#: gsecrets/password_generator_popover.py:77
+msgid "Exclude Lowercase"
+msgstr "Loại trừ chữ thường"
+
+#: gsecrets/password_generator_popover.py:80
+msgid "Include Uppercase"
+msgstr "Bao gồm chữ HOA"
+
+#: gsecrets/password_generator_popover.py:82
+msgid "Exclude Uppercase"
+msgstr "Loại trừ chữ HOA"
+
+#: gsecrets/password_generator_popover.py:85
+msgid "Include Numbers"
+msgstr "Bao gồm số"
+
+#: gsecrets/password_generator_popover.py:87
+msgid "Exclude Numbers"
+msgstr "Loại trừ số"
+
+#: gsecrets/password_generator_popover.py:90
+msgid "Include Symbols"
+msgstr "Bao gồm ký tự ký hiệu"
+
+#: gsecrets/password_generator_popover.py:92
+msgid "Exclude Symbols"
+msgstr "Loại trừ các ký tự ký hiệu"
+
+#: gsecrets/pathbar_button.py:30
+msgid "Root Group"
+msgstr "Nhóm gốc"
+
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
 msgid "Select Keyfile"
 msgstr "Chọn tập tin chứa khóa"
 
-#: gsecrets/unlock_database.py:153
-msgid "Safe {} is Already Open"
-msgstr "Két {} đang được mở rồi"
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:143
+msgid "Clear Keyfile"
+msgstr "Xóa tập tin khóa"
 
-#: gsecrets/unlock_database.py:231
-msgid "The kdb Format is not Supported"
-msgstr "Định dạng tập tin kdb không được hỗ trợ"
+#: gsecrets/provider/file_provider.py:70
+msgid "Select keyfile"
+msgstr "Chọn tập tin khóa"
 
-#: gsecrets/unlock_database.py:287
-msgid "Failed to Unlock Safe"
-msgstr "Gặp lỗi khi mở khóa két"
+#: gsecrets/provider/file_provider.py:107
+msgid "Could not load keyfile"
+msgstr "Không thể tải tập tin khóa"
 
-#: gsecrets/unlock_database.py:298
-msgid "_Try Again"
-msgstr "_Thử lại"
+#. NOTE: Filechooser title for generating a new keyfile
+#: gsecrets/provider/file_provider.py:136
+#: gsecrets/provider/file_provider.py:195
+#: gsecrets/widgets/database_settings_dialog.py:194
+msgid "Generate Keyfile"
+msgstr "Tạo tập tin khóa"
 
-#: gsecrets/unlock_database.py:303
-msgid "_Select Keyfile"
-msgstr "_Chọn tập tin chứa khóa"
+#: gsecrets/provider/file_provider.py:160
+msgid "Use a file to increase security"
+msgstr "Sử dụng một tập tin gia tăng tính bảo mật"
 
-#: gsecrets/unlocked_database.py:277
-msgid "Safe Saved"
-msgstr "Két đã được lưu"
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "Không thể tạo tập tin khóa"
 
-#: gsecrets/unlocked_database.py:279
-msgid "Could not Save Safe"
+#: gsecrets/recent_files_menu.py:36
+msgid "Recent Files"
+msgstr "Các tập tin mới dùng"
+
+#: gsecrets/safe_element.py:41
+msgid "White"
+msgstr "Trắng"
+
+#: gsecrets/safe_element.py:43
+msgid "Blue"
+msgstr "Xanh dương"
+
+#: gsecrets/safe_element.py:45
+msgid "Green"
+msgstr "Xanh lá"
+
+#: gsecrets/safe_element.py:47
+msgid "Yellow"
+msgstr "Vàng"
+
+#: gsecrets/safe_element.py:49
+msgid "Orange"
+msgstr "Cam"
+
+#: gsecrets/safe_element.py:51
+msgid "Red"
+msgstr "Đỏ"
+
+#: gsecrets/safe_element.py:53
+msgid "Purple"
+msgstr "Đỏ tía"
+
+#: gsecrets/safe_element.py:55
+msgid "Brown"
+msgstr "Nâu"
+
+#: gsecrets/safe_element.py:567
+msgid "Clone"
+msgstr "Nhân đôi"
+
+#. This shouldn't happen
+#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
+#: gsecrets/widgets/window.py:354 gsecrets/widgets/window.py:360
+msgid "Could not save Safe"
 msgstr "Không thể lưu Két"
 
-#: gsecrets/unlocked_database.py:289
-msgid "Please Wait. Another Save is Running."
-msgstr "Vui lòng chờ. Đã có tiến trình lưu khác đang chạy."
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlock_database.py:105
+msgid "Safe {} is already open"
+msgstr "Két {} đang được mở rồi"
 
-#. NOTE: In-app notification to inform the user that no save
-#. is necessary because there where no changes made
-#: gsecrets/unlocked_database.py:294
-msgid "No Changes Made"
+#: gsecrets/unlock_database.py:175
+msgid "Failed to unlock Safe"
+msgstr "Gặp lỗi khi mở khóa Két"
+
+#: gsecrets/unlocked_database.py:299
+msgid "Safe saved"
+msgstr "Két đã được lưu"
+
+#: gsecrets/unlocked_database.py:301
+msgid "No changes made"
 msgstr "Không tạo ra thay đổi nào"
 
-#: gsecrets/unlocked_database.py:333
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlocked_database.py:346
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "{} phần tử đã bị xóa"
+
+#: gsecrets/unlocked_database.py:351
+msgid "Deletion completed"
+msgstr "Đã xóa xong"
+
+#: gsecrets/unlocked_database.py:356 gsecrets/unlocked_database.py:381
+msgid "Undo"
+msgstr "Hồi lại"
+
+#: gsecrets/unlocked_database.py:380
+msgid "Attribute deleted"
+msgstr "Thuộc tính đã bị xóa"
+
+#: gsecrets/unlocked_database.py:411
 msgid "Copied"
 msgstr "Đã sao chép"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:400
-msgid "Safe Locked due to Inactivity"
+#: gsecrets/unlocked_database.py:508
+msgid "Safe locked due to inactivity"
 msgstr "Đã khóa Két do không hoạt động"
+
+#: gsecrets/widgets/add_attribute_dialog.py:37
+msgid "Attribute key contains an illegal character"
+msgstr "Khóa thuộc tính có chứa các ký tự không hợp lệ"
+
+#: gsecrets/widgets/add_attribute_dialog.py:48
+msgid "Attribute key already exists"
+msgstr "Khóa thuộc tính đã sẵn có"
 
 #. NOTE: Filechooser title for downloading an attachment
 #: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
 msgstr "Lưu phần đính kèm"
 
-#: gsecrets/widgets/attachment_entry_row.py:64
-msgid "Could not Store Attachment"
+#: gsecrets/widgets/attachment_entry_row.py:58
+msgid "Could not store attachment"
 msgstr "Không thể lưu phần đính kèm"
 
+#: gsecrets/widgets/attribute_entry_row.py:40
+#: gsecrets/widgets/protected_attribute_entry_row.py:57
+msgid "Attribute copied"
+msgstr "Thuộc tính đã được chép"
+
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:129
+#: gsecrets/widgets/database_settings_dialog.py:136
 msgid "Select Current Keyfile"
 msgstr "Chọn tập tin khóa hiện tại"
 
+#: gsecrets/widgets/database_settings_dialog.py:234
+#: gsecrets/widgets/database_settings_dialog.py:238
+msgid "Could not apply changes"
+msgstr "Không thể áp dụng các thay đổi"
+
+#. Still executes the finally block
+#: gsecrets/widgets/database_settings_dialog.py:241
+msgid "Changes Applied"
+msgstr "Các thay đổi đã được áp dụng"
+
+#: gsecrets/widgets/database_settings_dialog.py:279
+msgid "Could not change credentials"
+msgstr "Không thể thay đổi giấy ủy quyền"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:285
+#: gsecrets/widgets/saving_conflict_dialog.py:23
+msgid "Conflicts While Saving"
+msgstr "Xung đột khi lưu"
+
+#: gsecrets/widgets/database_settings_dialog.py:286
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"Kết đã bị sửa đổi từ một nơi khác. Vui lòng xử lý những xung đột từ cửa sổ "
+"chính khi lưu."
+
+#: gsecrets/widgets/database_settings_dialog.py:288
+msgid "Ok"
+msgstr "Ok"
+
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:317
-#: gsecrets/widgets/database_settings_dialog.py:331
+#: gsecrets/widgets/database_settings_dialog.py:350
+#: gsecrets/widgets/database_settings_dialog.py:364
 msgid "Unknown"
 msgstr "Không hiểu"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:321
+#: gsecrets/widgets/database_settings_dialog.py:354
 msgid "AES 256-bit"
 msgstr "AES 256-bít"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:324
+#: gsecrets/widgets/database_settings_dialog.py:357
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bít"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:360
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bít"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:335
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "Argon2"
 msgstr "Argon2"
 
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:371
+msgid "Argon2id"
+msgstr "Argon2id"
+
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:338
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1280,56 +1466,233 @@ msgstr "AES-KDF"
 msgid "Entry expired"
 msgstr "Mục tin đã hết hạn"
 
+#: gsecrets/widgets/history_row.py:44
+msgid "Hide Text"
+msgstr "Ẩn chữ"
+
+#: gsecrets/widgets/notes_dialog.py:62
+msgid "Selection copied"
+msgstr "Phần chọn đã được sao chép"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:19
+msgid "Unsaved Changes Conflict"
+msgstr "Các thay đổi xung đột chưa lưu"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Save and Quit"
+msgstr "Lưu và Thoát"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Back up, Save, and Quit"
+msgstr "Sao lưu dự phòng, Lưu và Thoát"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:23
+msgid "Don't Quit"
+msgstr "Đừng thoát"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:26
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"Két đã bị sửa từ một chỗ khác nữa. Việc lưu sẽ đè lên phiên làm việc của họ "
+"bằng phiên làm việc của chúng ta.\n"
+"\n"
+" Bạn cũng nên tạo một bản sao két của họ."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Back up and Save"
+msgstr "_Sao lưu dự phòng và Lưu"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:48
+msgid "Save Backup"
+msgstr "Lưu bản dự phòng"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:62
+msgid "Could not backup safe"
+msgstr "Không thể sao lưu dự phòng két"
+
 #: gsecrets/widgets/selection_mode_headerbar.py:72
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
 msgstr[0] "Đã _chọn {}"
 
 #: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation Aborted: Deleting Currently Active Group"
-msgstr "Thao tác bị hủy: Xóa nhóm hiện đang hoạt động"
+msgid "Operation aborted: deleting currently active group"
+msgstr "Thao tác bị hủy: xóa nhóm hiện đang hoạt động"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:114
-msgid "Deletion Completed"
-msgstr "Đã xóa xong"
+#: gsecrets/widgets/selection_mode_headerbar.py:153
+msgid "Warning"
+msgstr "Cảnh báo"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:151
-msgid "Operation Aborted: Moving Currently Active Group"
-msgstr "Thao tác bị hủy: Di chuyển nhóm hiện đang hoạt động"
+#: gsecrets/widgets/selection_mode_headerbar.py:155
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"Bạn đang xóa các phần tử trong thùng rác, các thứ bị xóa này sẽ không lấy "
+"lại được nữa."
 
-#: gsecrets/widgets/selection_mode_headerbar.py:169
-msgid "Move Completed"
-msgstr "Đã dii chuyển xong"
+#: gsecrets/widgets/selection_mode_headerbar.py:158
+msgid "Cancel"
+msgstr "Hủy"
 
-#. NOTE: Filechooser title for opening an existing keepass safe kdbx file
-#: gsecrets/widgets/window.py:147
-msgid "Select Safe"
-msgstr "Chọn két"
+#: gsecrets/widgets/selection_mode_headerbar.py:159
+msgid "Delete"
+msgstr "Xóa bỏ"
 
-#. NOTE: KeePass + version number is a proper name, do not translate
-#: gsecrets/widgets/window.py:158 gsecrets/widgets/window.py:254
-msgid "KeePass 3.1/4 Database"
-msgstr "Cơ sở dữ liệu KeePass 3.1/4"
+#: gsecrets/widgets/selection_mode_headerbar.py:199
+msgid "Operation aborted: moving currently active group"
+msgstr "Thao tác bị hủy: di chuyển nhóm hiện đang hoạt động"
 
-#: gsecrets/widgets/window.py:163
+#: gsecrets/widgets/selection_mode_headerbar.py:214
+msgid "Move completed"
+msgstr "Đã di chuyển xong"
+
+#: gsecrets/widgets/window.py:133
 msgid "Any file type"
 msgstr "Mọi kiểu tập tin"
 
-#: gsecrets/widgets/window.py:222
-msgid "Safe is Already Open"
+#: gsecrets/widgets/window.py:140
+msgid "Select Safe"
+msgstr "Chọn két"
+
+#: gsecrets/widgets/window.py:156
+msgid "File does not have a valid path"
+msgstr "Tập tin không có đường dẫn hợp lệ"
+
+#: gsecrets/widgets/window.py:190
+msgid "Safe is already open"
 msgstr "Két đang được mở rồi"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:222
 msgid "_Create"
 msgstr "_Tạo"
 
-#: gsecrets/widgets/window.py:277
-msgid "Cannot Create Safe: Safe is Already Open"
+#: gsecrets/widgets/window.py:243
+msgid "Cannot create Safe: Safe is already open"
 msgstr "Không thể tạo Két: Két đang được mở rồi"
 
-#: gsecrets/widgets/window.py:333
-msgid "Could not Create new Safe"
-msgstr "Không thể Tạo Két mới"
+#: gsecrets/widgets/window.py:285 gsecrets/widgets/window.py:300
+msgid "Could not create new Safe"
+msgstr "Không thể tạo Két mới"
+
+#: gsecrets/widgets/window.py:367
+msgid "Could not save safe"
+msgstr "Không thể lưu két"
+
+#~ msgid "Learn more about Secrets"
+#~ msgstr "Tìm hiểu thêm về Secrets"
+
+#~ msgid "Use a password to secure your safe."
+#~ msgstr "Sử dụng mật khẩu để đảm bảo an toàn cho két của bạn."
+
+#~ msgid "_Keyfile"
+#~ msgstr "Tập tin _khóa"
+
+#~ msgid "_Composite"
+#~ msgstr "_Hỗn hợp"
+
+#~ msgid "Use a password in combination with a keyfile to secure your safe."
+#~ msgstr ""
+#~ "Sử dụng mật khẩu kết hợp với tập tin khóa để đảm bảo an toàn cho két của "
+#~ "bạn."
+
+#~ msgid "Enter Password"
+#~ msgstr "Nhập mật khẩu"
+
+#~ msgid "Set password for safe."
+#~ msgstr "Đặt mật khẩu cho két của bạn."
+
+#~ msgid "Password Match Check"
+#~ msgstr "Kiểm tra Khớp cặp Mật khẩu"
+
+#~ msgid "Repeat password for safe."
+#~ msgstr "Lặp lại mật khẩu cho két."
+
+#~ msgid "Match Check Failed"
+#~ msgstr "Kiểm tra khớp cặp gặp lỗi"
+
+#~ msgid "Please try again."
+#~ msgstr "Vui lòng thử lại."
+
+#~ msgid "_Confirm"
+#~ msgstr "Xác _nhận"
+
+#~ msgid "Set keyfile for safe"
+#~ msgstr "Đặt tập tin khóa cho két"
+
+#~ msgid "_New"
+#~ msgstr "Két _mới"
+
+#~ msgid "C_onfirm"
+#~ msgstr "Xá_c nhận"
+
+#~ msgid "_Current"
+#~ msgstr "H_iện tại"
+
+#~ msgid "Menu"
+#~ msgstr "Trình đơn"
+
+#~ msgid "Enter character here…"
+#~ msgstr "Nhập các ký tự vào đây…"
+
+#~ msgid "New Safe"
+#~ msgstr "Két mới"
+
+#~ msgid "Open Safe"
+#~ msgstr "Mở két"
+
+#~ msgid "_Dark Theme"
+#~ msgstr "Chủ đề _tối"
+
+#~ msgid "Use dark GTK theme."
+#~ msgstr "Dùng chủ đề GTK tối."
+
+#~ msgid "Enter Character"
+#~ msgstr "Nhập ký tự"
+
+#~ msgid ""
+#~ "Securely store your passwords, notes and data. <b>Create</b> or "
+#~ "<b>import</b> a new Keepass safe."
+#~ msgstr ""
+#~ "Lưu trữ an toàn mật khẩu, ghi chú và dữ liệu của bạn. <b>Tạo</b> hoặc "
+#~ "<b>nhập</b> một két KeePass mới."
+
+#~ msgid "Use dark GTK theme"
+#~ msgstr "Dùng chủ đề GTK tối"
+
+#~ msgid ""
+#~ "Use the dark variant of your GTK+ theme. Please note that not every GTK+ "
+#~ "theme has a dark variant."
+#~ msgstr ""
+#~ "Sử dụng biến thể tối của chủ đề GTK+ của bạn. Vui lòng chú ý rằng không "
+#~ "phải chủ đề GTK+ cũng có biến thể tối."
+
+#~ msgid "Generating…"
+#~ msgstr "Đang tạo…"
+
+#~ msgid "Generate"
+#~ msgstr "Tạo"
+
+#~ msgid "The kdb Format is not Supported"
+#~ msgstr "Định dạng tập tin kdb không được hỗ trợ"
+
+#~ msgid "_Try Again"
+#~ msgstr "_Thử lại"
+
+#~ msgid "_Select Keyfile"
+#~ msgstr "_Chọn tập tin chứa khóa"
+
+#~ msgid "Please Wait. Another Save is Running."
+#~ msgstr "Vui lòng chờ. Đã có tiến trình lưu khác đang chạy."
+
+#~ msgid "KeePass 3.1/4 Database"
+#~ msgstr "Cơ sở dữ liệu KeePass 3.1/4"
 
 #~ msgid "_About Password Safe"
 #~ msgstr "_Giới thiệu Két giữ Mật khẩu"
@@ -1410,9 +1773,6 @@ msgstr "Không thể Tạo Két mới"
 #~ msgid "_Quit"
 #~ msgstr "_Thoát"
 
-#~ msgid "Cancel"
-#~ msgstr "Hủy"
-
 #~ msgid "Remember _Unlock Method"
 #~ msgstr "Nhớ _Phương thức Mở khóa"
 
@@ -1443,9 +1803,6 @@ msgstr "Không thể Tạo Két mới"
 #~ msgid "Composite"
 #~ msgstr "Hỗn hợp"
 
-#~ msgid "Empty group"
-#~ msgstr "Nhóm rỗng"
-
 #~ msgid "Click on a checkbox to select"
 #~ msgstr "Nhấn vào ô kiểm để chọn"
 
@@ -1469,9 +1826,6 @@ msgstr "Không thể Tạo Két mới"
 
 #~ msgid "Password copied to clipboard"
 #~ msgstr "Đã sao chép mật khẩu vào khay nhớ tạm"
-
-#~ msgid "Choose a Keepass safe"
-#~ msgstr "Chọn một két Keepass"
 
 #~ msgid "Could not open file: Mime type not supported"
 #~ msgstr "Không thể mở tập tin: Kiểu định dạng tập tin không được hỗ trợ"

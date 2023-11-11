@@ -95,6 +95,9 @@ class SettingsDialog(Adw.PreferencesWindow):
             self._clear_button.props.sensitive = False
 
         # Unlock
+        lock_on_session_lock = settings.create_action("lock-on-session-lock")
+        action_group.add_action(lock_on_session_lock)
+
         remember_composite_key_action = settings.create_action("remember-composite-key")
         action_group.add_action(remember_composite_key_action)
         remember_composite_key_action.connect(
@@ -105,7 +108,7 @@ class SettingsDialog(Adw.PreferencesWindow):
 
     def _on_remember_composite_key(self, action, _param):
         if not action.props.state:
-            config.set_last_used_composite_key([])
+            config.set_last_used_key_provider({})
 
     def _on_settings_clear_recents_clicked(self, widget):
         config.set_last_opened_list([])

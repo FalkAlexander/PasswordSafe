@@ -26,8 +26,8 @@ class AddListBox(Gtk.ListBox):
         hbox.props.halign = Gtk.Align.CENTER
         hbox.props.margin_start = 12
         hbox.props.margin_end = 12
-        hbox.props.margin_top = 15
-        hbox.props.margin_bottom = 15
+        hbox.props.margin_top = 16
+        hbox.props.margin_bottom = 16
         hbox.append(icon)
         hbox.append(label)
 

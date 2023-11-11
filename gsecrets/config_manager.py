@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from typing import cast
+import json
 
 from gi.repository import Gio, GLib
 
@@ -17,7 +18,7 @@ WINDOW_SIZE = "window-size"
 SORT_ORDER = "sort-order"
 LAST_OPENED_LIST = "last-opened-list"
 REMEMBER_COMPOSITE_KEY = "remember-composite-key"
-LAST_USED_COMPOSITE_KEY = "last-used-composite-key"
+LAST_USED_KEY_PROVIDER = "last-used-key-provider"
 REMEMBER_UNLOCK_METHOD = "remember-unlock-method"
 UNLOCK_METHOD = "unlock-method"
 DEV_BACKUP_MODE = "development-backup-mode"
@@ -28,6 +29,11 @@ GENERATOR_USE_SYMBOLS = "generator-use-symbols"
 GENERATOR_LENGTH = "generator-length"
 GENERATOR_WORDS = "generator-words"
 GENERATOR_SEPARATOR = "generator-separator"
+LOCK_ON_SESSION_LOCK = "lock-on-session-lock"
+
+
+def get_lock_on_session_lock() -> bool:
+    return setting.get_boolean(LOCK_ON_SESSION_LOCK)
 
 
 def get_generator_use_uppercase() -> bool:
@@ -163,20 +169,26 @@ def set_remember_composite_key(value):
     setting.set_boolean(REMEMBER_COMPOSITE_KEY, value)
 
 
-def get_last_used_composite_key() -> list[list[str]]:
-    """Gets history of pairs (uri, keyfile uri) for previously opened databases
-    with a keyfile."""
-    return list(setting.get_value(LAST_USED_COMPOSITE_KEY))
+def get_provider_config(db_path: str, name: str) -> dict | None:
+    providers = get_last_used_key_provider()
+    uri = Gio.File.new_for_path(db_path).get_uri()
+
+    if uri in providers and name in providers[uri]:
+        data = json.loads(providers[uri])
+        return data[name]
+
+    return None
 
 
-def set_last_used_composite_key(composite_list: list[list[str]]) -> None:
-    """Sets history of pairs (uri, keyfile uri)."""
-    last_value = get_last_used_composite_key()
-    g_variant = GLib.Variant("aas", composite_list[-10:])
-    # We need to check if the new value differs from the old one. Since lists
-    # aren't hasheable we need to turn the inner lists into tuples.
-    if [tuple(x) for x in last_value] != [tuple(x) for x in composite_list]:
-        setting.set_value(LAST_USED_COMPOSITE_KEY, g_variant)
+def get_last_used_key_provider() -> dict:
+    """Gets history dict for previously opened databases with key providers."""
+    last_used_key_provider = setting.get_string(LAST_USED_KEY_PROVIDER)
+    return json.loads(last_used_key_provider)
+
+
+def set_last_used_key_provider(provider_list: dict) -> None:
+    """Sets history dict of key provieder."""
+    setting.set_string(LAST_USED_KEY_PROVIDER, json.dumps(provider_list))
 
 
 def get_remember_unlock_method():

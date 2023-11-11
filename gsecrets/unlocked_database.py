@@ -461,7 +461,11 @@ class UnlockedDatabase(Adw.Bin):
         DatabaseSettingsDialog(self).present()
 
     def on_session_lock(self, app: Gtk.Application, _pspec: GObject.ParamSpec) -> None:
-        if app.props.screensaver_active and not self.database_manager.props.locked:
+        if (
+            app.props.screensaver_active
+            and not self.database_manager.props.locked
+            and gsecrets.config_manager.get_lock_on_session_lock()
+        ):
             self.lock_timeout_database()
 
     #

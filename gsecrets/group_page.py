@@ -47,12 +47,11 @@ class GroupPage(Adw.Bin):
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
 
-        self._pathbar_bin.bind_property(
-            "visible",
-            unlocked_database.action_bar,
+        unlocked_database.action_bar.bind_property(
             "revealed",
-            GObject.BindingFlags.BIDIRECTIONAL
-            | GObject.BindingFlags.INVERT_BOOLEAN
+            self._pathbar_bin,
+            "visible",
+            GObject.BindingFlags.INVERT_BOOLEAN
             | GObject.BindingFlags.SYNC_CREATE,
         )
 

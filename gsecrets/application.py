@@ -123,12 +123,24 @@ class Application(Adw.Application):
         quit_action.connect("activate", self.on_quit_action)
         self.add_action(quit_action)
 
+        new_window_action = Gio.SimpleAction.new("new-window", None)
+        new_window_action.connect("activate", self.on_new_window_action)
+        self.add_action(new_window_action)
+
     def on_quit_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         for window in self.get_windows():
             window.close()
 
+    def on_new_window_action(
+        self, _action: Gio.Action, _param: GLib.Variant
+    ) -> None:
+        window = self.new_window()
+        window.invoke_initial_screen()
+        window.present()
+
     def add_global_accelerators(self):
         self.set_accels_for_action("app.quit", ["<Control>q"])
+        self.set_accels_for_action("app.new-window", ["<Control><Shift>n"])
         self.set_accels_for_action("win.settings", ["<Control>comma"])
         self.set_accels_for_action("win.open_database('')", ["<Control>o"])
         self.set_accels_for_action("win.new_database", ["<Control>n"])

@@ -147,10 +147,18 @@
                 <property name="adjustment">
                   <object class="GtkAdjustment">
                     <property name="lower">1</property>
-                    <property name="upper">60</property>
+                    <property name="upper">999</property>
                     <property name="step_increment">1</property>
                   </object>
                 </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSwitchRow" id="_switch_row">
+                <property name="title" translatable="yes">Lock on _Session Lock</property>
+                <property name="subtitle" translatable="yes">Automatically lock when the session is locked.</property>
+                <property name="use_underline">True</property>
+                <property name="action_name">settings.lock-on-session-lock</property>
               </object>
             </child>
             <child>

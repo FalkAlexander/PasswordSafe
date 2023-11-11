@@ -10,6 +10,9 @@
           <object class="AdwStatusPage" id="_status_page">
             <property name="title" translatable="yes" comments="The umbrella sentence of the application on the first start screen">Secure Secrets</property>
             <property name="description" translatable="yes" comments="The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.">Create or import a new Keepass safe</property>
+            <style>
+              <class name="icon-dropshadow"/>
+            </style>
             <child>
               <object class="GtkButton">
                 <property name="label" translatable="yes">_New Safe</property>

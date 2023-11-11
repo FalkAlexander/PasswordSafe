@@ -10,6 +10,7 @@ from gi.repository import Adw, Gio, GLib, GObject, Gtk
 import gsecrets.config_manager
 from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
+from gsecrets.provider.providers import Providers
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
 from gsecrets.unlock_database import UnlockDatabase
@@ -44,6 +45,8 @@ class Window(Adw.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.key_providers = Providers(self)
+
         self.application = self.get_application()
 
         self.assemble_window()
@@ -52,9 +55,18 @@ class Window(Adw.ApplicationWindow):
         if self.application.development_mode is True:
             gsecrets.config_manager.set_development_backup_mode(True)
 
-    def send_notification(self, notification: str) -> None:
+    def send_notification(self,
+                          notification: str,
+                          persistent: bool = False) -> Adw.Toast:
         toast = Adw.Toast.new(notification)
+        if persistent:
+            toast.set_timeout(0)
+
         self.toast_overlay.add_toast(toast)
+        return toast
+
+    def close_notification(self, toast: Adw.Toast) -> None:
+        toast.dismiss()
 
     def assemble_window(self) -> None:
         window_size = gsecrets.config_manager.get_window_size()
@@ -288,7 +300,7 @@ class Window(Adw.ApplicationWindow):
                 self.send_notification(_("Could not create new Safe"))
                 self._spinner.stop()
             else:
-                database_manager = DatabaseManager(filepath)
+                database_manager = DatabaseManager(self.key_providers, filepath)
                 database_manager.unlock_async(
                     "liufhre86ewoiwejmrcu8owe",
                     callback=unlock_callback,
@@ -472,9 +484,11 @@ class Window(Adw.ApplicationWindow):
                 action_db.props.database_locked
                 or action_db.props.selection_mode
                 or action_db.in_edit_page
-                or action_db.props.search_active
             ):
                 return
+
+            if action_db.props.search_active:
+                action_db.props.search_active = False
 
             if name == "db.add_entry":
                 action_db.on_add_entry_action()

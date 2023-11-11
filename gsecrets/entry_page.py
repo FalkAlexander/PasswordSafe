@@ -90,11 +90,12 @@ class EntryPage(Adw.Bin):
 
         self._pathbar_bin.set_child(Pathbar(u_d))
 
-        u_d.pathbar.bind_property(
-            "visible",
+        u_d.action_bar.bind_property(
+            "revealed",
             self._pathbar_bin,
             "visible",
-            GObject.BindingFlags.SYNC_CREATE,
+            GObject.BindingFlags.INVERT_BOOLEAN
+            | GObject.BindingFlags.SYNC_CREATE,
         )
 
         self.insert_entry_properties_into_listbox(add_all)

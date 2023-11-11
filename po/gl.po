@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-04-09 22:19+0000\n"
-"PO-Revision-Date: 2023-04-27 00:38+0200\n"
+"POT-Creation-Date: 2023-08-29 22:49+0000\n"
+"PO-Revision-Date: 2023-08-30 00:56+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -16,12 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
-#: data/about_dialog.ui.in:6
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
-msgstr "Xestionar os seus contrasinais"
+msgstr "Xestione os seus contrasinais"
 
 #. Add your name to the translator credits list
 #: data/about_dialog.ui.in:10
@@ -29,25 +28,34 @@ msgid "translator-credits"
 msgstr "Fran Diéguez <frandieguez@gnome.org>, 2022-2023"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/org.gnome.World.Secrets.desktop.in.in:4
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Segredos"
 
-#: data/gtk/add_attribute_dialog.ui:12
+#: data/gtk/add_attribute_dialog.ui:8
 msgid "Add Attribute"
 msgstr "Engadir atributo"
 
-#: data/gtk/add_attribute_dialog.ui:50
+#: data/gtk/add_attribute_dialog.ui:47
 msgid "Key"
 msgstr "Chave"
 
-#: data/gtk/add_attribute_dialog.ui:55
+#: data/gtk/add_attribute_dialog.ui:52
 msgid "Value"
 msgstr "Valor"
 
-#: data/gtk/add_attribute_dialog.ui:62
-msgid "Add"
-msgstr "Engadir"
+#: data/gtk/add_attribute_dialog.ui:57
+msgid "Sensitive"
+msgstr "Sensíbel"
+
+#: data/gtk/add_attribute_dialog.ui:58
+msgid "Contains sensitive data."
+msgstr "Contén datos sensíbeis."
+
+#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:352
+msgid "_Add"
+msgstr "_Engadir"
 
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
@@ -80,6 +88,12 @@ msgid "_Proceed"
 msgstr "_Proceder"
 
 #: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "Copiar atributo"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
 msgid "Remove Attribute"
 msgstr "Quitar atributo"
 
@@ -89,130 +103,129 @@ msgstr "Cor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:10 gsecrets/widgets/window.py:218
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
 msgid "Create Safe"
 msgstr "Crear caixa forte"
 
-#: data/gtk/create_database.ui:16 data/gtk/entry_page.ui:55
-#: data/gtk/group_page.ui:14
+#: data/gtk/create_database.ui:17
 msgid "Back"
 msgstr "Atrás"
 
-#: data/gtk/create_database.ui:21 data/gtk/locked_headerbar.ui:20
-#: data/gtk/unlocked_headerbar.ui:38
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:36
 msgid "Main Menu"
 msgstr "Menú principal"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:38
 msgid "Protect your safe"
 msgstr "Protexa a súa caixa forte"
 
-#: data/gtk/create_database.ui:71 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:47 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Contrasinal"
 
-#: data/gtk/create_database.ui:72
+#: data/gtk/create_database.ui:48
 msgid "Use a password to secure your safe."
 msgstr "Usar un contrasinal para asegurar a súa caixa forte."
 
-#: data/gtk/create_database.ui:82
+#: data/gtk/create_database.ui:56
 msgid "_Keyfile"
 msgstr "_Ficheiro de chave"
 
-#: data/gtk/create_database.ui:83
+#: data/gtk/create_database.ui:57
 msgid "Use a keyfile to secure your safe."
 msgstr "Usar un ficheiro de chave para asegurar a súa caixa forte."
 
-#: data/gtk/create_database.ui:93
+#: data/gtk/create_database.ui:65
 msgid "_Composite"
 msgstr "_Composta"
 
-#: data/gtk/create_database.ui:94
+#: data/gtk/create_database.ui:66
 msgid "Use a password in combination with a keyfile to secure your safe."
 msgstr ""
 "Use un contrasinl en combinación con un ficheiro de chave para asegurar a "
 "súa caixa forte."
 
-#: data/gtk/create_database.ui:126
+#: data/gtk/create_database.ui:86
 msgid "Enter Password"
 msgstr "Escriba un contrasinal"
 
-#: data/gtk/create_database.ui:134
+#: data/gtk/create_database.ui:87
 msgid "Set password for safe."
 msgstr "Estabelecer o contrasinal para a caixa forte."
 
-#: data/gtk/create_database.ui:159 data/gtk/credentials_group.ui:43
+#: data/gtk/create_database.ui:106 data/gtk/credentials_group.ui:43
 #: data/gtk/database_settings_dialog.ui:23
 msgid "Generate New Password"
 msgstr "Xerar novo contrasinal"
 
-#: data/gtk/create_database.ui:173
+#: data/gtk/create_database.ui:119
 msgid "Next"
 msgstr "Seguinte"
 
-#: data/gtk/create_database.ui:209
+#: data/gtk/create_database.ui:145
 msgid "Password Match Check"
 msgstr "Comprobación de coincidencia de contrasinal"
 
-#: data/gtk/create_database.ui:217
+#: data/gtk/create_database.ui:146
 msgid "Repeat password for safe."
 msgstr "Repita o contrasinal para a caixa forte."
 
-#: data/gtk/create_database.ui:243
+#: data/gtk/create_database.ui:160
 msgid "Check"
 msgstr "Comprobar"
 
-#: data/gtk/create_database.ui:275
+#: data/gtk/create_database.ui:179
 msgid "Match Check Failed"
 msgstr "Os contrasinais non coinciden"
 
-#: data/gtk/create_database.ui:283
+#: data/gtk/create_database.ui:180
 msgid "Please try again."
 msgstr "Ténteo de novo."
 
-#: data/gtk/create_database.ui:313 gsecrets/create_database.py:61
+#: data/gtk/create_database.ui:209 gsecrets/create_database.py:256
 msgid "_Confirm"
 msgstr "_Confirmar"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:348 gsecrets/create_database.py:182
+#: data/gtk/create_database.ui:230 gsecrets/create_database.py:180
 #: gsecrets/widgets/database_settings_dialog.py:194
 msgid "Generate Keyfile"
 msgstr "Xerar o ficheiro de chave"
 
-#: data/gtk/create_database.ui:356
+#: data/gtk/create_database.ui:231
 msgid "Set keyfile for safe"
 msgstr "Estabelecer o ficheiro de chave para a caixa forte"
 
 #. Button to generate a password
-#: data/gtk/create_database.ui:366 data/gtk/password_generator_popover.ui:165
-#: gsecrets/create_database.py:183
+#: data/gtk/create_database.ui:234 data/gtk/password_generator_popover.ui:132
+#: gsecrets/create_database.py:181
 #: gsecrets/widgets/database_settings_dialog.py:195
 msgid "_Generate"
 msgstr "_Xerar"
 
-#: data/gtk/create_database.ui:399
+#: data/gtk/create_database.ui:254
 msgid "Safe Successfully Created"
 msgstr "Caixa forte creada correctamente"
 
-#: data/gtk/create_database.ui:407 data/gtk/unlocked_headerbar.ui:94
+#: data/gtk/create_database.ui:257 data/gtk/unlocked_headerbar.ui:84
 msgid "_Open Safe"
 msgstr "_Abrir caixa forte"
 
-#: data/gtk/create_database.ui:429 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:105
+#: data/gtk/create_database.ui:279 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:95
 msgid "_Preferences"
 msgstr "_Preferencias"
 
-#: data/gtk/create_database.ui:433 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:109
+#: data/gtk/create_database.ui:283 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:99
 msgid "_Keyboard Shortcuts"
 msgstr "Atallos de _teclado"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:437 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:113
+#: data/gtk/create_database.ui:287 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:103
 msgid "_About Secrets"
 msgstr "_Sobre Segredos"
 
@@ -221,8 +234,8 @@ msgid "_Username"
 msgstr "_Nome de usuario"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:151
-#: data/gtk/history_row.ui:25
+#: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
+#: data/gtk/history_row.ui:25 data/gtk/references_dialog.ui:360
 msgid "Copy"
 msgstr "Copiar"
 
@@ -232,7 +245,7 @@ msgstr "Autenticación"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:72 data/gtk/unlock_database.ui:27
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:28
 msgid "Password"
 msgstr "Contrasinal"
 
@@ -248,7 +261,7 @@ msgstr "Confirmar novo contrasinal"
 msgid "Current Password"
 msgstr "Contrasinal actual"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:184
+#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:182
 #: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
 msgid "Keyfile"
 msgstr "Ficheiro de chave"
@@ -257,192 +270,199 @@ msgstr "Ficheiro de chave"
 msgid "_Select current keyfile if any"
 msgstr "_Seleccione o ficheiro de chave actual se o ten"
 
-#: data/gtk/database_settings_dialog.ui:124
+#: data/gtk/database_settings_dialog.ui:125
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Opcional) _Xerar novo ficheiro de chave"
 
-#: data/gtk/database_settings_dialog.ui:142
+#: data/gtk/database_settings_dialog.ui:143
 msgid "Could not Load Keyfile"
 msgstr "Non foi posíbel cargar o ficheiro de chave"
 
-#: data/gtk/database_settings_dialog.ui:152
+#: data/gtk/database_settings_dialog.ui:153
 #: gsecrets/widgets/database_settings_dialog.py:258
 #: gsecrets/widgets/database_settings_dialog.py:301
 msgid "_Apply Changes"
 msgstr "_Aplicar cambios"
 
-#: data/gtk/database_settings_dialog.ui:169 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Xeral"
 
-#: data/gtk/database_settings_dialog.ui:173
+#: data/gtk/database_settings_dialog.ui:174
 msgid "Details"
 msgstr "Detalles"
 
-#: data/gtk/database_settings_dialog.ui:176
+#: data/gtk/database_settings_dialog.ui:177
 msgid "Safe Name"
 msgstr "Nome da caixa forte"
 
-#: data/gtk/database_settings_dialog.ui:184
+#: data/gtk/database_settings_dialog.ui:185
 msgid "Path"
 msgstr "Ruta"
 
-#: data/gtk/database_settings_dialog.ui:193
+#: data/gtk/database_settings_dialog.ui:194
 msgid "File Size"
 msgstr "Tamaño do ficheiro"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:201
+#: data/gtk/database_settings_dialog.ui:203
 msgid "KeePass Version"
 msgstr "Versión de KeePass"
 
-#: data/gtk/database_settings_dialog.ui:209
+#: data/gtk/database_settings_dialog.ui:212
 msgid "Creation Date"
 msgstr "Data de creación"
 
-#: data/gtk/database_settings_dialog.ui:217
+#: data/gtk/database_settings_dialog.ui:220
 msgid "Encryption Algorithm"
 msgstr "Algoritmo de cifrado"
 
-#: data/gtk/database_settings_dialog.ui:225
+#: data/gtk/database_settings_dialog.ui:228
 msgid "Derivation Algorithm"
 msgstr "Algoritmo de derivación"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:235
+#: data/gtk/database_settings_dialog.ui:238
 msgid "Stats"
 msgstr "Estatísticas"
 
-#: data/gtk/database_settings_dialog.ui:238
+#: data/gtk/database_settings_dialog.ui:241
 msgid "Number of Entries"
 msgstr "Número de entradas"
 
-#: data/gtk/database_settings_dialog.ui:246
+#: data/gtk/database_settings_dialog.ui:250
 msgid "Number of Groups"
 msgstr "Número de grupos"
 
-#: data/gtk/database_settings_dialog.ui:254
+#: data/gtk/database_settings_dialog.ui:259
 msgid "Passwords"
 msgstr "Contrasinais"
 
-#: data/gtk/entry_page.ui:64 data/gtk/group_page.ui:23
-msgid "Menu"
-msgstr "Menú"
+#: data/gtk/entry_page.ui:56
+msgid "Entry Menu"
+msgstr ""
 
-#: data/gtk/entry_page.ui:81 data/gtk/group_page.ui:35
+#: data/gtk/entry_page.ui:73 data/gtk/group_page.ui:27
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Título"
 
-#: data/gtk/entry_page.ui:87
+#: data/gtk/entry_page.ui:79
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:104
+#: data/gtk/entry_page.ui:96
 msgid "Open Address"
 msgstr "Abrir enderezo"
 
-#: data/gtk/entry_page.ui:125
+#: data/gtk/entry_page.ui:117
 msgid "One-Time Password"
 msgstr "Contrasinal de un só uso"
 
-#: data/gtk/entry_page.ui:163
+#: data/gtk/entry_page.ui:156
 msgid "One-_Time Password Secret"
 msgstr "Segredo do contrasinal de _uso único"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:171
+#: data/gtk/entry_page.ui:164
 msgid "Could not Generate OTP Token"
 msgstr "Non foi posíbel xerar o token OTP"
 
-#: data/gtk/entry_page.ui:179 data/gtk/group_page.ui:43
-#: data/gtk/references_dialog.ui:141
+#: data/gtk/entry_page.ui:172 data/gtk/group_page.ui:35
+#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Notas"
 
-#: data/gtk/entry_page.ui:183 data/gtk/group_page.ui:47
+#: data/gtk/entry_page.ui:176 data/gtk/group_page.ui:39
 msgid "Edit in a Window"
 msgstr "Editar nunha xanela"
 
-#: data/gtk/entry_page.ui:218
+#: data/gtk/entry_page.ui:214
 msgid "Icon"
 msgstr "Icona"
 
-#: data/gtk/entry_page.ui:235
+#: data/gtk/entry_page.ui:234
 msgid "Attachments"
 msgstr "Anexos"
 
-#: data/gtk/entry_page.ui:239
+#: data/gtk/entry_page.ui:238
 msgid "_Add Attachment"
 msgstr "_Engadir anexo"
 
-#: data/gtk/entry_page.ui:248
+#: data/gtk/entry_page.ui:247
 msgid "Attributes"
 msgstr "Atributos"
 
-#: data/gtk/entry_page.ui:253
+#: data/gtk/entry_page.ui:252
 msgid "_Add Attribute"
 msgstr "_Engadir atributo"
 
-#: data/gtk/entry_page.ui:261
+#: data/gtk/entry_page.ui:260
 msgid "Expiration Date"
 msgstr "Data de expiración"
 
-#: data/gtk/entry_page.ui:277
+#: data/gtk/entry_page.ui:276
 msgid "_Show More"
 msgstr "_Mostrar máis"
 
-#: data/gtk/entry_page.ui:294
+#: data/gtk/entry_page.ui:295
 msgid "D_uplicate"
 msgstr "_Duplicar"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:299
 msgid "_References"
 msgstr "_Referencias"
 
-#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:79
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:76
 msgid "_Properties"
 msgstr "_Propiedades"
 
-#: data/gtk/entry_page.ui:308
+#: data/gtk/entry_page.ui:309
 msgid "_Save in History"
 msgstr "_Gardar no historial"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:313
 msgid "Show _History"
 msgstr "Mostrar _historial"
 
-#: data/gtk/entry_page.ui:318 data/gtk/group_page.ui:85
+#: data/gtk/entry_page.ui:319 data/gtk/group_page.ui:82
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: data/gtk/entry_row.ui:53
+#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
+msgid "Select"
+msgstr "Seleccionar"
+
+#: data/gtk/entry_row.ui:55
 msgid "Copy Username"
 msgstr "Copiar nome de usuario"
 
-#: data/gtk/entry_row.ui:63
+#: data/gtk/entry_row.ui:65
 msgid "Copy Password"
 msgstr "Copiar contrasinal"
 
-#: data/gtk/expiration_date_row.ui:8
-#: gsecrets/widgets/expiration_date_row.py:80
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
 msgid "Expiration Date not Set"
 msgstr "A data de expiración non está estabelecida"
 
-#: data/gtk/expiration_date_row.ui:17
+#: data/gtk/expiration_date_row.ui:22
 msgid "Edit Expiration Date"
 msgstr "Editar a data de expiración"
 
-#: data/gtk/expiration_date_row.ui:25
+#: data/gtk/expiration_date_row.ui:30
 msgid "Remove Expiration Date"
 msgstr "Quitar data de expiración"
 
-#: data/gtk/expiration_date_row.ui:58
+#: data/gtk/expiration_date_row.ui:63
 msgid "_Set Expiration Date"
 msgstr "_Estabelecer data de expiración"
 
-#: data/gtk/group_row.ui:51
+#: data/gtk/group_page.ui:15
+msgid "Group Menu"
+msgstr "Menú de grupo"
+
+#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:46
 msgid "Edit"
 msgstr "Editar"
 
@@ -559,7 +579,7 @@ msgstr "Mostrar texto"
 msgid "Remove from History"
 msgstr "Eliminar do historial"
 
-#: data/gtk/history_window.ui:9
+#: data/gtk/history_window.ui:10
 msgid "Password History"
 msgstr "Historial do contrasinais"
 
@@ -567,60 +587,54 @@ msgstr "Historial do contrasinais"
 msgid "_Open"
 msgstr "_Abrir"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:90
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
+#: data/gtk/welcome_page.ui:15
 msgid "_New Safe"
 msgstr "_Nova caixa forte"
 
-#: data/gtk/notes_dialog.ui:14
+#: data/gtk/notes_dialog.ui:30
 msgid "_Copy"
 msgstr "_Copiar"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:26 data/gtk/unlocked_headerbar.ui:24
+#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:67
+#: data/gtk/unlocked_database.ui:22 data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Buscar"
 
-#: data/gtk/password_generator_popover.ui:35
+#: data/gtk/password_generator_popover.ui:32
 msgid "Length"
 msgstr "Ancho"
 
-#: data/gtk/password_generator_popover.ui:62
+#: data/gtk/password_generator_popover.ui:50
 msgid "Characters"
 msgstr "Caracteres"
 
-#: data/gtk/password_generator_popover.ui:111
+#: data/gtk/password_generator_popover.ui:94
 msgid "Passphrase"
 msgstr "Frase de paso"
 
-#: data/gtk/password_generator_popover.ui:119
+#: data/gtk/password_generator_popover.ui:103
 msgid "Words"
 msgstr "Palabras"
 
-#: data/gtk/password_generator_popover.ui:145 data/gtk/settings_dialog.ui:179
-msgid "Separator"
-msgstr "Separador"
-
-#: data/gtk/password_generator_popover.ui:154
-msgid "Enter character here…"
-msgstr "Escriba un carácter aquí…"
-
-#: data/gtk/properties_dialog.ui:7
+#: data/gtk/properties_dialog.ui:9
 msgid "Properties"
 msgstr "Propiedades"
 
-#: data/gtk/properties_dialog.ui:28 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:37
+#: data/gtk/properties_dialog.ui:47
 msgid "Accessed"
 msgstr "Accedido"
 
-#: data/gtk/properties_dialog.ui:45
+#: data/gtk/properties_dialog.ui:56
 msgid "Modified"
 msgstr "Modificado"
 
-#: data/gtk/properties_dialog.ui:53
+#: data/gtk/properties_dialog.ui:65
 msgid "Created"
 msgstr "Creado"
 
@@ -628,8 +642,8 @@ msgstr "Creado"
 msgid "Code"
 msgstr "Código"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:250
-#: data/gtk/references_dialog.ui:346
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
+#: data/gtk/references_dialog.ui:352
 msgid "Property"
 msgstr "Propiedade"
 
@@ -657,27 +671,27 @@ msgstr "_Notas"
 msgid "References"
 msgstr "Referencias"
 
-#: data/gtk/references_dialog.ui:222
+#: data/gtk/references_dialog.ui:226
 msgid "Syntax"
 msgstr "Sintaxe"
 
-#: data/gtk/references_dialog.ui:231
+#: data/gtk/references_dialog.ui:235
 msgid "The placeholder syntax for field references is the following:"
 msgstr "A sintaxe do marcador para as referencias de campo é a seguinte:"
 
-#: data/gtk/references_dialog.ui:249 data/gtk/references_dialog.ui:276
+#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
 msgid "Show Field Codes"
 msgstr "Mostrar códigos de campo"
 
-#: data/gtk/references_dialog.ui:277
+#: data/gtk/references_dialog.ui:283
 msgid "Identifier"
 msgstr "Identificador"
 
-#: data/gtk/references_dialog.ui:335
+#: data/gtk/references_dialog.ui:341
 msgid "Reference"
 msgstr "Referencia"
 
-#: data/gtk/references_dialog.ui:373
+#: data/gtk/references_dialog.ui:380
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -723,8 +737,7 @@ msgstr "Non hai resultados"
 msgid "_Select Items"
 msgstr "_Seleccionar elementos"
 
-#. Button tooltip in selection mode to move every selected entry/group to
-#. another place
+#. Button tooltip in selection mode to move every selected entry/group to another place
 #: data/gtk/selection_mode_headerbar.ui:29
 msgid "Move Selection"
 msgstr "Mover selección"
@@ -761,141 +774,138 @@ msgstr "Reabrir a última caixa forte aberta."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:31 gsecrets/widgets/window.py:129
-#: gsecrets/widgets/window.py:210 gsecrets/widgets/window.py:222
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
+#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
 msgid "Safe"
 msgstr "Caixa forte"
 
-#: data/gtk/settings_dialog.ui:34
+#: data/gtk/settings_dialog.ui:28
 msgid "_Save Automatically"
 msgstr "_Gardar automaticamente"
 
-#: data/gtk/settings_dialog.ui:35
+#: data/gtk/settings_dialog.ui:29
 msgid "Save every change automatically."
 msgstr "Gardar cada cambio automáticamente."
 
-#: data/gtk/settings_dialog.ui:50 data/gtk/unlock_database.ui:33
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:34
 msgid "Unlock"
 msgstr "Desbloquear"
 
-#. A composite key is a authentication method where the user needs both
-#. password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:53
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:41
 msgid "Remember Composite _Key"
 msgstr "Recordar a _chave composta"
 
-#. A composite key is a authentication method where the user needs both
-#. password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:54
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:42
 msgid "Remember last used composite key."
 msgstr "Recortar a última chave composta usada."
 
-#: data/gtk/settings_dialog.ui:75
+#: data/gtk/settings_dialog.ui:57
 msgid "Password Generation"
 msgstr "Xeración de contrasinal"
 
-#: data/gtk/settings_dialog.ui:78
+#: data/gtk/settings_dialog.ui:60
 msgid "Password Length"
 msgstr "Largo do contrasinal"
 
-#: data/gtk/settings_dialog.ui:79
+#: data/gtk/settings_dialog.ui:61
 msgid "Number of characters when generating a password."
 msgstr "Número de caracteres ao xerar un contrasinal."
 
-#: data/gtk/settings_dialog.ui:98
+#: data/gtk/settings_dialog.ui:75
 msgid "_Uppercase Characters"
 msgstr "Caracteres en _maiúsculas"
 
-#: data/gtk/settings_dialog.ui:99
+#: data/gtk/settings_dialog.ui:76
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Usar caracteres en maiúsculas A-Z ao xerar un contrasinal."
 
-#: data/gtk/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:83
 msgid "_Lowercase Characters"
 msgstr "Caracteres en _minúsculas"
 
-#: data/gtk/settings_dialog.ui:113
+#: data/gtk/settings_dialog.ui:84
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Uasr caracteres en minúsculas a-z ao xerar un contrasinal."
 
-#: data/gtk/settings_dialog.ui:126
+#: data/gtk/settings_dialog.ui:91
 msgid "_Numeric Characters"
 msgstr "Caracteres _numéricos"
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:92
 msgid "Use numeric characters when generating a password."
 msgstr "Usar caracteres numéricos ao xerar un contrasinal."
 
-#: data/gtk/settings_dialog.ui:140
+#: data/gtk/settings_dialog.ui:99
 msgid "_Special Characters"
 msgstr "Caracteres _especiais"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:141
+#: data/gtk/settings_dialog.ui:100
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Usar símbolos ASCII non alfanuméricos ao xerar un contrasinal."
 
-#: data/gtk/settings_dialog.ui:156
+#: data/gtk/settings_dialog.ui:109
 msgid "Passphrase Generation"
 msgstr "Xeración de frase de paso"
 
-#: data/gtk/settings_dialog.ui:159
+#: data/gtk/settings_dialog.ui:112
 msgid "Passphrase Length"
 msgstr "Largo da frase de paso"
 
-#: data/gtk/settings_dialog.ui:160
+#: data/gtk/settings_dialog.ui:113
 #: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of words to use when generating a passphrase."
 msgstr "Número de palabras a usar cando se xera unha frase de paso."
 
-#: data/gtk/settings_dialog.ui:180
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
-msgid "Word separator to use when generating a passphrase."
-msgstr "Separador de palabras a usar ao xerar unha frase de paso."
+#: data/gtk/settings_dialog.ui:127
+msgid "Separator"
+msgstr "Separador"
 
-#: data/gtk/settings_dialog.ui:187
-msgid "Enter Character"
-msgstr "Escribir caracter"
-
-#: data/gtk/settings_dialog.ui:200 data/gtk/settings_dialog.ui:203
+#: data/gtk/settings_dialog.ui:137 data/gtk/settings_dialog.ui:140
 msgid "Security"
 msgstr "Seguranza"
 
-#: data/gtk/settings_dialog.ui:206
+#: data/gtk/settings_dialog.ui:143
 msgid "Safe Lock Timeout"
 msgstr "Tempo de espera máximo de bloqueo da caixa forte"
 
-#: data/gtk/settings_dialog.ui:207
+#: data/gtk/settings_dialog.ui:144
 msgid "Lock safe on idle after X minutes."
 msgstr "Bloquear a caixa forte cando non haxa actividade durante X minutos."
 
-#: data/gtk/settings_dialog.ui:226
+#: data/gtk/settings_dialog.ui:158
 msgid "Clear Clipboard"
 msgstr "Limpar portapapeis"
 
-#: data/gtk/settings_dialog.ui:227
+#: data/gtk/settings_dialog.ui:159
 msgid "Clear clipboard after X seconds."
 msgstr "Limpar portapapeis despois de X segundos."
 
-#: data/gtk/settings_dialog.ui:246
+#: data/gtk/settings_dialog.ui:173
 msgid "Clear Recent List"
 msgstr "Limpar lista de recentes"
 
-#: data/gtk/settings_dialog.ui:247
+#: data/gtk/settings_dialog.ui:174
 msgid "Clear the recently opened safes list."
 msgstr "Limpar a lista de caixas fortes abertas recentemente."
 
-#: data/gtk/settings_dialog.ui:254 data/gtk/unlock_database.ui:108
+#: data/gtk/settings_dialog.ui:181 data/gtk/unlock_database.ui:91
 msgid "Clear"
 msgstr "Limpar"
 
-#: data/gtk/unlock_database.ui:11
+#: data/gtk/unlock_database.ui:12
 msgid "Unlock Safe"
 msgstr "Desbloquear caixa forte"
 
-#: data/gtk/unlock_database.ui:82 gsecrets/unlock_database.py:256
+#: data/gtk/unlock_database.ui:65 gsecrets/unlock_database.py:256
 msgid "_Select Keyfile"
 msgstr "_Seleccionar ficheiro chave"
+
+#: data/gtk/unlocked_database.ui:8
+msgid "Browser"
+msgstr "Navegador"
 
 #: data/gtk/unlocked_database_page.ui:31
 msgid "Add elements with the ➕ button."
@@ -905,81 +915,73 @@ msgstr "Engada elementos co botón ➕."
 msgid "Empty Group"
 msgstr "Baleirar grupo"
 
-#: data/gtk/unlocked_headerbar.ui:13
+#: data/gtk/unlocked_headerbar.ui:11
 msgid "New Entry or Group"
 msgstr "Nova entrada e grupo"
 
-#. Button tooltip in headerbar to switch to selection mode where the user can
-#. tick password entries and groups
-#: data/gtk/unlocked_headerbar.ui:31
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/gtk/unlocked_headerbar.ui:29
 msgid "Selection Mode"
 msgstr "Modo de selección"
 
-#: data/gtk/unlocked_headerbar.ui:54
-#: gsecrets/widgets/saving_conflict_dialog.py:35
-msgid "_Save"
-msgstr "_Gardar"
-
-#: data/gtk/unlocked_headerbar.ui:60
-msgid "_Lock"
-msgstr "_Desbloquear"
-
-#: data/gtk/unlocked_headerbar.ui:65
+#: data/gtk/unlocked_headerbar.ui:55
 msgid "So_rting"
 msgstr "_Ordenación"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:67
+#: data/gtk/unlocked_headerbar.ui:57
 msgid "_A-Z"
 msgstr "_A-Z"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:72
+#: data/gtk/unlocked_headerbar.ui:62
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/gtk/unlocked_headerbar.ui:77
+#: data/gtk/unlocked_headerbar.ui:67
 msgid "_Newest First"
 msgstr "Máis _novas primeiro"
 
-#: data/gtk/unlocked_headerbar.ui:82
+#: data/gtk/unlocked_headerbar.ui:72
 msgid "_Oldest First"
 msgstr "Máis _vellas primeiro"
 
-#: data/gtk/unlocked_headerbar.ui:99
+#: data/gtk/unlocked_headerbar.ui:89
 msgid "Sa_fe Settings"
 msgstr "Preferencias da _caixa forte"
 
-#: data/gtk/unlocked_headerbar.ui:121
+#: data/gtk/unlocked_headerbar.ui:111
 msgid "New _Entry"
 msgstr "Nova _entrada"
 
-#: data/gtk/unlocked_headerbar.ui:125
+#: data/gtk/unlocked_headerbar.ui:115
 msgid "New _Group"
 msgstr "Novo _grupo"
 
+#: data/gtk/unlocked_headerbar.ui:134
+#: gsecrets/widgets/saving_conflict_dialog.py:35
+msgid "_Save"
+msgstr "_Gardar"
+
+#: data/gtk/unlocked_headerbar.ui:149
+msgid "_Lock"
+msgstr "_Desbloquear"
+
 #. The umbrella sentence of the application on the first start screen
-#: data/gtk/welcome_page.ui:30
+#: data/gtk/welcome_page.ui:11
 msgid "Secure Secrets"
 msgstr "Segredos seguros"
 
-#. The subtitle of the umbrella sentence in the first start screen. This is a
-#. sentence which gives the user a starting point what he can do if he opens
-#. the application for the first time.
-#: data/gtk/welcome_page.ui:41
-msgid ""
-"Securely store your passwords, notes and data. <b>Create</b> or <b>import</"
-"b> a new Keepass safe."
-msgstr ""
-"Almacene de forma segura os seus contrasinais, notas e datos. <b>Cree</b> "
-"ou <b>importe</b> unha nova caixa forte Keepass."
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "Crear ou importar unha nova caixa forte de Keepass"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
 msgstr "Un xestor de contrasinais para GNOME"
 
-#. Translators: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:14
 msgid "keepass;encrypt;secure;"
 msgstr "keepass;cifrar;seguro;"
@@ -1002,11 +1004,11 @@ msgstr "Gardar cada cambio automaticamente"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:18
 msgid ""
-"Save every change you made instantly into the database. Please note that "
-"you cannot revert changes if Autosave is enabled."
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
 msgstr ""
-"Gardar cada cambio que faga na base de datos instantáneamente. Teña en "
-"conta que non pode desfacer os cambios se o Autogardado está activo."
+"Gardar cada cambio que faga na base de datos instantáneamente. Teña en conta "
+"que non pode desfacer os cambios se o Autogardado está activo."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:22
 msgid "Lock database after X minutes"
@@ -1027,8 +1029,7 @@ msgstr "Limpar portapapeis despois de X segundos"
 #: data/org.gnome.World.Secrets.gschema.xml.in:28
 msgid "After copying the password clear the clipboard for security reasons."
 msgstr ""
-"Despois de copiar o contrasinal limpar o portapapeis por razóns de "
-"seguranza."
+"Despois de copiar o contrasinal limpar o portapapeis por razóns de seguranza."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:32
 msgid "Window size"
@@ -1069,8 +1070,7 @@ msgstr "Última chave composta usada"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Path to last used key for composite database unlocking."
-msgstr ""
-"Ruta á última chave usada para o desbloqueo composto da base de datos."
+msgstr "Ruta á última chave usada para o desbloqueo composto da base de datos."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Remember unlock method"
@@ -1151,6 +1151,10 @@ msgstr "Número de palabras ao xerar unha frase de paso"
 msgid "Separator when generating a passphrase"
 msgstr "Separador ao xerar unha frase de paso"
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Word separator to use when generating a passphrase."
+msgstr "Separador de palabras a usar ao xerar unha frase de paso."
+
 #: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
 msgid "@NAME@"
 msgstr "@NAME@"
@@ -1182,69 +1186,65 @@ msgstr "Erro: A caixa forte {} xa está aberta"
 msgid "Could not load attachment"
 msgstr "Non foi posíbel cargar o anexo"
 
-#: gsecrets/create_database.py:73
+#: gsecrets/create_database.py:69
 msgid "Unable to create database"
 msgstr "Non é posíbel crear a base de datos"
 
-#: gsecrets/create_database.py:169
+#: gsecrets/create_database.py:167
 msgid "Passwords do not match"
 msgstr "Os contrasinais non coinciden"
 
-#: gsecrets/create_database.py:199
+#: gsecrets/create_database.py:197
 msgid "Generating…"
 msgstr "Xerando…"
 
-#: gsecrets/create_database.py:211
+#: gsecrets/create_database.py:209
 msgid "Could not create keyfile"
 msgstr "Non foi posíbel crear o ficheiro de chave"
 
-#: gsecrets/create_database.py:213
+#: gsecrets/create_database.py:211
 msgid "Generate"
 msgstr "Xerar"
 
-#: gsecrets/entry_page.py:243 gsecrets/widgets/credentials_group.py:90
+#: gsecrets/entry_page.py:237 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
 msgstr "Gardar no historial"
 
-#: gsecrets/entry_page.py:259 gsecrets/entry_row.py:114
-#: gsecrets/widgets/credentials_group.py:84
+#: gsecrets/entry_page.py:253 gsecrets/entry_row.py:123
+#: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Nome de usuario copiado"
 
-#: gsecrets/entry_page.py:267 gsecrets/entry_page.py:403
+#: gsecrets/entry_page.py:261 gsecrets/entry_page.py:392
 msgid "Address copied"
 msgstr "Enderezo copiado"
 
-#: gsecrets/entry_page.py:277 gsecrets/entry_page.py:332
+#: gsecrets/entry_page.py:271 gsecrets/entry_page.py:326
 msgid "One-time password copied"
 msgstr "Contrasinal de un só uso copiado"
 
-#: gsecrets/entry_page.py:310
+#: gsecrets/entry_page.py:304
 msgid "Could not open URL"
 msgstr "Non foi posíbel abrir a URL"
 
-#: gsecrets/entry_page.py:320
+#: gsecrets/entry_page.py:314
 msgid "The address is not valid"
 msgstr "O enderezo non é válido"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:362
+#: gsecrets/entry_page.py:351
 msgid "Select Attachments"
 msgstr "Seleccionar os anexos"
 
-#: gsecrets/entry_page.py:363
-msgid "_Add"
-msgstr "_Engadir"
-
-#: gsecrets/entry_row.py:107 gsecrets/widgets/credentials_group.py:99
+#: gsecrets/entry_row.py:116 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Contrasinal copiada"
 
-#: gsecrets/entry_row.py:126 gsecrets/group_row.py:100
+#: gsecrets/entry_row.py:135 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "Título non especificado"
 
-#: gsecrets/entry_row.py:137
+#: gsecrets/entry_row.py:146
 msgid "Username not specified"
 msgstr "Nome de usuario non especificado"
 
@@ -1280,18 +1280,54 @@ msgstr "Incluír símbolos"
 msgid "Exclude Symbols"
 msgstr "Excluír símbolos"
 
+#: gsecrets/pathbar_button.py:30
+msgid "Root Group"
+msgstr "Grupo raíz"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Ficheiros recentes"
 
-#: gsecrets/safe_element.py:546
+#: gsecrets/safe_element.py:41
+msgid "White"
+msgstr "Branco"
+
+#: gsecrets/safe_element.py:43
+msgid "Blue"
+msgstr "Azul"
+
+#: gsecrets/safe_element.py:45
+msgid "Green"
+msgstr "Verde"
+
+#: gsecrets/safe_element.py:47
+msgid "Yellow"
+msgstr "Amarelo"
+
+#: gsecrets/safe_element.py:49
+msgid "Orange"
+msgstr "Laranxa"
+
+#: gsecrets/safe_element.py:51
+msgid "Red"
+msgstr "Vermello"
+
+#: gsecrets/safe_element.py:53
+msgid "Purple"
+msgstr "Morado"
+
+#: gsecrets/safe_element.py:55
+msgid "Brown"
+msgstr "Marrón"
+
+#: gsecrets/safe_element.py:567
 msgid "Clone"
 msgstr "Clonar"
 
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
-#: gsecrets/unlocked_database.py:271 gsecrets/unlocked_database.py:549
-#: gsecrets/widgets/window.py:352 gsecrets/widgets/window.py:358
+#: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:577
+#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
 msgid "Could not save Safe"
 msgstr "Non foi posíbel gardar a Caixa forte"
 
@@ -1314,54 +1350,52 @@ msgstr "Produciuse un fallo ao desbloquear a caixa forte"
 msgid "_Try Again"
 msgstr "_Tentar de novo"
 
-#: gsecrets/unlocked_database.py:274
+#: gsecrets/unlocked_database.py:299
 #, fuzzy
 #| msgid "Safe Saved"
 msgid "Safe saved"
 msgstr "Caixa forte gardada"
 
-#: gsecrets/unlocked_database.py:276
-#, fuzzy
-#| msgid "No Changes Made"
+#: gsecrets/unlocked_database.py:301
 msgid "No changes made"
 msgstr "Non se fixeron cambios"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:321
+#: gsecrets/unlocked_database.py:346
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Elemento eliminado"
+msgstr[1] "{} elementos eliminado"
 
-#: gsecrets/unlocked_database.py:326
-#, fuzzy
-#| msgid "Deletion Completed"
+#: gsecrets/unlocked_database.py:351
 msgid "Deletion completed"
 msgstr "Eliminación completada"
 
-#: gsecrets/unlocked_database.py:331
+#: gsecrets/unlocked_database.py:356 gsecrets/unlocked_database.py:381
 msgid "Undo"
 msgstr "Desfacer"
 
-#: gsecrets/unlocked_database.py:367
+#: gsecrets/unlocked_database.py:380
+msgid "Attribute deleted"
+msgstr "Atributo eliminado"
+
+#: gsecrets/unlocked_database.py:411
 msgid "Copied"
 msgstr "Copiado"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:471
+#: gsecrets/unlocked_database.py:504
 #, fuzzy
 #| msgid "Safe Locked due to Inactivity"
 msgid "Safe locked due to inactivity"
 msgstr "Caixa forte bloqueada debido a inactividade"
 
-#: gsecrets/widgets/add_attribute_dialog.py:38
+#: gsecrets/widgets/add_attribute_dialog.py:37
 #, fuzzy
 msgid "Attribute key contains an illegal character"
 msgstr "A clave de atributo contén un carácter ilegal"
 
-#: gsecrets/widgets/add_attribute_dialog.py:49
-#, fuzzy
-#| msgid "Attribute key Already Exists"
+#: gsecrets/widgets/add_attribute_dialog.py:48
 msgid "Attribute key already exists"
 msgstr "A chave do atributo xa existe"
 
@@ -1375,6 +1409,11 @@ msgstr "Anexo gardado"
 #| msgid "Could not Store Attachment"
 msgid "Could not store attachment"
 msgstr "Non é posíbel gardar o anexo"
+
+#: gsecrets/widgets/attribute_entry_row.py:40
+#: gsecrets/widgets/protected_attribute_entry_row.py:57
+msgid "Attribute copied"
+msgstr "Atributo copiado"
 
 #. NOTE: Filechooser title for choosing current used keyfile
 #: gsecrets/widgets/database_settings_dialog.py:136
@@ -1411,8 +1450,8 @@ msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
 msgstr ""
-"A caixa de seguridade modificouse doutro sitio.Resolve estes conflitos "
-"desde a xanela principal ao aforrar."
+"A caixa de seguridade modificouse doutro sitio.Resolve estes conflitos desde "
+"a xanela principal ao aforrar."
 
 #: gsecrets/widgets/database_settings_dialog.py:288
 msgid "Ok"
@@ -1470,10 +1509,8 @@ msgstr "Selección copiado"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:19
-#, fuzzy
-#| msgid "Unsaved Changes"
 msgid "Unsaved Changes Conflict"
-msgstr "Cambios sen gardar"
+msgstr "Hai conflitos nos cambios sen gardar"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:21
 msgid "Save and Quit"
@@ -1530,8 +1567,7 @@ msgstr "Aviso"
 #: gsecrets/widgets/selection_mode_headerbar.py:155
 #, fuzzy
 msgid ""
-"You are deleting elements in the trash bin, these deletions cannot be "
-"undone."
+"You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr ""
 "Está a eliminar elementos na papeleira, estas eliminacións non se poden "
 "desfacer."
@@ -1554,39 +1590,62 @@ msgstr "Operación abortada: Movendo o grupo activo actualmente"
 msgid "Move completed"
 msgstr "Movemento completado"
 
-#: gsecrets/widgets/window.py:133
+#: gsecrets/widgets/window.py:121
 msgid "Any file type"
 msgstr "Calquera tipo de ficheiro"
 
-#: gsecrets/widgets/window.py:140
+#: gsecrets/widgets/window.py:128
 msgid "Select Safe"
 msgstr "Seleccionar caixa forte"
 
-#: gsecrets/widgets/window.py:188
+#: gsecrets/widgets/window.py:144
+msgid "File does not have a valid path"
+msgstr ""
+
+#: gsecrets/widgets/window.py:178
 msgid "Safe is already open"
 msgstr "A caixa forte xa está aberta"
 
-#: gsecrets/widgets/window.py:220
+#: gsecrets/widgets/window.py:210
 msgid "_Create"
 msgstr "_Crear"
 
-#: gsecrets/widgets/window.py:241
+#: gsecrets/widgets/window.py:231
 #, fuzzy
 #| msgid "Cannot Create Safe: Safe is Already Open"
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Non foi posíbel crear a caixa forte: a caixa forte xa está aberta"
 
-#: gsecrets/widgets/window.py:283 gsecrets/widgets/window.py:298
+#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
 #, fuzzy
 #| msgid "Could not Create new Safe"
 msgid "Could not create new Safe"
 msgstr "Non foi posíbel crear a nova caixa forte"
 
-#: gsecrets/widgets/window.py:365
+#: gsecrets/widgets/window.py:355
 #, fuzzy
 #| msgid "Could not Save Safe"
 msgid "Could not save safe"
 msgstr "Non foi posíbel gardar a caixa forte"
+
+#~ msgid "Add"
+#~ msgstr "Engadir"
+
+#~ msgid "Menu"
+#~ msgstr "Menú"
+
+#~ msgid "Enter character here…"
+#~ msgstr "Escriba un carácter aquí…"
+
+#~ msgid "Enter Character"
+#~ msgstr "Escribir caracter"
+
+#~ msgid ""
+#~ "Securely store your passwords, notes and data. <b>Create</b> or "
+#~ "<b>import</b> a new Keepass safe."
+#~ msgstr ""
+#~ "Almacene de forma segura os seus contrasinais, notas e datos. <b>Cree</b> "
+#~ "ou <b>importe</b> unha nova caixa forte Keepass."
 
 #~ msgid "Learn more about Secrets"
 #~ msgstr "Saber máis sobre Segredos"

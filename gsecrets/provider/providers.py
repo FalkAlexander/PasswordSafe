@@ -3,10 +3,12 @@ from __future__ import annotations
 import logging
 from gi.repository import Adw, GLib, Gio, GObject
 from gsecrets.provider.file_provider import FileProvider
+from gsecrets.provider.pkcs11_provider import Pkcs11Provider
 from gsecrets.provider.yubikey_provider import YubiKeyProvider
 
 KEY_PROVIDERS = [
     FileProvider,
+    Pkcs11Provider,
     YubiKeyProvider,
 ]
 

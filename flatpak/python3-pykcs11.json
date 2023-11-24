@@ -1,0 +1,81 @@
+{
+    "name": "python3-pykcs11",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pykcs11\" --no-build-isolation"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/d2/57/c516ddbe7ff6230574bd0e0d59dcf45c36c81297cffaf108bf1b40232d70/PyKCS11-1.5.11.tar.gz",
+            "sha256": "ef1d51a24eff9eb6c1288428996614316841e34bac2d59f483db0ed1a9cad044"
+        }
+    ],
+    "modules" : [
+        {
+            "name": "pcsc-lite",
+            "config-opts": [
+                "--disable-libudev",
+                "--disable-libsystemd",
+                "--without-systemdsystemunitdir",
+                "--disable-serial",
+                "--disable-usb",
+                "--disable-documentation"
+            ],
+            "cleanup": [
+                "/include",
+                "/bin/pcsc-spy",
+                "/lib/libpcscspy*",
+                "/lib/pkg-config",
+                "/share/doc",
+                "/share/man"
+            ],
+            "post-install": [
+                "rm /app/sbin/pcscd",
+                "rmdir /app/sbin || true"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://pcsclite.apdu.fr/files/pcsc-lite-1.9.9.tar.bz2",
+                    "sha256": "cbcc3b34c61f53291cecc0d831423c94d437b188eb2b97b7febc08de1c914e8a"
+                }
+            ]
+        },
+        {
+            "name": "opensc",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/OpenSC/OpenSC/releases/download/0.23.0/opensc-0.23.0.tar.gz",
+                    "sha256": "a4844a6ea03a522ecf35e49659716dacb6be03f7c010a1a583aaf3eb915ed2e0"
+                }
+            ]
+        },
+        {
+            "name": "swig",
+            "buildsystem": "autotools",
+            "cleanup": [
+                "/bin",
+                "/share"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://sourceforge.net/projects/swig/files/swig/swig-4.1.1/swig-4.1.1.tar.gz",
+                    "sha256": "2af08aced8fcd65cdb5cc62426768914bedc735b1c250325203716f78e39ac9b"
+                }
+            ]
+        },
+        {
+            "name": "pcsc-tools",
+            "sources" : [
+                {
+                    "type": "archive",
+                    "url": "https://pcsc-tools.apdu.fr/pcsc-tools-1.6.2.tar.bz2",
+                    "sha256": "98a2ef5c6b474ed6289ab51d514421e23794793b49e834728634b9084b2156f3"
+                }
+            ]
+        }
+    ]
+}

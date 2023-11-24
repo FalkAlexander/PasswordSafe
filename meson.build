@@ -33,6 +33,8 @@ python_bin = python.find_installation('python3', modules:[
   'pyotp',
   'validators',
   'zxcvbn',
+  'PyKCS11',
+  'yubico',
 ])
 if not python_bin.found()
   error('No valid python3 binary found')

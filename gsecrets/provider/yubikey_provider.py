@@ -124,7 +124,7 @@ class YubiKeyProvider(BaseProvider):
     def create_unlock_widget(self, database_manager: DatabaseManager) -> Gtk.Widget:
         row = Adw.ComboRow()
         row.set_title(_("YubiKey"))
-        row.set_subtitle(_("Select hardware key"))
+        row.set_subtitle(_("Select key"))
         row.connect('notify::selected', self._on_unlock_row_selected)
         self.unlock_row = row
 

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-11-03 20:31+0000\n"
-"PO-Revision-Date: 2023-11-06 12:50+0800\n"
+"POT-Creation-Date: 2023-11-28 19:33+0000\n"
+"PO-Revision-Date: 2023-11-30 20:37+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -105,7 +105,7 @@ msgstr "颜色"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:220
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:228
 msgid "Create Safe"
 msgstr "创建保险箱"
 
@@ -118,47 +118,47 @@ msgstr "后退"
 msgid "Main Menu"
 msgstr "主菜单"
 
-#: data/gtk/create_database.ui:38
+#: data/gtk/create_database.ui:44
 msgid "Protect your safe"
 msgstr "保护您的保险箱"
 
-#: data/gtk/create_database.ui:51 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "密码(_P)"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:64
 msgid "_Confirm Password"
 msgstr "确认密码(_C)"
 
-#: data/gtk/create_database.ui:78 data/gtk/unlock_database.ui:34
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
 msgid "Additional Credentials"
 msgstr "附加的证书"
 
-#: data/gtk/create_database.ui:84
+#: data/gtk/create_database.ui:90
 msgid "Create"
 msgstr "创建"
 
-#: data/gtk/create_database.ui:107
+#: data/gtk/create_database.ui:113
 msgid "Safe Successfully Created"
 msgstr "保险箱创建成功"
 
-#: data/gtk/create_database.ui:110
+#: data/gtk/create_database.ui:116
 msgid "_Open Safe"
 msgstr "打开保险箱(_O)"
 
-#: data/gtk/create_database.ui:132 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: data/gtk/create_database.ui:136 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "关于秘密(_A)"
@@ -174,7 +174,7 @@ msgid "Copy"
 msgstr "复制"
 
 #: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
-#: gsecrets/create_database.py:38
+#: gsecrets/create_database.py:39
 msgid "Generate New Password"
 msgstr "生成新密码"
 
@@ -184,7 +184,7 @@ msgstr "认证"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:26
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:35
 msgid "Password"
 msgstr "密码"
 
@@ -726,8 +726,8 @@ msgstr "重新打开上次打开的保险箱。"
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:129
-#: gsecrets/widgets/window.py:212 gsecrets/widgets/window.py:224
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:137
+#: gsecrets/widgets/window.py:220 gsecrets/widgets/window.py:232
 msgid "Safe"
 msgstr "保险箱"
 
@@ -739,8 +739,8 @@ msgstr "自动保存(_S)"
 msgid "Save every change automatically."
 msgstr "自动保存所有更改。"
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:40
-#: gsecrets/unlock_database.py:187
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
+#: gsecrets/unlock_database.py:195
 msgid "Unlock"
 msgstr "解锁"
 
@@ -856,7 +856,7 @@ msgstr "清除最近打开的保险箱列表。"
 msgid "Clear"
 msgstr "清空"
 
-#: data/gtk/unlock_database.ui:12
+#: data/gtk/unlock_database.ui:18
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
 
@@ -1146,13 +1146,17 @@ msgstr "错误：保险箱 {} 已打开"
 msgid "Could not load attachment"
 msgstr "无法加载附件"
 
-#: gsecrets/create_database.py:63
+#: gsecrets/create_database.py:64
 msgid "Passwords do not match"
 msgstr "密码不匹配"
 
-#: gsecrets/create_database.py:78
+#: gsecrets/create_database.py:79
 msgid "Unable to create database"
 msgstr "无法创建数据库"
+
+#: gsecrets/create_database.py:115 gsecrets/unlock_database.py:99
+msgid "Failed to generate composite key"
+msgstr "生成组合密钥失败"
 
 #: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
@@ -1263,6 +1267,34 @@ msgstr "使用文件来增加安全性"
 msgid "Could not create keyfile"
 msgstr "无法创建密钥文件"
 
+#: gsecrets/provider/yubikey_provider.py:29
+msgid "No Key"
+msgstr "无密钥"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:32
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - 插槽 {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:126
+#: gsecrets/provider/yubikey_provider.py:189
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:127
+msgid "Select key"
+msgstr "选择密钥"
+
+#: gsecrets/provider/yubikey_provider.py:135
+#: gsecrets/provider/yubikey_provider.py:198
+msgid "Select YubiKey slot"
+msgstr "选择 YubiKey 插槽"
+
+#: gsecrets/provider/yubikey_provider.py:232
+msgid "Touch YubiKey"
+msgstr "触摸 YubiKey"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "最近的文件"
@@ -1306,16 +1338,16 @@ msgstr "克隆"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:354 gsecrets/widgets/window.py:360
+#: gsecrets/widgets/window.py:362 gsecrets/widgets/window.py:368
 msgid "Could not save Safe"
 msgstr "无法保存保险箱"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:105
+#: gsecrets/unlock_database.py:109
 msgid "Safe {} is already open"
 msgstr "保险箱 {} 已打开"
 
-#: gsecrets/unlock_database.py:175
+#: gsecrets/unlock_database.py:183
 msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
 
@@ -1537,35 +1569,35 @@ msgstr "操作中止：正在移动当前活动分组"
 msgid "Move completed"
 msgstr "移动完毕"
 
-#: gsecrets/widgets/window.py:133
+#: gsecrets/widgets/window.py:141
 msgid "Any file type"
 msgstr "任何文件类型"
 
-#: gsecrets/widgets/window.py:140
+#: gsecrets/widgets/window.py:148
 msgid "Select Safe"
 msgstr "选择保险箱"
 
-#: gsecrets/widgets/window.py:156
+#: gsecrets/widgets/window.py:164
 msgid "File does not have a valid path"
 msgstr "文件不具有有效路径"
 
-#: gsecrets/widgets/window.py:190
+#: gsecrets/widgets/window.py:198
 msgid "Safe is already open"
 msgstr "保险箱已打开"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:230
 msgid "_Create"
 msgstr "创建(_C)"
 
-#: gsecrets/widgets/window.py:243
+#: gsecrets/widgets/window.py:251
 msgid "Cannot create Safe: Safe is already open"
 msgstr "无法创建保险箱：保险箱已打开"
 
-#: gsecrets/widgets/window.py:285 gsecrets/widgets/window.py:300
+#: gsecrets/widgets/window.py:293 gsecrets/widgets/window.py:308
 msgid "Could not create new Safe"
 msgstr "无法创建新保险箱"
 
-#: gsecrets/widgets/window.py:367
+#: gsecrets/widgets/window.py:375
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
 

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-11-04 05:25+0000\n"
-"PO-Revision-Date: 2023-11-04 16:42+0300\n"
+"POT-Creation-Date: 2023-11-28 19:33+0000\n"
+"PO-Revision-Date: 2023-11-29 08:43+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -109,7 +109,7 @@ msgstr "Renk"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:220
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:228
 msgid "Create Safe"
 msgstr "Kasa Oluştur"
 
@@ -122,47 +122,47 @@ msgstr "Geri"
 msgid "Main Menu"
 msgstr "Ana Menü"
 
-#: data/gtk/create_database.ui:38
+#: data/gtk/create_database.ui:44
 msgid "Protect your safe"
 msgstr "Kasanızı koruyun"
 
-#: data/gtk/create_database.ui:51 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Parola"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:64
 msgid "_Confirm Password"
 msgstr "Parolayı _Onayla"
 
-#: data/gtk/create_database.ui:78 data/gtk/unlock_database.ui:34
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
 msgid "Additional Credentials"
 msgstr "Ek Kimlik Bilgileri"
 
-#: data/gtk/create_database.ui:84
+#: data/gtk/create_database.ui:90
 msgid "Create"
 msgstr "Oluştur"
 
-#: data/gtk/create_database.ui:107
+#: data/gtk/create_database.ui:113
 msgid "Safe Successfully Created"
 msgstr "Kasa Başarıyla Oluşturuldu"
 
-#: data/gtk/create_database.ui:110
+#: data/gtk/create_database.ui:116
 msgid "_Open Safe"
 msgstr "Kasayı _Aç"
 
-#: data/gtk/create_database.ui:132 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: data/gtk/create_database.ui:136 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "Secrets _Hakkında"
@@ -178,7 +178,7 @@ msgid "Copy"
 msgstr "Kopyala"
 
 #: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
-#: gsecrets/create_database.py:38
+#: gsecrets/create_database.py:39
 msgid "Generate New Password"
 msgstr "Yeni Parola Oluştur"
 
@@ -188,7 +188,7 @@ msgstr "Kimlik Doğrulama"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:26
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:35
 msgid "Password"
 msgstr "Parola"
 
@@ -732,8 +732,8 @@ msgstr "Son açılan kasayı yeniden aç."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:129
-#: gsecrets/widgets/window.py:212 gsecrets/widgets/window.py:224
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:137
+#: gsecrets/widgets/window.py:220 gsecrets/widgets/window.py:232
 msgid "Safe"
 msgstr "Kasa"
 
@@ -745,8 +745,8 @@ msgstr "Kendiliğinden _Kaydet"
 msgid "Save every change automatically."
 msgstr "Her değişikliği kendiliğinden kaydet."
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:40
-#: gsecrets/unlock_database.py:187
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
+#: gsecrets/unlock_database.py:195
 msgid "Unlock"
 msgstr "Kilit Aç"
 
@@ -862,7 +862,7 @@ msgstr "Son açılan kasa listesini temizle."
 msgid "Clear"
 msgstr "Temizle"
 
-#: data/gtk/unlock_database.ui:12
+#: data/gtk/unlock_database.ui:18
 msgid "Unlock Safe"
 msgstr "Kasa Kilidini Aç"
 
@@ -1164,13 +1164,17 @@ msgstr "Hata: {} kasası zaten açık"
 msgid "Could not load attachment"
 msgstr "Ek yüklenemedi"
 
-#: gsecrets/create_database.py:63
+#: gsecrets/create_database.py:64
 msgid "Passwords do not match"
 msgstr "Parola eşleşmiyor"
 
-#: gsecrets/create_database.py:78
+#: gsecrets/create_database.py:79
 msgid "Unable to create database"
 msgstr "Veri tabanı oluşturulamadı"
+
+#: gsecrets/create_database.py:115 gsecrets/unlock_database.py:99
+msgid "Failed to generate composite key"
+msgstr "Birleşik anahtar oluşturulamadı"
 
 #: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
@@ -1281,6 +1285,34 @@ msgstr "Güvenliği artırmak için dosya kullan"
 msgid "Could not create keyfile"
 msgstr "Anahtar dosyası oluşturulamadı"
 
+#: gsecrets/provider/yubikey_provider.py:29
+msgid "No Key"
+msgstr "Anahtar Yok"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:32
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - Yuva {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:126
+#: gsecrets/provider/yubikey_provider.py:189
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:127
+msgid "Select key"
+msgstr "Anahtar seç"
+
+#: gsecrets/provider/yubikey_provider.py:135
+#: gsecrets/provider/yubikey_provider.py:198
+msgid "Select YubiKey slot"
+msgstr "YubiKey yuvası seç"
+
+#: gsecrets/provider/yubikey_provider.py:232
+msgid "Touch YubiKey"
+msgstr "YubiKeyʼe dokun"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Son Dosyalar"
@@ -1324,16 +1356,16 @@ msgstr "Klonla"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:354 gsecrets/widgets/window.py:360
+#: gsecrets/widgets/window.py:362 gsecrets/widgets/window.py:368
 msgid "Could not save Safe"
 msgstr "Kasa kaydedilemedi"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:105
+#: gsecrets/unlock_database.py:109
 msgid "Safe {} is already open"
 msgstr "{} kasası zaten açık"
 
-#: gsecrets/unlock_database.py:175
+#: gsecrets/unlock_database.py:183
 msgid "Failed to unlock Safe"
 msgstr "Kasa kilidi açılamadı"
 
@@ -1559,34 +1591,34 @@ msgstr "İşlem iptal edildi: geçerli aktif grubu taşı"
 msgid "Move completed"
 msgstr "Taşıma tamamlandı"
 
-#: gsecrets/widgets/window.py:133
+#: gsecrets/widgets/window.py:141
 msgid "Any file type"
 msgstr "Herhangi dosya türü"
 
-#: gsecrets/widgets/window.py:140
+#: gsecrets/widgets/window.py:148
 msgid "Select Safe"
 msgstr "Kasa Seç"
 
-#: gsecrets/widgets/window.py:156
+#: gsecrets/widgets/window.py:164
 msgid "File does not have a valid path"
 msgstr "Dosyanın geçerli bir yolu yok"
 
-#: gsecrets/widgets/window.py:190
+#: gsecrets/widgets/window.py:198
 msgid "Safe is already open"
 msgstr "Kasa zaten açık"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:230
 msgid "_Create"
 msgstr "_Oluştur"
 
-#: gsecrets/widgets/window.py:243
+#: gsecrets/widgets/window.py:251
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Kasa oluşturulamadı: Kasa zaten açık"
 
-#: gsecrets/widgets/window.py:285 gsecrets/widgets/window.py:300
+#: gsecrets/widgets/window.py:293 gsecrets/widgets/window.py:308
 msgid "Could not create new Safe"
 msgstr "Yeni kasa oluşturulamadı"
 
-#: gsecrets/widgets/window.py:367
+#: gsecrets/widgets/window.py:375
 msgid "Could not save safe"
 msgstr "Kasa kaydedilemedi"

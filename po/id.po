@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-11-03 20:26+0000\n"
-"PO-Revision-Date: 2023-11-21 14:49+0700\n"
+"POT-Creation-Date: 2023-11-28 19:33+0000\n"
+"PO-Revision-Date: 2023-11-30 15:32+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2020, 2022, 2023."
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/gtk/window.ui:8
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
 #: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Secrets"
@@ -106,7 +106,7 @@ msgstr "Warna"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:220
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:228
 msgid "Create Safe"
 msgstr "Buat Brankas"
 
@@ -119,47 +119,47 @@ msgstr "Mundur"
 msgid "Main Menu"
 msgstr "Menu Utama"
 
-#: data/gtk/create_database.ui:38
+#: data/gtk/create_database.ui:44
 msgid "Protect your safe"
 msgstr "Lindungi brankas Anda"
 
-#: data/gtk/create_database.ui:51 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "Kata _Sandi"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:64
 msgid "_Confirm Password"
 msgstr "_Konfirmasi Kata Sandi"
 
-#: data/gtk/create_database.ui:78 data/gtk/unlock_database.ui:34
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
 msgid "Additional Credentials"
 msgstr "Kredensial Tambahan"
 
-#: data/gtk/create_database.ui:84
+#: data/gtk/create_database.ui:90
 msgid "Create"
 msgstr "Buat"
 
-#: data/gtk/create_database.ui:107
+#: data/gtk/create_database.ui:113
 msgid "Safe Successfully Created"
 msgstr "Brankas Berhasil Dibuat"
 
-#: data/gtk/create_database.ui:110
+#: data/gtk/create_database.ui:116
 msgid "_Open Safe"
 msgstr "B_uka Brankas"
 
-#: data/gtk/create_database.ui:132 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Preferensi"
 
-#: data/gtk/create_database.ui:136 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "Pintasan Papan Ti_k"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "Tent_ang Secrets"
@@ -175,7 +175,7 @@ msgid "Copy"
 msgstr "Salin"
 
 #: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
-#: gsecrets/create_database.py:38
+#: gsecrets/create_database.py:39
 msgid "Generate New Password"
 msgstr "Buat Kata Sandi Baru"
 
@@ -185,7 +185,7 @@ msgstr "Autentikasi"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:26
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:35
 msgid "Password"
 msgstr "Kata Sandi"
 
@@ -535,7 +535,7 @@ msgid "_Open"
 msgstr "_Buka"
 
 #: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
-#: data/gtk/welcome_page.ui:15
+#: data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "Bra_nkas Baru"
 
@@ -729,8 +729,8 @@ msgstr "Buka kembali brankas yang terakhir dibuka."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:129
-#: gsecrets/widgets/window.py:212 gsecrets/widgets/window.py:224
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:137
+#: gsecrets/widgets/window.py:220 gsecrets/widgets/window.py:232
 msgid "Safe"
 msgstr "Brankas"
 
@@ -742,8 +742,8 @@ msgstr "_Simpan Secara Otomatis"
 msgid "Save every change automatically."
 msgstr "Simpan setiap perubahan secara otomatis."
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:40
-#: gsecrets/unlock_database.py:187
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
+#: gsecrets/unlock_database.py:195
 msgid "Unlock"
 msgstr "Buka Kunci"
 
@@ -860,7 +860,7 @@ msgstr "Bersihkan daftar brankas yang baru-baru ini dibuka."
 msgid "Clear"
 msgstr "Bersihkan"
 
-#: data/gtk/unlock_database.ui:12
+#: data/gtk/unlock_database.ui:18
 msgid "Unlock Safe"
 msgstr "Buka Kunci Brankas"
 
@@ -1163,13 +1163,17 @@ msgstr "Galat: Brankas {} sudah terbuka"
 msgid "Could not load attachment"
 msgstr "Tak bisa memuat lampiran"
 
-#: gsecrets/create_database.py:63
+#: gsecrets/create_database.py:64
 msgid "Passwords do not match"
 msgstr "Kata sandi tidak cocok"
 
-#: gsecrets/create_database.py:78
+#: gsecrets/create_database.py:79
 msgid "Unable to create database"
 msgstr "Tak bisa membuat basis data"
+
+#: gsecrets/create_database.py:115 gsecrets/unlock_database.py:99
+msgid "Failed to generate composite key"
+msgstr "Gagal membuat kunci komposit"
 
 #: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
@@ -1280,6 +1284,34 @@ msgstr "Gunakan berkas untuk meningkatkan keamanan"
 msgid "Could not create keyfile"
 msgstr "Tak bisa membuat berkas kunci"
 
+#: gsecrets/provider/yubikey_provider.py:29
+msgid "No Key"
+msgstr "Tidak Ada Kunci"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:32
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - Slot {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:126
+#: gsecrets/provider/yubikey_provider.py:189
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:127
+msgid "Select key"
+msgstr "Pilih kunci"
+
+#: gsecrets/provider/yubikey_provider.py:135
+#: gsecrets/provider/yubikey_provider.py:198
+msgid "Select YubiKey slot"
+msgstr "Pilih slot YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:232
+msgid "Touch YubiKey"
+msgstr "Sentuh YubiKey"
+
 #: gsecrets/recent_files_menu.py:36
 msgid "Recent Files"
 msgstr "Berkas terkini"
@@ -1323,16 +1355,16 @@ msgstr "Klon"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:354 gsecrets/widgets/window.py:360
+#: gsecrets/widgets/window.py:362 gsecrets/widgets/window.py:368
 msgid "Could not save Safe"
 msgstr "Tak bisa menyimpan Brankas"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:105
+#: gsecrets/unlock_database.py:109
 msgid "Safe {} is already open"
 msgstr "Brankas {} sudah terbuka"
 
-#: gsecrets/unlock_database.py:175
+#: gsecrets/unlock_database.py:183
 msgid "Failed to unlock Safe"
 msgstr "Gagal membuka kunci Brankas"
 
@@ -1559,35 +1591,35 @@ msgstr "Operasi dibatalkan: memindahkan grup yang saat ini aktif"
 msgid "Move completed"
 msgstr "Pemindahan selesai"
 
-#: gsecrets/widgets/window.py:133
+#: gsecrets/widgets/window.py:141
 msgid "Any file type"
 msgstr "Sebarang tipe berkas"
 
-#: gsecrets/widgets/window.py:140
+#: gsecrets/widgets/window.py:148
 msgid "Select Safe"
 msgstr "Pilih Brankas"
 
-#: gsecrets/widgets/window.py:156
+#: gsecrets/widgets/window.py:164
 msgid "File does not have a valid path"
 msgstr "Berkas tidak memiliki path yang valid"
 
-#: gsecrets/widgets/window.py:190
+#: gsecrets/widgets/window.py:198
 msgid "Safe is already open"
 msgstr "Brankas sudah terbuka"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:230
 msgid "_Create"
 msgstr "_Buat"
 
-#: gsecrets/widgets/window.py:243
+#: gsecrets/widgets/window.py:251
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Tak bisa membuat Brankas: Brankas sudah terbuka"
 
-#: gsecrets/widgets/window.py:285 gsecrets/widgets/window.py:300
+#: gsecrets/widgets/window.py:293 gsecrets/widgets/window.py:308
 msgid "Could not create new Safe"
 msgstr "Tak bisa membuat Brankas baru"
 
-#: gsecrets/widgets/window.py:367
+#: gsecrets/widgets/window.py:375
 msgid "Could not save safe"
 msgstr "Tak bisa menyimpan brankas"
 

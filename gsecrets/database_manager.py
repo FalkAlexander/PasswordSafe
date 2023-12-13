@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import io
 import json
 import logging
 from pathlib import Path
@@ -44,7 +45,7 @@ class DatabaseManager(GObject.Object):
     # Only used for setting the credentials to their actual values in case of
     # errors.
     old_password: str = ""
-    old_keyfile: str = ""
+    old_keyfile: str | io.BytesIO = ""
     old_keyfile_hash: str = ""
 
     trash_bin: SafeGroup | None = None
@@ -74,7 +75,7 @@ class DatabaseManager(GObject.Object):
     def unlock_async(
         self,
         password: str,
-        keyfile: str = "",
+        keyfile: str | io.BytesIO = "",
         keyfile_hash: str = "",
         callback: Gio.AsyncReadyCallback = None,
     ) -> None:

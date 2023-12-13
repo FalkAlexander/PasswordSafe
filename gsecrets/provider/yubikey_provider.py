@@ -227,6 +227,9 @@ class YubiKeyProvider(BaseProvider):
         self.create_row.set_selected(0)
 
     def generate_key(self, salt: bytes) -> bool:
+        if self.active_key is None:
+            return False
+
         try:
             if yubikey := self.get_yubikey(self.active_key.serial):
                 self.window.show_banner(_("Touch YubiKey"))

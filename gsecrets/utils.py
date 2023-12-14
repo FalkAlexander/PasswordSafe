@@ -42,13 +42,7 @@ def generate_keyfile_sync(gfile: Gio.File) -> str:
     keyfile_hash = GLib.compute_checksum_for_data(GLib.ChecksumType.SHA1, contents)
 
     flags = Gio.FileCreateFlags.REPLACE_DESTINATION | Gio.FileCreateFlags.PRIVATE
-    gfile.replace_contents(
-        contents,
-        None,
-        False,
-        flags,
-        None,
-    )
+    gfile.replace_contents(contents, None, False, flags, None)
     # Sets the file as read-only
     os.chmod(gfile.get_path(), stat.S_IREAD)
 

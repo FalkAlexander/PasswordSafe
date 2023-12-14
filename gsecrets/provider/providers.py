@@ -17,7 +17,7 @@ class Providers(GObject.Object):
         super().__init__()
 
         self.providers = []
-        self.salt: bytes = b'\0'
+        self.salt: bytes = b"\0"
 
         for key_provider in KEY_PROVIDERS:
             self.providers.append(key_provider(window))
@@ -25,10 +25,12 @@ class Providers(GObject.Object):
     def get_key_providers(self) -> list:
         return self.providers
 
-    def generate_composite_key_async(self,
-                                     salt: bytes,
-                                     callback: Gio.AsyncReadyCallback,
-                                     cancellable: GLib.Cancellable = None) -> None:
+    def generate_composite_key_async(
+        self,
+        salt: bytes,
+        callback: Gio.AsyncReadyCallback,
+        cancellable: GLib.Cancellable = None,
+    ) -> None:
         """Generate composite key
 
         Traverse all available key providers and request each raw_key.

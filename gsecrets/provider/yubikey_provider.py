@@ -76,13 +76,13 @@ class YubiKeyProvider(BaseProvider):
                 yubikey = yubico.find_yubikey(debug=debug, skip=_idx)
 
                 logging.debug(
-                    "Found %s [%s]", yubikey.description, str(yubikey.serial()),
+                    "Found %s [%s]",
+                    yubikey.description,
+                    str(yubikey.serial()),
                 )
 
                 for slot in yubikey.status().valid_configs():
-                    res.append(YubiKeyInfo(yubikey.description,
-                                           yubikey.serial(),
-                                           slot))
+                    res.append(YubiKeyInfo(yubikey.description, yubikey.serial(), slot))
 
                 # This must be done as otherwise usb access is broken
                 del yubikey
@@ -125,7 +125,7 @@ class YubiKeyProvider(BaseProvider):
         row = Adw.ComboRow()
         row.set_title(_("YubiKey"))
         row.set_subtitle(_("Select key"))
-        row.connect('notify::selected', self._on_unlock_row_selected)
+        row.connect("notify::selected", self._on_unlock_row_selected)
         self.unlock_row = row
 
         refresh_button = Gtk.Button()
@@ -133,19 +133,19 @@ class YubiKeyProvider(BaseProvider):
         refresh_button.add_css_class("flat")
         refresh_button.set_icon_name("view-refresh-symbolic")
         refresh_button.set_tooltip_text(_("Select YubiKey slot"))
-        refresh_button.connect('clicked', self._on_refresh_button_clicked)
+        refresh_button.connect("clicked", self._on_refresh_button_clicked)
         row.add_suffix(refresh_button)
 
         self._on_refresh_button_clicked(row)
         row.set_selected(0)
 
         pos = 0
-        if cfg := config.get_provider_config(database_manager.path, 'YubiKeyProvider'):
+        if cfg := config.get_provider_config(database_manager.path, "YubiKeyProvider"):
             if "serial" in cfg:
                 model = row.get_model()
 
                 for info in model:
-                    if info.serial == cfg['serial'] and info.slot == cfg['slot']:
+                    if info.serial == cfg["serial"] and info.slot == cfg["slot"]:
                         row.set_selected(pos)
                         break
 
@@ -153,9 +153,9 @@ class YubiKeyProvider(BaseProvider):
 
         return row
 
-    def _on_unlock_row_selected(self,
-                                widget: Adw.ComboRow,
-                                _param: GObject.ParamSpec) -> None:
+    def _on_unlock_row_selected(
+        self, widget: Adw.ComboRow, _param: GObject.ParamSpec
+    ) -> None:
         self.active_key = widget.get_selected_item()
 
     def _on_factory_setup(self, _factory, list_item):
@@ -166,12 +166,7 @@ class YubiKeyProvider(BaseProvider):
     def _on_factory_bind(self, _factory, list_item):
         label = list_item.get_child()
         info = list_item.get_item()
-        info.bind_property(
-            "label",
-            label,
-            "label",
-            GObject.BindingFlags.SYNC_CREATE
-        )
+        info.bind_property("label", label, "label", GObject.BindingFlags.SYNC_CREATE)
 
     def _on_refresh_button_clicked(self, _row: Adw.ComboRow) -> None:
         model = self._create_model()
@@ -187,9 +182,7 @@ class YubiKeyProvider(BaseProvider):
     def create_database_row(self) -> None:
         self.create_row = Adw.ComboRow()
         self.create_row.set_title(_("YubiKey"))
-        self.create_row.connect(
-            'notify::selected', self._on_create_row_selected
-        )
+        self.create_row.connect("notify::selected", self._on_create_row_selected)
 
         refresh_button = Gtk.Button()
         refresh_button.set_valign(Gtk.Align.CENTER)
@@ -197,8 +190,7 @@ class YubiKeyProvider(BaseProvider):
         refresh_button.set_icon_name("view-refresh-symbolic")
         refresh_button.set_tooltip_text(_("Select YubiKey slot"))
         refresh_button.connect(
-            'clicked',
-            self._on_yubikey_create_refresh_button_clicked
+            "clicked", self._on_yubikey_create_refresh_button_clicked
         )
         self.create_row.add_suffix(refresh_button)
 
@@ -207,15 +199,11 @@ class YubiKeyProvider(BaseProvider):
         return self.create_row
 
     def _on_create_row_selected(
-            self,
-            widget: Adw.ComboRow,
-            _param: GObject.ParamSpec
+        self, widget: Adw.ComboRow, _param: GObject.ParamSpec
     ) -> None:
         self.active_key = widget.get_selected_item()
 
-    def _on_yubikey_create_refresh_button_clicked(
-            self, _button: Gtk.Button
-    ) -> None:
+    def _on_yubikey_create_refresh_button_clicked(self, _button: Gtk.Button) -> None:
         model = self._create_model()
 
         factory = Gtk.SignalListItemFactory()

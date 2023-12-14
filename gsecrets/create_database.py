@@ -74,7 +74,7 @@ class CreateDatabase(Adw.Bin):
         self.open_safe_button.grab_focus()
 
     def failure_page(self):
-        self.stack.set_visible_child_name("password-creation")
+        self.stack.set_visible_child_name("select-auth-method")
         self.clear_input_fields()
         self.window.send_notification(_("Unable to create database"))
 

@@ -285,7 +285,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                     _("Conflicts While Saving"),
                     _("The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.")  # pylint: disable=line-too-long # noqa: E501
                 )
-                dialog.add_response("ok", _("Ok"))
+                dialog.add_response("ok", _("OK"))
                 dialog.present()
             else:
                 new_password = self.new_password_entry.props.text

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-12-14 18:25+0000\n"
-"PO-Revision-Date: 2023-12-14 20:41+0200\n"
+"POT-Creation-Date: 2023-12-15 17:28+0000\n"
+"PO-Revision-Date: 2023-12-15 23:16+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -375,10 +375,16 @@ msgid "Select"
 msgstr "Вибрати"
 
 #: data/gtk/entry_row.ui:55
+#| msgctxt "Shortcut window description"
+#| msgid "Copy One-Time Password"
+msgid "Copy One-Time Password"
+msgstr "Скопіювати одноразовий пароль"
+
+#: data/gtk/entry_row.ui:66
 msgid "Copy Username"
 msgstr "Копіювати ім'я користувача"
 
-#: data/gtk/entry_row.ui:65
+#: data/gtk/entry_row.ui:76
 msgid "Copy Password"
 msgstr "Копіювати пароль"
 
@@ -1030,7 +1036,6 @@ msgid "Last opened databases"
 msgstr "Останні відкриті бази даних"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:48
-#| msgid "A list of the last opened databases."
 msgid "A list of the last opened databases. Not used anymore."
 msgstr "Список останніх відкритих баз даних. Більше не використовують."
 
@@ -1184,7 +1189,7 @@ msgstr "Не вдалося створити суміщений ключ"
 msgid "Saved in history"
 msgstr "Збережено у журналі"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:125
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:130
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Ім'я користувача скопійовано"
@@ -1210,15 +1215,20 @@ msgstr "Адреса є некоректною"
 msgid "Select Attachments"
 msgstr "Виберіть долучення"
 
-#: gsecrets/entry_row.py:118 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:123 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Пароль скопійовано"
 
-#: gsecrets/entry_row.py:137 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:137
+#| msgid "One-time password copied"
+msgid "One-Time Password copied"
+msgstr "Одноразовий пароль скопійовано"
+
+#: gsecrets/entry_row.py:149 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "Не вказано заголовок"
 
-#: gsecrets/entry_row.py:148
+#: gsecrets/entry_row.py:160
 msgid "Username not specified"
 msgstr "Не вказано імені користувача"
 

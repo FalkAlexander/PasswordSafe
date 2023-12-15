@@ -132,10 +132,10 @@ class EntryRow(Adw.ActionRow):
 
     @Gtk.Template.Callback()
     def on_entry_copy_otp_button_clicked(self, _button):
-        self.unlocked_database.send_to_clipboard(
-            self._safe_entry.otp_token(),
-            _("One-Time Password copied"),
-        )
+        if token := self._safe_entry.otp_token():
+            self.unlocked_database.send_to_clipboard(
+                token, _("One-Time Password copied"),
+            )
 
     def _on_entry_name_changed(
         self, safe_entry: SafeEntry, _value: GObject.ParamSpec

@@ -500,7 +500,7 @@ class SafeEntry(SafeElement):
     _color_key = "color_prop_LcljUMJZ9X"
     _expired_id: int | None = None
     _note_key = "Notes"
-    _otp: OTP | None = None
+    _otp: TOTP | None = None
     _otp_key = "otp"
 
     history_saved = GObject.Signal()
@@ -836,15 +836,17 @@ class SafeEntry(SafeElement):
 
         return None
 
-    def otp_token(self):  # pylint: disable=inconsistent-return-statements
+    def otp_token(self) -> str | None:
         if self._otp:
-            try:  # pylint: disable=inconsistent-return-statements
+            try:
                 return self._otp.now()
             except binascii.Error:
                 logging.debug(
                     "Error caught in OTP token generation (likely invalid "
                     "base32 secret)."
                 )
+
+        return None
 
     @GObject.Property(type=str, default="")
     def password(self) -> str:

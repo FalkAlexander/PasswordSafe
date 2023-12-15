@@ -71,10 +71,12 @@ class YubiKeyProvider(BaseProvider):
         Return all instances of class YubiKey we got before failing.
         """
         res = []
-        try:
-            for _idx in range(0, 4):
+        for _idx in range(0, 4):
+            try:
                 yubikey = yubico.find_yubikey(debug=debug, skip=_idx)
-
+            except yubico.yubikey.YubiKeyError:
+                break
+            else:
                 logging.debug(
                     "Found %s [%s]",
                     yubikey.description,
@@ -86,8 +88,6 @@ class YubiKeyProvider(BaseProvider):
 
                 # This must be done as otherwise usb access is broken
                 del yubikey
-        except yubico.yubikey.YubiKeyError as err:
-            logging.debug(err)
 
         return res
 

@@ -13,7 +13,7 @@ from typing import NamedTuple
 from uuid import UUID
 
 from gi.repository import GLib, GObject, Gio, Gtk
-from pyotp import OTP, TOTP, parse_uri
+from pyotp import TOTP, parse_uri
 
 from gsecrets.attributes_model import AttributesModel
 
@@ -543,7 +543,10 @@ class SafeEntry(SafeElement):
         if otp_uri := entry.otp:
             try:
                 if otp_uri.startswith("otpauth://"):
-                    self._otp = parse_uri(otp_uri)
+                    if isinstance(self._otp, TOTP):
+                        self._otp = parse_uri(otp_uri)  # type: ignore
+                    else:
+                        logging.error("OTP uri %s is not valid TOTP", otp_uri)
                 else:
                     self._otp = TOTP(otp_uri)
             except ValueError as err:

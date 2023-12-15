@@ -422,11 +422,9 @@ class EntryPage(Adw.Bin):
 
         if not otp_token and safe_entry.props.otp:
             self.otp_error_revealer.reveal(True)
-            self.otp_token_row.props.visible = False
             self.otp_secret_entry_row.add_css_class("error")
         else:
             self.otp_error_revealer.reveal(False)
-            self.otp_token_row.props.visible = True
             self.otp_secret_entry_row.remove_css_class("error")
 
         return GLib.SOURCE_CONTINUE

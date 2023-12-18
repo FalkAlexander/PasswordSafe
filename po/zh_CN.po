@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-12-14 18:25+0000\n"
-"PO-Revision-Date: 2023-12-15 08:20+0800\n"
+"POT-Creation-Date: 2023-12-15 17:28+0000\n"
+"PO-Revision-Date: 2023-12-17 08:33+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -376,10 +376,14 @@ msgid "Select"
 msgstr "选择"
 
 #: data/gtk/entry_row.ui:55
+msgid "Copy One-Time Password"
+msgstr "复制动态口令"
+
+#: data/gtk/entry_row.ui:66
 msgid "Copy Username"
 msgstr "复制用户名"
 
-#: data/gtk/entry_row.ui:65
+#: data/gtk/entry_row.ui:76
 msgid "Copy Password"
 msgstr "复制密码"
 
@@ -1158,7 +1162,7 @@ msgstr "生成组合密钥失败"
 msgid "Saved in history"
 msgstr "已保存到历史"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:125
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:130
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "用户名已复制"
@@ -1184,15 +1188,19 @@ msgstr "该地址无效"
 msgid "Select Attachments"
 msgstr "选择附件"
 
-#: gsecrets/entry_row.py:118 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:123 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "密码已复制"
 
-#: gsecrets/entry_row.py:137 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:137
+msgid "One-Time Password copied"
+msgstr "动态口令已复制"
+
+#: gsecrets/entry_row.py:149 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "未指定标题"
 
-#: gsecrets/entry_row.py:148
+#: gsecrets/entry_row.py:160
 msgid "Username not specified"
 msgstr "未指定用户名"
 

@@ -354,13 +354,13 @@ class Window(Adw.ApplicationWindow):
                 is_saved = dbm.save_finish(result)
             except GLib.Error as err:
                 logging.error("Could not save Safe: %s", err.message)
-                self.send_notification(_("Could not save Safe"))
+                self.show_quit_confirmation_dialog()
             else:
                 if is_saved:
                     self.close()
                 else:
                     # This shouldn't happen
-                    self.send_notification(_("Could not save Safe"))
+                    self.show_quit_confirmation_dialog()
 
         def on_check_file_changes(dbm, result):
             try:
@@ -385,6 +385,24 @@ class Window(Adw.ApplicationWindow):
 
         self.save_window_size()
         return False
+
+    def show_quit_confirmation_dialog(self):
+
+        def on_discard(self, _dialog, _response):
+            self.force_close()
+
+        # TODO Set the body of the message based on the error kind.
+        dialog = Adw.MessageDialog.new(
+            self, _("Could not save Safe"), None,
+        )
+        dialog.add_response("discard", _("_Quit Without Saving"))
+        dialog.add_response("cancel", _("_Don't Quit"))
+        dialog.set_response_appearance(
+            "discard", Adw.ResponseAppearance.DESTRUCTIVE
+        )
+        dialog.set_default_response("cancel")
+        dialog.connect("response::discard", on_discard)
+        dialog.present()
 
     def do_unrealize(self):  # pylint: disable=arguments-differ
         if self.unlocked_db:

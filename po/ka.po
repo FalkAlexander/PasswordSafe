@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-12-14 18:25+0000\n"
-"PO-Revision-Date: 2023-12-15 05:10+0100\n"
+"POT-Creation-Date: 2023-12-15 17:28+0000\n"
+"PO-Revision-Date: 2023-12-20 04:47+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -374,10 +374,14 @@ msgid "Select"
 msgstr "აირჩიეთ"
 
 #: data/gtk/entry_row.ui:55
+msgid "Copy One-Time Password"
+msgstr "ერთჯერადი პაროლის კოპირება"
+
+#: data/gtk/entry_row.ui:66
 msgid "Copy Username"
 msgstr "მომხმარებლის სახელის კოპირება"
 
-#: data/gtk/entry_row.ui:65
+#: data/gtk/entry_row.ui:76
 msgid "Copy Password"
 msgstr "პაროლის კოპირება"
 
@@ -1169,7 +1173,7 @@ msgstr "კომპოზიტური გასაღების გენ�
 msgid "Saved in history"
 msgstr "შენახულია ისტორიაში"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:125
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:130
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "მომხმარებლის სახელი კოპირებულია"
@@ -1195,15 +1199,19 @@ msgstr "მისამართი არასწორია"
 msgid "Select Attachments"
 msgstr "აირჩიეთ მიმაგრებული ფაილები"
 
-#: gsecrets/entry_row.py:118 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:123 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "პაროლი დაკოპირდა"
 
-#: gsecrets/entry_row.py:137 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:137
+msgid "One-Time Password copied"
+msgstr "ერთჯერადი პაროლი კოპირებულია"
+
+#: gsecrets/entry_row.py:149 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "სათაური მითითებული არაა"
 
-#: gsecrets/entry_row.py:148
+#: gsecrets/entry_row.py:160
 msgid "Username not specified"
 msgstr "მომხმარებლის სახელი მითითებული არაა"
 

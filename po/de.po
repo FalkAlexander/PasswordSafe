@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-11-03 20:26+0000\n"
-"PO-Revision-Date: 2023-11-04 18:20+0100\n"
+"POT-Creation-Date: 2023-12-23 09:23+0000\n"
+"PO-Revision-Date: 2023-12-23 11:18+0100\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -43,7 +43,7 @@ msgstr ""
 "Jürgen Benvenuti <gastornis@posteo.org>"
 
 #. Translators: Secrets is the app name, do not translate
-#: data/about_dialog.ui.in:12 data/gtk/window.ui:8
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
 #: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
 msgstr "Secrets"
@@ -118,7 +118,7 @@ msgstr "Farbe"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:220
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:223
 msgid "Create Safe"
 msgstr "Safe erstellen"
 
@@ -131,48 +131,48 @@ msgstr "Zurück"
 msgid "Main Menu"
 msgstr "Hauptmenü"
 
-#: data/gtk/create_database.ui:38
+#: data/gtk/create_database.ui:44
 msgid "Protect your safe"
 msgstr "Ihren Safe schützen"
 
-#: data/gtk/create_database.ui:51 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Passwort"
 
-#: data/gtk/create_database.ui:58
+#: data/gtk/create_database.ui:64
 msgid "_Confirm Password"
 msgstr "Passwort _bestätigen"
 
-#: data/gtk/create_database.ui:78 data/gtk/unlock_database.ui:34
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
 msgid "Additional Credentials"
 msgstr "Zusätzliche Anmeldedaten"
 
-#: data/gtk/create_database.ui:84
+#: data/gtk/create_database.ui:90
 msgid "Create"
 msgstr "Erstellen"
 
-#: data/gtk/create_database.ui:107
+#: data/gtk/create_database.ui:113
 msgid "Safe Successfully Created"
 msgstr "Safe wurde erfolgreich erstellt"
 
-#: data/gtk/create_database.ui:110
+#: data/gtk/create_database.ui:116
 msgid "_Open Safe"
 msgstr "_Safe öffnen"
 
-#: data/gtk/create_database.ui:132 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Einstellungen"
 
-#: data/gtk/create_database.ui:136 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastenkürzel"
 
 # Anwendungsname soll nicht übersetzt werden. https://mail.gnome.org/archives/gnome-i18n/2021-October/msg00052.html
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_Info zu Secrets"
@@ -188,7 +188,7 @@ msgid "Copy"
 msgstr "Kopieren"
 
 #: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
-#: gsecrets/create_database.py:38
+#: gsecrets/create_database.py:39
 msgid "Generate New Password"
 msgstr "Neues Passwort erzeugen"
 
@@ -198,7 +198,7 @@ msgstr "Legitimierung"
 
 #: data/gtk/database_settings_dialog.ui:14
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:26
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:35
 msgid "Password"
 msgstr "Passwort"
 
@@ -215,9 +215,9 @@ msgid "Current Password"
 msgstr "Aktuelles Passwort"
 
 #: data/gtk/database_settings_dialog.ui:58
-#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:132
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:81
-#: gsecrets/widgets/database_settings_dialog.py:196
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:130
+#: gsecrets/provider/file_provider.py:195 gsecrets/utils.py:87
+#: gsecrets/widgets/database_settings_dialog.py:204
 msgid "Keyfile"
 msgstr "Schlüsseldatei"
 
@@ -234,8 +234,8 @@ msgid "Could not Load Keyfile"
 msgstr "Schlüsseldatei konnte nicht geladen werden"
 
 #: data/gtk/database_settings_dialog.ui:153
-#: gsecrets/widgets/database_settings_dialog.py:258
-#: gsecrets/widgets/database_settings_dialog.py:301
+#: gsecrets/widgets/database_settings_dialog.py:266
+#: gsecrets/widgets/database_settings_dialog.py:309
 msgid "_Apply Changes"
 msgstr "Änderungen _anwenden"
 
@@ -390,10 +390,14 @@ msgid "Select"
 msgstr "Auswählen"
 
 #: data/gtk/entry_row.ui:55
+msgid "Copy One-Time Password"
+msgstr "Einmalpasswort kopieren"
+
+#: data/gtk/entry_row.ui:66
 msgid "Copy Username"
 msgstr "Benutzername kopieren"
 
-#: data/gtk/entry_row.ui:65
+#: data/gtk/entry_row.ui:76
 msgid "Copy Password"
 msgstr "Passwort kopieren"
 
@@ -532,7 +536,7 @@ msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "In der Chronik speichern"
 
-#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
 msgid "Show Text"
 msgstr "Text anzeigen"
 
@@ -549,7 +553,7 @@ msgid "_Open"
 msgstr "Ö_ffnen"
 
 #: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
-#: data/gtk/welcome_page.ui:15
+#: data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "_Neuer Safe"
 
@@ -582,8 +586,8 @@ msgstr "Wörter"
 
 #. Button to generate a password
 #: data/gtk/password_generator_popover.ui:132
-#: gsecrets/provider/file_provider.py:196
-#: gsecrets/widgets/database_settings_dialog.py:195
+#: gsecrets/provider/file_provider.py:194
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "_Erzeugen"
 
@@ -679,7 +683,7 @@ msgid "Do you want to write all changes to the safe?"
 msgstr "Wollen Sie alle Änderungen in den Safe schreiben?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
 msgid "_Quit Without Saving"
 msgstr "_Beenden, ohne zu speichern"
 
@@ -702,7 +706,7 @@ msgid "No Search Results"
 msgstr "Keine Suchergebnisse"
 
 #: data/gtk/selection_mode_headerbar.ui:17
-#: gsecrets/widgets/selection_mode_headerbar.py:70
+#: gsecrets/widgets/selection_mode_headerbar.py:69
 msgid "_Select Items"
 msgstr "Einträge _auswählen"
 
@@ -721,7 +725,7 @@ msgid "Delete Selection"
 msgstr "Auswahl löschen"
 
 #: data/gtk/selection_mode_headerbar.ui:53
-#: gsecrets/widgets/saving_conflict_dialog.py:32
+#: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
@@ -743,8 +747,8 @@ msgstr "Zuletzt geöffneten Safe erneut öffnen."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:129
-#: gsecrets/widgets/window.py:212 gsecrets/widgets/window.py:224
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:132
+#: gsecrets/widgets/window.py:215 gsecrets/widgets/window.py:227
 msgid "Safe"
 msgstr "Safe"
 
@@ -756,8 +760,8 @@ msgstr "_Automatisch speichern"
 msgid "Save every change automatically."
 msgstr "Jede Änderung automatisch speichern."
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:40
-#: gsecrets/unlock_database.py:187
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
+#: gsecrets/unlock_database.py:196
 msgid "Unlock"
 msgstr "Entsperren"
 
@@ -873,7 +877,7 @@ msgstr "Liste der zuletzt geöffneter Safes leeren."
 msgid "Clear"
 msgstr "Leeren"
 
-#: data/gtk/unlock_database.ui:12
+#: data/gtk/unlock_database.ui:18
 msgid "Unlock Safe"
 msgstr "Safe entsperren"
 
@@ -937,7 +941,7 @@ msgid "New _Group"
 msgstr "Neue _Gruppe"
 
 #: data/gtk/unlocked_headerbar.ui:133
-#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "_Speichern"
 
@@ -1044,8 +1048,9 @@ msgid "Last opened databases"
 msgstr "Zuletzt geöffnete Datenbanken"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:48
-msgid "A list of the last opened databases."
-msgstr "Liste der zuletzt geöffneten Datenbanken."
+msgid "A list of the last opened databases. Not used anymore."
+msgstr ""
+"Eine Liste der zuletzt geöffneten Datenbanken. Wird nicht mehr verwendet."
 
 # https://en.wikipedia.org/wiki/Compound_key
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
@@ -1163,36 +1168,37 @@ msgstr ""
 "und stellt eine einfache und übersichtliche Schnittstelle für die Verwaltung "
 "von Passwortdatenbanken bereit."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
-
-#: gsecrets/application.py:54
+#: gsecrets/application.py:56
 msgid "Error: File {} does not exist"
 msgstr "Fehler: Die Datei {} existiert nicht"
 
-#: gsecrets/application.py:59
+#: gsecrets/application.py:61
 msgid "Error: Safe {} is already open"
 msgstr "Fehler: Safe {} ist bereits geöffnet"
 
 #: gsecrets/attachment_warning_dialog.py:68
-#: gsecrets/attachment_warning_dialog.py:82
+#: gsecrets/attachment_warning_dialog.py:79
 msgid "Could not load attachment"
 msgstr "Anhang konnte nicht geladen werden"
 
-#: gsecrets/create_database.py:63
+#: gsecrets/create_database.py:64
 msgid "Passwords do not match"
 msgstr "Die Passwörter stimmen nicht überein"
 
-#: gsecrets/create_database.py:78
+#: gsecrets/create_database.py:79
 msgid "Unable to create database"
 msgstr "Datenbank konnte nicht erzeugt werden"
+
+# https://en.wikipedia.org/wiki/Compound_key
+#: gsecrets/create_database.py:115 gsecrets/unlock_database.py:100
+msgid "Failed to generate composite key"
+msgstr "Erzeugung eines Verbundschlüssels fehlgeschlagen"
 
 #: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
 msgid "Saved in history"
 msgstr "In Chronik gespeichert"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:130
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Benutzername kopiert"
@@ -1218,55 +1224,59 @@ msgstr "Die Adresse ist ungültig"
 msgid "Select Attachments"
 msgstr "Anhänge auswählen"
 
-#: gsecrets/entry_row.py:116 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:123 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Passwort kopiert"
 
-#: gsecrets/entry_row.py:135 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:137
+msgid "One-Time Password copied"
+msgstr "Einmalpasswort kopiert"
+
+#: gsecrets/entry_row.py:149 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "Kein Titel angegeben"
 
-#: gsecrets/entry_row.py:146
+#: gsecrets/entry_row.py:160
 msgid "Username not specified"
 msgstr "Kein Benutzername angegeben"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:75
+#: gsecrets/password_generator_popover.py:74
 msgid "Include Lowercase"
 msgstr "Mit Kleinbuchstaben"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:77
+#: gsecrets/password_generator_popover.py:76
 msgid "Exclude Lowercase"
 msgstr "Ohne Kleinbuchstaben"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:80
+#: gsecrets/password_generator_popover.py:79
 msgid "Include Uppercase"
 msgstr "Mit Großbuchstaben"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:82
+#: gsecrets/password_generator_popover.py:81
 msgid "Exclude Uppercase"
 msgstr "Ohne Großbuchstaben"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:85
+#: gsecrets/password_generator_popover.py:84
 msgid "Include Numbers"
 msgstr "Mit Ziffern"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:87
+#: gsecrets/password_generator_popover.py:86
 msgid "Exclude Numbers"
 msgstr "Ohne Ziffern"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:90
+#: gsecrets/password_generator_popover.py:89
 msgid "Include Symbols"
 msgstr "Mit Sonderzeichen"
 
 # Kontext: Optionen zur Passwortgenerierung
-#: gsecrets/password_generator_popover.py:92
+#: gsecrets/password_generator_popover.py:91
 msgid "Exclude Symbols"
 msgstr "Ohne Sonderzeichen"
 
@@ -1278,7 +1288,7 @@ msgstr "Wurzel-Gruppe"
 msgid "Select Keyfile"
 msgstr "Schlüsseldatei auswählen"
 
-#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:143
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:141
 msgid "Clear Keyfile"
 msgstr "Schlüsseldatei leeren"
 
@@ -1291,21 +1301,51 @@ msgid "Could not load keyfile"
 msgstr "Schlüsseldatei konnte nicht geladen werden"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: gsecrets/provider/file_provider.py:136
-#: gsecrets/provider/file_provider.py:195
-#: gsecrets/widgets/database_settings_dialog.py:194
+#: gsecrets/provider/file_provider.py:134
+#: gsecrets/provider/file_provider.py:193
+#: gsecrets/widgets/database_settings_dialog.py:202
 msgid "Generate Keyfile"
 msgstr "Schlüsseldatei erzeugen"
 
-#: gsecrets/provider/file_provider.py:160
+#: gsecrets/provider/file_provider.py:158
 msgid "Use a file to increase security"
 msgstr "Eine Datei verwenden, um die Sicherheit zu erhöhen"
 
-#: gsecrets/provider/file_provider.py:181
+#: gsecrets/provider/file_provider.py:179
 msgid "Could not create keyfile"
 msgstr "Schlüsseldatei konnte nicht erstellt werden"
 
-#: gsecrets/recent_files_menu.py:36
+#: gsecrets/provider/yubikey_provider.py:29
+msgid "No Key"
+msgstr "Kein Schlüssel"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:32
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - Slot {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:126
+#: gsecrets/provider/yubikey_provider.py:184
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:127
+msgid "Select key"
+msgstr "Schlüssel auswählen"
+
+# Slot heißt auch auf Deutsch so. - jb
+# https://de.wikipedia.org/wiki/YubiKey
+#: gsecrets/provider/yubikey_provider.py:135
+#: gsecrets/provider/yubikey_provider.py:191
+msgid "Select YubiKey slot"
+msgstr "YubiKey-Slot auswählen"
+
+#: gsecrets/provider/yubikey_provider.py:223
+msgid "Touch YubiKey"
+msgstr "YubiKey berühren"
+
+#: gsecrets/recent_files_menu.py:44
 msgid "Recent Files"
 msgstr "Kürzlich verwendete Dateien"
 
@@ -1341,23 +1381,23 @@ msgstr "Violett"
 msgid "Brown"
 msgstr "Braun"
 
-#: gsecrets/safe_element.py:567
+#: gsecrets/safe_element.py:577
 msgid "Clone"
 msgstr "Klonen"
 
 #. This shouldn't happen
-#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:354 gsecrets/widgets/window.py:360
+#: gsecrets/widgets/window.py:357 gsecrets/widgets/window.py:363
 msgid "Could not save Safe"
 msgstr "Safe konnte nicht gespeichert werden"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:105
+#: gsecrets/unlock_database.py:110
 msgid "Safe {} is already open"
 msgstr "Safe {} ist bereits geöffnet"
 
-#: gsecrets/unlock_database.py:175
+#: gsecrets/unlock_database.py:184
 msgid "Failed to unlock Safe"
 msgstr "Safe konnte nicht entsperrt werden"
 
@@ -1406,45 +1446,45 @@ msgid "Attribute key already exists"
 msgstr "Attributschlüssel existiert bereits"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:36
 msgid "Save Attachment"
 msgstr "Anhang speichern"
 
-#: gsecrets/widgets/attachment_entry_row.py:58
+#: gsecrets/widgets/attachment_entry_row.py:57
 msgid "Could not store attachment"
 msgstr "Anhang konnte nicht gespeichert werden"
 
-#: gsecrets/widgets/attribute_entry_row.py:40
+#: gsecrets/widgets/attribute_entry_row.py:39
 #: gsecrets/widgets/protected_attribute_entry_row.py:57
 msgid "Attribute copied"
 msgstr "Attribut kopiert"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:136
+#: gsecrets/widgets/database_settings_dialog.py:144
 msgid "Select Current Keyfile"
 msgstr "Aktuelle Schlüsseldatei auswählen"
 
-#: gsecrets/widgets/database_settings_dialog.py:234
-#: gsecrets/widgets/database_settings_dialog.py:238
+#: gsecrets/widgets/database_settings_dialog.py:242
+#: gsecrets/widgets/database_settings_dialog.py:246
 msgid "Could not apply changes"
 msgstr "Änderungen konnten nicht angewendet werden"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:241
+#: gsecrets/widgets/database_settings_dialog.py:249
 msgid "Changes Applied"
 msgstr "Änderungen wurden angewendet"
 
-#: gsecrets/widgets/database_settings_dialog.py:279
+#: gsecrets/widgets/database_settings_dialog.py:287
 msgid "Could not change credentials"
 msgstr "Anmeldedaten konnten nicht geändert werden"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:285
-#: gsecrets/widgets/saving_conflict_dialog.py:23
+#: gsecrets/widgets/database_settings_dialog.py:293
+#: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Konflikte beim Speichern"
 
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:294
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1452,44 +1492,44 @@ msgstr ""
 "Der Safe wurde von anderer Stelle verändert. Beheben Sie bitte diese "
 "Konflikte im Hauptfenster, wenn Sie speichern."
 
-#: gsecrets/widgets/database_settings_dialog.py:288
-msgid "Ok"
+#: gsecrets/widgets/database_settings_dialog.py:296
+msgid "OK"
 msgstr "OK"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:350
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:358
+#: gsecrets/widgets/database_settings_dialog.py:372
 msgid "Unknown"
 msgstr "Unbekannt"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:362
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:357
+#: gsecrets/widgets/database_settings_dialog.py:365
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:360
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:376
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:371
+#: gsecrets/widgets/database_settings_dialog.py:379
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:374
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1498,7 +1538,7 @@ msgstr "AES-KDF"
 msgid "Entry expired"
 msgstr "Eintrag abgelaufen"
 
-#: gsecrets/widgets/history_row.py:44
+#: gsecrets/widgets/history_row.py:43
 msgid "Hide Text"
 msgstr "Text verbergen"
 
@@ -1507,24 +1547,24 @@ msgid "Selection copied"
 msgstr "Auswahl wurde kopiert"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
-#: gsecrets/widgets/quit_conflict_dialog.py:19
+#: gsecrets/widgets/quit_conflict_dialog.py:18
 msgid "Unsaved Changes Conflict"
 msgstr "Konflikte bei ungespeicherten Änderungen"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:21
+#: gsecrets/widgets/quit_conflict_dialog.py:20
 msgid "Save and Quit"
 msgstr "Speichern und beenden"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:22
+#: gsecrets/widgets/quit_conflict_dialog.py:21
 msgid "Back up, Save, and Quit"
 msgstr "Sicherheitskopie erstellen, speichern und beenden"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:23
+#: gsecrets/widgets/quit_conflict_dialog.py:22
 msgid "Don't Quit"
 msgstr "Nicht beenden"
 
 #. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
-#: gsecrets/widgets/saving_conflict_dialog.py:26
+#: gsecrets/widgets/saving_conflict_dialog.py:25
 msgid ""
 "The safe was modified from somewhere else. Saving will overwrite their "
 "version of the safe with our current version.\n"
@@ -1538,86 +1578,92 @@ msgstr ""
 "erstellen."
 
 #. TRANSLATORS backup and save current safe.
-#: gsecrets/widgets/saving_conflict_dialog.py:34
+#: gsecrets/widgets/saving_conflict_dialog.py:33
 msgid "_Back up and Save"
 msgstr "Sicher_heitskopie erstellen und speichern"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:48
+#: gsecrets/widgets/saving_conflict_dialog.py:47
 msgid "Save Backup"
 msgstr "Sicherheitskopie speichern"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:62
+#: gsecrets/widgets/saving_conflict_dialog.py:61
 msgid "Could not backup safe"
 msgstr "Sicherheitskopie des Safes konnte nicht erstellt werden"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:72
+#: gsecrets/widgets/selection_mode_headerbar.py:71
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
 msgstr[0] "{} au_sgewählt"
 msgstr[1] "{} au_sgewählt"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:98
+#: gsecrets/widgets/selection_mode_headerbar.py:97
 msgid "Operation aborted: deleting currently active group"
 msgstr "Operation abgebrochen: Löschen der aktuell aktiven Gruppe"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:153
+#: gsecrets/widgets/selection_mode_headerbar.py:152
 msgid "Warning"
 msgstr "Warnung"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:155
+#: gsecrets/widgets/selection_mode_headerbar.py:154
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr ""
 "Sie löschen gerade Elemente im Papierkorb. Diese Löschungen können nicht "
 "rückgängig gemacht werden."
 
-#: gsecrets/widgets/selection_mode_headerbar.py:158
+#: gsecrets/widgets/selection_mode_headerbar.py:157
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:159
+#: gsecrets/widgets/selection_mode_headerbar.py:158
 msgid "Delete"
 msgstr "Löschen"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:199
+#: gsecrets/widgets/selection_mode_headerbar.py:198
 msgid "Operation aborted: moving currently active group"
 msgstr "Operation abgebrochen: Verschieben der aktuell aktiven Gruppe"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:214
+#: gsecrets/widgets/selection_mode_headerbar.py:213
 msgid "Move completed"
 msgstr "Verschieben abgeschlossen"
 
-#: gsecrets/widgets/window.py:133
+#: gsecrets/widgets/window.py:136
 msgid "Any file type"
 msgstr "Beliebiger Dateityp"
 
-#: gsecrets/widgets/window.py:140
+#: gsecrets/widgets/window.py:143
 msgid "Select Safe"
 msgstr "Safe auswählen"
 
-#: gsecrets/widgets/window.py:156
+#: gsecrets/widgets/window.py:159
 msgid "File does not have a valid path"
 msgstr "Datei hat keinen gültigen Pfad"
 
-#: gsecrets/widgets/window.py:190
+#: gsecrets/widgets/window.py:193
 msgid "Safe is already open"
 msgstr "Safe ist bereits geöffnet"
 
-#: gsecrets/widgets/window.py:222
+#: gsecrets/widgets/window.py:225
 msgid "_Create"
 msgstr "_Erstellen"
 
-#: gsecrets/widgets/window.py:243
+#: gsecrets/widgets/window.py:246
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Erstellen des Safes fehlgeschlagen: Safe ist bereits geöffnet"
 
-#: gsecrets/widgets/window.py:285 gsecrets/widgets/window.py:300
+#: gsecrets/widgets/window.py:288 gsecrets/widgets/window.py:303
 msgid "Could not create new Safe"
 msgstr "Neuer Safe konnte nicht erstellt werden"
 
-#: gsecrets/widgets/window.py:367
+#: gsecrets/widgets/window.py:370
 msgid "Could not save safe"
 msgstr "Safe konnte nicht gespeichert werden"
+
+#~ msgid "Falk Alexander Seidl"
+#~ msgstr "Falk Alexander Seidl"
+
+#~ msgid "Ok"
+#~ msgstr "OK"
 
 #~ msgid "Use a password to secure your safe."
 #~ msgstr "Ein Passwort verwenden, um Ihren Safe zu schützen."

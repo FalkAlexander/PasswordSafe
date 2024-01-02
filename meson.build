@@ -10,7 +10,7 @@ gnome = import('gnome')
 project_id = 'org.gnome.World.Secrets'
 project_name = 'Secrets'
 package_url = 'https://gitlab.gnome.org/World/secrets'
-copyright = '© 2018-2021 Falk Alexander Seidl, et al.'
+copyright = '© 2018-2024 Falk Alexander Seidl, et al.'
 contributors = '\n'.join([
     'Falk Alexander Seidl &lt;fseidl@gnome.org&gt;',
     'Uta Lemke',
@@ -19,6 +19,7 @@ contributors = '\n'.join([
     'Maximiliano Sandoval &lt;msandova@gnome.org&gt;',
     'Sebastian Spaeth',
     'Christopher Davis',
+    'Jan-Michael Brummer',
                         ])
 artists = '\n'.join([
 'Christopher Davis',

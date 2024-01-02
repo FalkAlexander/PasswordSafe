@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
-import io
 import logging
 from gi.repository import Adw, GLib, Gio, GObject
 from gsecrets.provider.file_provider import FileProvider
@@ -57,22 +56,17 @@ class Providers(GObject.Object):
 
             if len(raw_key) == 0:
                 logging.debug("No key providers in use, returning None")
-                task.return_value([None, "", ""])
+                task.return_value(None)
                 return
 
-            keyfile_bytes = io.BytesIO(raw_key)
-            keyfile_hash = GLib.compute_checksum_for_bytes(
-                GLib.ChecksumType.SHA1, GLib.Bytes(raw_key)
-            )
-
-            task.return_value([raw_key, keyfile_bytes, keyfile_hash])
+            task.return_value(raw_key)
 
         task = Gio.Task.new(self, cancellable, callback)
         task.run_in_thread(generate_composite_key_task)
 
     def generate_composite_key_finish(self, result):
         try:
-            _success, data = result.propagate_value()
-            return data
+            _success, composite_key = result.propagate_value()
+            return composite_key
         except GLib.Error as err:
             raise err

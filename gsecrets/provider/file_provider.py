@@ -210,3 +210,9 @@ class FileProvider(BaseProvider):
 
     def clear_input_fields(self):
         self._on_create_clear_keyfile(None)
+
+    def generate_key(self, _salt: bytes) -> bool:
+        if self.raw_key:
+            return True
+
+        return False

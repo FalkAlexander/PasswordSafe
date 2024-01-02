@@ -103,13 +103,8 @@ class CreateDatabase(Adw.Bin):
     def _on_generate_composite_key(self, providers, result):
         self.stack.set_sensitive(True)
 
-        keyfile = None
-        keyfile_hash = None
-
         try:
-            data = providers.generate_composite_key_finish(result)
-            keyfile = data[1]
-            keyfile_hash = data[2]
+            composition_key = providers.generate_composite_key_finish(result)
         except GLib.Error as ex:
             logging.warning("Failed to generate composite key: %s", str(ex))
             self.window.send_notification(_("Failed to generate composite key"))
@@ -117,8 +112,7 @@ class CreateDatabase(Adw.Bin):
 
         self.database_manager.set_credentials_async(
             password=self.password_confirm_row.props.text,
-            keyfile=keyfile,
-            keyfile_hash=keyfile_hash,
+            composition_key=composition_key,
             callback=self._on_set_credentials,
         )
 

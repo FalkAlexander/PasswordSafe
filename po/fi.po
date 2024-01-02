@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-11-28 19:33+0000\n"
-"PO-Revision-Date: 2023-12-06 15:01+0200\n"
+"POT-Creation-Date: 2023-12-15 17:28+0000\n"
+"PO-Revision-Date: 2024-01-02 21:09+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -103,7 +103,7 @@ msgstr "Väri"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:228
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:223
 msgid "Create Safe"
 msgstr "Luo säilö"
 
@@ -199,9 +199,9 @@ msgid "Current Password"
 msgstr "Nykyinen salasana"
 
 #: data/gtk/database_settings_dialog.ui:58
-#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:132
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:81
-#: gsecrets/widgets/database_settings_dialog.py:196
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:130
+#: gsecrets/provider/file_provider.py:195 gsecrets/utils.py:87
+#: gsecrets/widgets/database_settings_dialog.py:204
 msgid "Keyfile"
 msgstr "Avaintiedosto"
 
@@ -218,8 +218,8 @@ msgid "Could not Load Keyfile"
 msgstr "Avaintiedostoa ei voitu avata"
 
 #: data/gtk/database_settings_dialog.ui:153
-#: gsecrets/widgets/database_settings_dialog.py:258
-#: gsecrets/widgets/database_settings_dialog.py:301
+#: gsecrets/widgets/database_settings_dialog.py:266
+#: gsecrets/widgets/database_settings_dialog.py:309
 msgid "_Apply Changes"
 msgstr "_Toteuta muutokset"
 
@@ -374,10 +374,14 @@ msgid "Select"
 msgstr "Valitse"
 
 #: data/gtk/entry_row.ui:55
+msgid "Copy One-Time Password"
+msgstr "Kopioi kertakäyttöinen salasana"
+
+#: data/gtk/entry_row.ui:66
 msgid "Copy Username"
 msgstr "Kopioi käyttäjätunnus"
 
-#: data/gtk/entry_row.ui:65
+#: data/gtk/entry_row.ui:76
 msgid "Copy Password"
 msgstr "Kopioi salasana"
 
@@ -515,7 +519,7 @@ msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Tallenna historiaan"
 
-#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
 msgid "Show Text"
 msgstr "Näytä teksti"
 
@@ -565,8 +569,8 @@ msgstr "Sanat"
 
 #. Button to generate a password
 #: data/gtk/password_generator_popover.ui:132
-#: gsecrets/provider/file_provider.py:196
-#: gsecrets/widgets/database_settings_dialog.py:195
+#: gsecrets/provider/file_provider.py:194
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "_Generate"
 msgstr "_Luo"
 
@@ -662,7 +666,7 @@ msgid "Do you want to write all changes to the safe?"
 msgstr "Haluatko kirjoittaa kaikki muutokset säilöön?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
 msgid "_Quit Without Saving"
 msgstr "_Lopeta tallentamatta"
 
@@ -685,7 +689,7 @@ msgid "No Search Results"
 msgstr "Ei hakutuloksia"
 
 #: data/gtk/selection_mode_headerbar.ui:17
-#: gsecrets/widgets/selection_mode_headerbar.py:70
+#: gsecrets/widgets/selection_mode_headerbar.py:69
 msgid "_Select Items"
 msgstr "_Valitse kohteet"
 
@@ -704,7 +708,7 @@ msgid "Delete Selection"
 msgstr "Poista valinta"
 
 #: data/gtk/selection_mode_headerbar.ui:53
-#: gsecrets/widgets/saving_conflict_dialog.py:32
+#: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Peru"
 
@@ -726,8 +730,8 @@ msgstr "Avaa uudelleen viimeksi avattu säilö."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:137
-#: gsecrets/widgets/window.py:220 gsecrets/widgets/window.py:232
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:132
+#: gsecrets/widgets/window.py:215 gsecrets/widgets/window.py:227
 msgid "Safe"
 msgstr "Säilö"
 
@@ -740,7 +744,7 @@ msgid "Save every change automatically."
 msgstr "Tallenna jokainen muutos automaattisesti."
 
 #: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
-#: gsecrets/unlock_database.py:195
+#: gsecrets/unlock_database.py:196
 msgid "Unlock"
 msgstr "Avaa lukitus"
 
@@ -921,7 +925,7 @@ msgid "New _Group"
 msgstr "Uusi _ryhmä"
 
 #: data/gtk/unlocked_headerbar.ui:133
-#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "_Tallenna"
 
@@ -1025,8 +1029,8 @@ msgid "Last opened databases"
 msgstr "Viimeksi avatut tietokannat"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:48
-msgid "A list of the last opened databases."
-msgstr "Luettelo viimeksi avatuista tietokannoista."
+msgid "A list of the last opened databases. Not used anymore."
+msgstr "Luettelo viimeksi avatuista tietokannoista. Ei enää käytössä."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
@@ -1142,20 +1146,16 @@ msgstr ""
 "tiedostomuotoa. Se yhdistyy Gnome-työpöydälle ja tarjoaa selkeän sekä "
 "helppokäyttöisen käyttöliittymän salasanatietokantojen hallintaan."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
-
-#: gsecrets/application.py:54
+#: gsecrets/application.py:56
 msgid "Error: File {} does not exist"
 msgstr "Virhe: Tiedostoa {} ei ole olemassa"
 
-#: gsecrets/application.py:59
+#: gsecrets/application.py:61
 msgid "Error: Safe {} is already open"
 msgstr "Virhe: Säilö {} on jo avoinna"
 
 #: gsecrets/attachment_warning_dialog.py:68
-#: gsecrets/attachment_warning_dialog.py:82
+#: gsecrets/attachment_warning_dialog.py:79
 msgid "Could not load attachment"
 msgstr "Liitettä ei voitu ladata"
 
@@ -1167,7 +1167,7 @@ msgstr "Salasanat eivät täsmää"
 msgid "Unable to create database"
 msgstr "Tietokantaa ei voitu luoda"
 
-#: gsecrets/create_database.py:115 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:115 gsecrets/unlock_database.py:100
 msgid "Failed to generate composite key"
 msgstr "Yhdistelmäavaimen luominen epäonnistui"
 
@@ -1175,7 +1175,7 @@ msgstr "Yhdistelmäavaimen luominen epäonnistui"
 msgid "Saved in history"
 msgstr "Tallennettu historiaan"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:130
 #: gsecrets/widgets/credentials_group.py:92
 msgid "Username copied"
 msgstr "Käyttäjätunnus kopioitu"
@@ -1201,47 +1201,51 @@ msgstr "Osoite ei ole kelvollinen"
 msgid "Select Attachments"
 msgstr "Valitse liitteet"
 
-#: gsecrets/entry_row.py:116 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:123 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Salasana kopioitu"
 
-#: gsecrets/entry_row.py:135 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:137
+msgid "One-Time Password copied"
+msgstr "Kertakäyttöinen salasana kopioitu"
+
+#: gsecrets/entry_row.py:149 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "Otsikkoa ei ole määritetty"
 
-#: gsecrets/entry_row.py:146
+#: gsecrets/entry_row.py:160
 msgid "Username not specified"
 msgstr "Käyttäjätunnusta ei ole määritetty"
 
-#: gsecrets/password_generator_popover.py:75
+#: gsecrets/password_generator_popover.py:74
 msgid "Include Lowercase"
 msgstr "Sisällytä pienet kirjaimet"
 
-#: gsecrets/password_generator_popover.py:77
+#: gsecrets/password_generator_popover.py:76
 msgid "Exclude Lowercase"
 msgstr "Älä käytä pieniä kirjaimia"
 
-#: gsecrets/password_generator_popover.py:80
+#: gsecrets/password_generator_popover.py:79
 msgid "Include Uppercase"
 msgstr "Sisällytä isot kirjaimet"
 
-#: gsecrets/password_generator_popover.py:82
+#: gsecrets/password_generator_popover.py:81
 msgid "Exclude Uppercase"
 msgstr "Älä käytä isoja kirjaimia"
 
-#: gsecrets/password_generator_popover.py:85
+#: gsecrets/password_generator_popover.py:84
 msgid "Include Numbers"
 msgstr "Sisällytä numerot"
 
-#: gsecrets/password_generator_popover.py:87
+#: gsecrets/password_generator_popover.py:86
 msgid "Exclude Numbers"
 msgstr "Älä käytä numeroita"
 
-#: gsecrets/password_generator_popover.py:90
+#: gsecrets/password_generator_popover.py:89
 msgid "Include Symbols"
 msgstr "Sisällytä symbolit"
 
-#: gsecrets/password_generator_popover.py:92
+#: gsecrets/password_generator_popover.py:91
 msgid "Exclude Symbols"
 msgstr "Älä käytä symboleja"
 
@@ -1253,7 +1257,7 @@ msgstr "Juuriryhmä"
 msgid "Select Keyfile"
 msgstr "Luo avaintiedosto"
 
-#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:143
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:141
 msgid "Clear Keyfile"
 msgstr "Tyhjennä avaintiedosto"
 
@@ -1266,17 +1270,17 @@ msgid "Could not load keyfile"
 msgstr "Avaintiedostoa ei voitu ladata"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: gsecrets/provider/file_provider.py:136
-#: gsecrets/provider/file_provider.py:195
-#: gsecrets/widgets/database_settings_dialog.py:194
+#: gsecrets/provider/file_provider.py:134
+#: gsecrets/provider/file_provider.py:193
+#: gsecrets/widgets/database_settings_dialog.py:202
 msgid "Generate Keyfile"
 msgstr "Luo avaintiedosto"
 
-#: gsecrets/provider/file_provider.py:160
+#: gsecrets/provider/file_provider.py:158
 msgid "Use a file to increase security"
 msgstr "Käytä tiedostoa parantaaksesi turvallisuutta"
 
-#: gsecrets/provider/file_provider.py:181
+#: gsecrets/provider/file_provider.py:179
 msgid "Could not create keyfile"
 msgstr "Avaintiedostoa ei voitu luoda"
 
@@ -1291,7 +1295,7 @@ msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - Paikka {slot}"
 
 #: gsecrets/provider/yubikey_provider.py:126
-#: gsecrets/provider/yubikey_provider.py:189
+#: gsecrets/provider/yubikey_provider.py:184
 msgid "YubiKey"
 msgstr "YubiKey"
 
@@ -1300,15 +1304,15 @@ msgid "Select key"
 msgstr "Valitse avain"
 
 #: gsecrets/provider/yubikey_provider.py:135
-#: gsecrets/provider/yubikey_provider.py:198
+#: gsecrets/provider/yubikey_provider.py:191
 msgid "Select YubiKey slot"
 msgstr "Valitse YubiKeyn paikka"
 
-#: gsecrets/provider/yubikey_provider.py:232
+#: gsecrets/provider/yubikey_provider.py:223
 msgid "Touch YubiKey"
 msgstr "Kosketa YubiKeyta"
 
-#: gsecrets/recent_files_menu.py:36
+#: gsecrets/recent_files_menu.py:44
 msgid "Recent Files"
 msgstr "Viimeisimmät tiedostot"
 
@@ -1344,23 +1348,23 @@ msgstr "Violetti"
 msgid "Brown"
 msgstr "Ruskea"
 
-#: gsecrets/safe_element.py:567
+#: gsecrets/safe_element.py:574
 msgid "Clone"
 msgstr "Kaksoiskappale"
 
 #. This shouldn't happen
-#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:362 gsecrets/widgets/window.py:368
+#: gsecrets/widgets/window.py:357 gsecrets/widgets/window.py:363
 msgid "Could not save Safe"
 msgstr "Säilöä ei voitu tallentaa"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:109
+#: gsecrets/unlock_database.py:110
 msgid "Safe {} is already open"
 msgstr "Säilö {} on jo avoinna"
 
-#: gsecrets/unlock_database.py:183
+#: gsecrets/unlock_database.py:184
 msgid "Failed to unlock Safe"
 msgstr "Säilön lukituksen avaaminen epäonnistui"
 
@@ -1409,45 +1413,45 @@ msgid "Attribute key already exists"
 msgstr "Attribuuttiavain on jo olemassa"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:36
 msgid "Save Attachment"
 msgstr "Tallenna liite"
 
-#: gsecrets/widgets/attachment_entry_row.py:58
+#: gsecrets/widgets/attachment_entry_row.py:57
 msgid "Could not store attachment"
 msgstr "Liitettä ei voitu tallettaa"
 
-#: gsecrets/widgets/attribute_entry_row.py:40
+#: gsecrets/widgets/attribute_entry_row.py:39
 #: gsecrets/widgets/protected_attribute_entry_row.py:57
 msgid "Attribute copied"
 msgstr "Attribuuti kopioitu"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:136
+#: gsecrets/widgets/database_settings_dialog.py:144
 msgid "Select Current Keyfile"
 msgstr "Valitse nykyinen avaintiedosto"
 
-#: gsecrets/widgets/database_settings_dialog.py:234
-#: gsecrets/widgets/database_settings_dialog.py:238
+#: gsecrets/widgets/database_settings_dialog.py:242
+#: gsecrets/widgets/database_settings_dialog.py:246
 msgid "Could not apply changes"
 msgstr "Muutoksia ei voitu toteuttaa"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:241
+#: gsecrets/widgets/database_settings_dialog.py:249
 msgid "Changes Applied"
 msgstr "Muutokset toteutettu"
 
-#: gsecrets/widgets/database_settings_dialog.py:279
+#: gsecrets/widgets/database_settings_dialog.py:287
 msgid "Could not change credentials"
 msgstr "Kirjautumistietoja ei voitu muuttaa"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:285
-#: gsecrets/widgets/saving_conflict_dialog.py:23
+#: gsecrets/widgets/database_settings_dialog.py:293
+#: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Ristiriitoja tallennuksen yhteydessä"
 
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:294
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1455,44 +1459,44 @@ msgstr ""
 "Säilöä muokattiin jostain muualta. Selvitä nämä ristiriidat pääikkunasta, "
 "kun tallennat."
 
-#: gsecrets/widgets/database_settings_dialog.py:288
-msgid "Ok"
+#: gsecrets/widgets/database_settings_dialog.py:296
+msgid "OK"
 msgstr "OK"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:350
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:358
+#: gsecrets/widgets/database_settings_dialog.py:372
 msgid "Unknown"
 msgstr "Tuntematon"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:362
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:357
+#: gsecrets/widgets/database_settings_dialog.py:365
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:360
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:376
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:371
+#: gsecrets/widgets/database_settings_dialog.py:379
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:374
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1501,7 +1505,7 @@ msgstr "AES-KDF"
 msgid "Entry expired"
 msgstr "Tietue on vanhentunut"
 
-#: gsecrets/widgets/history_row.py:44
+#: gsecrets/widgets/history_row.py:43
 msgid "Hide Text"
 msgstr "Piilota teksti"
 
@@ -1510,24 +1514,24 @@ msgid "Selection copied"
 msgstr "Valinta kopioitu"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
-#: gsecrets/widgets/quit_conflict_dialog.py:19
+#: gsecrets/widgets/quit_conflict_dialog.py:18
 msgid "Unsaved Changes Conflict"
 msgstr "Tallentamattomien muutoksien ristiriita"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:21
+#: gsecrets/widgets/quit_conflict_dialog.py:20
 msgid "Save and Quit"
 msgstr "Tallenna ja lopeta"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:22
+#: gsecrets/widgets/quit_conflict_dialog.py:21
 msgid "Back up, Save, and Quit"
 msgstr "Varmuuskopioi, tallenna ja lopeta"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:23
+#: gsecrets/widgets/quit_conflict_dialog.py:22
 msgid "Don't Quit"
 msgstr "Älä lopeta"
 
 #. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
-#: gsecrets/widgets/saving_conflict_dialog.py:26
+#: gsecrets/widgets/saving_conflict_dialog.py:25
 msgid ""
 "The safe was modified from somewhere else. Saving will overwrite their "
 "version of the safe with our current version.\n"
@@ -1540,85 +1544,91 @@ msgstr ""
 "Voit tehdä varmuuskopion säilön toisesta versiosta."
 
 #. TRANSLATORS backup and save current safe.
-#: gsecrets/widgets/saving_conflict_dialog.py:34
+#: gsecrets/widgets/saving_conflict_dialog.py:33
 msgid "_Back up and Save"
 msgstr "_Varmuuskopioi ja tallenna"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:48
+#: gsecrets/widgets/saving_conflict_dialog.py:47
 msgid "Save Backup"
 msgstr "Tallenna varmuuskopio"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:62
+#: gsecrets/widgets/saving_conflict_dialog.py:61
 msgid "Could not backup safe"
 msgstr "Säilöä ei voitu varmuuskopioida"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:72
+#: gsecrets/widgets/selection_mode_headerbar.py:71
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
 msgstr[0] "{} _valittu"
 msgstr[1] "{} _valittu"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:98
+#: gsecrets/widgets/selection_mode_headerbar.py:97
 msgid "Operation aborted: deleting currently active group"
 msgstr "Toimenpide peruttu: poistetaan parhaillaan aktiivista ryhmää"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:153
+#: gsecrets/widgets/selection_mode_headerbar.py:152
 msgid "Warning"
 msgstr "Varoitus"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:155
+#: gsecrets/widgets/selection_mode_headerbar.py:154
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr ""
 "Olet poistamassa elementtejä roskakorissa. Näitä poistoja ei voi kumota."
 
-#: gsecrets/widgets/selection_mode_headerbar.py:158
+#: gsecrets/widgets/selection_mode_headerbar.py:157
 msgid "Cancel"
 msgstr "Peru"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:159
+#: gsecrets/widgets/selection_mode_headerbar.py:158
 msgid "Delete"
 msgstr "Poista"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:199
+#: gsecrets/widgets/selection_mode_headerbar.py:198
 msgid "Operation aborted: moving currently active group"
 msgstr "Toimenpide peruttu: siirretään parhaillaan aktiivinen ryhmä"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:214
+#: gsecrets/widgets/selection_mode_headerbar.py:213
 msgid "Move completed"
 msgstr "Siirto valmistui"
 
-#: gsecrets/widgets/window.py:141
+#: gsecrets/widgets/window.py:136
 msgid "Any file type"
 msgstr "Mikä tahansa tiedostotyyppi"
 
-#: gsecrets/widgets/window.py:148
+#: gsecrets/widgets/window.py:143
 msgid "Select Safe"
 msgstr "Valitse säilö"
 
-#: gsecrets/widgets/window.py:164
+#: gsecrets/widgets/window.py:159
 msgid "File does not have a valid path"
 msgstr "Tiedostolla ei ole kelvollista polkua"
 
-#: gsecrets/widgets/window.py:198
+#: gsecrets/widgets/window.py:193
 msgid "Safe is already open"
 msgstr "Säilö on jo avoinna"
 
-#: gsecrets/widgets/window.py:230
+#: gsecrets/widgets/window.py:225
 msgid "_Create"
 msgstr "_Luo"
 
-#: gsecrets/widgets/window.py:251
+#: gsecrets/widgets/window.py:246
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Säilöä ei voi luoda: Säilö on jo avoinna"
 
-#: gsecrets/widgets/window.py:293 gsecrets/widgets/window.py:308
+#: gsecrets/widgets/window.py:288 gsecrets/widgets/window.py:303
 msgid "Could not create new Safe"
 msgstr "Uutta säilöä ei voitu luoda"
 
-#: gsecrets/widgets/window.py:375
+#: gsecrets/widgets/window.py:370
 msgid "Could not save safe"
 msgstr "Säilöä ei voitu tallentaa"
+
+#~ msgid "Falk Alexander Seidl"
+#~ msgstr "Falk Alexander Seidl"
+
+#~ msgid "Ok"
+#~ msgstr "OK"
 
 #~ msgid "Use a password to secure your safe."
 #~ msgstr "Käytä salasanaa suojataksesi säilösi."

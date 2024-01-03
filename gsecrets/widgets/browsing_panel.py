@@ -118,9 +118,12 @@ class BrowsingPanel(Adw.Bin):
 
     def _on_listview_activate(self, _list_view, pos):
         element = self._list_model.get_item(pos)
-        if element.is_group:
-            self.unlocked_database.props.current_element = element
-            self.visit_group(element)
+
+        if self.unlocked_database.props.selection_mode:
+            element.props.selected = not element.props.selected
+            return
+
+        self.unlocked_database.show_edit_page(element)
 
     def _on_setup(self, _list_view, item):
         entry_row = EntryRow(self.unlocked_database)
@@ -142,16 +145,6 @@ class BrowsingPanel(Adw.Bin):
                 item.props.child = row
 
             row.props.safe_entry = element
-
-    def _on_selected_item_changed(self, selection_model, _pspec):
-        if element := selection_model.props.selected_item:
-            database = self.unlocked_database
-
-            if database.props.selection_mode:
-                element.props.selected = not element.props.selected
-                return
-
-            self.unlocked_database.show_edit_page(element)
 
     def _on_sorting_changed(self, _db_manager, is_entry):
         if is_entry:
@@ -200,6 +193,9 @@ class BrowsingPanel(Adw.Bin):
         return item.parentgroup == self.current_group
 
     def _search_filter_fn(self, item: SafeEntry | SafeGroup) -> bool:
+        if item.is_root_group:
+            return False
+
         if isinstance(item, SafeGroup):
             fields = [item.name, item.notes]
         else:

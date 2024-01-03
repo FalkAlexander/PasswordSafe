@@ -5,7 +5,9 @@
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar">
-            <property name="show_title">False</property>
+            <property name="title_widget">
+              <object class="AdwWindowTitle" id="_window_title"/>
+            </property>
             <child>
               <object class="AdwBin" id="_pathbar_bin"/>
             </child>

@@ -29,6 +29,13 @@
                             <property name="title" translatable="yes">Select Items</property>
                           </object>
                         </property>
+                        <child>
+                          <object class="GtkButton" id="_selection_go_back_button">
+                            <property name="icon_name">go-previous-symbolic</property>
+                            <property name="tooltip_text" translatable="yes">Go Back</property>
+                            <signal name="clicked" handler="_on_selection_go_back_button_clicked" swapped="no"/>
+                          </object>
+                        </child>
                         <child type="end">
                           <object class="GtkButton">
                             <property name="label" translatable="yes">_Cancel</property>
@@ -58,53 +65,39 @@
                   </object>
                 </child>
                 <child type="bottom">
-                  <object class="GtkStack" id="_bottom_bar_stack">
+                  <object class="GtkActionBar" id="_selection_mode_action_bar">
+                    <property name="revealed">False</property>
                     <child>
-                      <object class="GtkActionBar" id="_browser_view_action_bar">
-                        <child type="end">
-                          <object class="GtkMenuButton">
-                            <property name="menu_model">_add_button_menu</property>
-                            <property name="icon_name">list-add-symbolic</property>
-                            <property name="tooltip_text" translatable="yes">New Entry or Group</property>
-                          </object>
-                        </child>
+                      <object class="GtkButton" id="_clear_selection_button">
+                        <property name="label" translatable="yes">_Clear</property>
+                        <property name="sensitive">False</property>
+                        <property name="use_underline">True</property>
+                        <signal name="clicked" handler="_on_clear_selection_clicked" swapped="no"/>
                       </object>
                     </child>
-                    <child>
-                      <object class="GtkActionBar" id="_selection_mode_action_bar">
+                    <child type="end">
+                      <object class="GtkButton" id="_delete_selection_button">
+                        <property name="sensitive">False</property>
+                        <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete Selection</property>
+                        <property name="icon_name">user-trash-symbolic</property>
+                        <signal name="clicked" handler="_on_delete_selection_clicked" swapped="no"/>
+                      </object>
+                    </child>
+                    <child type="end">
+                      <object class="GtkStack" id="_cut_paste_button_stack">
                         <child>
-                          <object class="GtkButton" id="_clear_selection_button">
-                            <property name="label" translatable="yes">_Clear</property>
+                          <object class="GtkButton" id="_cut_selection_button">
                             <property name="sensitive">False</property>
-                            <property name="use_underline">True</property>
-                            <signal name="clicked" handler="_on_clear_selection_clicked" swapped="no"/>
+                            <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move Selection</property>
+                            <property name="icon_name">edit-cut-symbolic</property>
+                            <signal name="clicked" handler="_on_cut_selection_clicked" swapped="no"/>
                           </object>
                         </child>
-                        <child type="end">
-                          <object class="GtkButton" id="_delete_selection_button">
-                            <property name="sensitive">False</property>
-                            <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to delete every selected entry/group">Delete Selection</property>
-                            <property name="icon_name">user-trash-symbolic</property>
-                            <signal name="clicked" handler="_on_delete_selection_clicked" swapped="no"/>
-                          </object>
-                        </child>
-                        <child type="end">
-                          <object class="GtkStack" id="_cut_paste_button_stack">
-                            <child>
-                              <object class="GtkButton" id="_cut_selection_button">
-                                <property name="sensitive">False</property>
-                                <property name="tooltip_text" translatable="yes" comments="Button tooltip in selection mode to move every selected entry/group to another place">Move Selection</property>
-                                <property name="icon_name">edit-cut-symbolic</property>
-                                <signal name="clicked" handler="_on_cut_selection_clicked" swapped="no"/>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton" id="_paste_selection_button">
-                                <property name="tooltip_text" translatable="yes">Paste Selection</property>
-                                <property name="icon_name">edit-paste-symbolic</property>
-                                <signal name="clicked" handler="_on_paste_selection_clicked" swapped="no"/>
-                              </object>
-                            </child>
+                        <child>
+                          <object class="GtkButton" id="_paste_selection_button">
+                            <property name="tooltip_text" translatable="yes">Paste Selection</property>
+                            <property name="icon_name">edit-paste-symbolic</property>
+                            <signal name="clicked" handler="_on_paste_selection_clicked" swapped="no"/>
                           </object>
                         </child>
                       </object>
@@ -117,6 +110,7 @@
         </property>
         <property name="content">
           <object class="AdwNavigationPage" id="_empty_page">
+            <property name="title">Select an Entry</property>
             <property name="child">
               <object class="AdwToolbarView">
                 <child type="top">
@@ -139,16 +133,4 @@
       </object>
     </child>
   </template>
-  <menu id="_add_button_menu">
-    <section>
-      <item>
-        <attribute name='label' translatable='yes'>New _Entry</attribute>
-        <attribute name='action'>win.db.add_entry</attribute>
-      </item>
-      <item>
-        <attribute name='label' translatable='yes'>New _Group</attribute>
-        <attribute name='action'>win.db.add_group</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>

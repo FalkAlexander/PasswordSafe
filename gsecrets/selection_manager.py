@@ -195,10 +195,6 @@ class SelectionManager(GObject.Object):
 
     def _clear_all(self) -> None:
         """Resets everything to the default state"""
-        self.selected_elements = 0
-        self.cut_mode = True
-        self.entries_cut.clear()
-        self.groups_cut.clear()
 
         for group in reversed(self.groups_selected):
             group.selected = False
@@ -212,6 +208,11 @@ class SelectionManager(GObject.Object):
         for element in self.hidden_rows:
             element.props.sensitive = True
 
+        self.selected_elements = 0
+        self.cut_mode = True
+        self.entries_cut.clear()
+
+        self.groups_cut.clear()
         self.hidden_rows.remove_all()
 
     def clear_selection(self):

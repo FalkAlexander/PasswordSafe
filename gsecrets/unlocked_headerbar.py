@@ -9,6 +9,7 @@ class UnlockedHeaderBar(Adw.Bin):
     __gtype_name__ = "UnlockedHeaderBar"
 
     _go_back_button = Gtk.Template.Child()
+    _selection_button = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
         """HearderBar of an UnlockedDatabase
@@ -22,15 +23,16 @@ class UnlockedHeaderBar(Adw.Bin):
             "notify::current-element", self._on_current_element_notify
         )
 
-    @Gtk.Template.Callback()
+        self._go_back_button.connect('clicked', self.on_go_back_button_clicked)
+        self._selection_button.connect('clicked', self._on_selection_button_clicked)
+
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True
 
-    @Gtk.Template.Callback()
-    def _on_go_back_button_clicked(self, _button):
+    def on_go_back_button_clicked(self, _button):
         group = self._unlocked_database.current_element
         self._unlocked_database.show_browser_page(group.parentgroup)
 
     def _on_current_element_notify(self, unlocked_db, _pspec):
-        sensitive = not unlocked_db.current_element.is_root_group
-        self._go_back_button.props.sensitive = sensitive
+        visible = not unlocked_db.current_element.is_root_group
+        self._go_back_button.props.visible = visible

@@ -21,6 +21,9 @@ class EntryRow(Adw.Bin):
     _prefix_stack = Gtk.Template.Child()
     _entry_icon = Gtk.Template.Child()
     _selection_checkbox = Gtk.Template.Child()
+    _entry_copy_otp_button = Gtk.Template.Child()
+    _entry_copy_user_button = Gtk.Template.Child()
+    _entry_copy_pass_button = Gtk.Template.Child()
 
     _safe_entry = None
 

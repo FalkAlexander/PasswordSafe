@@ -6,10 +6,16 @@
         <property name="show_title">False</property>
         <child>
           <object class="GtkButton" id="_go_back_button">
-            <property name="sensitive">False</property>
+            <property name="visible">False</property>
             <property name="icon_name">go-previous-symbolic</property>
             <property name="tooltip_text" translatable="yes">Go Back</property>
-            <signal name="clicked" handler="_on_go_back_button_clicked" swapped="no"/>
+          </object>
+        </child>"
+        <child>
+          <object class="GtkMenuButton">
+            <property name="menu_model">_add_button_menu</property>
+            <property name="icon_name">list-add-symbolic</property>
+            <property name="tooltip_text" translatable="yes">New Entry or Group</property>
           </object>
         </child>
         <child type="end">
@@ -23,7 +29,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="_selection_button">
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
                 <property name="icon_name">selection-mode-symbolic</property>
                 <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>
@@ -99,6 +105,18 @@
       <item>
         <attribute name='label' translatable='yes' comments="&quot;Secrets&quot; is the application name, do not translate">_About Secrets</attribute>
         <attribute name='action'>win.about</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="_add_button_menu">
+    <section>
+      <item>
+        <attribute name='label' translatable='yes'>New _Entry</attribute>
+        <attribute name='action'>win.db.add_entry</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes'>New _Group</attribute>
+        <attribute name='action'>win.db.add_group</attribute>
       </item>
     </section>
   </menu>

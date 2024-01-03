@@ -61,6 +61,7 @@
                 <property name="label" bind-source="EntryRow" bind-property="subtitle"/>
                 <property name="hexpand">True</property>
                 <property name="halign">start</property>
+                <property name="ellipsize">end</property>
                 <style>
                   <class name="subtitle"/>
                 </style>
@@ -71,6 +72,17 @@
         <child>
           <object class="GtkBox">
             <property name="spacing">6</property>
+            <child>
+              <object class="GtkButton" id="_entry_copy_otp_button">
+                <property name="tooltip_text" translatable="yes">Copy One-Time Password</property>
+                <property name="icon_name">clock-alt-symbolic</property>
+                <property name="visible">False</property>
+                <signal name="clicked" handler="on_entry_copy_otp_button_clicked" swapped="no"/>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
             <child>
               <object class="GtkButton" id="_entry_copy_user_button">
                 <property name="tooltip_text" translatable="yes">Copy Username</property>

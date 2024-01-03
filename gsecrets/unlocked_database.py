@@ -73,9 +73,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
     _select_entry_status_page = Gtk.Template.Child()
     _empty_page = Gtk.Template.Child()
 
-    _bottom_bar_stack = Gtk.Template.Child()
-    _browser_view_action_bar = Gtk.Template.Child()
-
     _search_active: bool = False
     _search_bar = Gtk.Template.Child()
     _search_entry = Gtk.Template.Child()
@@ -93,8 +90,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
     undo_data: UndoData | None = None
     attribute_undo_data: AttributeUndoData | None = None
 
-    current_editable = GObject.Property(type=SafeElement)
-
     def __init__(self, window: Window, dbm: DatabaseManager):
         super().__init__()
         # Instances
@@ -111,6 +106,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self.headerbar_stack.props.visible_child = self.headerbar
 
         self._select_entry_status_page.props.icon_name = f"{const.APP_ID}-symbolic"
+
+        self.active_element: SafeElement | None = None
 
         # Browser Mode
         self.browsing_panel = BrowsingPanel(self)
@@ -148,12 +145,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
             self._search_bar, "search-mode-enabled",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
-        self.browsing_panel.selection_model.bind_property(
-            "selected-item",
-            self,
-            "current-editable",
-            GObject.BindingFlags.SYNC_CREATE
-        )
 
         self._split_view.connect("notify::show-content", self._on_show_content_notify)
         self._split_view.connect("notify::collapsed", self._on_collapsed_notify)
@@ -189,6 +180,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.start_database_lock_timer()
+        self.active_element = element
 
         # Sets the accessed time.
         element.touch()
@@ -198,13 +190,14 @@ class UnlockedDatabase(Adw.BreakpointBin):
         else:
             page = EntryPage(self, element, new)
 
-        page = Adw.NavigationPage.new(page, "")
+        page = Adw.NavigationPage.new(page, "Edit")
         self._split_view.props.content = page
         self._split_view.props.show_content = True
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
 
+        self.active_element = group
         self.props.current_element = group
         self._split_view.props.show_content = False
         self.browsing_panel.visit_group(group)
@@ -213,11 +206,10 @@ class UnlockedDatabase(Adw.BreakpointBin):
         # this.
 
     def _navigate_back(self):
-        if element := self.props.current_editable:
-            if element.is_group and element == self.props.current_element:
-                parent_group = element.parentgroup
-                self.show_browser_page(parent_group)
-                return
+        if element := self.active_element:
+            parent_group = element.parentgroup
+            self.show_browser_page(parent_group)
+            return
 
         self.show_browser_page(self.current_element)
 
@@ -278,7 +270,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def on_element_delete_action(self) -> None:
         """Delete the visible entry from the menu."""
-        if element := self.props.current_editable:
+        if element := self.active_element:
             parent_group = element.parentgroup
             if element.trash():
                 elements = []
@@ -347,7 +339,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
             self.attribute_undo_data = None
 
     def on_entry_duplicate_action(self):
-        if element := self.props.current_editable:
+        if element := self.active_element:
             element.duplicate()
             self._navigate_back()
 
@@ -572,6 +564,10 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
         self._navigate_back()
 
+    @Gtk.Template.Callback()
+    def _on_selection_go_back_button_clicked(self, _button):
+        self.headerbar.on_go_back_button_clicked(None)
+
     @GObject.Property(type=bool, default=False)
     def search_active(self) -> bool:
         """Property to know if search is active.
@@ -612,12 +608,12 @@ class UnlockedDatabase(Adw.BreakpointBin):
     @selection_mode.setter  # type: ignore
     def selection_mode(self, value: bool) -> None:
         self._selection_mode = value
+        self._selection_mode_action_bar.set_revealed(value)
+
         if value:
             self.headerbar_stack.props.visible_child = self._selection_mode_headerbar
-            self._bottom_bar_stack.props.visible_child = self._selection_mode_action_bar
         else:
             self.headerbar_stack.props.visible_child = self.headerbar
-            self._bottom_bar_stack.props.visible_child = self._browser_view_action_bar
             self._clear_selection()
 
     @Gtk.Template.Callback()
@@ -712,4 +708,3 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def _on_search_changed(self, search_entry):
         self.browsing_panel.set_search(search_entry.props.text)
-

@@ -165,6 +165,8 @@ class EntryRow(Adw.ActionRow):
         entry_otp_token = safe_entry.otp_token()
         if entry_otp_token:
             self._entry_copy_otp_button.props.visible = True
+        else:
+            self._entry_copy_otp_button.props.visible = False
 
     def _on_entry_color_changed(
         self, safe_entry: SafeEntry, _value: GObject.ParamSpec

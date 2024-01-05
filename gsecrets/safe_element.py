@@ -543,10 +543,7 @@ class SafeEntry(SafeElement):
         if otp_uri := entry.otp:
             try:
                 if otp_uri.startswith("otpauth://"):
-                    if isinstance(self._otp, TOTP):
-                        self._otp = parse_uri(otp_uri)  # type: ignore
-                    else:
-                        logging.error("OTP uri %s is not valid TOTP", otp_uri)
+                    self._otp = parse_uri(otp_uri)  # type: ignore
                 else:
                     self._otp = TOTP(otp_uri)
             except ValueError as err:

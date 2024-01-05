@@ -20,6 +20,8 @@ class EntryRow(Adw.ActionRow):
     _checkbox_revealer = Gtk.Template.Child()
     _entry_icon = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
+    _entry_copy_user_button = Gtk.Template.Child()
+    _entry_copy_pass_button = Gtk.Template.Child()
     _entry_copy_otp_button = Gtk.Template.Child()
 
     _safe_entry = None
@@ -42,6 +44,9 @@ class EntryRow(Adw.ActionRow):
         )
         self._signals.connect_closure(
             "notify::username", self._on_entry_username_changed, False
+        )
+        self._signals.connect_closure(
+            "notify::password", self._on_entry_password_changed, False
         )
         self._signals.connect_closure(
             "notify::otp", self._on_entry_opt_token_changed, False
@@ -77,6 +82,7 @@ class EntryRow(Adw.ActionRow):
 
         self._on_entry_name_changed(element, None)
         self._on_entry_username_changed(element, None)
+        self._on_entry_password_changed(element, None)
         self._on_entry_opt_token_changed(element, None)
         self._on_entry_color_changed(element, None)
         self._on_entry_notify_expired(element, None)
@@ -152,12 +158,14 @@ class EntryRow(Adw.ActionRow):
         self, safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
         entry_username = GLib.markup_escape_text(safe_entry.props.username)
-        if entry_username:
-            self.remove_css_class("italic-subtitle")
-            self.props.subtitle = entry_username
-        else:
-            self.add_css_class("italic-subtitle")
-            self.props.subtitle = _("Username not specified")
+        self.props.subtitle = entry_username
+        self._entry_copy_user_button.set_visible(bool(entry_username))
+
+    def _on_entry_password_changed(
+        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+    ) -> None:
+        entry_password = GLib.markup_escape_text(safe_entry.props.password)
+        self._entry_copy_pass_button.set_visible(bool(entry_password))
 
     def _on_entry_opt_token_changed(
         self, safe_entry: SafeEntry, _value: GObject.ParamSpec

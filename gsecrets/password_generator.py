@@ -51,7 +51,24 @@ def generate(
             + string.punctuation
         )
 
-    return "".join([secrets.choice(characters) for _ in range(0, length)])
+    while True:
+        correct = True
+
+        password = "".join([secrets.choice(characters) for _ in range(0, length)])
+        if use_uppercase and not any(c.isupper() for c in password):
+            correct = False
+
+        if use_lowercase and not any(c.islower() for c in password):
+            correct = False
+
+        if use_numbers and not any(c.isdigit() for c in password):
+            correct = False
+
+        if use_symbols and not any(c.isalpha() for c in password):
+            correct = False
+
+        if correct:
+            return password
 
 
 def strength(password: str) -> int:

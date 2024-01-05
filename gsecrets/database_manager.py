@@ -203,7 +203,11 @@ class DatabaseManager(GObject.Object):
             self.password = password
 
             self.composition_key = composition_key
-            self.db.keyfile = io.BytesIO(composition_key)
+            if composition_key:
+                self.db.keyfile = io.BytesIO(composition_key)
+            else:
+                self.db.keyfile = ""
+
             self.is_dirty = True
 
             self._save_task(task, obj, data, cancellable)

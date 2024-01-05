@@ -585,6 +585,8 @@ class SafeEntry(SafeElement):
             force_creation=True,
         )
         clone_entry.expires = entry.expires
+        if entry.otp:
+            clone_entry.otp = entry.otp
 
         # Add custom properties
         for key in entry.custom_properties:

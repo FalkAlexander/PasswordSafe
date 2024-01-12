@@ -149,7 +149,8 @@ class Window(Adw.ApplicationWindow):
         try:
             db_gfile = dialog.open_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not open file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not open file: %s", err.message)
         else:
             if db_filename := db_gfile.get_path():
                 logging.debug("File selected: %s", db_filename)
@@ -232,7 +233,8 @@ class Window(Adw.ApplicationWindow):
         try:
             gfile = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not save file: %s", err.message)
         else:
             filepath = gfile.get_path()
             if self.unlocked_db:

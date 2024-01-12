@@ -60,7 +60,8 @@ class AttachmentEntryRow(Adw.ActionRow):
         try:
             gfile = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not save file: %s", err.message)
         else:
             bytes_buffer = self.entry.get_attachment_content(self.attachment)
             gbytes = GLib.Bytes.new(bytes_buffer)

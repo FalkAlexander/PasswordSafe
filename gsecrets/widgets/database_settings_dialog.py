@@ -149,7 +149,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         try:
             keyfile = dialog.open_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not open file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not open file: %s", err.message)
         else:
             keyfile.load_bytes_async(None, self.load_bytes_callback)
 
@@ -213,7 +214,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         try:
             keyfile = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not save file: %s", err.message)
         else:
             spinner = Gtk.Spinner()
             spinner.start()

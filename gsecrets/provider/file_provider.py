@@ -85,7 +85,8 @@ class FileProvider(BaseProvider):
         try:
             keyfile = dialog.open_finish(result)
         except GLib.Error as err:
-            logging.error("Could not open file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.error("Could not open file: %s", err.message)
         else:
             self._set_keyfile(keyfile)
 
@@ -166,7 +167,8 @@ class FileProvider(BaseProvider):
         try:
             keyfile = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.error("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.error("Could not save file: %s", err.message)
         else:
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)

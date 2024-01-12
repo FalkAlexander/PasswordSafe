@@ -362,7 +362,8 @@ class EntryPage(Adw.Bin):
         try:
             files = dialog.open_multiple_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not open files: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not open files: %s", err.message)
         else:
             safe_entry: SafeEntry = self.props.safe_entry
 

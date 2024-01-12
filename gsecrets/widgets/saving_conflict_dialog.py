@@ -66,7 +66,8 @@ class SavingConflictDialog(Adw.MessageDialog):
         try:
             dest = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not save file: %s", err.message)
         else:
             gfile = Gio.File.new_for_path(self.db_manager.path)
             gfile.copy_async(

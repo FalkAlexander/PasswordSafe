@@ -705,8 +705,15 @@ class SafeEntry(SafeElement):
         if self.props.attributes.get(key) == value:
             return
 
-        self._entry.set_custom_property(key, value, protect=protected)
         self._attributes.insert(key, value)
+
+        if (
+            self._entry.get_custom_property(key) == value
+            and protected == self._entry.is_custom_property_protected(key)
+        ):
+            return
+
+        self._entry.set_custom_property(key, value, protect=protected)
         self.updated()
         self.notify("attributes")
 

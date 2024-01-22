@@ -1,17 +1,17 @@
 # Turkish translation for Secrets.
-# Copyright (C) 2018-2023 Secrets's COPYRIGHT HOLDER
+# Copyright (C) 2018-2024 Secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Secrets package.
 #
-# Serdar Sağlam <teknomobil@yandex.com>, 2018
-# Sabri Ünal <libreajans@gmail.com>, 2020, 2022, 2023
+# Serdar Sağlam <teknomobil@yandex.com>, 2018.
+# Sabri Ünal <libreajans@gmail.com>, 2020, 2022, 2023, 2024.
 # Emin Tufan Çetin <etcetin@gmail.com>, 2018, 2020, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-01-06 21:46+0000\n"
-"PO-Revision-Date: 2024-01-05 21:23+0300\n"
+"POT-Creation-Date: 2024-01-16 19:55+0000\n"
+"PO-Revision-Date: 2024-01-17 04:03+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -109,7 +109,7 @@ msgstr "Renk"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:223
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:224
 msgid "Create Safe"
 msgstr "Kasa Oluştur"
 
@@ -209,9 +209,9 @@ msgid "Current Password"
 msgstr "Geçerli Parola"
 
 #: data/gtk/database_settings_dialog.ui:59
-#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:130
-#: gsecrets/provider/file_provider.py:195 gsecrets/utils.py:87
-#: gsecrets/widgets/database_settings_dialog.py:204
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:87
+#: gsecrets/widgets/database_settings_dialog.py:205
 msgid "Keyfile"
 msgstr "Anahtar dosyası"
 
@@ -228,8 +228,8 @@ msgid "Could not Load Keyfile"
 msgstr "Anahtar Dosyası Yüklenemedi"
 
 #: data/gtk/database_settings_dialog.ui:154
-#: gsecrets/widgets/database_settings_dialog.py:266
-#: gsecrets/widgets/database_settings_dialog.py:309
+#: gsecrets/widgets/database_settings_dialog.py:268
+#: gsecrets/widgets/database_settings_dialog.py:311
 msgid "_Apply Changes"
 msgstr "Değişiklikleri _Uygula"
 
@@ -569,6 +569,7 @@ msgid "Characters"
 msgstr "Karakterler"
 
 #: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:157
 msgid "Passphrase"
 msgstr "Parola Metni"
 
@@ -578,8 +579,8 @@ msgstr "Sözcükler"
 
 #. Button to generate a password
 #: data/gtk/password_generator_popover.ui:132
-#: gsecrets/provider/file_provider.py:194
-#: gsecrets/widgets/database_settings_dialog.py:203
+#: gsecrets/provider/file_provider.py:196
+#: gsecrets/widgets/database_settings_dialog.py:204
 msgid "_Generate"
 msgstr "_Oluştur"
 
@@ -676,12 +677,12 @@ msgstr "Tüm değişiklikleri kasaya yazmak ister misiniz?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:398
+#: gsecrets/widgets/window.py:400
 msgid "_Quit Without Saving"
 msgstr "Kaydetmeden Ç_ık"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:399
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:401
 msgid "_Don't Quit"
 msgstr "Çık_ma"
 
@@ -741,7 +742,7 @@ msgstr "Son açılan kasayı yeniden aç."
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
 #: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:132
-#: gsecrets/widgets/window.py:215 gsecrets/widgets/window.py:227
+#: gsecrets/widgets/window.py:216 gsecrets/widgets/window.py:228
 msgid "Safe"
 msgstr "Kasa"
 
@@ -754,7 +755,8 @@ msgid "Save every change automatically."
 msgstr "Her değişikliği kendiliğinden kaydet."
 
 #: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
-#: gsecrets/unlock_database.py:191
+#: gsecrets/provider/pkcs11_provider.py:162
+#: gsecrets/provider/pkcs11_provider.py:168 gsecrets/unlock_database.py:191
 msgid "Unlock"
 msgstr "Kilit Aç"
 
@@ -1193,7 +1195,7 @@ msgstr "Geçmişe kaydedildi"
 msgid "Username copied"
 msgstr "Kullanıcı adı kopyalandı"
 
-#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
+#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:394
 msgid "Address copied"
 msgstr "Adres kopyalandı"
 
@@ -1266,7 +1268,7 @@ msgstr "Kök Grup"
 msgid "Select Keyfile"
 msgstr "Anahtar Dosyası Seç"
 
-#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:141
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
 msgid "Clear Keyfile"
 msgstr "Anahtar Dosyasını Temizle"
 
@@ -1274,24 +1276,71 @@ msgstr "Anahtar Dosyasını Temizle"
 msgid "Select keyfile"
 msgstr "Anahtar dosyası seç"
 
-#: gsecrets/provider/file_provider.py:107
+#: gsecrets/provider/file_provider.py:108
 msgid "Could not load keyfile"
 msgstr "Anahtar dosyası yüklenemedi"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: gsecrets/provider/file_provider.py:134
-#: gsecrets/provider/file_provider.py:193
-#: gsecrets/widgets/database_settings_dialog.py:202
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
+#: gsecrets/widgets/database_settings_dialog.py:203
 msgid "Generate Keyfile"
 msgstr "Anahtar Dosyası Oluştur"
 
-#: gsecrets/provider/file_provider.py:158
+#: gsecrets/provider/file_provider.py:159
 msgid "Use a file to increase security"
 msgstr "Güvenliği artırmak için dosya kullan"
 
-#: gsecrets/provider/file_provider.py:179
+#: gsecrets/provider/file_provider.py:181
 msgid "Could not create keyfile"
 msgstr "Anahtar dosyası oluşturulamadı"
+
+#: gsecrets/provider/pkcs11_provider.py:92
+msgid "No Smartcard"
+msgstr "Akıllı Kart Yok"
+
+#: gsecrets/provider/pkcs11_provider.py:111
+#: gsecrets/provider/pkcs11_provider.py:214
+msgid "Smartcard"
+msgstr "Akıllı Kart"
+
+#: gsecrets/provider/pkcs11_provider.py:112
+msgid "Select certificate"
+msgstr "Sertifika seç"
+
+#: gsecrets/provider/pkcs11_provider.py:147
+msgid "No smartcard present"
+msgstr "Akıllı kart yok"
+
+#: gsecrets/provider/pkcs11_provider.py:148
+msgid "Please insert smartcard and retry."
+msgstr "Lütfen akıllı kart takıp yeniden deneyin."
+
+#: gsecrets/provider/pkcs11_provider.py:151
+#: gsecrets/widgets/database_settings_dialog.py:298
+msgid "OK"
+msgstr "Tamam"
+
+#: gsecrets/provider/pkcs11_provider.py:164
+msgid "Unlock your smartcard"
+msgstr "Akıllı kartınızın kilidini açın"
+
+#: gsecrets/provider/pkcs11_provider.py:167
+#: gsecrets/widgets/selection_mode_headerbar.py:157
+msgid "Cancel"
+msgstr "İptal"
+
+#: gsecrets/provider/pkcs11_provider.py:207
+msgid "Failed to unlock Smartcard"
+msgstr "Akıllı Kart kilidi açılamadı"
+
+#: gsecrets/provider/pkcs11_provider.py:215
+msgid "Use a smartcard"
+msgstr "Akıllı kart kullan"
+
+#: gsecrets/provider/pkcs11_provider.py:262
+msgid "Refresh Certificate List"
+msgstr "Sertifika Listesini Yenile"
 
 #: gsecrets/provider/yubikey_provider.py:29
 msgid "No Key"
@@ -1364,7 +1413,7 @@ msgstr "Klonla"
 #. This shouldn't happen
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:396
+#: gsecrets/widgets/window.py:398
 msgid "Could not save Safe"
 msgstr "Kasa kaydedilemedi"
 
@@ -1439,27 +1488,27 @@ msgstr "Öznitelik kopyalandı"
 msgid "Select Current Keyfile"
 msgstr "Geçerli Anahtar Dosyası Seç"
 
-#: gsecrets/widgets/database_settings_dialog.py:242
-#: gsecrets/widgets/database_settings_dialog.py:246
+#: gsecrets/widgets/database_settings_dialog.py:244
+#: gsecrets/widgets/database_settings_dialog.py:248
 msgid "Could not apply changes"
 msgstr "Değişiklikler uygulanamadı"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:249
+#: gsecrets/widgets/database_settings_dialog.py:251
 msgid "Changes Applied"
 msgstr "Değişiklikler Uygulandı"
 
-#: gsecrets/widgets/database_settings_dialog.py:287
+#: gsecrets/widgets/database_settings_dialog.py:289
 msgid "Could not change credentials"
 msgstr "Kimlik bilgileri değiştirilemedi"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:293
+#: gsecrets/widgets/database_settings_dialog.py:295
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Kaydederken Çakışma"
 
-#: gsecrets/widgets/database_settings_dialog.py:294
+#: gsecrets/widgets/database_settings_dialog.py:296
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1467,44 +1516,40 @@ msgstr ""
 "Kasa başka yerden değiştirilmiş. Lütfen kaydederken bu çakışmaları ana "
 "pencereden çözün."
 
-#: gsecrets/widgets/database_settings_dialog.py:296
-msgid "OK"
-msgstr "Tamam"
-
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:358
-#: gsecrets/widgets/database_settings_dialog.py:372
+#: gsecrets/widgets/database_settings_dialog.py:360
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:362
+#: gsecrets/widgets/database_settings_dialog.py:364
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:365
+#: gsecrets/widgets/database_settings_dialog.py:367
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:370
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:376
+#: gsecrets/widgets/database_settings_dialog.py:378
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:379
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:382
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1583,10 +1628,6 @@ msgid ""
 msgstr ""
 "Çöp kutusundaki ögeleri siliyorsunuz, bu silme işlemleri geri alınamaz."
 
-#: gsecrets/widgets/selection_mode_headerbar.py:157
-msgid "Cancel"
-msgstr "İptal"
-
 #: gsecrets/widgets/selection_mode_headerbar.py:158
 msgid "Delete"
 msgstr "Sil"
@@ -1607,35 +1648,26 @@ msgstr "Herhangi dosya türü"
 msgid "Select Safe"
 msgstr "Kasa Seç"
 
-#: gsecrets/widgets/window.py:159
+#: gsecrets/widgets/window.py:160
 msgid "File does not have a valid path"
 msgstr "Dosyanın geçerli bir yolu yok"
 
-#: gsecrets/widgets/window.py:193
+#: gsecrets/widgets/window.py:194
 msgid "Safe is already open"
 msgstr "Kasa zaten açık"
 
-#: gsecrets/widgets/window.py:225
+#: gsecrets/widgets/window.py:226
 msgid "_Create"
 msgstr "_Oluştur"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:248
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Kasa oluşturulamadı: Kasa zaten açık"
 
-#: gsecrets/widgets/window.py:288 gsecrets/widgets/window.py:303
+#: gsecrets/widgets/window.py:290 gsecrets/widgets/window.py:305
 msgid "Could not create new Safe"
 msgstr "Yeni kasa oluşturulamadı"
 
-#: gsecrets/widgets/window.py:370
+#: gsecrets/widgets/window.py:372
 msgid "Could not save safe"
 msgstr "Kasa kaydedilemedi"
-
-#~ msgid "Username not specified"
-#~ msgstr "Kullanıcı adı belirtilmedi"
-
-#~ msgid "Falk Alexander Seidl"
-#~ msgstr "Falk Alexander Seidl"
-
-#~ msgid "Ok"
-#~ msgstr "Tamam"

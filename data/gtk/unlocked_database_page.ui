@@ -3,9 +3,9 @@
   <template class="UnlockedDatabasePage" parent="AdwBin">
     <property name="vexpand">True</property>
     <property name="child">
-      <object class="GtkStack" id="stack">
+      <object class="GtkStack" id="_stack">
         <child>
-          <object class="GtkScrolledWindow" id="scrolled_window">
+          <object class="GtkScrolledWindow" id="_scrolled_window">
             <child>
               <object class="AdwClamp" id="clamp">
                 <property name="margin-top">24</property>
@@ -26,7 +26,7 @@
           </object>
         </child>
         <child>
-          <object class="AdwStatusPage" id="empty_group_box">
+          <object class="AdwStatusPage" id="_empty_group_box">
             <property name="icon_name">folder-symbolic</property>
             <property name="description" translatable="yes">Add elements with the ➕ button</property>
             <property name="title" translatable="yes">Empty Group</property>

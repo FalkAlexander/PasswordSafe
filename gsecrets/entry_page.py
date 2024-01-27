@@ -331,8 +331,8 @@ class EntryPage(Adw.Bin):
         window = self.unlocked_database.window
         entry = self.props.safe_entry
         db_manager = self.unlocked_database.database_manager
-        dialog = AddAttributeDialog(window, db_manager, entry)
-        dialog.present()
+        dialog = AddAttributeDialog(db_manager, entry)
+        dialog.present(window)
 
     #
     # Attachment Handling
@@ -342,7 +342,7 @@ class EntryPage(Adw.Bin):
     def on_attachment_list_box_activated(self, _widget, list_box_row):
         self.unlocked_database.start_database_lock_timer()
         attachment = list_box_row.attachment
-        AttachmentWarningDialog(self, attachment).present()
+        AttachmentWarningDialog(self, attachment).present(self)
 
     def _on_add_attachment(self, _widget, _action_name, _pspec):
         self.unlocked_database.start_database_lock_timer()

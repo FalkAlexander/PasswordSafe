@@ -8,7 +8,7 @@ from gsecrets.const import APP_ID
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/settings_dialog.ui")
-class SettingsDialog(Adw.PreferencesWindow):
+class SettingsDialog(Adw.PreferencesDialog):
     __gtype_name__ = "SettingsDialog"
 
     _clear_button = Gtk.Template.Child()
@@ -19,11 +19,9 @@ class SettingsDialog(Adw.PreferencesWindow):
     _generator_words_spin_row = Gtk.Template.Child()
     _lockdb_spin_row = Gtk.Template.Child()
 
-    def __init__(self, window):
+    def __init__(self):
         super().__init__()
 
-        self.window = window
-        self.props.transient_for = self.window
         self._set_config_values()
 
         delegate = self._generator_separator_entry.get_delegate()

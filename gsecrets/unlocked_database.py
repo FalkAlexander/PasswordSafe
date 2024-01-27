@@ -458,7 +458,7 @@ class UnlockedDatabase(Adw.Bin):
         GLib.timeout_add_seconds(clear_clipboard_time, callback)
 
     def show_database_settings(self) -> None:
-        DatabaseSettingsDialog(self).present()
+        DatabaseSettingsDialog(self).present(self)
 
     def on_session_lock(self, app: Gtk.Application, _pspec: GObject.ParamSpec) -> None:
         if (
@@ -582,7 +582,7 @@ class UnlockedDatabase(Adw.Bin):
         else:
             if conflicts:
                 dialog = SavingConflictDialog(self.window, dbm, on_save_callback)
-                dialog.present()
+                dialog.present(self.window)
             else:
                 self.database_manager.save_async(on_save_callback)
 

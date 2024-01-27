@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="SettingsDialog" parent="AdwPreferencesWindow">
-    <property name="can_navigate_back">True</property>
-    <property name="modal">True</property>
+  <template class="SettingsDialog" parent="AdwPreferencesDialog">
+    <property name="search_enabled">True</property>
     <child>
       <object class="AdwPreferencesPage">
         <property name="icon_name">applications-system-symbolic</property>

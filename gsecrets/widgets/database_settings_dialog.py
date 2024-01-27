@@ -290,13 +290,12 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.add_toast(toast)
         else:
             if conflicts:
-                dialog = Adw.MessageDialog.new(
-                    self,
+                dialog = Adw.AlertDialog.new(
                     _("Conflicts While Saving"),
                     _("The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.")  # pylint: disable=line-too-long # noqa: E501
                 )
                 dialog.add_response("ok", _("OK"))
-                dialog.present()
+                dialog.present(self)
             else:
                 new_password = self.new_password_entry.props.text
                 self.database_manager.set_credentials_async(

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="SaveDialog" parent="AdwMessageDialog">
+  <template class="SaveDialog" parent="AdwAlertDialog">
     <property name="heading" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Unsaved Changes</property>
     <property name="body" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">Do you want to write all changes to the safe?</property>
     <property name="default-response">save</property>

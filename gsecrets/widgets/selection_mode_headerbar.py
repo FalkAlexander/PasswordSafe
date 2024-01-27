@@ -147,8 +147,7 @@ class SelectionModeHeaderbar(Adw.Bin):
             def response_delete_cb(dialog, response):
                 delete_elements()
 
-            dialog = Adw.MessageDialog.new(
-                self.get_root(),
+            dialog = Adw.AlertDialog.new(
                 _("Warning"),
                 _(
                     "You are deleting elements in the trash bin, these deletions cannot be undone."  # pylint: disable=line-too-long # noqa: E501
@@ -158,7 +157,7 @@ class SelectionModeHeaderbar(Adw.Bin):
             dialog.add_response("delete", _("Delete"))
             dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response::delete", response_delete_cb)
-            dialog.present()
+            dialog.present(self)
         else:
             delete_elements()
 

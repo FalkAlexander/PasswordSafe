@@ -8,11 +8,11 @@ from gettext import gettext as _
 from gi.repository import Adw, Gio, GLib, Gtk
 
 
-class SavingConflictDialog(Adw.MessageDialog):
+class SavingConflictDialog(Adw.AlertDialog):
     __gtype_name__ = "SavingConflictDialog"
 
     def __init__(self, window, db_manager, save_callback):
-        super().__init__(transient_for=window)
+        super().__init__()
 
         self.save_callback = save_callback
         self.db_manager = db_manager

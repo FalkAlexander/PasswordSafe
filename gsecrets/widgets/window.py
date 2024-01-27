@@ -430,9 +430,15 @@ class Window(Adw.ApplicationWindow):
         self.add_action(new_database_action)
         new_database_action.connect("activate", self.on_new_database_action)
 
+        def on_visible_dialog_notify(window, _pspec):
+            enabled = window.props.visible_dialog is None
+            go_back_action.set_enabled(enabled)
+
         go_back_action = Gio.SimpleAction.new("go_back", None)
         self.add_action(go_back_action)
         go_back_action.connect("activate", self.on_go_back_action)
+        # NOTE We need to do this to avoid consuming Esc events
+        self.connect("notify::visible-dialog", on_visible_dialog_notify)
 
         open_database_action = Gio.SimpleAction.new(
             "open_database", GLib.VariantType("s")

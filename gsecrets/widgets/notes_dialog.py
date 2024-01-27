@@ -7,7 +7,7 @@ from gi.repository import Adw, GObject, Gtk
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/notes_dialog.ui")
-class NotesDialog(Adw.Window):
+class NotesDialog(Adw.Dialog):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "NotesDialog"
@@ -31,7 +31,6 @@ class NotesDialog(Adw.Window):
         # other themes.
         self.__tag = self.__notes_buffer.create_tag("found", background="yellow")
 
-        self.__setup_widgets()
         self.__setup_signals()
 
     def __setup_signals(self):
@@ -45,10 +44,6 @@ class NotesDialog(Adw.Window):
             "text",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
-
-    def __setup_widgets(self):
-        self.set_modal(True)
-        self.set_transient_for(self.__unlocked_database.window)
 
     #
     # Events

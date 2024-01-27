@@ -226,7 +226,7 @@ class EntryPage(Adw.Bin):
         safe_entry = self.props.safe_entry
 
         window = HistoryWindow(safe_entry, self.unlocked_database)
-        window.present()
+        window.present(self)
 
     def _on_save_in_history_action(self, _widget, _action, _param):
         if not self.unlocked_database.in_edit_page:
@@ -285,7 +285,7 @@ class EntryPage(Adw.Bin):
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         safe_entry = self.props.safe_entry
-        NotesDialog(self.unlocked_database, safe_entry).present()
+        NotesDialog(self.unlocked_database, safe_entry).present(self)
 
     def on_entry_icon_button_toggled(self, flowbox):
         if not flowbox.get_selected_children():

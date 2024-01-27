@@ -58,7 +58,7 @@ class GroupPage(Adw.Bin):
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         safe_group = self.props.safe_group
-        NotesDialog(self.unlocked_database, safe_group).present()
+        NotesDialog(self.unlocked_database, safe_group).present(self)
 
     def _on_safe_group_updated(self, _safe_group: SafeGroup) -> None:
         self.unlocked_database.start_database_lock_timer()

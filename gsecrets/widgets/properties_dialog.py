@@ -8,7 +8,7 @@ from gsecrets.utils import format_time
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/properties_dialog.ui")
-class PropertiesDialog(Adw.Window):
+class PropertiesDialog(Adw.Dialog):
     """Displays a modal dialog with Entry/Group Properties"""
 
     __gtype_name__ = "PropertiesDialog"
@@ -40,8 +40,6 @@ class PropertiesDialog(Adw.Window):
 
     def __setup_widgets(self) -> None:
         self.__update_properties()
-        self.set_modal(True)
-        self.set_transient_for(self.__database.window)
 
     def __on_locked(self, database_manager, _value):
         locked = database_manager.props.locked

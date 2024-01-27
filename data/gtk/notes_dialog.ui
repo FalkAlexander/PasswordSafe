@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="NotesDialog" parent="AdwWindow">
-    <property name="default_width">500</property>
-    <property name="default_height">450</property>
-    <property name="destroy-with-parent">True</property>
+  <template class="NotesDialog" parent="AdwDialog">
+    <property name="content_width">500</property>
+    <property name="content_height">450</property>
     <property name="title" translatable="yes">Notes</property>
     <style>
       <class name="view"/>
     </style>
-    <child>
-      <object class="GtkShortcutController">
-        <child>
-          <object class="GtkShortcut">
-            <property name="trigger">Escape</property>
-            <property name="action">action(window.close)</property>
-          </object>
-        </child>
-      </object>
-    </child>
     <child>
       <object class="AdwToastOverlay" id="_toast_overlay">
         <child>

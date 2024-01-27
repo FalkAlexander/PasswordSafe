@@ -8,7 +8,7 @@ from gsecrets.widgets.history_row import HistoryRow
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/history_window.ui")
-class HistoryWindow(Adw.Window):
+class HistoryWindow(Adw.Dialog):
     __gtype_name__ = "HistoryWindow"
 
     listbox = Gtk.Template.Child()
@@ -19,7 +19,6 @@ class HistoryWindow(Adw.Window):
         self.list_model = Gio.ListStore.new(SafeElement)
         self.safe_entry = safe_entry
         self.unlocked_database = unlocked_database
-        self.set_transient_for(unlocked_database.window)
 
         history = safe_entry.history[::-1]  # Reversed, order by newest first.
         self.list_model.splice(0, 0, history)

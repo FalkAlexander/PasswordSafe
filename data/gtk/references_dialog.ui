@@ -187,21 +187,9 @@
       </item>
     </section>
   </menu>
-  <template class="ReferencesDialog" parent="AdwWindow">
-    <property name="destroy-with-parent">True</property>
+  <template class="ReferencesDialog" parent="AdwDialog">
     <property name="title" translatable="yes">References</property>
-    <property name="default_height">200</property>
     <property name="width_request">300</property>
-    <child>
-      <object class="GtkShortcutController">
-        <child>
-          <object class="GtkShortcut">
-            <property name="trigger">Escape</property>
-            <property name="action">action(window.close)</property>
-          </object>
-        </child>
-      </object>
-    </child>
     <child>
       <object class="AdwToolbarView">
         <child type="top">

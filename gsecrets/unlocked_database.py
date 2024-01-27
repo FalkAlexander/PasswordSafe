@@ -476,13 +476,13 @@ class UnlockedDatabase(Adw.Bin):
         """Show a Group/Entry reference dialog
 
         Invoked by the app.entry.references action"""
-        ReferencesDialog(self).present()
+        ReferencesDialog(self).present(self)
 
     def show_properties_dialog(self) -> None:
         """Show a Group/Entry property dialog
 
         Invoked by the app.element.properties action"""
-        PropertiesDialog(self).present()
+        PropertiesDialog(self).present(self)
 
     #
     # Utils

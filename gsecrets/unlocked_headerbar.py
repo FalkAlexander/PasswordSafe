@@ -11,7 +11,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_headerbar.ui")
 class UnlockedHeaderBar(Adw.Bin):
-
     __gtype_name__ = "UnlockedHeaderBar"
 
     _pathbar_bin = Gtk.Template.Child()

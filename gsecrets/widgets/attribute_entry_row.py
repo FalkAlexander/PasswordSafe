@@ -11,7 +11,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attribute_entry_row.ui")
 class AttributeEntryRow(Adw.EntryRow):
-
     __gtype_name__ = "AttributeEntryRow"
 
     def __init__(self, entry: SafeEntry, key: str, value: str) -> None:

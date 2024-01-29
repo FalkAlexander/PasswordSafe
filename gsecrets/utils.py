@@ -42,13 +42,7 @@ def generate_keyfile_sync(gfile: Gio.File) -> str:
     keyfile_hash = GLib.compute_checksum_for_data(GLib.ChecksumType.SHA1, contents)
 
     flags = Gio.FileCreateFlags.REPLACE_DESTINATION | Gio.FileCreateFlags.PRIVATE
-    gfile.replace_contents(
-        contents,
-        None,
-        False,
-        flags,
-        None,
-    )
+    gfile.replace_contents(contents, None, False, flags, None)
     # Sets the file as read-only
     os.chmod(gfile.get_path(), stat.S_IREAD)
 
@@ -70,6 +64,18 @@ def generate_keyfile_async(gfile: Gio.File, callback: Gio.AsyncReadyCallback) ->
 
 def generate_keyfile_finish(result: Gio.AsyncResult) -> Tuple[bool, str]:
     return result.propagate_value()
+
+
+def compare_passwords(pass1: str | None, pass2: str | None) -> bool:
+    if pass1 is not None and pass2 is not None:
+        return secrets.compare_digest(
+            bytes(pass1, 'utf-8'), bytes(pass2, 'utf-8')
+        )
+
+    if pass1 is None and pass2 is None:
+        return True
+
+    return False
 
 
 class KeyFileFilter:

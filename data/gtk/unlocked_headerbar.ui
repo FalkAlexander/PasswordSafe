@@ -121,6 +121,7 @@
     <child type="menu_buttons">
       <object class="GtkBox">
         <property name="spacing">6</property>
+        <property name="homogeneous">True</property>
         <child>
           <object class="GtkButton">
             <property name="action_name">win.db.save_dirty</property>

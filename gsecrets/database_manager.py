@@ -1,15 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+import io
 import json
 import logging
 from pathlib import Path
 
-from gi.repository import Gio, GLib, GObject
+from gi.repository import Gio, GLib, GObject, Gtk
 from pykeepass import PyKeePass
 
 import gsecrets.config_manager as config
 from gsecrets.safe_element import SafeEntry, SafeGroup
+from gsecrets.utils import compare_passwords
 
 QUARK = GLib.quark_from_string("secrets")
 
@@ -44,8 +46,7 @@ class DatabaseManager(GObject.Object):
     # Only used for setting the credentials to their actual values in case of
     # errors.
     old_password: str = ""
-    old_keyfile: str = ""
-    old_keyfile_hash: str = ""
+    composition_key: bytes | None = None
 
     trash_bin: SafeGroup | None = None
     root: SafeGroup | None = None
@@ -69,13 +70,11 @@ class DatabaseManager(GObject.Object):
         self._key_providers = key_providers
         self._path = database_path
         self.db: PyKeePass = None
-        self.keyfile_hash: str = ""
 
     def unlock_async(
         self,
         password: str,
-        keyfile: str = "",
-        keyfile_hash: str = "",
+        composition_key: bytes | None = None,
         callback: Gio.AsyncReadyCallback = None,
     ) -> None:
         """Unlocks and opens a safe.
@@ -84,8 +83,7 @@ class DatabaseManager(GObject.Object):
         be opened, an exception is raised.
 
         :param str password: password to use or an empty string
-        :param str keyfile: keyfile path to use or an empty string
-        :param str keyfile_hash: keyfile_hash to set
+        :param str composition_key: composition_key as bytes
         :param GAsyncReadyCallback: callback run after the unlock operation ends
         """
         self._opened = False
@@ -100,12 +98,16 @@ class DatabaseManager(GObject.Object):
                 return
 
             try:
-                db = PyKeePass(self.path, password, keyfile)
+                db = PyKeePass(
+                    self.path,
+                    password,
+                    io.BytesIO(composition_key) if composition_key else "",
+                )
             except Exception as err:  # pylint: disable=broad-except
                 err = GLib.Error.new_literal(QUARK, str(err), 1)
                 task.return_error(err)
             else:
-                self.keyfile_hash = keyfile_hash
+                self.composition_key = composition_key
                 self._update_file_monitor()
                 task.return_value(db)
 
@@ -184,8 +186,11 @@ class DatabaseManager(GObject.Object):
         return is_saved
 
     def set_credentials_async(
-        self, password, keyfile="", keyfile_hash="", callback=None
-    ):
+        self,
+        password: str,
+        composition_key: bytes | None = None,
+        callback: Gio.AsyncReadyCallback = None,
+    ) -> None:
         """Sets credentials for safe
 
         It does almost the same as save_async, with the difference that
@@ -197,11 +202,13 @@ class DatabaseManager(GObject.Object):
             self.old_password = self.password
             self.password = password
 
-            self.old_keyfile = self.keyfile
-            self.keyfile = keyfile
+            self.composition_key = composition_key
+            if composition_key:
+                self.db.keyfile = io.BytesIO(composition_key)
+            else:
+                self.db.keyfile = ""
 
-            self.old_keyfile_hash = self.keyfile_hash
-            self.keyfile_hash = keyfile_hash
+            self.is_dirty = True
 
             self._save_task(task, obj, data, cancellable)
 
@@ -214,8 +221,6 @@ class DatabaseManager(GObject.Object):
             is_saved = result.propagate_boolean()
         except GLib.Error as err:
             self.password = self.old_password
-            self.keyfile = self.old_keyfile
-            self.keyfile_hash = self.old_keyfile_hash
 
             raise err
 
@@ -226,21 +231,14 @@ class DatabaseManager(GObject.Object):
         return is_saved
 
     def add_to_history(self) -> None:
-        # Add database uri to history.
         uri = Gio.File.new_for_path(self._path).get_uri()
-        uri_list = config.get_last_opened_list()
 
-        if uri in uri_list:
-            uri_list.sort(key=uri.__eq__)
-        else:
-            uri_list.append(uri)
-
-        config.set_last_opened_list(uri_list)
+        recents = Gtk.RecentManager.get_default()
+        recents.add_item(uri)
 
         # Set last opened database.
         config.set_last_opened_database(uri)
 
-        # Add keyfile path to history.
         if not config.get_remember_composite_key():
             return
 
@@ -310,18 +308,8 @@ class DatabaseManager(GObject.Object):
 
     @password.setter
     def password(self, new_password: str | None) -> None:
-        """Set database password (None if a keyfile is used)"""
+        """Set database password (None if a old_composition key is used)"""
         self.db.password = new_password
-        self.is_dirty = True
-
-    @property
-    def keyfile(self) -> str:
-        """Get the current keyfile or None if it is not set."""
-        return self.db.keyfile
-
-    @keyfile.setter
-    def keyfile(self, new_keyfile: str | None) -> None:
-        self.db.keyfile = new_keyfile
         self.is_dirty = True
 
     #
@@ -331,7 +319,11 @@ class DatabaseManager(GObject.Object):
     # Check if entry with title in group exists
     def check_entry_in_group_exists(self, title, group):
         entry = self.db.find_entries(
-            title=title, group=group, recursive=False, history=False, first=True
+            title=title,
+            group=group,
+            recursive=False,
+            history=False,
+            first=True,
         )
         if entry is None:
             return False
@@ -351,9 +343,7 @@ class DatabaseManager(GObject.Object):
         It also does not allow empty passwords.
         :returns: True if passwords match and are non-empty.
         """
-        if password2 and self.password_try == password2:
-            return True
-        return False
+        return compare_passwords(self.password_try, password2)
 
     def parent_checker(self, current_group, moved_group):
         """Returns True if moved_group is an ancestor of current_group"""

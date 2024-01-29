@@ -362,7 +362,8 @@ class EntryPage(Adw.Bin):
         try:
             files = dialog.open_multiple_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not open files: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not open files: %s", err.message)
         else:
             safe_entry: SafeEntry = self.props.safe_entry
 
@@ -422,11 +423,9 @@ class EntryPage(Adw.Bin):
 
         if not otp_token and safe_entry.props.otp:
             self.otp_error_revealer.reveal(True)
-            self.otp_token_row.props.visible = False
             self.otp_secret_entry_row.add_css_class("error")
         else:
             self.otp_error_revealer.reveal(False)
-            self.otp_token_row.props.visible = True
             self.otp_secret_entry_row.remove_css_class("error")
 
         return GLib.SOURCE_CONTINUE

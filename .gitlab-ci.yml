@@ -61,7 +61,7 @@ mypy:
 pylint:
   stage: check
   script:
-    - dnf install -y libadwaita-devel gtk4-devel python3-gobject-devel python3-pyotp python3-zxcvbn python3-validators git pip
+    - dnf install -y libadwaita-devel gtk4-devel python3-gobject-devel python3-pyotp python3-zxcvbn python3-validators git pip python3-yubico
     - pip install git+https://github.com/libkeepass/pykeepass pylint
     - mv gsecrets/const.py.in gsecrets/const.py  # We need a dummy file
     - pylint --rcfile=.pylintrc gsecrets

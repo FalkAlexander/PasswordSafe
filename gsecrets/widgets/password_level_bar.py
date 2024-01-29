@@ -7,7 +7,6 @@ from gsecrets.password_generator import strength_async
 
 
 class PasswordLevelBar(Adw.Bin):
-
     __gtype_name__ = "PasswordLevelBar"
 
     _password: str = ""

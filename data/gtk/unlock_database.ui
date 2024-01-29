@@ -7,51 +7,59 @@
           <object class="LockedHeaderBar" id="headerbar"/>
         </child>
         <property name="content">
-          <object class="AdwStatusPage" id="status_page">
-            <property name="icon_name">org.gnome.World.Secrets</property>
-            <property name="title" translatable="yes">Unlock Safe</property>
-            <property name="vexpand">True</property>
-            <property name="child">
-              <object class="AdwClamp">
-                <property name="maximum_size">400</property>
-                <property name="tightening_threshold">350</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">12</property>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwBanner" id="banner"/>
+            </child>
+            <child>
+              <object class="AdwStatusPage" id="status_page">
+                <property name="icon_name">org.gnome.World.Secrets</property>
+                <property name="title" translatable="yes">Unlock Safe</property>
+                <property name="vexpand">True</property>
+                <style>
+                  <class name="icon-dropshadow"/>
+                </style>
+                <property name="child">
+                  <object class="AdwClamp">
+                    <property name="maximum_size">400</property>
+                    <property name="tightening_threshold">350</property>
                     <child>
-                      <object class="AdwPreferencesGroup" id="key_group">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">12</property>
                         <child>
-                          <object class="AdwPasswordEntryRow" id="password_entry">
-                            <property name="title" translatable="yes">Password</property>
-                            <property name="activates-default">True</property>
+                          <object class="AdwPreferencesGroup" id="key_group">
+                            <child>
+                              <object class="AdwPasswordEntryRow" id="password_entry">
+                                <property name="title" translatable="yes">Password</property>
+                                <property name="activates-default">True</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwPreferencesGroup" id="provider_group">
+                            <property name="title" translatable="yes">Additional Credentials</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="unlock_button">
+                            <property name="halign">center</property>
+                            <property name="label" translatable="yes">Unlock</property>
+                            <signal name="clicked" handler="_on_unlock_button_clicked" swapped="no"/>
+                            <style>
+                              <class name="suggested-action"/>
+                              <class name="pill"/>
+                            </style>
                           </object>
                         </child>
                       </object>
                     </child>
-                    <child>
-                      <object class="AdwPreferencesGroup" id="provider_group">
-                        <property name="title" translatable="yes">Additional Credentials</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="unlock_button">
-                        <property name="halign">center</property>
-                        <property name="label" translatable="yes">Unlock</property>
-                        <signal name="clicked" handler="_on_unlock_button_clicked" swapped="no"/>
-                        <style>
-                          <class name="suggested-action"/>
-                          <class name="pill"/>
-                        </style>
-                      </object>
-                    </child>
                   </object>
-                </child>
+                </property>
               </object>
-            </property>
-            <style>
-              <class name="icon-dropshadow"/>
-            </style>
+            </child>
           </object>
         </property>
       </object>

@@ -14,7 +14,6 @@ from gsecrets.password_generator import generate as generate_pwd
     resource_path="/org/gnome/World/Secrets/gtk/password_generator_popover.ui"
 )
 class PasswordGeneratorPopover(Gtk.Popover):
-
     __gtype_name__ = "PasswordGeneratorPopover"
 
     _digit_spin_row = Gtk.Template.Child()

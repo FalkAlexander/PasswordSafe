@@ -89,7 +89,8 @@ if appstreamcli.found()
   test (
     'Validate metainfo file',
     appstreamcli,
-    args: ['validate', '--no-net', '--explain', metainfo]
+    args: ['validate', '--no-net', '--explain', metainfo],
+    workdir: meson.current_build_dir()
   )
 endif
 

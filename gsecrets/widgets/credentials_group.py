@@ -41,6 +41,10 @@ class CredentialsGroup(Adw.PreferencesGroup):
         self._safe_entry = entry
         self._password_entry_row.props.text = entry.props.password
 
+        self._password_entry_row.get_delegate().connect(
+            "notify::visibility", self._on_password_visibility_changed,
+        )
+
         entry.bind_property(
             "username",
             self._username_entry_row,
@@ -106,3 +110,9 @@ class CredentialsGroup(Adw.PreferencesGroup):
                 password,
                 _("Password copied"),
             )
+
+    def _on_password_visibility_changed(self, _widget, _value):
+        if self._password_entry_row.get_delegate().get_visibility():
+            self._password_entry_row.add_css_class("monospace")
+        else:
+            self._password_entry_row.remove_css_class("monospace")

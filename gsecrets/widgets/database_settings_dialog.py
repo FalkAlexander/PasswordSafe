@@ -10,7 +10,12 @@ from pathlib import Path
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets.utils import KeyFileFilter
-from gsecrets.utils import format_time, generate_keyfile_async, generate_keyfile_finish
+from gsecrets.utils import (
+    compare_passwords,
+    format_time,
+    generate_keyfile_async,
+    generate_keyfile_finish,
+)
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/database_settings_dialog.ui")
@@ -105,13 +110,16 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         current_hash = self.current_keyfile_hash
         current_password = self.current_password_entry.get_text()
 
-        return database_hash == current_hash and database_password == current_password
+        passwords_match = compare_passwords(database_password, current_password)
+        hashes_match = database_hash == current_hash
+
+        return hashes_match and passwords_match
 
     def passwords_coincide(self) -> bool:
         new_password = self.new_password_entry.get_text()
         repeat_password = self.confirm_password_entry.get_text()
 
-        return repeat_password == new_password and new_password
+        return compare_passwords(new_password, repeat_password)
 
     @Gtk.Template.Callback()
     def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
@@ -141,7 +149,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         try:
             keyfile = dialog.open_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not open file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not open file: %s", err.message)
         else:
             keyfile.load_bytes_async(None, self.load_bytes_callback)
 
@@ -205,7 +214,8 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
         try:
             keyfile = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not save file: %s", err.message)
         else:
             spinner = Gtk.Spinner()
             spinner.start()
@@ -285,7 +295,7 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
                     _("Conflicts While Saving"),
                     _("The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.")  # pylint: disable=line-too-long # noqa: E501
                 )
-                dialog.add_response("ok", _("Ok"))
+                dialog.add_response("ok", _("OK"))
                 dialog.present()
             else:
                 new_password = self.new_password_entry.props.text

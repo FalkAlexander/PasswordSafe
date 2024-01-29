@@ -12,6 +12,7 @@ import gsecrets.config_manager
 from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.unlocked_database import UnlockedDatabase
+from gsecrets.utils import compare_passwords
 
 if typing.TYPE_CHECKING:
     from gsecrets.widgets.window import Window
@@ -31,6 +32,7 @@ class UnlockDatabase(Adw.Bin):
     status_page = Gtk.Template.Child()
     headerbar = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
+    banner = Gtk.Template.Child()
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
         super().__init__()
@@ -40,8 +42,7 @@ class UnlockDatabase(Adw.Bin):
         filepath = database_file.get_path()
 
         self.window = window
-        self.keyfile = None
-        self.keyfile_hash = None
+        self.composition_key = None
 
         # Reset headerbar to initial state if it already exists.
         self.headerbar.title.props.title = database_file.get_basename()
@@ -86,17 +87,17 @@ class UnlockDatabase(Adw.Bin):
         return is_open and not is_current
 
     def _on_generated_composite_key(self, providers, result):
+        self.unlock_button.set_sensitive(True)
+
         try:
-            data = providers.generate_composite_key_finish(result)
-            composite_key = data[0]
-            self.keyfile = data[1]
-            self.keyfile_hash = data[2]
+            self.composition_key = providers.generate_composite_key_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not generate composite key: %s", err.message)
+            logging.error("Could not generate composite key: %s", err.message)
+            self.window.send_notification(_("Failed to generate composite key"))
             return
 
         entered_pwd = self.password_entry.get_text()
-        if not (entered_pwd or composite_key):
+        if not (entered_pwd or self.composition_key):
             return
 
         if self.is_safe_open_elsewhere():
@@ -111,8 +112,8 @@ class UnlockDatabase(Adw.Bin):
             return
 
         if (
-            entered_pwd == self.database_manager.password
-            and self.database_manager.keyfile_hash == self.keyfile_hash
+            compare_passwords(entered_pwd, self.database_manager.password)
+            and self.database_manager.composition_key == self.composition_key
         ):
             self.database_manager.props.locked = False
             self.database_manager.add_to_history()
@@ -120,7 +121,11 @@ class UnlockDatabase(Adw.Bin):
             self._unlock_failed()
 
     @Gtk.Template.Callback()
-    def _on_unlock_button_clicked(self, _widget):
+    def _on_unlock_button_clicked(self, widget: Gtk.Button) -> None:
+        if not self.database_manager:
+            return
+
+        widget.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
             self.database_manager.get_salt(),
             self._on_generated_composite_key)
@@ -139,8 +144,7 @@ class UnlockDatabase(Adw.Bin):
 
         self.database_manager.unlock_async(
             password,
-            self.keyfile,
-            self.keyfile_hash,
+            self.composition_key,
             self._unlock_callback,
         )
 
@@ -187,8 +191,6 @@ class UnlockDatabase(Adw.Bin):
         self.unlock_button.props.label = _("Unlock")
 
     def _reset_page(self):
-        self.keyfile_hash = None
-
         self.password_entry.set_text("")
         self.password_entry.remove_css_class("error")
 
@@ -232,3 +234,10 @@ class UnlockDatabase(Adw.Bin):
             None,
             callback,
         )
+
+    def show_banner(self, label: str) -> None:
+        self.banner.set_title(label)
+        self.banner.set_revealed(True)
+
+    def close_banner(self):
+        self.banner.set_revealed(False)

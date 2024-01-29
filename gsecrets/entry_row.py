@@ -15,12 +15,14 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_row.ui")
 class EntryRow(Adw.ActionRow):
-
     __gtype_name__ = "EntryRow"
 
     _checkbox_revealer = Gtk.Template.Child()
     _entry_icon = Gtk.Template.Child()
     selection_checkbox = Gtk.Template.Child()
+    _entry_copy_user_button = Gtk.Template.Child()
+    _entry_copy_pass_button = Gtk.Template.Child()
+    _entry_copy_otp_button = Gtk.Template.Child()
 
     _safe_entry = None
 
@@ -31,7 +33,10 @@ class EntryRow(Adw.ActionRow):
         self._bindings = GObject.BindingGroup.new()
 
         self._bindings.bind(
-            "icon-name", self._entry_icon, "icon-name", GObject.BindingFlags.SYNC_CREATE
+            "icon-name",
+            self._entry_icon,
+            "icon-name",
+            GObject.BindingFlags.SYNC_CREATE,
         )
 
         self._signals.connect_closure(
@@ -39,6 +44,12 @@ class EntryRow(Adw.ActionRow):
         )
         self._signals.connect_closure(
             "notify::username", self._on_entry_username_changed, False
+        )
+        self._signals.connect_closure(
+            "notify::password", self._on_entry_password_changed, False
+        )
+        self._signals.connect_closure(
+            "notify::otp", self._on_entry_opt_token_changed, False
         )
         self._signals.connect_closure(
             "notify::color", self._on_entry_color_changed, False
@@ -71,6 +82,8 @@ class EntryRow(Adw.ActionRow):
 
         self._on_entry_name_changed(element, None)
         self._on_entry_username_changed(element, None)
+        self._on_entry_password_changed(element, None)
+        self._on_entry_opt_token_changed(element, None)
         self._on_entry_color_changed(element, None)
         self._on_entry_notify_expired(element, None)
 
@@ -123,6 +136,13 @@ class EntryRow(Adw.ActionRow):
             _("Username copied"),
         )
 
+    @Gtk.Template.Callback()
+    def on_entry_copy_otp_button_clicked(self, _button):
+        if token := self._safe_entry.otp_token():
+            self.unlocked_database.send_to_clipboard(
+                token, _("One-Time Password copied"),
+            )
+
     def _on_entry_name_changed(
         self, safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
@@ -138,12 +158,23 @@ class EntryRow(Adw.ActionRow):
         self, safe_entry: SafeEntry, _value: GObject.ParamSpec
     ) -> None:
         entry_username = GLib.markup_escape_text(safe_entry.props.username)
-        if entry_username:
-            self.remove_css_class("italic-subtitle")
-            self.props.subtitle = entry_username
+        self.props.subtitle = entry_username
+        self._entry_copy_user_button.set_visible(bool(entry_username))
+
+    def _on_entry_password_changed(
+        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+    ) -> None:
+        entry_password = GLib.markup_escape_text(safe_entry.props.password)
+        self._entry_copy_pass_button.set_visible(bool(entry_password))
+
+    def _on_entry_opt_token_changed(
+        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+    ) -> None:
+        entry_otp_token = safe_entry.otp_token()
+        if entry_otp_token:
+            self._entry_copy_otp_button.props.visible = True
         else:
-            self.add_css_class("italic-subtitle")
-            self.props.subtitle = _("Username not specified")
+            self._entry_copy_otp_button.props.visible = False
 
     def _on_entry_color_changed(
         self, safe_entry: SafeEntry, _value: GObject.ParamSpec

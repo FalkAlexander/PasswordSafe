@@ -18,7 +18,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/selection_mode_headerbar.ui")
 class SelectionModeHeaderbar(Adw.Bin):
-
     __gtype_name__ = "SelectionModeHeaderbar"
 
     unlocked_database = NotImplemented

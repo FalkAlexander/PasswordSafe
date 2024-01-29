@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gi.repository import Adw, Gio, Gtk
+import logging
+
+from gi.repository import Adw, Gio, GLib, Gtk
 
 import gsecrets.config_manager as config
 from gsecrets.const import APP_ID
@@ -7,7 +9,6 @@ from gsecrets.const import APP_ID
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/settings_dialog.ui")
 class SettingsDialog(Adw.PreferencesWindow):
-
     __gtype_name__ = "SettingsDialog"
 
     _clear_button = Gtk.Template.Child()
@@ -91,7 +92,9 @@ class SettingsDialog(Adw.PreferencesWindow):
         )
 
         self._clear_button.connect("clicked", self._on_settings_clear_recents_clicked)
-        if not config.get_last_opened_list():
+
+        recents = Gtk.RecentManager.get_default()
+        if not recents.get_items():
             self._clear_button.props.sensitive = False
 
         # Unlock
@@ -111,7 +114,13 @@ class SettingsDialog(Adw.PreferencesWindow):
             config.set_last_used_key_provider({})
 
     def _on_settings_clear_recents_clicked(self, widget):
-        config.set_last_opened_list([])
-        config.set_last_opened_database("")
-
-        widget.set_sensitive(False)
+        recents = Gtk.RecentManager.get_default()
+        try:
+            recents.purge_items()
+        except GLib.Error as err:
+            logging.error(
+                "Failed to purge items for recent manager: %s", err.message
+            )
+        else:
+            config.set_last_opened_database("")
+            widget.set_sensitive(False)

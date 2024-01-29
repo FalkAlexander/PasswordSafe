@@ -51,6 +51,17 @@
         <property name="valign">center</property>
         <property name="spacing">6</property>
         <child>
+          <object class="GtkButton" id="_entry_copy_otp_button">
+            <property name="tooltip_text" translatable="yes">Copy One-Time Password</property>
+            <property name="icon_name">clock-alt-symbolic</property>
+            <property name="visible">False</property>
+            <signal name="clicked" handler="on_entry_copy_otp_button_clicked" swapped="no"/>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+        <child>
           <object class="GtkButton" id="_entry_copy_user_button">
             <property name="tooltip_text" translatable="yes">Copy Username</property>
             <property name="icon_name">avatar-default-symbolic</property>

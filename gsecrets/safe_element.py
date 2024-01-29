@@ -13,7 +13,7 @@ from typing import NamedTuple
 from uuid import UUID
 
 from gi.repository import GLib, GObject, Gio, Gtk
-from pyotp import OTP, TOTP, parse_uri
+from pyotp import TOTP, parse_uri
 
 from gsecrets.attributes_model import AttributesModel
 
@@ -56,7 +56,6 @@ class EntryColor(Enum):
 
 
 class SafeElement(GObject.Object):
-
     sorted_handler_id: int | None = None
 
     def __init__(self, db_manager: DatabaseManager, element: Entry | Group):
@@ -223,6 +222,15 @@ class SafeElement(GObject.Object):
                 self._element.title = new_name
                 self._db_manager.emit("sorting_changed", True)
 
+            if self.is_entry:
+                found, pos = self._db_manager.entries.find(self)
+                if found:
+                    self._db_manager.entries.items_changed(pos, 1, 1)
+            else:
+                found, pos = self._db_manager.groups.find(self)
+                if found:
+                    self._db_manager.groups.items_changed(pos, 1, 1)
+
             self.updated()
 
     @GObject.Property(type=str, default="")
@@ -357,7 +365,6 @@ class SafeElement(GObject.Object):
 
 
 class SafeGroup(SafeElement):
-
     _entries = None
     _entries_filter = None
     _subgroups = None
@@ -493,7 +500,7 @@ class SafeEntry(SafeElement):
     _color_key = "color_prop_LcljUMJZ9X"
     _expired_id: int | None = None
     _note_key = "Notes"
-    _otp: OTP | None = None
+    _otp: TOTP | None = None
     _otp_key = "otp"
 
     history_saved = GObject.Signal()
@@ -536,7 +543,7 @@ class SafeEntry(SafeElement):
         if otp_uri := entry.otp:
             try:
                 if otp_uri.startswith("otpauth://"):
-                    self._otp = parse_uri(otp_uri)
+                    self._otp = parse_uri(otp_uri)  # type: ignore
                 else:
                     self._otp = TOTP(otp_uri)
             except ValueError as err:
@@ -575,6 +582,8 @@ class SafeEntry(SafeElement):
             force_creation=True,
         )
         clone_entry.expires = entry.expires
+        if entry.otp:
+            clone_entry.otp = entry.otp
 
         # Add custom properties
         for key in entry.custom_properties:
@@ -696,8 +705,15 @@ class SafeEntry(SafeElement):
         if self.props.attributes.get(key) == value:
             return
 
-        self._entry.set_custom_property(key, value, protect=protected)
         self._attributes.insert(key, value)
+
+        if (
+            self._entry.get_custom_property(key) == value
+            and protected == self._entry.is_custom_property_protected(key)
+        ):
+            return
+
+        self._entry.set_custom_property(key, value, protect=protected)
         self.updated()
         self.notify("attributes")
 
@@ -829,15 +845,17 @@ class SafeEntry(SafeElement):
 
         return None
 
-    def otp_token(self):  # pylint: disable=inconsistent-return-statements
+    def otp_token(self) -> str | None:
         if self._otp:
-            try:  # pylint: disable=inconsistent-return-statements
+            try:
                 return self._otp.now()
             except binascii.Error:
                 logging.debug(
                     "Error caught in OTP token generation (likely invalid "
                     "base32 secret)."
                 )
+
+        return None
 
     @GObject.Property(type=str, default="")
     def password(self) -> str:

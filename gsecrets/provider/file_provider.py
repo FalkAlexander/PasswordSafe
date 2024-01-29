@@ -40,7 +40,7 @@ class FileProvider(BaseProvider):
         button.add_css_class("flat")
         button.set_icon_name("folder-open-symbolic")
         button.set_tooltip_text(_("Select Keyfile"))
-        button.connect('clicked', self._on_keyfile_button_clicked)
+        button.connect("clicked", self._on_keyfile_button_clicked)
         self.unlock_row.add_suffix(button)
 
         self.unlock_clear_button = Gtk.Button()
@@ -49,14 +49,14 @@ class FileProvider(BaseProvider):
         self.unlock_clear_button.add_css_class("flat")
         self.unlock_clear_button.set_icon_name("edit-delete-symbolic")
         self.unlock_clear_button.set_tooltip_text(_("Clear Keyfile"))
-        self.unlock_clear_button.connect('clicked', self._on_unlock_clear_keyfile)
+        self.unlock_clear_button.connect("clicked", self._on_unlock_clear_keyfile)
         self.unlock_row.add_suffix(self.unlock_clear_button)
 
-        pairs = config.get_provider_config(database_manager.path, 'FileProvider')
+        pairs = config.get_provider_config(database_manager.path, "FileProvider")
 
         self._set_keyfile(None)
-        if pairs and pairs['url'] is not None:
-            keyfile = Gio.File.new_for_path(pairs['url'])
+        if pairs and pairs["url"] is not None:
+            keyfile = Gio.File.new_for_path(pairs["url"])
             if keyfile.query_exists():
                 self._set_keyfile(keyfile)
 
@@ -85,7 +85,8 @@ class FileProvider(BaseProvider):
         try:
             keyfile = dialog.open_finish(result)
         except GLib.Error as err:
-            logging.error("Could not open file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.error("Could not open file: %s", err.message)
         else:
             self._set_keyfile(keyfile)
 
@@ -106,9 +107,7 @@ class FileProvider(BaseProvider):
             logging.error("Could not set keyfile hash: %s", err.message)
             self.window.send_notification(_("Could not load keyfile"))
         else:
-            keyfile_hash = GLib.compute_checksum_for_bytes(
-                GLib.ChecksumType.SHA1, key
-            )
+            keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, key)
             self.raw_key = key.get_data()
             file_path = keyfile.get_path()
             basename = keyfile.get_basename()
@@ -168,7 +167,8 @@ class FileProvider(BaseProvider):
         try:
             keyfile = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.error("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.error("Could not save file: %s", err.message)
         else:
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
@@ -212,3 +212,9 @@ class FileProvider(BaseProvider):
 
     def clear_input_fields(self):
         self._on_create_clear_keyfile(None)
+
+    def generate_key(self, _salt: bytes) -> bool:
+        if self.raw_key:
+            return True
+
+        return False

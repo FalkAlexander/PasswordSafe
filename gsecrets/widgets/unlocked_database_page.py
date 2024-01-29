@@ -15,13 +15,12 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database_page.ui")
 class UnlockedDatabasePage(Adw.Bin):
-
     __gtype_name__ = "UnlockedDatabasePage"
 
-    empty_group_box = Gtk.Template.Child()
+    _empty_group_box = Gtk.Template.Child()
     list_box = Gtk.Template.Child()
-    scrolled_window = Gtk.Template.Child()
-    stack = Gtk.Template.Child()
+    _scrolled_window = Gtk.Template.Child()
+    _stack = Gtk.Template.Child()
 
     def __init__(self, unlocked_database, group):
         super().__init__()
@@ -55,7 +54,7 @@ class UnlockedDatabasePage(Adw.Bin):
             self.on_listbox_n_items_changed,
         )
         if not self.list_model.get_item(0):
-            self.stack.set_visible_child(self.empty_group_box)
+            self._stack.set_visible_child(self._empty_group_box)
 
         unlocked_database.database_manager.connect(
             "sorting_changed", self._on_sorting_changed
@@ -87,9 +86,9 @@ class UnlockedDatabasePage(Adw.Bin):
 
     def on_listbox_n_items_changed(self, listmodel, _pspec,):
         if not listmodel.get_n_items():
-            self.stack.set_visible_child(self.empty_group_box)
+            self._stack.set_visible_child(self._empty_group_box)
         else:
-            self.stack.set_visible_child(self.scrolled_window)
+            self._stack.set_visible_child(self._scrolled_window)
 
     def _on_clear_selection(self, _header: SelectionModeHeaderbar) -> None:
         for row in self.list_box:  # pylint: disable=not-an-iterable

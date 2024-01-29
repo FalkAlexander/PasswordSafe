@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-05 06:20+0000\n"
-"PO-Revision-Date: 2023-10-08 16:38+0200\n"
+"POT-Creation-Date: 2024-01-15 10:26+0000\n"
+"PO-Revision-Date: 2024-01-18 08:24+0100\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -109,7 +109,7 @@ msgstr "Barva"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:224
 msgid "Create Safe"
 msgstr "Ustvari sef"
 
@@ -122,117 +122,47 @@ msgstr "Nazaj"
 msgid "Main Menu"
 msgstr "Glavni meni"
 
-#: data/gtk/create_database.ui:38
+#: data/gtk/create_database.ui:44
 msgid "Protect your safe"
 msgstr "Zaščitite svoj sef"
 
-#: data/gtk/create_database.ui:47 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Geslo"
 
-#: data/gtk/create_database.ui:48
-msgid "Use a password to secure your safe."
-msgstr "Z geslom zavarujte sef."
+#: data/gtk/create_database.ui:64
+msgid "_Confirm Password"
+msgstr "P_otrdi geslo"
 
-#: data/gtk/create_database.ui:56
-msgid "_Keyfile"
-msgstr "Datoteka _ključa"
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
+msgid "Additional Credentials"
+msgstr "Dodatne poverilnice"
 
-#: data/gtk/create_database.ui:57
-msgid "Use a keyfile to secure your safe."
-msgstr "Uporabite datoteko ključa za zavarovanje sefa."
+#: data/gtk/create_database.ui:90
+msgid "Create"
+msgstr "Ustvari"
 
-#: data/gtk/create_database.ui:65
-msgid "_Composite"
-msgstr "_Sestavljeno"
-
-#: data/gtk/create_database.ui:66
-msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr "Zavarujte sef z geslom v kombinaciji z datoteko ključa."
-
-#: data/gtk/create_database.ui:86 data/gtk/create_database.ui:200
-msgid "Enter Password"
-msgstr "Vpis gesla"
-
-#: data/gtk/create_database.ui:87
-msgid "Set password for safe."
-msgstr "Nastavite geslo za sef."
-
-#: data/gtk/create_database.ui:109 data/gtk/credentials_group.ui:43
-#: data/gtk/database_settings_dialog.ui:23
-msgid "Generate New Password"
-msgstr "Ustvari novo geslo"
-
-#: data/gtk/create_database.ui:122
-msgid "Next"
-msgstr "Naprej"
-
-#: data/gtk/create_database.ui:148
-msgid "Password Match Check"
-msgstr "Preverjanje ujemanja gesla"
-
-#: data/gtk/create_database.ui:149
-msgid "Repeat password for safe."
-msgstr "Ponovite geslo za sef."
-
-#: data/gtk/create_database.ui:166
-msgid "Check"
-msgstr "Preveri"
-
-#: data/gtk/create_database.ui:185
-msgid "Match Check Failed"
-msgstr "Preverjanje ujemanja je spodletelo"
-
-#: data/gtk/create_database.ui:186
-msgid "Please try again."
-msgstr "Poskusite znova."
-
-#: data/gtk/create_database.ui:210
-msgid "Repeat Password"
-msgstr "Ponovitev gesla"
-
-#: data/gtk/create_database.ui:221 gsecrets/create_database.py:256
-msgid "_Confirm"
-msgstr "_Potrdi"
-
-#. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:242 gsecrets/create_database.py:180
-#: gsecrets/widgets/database_settings_dialog.py:194
-msgid "Generate Keyfile"
-msgstr "Ustvari datoteko ključa"
-
-#: data/gtk/create_database.ui:243
-msgid "Set keyfile for safe"
-msgstr "Nastavite datoteko ključa za sef"
-
-#. Button to generate a password
-#: data/gtk/create_database.ui:246 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:181
-#: gsecrets/widgets/database_settings_dialog.py:195
-msgid "_Generate"
-msgstr "_Ustvari"
-
-#: data/gtk/create_database.ui:266
+#: data/gtk/create_database.ui:113
 msgid "Safe Successfully Created"
 msgstr "Sef uspešno ustvarjen"
 
-#: data/gtk/create_database.ui:269
+#: data/gtk/create_database.ui:116
 msgid "_Open Safe"
 msgstr "_Odpri sef"
 
-#: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
 #: data/gtk/unlocked_headerbar.ui:94
 msgid "_Preferences"
 msgstr "_Možnosti"
 
-#: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
 #: data/gtk/unlocked_headerbar.ui:98
 msgid "_Keyboard Shortcuts"
 msgstr "_Tipkovne bližnjice‫"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
 #: data/gtk/unlocked_headerbar.ui:102
 msgid "_About Secrets"
 msgstr "_O Skrivnostih"
@@ -243,107 +173,118 @@ msgstr "_Uporabniško ime"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
 #: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
-#: data/gtk/history_row.ui:25 data/gtk/references_dialog.ui:360
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:359
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: data/gtk/database_settings_dialog.ui:10
+#: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:24
+#: gsecrets/create_database.py:39
+msgid "Generate New Password"
+msgstr "Ustvari novo geslo"
+
+#: data/gtk/database_settings_dialog.ui:7
+msgid "Safe Settings"
+msgstr "Nastavitve sefa"
+
+#: data/gtk/database_settings_dialog.ui:11
 msgid "Authentication"
 msgstr "Overitev"
 
-#: data/gtk/database_settings_dialog.ui:14
+#: data/gtk/database_settings_dialog.ui:15
 #: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:28
+#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:35
 msgid "Password"
 msgstr "Geslo"
 
-#: data/gtk/database_settings_dialog.ui:17
+#: data/gtk/database_settings_dialog.ui:18
 msgid "New Password"
 msgstr "Novo geslo"
 
-#: data/gtk/database_settings_dialog.ui:38
+#: data/gtk/database_settings_dialog.ui:39
 msgid "Confirm New Password"
 msgstr "P_otrdi novo geslo"
 
-#: data/gtk/database_settings_dialog.ui:44
+#: data/gtk/database_settings_dialog.ui:45
 msgid "Current Password"
 msgstr "Trenutno geslo"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:182
-#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
+#: data/gtk/database_settings_dialog.ui:59
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:87
+#: gsecrets/widgets/database_settings_dialog.py:205
 msgid "Keyfile"
 msgstr "Datoteka ključa"
 
-#: data/gtk/database_settings_dialog.ui:82
+#: data/gtk/database_settings_dialog.ui:83
 msgid "_Select current keyfile if any"
 msgstr "_Izberi datoteko ključa, če obstaja"
 
-#: data/gtk/database_settings_dialog.ui:125
+#: data/gtk/database_settings_dialog.ui:126
 msgid "(Optional) _Generate new keyfile"
 msgstr "(Izbirno) _Ustvari datoteko ključa"
 
-#: data/gtk/database_settings_dialog.ui:143
+#: data/gtk/database_settings_dialog.ui:144
 msgid "Could not Load Keyfile"
 msgstr "Datoteke ključa ni mogoče naložiti"
 
-#: data/gtk/database_settings_dialog.ui:153
-#: gsecrets/widgets/database_settings_dialog.py:258
-#: gsecrets/widgets/database_settings_dialog.py:301
+#: data/gtk/database_settings_dialog.ui:154
+#: gsecrets/widgets/database_settings_dialog.py:268
+#: gsecrets/widgets/database_settings_dialog.py:311
 msgid "_Apply Changes"
 msgstr "_Uveljavi spremembe"
 
-#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
+#: data/gtk/database_settings_dialog.ui:171 data/gtk/settings_dialog.ui:9
 #: data/gtk/settings_dialog.ui:12
 msgid "General"
 msgstr "Splošno"
 
-#: data/gtk/database_settings_dialog.ui:174
+#: data/gtk/database_settings_dialog.ui:175
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: data/gtk/database_settings_dialog.ui:177
+#: data/gtk/database_settings_dialog.ui:178
 msgid "Safe Name"
 msgstr "Ime sefa"
 
-#: data/gtk/database_settings_dialog.ui:185
+#: data/gtk/database_settings_dialog.ui:186
 msgid "Path"
 msgstr "Pot"
 
-#: data/gtk/database_settings_dialog.ui:194
+#: data/gtk/database_settings_dialog.ui:195
 msgid "File Size"
 msgstr "Velikost"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:204
 msgid "KeePass Version"
 msgstr "Različica KeePass"
 
-#: data/gtk/database_settings_dialog.ui:212
+#: data/gtk/database_settings_dialog.ui:213
 msgid "Creation Date"
 msgstr "Datum ustvarjanja"
 
-#: data/gtk/database_settings_dialog.ui:220
+#: data/gtk/database_settings_dialog.ui:221
 msgid "Encryption Algorithm"
 msgstr "Algoritem šifriranja"
 
-#: data/gtk/database_settings_dialog.ui:228
+#: data/gtk/database_settings_dialog.ui:229
 msgid "Derivation Algorithm"
 msgstr "Algoritem izpeljave"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:238
+#: data/gtk/database_settings_dialog.ui:239
 msgid "Stats"
 msgstr "Statistika"
 
-#: data/gtk/database_settings_dialog.ui:241
+#: data/gtk/database_settings_dialog.ui:242
 msgid "Number of Entries"
 msgstr "Število vnosov"
 
-#: data/gtk/database_settings_dialog.ui:250
+#: data/gtk/database_settings_dialog.ui:251
 msgid "Number of Groups"
 msgstr "Število skupin"
 
-#: data/gtk/database_settings_dialog.ui:259
+#: data/gtk/database_settings_dialog.ui:260
 msgid "Passwords"
 msgstr "Gesla"
 
@@ -403,8 +344,8 @@ msgid "Attributes"
 msgstr "Atributi"
 
 #: data/gtk/entry_page.ui:255
-msgid "_Add Attribute"
-msgstr "_Dodaj atribut"
+msgid "Add Attr_ibute"
+msgstr "Dodaj atri_but"
 
 #: data/gtk/entry_page.ui:263
 msgid "Expiration Date"
@@ -443,10 +384,14 @@ msgid "Select"
 msgstr "Izberi"
 
 #: data/gtk/entry_row.ui:55
+msgid "Copy One-Time Password"
+msgstr "Kopiraj enkratno geslo"
+
+#: data/gtk/entry_row.ui:66
 msgid "Copy Username"
 msgstr "Kopiraj uporabniško ime"
 
-#: data/gtk/entry_row.ui:65
+#: data/gtk/entry_row.ui:76
 msgid "Copy Password"
 msgstr "Kopiraj geslo"
 
@@ -584,11 +529,11 @@ msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Shrani v zgodovino"
 
-#: data/gtk/history_row.ui:15 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
 msgid "Show Text"
 msgstr "Pokaži besedilo"
 
-#: data/gtk/history_row.ui:36
+#: data/gtk/history_row.ui:39
 msgid "Remove from History"
 msgstr "Odstrani iz zgodovine"
 
@@ -601,7 +546,7 @@ msgid "_Open"
 msgstr "_Odpri"
 
 #: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
-#: data/gtk/welcome_page.ui:15
+#: data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "_Nov sef"
 
@@ -611,7 +556,6 @@ msgstr "_Kopiraj"
 
 #. Button tooltip in headerbar to open search page
 #: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:67
-#: data/gtk/unlocked_database.ui:17 data/gtk/unlocked_database.ui:25
 #: data/gtk/unlocked_headerbar.ui:22
 msgid "Search"
 msgstr "Poišči"
@@ -625,6 +569,7 @@ msgid "Characters"
 msgstr "Znaki"
 
 #: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:157
 msgid "Passphrase"
 msgstr "Šifrirno geslo"
 
@@ -632,7 +577,14 @@ msgstr "Šifrirno geslo"
 msgid "Words"
 msgstr "Število besed"
 
-#: data/gtk/properties_dialog.ui:9
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:132
+#: gsecrets/provider/file_provider.py:196
+#: gsecrets/widgets/database_settings_dialog.py:204
+msgid "_Generate"
+msgstr "_Ustvari"
+
+#: data/gtk/properties_dialog.ui:8
 msgid "Properties"
 msgstr "Lastnosti"
 
@@ -656,8 +608,8 @@ msgstr "Ustvarjeno"
 msgid "Code"
 msgstr "Koda"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
-#: data/gtk/references_dialog.ui:352
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:254
+#: data/gtk/references_dialog.ui:351
 msgid "Property"
 msgstr "Lastnosti"
 
@@ -685,27 +637,27 @@ msgstr "_Opombe"
 msgid "References"
 msgstr "Sklici"
 
-#: data/gtk/references_dialog.ui:226
+#: data/gtk/references_dialog.ui:225
 msgid "Syntax"
 msgstr "Skladnja"
 
-#: data/gtk/references_dialog.ui:235
+#: data/gtk/references_dialog.ui:234
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Skladnja ograd za sklicevanje na polja je naslednja:"
 
-#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
+#: data/gtk/references_dialog.ui:253 data/gtk/references_dialog.ui:281
 msgid "Show Field Codes"
 msgstr "Pokaži kode polj"
 
-#: data/gtk/references_dialog.ui:283
+#: data/gtk/references_dialog.ui:282
 msgid "Identifier"
 msgstr "Določilo"
 
-#: data/gtk/references_dialog.ui:341
+#: data/gtk/references_dialog.ui:340
 msgid "Reference"
 msgstr "Sklic"
 
-#: data/gtk/references_dialog.ui:380
+#: data/gtk/references_dialog.ui:379
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -724,12 +676,13 @@ msgid "Do you want to write all changes to the safe?"
 msgstr "Ali želite zapisati vse spremembe v sef?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:400
 msgid "_Quit Without Saving"
 msgstr "_Končaj brez shranjevanja"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:401
 msgid "_Don't Quit"
 msgstr "_Ne končaj"
 
@@ -747,7 +700,7 @@ msgid "No Search Results"
 msgstr "Ni zadetkov iskanja"
 
 #: data/gtk/selection_mode_headerbar.ui:17
-#: gsecrets/widgets/selection_mode_headerbar.py:70
+#: gsecrets/widgets/selection_mode_headerbar.py:69
 msgid "_Select Items"
 msgstr "_Izberi predmete"
 
@@ -766,7 +719,7 @@ msgid "Delete Selection"
 msgstr "Izbriši izbor"
 
 #: data/gtk/selection_mode_headerbar.ui:53
-#: gsecrets/widgets/saving_conflict_dialog.py:32
+#: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Prekliči"
 
@@ -788,8 +741,8 @@ msgstr "Ponovno odpri nazadnje odprti sef."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
-#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
+#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:132
+#: gsecrets/widgets/window.py:216 gsecrets/widgets/window.py:228
 msgid "Safe"
 msgstr "Sef"
 
@@ -801,7 +754,9 @@ msgstr "_Samodejno shrani"
 msgid "Save every change automatically."
 msgstr "Samodejno shranite vsako spremembo."
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:37
+#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
+#: gsecrets/provider/pkcs11_provider.py:162
+#: gsecrets/provider/pkcs11_provider.py:168 gsecrets/unlock_database.py:191
 msgid "Unlock"
 msgstr "Odkleni"
 
@@ -913,21 +868,22 @@ msgstr "Počisti seznam nedavnih"
 msgid "Clear the recently opened safes list."
 msgstr "Počistite seznam nedavno odprtih sefov."
 
-#: data/gtk/settings_dialog.ui:189 data/gtk/unlock_database.ui:94
+#: data/gtk/settings_dialog.ui:189
 msgid "Clear"
 msgstr "Počisti"
 
-#: data/gtk/unlock_database.ui:12
+#: data/gtk/unlock_database.ui:18
 msgid "Unlock Safe"
 msgstr "Odkleni sef"
-
-#: data/gtk/unlock_database.ui:68
-msgid "_Select Keyfile…"
-msgstr "_Izberi datoteko ključa …"
 
 #: data/gtk/unlocked_database.ui:8
 msgid "Browser"
 msgstr "Brskalnik"
+
+#: data/gtk/unlocked_database.ui:17 data/gtk/unlocked_database.ui:25
+#, fuzzy
+msgid "Search Safe"
+msgstr "Iščite (po) sef(u)"
 
 #: data/gtk/unlocked_database_page.ui:31
 msgid "Add elements with the ➕ button"
@@ -984,12 +940,12 @@ msgstr "Nov _vnos"
 msgid "New _Group"
 msgstr "Nova s_kupina"
 
-#: data/gtk/unlocked_headerbar.ui:133
-#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: data/gtk/unlocked_headerbar.ui:134
+#: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "_Save"
 
-#: data/gtk/unlocked_headerbar.ui:148
+#: data/gtk/unlocked_headerbar.ui:149
 msgid "_Lock"
 msgstr "_Zakleni"
 
@@ -1089,8 +1045,8 @@ msgid "Last opened databases"
 msgstr "Zadnje odprte zbirke podatkov"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:48
-msgid "A list of the last opened databases."
-msgstr "Seznam nedavno odprtih zbirk podatkov."
+msgid "A list of the last opened databases. Not used anymore."
+msgstr "Seznam nedavno odprtih zbirk podatkov. Ni več v uporabi."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
@@ -1102,14 +1058,12 @@ msgstr ""
 "Pomni nazadnje uporabljen sestavljeni ključ za odklepanje zbirke podatkov."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Nazadnje uporabljen sestavljeni ključ"
+msgid "Last used key provider"
+msgstr "Nazadnje uporabljen ponudnik ključa"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr ""
-"Pot do zadnjega uporabljenega ključa za sestavljeno odklepanje zbirke "
-"podatkov."
+msgid "Key provider for composite database unlocking."
+msgstr "Ponudnik ključa za sestavljeno odklepanje zbirke podatkov."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
@@ -1208,53 +1162,41 @@ msgstr ""
 "integrira z namizjem GNOME in omogoča enostaven in pregleden vmesnik za "
 "upravljanje zbirk podatkov z gesli."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:251
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
-
-#: gsecrets/application.py:54
+#: gsecrets/application.py:56
 msgid "Error: File {} does not exist"
 msgstr "Napaka: datoteka {} ne obstaja"
 
-#: gsecrets/application.py:59
+#: gsecrets/application.py:61
 msgid "Error: Safe {} is already open"
 msgstr "Napaka: sef {} je že odprt"
 
 #: gsecrets/attachment_warning_dialog.py:68
-#: gsecrets/attachment_warning_dialog.py:82
+#: gsecrets/attachment_warning_dialog.py:79
 msgid "Could not load attachment"
 msgstr "Nalaganje priloge ni uspelo"
 
-#: gsecrets/create_database.py:69
-msgid "Unable to create database"
-msgstr "Zbirke podatkov ni mogoče ustvariti"
-
-#: gsecrets/create_database.py:167
+#: gsecrets/create_database.py:64
 msgid "Passwords do not match"
 msgstr "Gesli se ne ujemata"
 
-#: gsecrets/create_database.py:197
-msgid "Generating…"
-msgstr "Poteka ustvarjanje …"
+#: gsecrets/create_database.py:79
+msgid "Unable to create database"
+msgstr "Zbirke podatkov ni mogoče ustvariti"
 
-#: gsecrets/create_database.py:209
-msgid "Could not create keyfile"
-msgstr "Datoteke ključa ni mogoče ustvariti"
+#: gsecrets/create_database.py:110 gsecrets/unlock_database.py:96
+msgid "Failed to generate composite key"
+msgstr "Tvorjenje sestavljenega ključa je spodletelo"
 
-#: gsecrets/create_database.py:211
-msgid "Generate"
-msgstr "Ustvari"
-
-#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
+#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:102
 msgid "Saved in history"
 msgstr "Shranjeno v zgodovini"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
-#: gsecrets/widgets/credentials_group.py:92
+#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:136
+#: gsecrets/widgets/credentials_group.py:96
 msgid "Username copied"
 msgstr "Uporabniško ime kopirano"
 
-#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
+#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:394
 msgid "Address copied"
 msgstr "Naslov kopiran"
 
@@ -1275,47 +1217,47 @@ msgstr "Naslov ni veljaven"
 msgid "Select Attachments"
 msgstr "Izberi priloge"
 
-#: gsecrets/entry_row.py:116 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:129 gsecrets/widgets/credentials_group.py:111
 msgid "Password copied"
 msgstr "Geslo kopirano"
 
-#: gsecrets/entry_row.py:135 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:143
+msgid "One-Time Password copied"
+msgstr "Enkratno geslo je uspešno kopirano"
+
+#: gsecrets/entry_row.py:155 gsecrets/group_row.py:109
 msgid "Title not Specified"
 msgstr "Naziv ni določen"
 
-#: gsecrets/entry_row.py:146
-msgid "Username not specified"
-msgstr "Uporabniško ime ni določeno"
-
-#: gsecrets/password_generator_popover.py:75
+#: gsecrets/password_generator_popover.py:74
 msgid "Include Lowercase"
 msgstr "Vključi male črke"
 
-#: gsecrets/password_generator_popover.py:77
+#: gsecrets/password_generator_popover.py:76
 msgid "Exclude Lowercase"
 msgstr "Izključi male črke"
 
-#: gsecrets/password_generator_popover.py:80
+#: gsecrets/password_generator_popover.py:79
 msgid "Include Uppercase"
 msgstr "Vključi velike črke"
 
-#: gsecrets/password_generator_popover.py:82
+#: gsecrets/password_generator_popover.py:81
 msgid "Exclude Uppercase"
 msgstr "Izključi velike črke"
 
-#: gsecrets/password_generator_popover.py:85
+#: gsecrets/password_generator_popover.py:84
 msgid "Include Numbers"
 msgstr "Vključi številke"
 
-#: gsecrets/password_generator_popover.py:87
+#: gsecrets/password_generator_popover.py:86
 msgid "Exclude Numbers"
 msgstr "Izključi številke"
 
-#: gsecrets/password_generator_popover.py:90
+#: gsecrets/password_generator_popover.py:89
 msgid "Include Symbols"
 msgstr "Vključi simbole"
 
-#: gsecrets/password_generator_popover.py:92
+#: gsecrets/password_generator_popover.py:91
 msgid "Exclude Symbols"
 msgstr "Izključi simbole"
 
@@ -1323,7 +1265,118 @@ msgstr "Izključi simbole"
 msgid "Root Group"
 msgstr "Korenska skupina"
 
-#: gsecrets/recent_files_menu.py:36
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+msgid "Select Keyfile"
+msgstr "izbor datoteke ključa"
+
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
+msgid "Clear Keyfile"
+msgstr "Počisti datoteko ključa"
+
+#: gsecrets/provider/file_provider.py:70
+msgid "Select keyfile"
+msgstr "izberite datoteko ključa"
+
+#: gsecrets/provider/file_provider.py:108
+msgid "Could not load keyfile"
+msgstr "Datoteke ključa ni mogoče naložiti"
+
+#. NOTE: Filechooser title for generating a new keyfile
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
+#: gsecrets/widgets/database_settings_dialog.py:203
+msgid "Generate Keyfile"
+msgstr "Ustvari datoteko ključa"
+
+#: gsecrets/provider/file_provider.py:159
+msgid "Use a file to increase security"
+msgstr "Uporabi datoteko za povečanje varnosti"
+
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "Datoteke ključa ni mogoče ustvariti"
+
+#: gsecrets/provider/pkcs11_provider.py:92
+msgid "No Smartcard"
+msgstr "Brez pametne kartice"
+
+#: gsecrets/provider/pkcs11_provider.py:111
+#: gsecrets/provider/pkcs11_provider.py:214
+msgid "Smartcard"
+msgstr "Pametna kartica"
+
+#: gsecrets/provider/pkcs11_provider.py:112
+#, fuzzy
+#| msgid "Select Keyfile"
+msgid "Select certificate"
+msgstr "izbor datoteke ključa"
+
+#: gsecrets/provider/pkcs11_provider.py:147
+msgid "No smartcard present"
+msgstr "Pametna kartica ni prisotna"
+
+#: gsecrets/provider/pkcs11_provider.py:148
+msgid "Please insert smartcard and retry."
+msgstr "Vstavite pametno kartico in poskusite znova."
+
+#: gsecrets/provider/pkcs11_provider.py:151
+#: gsecrets/widgets/database_settings_dialog.py:298
+msgid "OK"
+msgstr "V redu"
+
+#: gsecrets/provider/pkcs11_provider.py:164
+msgid "Unlock your smartcard"
+msgstr "Odklenite svojo pametno kartico"
+
+#: gsecrets/provider/pkcs11_provider.py:167
+#: gsecrets/widgets/selection_mode_headerbar.py:157
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: gsecrets/provider/pkcs11_provider.py:207
+#, fuzzy
+#| msgid "Failed to unlock Safe"
+msgid "Failed to unlock Smartcard"
+msgstr "Odklepanje sefa je spodletelo"
+
+#: gsecrets/provider/pkcs11_provider.py:215
+msgid "Use a smartcard"
+msgstr "Uporabi pametno kartico"
+
+#: gsecrets/provider/pkcs11_provider.py:262
+msgid "Refresh Certificate List"
+msgstr "Osveži seznam potrdil"
+
+#: gsecrets/provider/yubikey_provider.py:29
+msgid "No Key"
+msgstr "Ni ključa"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:32
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] – reža {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:126
+#: gsecrets/provider/yubikey_provider.py:184
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:127
+msgid "Select key"
+msgstr "Izberite ključ"
+
+#: gsecrets/provider/yubikey_provider.py:135
+#: gsecrets/provider/yubikey_provider.py:191
+msgid "Select YubiKey slot"
+msgstr "izberite režo YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:223
+#, fuzzy
+msgid "Touch YubiKey"
+msgstr "Dotakni se YubiKey"
+
+#: gsecrets/recent_files_menu.py:44
 msgid "Recent Files"
 msgstr "Nedavne datoteke"
 
@@ -1359,37 +1412,25 @@ msgstr "Vijolična"
 msgid "Brown"
 msgstr "Rjava"
 
-#: gsecrets/safe_element.py:567
+#: gsecrets/safe_element.py:574
 msgid "Clone"
 msgstr "Kloniraj"
 
 #. This shouldn't happen
-#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
+#: gsecrets/widgets/window.py:398
 msgid "Could not save Safe"
 msgstr "Sefa ni mogoče shraniti"
 
-#: gsecrets/unlock_database.py:86
-msgid "Select Keyfile"
-msgstr "izbor datoteke ključa"
-
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:157
+#: gsecrets/unlock_database.py:106
 msgid "Safe {} is already open"
 msgstr "Sef {} je že odprt"
 
-#: gsecrets/unlock_database.py:238
+#: gsecrets/unlock_database.py:179
 msgid "Failed to unlock Safe"
 msgstr "Odklepanje sefa je spodletelo"
-
-#: gsecrets/unlock_database.py:251
-msgid "_Try Again"
-msgstr "_Poskusi znova"
-
-#: gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "Izbor datoteke _ključa"
 
 #: gsecrets/unlocked_database.py:299
 msgid "Safe saved"
@@ -1438,45 +1479,45 @@ msgid "Attribute key already exists"
 msgstr "Ključ atributa že obstaja"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:37
+#: gsecrets/widgets/attachment_entry_row.py:36
 msgid "Save Attachment"
 msgstr "Shrani prilogo"
 
-#: gsecrets/widgets/attachment_entry_row.py:58
+#: gsecrets/widgets/attachment_entry_row.py:57
 msgid "Could not store attachment"
 msgstr "Priponke ni mogoče shraniti"
 
-#: gsecrets/widgets/attribute_entry_row.py:40
+#: gsecrets/widgets/attribute_entry_row.py:39
 #: gsecrets/widgets/protected_attribute_entry_row.py:57
 msgid "Attribute copied"
 msgstr "Atribut kopiran"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:136
+#: gsecrets/widgets/database_settings_dialog.py:144
 msgid "Select Current Keyfile"
 msgstr "Izbor obstoječe datoteke ključa"
 
-#: gsecrets/widgets/database_settings_dialog.py:234
-#: gsecrets/widgets/database_settings_dialog.py:238
+#: gsecrets/widgets/database_settings_dialog.py:244
+#: gsecrets/widgets/database_settings_dialog.py:248
 msgid "Could not apply changes"
 msgstr "Sprememb ni mogoče uveljaviti"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:241
+#: gsecrets/widgets/database_settings_dialog.py:251
 msgid "Changes Applied"
 msgstr "Spremembe so uveljavljene"
 
-#: gsecrets/widgets/database_settings_dialog.py:279
+#: gsecrets/widgets/database_settings_dialog.py:289
 msgid "Could not change credentials"
 msgstr "Poverilnic ni bilo mogoče spremeniti"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:285
-#: gsecrets/widgets/saving_conflict_dialog.py:23
+#: gsecrets/widgets/database_settings_dialog.py:295
+#: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Spori pri shranjevanju"
 
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:296
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1484,44 +1525,40 @@ msgstr ""
 "Sef je bil spremenjen od nekod drugod. Pri shranjevanju odpravite te spore v "
 "glavnem oknu."
 
-#: gsecrets/widgets/database_settings_dialog.py:288
-msgid "Ok"
-msgstr "V redu"
-
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:350
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:360
+#: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Unknown"
 msgstr "Neznano"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:364
 msgid "AES 256-bit"
 msgstr "AES 256-bitni"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:357
+#: gsecrets/widgets/database_settings_dialog.py:367
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bitni"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:360
+#: gsecrets/widgets/database_settings_dialog.py:370
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bitni"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:378
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:371
+#: gsecrets/widgets/database_settings_dialog.py:381
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:374
+#: gsecrets/widgets/database_settings_dialog.py:384
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1530,7 +1567,7 @@ msgstr "AES-KDF"
 msgid "Entry expired"
 msgstr "Vnos je potekel"
 
-#: gsecrets/widgets/history_row.py:44
+#: gsecrets/widgets/history_row.py:43
 msgid "Hide Text"
 msgstr "Skrij besedilo"
 
@@ -1539,24 +1576,24 @@ msgid "Selection copied"
 msgstr "Izbor kopiran"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
-#: gsecrets/widgets/quit_conflict_dialog.py:19
+#: gsecrets/widgets/quit_conflict_dialog.py:18
 msgid "Unsaved Changes Conflict"
 msgstr "Spor neshranjenih sprememb"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:21
+#: gsecrets/widgets/quit_conflict_dialog.py:20
 msgid "Save and Quit"
 msgstr "Shrani in končaj"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:22
+#: gsecrets/widgets/quit_conflict_dialog.py:21
 msgid "Back up, Save, and Quit"
 msgstr "Varnostno kopiraj, shrani in končaj"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:23
+#: gsecrets/widgets/quit_conflict_dialog.py:22
 msgid "Don't Quit"
 msgstr "Ne končaj"
 
 #. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
-#: gsecrets/widgets/saving_conflict_dialog.py:26
+#: gsecrets/widgets/saving_conflict_dialog.py:25
 msgid ""
 "The safe was modified from somewhere else. Saving will overwrite their "
 "version of the safe with our current version.\n"
@@ -1569,19 +1606,19 @@ msgstr ""
 "Prav tako lahko naredite varnostno kopijo njihove različice sefa."
 
 #. TRANSLATORS backup and save current safe.
-#: gsecrets/widgets/saving_conflict_dialog.py:34
+#: gsecrets/widgets/saving_conflict_dialog.py:33
 msgid "_Back up and Save"
 msgstr "_Varnostno kopiraj in shrani"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:48
+#: gsecrets/widgets/saving_conflict_dialog.py:47
 msgid "Save Backup"
 msgstr "Shrani varnostno kopiranje"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:62
+#: gsecrets/widgets/saving_conflict_dialog.py:61
 msgid "Could not backup safe"
 msgstr "Sefa ni mogoče varnostno kopirati"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:72
+#: gsecrets/widgets/selection_mode_headerbar.py:71
 msgid "{} _Selected"
 msgid_plural "{} _Selected"
 msgstr[0] "{} _izbran"
@@ -1589,63 +1626,59 @@ msgstr[1] "{} _izbrana"
 msgstr[2] "{} _izbrani"
 msgstr[3] "{} _izbranih"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:98
+#: gsecrets/widgets/selection_mode_headerbar.py:97
 msgid "Operation aborted: deleting currently active group"
 msgstr "Operacija je bila ustavljena: brisanje trenutno dejavne skupine"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:153
+#: gsecrets/widgets/selection_mode_headerbar.py:152
 msgid "Warning"
 msgstr "Opozorilo"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:155
+#: gsecrets/widgets/selection_mode_headerbar.py:154
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr "Brišete elemente v košu za smeti, teh izbrisov ni mogoče razveljaviti."
 
 #: gsecrets/widgets/selection_mode_headerbar.py:158
-msgid "Cancel"
-msgstr "Prekliči"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:159
 msgid "Delete"
 msgstr "Izbriši"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:199
+#: gsecrets/widgets/selection_mode_headerbar.py:198
 msgid "Operation aborted: moving currently active group"
 msgstr "Operacija je bila ustavljena: premikanje trenutno dejavne skupine"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:214
+#: gsecrets/widgets/selection_mode_headerbar.py:213
 msgid "Move completed"
 msgstr "Premik dokončan"
 
-#: gsecrets/widgets/window.py:121
+#: gsecrets/widgets/window.py:136
 msgid "Any file type"
 msgstr "Katerakoli vrsta datoteke"
 
-#: gsecrets/widgets/window.py:128
+#: gsecrets/widgets/window.py:143
 msgid "Select Safe"
 msgstr "Izberite sef"
 
-#: gsecrets/widgets/window.py:144
+#: gsecrets/widgets/window.py:160
 msgid "File does not have a valid path"
 msgstr "Datoteka nima veljavne poti"
 
-#: gsecrets/widgets/window.py:178
+#: gsecrets/widgets/window.py:194
 msgid "Safe is already open"
 msgstr "Sef je že odprt"
 
-#: gsecrets/widgets/window.py:210
+#: gsecrets/widgets/window.py:226
 msgid "_Create"
 msgstr "_Ustvari"
 
-#: gsecrets/widgets/window.py:231
+#: gsecrets/widgets/window.py:248
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Sefa ni mogoče ustvariti: je že odprt"
 
-#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
+#: gsecrets/widgets/window.py:290 gsecrets/widgets/window.py:305
 msgid "Could not create new Safe"
 msgstr "Novega sefa ni bilo mogoče ustvariti"
 
-#: gsecrets/widgets/window.py:355
+#: gsecrets/widgets/window.py:372
 msgid "Could not save safe"
 msgstr "Sefa ni mogoče shraniti"

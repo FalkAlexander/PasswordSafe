@@ -18,7 +18,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attachment_warning_dialog.ui")
 class AttachmentWarningDialog(Adw.MessageDialog):
-
     __gtype_name__ = "AttachmentWarningDialog"
 
     def __init__(self, entry_page: EntryPage, attachment: Attachment) -> None:
@@ -36,7 +35,8 @@ class AttachmentWarningDialog(Adw.MessageDialog):
         attachment = self.__attachment
         u_db = self.__unlocked_database
         self.__open_tmp_file(
-            u_db.database_manager.db.binaries[attachment.id], attachment.filename
+            u_db.database_manager.db.binaries[attachment.id],
+            attachment.filename,
         )
 
     def __open_tmp_file(self, bytes_buffer, filename):
@@ -75,8 +75,5 @@ def _on_launch(launcher, result, window):
     try:
         launcher.launch_finish(result)
     except GLib.Error as err:
-        logging.debug(
-            "Could not launch attachment file: %s",
-            err.message
-        )
+        logging.debug("Could not launch attachment file: %s", err.message)
         window.send_notification(_("Could not load attachment"))

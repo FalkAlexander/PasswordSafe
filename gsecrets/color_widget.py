@@ -15,7 +15,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/color_button.ui")
 class ColorButton(Gtk.FlowBoxChild):
-
     __gtype_name__ = "ColorButton"
 
     _selected_image = Gtk.Template.Child()
@@ -55,7 +54,6 @@ class ColorButton(Gtk.FlowBoxChild):
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/color_entry_row.ui")
 class ColorEntryRow(Adw.PreferencesGroup):
-
     __gtype_name__ = "ColorEntryRow"
 
     _flowbox = Gtk.Template.Child()

@@ -55,15 +55,23 @@ class Window(Adw.ApplicationWindow):
         if self.application.development_mode is True:
             gsecrets.config_manager.set_development_backup_mode(True)
 
-    def send_notification(self,
-                          notification: str,
-                          persistent: bool = False) -> Adw.Toast:
+    def send_notification(self, notification: str) -> None:
         toast = Adw.Toast.new(notification)
-        if persistent:
-            toast.set_timeout(0)
-
         self.toast_overlay.add_toast(toast)
-        return toast
+
+    def show_banner(self, label: str) -> None:
+        if self.view == self.View.UNLOCK_DATABASE:
+            self._unlock_database_bin.props.child.show_banner(label)
+        elif self.view == self.View.CREATE_DATABASE:
+            if create_view := self._create_view:
+                create_view.show_banner(label)
+
+    def close_banner(self):
+        if self.view == self.View.UNLOCK_DATABASE:
+            self._unlock_database_bin.props.child.close_banner()
+        elif self.view == self.View.CREATE_DATABASE:
+            if create_view := self._create_view:
+                create_view.close_banner()
 
     def close_notification(self, toast: Adw.Toast) -> None:
         toast.dismiss()
@@ -95,19 +103,14 @@ class Window(Adw.ApplicationWindow):
         """
         if gsecrets.config_manager.get_first_start_screen():
             # simply load the last opened file
-            filepath = None
-            gfile: Gio.File = Gio.File.new_for_uri(
-                gsecrets.config_manager.get_last_opened_database()
-            )
-            if gfile.query_exists():
+            uri = gsecrets.config_manager.get_last_opened_database()
+            gfile: Gio.File = Gio.File.new_for_uri(uri)
+            recents = Gtk.RecentManager.get_default()
+            if gfile.query_exists() and recents.has_item(uri):
                 filepath = gfile.get_path()
                 logging.debug("Opening last opened database: %s", filepath)
                 self.start_database_opening_routine(filepath)
                 return
-
-        # Display the screen with last opened files (or welcome page)
-        if not gsecrets.config_manager.get_last_opened_list():
-            logging.debug("No recent files saved")
 
         self.view = self.View.WELCOME
 
@@ -146,7 +149,8 @@ class Window(Adw.ApplicationWindow):
         try:
             db_gfile = dialog.open_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not open file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not open file: %s", err.message)
         else:
             if db_filename := db_gfile.get_path():
                 logging.debug("File selected: %s", db_filename)
@@ -229,7 +233,8 @@ class Window(Adw.ApplicationWindow):
         try:
             gfile = dialog.save_finish(result)
         except GLib.Error as err:
-            logging.debug("Could not save file: %s", err.message)
+            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
+                logging.debug("Could not save file: %s", err.message)
         else:
             filepath = gfile.get_path()
             if self.unlocked_db:
@@ -351,13 +356,13 @@ class Window(Adw.ApplicationWindow):
                 is_saved = dbm.save_finish(result)
             except GLib.Error as err:
                 logging.error("Could not save Safe: %s", err.message)
-                self.send_notification(_("Could not save Safe"))
+                self.show_quit_confirmation_dialog()
             else:
                 if is_saved:
                     self.close()
                 else:
                     # This shouldn't happen
-                    self.send_notification(_("Could not save Safe"))
+                    self.show_quit_confirmation_dialog()
 
         def on_check_file_changes(dbm, result):
             try:
@@ -382,6 +387,24 @@ class Window(Adw.ApplicationWindow):
 
         self.save_window_size()
         return False
+
+    def show_quit_confirmation_dialog(self):
+
+        def on_discard(self, _dialog, _response):
+            self.force_close()
+
+        # TODO Set the body of the message based on the error kind.
+        dialog = Adw.MessageDialog.new(
+            self, _("Could not save Safe"), None,
+        )
+        dialog.add_response("discard", _("_Quit Without Saving"))
+        dialog.add_response("cancel", _("_Don't Quit"))
+        dialog.set_response_appearance(
+            "discard", Adw.ResponseAppearance.DESTRUCTIVE
+        )
+        dialog.set_default_response("cancel")
+        dialog.connect("response::discard", on_discard)
+        dialog.present()
 
     def do_unrealize(self):  # pylint: disable=arguments-differ
         if self.unlocked_db:

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="DatabaseSettingsDialog" parent="AdwPreferencesWindow">
-    <property name="default_height">600</property>
-    <property name="default_width">400</property>
-    <property name="search-enabled">False</property>
+  <template class="DatabaseSettingsDialog" parent="AdwPreferencesDialog">
+    <property name="content_height">600</property>
+    <property name="content_width">400</property>
     <property name="title" translatable="yes">Safe Settings</property>
     <child>
       <object class="AdwPreferencesPage">

@@ -63,47 +63,39 @@
             <child>
               <object class="AdwPreferencesGroup">
                 <child>
-                  <object class="GtkListBox">
-                    <property name="selection_mode">none</property>
+                  <object class="AdwEntryRow" id="title_entry_row">
+                    <property name="input_purpose">name</property>
+                    <property name="enable_undo">False</property>
+                    <property name="title" translatable="yes">_Title</property>
+                    <property name="use_underline">True</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwEntryRow" id="url_entry_row">
+                    <property name="title" translatable="yes">U_RL</property>
+                    <property name="use_underline">True</property>
                     <child>
-                      <object class="AdwEntryRow" id="title_entry_row">
-                        <property name="input_purpose">name</property>
-                        <property name="enable_undo">False</property>
-                        <property name="title" translatable="yes">_Title</property>
-                        <property name="use_underline">True</property>
+                      <object class="GtkButton">
+                        <property name="valign">center</property>
+                        <property name="icon_name">edit-copy-symbolic</property>
+                        <property name="tooltip_text" translatable="yes">Copy</property>
+                        <signal name="clicked" handler="_on_url_copy_button_clicked" swapped="no"/>
+                        <style>
+                          <class name="flat"/>
+                        </style>
                       </object>
                     </child>
                     <child>
-                      <object class="AdwEntryRow" id="url_entry_row">
-                        <property name="title" translatable="yes">U_RL</property>
-                        <property name="use_underline">True</property>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="valign">center</property>
-                            <property name="icon_name">edit-copy-symbolic</property>
-                            <property name="tooltip_text" translatable="yes">Copy</property>
-                            <signal name="clicked" handler="_on_url_copy_button_clicked" swapped="no"/>
-                            <style>
-                              <class name="flat"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="valign">center</property>
-                            <property name="icon_name">external-link-symbolic</property>
-                            <property name="tooltip_text" translatable="yes">Open Address</property>
-                            <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
-                            <style>
-                              <class name="flat"/>
-                            </style>
-                          </object>
-                        </child>
+                      <object class="GtkButton">
+                        <property name="valign">center</property>
+                        <property name="icon_name">external-link-symbolic</property>
+                        <property name="tooltip_text" translatable="yes">Open Address</property>
+                        <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
+                        <style>
+                          <class name="flat"/>
+                        </style>
                       </object>
                     </child>
-                    <style>
-                      <class name="boxed-list"/>
-                    </style>
                   </object>
                 </child>
               </object>
@@ -116,46 +108,38 @@
                 <property name="title" translatable="yes">One-Time Password</property>
                 <property name="visible">False</property>
                 <child>
-                  <object class="GtkListBox">
-                    <property name="selection_mode">none</property>
+                  <object class="AdwActionRow" id="otp_token_row">
+                    <property name="visible">False</property>
+                    <property name="activatable_widget">otp_copy_button</property>
                     <style>
-                      <class name="boxed-list"/>
+                      <class name="otp-action-row"/>
+                      <class name="numeric"/>
                     </style>
                     <child>
-                      <object class="AdwActionRow" id="otp_token_row">
-                        <property name="visible">False</property>
-                        <property name="activatable_widget">otp_copy_button</property>
-                        <style>
-                          <class name="otp-action-row"/>
-                          <class name="numeric"/>
-                        </style>
-                        <child>
-                          <object class="GtkImage">
-                            <property name="paintable">
-                              <object class="ProgressIcon" id="otp_progress_icon"/>
-                            </property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="otp_copy_button">
-                            <property name="valign">center</property>
-                            <property name="receives_default">True</property>
-                            <property name="tooltip_text" translatable="yes">Copy</property>
-                            <property name="icon_name">edit-copy-symbolic</property>
-                            <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
-                            <style>
-                              <class name="flat"/>
-                            </style>
-                          </object>
-                        </child>
+                      <object class="GtkImage">
+                        <property name="paintable">
+                          <object class="ProgressIcon" id="otp_progress_icon"/>
+                        </property>
                       </object>
                     </child>
                     <child>
-                      <object class="AdwPasswordEntryRow" id="otp_secret_entry_row">
-                        <property name="title" translatable="yes">One-_Time Password Secret</property>
-                        <property name="use_underline">True</property>
+                      <object class="GtkButton" id="otp_copy_button">
+                        <property name="valign">center</property>
+                        <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Copy</property>
+                        <property name="icon_name">edit-copy-symbolic</property>
+                        <signal name="clicked" handler="on_otp_copy_button_clicked" swapped="no"/>
+                        <style>
+                          <class name="flat"/>
+                        </style>
                       </object>
                     </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwPasswordEntryRow" id="otp_secret_entry_row">
+                    <property name="title" translatable="yes">One-_Time Password Secret</property>
+                    <property name="use_underline">True</property>
                   </object>
                 </child>
                 <child>

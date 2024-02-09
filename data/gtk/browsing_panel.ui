@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="UnlockedDatabasePage" parent="AdwBin">
+  <template class="BrowsingPanel" parent="AdwBin">
     <property name="vexpand">True</property>
     <property name="child">
       <object class="GtkStack" id="_stack">
@@ -8,20 +8,11 @@
           <object class="GtkScrolledWindow" id="_scrolled_window">
             <property name="hscrollbar_policy">never</property>
             <child>
-              <object class="AdwClamp" id="clamp">
-                <property name="margin-top">24</property>
-                <property name="margin-bottom">24</property>
-                <property name="margin-start">12</property>
-                <property name="margin-end">12</property>
-                <child>
-                  <object class="GtkListBox" id="list_box">
-                    <property name="selection_mode">none</property>
-                    <property name="valign">start</property>
-                    <style>
-                      <class name="boxed-list"/>
-                    </style>
-                  </object>
-                </child>
+              <object class="GtkListView" id="_list_view">
+                <property name="single_click_activate">True</property>
+                <style>
+                  <class name="navigation-sidebar"/>
+                </style>
               </object>
             </child>
           </object>
@@ -31,6 +22,12 @@
             <property name="icon_name">folder-symbolic</property>
             <property name="description" translatable="yes">Add elements with the ➕ button</property>
             <property name="title" translatable="yes">Empty Group</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwStatusPage" id="_empty_search_page">
+            <property name="icon_name">folder-saved-search-symbolic</property>
+            <property name="title" translatable="yes">No Search Results</property>
           </object>
         </child>
       </object>

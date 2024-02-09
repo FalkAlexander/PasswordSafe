@@ -7,7 +7,7 @@ from gi.repository import Adw, Gtk
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/add_attribute_dialog.ui")
-class AddAttributeDialog(Adw.Window):
+class AddAttributeDialog(Adw.Dialog):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "AddAttributeDialog"
@@ -17,10 +17,9 @@ class AddAttributeDialog(Adw.Window):
     _value_entry = Gtk.Template.Child()
     _toast_overlay = Gtk.Template.Child()
 
-    def __init__(self, parent, db_manager, entry):
+    def __init__(self, db_manager, entry):
         super().__init__()
 
-        self.props.transient_for = parent
         self.entry = entry
 
         db_manager.connect("notify::locked", self._on_locked)

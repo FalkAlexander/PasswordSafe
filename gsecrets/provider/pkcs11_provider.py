@@ -142,14 +142,13 @@ class Pkcs11Provider(BaseProvider):
 
         present = self.scan_slots()
         if not present:
-            dialog = Adw.MessageDialog(
-                transient_for=self.window,
-                heading=_("No smartcard present"),
-                body=_("Please insert smartcard and retry."),
+            dialog = Adw.AlertDialog.new(
+                _("No smartcard present"),
+                _("Please insert smartcard and retry."),
             )
 
             dialog.add_response("ok", _("OK"))
-            dialog.present()
+            dialog.present(self.window)
             return
 
         entry = Adw.PasswordEntryRow(
@@ -158,18 +157,13 @@ class Pkcs11Provider(BaseProvider):
         )
         entry.add_css_class("card")
 
-        dialog = Adw.MessageDialog(
-            heading=_("Unlock"),
-            modal=True,
-            body=_("Unlock your smartcard"),
-            transient_for=self.window,
-        )
+        dialog = Adw.AlertDialog.new(_("Unlock"), _("Unlock your smartcard"))
         dialog.add_response("cancel", _("Cancel"))
         dialog.add_response("unlock", _("Unlock"))
         dialog.set_default_response("unlock")
         dialog.set_extra_child(entry)
         dialog.connect("response", self._on_pin_dialog_response, entry, row)
-        dialog.present()
+        dialog.present(self.window)
 
     def fill_data(
         self, row: Adw.ComboRow, database_manager: DatabaseManager | None = None
@@ -194,7 +188,7 @@ class Pkcs11Provider(BaseProvider):
 
     def _on_pin_dialog_response(
         self,
-        _dialog: Adw.MessageDialog,
+        _dialog: Adw.AlertDialog,
         response: str,
         entry: Gtk.Entry,
         row: Adw.ComboRow,

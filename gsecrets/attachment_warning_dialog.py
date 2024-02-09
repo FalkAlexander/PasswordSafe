@@ -17,7 +17,7 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attachment_warning_dialog.ui")
-class AttachmentWarningDialog(Adw.MessageDialog):
+class AttachmentWarningDialog(Adw.AlertDialog):
     __gtype_name__ = "AttachmentWarningDialog"
 
     def __init__(self, entry_page: EntryPage, attachment: Attachment) -> None:
@@ -25,7 +25,7 @@ class AttachmentWarningDialog(Adw.MessageDialog):
 
         :param entry_page: entry page
         """
-        super().__init__(transient_for=entry_page.unlocked_database.window)
+        super().__init__()
 
         self.__unlocked_database = entry_page.unlocked_database
         self.__attachment = attachment

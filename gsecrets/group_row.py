@@ -13,37 +13,46 @@ if typing.TYPE_CHECKING:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/group_row.ui")
-class GroupRow(Adw.ActionRow):
+class GroupRow(Adw.Bin):
     __gtype_name__ = "GroupRow"
 
-    _checkbox_revealer = Gtk.Template.Child()
-    selection_checkbox = Gtk.Template.Child()
-    edit_button = Gtk.Template.Child()
+    _prefix_stack = Gtk.Template.Child()
+    _selection_checkbox = Gtk.Template.Child()
+    _group_icon = Gtk.Template.Child()
 
     _safe_group = None
+
+    title = GObject.Property(type=str, default="")
 
     def __init__(self, unlocked_database):
         super().__init__()
 
         self._signals = GObject.SignalGroup.new(SafeGroup)
+        self._bindings = GObject.BindingGroup.new()
 
         self._signals.connect_closure(
             "notify::name", self._on_group_name_changed, False
         )
+        self._signals.connect_closure(
+            "notify::selected", self._on_selected_notify, False
+        )
+        self._bindings.bind(
+            "selected",
+            self._selection_checkbox,
+            "active",
+            GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.SYNC_CREATE,
+        )
+        self._bindings.bind(
+            "sensitive",
+            self,
+            "sensitive",
+            GObject.BindingFlags.BIDIRECTIONAL | GObject.BindingFlags.SYNC_CREATE,
+        )
 
         self.unlocked_database = unlocked_database
 
-        self.unlocked_database.bind_property(
-            "selection_mode",
-            self._checkbox_revealer,
-            "reveal-child",
-            GObject.BindingFlags.SYNC_CREATE,
-        )
-        self.unlocked_database.bind_property(
-            "selection_mode",
-            self.edit_button,
-            "sensitive",
-            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.INVERT_BOOLEAN,
+        unlocked_database.connect(
+            "notify::selection-mode", self._on_selection_mode_notify
         )
 
     @GObject.Property(type=SafeGroup)
@@ -55,9 +64,12 @@ class GroupRow(Adw.ActionRow):
         assert isinstance(element, SafeGroup)
 
         self._safe_group = element
+
         self._signals.props.target = element
+        self._bindings.props.source = element
 
         self._on_group_name_changed(element, None)
+        self._on_selection_mode_notify(self.unlocked_database, None)
 
     @Gtk.Template.Callback()
     def _on_group_row_button_pressed(
@@ -71,31 +83,29 @@ class GroupRow(Adw.ActionRow):
         db_view: UnlockedDatabase = self.unlocked_database
         db_view.start_database_lock_timer()
 
-        if not db_view.props.search_active:
-            if db_view.props.selection_mode:
-                active = self.selection_checkbox.props.active
-                self.selection_checkbox.props.active = not active
-            else:
-                db_view.props.selection_mode = True
-                self.selection_checkbox.props.active = True
+        if db_view.props.selection_mode:
+            selected = self._safe_group.selected  # type: ignore
+            self._safe_group.selected = not selected  # type: ignore
+        else:
+            db_view.props.selection_mode = True
+            self._safe_group.selected = True  # type: ignore
 
-    @Gtk.Template.Callback()
-    def on_selection_checkbox_toggled(self, _widget):
+    def _on_selected_notify(self, group, _pspec):
         self.unlocked_database.start_database_lock_timer()
 
-        if self.selection_checkbox.get_active():
-            self.unlocked_database.selection_mode_headerbar.add_group(self)
+        if group.props.selected:
+            self.unlocked_database.add_selection(group)
         else:
-            self.unlocked_database.selection_mode_headerbar.remove_group(self)
+            self.unlocked_database.remove_selection(group)
 
     @Gtk.Template.Callback()
-    def on_group_edit_button_clicked(self, _button: Gtk.Button) -> None:
+    def on_navigate_button_clicked(self, _button: Gtk.Button) -> None:
         """Edit button in a GroupRow was clicked
 
         button: The edit button in the GroupRow"""
         self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
 
-        self.unlocked_database.show_edit_page(self._safe_group)
+        self.unlocked_database.show_browser_page(self._safe_group)
 
     def _on_group_name_changed(
         self, safe_group: SafeGroup, _value: GObject.ParamSpec
@@ -108,7 +118,17 @@ class GroupRow(Adw.ActionRow):
             self.add_css_class("italic-title")
             self.props.title = _("Title not Specified")
 
+    def _on_selection_mode_notify(self, unlocked_db, _pspec):
+        selection_mode = unlocked_db.props.selection_mode
+
+        if selection_mode:
+            visible_child = self._selection_checkbox
+        else:
+            visible_child = self._group_icon
+
+        self._prefix_stack.props.visible_child = visible_child
+
     @Gtk.Template.Callback()
     def _on_long_press_gesture_pressed(self, _gesture, _x, _y):
         self.unlocked_database.props.selection_mode = True
-        self.selection_checkbox.props.active = not self.selection_checkbox.props.active
+        self._safe_group.props.selected = not self._safe_group.props.selected

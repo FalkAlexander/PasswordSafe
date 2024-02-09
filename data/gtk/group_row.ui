@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="GroupRow" parent="AdwActionRow">
-    <property name="activatable">True</property>
+  <template class="GroupRow" parent="AdwBin">
     <child>
       <object class="GtkGestureClick" id="_entry_box_gesture">
         <property name="button">3</property>
@@ -14,48 +13,63 @@
         <signal name="pressed" handler="_on_long_press_gesture_pressed" swapped="no"/>
       </object>
     </child>
-    <child type="prefix">
-     <object class="GtkBox">
-       <child>
-         <object class="GtkRevealer" id="_checkbox_revealer">
-           <property name="transition_type">slide-right</property>
-           <child>
-             <object class="GtkCheckButton" id="selection_checkbox">
-               <property name="margin_end">12</property>
-               <property name="valign">center</property>
-               <property name="tooltip_text" translatable="yes">Select</property>
-               <signal name="toggled" handler="on_selection_checkbox_toggled" swapped="no"/>
-               <style>
-                 <class name="selection-mode"/>
-               </style>
-             </object>
-           </child>
-         </object>
-       </child>
+    <child>
+      <object class="GtkBox">
+        <property name="spacing">12</property>
+        <property name="margin_top">6</property>
+        <property name="margin_bottom">6</property>
         <child>
-          <object class="GtkImage" id="group_icon">
-            <property name="icon_name">folder-symbolic</property>
-            <property name="height_request">32</property>
-            <property name="width_request">32</property>
+          <object class="GtkStack" id="_prefix_stack">
+            <property name="transition_type">crossfade</property>
+            <child>
+              <object class="GtkImage" id="_group_icon">
+                <property name="icon_name">folder-symbolic</property>
+                <property name="height_request">28</property>
+                <property name="width_request">28</property>
+                <property name="accessible-role">presentation</property>
+                <style>
+                  <class name="circular-icon"/>
+                  <class name="NoneColorButton"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkCheckButton" id="_selection_checkbox">
+                <style>
+                  <class name="selection-mode"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="halign">start</property>
             <property name="valign">center</property>
-            <property name="accessible-role">presentation</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label" bind-source="GroupRow" bind-property="title"/>
+                <property name="hexpand">True</property>
+                <property name="halign">start</property>
+                <style>
+                  <class name="title"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="valign">center</property>
+            <property name="tooltip_text" translatable="yes">Navigate To</property>
+            <property name="icon_name">go-next-symbolic</property>
+            <signal name="clicked" handler="on_navigate_button_clicked" swapped="no"/>
             <style>
-              <class name="circular-icon"/>
-              <class name="NoneColorButton"/>
+              <class name="flat"/>
             </style>
           </object>
         </child>
-     </object>
-    </child>
-    <child>
-      <object class="GtkButton" id="edit_button">
-        <property name="valign">center</property>
-        <property name="tooltip_text" translatable="yes">Edit</property>
-        <property name="icon_name">document-edit-symbolic</property>
-        <signal name="clicked" handler="on_group_edit_button_clicked" swapped="no"/>
-        <style>
-          <class name="flat"/>
-        </style>
       </object>
     </child>
   </template>

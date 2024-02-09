@@ -4,7 +4,6 @@ from __future__ import annotations
 import logging
 import os
 import typing
-from enum import IntEnum
 from gettext import gettext as _
 from gettext import ngettext
 
@@ -16,16 +15,14 @@ from gsecrets.entry_page import EntryPage
 from gsecrets.entry_row import EntryRow
 from gsecrets.group_page import GroupPage
 from gsecrets.group_row import GroupRow
-from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import SafeElement, SafeEntry, SafeGroup
+from gsecrets.selection_manager import SelectionManager
 from gsecrets.unlocked_headerbar import UnlockedHeaderBar
+from gsecrets.widgets.browsing_panel import BrowsingPanel
 from gsecrets.widgets.database_settings_dialog import DatabaseSettingsDialog
 from gsecrets.widgets.properties_dialog import PropertiesDialog
 from gsecrets.widgets.references_dialog import ReferencesDialog
 from gsecrets.widgets.saving_conflict_dialog import SavingConflictDialog
-from gsecrets.widgets.search import Search
-from gsecrets.widgets.selection_mode_headerbar import SelectionModeHeaderbar
-from gsecrets.widgets.unlocked_database_page import UnlockedDatabasePage
 
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
@@ -56,7 +53,7 @@ class AttributeUndoData:
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/unlocked_database.ui")
-class UnlockedDatabase(Adw.Bin):
+class UnlockedDatabase(Adw.BreakpointBin):
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-public-methods
     __gtype_name__ = "UnlockedDatabase"
@@ -70,26 +67,28 @@ class UnlockedDatabase(Adw.Bin):
     save_loop: int | None = None  # If int, a thread periodically saves the database
     session_handler_id: int | None = None
 
-    action_bar = Gtk.Template.Child()
-    _edit_page = Gtk.Template.Child()
     headerbar_stack = Gtk.Template.Child()
-    _main_view = Gtk.Template.Child()
-    _stack = Gtk.Template.Child()
-    _navigation_view = Gtk.Template.Child()
-    _unlocked_db_stack = Gtk.Template.Child()
-    search_bar = Gtk.Template.Child()
-    search_entry = Gtk.Template.Child()
+    _split_view = Gtk.Template.Child()
+    toolbar_view = Gtk.Template.Child()
+    _select_entry_status_page = Gtk.Template.Child()
+    _empty_page = Gtk.Template.Child()
 
-    selection_mode = GObject.Property(type=bool, default=False)
+    _search_active: bool = False
+    _search_bar = Gtk.Template.Child()
+    _search_entry = Gtk.Template.Child()
+
+    _selection_mode: bool = False
+    _selection_mode_headerbar = Gtk.Template.Child()
+    _selection_mode_action_bar = Gtk.Template.Child()
+    _delete_selection_button = Gtk.Template.Child()
+    _cut_selection_button = Gtk.Template.Child()
+    _paste_selection_button = Gtk.Template.Child()
+    _selection_mode_title = Gtk.Template.Child()
+    _cut_paste_button_stack = Gtk.Template.Child()
+    _clear_selection_button = Gtk.Template.Child()
+
     undo_data: UndoData | None = None
     attribute_undo_data: AttributeUndoData | None = None
-
-    class Mode(IntEnum):
-        ENTRY = 0
-        GROUP = 1
-        GROUP_EDIT = 2
-        SEARCH = 3
-        SELECTION = 4
 
     def __init__(self, window: Window, dbm: DatabaseManager):
         super().__init__()
@@ -99,34 +98,25 @@ class UnlockedDatabase(Adw.Bin):
 
         root_group = SafeGroup.get_root(dbm)
         self.props.current_element = root_group
-        self._mode = self.Mode.GROUP
-
-        # Actionbar has to be setup before edit entry & group headerbars.
-        mobile_pathbar = Pathbar(self)
-        self.pathbar = Pathbar(self)
-        self.action_bar.pack_start(mobile_pathbar)
 
         # Headerbars
-        self.selection_mode_headerbar = SelectionModeHeaderbar(self)
         self.headerbar = UnlockedHeaderBar(self)
 
-        self.headerbar_stack.add_child(self.selection_mode_headerbar)
         self.headerbar_stack.add_child(self.headerbar)
+        self.headerbar_stack.props.visible_child = self.headerbar
 
-        # self.search has to be loaded after the search headerbar.
-        self._search_active = False
-        self.search: Search = Search(self)
-        self._unlocked_db_stack.add_named(self.search, "search")
-        self.search.initialize()
+        self._select_entry_status_page.props.icon_name = f"{const.APP_ID}-symbolic"
+
+        self.active_element: SafeElement | None = None
 
         # Browser Mode
-        self.show_browser_page(self.current_element)  # type: ignore
+        self.browsing_panel = BrowsingPanel(self)
+        self.toolbar_view.props.content = self.browsing_panel
 
         self.setup()
 
         self.clipboard = self.get_clipboard()
 
-        self.connect("notify::selection-mode", self._on_selection_mode_changed)
         self.db_locked_handler = self.database_manager.connect(
             "notify::locked", self._on_database_lock_changed
         )
@@ -135,20 +125,31 @@ class UnlockedDatabase(Adw.Bin):
         save_action = window.lookup_action("db.save_dirty")
         dbm.bind_property("is-dirty", save_action, "enabled")
 
-        search_action = Gio.PropertyAction.new("db.search", self, "search-active")
+        search_action = Gio.PropertyAction.new(
+            "db.search", self, "search-active"
+        )
         window.add_action(search_action)
 
         def on_locked(dbm, _spec):
             if dbm.locked:
-                self.search_bar.set_key_capture_widget(None)
+                self._search_bar.set_key_capture_widget(None)
             else:
-                self.search_bar.set_key_capture_widget(window)
+                self._search_bar.set_key_capture_widget(window)
 
         dbm.connect("notify::locked", on_locked)
-        self.search_bar.set_key_capture_widget(window)
+        self._search_bar.set_key_capture_widget(window)
 
-        self.search_bar.connect_entry(self.search_entry)
-        self.bind_property("search-active", self.search_bar, "search-mode-enabled")
+        self._search_entry.connect("search-changed", self._on_search_changed)
+        self.bind_property(
+            "search-active",
+            self._search_bar, "search-mode-enabled",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+
+        self._split_view.connect("notify::show-content", self._on_show_content_notify)
+        self._split_view.connect("notify::collapsed", self._on_collapsed_notify)
+
+        self._selection_manager = SelectionManager(self)
 
     def inner_dispose(self):
         logging.debug("Database disposed")
@@ -179,65 +180,38 @@ class UnlockedDatabase(Adw.Bin):
 
     def show_edit_page(self, element: SafeElement, new: bool = False) -> None:
         self.start_database_lock_timer()
-        self.props.current_element = element
-
-        if self.props.search_active:
-            self.props.search_active = False
+        self.active_element = element
 
         # Sets the accessed time.
         element.touch()
 
         if element.is_group:
             page = GroupPage(self, element)
-            self.props.mode = self.Mode.GROUP_EDIT
         else:
             page = EntryPage(self, element, new)
-            self.props.mode = self.Mode.ENTRY
 
-        self._edit_page.set_child(page)
-        self._navigation_view.push(self._edit_page)
+        page = Adw.NavigationPage.new(page, "Edit")
+        self._split_view.props.content = page
+        self._split_view.props.show_content = True
 
     def show_browser_page(self, group: SafeGroup) -> None:
         self.start_database_lock_timer()
-        self._unlocked_db_stack.set_visible_child(self._stack)
-        if self._navigation_view.props.visible_page == self._edit_page:
-            # pop triggers _on_edit_page_hidden via the hidden signal.
-            self._navigation_view.pop()
-        else:
-            self._set_current_element_after_pop(group)
 
-    def _set_current_element_after_pop(self, group):
-        page_name = group.uuid.urn
-        if page := self._stack.get_child_by_name(page_name):
-            self.props.current_element = page.group
-        else:
-            self.props.current_element = group
-            new_page = UnlockedDatabasePage(self, group)
-            self._stack.add_named(new_page, page_name)
+        self.active_element = group
+        self.props.current_element = group
+        self._split_view.props.show_content = False
+        self.browsing_panel.visit_group(group)
 
-        if not self.props.selection_mode:
-            self.props.mode = self.Mode.GROUP
+        # FIXME Pressing the go back button in the split view won't trigger
+        # this.
 
-        self._stack.set_visible_child_name(page_name)
+    def _navigate_back(self):
+        if element := self.active_element:
+            parent_group = element.parentgroup
+            self.show_browser_page(parent_group)
+            return
 
-    @property
-    def in_edit_page(self) -> bool:
-        """Returns true if the current visible page is either
-        the Group edit page or Entry edit page."""
-
-        boolean: bool = (
-            self._navigation_view.props.visible_page == self._edit_page
-        )
-        return boolean
-
-    def _on_selection_mode_changed(
-        self, _unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
-    ) -> None:
-        if self.props.selection_mode:
-            self.props.mode = self.Mode.SELECTION
-            self.headerbar_stack.set_visible_child(self.selection_mode_headerbar)
-        else:
-            self.headerbar_stack.set_visible_child(self.headerbar)
+        self.show_browser_page(self.current_element)
 
     #
     # Group and Entry Management
@@ -245,46 +219,16 @@ class UnlockedDatabase(Adw.Bin):
 
     @GObject.Property(type=SafeElement)
     def current_element(self) -> SafeElement:
+        # FIXME Rename to current_group, check all uses
         return self._current_element
 
     @current_element.setter  # type: ignore
     def current_element(self, element: SafeElement) -> None:
         self._current_element = element
 
-    def get_current_page(self) -> UnlockedDatabasePage:
-        """Returns the page associated with current_element.
-
-        :returns: current page
-        :rtype: Gtk.Widget
-        """
-        element_uuid = self.props.current_element.uuid
-        return self._stack.get_child_by_name(element_uuid.urn)
-
-    def delete_page(self, element):
-        if page := self._stack.get_child_by_name(element.uuid.urn):
-            self._stack.remove(page)
-
     #
     # Events
     #
-
-    def on_list_box_row_activated(self, _widget, list_box_row):
-        self.start_database_lock_timer()
-
-        if self.props.search_active:
-            self.props.search_active = False
-
-        if list_box_row.__gtype_name__ == "GroupRow":
-            safe_group = list_box_row.safe_group
-            self.show_browser_page(safe_group)
-        else:
-            if self.selection_mode:
-                active = list_box_row.selection_checkbox.props.active
-                list_box_row.selection_checkbox.props.active = not active
-                return
-
-            safe_entry = list_box_row.safe_entry
-            self.show_edit_page(safe_entry)
 
     def on_save(
         self, database_manager: DatabaseManager, result: Gio.AsyncResult
@@ -326,17 +270,16 @@ class UnlockedDatabase(Adw.Bin):
 
     def on_element_delete_action(self) -> None:
         """Delete the visible entry from the menu."""
-        element = self.props.current_element
-        parent_group = self.props.current_element.parentgroup
-        if element.trash():
-            self.delete_page(element)
-            elements = []
-        else:
-            elements = [(element, parent_group)]
+        if element := self.active_element:
+            parent_group = element.parentgroup
+            if element.trash():
+                elements = []
+            else:
+                elements = [(element, parent_group)]
 
-        self.deleted_notification(elements)
-
-        self.show_browser_page(parent_group)
+            self._split_view.props.content = self._empty_page
+            self.deleted_notification(elements)
+            self._navigate_back()
 
     def deleted_notification(self, elements):
         n_del = len(elements)
@@ -396,10 +339,9 @@ class UnlockedDatabase(Adw.Bin):
             self.attribute_undo_data = None
 
     def on_entry_duplicate_action(self):
-        self.props.current_element.duplicate()
-        parent_group = self.props.current_element.parentgroup
-
-        self.show_browser_page(parent_group)
+        if element := self.active_element:
+            element.duplicate()
+            self._navigate_back()
 
     def send_to_clipboard(
         self,
@@ -458,7 +400,7 @@ class UnlockedDatabase(Adw.Bin):
         GLib.timeout_add_seconds(clear_clipboard_time, callback)
 
     def show_database_settings(self) -> None:
-        DatabaseSettingsDialog(self).present()
+        DatabaseSettingsDialog(self).present(self)
 
     def on_session_lock(self, app: Gtk.Application, _pspec: GObject.ParamSpec) -> None:
         if (
@@ -476,13 +418,13 @@ class UnlockedDatabase(Adw.Bin):
         """Show a Group/Entry reference dialog
 
         Invoked by the app.entry.references action"""
-        ReferencesDialog(self).present()
+        ReferencesDialog(self).present(self)
 
     def show_properties_dialog(self) -> None:
         """Show a Group/Entry property dialog
 
         Invoked by the app.element.properties action"""
-        PropertiesDialog(self).present()
+        PropertiesDialog(self).present(self)
 
     #
     # Utils
@@ -582,7 +524,7 @@ class UnlockedDatabase(Adw.Bin):
         else:
             if conflicts:
                 dialog = SavingConflictDialog(self.window, dbm, on_save_callback)
-                dialog.present()
+                dialog.present(self.window)
             else:
                 self.database_manager.save_async(on_save_callback)
 
@@ -612,19 +554,19 @@ class UnlockedDatabase(Adw.Bin):
         return GLib.SOURCE_CONTINUE
 
     def go_back(self):
-        if self.props.selection_mode:
-            self.props.selection_mode = False
-            self.props.mode = self.Mode.GROUP
-            return
-        if self.props.search_active:
+        if self._search_active:
             self.props.search_active = False
-            self.props.mode = self.Mode.GROUP
-            return
-        if self.props.current_element.is_root_group:
             return
 
-        parent = self.props.current_element.parentgroup
-        self.show_browser_page(parent)
+        if self._selection_mode:
+            self.props.selection_mode = False
+            return
+
+        self._navigate_back()
+
+    @Gtk.Template.Callback()
+    def _on_selection_go_back_button_clicked(self, _button):
+        self.headerbar.on_go_back_button_clicked(None)
 
     @GObject.Property(type=bool, default=False)
     def search_active(self) -> bool:
@@ -643,19 +585,10 @@ class UnlockedDatabase(Adw.Bin):
 
         :param value: new search_active
         """
-        if (
-            self.database_manager.props.locked
-            or self.selection_mode
-            or self.in_edit_page
-        ):
-            return
-
         self._search_active = value
-        if self._search_active:
-            self.props.mode = self.Mode.SEARCH
-            self._unlocked_db_stack.set_visible_child_name("search")
-        else:
-            self.show_browser_page(self.current_element)
+
+        if not value:
+            self.browsing_panel.set_search(None)
 
     # TODO This property does not emit a notify signal when the manager locked
     # property is updated.
@@ -668,16 +601,110 @@ class UnlockedDatabase(Adw.Bin):
         """
         return self.database_manager.props.locked
 
-    @GObject.Property(type=int, default=0)
-    def mode(self) -> int:
-        return self._mode
+    @GObject.Property(type=bool, default=False)
+    def selection_mode(self) -> bool:
+        return self._selection_mode
 
-    @mode.setter  # type: ignore
-    def mode(self, new_mode: int) -> None:
-        self._mode = new_mode
+    @selection_mode.setter  # type: ignore
+    def selection_mode(self, value: bool) -> None:
+        self._selection_mode = value
+        self._selection_mode_action_bar.set_revealed(value)
+
+        if value:
+            self.headerbar_stack.props.visible_child = self._selection_mode_headerbar
+        else:
+            self.headerbar_stack.props.visible_child = self.headerbar
+            self._clear_selection()
 
     @Gtk.Template.Callback()
-    def _on_edit_page_hidden(self, _page):
-        # Makes sure that current_element is set correctly.
-        parent = self.props.current_element.parentgroup
-        self._set_current_element_after_pop(parent)
+    def _on_selection_cancel_clicked(self, _button):
+        self.props.selection_mode = False
+
+    @Gtk.Template.Callback()
+    def _on_clear_selection_clicked(self, _button):
+        self.start_database_lock_timer()
+        self._clear_selection()
+
+    @Gtk.Template.Callback()
+    def _on_cut_selection_clicked(self, _button):
+        self.start_database_lock_timer()
+        self._selection_manager.cut_selection()
+        self._update_selection()
+
+    @Gtk.Template.Callback()
+    def _on_paste_selection_clicked(self, _button):
+        self.start_database_lock_timer()
+        self._selection_manager.paste_selection()
+        self._update_selection()
+
+    @Gtk.Template.Callback()
+    def _on_delete_selection_clicked(self, _button):
+        self.start_database_lock_timer()
+        if element := self.browsing_panel.selection_model.selected_item:
+            if element.selected:
+                self._split_view.props.content = self._empty_page
+                self._navigate_back()
+
+        self._selection_manager.delete_selection()
+        self._update_selection()
+
+    def add_selection(self, element):
+        if element.is_group:
+            self._selection_manager.add_group(element)
+        else:
+            self._selection_manager.add_entry(element)
+
+        self._update_selection()
+
+    def remove_selection(self, element):
+        if element.is_group:
+            self._selection_manager.remove_group(element)
+        else:
+            self._selection_manager.remove_entry(element)
+
+        self._update_selection()
+
+    def _clear_selection(self):
+        self._selection_manager.clear_selection()
+        self._update_selection()
+
+    def _update_selection(self):
+        n_selected = self._selection_manager.selected_elements
+        cut_mode = self._selection_manager.cut_mode
+        non_empty_selection = n_selected > 0
+
+        self._cut_selection_button.props.sensitive = non_empty_selection
+        self._delete_selection_button.props.sensitive = non_empty_selection
+        self._clear_selection_button.props.sensitive = non_empty_selection
+
+        if n_selected == 0:
+            title = _("Select Items")
+        else:
+            title = ngettext("{} Selected", "{} Selected", n_selected).format(
+                n_selected
+            )
+
+        self._selection_mode_title.props.title = title
+
+        self._delete_selection_button.props.sensitive = n_selected > 0
+
+        if cut_mode:
+            visible_child = self._cut_selection_button
+        else:
+            visible_child = self._paste_selection_button
+
+        self._cut_paste_button_stack.props.visible_child = visible_child
+
+    def _update_selection_on_collapsed(self):
+        nav = self._split_view
+        if nav.props.collapsed and not nav.props.show_content:
+            self.browsing_panel.unselect()
+
+    def _on_show_content_notify(self, _split_view, _pspec):
+        self._update_selection_on_collapsed()
+
+    def _on_collapsed_notify(self, _split_view, _pspec):
+        self._update_selection_on_collapsed()
+
+    def _on_search_changed(self, search_entry):
+        self.browsing_panel.set_search(search_entry.props.text)

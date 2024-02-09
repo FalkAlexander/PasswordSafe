@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
+from gettext import gettext as _
+
 from gi.repository import Adw, GObject, Gtk
 
 from gsecrets.password_generator import strength_async
@@ -15,6 +17,9 @@ class PasswordLevelBar(Adw.Bin):
         super().__init__()
 
         self.level_bar = Gtk.LevelBar()
+        self.level_bar.update_property(
+            [Gtk.AccessibleProperty.LABEL], [_("Password Strength")]
+        )
 
         self.level_bar.props.max_value = 4.0
         self.level_bar.props.mode = Gtk.LevelBarMode.DISCRETE

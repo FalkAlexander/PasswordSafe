@@ -10,7 +10,7 @@ class ProgressIcon(GObject.Object, Gdk.Paintable, Gtk.SymbolicPaintable):
     _progress: float = 0.0
 
     def do_snapshot_symbolic(self, snapshot, width, height, colors, _n_colors):
-        color = colors[0]
+        color = colors[Gtk.SymbolicColor.FOREGROUND]
         color.alpha = 0.15
 
         rect = Graphene.Rect().alloc()

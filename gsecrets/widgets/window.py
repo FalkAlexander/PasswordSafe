@@ -379,7 +379,7 @@ class Window(Adw.ApplicationWindow):
                         self.unlocked_db.database_manager.save_async(on_save)
                     else:
                         save_dialog = SaveDialog(self)
-                        save_dialog.present()
+                        save_dialog.present(self)
 
         if is_database_dirty:
             dbm.check_file_changes_async(on_check_file_changes)
@@ -394,9 +394,7 @@ class Window(Adw.ApplicationWindow):
             self.force_close()
 
         # TODO Set the body of the message based on the error kind.
-        dialog = Adw.MessageDialog.new(
-            self, _("Could not save Safe"), None,
-        )
+        dialog = Adw.AlertDialog.new(_("Could not save Safe"), None)
         dialog.add_response("discard", _("_Quit Without Saving"))
         dialog.add_response("cancel", _("_Don't Quit"))
         dialog.set_response_appearance(
@@ -404,7 +402,7 @@ class Window(Adw.ApplicationWindow):
         )
         dialog.set_default_response("cancel")
         dialog.connect("response::discard", on_discard)
-        dialog.present()
+        dialog.present(self)
 
     def do_unrealize(self):  # pylint: disable=arguments-differ
         if self.unlocked_db:
@@ -432,9 +430,15 @@ class Window(Adw.ApplicationWindow):
         self.add_action(new_database_action)
         new_database_action.connect("activate", self.on_new_database_action)
 
+        def on_visible_dialog_notify(window, _pspec):
+            enabled = window.props.visible_dialog is None
+            go_back_action.set_enabled(enabled)
+
         go_back_action = Gio.SimpleAction.new("go_back", None)
         self.add_action(go_back_action)
         go_back_action.connect("activate", self.on_go_back_action)
+        # NOTE We need to do this to avoid consuming Esc events
+        self.connect("notify::visible-dialog", on_visible_dialog_notify)
 
         open_database_action = Gio.SimpleAction.new(
             "open_database", GLib.VariantType("s")
@@ -503,11 +507,7 @@ class Window(Adw.ApplicationWindow):
         elif name in ["db.save", "db.save_dirty"]:
             action_db.save_database()
         elif name in ["db.add_entry", "db.add_group"]:
-            if (
-                action_db.props.database_locked
-                or action_db.props.selection_mode
-                or action_db.in_edit_page
-            ):
+            if action_db.props.database_locked or action_db.props.selection_mode:
                 return
 
             if action_db.props.search_active:
@@ -524,11 +524,10 @@ class Window(Adw.ApplicationWindow):
             "/org/gnome/World/Secrets/about_dialog.ui"
         )
         about_dialog = builder.get_object("about_dialog")
-        about_dialog.set_transient_for(self)
-        about_dialog.present()
+        about_dialog.present(self)
 
     def on_settings_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
-        SettingsDialog(self).present()
+        SettingsDialog().present(self)
 
     def on_go_back_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         if self.view == self.View.CREATE_DATABASE:

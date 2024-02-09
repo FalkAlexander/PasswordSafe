@@ -19,7 +19,7 @@ from gsecrets.utils import (
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/database_settings_dialog.ui")
-class DatabaseSettingsDialog(Adw.PreferencesWindow):
+class DatabaseSettingsDialog(Adw.PreferencesDialog):
     # pylint: disable=too-many-instance-attributes
 
     __gtype_name__ = "DatabaseSettingsDialog"
@@ -76,9 +76,6 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
 
     def __setup_widgets(self) -> None:
         # Dialog
-        self.set_modal(True)
-        self.set_transient_for(self.unlocked_database.window)
-
         self.set_detail_values()
 
         stats_thread = threading.Thread(target=self.start_stats_thread)
@@ -290,13 +287,12 @@ class DatabaseSettingsDialog(Adw.PreferencesWindow):
             self.add_toast(toast)
         else:
             if conflicts:
-                dialog = Adw.MessageDialog.new(
-                    self,
+                dialog = Adw.AlertDialog.new(
                     _("Conflicts While Saving"),
                     _("The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.")  # pylint: disable=line-too-long # noqa: E501
                 )
                 dialog.add_response("ok", _("OK"))
-                dialog.present()
+                dialog.present(self)
             else:
                 new_password = self.new_password_entry.props.text
                 self.database_manager.set_credentials_async(

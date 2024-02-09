@@ -5,14 +5,18 @@
       <object class="AdwHeaderBar">
         <property name="show_title">False</property>
         <child>
-          <object class="GtkMenuButton" id="_add_button">
+          <object class="GtkButton" id="_go_back_button">
+            <property name="visible">False</property>
+            <property name="icon_name">go-previous-symbolic</property>
+            <property name="tooltip_text" translatable="yes">Go Back</property>
+          </object>
+        </child>"
+        <child>
+          <object class="GtkMenuButton">
             <property name="menu_model">_add_button_menu</property>
             <property name="icon_name">list-add-symbolic</property>
             <property name="tooltip_text" translatable="yes">New Entry or Group</property>
           </object>
-        </child>
-        <child>
-          <object class="AdwBin" id="_pathbar_bin"/>
         </child>
         <child type="end">
           <object class="GtkBox">
@@ -25,7 +29,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkButton" id="selection_button">
+              <object class="GtkButton" id="_selection_button">
                 <property name="tooltip_text" translatable="yes" comments="Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups">Selection Mode</property>
                 <property name="icon_name">selection-mode-symbolic</property>
                 <signal name="clicked" handler="_on_selection_button_clicked" swapped="no"/>

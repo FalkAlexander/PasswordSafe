@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="AttachmentWarningDialog" parent="AdwMessageDialog">
+  <template class="AttachmentWarningDialog" parent="AdwAlertDialog">
     <property name="heading" translatable="yes" comments="Dialog title which informs the user about unsaved changes.">Safety Info</property>
     <property name="body" translatable="yes" comments="Dialog subtitle which informs the user about unsaved changes more detailed.">It is possible that external applications will create unencrypted hidden or temporary copies of this attachment file! Please proceed with caution.</property>
     <property name="default-response">proceed</property>

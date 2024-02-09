@@ -5,7 +5,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/references_dialog.ui")
-class ReferencesDialog(Adw.Window):
+class ReferencesDialog(Adw.Dialog):
     __gtype_name__ = "ReferencesDialog"
 
     __property = "P"
@@ -28,8 +28,6 @@ class ReferencesDialog(Adw.Window):
         self.__setup_widgets()
 
     def __setup_widgets(self) -> None:
-        self.set_modal(True)
-        self.set_transient_for(self.__unlocked_database.window)
         self.__update_reference_entry()
 
     def __setup_signals(self) -> None:

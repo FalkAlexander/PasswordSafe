@@ -9,7 +9,6 @@ from gi.repository import Adw, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
-from gsecrets.pathbar import Pathbar
 from gsecrets.safe_element import ICONS
 from gsecrets.safe_element import SafeEntry
 from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
@@ -26,8 +25,6 @@ class EntryPage(Adw.Bin):
     # pylint: disable=too-many-public-methods
 
     __gtype_name__ = "EntryPage"
-
-    _pathbar_bin = Gtk.Template.Child()
 
     title_entry_row = Gtk.Template.Child()
     url_entry_row = Gtk.Template.Child()
@@ -55,6 +52,8 @@ class EntryPage(Adw.Bin):
 
     expiration_date_preferences_group = Gtk.Template.Child()
     expiration_date_row = Gtk.Template.Child()
+
+    _window_title = Gtk.Template.Child()
 
     show_all_preferences_group = Gtk.Template.Child()
 
@@ -88,16 +87,6 @@ class EntryPage(Adw.Bin):
             self.expiration_date_preferences_group,
         ]
 
-        self._pathbar_bin.set_child(Pathbar(u_d))
-
-        u_d.action_bar.bind_property(
-            "revealed",
-            self._pathbar_bin,
-            "visible",
-            GObject.BindingFlags.INVERT_BOOLEAN
-            | GObject.BindingFlags.SYNC_CREATE,
-        )
-
         self.insert_entry_properties_into_listbox(add_all)
 
         safe_entry: SafeEntry = self.props.safe_entry
@@ -106,6 +95,20 @@ class EntryPage(Adw.Bin):
         safe_entry.history_saved.connect(self._on_history_saved)
         if not safe_entry.history:
             self.action_set_enabled("entry.password_history", False)
+
+        safe_entry.connect("notify::name", self._on_name_notify)
+        self._set_title(safe_entry)
+
+    def _set_title(self, entry):
+        if entry.parentgroup.is_root_group:
+            title = entry.name
+        else:
+            title = f"{entry.parentgroup.name} ⟩ {entry.name}"
+
+        self._window_title.props.title = title
+
+    def _on_name_notify(self, entry, _pspec):
+        self._set_title(entry)
 
     def do_unroot(self) -> None:  # pylint: disable=arguments-differ
         if self.otp_timer_handler is not None:
@@ -226,12 +229,9 @@ class EntryPage(Adw.Bin):
         safe_entry = self.props.safe_entry
 
         window = HistoryWindow(safe_entry, self.unlocked_database)
-        window.present()
+        window.present(self)
 
     def _on_save_in_history_action(self, _widget, _action, _param):
-        if not self.unlocked_database.in_edit_page:
-            return
-
         safe_entry = self.props.safe_entry
         safe_entry.save_history()
 
@@ -285,7 +285,7 @@ class EntryPage(Adw.Bin):
     def on_notes_detach_button_clicked(self, _button):
         self.unlocked_database.start_database_lock_timer()
         safe_entry = self.props.safe_entry
-        NotesDialog(self.unlocked_database, safe_entry).present()
+        NotesDialog(self.unlocked_database, safe_entry).present(self)
 
     def on_entry_icon_button_toggled(self, flowbox):
         if not flowbox.get_selected_children():
@@ -331,8 +331,8 @@ class EntryPage(Adw.Bin):
         window = self.unlocked_database.window
         entry = self.props.safe_entry
         db_manager = self.unlocked_database.database_manager
-        dialog = AddAttributeDialog(window, db_manager, entry)
-        dialog.present()
+        dialog = AddAttributeDialog(db_manager, entry)
+        dialog.present(window)
 
     #
     # Attachment Handling
@@ -342,7 +342,7 @@ class EntryPage(Adw.Bin):
     def on_attachment_list_box_activated(self, _widget, list_box_row):
         self.unlocked_database.start_database_lock_timer()
         attachment = list_box_row.attachment
-        AttachmentWarningDialog(self, attachment).present()
+        AttachmentWarningDialog(self, attachment).present(self)
 
     def _on_add_attachment(self, _widget, _action_name, _pspec):
         self.unlocked_database.start_database_lock_timer()

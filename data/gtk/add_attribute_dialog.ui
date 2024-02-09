@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="AddAttributeDialog" parent="AdwWindow">
-    <property name="modal">True</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="default_width">450</property>
-    <property name="default_height">360</property>
+  <template class="AddAttributeDialog" parent="AdwDialog">
+    <property name="content_width">450</property>
     <property name="title" translatable="yes">Add Attribute</property>
-    <child>
-      <object class="GtkShortcutController">
-        <child>
-          <object class="GtkShortcut">
-            <property name="trigger">Escape</property>
-            <property name="action">action(window.close)</property>
-          </object>
-        </child>
-      </object>
-    </child>
     <child>
       <object class="AdwToolbarView">
         <child type="top">
@@ -25,6 +12,7 @@
           <object class="AdwToastOverlay" id="_toast_overlay">
             <child>
               <object class="GtkScrolledWindow">
+                <property name="propagate_natural_height">True</property>
                 <child>
                   <object class="AdwClamp">
                     <property name="margin_top">12</property>

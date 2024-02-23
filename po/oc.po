@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: secrets release/5.x\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
 "POT-Creation-Date: 2024-02-06 21:40+0000\n"
-"PO-Revision-Date: 2024-02-22 10:57+0100\n"
+"PO-Revision-Date: 2024-02-23 19:47+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Occitan <totenoc@gmail.com>\n"
 "Language: oc\n"
@@ -107,11 +107,11 @@ msgstr ""
 
 #: data/gtk/browsing_panel.ui:24
 msgid "Empty Group"
-msgstr ""
+msgstr "Voidar lo grop"
 
 #: data/gtk/browsing_panel.ui:30
 msgid "No Search Results"
-msgstr ""
+msgstr "Pas cap de resultat de recèrca"
 
 #: data/gtk/color_entry_row.ui:4
 msgid "Color"
@@ -149,7 +149,7 @@ msgstr "Confirmatz lo senhal novèl"
 
 #: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
 msgid "Additional Credentials"
-msgstr ""
+msgstr "Identificants addicionals"
 
 #: data/gtk/create_database.ui:90
 msgid "Create"
@@ -198,7 +198,7 @@ msgstr "Picatz lo senhal"
 
 #: data/gtk/database_settings_dialog.ui:6
 msgid "Safe Settings"
-msgstr ""
+msgstr "Paramètres del còfre"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -211,20 +211,16 @@ msgid "Password"
 msgstr "Senhal"
 
 #: data/gtk/database_settings_dialog.ui:17
-#, fuzzy
-#| msgid "Password"
 msgid "New Password"
-msgstr "Senhal"
+msgstr "Senhal novèl"
 
 #: data/gtk/database_settings_dialog.ui:38
 msgid "Confirm New Password"
 msgstr "Confirmatz lo senhal novèl"
 
 #: data/gtk/database_settings_dialog.ui:44
-#, fuzzy
-#| msgid "Enter Current Password"
 msgid "Current Password"
-msgstr "Picatz lo senhal actual"
+msgstr "Senhal actual"
 
 #: data/gtk/database_settings_dialog.ui:58
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
@@ -348,7 +344,7 @@ msgstr "Nòtas"
 
 #: data/gtk/entry_page.ui:159 data/gtk/group_page.ui:41
 msgid "Edit in a Window"
-msgstr ""
+msgstr "Modificar dins una fenèstra"
 
 #: data/gtk/entry_page.ui:197
 msgid "Icon"
@@ -380,15 +376,15 @@ msgstr "Data de creacion"
 
 #: data/gtk/entry_page.ui:259
 msgid "_Show More"
-msgstr ""
+msgstr "_Ne veire mai"
 
 #: data/gtk/entry_page.ui:278
 msgid "D_uplicate"
-msgstr ""
+msgstr "D_uplicar"
 
 #: data/gtk/entry_page.ui:282
 msgid "_References"
-msgstr ""
+msgstr "_Referéncias"
 
 #: data/gtk/entry_page.ui:286 data/gtk/group_page.ui:78
 msgid "_Properties"
@@ -396,11 +392,11 @@ msgstr "_Proprietats"
 
 #: data/gtk/entry_page.ui:292
 msgid "_Save in History"
-msgstr ""
+msgstr "_Salvar dins l’istoric"
 
 #: data/gtk/entry_page.ui:296
 msgid "Show _History"
-msgstr ""
+msgstr "_Mostrar l’istoric"
 
 #: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:84
 msgid "_Delete"
@@ -482,12 +478,9 @@ msgid "Close Window"
 msgstr "Tampar la fenèstra"
 
 #: data/gtk/help-overlay.ui:50
-#, fuzzy
-#| msgctxt "Shortcut window description"
-#| msgid "Close Window"
 msgctxt "Shortcut window description"
 msgid "New Window"
-msgstr "Tampar la fenèstra"
+msgstr "Fenèstra novèla"
 
 #: data/gtk/help-overlay.ui:56
 msgctxt "Shortcut window description"
@@ -535,11 +528,9 @@ msgid "Copy Password"
 msgstr "Copiar lo senhal"
 
 #: data/gtk/help-overlay.ui:108
-#, fuzzy
-#| msgid "Open Address"
 msgctxt "Shortcut window description"
 msgid "Copy Address"
-msgstr "Dobrir l’adreça"
+msgstr "Copiar l'adreça"
 
 #: data/gtk/help-overlay.ui:114
 msgctxt "Shortcut window description"
@@ -1211,10 +1202,8 @@ msgid "Username copied"
 msgstr "Nom d’utilizaire copiat"
 
 #: gsecrets/entry_page.py:262 gsecrets/entry_page.py:394
-#, fuzzy
-#| msgid "Username copied"
 msgid "Address copied"
-msgstr "Nom d’utilizaire copiat"
+msgstr "Adreça copiada"
 
 #: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
 msgid "One-time password copied"
@@ -1222,7 +1211,7 @@ msgstr ""
 
 #: gsecrets/entry_page.py:305
 msgid "Could not open URL"
-msgstr ""
+msgstr "Impossible de dobrir l'URL"
 
 #: gsecrets/entry_page.py:315
 msgid "The address is not valid"
@@ -1349,7 +1338,7 @@ msgstr ""
 #: gsecrets/provider/pkcs11_provider.py:150
 #: gsecrets/widgets/database_settings_dialog.py:294
 msgid "OK"
-msgstr ""
+msgstr "D'acòrdi"
 
 #: gsecrets/provider/pkcs11_provider.py:160
 msgid "Unlock your smartcard"
@@ -1373,7 +1362,7 @@ msgstr ""
 
 #: gsecrets/provider/yubikey_provider.py:29
 msgid "No Key"
-msgstr ""
+msgstr "Cap de clau"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
 #: gsecrets/provider/yubikey_provider.py:32
@@ -1589,37 +1578,37 @@ msgstr ""
 #: gsecrets/widgets/database_settings_dialog.py:356
 #: gsecrets/widgets/database_settings_dialog.py:370
 msgid "Unknown"
-msgstr ""
+msgstr "Desconegut"
 
 #. NOTE: AES is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:360
 msgid "AES 256-bit"
-msgstr ""
+msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:363
 msgid "ChaCha20 256-bit"
-msgstr ""
+msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:366
 msgid "Twofish 256-bit"
-msgstr ""
+msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:374
 msgid "Argon2"
-msgstr ""
+msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:377
 msgid "Argon2id"
-msgstr ""
+msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
 #: gsecrets/widgets/database_settings_dialog.py:380
 msgid "AES-KDF"
-msgstr ""
+msgstr "AES-KDF"
 
 #: gsecrets/widgets/expiration_date_row.py:56
 #: gsecrets/widgets/expiration_date_row.py:62
@@ -1647,7 +1636,7 @@ msgstr ""
 
 #: gsecrets/widgets/quit_conflict_dialog.py:20
 msgid "Save and Quit"
-msgstr ""
+msgstr "Enregistrar e sortir"
 
 #: gsecrets/widgets/quit_conflict_dialog.py:21
 msgid "Back up, Save, and Quit"
@@ -1655,7 +1644,7 @@ msgstr ""
 
 #: gsecrets/widgets/quit_conflict_dialog.py:22
 msgid "Don't Quit"
-msgstr ""
+msgstr "Sortir pas"
 
 #. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
 #: gsecrets/widgets/saving_conflict_dialog.py:25

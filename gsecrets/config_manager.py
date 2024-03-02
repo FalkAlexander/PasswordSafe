@@ -16,7 +16,6 @@ LAST_OPENED_DB = "last-opened-database"
 SAVE_AUTOMATICALLY = "save-automatically"
 WINDOW_SIZE = "window-size"
 SORT_ORDER = "sort-order"
-LAST_OPENED_LIST = "last-opened-list"
 REMEMBER_COMPOSITE_KEY = "remember-composite-key"
 LAST_USED_KEY_PROVIDER = "last-used-key-provider"
 REMEMBER_UNLOCK_METHOD = "remember-unlock-method"
@@ -148,17 +147,6 @@ def get_sort_order() -> SortingHat.SortOrder:
     """Returns the sort order as Enum of type SortingHat.SortOrder"""
     value = cast(SortingHat.SortOrder, setting.get_enum(SORT_ORDER))
     return value
-
-
-def get_last_opened_list() -> list[str]:
-    """Gets the uris of the last 10 opened databases."""
-    return setting.get_strv(LAST_OPENED_LIST)
-
-
-def set_last_opened_list(opened_list):
-    """Sets the uris of the last 10 opened databases."""
-    g_variant = GLib.Variant("as", opened_list[-10:])
-    setting.set_value(LAST_OPENED_LIST, g_variant)
 
 
 def get_remember_composite_key():

@@ -45,19 +45,27 @@ class SortingHat:
     def sort_by_ctime_asc(
         ele1: SafeElement, ele2: SafeElement, _data: object = None
     ) -> int:
-        if ele1.ctime is None or ele2.ctime is None:
-            return 0
+        if ele1.ctime is not None and ele2.ctime is not None:
+            return ele1.ctime.compare(ele2.ctime)
+        if ele1.ctime is None and ele2.ctime is not None:
+            return 1
+        if ele1.ctime is not None and ele2.ctime is None:
+            return -1
 
-        return ele1.ctime.compare(ele2.ctime)
+        return 0
 
     @staticmethod
     def sort_by_ctime_dec(
         ele1: SafeElement, ele2: SafeElement, _data: object = None
     ) -> int:
-        if ele1.ctime is None or ele2.ctime is None:
-            return 0
+        if ele1.ctime is not None and ele2.ctime is not None:
+            return ele2.ctime.compare(ele1.ctime)
+        if ele1.ctime is None and ele2.ctime is not None:
+            return -1
+        if ele1.ctime is not None and ele2.ctime is None:
+            return 1
 
-        return ele2.ctime.compare(ele1.ctime)
+        return 0
 
 
 SortingHat.sort_funcs = {

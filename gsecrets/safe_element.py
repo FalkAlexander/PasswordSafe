@@ -333,6 +333,9 @@ class SafeElement(GObject.Object):
         except OverflowError:
             logging.error("Accessed time for %s overflows", self.name)
             return None
+        except Exception as err:  # pylint: disable=broad-except
+            logging.error("Could not read accessed time: %s", str(err))
+            return None
 
         if not time:
             return None
@@ -353,6 +356,9 @@ class SafeElement(GObject.Object):
         except OverflowError:
             logging.error("Creation time for %s overflows", self.name)
             return None
+        except Exception as err:  # pylint: disable=broad-except
+            logging.error("Could not read creation time: %s", str(err))
+            return None
 
         if not time:
             return None
@@ -372,6 +378,9 @@ class SafeElement(GObject.Object):
             return None
         except OverflowError:
             logging.error("Modified time for %s overflows", self.name)
+            return None
+        except Exception as err:  # pylint: disable=broad-except
+            logging.error("Could not read modified time: %s", str(err))
             return None
 
         if not time:

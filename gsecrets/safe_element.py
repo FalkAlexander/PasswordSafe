@@ -327,8 +327,11 @@ class SafeElement(GObject.Object):
         """The UTC accessed time of the element."""
         try:
             time = self._element.atime
+        except ValueError as err:
+            logging.error("Invalid accessed time: %s", str(err))
+            return None
         except OverflowError:
-            logging.error("Accessed time for %s is invalid", self.name)
+            logging.error("Accessed time for %s overflows", self.name)
             return None
 
         if not time:
@@ -344,8 +347,11 @@ class SafeElement(GObject.Object):
         """The UTC creation time of the element."""
         try:
             time = self._element.ctime
+        except ValueError as err:
+            logging.error("Invalid creation time: %s", str(err))
+            return None
         except OverflowError:
-            logging.error("Creation time for %s is invalid", self.name)
+            logging.error("Creation time for %s overflows", self.name)
             return None
 
         if not time:
@@ -361,8 +367,11 @@ class SafeElement(GObject.Object):
         """The UTC modified time of the element."""
         try:
             time = self._element.mtime
+        except ValueError as err:
+            logging.error("Invalid modified time: %s", str(err))
+            return None
         except OverflowError:
-            logging.error("Modified time for %s is invalid", self.name)
+            logging.error("Modified time for %s overflows", self.name)
             return None
 
         if not time:

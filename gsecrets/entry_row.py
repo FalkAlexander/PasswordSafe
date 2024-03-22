@@ -15,7 +15,6 @@ if typing.TYPE_CHECKING:
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_row.ui")
 class EntryRow(Adw.Bin):
-
     __gtype_name__ = "EntryRow"
 
     _prefix_stack = Gtk.Template.Child()
@@ -154,7 +153,8 @@ class EntryRow(Adw.Bin):
     def on_entry_copy_otp_button_clicked(self, _button):
         if token := self._safe_entry.otp_token():
             self.unlocked_database.send_to_clipboard(
-                token, _("One-Time Password copied"),
+                token,
+                _("One-Time Password copied"),
             )
 
     def _on_entry_name_changed(

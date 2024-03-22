@@ -22,9 +22,7 @@ class QuitConflictDialog(SavingConflictDialog):
         self.set_response_label("cancel", _("Don't Quit"))
 
         self.add_response("discard", _("_Quit Without Saving"))
-        self.set_response_appearance(
-            "discard", Adw.ResponseAppearance.DESTRUCTIVE
-        )
+        self.set_response_appearance("discard", Adw.ResponseAppearance.DESTRUCTIVE)
         self.connect("response::discard", self._on_response_discard)
 
     def _on_response_discard(self, _dialog, _response):

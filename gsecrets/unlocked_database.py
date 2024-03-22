@@ -125,9 +125,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
         save_action = window.lookup_action("db.save_dirty")
         dbm.bind_property("is-dirty", save_action, "enabled")
 
-        search_action = Gio.PropertyAction.new(
-            "db.search", self, "search-active"
-        )
+        search_action = Gio.PropertyAction.new("db.search", self, "search-active")
         window.add_action(search_action)
 
         def on_locked(dbm, _spec):
@@ -142,7 +140,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self._search_entry.connect("search-changed", self._on_search_changed)
         self.bind_property(
             "search-active",
-            self._search_bar, "search-mode-enabled",
+            self._search_bar,
+            "search-mode-enabled",
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
 

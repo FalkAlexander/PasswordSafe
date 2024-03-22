@@ -389,7 +389,6 @@ class Window(Adw.ApplicationWindow):
         return False
 
     def show_quit_confirmation_dialog(self):
-
         def on_discard(self, _dialog, _response):
             self.force_close()
 
@@ -397,9 +396,7 @@ class Window(Adw.ApplicationWindow):
         dialog = Adw.AlertDialog.new(_("Could not save Safe"), None)
         dialog.add_response("discard", _("_Quit Without Saving"))
         dialog.add_response("cancel", _("_Don't Quit"))
-        dialog.set_response_appearance(
-            "discard", Adw.ResponseAppearance.DESTRUCTIVE
-        )
+        dialog.set_response_appearance("discard", Adw.ResponseAppearance.DESTRUCTIVE)
         dialog.set_default_response("cancel")
         dialog.connect("response::discard", on_discard)
         dialog.present(self)

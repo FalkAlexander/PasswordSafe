@@ -42,7 +42,8 @@ class CredentialsGroup(Adw.PreferencesGroup):
         self._password_entry_row.props.text = entry.props.password
 
         self._password_entry_row.get_delegate().connect(
-            "notify::visibility", self._on_password_visibility_changed,
+            "notify::visibility",
+            self._on_password_visibility_changed,
         )
 
         entry.bind_property(

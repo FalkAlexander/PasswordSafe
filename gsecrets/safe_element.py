@@ -56,7 +56,6 @@ class EntryColor(Enum):
 
 
 class SafeElement(GObject.Object):
-
     selected = GObject.Property(type=bool, default=False)
     sensitive = GObject.Property(type=bool, default=True)
     sorted_handler_id: int | None = None
@@ -398,7 +397,12 @@ class SafeGroup(SafeElement):
     _subgroups = None
     _subgroups_filter = None
 
-    children_changed = GObject.Signal(arg_types=(int, int,))
+    children_changed = GObject.Signal(
+        arg_types=(
+            int,
+            int,
+        )
+    )
 
     def __init__(self, db_manager: DatabaseManager, group: Group) -> None:
         """GObject to handle a safe group.
@@ -737,10 +741,9 @@ class SafeEntry(SafeElement):
 
         self._attributes.insert(key, value)
 
-        if (
-            self._entry.get_custom_property(key) == value
-            and protected == self._entry.is_custom_property_protected(key)
-        ):
+        if self._entry.get_custom_property(
+            key
+        ) == value and protected == self._entry.is_custom_property_protected(key):
             return
 
         self._entry.set_custom_property(key, value, protect=protected)
@@ -975,9 +978,7 @@ class SafeEntry(SafeElement):
         try:
             time = self.entry.expiry_time
         except Exception as err:  # pylint: disable=broad-except
-            logging.error(
-                "Could not read expiry date from %s: %s", self.name, err
-            )
+            logging.error("Could not read expiry date from %s: %s", self.name, err)
             return None
 
         if not time:

@@ -116,9 +116,7 @@ class SettingsDialog(Adw.PreferencesDialog):
         try:
             recents.purge_items()
         except GLib.Error as err:
-            logging.error(
-                "Failed to purge items for recent manager: %s", err.message
-            )
+            logging.error("Failed to purge items for recent manager: %s", err.message)
         else:
             config.set_last_opened_database("")
             widget.set_sensitive(False)

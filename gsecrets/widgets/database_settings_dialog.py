@@ -274,9 +274,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         button.set_child(spinner)
         button.set_sensitive(False)
 
-        self.database_manager.check_file_changes_async(
-            self.on_check_file_changes
-        )
+        self.database_manager.check_file_changes_async(self.on_check_file_changes)
 
     def on_check_file_changes(self, dbm, result):
         try:

@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Generate a passphrase from a list of predefined words."""
+
 from __future__ import annotations
 
 import logging

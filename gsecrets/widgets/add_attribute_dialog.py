@@ -32,9 +32,7 @@ class AddAttributeDialog(Adw.Dialog):
         # fixed
         if '"' in key or "'" in key:
             self._key_entry.add_css_class("error")
-            toast = Adw.Toast.new(
-                _("Attribute key contains an illegal character")
-            )
+            toast = Adw.Toast.new(_("Attribute key contains an illegal character"))
             self._toast_overlay.add_toast(toast)
             return
 

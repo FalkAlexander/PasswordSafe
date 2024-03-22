@@ -130,9 +130,7 @@ class Application(Adw.Application):
         for window in self.get_windows():
             window.close()
 
-    def on_new_window_action(
-        self, _action: Gio.Action, _param: GLib.Variant
-    ) -> None:
+    def on_new_window_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
         window = self.new_window()
         window.invoke_initial_screen()
         window.present()

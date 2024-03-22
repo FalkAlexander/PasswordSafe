@@ -189,9 +189,7 @@ class SelectionManager(GObject.Object):
         self._update_selection()
 
     def _update_selection(self) -> None:
-        self.selected_elements = len(self.entries_selected) + len(
-            self.groups_selected
-        )
+        self.selected_elements = len(self.entries_selected) + len(self.groups_selected)
 
     def _clear_all(self) -> None:
         """Resets everything to the default state"""

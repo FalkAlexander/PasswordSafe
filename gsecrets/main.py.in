@@ -17,7 +17,7 @@ from gsecrets import const
 
 
 def install_excepthook():
-    """ Make sure we exit when an unhandled exception occurs. """
+    """Make sure we exit when an unhandled exception occurs."""
     old_hook = sys.excepthook
 
     def new_hook(etype, evalue, etb):
@@ -46,9 +46,7 @@ def main():
     gettext.bindtextdomain(const.GETTEXT_PACKAGE, const.LOCALEDIR)
     gettext.textdomain(const.GETTEXT_PACKAGE)
 
-    resource = Gio.resource_load(
-        os.path.join(const.PKGDATADIR, "resources.gresource")
-    )
+    resource = Gio.resource_load(os.path.join(const.PKGDATADIR, "resources.gresource"))
     Gio.resources_register(resource)
 
     GLib.set_application_name("Secrets" + const.SUFFIX)

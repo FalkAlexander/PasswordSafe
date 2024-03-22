@@ -32,9 +32,7 @@ class SavingConflictDialog(Adw.AlertDialog):
         # TRANSLATORS backup and save current safe.
         self.add_response("backup", _("_Back up and Save"))
         self.add_response("save", _("_Save"))
-        self.set_response_appearance(
-            "save", Adw.ResponseAppearance.DESTRUCTIVE
-        )
+        self.set_response_appearance("save", Adw.ResponseAppearance.DESTRUCTIVE)
 
         self.connect("response::save", self._on_response_save)
         self.connect("response::backup", self._on_response_backup, file_name)

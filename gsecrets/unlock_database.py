@@ -54,8 +54,8 @@ class UnlockDatabase(Adw.Bin):
 
         if not self.database_manager:
             self.database_manager = DatabaseManager(
-                window.key_providers.get_key_providers(),
-                filepath)
+                window.key_providers.get_key_providers(), filepath
+            )
 
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
@@ -127,8 +127,8 @@ class UnlockDatabase(Adw.Bin):
 
         widget.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
-            self.database_manager.get_salt(),
-            self._on_generated_composite_key)
+            self.database_manager.get_salt(), self._on_generated_composite_key
+        )
 
     #
     # Open Database

@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
-""" GUI Page and function in order to create a new Safe"""
+"""GUI Page and function in order to create a new Safe"""
+
 from __future__ import annotations
 
 import logging

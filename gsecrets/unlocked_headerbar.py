@@ -23,8 +23,8 @@ class UnlockedHeaderBar(Adw.Bin):
             "notify::current-element", self._on_current_element_notify
         )
 
-        self._go_back_button.connect('clicked', self.on_go_back_button_clicked)
-        self._selection_button.connect('clicked', self._on_selection_button_clicked)
+        self._go_back_button.connect("clicked", self.on_go_back_button_clicked)
+        self._selection_button.connect("clicked", self._on_selection_button_clicked)
 
     def _on_selection_button_clicked(self, _button: Gtk.Button) -> None:
         self._unlocked_database.props.selection_mode = True

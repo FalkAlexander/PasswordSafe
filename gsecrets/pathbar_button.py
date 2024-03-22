@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 """Gtk.Button representing a path element in the pathbar"""
+
 from gettext import gettext as _
 
 from gi.repository import GObject, Gtk

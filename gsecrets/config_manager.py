@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from typing import cast
+from __future__ import annotations
+
 import json
+from typing import cast
 
 from gi.repository import Gio, GLib
 
@@ -116,13 +118,16 @@ def set_first_start_screen(value):
 
 
 def get_last_opened_database() -> str:
-    """Gets uri of the last opened database, returns the empty string when there
-    is none"""
+    """Get uri of the last opened database.
+
+    returns the empty string when there
+    is none.
+    """
     return setting.get_string(LAST_OPENED_DB)
 
 
 def set_last_opened_database(value: str) -> None:
-    """Sets uri of the last opened database."""
+    """Set the uri of the last opened database."""
     setting.set_string(LAST_OPENED_DB, value)
 
 
@@ -144,9 +149,8 @@ def set_window_size(lis: list[int]) -> None:
 
 
 def get_sort_order() -> SortingHat.SortOrder:
-    """Returns the sort order as Enum of type SortingHat.SortOrder"""
-    value = cast(SortingHat.SortOrder, setting.get_enum(SORT_ORDER))
-    return value
+    """Return the sort order as Enum of type SortingHat.SortOrder."""
+    return cast(SortingHat.SortOrder, setting.get_enum(SORT_ORDER))
 
 
 def get_remember_composite_key():
@@ -169,13 +173,13 @@ def get_provider_config(db_path: str, name: str) -> dict | None:
 
 
 def get_last_used_key_provider() -> dict:
-    """Gets history dict for previously opened databases with key providers."""
+    """Get the history dict for previously opened databases with key providers."""
     last_used_key_provider = setting.get_string(LAST_USED_KEY_PROVIDER)
     return json.loads(last_used_key_provider)
 
 
 def set_last_used_key_provider(provider_list: dict) -> None:
-    """Sets history dict of key provider."""
+    """Set the history dict of key provider."""
     setting.set_string(LAST_USED_KEY_PROVIDER, json.dumps(provider_list))
 
 

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import math
 
-from gi.repository import GObject, Gdk, Gtk, Graphene
+from gi.repository import Gdk, GObject, Graphene, Gtk
 
 
 class ProgressIcon(GObject.Object, Gdk.Paintable, Gtk.SymbolicPaintable):

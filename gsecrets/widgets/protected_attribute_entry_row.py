@@ -43,7 +43,10 @@ class ProtectedAttributeEntryRow:
         window = self.row.get_root()
         self._entry.delete_attribute(self._key)
         window.unlocked_db.attribute_deleted(
-            self._entry, self._key, self.row.props.text, True
+            self._entry,
+            self._key,
+            self.row.props.text,
+            True,
         )
 
     def _on_changed(self, row):

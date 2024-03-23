@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import logging
-import os
 import typing
 from gettext import gettext as _
+from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -21,7 +21,7 @@ class AttachmentWarningDialog(Adw.AlertDialog):
     __gtype_name__ = "AttachmentWarningDialog"
 
     def __init__(self, entry_page: EntryPage, attachment: Attachment) -> None:
-        """Dialog to confirm opening an attachment
+        """Dialog to confirm opening an attachment.
 
         :param entry_page: entry page
         """
@@ -40,13 +40,13 @@ class AttachmentWarningDialog(Adw.AlertDialog):
         )
 
     def __open_tmp_file(self, bytes_buffer, filename):
-        cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
-        file_path = os.path.join(cache_dir, filename)
+        cache_dir = Path(GLib.get_user_cache_dir()) / const.SHORT_NAME / "tmp"
+        file_path = cache_dir / filename
         window = self.__unlocked_database.window
-        if not os.path.exists(cache_dir):
-            os.makedirs(cache_dir)
+        if not cache_dir.exists():
+            cache_dir.mkdir(parents=True)
 
-        gfile = Gio.File.new_for_path(file_path)
+        gfile = Gio.File.new_for_path(str(file_path))
 
         contents = GLib.Bytes.new(bytes_buffer)
         gfile.replace_contents_bytes_async(
@@ -63,8 +63,8 @@ class AttachmentWarningDialog(Adw.AlertDialog):
 def _callback(gfile, result, window):
     try:
         gfile.replace_contents_finish(result)
-    except GLib.Error as err:
-        logging.debug("Could not load attachment: %s", err.message)
+    except GLib.Error:
+        logging.exception("Could not load attachment")
         window.send_notification(_("Could not load attachment"))
     else:
         launcher = Gtk.FileLauncher.new(gfile)
@@ -74,6 +74,6 @@ def _callback(gfile, result, window):
 def _on_launch(launcher, result, window):
     try:
         launcher.launch_finish(result)
-    except GLib.Error as err:
-        logging.debug("Could not launch attachment file: %s", err.message)
+    except GLib.Error:
+        logging.exception("Could not launch attachment file")
         window.send_notification(_("Could not load attachment"))

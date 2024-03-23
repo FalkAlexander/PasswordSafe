@@ -1,26 +1,33 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import atexit
 import logging
-
 from gettext import gettext as _
-from gi.repository import Adw, Gtk, GObject
+from typing import TYPE_CHECKING
+
+from gi.repository import Adw, GObject, Gtk
 
 # pylint: disable=import-error
 from PyKCS11 import (
-    PyKCS11Lib,
-    PyKCS11,
     CKA_CLASS,
-    CKO_PRIVATE_KEY,
-    CKA_LABEL,
     CKA_KEY_TYPE,
-    CKK_RSA,
+    CKA_LABEL,
     CKA_SIGN,
+    CKK_RSA,
+    CKO_PRIVATE_KEY,
+    PyKCS11,
+    PyKCS11Lib,
 )
 
+import gsecrets.config_manager as config
 from gsecrets import const
 from gsecrets.provider.base_provider import BaseProvider
-import gsecrets.config_manager as config
-from gsecrets.database_manager import DatabaseManager
+
+if TYPE_CHECKING:
+    from gsecrets.database_manager import DatabaseManager
+
+MAGIC_ERROR = 0x100
 
 # KeePass-Smart-Certificate-Key-Provider
 # https://github.com/BodnarSoft/KeePass-Smart-Certificate-Key-Provider/
@@ -48,8 +55,8 @@ class Pkcs11Provider(BaseProvider):
         if self._session:
             try:
                 self._session.logout()
-            except PyKCS11.PyKCS11Error as err:
-                logging.debug("Could not cleanup: %s", err)
+            except PyKCS11.PyKCS11Error:
+                logging.exception("Could not cleanup")
 
             self._session.closeSession()
 
@@ -71,16 +78,16 @@ class Pkcs11Provider(BaseProvider):
     def logout(self):
         try:
             self._session.logout()
-        except PyKCS11.PyKCS11Error as err:
-            logging.error("Could not logout: %s", err)
+        except PyKCS11.PyKCS11Error:
+            logging.exception("Could not logout")
 
     def login(self, pin: str) -> bool:
         try:
             self._session.login(pin)
         except PyKCS11.PyKCS11Error as err:
-            logging.error("Could not login: %s", err)
+            logging.exception("Could not login")
 
-            if err.value != 0x100:
+            if err.value != MAGIC_ERROR:
                 return False
 
         logging.debug("Successfully logged in")
@@ -98,7 +105,7 @@ class Pkcs11Provider(BaseProvider):
             return model
 
         objects = self._session.findObjects(
-            [(CKA_CLASS, CKO_PRIVATE_KEY), (CKA_KEY_TYPE, CKK_RSA), (CKA_SIGN, True)]
+            [(CKA_CLASS, CKO_PRIVATE_KEY), (CKA_KEY_TYPE, CKK_RSA), (CKA_SIGN, True)],
         )
         for obj in objects:
             value = self._session.getAttributeValue(obj, [CKA_LABEL])[0]
@@ -123,13 +130,17 @@ class Pkcs11Provider(BaseProvider):
         return row
 
     def _on_unlock_row_selected(
-        self, widget: Adw.ComboRow, _param: GObject.ParamSpec
+        self,
+        widget: Adw.ComboRow,
+        _param: GObject.ParamSpec,
     ) -> None:
         if selected_item := widget.get_selected_item():
             self._active_certificate = selected_item.get_string()
 
     def _on_refresh_button_clicked(
-        self, _button: Gtk.Button, row: Adw.ComboRow
+        self,
+        _button: Gtk.Button,
+        row: Adw.ComboRow,
     ) -> None:
         if not self._pkcs11:
             self._pkcs11 = PyKCS11Lib()
@@ -151,10 +162,7 @@ class Pkcs11Provider(BaseProvider):
             dialog.present(self.window)
             return
 
-        entry = Adw.PasswordEntryRow(
-            activates_default=True,
-            title=_("Passphrase"),
-        )
+        entry = Adw.PasswordEntryRow(activates_default=True, title=_("Passphrase"))
         entry.add_css_class("card")
 
         dialog = Adw.AlertDialog.new(_("Unlock"), _("Unlock your smartcard"))
@@ -166,7 +174,9 @@ class Pkcs11Provider(BaseProvider):
         dialog.present(self.window)
 
     def fill_data(
-        self, row: Adw.ComboRow, database_manager: DatabaseManager | None = None
+        self,
+        row: Adw.ComboRow,
+        database_manager: DatabaseManager | None = None,
     ) -> None:
         model = self._create_model()
         row.set_model(model)
@@ -175,14 +185,15 @@ class Pkcs11Provider(BaseProvider):
             return
 
         row_select = 0
-        if cfg := config.get_provider_config(database_manager.path, "Pkcs11Provider"):
-            if "serial" in cfg:
-                model = row.get_model()
+        if (
+            cfg := config.get_provider_config(database_manager.path, "Pkcs11Provider")
+        ) and "serial" in cfg:
+            model = row.get_model()
 
-                for pos, info in enumerate(model):
-                    if info == cfg["serial"]:
-                        row_select = pos
-                        break
+            for pos, info in enumerate(model):
+                if info == cfg["serial"]:
+                    row_select = pos
+                    break
 
         row.set_selected(row_select)
 
@@ -224,7 +235,7 @@ class Pkcs11Provider(BaseProvider):
             return False
 
         objs = self._session.findObjects(
-            [(CKA_CLASS, CKO_PRIVATE_KEY), (CKA_LABEL, self._active_certificate)]
+            [(CKA_CLASS, CKO_PRIVATE_KEY), (CKA_LABEL, self._active_certificate)],
         )
         if len(objs) == 0:
             return False
@@ -235,8 +246,9 @@ class Pkcs11Provider(BaseProvider):
         try:
             signed = self._session.sign(priv_key, KEEPASS_SCKP_TEXT, mecha)
         except PyKCS11.PyKCS11Error as err:
-            logging.error("Could not sign data, abort: %s", err)
-            raise ValueError("Could not sign data") from err
+            logging.exception("Could not sign data, abort")
+            msg = "Could not sign data"
+            raise ValueError(msg) from err
 
         signed_bytes = bytearray(signed)
         immutable_bytes = bytes(signed_bytes)

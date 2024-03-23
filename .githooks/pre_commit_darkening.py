@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Module providing pre-commit modification of staged files to comply with
+"""Module providing pre-commit modification of staged files to comply with
 code style as dictated by black.
 """
 import logging
@@ -17,8 +16,7 @@ BLACK_VERSION = "20.8b1"
 
 
 def darken_staged_files():
-    """
-    This function is intended as a  pre-commit operation to 'darken' the commit:
+    """This function is intended as a  pre-commit operation to 'darken' the commit:
     makes the diffs compliant with the black style. Files that have unstaged
     changes are ignored.
     """

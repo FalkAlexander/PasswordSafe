@@ -19,20 +19,20 @@ class Passphrase(GObject.Object):
         :param str separator: separator
         """
         word_file: Gio.File = Gio.File.new_for_uri(
-            "resource:///org/gnome/World/Secrets/crypto/eff_large_wordlist.txt"
+            "resource:///org/gnome/World/Secrets/crypto/eff_large_wordlist.txt",
         )
 
         def callback(gfile, result):
             try:
                 gbytes, _ = gfile.load_bytes_finish(result)
-            except GLib.Error as err:
-                logging.debug("Could not read word file: %s", err.message)
+            except GLib.Error:
+                logging.exception("Could not read word file")
             else:
                 word_str: str = gbytes.get_data().decode("utf-8")
                 word_list: list[str] = word_str.split("\n")
                 len_words: int = len(word_list)
 
-                words = [word_list[randbelow(len_words)] for _ in range(0, num_words)]
+                words = [word_list[randbelow(len_words)] for _ in range(num_words)]
                 passphrase: str = separator.join(words) or ""
                 self.emit("generated", passphrase)
 

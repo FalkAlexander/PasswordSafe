@@ -22,7 +22,7 @@ class ColorButton(Gtk.FlowBoxChild):
     selected = GObject.Property(type=bool, default=False)
 
     def __init__(self, color: EntryColor, selected: bool):
-        """RadioButton to select the color of an entry
+        """RadioButton to select the color of an entry.
 
         :param EntryColor color: color of the button
         :param bool selected: True if the color is selected
@@ -43,7 +43,10 @@ class ColorButton(Gtk.FlowBoxChild):
 
     @Gtk.Template.Callback()
     def _on_enter_event(
-        self, _gesture: Gtk.EventControllerMotion, _x: int, _y: int
+        self,
+        _gesture: Gtk.EventControllerMotion,
+        _x: int,
+        _y: int,
     ) -> None:
         self.set_state_flags(Gtk.StateFlags.PRELIGHT, False)
 
@@ -59,7 +62,7 @@ class ColorEntryRow(Adw.PreferencesGroup):
     _flowbox = Gtk.Template.Child()
 
     def __init__(self, unlocked_database: UnlockedDatabase, safe_entry: SafeEntry):
-        """Widget to select the color of an entry
+        """Widget to select the color of an entry.
 
         :param UnlockedDatabase unlocked_database: unlocked database
         :param SafeEntry safe_entry: the safe entry
@@ -79,7 +82,9 @@ class ColorEntryRow(Adw.PreferencesGroup):
 
     @Gtk.Template.Callback()
     def _on_color_activated(
-        self, _flowbox: Gtk.FlowBox, selected_child: Gtk.FlowBoxChild
+        self,
+        _flowbox: Gtk.FlowBox,
+        selected_child: Gtk.FlowBoxChild,
     ) -> None:
         if selected_child.props.selected:
             return

@@ -7,10 +7,10 @@ from gettext import gettext as _
 from gi.repository import Adw, GObject, Gtk
 
 from gsecrets.safe_element import SafeEntry
-from gsecrets.unlocked_database import UnlockedDatabase
 
 if typing.TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
+    from gsecrets.unlocked_database import UnlockedDatabase
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/credentials_group.ui")
@@ -78,7 +78,7 @@ class CredentialsGroup(Adw.PreferencesGroup):
 
     @Gtk.Template.Callback()
     def _on_password_value_changed(self, _entry: Gtk.Entry) -> None:
-        """Invoked when the password entry has changed
+        """Invoked when the password entry has changed.
 
         Take note that this callback is already invoked after the initial
         population of the entry when nothing has really been changed by
@@ -92,10 +92,7 @@ class CredentialsGroup(Adw.PreferencesGroup):
     def _on_username_copy_button_clicked(self, _button):
         if self._unlocked_database:
             username = self._username_entry_row.props.text
-            self._unlocked_database.send_to_clipboard(
-                username,
-                _("Username copied"),
-            )
+            self._unlocked_database.send_to_clipboard(username, _("Username copied"))
 
     @Gtk.Template.Callback()
     def _on_apply(self, _entry_row):
@@ -107,10 +104,7 @@ class CredentialsGroup(Adw.PreferencesGroup):
     def copy_password(self) -> None:
         if self._unlocked_database:
             password: str = self._password_entry_row.props.text
-            self._unlocked_database.send_to_clipboard(
-                password,
-                _("Password copied"),
-            )
+            self._unlocked_database.send_to_clipboard(password, _("Password copied"))
 
     def _on_password_visibility_changed(self, _widget, _value):
         if self._password_entry_row.get_delegate().get_visibility():

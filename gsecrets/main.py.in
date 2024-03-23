@@ -22,7 +22,7 @@ def install_excepthook():
 
     def new_hook(etype, evalue, etb):
         old_hook(etype, evalue, etb)
-        if (app := Gio.Application.get_default()) is not None:
+        if app := Gio.Application.get_default():
             app.quit()
 
         sys.exit()

@@ -1,18 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0-only
-from gettext import gettext as _
 import logging
+from gettext import gettext as _
+
 from gi.repository import Adw, Gio, GLib, Gtk
 
 import gsecrets.config_manager as config
-
 from gsecrets.database_manager import DatabaseManager
-
+from gsecrets.provider.base_provider import BaseProvider
 from gsecrets.utils import (
     KeyFileFilter,
     generate_keyfile_async,
     generate_keyfile_finish,
 )
-from gsecrets.provider.base_provider import BaseProvider
 
 
 class FileProvider(BaseProvider):
@@ -71,7 +70,7 @@ class FileProvider(BaseProvider):
         self.unlock_clear_button.set_visible(False)
 
     def _on_keyfile_button_clicked(self, _widget: Gtk.Widget) -> None:
-        """cb invoked when we unlock a database via keyfile"""
+        """Cb invoked when we unlock a database via keyfile."""
         filters = Gio.ListStore.new(Gtk.FileFilter)
         filters.append(KeyFileFilter().file_filter)
 
@@ -86,7 +85,7 @@ class FileProvider(BaseProvider):
             keyfile = dialog.open_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.error("Could not open file: %s", err.message)
+                logging.exception("Could not open file")
         else:
             self._set_keyfile(keyfile)
 
@@ -103,8 +102,8 @@ class FileProvider(BaseProvider):
     def load_keyfile_callback(self, keyfile, result):
         try:
             key, _etag = keyfile.load_bytes_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not set keyfile hash: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not set keyfile hash")
             self.window.send_notification(_("Could not load keyfile"))
         else:
             keyfile_hash = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA1, key)
@@ -168,7 +167,7 @@ class FileProvider(BaseProvider):
             keyfile = dialog.save_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.error("Could not save file: %s", err.message)
+                logging.exception("Could not save file")
         else:
             keyfile_path = keyfile.get_path()
             logging.debug("New keyfile location: %s", keyfile_path)
@@ -176,8 +175,8 @@ class FileProvider(BaseProvider):
             def callback(_gfile, result):
                 try:
                     _res, _hash = generate_keyfile_finish(result)
-                except GLib.Error as err:
-                    logging.error("Could not create keyfile: %s", err.message)
+                except GLib.Error:
+                    logging.exception("Could not create keyfile")
                     self.window.send_notification(_("Could not create keyfile"))
                 else:
                     self.create_clear_button.set_visible(True)
@@ -186,7 +185,7 @@ class FileProvider(BaseProvider):
             generate_keyfile_async(keyfile, callback)
 
     def on_generate_keyfile_button_clicked(self, _widget: Gtk.Button) -> None:
-        """cb invoked when we create a new keyfile for a newly created Safe"""
+        """Cb invoked when we create a new keyfile for a newly created Safe."""
         filters = Gio.ListStore.new(Gtk.FileFilter)
         filters.append(KeyFileFilter().file_filter)
 
@@ -196,11 +195,7 @@ class FileProvider(BaseProvider):
         dialog.props.accept_label = _("_Generate")
         dialog.props.initial_name = _("Keyfile")
 
-        dialog.save(
-            self.window,
-            None,
-            self._on_filechooser_response,
-        )
+        dialog.save(self.window, None, self._on_filechooser_response)
 
     def config(self):
         ret = {}

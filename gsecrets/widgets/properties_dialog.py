@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-"""Responsible for displaying the Entry/Group Properties"""
+"""Responsible for displaying the Entry/Group Properties."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from gsecrets.utils import format_time
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/properties_dialog.ui")
 class PropertiesDialog(Adw.Dialog):
-    """Displays a modal dialog with Entry/Group Properties"""
+    """Displays a modal dialog with Entry/Group Properties."""
 
     __gtype_name__ = "PropertiesDialog"
 
@@ -28,7 +28,7 @@ class PropertiesDialog(Adw.Dialog):
         self.__setup_widgets()
 
     def __update_properties(self) -> None:
-        """Construct dialog content with the attributes of the Entry|Group"""
+        """Construct dialog content with the attributes of the Entry|Group."""
         element = self.__database.current_element
         hex_uuid = element.uuid.hex.upper()
         self._uuid_row.props.subtitle = hex_uuid

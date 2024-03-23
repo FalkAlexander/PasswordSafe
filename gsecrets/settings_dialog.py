@@ -102,7 +102,8 @@ class SettingsDialog(Adw.PreferencesDialog):
         remember_composite_key_action = settings.create_action("remember-composite-key")
         action_group.add_action(remember_composite_key_action)
         remember_composite_key_action.connect(
-            "notify::state", self._on_remember_composite_key
+            "notify::state",
+            self._on_remember_composite_key,
         )
 
         self.insert_action_group("settings", action_group)
@@ -115,8 +116,8 @@ class SettingsDialog(Adw.PreferencesDialog):
         recents = Gtk.RecentManager.get_default()
         try:
             recents.purge_items()
-        except GLib.Error as err:
-            logging.error("Failed to purge items for recent manager: %s", err.message)
+        except GLib.Error:
+            logging.exception("Failed to purge items for recent manager")
         else:
             config.set_last_opened_database("")
             widget.set_sensitive(False)

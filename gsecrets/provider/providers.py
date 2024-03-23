@@ -1,16 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
+
 import logging
-from gi.repository import Adw, GLib, Gio, GObject
+
+from gi.repository import Adw, Gio, GLib, GObject
+
 from gsecrets.provider.file_provider import FileProvider
 from gsecrets.provider.pkcs11_provider import Pkcs11Provider
 from gsecrets.provider.yubikey_provider import YubiKeyProvider
 
-KEY_PROVIDERS = [
-    FileProvider,
-    Pkcs11Provider,
-    YubiKeyProvider,
-]
+KEY_PROVIDERS = [FileProvider, Pkcs11Provider, YubiKeyProvider]
 
 
 class Providers(GObject.Object):
@@ -32,12 +31,11 @@ class Providers(GObject.Object):
         callback: Gio.AsyncReadyCallback,
         cancellable: GLib.Cancellable = None,
     ) -> None:
-        """Generate composite key
+        """Generate composite key.
 
         Traverse all available key providers and request each raw_key.
         This one is appended to the main raw_key.
         """
-
         self.salt = salt
 
         def generate_composite_key_task(task, self, _task_data, _cancellable):
@@ -67,8 +65,9 @@ class Providers(GObject.Object):
         task.run_in_thread(generate_composite_key_task)
 
     def generate_composite_key_finish(self, result):
-        try:
-            _success, composite_key = result.propagate_value()
-            return composite_key
-        except GLib.Error as err:
-            raise err
+        """Finish generate_composite_key_finish.
+
+        Can raise GLib.Error
+        """
+        _success, composite_key = result.propagate_value()
+        return composite_key

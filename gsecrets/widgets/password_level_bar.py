@@ -18,7 +18,8 @@ class PasswordLevelBar(Adw.Bin):
 
         self.level_bar = Gtk.LevelBar()
         self.level_bar.update_property(
-            [Gtk.AccessibleProperty.LABEL], [_("Password Strength")]
+            [Gtk.AccessibleProperty.LABEL],
+            [_("Password Strength")],
         )
 
         self.level_bar.props.max_value = 4.0

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-"""Gtk.Button representing a path element in the pathbar"""
+"""Gtk.Button representing a path element in the pathbar."""
 
 from gettext import gettext as _
 
@@ -9,7 +9,7 @@ from gsecrets.safe_element import SafeElement
 
 
 class PathbarButton(Gtk.Button):
-    """Gtk.Button representing a path element in the pathbar
+    """Gtk.Button representing a path element in the pathbar.
 
     notable instance variables are:
     .uuid: the UUID of the group or entry
@@ -18,7 +18,9 @@ class PathbarButton(Gtk.Button):
     def __init__(self, element: SafeElement):
         super().__init__()
 
-        assert isinstance(element, SafeElement)
+        if not isinstance(element, SafeElement):
+            msg = "Expected a SafeElement."
+            raise TypeError(msg)
 
         self.add_css_class("pathbar-button")
         self.add_css_class("flat")
@@ -32,7 +34,10 @@ class PathbarButton(Gtk.Button):
             return
 
         self.element.bind_property(
-            "name", self, "label", GObject.BindingFlags.SYNC_CREATE
+            "name",
+            self,
+            "label",
+            GObject.BindingFlags.SYNC_CREATE,
         )
 
     def set_active_style(self):

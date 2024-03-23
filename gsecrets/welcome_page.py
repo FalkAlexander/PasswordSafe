@@ -13,7 +13,7 @@ class WelcomePage(Adw.Bin):
     _status_page = Gtk.Template.Child()
 
     def __init__(self):
-        """Welcome Page widget"""
+        """Welcome Page widget."""
         super().__init__()
 
         self._status_page.set_icon_name(const.APP_ID)

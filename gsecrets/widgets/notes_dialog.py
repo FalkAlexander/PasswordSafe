@@ -35,7 +35,8 @@ class NotesDialog(Adw.Dialog):
 
     def __setup_signals(self):
         self.__unlocked_database.database_manager.connect(
-            "notify::locked", self.__on_locked
+            "notify::locked",
+            self.__on_locked,
         )
         # Bind text to the corresponding safe entry.
         self.__safe_entry.bind_property(
@@ -89,7 +90,8 @@ class NotesDialog(Adw.Dialog):
         notes_buffer = self.__notes_buffer
 
         notes_buffer.remove_all_tags(
-            notes_buffer.get_start_iter(), notes_buffer.get_end_iter()
+            notes_buffer.get_start_iter(),
+            notes_buffer.get_end_iter(),
         )
 
         start = notes_buffer.get_start_iter()

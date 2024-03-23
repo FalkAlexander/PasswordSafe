@@ -11,8 +11,11 @@ from gsecrets.utils import format_time
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/expiration_date_row.ui")
 class ExpirationDateRow(Adw.Bin):
-    """Expiration date widget, all the dates are stored and gathered
-    in UTC and showed in the local timezone."""
+    """Expiration date widget.
+
+    All the dates are stored and gathered in UTC and showed in the local
+    timezone.
+    """
 
     __gtype_name__ = "ExpirationDateRow"
 
@@ -43,10 +46,7 @@ class ExpirationDateRow(Adw.Bin):
             "sensitive",
             GObject.BindingFlags.SYNC_CREATE,
         )
-        entry.connect(
-            "notify::expired",
-            self.on_safe_entry_notify_expired,
-        )
+        entry.connect("notify::expired", self.on_safe_entry_notify_expired)
         expiry_date = entry.expiry_time  # UTC
 
         if entry.props.expires and expiry_date:
@@ -56,7 +56,9 @@ class ExpirationDateRow(Adw.Bin):
                 self.action_row.props.subtitle = _("Entry expired")
 
     def on_safe_entry_notify_expired(
-        self, safe_entry: SafeEntry, _gparam: GObject.ParamSpecBoolean
+        self,
+        safe_entry: SafeEntry,
+        _gparam: GObject.ParamSpecBoolean,
     ) -> None:
         if safe_entry.props.expired:
             self.action_row.props.subtitle = _("Entry expired")

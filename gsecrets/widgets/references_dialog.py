@@ -54,7 +54,7 @@ class ReferencesDialog(Adw.Dialog):
         self._property_popover_button.set_label(self.__property)
 
         self._reference_entry.set_text(
-            "{REF:" + self.__property + "@I:" + encoded_uuid + "}"
+            "{REF:" + self.__property + "@I:" + encoded_uuid + "}",
         )
 
     @Gtk.Template.Callback()
@@ -71,7 +71,9 @@ class ReferencesDialog(Adw.Dialog):
         self.__unlocked_database.clipboard.set(entry.get_text())
 
     def __on_property_model_button_clicked(
-        self, action: Gio.Action, _parameter: GLib.Variant
+        self,
+        action: Gio.Action,
+        _parameter: GLib.Variant,
     ) -> None:
         self.__unlocked_database.start_database_lock_timer()
         self.__property = action.props.name

@@ -32,11 +32,14 @@ class SelectionManager(GObject.Object):
         self.unlocked_database = unlocked_database
 
         unlocked_database.connect(
-            "notify::selection-mode", self._on_selection_mode_changed
+            "notify::selection-mode",
+            self._on_selection_mode_changed,
         )
 
     def _on_selection_mode_changed(
-        self, unlocked_database: UnlockedDatabase, _value: GObject.ParamSpec
+        self,
+        unlocked_database: UnlockedDatabase,
+        _value: GObject.ParamSpec,
     ) -> None:
         if not unlocked_database.props.selection_mode:
             self._clear_all()
@@ -48,10 +51,11 @@ class SelectionManager(GObject.Object):
         # i.e. if it is a parent of the current view.
         for safe_group in self.groups_selected:
             if self.unlocked_database.database_manager.parent_checker(
-                self.unlocked_database.current_element, safe_group.group
+                self.unlocked_database.current_element,
+                safe_group.group,
             ):
                 self.unlocked_database.window.send_notification(
-                    _("Operation aborted: deleting currently active group")
+                    _("Operation aborted: deleting currently active group"),
                 )
                 return
 
@@ -93,13 +97,13 @@ class SelectionManager(GObject.Object):
 
         if mixed:
 
-            def response_delete_cb(dialog, _response):
+            def response_delete_cb(_dialog, _response):
                 delete_elements()
 
             dialog = Adw.AlertDialog.new(
                 _("Warning"),
                 _(
-                    "You are deleting elements in the trash bin, these deletions cannot be undone."  # pylint: disable=line-too-long # noqa: E501
+                    "You are deleting elements in the trash bin, these deletions cannot be undone.",  # noqa: E501
                 ),
             )
             dialog.add_response("cancel", _("Cancel"))
@@ -129,10 +133,11 @@ class SelectionManager(GObject.Object):
         for safe_group in self.groups_cut:
             current_element = self.unlocked_database.current_element
             if self.unlocked_database.database_manager.parent_checker(
-                current_element, safe_group.group
+                current_element,
+                safe_group.group,
             ):
                 self.unlocked_database.window.send_notification(
-                    _("Operation aborted: moving currently active group")
+                    _("Operation aborted: moving currently active group"),
                 )
                 self._clear_all()
                 return
@@ -151,7 +156,7 @@ class SelectionManager(GObject.Object):
     # Helpers
 
     def add_entry(self, entry: SafeElement) -> None:
-        """Add an entry to selection
+        """Add an entry to selection.
 
         :param EntryRow group: entry_row to add
         """
@@ -160,7 +165,7 @@ class SelectionManager(GObject.Object):
             self._update_selection()
 
     def remove_entry(self, entry: SafeElement) -> None:
-        """Remove an entry from selection
+        """Remove an entry from selection.
 
         :param EntryRow group: entry_row to remove
         """
@@ -170,7 +175,7 @@ class SelectionManager(GObject.Object):
         self._update_selection()
 
     def add_group(self, group: SafeElement) -> None:
-        """Add a group to selection
+        """Add a group to selection.
 
         :param GroupRow group: group_row to add
         """
@@ -179,7 +184,7 @@ class SelectionManager(GObject.Object):
             self._update_selection()
 
     def remove_group(self, group: SafeElement) -> None:
-        """Remove a group from selection
+        """Remove a group from selection.
 
         :param GroupRow group: group_row to remove
         """
@@ -192,8 +197,7 @@ class SelectionManager(GObject.Object):
         self.selected_elements = len(self.entries_selected) + len(self.groups_selected)
 
     def _clear_all(self) -> None:
-        """Resets everything to the default state"""
-
+        """Reset everything to the default state."""
         for group in reversed(self.groups_selected):
             group.selected = False
 
@@ -214,9 +218,12 @@ class SelectionManager(GObject.Object):
         self.hidden_rows.remove_all()
 
     def clear_selection(self):
-        """Signal emitted to tell all list models that they should unselect
+        """Emit when the selection is cleared.
+
+        Signal emitted to tell all list models that they should unselect
         their entries. It differs from the action app.selection.none, since
-        the later removes selected entries only for the visible listbox."""
+        the later removes selected entries only for the visible listbox.
+        """
         for element in reversed(self.entries_selected):
             element.props.selected = False
 

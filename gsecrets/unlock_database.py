@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import logging
-import os
 import typing
 from gettext import gettext as _
+from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -54,7 +54,8 @@ class UnlockDatabase(Adw.Bin):
 
         if not self.database_manager:
             self.database_manager = DatabaseManager(
-                window.key_providers.get_key_providers(), filepath
+                window.key_providers.get_key_providers(),
+                filepath,
             )
 
         if gsecrets.const.IS_DEVEL:
@@ -75,8 +76,11 @@ class UnlockDatabase(Adw.Bin):
         self.password_entry.grab_focus()
 
     def is_safe_open_elsewhere(self) -> bool:
-        """Returns True if the safe is already open but not in the
-        current window."""
+        """Whether the safe is already open.
+
+        Return True if the safe is already open but not in the
+        current window.
+        """
         is_current = False
         db_path = self.database_manager.path  # type: ignore
         is_open = self.window.application.is_safe_open(db_path)
@@ -91,8 +95,8 @@ class UnlockDatabase(Adw.Bin):
 
         try:
             self.composition_key = providers.generate_composite_key_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not generate composite key: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not generate composite key")
             self.window.send_notification(_("Failed to generate composite key"))
             return
 
@@ -103,7 +107,7 @@ class UnlockDatabase(Adw.Bin):
         if self.is_safe_open_elsewhere():
             self.window.send_notification(
                 # pylint: disable=consider-using-f-string
-                _("Safe {} is already open".format(self.database_manager.path))
+                _("Safe {} is already open".format(self.database_manager.path)),
             )
             return
 
@@ -127,7 +131,8 @@ class UnlockDatabase(Adw.Bin):
 
         widget.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
-            self.database_manager.get_salt(), self._on_generated_composite_key
+            self.database_manager.get_salt(),
+            self._on_generated_composite_key,
         )
 
     #
@@ -151,8 +156,8 @@ class UnlockDatabase(Adw.Bin):
     def _unlock_callback(self, database_manager, result):
         try:
             database_manager.unlock_finish(result)
-        except GLib.Error as err:
-            logging.debug("Could not unlock safe: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not unlock safe")
             self._unlock_failed()
             return
 
@@ -210,14 +215,14 @@ class UnlockDatabase(Adw.Bin):
         self.headerbar.set_sensitive(sensitive)
 
     def store_backup(self, gfile):
-        cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "backup")
-        if not os.path.exists(cache_dir):
-            os.makedirs(cache_dir)
+        cache_dir = Path(GLib.get_user_cache_dir()) / const.SHORT_NAME / "backup"
+        if not cache_dir.exists():
+            cache_dir.mkdir(parents=True)
 
         current_time = GLib.DateTime.new_now_local().format("%F_%T")
-        basename = os.path.splitext(gfile.get_basename())[0]
+        basename = Path(gfile.get_basename()).stem
         backup_name = basename + "_backup_" + current_time + ".kdbx"
-        backup = Gio.File.new_for_path(os.path.join(cache_dir, backup_name))
+        backup = Gio.File.new_for_path(str(cache_dir / backup_name))
 
         def callback(gfile, result):
             try:

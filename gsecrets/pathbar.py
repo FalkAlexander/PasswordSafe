@@ -8,7 +8,7 @@ from gsecrets.safe_element import SafeElement
 
 
 class Pathbar(Gtk.Box):
-    """Pathbar provides a breadcrumb-style Box with the current hierarchy"""
+    """Pathbar provides a breadcrumb-style Box with the current hierarchy."""
 
     buttons = Gio.ListStore.new(PathbarButton)
 
@@ -53,7 +53,7 @@ class Pathbar(Gtk.Box):
     def build_pathbar(self):
         for button in self.buttons:
             self.append(button)
-            if not button == self.buttons[-1]:
+            if button != self.buttons[-1]:
                 self.add_separator_label()
 
         self.buttons[-1].set_active_style()

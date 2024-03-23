@@ -9,8 +9,8 @@ from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
-from gsecrets.utils import KeyFileFilter
 from gsecrets.utils import (
+    KeyFileFilter,
     compare_passwords,
     format_time,
     generate_keyfile_async,
@@ -84,8 +84,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
     @Gtk.Template.Callback()
     def on_password_entry_changed(self, _entry: Gtk.Entry) -> None:
-        """CB if password entry (existing or new) has changed"""
-
+        """CB if password entry (existing or new) has changed."""
         self.unlocked_database.start_database_lock_timer()
 
         new_password = self.new_password_entry.get_text()
@@ -147,21 +146,22 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
             keyfile = dialog.open_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.debug("Could not open file: %s", err.message)
+                logging.exception("Could not open file")
         else:
             keyfile.load_bytes_async(None, self.load_bytes_callback)
 
     def load_bytes_callback(self, gfile, result):
         try:
             gbytes, _ = gfile.load_bytes_finish(result)
-        except GLib.Error as err:
-            logging.debug("Could not set keyfile hash: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not set keyfile hash")
             self.keyfile_error_revealer.reveal(True)
             self.select_keyfile_button.set_icon_name("document-open-symbolic")
         else:
             self.keyfile_error_revealer.reveal(False)
             keyfile_hash = GLib.compute_checksum_for_bytes(
-                GLib.ChecksumType.SHA1, gbytes
+                GLib.ChecksumType.SHA1,
+                gbytes,
             )
             self.current_keyfile_path = gfile.get_path()
             self.current_keyfile_hash = keyfile_hash
@@ -201,18 +201,14 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         dialog.props.accept_label = _("_Generate")
         dialog.props.initial_name = _("Keyfile")
 
-        dialog.save(
-            self,
-            None,
-            self._on_filechooser_response,
-        )
+        dialog.save(self, None, self._on_filechooser_response)
 
     def _on_filechooser_response(self, dialog, result):
         try:
             keyfile = dialog.save_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.debug("Could not save file: %s", err.message)
+                logging.exception("Could not save file")
         else:
             spinner = Gtk.Spinner()
             spinner.start()
@@ -221,9 +217,9 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
             def callback(gfile, result):
                 try:
                     _res, keyfile_hash = generate_keyfile_finish(result)
-                except GLib.Error as err:
+                except GLib.Error:
                     self.generate_keyfile_button.set_icon_name("dice3-symbolic")
-                    logging.debug("Could not create keyfile: %s", err.message)
+                    logging.exception("Could not create keyfile")
                     self.keyfile_error_revealer.reveal(True)
                 else:
                     self.generate_keyfile_button.set_icon_name("object-select-symbolic")
@@ -236,8 +232,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     def _on_set_credentials(self, database_manager, result):
         try:
             is_saved = database_manager.set_credentials_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not set credentials: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not set credentials")
             self.add_toast(Adw.Toast.new(_("Could not apply changes")))
         else:
             if not is_saved:  # Should be unreachable
@@ -279,15 +275,17 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     def on_check_file_changes(self, dbm, result):
         try:
             conflicts = dbm.check_file_changes_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not monitor file changes: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not monitor file changes")
             toast = _("Could not change credentials")
             self.add_toast(toast)
         else:
             if conflicts:
                 dialog = Adw.AlertDialog.new(
                     _("Conflicts While Saving"),
-                    _("The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.")  # pylint: disable=line-too-long # noqa: E501
+                    _(
+                        "The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.",  # noqa: E501
+                    ),
                 )
                 dialog.add_response("ok", _("OK"))
                 dialog.present(self)
@@ -325,8 +323,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         def query_info_cb(gfile, result):
             try:
                 file_info = gfile.query_info_finish(result)
-            except GLib.Error as err:
-                logging.error("Could not query file info: %s", err.message)
+            except GLib.Error:
+                logging.exception("Could not query file info")
             else:
                 size = file_info.get_size()  # In bytes.
                 self.size_row.props.subtitle = GLib.format_size(size)
@@ -346,7 +344,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
         # Date
         # TODO g_file_info_get_creation_date_time introduced in GLib 2.70.
-        epoch_time = os.path.getctime(path)  # Time since UNIX epoch.
+        epoch_time = Path(path).stat().st_ctime  # Time since UNIX epoch.
         gdate = GLib.DateTime.new_from_unix_utc(epoch_time)
         self.date_row.props.subtitle = format_time(gdate)
 

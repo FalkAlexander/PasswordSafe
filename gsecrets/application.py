@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import logging
-from gettext import gettext as _
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -50,20 +49,23 @@ class Application(Adw.Application):
     def do_open(self, gfile_list, _n_files, _hint):  # pylint: disable=arguments-differ
         for gfile in gfile_list:
             if not gfile.query_exists():
-                print(_("Error: File {} does not exist").format(gfile.get_path()))
+                logging.error("Error: File %s does not exist", gfile.get_path())
                 if self.get_windows() is None:
                     self.quit()
 
             if self.is_safe_open(gfile.get_path()):
-                print(_("Error: Safe {} is already open").format(gfile.get_path()))
+                logging.error("Error: Safe %s is already open", gfile.get_path())
             else:
                 window = self.new_window()
                 window.present()
                 window.start_database_opening_routine(gfile.get_path())
 
     def new_window(self) -> Window:
-        """Creates a new window inside its own group. This is done
-        so that modal windows don't make other windows insensitive."""
+        """Create a new window.
+
+        The new window will be placed in its own group. This is done
+        so that modal windows don't make other windows insensitive.
+        """
         window_group = Gtk.WindowGroup()
         window = Window(application=self)
 
@@ -82,13 +84,15 @@ class Application(Adw.Application):
         return False
 
     def do_handle_local_options(  # pylint: disable=arguments-differ
-        self, options: GLib.VariantDict
+        self,
+        options: GLib.VariantDict,
     ) -> int:
-        """
+        """Handle cli arguments.
+
         :returns int: If you have handled your options and want to exit
-            the process, return a non-negative option, 0 for success, and
-            a positive value for failure. To continue, return -1 to let
-            the default option processing continue.
+        the process, return a non-negative option, 0 for success, and
+        a positive value for failure. To continue, return -1 to let
+        the default option processing continue.
         """
         #  convert GVariantDict -> GVariant -> dict
         options = options.end().unpack()

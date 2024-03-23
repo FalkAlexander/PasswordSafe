@@ -31,10 +31,14 @@ class GroupRow(Adw.Bin):
         self._bindings = GObject.BindingGroup.new()
 
         self._signals.connect_closure(
-            "notify::name", self._on_group_name_changed, False
+            "notify::name",
+            self._on_group_name_changed,
+            False,
         )
         self._signals.connect_closure(
-            "notify::selected", self._on_selected_notify, False
+            "notify::selected",
+            self._on_selected_notify,
+            False,
         )
         self._bindings.bind(
             "selected",
@@ -52,7 +56,8 @@ class GroupRow(Adw.Bin):
         self.unlocked_database = unlocked_database
 
         unlocked_database.connect(
-            "notify::selection-mode", self._on_selection_mode_notify
+            "notify::selection-mode",
+            self._on_selection_mode_notify,
         )
 
     @GObject.Property(type=SafeGroup)
@@ -61,7 +66,9 @@ class GroupRow(Adw.Bin):
 
     @safe_group.setter  # type: ignore
     def safe_group(self, element):
-        assert isinstance(element, SafeGroup)
+        if not isinstance(element, SafeGroup):
+            msg = "Expected a SafeGroup."
+            raise TypeError(msg)
 
         self._safe_group = element
 
@@ -100,15 +107,18 @@ class GroupRow(Adw.Bin):
 
     @Gtk.Template.Callback()
     def on_navigate_button_clicked(self, _button: Gtk.Button) -> None:
-        """Edit button in a GroupRow was clicked
+        """Edit the button in a GroupRow when clicked.
 
-        button: The edit button in the GroupRow"""
+        button: The edit button in the GroupRow
+        """
         self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
 
         self.unlocked_database.show_browser_page(self._safe_group)
 
     def _on_group_name_changed(
-        self, safe_group: SafeGroup, _value: GObject.ParamSpec
+        self,
+        safe_group: SafeGroup,
+        _value: GObject.ParamSpec,
     ) -> None:
         group_name = GLib.markup_escape_text(safe_group.name)
         if group_name:

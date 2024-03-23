@@ -9,9 +9,9 @@ from gi.repository import Adw, Gio, GObject, Gtk
 import gsecrets.config_manager as config
 from gsecrets.entry_row import EntryRow
 from gsecrets.group_row import GroupRow
-from gsecrets.sorting import SortingHat
 from gsecrets.safe_element import SafeGroup
 from gsecrets.single_selection import SingleSelection
+from gsecrets.sorting import SortingHat
 
 if typing.TYPE_CHECKING:
     from gsecrets.safe_element import SafeEntry
@@ -36,7 +36,9 @@ class BrowsingPanel(Adw.Bin):
 
         self._signals = GObject.SignalGroup.new(SafeGroup)
         self._signals.connect_closure(
-            "children-changed", self._on_children_changed, False
+            "children-changed",
+            self._on_children_changed,
+            False,
         )
 
         sorting = config.get_sort_order()
@@ -74,14 +76,12 @@ class BrowsingPanel(Adw.Bin):
 
         self._list_view.set_model(self.selection_model)
         self._list_view.set_factory(factory)
-        self._list_model.connect(
-            "notify::n-items",
-            self._on_model_n_items_changed,
-        )
+        self._list_model.connect("notify::n-items", self._on_model_n_items_changed)
         self._set_stack_page()
 
         unlocked_database.database_manager.connect(
-            "sorting_changed", self._on_sorting_changed
+            "sorting_changed",
+            self._on_sorting_changed,
         )
 
         self._list_view.connect("activate", self._on_listview_activate)

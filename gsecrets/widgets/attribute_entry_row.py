@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import typing
 from gettext import gettext as _
+
 from gi.repository import Adw, Gtk
 
 if typing.TYPE_CHECKING:
@@ -28,7 +29,10 @@ class AttributeEntryRow(Adw.EntryRow):
         window = self.get_root()
         self.entry.delete_attribute(self.key)
         window.unlocked_db.attribute_deleted(
-            self.entry, self.key, self.props.text, False
+            self.entry,
+            self.key,
+            self.props.text,
+            False,
         )
 
     @Gtk.Template.Callback()

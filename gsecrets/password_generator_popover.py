@@ -11,7 +11,7 @@ from gsecrets.password_generator import generate as generate_pwd
 
 
 @Gtk.Template(
-    resource_path="/org/gnome/World/Secrets/gtk/password_generator_popover.ui"
+    resource_path="/org/gnome/World/Secrets/gtk/password_generator_popover.ui",
 )
 class PasswordGeneratorPopover(Gtk.Popover):
     __gtype_name__ = "PasswordGeneratorPopover"
@@ -27,7 +27,7 @@ class PasswordGeneratorPopover(Gtk.Popover):
     _words_spin_row = Gtk.Template.Child()
 
     def __init__(self):
-        """Popover to generate a new password for an entry
+        """Popover to generate a new password for an entry.
 
         :param UnlockedDatabase database_view: database view
         """
@@ -100,7 +100,11 @@ class PasswordGeneratorPopover(Gtk.Popover):
 
             length = int(self._digit_spin_row.props.value)
             pass_text: str = generate_pwd(
-                length, use_uppercase, use_lowercase, use_numbers, use_symbols
+                length,
+                use_uppercase,
+                use_lowercase,
+                use_numbers,
+                use_symbols,
             )
             self.emit("generated", pass_text)
         else:

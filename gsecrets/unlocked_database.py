@@ -6,6 +6,7 @@ import os
 import typing
 from gettext import gettext as _
 from gettext import ngettext
+from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
@@ -118,7 +119,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self.clipboard = self.get_clipboard()
 
         self.db_locked_handler = self.database_manager.connect(
-            "notify::locked", self._on_database_lock_changed
+            "notify::locked",
+            self._on_database_lock_changed,
         )
 
         # Sets the menu's save button sensitive property.
@@ -164,7 +166,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
         app = self.window.props.application
         self.session_handler_id = app.connect(
-            "notify::screensaver-active", self.on_session_lock
+            "notify::screensaver-active",
+            self.on_session_lock,
         )
 
     def listbox_row_factory(self, element: SafeElement) -> Gtk.Widget:
@@ -230,12 +233,14 @@ class UnlockedDatabase(Adw.BreakpointBin):
     #
 
     def on_save(
-        self, database_manager: DatabaseManager, result: Gio.AsyncResult
+        self,
+        database_manager: DatabaseManager,
+        result: Gio.AsyncResult,
     ) -> None:
         try:
             is_saved = database_manager.save_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not save Safe: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not save Safe")
             self.window.send_notification(_("Could not save Safe"))
         else:
             if is_saved:
@@ -244,25 +249,27 @@ class UnlockedDatabase(Adw.BreakpointBin):
                 self.window.send_notification(_("No changes made"))
 
     def on_auto_save(
-        self, database_manager: DatabaseManager, result: Gio.AsyncResult
+        self,
+        database_manager: DatabaseManager,
+        result: Gio.AsyncResult,
     ) -> None:
         # TODO Does it make sense to present this info to the user?
         try:
             database_manager.save_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not automatically save Safe %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not automatically save Safe")
 
     def lock_safe(self):
         self.database_manager.props.locked = True
 
     def on_add_entry_action(self) -> None:
-        """CB when the Add Entry menu was clicked"""
+        """CB when the Add Entry menu was clicked."""
         group = self.props.current_element
         new_entry: SafeEntry = group.new_entry()
         self.show_edit_page(new_entry, new=True)
 
     def on_add_group_action(self) -> None:
-        """CB when menu entry Add Group is clicked"""
+        """CB when menu entry Add Group is clicked."""
         group = self.props.current_element
         safe_group = group.new_subgroup()
         self.show_edit_page(safe_group)
@@ -302,9 +309,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
             data.toast.dismiss()
 
         def dismissed_db(toast):
-            if data := self.undo_data:
-                if data.toast == toast:
-                    self.undo_data = None
+            if (data := self.undo_data) and data.toast == toast:
+                self.undo_data = None
 
         toast.connect("dismissed", dismissed_db)
 
@@ -377,7 +383,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
                     self.clipboard.set_content(None)
             else:
                 logging.debug(
-                    "Could not clear the clipboard, it will clear on new focus"
+                    "Could not clear the clipboard, it will clear on new focus",
                 )
 
                 def on_is_active(window, _pspec):
@@ -391,7 +397,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
                         self.clipboard.set_content(None)
 
                 self.on_is_active_handler = window.connect(
-                    "notify::is-active", on_is_active
+                    "notify::is-active",
+                    on_is_active,
                 )
 
             return GLib.SOURCE_REMOVE
@@ -414,15 +421,17 @@ class UnlockedDatabase(Adw.BreakpointBin):
     #
 
     def show_references_dialog(self) -> None:
-        """Show a Group/Entry reference dialog
+        """Show a Group/Entry reference dialog.
 
-        Invoked by the app.entry.references action"""
+        Invoked by the app.entry.references action
+        """
         ReferencesDialog(self).present(self)
 
     def show_properties_dialog(self) -> None:
-        """Show a Group/Entry property dialog
+        """Show a Group/Entry property dialog.
 
-        Invoked by the app.element.properties action"""
+        Invoked by the app.element.properties action
+        """
         PropertiesDialog(self).present(self)
 
     #
@@ -453,7 +462,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
     #
 
     def cleanup(self) -> None:
-        """Stop all ongoing operations:
+        """Stop all ongoing operations.
 
         * stop the save loop
         * cancel all timers
@@ -484,14 +493,14 @@ class UnlockedDatabase(Adw.BreakpointBin):
         def callback(gfile, result):
             try:
                 gfile.delete_finish(result)
-            except GLib.Error as err:
-                logging.debug("Could not delete temporal file: %s", err.message)
+            except GLib.Error:
+                logging.exception("Could not delete temporal file")
 
-        cache_dir = os.path.join(GLib.get_user_cache_dir(), const.SHORT_NAME, "tmp")
+        cache_dir = Path(GLib.get_user_cache_dir()) / const.SHORT_NAME / "tmp"
         for root, _dirs, files in os.walk(cache_dir):
             for file_name in files:
-                file_path = os.path.join(root, file_name)
-                gfile = Gio.File.new_for_path(file_path)
+                file_path = Path(root) / file_name
+                gfile = Gio.File.new_for_path(str(file_path))
                 gfile.delete_async(GLib.PRIORITY_DEFAULT, None, callback)
 
     def save_database(self) -> None:
@@ -517,8 +526,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
     def on_check_file_changes(self, dbm, result, on_save_callback):
         try:
             conflicts = dbm.check_file_changes_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not monitor file changes: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not monitor file changes")
             self.window.send_notification(_("Could not save Safe"))
         else:
             if conflicts:
@@ -538,7 +547,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
         timeout = gsecrets.config_manager.get_database_lock_timeout() * 60
         if timeout:
             self._lock_timer_handler = GLib.timeout_add_seconds(
-                timeout, self.lock_timeout_database
+                timeout,
+                self.lock_timeout_database,
             )
 
     def start_save_loop(self):
@@ -546,7 +556,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self.save_loop = GLib.timeout_add_seconds(30, self.threaded_save_loop)
 
     def threaded_save_loop(self) -> bool:
-        """Saves the safe as long as it returns True."""
+        """Return True if the safe was saved."""
         if gsecrets.config_manager.get_save_automatically():
             self.auto_save_database()
 
@@ -580,7 +590,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     @search_active.setter  # type: ignore
     def search_active(self, value: bool) -> None:
-        """Set the search mode
+        """Set the search mode.
 
         :param value: new search_active
         """
@@ -593,7 +603,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
     # property is updated.
     @GObject.Property(type=bool, default=False)
     def database_locked(self):
-        """Get database lock status
+        """Get database lock status.
 
         :returns: True if the database is locked
         :rtype: bool
@@ -639,10 +649,11 @@ class UnlockedDatabase(Adw.BreakpointBin):
     @Gtk.Template.Callback()
     def _on_delete_selection_clicked(self, _button):
         self.start_database_lock_timer()
-        if element := self.browsing_panel.selection_model.selected_item:
-            if element.selected:
-                self._split_view.props.content = self._empty_page
-                self._navigate_back()
+        if (
+            element := self.browsing_panel.selection_model.selected_item
+        ) and element.selected:
+            self._split_view.props.content = self._empty_page
+            self._navigate_back()
 
         self._selection_manager.delete_selection()
         self._update_selection()
@@ -680,7 +691,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
             title = _("Select Items")
         else:
             title = ngettext("{} Selected", "{} Selected", n_selected).format(
-                n_selected
+                n_selected,
             )
 
         self._selection_mode_title.props.title = title

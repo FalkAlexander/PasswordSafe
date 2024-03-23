@@ -28,9 +28,9 @@ class SaveDialog(Adw.AlertDialog):
     def _save_finished(self, database_manager, result):
         try:
             is_saved = database_manager.save_finish(result)
-        except GLib.Error as err:
+        except GLib.Error:
             self.window.send_notification(_("Could not save Safe"))
-            logging.error("Could not save Safe %s", err.message)
+            logging.exception("Could not save Safe")
         else:
             if is_saved:
                 self.window.close()

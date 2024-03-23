@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 import logging
-import os
 from gettext import gettext as _
+from pathlib import Path
 
 from gi.repository import Adw, Gio, GLib, Gtk
 
@@ -22,11 +22,11 @@ class SavingConflictDialog(Adw.AlertDialog):
         self.props.heading = _("Conflicts While Saving")
         self.props.body = _(
             # TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
-            "The safe was modified from somewhere else. Saving will overwrite their version of the safe with our current version.\n\n You can also make a backup of their version of the safe."  # pylint: disable=line-too-long # noqa: E501
+            "The safe was modified from somewhere else. Saving will overwrite their version of the safe with our current version.\n\n You can also make a backup of their version of the safe.",  # noqa: E501
         )
 
         gfile = Gio.File.new_for_path(db_manager.path)
-        file_name = os.path.splitext(gfile.get_basename())[0]
+        file_name = Path(gfile.get_basename()).stem
 
         self.add_response("cancel", _("_Cancel"))
         # TRANSLATORS backup and save current safe.
@@ -45,17 +45,13 @@ class SavingConflictDialog(Adw.AlertDialog):
         dialog.props.title = _("Save Backup")
         dialog.props.initial_name = f"{file_name}-backup.kdbx"
 
-        dialog.save(
-            self.window,
-            None,
-            self._on_filechooser_response,
-        )
+        dialog.save(self.window, None, self._on_filechooser_response)
 
     def _on_copy_backup(self, gfile, result):
         try:
             gfile.copy_finish(result)
-        except GLib.Error as err:
-            logging.debug("Could not backup safe: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not backup safe")
             self.window.send_notification(_("Could not backup safe"))
         else:
             self.db_manager.save_async(self.save_callback)
@@ -65,7 +61,7 @@ class SavingConflictDialog(Adw.AlertDialog):
             dest = dialog.save_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.debug("Could not save file: %s", err.message)
+                logging.exception("Could not save file")
         else:
             gfile = Gio.File.new_for_path(self.db_manager.path)
             gfile.copy_async(

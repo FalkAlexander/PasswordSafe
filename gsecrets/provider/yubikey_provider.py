@@ -1,15 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0-only
+from __future__ import annotations
+
 import logging
 from gettext import gettext as _
+from typing import TYPE_CHECKING
+
 import usb
 import yubico
-
-from gi.repository import Adw, Gio, Gtk, GObject
-
-from gsecrets.database_manager import DatabaseManager
-from gsecrets.provider.base_provider import BaseProvider
+from gi.repository import Adw, Gio, GObject, Gtk
 
 import gsecrets.config_manager as config
+from gsecrets.provider.base_provider import BaseProvider
+
+if TYPE_CHECKING:
+    from gsecrets.database_manager import DatabaseManager
 
 
 class YubiKeyInfo(GObject.Object):
@@ -64,14 +68,14 @@ class YubiKeyProvider(BaseProvider):
         self.yubikeys = self.get_all_yubikeys(False)
 
     def get_all_yubikeys(self, debug: bool) -> list:
-        """
-        Look for YubiKey with ever increasing `skip' value until an error is
-        returned.
+        """Look for YubiKeys.
+
+        We look with ever increasing `skip' value until an error is returned.
 
         Return all instances of class YubiKey we got before failing.
         """
         res = []
-        for _idx in range(0, 4):
+        for _idx in range(4):
             try:
                 yubikey = yubico.find_yubikey(debug=debug, skip=_idx)
             except yubico.yubikey.YubiKeyError:
@@ -83,8 +87,10 @@ class YubiKeyProvider(BaseProvider):
                     str(yubikey.serial()),
                 )
 
-                for slot in yubikey.status().valid_configs():
-                    res.append(YubiKeyInfo(yubikey.description, yubikey.serial(), slot))
+                res += [
+                    YubiKeyInfo(yubikey.description, yubikey.serial(), slot)
+                    for slot in yubikey.status().valid_configs()
+                ]
 
                 # This must be done as otherwise usb access is broken
                 del yubikey
@@ -92,11 +98,9 @@ class YubiKeyProvider(BaseProvider):
         return res
 
     def get_yubikey(self, serial: int, debug: bool = False) -> yubico.YubiKey:
-        """
-        Get a specific yubikey based on it's serial.
-        """
+        """Get a specific yubikey based on it's serial."""
         try:
-            for _idx in range(0, 4):
+            for _idx in range(4):
                 yubikey = yubico.find_yubikey(debug=debug, skip=_idx)
 
                 if yubikey.serial() == serial:
@@ -139,22 +143,22 @@ class YubiKeyProvider(BaseProvider):
         self._on_refresh_button_clicked(row)
         row.set_selected(0)
 
-        pos = 0
-        if cfg := config.get_provider_config(database_manager.path, "YubiKeyProvider"):
-            if "serial" in cfg:
-                model = row.get_model()
+        if (
+            cfg := config.get_provider_config(database_manager.path, "YubiKeyProvider")
+        ) and "serial" in cfg:
+            model = row.get_model()
 
-                for info in model:
-                    if info.serial == cfg["serial"] and info.slot == cfg["slot"]:
-                        row.set_selected(pos)
-                        break
-
-                    pos = pos + 1
+            for pos, info in enumerate(model):
+                if info.serial == cfg["serial"] and info.slot == cfg["slot"]:
+                    row.set_selected(pos)
+                    break
 
         return row
 
     def _on_unlock_row_selected(
-        self, widget: Adw.ComboRow, _param: GObject.ParamSpec
+        self,
+        widget: Adw.ComboRow,
+        _param: GObject.ParamSpec,
     ) -> None:
         self.active_key = widget.get_selected_item()
 
@@ -190,7 +194,8 @@ class YubiKeyProvider(BaseProvider):
         refresh_button.set_icon_name("view-refresh-symbolic")
         refresh_button.set_tooltip_text(_("Select YubiKey slot"))
         refresh_button.connect(
-            "clicked", self._on_yubikey_create_refresh_button_clicked
+            "clicked",
+            self._on_yubikey_create_refresh_button_clicked,
         )
         self.create_row.add_suffix(refresh_button)
 
@@ -199,7 +204,9 @@ class YubiKeyProvider(BaseProvider):
         return self.create_row
 
     def _on_create_row_selected(
-        self, widget: Adw.ComboRow, _param: GObject.ParamSpec
+        self,
+        widget: Adw.ComboRow,
+        _param: GObject.ParamSpec,
     ) -> None:
         self.active_key = widget.get_selected_item()
 
@@ -229,7 +236,8 @@ class YubiKeyProvider(BaseProvider):
                 except yubico.yubikey_base.YubiKeyTimeout as ex:
                     self.window.close_banner()
                     logging.debug("Timeout waiting for challenge response: %s", ex)
-                    raise ValueError("Timeout waiting for challenge response") from ex
+                    msg = "Timeout waiting for challenge response"
+                    raise ValueError(msg) from ex
 
                 self.window.close_banner()
 
@@ -241,7 +249,8 @@ class YubiKeyProvider(BaseProvider):
 
         except usb.core.USBError as ex:
             logging.warning("USB error during yubikey key generation")
-            raise ValueError("USB error during yubikey key generation") from ex
+            msg = "USB error during yubikey key generation"
+            raise ValueError(msg) from ex
 
         return False
 

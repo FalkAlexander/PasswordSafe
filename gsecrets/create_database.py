@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-"""GUI Page and function in order to create a new Safe"""
+"""GUI Page and function in order to create a new Safe."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from gsecrets.password_generator_popover import PasswordGeneratorPopover
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/create_database.ui")
 class CreateDatabase(Adw.Bin):
-    """Creates a new Safe when invoked"""
+    """Creates a new Safe when invoked."""
 
     __gtype_name__ = "CreateDatabase"
 
@@ -88,8 +88,8 @@ class CreateDatabase(Adw.Bin):
     def _on_set_credentials(self, dbm, result):
         try:
             is_saved = dbm.set_credentials_finish(result)
-        except GLib.Error as err:
-            logging.error("Could not set credentials: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not set credentials")
             self.failure_page()
         else:
             if is_saved:
@@ -106,8 +106,8 @@ class CreateDatabase(Adw.Bin):
 
         try:
             composition_key = providers.generate_composite_key_finish(result)
-        except GLib.Error as ex:
-            logging.warning("Failed to generate composite key: %s", str(ex))
+        except GLib.Error:
+            logging.exception("Failed to generate composite key")
             self.window.send_notification(_("Failed to generate composite key"))
             return
 
@@ -121,7 +121,8 @@ class CreateDatabase(Adw.Bin):
     def _on_create_button_clicked(self, _button: Gtk.Button) -> None:
         self.stack.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
-            self.database_manager.get_salt(), self._on_generate_composite_key
+            self.database_manager.get_salt(),
+            self._on_generate_composite_key,
         )
 
     @Gtk.Template.Callback()
@@ -129,7 +130,7 @@ class CreateDatabase(Adw.Bin):
         self.window.start_database_opening_routine(self.database_manager.path)
 
     def clear_input_fields(self) -> None:
-        """Empty all Entry textfields"""
+        """Empty all Entry textfields."""
         self.password_row.set_text("")
         self.password_confirm_row.set_text("")
 

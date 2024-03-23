@@ -9,8 +9,7 @@ from gi.repository import Adw, GLib, GObject, Gtk
 
 from gsecrets.attachment_warning_dialog import AttachmentWarningDialog
 from gsecrets.color_widget import ColorEntryRow
-from gsecrets.safe_element import ICONS
-from gsecrets.safe_element import SafeEntry
+from gsecrets.safe_element import ICONS, SafeEntry
 from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
 from gsecrets.widgets.attachment_entry_row import AttachmentEntryRow
 from gsecrets.widgets.attribute_entry_row import AttributeEntryRow
@@ -70,10 +69,14 @@ class EntryPage(Adw.Bin):
         self.install_action("entry.add_attribute", None, self._on_add_attribute)
         self.install_action("entry.add_attachment", None, self._on_add_attachment)
         self.install_action(
-            "entry.password_history", None, self._on_password_history_action
+            "entry.password_history",
+            None,
+            self._on_password_history_action,
         )
         self.install_action(
-            "entry.save_in_history", None, self._on_save_in_history_action
+            "entry.save_in_history",
+            None,
+            self._on_save_in_history_action,
         )
 
         super().__init__(safe_entry=entry)
@@ -135,7 +138,7 @@ class EntryPage(Adw.Bin):
         self.credentials_group.unlocked_database = self.unlocked_database
         self.credentials_group.props.entry = self.props.safe_entry
 
-        # OTP (token)
+        # OTP token
         safe_entry.connect("notify::otp", self.otp_update)
         if safe_entry.otp_token():
             self.otp_update(safe_entry, None)
@@ -149,7 +152,7 @@ class EntryPage(Adw.Bin):
             GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
         )
 
-        # OTP (secret)
+        # OTP secret
         safe_entry.bind_property(
             "otp",
             self.otp_secret_entry_row,
@@ -170,7 +173,7 @@ class EntryPage(Adw.Bin):
 
         # Color
         self.color_property_bin.set_child(
-            ColorEntryRow(self.unlocked_database, safe_entry)
+            ColorEntryRow(self.unlocked_database, safe_entry),
         )
 
         # Icons
@@ -186,7 +189,8 @@ class EntryPage(Adw.Bin):
                 self.icon_entry_box.select_child(btn)
 
         self.icon_entry_box.connect(
-            "selected-children-changed", self.on_entry_icon_button_toggled
+            "selected-children-changed",
+            self.on_entry_icon_button_toggled,
         )
 
         # Attachments
@@ -194,7 +198,9 @@ class EntryPage(Adw.Bin):
             self.add_attachment_row(attachment)
 
         self.show_row(
-            self.attachments_preferences_group, safe_entry.attachments, add_all
+            self.attachments_preferences_group,
+            safe_entry.attachments,
+            add_all,
         )
 
         # Attributes
@@ -212,7 +218,9 @@ class EntryPage(Adw.Bin):
         # Expiration Date
         self.expiration_date_row.props.safe_entry = safe_entry
         self.show_row(
-            self.expiration_date_preferences_group, safe_entry.expires, add_all
+            self.expiration_date_preferences_group,
+            safe_entry.expires,
+            add_all,
         )
 
         # Show more row
@@ -249,18 +257,12 @@ class EntryPage(Adw.Bin):
 
         if action_name == "entry.copy_user":
             username = self.credentials_group.username
-            self.unlocked_database.send_to_clipboard(
-                username,
-                _("Username copied"),
-            )
+            self.unlocked_database.send_to_clipboard(username, _("Username copied"))
         elif action_name == "entry.copy_password":
             self.credentials_group.copy_password()
         elif action_name == "entry.copy_url":
             url = self.url_entry_row.props.text
-            self.unlocked_database.send_to_clipboard(
-                url,
-                _("Address copied"),
-            )
+            self.unlocked_database.send_to_clipboard(url, _("Address copied"))
         elif action_name == "entry.copy_otp":
             safe_entry: SafeEntry = self.props.safe_entry
             otp_token = safe_entry.otp_token() or ""
@@ -300,8 +302,8 @@ class EntryPage(Adw.Bin):
     def _on_launch(self, launcher, result, window):
         try:
             launcher.launch_finish(result)
-        except GLib.Error as err:
-            logging.debug("Could not launch uri: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not launch uri")
             window.send_notification(_("Could not open URL"))
 
     @Gtk.Template.Callback()
@@ -363,15 +365,15 @@ class EntryPage(Adw.Bin):
             files = dialog.open_multiple_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.debug("Could not open files: %s", err.message)
+                logging.exception("Could not open files")
         else:
             safe_entry: SafeEntry = self.props.safe_entry
 
             def callback(gfile, result):
                 try:
                     gbytes, _stream = gfile.load_bytes_finish(result)
-                except GLib.Error as err:
-                    logging.debug("Could not read attachment: %s", err.message)
+                except GLib.Error:
+                    logging.exception("Could not read attachment")
                 else:
                     filename = gfile.get_basename()
                     data = gbytes.get_data()
@@ -389,10 +391,7 @@ class EntryPage(Adw.Bin):
     @Gtk.Template.Callback()
     def _on_url_copy_button_clicked(self, _button):
         url = self.url_entry_row.props.text
-        self.unlocked_database.send_to_clipboard(
-            url,
-            _("Address copied"),
-        )
+        self.unlocked_database.send_to_clipboard(url, _("Address copied"))
 
     def show_row(self, row: Gtk.ListBoxRow, non_empty: bool, add_all: bool) -> None:
         if non_empty or add_all:
@@ -416,7 +415,10 @@ class EntryPage(Adw.Bin):
             self.otp_token_row.props.visible = True
             self.otp_token_row.props.title = otp_token
             self.otp_timer_handler = GObject.timeout_add(
-                100, self.otp_update, safe_entry, None
+                100,
+                self.otp_update,
+                safe_entry,
+                None,
             )
         else:
             self.otp_token_row.props.visible = False

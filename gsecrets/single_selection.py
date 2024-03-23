@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-
+# SPDX-License-Identifier: GPL-3.0-only
 from gi.repository import Gio, GObject, Gtk
 
 from gsecrets.safe_element import SafeElement

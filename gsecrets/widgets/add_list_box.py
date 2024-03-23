@@ -5,7 +5,7 @@ from gi.repository import GObject, Gtk
 
 
 class AddListBox(Gtk.ListBox):
-    """ListBox with a Add button at the end"""
+    """ListBox with a Add button at the end."""
 
     __gtype_name__ = "AddListBox"
 

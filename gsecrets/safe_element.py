@@ -5,24 +5,26 @@ from __future__ import annotations
 import binascii
 import logging
 import typing
-
-from gettext import gettext as _
 from datetime import datetime, timezone
 from enum import Enum
+from gettext import gettext as _
 from typing import NamedTuple
-from uuid import UUID
 
-from gi.repository import GLib, GObject, Gio, Gtk
+from gi.repository import Gio, GLib, GObject, Gtk
 from pyotp import TOTP, parse_uri
 
 from gsecrets.attributes_model import AttributesModel
 
 if typing.TYPE_CHECKING:
+    from uuid import UUID
+
     from pykeepass.attachment import Attachment
     from pykeepass.entry import Entry
     from pykeepass.group import Group
 
-    from gsecrets.database_manager import DatabaseManager  # pylint: disable=ungrouped-imports # noqa: E501
+    from gsecrets.database_manager import (
+        DatabaseManager,  # pylint: disable=ungrouped-imports
+    )
 
 
 class EntryColor(Enum):
@@ -61,10 +63,12 @@ class SafeElement(GObject.Object):
     sorted_handler_id: int | None = None
 
     def __init__(self, db_manager: DatabaseManager, element: Entry | Group):
-        """GObject to handle a safe element. The underlying pykeepass element
-        can be obtainied via the `element` property, when it is certain the
-        element is a Group or Entry, the properties `entry` and `group` should
-        be used instead."""
+        """GObject to handle a safe element.
+
+        The underlying pykeepass element can be obtainied via the `element`
+        property, when it is certain the element is a Group or Entry, the
+        properties `entry` and `group` should be used instead.
+        """
         super().__init__()
 
         self._element = element
@@ -87,16 +91,21 @@ class SafeElement(GObject.Object):
 
     @GObject.Signal(flags=GObject.SignalFlags.ACTION)
     def updated(self):
-        """Signal used to tell whenever there have been any changed that should
-        be reflected on the main list box or edit page."""
+        """Update the entry.
+
+        Used to tell whenever there have been any changed that should be
+        reflected on the main list box or edit page.
+        """
         self._db_manager.is_dirty = True
         self.touch(modify=True)
         self.emit(self.updated)
         logging.debug("Safe element updated")
 
     def touch(self, modify: bool = False) -> None:
-        """Updates the last accessed time. If modify is true
-        it also updates the last modified time."""
+        """Update the last accessed time.
+
+        If modify is true it also updates the last modified time.
+        """
         self._element.touch(modify)
 
     def delete(self) -> None:
@@ -133,19 +142,17 @@ class SafeElement(GObject.Object):
     def trash(self) -> bool:
         """Thrash an Element from the database.
 
-        Returns if the element was deleted instead of being sent to the trash
+        Return if the element was deleted instead of being sent to the trash
         bin.
         """
         element = self._element
         parentgroup = self.parentgroup
 
-        if trash_bin := self._db_manager.trash_bin:
-            if (
-                self._db_manager.parent_checker(self, trash_bin)
-                and not self.is_trash_bin
-            ):
-                self.delete()
-                return True
+        if (trash_bin := self._db_manager.trash_bin) and (
+            self._db_manager.parent_checker(self, trash_bin) and not self.is_trash_bin
+        ):
+            self.delete()
+            return True
 
         if self.is_trash_bin:
             self.delete()
@@ -164,13 +171,14 @@ class SafeElement(GObject.Object):
         parentgroup.emit_children_changed(1, 0)
 
         # We add the trash bin if it was not present already
-        if trash_bin_missing:
-            if trash_bin_inner := self._db_manager.db.recyclebin_group:
-                trash_bin = SafeGroup(self._db_manager, trash_bin_inner)
-                self._db_manager.trash_bin = trash_bin
-                self._db_manager.groups.append(trash_bin)
-                trash_bin.parentgroup.updated()
-                trash_bin.parentgroup.emit_children_changed(0, 1)
+        if trash_bin_missing and (
+            trash_bin_inner := self._db_manager.db.recyclebin_group
+        ):
+            trash_bin = SafeGroup(self._db_manager, trash_bin_inner)
+            self._db_manager.trash_bin = trash_bin
+            self._db_manager.groups.append(trash_bin)
+            trash_bin.parentgroup.updated()
+            trash_bin.parentgroup.emit_children_changed(0, 1)
 
         if trash_bin := self._db_manager.trash_bin:
             trash_bin.filter_changed(self.is_entry)
@@ -209,7 +217,7 @@ class SafeElement(GObject.Object):
 
     @GObject.Property(type=str, default="")
     def name(self) -> str:
-        """Get element title or name
+        """Get element title or name.
 
         :returns: name or an empty string if there is none
         :rtype: str
@@ -218,7 +226,7 @@ class SafeElement(GObject.Object):
 
     @name.setter  # type: ignore
     def name(self, new_name: str) -> None:
-        """Set entry title
+        """Set entry title.
 
         :param str new_name: new title
         """
@@ -244,7 +252,7 @@ class SafeElement(GObject.Object):
 
     @GObject.Property(type=str, default="")
     def notes(self) -> str:
-        """Get entry notes
+        """Get entry notes.
 
         :returns: notes or an empty string if there is none
         :rtype: str
@@ -253,7 +261,7 @@ class SafeElement(GObject.Object):
 
     @notes.setter  # type: ignore
     def notes(self, new_notes: str) -> None:
-        """Set entry notes
+        """Set entry notes.
 
         :param str new_notes: new notes
         """
@@ -264,7 +272,7 @@ class SafeElement(GObject.Object):
 
     @property
     def parentgroup(self) -> SafeGroup:
-        """Parent Group of the element
+        """Parent Group of the element.
 
         :returns: parent group
         :rtype: SafeGroup
@@ -281,7 +289,7 @@ class SafeElement(GObject.Object):
 
     @property
     def parentgroup_uuid(self) -> UUID:
-        """UUID of the parent Group of the element
+        """UUID of the parent Group of the element.
 
         This method should be preferred than parentgroup since it does not go
         through the entire list of elements.
@@ -310,7 +318,7 @@ class SafeElement(GObject.Object):
 
     @property
     def uuid(self) -> UUID:
-        """UUID of the element
+        """UUID of the element.
 
         :returns: uuid of the element
         :rtype: UUID
@@ -326,69 +334,81 @@ class SafeElement(GObject.Object):
         """The UTC accessed time of the element."""
         try:
             time = self._element.atime
-        except ValueError as err:
-            logging.error("Invalid accessed time: %s", str(err))
+        except ValueError:
+            logging.exception("Invalid accessed time")
             return None
         except OverflowError:
-            logging.error("Accessed time for %s overflows", self.name)
+            logging.exception("Accessed time for %s overflows", self.name)
             return None
-        except Exception as err:  # pylint: disable=broad-except
-            logging.error("Could not read accessed time: %s", str(err))
+        except Exception:  # pylint: disable=broad-except
+            logging.exception("Could not read accessed time")
             return None
 
         if not time:
             return None
 
-        gtime = GLib.DateTime.new_utc(
-            time.year, time.month, time.day, time.hour, time.minute, time.second
+        return GLib.DateTime.new_utc(
+            time.year,
+            time.month,
+            time.day,
+            time.hour,
+            time.minute,
+            time.second,
         )
-        return gtime
 
     @property
     def ctime(self) -> GLib.DateTime | None:
         """The UTC creation time of the element."""
         try:
             time = self._element.ctime
-        except ValueError as err:
-            logging.error("Invalid creation time: %s", str(err))
+        except ValueError:
+            logging.exception("Invalid creation time")
             return None
         except OverflowError:
-            logging.error("Creation time for %s overflows", self.name)
+            logging.exception("Creation time for %s overflows", self.name)
             return None
-        except Exception as err:  # pylint: disable=broad-except
-            logging.error("Could not read creation time: %s", str(err))
+        except Exception:  # pylint: disable=broad-except
+            logging.exception("Could not read creation time")
             return None
 
         if not time:
             return None
 
-        gtime = GLib.DateTime.new_utc(
-            time.year, time.month, time.day, time.hour, time.minute, time.second
+        return GLib.DateTime.new_utc(
+            time.year,
+            time.month,
+            time.day,
+            time.hour,
+            time.minute,
+            time.second,
         )
-        return gtime
 
     @property
     def mtime(self) -> GLib.DateTime | None:
         """The UTC modified time of the element."""
         try:
             time = self._element.mtime
-        except ValueError as err:
-            logging.error("Invalid modified time: %s", str(err))
+        except ValueError:
+            logging.exception("Invalid modified time")
             return None
         except OverflowError:
-            logging.error("Modified time for %s overflows", self.name)
+            logging.exception("Modified time for %s overflows", self.name)
             return None
-        except Exception as err:  # pylint: disable=broad-except
-            logging.error("Could not read modified time: %s", str(err))
+        except Exception:  # pylint: disable=broad-except
+            logging.exception("Could not read modified time")
             return None
 
         if not time:
             return None
 
-        gtime = GLib.DateTime.new_utc(
-            time.year, time.month, time.day, time.hour, time.minute, time.second
+        return GLib.DateTime.new_utc(
+            time.year,
+            time.month,
+            time.day,
+            time.hour,
+            time.minute,
+            time.second,
         )
-        return gtime
 
 
 class SafeGroup(SafeElement):
@@ -397,12 +417,7 @@ class SafeGroup(SafeElement):
     _subgroups = None
     _subgroups_filter = None
 
-    children_changed = GObject.Signal(
-        arg_types=(
-            int,
-            int,
-        )
-    )
+    children_changed = GObject.Signal(arg_types=(int, int))
 
     def __init__(self, db_manager: DatabaseManager, group: Group) -> None:
         """GObject to handle a safe group.
@@ -422,7 +437,7 @@ class SafeGroup(SafeElement):
 
     @staticmethod
     def get_root(db_manager: DatabaseManager) -> SafeGroup:
-        """Method to obtain the root group."""
+        """Get the root group."""
         # pylint: disable=no-member
         if root := db_manager.root:
             return root
@@ -435,9 +450,12 @@ class SafeGroup(SafeElement):
         return SafeGroup(db_manager, db_manager.db.root_group)
 
     def new_entry(
-        self, title: str = "", username: str = "", password: str = ""
+        self,
+        title: str = "",
+        username: str = "",
+        password: str = "",
     ) -> SafeEntry:
-        """Adds new entry to self."""
+        """Add a new entry to self."""
         group = self.group
         force: bool = self._db_manager.check_entry_in_group_exists("", group)
 
@@ -460,11 +478,17 @@ class SafeGroup(SafeElement):
         return safe_entry
 
     def new_subgroup(
-        self, name: str = "", icon: str | None = None, notes: str = ""
+        self,
+        name: str = "",
+        icon: str | None = None,
+        notes: str = "",
     ) -> SafeGroup:
-        """Adds new subgroup to self."""
+        """Add a new subgroup to self."""
         new_group = self._db_manager.db.add_group(
-            self.group, name, icon=icon, notes=notes
+            self.group,
+            name,
+            icon=icon,
+            notes=notes,
         )
         safe_group = SafeGroup(self._db_manager, new_group)
         self.updated()
@@ -487,13 +511,15 @@ class SafeGroup(SafeElement):
     def init_subgroups(self):
         self._subgroups_filter = Gtk.CustomFilter.new(self._group_filter_func)
         self._subgroups = Gtk.FilterListModel.new(
-            self._db_manager.groups, self._subgroups_filter
+            self._db_manager.groups,
+            self._subgroups_filter,
         )
 
     def init_entries(self):
         self._entries_filter = Gtk.CustomFilter.new(self._group_filter_func)
         self._entries = Gtk.FilterListModel.new(
-            self._db_manager.entries, self._entries_filter
+            self._db_manager.entries,
+            self._entries_filter,
         )
 
     @property
@@ -560,8 +586,8 @@ class SafeEntry(SafeElement):
                 for key, value in entry.custom_properties.items()
                 if key not in (self._color_key, self._note_key, self._otp_key)
             }
-        except Exception as err:  # pylint: disable=broad-except
-            logging.error("Could not read attributes: %s", err)
+        except Exception:  # pylint: disable=broad-except
+            logging.exception("Could not read attributes")
             attributes = {}
 
         self._attributes = AttributesModel(attributes)
@@ -580,14 +606,14 @@ class SafeEntry(SafeElement):
                     self._otp = parse_uri(otp_uri)  # type: ignore
                 else:
                     self._otp = TOTP(otp_uri)
-            except ValueError as err:
-                logging.debug(err)
+            except ValueError:
+                logging.exception("Could not parse OTP")
 
         self._check_expiration()
 
     @property
     def entry(self) -> Entry:
-        """Get entry
+        """Get entry.
 
         :returns: entry
         :rtype: Entry
@@ -595,7 +621,7 @@ class SafeEntry(SafeElement):
         return self._entry
 
     def duplicate(self):
-        """Duplicate an entry"""
+        """Duplicate an entry."""
         title: str = self.name or ""
         username: str = self.username or ""
         password: str = self.password or ""
@@ -630,7 +656,7 @@ class SafeEntry(SafeElement):
         self._db_manager.entries.append(safe_entry)
 
     def _check_expiration(self) -> None:
-        """Check expiration
+        """Check expiration.
 
         If the entry is expired, this ensures that a notification is sent.
         If the entry is not expired yet, a timeout is set to regularly
@@ -674,7 +700,7 @@ class SafeEntry(SafeElement):
         return self._attachments
 
     def add_attachment(self, byte_buffer: bytes, filename: str) -> Attachment:
-        """Add an attachment to the entry
+        """Add an attachment to the entry.
 
         :param bytes byte_buffer: attachment content
         :param str filename: attachment name
@@ -690,7 +716,7 @@ class SafeEntry(SafeElement):
         return attachment
 
     def delete_attachment(self, attachment: Attachment) -> None:
-        """Remove an attachment from the entry
+        """Remove an attachment from the entry.
 
         :param Attachmennt attachment: attachment to delete
         """
@@ -713,7 +739,7 @@ class SafeEntry(SafeElement):
         return None
 
     def get_attachment_content(self, attachment: Attachment) -> bytes:
-        """Get an attachment content
+        """Get an attachment content.
 
         :param Attachmennt attachment: attachment
         """
@@ -731,7 +757,7 @@ class SafeEntry(SafeElement):
         return self._attributes.has_attribute(key)
 
     def set_attribute(self, key: str, value: str, protected: bool = False) -> None:
-        """Add or replace an entry attribute
+        """Add or replace an entry attribute.
 
         :param str key: attribute key
         :param str value: attribute value
@@ -742,7 +768,7 @@ class SafeEntry(SafeElement):
         self._attributes.insert(key, value)
 
         if self._entry.get_custom_property(
-            key
+            key,
         ) == value and protected == self._entry.is_custom_property_protected(key):
             return
 
@@ -751,7 +777,7 @@ class SafeEntry(SafeElement):
         self.notify("attributes")
 
     def delete_attribute(self, key: str) -> None:
-        """Delete an attribute
+        """Delete an attribute.
 
         :param key: attribute key to delete
         """
@@ -764,14 +790,15 @@ class SafeEntry(SafeElement):
         self.notify("attributes")
 
     def is_attribute_protected(self, key: str) -> bool:
-        """Returns whether the attribute with a specific key is protected
+        """Return whether the attribute with a specific key is protected.
 
-        If there is no such key returns False."""
+        If there is no such key returns False.
+        """
         return self.entry.is_custom_property_protected(key)
 
     @GObject.Property(type=str, default=EntryColor.NONE.value)
     def color(self) -> str:
-        """Get entry color
+        """Get entry color.
 
         :returns: color as string
         :rtype: str
@@ -780,7 +807,7 @@ class SafeEntry(SafeElement):
 
     @color.setter  # type: ignore
     def color(self, new_color: str) -> None:
-        """Set an entry color
+        """Set an entry color.
 
         :param str new_color: new color as string
         """
@@ -796,7 +823,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=object)
     def icon(self) -> Icon:
-        """Get icon number
+        """Get icon number.
 
         :returns: icon number or "0" if no icon
         :rtype: str
@@ -808,7 +835,7 @@ class SafeEntry(SafeElement):
 
     @icon.setter  # type: ignore
     def icon(self, new_icon_nr: str) -> None:
-        """Set icon number
+        """Set icon number.
 
         :param str new_icon_nr: new icon number
         """
@@ -820,7 +847,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=str, default="", flags=GObject.ParamFlags.READABLE)
     def icon_name(self) -> str:
-        """Get the icon name
+        """Get the icon name.
 
         :returns: icon name or the default icon if undefined
         :rtype: str
@@ -868,7 +895,7 @@ class SafeEntry(SafeElement):
         return 30
 
     def otp_lifespan(self) -> float | None:
-        """Returns seconds until token expires."""
+        """Return seconds until token expires."""
         if isinstance(self._otp, TOTP):
             gnow = GLib.DateTime.new_now_utc()
             now_seconds = gnow.to_unix()
@@ -885,14 +912,14 @@ class SafeEntry(SafeElement):
             except binascii.Error:
                 logging.debug(
                     "Error caught in OTP token generation (likely invalid "
-                    "base32 secret)."
+                    "base32 secret).",
                 )
 
         return None
 
     @GObject.Property(type=str, default="")
     def password(self) -> str:
-        """Get entry password
+        """Get entry password.
 
         :returns: password or an empty string if there is none
         :rtype: str
@@ -901,7 +928,7 @@ class SafeEntry(SafeElement):
 
     @password.setter  # type: ignore
     def password(self, new_password: str) -> None:
-        """Set entry password
+        """Set entry password.
 
         :param str new_password: new password
         """
@@ -912,7 +939,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=str, default="")
     def url(self) -> str:
-        """Get entry url
+        """Get entry url.
 
         :returns: url or an empty string if there is none
         :rtype: str
@@ -921,7 +948,7 @@ class SafeEntry(SafeElement):
 
     @url.setter  # type: ignore
     def url(self, new_url: str) -> None:
-        """Set entry url
+        """Set entry url.
 
         :param str new_url: new url
         """
@@ -932,7 +959,7 @@ class SafeEntry(SafeElement):
 
     @GObject.Property(type=str, default="")
     def username(self) -> str:
-        """Get entry username
+        """Get entry username.
 
         :returns: username or an empty string if there is none
         :rtype: str
@@ -941,7 +968,7 @@ class SafeEntry(SafeElement):
 
     @username.setter  # type: ignore
     def username(self, new_username: str) -> None:
-        """Set entry username
+        """Set entry username.
 
         :param str new_username: new username
         """
@@ -969,8 +996,8 @@ class SafeEntry(SafeElement):
     def expired(self):
         try:
             return self.entry.expired
-        except Exception as err:  # pylint: disable=broad-except
-            logging.error("Could not read expiry date from %s: %s", self.name, str(err))
+        except Exception:  # pylint: disable=broad-except
+            logging.exception("Could not read expiry date from %s", self.name)
             return False
 
     @property
@@ -981,21 +1008,25 @@ class SafeEntry(SafeElement):
         """
         try:
             time = self.entry.expiry_time
-        except Exception as err:  # pylint: disable=broad-except
-            logging.error("Could not read expiry date from %s: %s", self.name, err)
+        except Exception:  # pylint: disable=broad-except
+            logging.exception("Could not read expiry date from %s", self.name)
             return None
 
         if not time:
             return None
 
-        gtime = GLib.DateTime.new_utc(
-            time.year, time.month, time.day, time.hour, time.minute, time.second
+        return GLib.DateTime.new_utc(
+            time.year,
+            time.month,
+            time.day,
+            time.hour,
+            time.minute,
+            time.second,
         )
-        return gtime
 
     @expiry_time.setter  # type: ignore
     def expiry_time(self, value: GLib.DateTime) -> None:
-        """Sets the expiration time in the UTC timezone."""
+        """Set the expiration time in the UTC timezone."""
         if value != self.entry.expiry_time:
             expired = datetime(
                 value.get_year(),
@@ -1021,7 +1052,7 @@ class Icon(NamedTuple):
     visible: bool = False
 
 
-# https://github.com/dlech/KeePass2.x/blob/4facf2f1ebc76eeddbe11975eccb0dc2b49dfc37/KeePassLib/PwEnums.cs#L81  # noqa: E501  # pylint: disable=line-too-long
+# https://github.com/dlech/KeePass2.x/blob/4facf2f1ebc76eeddbe11975eccb0dc2b49dfc37/KeePassLib/PwEnums.cs#L81
 # https://hsto.org/files/b1e/d20/e38/b1ed20e385d642cc870355fdef153fb9.png
 # FIXME: Based on the names from the links above, some of the current
 # icons should be replaced.

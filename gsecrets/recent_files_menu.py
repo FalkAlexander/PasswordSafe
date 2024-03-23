@@ -9,11 +9,10 @@ from gi.repository import Gio, GLib, Gtk
 
 class RecentFilesMenu:
     def __init__(self):
-        """Recently opened files page menu
+        """Recently opened files page menu.
 
         The `menu` attribute contains a GMenuModel to be used on popovers.
         """
-
         self.menu = Gio.Menu.new()
         self.section = Gio.Menu.new()
         self.is_empty = True
@@ -38,8 +37,8 @@ class RecentFilesMenu:
         for uri in to_remove:
             try:
                 recents.remove_item(uri)
-            except GLib.Error as err:
-                logging.error("Failed to remove %s from recent files: %s", uri, err)
+            except GLib.Error:
+                logging.exception("Failed to remove %s from recent files", uri)
 
         self.menu.append_section(_("Recent Files"), self.section)
         self.menu.freeze()

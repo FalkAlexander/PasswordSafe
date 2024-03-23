@@ -62,16 +62,18 @@ class Window(Adw.ApplicationWindow):
     def show_banner(self, label: str) -> None:
         if self.view == self.View.UNLOCK_DATABASE:
             self._unlock_database_bin.props.child.show_banner(label)
-        elif self.view == self.View.CREATE_DATABASE:
-            if create_view := self._create_view:
-                create_view.show_banner(label)
+        elif self.view == self.View.CREATE_DATABASE and (
+            create_view := self._create_view
+        ):
+            create_view.show_banner(label)
 
     def close_banner(self):
         if self.view == self.View.UNLOCK_DATABASE:
             self._unlock_database_bin.props.child.close_banner()
-        elif self.view == self.View.CREATE_DATABASE:
-            if create_view := self._create_view:
-                create_view.close_banner()
+        elif self.view == self.View.CREATE_DATABASE and (
+            create_view := self._create_view
+        ):
+            create_view.close_banner()
 
     def close_notification(self, toast: Adw.Toast) -> None:
         toast.dismiss()
@@ -84,7 +86,8 @@ class Window(Adw.ApplicationWindow):
             self.add_css_class("devel")
 
     def do_enable_debugging(  # pylint: disable=arguments-differ
-        self, toggle: bool
+        self,
+        toggle: bool,
     ) -> bool:
         if not self.application.development_mode:
             logging.warning("The inspector is not enabled in non-development builds")
@@ -93,7 +96,7 @@ class Window(Adw.ApplicationWindow):
         return Adw.ApplicationWindow.do_enable_debugging(self, toggle)
 
     def invoke_initial_screen(self) -> None:
-        """Present the first start screen if required or autoload files
+        """Present the first start screen if required or autoload files.
 
         If the configuration is set to automatically load the last
         opened safe, this function does that. If it is not set to
@@ -150,7 +153,7 @@ class Window(Adw.ApplicationWindow):
             db_gfile = dialog.open_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.debug("Could not open file: %s", err.message)
+                logging.exception("Could not open file")
         else:
             if db_filename := db_gfile.get_path():
                 logging.debug("File selected: %s", db_filename)
@@ -184,20 +187,19 @@ class Window(Adw.ApplicationWindow):
                     self.unlocked_db = None
                     self.start_database_opening_routine(filepath)
 
+            elif not is_current:
+                app = self.props.application
+                window = app.new_window()
+                window.start_database_opening_routine(filepath)
+                window.present()
             else:
-                if not is_current:
-                    app = self.props.application
-                    window = app.new_window()
-                    window.start_database_opening_routine(filepath)
-                    window.present()
-                else:
-                    self.send_notification(_("Safe is already open"))
+                self.send_notification(_("Safe is already open"))
 
         else:
             self.start_database_opening_routine(filepath)
 
     def start_database_opening_routine(self, filepath: str) -> None:
-        """Start opening a safe file"""
+        """Start opening a safe file."""
         # TODO Use a Gio.File instead of a path.
         database = Gio.File.new_for_path(filepath)
         unlock_db = UnlockDatabase(self, database)
@@ -234,7 +236,7 @@ class Window(Adw.ApplicationWindow):
             gfile = dialog.save_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.debug("Could not save file: %s", err.message)
+                logging.exception("Could not save file")
         else:
             filepath = gfile.get_path()
             if self.unlocked_db:
@@ -245,7 +247,7 @@ class Window(Adw.ApplicationWindow):
 
                 if is_open:
                     self.send_notification(
-                        _("Cannot create Safe: Safe is already open")
+                        _("Cannot create Safe: Safe is already open"),
                     )
                     return
 
@@ -277,15 +279,15 @@ class Window(Adw.ApplicationWindow):
         self._main_view.set_visible_child_name("spinner")
 
         stock_db_file: Gio.File = Gio.File.new_for_uri(
-            "resource:///org/gnome/World/Secrets/database.kdbx"
+            "resource:///org/gnome/World/Secrets/database.kdbx",
         )
         new_db_file: Gio.File = Gio.File.new_for_path(filepath)
 
         def unlock_callback(database_manager, result):
             try:
                 database_manager.unlock_finish(result)
-            except GLib.Error as err:
-                logging.debug("Could not unlock safe: %s", err.message)
+            except GLib.Error:
+                logging.exception("Could not unlock safe")
                 self.invoke_initial_screen()
                 self.send_notification(_("Could not create new Safe"))
             else:
@@ -299,8 +301,8 @@ class Window(Adw.ApplicationWindow):
         def copy_callback(gfile, result):
             try:
                 gfile.copy_finish(result)
-            except GLib.Error as err:
-                logging.debug("Could not copy new database: %s", err.message)
+            except GLib.Error:
+                logging.exception("Could not copy new database")
                 self.invoke_initial_screen()
                 self.send_notification(_("Could not create new Safe"))
                 self._spinner.stop()
@@ -330,14 +332,15 @@ class Window(Adw.ApplicationWindow):
     def force_close(self):
         """Method to close a window with unsaved changes.
 
-        Should only be called from SaveDialog and QuitConflictDialog."""
+        Should only be called from SaveDialog and QuitConflictDialog.
+        """
         if unlocked_db := self.unlocked_db:
             unlocked_db.database_manager.is_dirty = False
 
         self.close()
 
     def do_close_request(self) -> bool:  # pylint: disable=arguments-differ
-        """This is invoked when the window close button is pressed.
+        """Invoked when the window close button is pressed.
 
         Only the app.quit action is called. This action cleans up stuff
         and will invoke the on_application_shutdown() method.
@@ -354,8 +357,8 @@ class Window(Adw.ApplicationWindow):
         def on_save(dbm, result):
             try:
                 is_saved = dbm.save_finish(result)
-            except GLib.Error as err:
-                logging.error("Could not save Safe: %s", err.message)
+            except GLib.Error:
+                logging.exception("Could not save Safe")
                 self.show_quit_confirmation_dialog()
             else:
                 if is_saved:
@@ -367,19 +370,18 @@ class Window(Adw.ApplicationWindow):
         def on_check_file_changes(dbm, result):
             try:
                 conflicts = dbm.check_file_changes_finish(result)
-            except GLib.Error as err:
-                logging.error("Could not monitor file changes: %s", err.message)
+            except GLib.Error:
+                logging.exception("Could not monitor file changes")
                 self.send_notification(_("Could not save safe"))
             else:
                 if conflicts:
                     dialog = QuitConflictDialog(self, dbm, on_save)
                     dialog.present()
+                elif gsecrets.config_manager.get_save_automatically():
+                    self.unlocked_db.database_manager.save_async(on_save)
                 else:
-                    if gsecrets.config_manager.get_save_automatically():
-                        self.unlocked_db.database_manager.save_async(on_save)
-                    else:
-                        save_dialog = SaveDialog(self)
-                        save_dialog.present(self)
+                    save_dialog = SaveDialog(self)
+                    save_dialog.present(self)
 
         if is_database_dirty:
             dbm.check_file_changes_async(on_check_file_changes)
@@ -438,7 +440,8 @@ class Window(Adw.ApplicationWindow):
         self.connect("notify::visible-dialog", on_visible_dialog_notify)
 
         open_database_action = Gio.SimpleAction.new(
-            "open_database", GLib.VariantType("s")
+            "open_database",
+            GLib.VariantType("s"),
         )
         self.add_action(open_database_action)
         open_database_action.connect("activate", self.on_open_database_action)
@@ -516,9 +519,9 @@ class Window(Adw.ApplicationWindow):
                 action_db.on_add_group_action()
 
     def on_about_action(self, _action: Gio.Action, _param: GLib.Variant) -> None:
-        """Invoked when we click "about" in the main menu"""
+        """Invoked when we click "about" in the main menu."""
         builder = Gtk.Builder.new_from_resource(
-            "/org/gnome/World/Secrets/about_dialog.ui"
+            "/org/gnome/World/Secrets/about_dialog.ui",
         )
         about_dialog = builder.get_object("about_dialog")
         about_dialog.present(self)
@@ -530,10 +533,8 @@ class Window(Adw.ApplicationWindow):
         if self.view == self.View.CREATE_DATABASE:
             if create_view := self._create_view:
                 create_view.go_back()
-        else:
-            if action_db := self.unlocked_db:
-                if not action_db.props.database_locked:
-                    action_db.go_back()
+        elif (action_db := self.unlocked_db) and not action_db.props.database_locked:
+            action_db.go_back()
 
     @Gtk.Template.Callback()
     def on_back_button_pressed(

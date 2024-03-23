@@ -6,8 +6,7 @@ from gettext import gettext as _
 
 from gi.repository import Adw, GLib, GObject, Gtk
 
-from gsecrets.safe_element import EntryColor
-from gsecrets.safe_element import SafeEntry
+from gsecrets.safe_element import EntryColor, SafeEntry
 
 if typing.TYPE_CHECKING:
     from gsecrets.unlocked_database import UnlockedDatabase
@@ -55,32 +54,47 @@ class EntryRow(Adw.Bin):
         )
 
         self._signals.connect_closure(
-            "notify::name", self._on_entry_name_changed, False
+            "notify::name",
+            self._on_entry_name_changed,
+            False,
         )
         self._signals.connect_closure(
-            "notify::username", self._on_entry_username_changed, False
+            "notify::username",
+            self._on_entry_username_changed,
+            False,
         )
         self._signals.connect_closure(
-            "notify::password", self._on_entry_password_changed, False
+            "notify::password",
+            self._on_entry_password_changed,
+            False,
         )
         self._signals.connect_closure(
-            "notify::otp", self._on_entry_opt_token_changed, False
+            "notify::otp",
+            self._on_entry_opt_token_changed,
+            False,
         )
         self._signals.connect_closure(
-            "notify::color", self._on_entry_color_changed, False
+            "notify::color",
+            self._on_entry_color_changed,
+            False,
         )
         self._signals.connect_closure(
-            "notify::expired", self._on_entry_notify_expired, False
+            "notify::expired",
+            self._on_entry_notify_expired,
+            False,
         )
         self._signals.connect_closure(
-            "notify::selected", self._on_selected_notify, False
+            "notify::selected",
+            self._on_selected_notify,
+            False,
         )
 
         self.unlocked_database = database
         self.db_manager = database.database_manager
 
         self.unlocked_database.connect(
-            "notify::selection-mode", self._on_selection_mode_notify
+            "notify::selection-mode",
+            self._on_selection_mode_notify,
         )
 
     @GObject.Property(type=SafeEntry)
@@ -158,7 +172,9 @@ class EntryRow(Adw.Bin):
             )
 
     def _on_entry_name_changed(
-        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self,
+        safe_entry: SafeEntry,
+        _value: GObject.ParamSpec,
     ) -> None:
         entry_name = GLib.markup_escape_text(safe_entry.props.name)
         if entry_name:
@@ -169,20 +185,26 @@ class EntryRow(Adw.Bin):
             self.props.title = _("Title not Specified")
 
     def _on_entry_username_changed(
-        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self,
+        safe_entry: SafeEntry,
+        _value: GObject.ParamSpec,
     ) -> None:
         entry_username = GLib.markup_escape_text(safe_entry.props.username)
         self.props.subtitle = entry_username
         self._entry_copy_user_button.set_visible(bool(entry_username))
 
     def _on_entry_password_changed(
-        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self,
+        safe_entry: SafeEntry,
+        _value: GObject.ParamSpec,
     ) -> None:
         entry_password = GLib.markup_escape_text(safe_entry.props.password)
         self._entry_copy_pass_button.set_visible(bool(entry_password))
 
     def _on_entry_opt_token_changed(
-        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self,
+        safe_entry: SafeEntry,
+        _value: GObject.ParamSpec,
     ) -> None:
         entry_otp_token = safe_entry.otp_token()
         if entry_otp_token:
@@ -191,7 +213,9 @@ class EntryRow(Adw.Bin):
             self._entry_copy_otp_button.props.visible = False
 
     def _on_entry_color_changed(
-        self, safe_entry: SafeEntry, _value: GObject.ParamSpec
+        self,
+        safe_entry: SafeEntry,
+        _value: GObject.ParamSpec,
     ) -> None:
         # Clear current style
         for color in EntryColor:

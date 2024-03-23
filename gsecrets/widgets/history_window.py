@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Adw, Gtk, Gio
+from gi.repository import Adw, Gio, Gtk
 
 from gsecrets.safe_element import SafeElement
 from gsecrets.widgets.history_row import HistoryRow
@@ -25,7 +25,8 @@ class HistoryWindow(Adw.Dialog):
         self.listbox.bind_model(self.list_model, HistoryRow, self)
 
         self.unlocked_database.database_manager.connect(
-            "notify::locked", self._on_locked
+            "notify::locked",
+            self._on_locked,
         )
 
     def _on_locked(self, database_manager, _value):

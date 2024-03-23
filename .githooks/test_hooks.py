@@ -1,5 +1,4 @@
-"""
-Testing for git hook functionality
+"""Testing for git hook functionality
 """
 from pathlib import Path
 import os
@@ -13,8 +12,7 @@ SAMPLE_TEXT = """if True: print('hi')\nprint()\nif False:\n    print('there')\n"
 
 
 def make_sample_repo(sample_text):
-    """
-    Init a repo with sample_repo.py containing 'sample_text'
+    """Init a repo with sample_repo.py containing 'sample_text'
     """
     sp.check_output("git init".split())
     text_file = Path("sample_repo.py")
@@ -25,8 +23,7 @@ def make_sample_repo(sample_text):
 
 
 def test_darken_staged_files_works():
-    """
-    A basic check that staged files are indeed darkened by darker.
+    """A basic check that staged files are indeed darkened by darker.
     """
     # set up a repository to test
     os.chdir(tempfile.mkdtemp())
@@ -49,13 +46,11 @@ def test_darken_staged_files_works():
 
 
 def test_darken_staged_files_skips_files_with_unstaged_changes():
-    """
-    If patches can unambiguously be matched pre/post darkening this
+    """If patches can unambiguously be matched pre/post darkening this
     functionality could be dropped in favor of the more desirable behavior of
     always succeeding to darken the commit.
     Until then we will confirm the expected behavior...
     """
-
     # set up a repository to test
     os.chdir(tempfile.mkdtemp())
     text_file = make_sample_repo(SAMPLE_TEXT)

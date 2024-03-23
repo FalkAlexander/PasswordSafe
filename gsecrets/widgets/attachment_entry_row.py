@@ -8,8 +8,9 @@ from gettext import gettext as _
 from gi.repository import Adw, Gio, GLib, Gtk
 
 if typing.TYPE_CHECKING:
-    from gsecrets.safe_element import SafeEntry
     from pykeepass.attachment import Attachment
+
+    from gsecrets.safe_element import SafeEntry
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/attachment_entry_row.ui")
@@ -36,11 +37,7 @@ class AttachmentEntryRow(Adw.ActionRow):
         dialog.props.title = _("Save Attachment")
         dialog.props.initial_name = self.attachment.filename
 
-        dialog.save(
-            window,
-            None,
-            self._on_save_filechooser_response,
-        )
+        dialog.save(window, None, self._on_save_filechooser_response)
 
     @Gtk.Template.Callback()
     def _on_delete_button_clicked(self, _button):
@@ -51,8 +48,8 @@ class AttachmentEntryRow(Adw.ActionRow):
     def _replace_contents_callback(self, gfile, result):
         try:
             gfile.replace_contents_finish(result)
-        except GLib.Error as err:
-            logging.debug("Could not store attachment: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not store attachment")
             window = self.get_root()
             window.send_notification(_("Could not store attachment"))
 
@@ -61,7 +58,7 @@ class AttachmentEntryRow(Adw.ActionRow):
             gfile = dialog.save_finish(result)
         except GLib.Error as err:
             if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.debug("Could not save file: %s", err.message)
+                logging.exception("Could not save file")
         else:
             bytes_buffer = self.entry.get_attachment_content(self.attachment)
             gbytes = GLib.Bytes.new(bytes_buffer)

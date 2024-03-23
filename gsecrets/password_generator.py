@@ -54,7 +54,7 @@ def generate(
     while True:
         correct = True
 
-        password = "".join([secrets.choice(characters) for _ in range(0, length)])
+        password = "".join([secrets.choice(characters) for _ in range(length)])
         if use_uppercase and not any(c.isupper() for c in password):
             correct = False
 

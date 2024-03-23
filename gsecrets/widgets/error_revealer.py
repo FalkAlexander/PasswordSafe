@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import Adw, GLib, Gtk, GObject
+from gi.repository import Adw, GLib, GObject, Gtk
 
 DURATION = 3.0
 

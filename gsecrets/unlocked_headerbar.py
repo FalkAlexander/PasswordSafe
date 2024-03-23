@@ -12,7 +12,7 @@ class UnlockedHeaderBar(Adw.Bin):
     _selection_button = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
-        """HearderBar of an UnlockedDatabase
+        """HearderBar of an UnlockedDatabase.
 
         :param UnlockedDatabase unlocked_database: unlocked_database
         """
@@ -20,7 +20,8 @@ class UnlockedHeaderBar(Adw.Bin):
 
         self._unlocked_database = unlocked_database
         unlocked_database.connect(
-            "notify::current-element", self._on_current_element_notify
+            "notify::current-element",
+            self._on_current_element_notify,
         )
 
         self._go_back_button.connect("clicked", self.on_go_back_button_clicked)

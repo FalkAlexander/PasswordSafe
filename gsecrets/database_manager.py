@@ -19,8 +19,7 @@ QUARK = GLib.quark_from_string("secrets")
 class DatabaseManager(GObject.Object):
     # pylint: disable=too-many-public-methods
     # pylint: disable=too-many-instance-attributes
-
-    """Implements database functionality that is independent of the UI
+    """Implements database functionality that is independent of the UI.
 
     Useful attributes:
      .path: str containing the filepath of the database
@@ -92,7 +91,9 @@ class DatabaseManager(GObject.Object):
             if Path(self._path).suffix == ".kdb":
                 # NOTE kdb is a an older format for Keepass databases.
                 err = GLib.Error.new_literal(
-                    QUARK, "The kdb Format is not Supported", 0
+                    QUARK,
+                    "The kdb Format is not Supported",
+                    0,
                 )
                 task.return_error(err)
                 return
@@ -115,10 +116,11 @@ class DatabaseManager(GObject.Object):
         task.run_in_thread(unlock_task)
 
     def unlock_finish(self, result):
-        try:
-            _success, db = result.propagate_value()
-        except GLib.Error as err:
-            raise err
+        """Finish unlocking.
+
+        Can raise errors.
+        """
+        _success, db = result.propagate_value()
 
         self.db = db
         self._opened = True
@@ -135,7 +137,7 @@ class DatabaseManager(GObject.Object):
     #
 
     def save_async(self, callback: Gio.AsyncReadyCallback) -> None:
-        """Write all changes to database
+        """Write all changes to database.
 
         This consists in two parts, we first save it to a byte stream in memory
         and then we write the contents of the stream into the database using
@@ -143,7 +145,8 @@ class DatabaseManager(GObject.Object):
         whereas GFile operations are.
 
         Note that certain operations in pykeepass can fail at the middle of the
-        operation, nuking the database in the process."""
+        operation, nuking the database in the process.
+        """
         task = Gio.Task.new(self, None, callback)
         task.run_in_thread(self._save_task)
 
@@ -171,13 +174,12 @@ class DatabaseManager(GObject.Object):
             task.return_boolean(True)
 
     def save_finish(self, result: Gio.AsyncResult) -> bool:
-        """Finishes save_async, returns whether the safe was saved.
-        Can raise GLib.Error."""
+        """Finish save_async.
+
+        Returns whether the safe was saved. Can raise GLib.Error.
+        """
         self.save_running = False
-        try:
-            is_saved = result.propagate_boolean()
-        except GLib.Error as err:
-            raise err
+        is_saved = result.propagate_boolean()
 
         self.is_dirty = False
         if is_saved:
@@ -191,7 +193,7 @@ class DatabaseManager(GObject.Object):
         composition_key: bytes | None = None,
         callback: Gio.AsyncReadyCallback = None,
     ) -> None:
-        """Sets credentials for safe
+        """Set credentials for safe.
 
         It does almost the same as save_async, with the difference that
         correctly handles errors, it won't leave the database in a state where
@@ -219,10 +221,10 @@ class DatabaseManager(GObject.Object):
         self.save_running = False
         try:
             is_saved = result.propagate_boolean()
-        except GLib.Error as err:
+        except GLib.Error:
             self.password = self.old_password
 
-            raise err
+            raise
 
         self.is_dirty = False
         if is_saved:
@@ -254,16 +256,18 @@ class DatabaseManager(GObject.Object):
         config.set_last_used_key_provider(keyprovider_pairs)
 
     def _update_file_monitor(self):
-        """Updates the modified time and size of the database file, this is a
-        blocking operation."""
+        """Update the modified time and size of the database.
+
+        This is a blocking operation.
+        """
         gfile = Gio.File.new_for_path(self._path)
         attributes = (
             f"{Gio.FILE_ATTRIBUTE_STANDARD_SIZE},{Gio.FILE_ATTRIBUTE_TIME_MODIFIED}"
         )
         try:
             info = gfile.query_info(attributes, Gio.FileQueryInfoFlags.NONE, None)
-        except GLib.Error as err:
-            logging.error("Could not read file size: %s", err.message)
+        except GLib.Error:
+            logging.exception("Could not read file size")
         else:
             self.file_size = info.get_size()
             self.file_mtime = info.get_modification_date_time().to_unix()
@@ -292,23 +296,20 @@ class DatabaseManager(GObject.Object):
                 task.return_boolean(False)
 
     def check_file_changes_finish(self, result: Gio.AsyncResult) -> bool:
-        """Finishes check_file_changes_async.
-        Returns whether the file was changed, can raise GLib.Error."""
-        try:
-            changed = result.propagate_boolean()
-        except GLib.Error as err:
-            raise err
+        """Finish check_file_changes_async.
 
-        return changed
+        Returns whether the file was changed, can raise GLib.Error.
+        """
+        return result.propagate_boolean()
 
     @property
     def password(self) -> str:
-        """Get the current password or '' if not set"""
+        """Get the current password or '' if not set."""
         return self.db.password or ""
 
     @password.setter
     def password(self, new_password: str | None) -> None:
-        """Set database password (None if a old_composition key is used)"""
+        """Set database password (None if a old_composition key is used)."""
         self.db.password = new_password
         self.is_dirty = True
 
@@ -338,7 +339,7 @@ class DatabaseManager(GObject.Object):
         self.password_try = password
 
     def compare_passwords(self, password2: str) -> bool:
-        """Compare the first password entered by the user with the second one
+        """Compare the first password entered by the user with the second one.
 
         It also does not allow empty passwords.
         :returns: True if passwords match and are non-empty.
@@ -346,7 +347,7 @@ class DatabaseManager(GObject.Object):
         return compare_passwords(self.password_try, password2)
 
     def parent_checker(self, current_group, moved_group):
-        """Returns True if moved_group is an ancestor of current_group"""
+        """Return True if moved_group is an ancestor of current_group."""
         # recursively invoke ourself until we reach the root group
         if current_group.is_root_group:
             return False
@@ -356,7 +357,7 @@ class DatabaseManager(GObject.Object):
 
     @property
     def version(self):
-        """returns the database version"""
+        """Returns the database version."""
         return self.db.version
 
     @property

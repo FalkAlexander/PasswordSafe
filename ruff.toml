@@ -1,0 +1,53 @@
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    "tests",
+    ".git",
+    ".githooks",
+]
+
+[lint]
+select = [
+    "ALL",
+]
+ignore = [
+    "ANN001",
+    "ANN002",
+    "ANN003",
+    "ANN101",
+    "ANN201",
+    "ANN202",
+    "ANN204",
+    "BLE001",
+    "C901",
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D105",
+    "D106",
+    "D107",
+    "D203",
+    "D213",
+    "D401",
+    "FBT001",
+    "FBT002",
+    "FBT003",
+    "FIX001",
+    "FIX002",
+    "INP001",
+    "INT001",
+    "INT002",
+    "PERF203",
+    "PGH003",
+    "PLR0911",
+    "PLR0912",
+    "PLR0913",
+    "RUF001",
+    "RUF012",
+    "SIM108",
+    "TD001",
+    "TD002",
+    "TD003",
+    "TD004",
+    "UP032",
+]

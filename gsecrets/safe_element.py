@@ -967,7 +967,11 @@ class SafeEntry(SafeElement):
         flags=GObject.ParamFlags.READABLE | GObject.ParamFlags.EXPLICIT_NOTIFY,
     )
     def expired(self):
-        return self.entry.expired
+        try:
+            return self.entry.expired
+        except Exception as err:  # pylint: disable=broad-except
+            logging.error("Could not read expiry date from %s: %s", self.name, str(err))
+            return False
 
     @property
     def expiry_time(self) -> GLib.DateTime | None:

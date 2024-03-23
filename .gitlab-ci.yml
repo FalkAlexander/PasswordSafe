@@ -56,5 +56,5 @@ ruff:
   script:
     - dnf install -y pip
     - pip install ruff
-    - ruff format --check gsecrets/*.py gsecrets/main.py.in
-    - ruff check gsecrets/*.py
+    - ruff format --check
+    - ruff check

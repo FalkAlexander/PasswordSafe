@@ -319,7 +319,6 @@ class Window(Adw.ApplicationWindow):
             GLib.PRIORITY_DEFAULT,
             None,
             None,
-            None,
             copy_callback,
         )
 

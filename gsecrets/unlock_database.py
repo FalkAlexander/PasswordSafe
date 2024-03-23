@@ -236,7 +236,6 @@ class UnlockDatabase(Adw.Bin):
             GLib.PRIORITY_DEFAULT,
             None,
             None,
-            None,
             callback,
         )
 

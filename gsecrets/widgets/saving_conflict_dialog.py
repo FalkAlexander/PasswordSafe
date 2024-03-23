@@ -70,6 +70,5 @@ class SavingConflictDialog(Adw.AlertDialog):
                 GLib.PRIORITY_DEFAULT,
                 None,
                 None,
-                None,
                 self._on_copy_backup,
             )

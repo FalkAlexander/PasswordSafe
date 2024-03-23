@@ -44,13 +44,6 @@ codespell:
     - dnf install -y codespell
     - codespell -S "*.png,*.po,.git,*.jpg,eff_large_wordlist.txt,.mypy_cache,_build" -f
 
-flake8:
-  stage: check
-  script:
-    - dnf install -y python3-flake8 pip
-    - pip install pyotp
-    - flake8 --max-line-length=88 --ignore=E402,W503 --show-source gsecrets
-
 mypy:
   stage: check
   script:
@@ -65,11 +58,3 @@ ruff:
     - pip install ruff
     - ruff format --check gsecrets/*.py gsecrets/main.py.in
     - ruff check gsecrets/*.py
-
-pylint:
-  stage: check
-  script:
-    - dnf install -y libadwaita-devel gtk4-devel python3-gobject-devel python3-pyotp python3-zxcvbn python3-validators git pip python3-yubico
-    - pip install git+https://github.com/libkeepass/pykeepass pylint
-    - mv gsecrets/const.py.in gsecrets/const.py  # We need a dummy file
-    - pylint --rcfile=.pylintrc gsecrets

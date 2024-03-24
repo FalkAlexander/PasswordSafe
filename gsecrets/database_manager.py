@@ -102,7 +102,7 @@ class DatabaseManager(GObject.Object):
                 db = PyKeePass(
                     self.path,
                     password,
-                    io.BytesIO(composition_key) if composition_key else "",
+                    io.BytesIO(composition_key) if composition_key else None,
                 )
             except Exception as err:  # pylint: disable=broad-except
                 err = GLib.Error.new_literal(QUARK, str(err), 1)

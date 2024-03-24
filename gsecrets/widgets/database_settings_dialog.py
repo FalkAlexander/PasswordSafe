@@ -139,7 +139,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         # NOTE: Filechooser title for choosing current used keyfile
         dialog.props.title = _("Select Current Keyfile")
 
-        dialog.open(self, None, self._on_select_filechooser_response)
+        window = self.unlocked_database.window
+        dialog.open(window, None, self._on_select_filechooser_response)
 
     def _on_select_filechooser_response(self, dialog, result):
         try:
@@ -201,7 +202,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         dialog.props.accept_label = _("_Generate")
         dialog.props.initial_name = _("Keyfile")
 
-        dialog.save(self, None, self._on_filechooser_response)
+        window = self.unlocked_database.window
+        dialog.save(window, None, self._on_filechooser_response)
 
     def _on_filechooser_response(self, dialog, result):
         try:

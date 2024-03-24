@@ -85,6 +85,14 @@ class BrowsingPanel(Adw.Bin):
         )
 
         self._list_view.connect("activate", self._on_listview_activate)
+        self.selection_model.connect("notify::selected-item", self._on_selected_item)
+
+    def _on_selected_item(self, model, _pspec):
+        if element := model.props.selected_item:
+            self.unlocked_database.show_edit_page(element)
+        else:
+            current = self.unlocked_database.current_element
+            self.unlocked_database.show_browser_page(current.parentgroup)
 
     def visit_group(self, group):
         self.current_group = group
@@ -124,7 +132,6 @@ class BrowsingPanel(Adw.Bin):
             return
 
         self.selection_model.props.selected_item = element
-        self.unlocked_database.show_edit_page(element)
 
     def _on_setup(self, _list_view, item):
         entry_row = EntryRow(self.unlocked_database)
@@ -210,3 +217,7 @@ class BrowsingPanel(Adw.Bin):
                 return True
 
         return False
+
+    def unselect(self, item):
+        if item == self.selection_model.props.selected_item:
+            self.selection_model.props.selected_item = None

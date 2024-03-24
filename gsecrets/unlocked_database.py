@@ -278,6 +278,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
         """Delete the visible entry from the menu."""
         if element := self.active_element:
             parent_group = element.parentgroup
+            self.browsing_panel.unselect(element)
             if element.trash():
                 elements = []
             else:

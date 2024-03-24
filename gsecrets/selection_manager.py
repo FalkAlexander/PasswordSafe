@@ -85,10 +85,12 @@ class SelectionManager(GObject.Object):
             for element in self.entries_selected:
                 parent = element.parentgroup
                 if not element.trash():
+                    self.unlocked_database.browsing_panel.unselect(element)
                     undo_elements.append((element, parent))
 
             for element in self.groups_selected:
                 parent = element.parentgroup
+                self.unlocked_database.browsing_panel.unselect(element)
                 if not element.trash():
                     undo_elements.append((element, parent))
 

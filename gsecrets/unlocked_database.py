@@ -707,8 +707,8 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
     def _update_selection_on_collapsed(self):
         nav = self._split_view
-        if nav.props.collapsed and not nav.props.show_content:
-            self.browsing_panel.unselect()
+        hide_selection = nav.props.collapsed and not nav.props.show_content
+        self.browsing_panel.hide_selection(hide_selection)
 
     def _on_show_content_notify(self, _split_view, _pspec):
         self._update_selection_on_collapsed()

@@ -113,8 +113,8 @@ class BrowsingPanel(Adw.Bin):
         self._query = query.lower()
         self._search_filter.changed(change)
 
-    def unselect(self):
-        self.selection_model.unselect()
+    def hide_selection(self, hide):
+        self.selection_model.props.hide_selected = hide
 
     def _on_listview_activate(self, _list_view, pos):
         element = self._list_model.get_item(pos)
@@ -123,6 +123,7 @@ class BrowsingPanel(Adw.Bin):
             element.props.selected = not element.props.selected
             return
 
+        self.selection_model.props.selected_item = element
         self.unlocked_database.show_edit_page(element)
 
     def _on_setup(self, _list_view, item):

@@ -101,8 +101,6 @@ class UnlockDatabase(Adw.Bin):
             return
 
         entered_pwd = self.password_entry.get_text()
-        if not (entered_pwd or self.composition_key):
-            return
 
         if self.is_safe_open_elsewhere():
             self.window.send_notification(

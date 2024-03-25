@@ -624,7 +624,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
             self._clear_selection()
 
     @Gtk.Template.Callback()
-    def _on_selection_cancel_clicked(self, _button):
+    def _on_selection_done_clicked(self, _button):
         self.props.selection_mode = False
 
     @Gtk.Template.Callback()

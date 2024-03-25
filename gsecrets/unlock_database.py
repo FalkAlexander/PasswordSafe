@@ -91,7 +91,7 @@ class UnlockDatabase(Adw.Bin):
         return is_open and not is_current
 
     def _on_generated_composite_key(self, providers, result):
-        self.unlock_button.set_sensitive(True)
+        self._set_sensitive(True)
 
         try:
             self.composition_key = providers.generate_composite_key_finish(result)
@@ -125,11 +125,11 @@ class UnlockDatabase(Adw.Bin):
             self._unlock_failed()
 
     @Gtk.Template.Callback()
-    def _on_unlock_button_clicked(self, widget: Gtk.Button) -> None:
+    def _on_unlock_button_clicked(self, _widget: Gtk.Button) -> None:
         if not self.database_manager:
             return
 
-        widget.set_sensitive(False)
+        self._set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
             self.database_manager.get_salt(),
             self._on_generated_composite_key,
@@ -209,6 +209,9 @@ class UnlockDatabase(Adw.Bin):
             self.window.props.focus_widget = None
 
         for key in self.key_group:
+            key.set_sensitive(sensitive)
+
+        for key in self.provider_group:
             key.set_sensitive(sensitive)
 
         self.unlock_button.set_sensitive(sensitive)

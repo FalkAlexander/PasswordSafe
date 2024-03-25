@@ -58,8 +58,6 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     current_password_entry = Gtk.Template.Child()
     new_password_entry = Gtk.Template.Child()
 
-    _auth_page = Gtk.Template.Child()
-
     def __init__(self, unlocked_database):
         super().__init__()
 
@@ -68,8 +66,6 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
         self.__setup_widgets()
         self.__setup_signals()
-
-        self.remove(self._auth_page)
 
     #
     # Dialog Creation

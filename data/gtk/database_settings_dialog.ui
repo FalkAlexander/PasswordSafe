@@ -3,9 +3,9 @@
   <template class="DatabaseSettingsDialog" parent="AdwPreferencesDialog">
     <property name="content_height">600</property>
     <property name="content_width">400</property>
-    <property name="title" translatable="yes">Safe Properties</property>
+    <property name="title" translatable="yes">Safe Settings</property>
     <child>
-      <object class="AdwPreferencesPage" id="_auth_page">
+      <object class="AdwPreferencesPage">
         <property name="name">auth_page</property>
         <property name="title" translatable="yes">Authentication</property>
         <property name="icon_name">dice3-symbolic</property>

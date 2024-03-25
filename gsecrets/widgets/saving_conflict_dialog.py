@@ -64,11 +64,22 @@ class SavingConflictDialog(Adw.AlertDialog):
                 logging.exception("Could not save file")
         else:
             gfile = Gio.File.new_for_path(self.db_manager.path)
-            gfile.copy_async(
-                dest,
-                Gio.FileCopyFlags.OVERWRITE,
-                GLib.PRIORITY_DEFAULT,
-                None,
-                None,
-                self._on_copy_backup,
-            )
+            if GLib.check_version(2, 81, 0) is None:
+                gfile.copy_async(
+                    dest,
+                    Gio.FileCopyFlags.OVERWRITE,
+                    GLib.PRIORITY_DEFAULT,
+                    None,
+                    None,
+                    self._on_copy_backup,
+                )
+            else:
+                gfile.copy_async(
+                    dest,
+                    Gio.FileCopyFlags.OVERWRITE,
+                    GLib.PRIORITY_DEFAULT,
+                    None,
+                    None,
+                    None,
+                    self._on_copy_backup,
+                )

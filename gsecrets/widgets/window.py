@@ -313,14 +313,25 @@ class Window(Adw.ApplicationWindow):
                     callback=unlock_callback,
                 )
 
-        stock_db_file.copy_async(
-            new_db_file,
-            Gio.FileCopyFlags.OVERWRITE,
-            GLib.PRIORITY_DEFAULT,
-            None,
-            None,
-            copy_callback,
-        )
+        if GLib.check_version(2, 81, 0) is None:
+            stock_db_file.copy_async(
+                new_db_file,
+                Gio.FileCopyFlags.OVERWRITE,
+                GLib.PRIORITY_DEFAULT,
+                None,
+                None,
+                copy_callback,
+            )
+        else:
+            stock_db_file.copy_async(
+                new_db_file,
+                Gio.FileCopyFlags.OVERWRITE,
+                GLib.PRIORITY_DEFAULT,
+                None,
+                None,
+                None,
+                copy_callback,
+            )
 
     def save_window_size(self):
         width = self.get_width()

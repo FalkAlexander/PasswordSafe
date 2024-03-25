@@ -233,14 +233,25 @@ class UnlockDatabase(Adw.Bin):
             except GLib.Error as err:
                 logging.warning("Could not save database backup: %s", err.message)
 
-        gfile.copy_async(
-            backup,
-            Gio.FileCopyFlags.NONE,
-            GLib.PRIORITY_DEFAULT,
-            None,
-            None,
-            callback,
-        )
+        if GLib.check_version(2, 81, 0) is None:
+            gfile.copy_async(
+                backup,
+                Gio.FileCopyFlags.NONE,
+                GLib.PRIORITY_DEFAULT,
+                None,
+                None,
+                callback,
+            )
+        else:
+            gfile.copy_async(
+                backup,
+                Gio.FileCopyFlags.NONE,
+                GLib.PRIORITY_DEFAULT,
+                None,
+                None,
+                None,
+                callback,
+            )
 
     def show_banner(self, label: str) -> None:
         self.banner.set_title(label)

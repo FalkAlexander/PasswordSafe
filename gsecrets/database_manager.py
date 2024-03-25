@@ -208,7 +208,7 @@ class DatabaseManager(GObject.Object):
             if composition_key:
                 self.db.keyfile = io.BytesIO(composition_key)
             else:
-                self.db.keyfile = ""
+                self.db.keyfile = None
 
             self.is_dirty = True
 

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <template class="DatabaseSettingsDialog" parent="AdwPreferencesDialog">
-    <property name="content_height">600</property>
-    <property name="content_width">400</property>
+    <property name="content_width">450</property>
     <property name="title" translatable="yes">Safe Settings</property>
     <child>
       <object class="AdwPreferencesPage">
@@ -11,7 +10,16 @@
         <property name="icon_name">dice3-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Password</property>
+            <child>
+              <object class="AdwPasswordEntryRow" id="current_password_entry">
+                <property name="title" translatable="yes">Current Password</property>
+                <signal name="changed" handler="on_password_entry_changed"/>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
             <child>
               <object class="AdwPasswordEntryRow" id="new_password_entry">
                 <property name="title" translatable="yes">New Password</property>
@@ -40,12 +48,6 @@
               </object>
             </child>
             <child>
-              <object class="AdwPasswordEntryRow" id="current_password_entry">
-                <property name="title" translatable="yes">Current Password</property>
-                <signal name="changed" handler="on_password_entry_changed"/>
-              </object>
-            </child>
-            <child>
               <object class="PasswordLevelBar" id="level_bar">
                 <property name="margin_top">6</property>
                 <property name="password" bind-source="new_password_entry" bind-property="text"/>
@@ -54,94 +56,14 @@
           </object>
         </child>
         <child>
+          <object class="AdwPreferencesGroup" id="provider_group">
+            <property name="title" translatable="yes">New Additional Credentials</property>
+          </object>
+        </child>
+        <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Keyfile</property>
             <child>
-              <object class="GtkBox">
-                <property name="spacing">44</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="hexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkButton" id="select_keyfile_button">
-                        <property name="width_request">50</property>
-                        <property name="height_request">50</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="icon_name">document-open-symbolic</property>
-                        <signal name="clicked" handler="on_keyfile_select_button_clicked"/>
-                        <style>
-                          <class name="circular"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="margin_top">5</property>
-                        <property name="label" translatable="yes">_Select current keyfile if any</property>
-                        <property name="justify">center</property>
-                        <property name="wrap">True</property>
-                        <property name="max_width_chars">5</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">select_keyfile_button</property>
-                        <style>
-                          <class name="caption"/>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon_name">go-next-symbolic</property>
-                    <property name="accessible-role">presentation</property>
-                    <style>
-                      <class name="dim-label"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkBox">
-                    <property name="hexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <child>
-                      <object class="GtkButton" id="generate_keyfile_button">
-                        <property name="width_request">50</property>
-                        <property name="height_request">50</property>
-                        <property name="halign">center</property>
-                        <property name="valign">center</property>
-                        <property name="icon_name">dice3-symbolic</property>
-                        <signal name="clicked" handler="on_keyfile_generator_button_clicked"/>
-                        <style>
-                          <class name="circular"/>
-                        </style>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="margin_top">5</property>
-                        <property name="label" translatable="yes">(Optional) _Generate new keyfile</property>
-                        <property name="justify">center</property>
-                        <property name="wrap">True</property>
-                        <property name="max_width_chars">5</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">generate_keyfile_button</property>
-                        <style>
-                          <class name="caption"/>
-                          <class name="dim-label"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="ErrorRevealer" id="keyfile_error_revealer">
-                <property name="label" translatable="yes">Could not Load Keyfile</property>
-              </object>
+              <object class="AdwBanner" id="banner"/>
             </child>
           </object>
         </child>

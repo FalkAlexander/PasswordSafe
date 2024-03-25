@@ -10,11 +10,8 @@ from pathlib import Path
 from gi.repository import Adw, Gio, GLib, Gtk
 
 from gsecrets.utils import (
-    KeyFileFilter,
     compare_passwords,
     format_time,
-    generate_keyfile_async,
-    generate_keyfile_finish,
 )
 
 
@@ -25,7 +22,6 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     __gtype_name__ = "DatabaseSettingsDialog"
 
     new_password: str | None = None
-    current_password: str | None = None
     current_keyfile_hash = None
     current_keyfile_path = None
     new_keyfile_hash = None
@@ -36,12 +32,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     passwords_number = None
 
     auth_apply_button = Gtk.Template.Child()
-    select_keyfile_button = Gtk.Template.Child()
-    generate_keyfile_button = Gtk.Template.Child()
 
     level_bar = Gtk.Template.Child()
-
-    keyfile_error_revealer = Gtk.Template.Child()
 
     encryption_algorithm_row = Gtk.Template.Child()
     date_row = Gtk.Template.Child()
@@ -53,9 +45,11 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     path_row = Gtk.Template.Child()
     size_row = Gtk.Template.Child()
     version_row = Gtk.Template.Child()
+    current_password_entry = Gtk.Template.Child()
+    provider_group = Gtk.Template.Child()
+    banner = Gtk.Template.Child()
 
     confirm_password_entry = Gtk.Template.Child()
-    current_password_entry = Gtk.Template.Child()
     new_password_entry = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
@@ -63,9 +57,23 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
+        self.window = self.unlocked_database.window
+        self.window.connect("banner-show", self.on_banner_show)
+        self.window.connect("banner-close", self.on_banner_close)
 
         self.__setup_widgets()
         self.__setup_signals()
+
+        for key_provider in self.window.key_providers.get_key_providers():
+            if key_provider.available:
+                self.provider_group.add(key_provider.create_database_row())
+
+    def on_banner_show(self, _unused: str, label: str) -> None:
+        self.banner.set_title(label)
+        self.banner.set_revealed(True)
+
+    def on_banner_close(self, _unused1: str, _unused2: str) -> None:
+        self.banner.set_revealed(False)
 
     #
     # Dialog Creation
@@ -101,135 +109,15 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         self.auth_apply_button.set_sensitive(correct_input)
 
     def correct_credentials(self) -> bool:
-        database_hash = self.database_manager.keyfile_hash
         database_password = self.database_manager.password
-        current_hash = self.current_keyfile_hash
         current_password = self.current_password_entry.get_text()
-
-        passwords_match = compare_passwords(database_password, current_password)
-        hashes_match = database_hash == current_hash
-
-        return hashes_match and passwords_match
+        return compare_passwords(database_password, current_password)
 
     def passwords_coincide(self) -> bool:
         new_password = self.new_password_entry.get_text()
         repeat_password = self.confirm_password_entry.get_text()
 
         return compare_passwords(new_password, repeat_password)
-
-    @Gtk.Template.Callback()
-    def on_keyfile_select_button_clicked(self, button: Gtk.Button) -> None:
-        self.unlocked_database.start_database_lock_timer()
-
-        # We reset the button if we previously failed.
-        if button.props.icon_name == "edit-delete-symbolic":
-            button.props.icon_name = "document-open-symbolic"
-            button.remove_css_class("destructive-action")
-            self.current_keyfile_path = None
-            self.current_keyfile_hash = None
-            return
-
-        file_filter = KeyFileFilter().file_filter
-
-        filters = Gio.ListStore.new(Gtk.FileFilter)
-        filters.append(file_filter)
-
-        dialog = Gtk.FileDialog.new()
-        dialog.props.filters = filters
-        # NOTE: Filechooser title for choosing current used keyfile
-        dialog.props.title = _("Select Current Keyfile")
-
-        window = self.unlocked_database.window
-        dialog.open(window, None, self._on_select_filechooser_response)
-
-    def _on_select_filechooser_response(self, dialog, result):
-        try:
-            keyfile = dialog.open_finish(result)
-        except GLib.Error as err:
-            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.exception("Could not open file")
-        else:
-            keyfile.load_bytes_async(None, self.load_bytes_callback)
-
-    def load_bytes_callback(self, gfile, result):
-        try:
-            gbytes, _ = gfile.load_bytes_finish(result)
-        except GLib.Error:
-            logging.exception("Could not set keyfile hash")
-            self.keyfile_error_revealer.reveal(True)
-            self.select_keyfile_button.set_icon_name("document-open-symbolic")
-        else:
-            self.keyfile_error_revealer.reveal(False)
-            keyfile_hash = GLib.compute_checksum_for_bytes(
-                GLib.ChecksumType.SHA1,
-                gbytes,
-            )
-            self.current_keyfile_path = gfile.get_path()
-            self.current_keyfile_hash = keyfile_hash
-
-            button = self.select_keyfile_button
-
-            if keyfile_hash == self.database_manager.keyfile_hash:
-                button.set_icon_name("object-select-symbolic")
-                correct_input = self.passwords_coincide() and self.correct_credentials()
-
-                self.auth_apply_button.set_sensitive(correct_input)
-            else:
-                button.set_icon_name("edit-delete-symbolic")
-                button.add_css_class("destructive-action")
-                self.auth_apply_button.set_sensitive(False)
-
-    @Gtk.Template.Callback()
-    def on_keyfile_generator_button_clicked(self, button: Gtk.Button) -> None:
-        self.unlocked_database.start_database_lock_timer()
-
-        # We reset the button if we previously failed.
-        if button.props.icon_name == "object-select-symbolic":
-            button.props.icon_name = "dice3-symbolic"
-            self.new_keyfile_path = None
-            self.new_keyfile_hash = None
-            return
-
-        file_filter = KeyFileFilter().file_filter
-
-        filters = Gio.ListStore.new(Gtk.FileFilter)
-        filters.append(file_filter)
-
-        dialog = Gtk.FileDialog.new()
-        dialog.props.filters = filters
-        # NOTE: Filechooser title for generating a new keyfile
-        dialog.props.title = _("Generate Keyfile")
-        dialog.props.accept_label = _("_Generate")
-        dialog.props.initial_name = _("Keyfile")
-
-        window = self.unlocked_database.window
-        dialog.save(window, None, self._on_filechooser_response)
-
-    def _on_filechooser_response(self, dialog, result):
-        try:
-            keyfile = dialog.save_finish(result)
-        except GLib.Error as err:
-            if not err.matches(Gtk.DialogError.quark(), Gtk.DialogError.DISMISSED):
-                logging.exception("Could not save file")
-        else:
-            spinner = Gtk.Spinner()
-            spinner.start()
-            self.generate_keyfile_button.set_child(spinner)
-
-            def callback(gfile, result):
-                try:
-                    _res, keyfile_hash = generate_keyfile_finish(result)
-                except GLib.Error:
-                    self.generate_keyfile_button.set_icon_name("dice3-symbolic")
-                    logging.exception("Could not create keyfile")
-                    self.keyfile_error_revealer.reveal(True)
-                else:
-                    self.generate_keyfile_button.set_icon_name("object-select-symbolic")
-                    self.new_keyfile_hash = keyfile_hash
-                    self.new_keyfile_path = gfile.get_path()
-                    self.keyfile_error_revealer.reveal(False)
-
-            generate_keyfile_async(keyfile, callback)
 
     def _on_set_credentials(self, database_manager, result):
         try:
@@ -250,9 +138,6 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
             self.new_password_entry.set_text("")
             self.confirm_password_entry.set_text("")
 
-            self.select_keyfile_button.set_icon_name("document-open-symbolic")
-            self.generate_keyfile_button.set_icon_name("dice3-symbolic")
-
             self.current_keyfile_hash = None
             self.current_keyfile_path = None
             self.new_keyfile_hash = None
@@ -261,6 +146,21 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
             self.set_sensitive(True)
             self.auth_apply_button.set_sensitive(False)
             self.auth_apply_button.set_label(_("_Apply Changes"))
+            for provider in self.provider_group:
+                provider.set_sensitive(True)
+
+    def _on_generate_composite_key(self, providers, result):
+        for provider in self.provider_group:
+            provider.set_sensitive(False)
+
+        try:
+            self._new_composition_key = providers.generate_composite_key_finish(result)
+        except GLib.Error:
+            logging.exception("Failed to generate composite key")
+            self.window.send_notification(_("Failed to generate composite key"))
+            return
+
+        self.database_manager.check_file_changes_async(self.on_check_file_changes)
 
     @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):
@@ -272,7 +172,10 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         button.set_child(spinner)
         button.set_sensitive(False)
 
-        self.database_manager.check_file_changes_async(self.on_check_file_changes)
+        self.window.key_providers.generate_composite_key_async(
+            self.database_manager.get_salt(),
+            self._on_generate_composite_key,
+        )
 
     def on_check_file_changes(self, dbm, result):
         try:
@@ -295,14 +198,14 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
                 new_password = self.new_password_entry.props.text
                 self.database_manager.set_credentials_async(
                     new_password,
-                    self.new_keyfile_path,
-                    self.new_keyfile_hash,
+                    self._new_composition_key,
                     self._on_set_credentials,
                 )
         finally:
             self.set_sensitive(True)
             self.auth_apply_button.set_sensitive(False)
             self.auth_apply_button.set_label(_("_Apply Changes"))
+            self._new_composition_key = None
 
     @Gtk.Template.Callback()
     def on_password_generated(self, _popover, password):

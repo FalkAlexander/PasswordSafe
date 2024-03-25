@@ -59,7 +59,8 @@ class Window(Adw.ApplicationWindow):
         toast = Adw.Toast.new(notification)
         self.toast_overlay.add_toast(toast)
 
-    def show_banner(self, label: str) -> None:
+    @GObject.Signal(arg_types=(str,))
+    def banner_show(self, label: str) -> None:
         if self.view == self.View.UNLOCK_DATABASE:
             self._unlock_database_bin.props.child.show_banner(label)
         elif self.view == self.View.CREATE_DATABASE and (
@@ -67,13 +68,20 @@ class Window(Adw.ApplicationWindow):
         ):
             create_view.show_banner(label)
 
-    def close_banner(self):
+    def show_banner(self, label: str) -> None:
+        self.emit("banner-show", label)
+
+    @GObject.Signal(arg_types=(str,))
+    def banner_close(self, _unused: str) -> None:
         if self.view == self.View.UNLOCK_DATABASE:
             self._unlock_database_bin.props.child.close_banner()
         elif self.view == self.View.CREATE_DATABASE and (
             create_view := self._create_view
         ):
             create_view.close_banner()
+
+    def close_banner(self):
+        self.emit("banner-close", "")
 
     def close_notification(self, toast: Adw.Toast) -> None:
         toast.dismiss()

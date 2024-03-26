@@ -81,19 +81,26 @@ class YubiKeyProvider(BaseProvider):
             except yubico.yubikey.YubiKeyError:
                 break
             else:
-                logging.debug(
-                    "Found %s [%s]",
-                    yubikey.description,
-                    str(yubikey.serial()),
-                )
+                try:
+                    serial = yubikey.serial()
+                except yubico.yubikey.YubiKeyTimeout:
+                    logging.exception("Timeout getting yubikey serial")
+                except yubico.yubikey.YubiKeyError:
+                    logging.exception("Could not read yubikey serial")
+                else:
+                    logging.debug(
+                        "Found %s [%s]",
+                        yubikey.description,
+                        str(serial),
+                    )
 
-                res += [
-                    YubiKeyInfo(yubikey.description, yubikey.serial(), slot)
-                    for slot in yubikey.status().valid_configs()
-                ]
-
-                # This must be done as otherwise usb access is broken
-                del yubikey
+                    res += [
+                        YubiKeyInfo(yubikey.description, serial, slot)
+                        for slot in yubikey.status().valid_configs()
+                    ]
+                finally:
+                    # This must be done as otherwise usb access is broken
+                    del yubikey
 
         return res
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-03-24 13:34+0000\n"
-"PO-Revision-Date: 2024-03-24 15:50+0200\n"
+"POT-Creation-Date: 2024-03-26 17:59+0000\n"
+"PO-Revision-Date: 2024-03-26 21:21+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -190,7 +190,6 @@ msgid "Generate New Password"
 msgstr "Створення пароля"
 
 #: data/gtk/database_settings_dialog.ui:6
-#| msgid "Properties"
 msgid "Safe Properties"
 msgstr "Властивості сейфа"
 
@@ -387,15 +386,15 @@ msgstr "Показати _журнал"
 msgid "_Delete"
 msgstr "В_илучити"
 
-#: data/gtk/entry_row.ui:77
+#: data/gtk/entry_row.ui:78
 msgid "Copy One-Time Password"
 msgstr "Скопіювати одноразовий пароль"
 
-#: data/gtk/entry_row.ui:88
+#: data/gtk/entry_row.ui:89
 msgid "Copy Username"
 msgstr "Копіювати ім'я користувача"
 
-#: data/gtk/entry_row.ui:98
+#: data/gtk/entry_row.ui:99
 msgid "Copy Password"
 msgstr "Копіювати пароль"
 
@@ -419,7 +418,7 @@ msgstr "_Встановити дату закінчення"
 msgid "Group Menu"
 msgstr "Меню групи"
 
-#: data/gtk/group_row.ui:65
+#: data/gtk/group_row.ui:66
 msgid "Navigate To"
 msgstr "Перейти до"
 
@@ -681,12 +680,12 @@ msgstr "Хочете записати усі зміни до сейфа?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:398
+#: gsecrets/widgets/window.py:409
 msgid "_Quit Without Saving"
 msgstr "В_ийти без збереження"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:399
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:410
 msgid "_Don't Quit"
 msgstr "_Не виходити"
 
@@ -922,7 +921,6 @@ msgid "New _Window"
 msgstr "Створити _вікно"
 
 #: data/gtk/unlocked_headerbar.ui:92
-#| msgid "_Properties"
 msgid "Sa_fe Properties"
 msgstr "Властивості се_йфа"
 
@@ -1156,6 +1154,21 @@ msgstr ""
 "даних формат KeePass версії 4. Вона чудово інтегрується до стільничного "
 "середовища GNOME і надає простий і незахаращений інтерфейс для керування "
 "базами даних паролів."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:265
+#| msgid "Password Length"
+msgid "Password management"
+msgstr "Керування паролями"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:269
+#| msgid "Enable faster unlocking."
+msgid "Safe unlocking"
+msgstr "Розблокування сейфів"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:273
+#| msgid "Safe Settings"
+msgid "Safe creation"
+msgstr "Створення сейфів"
 
 #: gsecrets/attachment_warning_dialog.py:68
 #: gsecrets/attachment_warning_dialog.py:79
@@ -1401,7 +1414,7 @@ msgstr "Клонувати"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:244 gsecrets/unlocked_database.py:532
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:408
 msgid "Could not save Safe"
 msgstr "Не вдалося зберегти сейф"
 
@@ -1668,12 +1681,9 @@ msgstr "Не вдалося створити сейф: сейф вже відк�
 msgid "Could not create new Safe"
 msgstr "Не вдалося створити сейф"
 
-#: gsecrets/widgets/window.py:374
+#: gsecrets/widgets/window.py:385
 msgid "Could not save safe"
 msgstr "Не вдалося зберегти сейф"
-
-#~ msgid "Safe Settings"
-#~ msgstr "Параметри сейфа"
 
 #~ msgid "Sa_fe Settings"
 #~ msgstr "Параметри се_йфа"
@@ -1874,9 +1884,6 @@ msgstr "Не вдалося зберегти сейф"
 
 #~ msgid "Remember _Unlock Method"
 #~ msgstr "Запам'ятати спосіб від_микання"
-
-#~ msgid "Enable faster unlocking."
-#~ msgstr "Увімкнути швидке розблокування."
 
 #~ msgid "Safe is Locked"
 #~ msgstr "Сейф замкнено"

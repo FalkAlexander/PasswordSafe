@@ -70,6 +70,11 @@ class GroupRow(Adw.Bin):
             msg = "Expected a SafeGroup."
             raise TypeError(msg)
 
+        if element.is_trash_bin:
+            self._group_icon.set_from_icon_name("user-trash-symbolic")
+        else:
+            self._group_icon.set_from_icon_name("folder-symbolic")
+
         self._safe_group = element
 
         self._signals.props.target = element

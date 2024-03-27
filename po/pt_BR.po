@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-03-11 09:20+0000\n"
-"PO-Revision-Date: 2024-03-15 13:04-0300\n"
+"POT-Creation-Date: 2024-03-26 19:46+0000\n"
+"PO-Revision-Date: 2024-03-25 13:06-0300\n"
 "Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
 "Language: pt_BR\n"
@@ -69,7 +69,7 @@ msgstr "Sensível"
 msgid "Contains sensitive data."
 msgstr "Contém dados sensíveis."
 
-#: data/gtk/add_attribute_dialog.ui:53 gsecrets/entry_page.py:353
+#: data/gtk/add_attribute_dialog.ui:53 gsecrets/entry_page.py:355
 msgid "_Add"
 msgstr "_Adicionar"
 
@@ -131,7 +131,7 @@ msgstr "Cor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:224
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:226
 msgid "Create Safe"
 msgstr "Criar cofre"
 
@@ -200,13 +200,13 @@ msgid "Copy"
 msgstr "Copiar"
 
 #: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
-#: gsecrets/create_database.py:39
+#: gsecrets/create_database.py:40
 msgid "Generate New Password"
 msgstr "Gerar nova senha"
 
 #: data/gtk/database_settings_dialog.ui:6
-msgid "Safe Settings"
-msgstr "Configurações do cofre"
+msgid "Safe Properties"
+msgstr "Propriedades seguras"
 
 #: data/gtk/database_settings_dialog.ui:10
 msgid "Authentication"
@@ -231,9 +231,9 @@ msgid "Current Password"
 msgstr "Senha atual"
 
 #: data/gtk/database_settings_dialog.ui:58
-#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:87
-#: gsecrets/widgets/database_settings_dialog.py:202
+#: gsecrets/provider/file_provider.py:33 gsecrets/provider/file_provider.py:130
+#: gsecrets/provider/file_provider.py:196 gsecrets/utils.py:84
+#: gsecrets/widgets/database_settings_dialog.py:207
 msgid "Keyfile"
 msgstr "Arquivo de chave"
 
@@ -250,8 +250,8 @@ msgid "Could not Load Keyfile"
 msgstr "Não foi possível carregar arquivo de chave"
 
 #: data/gtk/database_settings_dialog.ui:153
-#: gsecrets/widgets/database_settings_dialog.py:265
-#: gsecrets/widgets/database_settings_dialog.py:307
+#: gsecrets/widgets/database_settings_dialog.py:267
+#: gsecrets/widgets/database_settings_dialog.py:309
 msgid "_Apply Changes"
 msgstr "_Aplicar alterações"
 
@@ -401,19 +401,19 @@ msgstr "Mostrar _histórico"
 msgid "_Delete"
 msgstr "E_xcluir"
 
-#: data/gtk/entry_row.ui:77
+#: data/gtk/entry_row.ui:78
 msgid "Copy One-Time Password"
 msgstr "Copiar senha descartável"
 
-#: data/gtk/entry_row.ui:88
+#: data/gtk/entry_row.ui:89
 msgid "Copy Username"
 msgstr "Copiar nome de usuário"
 
-#: data/gtk/entry_row.ui:98
+#: data/gtk/entry_row.ui:99
 msgid "Copy Password"
 msgstr "Copiar senha"
 
-#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
 msgid "Expiration Date not Set"
 msgstr "Data de expiração não definida"
 
@@ -433,7 +433,7 @@ msgstr "_Definir data de expiração"
 msgid "Group Menu"
 msgstr "Menu grupo"
 
-#: data/gtk/group_row.ui:65
+#: data/gtk/group_row.ui:66
 msgid "Navigate To"
 msgstr "Navegar para"
 
@@ -587,7 +587,7 @@ msgid "Characters"
 msgstr "Caracteres"
 
 #: data/gtk/password_generator_popover.ui:94
-#: gsecrets/provider/pkcs11_provider.py:156
+#: gsecrets/provider/pkcs11_provider.py:165
 msgid "Passphrase"
 msgstr "Frase secreta"
 
@@ -597,8 +597,8 @@ msgstr "Palavras"
 
 #. Button to generate a password
 #: data/gtk/password_generator_popover.ui:132
-#: gsecrets/provider/file_provider.py:196
-#: gsecrets/widgets/database_settings_dialog.py:201
+#: gsecrets/provider/file_provider.py:195
+#: gsecrets/widgets/database_settings_dialog.py:206
 msgid "_Generate"
 msgstr "_Gerar"
 
@@ -695,12 +695,12 @@ msgstr "Você deseja escrever todas as alterações ao cofre?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:398
+#: gsecrets/widgets/window.py:409
 msgid "_Quit Without Saving"
 msgstr "_Sair sem salvar"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:399
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:410
 msgid "_Don't Quit"
 msgstr "_Não sair"
 
@@ -719,8 +719,8 @@ msgstr "Reabre o último cofre aberto."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:132
-#: gsecrets/widgets/window.py:216 gsecrets/widgets/window.py:228
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:135
+#: gsecrets/widgets/window.py:218 gsecrets/widgets/window.py:230
 msgid "Safe"
 msgstr "Cofre"
 
@@ -733,8 +733,8 @@ msgid "Save every change automatically."
 msgstr "Salva todas as alterações automaticamente."
 
 #: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:49
-#: gsecrets/provider/pkcs11_provider.py:160
-#: gsecrets/provider/pkcs11_provider.py:162 gsecrets/unlock_database.py:191
+#: gsecrets/provider/pkcs11_provider.py:168
+#: gsecrets/provider/pkcs11_provider.py:170 gsecrets/unlock_database.py:194
 msgid "Unlock"
 msgstr "Desbloquear"
 
@@ -858,7 +858,7 @@ msgstr "Desbloquear cofre"
 msgid "Browser"
 msgstr "Navegador"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:681
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:692
 msgid "Select Items"
 msgstr "Selecionar itens"
 
@@ -933,8 +933,8 @@ msgid "New _Window"
 msgstr "Nova jane_la"
 
 #: data/gtk/unlocked_headerbar.ui:92
-msgid "Sa_fe Settings"
-msgstr "Configurações do co_fre"
+msgid "Sa_fe Properties"
+msgstr "Propriedades se_guras"
 
 #: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Entry"
@@ -1162,70 +1162,74 @@ msgstr ""
 "se integra perfeitamente ao ambiente GNOME e fornece um interface fácil e "
 "organizada para gerenciar os bancos de dados de senha."
 
-#: gsecrets/application.py:53
-msgid "Error: File {} does not exist"
-msgstr "Erro: O arquivo {} não existe"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:265
+msgid "Password management"
+msgstr "Gerenciamento da senha"
 
-#: gsecrets/application.py:58
-msgid "Error: Safe {} is already open"
-msgstr "Erro: Cofre {} já está aberto"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:269
+msgid "Safe unlocking"
+msgstr "Desbloqueando cofre"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:273
+msgid "Safe creation"
+msgstr "Criação do cofre"
 
 #: gsecrets/attachment_warning_dialog.py:68
 #: gsecrets/attachment_warning_dialog.py:79
 msgid "Could not load attachment"
 msgstr "Não foi possível carregar o anexo"
 
-#: gsecrets/create_database.py:64
+#: gsecrets/create_database.py:65
 msgid "Passwords do not match"
 msgstr "Senhas não conferem"
 
-#: gsecrets/create_database.py:79
+#: gsecrets/create_database.py:80
 msgid "Unable to create database"
 msgstr "Não foi possível criar um banco de dados"
 
-#: gsecrets/create_database.py:110 gsecrets/unlock_database.py:96
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:100
 msgid "Failed to generate composite key"
 msgstr "Falha ao gerar a chave composta"
 
-#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:102
+#: gsecrets/entry_page.py:246 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "Salvo no histórico"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:150
-#: gsecrets/widgets/credentials_group.py:96
+#: gsecrets/entry_page.py:260 gsecrets/entry_row.py:163
+#: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Nome de usuário copiado"
 
-#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:394
+#: gsecrets/entry_page.py:265 gsecrets/entry_page.py:394
 msgid "Address copied"
 msgstr "Endereço copiado"
 
-#: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
+#: gsecrets/entry_page.py:274 gsecrets/entry_page.py:329
 msgid "One-time password copied"
 msgstr "Senha descartável copiada"
 
-#: gsecrets/entry_page.py:305
+#: gsecrets/entry_page.py:307
 msgid "Could not open URL"
 msgstr "Não foi possível abrir a URL"
 
-#: gsecrets/entry_page.py:315
+#: gsecrets/entry_page.py:317
 msgid "The address is not valid"
 msgstr "O endereço não é válido"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:352
+#: gsecrets/entry_page.py:354
 msgid "Select Attachments"
 msgstr "Selecione o anexo"
 
-#: gsecrets/entry_row.py:143 gsecrets/widgets/credentials_group.py:111
+#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Senha copiada"
 
-#: gsecrets/entry_row.py:157
+#: gsecrets/entry_row.py:171
 msgid "One-Time Password copied"
 msgstr "Senha descartável copiada"
 
-#: gsecrets/entry_row.py:169 gsecrets/group_row.py:119
+#: gsecrets/entry_row.py:185 gsecrets/group_row.py:134
 msgid "Title not Specified"
 msgstr "Título não especificado"
 
@@ -1261,275 +1265,275 @@ msgstr "Incluir símbolos"
 msgid "Exclude Symbols"
 msgstr "Excluir símbolos"
 
-#: gsecrets/pathbar_button.py:30
+#: gsecrets/pathbar_button.py:33
 msgid "Root Group"
 msgstr "Grupo administrador"
 
-#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+#: gsecrets/provider/file_provider.py:41 gsecrets/provider/file_provider.py:79
 msgid "Select Keyfile"
 msgstr "Selecionar arquivo de chave"
 
-#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
+#: gsecrets/provider/file_provider.py:50 gsecrets/provider/file_provider.py:141
 msgid "Clear Keyfile"
 msgstr "Limpar arquivo de chave"
 
-#: gsecrets/provider/file_provider.py:70
+#: gsecrets/provider/file_provider.py:69
 msgid "Select keyfile"
 msgstr "Selecionar arquivo de chave"
 
-#: gsecrets/provider/file_provider.py:108
+#: gsecrets/provider/file_provider.py:107
 msgid "Could not load keyfile"
 msgstr "Não foi possível carregar arquivo de chave"
 
 #. NOTE: Filechooser title for generating a new keyfile
-#: gsecrets/provider/file_provider.py:135
-#: gsecrets/provider/file_provider.py:195
-#: gsecrets/widgets/database_settings_dialog.py:200
+#: gsecrets/provider/file_provider.py:134
+#: gsecrets/provider/file_provider.py:194
+#: gsecrets/widgets/database_settings_dialog.py:205
 msgid "Generate Keyfile"
 msgstr "Gerar arquivo de chave"
 
-#: gsecrets/provider/file_provider.py:159
+#: gsecrets/provider/file_provider.py:158
 msgid "Use a file to increase security"
 msgstr "Usa um arquivo para aumentar a segurança"
 
-#: gsecrets/provider/file_provider.py:181
+#: gsecrets/provider/file_provider.py:180
 msgid "Could not create keyfile"
 msgstr "Não foi possível criar arquivo de chave"
 
-#: gsecrets/provider/pkcs11_provider.py:92
+#: gsecrets/provider/pkcs11_provider.py:99
 msgid "No Smartcard"
 msgstr "Sem cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:111
-#: gsecrets/provider/pkcs11_provider.py:208
+#: gsecrets/provider/pkcs11_provider.py:118
+#: gsecrets/provider/pkcs11_provider.py:219
 msgid "Smartcard"
 msgstr "Cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:112
+#: gsecrets/provider/pkcs11_provider.py:119
 msgid "Select certificate"
 msgstr "Selecionar certificado"
 
-#: gsecrets/provider/pkcs11_provider.py:146
+#: gsecrets/provider/pkcs11_provider.py:157
 msgid "No smartcard present"
 msgstr "Nenhum cartão inteligente presente"
 
-#: gsecrets/provider/pkcs11_provider.py:147
+#: gsecrets/provider/pkcs11_provider.py:158
 msgid "Please insert smartcard and retry."
-msgstr "Por favor insira um cartão inteligente e tente novamente"
+msgstr "Por favor insira um cartão inteligente e tente novamente."
 
-#: gsecrets/provider/pkcs11_provider.py:150
-#: gsecrets/widgets/database_settings_dialog.py:294
+#: gsecrets/provider/pkcs11_provider.py:161
+#: gsecrets/widgets/database_settings_dialog.py:296
 msgid "OK"
 msgstr "OK"
 
-#: gsecrets/provider/pkcs11_provider.py:160
+#: gsecrets/provider/pkcs11_provider.py:168
 msgid "Unlock your smartcard"
 msgstr "Desbloquear seu cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:161 gsecrets/selection_manager.py:105
+#: gsecrets/provider/pkcs11_provider.py:169 gsecrets/selection_manager.py:111
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: gsecrets/provider/pkcs11_provider.py:201
+#: gsecrets/provider/pkcs11_provider.py:212
 msgid "Failed to unlock Smartcard"
 msgstr "Falha ao desbloquear o cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:209
+#: gsecrets/provider/pkcs11_provider.py:220
 msgid "Use a smartcard"
 msgstr "Usar um cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:256
+#: gsecrets/provider/pkcs11_provider.py:268
 msgid "Refresh Certificate List"
 msgstr "Atualizar lista de certificados"
 
-#: gsecrets/provider/yubikey_provider.py:29
+#: gsecrets/provider/yubikey_provider.py:33
 msgid "No Key"
 msgstr "Sem chave"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
-#: gsecrets/provider/yubikey_provider.py:32
+#: gsecrets/provider/yubikey_provider.py:36
 #, python-brace-format
 msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - Posição {slot}"
 
-#: gsecrets/provider/yubikey_provider.py:126
-#: gsecrets/provider/yubikey_provider.py:184
+#: gsecrets/provider/yubikey_provider.py:130
+#: gsecrets/provider/yubikey_provider.py:188
 msgid "YubiKey"
 msgstr "YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:127
+#: gsecrets/provider/yubikey_provider.py:131
 msgid "Select key"
 msgstr "Selecionar chave"
 
-#: gsecrets/provider/yubikey_provider.py:135
-#: gsecrets/provider/yubikey_provider.py:191
+#: gsecrets/provider/yubikey_provider.py:139
+#: gsecrets/provider/yubikey_provider.py:195
 msgid "Select YubiKey slot"
 msgstr "Selecionar a posição do YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:223
+#: gsecrets/provider/yubikey_provider.py:230
 msgid "Touch YubiKey"
 msgstr "Tocar o YubiKey"
 
-#: gsecrets/recent_files_menu.py:44
+#: gsecrets/recent_files_menu.py:43
 msgid "Recent Files"
 msgstr "Cofres recentes"
 
-#: gsecrets/safe_element.py:41
+#: gsecrets/safe_element.py:43
 msgid "White"
 msgstr "Branco"
 
-#: gsecrets/safe_element.py:43
+#: gsecrets/safe_element.py:45
 msgid "Blue"
 msgstr "Azul"
 
-#: gsecrets/safe_element.py:45
+#: gsecrets/safe_element.py:47
 msgid "Green"
 msgstr "Verde"
 
-#: gsecrets/safe_element.py:47
+#: gsecrets/safe_element.py:49
 msgid "Yellow"
 msgstr "Amarelo"
 
-#: gsecrets/safe_element.py:49
+#: gsecrets/safe_element.py:51
 msgid "Orange"
 msgstr "Laranja"
 
-#: gsecrets/safe_element.py:51
+#: gsecrets/safe_element.py:53
 msgid "Red"
 msgstr "Vermelho"
 
-#: gsecrets/safe_element.py:53
+#: gsecrets/safe_element.py:55
 msgid "Purple"
 msgstr "Púrpura"
 
-#: gsecrets/safe_element.py:55
+#: gsecrets/safe_element.py:57
 msgid "Brown"
 msgstr "Marrom"
 
-#: gsecrets/safe_element.py:586
+#: gsecrets/safe_element.py:634
 msgid "Clone"
 msgstr "Clone"
 
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:240 gsecrets/unlocked_database.py:523
-#: gsecrets/widgets/window.py:397
+#: gsecrets/unlocked_database.py:244 gsecrets/unlocked_database.py:532
+#: gsecrets/widgets/window.py:408
 msgid "Could not save Safe"
 msgstr "Não foi possível salvar o cofre"
 
-#: gsecrets/selection_manager.py:54
+#: gsecrets/selection_manager.py:58
 msgid "Operation aborted: deleting currently active group"
 msgstr "Operação cancelada: excluindo grupo atualmente ativo"
 
-#: gsecrets/selection_manager.py:100
+#: gsecrets/selection_manager.py:106
 msgid "Warning"
 msgstr "Atenção"
 
-#: gsecrets/selection_manager.py:102
+#: gsecrets/selection_manager.py:108
 msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr ""
 "Você está excluindo elementos da lixeira, exclusão essa que não pode ser "
 "desfeita."
 
-#: gsecrets/selection_manager.py:106
+#: gsecrets/selection_manager.py:112
 msgid "Delete"
 msgstr "Excluir"
 
-#: gsecrets/selection_manager.py:135
+#: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "Operação cancelada: movendo o grupo atualmente ativo"
 
-#: gsecrets/selection_manager.py:148
+#: gsecrets/selection_manager.py:155
 msgid "Move completed"
 msgstr "Movimentação concluída"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:106
+#: gsecrets/unlock_database.py:108
 msgid "Safe {} is already open"
 msgstr "Cofre {} já está aberto"
 
-#: gsecrets/unlock_database.py:179
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "Falha ao desbloquear o cofre"
 
-#: gsecrets/unlocked_database.py:243
+#: gsecrets/unlocked_database.py:247
 msgid "Safe saved"
 msgstr "Cofre salvo"
 
-#: gsecrets/unlocked_database.py:245
+#: gsecrets/unlocked_database.py:249
 msgid "No changes made"
 msgstr "Nenhuma alteração feita"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:289
+#: gsecrets/unlocked_database.py:296
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Elemento excluído"
 msgstr[1] "{} elementos excluídos"
 
-#: gsecrets/unlocked_database.py:294
+#: gsecrets/unlocked_database.py:301
 msgid "Deletion completed"
 msgstr "Exclusão concluída"
 
-#: gsecrets/unlocked_database.py:299 gsecrets/unlocked_database.py:324
+#: gsecrets/unlocked_database.py:306 gsecrets/unlocked_database.py:330
 msgid "Undo"
 msgstr "Desfazer"
 
-#: gsecrets/unlocked_database.py:323
+#: gsecrets/unlocked_database.py:329
 msgid "Attribute deleted"
 msgstr "Atributos excluídos"
 
-#: gsecrets/unlocked_database.py:353
+#: gsecrets/unlocked_database.py:359
 msgid "Copied"
 msgstr "Copiado"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:450
+#: gsecrets/unlocked_database.py:459
 msgid "Safe locked due to inactivity"
 msgstr "Cofre bloqueado devido a inatividade"
 
-#: gsecrets/unlocked_database.py:683
+#: gsecrets/unlocked_database.py:694
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} selecionado"
 msgstr[1] "{} selecionados"
 
-#: gsecrets/widgets/add_attribute_dialog.py:36
+#: gsecrets/widgets/add_attribute_dialog.py:35
 msgid "Attribute key contains an illegal character"
 msgstr "A chave de atributo contém um caractere ilegal"
 
-#: gsecrets/widgets/add_attribute_dialog.py:47
+#: gsecrets/widgets/add_attribute_dialog.py:45
 msgid "Attribute key already exists"
 msgstr "Já existe chave de atributo"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:36
+#: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
 msgstr "Salvar anexo"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:54
 msgid "Could not store attachment"
 msgstr "Não foi possível armazenar o anexo"
 
-#: gsecrets/widgets/attribute_entry_row.py:39
-#: gsecrets/widgets/protected_attribute_entry_row.py:57
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
 msgid "Attribute copied"
 msgstr "Atributos copiados"
 
 #. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:141
+#: gsecrets/widgets/database_settings_dialog.py:144
 msgid "Select Current Keyfile"
 msgstr "Selecionar arquivo de chave atual"
 
-#: gsecrets/widgets/database_settings_dialog.py:241
-#: gsecrets/widgets/database_settings_dialog.py:245
+#: gsecrets/widgets/database_settings_dialog.py:243
+#: gsecrets/widgets/database_settings_dialog.py:247
 msgid "Could not apply changes"
 msgstr "Não foi possível aplicar as alterações"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:248
+#: gsecrets/widgets/database_settings_dialog.py:250
 msgid "Changes Applied"
 msgstr "Alterações aplicadas"
 
@@ -1543,7 +1547,7 @@ msgstr "Não foi possível alterar as credenciais"
 msgid "Conflicts While Saving"
 msgstr "Conflitos ao salvar"
 
-#: gsecrets/widgets/database_settings_dialog.py:292
+#: gsecrets/widgets/database_settings_dialog.py:293
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1553,43 +1557,43 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:356
-#: gsecrets/widgets/database_settings_dialog.py:370
+#: gsecrets/widgets/database_settings_dialog.py:358
+#: gsecrets/widgets/database_settings_dialog.py:372
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:360
+#: gsecrets/widgets/database_settings_dialog.py:362
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:363
+#: gsecrets/widgets/database_settings_dialog.py:365
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:366
+#: gsecrets/widgets/database_settings_dialog.py:368
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:374
+#: gsecrets/widgets/database_settings_dialog.py:376
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:377
+#: gsecrets/widgets/database_settings_dialog.py:379
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:380
+#: gsecrets/widgets/database_settings_dialog.py:382
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
 #: gsecrets/widgets/expiration_date_row.py:56
-#: gsecrets/widgets/expiration_date_row.py:62
+#: gsecrets/widgets/expiration_date_row.py:64
 msgid "Entry expired"
 msgstr "Entrada expirada"
 
@@ -1597,11 +1601,11 @@ msgstr "Entrada expirada"
 msgid "Hide Text"
 msgstr "Ocultar texto"
 
-#: gsecrets/widgets/notes_dialog.py:57
+#: gsecrets/widgets/notes_dialog.py:58
 msgid "Selection copied"
 msgstr "Seleção copiada"
 
-#: gsecrets/widgets/password_level_bar.py:21
+#: gsecrets/widgets/password_level_bar.py:22
 msgid "Password Strength"
 msgstr "Força da senha"
 
@@ -1640,45 +1644,54 @@ msgstr ""
 msgid "_Back up and Save"
 msgstr "_Backup e Salvar"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:47
+#: gsecrets/widgets/saving_conflict_dialog.py:45
 msgid "Save Backup"
 msgstr "Salvar Backup"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:61
+#: gsecrets/widgets/saving_conflict_dialog.py:55
 msgid "Could not backup safe"
 msgstr "Não foi possível efetuar backup do cofre"
 
-#: gsecrets/widgets/window.py:136
+#: gsecrets/widgets/window.py:139
 msgid "Any file type"
 msgstr "Todo tipo de arquivo"
 
-#: gsecrets/widgets/window.py:143
+#: gsecrets/widgets/window.py:146
 msgid "Select Safe"
 msgstr "Selecionar cofre"
 
-#: gsecrets/widgets/window.py:160
+#: gsecrets/widgets/window.py:163
 msgid "File does not have a valid path"
 msgstr "O arquivo não possui um caminho válido"
 
-#: gsecrets/widgets/window.py:194
+#: gsecrets/widgets/window.py:196
 msgid "Safe is already open"
 msgstr "Cofre já está aberto"
 
-#: gsecrets/widgets/window.py:226
+#: gsecrets/widgets/window.py:228
 msgid "_Create"
 msgstr "_Criar"
 
-#: gsecrets/widgets/window.py:248
+#: gsecrets/widgets/window.py:250
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Não foi possível criar cofre: o cofre já está aberto"
 
-#: gsecrets/widgets/window.py:290 gsecrets/widgets/window.py:305
+#: gsecrets/widgets/window.py:292 gsecrets/widgets/window.py:307
 msgid "Could not create new Safe"
 msgstr "Não foi possível criar novo cofre"
 
-#: gsecrets/widgets/window.py:372
+#: gsecrets/widgets/window.py:385
 msgid "Could not save safe"
 msgstr "Não foi possível salvar o cofre"
+
+#~ msgid "Sa_fe Settings"
+#~ msgstr "Configurações do co_fre"
+
+#~ msgid "Error: File {} does not exist"
+#~ msgstr "Erro: O arquivo {} não existe"
+
+#~ msgid "Error: Safe {} is already open"
+#~ msgstr "Erro: Cofre {} já está aberto"
 
 #~ msgid "Select"
 #~ msgstr "Selecionar todos"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-03-24 13:34+0000\n"
-"PO-Revision-Date: 2024-03-25 00:26+0300\n"
+"POT-Creation-Date: 2024-03-26 17:59+0000\n"
+"PO-Revision-Date: 2024-03-27 04:17+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -391,15 +391,15 @@ msgstr "_Geçmişi Göster"
 msgid "_Delete"
 msgstr "_Sil"
 
-#: data/gtk/entry_row.ui:77
+#: data/gtk/entry_row.ui:78
 msgid "Copy One-Time Password"
 msgstr "Tek Kullanımlık Parolayı Kopyala"
 
-#: data/gtk/entry_row.ui:88
+#: data/gtk/entry_row.ui:89
 msgid "Copy Username"
 msgstr "Kullanıcı Adını Kopyala"
 
-#: data/gtk/entry_row.ui:98
+#: data/gtk/entry_row.ui:99
 msgid "Copy Password"
 msgstr "Parolayı Kopyala"
 
@@ -423,7 +423,7 @@ msgstr "Son Kullanım Tarihi _Belirle"
 msgid "Group Menu"
 msgstr "Grup Menüsü"
 
-#: data/gtk/group_row.ui:65
+#: data/gtk/group_row.ui:66
 msgid "Navigate To"
 msgstr "Gezin"
 
@@ -685,12 +685,12 @@ msgstr "Tüm değişiklikleri kasaya yazmak ister misiniz?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:398
+#: gsecrets/widgets/window.py:409
 msgid "_Quit Without Saving"
 msgstr "Kaydetmeden Ç_ık"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:399
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:410
 msgid "_Don't Quit"
 msgstr "Çık_ma"
 
@@ -1148,6 +1148,18 @@ msgstr ""
 "masaüstüyle kusursuzca tümleşir ve parola veri tabanlarının yönetimi için "
 "kolay ve düzenli arayüz sunar."
 
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:265
+msgid "Password management"
+msgstr "Parola yönetimi"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:269
+msgid "Safe unlocking"
+msgstr "Kasa kilidi açma"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:273
+msgid "Safe creation"
+msgstr "Kasa oluşturma"
+
 #: gsecrets/attachment_warning_dialog.py:68
 #: gsecrets/attachment_warning_dialog.py:79
 msgid "Could not load attachment"
@@ -1392,7 +1404,7 @@ msgstr "Klonla"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:244 gsecrets/unlocked_database.py:532
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:408
 msgid "Could not save Safe"
 msgstr "Kasa kaydedilemedi"
 
@@ -1651,12 +1663,9 @@ msgstr "Kasa oluşturulamadı: Kasa zaten açık"
 msgid "Could not create new Safe"
 msgstr "Yeni kasa oluşturulamadı"
 
-#: gsecrets/widgets/window.py:374
+#: gsecrets/widgets/window.py:385
 msgid "Could not save safe"
 msgstr "Kasa kaydedilemedi"
-
-#~ msgid "Safe Settings"
-#~ msgstr "Kasa Ayarları"
 
 #~ msgid "Sa_fe Settings"
 #~ msgstr "_Kasa Ayarları"

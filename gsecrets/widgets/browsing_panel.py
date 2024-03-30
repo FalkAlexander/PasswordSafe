@@ -97,6 +97,7 @@ class BrowsingPanel(Adw.Bin):
     def visit_group(self, group):
         self.current_group = group
         self._signals.props.target = group
+        self.unlocked_database.props.search_active = False
         self._filter.changed(Gtk.FilterChange.DIFFERENT)
 
     def set_search(self, query: str | None) -> None:

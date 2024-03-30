@@ -20,6 +20,7 @@
                 "--without-systemdsystemunitdir",
                 "--disable-serial",
                 "--disable-usb",
+                "--disable-polkit",
                 "--disable-documentation"
             ],
             "cleanup": [
@@ -37,18 +38,22 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://pcsclite.apdu.fr/files/pcsc-lite-1.9.9.tar.bz2",
-                    "sha256": "cbcc3b34c61f53291cecc0d831423c94d437b188eb2b97b7febc08de1c914e8a"
+                    "url": "https://pcsclite.apdu.fr/files/pcsc-lite-2.0.3.tar.bz2",
+                    "sha256": "f42ee9efa489e9ff5d328baefa26f9c515be65021856e78d99ad1f0ead9ec85d"
                 }
             ]
         },
         {
             "name": "opensc",
+            "config-opts": [
+                "--disable-doc",
+                "--disable-tests"
+            ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/OpenSC/OpenSC/releases/download/0.23.0/opensc-0.23.0.tar.gz",
-                    "sha256": "a4844a6ea03a522ecf35e49659716dacb6be03f7c010a1a583aaf3eb915ed2e0"
+                    "url": "https://github.com/OpenSC/OpenSC/releases/download/0.25.0/opensc-0.25.0.tar.gz",
+                    "sha256": "e6d7b66e2a508a377ac9d67aa463025d3c54277227be10bd08872e3407d6622f"
                 }
             ]
         },
@@ -72,8 +77,8 @@
             "sources" : [
                 {
                     "type": "archive",
-                    "url": "https://pcsc-tools.apdu.fr/pcsc-tools-1.6.2.tar.bz2",
-                    "sha256": "98a2ef5c6b474ed6289ab51d514421e23794793b49e834728634b9084b2156f3"
+                    "url": "https://pcsc-tools.apdu.fr/pcsc-tools-1.7.1.tar.bz2",
+                    "sha256": "0d024b589e15d79eac8506cd67df7b53cf91e9e6a493c8319f33cd29b5f36426"
                 }
             ]
         }

@@ -204,9 +204,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self._split_view.props.show_content = False
         self.browsing_panel.visit_group(group)
 
-        # FIXME Pressing the go back button in the split view won't trigger
-        # this.
-
     def _navigate_back(self):
         if element := self.active_element:
             parent_group = element.parentgroup

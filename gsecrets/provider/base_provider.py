@@ -1,6 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0-only
-class BaseProvider:
+from gi.repository import GObject
+
+
+class BaseProvider(GObject.Object):
+    __gtype_name__ = "BaseProvider"
+
+    show_message = GObject.Signal(arg_types=(str,))
+    hide_message = GObject.Signal(arg_types=())
+
     def __init__(self):
+        super().__init__()
+
         self.raw_key = None
 
     @property

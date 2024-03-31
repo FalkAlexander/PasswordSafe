@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 import os
 import threading
+import typing
 from gettext import gettext as _
 from pathlib import Path
 
@@ -13,6 +14,9 @@ from gsecrets.utils import (
     compare_passwords,
     format_time,
 )
+
+if typing.TYPE_CHECKING:
+    from gsecrets.provider.base_provider import BaseProvider
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/database_settings_dialog.ui")
@@ -58,21 +62,38 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         self.unlocked_database = unlocked_database
         self.database_manager = unlocked_database.database_manager
         self.window = self.unlocked_database.window
-        self.window.connect("banner-show", self.on_banner_show)
-        self.window.connect("banner-close", self.on_banner_close)
+        self.signals = []
 
         self.__setup_widgets()
         self.__setup_signals()
 
-        for key_provider in self.window.key_providers.get_key_providers():
+        self._providers = self.window.key_providers
+
+        for key_provider in self._providers.get_key_providers():
             if key_provider.available:
                 self.provider_group.add(key_provider.create_database_row())
 
-    def on_banner_show(self, _unused: str, label: str) -> None:
+                show_id = key_provider.connect(
+                    key_provider.show_message,
+                    self._on_show_message,
+                )
+                hide_id = key_provider.connect(
+                    key_provider.hide_message,
+                    self._on_hide_message,
+                )
+
+                self.signals.append((show_id, key_provider))
+                self.signals.append((hide_id, key_provider))
+
+    def do_closed(self):
+        for signal_id, obj in self.signals:
+            obj.disconnect(signal_id)
+
+    def _on_show_message(self, _provider: BaseProvider, label: str) -> None:
         self.banner.set_title(label)
         self.banner.set_revealed(True)
 
-    def on_banner_close(self, _unused1: str, _unused2: str) -> None:
+    def _on_hide_message(self, _provider: BaseProvider) -> None:
         self.banner.set_revealed(False)
 
     #

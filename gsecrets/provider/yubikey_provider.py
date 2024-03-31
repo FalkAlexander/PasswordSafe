@@ -53,13 +53,12 @@ class YubiKeyInfo(GObject.Object):
 
 
 class YubiKeyProvider(BaseProvider):
-    def __init__(self, window):
+    def __init__(self, _window):
         super().__init__()
 
         self.active_key: YubiKeyInfo = None
         self.unlock_row: Adw.ComboRow = None
         self.create_row: Adw.ComboRow = None
-        self.window: Adw.ApplicationWindow = window
 
         # NOTE: There is currently a bug which prevents yubikey rescan
         # running under flatpak, that's why we can simply collect all yubikeys
@@ -234,19 +233,19 @@ class YubiKeyProvider(BaseProvider):
 
         try:
             if yubikey := self.get_yubikey(self.active_key.serial):
-                self.window.show_banner(_("Touch YubiKey"))
+                self.emit(self.show_message, _("Touch YubiKey"))
                 try:
                     self.raw_key = yubikey.challenge_response(
                         salt,
                         slot=self.active_key.slot,
                     )
                 except yubico.yubikey_base.YubiKeyTimeout as ex:
-                    self.window.close_banner()
+                    self.emit(self.hide_message)
                     logging.debug("Timeout waiting for challenge response: %s", ex)
                     msg = "Timeout waiting for challenge response"
                     raise ValueError(msg) from ex
 
-                self.window.close_banner()
+                self.emit(self.hide_message)
 
                 # This must be done as otherwise usb access is broken
                 del yubikey

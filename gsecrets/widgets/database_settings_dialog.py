@@ -101,7 +101,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     #
 
     def __setup_signals(self) -> None:
-        self.database_manager.connect("notify::locked", self.__on_locked)
+        signal_id = self.database_manager.connect("notify::locked", self.__on_locked)
+        self.signals.append((signal_id, self.database_manager))
 
     def __setup_widgets(self) -> None:
         # Dialog

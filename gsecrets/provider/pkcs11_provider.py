@@ -6,7 +6,7 @@ import logging
 from gettext import gettext as _
 from typing import TYPE_CHECKING
 
-from gi.repository import Adw, GObject, Gtk
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
 # pylint: disable=import-error
 from PyKCS11 import (
@@ -119,9 +119,15 @@ class Pkcs11Provider(BaseProvider):
         row.set_subtitle(_("Select certificate"))
         row.connect("notify::selected", self._on_unlock_row_selected)
 
-        refresh_button = get_refresh_button()
-        refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
-        row.add_suffix(refresh_button)
+        self.refresh_stack = Gtk.Stack()
+        self.refresh_button = get_refresh_button()
+        self.refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
+        self.refresh_stack.add_named(self.refresh_button, "button")
+
+        self.refresh_spinner = Gtk.Spinner()
+        self.refresh_stack.add_named(self.refresh_spinner, "spinner")
+        row.add_suffix(self.refresh_stack)
+        self.refresh_stack.set_visible_child(self.refresh_button)
 
         self.fill_data(row, database_manager)
 
@@ -137,21 +143,55 @@ class Pkcs11Provider(BaseProvider):
         if selected_item := widget.get_selected_item():
             self._active_certificate = selected_item.get_string()
 
+    def _refresh_pkcs11_async(
+        self,
+        callback: Gio.AsyncReadyCallback,
+        row: Adw.ComboRow,
+    ) -> None:
+        def pkcs11_refresh(task, _source_object, _task_data, _cancellable):
+            self._pkcs11 = None
+            if not self._pkcs11:
+                self._pkcs11 = PyKCS11Lib()
+
+                try:
+                    self._pkcs11.load(const.PKCS11_LIB)
+                except PyKCS11.PyKCS11Error as err:
+                    logging.warning("Could not load pkcs11 library: %s", err)
+                    task.return_error(err)
+                    return
+
+            present = self.scan_slots()
+            task.return_boolean(present)
+
+        self.refresh_stack.set_visible_child(self.refresh_spinner)
+        self.refresh_spinner.start()
+
+        task = Gio.Task.new(self, None, callback, row)
+        task.run_in_thread(pkcs11_refresh)
+
+    def _refresh_pkcs11_finish(self, result):
+        self.refresh_spinner.stop()
+        self.refresh_stack.set_visible_child(self.refresh_button)
+        return result.propagate_boolean()
+
     def _on_refresh_button_clicked(
         self,
         _button: Gtk.Button,
         row: Adw.ComboRow,
     ) -> None:
-        if not self._pkcs11:
-            self._pkcs11 = PyKCS11Lib()
+        self._refresh_pkcs11_async(self._on_pkcs11_refresh, row)
 
-            try:
-                self._pkcs11.load(const.PKCS11_LIB)
-            except PyKCS11.PyKCS11Error as err:
-                logging.warning("Could not load pkcs11 library: %s", err)
-                return
+    def _on_pkcs11_refresh(
+        self,
+        _provider: Pkcs11Provider,
+        result: Gio.AsyncResult,
+        row: Adw.ComboRow,
+    ) -> None:
+        try:
+            present = self._refresh_pkcs11_finish(result)
+        except GLib.Error:
+            present = False
 
-        present = self.scan_slots()
         if not present:
             dialog = Adw.AlertDialog.new(
                 _("No smartcard present"),
@@ -170,6 +210,7 @@ class Pkcs11Provider(BaseProvider):
         dialog.add_response("unlock", _("Unlock"))
         dialog.set_default_response("unlock")
         dialog.set_extra_child(entry)
+        dialog.set_focus(entry)
         dialog.connect("response", self._on_pin_dialog_response, entry, row)
         dialog.present(self.window)
 
@@ -220,9 +261,15 @@ class Pkcs11Provider(BaseProvider):
         row.set_subtitle(_("Use a smartcard"))
         row.connect("notify::selected", self._on_unlock_row_selected)
 
-        refresh_button = get_refresh_button()
-        refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
-        row.add_suffix(refresh_button)
+        self.refresh_stack = Gtk.Stack()
+        self.refresh_button = get_refresh_button()
+        self.refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
+        self.refresh_stack.add_named(self.refresh_button, "button")
+
+        self.refresh_spinner = Gtk.Spinner()
+        self.refresh_stack.add_named(self.refresh_spinner, "spinner")
+        row.add_suffix(self.refresh_stack)
+        self.refresh_stack.set_visible_child(self.refresh_button)
 
         self.fill_data(row)
 

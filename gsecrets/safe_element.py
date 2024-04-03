@@ -459,6 +459,9 @@ class SafeGroup(SafeElement):
         group = self.group
         force: bool = self._db_manager.check_entry_in_group_exists("", group)
 
+        if username == "":
+            username = self._db_manager.default_username
+
         new_entry = self._db_manager.db.add_entry(
             group,
             title,

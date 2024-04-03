@@ -93,15 +93,39 @@
         <property name="icon_name">info-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Details</property>
+            <property name="title" translatable="yes">Database</property>
             <child>
-              <object class="AdwActionRow" id="name_row">
-                <property name="title" translatable="yes">Safe Name</property>
+              <object class="AdwEntryRow" id="name_row">
+                <property name="title" translatable="yes">Name</property>
+                <signal name="changed" handler="on_name_changed"/>
                 <style>
                   <class name="property"/>
                 </style>
               </object>
             </child>
+            <child>
+              <object class="AdwEntryRow" id="description_row">
+                <property name="title" translatable="yes">Description</property>
+                <signal name="changed" handler="on_description_changed"/>
+                <style>
+                  <class name="property"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="AdwEntryRow" id="default_username_row">
+                <property name="title" translatable="yes">Default User</property>
+                <signal name="changed" handler="on_default_username_changed"/>
+                <style>
+                  <class name="property"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Details</property>
             <child>
               <object class="AdwActionRow" id="path_row">
                 <property name="title" translatable="yes">Path</property>

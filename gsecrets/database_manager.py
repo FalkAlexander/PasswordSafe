@@ -313,6 +313,39 @@ class DatabaseManager(GObject.Object):
         self.db.password = new_password
         self.is_dirty = True
 
+    @property
+    def name(self) -> str:
+        """Get the database name or '' if not set."""
+        return self.db.database_name or ""
+
+    @name.setter
+    def name(self, new_name: str | None) -> None:
+        """Set database name."""
+        self.db.database_name = new_name
+        self.is_dirty = True
+
+    @property
+    def description(self) -> str:
+        """Get the database description or '' if not set."""
+        return self.db.database_description or ""
+
+    @description.setter
+    def description(self, new_description: str | None) -> None:
+        """Set database description."""
+        self.db.database_description = new_description
+        self.is_dirty = True
+
+    @property
+    def default_username(self) -> str:
+        """Get the default username or '' if not set."""
+        return self.db.default_username or ""
+
+    @default_username.setter
+    def default_username(self, new_username: str | None) -> None:
+        """Set default username."""
+        self.db.default_username = new_username
+        self.is_dirty = True
+
     #
     # Read Database
     #

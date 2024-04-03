@@ -46,6 +46,8 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     n_groups_row = Gtk.Template.Child()
     n_passwords_row = Gtk.Template.Child()
     name_row = Gtk.Template.Child()
+    description_row = Gtk.Template.Child()
+    default_username_row = Gtk.Template.Child()
     path_row = Gtk.Template.Child()
     size_row = Gtk.Template.Child()
     version_row = Gtk.Template.Child()
@@ -185,6 +187,18 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         self.database_manager.check_file_changes_async(self.on_check_file_changes)
 
     @Gtk.Template.Callback()
+    def on_name_changed(self, entry: Adw.EntryRow) -> None:
+        self.database_manager.name = entry.get_text()
+
+    @Gtk.Template.Callback()
+    def on_description_changed(self, entry: Adw.EntryRow) -> None:
+        self.database_manager.description = entry.get_text()
+
+    @Gtk.Template.Callback()
+    def on_default_username_changed(self, entry: Adw.EntryRow) -> None:
+        self.database_manager.default_username = entry.get_text()
+
+    @Gtk.Template.Callback()
     def on_auth_apply_button_clicked(self, button):
         # Insensitive entries and buttons
         self.set_sensitive(False)
@@ -236,7 +250,9 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
     def set_detail_values(self):
         # Name
-        self.name_row.props.subtitle = Path(self.database_manager.path).stem
+        self.name_row.props.text = self.database_manager.name
+        self.description_row.props.text = self.database_manager.description
+        self.default_username_row.props.text = self.database_manager.default_username
 
         # Path
         path = self.database_manager.path

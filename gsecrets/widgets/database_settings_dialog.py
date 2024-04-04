@@ -7,8 +7,12 @@ import typing
 from gettext import gettext as _
 from pathlib import Path, PurePath
 
+import pyhibp
+import requests
 from gi.repository import Adw, Gio, GLib, GObject, Gtk
+from pyhibp import pwnedpasswords as pw
 
+from gsecrets.password_generator import strength
 from gsecrets.utils import (
     compare_passwords,
     format_time,
@@ -17,6 +21,10 @@ from gsecrets.utils import (
 
 if typing.TYPE_CHECKING:
     from gsecrets.provider.base_provider import BaseProvider
+
+
+WEAK = 0.5
+MEDIUM = 1.5
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/database_settings_dialog.ui")
@@ -54,6 +62,13 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
     current_password_entry = Gtk.Template.Child()
     provider_group = Gtk.Template.Child()
     banner = Gtk.Template.Child()
+    unique_passwords_row = Gtk.Template.Child()
+    reused_passwords_row = Gtk.Template.Child()
+    weak_password_group = Gtk.Template.Child()
+    hibp_group = Gtk.Template.Child()
+    hibp_stack = Gtk.Template.Child()
+    hibp_spinner = Gtk.Template.Child()
+    hibp_refresh_button = Gtk.Template.Child()
 
     confirm_password_entry = Gtk.Template.Child()
     new_password_entry = Gtk.Template.Child()
@@ -87,6 +102,114 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
                 self.signals.append((show_id, key_provider))
                 self.signals.append((hide_id, key_provider))
+
+        self._fill_audit()
+
+    def _fill_audit(self):
+        passwords = []
+        weak_passwords_found = False
+
+        for entry in self.database_manager.db.find_entries():
+            if entry.password:
+                passwords.append(entry.password)
+
+                pwd_strength = strength(entry.password)
+                if pwd_strength < MEDIUM:
+                    weak_passwords_found = True
+
+                    row = Adw.ActionRow()
+                    if entry.title:
+                        row.set_title(entry.title)
+                    if entry.username:
+                        row.set_subtitle(entry.username)
+
+                    score = Gtk.Label()
+                    if pwd_strength < WEAK:
+                        score.set_label(_("Insecure"))
+                    else:
+                        score.set_label(_("Weak"))
+
+                    row.add_suffix(score)
+                    self.weak_password_group.add(row)
+
+        if not weak_passwords_found:
+            row = Adw.ActionRow()
+            row.set_title(_("No weak passwords found"))
+            self.weak_password_group.add(row)
+
+        # Statistics
+        reused_dict = {
+            pwd: passwords.count(pwd) for pwd in passwords if passwords.count(pwd) > 1
+        }
+        self.reused_passwords_row.set_subtitle(str(len(reused_dict)))
+
+        unique_dict = {
+            pwd: passwords.count(pwd) for pwd in passwords if passwords.count(pwd) == 1
+        }
+        self.unique_passwords_row.set_subtitle(str(len(unique_dict)))
+
+        try:
+            check_url = requests.get("https://haveibeenpwned.com/", timeout=3)
+        except requests.exceptions.RequestException:
+            self.hibp_refresh_button.set_sensitive(False)
+
+            row = Adw.ActionRow()
+            row.set_title("No Network Access Configured")
+            row.set_subtitle("Add --share=network to your Flatpak manifest")
+            self.hibp_group.add(row)
+        else:
+            self.hibp_refresh_button.set_sensitive(
+                check_url.status_code == requests.codes.ok
+            )
+
+        self.hibp_stack.set_visible_child_name("button")
+
+    @Gtk.Template.Callback()
+    def on_hibp_refresh_clicked(self, _entry: Gtk.Entry) -> None:
+        self.hibp_stack.set_visible_child_name("spinner")
+        self._hibp_refresh_async(self._on_hibp_refresh)
+
+    def _hibp_refresh_async(self, callback: Gio.AsyncReadyCallback) -> None:
+        def lookup(task, _source_object, _task_data, _cancellable):
+            rows = []
+
+            for entry in self.database_manager.db.find_entries():
+                pyhibp.set_user_agent(ua="Secrets")
+                if entry.password:
+                    resp = pw.is_password_breached(password=entry.password)
+                    if resp:
+                        row = Adw.ActionRow()
+                        if title := entry.title:
+                            row.set_title(title)
+
+                        if username := entry.username:
+                            row.set_subtitle(username)
+
+                        rows.append(row)
+
+            task.return_value(rows)
+
+        task = Gio.Task.new(self, None, callback)
+        task.run_in_thread(lookup)
+
+    def _hibp_refresh_finish(self, result):
+        return result.propagate_value()
+
+    def _on_hibp_refresh(
+        self,
+        _dialog: DatabaseSettingsDialog,
+        result: Gio.AsyncResult,
+    ) -> None:
+        self.hibp_stack.set_visible(False)
+        _success, rows = self._hibp_refresh_finish(result)
+
+        if rows:
+            for row in rows:
+                self.hibp_group.add(row)
+        else:
+            row = Adw.ActionRow()
+            row.set_title(_("No records found"))
+            self.hibp_group.add(row)
 
     def do_closed(self):
         for signal_id, obj in self.signals:

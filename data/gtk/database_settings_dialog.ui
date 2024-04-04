@@ -212,5 +212,75 @@
         </child>
       </object>
     </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="name">report_page</property>
+        <property name="title" translatable="yes">Audit</property>
+        <property name="icon_name">find-location-symbolic</property>
+        <child>
+          <object class="AdwPreferencesGroup" id="statistic_group">
+            <property name="title" translatable="yes">Statistics</property>
+            <child>
+              <object class="AdwActionRow" id="unique_passwords_row">
+                <property name="title" translatable="yes">Unique Passwords</property>
+                <style>
+                  <class name="property"/>
+                  <class name="numeric"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="reused_passwords_row">
+                <property name="title" translatable="yes">Reused Passwords</property>
+                <style>
+                  <class name="property"/>
+                  <class name="numeric"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup" id="weak_password_group">
+            <property name="title" translatable="yes">Weak Passwords</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwPreferencesGroup" id="hibp_group">
+            <property name="title" translatable="yes">Check passwords for online breaches</property>
+            <property name="description" translatable="yes">Ask online whether your passwords have been hacked. The passwords won't be sent online! The following passwords have been leaked:</property>
+            <property name="header-suffix">
+              <object class="GtkStack" id="hibp_stack">
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">button</property>
+                    <property name="child">
+                      <object class="GtkButton" id="hibp_refresh_button">
+                        <property name="icon-name">view-refresh-symbolic</property>
+                        <property name="valign">center</property>
+                        <signal name="clicked" handler="on_hibp_refresh_clicked"/>
+                        <style>
+                          <class name="flat"/>
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="name">spinner</property>
+                    <property name="child">
+                      <object class="AdwSpinner" id="hibp_spinner">
+                        <property name="valign">center</property>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+             </property>
+          </object>
+        </child>
+      </object>
+    </child>
   </template>
 </interface>

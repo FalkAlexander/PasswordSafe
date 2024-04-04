@@ -22,3 +22,8 @@ Then add `"pykeepass-build-sources.json"` as a source and `--ignore-installed` t
 # Update python3-pykcs11-sources.json
 
     flatpak-pip-generator pykcs11 -o flatpak/python3-pykcs11-sources
+
+# Update python3-pyhibp.json
+
+    flatpak-pip-generator pyhibp -o flatpak/python3-pyhibp
+

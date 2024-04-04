@@ -77,9 +77,9 @@
                     <child>
                       <object class="GtkButton">
                         <property name="valign">center</property>
-                        <property name="icon_name">edit-copy-symbolic</property>
-                        <property name="tooltip_text" translatable="yes">Copy</property>
-                        <signal name="clicked" handler="_on_url_copy_button_clicked" swapped="no"/>
+                        <property name="icon_name">external-link-symbolic</property>
+                        <property name="tooltip_text" translatable="yes">Open Address</property>
+                        <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
                         <style>
                           <class name="flat"/>
                         </style>
@@ -88,9 +88,9 @@
                     <child>
                       <object class="GtkButton">
                         <property name="valign">center</property>
-                        <property name="icon_name">external-link-symbolic</property>
-                        <property name="tooltip_text" translatable="yes">Open Address</property>
-                        <signal name="clicked" handler="on_visit_url_button_clicked" swapped="no"/>
+                        <property name="icon_name">edit-copy-symbolic</property>
+                        <property name="tooltip_text" translatable="yes">Copy</property>
+                        <signal name="clicked" handler="_on_url_copy_button_clicked" swapped="no"/>
                         <style>
                           <class name="flat"/>
                         </style>

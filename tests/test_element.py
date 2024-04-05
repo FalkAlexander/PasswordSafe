@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 import os
+import sys
+sys.path.append(os.environ['G_TEST_BUILDDIR'] + "/../")
 
 import pytest
 from pykeepass import PyKeePass

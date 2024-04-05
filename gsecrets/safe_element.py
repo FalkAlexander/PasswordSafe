@@ -669,9 +669,10 @@ class SafeEntry(SafeElement):
         if not self.props.expires:
             return
 
-        if self.props.expired:
-            self.notify("expired")
-        else:
+        # Update state
+        self.notify("expired")
+
+        if not self.props.expired:
             self._expired_id = GLib.timeout_add_seconds(600, self._is_expired)
 
     def _is_expired(self) -> bool:
@@ -987,6 +988,7 @@ class SafeEntry(SafeElement):
             self.entry.expires = value
             self._check_expiration()
             self.updated()
+            self.notify("expired")
 
     @GObject.Property(
         type=bool,

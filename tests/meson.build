@@ -4,9 +4,8 @@ envs = [
 ]
 
 test(
-  'test_element.py',
+  'Test Element',
   python_bin,
-  args: ['-m', 'pytest'],
-  workdir: top_source_dir,
+  args: files('test_element.py'),
   env: envs
 )

@@ -71,6 +71,9 @@ class SingleSelection(GObject.Object, Gio.ListModel, Gtk.SelectionModel):
         self._set_selected_item_inner(selected_item, pos)
 
     def _set_selected_item_inner(self, selected_item, pos):
+        if self._item_pos == pos:
+            return
+
         self._selected_item = selected_item
 
         old_pos = self._item_pos

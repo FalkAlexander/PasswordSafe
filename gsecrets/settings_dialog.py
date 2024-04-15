@@ -106,6 +106,13 @@ class SettingsDialog(Adw.PreferencesDialog):
             self._on_remember_composite_key,
         )
 
+        quick_unlock_action = settings.create_action("quick-unlock")
+        action_group.add_action(quick_unlock_action)
+        fingerprint_quick_unlock_action = settings.create_action(
+            "fingerprint-quick-unlock",
+        )
+        action_group.add_action(fingerprint_quick_unlock_action)
+
         self.insert_action_group("settings", action_group)
 
     def _on_remember_composite_key(self, action, _param):

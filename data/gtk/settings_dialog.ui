@@ -30,6 +30,20 @@
                 <property name="use_underline">True</property>
               </object>
             </child>
+            <child>
+              <object class="AdwSwitchRow">
+                <property name="title" translatable="yes" comments="Quick Unlock means it only can unlock the safe if the safe was unlocked once.">Enable Quick Unlock</property>
+                <property name="subtitle" translatable="yes" comments="Quick Unlock means it only can unlock the safe if the safe was unlocked once.">Re-unlock using the last four characters of the password for a single attempt.</property>
+                <property name="action_name">settings.quick-unlock</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwSwitchRow">
+                <property name="title" translatable="yes" comments="Quick Unlock means it only can unlock the safe if the safe was unlocked once.">Enable Fingerprint Unlock</property>
+                <property name="subtitle" translatable="yes" comments="Quick Unlock means it only can unlock the safe if the safe was unlocked once.">Use the fingerprint reader to quickly unlock the safe.</property>
+                <property name="action_name">settings.fingerprint-quick-unlock</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>

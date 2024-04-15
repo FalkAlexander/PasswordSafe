@@ -31,6 +31,8 @@ GENERATOR_LENGTH = "generator-length"
 GENERATOR_WORDS = "generator-words"
 GENERATOR_SEPARATOR = "generator-separator"
 LOCK_ON_SESSION_LOCK = "lock-on-session-lock"
+FINGERPRINT_QUICK_UNLOCK = "fingerprint-quick-unlock"
+QUICK_UNLOCK = "quick-unlock"
 
 
 def get_lock_on_session_lock() -> bool:
@@ -197,3 +199,19 @@ def get_development_backup_mode():
 
 def set_development_backup_mode(value):
     setting.set_boolean(DEV_BACKUP_MODE, value)
+
+
+def get_fingerprint_quick_unlock():
+    return setting.get_boolean(FINGERPRINT_QUICK_UNLOCK)
+
+
+def set_fingerprint_quick_unlock(value: bool) -> None:
+    setting.set_boolean(FINGERPRINT_QUICK_UNLOCK, value)
+
+
+def get_quick_unlock():
+    return setting.get_boolean(QUICK_UNLOCK)
+
+
+def set_quick_unlock(value: bool) -> None:
+    setting.set_boolean(QUICK_UNLOCK, value)

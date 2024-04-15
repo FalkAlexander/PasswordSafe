@@ -30,6 +30,20 @@
                           <object class="GtkBox">
                             <property name="orientation">vertical</property>
                             <property name="spacing">12</property>
+                            <property name="width_request">250</property>
+                            <child>
+                              <object class="GtkImage" id="fingerprint_img">
+                                <property name="halign">center</property>
+                                <property name="hexpand">True</property>
+                                <property name="tooltip_text" translatable="yes">Fingerprint Unlock available</property>
+                                <property name="visible">False</property>
+                                <property name="icon_name">fingerprint-detection-symbolic</property>
+                                <property name="pixel_size">36</property>
+                                <style>
+                                  <class name="fingerprint-img"/>
+                                </style>
+                              </object>
+                            </child>
                             <child>
                               <object class="AdwPreferencesGroup" id="key_group">
                                 <child>

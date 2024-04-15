@@ -12,6 +12,7 @@ import gsecrets.config_manager
 from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
 from gsecrets.err import QUARK, ErrorType
+from gsecrets.fingerprint_verifier import FingerprintVerifier
 from gsecrets.unlocked_database import UnlockedDatabase
 from gsecrets.utils import compare_passwords
 
@@ -35,6 +36,9 @@ class UnlockDatabase(Adw.Bin):
     unlock_button = Gtk.Template.Child()
     banner = Gtk.Template.Child()
     _progress = Gtk.Template.Child()
+    fingerprint_img = Gtk.Template.Child()
+
+    FPRINT_MAX_TRIES = 3
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
         super().__init__()
@@ -61,6 +65,26 @@ class UnlockDatabase(Adw.Bin):
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
 
+        self.fprint: FingerprintVerifier | None = None
+        self.fprint_tries = 0
+        if gsecrets.config_manager.get_fingerprint_quick_unlock():
+            self._map_fingerprint_reader()
+
+        self.quick_unlock_failed = False
+
+        self.event_controller = Gtk.EventControllerFocus.new()
+        self.add_controller(self.event_controller)
+        self.event_controller.connect("enter", self.on_enter)
+        self.event_controller.connect("leave", self.on_leave)
+
+        settings = self.window.application.settings
+        settings.connect(
+            "changed::fingerprint-quick-unlock",
+            self._on_fingerprint_settings_changed,
+        )
+
+        self.window.set_default_widget(self.unlock_button)
+
         for key_provider in self.window.key_providers.get_key_providers():
             if key_provider.available:
                 widget = key_provider.create_unlock_widget(self.database_manager)
@@ -69,6 +93,26 @@ class UnlockDatabase(Adw.Bin):
     def do_unmap(self):  # pylint: disable=arguments-differ
         Gtk.Widget.do_unmap(self)
         self._progress.end_pulse()
+        self.remove_controller(self.event_controller)
+        self._unmap_fingerprint_reader()
+
+    def on_enter(self, _user_data):
+        if self.database_manager and self.database_manager.password != "":
+            if (
+                gsecrets.config_manager.get_quick_unlock()
+                and not self.quick_unlock_failed
+            ):
+                self.window.show_banner(_("Quick Unlock active"))
+                self.provider_group.props.visible = False
+            # only start reading if there are still tries left
+            if self.fprint_tries < self.FPRINT_MAX_TRIES:
+                self._start_fingerprint_reader()
+        else:
+            logging.debug("Quick unlock disabled as no password is available.")
+
+    def on_leave(self, _user_data):
+        if self.fprint_tries < self.FPRINT_MAX_TRIES:
+            self._stop_fingerprint_reader()
 
     def grab_entry_focus(self):
         self.password_entry.grab_focus()
@@ -113,10 +157,18 @@ class UnlockDatabase(Adw.Bin):
             self._open_database()
             return
 
-        if (
+        quick_unlock = (
+            gsecrets.config_manager.get_quick_unlock()
+            and not self.quick_unlock_failed
+            and entered_pwd == self.database_manager.password[-4:]
+        )
+
+        full_unlock = (
             compare_passwords(entered_pwd, self.database_manager.password)
             and self.database_manager.composition_key == self.composition_key
-        ):
+        )
+
+        if quick_unlock or full_unlock:
             self.database_manager.props.locked = False
             self.database_manager.add_to_history()
         else:
@@ -202,6 +254,9 @@ class UnlockDatabase(Adw.Bin):
 
         self._progress.end_pulse()
 
+        self.quick_unlock_failed = True
+        self.provider_group.props.visible = True
+
     def _set_sensitive(self, sensitive):
         delegate = self.password_entry.get_delegate()
         if delegate.has_focus() and not sensitive:
@@ -258,3 +313,118 @@ class UnlockDatabase(Adw.Bin):
 
     def close_banner(self):
         self.banner.set_revealed(False)
+
+    #
+    # Fingerprint-related stuff
+    #
+
+    def _on_fingerprint_settings_changed(self, _settings, _key):
+        if gsecrets.config_manager.get_fingerprint_quick_unlock():
+            logging.debug("Fingerprint got enabled, mapping fingerprint reader...")
+            self._map_fingerprint_reader()
+        else:
+            logging.debug("Fingerprint got disabled, unmapping fingerprint reader...")
+            self._unmap_fingerprint_reader()
+
+    def _start_fingerprint_reader_cb(self) -> None:
+        if not self.fprint:
+            return
+
+        async def cb():
+            if await self.fprint.verify_start():
+                self.fingerprint_img.props.visible = True
+
+        app = Gio.Application.get_default()
+        app.create_asyncio_task(cb())
+
+    def _start_fingerprint_reader(self) -> None:
+        if not self.fprint:
+            return
+        self.fprint.connect(self._start_fingerprint_reader_cb)
+
+    def _stop_fingerprint_reader(self) -> None:
+        if not self.fprint:
+            return
+
+        async def disconnect():
+            await self.fprint.verify_stop()
+            self.fprint.disconnect()
+            self.fingerprint_img.props.visible = False
+
+        app = Gio.Application.get_default()
+        app.create_asyncio_task(disconnect())
+
+    def _map_fingerprint_reader(self) -> None:
+        logging.debug("Connecting to the fingerprint device...")
+        try:
+            self.fprint = FingerprintVerifier(
+                self._on_fingerprint_success,
+                self._on_fingerprint_retry,
+                self._on_fingerprint_failure,
+            )
+        except RuntimeError as err:
+            logging.debug("Failed initialize fingerprint: %s", err)
+
+    def _unmap_fingerprint_reader(self) -> None:
+        if not self.fprint:
+            return
+        logging.debug("Disconnecting the fingerprint device...")
+        self._stop_fingerprint_reader()
+        self.fprint = None
+
+    def _on_fingerprint_success(self):
+        """Success callback of the the FingerprintVerifier."""
+        self.fingerprint_img.add_css_class("success")
+        GLib.timeout_add(250, self._after_fingerprint_success)
+        logging.debug("Fingerprint success")
+
+    def _after_fingerprint_success(self):
+        """Unlocks database after animation of _on_fingerprint_success."""
+        self.database_manager.props.locked = False
+
+    def _on_fingerprint_retry(self):
+        """Retry callback of the the FingerprintVerifier."""
+        self.fingerprint_img.add_css_class("retry")
+        GLib.timeout_add(850, self._after_fingerprint_retry)
+        logging.debug("Fingerprint retry")
+
+    def _after_fingerprint_retry(self):
+        """Cleans up animation after _on_fingerprint_retry."""
+        self.fingerprint_img.remove_css_class("retry")
+
+    def _on_fingerprint_failure(self):
+        """Failure callback of the the FingerprintVerifier."""
+        self.fprint_tries += 1
+
+        async def start_fprint():
+            status = await self.fprint.verify_start()
+            if not status:
+                # in case fingerprint sensor itself refuses
+                self.fingerprint_img.add_css_class("error")
+                self.window.send_notification(_("Please unlock using the password."))
+                logging.debug(
+                    "Retry after verify-no-match failed. Fingerprint disabled.",
+                )
+
+        if self.fprint_tries >= self.FPRINT_MAX_TRIES:
+            # at most 3 tries for unlocking with the fingerprint sensor
+            self.fingerprint_img.add_css_class("error")
+            self.window.send_notification(
+                _("Maximum tries reached. Please unlock using the password."),
+            )
+            self.fprint.disconnect()
+            logging.debug("Max tries reached. Fingerprint disabled.")
+        else:
+            # else start verification again
+            self.fingerprint_img.add_css_class("warning")
+            GLib.timeout_add(850, self._after_fingerprint_warning)
+            logging.debug("Fingerprint no-match for try %i", self.fprint_tries)
+            app = Gio.Application.get_default()
+            app.create_asyncio_task(start_fprint())
+
+    def _after_fingerprint_warning(self):
+        """Cleans up.
+
+        Animation after _on_fingerprint_failure if FPRINT_MAX_TRIES not reached
+        """
+        self.fingerprint_img.remove_css_class("warning")

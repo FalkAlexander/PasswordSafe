@@ -135,3 +135,67 @@ textview {
   min-height: 24px;
   margin: 3px;
 }
+
+/* Fingerprint */
+.fingerprint-img {
+  transition-property: color;
+  transition-duration: 250ms;
+  color: var(--view-fg-color);
+}
+
+.fingerprint-img.success {
+  transition-property: color;
+  transition-duration: 250ms;
+  color: var(--success-color);
+}
+
+@keyframes wiggle {
+  /* Unfortunately we can't use translation or xalign, so here's the workaround */
+  0% { padding-left: 0; padding-right: 0; }
+  10% { padding-left: 0; padding-right: 2px; }
+  20% { padding-left: 4px; padding-right: 0; }
+  30% { padding-left: 0; padding-right: 8px; }
+  40% { padding-left: 8px; padding-right: 0; }
+  50% { padding-left: 0; padding-right: 8px; }
+  60% { padding-left: 8px; padding-right: 0; }
+  70% { padding-left: 0; padding-right: 8px; }
+  80% { padding-left: 4px; padding-right: 0; }
+  90% { padding-left: 0; padding-right: 2px; }
+  100% { padding-left: 0; padding-right: 0; }
+}
+
+.fingerprint-img.retry {
+  animation: wiggle;
+  animation-duration: 850ms;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+}
+
+@keyframes warning-wiggle {
+  /* Unfortunately we can't use translation or xalign, so here's the workaround */
+  0% { padding-left: 0; padding-right: 0; color: var(--view-fg-color); }
+  10% { padding-left: 0; padding-right: 2px; }
+  20% { padding-left: 4px; padding-right: 0; }
+  30% { padding-left: 0; padding-right: 8px; color: var(--warning-color); }
+  40% { padding-left: 8px; padding-right: 0; }
+  50% { padding-left: 0; padding-right: 8px; }
+  60% { padding-left: 8px; padding-right: 0; }
+  70% { padding-left: 0; padding-right: 8px; color: var(--warning-color); }
+  80% { padding-left: 4px; padding-right: 0; }
+  90% { padding-left: 0; padding-right: 2px; }
+  100% { padding-left: 0; padding-right: 0; color: var(--view-fg-color); }
+}
+
+.fingerprint-img.warning {
+  animation: warning-wiggle;
+  animation-duration: 850ms;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+}
+
+.fingerprint-img.error {
+  transition-property: color;
+  transition-duration: 250ms;
+  color: var(--error-color);
+}
+

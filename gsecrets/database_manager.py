@@ -318,7 +318,10 @@ class DatabaseManager(GObject.Object):
     @property
     def password(self) -> str:
         """Get the current password or '' if not set."""
-        return self.db.password or ""
+        if db := self.db:
+            return db.password or ""
+
+        return ""
 
     @password.setter
     def password(self, new_password: str | None) -> None:

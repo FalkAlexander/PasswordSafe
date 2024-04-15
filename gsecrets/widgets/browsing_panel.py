@@ -132,7 +132,10 @@ class BrowsingPanel(Adw.Bin):
             element.props.selected = not element.props.selected
             return
 
-        self.selection_model.props.selected_item = element
+        if element.is_group:
+            self.unlocked_database.show_browser_page(element)
+        else:
+            self.selection_model.props.selected_item = element
 
     def _on_setup(self, _list_view, item):
         entry_row = EntryRow(self.unlocked_database)

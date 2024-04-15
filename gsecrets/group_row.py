@@ -111,14 +111,16 @@ class GroupRow(Adw.Bin):
             self.unlocked_database.remove_selection(group)
 
     @Gtk.Template.Callback()
-    def on_navigate_button_clicked(self, _button: Gtk.Button) -> None:
+    def on_edit_button_clicked(self, _button: Gtk.Button) -> None:
         """Edit the button in a GroupRow when clicked.
 
         button: The edit button in the GroupRow
         """
         self.unlocked_database.start_database_lock_timer()  # Reset the lock timer
 
-        self.unlocked_database.show_browser_page(self._safe_group)
+        self.unlocked_database.browsing_panel.selection_model.selected_item = (
+            self._safe_group
+        )
 
     def _on_group_name_changed(
         self,

@@ -33,11 +33,10 @@ class UnlockDatabase(Adw.Bin):
     headerbar = Gtk.Template.Child()
     unlock_button = Gtk.Template.Child()
     banner = Gtk.Template.Child()
+    _progress = Gtk.Template.Child()
 
     def __init__(self, window: Window, database_file: Gio.File) -> None:
         super().__init__()
-
-        self.spinner = Gtk.Spinner.new()
 
         filepath = database_file.get_path()
 
@@ -70,7 +69,7 @@ class UnlockDatabase(Adw.Bin):
 
     def do_unmap(self):  # pylint: disable=arguments-differ
         Gtk.Widget.do_unmap(self)
-        self.spinner.props.spinning = False
+        self._progress.end_pulse()
 
     def grab_entry_focus(self):
         self.password_entry.grab_focus()
@@ -138,8 +137,7 @@ class UnlockDatabase(Adw.Bin):
     #
 
     def _open_database(self):
-        self.unlock_button.props.child = self.spinner
-        self.spinner.start()
+        self._progress.start_pulse()
 
         self._set_sensitive(False)
 
@@ -184,14 +182,10 @@ class UnlockDatabase(Adw.Bin):
         self.password_entry.add_css_class("error")
         self.password_entry.delete_text(0, -1)
         self._set_sensitive(True)
-        self._reset_unlock_button()
+        self._progress.end_pulse()
 
         # Regrab the focus of the entry.
         self.password_entry.grab_focus()
-
-    def _reset_unlock_button(self):
-        self.spinner.stop()
-        self.unlock_button.props.label = _("Unlock")
 
     def _reset_page(self):
         self.password_entry.set_text("")
@@ -199,7 +193,7 @@ class UnlockDatabase(Adw.Bin):
 
         self._set_sensitive(True)
 
-        self._reset_unlock_button()
+        self._progress.end_pulse()
 
     def _set_sensitive(self, sensitive):
         delegate = self.password_entry.get_delegate()

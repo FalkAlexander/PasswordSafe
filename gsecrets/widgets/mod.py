@@ -14,6 +14,7 @@ from gsecrets.widgets.history_row import HistoryRow
 from gsecrets.widgets.history_window import HistoryWindow
 from gsecrets.widgets.locked_headerbar import LockedHeaderBar
 from gsecrets.widgets.notes_dialog import NotesDialog
+from gsecrets.widgets.osd_progress_bar import OsdProgressBar
 from gsecrets.widgets.password_level_bar import PasswordLevelBar
 from gsecrets.widgets.progress_icon import ProgressIcon
 
@@ -30,5 +31,6 @@ def load_widgets():
     GObject.type_ensure(HistoryWindow)
     GObject.type_ensure(LockedHeaderBar)
     GObject.type_ensure(NotesDialog)
+    GObject.type_ensure(OsdProgressBar)
     GObject.type_ensure(PasswordLevelBar)
     GObject.type_ensure(ProgressIcon)

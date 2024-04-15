@@ -624,7 +624,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
             self._clear_selection()
 
     @Gtk.Template.Callback()
-    def _on_selection_done_clicked(self, _button):
+    def _on_selection_cancel_clicked(self, _button):
         self.props.selection_mode = False
 
     @Gtk.Template.Callback()
@@ -643,6 +643,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
         self.start_database_lock_timer()
         self._selection_manager.paste_selection()
         self._update_selection()
+        self.props.selection_mode = False
 
     @Gtk.Template.Callback()
     def _on_delete_selection_clicked(self, _button):
@@ -655,6 +656,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
 
         self._selection_manager.delete_selection()
         self._update_selection()
+        self.props.selection_mode = False
 
     def add_selection(self, element):
         if element.is_group:

@@ -878,6 +878,15 @@ class SafeEntry(SafeElement):
         """
         return self.props.icon.name
 
+    @property
+    def tags(self) -> dict:
+        return self.entry.tags
+
+    @tags.setter  # type: ignore
+    def tags(self, new_tags: dict) -> None:
+        self.entry.tags = new_tags
+        self._db_manager.is_dirty = True
+
     @GObject.Property(type=str, default="")
     def otp(self) -> str:
         if self._otp:

@@ -214,6 +214,33 @@
               </object>
             </child>
             <child>
+              <object class="AdwPreferencesGroup" id="_tags_group">
+                <property name="title" translatable="yes">Tags</property>
+                <property name="visible">False</property>
+                <property name="header_suffix">
+                  <object class="GtkButton">
+                    <property name="icon_name">list-add-symbolic</property>
+                    <property name="tooltip_text" translatable="yes">Add New Tag</property>
+                    <signal name="clicked" handler="_on_tag_add_clicked" swapped="no"/>
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </property>
+                <child>
+                  <object class="GtkFlowBox" id="_tag_entry_box">
+                    <property name="max-children-per-line">10</property>
+                    <property name="min-children-per-line">5</property>
+                    <property name="row-spacing">6</property>
+                    <property name="column-spacing">6</property>
+                    <accessibility>
+                      <relation name="labelled-by">_tags_group</relation>
+                    </accessibility>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
               <object class="AdwPreferencesGroup" id="attachments_preferences_group">
                 <property name="title" translatable="yes">Attachments</property>
                 <property name="visible">False</property>

@@ -15,6 +15,7 @@ from gsecrets.widgets.add_attribute_dialog import AddAttributeDialog
 from gsecrets.widgets.attachment_entry_row import AttachmentEntryRow
 from gsecrets.widgets.attribute_entry_row import AttributeEntryRow
 from gsecrets.widgets.entry_page_icon import EntryPageIcon
+from gsecrets.widgets.entry_page_tag import EntryPageTag
 from gsecrets.widgets.history_window import HistoryWindow
 from gsecrets.widgets.notes_dialog import NotesDialog
 from gsecrets.widgets.protected_attribute_entry_row import ProtectedAttributeEntryRow
@@ -50,6 +51,9 @@ class EntryPage(Adw.Bin):
     color_property_bin = Gtk.Template.Child()
 
     icon_entry_box = Gtk.Template.Child()
+
+    _tags_group = Gtk.Template.Child()
+    _tag_entry_box = Gtk.Template.Child()
 
     attachments_preferences_group = Gtk.Template.Child()
     attachment_list_box = Gtk.Template.Child()
@@ -101,6 +105,7 @@ class EntryPage(Adw.Bin):
             self.attachments_preferences_group,
             self.attributes_preferences_group,
             self.expiration_date_preferences_group,
+            self._tags_group,
         ]
 
         self.insert_entry_properties_into_listbox(add_all)
@@ -206,6 +211,10 @@ class EntryPage(Adw.Bin):
             self.on_entry_icon_button_toggled,
         )
 
+        # Tags
+        self._update_tags()
+        self.show_row(self._tags_group, bool(safe_entry.tags), add_all)
+
         # Attachments
         for attachment in safe_entry.attachments:
             self.add_attachment_row(attachment)
@@ -241,6 +250,72 @@ class EntryPage(Adw.Bin):
             if not widget.get_visible():
                 self.show_all_preferences_group.props.visible = True
                 break
+
+    def _update_tags(self):
+        safe_entry = self.props.safe_entry
+
+        self._tag_entry_box.remove_all()
+
+        if safe_entry.tags:
+            for tag in safe_entry.tags:
+                widget = EntryPageTag(tag)
+                widget.remove_button.connect(
+                    "clicked",
+                    self._on_remove_button_clicked,
+                    tag,
+                )
+                self._tag_entry_box.append(widget)
+
+    def _on_remove_button_clicked(self, _button, tag_name):
+        safe_entry = self.props.safe_entry
+        # Remove
+        tags = safe_entry.tags
+        tags.remove(tag_name)
+        safe_entry.tags = tags if tags else ""
+
+        # Update tag flowbox
+        self._update_tags()
+
+    @Gtk.Template.Callback()
+    def _on_tag_add_clicked(self, _widget):
+        entry = Adw.EntryRow()
+        entry.props.activates_default = True
+        entry.props.title = _("Enter tag name")
+
+        group = Adw.PreferencesGroup()
+        group.add(entry)
+
+        dialog = Adw.AlertDialog.new()
+        dialog.set_heading(_("Add New Tag"))
+        dialog.add_response("cancel", _("_Cancel"))
+        dialog.add_response("add", _("_Add"))
+        dialog.set_default_response("add")
+        dialog.set_close_response("cancel")
+        dialog.set_extra_child(group)
+
+        dialog.connect("response::add", self._on_tag_add_response, entry)
+        dialog.present(self.unlocked_database.window)
+
+        entry.grab_focus()
+
+    def _on_tag_add_response(
+        self,
+        _dialog: Adw.MessageDialog,
+        _response: str,
+        entry: Adw.EntryRow,
+    ) -> None:
+        tag_name = entry.props.text
+        safe_entry = self.props.safe_entry
+        tags = safe_entry.tags or []
+
+        if tag_name in tags:
+            window = self.unlocked_database.window
+            window.send_notification(_("The tag already exists"))
+            return
+
+        tags.append(tag_name)
+        safe_entry.tags = tags
+        self._update_tags()
 
     #
     # Events

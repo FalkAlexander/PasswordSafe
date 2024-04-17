@@ -122,3 +122,20 @@ textview {
 .icon-flowbox flowboxchild:selected:hover {
   background: color-mix(in srgb, currentColor 19%, transparent);
 }
+
+.tag {
+  padding-left: 8px;
+  border-radius: 999px;
+  background-color: var(--accent-bg-color);
+  color: var(--accent-fg-color);
+}
+
+.tag label {
+  font-weight: bold;
+}
+
+.tag button {
+  min-width: 24px;
+  min-height: 24px;
+  margin: 2px;
+}

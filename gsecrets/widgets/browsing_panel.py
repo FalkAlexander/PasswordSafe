@@ -206,6 +206,11 @@ class BrowsingPanel(Adw.Bin):
         if item.is_root_group:
             return False
 
+        if item.tags:
+            for tag in item.tags:
+                if self._query in tag.lower():
+                    return True
+
         if isinstance(item, SafeGroup):
             fields = [item.name, item.notes]
         else:

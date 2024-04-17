@@ -251,19 +251,11 @@
               <object class="AdwPreferencesGroup" id="show_all_preferences_group">
                 <property name="visible">False</property>
                 <child>
-                  <object class="GtkButton" id="show_all_button">
-                    <property name="halign">center</property>
-                    <signal name="clicked" handler="on_show_all_properties_button_clicked" swapped="no"/>
-                    <child>
-                      <object class="AdwButtonContent">
-                        <property name="icon_name">view-more-symbolic</property>
-                        <property name="label" translatable="yes">_Show More</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                    </child>
-                    <style>
-                      <class name="flat"/>
-                    </style>
+                  <object class="AdwButtonRow">
+                    <signal name="activated" handler="on_show_all_properties_button_clicked" swapped="no"/>
+                    <property name="start_icon_name">view-more-symbolic</property>
+                    <property name="title" translatable="yes">_Show More</property>
+                    <property name="use_underline">True</property>
                   </object>
                 </child>
               </object>

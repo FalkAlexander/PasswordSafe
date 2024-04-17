@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 from __future__ import annotations
 
-from gi.repository import GObject, Gtk
+from gi.repository import Adw, GObject, Gtk
 
 
 class AddListBox(Gtk.ListBox):
@@ -17,28 +17,13 @@ class AddListBox(Gtk.ListBox):
         self.props.selection_mode = Gtk.SelectionMode.NONE
         self.add_css_class("boxed-list")
 
-        icon = Gtk.Image.new_from_icon_name("list-add-symbolic")
-        icon.props.accessible_role = Gtk.AccessibleRole.PRESENTATION
-        label = Gtk.Label.new("")
-        label.props.use_underline = True
-
-        hbox = Gtk.Box.new(Gtk.Orientation.HORIZONTAL, 6)
-        hbox.props.halign = Gtk.Align.CENTER
-        hbox.props.margin_start = 12
-        hbox.props.margin_end = 12
-        hbox.props.margin_top = 16
-        hbox.props.margin_bottom = 16
-        hbox.append(icon)
-        hbox.append(label)
-
-        add_more_row = Gtk.ListBoxRow.new()
-        add_more_row.props.child = hbox
-        add_more_row.props.activatable = True
+        add_more_row = Adw.ButtonRow()
+        add_more_row.props.start_icon_name = "list-add-symbolic"
+        add_more_row.props.use_underline = True
 
         super().append(add_more_row)
 
         self._row = add_more_row
-        self._label = label
         self._model = None
 
     @GObject.Property(type=str, default="")
@@ -51,11 +36,11 @@ class AddListBox(Gtk.ListBox):
 
     @GObject.Property(type=str, default="")
     def label(self):
-        return self._label.props.label
+        return self._row.props.title
 
     @label.setter  # type: ignore
     def label(self, string):
-        self._label.props.label = string
+        self._row.props.title = string
 
     def append(self, child):  # pylint: disable=arguments-differ
         super().insert(child, self._n_items)

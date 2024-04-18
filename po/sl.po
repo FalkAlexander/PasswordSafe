@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-04-06 10:33+0000\n"
-"PO-Revision-Date: 2024-04-07 13:29+0200\n"
+"POT-Creation-Date: 2024-04-17 19:34+0000\n"
+"PO-Revision-Date: 2024-04-18 09:37+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -184,7 +184,7 @@ msgid "_Username"
 msgstr "_Uporabniško ime"
 
 #: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
-#: data/gtk/entry_page.ui:92 data/gtk/entry_page.ui:129
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:130
 #: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:347
 msgid "Copy"
 msgstr "Kopiraj"
@@ -296,77 +296,77 @@ msgstr "Naslov _URL"
 msgid "Open Address"
 msgstr "Odpri naslov"
 
-#: data/gtk/entry_page.ui:108
+#: data/gtk/entry_page.ui:109
 msgid "One-Time Password"
 msgstr "Enkratno geslo"
 
-#: data/gtk/entry_page.ui:141
+#: data/gtk/entry_page.ui:142
 msgid "One-_Time Password Secret"
 msgstr "_Geselska skrivnost za enkratno rabo"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:147
+#: data/gtk/entry_page.ui:148
 msgid "Could not Generate OTP Token"
 msgstr "Žetona OTP ni bilo mogoče ustvariti"
 
-#: data/gtk/entry_page.ui:155 data/gtk/group_page.ui:37
+#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:37
 #: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Opombe"
 
-#: data/gtk/entry_page.ui:159 data/gtk/group_page.ui:41
+#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:41
 msgid "Edit in a Window"
 msgstr "Uredi v oknu"
 
-#: data/gtk/entry_page.ui:197
+#: data/gtk/entry_page.ui:198
 msgid "Icon"
 msgstr "Ikona"
 
-#: data/gtk/entry_page.ui:217
+#: data/gtk/entry_page.ui:218
 msgid "Attachments"
 msgstr "Priloge"
 
-#: data/gtk/entry_page.ui:221
+#: data/gtk/entry_page.ui:222
 msgid "_Add Attachment"
 msgstr "Dodaj _prilogo"
 
-#: data/gtk/entry_page.ui:230
+#: data/gtk/entry_page.ui:231
 msgid "Attributes"
 msgstr "Atributi"
 
-#: data/gtk/entry_page.ui:235
+#: data/gtk/entry_page.ui:236
 msgid "Add Attr_ibute"
 msgstr "Dodaj atri_but"
 
-#: data/gtk/entry_page.ui:243
+#: data/gtk/entry_page.ui:244
 msgid "Expiration Date"
 msgstr "Datum preteka"
 
-#: data/gtk/entry_page.ui:259
+#: data/gtk/entry_page.ui:260
 msgid "_Show More"
 msgstr "Pokaži več _podrobnosti"
 
-#: data/gtk/entry_page.ui:278
+#: data/gtk/entry_page.ui:279
 msgid "D_uplicate"
 msgstr "_Podvoji"
 
-#: data/gtk/entry_page.ui:282
+#: data/gtk/entry_page.ui:283
 msgid "_References"
 msgstr "_Sklici"
 
-#: data/gtk/entry_page.ui:286 data/gtk/group_page.ui:78
+#: data/gtk/entry_page.ui:287 data/gtk/group_page.ui:78
 msgid "_Properties"
 msgstr "_Lastnosti"
 
-#: data/gtk/entry_page.ui:292
+#: data/gtk/entry_page.ui:293
 msgid "_Save in History"
 msgstr "_Shrani v zgodovino"
 
-#: data/gtk/entry_page.ui:296
+#: data/gtk/entry_page.ui:297
 msgid "Show _History"
 msgstr "Po_kaži zgodovino"
 
-#: data/gtk/entry_page.ui:302 data/gtk/group_page.ui:84
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:84
 msgid "_Delete"
 msgstr "_Izbriši"
 
@@ -403,8 +403,8 @@ msgid "Group Menu"
 msgstr "Meni Skupina"
 
 #: data/gtk/group_row.ui:67
-msgid "Navigate To"
-msgstr "Krmari do"
+msgid "Edit"
+msgstr "Uredi"
 
 #: data/gtk/help-overlay.ui:11
 msgctxt "Shortcut window description"
@@ -561,7 +561,7 @@ msgid "Characters"
 msgstr "Znaki"
 
 #: data/gtk/password_generator_popover.ui:94
-#: gsecrets/provider/pkcs11_provider.py:165
+#: gsecrets/provider/pkcs11_provider.py:205
 msgid "Passphrase"
 msgstr "Šifrirno geslo"
 
@@ -706,8 +706,8 @@ msgid "Save every change automatically."
 msgstr "Samodejno shranite vsako spremembo."
 
 #: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:49
-#: gsecrets/provider/pkcs11_provider.py:168
-#: gsecrets/provider/pkcs11_provider.py:170 gsecrets/unlock_database.py:194
+#: gsecrets/provider/pkcs11_provider.py:208
+#: gsecrets/provider/pkcs11_provider.py:210 gsecrets/unlock_database.py:194
 msgid "Unlock"
 msgstr "Odkleni"
 
@@ -831,7 +831,7 @@ msgstr "Odkleni sef"
 msgid "Browser"
 msgstr "Brskalnik"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:689
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:691
 msgid "Select Items"
 msgstr "Izbor predmetov"
 
@@ -840,8 +840,9 @@ msgid "Go Back"
 msgstr "Pojdi nazaj"
 
 #: data/gtk/unlocked_database.ui:41
-msgid "_Done"
-msgstr "_Končano"
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_Prekliči"
 
 #: data/gtk/unlocked_database.ui:53 data/gtk/unlocked_database.ui:59
 msgid "Search Safe"
@@ -1198,7 +1199,7 @@ msgstr "Geslo kopirano"
 msgid "One-Time Password copied"
 msgstr "Enkratno geslo je uspešno kopirano"
 
-#: gsecrets/entry_row.py:185 gsecrets/group_row.py:134
+#: gsecrets/entry_row.py:185 gsecrets/group_row.py:136
 msgid "Title not Specified"
 msgstr "Naziv ni določen"
 
@@ -1277,7 +1278,7 @@ msgid "No Smartcard"
 msgstr "Brez pametne kartice"
 
 #: gsecrets/provider/pkcs11_provider.py:118
-#: gsecrets/provider/pkcs11_provider.py:219
+#: gsecrets/provider/pkcs11_provider.py:260
 msgid "Smartcard"
 msgstr "Pametna kartica"
 
@@ -1285,36 +1286,36 @@ msgstr "Pametna kartica"
 msgid "Select certificate"
 msgstr "Izbor potrdila"
 
-#: gsecrets/provider/pkcs11_provider.py:157
+#: gsecrets/provider/pkcs11_provider.py:197
 msgid "No smartcard present"
 msgstr "Pametna kartica ni prisotna"
 
-#: gsecrets/provider/pkcs11_provider.py:158
+#: gsecrets/provider/pkcs11_provider.py:198
 msgid "Please insert smartcard and retry."
 msgstr "Vstavite pametno kartico in poskusite znova."
 
-#: gsecrets/provider/pkcs11_provider.py:161
+#: gsecrets/provider/pkcs11_provider.py:201
 #: gsecrets/widgets/database_settings_dialog.py:217
 msgid "OK"
 msgstr "V redu"
 
-#: gsecrets/provider/pkcs11_provider.py:168
+#: gsecrets/provider/pkcs11_provider.py:208
 msgid "Unlock your smartcard"
 msgstr "Odklenite svojo pametno kartico"
 
-#: gsecrets/provider/pkcs11_provider.py:169 gsecrets/selection_manager.py:111
+#: gsecrets/provider/pkcs11_provider.py:209 gsecrets/selection_manager.py:111
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: gsecrets/provider/pkcs11_provider.py:212
+#: gsecrets/provider/pkcs11_provider.py:253
 msgid "Failed to unlock Smartcard"
 msgstr "Pametne kartice ni bilo mogoče odkleniti"
 
-#: gsecrets/provider/pkcs11_provider.py:220
+#: gsecrets/provider/pkcs11_provider.py:261
 msgid "Use a smartcard"
 msgstr "Uporabi pametno kartico"
 
-#: gsecrets/provider/pkcs11_provider.py:268
+#: gsecrets/provider/pkcs11_provider.py:315
 msgid "Refresh Certificate List"
 msgstr "Osveži seznam potrdil"
 
@@ -1466,7 +1467,7 @@ msgstr "Uspešno kopirano"
 msgid "Safe locked due to inactivity"
 msgstr "Sef zaklenjen zaradi nedejavnosti"
 
-#: gsecrets/unlocked_database.py:691
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} izbranih"
@@ -1607,10 +1608,6 @@ msgstr ""
 "različico sefa z našo trenutno različico.\n"
 "\n"
 "Prav tako lahko naredite varnostno kopijo njihove različice sefa."
-
-#: gsecrets/widgets/saving_conflict_dialog.py:31
-msgid "_Cancel"
-msgstr "_Prekliči"
 
 #. TRANSLATORS backup and save current safe.
 #: gsecrets/widgets/saving_conflict_dialog.py:33

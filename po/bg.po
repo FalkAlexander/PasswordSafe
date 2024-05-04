@@ -1,0 +1,1653 @@
+# Bulgarian translation of secrets po-file.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# twlvnn <kraft_werk@tutanota.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: secrets master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2024-05-03 20:20+0000\n"
+"PO-Revision-Date: 2024-05-04 11:08+0300\n"
+"Last-Translator: twlvnn <kraft_werk@tutanota.com>\n"
+"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "Управление на паролите"
+
+#. Add your name to the translator credits list
+#: data/about_dialog.ui.in:10
+msgid "translator-credits"
+msgstr "twlvnn <kraft_werk@tutanota.com>"
+
+#. Translators: Secrets is the app name, do not translate
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "Secrets"
+
+#: data/gtk/add_attribute_dialog.ui:5
+msgid "Add Attribute"
+msgstr "Добавяне на атрибут"
+
+#: data/gtk/add_attribute_dialog.ui:35
+msgid "Key"
+msgstr "Ключ"
+
+#: data/gtk/add_attribute_dialog.ui:40
+msgid "Value"
+msgstr "Стойност"
+
+#: data/gtk/add_attribute_dialog.ui:45
+msgid "Sensitive"
+msgstr "Чувствителни"
+
+#: data/gtk/add_attribute_dialog.ui:46
+msgid "Contains sensitive data."
+msgstr "Съдържа чувствителни данни."
+
+#: data/gtk/add_attribute_dialog.ui:53 gsecrets/entry_page.py:355
+msgid "_Add"
+msgstr "_Добавяне"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "Сваляне на прикачен файл"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "Премахване на прикачен файл"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/attachment_warning_dialog.ui:4
+msgid "Safety Info"
+msgstr "Информация за сигурност"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/attachment_warning_dialog.ui:5
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"Възможно е други програми да създадат нешифрирани скрити или временни копия "
+"на този прикачен файл. Бъдете внимателни!"
+
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "На_зад"
+
+#: data/gtk/attachment_warning_dialog.ui:10
+msgid "_Proceed"
+msgstr "На_пред"
+
+#: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "Копиране на атрибут"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
+msgid "Remove Attribute"
+msgstr "Изтриване на атрибут"
+
+#: data/gtk/browsing_panel.ui:23
+msgid "Add elements with the ➕ button"
+msgstr "Елементи се добавят с бутона „➕“"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "Празна група"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "Няма резултати от търсенето"
+
+#: data/gtk/color_entry_row.ui:4
+msgid "Color"
+msgstr "Цвят"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:239
+msgid "Create Safe"
+msgstr "Създаване на сейф"
+
+#: data/gtk/create_database.ui:17
+msgid "Back"
+msgstr "Назад"
+
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:40
+msgid "Main Menu"
+msgstr "Основно меню"
+
+#: data/gtk/create_database.ui:44
+msgid "Protect your safe"
+msgstr "Защита на сейфа"
+
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
+#: data/gtk/references_dialog.ui:177
+msgid "_Password"
+msgstr "_Парола"
+
+#: data/gtk/create_database.ui:64
+msgid "_Confirm Password"
+msgstr "_Потвърдете паролата"
+
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:45
+msgid "Additional Credentials"
+msgstr "Допълнителни данни за идентификация"
+
+#: data/gtk/create_database.ui:90
+msgid "Create"
+msgstr "Създаване"
+
+#: data/gtk/create_database.ui:113
+msgid "Safe Successfully Created"
+msgstr "Успешно създаден сейф"
+
+#: data/gtk/create_database.ui:116
+msgid "_Open Safe"
+msgstr "_Отваряне на сейф"
+
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:98
+msgid "_Preferences"
+msgstr "_Настройки"
+
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:102
+msgid "_Keyboard Shortcuts"
+msgstr "_Клавишни комбинации"
+
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:106
+msgid "_About Secrets"
+msgstr "_Относно „Secrets“"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "_Потребителско име"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:130
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:347
+msgid "Copy"
+msgstr "Копиране"
+
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
+msgid "Generate New Password"
+msgstr "Генериране на нова парола"
+
+#: data/gtk/database_settings_dialog.ui:5
+msgid "Safe Settings"
+msgstr "Настройки на сейфа"
+
+#: data/gtk/database_settings_dialog.ui:9
+msgid "Authentication"
+msgstr "Идентификация"
+
+#: data/gtk/database_settings_dialog.ui:15
+msgid "Current Password"
+msgstr "Текуща парола"
+
+#: data/gtk/database_settings_dialog.ui:25
+msgid "New Password"
+msgstr "Нова парола"
+
+#: data/gtk/database_settings_dialog.ui:46
+msgid "Confirm New Password"
+msgstr "Потвърдете новата парола"
+
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "Нови допълнителни данни за идентификация"
+
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:170
+#: gsecrets/widgets/database_settings_dialog.py:229
+msgid "_Apply Changes"
+msgstr "_Прилагане на промените"
+
+#: data/gtk/database_settings_dialog.ui:92 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
+msgid "General"
+msgstr "Общи"
+
+#: data/gtk/database_settings_dialog.ui:96
+msgid "Details"
+msgstr "Подробности"
+
+#: data/gtk/database_settings_dialog.ui:99
+msgid "Safe Name"
+msgstr "Име на сейфа"
+
+#: data/gtk/database_settings_dialog.ui:107
+msgid "Path"
+msgstr "Път"
+
+#: data/gtk/database_settings_dialog.ui:116
+msgid "File Size"
+msgstr "Размер"
+
+#. KeePass is a proper noun
+#: data/gtk/database_settings_dialog.ui:125
+msgid "KeePass Version"
+msgstr "Версия на KeePass"
+
+#: data/gtk/database_settings_dialog.ui:134
+msgid "Creation Date"
+msgstr "Създаден"
+
+#: data/gtk/database_settings_dialog.ui:142
+msgid "Encryption Algorithm"
+msgstr "Алгоритъм за шифриране"
+
+#: data/gtk/database_settings_dialog.ui:150
+msgid "Derivation Algorithm"
+msgstr "Деривативен алгоритъм"
+
+#. Statistics
+#: data/gtk/database_settings_dialog.ui:160
+msgid "Stats"
+msgstr "Статистика"
+
+#: data/gtk/database_settings_dialog.ui:163
+msgid "Number of Entries"
+msgstr "Брой записи"
+
+#: data/gtk/database_settings_dialog.ui:172
+msgid "Number of Groups"
+msgstr "Брой групи"
+
+#: data/gtk/database_settings_dialog.ui:181
+msgid "Passwords"
+msgstr "Пароли"
+
+#: data/gtk/entry_page.ui:55
+msgid "Entry Menu"
+msgstr "Меню със записи"
+
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:29
+#: data/gtk/references_dialog.ui:169
+msgid "_Title"
+msgstr "_Заглавие"
+
+#: data/gtk/entry_page.ui:75
+msgid "U_RL"
+msgstr "_Адрес"
+
+#: data/gtk/entry_page.ui:81
+msgid "Open Address"
+msgstr "Отваряне на адреса"
+
+#: data/gtk/entry_page.ui:109
+msgid "One-Time Password"
+msgstr "Еднократна парола"
+
+#: data/gtk/entry_page.ui:142
+msgid "One-_Time Password Secret"
+msgstr "_Еднократна тайна"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:148
+msgid "Could not Generate OTP Token"
+msgstr "Неуспешно генериране на жетон за OTP"
+
+#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:37
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "Записки"
+
+#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:41
+msgid "Edit in a Window"
+msgstr "Редактиране в прозорец"
+
+#: data/gtk/entry_page.ui:198
+msgid "Icon"
+msgstr "Икона"
+
+#: data/gtk/entry_page.ui:218
+msgid "Attachments"
+msgstr "Прикачени файлове"
+
+#: data/gtk/entry_page.ui:222
+msgid "_Add Attachment"
+msgstr "_Прикачване на файл"
+
+#: data/gtk/entry_page.ui:231
+msgid "Attributes"
+msgstr "Атрибути"
+
+#: data/gtk/entry_page.ui:236
+msgid "Add Attr_ibute"
+msgstr "Добавяне на атр_ибут"
+
+#: data/gtk/entry_page.ui:244
+msgid "Expiration Date"
+msgstr "Срок на изтичане"
+
+#: data/gtk/entry_page.ui:260
+msgid "_Show More"
+msgstr "_Допълнителни"
+
+#: data/gtk/entry_page.ui:279
+msgid "D_uplicate"
+msgstr "Д_убликат"
+
+#: data/gtk/entry_page.ui:283
+msgid "_References"
+msgstr "_Препратки"
+
+#: data/gtk/entry_page.ui:287 data/gtk/group_page.ui:78
+msgid "_Properties"
+msgstr "_Свойства"
+
+#: data/gtk/entry_page.ui:293
+msgid "_Save in History"
+msgstr "_Запазване в историята"
+
+#: data/gtk/entry_page.ui:297
+msgid "Show _History"
+msgstr "Показване на _историята"
+
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:84
+msgid "_Delete"
+msgstr "_Изтриване"
+
+#: data/gtk/entry_row.ui:80
+msgid "Copy One-Time Password"
+msgstr "Копиране на еднократна парола"
+
+#: data/gtk/entry_row.ui:91
+msgid "Copy Username"
+msgstr "Копиране на име на потребител"
+
+#: data/gtk/entry_row.ui:101
+msgid "Copy Password"
+msgstr "Копиране на парола"
+
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
+msgid "Expiration Date not Set"
+msgstr "Не е зададена дата на изтичане"
+
+#: data/gtk/expiration_date_row.ui:22
+msgid "Edit Expiration Date"
+msgstr "Редактиране на датата на изтичане"
+
+#: data/gtk/expiration_date_row.ui:30
+msgid "Remove Expiration Date"
+msgstr "Премахване на датата на изтичане"
+
+#: data/gtk/expiration_date_row.ui:63
+msgid "_Set Expiration Date"
+msgstr "_Задаване на датата на изтичане"
+
+#: data/gtk/group_page.ui:17
+msgid "Group Menu"
+msgstr "Меню за групи"
+
+#: data/gtk/group_row.ui:67
+msgid "Edit"
+msgstr "Редактиране"
+
+#: data/gtk/help-overlay.ui:11
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "Програма"
+
+#: data/gtk/help-overlay.ui:14
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "Създаване на сейф"
+
+#: data/gtk/help-overlay.ui:20
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "Назад"
+
+#: data/gtk/help-overlay.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "Отваряне на сейф"
+
+#: data/gtk/help-overlay.ui:32
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "Отваряне на настройките"
+
+#: data/gtk/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "Показване на клавишните комбинации"
+
+#: data/gtk/help-overlay.ui:44
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "Затваряне на прозореца"
+
+#: data/gtk/help-overlay.ui:50
+msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "Нов прозорец"
+
+#: data/gtk/help-overlay.ui:56
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "Спиране на програмата"
+
+#: data/gtk/help-overlay.ui:64
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "Сейф"
+
+#: data/gtk/help-overlay.ui:67
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "Заключване на сейфа"
+
+#: data/gtk/help-overlay.ui:73
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "Запазване на сейфа"
+
+#: data/gtk/help-overlay.ui:79
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "Отваряне на търсачката"
+
+#: data/gtk/help-overlay.ui:85
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "Създаване на запис"
+
+#: data/gtk/help-overlay.ui:91
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "Създаване на група"
+
+#: data/gtk/help-overlay.ui:99
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "Запис"
+
+#: data/gtk/help-overlay.ui:102
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "Копиране на парола"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "Копиране на адрес"
+
+#: data/gtk/help-overlay.ui:114
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "Копиране на потребителско име"
+
+#: data/gtk/help-overlay.ui:120
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "Копиране на еднократна парола"
+
+#: data/gtk/help-overlay.ui:126
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "Показване на историята"
+
+#: data/gtk/help-overlay.ui:132
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "Запазване в историята"
+
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
+msgid "Show Text"
+msgstr "Показване на текст"
+
+#: data/gtk/history_row.ui:39
+msgid "Remove from History"
+msgstr "Премахване от историята"
+
+#: data/gtk/history_window.ui:8
+msgid "Password History"
+msgstr "История на пароли"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_Отваряне"
+
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
+#: data/gtk/welcome_page.ui:18
+msgid "_New Safe"
+msgstr "_Нов сейф"
+
+#: data/gtk/notes_dialog.ui:19
+msgid "_Copy"
+msgstr "_Копиране"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:31 data/gtk/notes_dialog.ui:56
+#: data/gtk/unlocked_headerbar.ui:26
+msgid "Search"
+msgstr "Търсене"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:53 data/gtk/unlock_database.ui:37
+msgid "Password"
+msgstr "Парола"
+
+#: data/gtk/password_generator_popover.ui:32
+msgid "Length"
+msgstr "Дължина"
+
+#: data/gtk/password_generator_popover.ui:50
+msgid "Characters"
+msgstr "Знаци"
+
+#: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:205
+msgid "Passphrase"
+msgstr "Фраза"
+
+#: data/gtk/password_generator_popover.ui:103
+msgid "Words"
+msgstr "Думи"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:132
+#: gsecrets/provider/file_provider.py:195
+msgid "_Generate"
+msgstr "_Генериране"
+
+#: data/gtk/properties_dialog.ui:6
+msgid "Properties"
+msgstr "Свойства"
+
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "UUID"
+
+#: data/gtk/properties_dialog.ui:35
+msgid "Accessed"
+msgstr "Достъпен"
+
+#: data/gtk/properties_dialog.ui:44
+msgid "Modified"
+msgstr "Променeн"
+
+#: data/gtk/properties_dialog.ui:53
+msgid "Created"
+msgstr "Създаден"
+
+#: data/gtk/references_dialog.ui:15
+msgid "Code"
+msgstr "Код"
+
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:242
+#: data/gtk/references_dialog.ui:339
+msgid "Property"
+msgstr "Свойство"
+
+#: data/gtk/references_dialog.ui:48
+msgid "Title"
+msgstr "Заглавие"
+
+#: data/gtk/references_dialog.ui:69
+msgid "Username"
+msgstr "Потребителско име"
+
+#: data/gtk/references_dialog.ui:129
+msgid "URL"
+msgstr "Адрес"
+
+#: data/gtk/references_dialog.ui:181
+msgid "_URL"
+msgstr "_Адрес"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_Записки"
+
+#: data/gtk/references_dialog.ui:191
+msgid "References"
+msgstr "Препратки"
+
+#: data/gtk/references_dialog.ui:213
+msgid "Syntax"
+msgstr "Синтаксис"
+
+#: data/gtk/references_dialog.ui:222
+msgid "The placeholder syntax for field references is the following:"
+msgstr "Примерният синтаксис за кодове на полета е следният:"
+
+#: data/gtk/references_dialog.ui:241 data/gtk/references_dialog.ui:269
+msgid "Show Field Codes"
+msgstr "Показване на кодовете на полета"
+
+#: data/gtk/references_dialog.ui:270
+msgid "Identifier"
+msgstr "Идентификатор"
+
+#: data/gtk/references_dialog.ui:328
+msgid "Reference"
+msgstr "Код на поле"
+
+#
+#: data/gtk/references_dialog.ui:367
+msgid ""
+"Each entry has a unique identifier called UUID. It can be found in the "
+"properties of the entry."
+msgstr ""
+"Всеки запис има уникален идентификатор — UUID. Може да се намери в "
+"свойствата му."
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/save_dialog.ui:4
+msgid "Unsaved Changes"
+msgstr "Незапазени промени"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/save_dialog.ui:5
+msgid "Do you want to write all changes to the safe?"
+msgstr "Искате ли да запазите всичките промени в сейфа?"
+
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:422
+msgid "_Quit Without Saving"
+msgstr "_Спиране на програмата без запазване"
+
+#. _Cancel exiting the program
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:423
+msgid "_Don't Quit"
+msgstr "_Програмата да продължи работа"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:12
+msgid "_Save and Quit"
+msgstr "_Запазване и спиране"
+
+#: data/gtk/settings_dialog.ui:14
+msgid "_Hide First Start Screen"
+msgstr "_Скриване на първоначалния екран"
+
+#: data/gtk/settings_dialog.ui:15
+msgid "Reopen last opened safe."
+msgstr "Отваряне на последно отваряния сейф."
+
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:148
+#: gsecrets/widgets/window.py:231 gsecrets/widgets/window.py:243
+msgid "Safe"
+msgstr "Сейф"
+
+#: data/gtk/settings_dialog.ui:27
+msgid "_Save Automatically"
+msgstr "_Aвтоматично запазване"
+
+#: data/gtk/settings_dialog.ui:28
+msgid "Save every change automatically."
+msgstr "Автоматично запазване след всяка промяна."
+
+#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
+#: gsecrets/provider/pkcs11_provider.py:208
+#: gsecrets/provider/pkcs11_provider.py:210
+msgid "Unlock"
+msgstr "Отключване"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:40
+msgid "Remember Composite _Key"
+msgstr "Запомняне на съставния _ключ"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:41
+msgid "Remember last used composite key."
+msgstr "Запомняне на последно използвания съставен ключ."
+
+#: data/gtk/settings_dialog.ui:56
+msgid "Password Generation"
+msgstr "Генериране на парола"
+
+#: data/gtk/settings_dialog.ui:59
+msgid "Password Length"
+msgstr "Дължина на паролата"
+
+#: data/gtk/settings_dialog.ui:60
+msgid "Number of characters when generating a password."
+msgstr "Брой знаци при генериране на парола."
+
+#: data/gtk/settings_dialog.ui:74
+msgid "_Uppercase Characters"
+msgstr "_Главни букви"
+
+#: data/gtk/settings_dialog.ui:75
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "Включване на главни букви A-Z при генериране на парола."
+
+#: data/gtk/settings_dialog.ui:82
+msgid "_Lowercase Characters"
+msgstr "_Малки букви"
+
+#: data/gtk/settings_dialog.ui:83
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "Включване на малки букви a-z при генериране на парола."
+
+#: data/gtk/settings_dialog.ui:90
+msgid "_Numeric Characters"
+msgstr "_Цифри"
+
+#: data/gtk/settings_dialog.ui:91
+msgid "Use numeric characters when generating a password."
+msgstr "Включване на цифри при генериране на парола."
+
+#: data/gtk/settings_dialog.ui:98
+msgid "_Special Characters"
+msgstr "_Специални знаци"
+
+#. ASCII is a proper name
+#: data/gtk/settings_dialog.ui:99
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr ""
+"Включване на знаци от ASCII, които не са букви или цифри, при генериране на "
+"парола."
+
+#: data/gtk/settings_dialog.ui:108
+msgid "Passphrase Generation"
+msgstr "Генериране на парола-фраза"
+
+#: data/gtk/settings_dialog.ui:111
+msgid "Passphrase Length"
+msgstr "Дължина на парола-фраза"
+
+#: data/gtk/settings_dialog.ui:112
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Number of words to use when generating a passphrase."
+msgstr "Брой думи за парола-фраза."
+
+#: data/gtk/settings_dialog.ui:126
+msgid "Separator"
+msgstr "Разделител"
+
+#: data/gtk/settings_dialog.ui:136 data/gtk/settings_dialog.ui:139
+msgid "Security"
+msgstr "Сигурност"
+
+#: data/gtk/settings_dialog.ui:142
+msgid "Safe Lock Timeout"
+msgstr "Време за изчакване преди заключване на сейфа"
+
+#: data/gtk/settings_dialog.ui:143
+msgid "Lock safe on idle after X minutes."
+msgstr "Заключване на сейфа при неактивност от толкова минути."
+
+#: data/gtk/settings_dialog.ui:157
+msgid "Lock on _Session Lock"
+msgstr "Заключване при заключване на _сесията"
+
+#: data/gtk/settings_dialog.ui:158
+msgid "Automatically lock when the session is locked."
+msgstr "Автоматично заключване при заключване на сесията."
+
+#: data/gtk/settings_dialog.ui:165
+msgid "Clear Clipboard"
+msgstr "Изчистване на буфера за обмен"
+
+#: data/gtk/settings_dialog.ui:166
+msgid "Clear clipboard after X seconds."
+msgstr "Изчистване на буфера за обмен след толкова секунди."
+
+#: data/gtk/settings_dialog.ui:180
+msgid "Clear Recent List"
+msgstr "Изчистване на списъка с последните сейфове"
+
+#: data/gtk/settings_dialog.ui:181
+msgid "Clear the recently opened safes list."
+msgstr "Изчистване на списъка с наскоро отворени сейфове."
+
+#: data/gtk/settings_dialog.ui:188
+msgid "Clear"
+msgstr "Изчистване"
+
+#: data/gtk/unlock_database.ui:20
+msgid "Unlock Safe"
+msgstr "Отключване на сейфа"
+
+#: data/gtk/unlocked_database.ui:18
+msgid "Browser"
+msgstr "Браузър"
+
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:691
+msgid "Select Items"
+msgstr "Избор на елементи"
+
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+msgid "Go Back"
+msgstr "Назад"
+
+#: data/gtk/unlocked_database.ui:41
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_Отказване"
+
+#: data/gtk/unlocked_database.ui:53 data/gtk/unlocked_database.ui:59
+msgid "Search Safe"
+msgstr "Търсене в сейфа"
+
+#: data/gtk/unlocked_database.ui:72
+msgid "_Clear"
+msgstr "Из_чистване"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:81
+msgid "Delete Selection"
+msgstr "Изтриване на избора"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/unlocked_database.ui:91
+msgid "Move Selection"
+msgstr "Преместване на избраното"
+
+#: data/gtk/unlocked_database.ui:98
+msgid "Paste Selection"
+msgstr "Поставяне на избраното"
+
+#: data/gtk/unlocked_database.ui:123
+msgid "Select an Entry"
+msgstr "Избор на запис"
+
+#: data/gtk/unlocked_headerbar.ui:18
+msgid "New Entry or Group"
+msgstr "Нов запис или група"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/gtk/unlocked_headerbar.ui:33
+msgid "Selection Mode"
+msgstr "Режим на избор"
+
+#: data/gtk/unlocked_headerbar.ui:59
+msgid "So_rting"
+msgstr "_Подредба"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:61
+msgid "_A-Z"
+msgstr "_A-Z"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:66
+msgid "_Z-A"
+msgstr "_Z-A"
+
+#: data/gtk/unlocked_headerbar.ui:71
+msgid "_Newest First"
+msgstr "Най-_новите отпред"
+
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Oldest First"
+msgstr "Най-_старите отпред"
+
+#: data/gtk/unlocked_headerbar.ui:88
+msgid "New _Window"
+msgstr "Нов _прозорец"
+
+#: data/gtk/unlocked_headerbar.ui:92
+msgid "Sa_fe Settings"
+msgstr "Настройки на сей_фа"
+
+#: data/gtk/unlocked_headerbar.ui:114
+msgid "New _Entry"
+msgstr "Нов _запис"
+
+#: data/gtk/unlocked_headerbar.ui:118
+msgid "New _Group"
+msgstr "Нова _група"
+
+#: data/gtk/unlocked_headerbar.ui:138
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Save"
+msgstr "_Запазване"
+
+#: data/gtk/unlocked_headerbar.ui:153
+msgid "_Lock"
+msgstr "_Заключване"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/gtk/welcome_page.ui:11
+msgid "Secure Secrets"
+msgstr "Защитени тайни"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "Създаване или качване на нов сейф на Keepass"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:5
+msgid "A password manager for GNOME"
+msgstr "Управление на пароли за GNOME"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:14
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;криптиране;шифриране;защитен;сейф;трезор;парола;кийпас;"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:21
+msgid "New Window"
+msgstr "Нов прозорец"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Lock on session lock"
+msgstr "Заключване при заключване на сесията"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock the safe when the session is locked."
+msgstr "Автоматично заключване на сейфа при заключване на сесията."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "Отваряне на последно отваряната база от данни"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"Автоматично отваряне на екрана за отключване на последно отваряната база от "
+"данни. В противен случай се показва началния екран."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "Автоматично запазване след всяка промяна"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"Автоматично запазване на всяка промяна в базата от данни. Обърнете внимание, "
+"че не може да върнете промените, ако е активирано автоматичното запазване."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "Заключване на базата от данни след толкова минути"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"Автоматично заключване на базата от данни след определен брой минути за "
+"подобряване на сигурността."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "Изчистване на буфера за обмен след толкова секунди"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "След копиране на парола буферът за обмен да се изчиства за сигурност."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "Размер на прозореца"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "Запомняне на размера на прозореца."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened database"
+msgstr "Последно отворена база от данни"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "Path to the last opened database."
+msgstr "Път към последно отваряната база от данни."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Remember composite key"
+msgstr "Запомняне на съставен ключ"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "Remember last used composite key for database unlocking."
+msgstr ""
+"Запомняне на последно използвания съставен ключ за отключване на база от "
+"данни."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Last used key provider"
+msgstr "Последно използван доставчик на ключове"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Key provider for composite database unlocking."
+msgstr "Доставчик на съставни ключове за отключване на бази от данни."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Remember unlock method"
+msgstr "Запомняне на метода за отключване"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid "Remember last used unlock method for future database unlocking."
+msgstr ""
+"Запомняне на последно използвания метод за отключване при следващо "
+"отключване на база от данни."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Backup the database on unlock"
+msgstr "Запазване на резервно копие на базата от данни при отключване"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/secrets/backups"
+msgstr ""
+"Ако възникне грешка при запазване на базата от данни, може да намерите "
+"резервно копие в „~/.cache/secrets/backups“ "
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Sorting order of groups and entries"
+msgstr "Вид подредба на групи и записи"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+msgid "Order of the rows in the groups and entries view."
+msgstr "Подредба в изгледа на групи и записи."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Use uppercases when generating a password"
+msgstr "Използване на главни букви при генериране на парола"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "Използване на главни букви A-Z при генериране на парола."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use lowercases when generating a password"
+msgstr "Използване на малки букви при генериране на парола"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "Използване на малки букви a-z при генериране на парола."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use numbers when generating a password"
+msgstr "Използване на цифри при генериране на парола"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "Използване на цифрите между 0-9 при генериране на парола."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Use symbols when generating a password"
+msgstr "Използване на знаци при генериране на парола"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr ""
+"Използване на знаци от ASCII, които не са букви или цифри, при генериране на "
+"парола."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Password length when generating a password"
+msgstr "Дължина на генерираната парола"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Number of single characters when generating a password."
+msgstr "Брой единични знаци при генериране на парола."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Number of words when generating a passphrase"
+msgstr "Брой думи при генериране на парола-фраза"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Separator when generating a passphrase"
+msgstr "Разделител при генериране на парола-фраза"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Word separator to use when generating a passphrase."
+msgstr ""
+"Разделител на думи, който да се използва при генериране на парола-фраза."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "@NAME@"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"„Secrets“ е програма за управление на пароли, която използва форма̀та KeePass "
+"v.4. Тя се интегрира перфектно с графичната среда GNOME и осигурява лесен и "
+"подреден интерфейс за управление на бази от данни с пароли."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:292
+msgid "Password management"
+msgstr "Управляване на паролите"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:296
+msgid "Safe unlocking"
+msgstr "Отключване на сейф"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:300
+msgid "Safe creation"
+msgstr "Настройки на сейфа"
+
+#: gsecrets/attachment_warning_dialog.py:68
+#: gsecrets/attachment_warning_dialog.py:79
+msgid "Could not load attachment"
+msgstr "Неуспешно зареждане на прикачения файл"
+
+#: gsecrets/create_database.py:65
+msgid "Passwords do not match"
+msgstr "Паролите не съвпадат"
+
+#: gsecrets/create_database.py:80
+msgid "Unable to create database"
+msgstr "Неуспешно създаване на база от данни"
+
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/widgets/database_settings_dialog.py:182
+msgid "Failed to generate composite key"
+msgstr "Неуспешно генериране на съставен ключ"
+
+#: gsecrets/entry_page.py:246 gsecrets/widgets/credentials_group.py:100
+msgid "Saved in history"
+msgstr "Запазено в историята"
+
+#: gsecrets/entry_page.py:260 gsecrets/entry_row.py:163
+#: gsecrets/widgets/credentials_group.py:95
+msgid "Username copied"
+msgstr "Потребителското име е копирано"
+
+#: gsecrets/entry_page.py:265 gsecrets/entry_page.py:394
+msgid "Address copied"
+msgstr "Адресът е копиран"
+
+#: gsecrets/entry_page.py:274 gsecrets/entry_page.py:329
+msgid "One-time password copied"
+msgstr "Еднократната парола е копирана"
+
+#: gsecrets/entry_page.py:307
+msgid "Could not open URL"
+msgstr "Неуспешно отваряне на адрес"
+
+#: gsecrets/entry_page.py:317
+msgid "The address is not valid"
+msgstr "Неправилен адрес"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: gsecrets/entry_page.py:354
+msgid "Select Attachments"
+msgstr "Избор на файлове за прикачване"
+
+#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
+msgid "Password copied"
+msgstr "Паролата е копирана"
+
+#: gsecrets/entry_row.py:171
+msgid "One-Time Password copied"
+msgstr "Еднократната парола е копирана"
+
+#: gsecrets/entry_row.py:185 gsecrets/group_row.py:136
+msgid "Title not Specified"
+msgstr "Заглавието не е зададено"
+
+#: gsecrets/password_generator_popover.py:74
+msgid "Include Lowercase"
+msgstr "Включване на малки букви"
+
+#: gsecrets/password_generator_popover.py:76
+msgid "Exclude Lowercase"
+msgstr "Изключване на малки букви"
+
+#: gsecrets/password_generator_popover.py:79
+msgid "Include Uppercase"
+msgstr "Включване на главни букви"
+
+#: gsecrets/password_generator_popover.py:81
+msgid "Exclude Uppercase"
+msgstr "Изключване на главни букви"
+
+#: gsecrets/password_generator_popover.py:84
+msgid "Include Numbers"
+msgstr "Включване на числа"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Exclude Numbers"
+msgstr "Изключване на числа"
+
+#: gsecrets/password_generator_popover.py:89
+msgid "Include Symbols"
+msgstr "Включване на знаци"
+
+#: gsecrets/password_generator_popover.py:91
+msgid "Exclude Symbols"
+msgstr "Изключване на знаци"
+
+#: gsecrets/pathbar_button.py:33
+msgid "Root Group"
+msgstr "Коренова група"
+
+#: gsecrets/provider/file_provider.py:33 gsecrets/provider/file_provider.py:130
+#: gsecrets/provider/file_provider.py:196 gsecrets/utils.py:84
+msgid "Keyfile"
+msgstr "Ключов файл"
+
+#: gsecrets/provider/file_provider.py:41 gsecrets/provider/file_provider.py:79
+msgid "Select Keyfile"
+msgstr "Избор на ключов файл"
+
+#: gsecrets/provider/file_provider.py:50 gsecrets/provider/file_provider.py:141
+msgid "Clear Keyfile"
+msgstr "Изчистване на ключов файл"
+
+#: gsecrets/provider/file_provider.py:69
+msgid "Select keyfile"
+msgstr "Избор на ключов файл"
+
+#: gsecrets/provider/file_provider.py:107
+msgid "Could not load keyfile"
+msgstr "Неуспешно зареждане на ключов файл"
+
+#: gsecrets/provider/file_provider.py:134
+#: gsecrets/provider/file_provider.py:194
+msgid "Generate Keyfile"
+msgstr "Генериране на ключов файл"
+
+#: gsecrets/provider/file_provider.py:158
+msgid "Use a file to increase security"
+msgstr "Използване на файл за по-голяма сигурност"
+
+#: gsecrets/provider/file_provider.py:180
+msgid "Could not create keyfile"
+msgstr "Неуспешно създаване на ключов файл"
+
+#: gsecrets/provider/pkcs11_provider.py:99
+msgid "No Smartcard"
+msgstr "Без чип карта"
+
+#: gsecrets/provider/pkcs11_provider.py:118
+#: gsecrets/provider/pkcs11_provider.py:260
+msgid "Smartcard"
+msgstr "Чип карта"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+msgid "Select certificate"
+msgstr "Избор на сертификат"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "No smartcard present"
+msgstr "Липсва чип карта"
+
+#: gsecrets/provider/pkcs11_provider.py:198
+msgid "Please insert smartcard and retry."
+msgstr "Поставете чип карта и опитайте пак."
+
+#: gsecrets/provider/pkcs11_provider.py:201
+#: gsecrets/widgets/database_settings_dialog.py:217
+msgid "OK"
+msgstr "Добре"
+
+#: gsecrets/provider/pkcs11_provider.py:208
+msgid "Unlock your smartcard"
+msgstr "Отключване на чип картата"
+
+#: gsecrets/provider/pkcs11_provider.py:209 gsecrets/selection_manager.py:111
+msgid "Cancel"
+msgstr "Отказване"
+
+#: gsecrets/provider/pkcs11_provider.py:253
+msgid "Failed to unlock Smartcard"
+msgstr "Неуспешно отключване на чип карта"
+
+#: gsecrets/provider/pkcs11_provider.py:261
+msgid "Use a smartcard"
+msgstr "Използване на чип карта"
+
+#: gsecrets/provider/pkcs11_provider.py:315
+msgid "Refresh Certificate List"
+msgstr "Обновяване на списъка със сертификати"
+
+#: gsecrets/provider/yubikey_provider.py:33
+msgid "No Key"
+msgstr "Няма ключ"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:36
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] — слот {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:136
+#: gsecrets/provider/yubikey_provider.py:194
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:137
+msgid "Select key"
+msgstr "Избор на ключ"
+
+#: gsecrets/provider/yubikey_provider.py:145
+#: gsecrets/provider/yubikey_provider.py:201
+msgid "Select YubiKey slot"
+msgstr "Избор на слот в YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:236
+msgid "Touch YubiKey"
+msgstr "Докоснете YubiKey"
+
+#: gsecrets/recent_files_menu.py:43
+msgid "Recent Files"
+msgstr "Скорошни Файлове"
+
+#: gsecrets/safe_element.py:43
+msgid "White"
+msgstr "Бяло"
+
+#: gsecrets/safe_element.py:45
+msgid "Blue"
+msgstr "Синьо"
+
+#: gsecrets/safe_element.py:47
+msgid "Green"
+msgstr "Зелено"
+
+#: gsecrets/safe_element.py:49
+msgid "Yellow"
+msgstr "Жълто"
+
+#: gsecrets/safe_element.py:51
+msgid "Orange"
+msgstr "Оранжево"
+
+#: gsecrets/safe_element.py:53
+msgid "Red"
+msgstr "Червено"
+
+#: gsecrets/safe_element.py:55
+msgid "Purple"
+msgstr "Лилаво"
+
+#: gsecrets/safe_element.py:57
+msgid "Brown"
+msgstr "Кафяво"
+
+#: gsecrets/safe_element.py:634
+msgid "Clone"
+msgstr "Клониране"
+
+#. This shouldn't happen
+#. TODO Set the body of the message based on the error kind.
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
+#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:529
+#: gsecrets/widgets/window.py:421
+msgid "Could not save Safe"
+msgstr "Неуспешно запазване на сейфа"
+
+#: gsecrets/selection_manager.py:58
+msgid "Operation aborted: deleting currently active group"
+msgstr "Операцията е прекратена: изтриване на текущо активната група"
+
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "Внимание"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"Изтривате елементи в кошчето, тези елементи не може да се възстановят в "
+"последствие."
+
+#: gsecrets/selection_manager.py:112
+msgid "Delete"
+msgstr "Изтриване"
+
+#: gsecrets/selection_manager.py:142
+msgid "Operation aborted: moving currently active group"
+msgstr "Операцията е прекратена: преместване на текущо активната група"
+
+#: gsecrets/selection_manager.py:155
+msgid "Move completed"
+msgstr "Преместването е завършено"
+
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlock_database.py:107
+msgid "Safe {} is already open"
+msgstr "Сейф {} вече е отворен"
+
+#: gsecrets/unlock_database.py:180
+msgid "Failed to unlock Safe"
+msgstr "Неуспешно отключване на сейфа"
+
+#: gsecrets/unlocked_database.py:244
+msgid "Safe saved"
+msgstr "Сейфът е запазен"
+
+#: gsecrets/unlocked_database.py:246
+msgid "No changes made"
+msgstr "Няма направени промени"
+
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlocked_database.py:293
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "Елементът е изтрит"
+msgstr[1] "{} елемента са изтрити"
+
+#: gsecrets/unlocked_database.py:298
+msgid "Deletion completed"
+msgstr "Изтриването завърши"
+
+#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+msgid "Undo"
+msgstr "Отмяна"
+
+#: gsecrets/unlocked_database.py:326
+msgid "Attribute deleted"
+msgstr "Атрибутът е изтрит"
+
+#: gsecrets/unlocked_database.py:356
+msgid "Copied"
+msgstr "Копирано"
+
+#. NOTE: Notification that a safe has been locked.
+#: gsecrets/unlocked_database.py:456
+msgid "Safe locked due to inactivity"
+msgstr "Сейфът е заключен поради неактивност"
+
+#: gsecrets/unlocked_database.py:693
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] "{} избрано"
+msgstr[1] "{} избрани"
+
+#: gsecrets/widgets/add_attribute_dialog.py:35
+msgid "Attribute key contains an illegal character"
+msgstr "Ключът на атрибута съдържа непозволен знак"
+
+#: gsecrets/widgets/add_attribute_dialog.py:45
+msgid "Attribute key already exists"
+msgstr "Ключът на атрибута вече съществува"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: gsecrets/widgets/attachment_entry_row.py:37
+msgid "Save Attachment"
+msgstr "Запазване на прикачен файл"
+
+#: gsecrets/widgets/attachment_entry_row.py:54
+msgid "Could not store attachment"
+msgstr "Неуспешно запазване на прикачения файл"
+
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
+msgid "Attribute copied"
+msgstr "Атрибутът е копиран"
+
+#: gsecrets/widgets/database_settings_dialog.py:149
+#: gsecrets/widgets/database_settings_dialog.py:153
+msgid "Could not apply changes"
+msgstr "Неуспешно прилагане на промените"
+
+#. Still executes the finally block
+#: gsecrets/widgets/database_settings_dialog.py:156
+msgid "Changes Applied"
+msgstr "Промените са приложени"
+
+#: gsecrets/widgets/database_settings_dialog.py:207
+msgid "Could not change credentials"
+msgstr "Неуспешна промяна на идентификационните данни"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:212
+#: gsecrets/widgets/saving_conflict_dialog.py:22
+msgid "Conflicts While Saving"
+msgstr "Конфликти при запазване"
+
+#: gsecrets/widgets/database_settings_dialog.py:214
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"Сейфът беше модифициран от някъде другаде. Разрешете тези конфликти от "
+"основния прозорец, когато запазвате."
+
+#. Encryption Algorithm
+#. Derivation Algorithm
+#: gsecrets/widgets/database_settings_dialog.py:279
+#: gsecrets/widgets/database_settings_dialog.py:293
+msgid "Unknown"
+msgstr "Неизвестен"
+
+#. NOTE: AES is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:283
+msgid "AES 256-bit"
+msgstr "AES 256-бита"
+
+#. NOTE: ChaCha20 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:286
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 256-бита"
+
+#. NOTE: Twofish is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:289
+msgid "Twofish 256-bit"
+msgstr "Twofish 256-бита"
+
+#. NOTE: Argon2 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:297
+msgid "Argon2"
+msgstr "Argon2"
+
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:300
+msgid "Argon2id"
+msgstr "Argon2id"
+
+#. NOTE: AES-KDF is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:303
+msgid "AES-KDF"
+msgstr "AES-KDF"
+
+#: gsecrets/widgets/expiration_date_row.py:56
+#: gsecrets/widgets/expiration_date_row.py:64
+msgid "Entry expired"
+msgstr "Записът изтече"
+
+#: gsecrets/widgets/history_row.py:43
+msgid "Hide Text"
+msgstr "Скриване на Текст"
+
+#: gsecrets/widgets/notes_dialog.py:58
+msgid "Selection copied"
+msgstr "Избраното е копирано"
+
+#: gsecrets/widgets/password_level_bar.py:22
+msgid "Password Strength"
+msgstr "Сила на паролата"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:18
+msgid "Unsaved Changes Conflict"
+msgstr "Конфликт на незапазените промени"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:20
+msgid "Save and Quit"
+msgstr "Запазване и спиране на програмата"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Back up, Save, and Quit"
+msgstr "Създаване на резервно копие, запазване и спиране"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Don't Quit"
+msgstr "Без спиране на програмата"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:25
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"Сейфът е модифициран от някъде другаде. Запазването ще презапише тяхната "
+"версия на сейфа с нашата текуща версия.\n"
+"\n"
+"Може да направите резервно копие на другата версия на сейфа."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:33
+msgid "_Back up and Save"
+msgstr "_Създаване на резервно копие и запазване"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:45
+msgid "Save Backup"
+msgstr "Запазване на резервно копие"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:55
+msgid "Could not backup safe"
+msgstr "Неуспешно запазване на резервно копие на сейфа"
+
+#: gsecrets/widgets/window.py:152
+msgid "Any file type"
+msgstr "Всеки вид файл"
+
+#: gsecrets/widgets/window.py:159
+msgid "Select Safe"
+msgstr "Избор на сейф"
+
+#: gsecrets/widgets/window.py:176
+msgid "File does not have a valid path"
+msgstr "Неправилен път към файл"
+
+#: gsecrets/widgets/window.py:209
+msgid "Safe is already open"
+msgstr "Сейфът вече е отворен"
+
+#: gsecrets/widgets/window.py:241
+msgid "_Create"
+msgstr "_Създаване"
+
+#: gsecrets/widgets/window.py:263
+msgid "Cannot create Safe: Safe is already open"
+msgstr "Неуспешно създаване на сейф: сейфът вече е отворен"
+
+#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:320
+msgid "Could not create new Safe"
+msgstr "Неуспешно създаване на нов сейф"
+
+#: gsecrets/widgets/window.py:398
+msgid "Could not save safe"
+msgstr "Неуспешно запазване на сейф"

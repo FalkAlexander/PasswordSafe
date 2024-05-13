@@ -9,6 +9,7 @@ from gsecrets.database_manager import DatabaseManager
 from gsecrets.provider.base_provider import BaseProvider
 from gsecrets.utils import (
     KeyFileFilter,
+    LazyValue,
     generate_keyfile_async,
     generate_keyfile_finish,
 )
@@ -208,7 +209,7 @@ class FileProvider(BaseProvider):
     def clear_input_fields(self):
         self._on_create_clear_keyfile(None)
 
-    def generate_key(self, _salt: bytes) -> bool:
+    def generate_key(self, _salt: LazyValue[bytes]) -> bool:
         if self.raw_key:
             return True
 

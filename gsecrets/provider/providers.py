@@ -2,12 +2,16 @@
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 
 from gi.repository import Adw, Gio, GLib, GObject
 
 from gsecrets.provider.file_provider import FileProvider
 from gsecrets.provider.pkcs11_provider import Pkcs11Provider
 from gsecrets.provider.yubikey_provider import YubiKeyProvider
+
+if TYPE_CHECKING:
+    from gsecrets.utils import LazyValue
 
 KEY_PROVIDERS = [FileProvider, Pkcs11Provider, YubiKeyProvider]
 
@@ -17,7 +21,7 @@ class Providers(GObject.Object):
         super().__init__()
 
         self.providers = []
-        self.salt: bytes = b"\0"
+        self.salt: LazyValue[bytes] | None = None
 
         for key_provider in KEY_PROVIDERS:
             self.providers.append(key_provider(window))
@@ -27,7 +31,7 @@ class Providers(GObject.Object):
 
     def generate_composite_key_async(
         self,
-        salt: bytes,
+        salt: LazyValue[bytes],
         callback: Gio.AsyncReadyCallback,
         cancellable: GLib.Cancellable = None,
     ) -> None:

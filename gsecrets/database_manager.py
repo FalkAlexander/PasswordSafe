@@ -11,7 +11,7 @@ from pykeepass import PyKeePass
 
 import gsecrets.config_manager as config
 from gsecrets.safe_element import SafeEntry, SafeGroup
-from gsecrets.utils import compare_passwords
+from gsecrets.utils import LazyValue, compare_passwords
 
 QUARK = GLib.quark_from_string("secrets")
 
@@ -368,6 +368,13 @@ class DatabaseManager(GObject.Object):
     def path(self) -> str:
         return self._path
 
-    def get_salt(self) -> bytes:
-        db = PyKeePass(self.path, None, None, decrypt=False)
+    def get_salt_as_lazy(self) -> LazyValue[bytes]:
+        path = self.path
+        return LazyValue(lambda: DatabaseManager.salt_from_path(path))
+
+    # This is static so as there is no need to carry around a
+    # DatabaseManager object in another thread
+    @staticmethod
+    def salt_from_path(path: str) -> bytes:
+        db = PyKeePass(path, None, None, decrypt=False)
         return db.database_salt

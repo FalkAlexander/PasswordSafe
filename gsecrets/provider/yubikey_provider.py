@@ -14,6 +14,7 @@ from gsecrets.provider.base_provider import BaseProvider
 
 if TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
+    from gsecrets.utils import LazyValue
 
 
 class YubiKeyInfo(GObject.Object):
@@ -227,7 +228,7 @@ class YubiKeyProvider(BaseProvider):
         self.create_row.set_model(model)
         self.create_row.set_selected(0)
 
-    def generate_key(self, salt: bytes) -> bool:
+    def generate_key(self, salt: LazyValue[bytes]) -> bool:
         if self.active_key is None:
             return False
 
@@ -236,7 +237,7 @@ class YubiKeyProvider(BaseProvider):
                 self.emit(self.show_message, _("Touch YubiKey"))
                 try:
                     self.raw_key = yubikey.challenge_response(
-                        salt,
+                        salt.value,
                         slot=self.active_key.slot,
                     )
                 except yubico.yubikey_base.YubiKeyTimeout as ex:

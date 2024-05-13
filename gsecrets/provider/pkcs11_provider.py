@@ -26,6 +26,7 @@ from gsecrets.provider.base_provider import BaseProvider
 
 if TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
+    from gsecrets.utils import LazyValue
 
 MAGIC_ERROR = 0x100
 
@@ -277,7 +278,7 @@ class Pkcs11Provider(BaseProvider):
 
         return row
 
-    def generate_key(self, _salt: bytes) -> bool:
+    def generate_key(self, _salt: LazyValue[bytes]) -> bool:
         if not self._session:
             return False
 

@@ -121,7 +121,7 @@ class CreateDatabase(Adw.Bin):
     def _on_create_button_clicked(self, _button: Gtk.Button) -> None:
         self.stack.set_sensitive(False)
         self.window.key_providers.generate_composite_key_async(
-            self.database_manager.get_salt(),
+            self.database_manager.get_salt_as_lazy(),
             self._on_generate_composite_key,
         )
 

@@ -1,5 +1,7 @@
-@define-color accent_bg_color @purple_3;
-@define-color accent_color @purple_5;
+:root {
+  --accent-color: var(--purple-5);
+  --accent-bg-color: var(--purple-3);
+}
 
 /* Pathbar button styles */
 
@@ -13,55 +15,55 @@
 }
 
 .pathbar-button:hover {
-  color: @accent_color;
-  box-shadow: 0px -3px 0px @accent_color inset;
+  color: var(--accent-color);
+  box-shadow: 0px -3px 0px var(--accent-color) inset;
   transition: box-shadow 0.3s;
 }
 
 .pathbar-button-active {
-  box-shadow: 0px -2px 0px @accent_color inset;
+  box-shadow: 0px -2px 0px var(--accent-color) inset;
 }
 
 /* Entry color button styles */
 
 .NoneColorButton {
-  background: @light_3;
+  background: var(--light-3);
   color: #2c2c2c;
 }
 
 .BlueColorButton {
-  background: @blue_4;
-  color: @light_1;
+  background: var(--blue-4);
+  color: var(--light-1);
 }
 
 .GreenColorButton {
-  background: @green_4;
-  color: @light_1;
+  background: var(--green-4);
+  color: var(--light-1);
 }
 
 .YellowColorButton {
-  background-color: @yellow_4;
+  background-color: var(--yellow-4);
   color: #312703;
 }
 
 .OrangeColorButton {
-  background: @orange_4;
-  color: @light_1;
+  background: var(--orange-4);
+  color: var(--light-1);
 }
 
 .RedColorButton {
-  background: @red_4;
-  color: @light_1;
+  background: var(--red-4);
+  color: var(--light-1);
 }
 
 .PurpleColorButton {
-  background: @purple_4;
-  color: @light_1;
+  background: var(--purple-4);
+  color: var(--light-1);
 }
 
 .BrownColorButton {
-  background: @brown_4;
-  color: @light_1;
+  background: var(--brown-4);
+  color: var(--light-1);
 }
 
 .ColorButton {
@@ -79,23 +81,23 @@
 /* Password strength level bar styles */
 
 levelbar block.insecure, levelbar block.low, levelbar block.high, levelbar block.full {
-  background-color: @red_2;
+  background-color: var(--red-2);
 }
 
 levelbar block.weak {
-  background-color: @orange_2;
+  background-color: var(--orange-2);
 }
 
 levelbar block.medium {
-  background-color: @yellow_2;
+  background-color: var(--yellow-2);
 }
 
 levelbar block.strong {
-  background-color: @green_2;
+  background-color: var(--green-2);
 }
 
 levelbar block.secure {
-  background-color: @green_4;
+  background-color: var(--green-4);
 }
 
 scrolledwindow textview.inline,

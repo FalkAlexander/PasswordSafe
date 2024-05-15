@@ -1,35 +1,37 @@
-@define-color accent_color @purple_1;
+:root {
+  --accent-color: var(--purple-1);
+}
 
 .NoneColorButton {
-  background: @light_4;
+  background: var(--light-4);
   color: #262626;
 }
 
 .BlueColorButton {
-  background: @blue_5;
+  background: var(--blue-5);
 }
 
 .GreenColorButton {
-  background: @green_5;
+  background: var(--green-5);
 }
 
 .YellowColorButton {
-  background-color: @yellow_5;
+  background-color: var(--yellow-5);
   color: #2e2102;
 }
 
 .OrangeColorButton {
-  background: @orange_5;
+  background: var(--orange-5);
 }
 
 .RedColorButton {
-  background: @red_5;
+  background: var(--red-5);
 }
 
 .PurpleColorButton {
-  background: @purple_5;
+  background: var(--purple-5);
 }
 
 .BrownColorButton {
-  background: @brown_5;
+  background: var(--brown-5);
 }

@@ -43,8 +43,11 @@ class AttachmentWarningDialog(Adw.AlertDialog):
         cache_dir = Path(GLib.get_user_cache_dir()) / const.SHORT_NAME / "tmp"
         file_path = cache_dir / filename
         window = self.__unlocked_database.window
-        if not cache_dir.exists():
-            cache_dir.mkdir(parents=True)
+        try:
+            cache_dir.mkdir(parents=True, exist_ok=True)
+        except FileExistsError:
+            logging.exception("Could not create tmp dir")
+            return
 
         gfile = Gio.File.new_for_path(str(file_path))
 

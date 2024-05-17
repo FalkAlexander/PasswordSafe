@@ -5,52 +5,88 @@
 
 /* Entry color button styles */
 
-.NoneColorButton {
+button.NoneColorButton {
+  --accent-bg-color: var(--light-3);
+  --accent-color: var(--light-3);
+  --accent-fg-color: #2c2c2c;
+}
+image.NoneColorButton {
   background: var(--light-3);
   color: #2c2c2c;
 }
 
-.BlueColorButton {
+button.BlueColorButton {
+  --accent-bg-color: var(--blue-4);
+  --accent-color: var(--blue-4);
+  --accent-fg-color: var(--light-1);
+}
+image.BlueColorButton {
   background: var(--blue-4);
   color: var(--light-1);
 }
 
-.GreenColorButton {
+button.GreenColorButton {
+  --accent-bg-color: var(--green-4);
+  --accent-color: var(--green-4);
+  --accent-fg-color: var(--light-1);
+}
+image.GreenColorButton {
   background: var(--green-4);
   color: var(--light-1);
 }
 
-.YellowColorButton {
-  background-color: var(--yellow-4);
+button.YellowColorButton {
+  --accent-bg-color: var(--yellow-4);
+  --accent-color: var(--yellow-4);
+  --accent-fg-color: #312703;
+}
+image.YellowColorButton {
+  background: var(--yellow-4);
   color: #312703;
 }
 
-.OrangeColorButton {
+button.OrangeColorButton {
+  --accent-bg-color: var(--orange-4);
+  --accent-color: var(--orange-4);
+  --accent-fg-color: var(--light-1);
+}
+image.OrangeColorButton {
   background: var(--orange-4);
   color: var(--light-1);
 }
 
-.RedColorButton {
+button.RedColorButton {
+  --accent-bg-color: var(--red-4);
+  --accent-color: var(--red-4);
+  --accent-fg-color: var(--light-1);
+}
+image.RedColorButton {
   background: var(--red-4);
   color: var(--light-1);
 }
 
-.PurpleColorButton {
+button.PurpleColorButton {
+  --accent-bg-color: var(--purple-4);
+  --accent-color: var(--purple-4);
+  --accent-fg-color: var(--light-1);
+}
+image.PurpleColorButton {
   background: var(--purple-4);
   color: var(--light-1);
 }
 
-.BrownColorButton {
+button.BrownColorButton {
+  --accent-bg-color: var(--brown-4);
+  --accent-color: var(--brown-4);
+  --accent-fg-color: var(--light-1);
+}
+image.BrownColorButton {
   background: var(--brown-4);
   color: var(--light-1);
 }
 
-.ColorButton {
-    border-radius: 25px;
-}
-
-.ColorButton:hover {
-  opacity: 0.5;
+.color-button {
+  border-radius: 25px;
 }
 
 .circular-icon {

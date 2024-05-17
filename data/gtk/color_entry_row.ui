@@ -8,8 +8,7 @@
         <property name="max-children-per-line">8</property>
         <property name="row-spacing">12</property>
         <property name="column-spacing">6</property>
-        <property name="selection-mode">single</property>
-        <signal name="child-activated" handler="_on_color_activated" swapped="no"/>
+        <property name="selection-mode">none</property>
         <accessibility>
           <relation name="labelled-by">ColorEntryRow</relation>
         </accessibility>

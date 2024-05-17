@@ -17,11 +17,9 @@ if typing.TYPE_CHECKING:
 class ColorButton(Gtk.FlowBoxChild):
     __gtype_name__ = "ColorButton"
 
-    _selected_image = Gtk.Template.Child()
+    _button = Gtk.Template.Child()
 
-    selected = GObject.Property(type=bool, default=False)
-
-    def __init__(self, color: EntryColor, selected: bool):
+    def __init__(self, color: EntryColor, is_selected: bool):
         """RadioButton to select the color of an entry.
 
         :param EntryColor color: color of the button
@@ -29,30 +27,36 @@ class ColorButton(Gtk.FlowBoxChild):
         """
         super().__init__()
 
+        self._is_selected = False
         self._color: EntryColor = color
-        self.add_css_class(self._color.value)
 
-        self.bind_property("selected", self._selected_image, "visible")
-        self.props.selected = selected
-        self.props.tooltip_text = color.to_translatable()
+        self.props.is_selected = is_selected
+
+        self._button.add_css_class(self._color.value)
+        self._button.props.tooltip_text = color.to_translatable()
 
     @property
     def color(self) -> str:
         """Color of the widget."""
         return self._color.value
 
-    @Gtk.Template.Callback()
-    def _on_enter_event(
-        self,
-        _gesture: Gtk.EventControllerMotion,
-        _x: int,
-        _y: int,
-    ) -> None:
-        self.set_state_flags(Gtk.StateFlags.PRELIGHT, False)
+    @GObject.Property(type=bool, default=False)
+    def is_selected(self) -> bool:
+        return self._is_selected
 
-    @Gtk.Template.Callback()
-    def _on_leave_event(self, _gesture: Gtk.EventControllerMotion) -> None:
-        self.unset_state_flags(Gtk.StateFlags.PRELIGHT)
+    @is_selected.setter  # type: ignore
+    def is_selected(self, is_selected: bool) -> None:
+        self._is_selected = is_selected
+        if is_selected:
+            self._button.props.icon_name = "emblem-ok-symbolic"
+        else:
+            self._button.props.icon_name = ""
+
+    def connect_clicked(self, callback):
+        def cb_wrapper(_button, color_button):
+            callback(color_button)
+
+        self._button.connect("clicked", cb_wrapper, self)
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/color_entry_row.ui")
@@ -74,23 +78,20 @@ class ColorEntryRow(Adw.PreferencesGroup):
         self._safe_entry: SafeEntry = safe_entry
 
         for color in EntryColor:
-            active: bool = safe_entry.props.color == color.value
-            color_button: ColorButton = ColorButton(color, active)
-            self._flowbox.insert(color_button, -1)
-            if active:
-                self._flowbox.select_child(color_button)
+            is_selected: bool = safe_entry.props.color == color.value
+            color_button: ColorButton = ColorButton(color, is_selected)
+            self._flowbox.append(color_button)
+            color_button.connect_clicked(self._on_color_clicked)
 
-    @Gtk.Template.Callback()
-    def _on_color_activated(
+    def _on_color_clicked(
         self,
-        _flowbox: Gtk.FlowBox,
-        selected_child: Gtk.FlowBoxChild,
+        selected_child: ColorButton,
     ) -> None:
-        if selected_child.props.selected:
+        if selected_child.props.is_selected:
             return
 
         for child in self._flowbox:  # pylint: disable=not-an-iterable
             selected: bool = child == selected_child
-            child.props.selected = selected
+            child.props.is_selected = selected
 
         self._safe_entry.props.color = selected_child.color

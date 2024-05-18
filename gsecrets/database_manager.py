@@ -132,6 +132,9 @@ class DatabaseManager(GObject.Object):
 
             self._elements_loaded = True
 
+        self.notify("description")
+        self.notify("name")
+
     #
     # Database Modifications
     #
@@ -313,23 +316,23 @@ class DatabaseManager(GObject.Object):
         self.db.password = new_password
         self.is_dirty = True
 
-    @property
+    @GObject.Property(type=str, default="")
     def name(self) -> str:
         """Get the database name or '' if not set."""
         return self.db.database_name or ""
 
-    @name.setter
+    @name.setter  # type: ignore
     def name(self, new_name: str | None) -> None:
         """Set database name."""
         self.db.database_name = new_name
         self.is_dirty = True
 
-    @property
+    @GObject.Property(type=str, default="")
     def description(self) -> str:
         """Get the database description or '' if not set."""
         return self.db.database_description or ""
 
-    @description.setter
+    @description.setter  # type: ignore
     def description(self, new_description: str | None) -> None:
         """Set database description."""
         self.db.database_description = new_description

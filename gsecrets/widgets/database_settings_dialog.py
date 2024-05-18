@@ -8,7 +8,7 @@ import typing
 from gettext import gettext as _
 from pathlib import Path
 
-from gi.repository import Adw, Gio, GLib, Gtk
+from gi.repository import Adw, Gio, GLib, GObject, Gtk
 
 from gsecrets.utils import (
     compare_passwords,
@@ -65,6 +65,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         self.database_manager = unlocked_database.database_manager
         self.window = self.unlocked_database.window
         self.signals = []
+        self.bindings = []
 
         self.__setup_widgets()
         self.__setup_signals()
@@ -91,6 +92,13 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         for signal_id, obj in self.signals:
             obj.disconnect(signal_id)
 
+        self.signals = []
+
+        for binding in self.bindings:
+            binding.unbind()
+
+        self.bindings = []
+
     def _on_show_message(self, _provider: BaseProvider, label: str) -> None:
         self.banner.set_title(label)
         self.banner.set_revealed(True)
@@ -104,7 +112,23 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
     def __setup_signals(self) -> None:
         signal_id = self.database_manager.connect("notify::locked", self.__on_locked)
+        name_binding = self.database_manager.bind_property(
+            "name",
+            self.name_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+        description_binding = self.database_manager.bind_property(
+            "description",
+            self.description_row,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE | GObject.BindingFlags.BIDIRECTIONAL,
+        )
+
         self.signals.append((signal_id, self.database_manager))
+
+        self.bindings.append(name_binding)
+        self.bindings.append(description_binding)
 
     def __setup_widgets(self) -> None:
         # Dialog
@@ -187,14 +211,6 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         self.database_manager.check_file_changes_async(self.on_check_file_changes)
 
     @Gtk.Template.Callback()
-    def on_name_changed(self, entry: Adw.EntryRow) -> None:
-        self.database_manager.name = entry.get_text()
-
-    @Gtk.Template.Callback()
-    def on_description_changed(self, entry: Adw.EntryRow) -> None:
-        self.database_manager.description = entry.get_text()
-
-    @Gtk.Template.Callback()
     def on_default_username_changed(self, entry: Adw.EntryRow) -> None:
         self.database_manager.default_username = entry.get_text()
 
@@ -250,8 +266,6 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
 
     def set_detail_values(self):
         # Name
-        self.name_row.props.text = self.database_manager.name
-        self.description_row.props.text = self.database_manager.description
         self.default_username_row.props.text = self.database_manager.default_username
 
         # Path

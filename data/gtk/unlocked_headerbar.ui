@@ -38,7 +38,7 @@
             <child>
               <object class="GtkMenuButton" id="menupopover_button">
                 <property name="tooltip_text" translatable="yes">Main Menu</property>
-                <property name="popover">popover</property>
+                <property name="menu_model">unlocked_database_menu</property>
                 <property name="icon_name">open-menu-symbolic</property>
                 <property name="primary">True</property>
               </object>
@@ -51,7 +51,12 @@
   <menu id="unlocked_database_menu">
     <section>
       <item>
-        <attribute name="custom">menu_buttons</attribute>
+        <attribute name='label' translatable='yes' comments='s'>_Save</attribute>
+        <attribute name='action'>win.db.save_dirty</attribute>
+      </item>
+      <item>
+        <attribute name='label' translatable='yes' comments='s'>_Lock</attribute>
+        <attribute name='action'>win.db.lock</attribute>
       </item>
     </section>
     <section>
@@ -120,43 +125,4 @@
       </item>
     </section>
   </menu>
-  <object class="GtkPopoverMenu" id="popover">
-    <property name="menu_model">unlocked_database_menu</property>
-    <child type="menu_buttons">
-      <object class="GtkBox">
-        <property name="spacing">6</property>
-        <property name="homogeneous">True</property>
-        <child>
-          <object class="GtkButton">
-            <property name="action_name">win.db.save_dirty</property>
-            <style>
-              <class name="flat"/>
-            </style>
-            <child>
-              <object class="AdwButtonContent">
-                <property name="icon_name">document-save-symbolic</property>
-                <property name="label" translatable="yes">_Save</property>
-                <property name="use_underline">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton">
-            <property name="action_name">win.db.lock</property>
-            <style>
-              <class name="flat"/>
-            </style>
-            <child>
-              <object class="AdwButtonContent">
-                <property name="icon_name">system-lock-screen-symbolic</property>
-                <property name="label" translatable="yes">_Lock</property>
-                <property name="use_underline">True</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>>
-  </object>
 </interface>

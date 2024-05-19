@@ -1,24 +1,24 @@
 # Hungarian translation for secrets.
-# Copyright (C) 2019, 2020, 2021, 2022, 2023 Free Software Foundation, Inc.
+# Copyright (C) 2019, 2020, 2021, 2022, 2023, 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the secrets package.
 #
 # Balázs Meskó <mesko.balazs at fsf dot hu>, 2019, 2021, 2023.
 # Gabor Kelemen <kelemeng at ubuntu dot com>, 2019.
-# Balázs Úr <ur.balazs at fsf dot hu>, 2019, 2020, 2021, 2022, 2023.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2019, 2020, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-10-16 21:50+0000\n"
-"PO-Revision-Date: 2023-10-23 21:29+0200\n"
-"Last-Translator: Balázs Meskó <mesko.balazs at fsf dot hu>\n"
+"POT-Creation-Date: 2024-04-17 19:34+0000\n"
+"PO-Revision-Date: 2024-05-19 15:26+0200\n"
+"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
 msgid "Manage your passwords"
@@ -37,27 +37,27 @@ msgstr ""
 msgid "Secrets"
 msgstr "Titkok"
 
-#: data/gtk/add_attribute_dialog.ui:8
+#: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
 msgstr "Tulajdonság hozzáadása"
 
-#: data/gtk/add_attribute_dialog.ui:47
+#: data/gtk/add_attribute_dialog.ui:35
 msgid "Key"
 msgstr "Kulcs"
 
-#: data/gtk/add_attribute_dialog.ui:52
+#: data/gtk/add_attribute_dialog.ui:40
 msgid "Value"
 msgstr "Érték"
 
-#: data/gtk/add_attribute_dialog.ui:57
+#: data/gtk/add_attribute_dialog.ui:45
 msgid "Sensitive"
 msgstr "Érzékeny"
 
-#: data/gtk/add_attribute_dialog.ui:58
+#: data/gtk/add_attribute_dialog.ui:46
 msgid "Contains sensitive data."
 msgstr "Érzékeny adatokat tartalmaz."
 
-#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:353
+#: data/gtk/add_attribute_dialog.ui:53 gsecrets/entry_page.py:355
 msgid "_Add"
 msgstr "Hozzá_adás"
 
@@ -101,13 +101,25 @@ msgstr "Tulajdonság másolása"
 msgid "Remove Attribute"
 msgstr "Tulajdonság eltávolítása"
 
+#: data/gtk/browsing_panel.ui:23
+msgid "Add elements with the ➕ button"
+msgstr "Adjon hozzá elemeket a ➕ gombbal"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "Üres csoport"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "Nincsenek találatok"
+
 #: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Szín"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:208
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:239
 msgid "Create Safe"
 msgstr "Széf létrehozása"
 
@@ -116,123 +128,54 @@ msgid "Back"
 msgstr "Vissza"
 
 #: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
-#: data/gtk/unlocked_headerbar.ui:36
+#: data/gtk/unlocked_headerbar.ui:40
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: data/gtk/create_database.ui:38
+#: data/gtk/create_database.ui:44
 msgid "Protect your safe"
 msgstr "Védje meg a széfjét"
 
-#: data/gtk/create_database.ui:47 data/gtk/credentials_group.ui:23
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
 #: data/gtk/references_dialog.ui:177
 msgid "_Password"
 msgstr "_Jelszó"
 
-#: data/gtk/create_database.ui:48
-msgid "Use a password to secure your safe."
-msgstr "Jelszó használata a széf biztonságossá tételéhez."
+#: data/gtk/create_database.ui:64
+#| msgid "Confirm New Password"
+msgid "_Confirm Password"
+msgstr "Jelszó _megerősítése"
 
-#: data/gtk/create_database.ui:56
-msgid "_Keyfile"
-msgstr "_Kulcsfájl"
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
+msgid "Additional Credentials"
+msgstr "További hitelesítési adatok"
 
-#: data/gtk/create_database.ui:57
-msgid "Use a keyfile to secure your safe."
-msgstr "Kulcsfájl használata a széf biztonságossá tételéhez."
+#: data/gtk/create_database.ui:90
+#| msgid "Created"
+msgid "Create"
+msgstr "Létrehozás"
 
-#: data/gtk/create_database.ui:65
-msgid "_Composite"
-msgstr "Össze_tett"
-
-#: data/gtk/create_database.ui:66
-msgid "Use a password in combination with a keyfile to secure your safe."
-msgstr ""
-"Kulcsfájl és jelszó együttes használata a széf biztonságossá tételéhez."
-
-#: data/gtk/create_database.ui:86 data/gtk/create_database.ui:200
-msgid "Enter Password"
-msgstr "Adja meg a jelszót"
-
-#: data/gtk/create_database.ui:87
-msgid "Set password for safe."
-msgstr "Adja meg a széf jelszavát."
-
-#: data/gtk/create_database.ui:109 data/gtk/credentials_group.ui:43
-#: data/gtk/database_settings_dialog.ui:23
-msgid "Generate New Password"
-msgstr "Új jelszó előállítása"
-
-#: data/gtk/create_database.ui:122
-msgid "Next"
-msgstr "Következő"
-
-#: data/gtk/create_database.ui:148
-msgid "Password Match Check"
-msgstr "Jelszóegyezés ellenőrzése"
-
-#: data/gtk/create_database.ui:149
-msgid "Repeat password for safe."
-msgstr "Ismételje meg a széf jelszavát."
-
-#: data/gtk/create_database.ui:166
-msgid "Check"
-msgstr "Ellenőrzés"
-
-#: data/gtk/create_database.ui:185
-msgid "Match Check Failed"
-msgstr "Jelszóellenőrzés sikertelen"
-
-#: data/gtk/create_database.ui:186
-msgid "Please try again."
-msgstr "Próbálja meg újra."
-
-#: data/gtk/create_database.ui:210
-msgid "Repeat Password"
-msgstr "Jelszó ismétlése"
-
-#: data/gtk/create_database.ui:221 gsecrets/create_database.py:256
-msgid "_Confirm"
-msgstr "_Megerősítés"
-
-#. NOTE: Filechooser title for generating a new keyfile
-#: data/gtk/create_database.ui:242 gsecrets/create_database.py:180
-#: gsecrets/widgets/database_settings_dialog.py:194
-msgid "Generate Keyfile"
-msgstr "Kulcsfájl előállítása"
-
-#: data/gtk/create_database.ui:243
-msgid "Set keyfile for safe"
-msgstr "Adja meg a széf kulcsfájlját"
-
-#. Button to generate a password
-#: data/gtk/create_database.ui:246 data/gtk/password_generator_popover.ui:132
-#: gsecrets/create_database.py:181
-#: gsecrets/widgets/database_settings_dialog.py:195
-msgid "_Generate"
-msgstr "_Előállítás"
-
-#: data/gtk/create_database.ui:266
+#: data/gtk/create_database.ui:113
 msgid "Safe Successfully Created"
 msgstr "Széf sikeresen létrehozva"
 
-#: data/gtk/create_database.ui:269
+#: data/gtk/create_database.ui:116
 msgid "_Open Safe"
 msgstr "Széf _kinyitása"
 
-#: data/gtk/create_database.ui:291 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:94
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:98
 msgid "_Preferences"
 msgstr "_Beállítások"
 
-#: data/gtk/create_database.ui:295 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:102
 msgid "_Keyboard Shortcuts"
 msgstr "_Gyorsbillentyűk"
 
 #. "Secrets" is the application name, do not translate
-#: data/gtk/create_database.ui:299 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:106
 msgid "_About Secrets"
 msgstr "A Titkok _névjegye"
 
@@ -240,217 +183,209 @@ msgstr "A Titkok _névjegye"
 msgid "_Username"
 msgstr "_Felhasználónév"
 
-#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
-#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:360
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:130
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:347
 msgid "Copy"
 msgstr "Másolás"
 
-#: data/gtk/database_settings_dialog.ui:10
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
+msgid "Generate New Password"
+msgstr "Új jelszó előállítása"
+
+#: data/gtk/database_settings_dialog.ui:5
+#| msgid "Sa_fe Settings"
+msgid "Safe Settings"
+msgstr "Széfbeállítások"
+
+#: data/gtk/database_settings_dialog.ui:9
 msgid "Authentication"
 msgstr "Hitelesítés"
 
-#: data/gtk/database_settings_dialog.ui:14
-#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:28
-msgid "Password"
-msgstr "Jelszó"
-
-#: data/gtk/database_settings_dialog.ui:17
-msgid "New Password"
-msgstr "Új jelszó"
-
-#: data/gtk/database_settings_dialog.ui:38
-msgid "Confirm New Password"
-msgstr "Új jelszó megerősítése"
-
-#: data/gtk/database_settings_dialog.ui:44
+#: data/gtk/database_settings_dialog.ui:15
 msgid "Current Password"
 msgstr "Jelenlegi jelszó"
 
-#: data/gtk/database_settings_dialog.ui:58 gsecrets/create_database.py:182
-#: gsecrets/utils.py:81 gsecrets/widgets/database_settings_dialog.py:196
-msgid "Keyfile"
-msgstr "Kulcsfájl"
+#: data/gtk/database_settings_dialog.ui:25
+msgid "New Password"
+msgstr "Új jelszó"
 
-#: data/gtk/database_settings_dialog.ui:82
-msgid "_Select current keyfile if any"
-msgstr "_Válassza ki a jelenlegi kulcsfájlt, ha van"
+#: data/gtk/database_settings_dialog.ui:46
+msgid "Confirm New Password"
+msgstr "Új jelszó megerősítése"
 
-#: data/gtk/database_settings_dialog.ui:125
-msgid "(Optional) _Generate new keyfile"
-msgstr "(Elhagyható) Új kulcsfájl _előállítása"
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "Új további hitelesítési adatok"
 
-#: data/gtk/database_settings_dialog.ui:143
-msgid "Could not Load Keyfile"
-msgstr "Nem sikerült betölteni a kulcsfájlt"
-
-#: data/gtk/database_settings_dialog.ui:153
-#: gsecrets/widgets/database_settings_dialog.py:258
-#: gsecrets/widgets/database_settings_dialog.py:301
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:170
+#: gsecrets/widgets/database_settings_dialog.py:229
 msgid "_Apply Changes"
 msgstr "Változtatások _alkalmazása"
 
-#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
-#: data/gtk/settings_dialog.ui:12
+#: data/gtk/database_settings_dialog.ui:92 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
 msgid "General"
 msgstr "Általános"
 
-#: data/gtk/database_settings_dialog.ui:174
+#: data/gtk/database_settings_dialog.ui:96
 msgid "Details"
 msgstr "Részletek"
 
-#: data/gtk/database_settings_dialog.ui:177
+#: data/gtk/database_settings_dialog.ui:99
 msgid "Safe Name"
 msgstr "Széf neve"
 
-#: data/gtk/database_settings_dialog.ui:185
+#: data/gtk/database_settings_dialog.ui:107
 msgid "Path"
 msgstr "Útvonal"
 
-#: data/gtk/database_settings_dialog.ui:194
+#: data/gtk/database_settings_dialog.ui:116
 msgid "File Size"
 msgstr "Fájlméret"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:125
 msgid "KeePass Version"
 msgstr "KeePass verzió"
 
-#: data/gtk/database_settings_dialog.ui:212
+#: data/gtk/database_settings_dialog.ui:134
 msgid "Creation Date"
 msgstr "Létrehozás dátuma"
 
-#: data/gtk/database_settings_dialog.ui:220
+#: data/gtk/database_settings_dialog.ui:142
 msgid "Encryption Algorithm"
 msgstr "Titkosítási algoritmus"
 
-#: data/gtk/database_settings_dialog.ui:228
+#: data/gtk/database_settings_dialog.ui:150
 msgid "Derivation Algorithm"
 msgstr "Származtatási algoritmus"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:238
+#: data/gtk/database_settings_dialog.ui:160
 msgid "Stats"
 msgstr "Statisztikák"
 
-#: data/gtk/database_settings_dialog.ui:241
+#: data/gtk/database_settings_dialog.ui:163
 msgid "Number of Entries"
 msgstr "Bejegyzések száma"
 
-#: data/gtk/database_settings_dialog.ui:250
+#: data/gtk/database_settings_dialog.ui:172
 msgid "Number of Groups"
 msgstr "Csoportok száma"
 
-#: data/gtk/database_settings_dialog.ui:259
+#: data/gtk/database_settings_dialog.ui:181
 msgid "Passwords"
 msgstr "Jelszavak"
 
-#: data/gtk/entry_page.ui:56
+#: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
 msgstr "Bejegyzés menü"
 
-#: data/gtk/entry_page.ui:73 data/gtk/group_page.ui:27
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:29
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Cím"
 
-#: data/gtk/entry_page.ui:79
+#: data/gtk/entry_page.ui:75
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:96
+#: data/gtk/entry_page.ui:81
 msgid "Open Address"
 msgstr "Cím megnyitása"
 
-#: data/gtk/entry_page.ui:117
+#: data/gtk/entry_page.ui:109
 msgid "One-Time Password"
 msgstr "Egyszer használatos jelszó"
 
-#: data/gtk/entry_page.ui:156
+#: data/gtk/entry_page.ui:142
 msgid "One-_Time Password Secret"
 msgstr "Egyszer _használatos jelszótitok"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:164
+#: data/gtk/entry_page.ui:148
 msgid "Could not Generate OTP Token"
 msgstr "Nem sikerült előállítani az OTP tokent"
 
-#: data/gtk/entry_page.ui:172 data/gtk/group_page.ui:35
-#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
+#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:37
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Jegyzetek"
 
-#: data/gtk/entry_page.ui:176 data/gtk/group_page.ui:39
+#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:41
 msgid "Edit in a Window"
 msgstr "Szerkesztés egy ablakban"
 
-#: data/gtk/entry_page.ui:217
+#: data/gtk/entry_page.ui:198
 msgid "Icon"
 msgstr "Ikon"
 
-#: data/gtk/entry_page.ui:237
+#: data/gtk/entry_page.ui:218
 msgid "Attachments"
 msgstr "Mellékletek"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:222
 msgid "_Add Attachment"
 msgstr "Melléklet hozzá_adása"
 
-#: data/gtk/entry_page.ui:250
+#: data/gtk/entry_page.ui:231
 msgid "Attributes"
 msgstr "Tulajdonságok"
 
-#: data/gtk/entry_page.ui:255
-#| msgid "Add Attribute"
+#: data/gtk/entry_page.ui:236
 msgid "Add Attr_ibute"
 msgstr "T_ulajdonság hozzáadása"
 
-#: data/gtk/entry_page.ui:263
+#: data/gtk/entry_page.ui:244
 msgid "Expiration Date"
 msgstr "Lejárati dátum"
 
-#: data/gtk/entry_page.ui:279
+#: data/gtk/entry_page.ui:260
 msgid "_Show More"
 msgstr "_Több megjelenítése"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:279
 msgid "D_uplicate"
 msgstr "_Kettőzés"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:283
 msgid "_References"
 msgstr "_Hivatkozások"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:79
+#: data/gtk/entry_page.ui:287 data/gtk/group_page.ui:78
 msgid "_Properties"
 msgstr "_Tulajdonságok"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:293
 msgid "_Save in History"
 msgstr "_Mentés az előzményekbe"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:297
 msgid "Show _History"
 msgstr "_Előzmények megjelenítése"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:85
+#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:84
 msgid "_Delete"
 msgstr "_Törlés"
 
-#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
-msgid "Select"
-msgstr "Kiválasztás"
+#: data/gtk/entry_row.ui:80
+#| msgctxt "Shortcut window description"
+#| msgid "Copy One-Time Password"
+msgid "Copy One-Time Password"
+msgstr "Egyszer használatos jelszó másolása"
 
-#: data/gtk/entry_row.ui:55
+#: data/gtk/entry_row.ui:91
 msgid "Copy Username"
 msgstr "Felhasználónév másolása"
 
-#: data/gtk/entry_row.ui:65
+#: data/gtk/entry_row.ui:101
 msgid "Copy Password"
 msgstr "Jelszó másolása"
 
-#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
 msgid "Expiration Date not Set"
 msgstr "Lejárati dátum nincs beállítva"
 
@@ -466,11 +401,11 @@ msgstr "Lejárati dátum eltávolítása"
 msgid "_Set Expiration Date"
 msgstr "Lejárati dátum _beállítása"
 
-#: data/gtk/group_page.ui:15
+#: data/gtk/group_page.ui:17
 msgid "Group Menu"
 msgstr "Csoport menü"
 
-#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:52
+#: data/gtk/group_row.ui:67
 msgid "Edit"
 msgstr "Szerkesztés"
 
@@ -510,8 +445,6 @@ msgid "Close Window"
 msgstr "Ablak bezárása"
 
 #: data/gtk/help-overlay.ui:50
-#| msgctxt "Shortcut window description"
-#| msgid "Close Window"
 msgctxt "Shortcut window description"
 msgid "New Window"
 msgstr "Új ablak"
@@ -586,7 +519,7 @@ msgctxt "Shortcut window description"
 msgid "Save in History"
 msgstr "Mentés az előzményekbe"
 
-#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:48
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
 msgid "Show Text"
 msgstr "Szöveg megjelenítése"
 
@@ -594,7 +527,7 @@ msgstr "Szöveg megjelenítése"
 msgid "Remove from History"
 msgstr "Eltávolítás az előzményekből"
 
-#: data/gtk/history_window.ui:10
+#: data/gtk/history_window.ui:8
 msgid "Password History"
 msgstr "Jelszóelőzmények"
 
@@ -602,21 +535,25 @@ msgstr "Jelszóelőzmények"
 msgid "_Open"
 msgstr "_Megnyitás"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
-#: data/gtk/welcome_page.ui:15
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
+#: data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "Ú_j széf"
 
-#: data/gtk/notes_dialog.ui:30
+#: data/gtk/notes_dialog.ui:19
 msgid "_Copy"
 msgstr "_Másolás"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:67
-#: data/gtk/unlocked_database.ui:17 data/gtk/unlocked_database.ui:25
-#: data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:31 data/gtk/notes_dialog.ui:56
+#: data/gtk/unlocked_headerbar.ui:26
 msgid "Search"
 msgstr "Keresés"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:53 data/gtk/unlock_database.ui:35
+msgid "Password"
+msgstr "Jelszó"
 
 #: data/gtk/password_generator_popover.ui:32
 msgid "Length"
@@ -627,6 +564,7 @@ msgid "Characters"
 msgstr "Karakterek"
 
 #: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:205
 msgid "Passphrase"
 msgstr "Jelmondat"
 
@@ -634,23 +572,29 @@ msgstr "Jelmondat"
 msgid "Words"
 msgstr "Szavak"
 
-#: data/gtk/properties_dialog.ui:9
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:132
+#: gsecrets/provider/file_provider.py:195
+msgid "_Generate"
+msgstr "_Előállítás"
+
+#: data/gtk/properties_dialog.ui:6
 msgid "Properties"
 msgstr "Beállítások"
 
-#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:47
+#: data/gtk/properties_dialog.ui:35
 msgid "Accessed"
 msgstr "Hozzáférve"
 
-#: data/gtk/properties_dialog.ui:56
+#: data/gtk/properties_dialog.ui:44
 msgid "Modified"
 msgstr "Módosítva"
 
-#: data/gtk/properties_dialog.ui:65
+#: data/gtk/properties_dialog.ui:53
 msgid "Created"
 msgstr "Létrehozva"
 
@@ -658,8 +602,8 @@ msgstr "Létrehozva"
 msgid "Code"
 msgstr "Kód"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
-#: data/gtk/references_dialog.ui:352
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:242
+#: data/gtk/references_dialog.ui:339
 msgid "Property"
 msgstr "Tulajdonság"
 
@@ -683,31 +627,31 @@ msgstr "_URL"
 msgid "_Notes"
 msgstr "_Jegyzetek"
 
-#: data/gtk/references_dialog.ui:192
+#: data/gtk/references_dialog.ui:191
 msgid "References"
 msgstr "Hivatkozások"
 
-#: data/gtk/references_dialog.ui:226
+#: data/gtk/references_dialog.ui:213
 msgid "Syntax"
 msgstr "Szintaxis"
 
-#: data/gtk/references_dialog.ui:235
+#: data/gtk/references_dialog.ui:222
 msgid "The placeholder syntax for field references is the following:"
 msgstr "A mezőhivatkozások helykitöltő szintaxisa a következő:"
 
-#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
+#: data/gtk/references_dialog.ui:241 data/gtk/references_dialog.ui:269
 msgid "Show Field Codes"
 msgstr "Mezőkódok megjelenítése"
 
-#: data/gtk/references_dialog.ui:283
+#: data/gtk/references_dialog.ui:270
 msgid "Identifier"
 msgstr "Azonosító"
 
-#: data/gtk/references_dialog.ui:341
+#: data/gtk/references_dialog.ui:328
 msgid "Reference"
 msgstr "Hivatkozás"
 
-#: data/gtk/references_dialog.ui:380
+#: data/gtk/references_dialog.ui:367
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -726,12 +670,13 @@ msgid "Do you want to write all changes to the safe?"
 msgstr "Szeretné kiírni az összes változtatást a széfbe?"
 
 #. _Discard all the changes which the user have made to his keepass safe
-#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:25
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:422
 msgid "_Quit Without Saving"
 msgstr "_Kilépés mentés nélkül"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:423
 msgid "_Don't Quit"
 msgstr "_Ne lépjen ki"
 
@@ -740,263 +685,254 @@ msgstr "_Ne lépjen ki"
 msgid "_Save and Quit"
 msgstr "_Mentés és kilépés"
 
-#: data/gtk/search.ui:9
-msgid "Enter Search Term"
-msgstr "Adja meg a keresési kifejezést"
-
-#: data/gtk/search.ui:15
-msgid "No Search Results"
-msgstr "Nincsenek találatok"
-
-#: data/gtk/selection_mode_headerbar.ui:17
-#: gsecrets/widgets/selection_mode_headerbar.py:70
-msgid "_Select Items"
-msgstr "Elemek _kiválsaztása"
-
-#. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/gtk/selection_mode_headerbar.ui:29
-msgid "Move Selection"
-msgstr "Kiválasztás áthelyezése"
-
-#: data/gtk/selection_mode_headerbar.ui:36
-msgid "Paste Selection"
-msgstr "Kiválasztás beillesztése"
-
-#. Button tooltip in selection mode to delete every selected entry/group
-#: data/gtk/selection_mode_headerbar.ui:46
-msgid "Delete Selection"
-msgstr "Kiválasztás törlése"
-
-#: data/gtk/selection_mode_headerbar.ui:53
-#: gsecrets/widgets/saving_conflict_dialog.py:32
-msgid "_Cancel"
-msgstr "_Mégse"
-
-#: data/gtk/selection_mode_headerbar.ui:66
-msgid "Select _All"
-msgstr "Össz_es kiválasztása"
-
-#: data/gtk/selection_mode_headerbar.ui:71
-msgid "Select _None"
-msgstr "Ki_választás megszüntetése"
-
-#: data/gtk/settings_dialog.ui:15
+#: data/gtk/settings_dialog.ui:14
 msgid "_Hide First Start Screen"
 msgstr "_Első indítási képernyő elrejtése"
 
-#: data/gtk/settings_dialog.ui:16
+#: data/gtk/settings_dialog.ui:15
 msgid "Reopen last opened safe."
 msgstr "Legutóbb megnyitott széf újranyitása."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:117
-#: gsecrets/widgets/window.py:200 gsecrets/widgets/window.py:212
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:148
+#: gsecrets/widgets/window.py:231 gsecrets/widgets/window.py:243
 msgid "Safe"
 msgstr "Széf"
 
-#: data/gtk/settings_dialog.ui:28
+#: data/gtk/settings_dialog.ui:27
 msgid "_Save Automatically"
 msgstr "Automatikus _mentés"
 
-#: data/gtk/settings_dialog.ui:29
+#: data/gtk/settings_dialog.ui:28
 msgid "Save every change automatically."
 msgstr "Az összes változtatás automatikus mentése."
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:37
+#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:49
+#: gsecrets/provider/pkcs11_provider.py:208
+#: gsecrets/provider/pkcs11_provider.py:210 gsecrets/unlock_database.py:194
 msgid "Unlock"
 msgstr "Feloldás"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:41
+#: data/gtk/settings_dialog.ui:40
 msgid "Remember Composite _Key"
 msgstr "Összetett _kulcs megjegyzése"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:42
+#: data/gtk/settings_dialog.ui:41
 msgid "Remember last used composite key."
 msgstr "Legutóbb használt összetett kulcs megjegyzése."
 
-#: data/gtk/settings_dialog.ui:57
+#: data/gtk/settings_dialog.ui:56
 msgid "Password Generation"
 msgstr "Jelszó-előállítás"
 
-#: data/gtk/settings_dialog.ui:60
+#: data/gtk/settings_dialog.ui:59
 msgid "Password Length"
 msgstr "Jelszóhossz"
 
-#: data/gtk/settings_dialog.ui:61
+#: data/gtk/settings_dialog.ui:60
 msgid "Number of characters when generating a password."
 msgstr "Karakterek száma egy jelszó előállításakor."
 
-#: data/gtk/settings_dialog.ui:75
+#: data/gtk/settings_dialog.ui:74
 msgid "_Uppercase Characters"
 msgstr "_Nagybetűs karakterek"
 
-#: data/gtk/settings_dialog.ui:76
+#: data/gtk/settings_dialog.ui:75
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Nagybetűs karakterek használata A-tól Z-ig egy jelszó előállításakor."
 
-#: data/gtk/settings_dialog.ui:83
+#: data/gtk/settings_dialog.ui:82
 msgid "_Lowercase Characters"
 msgstr "_Kisbetűs karakterek"
 
-#: data/gtk/settings_dialog.ui:84
+#: data/gtk/settings_dialog.ui:83
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Kisbetűs karakterek használata a-tól z-ig egy jelszó előállításakor."
 
-#: data/gtk/settings_dialog.ui:91
+#: data/gtk/settings_dialog.ui:90
 msgid "_Numeric Characters"
 msgstr "_Szám karakterek"
 
-#: data/gtk/settings_dialog.ui:92
+#: data/gtk/settings_dialog.ui:91
 msgid "Use numeric characters when generating a password."
 msgstr "Szám karakterek használata egy jelszó előállításakor."
 
-#: data/gtk/settings_dialog.ui:99
+#: data/gtk/settings_dialog.ui:98
 msgid "_Special Characters"
 msgstr "Külö_nleges karakterek"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:100
+#: data/gtk/settings_dialog.ui:99
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr ""
 "Nem alfanumerikus ASCII szimbólumok használata egy jelszó előállításakor."
 
-#: data/gtk/settings_dialog.ui:109
+#: data/gtk/settings_dialog.ui:108
 msgid "Passphrase Generation"
 msgstr "Jelmondat-előállítás"
 
-#: data/gtk/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:111
 msgid "Passphrase Length"
 msgstr "Jelmondat hossza"
 
-#: data/gtk/settings_dialog.ui:113
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/gtk/settings_dialog.ui:112
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of words to use when generating a passphrase."
 msgstr "Használandó szavak száma egy jelmondat előállításakor."
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:126
 msgid "Separator"
 msgstr "Elválasztó"
 
-#: data/gtk/settings_dialog.ui:137 data/gtk/settings_dialog.ui:140
+#: data/gtk/settings_dialog.ui:136 data/gtk/settings_dialog.ui:139
 msgid "Security"
 msgstr "Biztonság"
 
-#: data/gtk/settings_dialog.ui:143
+#: data/gtk/settings_dialog.ui:142
 msgid "Safe Lock Timeout"
 msgstr "Széf zárolási időkorlát"
 
-#: data/gtk/settings_dialog.ui:144
+#: data/gtk/settings_dialog.ui:143
 msgid "Lock safe on idle after X minutes."
 msgstr "Széf zárolása X percnyi tétlenség után."
 
-#: data/gtk/settings_dialog.ui:158
+#: data/gtk/settings_dialog.ui:157
 msgid "Lock on _Session Lock"
 msgstr "Zárolás a _munkamenet zárolásakor"
 
-#: data/gtk/settings_dialog.ui:159
+#: data/gtk/settings_dialog.ui:158
 msgid "Automatically lock when the session is locked."
 msgstr "Automatikus zárolás, ha a munkamenet zárolásra kerül."
 
-#: data/gtk/settings_dialog.ui:166
+#: data/gtk/settings_dialog.ui:165
 msgid "Clear Clipboard"
 msgstr "Vágólap törlése"
 
-#: data/gtk/settings_dialog.ui:167
+#: data/gtk/settings_dialog.ui:166
 msgid "Clear clipboard after X seconds."
 msgstr "Vágólap törlése X másodperc után."
 
-#: data/gtk/settings_dialog.ui:181
+#: data/gtk/settings_dialog.ui:180
 msgid "Clear Recent List"
 msgstr "Legutóbbiak listájának törlése"
 
-#: data/gtk/settings_dialog.ui:182
+#: data/gtk/settings_dialog.ui:181
 msgid "Clear the recently opened safes list."
 msgstr "A legutóbb megnyitott széfek listájának törlése."
 
-#: data/gtk/settings_dialog.ui:189 data/gtk/unlock_database.ui:94
+#: data/gtk/settings_dialog.ui:188
 msgid "Clear"
 msgstr "Törlés"
 
-#: data/gtk/unlock_database.ui:12
+#: data/gtk/unlock_database.ui:18
 msgid "Unlock Safe"
 msgstr "Széf feloldása"
 
-#: data/gtk/unlock_database.ui:68
-#| msgid "_Select Keyfile"
-msgid "_Select Keyfile…"
-msgstr "_Kulcsfájl kiválasztása…"
-
-#: data/gtk/unlocked_database.ui:8
+#: data/gtk/unlocked_database.ui:18
 msgid "Browser"
 msgstr "Böngésző"
 
-#: data/gtk/unlocked_database_page.ui:31
-#| msgid "Add elements with the ➕ button."
-msgid "Add elements with the ➕ button"
-msgstr "Adjon hozzá elemeket a ➕ gombbal"
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:691
+#| msgid "_Select Items"
+msgid "Select Items"
+msgstr "Elemek kiválasztása"
 
-#: data/gtk/unlocked_database_page.ui:32
-msgid "Empty Group"
-msgstr "Üres csoport"
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+#| msgctxt "Shortcut window description"
+#| msgid "Go Back"
+msgid "Go Back"
+msgstr "Ugrás vissza"
 
-#: data/gtk/unlocked_headerbar.ui:11
+#: data/gtk/unlocked_database.ui:41
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_Mégse"
+
+#: data/gtk/unlocked_database.ui:53 data/gtk/unlocked_database.ui:59
+#| msgid "Select Safe"
+msgid "Search Safe"
+msgstr "Széf keresése"
+
+#: data/gtk/unlocked_database.ui:72
+#| msgid "Clear"
+msgid "_Clear"
+msgstr "_Törlés"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:81
+msgid "Delete Selection"
+msgstr "Kiválasztás törlése"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/unlocked_database.ui:91
+msgid "Move Selection"
+msgstr "Kiválasztás áthelyezése"
+
+#: data/gtk/unlocked_database.ui:98
+msgid "Paste Selection"
+msgstr "Kiválasztás beillesztése"
+
+#: data/gtk/unlocked_database.ui:123
+#| msgid "Select Safe"
+msgid "Select an Entry"
+msgstr "Bejegyzés kiválasztása"
+
+#: data/gtk/unlocked_headerbar.ui:18
 msgid "New Entry or Group"
 msgstr "Új bejegyzés vagy csoport"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/gtk/unlocked_headerbar.ui:29
+#: data/gtk/unlocked_headerbar.ui:33
 msgid "Selection Mode"
 msgstr "Kiválasztási mód"
 
-#: data/gtk/unlocked_headerbar.ui:55
+#: data/gtk/unlocked_headerbar.ui:59
 msgid "So_rting"
 msgstr "_Rendezés"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:57
+#: data/gtk/unlocked_headerbar.ui:61
 msgid "_A-Z"
 msgstr "_A-Z"
 
 #. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:62
+#: data/gtk/unlocked_headerbar.ui:66
 msgid "_Z-A"
 msgstr "_Z-A"
 
-#: data/gtk/unlocked_headerbar.ui:67
+#: data/gtk/unlocked_headerbar.ui:71
 msgid "_Newest First"
 msgstr "_Legújabb elsőként"
 
-#: data/gtk/unlocked_headerbar.ui:72
+#: data/gtk/unlocked_headerbar.ui:76
 msgid "_Oldest First"
 msgstr "Leg_régebbi elsőként"
 
-#: data/gtk/unlocked_headerbar.ui:84
-#| msgctxt "Shortcut window description"
-#| msgid "Close Window"
+#: data/gtk/unlocked_headerbar.ui:88
 msgid "New _Window"
 msgstr "Új _ablak"
 
-#: data/gtk/unlocked_headerbar.ui:88
+#: data/gtk/unlocked_headerbar.ui:92
 msgid "Sa_fe Settings"
 msgstr "Szé_fbeállítások"
 
-#: data/gtk/unlocked_headerbar.ui:110
+#: data/gtk/unlocked_headerbar.ui:114
 msgid "New _Entry"
 msgstr "Új _bejegyzés"
 
-#: data/gtk/unlocked_headerbar.ui:114
+#: data/gtk/unlocked_headerbar.ui:118
 msgid "New _Group"
 msgstr "Új _csoport"
 
-#: data/gtk/unlocked_headerbar.ui:133
-#: gsecrets/widgets/saving_conflict_dialog.py:35
+#: data/gtk/unlocked_headerbar.ui:138
+#: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "_Mentés"
 
-#: data/gtk/unlocked_headerbar.ui:148
+#: data/gtk/unlocked_headerbar.ui:153
 msgid "_Lock"
 msgstr "_Zárolás"
 
@@ -1020,8 +956,6 @@ msgid "keepass;encrypt;secure;"
 msgstr "keepass;titkosítás;biztonság;"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:21
-#| msgctxt "Shortcut window description"
-#| msgid "Close Window"
 msgid "New Window"
 msgstr "Új ablak"
 
@@ -1094,46 +1028,39 @@ msgid "Path to the last opened database."
 msgstr "A legutóbb megnyitott adatbázis elérési útja."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:47
-msgid "Last opened databases"
-msgstr "Legutóbb megnyitott adatbázisok"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
-msgid "A list of the last opened databases."
-msgstr "A legutóbb megnyitott adatbázisok listája."
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
 msgstr "Összetett kulcs megjegyzése"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
 "Az adatbázis feloldásához legutóbb használt összetett kulcs megjegyzése."
 
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+#| msgid "Last used composite key"
+msgid "Last used key provider"
+msgstr "Legutóbb használt kulcsszolgáltató"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#| msgid "Path to last used key for composite database unlocking."
+msgid "Key provider for composite database unlocking."
+msgstr "Kulcsszolgáltató az összetett adatbázis feloldásához."
+
 #: data/org.gnome.World.Secrets.gschema.xml.in:57
-msgid "Last used composite key"
-msgstr "Legutóbb használt összetett kulcs"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
-msgid "Path to last used key for composite database unlocking."
-msgstr ""
-"Az összetett adatbázis feloldáshoz legutóbb használt kulcs elérési útja."
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Remember unlock method"
 msgstr "Feloldási mód megjegyzése"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
 "A legutóbb használt feloldási mód megjegyzése a jövőbeli adatbázis-"
 "feloldásokhoz."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Backup the database on unlock"
 msgstr "Az adatbázis biztonsági mentése feloldáskor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
@@ -1141,71 +1068,71 @@ msgstr ""
 "Ha hiba történik az adatbázis mentésekor, akkor a biztonsági mentés itt "
 "található: ~/.cache/secrets/backups"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Sorting order of groups and entries"
 msgstr "A csoportok és bejegyzések rendezési sorrendje"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid "Order of the rows in the groups and entries view."
 msgstr "A sorok sorrendje a csoportok és bejegyzések nézetben."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Use uppercases when generating a password"
 msgstr "Nagybetűk használata egy jelszó előállításakor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr ""
 "Nagybetűs karakterek használata A-tól Z-ig egy véletlenszerű jelszó "
 "előállításakor."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use lowercases when generating a password"
 msgstr "Kisbetűk használata egy jelszó előállításakor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr ""
 "Kisbetűs karakterek használata a-tól z-ig egy véletlenszerű jelszó "
 "előállításakor."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use numbers when generating a password"
 msgstr "Számok használata egy jelszó előállításakor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr ""
 "Szám karakterek használata 0-tól 9-ig egy véletlenszerű jelszó "
 "előállításakor."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use symbols when generating a password"
 msgstr "Szimbólumok használata egy jelszó előállításakor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
 "Nem alfanumerikus ASCII szimbólumok használata egy véletlenszerű jelszó "
 "előállításakor."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Password length when generating a password"
 msgstr "Jelszóhossz egy jelszó előállításakor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Number of single characters when generating a password."
 msgstr "Önálló karakterek száma egy véletlenszerű jelszó előállításakor."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Number of words when generating a passphrase"
 msgstr "Szavak száma egy jelmondat előállításakor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:107
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Separator when generating a passphrase"
 msgstr "Elválasztó egy jelmondat előállításakor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Word separator to use when generating a passphrase."
 msgstr "Használandó szóelválasztó egy jelmondat előállításakor."
 
@@ -1223,230 +1150,365 @@ msgstr ""
 "Tökéletesen beépül a GNOME asztali környezetbe, egyszerű és rendezett "
 "felületet biztosít a jelszóadatbázisok kezeléséhez."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:252
-msgid "Falk Alexander Seidl"
-msgstr "Falk Alexander Seidl"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:276
+#| msgid "Password Length"
+msgid "Password management"
+msgstr "Jelszókezelés"
 
-#: gsecrets/application.py:54
-msgid "Error: File {} does not exist"
-msgstr "Hiba: a(z) {} fájl nem létezik"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:280
+msgid "Safe unlocking"
+msgstr "Széf feloldása"
 
-#: gsecrets/application.py:59
-msgid "Error: Safe {} is already open"
-msgstr "Hiba: a(z) {} széf már meg van nyitva"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:284
+#| msgid "Safe is already open"
+msgid "Safe creation"
+msgstr "Széf létrehozása"
 
 #: gsecrets/attachment_warning_dialog.py:68
-#: gsecrets/attachment_warning_dialog.py:82
+#: gsecrets/attachment_warning_dialog.py:79
 msgid "Could not load attachment"
 msgstr "Nem sikerült betölteni a mellékletet"
 
-#: gsecrets/create_database.py:69
-msgid "Unable to create database"
-msgstr "Nem lehet létrehozni adatbázist"
-
-#: gsecrets/create_database.py:167
+#: gsecrets/create_database.py:65
 msgid "Passwords do not match"
 msgstr "A jelszavak nem egyeznek"
 
-#: gsecrets/create_database.py:197
-msgid "Generating…"
-msgstr "Előállítás…"
+#: gsecrets/create_database.py:80
+msgid "Unable to create database"
+msgstr "Nem lehet létrehozni adatbázist"
 
-#: gsecrets/create_database.py:209
-msgid "Could not create keyfile"
-msgstr "Nem sikerült létrehozni a kulcsfájlt"
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:100
+#: gsecrets/widgets/database_settings_dialog.py:182
+#| msgid "Remember composite key"
+msgid "Failed to generate composite key"
+msgstr "Nem sikerült előállítani az összetett kulcsot"
 
-#: gsecrets/create_database.py:211
-msgid "Generate"
-msgstr "Előállítás"
-
-#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
+#: gsecrets/entry_page.py:246 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "Mentve az előzményekbe"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:123
-#: gsecrets/widgets/credentials_group.py:92
+#: gsecrets/entry_page.py:260 gsecrets/entry_row.py:163
+#: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Felhasználónév lemásolva"
 
-#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
+#: gsecrets/entry_page.py:265 gsecrets/entry_page.py:394
 msgid "Address copied"
 msgstr "Cím lemásolva"
 
-#: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
+#: gsecrets/entry_page.py:274 gsecrets/entry_page.py:329
 msgid "One-time password copied"
 msgstr "Egyszer használatos jelszó lemásolva"
 
-#: gsecrets/entry_page.py:305
+#: gsecrets/entry_page.py:307
 msgid "Could not open URL"
 msgstr "Nem sikerült megnyitni az URL-t"
 
-#: gsecrets/entry_page.py:315
+#: gsecrets/entry_page.py:317
 msgid "The address is not valid"
 msgstr "A cím nem érvényes"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:352
+#: gsecrets/entry_page.py:354
 msgid "Select Attachments"
 msgstr "Mellékletek kiválasztása"
 
-#: gsecrets/entry_row.py:116 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Jelszó lemásolva"
 
-#: gsecrets/entry_row.py:135 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:171
+#| msgid "One-time password copied"
+msgid "One-Time Password copied"
+msgstr "Egyszer használatos jelszó lemásolva"
+
+#: gsecrets/entry_row.py:185 gsecrets/group_row.py:136
 msgid "Title not Specified"
 msgstr "Cím nincs megadva"
 
-#: gsecrets/entry_row.py:146
-msgid "Username not specified"
-msgstr "Felhasználónév nincs megadva"
-
-#: gsecrets/password_generator_popover.py:75
+#: gsecrets/password_generator_popover.py:74
 msgid "Include Lowercase"
 msgstr "Kisbetű tartalmazása"
 
-#: gsecrets/password_generator_popover.py:77
+#: gsecrets/password_generator_popover.py:76
 msgid "Exclude Lowercase"
 msgstr "Kisbetű kizárása"
 
-#: gsecrets/password_generator_popover.py:80
+#: gsecrets/password_generator_popover.py:79
 msgid "Include Uppercase"
 msgstr "Nagybetű tartalmazása"
 
-#: gsecrets/password_generator_popover.py:82
+#: gsecrets/password_generator_popover.py:81
 msgid "Exclude Uppercase"
 msgstr "Nagybetű kizárása"
 
-#: gsecrets/password_generator_popover.py:85
+#: gsecrets/password_generator_popover.py:84
 msgid "Include Numbers"
 msgstr "Számok tartalmazása"
 
-#: gsecrets/password_generator_popover.py:87
+#: gsecrets/password_generator_popover.py:86
 msgid "Exclude Numbers"
 msgstr "Számok kizárása"
 
-#: gsecrets/password_generator_popover.py:90
+#: gsecrets/password_generator_popover.py:89
 msgid "Include Symbols"
 msgstr "Szimbólumok tartalmazása"
 
-#: gsecrets/password_generator_popover.py:92
+#: gsecrets/password_generator_popover.py:91
 msgid "Exclude Symbols"
 msgstr "Szimbólumok kizárása"
 
-#: gsecrets/pathbar_button.py:30
+#: gsecrets/pathbar_button.py:33
 msgid "Root Group"
 msgstr "Gyökércsoport"
 
-#: gsecrets/recent_files_menu.py:36
+#: gsecrets/provider/file_provider.py:33 gsecrets/provider/file_provider.py:130
+#: gsecrets/provider/file_provider.py:196 gsecrets/utils.py:84
+msgid "Keyfile"
+msgstr "Kulcsfájl"
+
+#: gsecrets/provider/file_provider.py:41 gsecrets/provider/file_provider.py:79
+msgid "Select Keyfile"
+msgstr "Kulcsfájl kiválasztása"
+
+#: gsecrets/provider/file_provider.py:50 gsecrets/provider/file_provider.py:141
+#| msgid "Select Keyfile"
+msgid "Clear Keyfile"
+msgstr "Kulcsfájl törlése"
+
+#: gsecrets/provider/file_provider.py:69
+#| msgid "Select Keyfile"
+msgid "Select keyfile"
+msgstr "Kulcsfájl kiválasztása"
+
+#: gsecrets/provider/file_provider.py:107
+#| msgid "Could not Load Keyfile"
+msgid "Could not load keyfile"
+msgstr "Nem sikerült betölteni a kulcsfájlt"
+
+#: gsecrets/provider/file_provider.py:134
+#: gsecrets/provider/file_provider.py:194
+msgid "Generate Keyfile"
+msgstr "Kulcsfájl előállítása"
+
+#: gsecrets/provider/file_provider.py:158
+#| msgid "Use a keyfile to secure your safe."
+msgid "Use a file to increase security"
+msgstr "Fájl használata a biztonság növeléséhez"
+
+#: gsecrets/provider/file_provider.py:180
+msgid "Could not create keyfile"
+msgstr "Nem sikerült létrehozni a kulcsfájlt"
+
+#: gsecrets/provider/pkcs11_provider.py:99
+msgid "No Smartcard"
+msgstr "Nincs intelligens kártya"
+
+#: gsecrets/provider/pkcs11_provider.py:118
+#: gsecrets/provider/pkcs11_provider.py:260
+msgid "Smartcard"
+msgstr "Intelligens kártya"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+#| msgid "Select Keyfile"
+msgid "Select certificate"
+msgstr "Tanúsítvány kiválasztása"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "No smartcard present"
+msgstr "Nincs intelligens kártya megadva"
+
+#: gsecrets/provider/pkcs11_provider.py:198
+msgid "Please insert smartcard and retry."
+msgstr "Helyezze be az intelligens kártyát, és próbálja újra."
+
+#: gsecrets/provider/pkcs11_provider.py:201
+#: gsecrets/widgets/database_settings_dialog.py:217
+msgid "OK"
+msgstr "Rendben"
+
+#: gsecrets/provider/pkcs11_provider.py:208
+msgid "Unlock your smartcard"
+msgstr "Az intelligens kártya feloldása"
+
+#: gsecrets/provider/pkcs11_provider.py:209 gsecrets/selection_manager.py:111
+msgid "Cancel"
+msgstr "Mégse"
+
+#: gsecrets/provider/pkcs11_provider.py:253
+#| msgid "Failed to unlock Safe"
+msgid "Failed to unlock Smartcard"
+msgstr "Nem sikerült feloldani az intelligens kártyát"
+
+#: gsecrets/provider/pkcs11_provider.py:261
+msgid "Use a smartcard"
+msgstr "Intelligens kártya használata"
+
+#: gsecrets/provider/pkcs11_provider.py:315
+msgid "Refresh Certificate List"
+msgstr "Tanúsítványlista frissítése"
+
+#: gsecrets/provider/yubikey_provider.py:33
+msgid "No Key"
+msgstr "Nincs kulcs"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:36
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] – {slot}. foglalat"
+
+#: gsecrets/provider/yubikey_provider.py:136
+#: gsecrets/provider/yubikey_provider.py:194
+msgid "YubiKey"
+msgstr "YubiKey"
+
+#: gsecrets/provider/yubikey_provider.py:137
+#| msgid "Select Safe"
+msgid "Select key"
+msgstr "Kulcs kiválasztása"
+
+#: gsecrets/provider/yubikey_provider.py:145
+#: gsecrets/provider/yubikey_provider.py:201
+#| msgid "Select Keyfile"
+msgid "Select YubiKey slot"
+msgstr "YubiKey-foglalat kiválasztása"
+
+#: gsecrets/provider/yubikey_provider.py:236
+msgid "Touch YubiKey"
+msgstr "YubiKey megérintése"
+
+#: gsecrets/recent_files_menu.py:43
 msgid "Recent Files"
 msgstr "Legutóbbi fájlok"
 
-#: gsecrets/safe_element.py:41
+#: gsecrets/safe_element.py:43
 msgid "White"
 msgstr "Fehér"
 
-#: gsecrets/safe_element.py:43
+#: gsecrets/safe_element.py:45
 msgid "Blue"
 msgstr "Kék"
 
-#: gsecrets/safe_element.py:45
+#: gsecrets/safe_element.py:47
 msgid "Green"
 msgstr "Zöld"
 
-#: gsecrets/safe_element.py:47
+#: gsecrets/safe_element.py:49
 msgid "Yellow"
 msgstr "Sárga"
 
-#: gsecrets/safe_element.py:49
+#: gsecrets/safe_element.py:51
 msgid "Orange"
 msgstr "Narancssárga"
 
-#: gsecrets/safe_element.py:51
+#: gsecrets/safe_element.py:53
 msgid "Red"
 msgstr "Piros"
 
-#: gsecrets/safe_element.py:53
+#: gsecrets/safe_element.py:55
 msgid "Purple"
 msgstr "Lila"
 
-#: gsecrets/safe_element.py:55
+#: gsecrets/safe_element.py:57
 msgid "Brown"
 msgstr "Barna"
 
-#: gsecrets/safe_element.py:567
+#: gsecrets/safe_element.py:634
 msgid "Clone"
 msgstr "Klónozás"
 
 #. This shouldn't happen
-#: gsecrets/save_dialog.py:33 gsecrets/save_dialog.py:40
-#: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:342 gsecrets/widgets/window.py:348
+#. TODO Set the body of the message based on the error kind.
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
+#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:529
+#: gsecrets/widgets/window.py:421
 msgid "Could not save Safe"
 msgstr "Nem sikerült elmenteni a széfet"
 
-#: gsecrets/unlock_database.py:86
-msgid "Select Keyfile"
-msgstr "Kulcsfájl kiválasztása"
+#: gsecrets/selection_manager.py:58
+msgid "Operation aborted: deleting currently active group"
+msgstr "Művelet megszakítva: a jelenleg aktív csoport törlése"
+
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "Figyelmeztetés"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr "A kukából töröl elemeket, ezeket a törléseket nem lehet visszavonni."
+
+#: gsecrets/selection_manager.py:112
+msgid "Delete"
+msgstr "Törlés"
+
+#: gsecrets/selection_manager.py:142
+msgid "Operation aborted: moving currently active group"
+msgstr "Művelet megszakítva: a jelenleg aktív csoport áthelyezése"
+
+#: gsecrets/selection_manager.py:155
+msgid "Move completed"
+msgstr "Áthelyezés befejezve"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:157
+#: gsecrets/unlock_database.py:108
 msgid "Safe {} is already open"
 msgstr "A(z) {} széf már meg van nyitva"
 
-#: gsecrets/unlock_database.py:238
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
-msgstr "A széf feloldása sikertelen"
+msgstr "Nem sikerült feloldani a széfet"
 
-#: gsecrets/unlock_database.py:251
-msgid "_Try Again"
-msgstr "_Próbálja újra"
-
-#: gsecrets/unlock_database.py:256
-msgid "_Select Keyfile"
-msgstr "_Kulcsfájl kiválasztása"
-
-#: gsecrets/unlocked_database.py:299
+#: gsecrets/unlocked_database.py:244
 msgid "Safe saved"
 msgstr "Széf elmentve"
 
-#: gsecrets/unlocked_database.py:301
+#: gsecrets/unlocked_database.py:246
 msgid "No changes made"
 msgstr "Nem történtek változtatások"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:346
+#: gsecrets/unlocked_database.py:293
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Elem törölve"
 msgstr[1] "{} elem törölve"
 
-#: gsecrets/unlocked_database.py:351
+#: gsecrets/unlocked_database.py:298
 msgid "Deletion completed"
 msgstr "Törlés befejezve"
 
-#: gsecrets/unlocked_database.py:356 gsecrets/unlocked_database.py:381
+#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: gsecrets/unlocked_database.py:380
+#: gsecrets/unlocked_database.py:326
 msgid "Attribute deleted"
 msgstr "Tulajdonság törölve"
 
-#: gsecrets/unlocked_database.py:411
+#: gsecrets/unlocked_database.py:356
 msgid "Copied"
 msgstr "Lemásolva"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:508
+#: gsecrets/unlocked_database.py:456
 msgid "Safe locked due to inactivity"
 msgstr "A széf zárolva tétlenség miatt"
 
-#: gsecrets/widgets/add_attribute_dialog.py:37
+#: gsecrets/unlocked_database.py:693
+#| msgid "{} _Selected"
+#| msgid_plural "{} _Selected"
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] "{} kiválasztva"
+msgstr[1] "{} kiválasztva"
+
+#: gsecrets/widgets/add_attribute_dialog.py:35
 msgid "Attribute key contains an illegal character"
 msgstr "A tulajdonságkulcs nem megengedett karaktert tartalmaz"
 
-#: gsecrets/widgets/add_attribute_dialog.py:48
+#: gsecrets/widgets/add_attribute_dialog.py:45
 msgid "Attribute key already exists"
 msgstr "A tulajdonságkulcs már létezik"
 
@@ -1455,41 +1517,36 @@ msgstr "A tulajdonságkulcs már létezik"
 msgid "Save Attachment"
 msgstr "Melléklet mentése"
 
-#: gsecrets/widgets/attachment_entry_row.py:58
+#: gsecrets/widgets/attachment_entry_row.py:54
 msgid "Could not store attachment"
 msgstr "Nem sikerült eltárolni a mellékletet"
 
-#: gsecrets/widgets/attribute_entry_row.py:40
-#: gsecrets/widgets/protected_attribute_entry_row.py:57
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
 msgid "Attribute copied"
 msgstr "Tulajdonság másolva"
 
-#. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:136
-msgid "Select Current Keyfile"
-msgstr "Jelenlegi kulcsfájl kiválasztása"
-
-#: gsecrets/widgets/database_settings_dialog.py:234
-#: gsecrets/widgets/database_settings_dialog.py:238
+#: gsecrets/widgets/database_settings_dialog.py:149
+#: gsecrets/widgets/database_settings_dialog.py:153
 msgid "Could not apply changes"
 msgstr "Nem sikerült alkalmazni a változtatásokat"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:241
+#: gsecrets/widgets/database_settings_dialog.py:156
 msgid "Changes Applied"
 msgstr "Változtatások alkalmazva"
 
-#: gsecrets/widgets/database_settings_dialog.py:279
+#: gsecrets/widgets/database_settings_dialog.py:207
 msgid "Could not change credentials"
 msgstr "Nem sikerült megváltoztatni a hitelesítési adatokat"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:285
-#: gsecrets/widgets/saving_conflict_dialog.py:23
+#: gsecrets/widgets/database_settings_dialog.py:212
+#: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Ütközés a mentés során"
 
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:214
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1497,79 +1554,80 @@ msgstr ""
 "A széfet valahonnan máshonnan módosították. A mentéskor oldja fel ezeket az "
 "ütközéseket a főablakból."
 
-#: gsecrets/widgets/database_settings_dialog.py:288
-msgid "Ok"
-msgstr "Rendben"
-
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:350
-#: gsecrets/widgets/database_settings_dialog.py:364
+#: gsecrets/widgets/database_settings_dialog.py:279
+#: gsecrets/widgets/database_settings_dialog.py:293
 msgid "Unknown"
 msgstr "Ismeretlen"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:354
+#: gsecrets/widgets/database_settings_dialog.py:283
 msgid "AES 256-bit"
 msgstr "256 bites AES"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:357
+#: gsecrets/widgets/database_settings_dialog.py:286
 msgid "ChaCha20 256-bit"
 msgstr "256 bites ChaCha20"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:360
+#: gsecrets/widgets/database_settings_dialog.py:289
 msgid "Twofish 256-bit"
 msgstr "256 bites Twofish"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:297
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:371
+#: gsecrets/widgets/database_settings_dialog.py:300
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:374
+#: gsecrets/widgets/database_settings_dialog.py:303
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
 #: gsecrets/widgets/expiration_date_row.py:56
-#: gsecrets/widgets/expiration_date_row.py:62
+#: gsecrets/widgets/expiration_date_row.py:64
 msgid "Entry expired"
 msgstr "A bejegyzés lejárt"
 
-#: gsecrets/widgets/history_row.py:44
+#: gsecrets/widgets/history_row.py:43
 msgid "Hide Text"
 msgstr "Szöveg elrejtése"
 
-#: gsecrets/widgets/notes_dialog.py:62
+#: gsecrets/widgets/notes_dialog.py:58
 msgid "Selection copied"
 msgstr "Kijelölés lemásolva"
 
+#: gsecrets/widgets/password_level_bar.py:22
+#| msgid "Password Length"
+msgid "Password Strength"
+msgstr "Jelszó erőssége"
+
 #. TRANSLATORS Dialog header for when there is a conflict.
-#: gsecrets/widgets/quit_conflict_dialog.py:19
+#: gsecrets/widgets/quit_conflict_dialog.py:18
 msgid "Unsaved Changes Conflict"
 msgstr "Mentetlen változtatásütközések"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:21
+#: gsecrets/widgets/quit_conflict_dialog.py:20
 msgid "Save and Quit"
 msgstr "Mentés és kilépés"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:22
+#: gsecrets/widgets/quit_conflict_dialog.py:21
 msgid "Back up, Save, and Quit"
 msgstr "Biztonsági mentés készítés, mentés és kilépés"
 
-#: gsecrets/widgets/quit_conflict_dialog.py:23
+#: gsecrets/widgets/quit_conflict_dialog.py:22
 msgid "Don't Quit"
 msgstr "Ne lépjen ki"
 
 #. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
-#: gsecrets/widgets/saving_conflict_dialog.py:26
+#: gsecrets/widgets/saving_conflict_dialog.py:25
 msgid ""
 "The safe was modified from somewhere else. Saving will overwrite their "
 "version of the safe with our current version.\n"
@@ -1582,81 +1640,46 @@ msgstr ""
 " Az általuk mentett verziójú széfről is készíthet biztonsági mentést."
 
 #. TRANSLATORS backup and save current safe.
-#: gsecrets/widgets/saving_conflict_dialog.py:34
+#: gsecrets/widgets/saving_conflict_dialog.py:33
 msgid "_Back up and Save"
 msgstr "_Biztonsági mentés készítés és mentés"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:48
+#: gsecrets/widgets/saving_conflict_dialog.py:45
 msgid "Save Backup"
 msgstr "Biztonsági mentés mentése"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:62
+#: gsecrets/widgets/saving_conflict_dialog.py:55
 msgid "Could not backup safe"
 msgstr "Nem sikerült biztonsági mentést készíteni a széfről"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:72
-msgid "{} _Selected"
-msgid_plural "{} _Selected"
-msgstr[0] "{} _kiválaszva"
-msgstr[1] "{} _kiválaszva"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:98
-msgid "Operation aborted: deleting currently active group"
-msgstr "Művelet megszakítva: a jelenleg aktív csoport törlése"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:153
-msgid "Warning"
-msgstr "Figyelmeztetés"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:155
-msgid ""
-"You are deleting elements in the trash bin, these deletions cannot be undone."
-msgstr "A kukából töröl elemeket, ezeket a törléseket nem lehet visszavonni."
-
-#: gsecrets/widgets/selection_mode_headerbar.py:158
-msgid "Cancel"
-msgstr "Mégse"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:159
-msgid "Delete"
-msgstr "Törlés"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:199
-msgid "Operation aborted: moving currently active group"
-msgstr "Művelet megszakítva: a jelenleg aktív csoport áthelyezése"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:214
-msgid "Move completed"
-msgstr "Áthelyezés befejezve"
-
-#: gsecrets/widgets/window.py:121
+#: gsecrets/widgets/window.py:152
 msgid "Any file type"
 msgstr "Bármilyen fájltípus"
 
-#: gsecrets/widgets/window.py:128
+#: gsecrets/widgets/window.py:159
 msgid "Select Safe"
 msgstr "Széf kiválasztása"
 
-#: gsecrets/widgets/window.py:144
+#: gsecrets/widgets/window.py:176
 msgid "File does not have a valid path"
 msgstr "A fájlnak nincs érvényes útvonala"
 
-#: gsecrets/widgets/window.py:178
+#: gsecrets/widgets/window.py:209
 msgid "Safe is already open"
 msgstr "A széf már meg van nyitva"
 
-#: gsecrets/widgets/window.py:210
+#: gsecrets/widgets/window.py:241
 msgid "_Create"
 msgstr "_Létrehozás"
 
-#: gsecrets/widgets/window.py:231
+#: gsecrets/widgets/window.py:263
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Nem lehet létrehozni a széfet: a széf már meg van nyitva"
 
-#: gsecrets/widgets/window.py:273 gsecrets/widgets/window.py:288
+#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:320
 msgid "Could not create new Safe"
 msgstr "Nem sikerült új széfet létrehozni"
 
-#: gsecrets/widgets/window.py:355
+#: gsecrets/widgets/window.py:398
 msgid "Could not save safe"
 msgstr "Nem sikerült elmenteni a széfet"

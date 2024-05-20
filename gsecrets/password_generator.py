@@ -3,9 +3,14 @@ from __future__ import annotations
 
 import secrets
 import string
+import threading
+import typing
 
-from gi.repository import Gio
+from gi.repository import GLib
 from zxcvbn import zxcvbn
+
+if typing.TYPE_CHECKING:
+    from typing import Callable
 
 
 def generate(
@@ -86,10 +91,18 @@ def strength(password: str) -> int:
     return 0
 
 
-def strength_async(password, callback):
-    def cb_wrapper(future):
-        callback(future.result())
+def _threaded_compute_strenght(password: str, callback: Callable[[int], None]) -> None:
+    score = strength(password)
+    GLib.idle_add(callback, score)
 
-    executor = Gio.Application.get_default().executor
-    future = executor.submit(strength, password)
-    future.add_done_callback(cb_wrapper)
+
+def strength_async(password: str, callback: Callable[[int], None]) -> None:
+    if password:
+        thread = threading.Thread(
+            target=_threaded_compute_strenght,
+            args=[password, callback],
+        )
+        thread.daemon = True
+        thread.start()
+    else:
+        callback(0)

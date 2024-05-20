@@ -133,9 +133,14 @@ class YubiKeyProvider(BaseProvider):
         return model
 
     def create_unlock_widget(self, database_manager: DatabaseManager) -> Gtk.Widget:
+        factory = Gtk.SignalListItemFactory()
+        factory.connect("setup", self._on_factory_setup)
+        factory.connect("bind", self._on_factory_bind)
+
         row = Adw.ComboRow()
         row.set_title(_("YubiKey"))
         row.set_subtitle(_("Select key"))
+        row.set_factory(factory)
         row.connect("notify::selected", self._on_unlock_row_selected)
         self.unlock_row = row
 
@@ -182,17 +187,17 @@ class YubiKeyProvider(BaseProvider):
     def _on_refresh_button_clicked(self, _row: Adw.ComboRow) -> None:
         model = self._create_model()
 
-        factory = Gtk.SignalListItemFactory()
-        factory.connect("setup", self._on_factory_setup)
-        factory.connect("bind", self._on_factory_bind)
-
-        self.unlock_row.set_factory(factory)
         self.unlock_row.set_model(model)
         self.unlock_row.set_selected(len(model) - 1)
 
     def create_database_row(self) -> None:
+        factory = Gtk.SignalListItemFactory()
+        factory.connect("setup", self._on_factory_setup)
+        factory.connect("bind", self._on_factory_bind)
+
         self.create_row = Adw.ComboRow()
         self.create_row.set_title(_("YubiKey"))
+        self.create_row.set_factory(factory)
         self.create_row.connect("notify::selected", self._on_create_row_selected)
 
         refresh_button = Gtk.Button()
@@ -220,11 +225,6 @@ class YubiKeyProvider(BaseProvider):
     def _on_yubikey_create_refresh_button_clicked(self, _button: Gtk.Button) -> None:
         model = self._create_model()
 
-        factory = Gtk.SignalListItemFactory()
-        factory.connect("setup", self._on_factory_setup)
-        factory.connect("bind", self._on_factory_bind)
-
-        self.create_row.set_factory(factory)
         self.create_row.set_model(model)
         self.create_row.set_selected(0)
 

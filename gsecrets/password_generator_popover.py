@@ -64,7 +64,7 @@ class PasswordGeneratorPopover(Gtk.Popover):
     def on_toggled_callback(self, _button):
         self.set_tooltips()
 
-    def set_tooltips(self):
+    def set_tooltips(self) -> None:
         use_uppercase: bool = self._high_letter_toggle_btn.props.active
         use_lowercase: bool = self._low_letter_toggle_button.props.active
         use_numbers: bool = self._number_toggle_button.props.active

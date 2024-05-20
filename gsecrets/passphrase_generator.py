@@ -22,7 +22,7 @@ class Passphrase(GObject.Object):
             "resource:///org/gnome/World/Secrets/crypto/eff_large_wordlist.txt",
         )
 
-        def callback(gfile, result):
+        def callback(gfile: Gio.File, result: Gio.AsyncResult) -> None:
             try:
                 gbytes, _ = gfile.load_bytes_finish(result)
             except GLib.Error:

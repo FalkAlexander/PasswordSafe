@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import typing
 from gettext import gettext as _
 
 import validators
@@ -17,6 +18,13 @@ from gsecrets.widgets.entry_page_icon import EntryPageIcon
 from gsecrets.widgets.history_window import HistoryWindow
 from gsecrets.widgets.notes_dialog import NotesDialog
 from gsecrets.widgets.protected_attribute_entry_row import ProtectedAttributeEntryRow
+
+if typing.TYPE_CHECKING:
+    from gi.repository import Gio
+    from pykeepass.attachment import Attachment
+
+    from gsecrets.safe_element import SafeElement
+    from gsecrets.unlocked_database import UnlockedDatabase
 
 
 @Gtk.Template(resource_path="/org/gnome/World/Secrets/gtk/entry_page.ui")
@@ -60,7 +68,12 @@ class EntryPage(Adw.Bin):
 
     safe_entry = GObject.Property(type=SafeEntry)
 
-    def __init__(self, u_d, entry, add_all):
+    def __init__(
+        self,
+        u_d: UnlockedDatabase,
+        entry: SafeElement,
+        add_all: bool,
+    ) -> None:
         # Setup actions, must be done before initializing the template.
         self.install_action("entry.copy_password", None, self._on_copy_action)
         self.install_action("entry.copy_user", None, self._on_copy_action)
@@ -120,7 +133,7 @@ class EntryPage(Adw.Bin):
 
         Gtk.Widget.do_unroot(self)
 
-    def insert_entry_properties_into_listbox(self, add_all):
+    def insert_entry_properties_into_listbox(self, add_all: bool) -> None:
         # pylint: disable=too-many-locals
         # pylint: disable=too-many-branches
         # pylint: disable=too-many-statements
@@ -251,7 +264,12 @@ class EntryPage(Adw.Bin):
         else:
             self.action_set_enabled("entry.password_history", True)
 
-    def _on_copy_action(self, _widget, action_name, _parameter):
+    def _on_copy_action(
+        self,
+        _widget: Gtk.Widget,
+        action_name: str,
+        _parameter: GLib.Variant,
+    ) -> None:
         if self.unlocked_database.props.database_locked:
             return
 
@@ -321,7 +339,7 @@ class EntryPage(Adw.Bin):
         launcher.launch(window, None, self._on_launch, window)
 
     @Gtk.Template.Callback()
-    def on_otp_copy_button_clicked(self, _button):
+    def on_otp_copy_button_clicked(self, _button: Gtk.Button) -> None:
         safe_entry: SafeEntry = self.props.safe_entry
         otp_token = safe_entry.otp_token() or ""
         self.unlocked_database.send_to_clipboard(
@@ -360,7 +378,11 @@ class EntryPage(Adw.Bin):
             self._on_select_filechooser_response,
         )
 
-    def _on_select_filechooser_response(self, dialog, result):
+    def _on_select_filechooser_response(
+        self,
+        dialog: Gtk.FileDialog,
+        result: Gio.AsyncResult,
+    ) -> None:
         try:
             files = dialog.open_multiple_finish(result)
         except GLib.Error as err:
@@ -383,7 +405,7 @@ class EntryPage(Adw.Bin):
             for attachment in files:
                 attachment.load_bytes_async(None, callback)
 
-    def add_attachment_row(self, attachment):
+    def add_attachment_row(self, attachment: Attachment) -> None:
         safe_entry: SafeEntry = self.props.safe_entry
         attachment_row = AttachmentEntryRow(safe_entry, attachment)
         self.attachment_list_box.append(attachment_row)

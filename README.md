@@ -3,14 +3,14 @@
 </a>
 
 # Secrets
-<img src="https://gitlab.gnome.org/World/secrets/raw/master/data/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg" width="128" height="128" />
+<img src="data/icons/hicolor/scalable/apps/org.gnome.World.Secrets.svg" width="128" height="128" />
 <p>Manage your passwords</p>
 
 Secrets is a password manager which makes use of the KeePass v.4 format. It
 integrates perfectly with the GNOME desktop and provides an easy and uncluttered
 interface for the management of password databases.
 
-<img src="https://gitlab.gnome.org/World/secrets/-/raw/master/screenshots/browser.png" width="800px" />
+<img src="screenshots/screenshot-1.png" width="800px" />
 
 ## Features:
 * ⭐ Create or import KeePass safes

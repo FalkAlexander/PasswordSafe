@@ -3,6 +3,8 @@
   <template class="AddAttributeDialog" parent="AdwDialog">
     <property name="content_width">450</property>
     <property name="title" translatable="yes">Add Attribute</property>
+    <property name="default_widget">_add_button</property>
+    <property name="focus_widget">_key_entry</property>
     <child>
       <object class="AdwToolbarView">
         <child type="top">
@@ -33,11 +35,13 @@
                             <child>
                               <object class="AdwEntryRow" id="_key_entry">
                                 <property name="title" translatable="yes">Key</property>
+                                <property name="activates_default">True</property>
                               </object>
                             </child>
                             <child>
                               <object class="AdwEntryRow" id="_value_entry">
                                 <property name="title" translatable="yes">Value</property>
+                                <property name="activates_default">True</property>
                               </object>
                             </child>
                             <child>
@@ -49,7 +53,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkButton">
+                          <object class="GtkButton" id="_add_button">
                             <property name="label" translatable="yes">_Add</property>
                             <signal name="clicked" handler="_on_add_button_clicked" swapped="no"/>
                             <property name="halign">center</property>

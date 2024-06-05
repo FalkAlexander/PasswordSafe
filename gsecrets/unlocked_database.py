@@ -344,7 +344,6 @@ class UnlockedDatabase(Adw.BreakpointBin):
     def on_entry_duplicate_action(self):
         if element := self.active_element:
             element.duplicate()
-            self._navigate_back()
 
     def send_to_clipboard(
         self,

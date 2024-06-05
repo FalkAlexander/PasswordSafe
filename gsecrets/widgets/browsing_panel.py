@@ -128,12 +128,10 @@ class BrowsingPanel(Adw.Bin):
     def _on_listview_activate(self, _list_view, pos):
         element = self._list_model.get_item(pos)
 
-        if self.unlocked_database.props.selection_mode:
-            element.props.selected = not element.props.selected
-            return
-
         if element.is_group:
             self.unlocked_database.show_browser_page(element)
+        elif self.unlocked_database.props.selection_mode:
+            element.props.selected = not element.props.selected
         else:
             self.selection_model.props.selected_item = element
 

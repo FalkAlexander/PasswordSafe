@@ -39,7 +39,6 @@ class Window(Adw.ApplicationWindow):
     _unlock_database_bin = Gtk.Template.Child()
     unlocked_db_bin = Gtk.Template.Child()
 
-    mobile_layout = GObject.Property(type=bool, default=False)
     _view = View.WELCOME
 
     def __init__(self, *args, **kwargs):

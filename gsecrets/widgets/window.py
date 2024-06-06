@@ -5,7 +5,7 @@ import logging
 from enum import IntEnum
 from gettext import gettext as _
 
-from gi.repository import Adw, Gio, GLib, GObject, Gtk
+from gi.repository import Adw, Gio, GLib, Gtk
 
 import gsecrets.config_manager
 from gsecrets.create_database import CreateDatabase

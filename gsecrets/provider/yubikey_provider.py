@@ -182,7 +182,7 @@ class YubiKeyProvider(BaseProvider):
     def _on_factory_bind(self, _factory, list_item):
         label = list_item.get_child()
         info = list_item.get_item()
-        info.bind_property("label", label, "label", GObject.BindingFlags.SYNC_CREATE)
+        label.props.label = info.props.label
 
     def _on_refresh_button_clicked(self, _row: Adw.ComboRow) -> None:
         model = self._create_model()

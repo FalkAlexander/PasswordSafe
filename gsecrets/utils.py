@@ -70,10 +70,7 @@ def compare_passwords(pass1: str | None, pass2: str | None) -> bool:
     if pass1 is not None and pass2 is not None:
         return secrets.compare_digest(bytes(pass1, "utf-8"), bytes(pass2, "utf-8"))
 
-    if pass1 is None and pass2 is None:
-        return True
-
-    return False
+    return pass1 is None and pass2 is None
 
 
 class KeyFileFilter:

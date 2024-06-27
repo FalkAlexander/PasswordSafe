@@ -210,7 +210,4 @@ class FileProvider(BaseProvider):
         self._on_create_clear_keyfile(None)
 
     def generate_key(self, _salt: LazyValue[bytes]) -> bool:
-        if self.raw_key:
-            return True
-
-        return False
+        return self.raw_key is not None

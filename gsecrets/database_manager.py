@@ -326,9 +326,7 @@ class DatabaseManager(GObject.Object):
             history=False,
             first=True,
         )
-        if entry is None:
-            return False
-        return True
+        return entry is not None
 
     #
     # Database creation methods

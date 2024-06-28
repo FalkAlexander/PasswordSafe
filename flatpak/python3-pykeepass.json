@@ -7,25 +7,11 @@
     "sources": [
         {
             "type": "file",
-            "url": "https://files.pythonhosted.org/packages/c5/3a/dc4c067aa600e7fdb38a4981ce40768fc75c6b6b708f305ec7c94c767f72/pykeepass-4.0.7.post1.tar.gz",
-            "sha256": "04090d79cf121686b51c4c84d5bc6a62cd47b8337f8c0158caa9e845df803131"
+            "url": "https://files.pythonhosted.org/packages/60/c3/6ffa2413582213a9cf5609db7f5ac68fde107f05bfb5d951d3e88e6f9d73/pykeepass-4.1.0.tar.gz",
+            "sha256": "8d376cefe520695154a6a1bfaf34e36cfe8c606b0923d13335390ce38daee62a"
         }
     ],
     "modules": [
-        {
-            "name": "python3-lxml",
-            "buildsystem": "simple",
-            "build-commands": [
-                "pip3 install --no-index --ignore-installed --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"lxml\""
-            ],
-            "sources": [
-                {
-                    "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/70/bb/7a2c7b4f8f434aa1ee801704bf08f1e53d7b5feba3d5313ab17003477808/lxml-4.9.1.tar.gz",
-                    "sha256": "fe749b052bb7233fe5d072fcb549221a8cb1a16725c47c37e42b0b9cb3ff2c3f"
-                }
-            ]
-        },
         {
             "name": "python3-pycryptodomex",
             "buildsystem": "simple",

@@ -50,9 +50,10 @@ ninja -C _build install
 ```
 
 ## Hacking on Secrets
-To build the development version of Secrets and hack on the code
-see the [general guide](https://wiki.gnome.org/Newcomers/BuildProject)
-for building GNOME apps with Flatpak and GNOME Builder.
+To build the development version of Secrets and hack on the code see the
+[general
+guide](https://welcome.gnome.org/en/app/Secrets/#getting-the-app-to-build) for
+building GNOME apps with Flatpak and GNOME Builder.
 
 ### Translations
 Helping to translate Secrets or add support to a new language is welcome.
@@ -64,4 +65,4 @@ join us on our [#secrets:gnome.org](https://matrix.to/#/#secrets:gnome.org)
 channel.
 
 ## Code Of Conduct
-This project follows the [GNOME Code of Conduct](https://wiki.gnome.org/Foundation/CodeOfConduct).
+This project follows the [GNOME Code of Conduct](https://conduct.gnome.org/).

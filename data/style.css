@@ -141,21 +141,21 @@ textview {
 }
 
 .icon-flowbox flowboxchild:hover {
-  background: alpha(currentColor, .07);
+  background: color-mix(in srgb, currentColor 7%, transparent);
 }
 
 .icon-flowbox flowboxchild:active {
-  background: alpha(currentColor, .16);
+  background: color-mix(in srgb, currentColor 16%, transparent);
 }
 
 .icon-flowbox flowboxchild:selected {
-  background: alpha(currentColor, .1);
+  background: color-mix(in srgb, currentColor 10%, transparent);
 }
 
 .icon-flowbox flowboxchild:selected:active {
-  background: alpha(currentColor, .13);
+  background: color-mix(in srgb, currentColor 13%, transparent);
 }
 
 .icon-flowbox flowboxchild:selected:hover {
-  background: alpha(currentColor, .19);
+  background: color-mix(in srgb, currentColor 19%, transparent);
 }

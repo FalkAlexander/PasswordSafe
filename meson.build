@@ -50,8 +50,8 @@ endif
 dependency('glib-2.0', version: '>= 2.73.1')
 dependency('gio-2.0', version: '>= 2.66')
 dependency('gobject-introspection-1.0', version: '>=1.66.0')
-dependency('gtk4', version: '>=4.9')
-dependency('libadwaita-1', version: '>=1.6.alpha')
+dependency('gtk4', version: '>=4.15.3')
+dependency('libadwaita-1', version: '>=1.6.beta')
 
 python_dir = python_bin.get_install_dir()
 DATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())

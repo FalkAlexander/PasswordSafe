@@ -34,7 +34,6 @@ class Window(Adw.ApplicationWindow):
 
     _create_database_bin = Gtk.Template.Child()
     _main_view = Gtk.Template.Child()
-    _spinner = Gtk.Template.Child()
     toast_overlay = Gtk.Template.Child()
     _unlock_database_bin = Gtk.Template.Child()
     unlocked_db_bin = Gtk.Template.Child()
@@ -287,7 +286,6 @@ class Window(Adw.ApplicationWindow):
 
     def create_new_database(self, filepath: str) -> None:
         """Copy stock database onto filepath."""
-        self._spinner.start()
         self._main_view.set_visible_child_name("spinner")
 
         stock_db_file: Gio.File = Gio.File.new_for_uri(
@@ -307,8 +305,6 @@ class Window(Adw.ApplicationWindow):
                 self._create_database_bin.props.child = create_database
                 self._create_view = create_database
                 self.view = self.View.CREATE_DATABASE
-            finally:
-                self._spinner.stop()
 
         def copy_callback(gfile, result):
             try:
@@ -317,7 +313,6 @@ class Window(Adw.ApplicationWindow):
                 logging.exception("Could not copy new database")
                 self.invoke_initial_screen()
                 self.send_notification(_("Could not create new Safe"))
-                self._spinner.stop()
             else:
                 database_manager = DatabaseManager(self.key_providers, filepath)
                 database_manager.unlock_async(

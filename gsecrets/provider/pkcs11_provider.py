@@ -125,7 +125,7 @@ class Pkcs11Provider(BaseProvider):
         self.refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
         self.refresh_stack.add_named(self.refresh_button, "button")
 
-        self.refresh_spinner = Gtk.Spinner()
+        self.refresh_spinner = Adw.Spinner(size=16)
         self.refresh_stack.add_named(self.refresh_spinner, "spinner")
         row.add_suffix(self.refresh_stack)
         self.refresh_stack.set_visible_child(self.refresh_button)
@@ -165,13 +165,11 @@ class Pkcs11Provider(BaseProvider):
             task.return_boolean(present)
 
         self.refresh_stack.set_visible_child(self.refresh_spinner)
-        self.refresh_spinner.start()
 
         task = Gio.Task.new(self, None, callback, row)
         task.run_in_thread(pkcs11_refresh)
 
     def _refresh_pkcs11_finish(self, result):
-        self.refresh_spinner.stop()
         self.refresh_stack.set_visible_child(self.refresh_button)
         return result.propagate_boolean()
 
@@ -267,7 +265,7 @@ class Pkcs11Provider(BaseProvider):
         self.refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
         self.refresh_stack.add_named(self.refresh_button, "button")
 
-        self.refresh_spinner = Gtk.Spinner()
+        self.refresh_spinner = Adw.Spinner(size=16)
         self.refresh_stack.add_named(self.refresh_spinner, "spinner")
         row.add_suffix(self.refresh_stack)
         self.refresh_stack.set_visible_child(self.refresh_button)

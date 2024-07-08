@@ -219,8 +219,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         # Insensitive entries and buttons
         self.set_sensitive(False)
 
-        spinner = Gtk.Spinner()
-        spinner.start()
+        spinner = Adw.Spinner(size=16)
         button.set_child(spinner)
         button.set_sensitive(False)
 

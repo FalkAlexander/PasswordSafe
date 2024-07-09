@@ -1,5 +1,5 @@
 <a href="https://flathub.org/apps/details/org.gnome.World.Secrets">
-<img src="https://flathub.org/assets/badges/flathub-badge-i-en.png" width="190px" />
+<img src="https://flathub.org/api/badge?svg&locale=en&light" width="240px" />
 </a>
 
 # Secrets

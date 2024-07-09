@@ -195,7 +195,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         button.set_sensitive(False)
 
         self.window.key_providers.generate_composite_key_async(
-            self.database_manager.get_salt(),
+            self.database_manager.get_salt_as_lazy(),
             self._on_generate_composite_key,
         )
 

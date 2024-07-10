@@ -1,4 +1,4 @@
-# Hindi translation for secrets.
+# Hindi translation for secrets-master.
 # Copyright (C) 2024 secrets's COPYRIGHT HOLDER
 # This file is distributed under the same license as the secrets package.
 # Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024.
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-05-07 16:30+0000\n"
-"PO-Revision-Date: 2024-05-08 16:34+0530\n"
+"POT-Creation-Date: 2024-06-28 22:26+0000\n"
+"PO-Revision-Date: 2024-06-29 12:20+0530\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
@@ -31,31 +31,31 @@ msgstr "Scrambled777 <weblate.scrambled777@simplelogin.com>"
 #: data/about_dialog.ui.in:12 data/gtk/window.ui:6
 #: data/org.gnome.World.Secrets.desktop.in.in:4
 msgid "Secrets"
-msgstr "Secrets"
+msgstr "सीक्रेट्स"
 
 #: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
 msgstr "विशेषता जोड़ें"
 
-#: data/gtk/add_attribute_dialog.ui:35
+#: data/gtk/add_attribute_dialog.ui:37
 msgid "Key"
 msgstr "कुंजी"
 
-#: data/gtk/add_attribute_dialog.ui:40
+#: data/gtk/add_attribute_dialog.ui:43
 msgid "Value"
 msgstr "मान"
 
-#: data/gtk/add_attribute_dialog.ui:45
+#: data/gtk/add_attribute_dialog.ui:49
 msgid "Sensitive"
 msgstr "संवेदनशील"
 
-#: data/gtk/add_attribute_dialog.ui:46
+#: data/gtk/add_attribute_dialog.ui:50
 msgid "Contains sensitive data."
 msgstr "संवेदनशील डेटा शामिल है।"
 
-#: data/gtk/add_attribute_dialog.ui:53 gsecrets/entry_page.py:355
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:373
 msgid "_Add"
-msgstr " जोड़ें (_A)"
+msgstr "जोड़ें (_A)"
 
 #: data/gtk/attachment_entry_row.ui:9
 msgid "Download Attachment"
@@ -115,7 +115,7 @@ msgstr "रंग"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:239
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
 msgid "Create Safe"
 msgstr "तिजोरी बनाएं"
 
@@ -158,20 +158,20 @@ msgid "_Open Safe"
 msgstr "तिजोरी खोलें (_O)"
 
 #: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:103
 msgid "_Preferences"
 msgstr "प्राथमिकताएं (_P)"
 
 #: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/unlocked_headerbar.ui:107
 msgid "_Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट (_K)"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:106
+#: data/gtk/unlocked_headerbar.ui:111
 msgid "_About Secrets"
-msgstr "Secrets के बारे में (_A)"
+msgstr "सीक्रेट्स के बारे में (_A)"
 
 #: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
 msgid "_Username"
@@ -213,8 +213,8 @@ msgid "New Additional Credentials"
 msgstr "नए अतिरिक्त प्रमाणपत्र"
 
 #: data/gtk/database_settings_dialog.ui:75
-#: gsecrets/widgets/database_settings_dialog.py:170
-#: gsecrets/widgets/database_settings_dialog.py:229
+#: gsecrets/widgets/database_settings_dialog.py:196
+#: gsecrets/widgets/database_settings_dialog.py:259
 msgid "_Apply Changes"
 msgstr "परिवर्तन लागू करें (_A)"
 
@@ -224,52 +224,64 @@ msgid "General"
 msgstr "सामान्य"
 
 #: data/gtk/database_settings_dialog.ui:96
+msgid "Database"
+msgstr "डेटाबेस"
+
+#: data/gtk/database_settings_dialog.ui:99
+msgid "Name"
+msgstr "नाम"
+
+#: data/gtk/database_settings_dialog.ui:107
+msgid "Description"
+msgstr "विवरण"
+
+#: data/gtk/database_settings_dialog.ui:115
+msgid "Default User"
+msgstr "तयशुदा उपयोगकर्ता"
+
+#: data/gtk/database_settings_dialog.ui:126
 msgid "Details"
 msgstr "विवरण"
 
-#: data/gtk/database_settings_dialog.ui:99
-msgid "Safe Name"
-msgstr "तिजोरी का नाम"
-
-#: data/gtk/database_settings_dialog.ui:107
+#: data/gtk/database_settings_dialog.ui:129
 msgid "Path"
 msgstr "पथ"
 
-#: data/gtk/database_settings_dialog.ui:116
+#: data/gtk/database_settings_dialog.ui:138
 msgid "File Size"
 msgstr "फाइल आकार"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:125
+#: data/gtk/database_settings_dialog.ui:147
 msgid "KeePass Version"
-msgstr "KeePass संस्करण"
+msgstr "कीपास संस्करण"
 
-#: data/gtk/database_settings_dialog.ui:134
+#: data/gtk/database_settings_dialog.ui:156
 msgid "Creation Date"
 msgstr "निर्माण तिथि"
 
-#: data/gtk/database_settings_dialog.ui:142
+#: data/gtk/database_settings_dialog.ui:164
 msgid "Encryption Algorithm"
 msgstr "कूटलेखन कलनविधि"
 
-#: data/gtk/database_settings_dialog.ui:150
+#: data/gtk/database_settings_dialog.ui:172
 msgid "Derivation Algorithm"
 msgstr "व्युत्पत्ति कलनविधि"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:160
+#: data/gtk/database_settings_dialog.ui:182
 msgid "Stats"
 msgstr "आंकड़े"
 
-#: data/gtk/database_settings_dialog.ui:163
+#: data/gtk/database_settings_dialog.ui:185
 msgid "Number of Entries"
 msgstr "प्रविष्टियों की संख्या"
 
-#: data/gtk/database_settings_dialog.ui:172
+#: data/gtk/database_settings_dialog.ui:194
 msgid "Number of Groups"
 msgstr "समूहों की संख्या"
 
-#: data/gtk/database_settings_dialog.ui:181
+#: data/gtk/database_settings_dialog.ui:203
 msgid "Passwords"
 msgstr "पासवर्ड"
 
@@ -277,7 +289,7 @@ msgstr "पासवर्ड"
 msgid "Entry Menu"
 msgstr "प्रवेश मेनू"
 
-#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:29
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "शीर्षक (_T)"
@@ -303,14 +315,14 @@ msgstr "OTP राज़ (_T)"
 msgid "Could not Generate OTP Token"
 msgstr "OTP टोकन उत्पन्न नहीं कर सके"
 
-#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:37
+#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:34
 #: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "टिप्पणियां"
 
-#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:41
+#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:38
 msgid "Edit in a Window"
-msgstr "विंडो में संपादित करें"
+msgstr "खिड़की में संपादित करें"
 
 #: data/gtk/entry_page.ui:198
 msgid "Icon"
@@ -336,31 +348,31 @@ msgstr "विशेषता जोड़ें (_i)"
 msgid "Expiration Date"
 msgstr "समाप्ति तिथि"
 
-#: data/gtk/entry_page.ui:260
+#: data/gtk/entry_page.ui:257
 msgid "_Show More"
 msgstr "अधिक दिखाएं (_S)"
 
-#: data/gtk/entry_page.ui:279
+#: data/gtk/entry_page.ui:271
 msgid "D_uplicate"
 msgstr "डुप्लीकेट (_u)"
 
-#: data/gtk/entry_page.ui:283
+#: data/gtk/entry_page.ui:275
 msgid "_References"
 msgstr "संदर्भ (_R)"
 
-#: data/gtk/entry_page.ui:287 data/gtk/group_page.ui:78
+#: data/gtk/entry_page.ui:279 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "प्रॉपर्टी (_P)"
 
-#: data/gtk/entry_page.ui:293
+#: data/gtk/entry_page.ui:285
 msgid "_Save in History"
 msgstr "इतिहास में सहेजें (_S)"
 
-#: data/gtk/entry_page.ui:297
+#: data/gtk/entry_page.ui:289
 msgid "Show _History"
 msgstr "इतिहास दिखाएं (_H)"
 
-#: data/gtk/entry_page.ui:303 data/gtk/group_page.ui:84
+#: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
 msgid "_Delete"
 msgstr "मिटाएं (_D)"
 
@@ -392,7 +404,7 @@ msgstr "समाप्ति तिथि हटाएं"
 msgid "_Set Expiration Date"
 msgstr "समाप्ति तिथि निर्धारित करें (_S)"
 
-#: data/gtk/group_page.ui:17
+#: data/gtk/group_page.ui:14
 msgid "Group Menu"
 msgstr "समूह मेनू"
 
@@ -433,12 +445,12 @@ msgstr "शॉर्टकट दिखाएं"
 #: data/gtk/help-overlay.ui:44
 msgctxt "Shortcut window description"
 msgid "Close Window"
-msgstr "विंडो बंद"
+msgstr "खिड़की बंद करें"
 
 #: data/gtk/help-overlay.ui:50
 msgctxt "Shortcut window description"
 msgid "New Window"
-msgstr "नई विंडो"
+msgstr "नई खिड़की"
 
 #: data/gtk/help-overlay.ui:56
 msgctxt "Shortcut window description"
@@ -526,17 +538,17 @@ msgstr "पासवर्ड इतिहास"
 msgid "_Open"
 msgstr "खोलें (_O)"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:84
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:89
 #: data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "नई तिजोरी (_N)"
 
-#: data/gtk/notes_dialog.ui:19
+#: data/gtk/notes_dialog.ui:20
 msgid "_Copy"
 msgstr "कॉपी (_C)"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:31 data/gtk/notes_dialog.ui:56
+#: data/gtk/notes_dialog.ui:32 data/gtk/notes_dialog.ui:57
 #: data/gtk/unlocked_headerbar.ui:26
 msgid "Search"
 msgstr "खोजें"
@@ -555,7 +567,7 @@ msgid "Characters"
 msgstr "वर्ण"
 
 #: data/gtk/password_generator_popover.ui:94
-#: gsecrets/provider/pkcs11_provider.py:205
+#: gsecrets/provider/pkcs11_provider.py:206
 msgid "Passphrase"
 msgstr "पासफ़्रेज़"
 
@@ -565,7 +577,7 @@ msgstr "शब्द"
 
 #. Button to generate a password
 #: data/gtk/password_generator_popover.ui:132
-#: gsecrets/provider/file_provider.py:195
+#: gsecrets/provider/file_provider.py:196
 msgid "_Generate"
 msgstr "उत्पन्न करें (_G)"
 
@@ -662,12 +674,12 @@ msgstr "क्या आप सभी परिवर्तन तिजोर�
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:422
+#: gsecrets/widgets/window.py:421
 msgid "_Quit Without Saving"
 msgstr "बिना सहेजे छोड़ें (_Q)"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:423
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
 msgid "_Don't Quit"
 msgstr "मत छोड़ें (_D)"
 
@@ -686,8 +698,8 @@ msgstr "अंतिम बार खोली गई तिजोरी को 
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:148
-#: gsecrets/widgets/window.py:231 gsecrets/widgets/window.py:243
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
 msgid "Safe"
 msgstr "तिजोरी"
 
@@ -700,8 +712,8 @@ msgid "Save every change automatically."
 msgstr "हर परिवर्तन को स्वचालित रूप से सहेजें।"
 
 #: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:208
-#: gsecrets/provider/pkcs11_provider.py:210
+#: gsecrets/provider/pkcs11_provider.py:209
+#: gsecrets/provider/pkcs11_provider.py:211
 msgid "Unlock"
 msgstr "ताला खोलें"
 
@@ -825,7 +837,7 @@ msgstr "तिजोरी का ताला खोलें"
 msgid "Browser"
 msgstr "ब्राउज़र"
 
-#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:691
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
 msgid "Select Items"
 msgstr "वस्तुएं चुनें"
 
@@ -873,52 +885,54 @@ msgstr "नई प्रविष्टि या समूह"
 msgid "Selection Mode"
 msgstr "चयन मोड"
 
-#: data/gtk/unlocked_headerbar.ui:59
-msgid "So_rting"
-msgstr "छंटाई (_r)"
-
-#. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:61
-msgid "_A-Z"
-msgstr "_A-Z"
-
-#. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:66
-msgid "_Z-A"
-msgstr "_Z-A"
-
-#: data/gtk/unlocked_headerbar.ui:71
-msgid "_Newest First"
-msgstr "नवीनतम पहले (_N)"
-
-#: data/gtk/unlocked_headerbar.ui:76
-msgid "_Oldest First"
-msgstr "पुराना पहले (_O)"
-
-#: data/gtk/unlocked_headerbar.ui:88
-msgid "New _Window"
-msgstr "नई विंडो (_W)"
-
-#: data/gtk/unlocked_headerbar.ui:92
-msgid "Sa_fe Settings"
-msgstr "तिजोरी सेटिंग्स (_f)"
-
-#: data/gtk/unlocked_headerbar.ui:114
-msgid "New _Entry"
-msgstr "नई प्रविष्टि (_E)"
-
-#: data/gtk/unlocked_headerbar.ui:118
-msgid "New _Group"
-msgstr "नया समूह (_G)"
-
-#: data/gtk/unlocked_headerbar.ui:138
+#. s
+#: data/gtk/unlocked_headerbar.ui:54
 #: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "सहेजें (_S)"
 
-#: data/gtk/unlocked_headerbar.ui:153
+#. s
+#: data/gtk/unlocked_headerbar.ui:58
 msgid "_Lock"
 msgstr "ताला लगायें (_L)"
+
+#: data/gtk/unlocked_headerbar.ui:64
+msgid "So_rting"
+msgstr "छंटाई (_r)"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:66
+msgid "_A-Z"
+msgstr "_A-Z"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:71
+msgid "_Z-A"
+msgstr "_Z-A"
+
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Newest First"
+msgstr "नवीनतम पहले (_N)"
+
+#: data/gtk/unlocked_headerbar.ui:81
+msgid "_Oldest First"
+msgstr "पुराना पहले (_O)"
+
+#: data/gtk/unlocked_headerbar.ui:93
+msgid "New _Window"
+msgstr "नई खिड़की (_W)"
+
+#: data/gtk/unlocked_headerbar.ui:97
+msgid "Sa_fe Settings"
+msgstr "तिजोरी सेटिंग्स (_f)"
+
+#: data/gtk/unlocked_headerbar.ui:119
+msgid "New _Entry"
+msgstr "नई प्रविष्टि (_E)"
+
+#: data/gtk/unlocked_headerbar.ui:123
+msgid "New _Group"
+msgstr "नया समूह (_G)"
 
 #. The umbrella sentence of the application on the first start screen
 #: data/gtk/welcome_page.ui:11
@@ -928,20 +942,20 @@ msgstr "सुरक्षित राज़"
 #. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
 #: data/gtk/welcome_page.ui:12
 msgid "Create or import a new Keepass safe"
-msgstr "एक नई KeePass तिजोरी बनाएं या आयात करें"
+msgstr "एक नई कीपास तिजोरी बनाएं या आयात करें"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:5
 msgid "A password manager for GNOME"
-msgstr "GNOME के लिए पासवर्ड प्रबंधक"
+msgstr "गनोम के लिए पासवर्ड प्रबंधक"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.World.Secrets.desktop.in.in:14
 msgid "keepass;encrypt;secure;"
-msgstr "keepass;कूटलेख;सुरक्षित;"
+msgstr "कीपास;कूटलेख;सुरक्षित;"
 
 #: data/org.gnome.World.Secrets.desktop.in.in:21
 msgid "New Window"
-msgstr "नई विंडो"
+msgstr "नई खिड़की"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
@@ -995,11 +1009,11 @@ msgstr "पासवर्ड कॉपी करने के बाद सु�
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:37
 msgid "Window size"
-msgstr "विंडो का आकार"
+msgstr "खिड़की का आकार"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:38
 msgid "Remember the window size."
-msgstr "विंडो का आकार याद रखें।"
+msgstr "खिड़की का आकार याद रखें।"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:42
 msgid "Last opened database"
@@ -1115,24 +1129,24 @@ msgid ""
 "integrates perfectly with the GNOME desktop and provides an easy and "
 "uncluttered interface for the management of password databases."
 msgstr ""
-"Secrets एक पासवर्ड मैनेजर है जो KeePass v.4 प्रारूप का उपयोग करता है। यह GNOME "
-"डेस्कटॉप के साथ पूरी तरह से एकीकृत होता है और पासवर्ड डेटाबेस के प्रबंधन के लिए एक आसान और "
+"सीक्रेट्स एक पासवर्ड प्रबंधक है जो कीपास v.4 प्रारूप का उपयोग करता है। यह गनोम डेस्कटॉप "
+"के साथ पूरी तरह से एकीकृत होता है और पासवर्ड डेटाबेस के प्रबंधन के लिए एक आसान और "
 "सुव्यवस्थित इंटरफेस प्रदान करता है।"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:292
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:303
 msgid "Password management"
 msgstr "पासवर्ड प्रबंधन"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:296
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:307
 msgid "Safe unlocking"
 msgstr "तिजोरी खोल रहे हैं"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:300
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:311
 msgid "Safe creation"
 msgstr "तिजोरी निर्माण"
 
-#: gsecrets/attachment_warning_dialog.py:68
-#: gsecrets/attachment_warning_dialog.py:79
+#: gsecrets/attachment_warning_dialog.py:71
+#: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
 msgstr "अनुलग्नक लोड नहीं किया जा सका"
 
@@ -1145,37 +1159,37 @@ msgid "Unable to create database"
 msgstr "डेटाबेस बनाने में असमर्थ"
 
 #: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
-#: gsecrets/widgets/database_settings_dialog.py:182
+#: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "समग्र कुंजी उत्पन्न करने में विफल"
 
-#: gsecrets/entry_page.py:246 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:259 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "इतिहास में सहेजा गया"
 
-#: gsecrets/entry_page.py:260 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:278 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "उपयोक्तानाम कॉपी किया गया"
 
-#: gsecrets/entry_page.py:265 gsecrets/entry_page.py:394
+#: gsecrets/entry_page.py:283 gsecrets/entry_page.py:416
 msgid "Address copied"
 msgstr "पता कॉपी किया गया"
 
-#: gsecrets/entry_page.py:274 gsecrets/entry_page.py:329
+#: gsecrets/entry_page.py:292 gsecrets/entry_page.py:347
 msgid "One-time password copied"
 msgstr "OTP कॉपी किया गया"
 
-#: gsecrets/entry_page.py:307
+#: gsecrets/entry_page.py:325
 msgid "Could not open URL"
 msgstr "URL नहीं खुल सका"
 
-#: gsecrets/entry_page.py:317
+#: gsecrets/entry_page.py:335
 msgid "The address is not valid"
 msgstr "पता मान्य नहीं है"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:354
+#: gsecrets/entry_page.py:372
 msgid "Select Attachments"
 msgstr "अनुलग्नक चुनें"
 
@@ -1223,117 +1237,113 @@ msgstr "प्रतीक शामिल करें"
 msgid "Exclude Symbols"
 msgstr "प्रतीकों बहिष्कृत करें"
 
-#: gsecrets/pathbar_button.py:33
-msgid "Root Group"
-msgstr "मूल समूह"
-
-#: gsecrets/provider/file_provider.py:33 gsecrets/provider/file_provider.py:130
-#: gsecrets/provider/file_provider.py:196 gsecrets/utils.py:84
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:82
 msgid "Keyfile"
 msgstr "कुंजीफाइल"
 
-#: gsecrets/provider/file_provider.py:41 gsecrets/provider/file_provider.py:79
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
 msgid "Select Keyfile"
 msgstr "कुंजीफाइल चुनें"
 
-#: gsecrets/provider/file_provider.py:50 gsecrets/provider/file_provider.py:141
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
 msgid "Clear Keyfile"
 msgstr "कुंजीफाइल साफ करें"
 
-#: gsecrets/provider/file_provider.py:69
+#: gsecrets/provider/file_provider.py:70
 msgid "Select keyfile"
 msgstr "कुंजीफाइल चुनें"
 
-#: gsecrets/provider/file_provider.py:107
+#: gsecrets/provider/file_provider.py:108
 msgid "Could not load keyfile"
 msgstr "कुंजीफाइल लोड नहीं हो सका"
 
-#: gsecrets/provider/file_provider.py:134
-#: gsecrets/provider/file_provider.py:194
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
 msgid "Generate Keyfile"
 msgstr "कुंजीफाइल उत्पन्न करें"
 
-#: gsecrets/provider/file_provider.py:158
+#: gsecrets/provider/file_provider.py:159
 msgid "Use a file to increase security"
 msgstr "सुरक्षा बढ़ाने के लिए फाइल का उपयोग करें"
 
-#: gsecrets/provider/file_provider.py:180
+#: gsecrets/provider/file_provider.py:181
 msgid "Could not create keyfile"
 msgstr "कुंजीफाइल नहीं बनाई जा सकी"
 
-#: gsecrets/provider/pkcs11_provider.py:99
+#: gsecrets/provider/pkcs11_provider.py:100
 msgid "No Smartcard"
 msgstr "कोई स्मार्टकार्ड नहीं"
 
-#: gsecrets/provider/pkcs11_provider.py:118
-#: gsecrets/provider/pkcs11_provider.py:260
+#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:261
 msgid "Smartcard"
 msgstr "स्मार्टकार्ड"
 
-#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:120
 msgid "Select certificate"
 msgstr "प्रमाणपत्र चुनें"
 
-#: gsecrets/provider/pkcs11_provider.py:197
+#: gsecrets/provider/pkcs11_provider.py:198
 msgid "No smartcard present"
 msgstr "कोई स्मार्टकार्ड मौजूद नहीं"
 
-#: gsecrets/provider/pkcs11_provider.py:198
+#: gsecrets/provider/pkcs11_provider.py:199
 msgid "Please insert smartcard and retry."
 msgstr "कृपया स्मार्टकार्ड डालें और पुनः प्रयास करें।"
 
-#: gsecrets/provider/pkcs11_provider.py:201
-#: gsecrets/widgets/database_settings_dialog.py:217
+#: gsecrets/provider/pkcs11_provider.py:202
+#: gsecrets/widgets/database_settings_dialog.py:247
 msgid "OK"
 msgstr "ठीक है"
 
-#: gsecrets/provider/pkcs11_provider.py:208
+#: gsecrets/provider/pkcs11_provider.py:209
 msgid "Unlock your smartcard"
 msgstr "अपना स्मार्टकार्ड खोलें"
 
-#: gsecrets/provider/pkcs11_provider.py:209 gsecrets/selection_manager.py:111
+#: gsecrets/provider/pkcs11_provider.py:210 gsecrets/selection_manager.py:111
 msgid "Cancel"
 msgstr "रद्द करें"
 
-#: gsecrets/provider/pkcs11_provider.py:253
+#: gsecrets/provider/pkcs11_provider.py:254
 msgid "Failed to unlock Smartcard"
 msgstr "स्मार्टकार्ड खोलने में विफल"
 
-#: gsecrets/provider/pkcs11_provider.py:261
+#: gsecrets/provider/pkcs11_provider.py:262
 msgid "Use a smartcard"
 msgstr "स्मार्टकार्ड का प्रयोग करें"
 
-#: gsecrets/provider/pkcs11_provider.py:315
+#: gsecrets/provider/pkcs11_provider.py:316
 msgid "Refresh Certificate List"
 msgstr "प्रमाणपत्र सूची ताज़ा करें"
 
-#: gsecrets/provider/yubikey_provider.py:33
+#: gsecrets/provider/yubikey_provider.py:34
 msgid "No Key"
 msgstr "कोई कुंजी नहीं"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
-#: gsecrets/provider/yubikey_provider.py:36
+#: gsecrets/provider/yubikey_provider.py:37
 #, python-brace-format
 msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - खांचा {slot}"
 
-#: gsecrets/provider/yubikey_provider.py:136
-#: gsecrets/provider/yubikey_provider.py:194
+#: gsecrets/provider/yubikey_provider.py:141
+#: gsecrets/provider/yubikey_provider.py:199
 msgid "YubiKey"
-msgstr "YubiKey"
+msgstr "यूबीकी"
 
-#: gsecrets/provider/yubikey_provider.py:137
+#: gsecrets/provider/yubikey_provider.py:142
 msgid "Select key"
 msgstr "कुंजी चुनें"
 
-#: gsecrets/provider/yubikey_provider.py:145
-#: gsecrets/provider/yubikey_provider.py:201
+#: gsecrets/provider/yubikey_provider.py:151
+#: gsecrets/provider/yubikey_provider.py:207
 msgid "Select YubiKey slot"
-msgstr "YubiKey खांचा चुनें"
+msgstr "यूबीकी खांचा चुनें"
 
-#: gsecrets/provider/yubikey_provider.py:236
+#: gsecrets/provider/yubikey_provider.py:237
 msgid "Touch YubiKey"
-msgstr "YubiKey को स्पर्श करें"
+msgstr "यूबीकी को छुएं"
 
 #: gsecrets/recent_files_menu.py:43
 msgid "Recent Files"
@@ -1371,15 +1381,15 @@ msgstr "बैंगनी"
 msgid "Brown"
 msgstr "भूरा"
 
-#: gsecrets/safe_element.py:634
+#: gsecrets/safe_element.py:637
 msgid "Clone"
 msgstr "प्रतिरूप"
 
 #. This shouldn't happen
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:529
-#: gsecrets/widgets/window.py:421
+#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/widgets/window.py:420
 msgid "Could not save Safe"
 msgstr "तिजोरी साहेजी नहीं जा सकी"
 
@@ -1444,16 +1454,16 @@ msgstr "पूर्ववत"
 msgid "Attribute deleted"
 msgstr "विशेषता हटाई गई"
 
-#: gsecrets/unlocked_database.py:356
+#: gsecrets/unlocked_database.py:355
 msgid "Copied"
 msgstr "कॉपी किया गया"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:456
+#: gsecrets/unlocked_database.py:455
 msgid "Safe locked due to inactivity"
 msgstr "निष्क्रियता के कारण तिजोरी पर ताला लगाया गया"
 
-#: gsecrets/unlocked_database.py:693
+#: gsecrets/unlocked_database.py:692
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} चयनित"
@@ -1481,68 +1491,68 @@ msgstr "अनुलग्नक संग्रहीत नहीं किय
 msgid "Attribute copied"
 msgstr "विशेषता कॉपी की गई"
 
-#: gsecrets/widgets/database_settings_dialog.py:149
-#: gsecrets/widgets/database_settings_dialog.py:153
+#: gsecrets/widgets/database_settings_dialog.py:175
+#: gsecrets/widgets/database_settings_dialog.py:179
 msgid "Could not apply changes"
 msgstr "परिवर्तन लागू नहीं किये जा सके"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:156
+#: gsecrets/widgets/database_settings_dialog.py:182
 msgid "Changes Applied"
 msgstr "परिवर्तन लागू"
 
-#: gsecrets/widgets/database_settings_dialog.py:207
+#: gsecrets/widgets/database_settings_dialog.py:237
 msgid "Could not change credentials"
 msgstr "प्रमाण पत्र नहीं बदले जा सके"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:212
+#: gsecrets/widgets/database_settings_dialog.py:242
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "सहेजते समय टकराव"
 
-#: gsecrets/widgets/database_settings_dialog.py:214
+#: gsecrets/widgets/database_settings_dialog.py:244
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
 msgstr ""
-"तिजोरी को कहीं और से संशोधित किया गया था। कृपया सहेजते समय इन विवादों को मुख्य विंडो से "
-"हल करें।"
+"तिजोरी को कहीं और से संशोधित किया गया था। कृपया सहेजते समय इन विवादों को मुख्य खिड़की "
+"से हल करें।"
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:279
-#: gsecrets/widgets/database_settings_dialog.py:293
+#: gsecrets/widgets/database_settings_dialog.py:309
+#: gsecrets/widgets/database_settings_dialog.py:323
 msgid "Unknown"
 msgstr "अज्ञात"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:283
+#: gsecrets/widgets/database_settings_dialog.py:313
 msgid "AES 256-bit"
 msgstr "AES 256-बिट"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:286
+#: gsecrets/widgets/database_settings_dialog.py:316
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-बिट"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:289
+#: gsecrets/widgets/database_settings_dialog.py:319
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-बिट"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:297
+#: gsecrets/widgets/database_settings_dialog.py:327
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:300
+#: gsecrets/widgets/database_settings_dialog.py:330
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:303
+#: gsecrets/widgets/database_settings_dialog.py:333
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1606,34 +1616,34 @@ msgstr "बैकअप सहेजें"
 msgid "Could not backup safe"
 msgstr "तिजोरी का बैकअप नहीं ले सका"
 
-#: gsecrets/widgets/window.py:152
+#: gsecrets/widgets/window.py:151
 msgid "Any file type"
 msgstr "कोई भी फाइल प्रकार"
 
-#: gsecrets/widgets/window.py:159
+#: gsecrets/widgets/window.py:158
 msgid "Select Safe"
 msgstr "तिजोरी चुनें"
 
-#: gsecrets/widgets/window.py:176
+#: gsecrets/widgets/window.py:175
 msgid "File does not have a valid path"
-msgstr "फाइल में वैध पथ नहीं है"
+msgstr "फाइल में मान्य पथ नहीं है"
 
-#: gsecrets/widgets/window.py:209
+#: gsecrets/widgets/window.py:208
 msgid "Safe is already open"
 msgstr "तिजोरी पहले से ही खुली है"
 
-#: gsecrets/widgets/window.py:241
+#: gsecrets/widgets/window.py:240
 msgid "_Create"
 msgstr "बनाएं (_C)"
 
-#: gsecrets/widgets/window.py:263
+#: gsecrets/widgets/window.py:262
 msgid "Cannot create Safe: Safe is already open"
 msgstr "तिजोरी उत्पन्न नहीं कर सकते: तिजोरी पहले से ही खुली है"
 
-#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:320
+#: gsecrets/widgets/window.py:304 gsecrets/widgets/window.py:319
 msgid "Could not create new Safe"
 msgstr "नई तिजोरी उत्पन्न नहीं जा सकी"
 
-#: gsecrets/widgets/window.py:398
+#: gsecrets/widgets/window.py:397
 msgid "Could not save safe"
 msgstr "तिजोरी सहेजी नहीं जा सकी"

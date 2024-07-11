@@ -125,7 +125,7 @@ class Pkcs11Provider(BaseProvider):
         self.refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
         self.refresh_stack.add_named(self.refresh_button, "button")
 
-        self.refresh_spinner = Adw.Spinner(size=16)
+        self.refresh_spinner = Adw.Spinner()
         self.refresh_stack.add_named(self.refresh_spinner, "spinner")
         row.add_suffix(self.refresh_stack)
         self.refresh_stack.set_visible_child(self.refresh_button)
@@ -265,7 +265,7 @@ class Pkcs11Provider(BaseProvider):
         self.refresh_button.connect("clicked", self._on_refresh_button_clicked, row)
         self.refresh_stack.add_named(self.refresh_button, "button")
 
-        self.refresh_spinner = Adw.Spinner(size=16)
+        self.refresh_spinner = Adw.Spinner()
         self.refresh_stack.add_named(self.refresh_spinner, "spinner")
         row.add_suffix(self.refresh_stack)
         self.refresh_stack.set_visible_child(self.refresh_button)

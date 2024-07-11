@@ -219,7 +219,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
         # Insensitive entries and buttons
         self.set_sensitive(False)
 
-        spinner = Adw.Spinner(size=16)
+        spinner = Adw.Spinner()
         button.set_child(spinner)
         button.set_sensitive(False)
 

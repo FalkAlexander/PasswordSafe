@@ -28,8 +28,8 @@ image.BrownColorButton {
 }
 
 .NoneColorButton {
-  --accent-bg-color: var(--light-3);
-  --accent-fg-color: #2c2c2c;
+  --accent-bg-color: color-mix(in srgb, currentColor 15%, transparent);
+  --accent-fg-color: inherit;
 }
 
 .BlueColorButton {

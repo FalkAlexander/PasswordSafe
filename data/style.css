@@ -4,9 +4,19 @@
 
 /* Entry color button styles */
 
+button.NoneColorButton,
+button.BlueColorButton,
+button.GreenColorButton,
+button.YellowColorButton,
+button.OrangeColorButton,
+button.RedColorButton,
+button.PurpleColorButton,
+button.BrownColorButton {
+  --accent-color: oklab(from var(--accent-bg-color) var(--standalone-color-oklab));
+}
+
 button.NoneColorButton {
   --accent-bg-color: var(--light-3);
-  --accent-color: var(--light-3);
   --accent-fg-color: #2c2c2c;
 }
 image.NoneColorButton {
@@ -16,7 +26,6 @@ image.NoneColorButton {
 
 button.BlueColorButton {
   --accent-bg-color: var(--blue-4);
-  --accent-color: var(--blue-4);
   --accent-fg-color: var(--light-1);
 }
 image.BlueColorButton {
@@ -26,7 +35,6 @@ image.BlueColorButton {
 
 button.GreenColorButton {
   --accent-bg-color: var(--green-4);
-  --accent-color: var(--green-4);
   --accent-fg-color: var(--light-1);
 }
 image.GreenColorButton {
@@ -36,7 +44,6 @@ image.GreenColorButton {
 
 button.YellowColorButton {
   --accent-bg-color: var(--yellow-4);
-  --accent-color: var(--yellow-4);
   --accent-fg-color: #312703;
 }
 image.YellowColorButton {
@@ -46,7 +53,6 @@ image.YellowColorButton {
 
 button.OrangeColorButton {
   --accent-bg-color: var(--orange-4);
-  --accent-color: var(--orange-4);
   --accent-fg-color: var(--light-1);
 }
 image.OrangeColorButton {
@@ -56,7 +62,6 @@ image.OrangeColorButton {
 
 button.RedColorButton {
   --accent-bg-color: var(--red-4);
-  --accent-color: var(--red-4);
   --accent-fg-color: var(--light-1);
 }
 image.RedColorButton {
@@ -66,7 +71,6 @@ image.RedColorButton {
 
 button.PurpleColorButton {
   --accent-bg-color: var(--purple-4);
-  --accent-color: var(--purple-4);
   --accent-fg-color: var(--light-1);
 }
 image.PurpleColorButton {
@@ -76,7 +80,6 @@ image.PurpleColorButton {
 
 button.BrownColorButton {
   --accent-bg-color: var(--brown-4);
-  --accent-color: var(--brown-4);
   --accent-fg-color: var(--light-1);
 }
 image.BrownColorButton {

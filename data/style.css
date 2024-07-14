@@ -15,76 +15,56 @@ button.BrownColorButton {
   --accent-color: oklab(from var(--accent-bg-color) var(--standalone-color-oklab));
 }
 
-button.NoneColorButton {
+image.NoneColorButton,
+image.BlueColorButton,
+image.GreenColorButton,
+image.YellowColorButton,
+image.OrangeColorButton,
+image.RedColorButton,
+image.PurpleColorButton,
+image.BrownColorButton {
+  background: var(--accent-bg-color);
+  color: var(--accent-fg-color);
+}
+
+.NoneColorButton {
   --accent-bg-color: var(--light-3);
   --accent-fg-color: #2c2c2c;
 }
-image.NoneColorButton {
-  background: var(--light-3);
-  color: #2c2c2c;
-}
 
-button.BlueColorButton {
+.BlueColorButton {
   --accent-bg-color: var(--blue-4);
   --accent-fg-color: var(--light-1);
 }
-image.BlueColorButton {
-  background: var(--blue-4);
-  color: var(--light-1);
-}
 
-button.GreenColorButton {
+.GreenColorButton {
   --accent-bg-color: var(--green-4);
   --accent-fg-color: var(--light-1);
 }
-image.GreenColorButton {
-  background: var(--green-4);
-  color: var(--light-1);
-}
 
-button.YellowColorButton {
+.YellowColorButton {
   --accent-bg-color: var(--yellow-4);
   --accent-fg-color: #312703;
 }
-image.YellowColorButton {
-  background: var(--yellow-4);
-  color: #312703;
-}
 
-button.OrangeColorButton {
+.OrangeColorButton {
   --accent-bg-color: var(--orange-4);
   --accent-fg-color: var(--light-1);
 }
-image.OrangeColorButton {
-  background: var(--orange-4);
-  color: var(--light-1);
-}
 
-button.RedColorButton {
+.RedColorButton {
   --accent-bg-color: var(--red-4);
   --accent-fg-color: var(--light-1);
 }
-image.RedColorButton {
-  background: var(--red-4);
-  color: var(--light-1);
-}
 
-button.PurpleColorButton {
+.PurpleColorButton {
   --accent-bg-color: var(--purple-4);
   --accent-fg-color: var(--light-1);
 }
-image.PurpleColorButton {
-  background: var(--purple-4);
-  color: var(--light-1);
-}
 
-button.BrownColorButton {
+.BrownColorButton {
   --accent-bg-color: var(--brown-4);
   --accent-fg-color: var(--light-1);
-}
-image.BrownColorButton {
-  background: var(--brown-4);
-  color: var(--light-1);
 }
 
 .color-button {

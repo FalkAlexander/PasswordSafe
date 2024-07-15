@@ -4,25 +4,13 @@
 
 /* Entry color button styles */
 
-button.NoneColorButton,
-button.BlueColorButton,
-button.GreenColorButton,
-button.YellowColorButton,
-button.OrangeColorButton,
-button.RedColorButton,
-button.PurpleColorButton,
-button.BrownColorButton {
+button.colored {
+  border-radius: 25px;
   --accent-color: oklab(from var(--accent-bg-color) var(--standalone-color-oklab));
 }
 
-image.NoneColorButton,
-image.BlueColorButton,
-image.GreenColorButton,
-image.YellowColorButton,
-image.OrangeColorButton,
-image.RedColorButton,
-image.PurpleColorButton,
-image.BrownColorButton {
+image.colored {
+  border-radius: 32px;
   background: var(--accent-bg-color);
   color: var(--accent-fg-color);
 }
@@ -65,14 +53,6 @@ image.BrownColorButton {
 .BrownColorButton {
   --accent-bg-color: var(--brown-4);
   --accent-fg-color: var(--light-1);
-}
-
-.color-button {
-  border-radius: 25px;
-}
-
-.circular-icon {
-  border-radius: 32px;
 }
 
 /* Password strength level bar styles */

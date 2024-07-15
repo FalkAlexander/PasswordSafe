@@ -56,6 +56,25 @@ class EntryColor(Enum):
             case EntryColor.BROWN:
                 return _("Brown")
 
+    def css_class(self):
+        match self:
+            case EntryColor.NONE:
+                return "white"
+            case EntryColor.BLUE:
+                return "blue"
+            case EntryColor.GREEN:
+                return "green"
+            case EntryColor.YELLOW:
+                return "yellow"
+            case EntryColor.ORANGE:
+                return "orange"
+            case EntryColor.RED:
+                return "red"
+            case EntryColor.PURPLE:
+                return "purple"
+            case EntryColor.BROWN:
+                return "brown"
+
 
 class SafeElement(GObject.Object):
     selected = GObject.Property(type=bool, default=False)

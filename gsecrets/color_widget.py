@@ -32,7 +32,7 @@ class ColorButton(Gtk.FlowBoxChild):
 
         self.props.is_selected = is_selected
 
-        self._button.add_css_class(self._color.value)
+        self._button.add_css_class(self._color.css_class())
         self._button.props.tooltip_text = color.to_translatable()
 
     @property

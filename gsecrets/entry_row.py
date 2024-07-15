@@ -219,10 +219,12 @@ class EntryRow(Adw.Bin):
     ) -> None:
         # Clear current style
         for color in EntryColor:
-            self._entry_icon.remove_css_class(color.value)
+            css_class = color.css_class()
+            self._entry_icon.remove_css_class(css_class)
 
         color = safe_entry.props.color
-        self._entry_icon.add_css_class(color)
+        css_class = EntryColor(color).css_class()
+        self._entry_icon.add_css_class(css_class)
 
     def _on_selection_mode_notify(self, unlocked_db, _pspec):
         selection_mode = unlocked_db.props.selection_mode

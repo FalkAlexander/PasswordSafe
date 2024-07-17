@@ -12,7 +12,7 @@ class UnlockedHeaderBar(Adw.Bin):
     _selection_button = Gtk.Template.Child()
 
     def __init__(self, unlocked_database):
-        """HearderBar of an UnlockedDatabase.
+        """HeaderBar of an UnlockedDatabase.
 
         :param UnlockedDatabase unlocked_database: unlocked_database
         """

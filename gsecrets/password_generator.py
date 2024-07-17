@@ -91,7 +91,7 @@ def strength(password: str) -> int:
     return 0
 
 
-def _threaded_compute_strenght(password: str, callback: Callable[[int], None]) -> None:
+def _threaded_compute_strength(password: str, callback: Callable[[int], None]) -> None:
     score = strength(password)
     GLib.idle_add(callback, score)
 
@@ -99,7 +99,7 @@ def _threaded_compute_strenght(password: str, callback: Callable[[int], None]) -
 def strength_async(password: str, callback: Callable[[int], None]) -> None:
     if password:
         thread = threading.Thread(
-            target=_threaded_compute_strenght,
+            target=_threaded_compute_strength,
             args=[password, callback],
         )
         thread.daemon = True

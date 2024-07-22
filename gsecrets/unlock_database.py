@@ -60,8 +60,6 @@ class UnlockDatabase(Adw.Bin):
         if gsecrets.const.IS_DEVEL:
             self.status_page.props.icon_name = gsecrets.const.APP_ID
 
-        self.window.set_default_widget(self.unlock_button)
-
         for key_provider in self.window.key_providers.get_key_providers():
             if key_provider.available:
                 widget = key_provider.create_unlock_widget(self.database_manager)
@@ -120,6 +118,10 @@ class UnlockDatabase(Adw.Bin):
             self.database_manager.add_to_history()
         else:
             self._unlock_failed()
+
+    @Gtk.Template.Callback()
+    def _on_entry_activated(self, _widget: Gtk.Widget) -> None:
+        self.unlock_button.activate()
 
     @Gtk.Template.Callback()
     def _on_unlock_button_clicked(self, _widget: Gtk.Button) -> None:

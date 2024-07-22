@@ -48,7 +48,8 @@
                             <child>
                               <object class="GtkButton" id="unlock_button">
                                 <property name="halign">center</property>
-                                <property name="label" translatable="yes">Unlock</property>
+                                <property name="label" translatable="yes">_Unlock</property>
+                                <property name="use_underline">True</property>
                                 <signal name="clicked" handler="_on_unlock_button_clicked" swapped="no"/>
                                 <style>
                                   <class name="suggested-action"/>

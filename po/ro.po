@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe release/4.x\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2023-12-15 17:28+0000\n"
-"PO-Revision-Date: 2023-12-27 16:10+0200\n"
+"POT-Creation-Date: 2024-08-09 14:53+0000\n"
+"PO-Revision-Date: 2024-08-15 13:13+0300\n"
 "Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
 "gmail [dot] com>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
-"%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.2\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && "
+"n%100<=19) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
@@ -30,7 +30,8 @@ msgstr "Administrați-vă parolele"
 msgid "translator-credits"
 msgstr ""
 "Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2021-2022\n"
-"Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, 2023"
+"Florentina Mușat <florentina [dot] musat [dot] 28 [at] gmail [dot] com>, "
+"2023-2024"
 
 #. Translators: Secrets is the app name, do not translate
 #: data/about_dialog.ui.in:12 data/gtk/window.ui:6
@@ -38,27 +39,27 @@ msgstr ""
 msgid "Secrets"
 msgstr "Secrete"
 
-#: data/gtk/add_attribute_dialog.ui:8
+#: data/gtk/add_attribute_dialog.ui:5
 msgid "Add Attribute"
 msgstr "Adaugă atribut"
 
-#: data/gtk/add_attribute_dialog.ui:47
+#: data/gtk/add_attribute_dialog.ui:37
 msgid "Key"
 msgstr "Cheie"
 
-#: data/gtk/add_attribute_dialog.ui:52
+#: data/gtk/add_attribute_dialog.ui:43
 msgid "Value"
 msgstr "Valoare"
 
-#: data/gtk/add_attribute_dialog.ui:57
+#: data/gtk/add_attribute_dialog.ui:49
 msgid "Sensitive"
 msgstr "Sensibil"
 
-#: data/gtk/add_attribute_dialog.ui:58
+#: data/gtk/add_attribute_dialog.ui:50
 msgid "Contains sensitive data."
 msgstr "Conține date sensibile."
 
-#: data/gtk/add_attribute_dialog.ui:65 gsecrets/entry_page.py:353
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:373
 msgid "_Add"
 msgstr "_Adaugă"
 
@@ -102,13 +103,25 @@ msgstr "Copiază atributul"
 msgid "Remove Attribute"
 msgstr "Elimină atributul"
 
+#: data/gtk/browsing_panel.ui:23
+msgid "Add elements with the ➕ button"
+msgstr "Adaugă elemente cu butonul ➕"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "Golește grupul"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "Niciun rezultat de căutare"
+
 #: data/gtk/color_entry_row.ui:4
 msgid "Color"
 msgstr "Culoare"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:223
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
 msgid "Create Safe"
 msgstr "Creează seif"
 
@@ -117,7 +130,7 @@ msgid "Back"
 msgstr "Înapoi"
 
 #: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
-#: data/gtk/unlocked_headerbar.ui:36
+#: data/gtk/unlocked_headerbar.ui:40
 msgid "Main Menu"
 msgstr "Meniu principal"
 
@@ -134,7 +147,7 @@ msgstr "_Parolă"
 msgid "_Confirm Password"
 msgstr "_Confirmă parola"
 
-#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:43
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:45
 msgid "Additional Credentials"
 msgstr "Acreditări suplimentare"
 
@@ -151,18 +164,18 @@ msgid "_Open Safe"
 msgstr "_Deschide seif"
 
 #: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
-#: data/gtk/unlocked_headerbar.ui:94
+#: data/gtk/unlocked_headerbar.ui:103
 msgid "_Preferences"
 msgstr "_Preferințe"
 
 #: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
-#: data/gtk/unlocked_headerbar.ui:98
+#: data/gtk/unlocked_headerbar.ui:107
 msgid "_Keyboard Shortcuts"
 msgstr "Scurtături de _tastatură"
 
 #. "Secrets" is the application name, do not translate
 #: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
-#: data/gtk/unlocked_headerbar.ui:102
+#: data/gtk/unlocked_headerbar.ui:111
 msgid "_About Secrets"
 msgstr "_Despre Secrete"
 
@@ -170,227 +183,218 @@ msgstr "_Despre Secrete"
 msgid "_Username"
 msgstr "Nume de _utilizator"
 
-#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:32
-#: data/gtk/entry_page.ui:85 data/gtk/entry_page.ui:144
-#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:360
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:130
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:347
 msgid "Copy"
 msgstr "Copiază"
 
-#: data/gtk/credentials_group.ui:43 data/gtk/database_settings_dialog.ui:23
-#: gsecrets/create_database.py:39
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
 msgid "Generate New Password"
 msgstr "Generează parolă nouă"
 
-#: data/gtk/database_settings_dialog.ui:10
+#: data/gtk/database_settings_dialog.ui:5
+msgid "Safe Settings"
+msgstr "Configurări seif"
+
+#: data/gtk/database_settings_dialog.ui:9
 msgid "Authentication"
 msgstr "Autentificare"
 
-#: data/gtk/database_settings_dialog.ui:14
-#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
-#: data/gtk/settings_dialog.ui:54 data/gtk/unlock_database.ui:35
-msgid "Password"
-msgstr "Parolă"
-
-#: data/gtk/database_settings_dialog.ui:17
-msgid "New Password"
-msgstr "Parolă nouă"
-
-#: data/gtk/database_settings_dialog.ui:38
-msgid "Confirm New Password"
-msgstr "Confirmă noua parolă"
-
-#: data/gtk/database_settings_dialog.ui:44
+#: data/gtk/database_settings_dialog.ui:15
 msgid "Current Password"
 msgstr "Parola curentă"
 
-#: data/gtk/database_settings_dialog.ui:58
-#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:130
-#: gsecrets/provider/file_provider.py:195 gsecrets/utils.py:87
-#: gsecrets/widgets/database_settings_dialog.py:204
-msgid "Keyfile"
-msgstr "Fișier de chei"
+#: data/gtk/database_settings_dialog.ui:25
+msgid "New Password"
+msgstr "Parolă nouă"
 
-#: data/gtk/database_settings_dialog.ui:82
-msgid "_Select current keyfile if any"
-msgstr "_Selectează fișierul de chei curent dacă există"
+#: data/gtk/database_settings_dialog.ui:46
+msgid "Confirm New Password"
+msgstr "Confirmă noua parolă"
 
-#: data/gtk/database_settings_dialog.ui:125
-msgid "(Optional) _Generate new keyfile"
-msgstr "(Opțional) _Generează un nou fișier de chei"
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "Acreditări suplimentare noi"
 
-#: data/gtk/database_settings_dialog.ui:143
-msgid "Could not Load Keyfile"
-msgstr "Nu s-a putut încărca fișierul"
-
-#: data/gtk/database_settings_dialog.ui:153
-#: gsecrets/widgets/database_settings_dialog.py:266
-#: gsecrets/widgets/database_settings_dialog.py:309
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:196
+#: gsecrets/widgets/database_settings_dialog.py:258
 msgid "_Apply Changes"
 msgstr "_Aplică modificările"
 
-#: data/gtk/database_settings_dialog.ui:170 data/gtk/settings_dialog.ui:9
-#: data/gtk/settings_dialog.ui:12
+#: data/gtk/database_settings_dialog.ui:92 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
 msgid "General"
 msgstr "Generale"
 
-#: data/gtk/database_settings_dialog.ui:174
+#: data/gtk/database_settings_dialog.ui:96
+msgid "Database"
+msgstr "Bază de date"
+
+#: data/gtk/database_settings_dialog.ui:99
+msgid "Name"
+msgstr "Nume"
+
+#: data/gtk/database_settings_dialog.ui:107
+msgid "Description"
+msgstr "Descriere"
+
+#: data/gtk/database_settings_dialog.ui:115
+msgid "Default User"
+msgstr "Utilizator implicit"
+
+#: data/gtk/database_settings_dialog.ui:126
 msgid "Details"
 msgstr "Detalii"
 
-#: data/gtk/database_settings_dialog.ui:177
-msgid "Safe Name"
-msgstr "Nume seif"
-
-#: data/gtk/database_settings_dialog.ui:185
+#: data/gtk/database_settings_dialog.ui:129
 msgid "Path"
 msgstr "Cale"
 
-#: data/gtk/database_settings_dialog.ui:194
+#: data/gtk/database_settings_dialog.ui:138
 msgid "File Size"
 msgstr "Dimensiune fișier"
 
 #. KeePass is a proper noun
-#: data/gtk/database_settings_dialog.ui:203
+#: data/gtk/database_settings_dialog.ui:147
 msgid "KeePass Version"
 msgstr "Versiune KeePass"
 
-#: data/gtk/database_settings_dialog.ui:212
+#: data/gtk/database_settings_dialog.ui:156
 msgid "Creation Date"
 msgstr "Data creării"
 
-#: data/gtk/database_settings_dialog.ui:220
+#: data/gtk/database_settings_dialog.ui:164
 msgid "Encryption Algorithm"
 msgstr "Algoritm de criptare"
 
-#: data/gtk/database_settings_dialog.ui:228
+#: data/gtk/database_settings_dialog.ui:172
 msgid "Derivation Algorithm"
 msgstr "Algoritm de derivare"
 
 #. Statistics
-#: data/gtk/database_settings_dialog.ui:238
+#: data/gtk/database_settings_dialog.ui:182
 msgid "Stats"
 msgstr "Statistici"
 
-#: data/gtk/database_settings_dialog.ui:241
+#: data/gtk/database_settings_dialog.ui:185
 msgid "Number of Entries"
 msgstr "Număr de intrări"
 
-#: data/gtk/database_settings_dialog.ui:250
+#: data/gtk/database_settings_dialog.ui:194
 msgid "Number of Groups"
 msgstr "Număr de grupuri"
 
-#: data/gtk/database_settings_dialog.ui:259
+#: data/gtk/database_settings_dialog.ui:203
 msgid "Passwords"
 msgstr "Parole"
 
-#: data/gtk/entry_page.ui:56
+#: data/gtk/entry_page.ui:55
 msgid "Entry Menu"
 msgstr "Meniu de intrare"
 
-#: data/gtk/entry_page.ui:73 data/gtk/group_page.ui:27
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
 #: data/gtk/references_dialog.ui:169
 msgid "_Title"
 msgstr "_Titlu"
 
-#: data/gtk/entry_page.ui:79
+#: data/gtk/entry_page.ui:75
 msgid "U_RL"
 msgstr "U_RL"
 
-#: data/gtk/entry_page.ui:96
+#: data/gtk/entry_page.ui:81
 msgid "Open Address"
 msgstr "Deschide adresa"
 
-#: data/gtk/entry_page.ui:117
+#: data/gtk/entry_page.ui:109
 msgid "One-Time Password"
 msgstr "Parolă de unică folosință"
 
-#: data/gtk/entry_page.ui:156
+#: data/gtk/entry_page.ui:142
 msgid "One-_Time Password Secret"
 msgstr "Secretul pentru O_TP"
 
 #. OTP is a proper name
-#: data/gtk/entry_page.ui:164
+#: data/gtk/entry_page.ui:148
 msgid "Could not Generate OTP Token"
 msgstr "Nu s-au putut genera jetonul OTP"
 
-#: data/gtk/entry_page.ui:172 data/gtk/group_page.ui:35
-#: data/gtk/notes_dialog.ui:7 data/gtk/references_dialog.ui:141
+#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:34
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
 msgid "Notes"
 msgstr "Note"
 
-#: data/gtk/entry_page.ui:176 data/gtk/group_page.ui:39
+#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:38
 msgid "Edit in a Window"
 msgstr "Editare într-o fereastră"
 
-#: data/gtk/entry_page.ui:217
+#: data/gtk/entry_page.ui:198
 msgid "Icon"
 msgstr "Iconiță"
 
-#: data/gtk/entry_page.ui:237
+#: data/gtk/entry_page.ui:218
 msgid "Attachments"
 msgstr "Atașamente"
 
-#: data/gtk/entry_page.ui:241
+#: data/gtk/entry_page.ui:222
 msgid "_Add Attachment"
 msgstr "_Adaugă atașament"
 
-#: data/gtk/entry_page.ui:250
+#: data/gtk/entry_page.ui:231
 msgid "Attributes"
 msgstr "Atribute"
 
-#: data/gtk/entry_page.ui:255
+#: data/gtk/entry_page.ui:236
 msgid "Add Attr_ibute"
 msgstr "Adaugă atr_ibut"
 
-#: data/gtk/entry_page.ui:263
+#: data/gtk/entry_page.ui:244
 msgid "Expiration Date"
 msgstr "Data expirării"
 
-#: data/gtk/entry_page.ui:279
+#: data/gtk/entry_page.ui:257
 msgid "_Show More"
 msgstr "_Arată mai multe"
 
-#: data/gtk/entry_page.ui:298
+#: data/gtk/entry_page.ui:271
 msgid "D_uplicate"
 msgstr "D_ublet"
 
-#: data/gtk/entry_page.ui:302
+#: data/gtk/entry_page.ui:275
 msgid "_References"
 msgstr "_Referințe"
 
-#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:79
+#: data/gtk/entry_page.ui:279 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "_Proprietăți"
 
-#: data/gtk/entry_page.ui:312
+#: data/gtk/entry_page.ui:285
 msgid "_Save in History"
 msgstr "_Salvează în istoric"
 
-#: data/gtk/entry_page.ui:316
+#: data/gtk/entry_page.ui:289
 msgid "Show _History"
 msgstr "Arată _istoricul"
 
-#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:85
+#: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
 msgid "_Delete"
 msgstr "Ș_terge"
 
-#: data/gtk/entry_row.ui:26 data/gtk/group_row.ui:26
-msgid "Select"
-msgstr "Selectează"
-
-#: data/gtk/entry_row.ui:55
+#: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
 msgstr "Copiază parola de unică folosință"
 
-#: data/gtk/entry_row.ui:66
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "Copiază numele de utilizator"
 
-#: data/gtk/entry_row.ui:76
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "Copiază parola"
 
-#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:80
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
 msgid "Expiration Date not Set"
 msgstr "Data expirări nu este stabilită"
 
@@ -406,11 +410,11 @@ msgstr "Elimină data expirării"
 msgid "_Set Expiration Date"
 msgstr "_Stabilește data expirării"
 
-#: data/gtk/group_page.ui:15
+#: data/gtk/group_page.ui:14
 msgid "Group Menu"
 msgstr "Meniu de grup"
 
-#: data/gtk/group_row.ui:53 data/gtk/unlocked_database.ui:52
+#: data/gtk/group_row.ui:67
 msgid "Edit"
 msgstr "Editează"
 
@@ -532,7 +536,7 @@ msgstr "Arată textul"
 msgid "Remove from History"
 msgstr "Elimină din istoric"
 
-#: data/gtk/history_window.ui:10
+#: data/gtk/history_window.ui:8
 msgid "Password History"
 msgstr "Istoric parole"
 
@@ -540,21 +544,25 @@ msgstr "Istoric parole"
 msgid "_Open"
 msgstr "_Deschide"
 
-#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:80
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:89
 #: data/gtk/welcome_page.ui:18
 msgid "_New Safe"
 msgstr "Seif _nou"
 
-#: data/gtk/notes_dialog.ui:30
+#: data/gtk/notes_dialog.ui:20
 msgid "_Copy"
 msgstr "_Copiază"
 
 #. Button tooltip in headerbar to open search page
-#: data/gtk/notes_dialog.ui:42 data/gtk/notes_dialog.ui:67
-#: data/gtk/unlocked_database.ui:17 data/gtk/unlocked_database.ui:25
-#: data/gtk/unlocked_headerbar.ui:22
+#: data/gtk/notes_dialog.ui:32 data/gtk/notes_dialog.ui:57
+#: data/gtk/unlocked_headerbar.ui:26
 msgid "Search"
 msgstr "Caută"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:53 data/gtk/unlock_database.ui:37
+msgid "Password"
+msgstr "Parolă"
 
 #: data/gtk/password_generator_popover.ui:32
 msgid "Length"
@@ -565,6 +573,7 @@ msgid "Characters"
 msgstr "Caractere"
 
 #: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:204
 msgid "Passphrase"
 msgstr "Frază de acces"
 
@@ -574,28 +583,27 @@ msgstr "Cuvinte"
 
 #. Button to generate a password
 #: data/gtk/password_generator_popover.ui:132
-#: gsecrets/provider/file_provider.py:194
-#: gsecrets/widgets/database_settings_dialog.py:203
+#: gsecrets/provider/file_provider.py:196
 msgid "_Generate"
 msgstr "_Generează"
 
-#: data/gtk/properties_dialog.ui:9
+#: data/gtk/properties_dialog.ui:6
 msgid "Properties"
 msgstr "Proprietăți"
 
-#: data/gtk/properties_dialog.ui:38 data/gtk/references_dialog.ui:153
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
 msgid "UUID"
 msgstr "UUID"
 
-#: data/gtk/properties_dialog.ui:47
+#: data/gtk/properties_dialog.ui:35
 msgid "Accessed"
 msgstr "Accesate"
 
-#: data/gtk/properties_dialog.ui:56
+#: data/gtk/properties_dialog.ui:44
 msgid "Modified"
 msgstr "Modificat"
 
-#: data/gtk/properties_dialog.ui:65
+#: data/gtk/properties_dialog.ui:53
 msgid "Created"
 msgstr "Creat"
 
@@ -603,8 +611,8 @@ msgstr "Creat"
 msgid "Code"
 msgstr "Cod"
 
-#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:255
-#: data/gtk/references_dialog.ui:352
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:242
+#: data/gtk/references_dialog.ui:339
 msgid "Property"
 msgstr "Proprietate"
 
@@ -628,31 +636,31 @@ msgstr "_URL"
 msgid "_Notes"
 msgstr "_Note"
 
-#: data/gtk/references_dialog.ui:192
+#: data/gtk/references_dialog.ui:191
 msgid "References"
 msgstr "Referințe"
 
-#: data/gtk/references_dialog.ui:226
+#: data/gtk/references_dialog.ui:213
 msgid "Syntax"
 msgstr "Sintaxă"
 
-#: data/gtk/references_dialog.ui:235
+#: data/gtk/references_dialog.ui:222
 msgid "The placeholder syntax for field references is the following:"
 msgstr "Sintaxa ce ține locul în referințele câmpurilor este următoarea:"
 
-#: data/gtk/references_dialog.ui:254 data/gtk/references_dialog.ui:282
+#: data/gtk/references_dialog.ui:241 data/gtk/references_dialog.ui:269
 msgid "Show Field Codes"
 msgstr "Arată codurile câmpului"
 
-#: data/gtk/references_dialog.ui:283
+#: data/gtk/references_dialog.ui:270
 msgid "Identifier"
 msgstr "Identificator"
 
-#: data/gtk/references_dialog.ui:341
+#: data/gtk/references_dialog.ui:328
 msgid "Reference"
 msgstr "Referință"
 
-#: data/gtk/references_dialog.ui:380
+#: data/gtk/references_dialog.ui:367
 msgid ""
 "Each entry has a unique identifier called UUID. It can be found in the "
 "properties of the entry."
@@ -672,11 +680,12 @@ msgstr "Doriți să scrieți toate modificările în seif?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:416
 msgid "_Quit Without Saving"
 msgstr "_Ieși fără a salva"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:417
 msgid "_Don't Quit"
 msgstr "Nu în_chide"
 
@@ -685,257 +694,251 @@ msgstr "Nu în_chide"
 msgid "_Save and Quit"
 msgstr "_Salvează și ieși"
 
-#: data/gtk/search.ui:9
-msgid "Enter Search Term"
-msgstr "Introduceți un termen de căutare"
-
-#: data/gtk/search.ui:15
-msgid "No Search Results"
-msgstr "Niciun rezultat de căutare"
-
-#: data/gtk/selection_mode_headerbar.ui:17
-#: gsecrets/widgets/selection_mode_headerbar.py:69
-msgid "_Select Items"
-msgstr "Deselectează _tot"
-
-#. Button tooltip in selection mode to move every selected entry/group to another place
-#: data/gtk/selection_mode_headerbar.ui:29
-msgid "Move Selection"
-msgstr "Mută selecția"
-
-#: data/gtk/selection_mode_headerbar.ui:36
-msgid "Paste Selection"
-msgstr "Lipește selecția"
-
-#. Button tooltip in selection mode to delete every selected entry/group
-#: data/gtk/selection_mode_headerbar.ui:46
-msgid "Delete Selection"
-msgstr "Șterge selecția"
-
-#: data/gtk/selection_mode_headerbar.ui:53
-#: gsecrets/widgets/saving_conflict_dialog.py:31
-msgid "_Cancel"
-msgstr "_Anulează"
-
-#: data/gtk/selection_mode_headerbar.ui:66
-msgid "Select _All"
-msgstr "Selectează to_ate"
-
-#: data/gtk/selection_mode_headerbar.ui:71
-msgid "Select _None"
-msgstr "Deselectează _tot"
-
-#: data/gtk/settings_dialog.ui:15
+#: data/gtk/settings_dialog.ui:14
 msgid "_Hide First Start Screen"
 msgstr "_Ascunde primul ecran de pornire"
 
-#: data/gtk/settings_dialog.ui:16
+#: data/gtk/settings_dialog.ui:15
 msgid "Reopen last opened safe."
 msgstr "Redeschide seiful deschis ultima dată."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:25 gsecrets/widgets/window.py:132
-#: gsecrets/widgets/window.py:215 gsecrets/widgets/window.py:227
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
 msgid "Safe"
 msgstr "Seif"
 
-#: data/gtk/settings_dialog.ui:28
+#: data/gtk/settings_dialog.ui:27
 msgid "_Save Automatically"
 msgstr "_Salvează automat"
 
-#: data/gtk/settings_dialog.ui:29
+#: data/gtk/settings_dialog.ui:28
 msgid "Save every change automatically."
 msgstr "Salvează fiecare modificare automat."
 
-#: data/gtk/settings_dialog.ui:38 data/gtk/unlock_database.ui:49
-#: gsecrets/unlock_database.py:196
+#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
+#: gsecrets/provider/pkcs11_provider.py:207
+#: gsecrets/provider/pkcs11_provider.py:209
 msgid "Unlock"
 msgstr "Deblochează"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:41
+#: data/gtk/settings_dialog.ui:40
 msgid "Remember Composite _Key"
 msgstr "Ține minte _cheia compusă"
 
 #. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
-#: data/gtk/settings_dialog.ui:42
+#: data/gtk/settings_dialog.ui:41
 msgid "Remember last used composite key."
 msgstr "Ține minte ultima cheie compusă folosită."
 
-#: data/gtk/settings_dialog.ui:57
+#: data/gtk/settings_dialog.ui:56
 msgid "Password Generation"
 msgstr "Generarea parolei"
 
-#: data/gtk/settings_dialog.ui:60
+#: data/gtk/settings_dialog.ui:59
 msgid "Password Length"
 msgstr "Lungimea parolei"
 
-#: data/gtk/settings_dialog.ui:61
+#: data/gtk/settings_dialog.ui:60
 msgid "Number of characters when generating a password."
 msgstr "Număr de caractere pentru generarea unei parole."
 
-#: data/gtk/settings_dialog.ui:75
+#: data/gtk/settings_dialog.ui:74
 msgid "_Uppercase Characters"
 msgstr "Caractere maj_uscule"
 
-#: data/gtk/settings_dialog.ui:76
+#: data/gtk/settings_dialog.ui:75
 msgid "Use uppercase characters A-Z when generating a password."
 msgstr "Utilizează caractere majuscule A-Z când se generează o parolă."
 
-#: data/gtk/settings_dialog.ui:83
+#: data/gtk/settings_dialog.ui:82
 msgid "_Lowercase Characters"
 msgstr "Caractere minuscu_le"
 
-#: data/gtk/settings_dialog.ui:84
+#: data/gtk/settings_dialog.ui:83
 msgid "Use lowercase characters a-z when generating a password."
 msgstr "Utilizează caracterele minuscule a-z la generarea unei parole."
 
-#: data/gtk/settings_dialog.ui:91
+#: data/gtk/settings_dialog.ui:90
 msgid "_Numeric Characters"
 msgstr "Caractere _numerice"
 
-#: data/gtk/settings_dialog.ui:92
+#: data/gtk/settings_dialog.ui:91
 msgid "Use numeric characters when generating a password."
 msgstr "Utilizează caractere numerice la generarea unei parole."
 
-#: data/gtk/settings_dialog.ui:99
+#: data/gtk/settings_dialog.ui:98
 msgid "_Special Characters"
 msgstr "Caractere _speciale"
 
 #. ASCII is a proper name
-#: data/gtk/settings_dialog.ui:100
+#: data/gtk/settings_dialog.ui:99
 msgid "Use non-alphanumeric ASCII symbols when generating a password."
 msgstr "Utilizează simboluri non-alfanumerice ASCII la generarea unei parole."
 
-#: data/gtk/settings_dialog.ui:109
+#: data/gtk/settings_dialog.ui:108
 msgid "Passphrase Generation"
 msgstr "Generarea frazei de acces"
 
-#: data/gtk/settings_dialog.ui:112
+#: data/gtk/settings_dialog.ui:111
 msgid "Passphrase Length"
 msgstr "Lungimea frazei de acces"
 
-#: data/gtk/settings_dialog.ui:113
-#: data/org.gnome.World.Secrets.gschema.xml.in:103
+#: data/gtk/settings_dialog.ui:112
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
 msgid "Number of words to use when generating a passphrase."
 msgstr "Număr de cuvinte de folosit când se generează o frază de acces."
 
-#: data/gtk/settings_dialog.ui:127
+#: data/gtk/settings_dialog.ui:126
 msgid "Separator"
 msgstr "Separator"
 
-#: data/gtk/settings_dialog.ui:137 data/gtk/settings_dialog.ui:140
+#: data/gtk/settings_dialog.ui:136 data/gtk/settings_dialog.ui:139
 msgid "Security"
 msgstr "Securitate"
 
-#: data/gtk/settings_dialog.ui:143
+#: data/gtk/settings_dialog.ui:142
 msgid "Safe Lock Timeout"
 msgstr "Limita de timp pentru blocarea seifului"
 
-#: data/gtk/settings_dialog.ui:144
+#: data/gtk/settings_dialog.ui:143
 msgid "Lock safe on idle after X minutes."
 msgstr "Blochează seiful pentru inactivitate după X minute."
 
-#: data/gtk/settings_dialog.ui:158
+#: data/gtk/settings_dialog.ui:157
 msgid "Lock on _Session Lock"
 msgstr "Blochează la blocarea _sesiunii"
 
-#: data/gtk/settings_dialog.ui:159
+#: data/gtk/settings_dialog.ui:158
 msgid "Automatically lock when the session is locked."
 msgstr "Blochează automat când sesiunea este blocată."
 
-#: data/gtk/settings_dialog.ui:166
+#: data/gtk/settings_dialog.ui:165
 msgid "Clear Clipboard"
 msgstr "Curăță clipboardul"
 
-#: data/gtk/settings_dialog.ui:167
+#: data/gtk/settings_dialog.ui:166
 msgid "Clear clipboard after X seconds."
 msgstr "Curăță clipboardul după X secunde."
 
-#: data/gtk/settings_dialog.ui:181
+#: data/gtk/settings_dialog.ui:180
 msgid "Clear Recent List"
 msgstr "Curăță lista recentelor"
 
-#: data/gtk/settings_dialog.ui:182
+#: data/gtk/settings_dialog.ui:181
 msgid "Clear the recently opened safes list."
 msgstr "Curăță lista de seifuri deschise recent."
 
-#: data/gtk/settings_dialog.ui:189
+#: data/gtk/settings_dialog.ui:188
 msgid "Clear"
 msgstr "Curăță"
 
-#: data/gtk/unlock_database.ui:18
+#: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "Deblochează seiful"
 
-#: data/gtk/unlocked_database.ui:8
+#: data/gtk/unlocked_database.ui:18
 msgid "Browser"
 msgstr "Navigator"
 
-#: data/gtk/unlocked_database_page.ui:31
-msgid "Add elements with the ➕ button"
-msgstr "Adaugă elemente cu butonul ➕"
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+msgid "Select Items"
+msgstr "Selectează elementele"
 
-#: data/gtk/unlocked_database_page.ui:32
-msgid "Empty Group"
-msgstr "Golește grupul"
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+msgid "Go Back"
+msgstr "Navighează înapoi"
 
-#: data/gtk/unlocked_headerbar.ui:11
+#: data/gtk/unlocked_database.ui:41
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_Anulează"
+
+#: data/gtk/unlocked_database.ui:53 data/gtk/unlocked_database.ui:59
+msgid "Search Safe"
+msgstr "Caută seiful"
+
+#: data/gtk/unlocked_database.ui:72
+msgid "_Clear"
+msgstr "_Curăță"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:81
+msgid "Delete Selection"
+msgstr "Șterge selecția"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/unlocked_database.ui:91
+msgid "Move Selection"
+msgstr "Mută selecția"
+
+#: data/gtk/unlocked_database.ui:98
+msgid "Paste Selection"
+msgstr "Lipește selecția"
+
+#: data/gtk/unlocked_database.ui:123
+msgid "Select an Entry"
+msgstr "Selectați o intrare"
+
+#: data/gtk/unlocked_headerbar.ui:18
 msgid "New Entry or Group"
 msgstr "Grup sau intrare nouă"
 
 #. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
-#: data/gtk/unlocked_headerbar.ui:29
+#: data/gtk/unlocked_headerbar.ui:33
 msgid "Selection Mode"
 msgstr "Mod de selectare"
 
-#: data/gtk/unlocked_headerbar.ui:55
-msgid "So_rting"
-msgstr "So_rtare"
-
-#. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:57
-msgid "_A-Z"
-msgstr "_A-Z"
-
-#. This is an alphabetical order for entries
-#: data/gtk/unlocked_headerbar.ui:62
-msgid "_Z-A"
-msgstr "_Z-A"
-
-#: data/gtk/unlocked_headerbar.ui:67
-msgid "_Newest First"
-msgstr "Î_ntâi cele mai noi"
-
-#: data/gtk/unlocked_headerbar.ui:72
-msgid "_Oldest First"
-msgstr "Întâi cele mai _vechi"
-
-#: data/gtk/unlocked_headerbar.ui:84
-msgid "New _Window"
-msgstr "_Fereastră nouă"
-
-#: data/gtk/unlocked_headerbar.ui:88
-msgid "Sa_fe Settings"
-msgstr "Configurări sei_f"
-
-#: data/gtk/unlocked_headerbar.ui:110
-msgid "New _Entry"
-msgstr "Intrar_e nouă"
-
-#: data/gtk/unlocked_headerbar.ui:114
-msgid "New _Group"
-msgstr "_Grup nou"
-
-#: data/gtk/unlocked_headerbar.ui:133
+#. s
+#: data/gtk/unlocked_headerbar.ui:54
 #: gsecrets/widgets/saving_conflict_dialog.py:34
 msgid "_Save"
 msgstr "_Salvează"
 
-#: data/gtk/unlocked_headerbar.ui:148
+#. s
+#: data/gtk/unlocked_headerbar.ui:58
 msgid "_Lock"
 msgstr "B_lochează"
+
+#: data/gtk/unlocked_headerbar.ui:64
+msgid "So_rting"
+msgstr "So_rtare"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:66
+msgid "_A-Z"
+msgstr "_A-Z"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:71
+msgid "_Z-A"
+msgstr "_Z-A"
+
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Newest First"
+msgstr "Î_ntâi cele mai noi"
+
+#: data/gtk/unlocked_headerbar.ui:81
+msgid "_Oldest First"
+msgstr "Întâi cele mai _vechi"
+
+#: data/gtk/unlocked_headerbar.ui:93
+msgid "New _Window"
+msgstr "_Fereastră nouă"
+
+#: data/gtk/unlocked_headerbar.ui:97
+msgid "Sa_fe Settings"
+msgstr "Configurări sei_f"
+
+#: data/gtk/unlocked_headerbar.ui:119
+msgid "New _Entry"
+msgstr "Intrar_e nouă"
+
+#: data/gtk/unlocked_headerbar.ui:123
+msgid "New _Group"
+msgstr "_Grup nou"
 
 #. The umbrella sentence of the application on the first start screen
 #: data/gtk/welcome_page.ui:11
@@ -1029,45 +1032,37 @@ msgid "Path to the last opened database."
 msgstr "Cale către ultima bază de date deschisă."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:47
-msgid "Last opened databases"
-msgstr "Ultimele baze de date deschise"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:48
-msgid "A list of the last opened databases. Not used anymore."
-msgstr "O listă a bazelor de date deschise ultima dată. Nu mai este folosit."
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Remember composite key"
 msgstr "Ține minte cheia compusă"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:53
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
 msgid "Remember last used composite key for database unlocking."
 msgstr ""
 "Ține minte ultima cheie compusă folosită pentru deblocarea bazei de date."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:57
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
 msgid "Last used key provider"
 msgstr "Ultimul furnizor de cheie utilizat"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:58
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
 msgid "Key provider for composite database unlocking."
 msgstr "Furnizor de cheie pentru deblocarea bazelor de date compuse."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:62
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
 msgid "Remember unlock method"
 msgstr "Ține minte metoda de deblocare"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:63
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
 msgid "Remember last used unlock method for future database unlocking."
 msgstr ""
 "Ține minte ultima metodă de deblocare folosită pentru viitoarele deblocări "
 "ale bazei de date."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:67
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
 msgid "Backup the database on unlock"
 msgstr "Fă o copie de siguranță a bazei de date la deblocare"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:68
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
 msgid ""
 "If an error occurs while saving the database, a backup can be found at ~/."
 "cache/secrets/backups"
@@ -1075,67 +1070,67 @@ msgstr ""
 "Dacă apare o eroare în timpul salvării bazei de date, o copie de siguranță "
 "poate fi găsită la ~/.cache/secrets/backups"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:72
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
 msgid "Sorting order of groups and entries"
 msgstr "Ordinea de sortare a grupurilor și intrărilor"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:73
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
 msgid "Order of the rows in the groups and entries view."
 msgstr "Ordinea rândurilor în vizualizările grupuri și intrări."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:77
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
 msgid "Use uppercases when generating a password"
 msgstr "Utilizează majuscule la generarea unei parole"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:78
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
 msgid "Use uppercase characters A-Z when generating a random password."
 msgstr ""
 "Utilizează caractere majuscule A-Z când se generează o parolă aleatoare."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:82
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
 msgid "Use lowercases when generating a password"
 msgstr "Utilizează minuscule când se generează o parolă"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:83
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
 msgid "Use lowercase characters a-z when generating a random password."
 msgstr ""
 "Utilizează caracterele minuscule a-z la generarea unei parole aleatoare."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:87
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
 msgid "Use numbers when generating a password"
 msgstr "Utilizează numere la generarea unei parole"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:88
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
 msgid "Use numbers 0-9 characters when generating a random password."
 msgstr "Utilizează numerele 0-9 la generarea unei parole aleatoare."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:92
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
 msgid "Use symbols when generating a password"
 msgstr "Utilizează simboluri la generarea unei parole"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:93
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
 msgid "Use non-alphanumeric ASCII symbols when generating a random password."
 msgstr ""
 "Utilizează simboluri non-alfanumerice ASCII la generarea unei parole "
 "aleatoare."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:97
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
 msgid "Password length when generating a password"
 msgstr "Lungimea parolei când se generează o parolă"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:98
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
 msgid "Number of single characters when generating a password."
 msgstr "Număr de caractere pentru generarea unei parole."
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:102
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
 msgid "Number of words when generating a passphrase"
 msgstr "Număr de cuvinte pentru generarea unei fraze de acces"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:107
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
 msgid "Separator when generating a passphrase"
 msgstr "Separator când se generează o frază de acces"
 
-#: data/org.gnome.World.Secrets.gschema.xml.in:108
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
 msgid "Word separator to use when generating a passphrase."
 msgstr "Separator de cuvinte de folosit la generarea unei fraze de acces."
 
@@ -1153,76 +1148,77 @@ msgstr ""
 "Se integrează perfect cu desktopul GNOME și oferă o interfață ușoară pentru "
 "administrarea bazelor de date cu parole."
 
-#: gsecrets/application.py:56
-msgid "Error: File {} does not exist"
-msgstr "Eroare: Fișierul {} nu există"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+msgid "Password management"
+msgstr "Administrarea parolei"
 
-#: gsecrets/application.py:61
-msgid "Error: Safe {} is already open"
-msgstr "Eroare: Seiful {} a fost deschis deja"
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+msgid "Safe unlocking"
+msgstr "Deblocare seif"
 
-#: gsecrets/attachment_warning_dialog.py:68
-#: gsecrets/attachment_warning_dialog.py:79
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+msgid "Safe creation"
+msgstr "Creare seif"
+
+#: gsecrets/attachment_warning_dialog.py:71
+#: gsecrets/attachment_warning_dialog.py:82
 msgid "Could not load attachment"
 msgstr "Nu s-a putut încărca atașamentul"
 
-#: gsecrets/create_database.py:64
+#: gsecrets/create_database.py:65
 msgid "Passwords do not match"
 msgstr "Parolele nu se potrivesc"
 
-#: gsecrets/create_database.py:79
+#: gsecrets/create_database.py:80
 msgid "Unable to create database"
 msgstr "Nu se poate crea baza de date"
 
-#: gsecrets/create_database.py:115 gsecrets/unlock_database.py:100
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Nu s-a putut genera cheia compusă"
 
-#: gsecrets/entry_page.py:238 gsecrets/widgets/credentials_group.py:98
+#: gsecrets/entry_page.py:259 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "Salvat în istoric"
 
-#: gsecrets/entry_page.py:254 gsecrets/entry_row.py:130
-#: gsecrets/widgets/credentials_group.py:92
+#: gsecrets/entry_page.py:278 gsecrets/entry_row.py:163
+#: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Nume de utilizator copiat"
 
-#: gsecrets/entry_page.py:262 gsecrets/entry_page.py:393
+#: gsecrets/entry_page.py:283 gsecrets/entry_page.py:416
 msgid "Address copied"
 msgstr "Adresă copiată"
 
-#: gsecrets/entry_page.py:272 gsecrets/entry_page.py:327
+#: gsecrets/entry_page.py:292 gsecrets/entry_page.py:347
 msgid "One-time password copied"
 msgstr "Parolă de unică folosință copiată"
 
-#: gsecrets/entry_page.py:305
+#: gsecrets/entry_page.py:325
 msgid "Could not open URL"
 msgstr "Nu s-a putut deschide URL-ul"
 
-#: gsecrets/entry_page.py:315
+#: gsecrets/entry_page.py:335
 msgid "The address is not valid"
 msgstr "Adresa nu este validă"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:352
+#: gsecrets/entry_page.py:372
 msgid "Select Attachments"
 msgstr "Selectează atașamentele"
 
-#: gsecrets/entry_row.py:123 gsecrets/widgets/credentials_group.py:107
+#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
 msgid "Password copied"
 msgstr "Parolă copiată"
 
-#: gsecrets/entry_row.py:137
+#: gsecrets/entry_row.py:171
 msgid "One-Time Password copied"
 msgstr "Parolă de unică folosință copiată"
 
-#: gsecrets/entry_row.py:149 gsecrets/group_row.py:109
+#: gsecrets/entry_row.py:185 gsecrets/group_row.py:136
 msgid "Title not Specified"
 msgstr "Titlu nespecificat"
-
-#: gsecrets/entry_row.py:160
-msgid "Username not specified"
-msgstr "Nume de utilizator nespecificat"
 
 #: gsecrets/password_generator_popover.py:74
 msgid "Include Lowercase"
@@ -1256,15 +1252,16 @@ msgstr "Include simboluri"
 msgid "Exclude Symbols"
 msgstr "Exclude simboluri"
 
-#: gsecrets/pathbar_button.py:30
-msgid "Root Group"
-msgstr "Grup de root"
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:82
+msgid "Keyfile"
+msgstr "Fișier de chei"
 
 #: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
 msgid "Select Keyfile"
 msgstr "Selectează fișierul de chei"
 
-#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:141
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
 msgid "Clear Keyfile"
 msgstr "Eliberează fișierul de chei"
 
@@ -1272,194 +1269,267 @@ msgstr "Eliberează fișierul de chei"
 msgid "Select keyfile"
 msgstr "Selectează fișierul de chei"
 
-#: gsecrets/provider/file_provider.py:107
+#: gsecrets/provider/file_provider.py:108
 msgid "Could not load keyfile"
 msgstr "Nu s-a putut încărca fișierul de chei"
 
-#. NOTE: Filechooser title for generating a new keyfile
-#: gsecrets/provider/file_provider.py:134
-#: gsecrets/provider/file_provider.py:193
-#: gsecrets/widgets/database_settings_dialog.py:202
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
 msgid "Generate Keyfile"
 msgstr "Generează fișier de chei"
 
-#: gsecrets/provider/file_provider.py:158
+#: gsecrets/provider/file_provider.py:159
 msgid "Use a file to increase security"
 msgstr "Utilizează un fișier de chei pentru crește securitatea"
 
-#: gsecrets/provider/file_provider.py:179
+#: gsecrets/provider/file_provider.py:181
 msgid "Could not create keyfile"
 msgstr "Nu s-a putut crea fișierul de chei"
 
-#: gsecrets/provider/yubikey_provider.py:29
+#: gsecrets/provider/pkcs11_provider.py:100
+msgid "No Smartcard"
+msgstr "Niciun smartcard"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:259
+msgid "Smartcard"
+msgstr "Smartcard"
+
+#: gsecrets/provider/pkcs11_provider.py:120
+msgid "Select certificate"
+msgstr "Selectați certificatul"
+
+#: gsecrets/provider/pkcs11_provider.py:196
+msgid "No smartcard present"
+msgstr "Nu este prezent niciun smartcard"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "Please insert smartcard and retry."
+msgstr "Introduceți un smartcard și încercați din nou."
+
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:246
+msgid "OK"
+msgstr "OK"
+
+#: gsecrets/provider/pkcs11_provider.py:207
+msgid "Unlock your smartcard"
+msgstr "Deblocați-vă smartcardul"
+
+#: gsecrets/provider/pkcs11_provider.py:208 gsecrets/selection_manager.py:111
+msgid "Cancel"
+msgstr "Anulează"
+
+#: gsecrets/provider/pkcs11_provider.py:252
+msgid "Failed to unlock Smartcard"
+msgstr "Nu s-a putut debloca smartcardul"
+
+#: gsecrets/provider/pkcs11_provider.py:260
+msgid "Use a smartcard"
+msgstr "Utilizează un smartcard"
+
+#: gsecrets/provider/pkcs11_provider.py:314
+msgid "Refresh Certificate List"
+msgstr "Reîmprospătează lista de certificate"
+
+#: gsecrets/provider/yubikey_provider.py:34
 msgid "No Key"
 msgstr "Nicio cheie"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
-#: gsecrets/provider/yubikey_provider.py:32
+#: gsecrets/provider/yubikey_provider.py:37
 #, python-brace-format
 msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - Slot {slot}"
 
-#: gsecrets/provider/yubikey_provider.py:126
-#: gsecrets/provider/yubikey_provider.py:184
+#: gsecrets/provider/yubikey_provider.py:141
+#: gsecrets/provider/yubikey_provider.py:199
 msgid "YubiKey"
 msgstr "YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:127
+#: gsecrets/provider/yubikey_provider.py:142
 msgid "Select key"
 msgstr "Selectează cheia"
 
-#: gsecrets/provider/yubikey_provider.py:135
-#: gsecrets/provider/yubikey_provider.py:191
+#: gsecrets/provider/yubikey_provider.py:151
+#: gsecrets/provider/yubikey_provider.py:207
 msgid "Select YubiKey slot"
 msgstr "Selectează slotul YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:223
+#: gsecrets/provider/yubikey_provider.py:237
 msgid "Touch YubiKey"
 msgstr "Atinge YubiKey"
 
-#: gsecrets/recent_files_menu.py:44
+#: gsecrets/recent_files_menu.py:43
 msgid "Recent Files"
 msgstr "Fișiere recente"
 
-#: gsecrets/safe_element.py:41
+#: gsecrets/safe_element.py:43
 msgid "White"
 msgstr "Alb"
 
-#: gsecrets/safe_element.py:43
+#: gsecrets/safe_element.py:45
 msgid "Blue"
 msgstr "Albastru"
 
-#: gsecrets/safe_element.py:45
+#: gsecrets/safe_element.py:47
 msgid "Green"
 msgstr "Verde"
 
-#: gsecrets/safe_element.py:47
+#: gsecrets/safe_element.py:49
 msgid "Yellow"
 msgstr "Galben"
 
-#: gsecrets/safe_element.py:49
+#: gsecrets/safe_element.py:51
 msgid "Orange"
 msgstr "Portocaliu"
 
-#: gsecrets/safe_element.py:51
+#: gsecrets/safe_element.py:53
 msgid "Red"
 msgstr "Roșu"
 
-#: gsecrets/safe_element.py:53
+#: gsecrets/safe_element.py:55
 msgid "Purple"
 msgstr "Violet"
 
-#: gsecrets/safe_element.py:55
+#: gsecrets/safe_element.py:57
 msgid "Brown"
 msgstr "Maro"
 
-#: gsecrets/safe_element.py:574
+#: gsecrets/safe_element.py:656
 msgid "Clone"
 msgstr "Clonează"
 
 #. This shouldn't happen
+#. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
-#: gsecrets/unlocked_database.py:296 gsecrets/unlocked_database.py:581
-#: gsecrets/widgets/window.py:357 gsecrets/widgets/window.py:363
+#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/widgets/window.py:415
 msgid "Could not save Safe"
 msgstr "Nu s-a putut salva seiful"
 
+#: gsecrets/selection_manager.py:58
+msgid "Operation aborted: deleting currently active group"
+msgstr "Operațiune întreruptă: se șterge grupul activ curent"
+
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "Avertisment"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"Ștergeți elemente din coșul de gunoi, aceste ștergeri nu pot fi refăcute."
+
+#: gsecrets/selection_manager.py:112
+msgid "Delete"
+msgstr "Șterge"
+
+#: gsecrets/selection_manager.py:142
+msgid "Operation aborted: moving currently active group"
+msgstr "Operațiune întreruptă: se mută grupul activ curent"
+
+#: gsecrets/selection_manager.py:155
+msgid "Move completed"
+msgstr "Mutare completată"
+
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:110
+#: gsecrets/unlock_database.py:107
 msgid "Safe {} is already open"
 msgstr "Seiful {} este deschis deja"
 
-#: gsecrets/unlock_database.py:184
+#: gsecrets/unlock_database.py:180
 msgid "Failed to unlock Safe"
 msgstr "Nu s-a putut debloca seiful"
 
-#: gsecrets/unlocked_database.py:299
+#: gsecrets/unlocked_database.py:244
 msgid "Safe saved"
 msgstr "Seif salvat"
 
-#: gsecrets/unlocked_database.py:301
+#: gsecrets/unlocked_database.py:246
 msgid "No changes made"
 msgstr "Nu s-au făcut modificări"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlocked_database.py:346
+#: gsecrets/unlocked_database.py:293
 msgid "Element deleted"
 msgid_plural "{} Elements deleted"
 msgstr[0] "Element șters"
 msgstr[1] "{} elemente șterse"
 msgstr[2] "{} de elemente șterse"
 
-#: gsecrets/unlocked_database.py:351
+#: gsecrets/unlocked_database.py:298
 msgid "Deletion completed"
 msgstr "Ștergere completată"
 
-#: gsecrets/unlocked_database.py:356 gsecrets/unlocked_database.py:381
+#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
 msgid "Undo"
 msgstr "Refă"
 
-#: gsecrets/unlocked_database.py:380
+#: gsecrets/unlocked_database.py:326
 msgid "Attribute deleted"
 msgstr "Atribut șters"
 
-#: gsecrets/unlocked_database.py:411
+#: gsecrets/unlocked_database.py:355
 msgid "Copied"
 msgstr "Copiat"
 
 #. NOTE: Notification that a safe has been locked.
-#: gsecrets/unlocked_database.py:508
+#: gsecrets/unlocked_database.py:455
 msgid "Safe locked due to inactivity"
 msgstr "Seif blocat din cauza inactivității"
 
-#: gsecrets/widgets/add_attribute_dialog.py:37
+#: gsecrets/unlocked_database.py:692
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] "{} selectat"
+msgstr[1] "{} selectate"
+msgstr[2] "{} selectate"
+
+#: gsecrets/widgets/add_attribute_dialog.py:35
 msgid "Attribute key contains an illegal character"
 msgstr "Cheia atributului conține un caracter ilegal"
 
-#: gsecrets/widgets/add_attribute_dialog.py:48
+#: gsecrets/widgets/add_attribute_dialog.py:45
 msgid "Attribute key already exists"
 msgstr "Cheia atributului există deja"
 
 #. NOTE: Filechooser title for downloading an attachment
-#: gsecrets/widgets/attachment_entry_row.py:36
+#: gsecrets/widgets/attachment_entry_row.py:37
 msgid "Save Attachment"
 msgstr "Salvează atașament"
 
-#: gsecrets/widgets/attachment_entry_row.py:57
+#: gsecrets/widgets/attachment_entry_row.py:54
 msgid "Could not store attachment"
 msgstr "Nu s-a putut stoca atașamentul"
 
-#: gsecrets/widgets/attribute_entry_row.py:39
-#: gsecrets/widgets/protected_attribute_entry_row.py:57
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
 msgid "Attribute copied"
 msgstr "Atribut copiat"
 
-#. NOTE: Filechooser title for choosing current used keyfile
-#: gsecrets/widgets/database_settings_dialog.py:144
-msgid "Select Current Keyfile"
-msgstr "Selectează fișierul de chei curent"
-
-#: gsecrets/widgets/database_settings_dialog.py:242
-#: gsecrets/widgets/database_settings_dialog.py:246
+#: gsecrets/widgets/database_settings_dialog.py:175
+#: gsecrets/widgets/database_settings_dialog.py:179
 msgid "Could not apply changes"
 msgstr "Nu s-au putut aplica modificările"
 
 #. Still executes the finally block
-#: gsecrets/widgets/database_settings_dialog.py:249
+#: gsecrets/widgets/database_settings_dialog.py:182
 msgid "Changes Applied"
 msgstr "Modificări aplicate"
 
-#: gsecrets/widgets/database_settings_dialog.py:287
+#: gsecrets/widgets/database_settings_dialog.py:236
 msgid "Could not change credentials"
 msgstr "Nu s-au putut modifica acreditările"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:293
+#: gsecrets/widgets/database_settings_dialog.py:241
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Conflicte în timpul salvării"
 
-#: gsecrets/widgets/database_settings_dialog.py:294
+#: gsecrets/widgets/database_settings_dialog.py:243
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1467,49 +1537,45 @@ msgstr ""
 "Seiful a fost modificat din altă parte. Rezolvați aceste conflicte din "
 "fereastra principală când salvați."
 
-#: gsecrets/widgets/database_settings_dialog.py:296
-msgid "OK"
-msgstr "OK"
-
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:358
-#: gsecrets/widgets/database_settings_dialog.py:372
+#: gsecrets/widgets/database_settings_dialog.py:308
+#: gsecrets/widgets/database_settings_dialog.py:322
 msgid "Unknown"
 msgstr "Necunoscut"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:362
+#: gsecrets/widgets/database_settings_dialog.py:312
 msgid "AES 256-bit"
 msgstr "AES 256-biți"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:365
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-biți"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:368
+#: gsecrets/widgets/database_settings_dialog.py:318
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-biți"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:376
+#: gsecrets/widgets/database_settings_dialog.py:326
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:379
+#: gsecrets/widgets/database_settings_dialog.py:329
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:382
+#: gsecrets/widgets/database_settings_dialog.py:332
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
 #: gsecrets/widgets/expiration_date_row.py:56
-#: gsecrets/widgets/expiration_date_row.py:62
+#: gsecrets/widgets/expiration_date_row.py:64
 msgid "Entry expired"
 msgstr "Intrarea a expirat"
 
@@ -1517,9 +1583,13 @@ msgstr "Intrarea a expirat"
 msgid "Hide Text"
 msgstr "Ascunde textul"
 
-#: gsecrets/widgets/notes_dialog.py:62
+#: gsecrets/widgets/notes_dialog.py:58
 msgid "Selection copied"
 msgstr "Selecție copiată"
+
+#: gsecrets/widgets/password_level_bar.py:22
+msgid "Password Strength"
+msgstr "Puterea parolei"
 
 #. TRANSLATORS Dialog header for when there is a conflict.
 #: gsecrets/widgets/quit_conflict_dialog.py:18
@@ -1556,82 +1626,88 @@ msgstr ""
 msgid "_Back up and Save"
 msgstr "_Copiază de rezervă și salvează"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:47
+#: gsecrets/widgets/saving_conflict_dialog.py:45
 msgid "Save Backup"
 msgstr "Salvează copia de rezervă"
 
-#: gsecrets/widgets/saving_conflict_dialog.py:61
+#: gsecrets/widgets/saving_conflict_dialog.py:55
 msgid "Could not backup safe"
 msgstr "Nu s-a putut copia de rezervă seiful"
 
-#: gsecrets/widgets/selection_mode_headerbar.py:71
-msgid "{} _Selected"
-msgid_plural "{} _Selected"
-msgstr[0] "{} selectată"
-msgstr[1] "{} selectate"
-msgstr[2] "{} selectate"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:97
-msgid "Operation aborted: deleting currently active group"
-msgstr "Operațiune întreruptă: se șterge grupul activ curent"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:152
-msgid "Warning"
-msgstr "Avertisment"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:154
-msgid ""
-"You are deleting elements in the trash bin, these deletions cannot be undone."
-msgstr ""
-"Ștergeți elemente din coșul de gunoi, aceste ștergeri nu pot fi refăcute."
-
-#: gsecrets/widgets/selection_mode_headerbar.py:157
-msgid "Cancel"
-msgstr "Anulează"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:158
-msgid "Delete"
-msgstr "Șterge"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:198
-msgid "Operation aborted: moving currently active group"
-msgstr "Operațiune întreruptă: se mută grupul activ curent"
-
-#: gsecrets/widgets/selection_mode_headerbar.py:213
-msgid "Move completed"
-msgstr "Mutare completată"
-
-#: gsecrets/widgets/window.py:136
+#: gsecrets/widgets/window.py:150
 msgid "Any file type"
 msgstr "Orice tip de fișier"
 
-#: gsecrets/widgets/window.py:143
+#: gsecrets/widgets/window.py:157
 msgid "Select Safe"
 msgstr "Selectează seif"
 
-#: gsecrets/widgets/window.py:159
+#: gsecrets/widgets/window.py:174
 msgid "File does not have a valid path"
 msgstr "Fișierul nu are o cale validă"
 
-#: gsecrets/widgets/window.py:193
+#: gsecrets/widgets/window.py:207
 msgid "Safe is already open"
 msgstr "Seiful este deschis deja"
 
-#: gsecrets/widgets/window.py:225
+#: gsecrets/widgets/window.py:239
 msgid "_Create"
 msgstr "_Creează"
 
-#: gsecrets/widgets/window.py:246
+#: gsecrets/widgets/window.py:261
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Nu s-a putut crea seif: seiful este deja deschis"
 
-#: gsecrets/widgets/window.py:288 gsecrets/widgets/window.py:303
+#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:315
 msgid "Could not create new Safe"
 msgstr "Nu s-a putut crea un seif nou"
 
-#: gsecrets/widgets/window.py:370
+#: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Nu s-a putut salva seiful"
+
+#~ msgid "_Select current keyfile if any"
+#~ msgstr "_Selectează fișierul de chei curent dacă există"
+
+#~ msgid "(Optional) _Generate new keyfile"
+#~ msgstr "(Opțional) _Generează un nou fișier de chei"
+
+#~ msgid "Could not Load Keyfile"
+#~ msgstr "Nu s-a putut încărca fișierul"
+
+#~ msgid "Select"
+#~ msgstr "Selectează"
+
+#~ msgid "Enter Search Term"
+#~ msgstr "Introduceți un termen de căutare"
+
+#~ msgid "Select _All"
+#~ msgstr "Selectează to_ate"
+
+#~ msgid "Select _None"
+#~ msgstr "Deselectează _tot"
+
+#~ msgid "Last opened databases"
+#~ msgstr "Ultimele baze de date deschise"
+
+#~ msgid "A list of the last opened databases. Not used anymore."
+#~ msgstr ""
+#~ "O listă a bazelor de date deschise ultima dată. Nu mai este folosit."
+
+#~ msgid "Error: File {} does not exist"
+#~ msgstr "Eroare: Fișierul {} nu există"
+
+#~ msgid "Error: Safe {} is already open"
+#~ msgstr "Eroare: Seiful {} a fost deschis deja"
+
+#~ msgid "Username not specified"
+#~ msgstr "Nume de utilizator nespecificat"
+
+#~ msgid "Root Group"
+#~ msgstr "Grup de root"
+
+#~ msgid "Select Current Keyfile"
+#~ msgstr "Selectează fișierul de chei curent"
 
 #~ msgid "Falk Alexander Seidl"
 #~ msgstr "Falk Alexander Seidl"
@@ -1845,9 +1921,6 @@ msgstr "Nu s-a putut salva seiful"
 #~ msgid "Remember _Unlock Method"
 #~ msgstr "Ține minte metoda de _deblocare"
 
-#~ msgid "Enable faster unlocking."
-#~ msgstr "Activează deblocare mai rapidă."
-
 #~ msgid "_Show Password Fields"
 #~ msgstr "_Arată câmpurile de parolă"
 
@@ -1950,9 +2023,6 @@ msgstr "Nu s-a putut salva seiful"
 
 #~ msgid "Skipped moving group into itself"
 #~ msgstr "S-a omis mutarea grupului în el însuși"
-
-#~ msgid "Database saved"
-#~ msgstr "Bază de date salvată"
 
 #~ msgid "%s locked"
 #~ msgstr "%s blocat"

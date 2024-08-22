@@ -104,6 +104,7 @@ class Pkcs11Provider(BaseProvider):
         if not self.scan_slots():
             return model
 
+        model.splice(0, 1, [_("No RSA Certificate")])
         objects = self._session.findObjects(
             [(CKA_CLASS, CKO_PRIVATE_KEY), (CKA_KEY_TYPE, CKK_RSA), (CKA_SIGN, True)],
         )

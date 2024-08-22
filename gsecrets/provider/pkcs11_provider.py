@@ -17,6 +17,7 @@ from PyKCS11 import (
     CKK_RSA,
     CKO_PRIVATE_KEY,
     CKR_USER_ALREADY_LOGGED_IN,
+    CKS_RW_USER_FUNCTIONS,
     PyKCS11,
     PyKCS11Lib,
 )
@@ -197,6 +198,15 @@ class Pkcs11Provider(BaseProvider):
 
             dialog.add_response("ok", _("OK"))
             dialog.present(self.window)
+            return
+
+        session_info = self._session.getSessionInfo()
+        if session_info.state >= CKS_RW_USER_FUNCTIONS:
+            # We are already authorized to perform R/W user functions.
+            # This means that we are already considered 'logged in' and
+            # do not need to ask for a password.
+            logging.debug("Already logged in")
+            self.fill_data(row)
             return
 
         entry = Adw.PasswordEntryRow(activates_default=True, title=_("Passphrase"))

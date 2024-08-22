@@ -16,6 +16,7 @@ from PyKCS11 import (
     CKA_SIGN,
     CKK_RSA,
     CKO_PRIVATE_KEY,
+    CKR_USER_ALREADY_LOGGED_IN,
     PyKCS11,
     PyKCS11Lib,
 )
@@ -27,8 +28,6 @@ from gsecrets.provider.base_provider import BaseProvider
 if TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.utils import LazyValue
-
-MAGIC_ERROR = 0x100
 
 # KeePass-Smart-Certificate-Key-Provider
 # https://github.com/BodnarSoft/KeePass-Smart-Certificate-Key-Provider/
@@ -86,13 +85,12 @@ class Pkcs11Provider(BaseProvider):
         try:
             self._session.login(pin)
         except PyKCS11.PyKCS11Error as err:
-            logging.exception("Could not login")
-
-            if err.value != MAGIC_ERROR:
+            # Check if we were already logged in (due to some race condition)
+            if err.value != CKR_USER_ALREADY_LOGGED_IN:
+                logging.exception("Could not login")
                 return False
 
         logging.debug("Successfully logged in")
-
         return True
 
     def _create_model(self):

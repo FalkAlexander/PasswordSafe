@@ -49,7 +49,7 @@ mypy:
   script:
     - dnf install -y pip
     - pip install mypy pyotp
-    - mypy --ignore-missing-imports --disallow-incomplete-defs --explicit-package-bases gsecrets
+    - mypy gsecrets
 
 ruff:
   stage: check

@@ -16,6 +16,8 @@ if TYPE_CHECKING:
     from gsecrets.database_manager import DatabaseManager
     from gsecrets.utils import LazyValue
 
+NOT_INIT = "Provider not initialized."
+
 
 class YubiKeyInfo(GObject.Object):
     __gtype_name__ = "YubiKeyInfo"
@@ -54,12 +56,12 @@ class YubiKeyInfo(GObject.Object):
 
 
 class YubiKeyProvider(BaseProvider):
-    def __init__(self, _window):
+    def __init__(self, _window: Adw.Window) -> None:
         super().__init__()
 
-        self.active_key: YubiKeyInfo = None
-        self.unlock_row: Adw.ComboRow = None
-        self.create_row: Adw.ComboRow = None
+        self.active_key: YubiKeyInfo | None = None
+        self.unlock_row: Adw.ComboRow | None = None
+        self.create_row: Adw.ComboRow | None = None
 
         # NOTE: There is currently a bug which prevents yubikey rescan
         # running under flatpak, that's why we can simply collect all yubikeys
@@ -187,6 +189,9 @@ class YubiKeyProvider(BaseProvider):
     def _on_refresh_button_clicked(self, _row: Adw.ComboRow) -> None:
         model = self._create_model()
 
+        if self.unlock_row is None:
+            raise ValueError(NOT_INIT)
+
         self.unlock_row.set_model(model)
         self.unlock_row.set_selected(len(model) - 1)
 
@@ -225,6 +230,9 @@ class YubiKeyProvider(BaseProvider):
     def _on_yubikey_create_refresh_button_clicked(self, _button: Gtk.Button) -> None:
         model = self._create_model()
 
+        if self.create_row is None:
+            raise ValueError(NOT_INIT)
+
         self.create_row.set_model(model)
         self.create_row.set_selected(0)
 
@@ -262,4 +270,7 @@ class YubiKeyProvider(BaseProvider):
         return False
 
     def config(self) -> dict:
+        if self.active_key is None:
+            raise ValueError(NOT_INIT)
+
         return {"serial": self.active_key.serial, "slot": self.active_key.slot}

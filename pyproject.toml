@@ -1,11 +1,29 @@
+[project]
+name = "gsecrets"
+readme = "README.md"
+requires-python = ">= 3.12"
+version = "9.0"
+dependencies = [
+  "pykeepass>=4.1.0",
+  "pykcs11",
+  "validators",
+  "pyotp>=2.6.0",
+  "zxcvbn>=4.4.28",
+  "python-yubico",
+]
+
+[tool.setuptools]
+py-modules = []
+
 # Exclude a variety of commonly ignored directories.
+[tool.ruff]
 exclude = [
     "tests",
     ".git",
     ".githooks",
 ]
 
-[lint]
+[tool.ruff.lint]
 select = [
     "ALL",
 ]
@@ -51,3 +69,8 @@ ignore = [
     "TD004",
     "UP032",
 ]
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_incomplete_defs = true
+explicit_package_bases = true

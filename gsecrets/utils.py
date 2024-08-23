@@ -3,13 +3,17 @@ from __future__ import annotations
 
 import secrets
 import stat
+import typing
 from gettext import gettext as _
 from pathlib import Path
-from typing import Callable, Generic, TypeVar
+from typing import Generic, TypeVar
 
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 from gi.repository import Gio, GLib, Gtk
+
+if typing.TYPE_CHECKING:
+    from collections.abc import Callable
 
 
 def format_time(time: GLib.DateTime | None, hours: bool = True) -> str:

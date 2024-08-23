@@ -10,7 +10,7 @@ from gi.repository import GLib
 from zxcvbn import zxcvbn
 
 if typing.TYPE_CHECKING:
-    from typing import Callable
+    from collections.abc import Callable
 
 
 def generate(

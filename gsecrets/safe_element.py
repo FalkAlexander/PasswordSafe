@@ -642,7 +642,7 @@ class SafeEntry(SafeElement):
         """
         return self._entry
 
-    def duplicate(self):
+    def duplicate(self) -> None:
         """Duplicate an entry."""
         title: str = self.name or ""
         username: str = self.username or ""

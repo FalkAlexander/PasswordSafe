@@ -5,7 +5,7 @@ from __future__ import annotations
 import binascii
 import logging
 import typing
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from enum import Enum
 from gettext import gettext as _
 from typing import NamedTuple
@@ -1060,7 +1060,7 @@ class SafeEntry(SafeElement):
                 value.get_hour(),
                 value.get_minute(),
                 value.get_second(),
-                tzinfo=timezone.utc,
+                tzinfo=UTC,
             )
             self.entry.expiry_time = expired
             self._check_expiration()

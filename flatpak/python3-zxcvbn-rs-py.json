@@ -1,0 +1,26 @@
+{
+    "name": "python3-zxcvbn-rs-py",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"zxcvbn-rs-py\" --no-build-isolation"
+    ],
+    "modules": [
+        "maturin.json"
+    ],
+    "build-options": {
+        "append-path": "/usr/lib/sdk/rust-stable/bin",
+        "env": {
+            "CARGO_HOME": "/run/build/python3-zxcvbn-rs-py/cargo",
+            "CARGO_NET_OFFLINE": "true",
+            "RUST_BACKTRACE": "1"
+        }
+    },
+    "sources": [
+        "python3-zxcvbn-rs-py-sources.json",
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/52/6e/3f08eccc51ca00e10ab752080de8aa2c972c9f0002d068d42e4a620e6883/zxcvbn_rs_py-0.1.1.tar.gz",
+            "sha256": "ec4649fd619e91fb278aca93b3d770c1b4226ba3a50c4c77311f6692a488fa00"
+        }
+    ]
+}

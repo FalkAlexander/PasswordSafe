@@ -32,7 +32,7 @@ python_bin = python.find_installation('python3', modules:[
   'pykeepass',
   'pyotp',
   'validators',
-  'zxcvbn',
+  'zxcvbn_rs_py',
   'PyKCS11',
   'yubico',
 ])

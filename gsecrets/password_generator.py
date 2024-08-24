@@ -7,7 +7,7 @@ import threading
 import typing
 
 from gi.repository import GLib
-from zxcvbn import zxcvbn
+from zxcvbn_rs_py import zxcvbn
 
 if typing.TYPE_CHECKING:
     from collections.abc import Callable
@@ -86,7 +86,7 @@ def strength(password: str) -> int:
     :rtype: int
     """
     if password:
-        return zxcvbn(password)["score"]
+        return zxcvbn(password).score
 
     return 0
 

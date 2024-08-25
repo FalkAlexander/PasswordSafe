@@ -1,0 +1,14 @@
+{
+    "name": "python3-pykcs11",
+    "buildsystem": "simple",
+    "build-commands": [
+        "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"pykcs11\" --no-build-isolation"
+    ],
+    "sources": [
+        {
+            "type": "file",
+            "url": "https://files.pythonhosted.org/packages/f0/42/9dc2580c7d2095b570a4516b8017b7d40591229ea25db25ed99db09d4347/pykcs11-1.5.16.tar.gz",
+            "sha256": "43d746b0677f43cc634b9f7c4dab2d9ba6b1a83b931e2598247062f8ff641e07"
+        }
+    ]
+}

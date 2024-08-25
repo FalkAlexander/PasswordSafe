@@ -7,3 +7,21 @@ Clone the project [zxcvbn-rs-py](https://github.com/fief-dev/zxcvbn-rs-py), chec
     cargo -C zxcvbn-rs-py generate-lockfile
     flatpak-cargo-generator zxcvbn-rs-py/Cargo.lock \
     -o flatpak/python3-zxcvbn-rs-py-sources.json
+
+# Update python3-validators.json
+
+    flatpak-pip-generator validators -o flatpak/python3-validators
+
+# Update python3-pyotp.json
+
+    flatpak-pip-generator pyotp -o flatpak/python3-pyotp
+
+# Update python3-pykeepass.json
+
+    flatpak-pip-generator --build-isolation pykeepass -o flatpak/python3-pykeepass
+
+Then add `"pykeepass-build-sources.json"` as a source.
+
+# Update python3-pykcs11-sources.json
+
+    flatpak-pip-generator pykcs11 -o flatpak/python3-pykcs11-sources

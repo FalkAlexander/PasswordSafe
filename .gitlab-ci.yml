@@ -42,7 +42,7 @@ codespell:
   stage: check
   script:
     - dnf install -y codespell
-    - codespell -S "*.png,*.po,.git,*.jpg,eff_large_wordlist.txt,.mypy_cache,_build" -f
+    - codespell -L crate -S "*.png,*.po,.git,*.jpg,eff_large_wordlist.txt,.mypy_cache,_build" -f
 
 mypy:
   stage: check

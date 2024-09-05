@@ -5,23 +5,23 @@
 # Enrico Nicoletto <hiko@duck.com>, 2020-2022.
 # Matheus Barbosa <mdpb.matheus@gmail.com>, 2022.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2018-2022.
-# Juliano de Souza Camargo <julianosc@pm.me>, 2024.
 # Leônidas Araújo <leorusvellt@hotmail.com>, 2022-2024.
+# Juliano de Souza Camargo <julianosc@pm.me>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-06-28 22:26+0000\n"
-"PO-Revision-Date: 2024-07-06 21:47-0300\n"
-"Last-Translator: Leônidas Araújo <leorusvellt@hotmail.com>\n"
-"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>\n"
+"POT-Creation-Date: 2024-09-05 21:03+0000\n"
+"PO-Revision-Date: 2024-09-05 19:36-0300\n"
+"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Gtranslator 46.1\n"
 "X-DL-Team: pt_BR\n"
 "X-DL-Module: secrets\n"
 "X-DL-Branch: master\n"
@@ -131,7 +131,7 @@ msgstr "Cor"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
 msgid "Create Safe"
 msgstr "Criar cofre"
 
@@ -230,7 +230,7 @@ msgstr "Novas credenciais adicionais"
 
 #: data/gtk/database_settings_dialog.ui:75
 #: gsecrets/widgets/database_settings_dialog.py:196
-#: gsecrets/widgets/database_settings_dialog.py:259
+#: gsecrets/widgets/database_settings_dialog.py:258
 msgid "_Apply Changes"
 msgstr "_Aplicar alterações"
 
@@ -392,15 +392,15 @@ msgstr "Mostrar _histórico"
 msgid "_Delete"
 msgstr "E_xcluir"
 
-#: data/gtk/entry_row.ui:80
+#: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
 msgstr "Copiar senha descartável"
 
-#: data/gtk/entry_row.ui:91
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "Copiar nome de usuário"
 
-#: data/gtk/entry_row.ui:101
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "Copiar senha"
 
@@ -583,7 +583,7 @@ msgid "Characters"
 msgstr "Caracteres"
 
 #: data/gtk/password_generator_popover.ui:94
-#: gsecrets/provider/pkcs11_provider.py:206
+#: gsecrets/provider/pkcs11_provider.py:213
 msgid "Passphrase"
 msgstr "Frase secreta"
 
@@ -690,12 +690,12 @@ msgstr "Você deseja escrever todas as alterações ao cofre?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:421
+#: gsecrets/widgets/window.py:416
 msgid "_Quit Without Saving"
 msgstr "_Sair sem salvar"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:417
 msgid "_Don't Quit"
 msgstr "_Não sair"
 
@@ -714,8 +714,8 @@ msgstr "Reabre o último cofre aberto."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
 msgid "Safe"
 msgstr "Cofre"
 
@@ -728,8 +728,8 @@ msgid "Save every change automatically."
 msgstr "Salva todas as alterações automaticamente."
 
 #: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:209
-#: gsecrets/provider/pkcs11_provider.py:211
+#: gsecrets/provider/pkcs11_provider.py:216
+#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Desbloquear"
 
@@ -1159,15 +1159,15 @@ msgstr ""
 "se integra perfeitamente ao ambiente GNOME e fornece um interface fácil e "
 "organizada para gerenciar os bancos de dados de senha."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:303
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
 msgid "Password management"
 msgstr "Gerenciamento da senha"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:307
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
 msgid "Safe unlocking"
 msgstr "Desbloqueando cofre"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:311
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
 msgid "Safe creation"
 msgstr "Criação do cofre"
 
@@ -1264,7 +1264,7 @@ msgid "Exclude Symbols"
 msgstr "Excluir símbolos"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:82
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:86
 msgid "Keyfile"
 msgstr "Arquivo de chave"
 
@@ -1297,12 +1297,16 @@ msgstr "Usa um arquivo para aumentar a segurança"
 msgid "Could not create keyfile"
 msgstr "Não foi possível criar arquivo de chave"
 
-#: gsecrets/provider/pkcs11_provider.py:100
+#: gsecrets/provider/pkcs11_provider.py:99
 msgid "No Smartcard"
 msgstr "Sem cartão inteligente"
 
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "Sem certificado RSA"
+
 #: gsecrets/provider/pkcs11_provider.py:119
-#: gsecrets/provider/pkcs11_provider.py:261
+#: gsecrets/provider/pkcs11_provider.py:268
 msgid "Smartcard"
 msgstr "Cartão inteligente"
 
@@ -1310,64 +1314,64 @@ msgstr "Cartão inteligente"
 msgid "Select certificate"
 msgstr "Selecionar certificado"
 
-#: gsecrets/provider/pkcs11_provider.py:198
+#: gsecrets/provider/pkcs11_provider.py:196
 msgid "No smartcard present"
 msgstr "Nenhum cartão inteligente presente"
 
-#: gsecrets/provider/pkcs11_provider.py:199
+#: gsecrets/provider/pkcs11_provider.py:197
 msgid "Please insert smartcard and retry."
 msgstr "Por favor insira um cartão inteligente e tente novamente."
 
-#: gsecrets/provider/pkcs11_provider.py:202
-#: gsecrets/widgets/database_settings_dialog.py:247
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:246
 msgid "OK"
 msgstr "OK"
 
-#: gsecrets/provider/pkcs11_provider.py:209
+#: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Desbloquear seu cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:210 gsecrets/selection_manager.py:111
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: gsecrets/provider/pkcs11_provider.py:254
+#: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
 msgstr "Falha ao desbloquear o cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:262
+#: gsecrets/provider/pkcs11_provider.py:269
 msgid "Use a smartcard"
 msgstr "Usar um cartão inteligente"
 
-#: gsecrets/provider/pkcs11_provider.py:316
+#: gsecrets/provider/pkcs11_provider.py:323
 msgid "Refresh Certificate List"
 msgstr "Atualizar lista de certificados"
 
-#: gsecrets/provider/yubikey_provider.py:34
+#: gsecrets/provider/yubikey_provider.py:36
 msgid "No Key"
 msgstr "Sem chave"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
-#: gsecrets/provider/yubikey_provider.py:37
+#: gsecrets/provider/yubikey_provider.py:39
 #, python-brace-format
 msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - Posição {slot}"
 
-#: gsecrets/provider/yubikey_provider.py:141
-#: gsecrets/provider/yubikey_provider.py:199
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:204
 msgid "YubiKey"
 msgstr "YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:142
+#: gsecrets/provider/yubikey_provider.py:144
 msgid "Select key"
 msgstr "Selecionar chave"
 
-#: gsecrets/provider/yubikey_provider.py:151
-#: gsecrets/provider/yubikey_provider.py:207
+#: gsecrets/provider/yubikey_provider.py:153
+#: gsecrets/provider/yubikey_provider.py:212
 msgid "Select YubiKey slot"
 msgstr "Selecionar a posição do YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:237
+#: gsecrets/provider/yubikey_provider.py:245
 msgid "Touch YubiKey"
 msgstr "Tocar o YubiKey"
 
@@ -1407,7 +1411,7 @@ msgstr "Púrpura"
 msgid "Brown"
 msgstr "Marrom"
 
-#: gsecrets/safe_element.py:637
+#: gsecrets/safe_element.py:656
 msgid "Clone"
 msgstr "Clone"
 
@@ -1415,7 +1419,7 @@ msgstr "Clone"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
-#: gsecrets/widgets/window.py:420
+#: gsecrets/widgets/window.py:415
 msgid "Could not save Safe"
 msgstr "Não foi possível salvar o cofre"
 
@@ -1529,17 +1533,17 @@ msgstr "Não foi possível aplicar as alterações"
 msgid "Changes Applied"
 msgstr "Alterações aplicadas"
 
-#: gsecrets/widgets/database_settings_dialog.py:237
+#: gsecrets/widgets/database_settings_dialog.py:236
 msgid "Could not change credentials"
 msgstr "Não foi possível alterar as credenciais"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:242
+#: gsecrets/widgets/database_settings_dialog.py:241
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "Conflitos ao salvar"
 
-#: gsecrets/widgets/database_settings_dialog.py:244
+#: gsecrets/widgets/database_settings_dialog.py:243
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1549,38 +1553,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:309
-#: gsecrets/widgets/database_settings_dialog.py:323
+#: gsecrets/widgets/database_settings_dialog.py:308
+#: gsecrets/widgets/database_settings_dialog.py:322
 msgid "Unknown"
 msgstr "Desconhecido"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:312
 msgid "AES 256-bit"
 msgstr "AES 256-bit"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:316
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-bit"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:319
+#: gsecrets/widgets/database_settings_dialog.py:318
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-bit"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:326
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:330
+#: gsecrets/widgets/database_settings_dialog.py:329
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:333
+#: gsecrets/widgets/database_settings_dialog.py:332
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1644,35 +1648,35 @@ msgstr "Salvar Backup"
 msgid "Could not backup safe"
 msgstr "Não foi possível efetuar backup do cofre"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:150
 msgid "Any file type"
 msgstr "Todo tipo de arquivo"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:157
 msgid "Select Safe"
 msgstr "Selecionar cofre"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:174
 msgid "File does not have a valid path"
 msgstr "O arquivo não possui um caminho válido"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:207
 msgid "Safe is already open"
 msgstr "Cofre já está aberto"
 
-#: gsecrets/widgets/window.py:240
+#: gsecrets/widgets/window.py:239
 msgid "_Create"
 msgstr "_Criar"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:261
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Não foi possível criar cofre: o cofre já está aberto"
 
-#: gsecrets/widgets/window.py:304 gsecrets/widgets/window.py:319
+#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:315
 msgid "Could not create new Safe"
 msgstr "Não foi possível criar novo cofre"
 
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Não foi possível salvar o cofre"
 

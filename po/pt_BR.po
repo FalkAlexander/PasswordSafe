@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-05 21:03+0000\n"
-"PO-Revision-Date: 2024-09-05 19:36-0300\n"
+"POT-Creation-Date: 2024-09-07 09:00+0000\n"
+"PO-Revision-Date: 2024-09-07 08:12-0300\n"
 "Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
 "Language-Team: Brazilian Portuguese <https://br.gnome.org/traducao>>\n"
 "Language: pt_BR\n"
@@ -727,8 +727,7 @@ msgstr "_Salvar automaticamente"
 msgid "Save every change automatically."
 msgstr "Salva todas as alterações automaticamente."
 
-#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:216
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
 #: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Desbloquear"
@@ -822,6 +821,7 @@ msgid "Lock on _Session Lock"
 msgstr "Bloquear ao bloquear a _sessão"
 
 #: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "Bloqueia automaticamente quando a sessão é bloqueada."
 
@@ -848,6 +848,10 @@ msgstr "Limpa"
 #: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "Desbloquear cofre"
+
+#: data/gtk/unlock_database.ui:51
+msgid "_Unlock"
+msgstr "_Desbloquear"
 
 #: data/gtk/unlocked_database.ui:18
 msgid "Browser"
@@ -978,10 +982,6 @@ msgstr "Nova janela"
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
 msgstr "Bloquear ao bloquear a sessão"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid "Automatically lock the safe when the session is locked."
-msgstr "Bloqueia o cofre automaticamente quando a sessão é bloqueada."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1184,7 +1184,7 @@ msgstr "Senhas não conferem"
 msgid "Unable to create database"
 msgstr "Não foi possível criar um banco de dados"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Falha ao gerar a chave composta"
@@ -1358,7 +1358,7 @@ msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - Posição {slot}"
 
 #: gsecrets/provider/yubikey_provider.py:143
-#: gsecrets/provider/yubikey_provider.py:204
+#: gsecrets/provider/yubikey_provider.py:205
 msgid "YubiKey"
 msgstr "YubiKey"
 
@@ -1366,12 +1366,13 @@ msgstr "YubiKey"
 msgid "Select key"
 msgstr "Selecionar chave"
 
-#: gsecrets/provider/yubikey_provider.py:153
-#: gsecrets/provider/yubikey_provider.py:212
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
 msgid "Select YubiKey slot"
 msgstr "Selecionar a posição do YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:245
+#: gsecrets/provider/yubikey_provider.py:246
 msgid "Touch YubiKey"
 msgstr "Tocar o YubiKey"
 
@@ -1451,11 +1452,11 @@ msgid "Move completed"
 msgstr "Movimentação concluída"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:107
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "Cofre {} já está aberto"
 
-#: gsecrets/unlock_database.py:180
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "Falha ao desbloquear o cofre"
 
@@ -1495,7 +1496,8 @@ msgstr "Copiado"
 msgid "Safe locked due to inactivity"
 msgstr "Cofre bloqueado devido a inatividade"
 
-#: gsecrets/unlocked_database.py:692
+#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} selecionado"
@@ -1679,6 +1681,9 @@ msgstr "Não foi possível criar novo cofre"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Não foi possível salvar o cofre"
+
+#~ msgid "Automatically lock the safe when the session is locked."
+#~ msgstr "Bloqueia o cofre automaticamente quando a sessão é bloqueada."
 
 #~ msgid "Navigate To"
 #~ msgstr "Navegar para"

@@ -150,6 +150,7 @@ class YubiKeyProvider(BaseProvider):
         refresh_button.set_valign(Gtk.Align.CENTER)
         refresh_button.add_css_class("flat")
         refresh_button.set_icon_name("view-refresh-symbolic")
+        # TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
         refresh_button.set_tooltip_text(_("Select YubiKey slot"))
         refresh_button.connect("clicked", self._on_refresh_button_clicked)
         row.add_suffix(refresh_button)

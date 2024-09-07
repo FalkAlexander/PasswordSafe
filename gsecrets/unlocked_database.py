@@ -689,6 +689,7 @@ class UnlockedDatabase(Adw.BreakpointBin):
         if n_selected == 0:
             title = _("Select Items")
         else:
+            # TRANSLATORS For example "1 Selected" or "21 Selected".
             title = ngettext("{} Selected", "{} Selected", n_selected).format(
                 n_selected,
             )

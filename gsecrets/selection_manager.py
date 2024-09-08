@@ -108,8 +108,8 @@ class SelectionManager(GObject.Object):
                     "You are deleting elements in the trash bin, these deletions cannot be undone.",  # noqa: E501
                 ),
             )
-            dialog.add_response("cancel", _("Cancel"))
-            dialog.add_response("delete", _("Delete"))
+            dialog.add_response("cancel", _("_Cancel"))
+            dialog.add_response("delete", _("_Delete"))
             dialog.set_response_appearance("delete", Adw.ResponseAppearance.DESTRUCTIVE)
             dialog.connect("response::delete", response_delete_cb)
             dialog.present(self)

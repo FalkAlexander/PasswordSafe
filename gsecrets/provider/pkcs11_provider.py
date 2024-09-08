@@ -197,7 +197,7 @@ class Pkcs11Provider(BaseProvider):
                 _("Please insert smartcard and retry."),
             )
 
-            dialog.add_response("ok", _("OK"))
+            dialog.add_response("ok", _("_OK"))
             dialog.present(self.window)
             return
 
@@ -214,8 +214,8 @@ class Pkcs11Provider(BaseProvider):
         entry.add_css_class("card")
 
         dialog = Adw.AlertDialog.new(_("Unlock"), _("Unlock your smartcard"))
-        dialog.add_response("cancel", _("Cancel"))
-        dialog.add_response("unlock", _("Unlock"))
+        dialog.add_response("cancel", _("_Cancel"))
+        dialog.add_response("unlock", _("_Unlock"))
         dialog.set_default_response("unlock")
         dialog.set_extra_child(entry)
         dialog.set_focus(entry)

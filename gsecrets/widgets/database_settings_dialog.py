@@ -243,7 +243,7 @@ class DatabaseSettingsDialog(Adw.PreferencesDialog):
                         "The safe was modified from somewhere else. Please resolve these conflicts from the main window when saving.",  # noqa: E501
                     ),
                 )
-                dialog.add_response("ok", _("OK"))
+                dialog.add_response("ok", _("_OK"))
                 dialog.present(self)
             else:
                 new_password = self.new_password_entry.props.text

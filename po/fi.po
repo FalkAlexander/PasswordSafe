@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-08-09 14:53+0000\n"
-"PO-Revision-Date: 2024-08-27 10:10+0300\n"
+"POT-Creation-Date: 2024-09-07 09:00+0000\n"
+"PO-Revision-Date: 2024-09-08 11:28+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: Finnish <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -567,7 +567,7 @@ msgid "Characters"
 msgstr "Merkit"
 
 #: data/gtk/password_generator_popover.ui:94
-#: gsecrets/provider/pkcs11_provider.py:204
+#: gsecrets/provider/pkcs11_provider.py:213
 msgid "Passphrase"
 msgstr "Tunnuslause"
 
@@ -711,9 +711,8 @@ msgstr "Tallenna _automaattisesti"
 msgid "Save every change automatically."
 msgstr "Tallenna jokainen muutos automaattisesti."
 
-#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:207
-#: gsecrets/provider/pkcs11_provider.py:209
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
+#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Avaa lukitus"
 
@@ -806,6 +805,7 @@ msgid "Lock on _Session Lock"
 msgstr "_Lukitse istunnon lukituksen yhteydessä"
 
 #: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "Lukitse automaattisesti, kun istunto lukitaan."
 
@@ -832,6 +832,10 @@ msgstr "Tyhjennä"
 #: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "Avaa säilön lukitus"
+
+#: data/gtk/unlock_database.ui:51
+msgid "_Unlock"
+msgstr "_Avaa lukitus"
 
 #: data/gtk/unlocked_database.ui:18
 msgid "Browser"
@@ -961,10 +965,6 @@ msgstr "Uusi ikkuna"
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
 msgstr "Lukitse istunnon lukituksen yhteydessä"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid "Automatically lock the safe when the session is locked."
-msgstr "Lukitse säilö automaattisesti, kun istunto lukitaan."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1165,7 +1165,7 @@ msgstr "Salasanat eivät täsmää"
 msgid "Unable to create database"
 msgstr "Tietokantaa ei voitu luoda"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Yhdistelmäavaimen luominen epäonnistui"
@@ -1245,7 +1245,7 @@ msgid "Exclude Symbols"
 msgstr "Älä käytä symboleja"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:82
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:86
 msgid "Keyfile"
 msgstr "Avaintiedosto"
 
@@ -1278,12 +1278,16 @@ msgstr "Käytä tiedostoa parantaaksesi turvallisuutta"
 msgid "Could not create keyfile"
 msgstr "Avaintiedostoa ei voitu luoda"
 
-#: gsecrets/provider/pkcs11_provider.py:100
+#: gsecrets/provider/pkcs11_provider.py:99
 msgid "No Smartcard"
 msgstr "Ei älykorttia"
 
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "Ei RSA-varmenne"
+
 #: gsecrets/provider/pkcs11_provider.py:119
-#: gsecrets/provider/pkcs11_provider.py:259
+#: gsecrets/provider/pkcs11_provider.py:268
 msgid "Smartcard"
 msgstr "Älykortti"
 
@@ -1304,51 +1308,52 @@ msgstr "Syötä älykortti ja yritä uudelleen."
 msgid "OK"
 msgstr "OK"
 
-#: gsecrets/provider/pkcs11_provider.py:207
+#: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Avaa älykortin lukitus"
 
-#: gsecrets/provider/pkcs11_provider.py:208 gsecrets/selection_manager.py:111
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 msgid "Cancel"
 msgstr "Peru"
 
-#: gsecrets/provider/pkcs11_provider.py:252
+#: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
 msgstr "Älykortin lukituksen avaaminen epäonnistui"
 
-#: gsecrets/provider/pkcs11_provider.py:260
+#: gsecrets/provider/pkcs11_provider.py:269
 msgid "Use a smartcard"
 msgstr "Käytä älykorttia"
 
-#: gsecrets/provider/pkcs11_provider.py:314
+#: gsecrets/provider/pkcs11_provider.py:323
 msgid "Refresh Certificate List"
 msgstr "Päivitä varmenneluettelo"
 
-#: gsecrets/provider/yubikey_provider.py:34
+#: gsecrets/provider/yubikey_provider.py:36
 msgid "No Key"
 msgstr "Ei avainta"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
-#: gsecrets/provider/yubikey_provider.py:37
+#: gsecrets/provider/yubikey_provider.py:39
 #, python-brace-format
 msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - Paikka {slot}"
 
-#: gsecrets/provider/yubikey_provider.py:141
-#: gsecrets/provider/yubikey_provider.py:199
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
 msgid "YubiKey"
 msgstr "YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:142
+#: gsecrets/provider/yubikey_provider.py:144
 msgid "Select key"
 msgstr "Valitse avain"
 
-#: gsecrets/provider/yubikey_provider.py:151
-#: gsecrets/provider/yubikey_provider.py:207
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
 msgid "Select YubiKey slot"
 msgstr "Valitse YubiKeyn paikka"
 
-#: gsecrets/provider/yubikey_provider.py:237
+#: gsecrets/provider/yubikey_provider.py:246
 msgid "Touch YubiKey"
 msgstr "Kosketa YubiKeyta"
 
@@ -1427,11 +1432,11 @@ msgid "Move completed"
 msgstr "Siirto valmistui"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:107
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "Säilö {} on jo avoinna"
 
-#: gsecrets/unlock_database.py:180
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "Säilön lukituksen avaaminen epäonnistui"
 
@@ -1471,7 +1476,8 @@ msgstr "Kopioitu"
 msgid "Safe locked due to inactivity"
 msgstr "Säilö on lukittu toimettomuuden vuoksi"
 
-#: gsecrets/unlocked_database.py:692
+#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} valittu"
@@ -1655,6 +1661,9 @@ msgstr "Uutta säilöä ei voitu luoda"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Säilöä ei voitu tallentaa"
+
+#~ msgid "Automatically lock the safe when the session is locked."
+#~ msgstr "Lukitse säilö automaattisesti, kun istunto lukitaan."
 
 #~ msgid "Navigate To"
 #~ msgstr "Siirry"

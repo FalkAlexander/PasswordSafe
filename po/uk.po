@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-05 21:03+0000\n"
-"PO-Revision-Date: 2024-09-06 22:45+0300\n"
+"POT-Creation-Date: 2024-09-07 09:00+0000\n"
+"PO-Revision-Date: 2024-09-08 10:20+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -712,8 +712,7 @@ msgstr "З_берігати автоматично"
 msgid "Save every change automatically."
 msgstr "Зберігати усі зміни автоматично."
 
-#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:216
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
 #: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Відімкнути"
@@ -808,6 +807,7 @@ msgid "Lock on _Session Lock"
 msgstr "Блокувати при блокуванні с_еансу"
 
 #: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "Автоматично блокувати, якщо заблоковано сеанс."
 
@@ -834,6 +834,11 @@ msgstr "Спорожнити"
 #: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "Відімкнути сейф"
+
+#: data/gtk/unlock_database.ui:51
+#| msgid "Unlock"
+msgid "_Unlock"
+msgstr "Віді_мкнути"
 
 #: data/gtk/unlocked_database.ui:18
 msgid "Browser"
@@ -964,10 +969,6 @@ msgstr "Створити вікно"
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
 msgstr "Блокувати при блокуванні сеансу"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid "Automatically lock the safe when the session is locked."
-msgstr "Автоматично блокувати сейф, якщо заблоковано сеанс."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1177,7 +1178,7 @@ msgstr "Паролі не збігаються"
 msgid "Unable to create database"
 msgstr "Не вдалося створити базу даних"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Не вдалося створити суміщений ключ"
@@ -1295,7 +1296,6 @@ msgid "No Smartcard"
 msgstr "Без смарт-картки"
 
 #: gsecrets/provider/pkcs11_provider.py:107
-#| msgid "Select certificate"
 msgid "No RSA Certificate"
 msgstr "Без сертифіката RSA"
 
@@ -1352,7 +1352,7 @@ msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] — слот {slot}"
 
 #: gsecrets/provider/yubikey_provider.py:143
-#: gsecrets/provider/yubikey_provider.py:204
+#: gsecrets/provider/yubikey_provider.py:205
 msgid "YubiKey"
 msgstr "YubiKey"
 
@@ -1360,12 +1360,13 @@ msgstr "YubiKey"
 msgid "Select key"
 msgstr "Виберіть ключ"
 
-#: gsecrets/provider/yubikey_provider.py:153
-#: gsecrets/provider/yubikey_provider.py:212
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
 msgid "Select YubiKey slot"
 msgstr "Виберіть слот YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:245
+#: gsecrets/provider/yubikey_provider.py:246
 msgid "Touch YubiKey"
 msgstr "Сенсорний YubiKey"
 
@@ -1445,11 +1446,11 @@ msgid "Move completed"
 msgstr "Пересування завершено"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:107
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "Сейф вже відкрито"
 
-#: gsecrets/unlock_database.py:180
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "Не вдалося відімкнути сейф"
 
@@ -1491,7 +1492,8 @@ msgstr "Скопійовано"
 msgid "Safe locked due to inactivity"
 msgstr "Сейф замкнено через неактивність"
 
-#: gsecrets/unlocked_database.py:692
+#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "Позначено {}"
@@ -1678,6 +1680,9 @@ msgstr "Не вдалося створити сейф"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Не вдалося зберегти сейф"
+
+#~ msgid "Automatically lock the safe when the session is locked."
+#~ msgstr "Автоматично блокувати сейф, якщо заблоковано сеанс."
 
 #~ msgid "Navigate To"
 #~ msgstr "Перейти до"

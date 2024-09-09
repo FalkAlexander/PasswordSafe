@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-08-09 19:33+0000\n"
-"PO-Revision-Date: 2024-07-30 00:06+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2024-09-07 09:00+0000\n"
+"PO-Revision-Date: 2024-09-09 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -573,7 +573,7 @@ msgid "Characters"
 msgstr "Karakterler"
 
 #: data/gtk/password_generator_popover.ui:94
-#: gsecrets/provider/pkcs11_provider.py:204
+#: gsecrets/provider/pkcs11_provider.py:213
 msgid "Passphrase"
 msgstr "Parola Metni"
 
@@ -717,9 +717,8 @@ msgstr "Kendiliğinden _Kaydet"
 msgid "Save every change automatically."
 msgstr "Her değişikliği kendiliğinden kaydet."
 
-#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:207
-#: gsecrets/provider/pkcs11_provider.py:209
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
+#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Kilit Aç"
 
@@ -812,6 +811,7 @@ msgid "Lock on _Session Lock"
 msgstr "_Oturum Kilitlendiğinde Kilitle"
 
 #: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "Oturum kilitlendiğinde kendiliğinden kilitle."
 
@@ -838,6 +838,10 @@ msgstr "Temizle"
 #: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "Kasa Kilidini Aç"
+
+#: data/gtk/unlock_database.ui:51
+msgid "_Unlock"
+msgstr "_Kilit Aç"
 
 #: data/gtk/unlocked_database.ui:18
 msgid "Browser"
@@ -966,10 +970,6 @@ msgstr "Yeni Pencere"
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
 msgstr "Oturum kilitlendiğinde kilitle"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid "Automatically lock the safe when the session is locked."
-msgstr "Oturum kilitlendiğinde kasayı kendiliğinden kilitle."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1170,7 +1170,7 @@ msgstr "Parola eşleşmiyor"
 msgid "Unable to create database"
 msgstr "Veri tabanı oluşturulamadı"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Birleşik anahtar oluşturulamadı"
@@ -1250,7 +1250,7 @@ msgid "Exclude Symbols"
 msgstr "Sembol İçermesin"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:82
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:86
 msgid "Keyfile"
 msgstr "Anahtar dosyası"
 
@@ -1283,12 +1283,16 @@ msgstr "Güvenliği artırmak için dosya kullan"
 msgid "Could not create keyfile"
 msgstr "Anahtar dosyası oluşturulamadı"
 
-#: gsecrets/provider/pkcs11_provider.py:100
+#: gsecrets/provider/pkcs11_provider.py:99
 msgid "No Smartcard"
 msgstr "Akıllı Kart Yok"
 
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "RSA Sertifikası Yok"
+
 #: gsecrets/provider/pkcs11_provider.py:119
-#: gsecrets/provider/pkcs11_provider.py:259
+#: gsecrets/provider/pkcs11_provider.py:268
 msgid "Smartcard"
 msgstr "Akıllı Kart"
 
@@ -1309,51 +1313,52 @@ msgstr "Lütfen akıllı kart takıp yeniden deneyin."
 msgid "OK"
 msgstr "Tamam"
 
-#: gsecrets/provider/pkcs11_provider.py:207
+#: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Akıllı kartınızın kilidini açın"
 
-#: gsecrets/provider/pkcs11_provider.py:208 gsecrets/selection_manager.py:111
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 msgid "Cancel"
 msgstr "İptal"
 
-#: gsecrets/provider/pkcs11_provider.py:252
+#: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
 msgstr "Akıllı Kart kilidi açılamadı"
 
-#: gsecrets/provider/pkcs11_provider.py:260
+#: gsecrets/provider/pkcs11_provider.py:269
 msgid "Use a smartcard"
 msgstr "Akıllı kart kullan"
 
-#: gsecrets/provider/pkcs11_provider.py:314
+#: gsecrets/provider/pkcs11_provider.py:323
 msgid "Refresh Certificate List"
 msgstr "Sertifika Listesini Yenile"
 
-#: gsecrets/provider/yubikey_provider.py:34
+#: gsecrets/provider/yubikey_provider.py:36
 msgid "No Key"
 msgstr "Anahtar Yok"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
-#: gsecrets/provider/yubikey_provider.py:37
+#: gsecrets/provider/yubikey_provider.py:39
 #, python-brace-format
 msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - Yuva {slot}"
 
-#: gsecrets/provider/yubikey_provider.py:141
-#: gsecrets/provider/yubikey_provider.py:199
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
 msgid "YubiKey"
 msgstr "YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:142
+#: gsecrets/provider/yubikey_provider.py:144
 msgid "Select key"
 msgstr "Anahtar seç"
 
-#: gsecrets/provider/yubikey_provider.py:151
-#: gsecrets/provider/yubikey_provider.py:207
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
 msgid "Select YubiKey slot"
 msgstr "YubiKey yuvası seç"
 
-#: gsecrets/provider/yubikey_provider.py:237
+#: gsecrets/provider/yubikey_provider.py:246
 msgid "Touch YubiKey"
 msgstr "YubiKeyʼe dokun"
 
@@ -1432,11 +1437,11 @@ msgid "Move completed"
 msgstr "Taşıma tamamlandı"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:107
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "{} kasası zaten açık"
 
-#: gsecrets/unlock_database.py:180
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "Kasa kilidi açılamadı"
 
@@ -1475,7 +1480,8 @@ msgstr "Kopyalandı"
 msgid "Safe locked due to inactivity"
 msgstr "Kasa durgunluktan kilitlendi"
 
-#: gsecrets/unlocked_database.py:692
+#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} Seçildi"
@@ -1658,3 +1664,6 @@ msgstr "Yeni kasa oluşturulamadı"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Kasa kaydedilemedi"
+
+#~ msgid "Automatically lock the safe when the session is locked."
+#~ msgstr "Oturum kilitlendiğinde kasayı kendiliğinden kilitle."

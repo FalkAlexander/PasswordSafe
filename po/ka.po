@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-06-28 22:26+0000\n"
-"PO-Revision-Date: 2024-07-03 06:09+0200\n"
+"POT-Creation-Date: 2024-09-07 09:00+0000\n"
+"PO-Revision-Date: 2024-09-09 15:01+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -115,7 +115,7 @@ msgstr "ფერი"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
 msgid "Create Safe"
 msgstr "სეიფის შექმნა"
 
@@ -214,7 +214,7 @@ msgstr "ახალი დამატებითი ავტორიზა�
 
 #: data/gtk/database_settings_dialog.ui:75
 #: gsecrets/widgets/database_settings_dialog.py:196
-#: gsecrets/widgets/database_settings_dialog.py:259
+#: gsecrets/widgets/database_settings_dialog.py:258
 msgid "_Apply Changes"
 msgstr "_ცვლილებების გადატარება"
 
@@ -376,15 +376,15 @@ msgstr "_მეტის ჩვენება"
 msgid "_Delete"
 msgstr "სამუ_დამოდ წაშლა"
 
-#: data/gtk/entry_row.ui:80
+#: data/gtk/entry_row.ui:81
 msgid "Copy One-Time Password"
 msgstr "ერთჯერადი პაროლის კოპირება"
 
-#: data/gtk/entry_row.ui:91
+#: data/gtk/entry_row.ui:92
 msgid "Copy Username"
 msgstr "მომხმარებლის სახელის კოპირება"
 
-#: data/gtk/entry_row.ui:101
+#: data/gtk/entry_row.ui:102
 msgid "Copy Password"
 msgstr "პაროლის კოპირება"
 
@@ -567,7 +567,7 @@ msgid "Characters"
 msgstr "სიმბოლოები"
 
 #: data/gtk/password_generator_popover.ui:94
-#: gsecrets/provider/pkcs11_provider.py:206
+#: gsecrets/provider/pkcs11_provider.py:213
 msgid "Passphrase"
 msgstr "კოდური ფრაზა"
 
@@ -674,12 +674,12 @@ msgstr "გნებავთ ყველა ცვლილების სე
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:421
+#: gsecrets/widgets/window.py:416
 msgid "_Quit Without Saving"
 msgstr "_დახურვა შენახვის გარეშე"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:422
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:417
 msgid "_Don't Quit"
 msgstr "_არ გახვიდე"
 
@@ -698,8 +698,8 @@ msgstr "ბოლოს გახსნილი სეიფის გახს
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
-#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
+#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
 msgid "Safe"
 msgstr "უსაფრთხო"
 
@@ -711,9 +711,8 @@ msgstr "_ავტომატურად შენახვა"
 msgid "Save every change automatically."
 msgstr "ცვლილებების ავტომატური შენახვა."
 
-#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:209
-#: gsecrets/provider/pkcs11_provider.py:211
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
+#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "განბლოკვა"
 
@@ -806,6 +805,7 @@ msgid "Lock on _Session Lock"
 msgstr "დაბლოკვა _სესიის დაბლოკვისას"
 
 #: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "ავტომატური დაბლოკვა სესიის დაბლოკვისას."
 
@@ -832,6 +832,10 @@ msgstr "გაწმენდა"
 #: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "სეიფის გაღება"
+
+#: data/gtk/unlock_database.ui:51
+msgid "_Unlock"
+msgstr "_განბლოკვა"
 
 #: data/gtk/unlocked_database.ui:18
 msgid "Browser"
@@ -960,10 +964,6 @@ msgstr "ახალი ფანჯარა"
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
 msgstr "დაბლოკვა სესიის დაბლოკვისას"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid "Automatically lock the safe when the session is locked."
-msgstr "ავტომატური დაბლოკვა სესიის დაბლოკვისას."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1138,15 +1138,15 @@ msgstr ""
 "შესანიშნავადაა ჩაშენებული სამუშაო მაგიდა GNOME-ში და პაროლების მართვის "
 "მარტივ და გასაგებ ინტერფეისს მოგაწოდებთ."
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:303
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
 msgid "Password management"
 msgstr "პაროლის მართვა"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:307
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
 msgid "Safe unlocking"
 msgstr "სეიფის განბლოკვა"
 
-#: data/org.gnome.World.Secrets.metainfo.xml.in.in:311
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
 msgid "Safe creation"
 msgstr "სეიფის შექმნა"
 
@@ -1163,7 +1163,7 @@ msgstr "პაროლები არ ემთხვევა"
 msgid "Unable to create database"
 msgstr "მონაცემთა ბაზის შექმნის შეცდომა"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "კომპოზიტური გასაღების გენერაცია ჩავარდა"
@@ -1243,7 +1243,7 @@ msgid "Exclude Symbols"
 msgstr "სიმბოლოების ჩაუთვლელად"
 
 #: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
-#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:82
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:86
 msgid "Keyfile"
 msgstr "გასაღების ფაილი"
 
@@ -1276,12 +1276,16 @@ msgstr "გამოიყენეთ ფაილი უსაფრთხო�
 msgid "Could not create keyfile"
 msgstr "გასაღების ფაილის შექმნის შეცდომა"
 
-#: gsecrets/provider/pkcs11_provider.py:100
+#: gsecrets/provider/pkcs11_provider.py:99
 msgid "No Smartcard"
 msgstr "სმარტ ბარათის გარეშე"
 
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "RSA სერტიფიკატის გარეშე"
+
 #: gsecrets/provider/pkcs11_provider.py:119
-#: gsecrets/provider/pkcs11_provider.py:261
+#: gsecrets/provider/pkcs11_provider.py:268
 msgid "Smartcard"
 msgstr "სმარტ ბარათი"
 
@@ -1289,64 +1293,65 @@ msgstr "სმარტ ბარათი"
 msgid "Select certificate"
 msgstr "აირჩიეთ სერტიფიკატი"
 
-#: gsecrets/provider/pkcs11_provider.py:198
+#: gsecrets/provider/pkcs11_provider.py:196
 msgid "No smartcard present"
 msgstr "სმარტ ბარათი აღმოჩენილი არაა"
 
-#: gsecrets/provider/pkcs11_provider.py:199
+#: gsecrets/provider/pkcs11_provider.py:197
 msgid "Please insert smartcard and retry."
 msgstr "შეაერთეთ სმარტ ბარათი და თავიდან სცადეთ."
 
-#: gsecrets/provider/pkcs11_provider.py:202
-#: gsecrets/widgets/database_settings_dialog.py:247
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:246
 msgid "OK"
 msgstr "დიახ"
 
-#: gsecrets/provider/pkcs11_provider.py:209
+#: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "განბლოკეთ თქვენი სმარტ ბარათი"
 
-#: gsecrets/provider/pkcs11_provider.py:210 gsecrets/selection_manager.py:111
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 msgid "Cancel"
 msgstr "გაუქმება"
 
-#: gsecrets/provider/pkcs11_provider.py:254
+#: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
 msgstr "სმარტ ბარათის განბლოკვა ჩავარდა"
 
-#: gsecrets/provider/pkcs11_provider.py:262
+#: gsecrets/provider/pkcs11_provider.py:269
 msgid "Use a smartcard"
 msgstr "სმარტ ბარათის გამოყენება"
 
-#: gsecrets/provider/pkcs11_provider.py:316
+#: gsecrets/provider/pkcs11_provider.py:323
 msgid "Refresh Certificate List"
 msgstr "სერტიფიკატების სიის განახლება"
 
-#: gsecrets/provider/yubikey_provider.py:34
+#: gsecrets/provider/yubikey_provider.py:36
 msgid "No Key"
 msgstr "გასაღების გარეშე"
 
 #. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
-#: gsecrets/provider/yubikey_provider.py:37
+#: gsecrets/provider/yubikey_provider.py:39
 #, python-brace-format
 msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - სლოტი {slot}"
 
-#: gsecrets/provider/yubikey_provider.py:141
-#: gsecrets/provider/yubikey_provider.py:199
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
 msgid "YubiKey"
 msgstr "YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:142
+#: gsecrets/provider/yubikey_provider.py:144
 msgid "Select key"
 msgstr "აირჩიეთ გასაღები"
 
-#: gsecrets/provider/yubikey_provider.py:151
-#: gsecrets/provider/yubikey_provider.py:207
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
 msgid "Select YubiKey slot"
 msgstr "აირჩიეთ YubiKey-ის სლოტი"
 
-#: gsecrets/provider/yubikey_provider.py:237
+#: gsecrets/provider/yubikey_provider.py:246
 msgid "Touch YubiKey"
 msgstr "სენსორული YubiKey"
 
@@ -1386,7 +1391,7 @@ msgstr "იისფერი"
 msgid "Brown"
 msgstr "ყავისფერი"
 
-#: gsecrets/safe_element.py:637
+#: gsecrets/safe_element.py:656
 msgid "Clone"
 msgstr "კლონირება"
 
@@ -1394,7 +1399,7 @@ msgstr "კლონირება"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
-#: gsecrets/widgets/window.py:420
+#: gsecrets/widgets/window.py:415
 msgid "Could not save Safe"
 msgstr "სეიფის შენახვის შეცდომა"
 
@@ -1425,11 +1430,11 @@ msgid "Move completed"
 msgstr "გადატანა დასრულებულია"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:107
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "სეიფი უკვე ღიაა: {}"
 
-#: gsecrets/unlock_database.py:180
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "სეიფის გაღების შეცდომა"
 
@@ -1468,7 +1473,8 @@ msgstr "კოპირებულია"
 msgid "Safe locked due to inactivity"
 msgstr "სეიფი ჩაიკეტა არააქტიურობის გამო"
 
-#: gsecrets/unlocked_database.py:692
+#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} მონიშნულია"
@@ -1505,17 +1511,17 @@ msgstr "ცვლილებების გადატარების შ�
 msgid "Changes Applied"
 msgstr "ცვლილებები წარმატებით გადატარდა"
 
-#: gsecrets/widgets/database_settings_dialog.py:237
+#: gsecrets/widgets/database_settings_dialog.py:236
 msgid "Could not change credentials"
 msgstr "მომხმარებლის/პაროლის შეცვლის შეცდომა"
 
 #. TRANSLATORS Warning dialog to resolve file saving conflicts.
-#: gsecrets/widgets/database_settings_dialog.py:242
+#: gsecrets/widgets/database_settings_dialog.py:241
 #: gsecrets/widgets/saving_conflict_dialog.py:22
 msgid "Conflicts While Saving"
 msgstr "კონფლიქტი შენახვისას"
 
-#: gsecrets/widgets/database_settings_dialog.py:244
+#: gsecrets/widgets/database_settings_dialog.py:243
 msgid ""
 "The safe was modified from somewhere else. Please resolve these conflicts "
 "from the main window when saving."
@@ -1525,38 +1531,38 @@ msgstr ""
 
 #. Encryption Algorithm
 #. Derivation Algorithm
-#: gsecrets/widgets/database_settings_dialog.py:309
-#: gsecrets/widgets/database_settings_dialog.py:323
+#: gsecrets/widgets/database_settings_dialog.py:308
+#: gsecrets/widgets/database_settings_dialog.py:322
 msgid "Unknown"
 msgstr "უცნობი"
 
 #. NOTE: AES is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:313
+#: gsecrets/widgets/database_settings_dialog.py:312
 msgid "AES 256-bit"
 msgstr "AES 256-ბიტიანი"
 
 #. NOTE: ChaCha20 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:316
+#: gsecrets/widgets/database_settings_dialog.py:315
 msgid "ChaCha20 256-bit"
 msgstr "ChaCha20 256-ბიტიანი"
 
 #. NOTE: Twofish is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:319
+#: gsecrets/widgets/database_settings_dialog.py:318
 msgid "Twofish 256-bit"
 msgstr "Twofish 256-ბიტიანი"
 
 #. NOTE: Argon2 is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:327
+#: gsecrets/widgets/database_settings_dialog.py:326
 msgid "Argon2"
 msgstr "Argon2"
 
 #. NOTE: Argon2id is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:330
+#: gsecrets/widgets/database_settings_dialog.py:329
 msgid "Argon2id"
 msgstr "Argon2id"
 
 #. NOTE: AES-KDF is a proper name
-#: gsecrets/widgets/database_settings_dialog.py:333
+#: gsecrets/widgets/database_settings_dialog.py:332
 msgid "AES-KDF"
 msgstr "AES-KDF"
 
@@ -1620,37 +1626,40 @@ msgstr "მარქაფის შენახვა"
 msgid "Could not backup safe"
 msgstr "სეიფის მარქაფის შეცდომა"
 
-#: gsecrets/widgets/window.py:151
+#: gsecrets/widgets/window.py:150
 msgid "Any file type"
 msgstr "ფაილის ნებისმიერი ტიპი"
 
-#: gsecrets/widgets/window.py:158
+#: gsecrets/widgets/window.py:157
 msgid "Select Safe"
 msgstr "აირჩიეთ სეიფი"
 
-#: gsecrets/widgets/window.py:175
+#: gsecrets/widgets/window.py:174
 msgid "File does not have a valid path"
 msgstr "ფაილის ბილიკი არასწორია"
 
-#: gsecrets/widgets/window.py:208
+#: gsecrets/widgets/window.py:207
 msgid "Safe is already open"
 msgstr "სეიფი უკვე ღიაა"
 
-#: gsecrets/widgets/window.py:240
+#: gsecrets/widgets/window.py:239
 msgid "_Create"
 msgstr "შექმნა"
 
-#: gsecrets/widgets/window.py:262
+#: gsecrets/widgets/window.py:261
 msgid "Cannot create Safe: Safe is already open"
 msgstr "სეიფის შექმნა შეუძლებელია: სეიფი უკვე ღიაა"
 
-#: gsecrets/widgets/window.py:304 gsecrets/widgets/window.py:319
+#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:315
 msgid "Could not create new Safe"
 msgstr "ახალი სეიფის შექმნის შეცდომა"
 
-#: gsecrets/widgets/window.py:397
+#: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "სეიფის შენახვის შეცდომა"
+
+#~ msgid "Automatically lock the safe when the session is locked."
+#~ msgstr "ავტომატური დაბლოკვა სესიის დაბლოკვისას."
 
 #~ msgid "Navigate To"
 #~ msgstr "გადასვლა"

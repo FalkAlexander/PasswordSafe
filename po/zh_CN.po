@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-05 21:03+0000\n"
-"PO-Revision-Date: 2024-09-06 19:50+0800\n"
+"POT-Creation-Date: 2024-09-07 09:00+0000\n"
+"PO-Revision-Date: 2024-09-10 10:46+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -711,8 +711,7 @@ msgstr "自动保存(_S)"
 msgid "Save every change automatically."
 msgstr "自动保存所有更改。"
 
-#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:216
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
 #: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "解锁"
@@ -806,6 +805,7 @@ msgid "Lock on _Session Lock"
 msgstr "在会话锁定时锁定(_S)"
 
 #: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "当会话锁定时自动锁定。"
 
@@ -832,6 +832,10 @@ msgstr "清空"
 #: data/gtk/unlock_database.ui:20
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
+
+#: data/gtk/unlock_database.ui:51
+msgid "_Unlock"
+msgstr "解锁(_U)"
 
 #: data/gtk/unlocked_database.ui:18
 msgid "Browser"
@@ -960,10 +964,6 @@ msgstr "新建窗口"
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
 msgstr "在会话锁定时锁定"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid "Automatically lock the safe when the session is locked."
-msgstr "当会话锁定时自动锁定保险箱。"
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1152,7 +1152,7 @@ msgstr "密码不匹配"
 msgid "Unable to create database"
 msgstr "无法创建数据库"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "生成组合密钥失败"
@@ -1326,7 +1326,7 @@ msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - 插槽 {slot}"
 
 #: gsecrets/provider/yubikey_provider.py:143
-#: gsecrets/provider/yubikey_provider.py:204
+#: gsecrets/provider/yubikey_provider.py:205
 msgid "YubiKey"
 msgstr "YubiKey"
 
@@ -1334,12 +1334,13 @@ msgstr "YubiKey"
 msgid "Select key"
 msgstr "选择密钥"
 
-#: gsecrets/provider/yubikey_provider.py:153
-#: gsecrets/provider/yubikey_provider.py:212
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
 msgid "Select YubiKey slot"
 msgstr "选择 YubiKey 插槽"
 
-#: gsecrets/provider/yubikey_provider.py:245
+#: gsecrets/provider/yubikey_provider.py:246
 msgid "Touch YubiKey"
 msgstr "触摸 YubiKey"
 
@@ -1417,11 +1418,11 @@ msgid "Move completed"
 msgstr "移动完毕"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:107
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "保险箱 {} 已打开"
 
-#: gsecrets/unlock_database.py:180
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "保险箱解锁失败"
 
@@ -1460,7 +1461,8 @@ msgstr "已复制"
 msgid "Safe locked due to inactivity"
 msgstr "保险箱因无活动已被锁定"
 
-#: gsecrets/unlocked_database.py:692
+#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "已选择 {} 项"
@@ -1640,6 +1642,9 @@ msgstr "无法创建新保险箱"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
+
+#~ msgid "Automatically lock the safe when the session is locked."
+#~ msgstr "当会话锁定时自动锁定保险箱。"
 
 #~ msgid "Root Group"
 #~ msgstr "根分组"

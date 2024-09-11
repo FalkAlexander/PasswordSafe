@@ -10,6 +10,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 import gsecrets.config_manager
 from gsecrets.create_database import CreateDatabase
 from gsecrets.database_manager import DatabaseManager
+from gsecrets.err import QUARK, ErrorType
 from gsecrets.provider.providers import Providers
 from gsecrets.save_dialog import SaveDialog
 from gsecrets.settings_dialog import SettingsDialog
@@ -296,8 +297,10 @@ class Window(Adw.ApplicationWindow):
         def unlock_callback(database_manager, result):
             try:
                 database_manager.unlock_finish(result)
-            except GLib.Error:
-                logging.exception("Could not unlock safe")
+            except GLib.Error as err:
+                if not err.matches(QUARK, ErrorType.CREDENTIALS_ERROR):
+                    logging.exception("Could not unlock safe")
+
                 self.invoke_initial_screen()
                 self.send_notification(_("Could not create new Safe"))
             else:

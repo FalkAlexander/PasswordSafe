@@ -11,6 +11,7 @@ from gi.repository import Adw, Gio, GLib, Gtk
 import gsecrets.config_manager
 from gsecrets import const
 from gsecrets.database_manager import DatabaseManager
+from gsecrets.err import QUARK, ErrorType
 from gsecrets.unlocked_database import UnlockedDatabase
 from gsecrets.utils import compare_passwords
 
@@ -154,8 +155,10 @@ class UnlockDatabase(Adw.Bin):
     def _unlock_callback(self, database_manager, result):
         try:
             database_manager.unlock_finish(result)
-        except GLib.Error:
-            logging.exception("Could not unlock safe")
+        except GLib.Error as err:
+            if not err.matches(QUARK, ErrorType.CREDENTIALS_ERROR):
+                logging.exception("Could not unlock safe")
+
             self._unlock_failed()
             return
 

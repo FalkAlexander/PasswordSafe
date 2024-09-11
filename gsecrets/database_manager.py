@@ -8,12 +8,12 @@ from pathlib import Path
 
 from gi.repository import Gio, GLib, GObject, Gtk
 from pykeepass import PyKeePass
+from pykeepass.exceptions import CredentialsError
 
 import gsecrets.config_manager as config
+from gsecrets.err import ErrorType, error, generic_error
 from gsecrets.safe_element import SafeEntry, SafeGroup
 from gsecrets.utils import LazyValue, compare_passwords
-
-QUARK = GLib.quark_from_string("secrets")
 
 
 class DatabaseManager(GObject.Object):
@@ -90,11 +90,7 @@ class DatabaseManager(GObject.Object):
         def unlock_task(task, _source_object, _task_data, _cancellable):
             if Path(self._path).suffix == ".kdb":
                 # NOTE kdb is a an older format for Keepass databases.
-                err = GLib.Error.new_literal(
-                    QUARK,
-                    "The kdb Format is not Supported",
-                    0,
-                )
+                err = error(ErrorType.UNSUPPORTED_FORMAT)
                 task.return_error(err)
                 return
 
@@ -104,8 +100,11 @@ class DatabaseManager(GObject.Object):
                     password,
                     io.BytesIO(composition_key) if composition_key else None,
                 )
+            except CredentialsError:
+                err = error(ErrorType.CREDENTIALS_ERROR)
+                task.return_error(err)
             except Exception as err:  # pylint: disable=broad-except
-                err = GLib.Error.new_literal(QUARK, str(err), 1)
+                err = generic_error(str(err))
                 task.return_error(err)
             else:
                 self.composition_key = composition_key
@@ -170,7 +169,7 @@ class DatabaseManager(GObject.Object):
         try:
             self.db.save()
         except Exception as err:  # pylint: disable=broad-except
-            err = GLib.Error.new_literal(QUARK, str(err), 2)
+            err = generic_error(str(err))
             task.return_error(err)
         else:
             self._update_file_monitor()
@@ -287,7 +286,7 @@ class DatabaseManager(GObject.Object):
         try:
             info = gfile.query_info(attributes, Gio.FileQueryInfoFlags.NONE, None)
         except GLib.Error as err:
-            err = GLib.Error.new_literal(QUARK, str(err), 3)
+            err = generic_error(str(err))
             task.return_error(err)
         else:
             if (

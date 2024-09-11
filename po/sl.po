@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-07 09:00+0000\n"
-"PO-Revision-Date: 2024-09-07 13:31+0200\n"
+"POT-Creation-Date: 2024-09-11 18:34+0000\n"
+"PO-Revision-Date: 2024-09-11 22:25+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -379,6 +379,7 @@ msgid "Show _History"
 msgstr "Po_kaži zgodovino"
 
 #: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "_Izbriši"
 
@@ -718,7 +719,6 @@ msgid "Save every change automatically."
 msgstr "Samodejno shranite vsako spremembo."
 
 #: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Odkleni"
 
@@ -839,7 +839,7 @@ msgstr "Počisti"
 msgid "Unlock Safe"
 msgstr "Odkleni sef"
 
-#: data/gtk/unlock_database.ui:51
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "_Odkleni"
 
@@ -855,7 +855,8 @@ msgstr "Izbor predmetov"
 msgid "Go Back"
 msgstr "Pojdi nazaj"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Prekliči"
@@ -1310,16 +1311,12 @@ msgstr "Vstavite pametno kartico in poskusite znova."
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "V redu"
+msgid "_OK"
+msgstr "V _redu"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Odklenite svojo pametno kartico"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "Prekliči"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1423,10 +1420,6 @@ msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr "Brišete elemente v košu za smeti, teh izbrisov ni mogoče razveljaviti."
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "Izbriši"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "Operacija je bila ustavljena: premikanje trenutno dejavne skupine"
@@ -1482,7 +1475,7 @@ msgstr "Uspešno kopirano"
 msgid "Safe locked due to inactivity"
 msgstr "Sef zaklenjen zaradi nedejavnosti"
 
-#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"

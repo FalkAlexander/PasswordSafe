@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-07 09:00+0000\n"
-"PO-Revision-Date: 2024-09-07 12:36+0200\n"
+"POT-Creation-Date: 2024-09-11 18:34+0000\n"
+"PO-Revision-Date: 2024-09-11 22:13+0200\n"
 "Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -389,6 +389,7 @@ msgid "Show _History"
 msgstr "_Chronik anzeigen"
 
 #: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "_Löschen"
 
@@ -729,7 +730,6 @@ msgid "Save every change automatically."
 msgstr "Jede Änderung automatisch speichern."
 
 #: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Entsperren"
 
@@ -850,7 +850,7 @@ msgstr "Leeren"
 msgid "Unlock Safe"
 msgstr "Safe entsperren"
 
-#: data/gtk/unlock_database.ui:51
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "_Entsperren"
 
@@ -866,7 +866,8 @@ msgstr "Einträge auswählen"
 msgid "Go Back"
 msgstr "Zurückgehen"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Abbrechen"
@@ -1335,16 +1336,12 @@ msgstr "Bitte stecken Sie die Smartcard ein und versuchen Sie es erneut."
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "OK"
+msgid "_OK"
+msgstr "_OK"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Ihre Smartcard entsperren"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "Abbrechen"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1452,10 +1449,6 @@ msgstr ""
 "Sie löschen gerade Elemente im Papierkorb. Diese Löschungen können nicht "
 "rückgängig gemacht werden."
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "Löschen"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "Operation abgebrochen: Verschieben der aktuell aktiven Gruppe"
@@ -1509,7 +1502,7 @@ msgstr "Kopiert"
 msgid "Safe locked due to inactivity"
 msgstr "Safe aufgrund von Inaktivität gesperrt"
 
-#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
@@ -1695,6 +1688,12 @@ msgstr "Neuer Safe konnte nicht erstellt werden"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Safe konnte nicht gespeichert werden"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbrechen"
+
+#~ msgid "Delete"
+#~ msgstr "Löschen"
 
 #~ msgid "Automatically lock the safe when the session is locked."
 #~ msgstr "Den Safe automatisch sperren, wenn die Sitzung gesperrt ist."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-07 09:00+0000\n"
-"PO-Revision-Date: 2024-09-09 15:01+0200\n"
+"POT-Creation-Date: 2024-09-11 18:34+0000\n"
+"PO-Revision-Date: 2024-09-12 03:14+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -373,6 +373,7 @@ msgid "Show _History"
 msgstr "_მეტის ჩვენება"
 
 #: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "სამუ_დამოდ წაშლა"
 
@@ -712,7 +713,6 @@ msgid "Save every change automatically."
 msgstr "ცვლილებების ავტომატური შენახვა."
 
 #: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "განბლოკვა"
 
@@ -833,7 +833,7 @@ msgstr "გაწმენდა"
 msgid "Unlock Safe"
 msgstr "სეიფის გაღება"
 
-#: data/gtk/unlock_database.ui:51
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "_განბლოკვა"
 
@@ -849,7 +849,8 @@ msgstr "ჩანაწერების არჩევა"
 msgid "Go Back"
 msgstr "უკან დაბრუნება"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_გაუქმება"
@@ -1303,16 +1304,12 @@ msgstr "შეაერთეთ სმარტ ბარათი და თ�
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "დიახ"
+msgid "_OK"
+msgstr "_დიახ"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "განბლოკეთ თქვენი სმარტ ბარათი"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "გაუქმება"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1417,10 +1414,6 @@ msgid ""
 msgstr ""
 "ცდილობთ სანაგვე ყუთიდან ელემენტები წაშალოთ. ამ ქმედებას ვერ დააბრუნებთ."
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "წაშლა"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "ოპერაცია გაუქმდა: გადაგაქვთ ამჟამად აქტიური ჯგუფი"
@@ -1473,7 +1466,7 @@ msgstr "კოპირებულია"
 msgid "Safe locked due to inactivity"
 msgstr "სეიფი ჩაიკეტა არააქტიურობის გამო"
 
-#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
@@ -1657,6 +1650,12 @@ msgstr "ახალი სეიფის შექმნის შეცდო
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "სეიფის შენახვის შეცდომა"
+
+#~ msgid "Cancel"
+#~ msgstr "გაუქმება"
+
+#~ msgid "Delete"
+#~ msgstr "წაშლა"
 
 #~ msgid "Automatically lock the safe when the session is locked."
 #~ msgstr "ავტომატური დაბლოკვა სესიის დაბლოკვისას."

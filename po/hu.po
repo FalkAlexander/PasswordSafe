@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-07 09:00+0000\n"
-"PO-Revision-Date: 2024-09-09 10:52+0200\n"
+"POT-Creation-Date: 2024-09-11 18:34+0000\n"
+"PO-Revision-Date: 2024-09-12 08:48+0200\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <openscope at fsf dot hu>\n"
 "Language: hu\n"
@@ -377,6 +377,7 @@ msgid "Show _History"
 msgstr "_Előzmények megjelenítése"
 
 #: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "_Törlés"
 
@@ -716,7 +717,6 @@ msgid "Save every change automatically."
 msgstr "Az összes változtatás automatikus mentése."
 
 #: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Feloldás"
 
@@ -838,8 +838,7 @@ msgstr "Törlés"
 msgid "Unlock Safe"
 msgstr "Széf feloldása"
 
-#: data/gtk/unlock_database.ui:51
-#| msgid "Unlock"
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "_Feloldás"
 
@@ -855,7 +854,8 @@ msgstr "Elemek kiválasztása"
 msgid "Go Back"
 msgstr "Ugrás vissza"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Mégse"
@@ -1317,16 +1317,13 @@ msgstr "Helyezze be az intelligens kártyát, és próbálja újra."
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "Rendben"
+#| msgid "OK"
+msgid "_OK"
+msgstr "_Rendben"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Az intelligens kártya feloldása"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "Mégse"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1430,10 +1427,6 @@ msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr "A kukából töröl elemeket, ezeket a törléseket nem lehet visszavonni."
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "Törlés"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "Művelet megszakítva: a jelenleg aktív csoport áthelyezése"
@@ -1487,7 +1480,7 @@ msgstr "Lemásolva"
 msgid "Safe locked due to inactivity"
 msgstr "A széf zárolva tétlenség miatt"
 
-#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"

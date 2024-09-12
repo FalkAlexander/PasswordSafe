@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe gnome-3.30\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-07 09:00+0000\n"
-"PO-Revision-Date: 2024-09-08 10:20+0300\n"
+"POT-Creation-Date: 2024-09-11 18:34+0000\n"
+"PO-Revision-Date: 2024-09-12 20:43+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -374,6 +374,7 @@ msgid "Show _History"
 msgstr "Показати _журнал"
 
 #: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "В_илучити"
 
@@ -713,7 +714,6 @@ msgid "Save every change automatically."
 msgstr "Зберігати усі зміни автоматично."
 
 #: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "Відімкнути"
 
@@ -835,8 +835,7 @@ msgstr "Спорожнити"
 msgid "Unlock Safe"
 msgstr "Відімкнути сейф"
 
-#: data/gtk/unlock_database.ui:51
-#| msgid "Unlock"
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "Віді_мкнути"
 
@@ -852,7 +851,8 @@ msgstr "Позначені записи"
 msgid "Go Back"
 msgstr "Назад"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Скасувати"
@@ -1318,16 +1318,13 @@ msgstr "Будь ласка, вставте смарт-картку і повт�
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "Гаразд"
+#| msgid "OK"
+msgid "_OK"
+msgstr "_Гаразд"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "Розблокуйте вашу смарт-картку"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "Скасувати"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1433,10 +1430,6 @@ msgstr ""
 "Ви вилучаєте елементи до кошика зі сміттям. Таке вилучення не можна буде "
 "скасувати."
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "Вилучити"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "Дію перервано: пересування поточної активної групи"
@@ -1492,7 +1485,7 @@ msgstr "Скопійовано"
 msgid "Safe locked due to inactivity"
 msgstr "Сейф замкнено через неактивність"
 
-#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
@@ -1680,6 +1673,12 @@ msgstr "Не вдалося створити сейф"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "Не вдалося зберегти сейф"
+
+#~ msgid "Cancel"
+#~ msgstr "Скасувати"
+
+#~ msgid "Delete"
+#~ msgstr "Вилучити"
 
 #~ msgid "Automatically lock the safe when the session is locked."
 #~ msgstr "Автоматично блокувати сейф, якщо заблоковано сеанс."

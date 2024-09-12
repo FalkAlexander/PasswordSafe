@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-07 09:00+0000\n"
-"PO-Revision-Date: 2024-09-10 10:46+0800\n"
+"POT-Creation-Date: 2024-09-11 18:34+0000\n"
+"PO-Revision-Date: 2024-09-12 19:12+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -375,6 +375,7 @@ msgid "Show _History"
 msgstr "显示历史(_H)"
 
 #: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "删除(_D)"
 
@@ -712,7 +713,6 @@ msgid "Save every change automatically."
 msgstr "自动保存所有更改。"
 
 #: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
 msgid "Unlock"
 msgstr "解锁"
 
@@ -833,7 +833,7 @@ msgstr "清空"
 msgid "Unlock Safe"
 msgstr "解锁保险箱"
 
-#: data/gtk/unlock_database.ui:51
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
 msgid "_Unlock"
 msgstr "解锁(_U)"
 
@@ -849,7 +849,8 @@ msgstr "选择项目"
 msgid "Go Back"
 msgstr "后退"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "取消(_C)"
@@ -1292,16 +1293,12 @@ msgstr "请插入智能卡并重试。"
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "确定"
+msgid "_OK"
+msgstr "确定(_O)"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "解锁您的智能卡"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "取消"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1405,10 +1402,6 @@ msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr "您正在删除回收站的元素，这些删除无法被撤销。"
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "删除"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "操作中止：正在移动当前活动分组"
@@ -1461,7 +1454,7 @@ msgstr "已复制"
 msgid "Safe locked due to inactivity"
 msgstr "保险箱因无活动已被锁定"
 
-#. TRANSLATORS For example "1 Selected" or "21 Selected".
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
 #: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
@@ -1642,6 +1635,12 @@ msgstr "无法创建新保险箱"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "无法保存保险箱"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#~ msgid "Delete"
+#~ msgstr "删除"
 
 #~ msgid "Automatically lock the safe when the session is locked."
 #~ msgstr "当会话锁定时自动锁定保险箱。"

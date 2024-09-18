@@ -1,0 +1,1651 @@
+# Persian translation for secrets.
+# Copyright (C) 2024 secrets's COPYRIGHT HOLDER
+# This file is distributed under the same license as the secrets package.
+# Danial Behzadi <dani.behzi@ubuntu.com>,  2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: secrets master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
+"POT-Creation-Date: 2024-09-18 07:07+0000\n"
+"PO-Revision-Date: 2024-09-18 17:57+0330\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
+"Language-Team: Persian <fa@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: data/about_dialog.ui.in:6 data/org.gnome.World.Secrets.metainfo.xml.in.in:10
+msgid "Manage your passwords"
+msgstr "مدیریت گذرواژه‌هایتان"
+
+#. Add your name to the translator credits list
+#: data/about_dialog.ui.in:10
+msgid "translator-credits"
+msgstr "دانیال بهزادی <dani.behzi@ubuntu.com>"
+
+#. Translators: Secrets is the app name, do not translate
+#: data/about_dialog.ui.in:12 data/gtk/window.ui:6
+#: data/org.gnome.World.Secrets.desktop.in.in:4
+msgid "Secrets"
+msgstr "رمزها"
+
+#: data/gtk/add_attribute_dialog.ui:5
+msgid "Add Attribute"
+msgstr "افزودن مشخّصه"
+
+#: data/gtk/add_attribute_dialog.ui:37
+msgid "Key"
+msgstr "کلید"
+
+#: data/gtk/add_attribute_dialog.ui:43
+msgid "Value"
+msgstr "مقدار"
+
+#: data/gtk/add_attribute_dialog.ui:49
+msgid "Sensitive"
+msgstr "حساس"
+
+#: data/gtk/add_attribute_dialog.ui:50
+msgid "Contains sensitive data."
+msgstr "دارای داده‌ّای حسّاس."
+
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:373
+msgid "_Add"
+msgstr "_افزودن"
+
+#: data/gtk/attachment_entry_row.ui:9
+msgid "Download Attachment"
+msgstr "بارگیری پیوست"
+
+#: data/gtk/attachment_entry_row.ui:20
+msgid "Remove Attachment"
+msgstr "برداشتن چهرک"
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/attachment_warning_dialog.ui:4
+msgid "Safety Info"
+msgstr "اطّلعات ایمنی"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/attachment_warning_dialog.ui:5
+msgid ""
+"It is possible that external applications will create unencrypted hidden or "
+"temporary copies of this attachment file! Please proceed with caution."
+msgstr ""
+"ممکن است که برنامه‌های خارجی رونوشت‌هایی موقتّی یا نهفتهٔ رمز نشده از این پروندهٔ "
+"پیوست بسازند! لطفاً با احتیاط ادامه دهید."
+
+#: data/gtk/attachment_warning_dialog.ui:9
+msgid "_Back"
+msgstr "_بازگشت"
+
+#: data/gtk/attachment_warning_dialog.ui:10
+msgid "_Proceed"
+msgstr "_ادامه"
+
+#: data/gtk/attribute_entry_row.ui:8
+#: gsecrets/widgets/protected_attribute_entry_row.py:28
+msgid "Copy Attribute"
+msgstr "رونوشت از مشخّصه"
+
+#: data/gtk/attribute_entry_row.ui:19
+#: gsecrets/widgets/protected_attribute_entry_row.py:34
+msgid "Remove Attribute"
+msgstr "برداشتن مشخّصه"
+
+#: data/gtk/browsing_panel.ui:23
+msgid "Add elements with the ➕ button"
+msgstr "افزودن عنصر با دکمهٔ ➕"
+
+#: data/gtk/browsing_panel.ui:24
+msgid "Empty Group"
+msgstr "گر.وه خالی"
+
+#: data/gtk/browsing_panel.ui:30
+msgid "No Search Results"
+msgstr "بدون نتایج جست‌وجو"
+
+#: data/gtk/color_entry_row.ui:4
+msgid "Color"
+msgstr "رنگ"
+
+#. Headerbar subtitle in keepass safe creation routine.
+#. NOTE: Filechooser title for creating a new keepass safe kdbx file
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
+msgid "Create Safe"
+msgstr "ایجاد گاوصندوق"
+
+#: data/gtk/create_database.ui:17
+msgid "Back"
+msgstr "بازگشت"
+
+#: data/gtk/create_database.ui:22 data/gtk/locked_headerbar.ui:20
+#: data/gtk/unlocked_headerbar.ui:40
+msgid "Main Menu"
+msgstr "فهرست اصلی"
+
+#: data/gtk/create_database.ui:44
+msgid "Protect your safe"
+msgstr "محافظت از گاوصندوقتان"
+
+#: data/gtk/create_database.ui:57 data/gtk/credentials_group.ui:23
+#: data/gtk/references_dialog.ui:177
+msgid "_Password"
+msgstr "_گذرواژه"
+
+#: data/gtk/create_database.ui:64
+msgid "_Confirm Password"
+msgstr "تأیید _گذرواژه"
+
+#: data/gtk/create_database.ui:84 data/gtk/unlock_database.ui:45
+msgid "Additional Credentials"
+msgstr "گواهی‌های اضافی"
+
+#: data/gtk/create_database.ui:90
+msgid "Create"
+msgstr "ایجاد"
+
+#: data/gtk/create_database.ui:113
+msgid "Safe Successfully Created"
+msgstr "گاو صندوق با موفّقیت ایجاد شد"
+
+#: data/gtk/create_database.ui:116
+msgid "_Open Safe"
+msgstr "_کشودن گاوصندوق"
+
+#: data/gtk/create_database.ui:140 data/gtk/locked_headerbar.ui:38
+#: data/gtk/unlocked_headerbar.ui:103
+msgid "_Preferences"
+msgstr "_ترجیحات"
+
+#: data/gtk/create_database.ui:144 data/gtk/locked_headerbar.ui:42
+#: data/gtk/unlocked_headerbar.ui:107
+msgid "_Keyboard Shortcuts"
+msgstr "_میان‌برهای صفحه‌کلید"
+
+#. "Secrets" is the application name, do not translate
+#: data/gtk/create_database.ui:148 data/gtk/locked_headerbar.ui:46
+#: data/gtk/unlocked_headerbar.ui:111
+msgid "_About Secrets"
+msgstr "_دربارهٔ رمزها"
+
+#: data/gtk/credentials_group.ui:6 data/gtk/references_dialog.ui:173
+msgid "_Username"
+msgstr "نام _کاربری"
+
+#: data/gtk/credentials_group.ui:11 data/gtk/credentials_group.ui:47
+#: data/gtk/entry_page.ui:93 data/gtk/entry_page.ui:130
+#: data/gtk/history_row.ui:28 data/gtk/references_dialog.ui:347
+msgid "Copy"
+msgstr "رونوشت"
+
+#: data/gtk/credentials_group.ui:32 data/gtk/database_settings_dialog.ui:31
+#: gsecrets/create_database.py:40
+msgid "Generate New Password"
+msgstr "تولید گذرواژهٔ جدید"
+
+#: data/gtk/database_settings_dialog.ui:5
+msgid "Safe Settings"
+msgstr "تنظمیات گاوصندوق"
+
+#: data/gtk/database_settings_dialog.ui:9
+msgid "Authentication"
+msgstr "هویت‌سنجی"
+
+#: data/gtk/database_settings_dialog.ui:15
+msgid "Current Password"
+msgstr "گذرواژهٔ کنونی"
+
+#: data/gtk/database_settings_dialog.ui:25
+msgid "New Password"
+msgstr "گذرواژهٔ جدید"
+
+#: data/gtk/database_settings_dialog.ui:46
+msgid "Confirm New Password"
+msgstr "تأیید گذرواژهٔ جدید"
+
+#: data/gtk/database_settings_dialog.ui:60
+msgid "New Additional Credentials"
+msgstr "گواهی‌های اضافی جدید"
+
+#: data/gtk/database_settings_dialog.ui:75
+#: gsecrets/widgets/database_settings_dialog.py:196
+#: gsecrets/widgets/database_settings_dialog.py:258
+msgid "_Apply Changes"
+msgstr "_اعمال دگرگونی‌ها"
+
+#: data/gtk/database_settings_dialog.ui:92 data/gtk/settings_dialog.ui:8
+#: data/gtk/settings_dialog.ui:11
+msgid "General"
+msgstr "عمومی"
+
+#: data/gtk/database_settings_dialog.ui:96
+msgid "Database"
+msgstr "پایگاه داده"
+
+#: data/gtk/database_settings_dialog.ui:99
+msgid "Name"
+msgstr "نام"
+
+#: data/gtk/database_settings_dialog.ui:107
+msgid "Description"
+msgstr "شرح"
+
+#: data/gtk/database_settings_dialog.ui:115
+msgid "Default User"
+msgstr "کاربر پیش‌گزیده"
+
+#: data/gtk/database_settings_dialog.ui:126
+msgid "Details"
+msgstr "جزییات"
+
+#: data/gtk/database_settings_dialog.ui:129
+msgid "Path"
+msgstr "مسیر"
+
+#: data/gtk/database_settings_dialog.ui:138
+msgid "File Size"
+msgstr "اندازهٔ پرونده"
+
+#. KeePass is a proper noun
+#: data/gtk/database_settings_dialog.ui:147
+msgid "KeePass Version"
+msgstr "نگارش کی‌پس"
+
+#: data/gtk/database_settings_dialog.ui:156
+msgid "Creation Date"
+msgstr "تاریخ ایجاد"
+
+#: data/gtk/database_settings_dialog.ui:164
+msgid "Encryption Algorithm"
+msgstr "خوارزمینهٔ رمزگذاری"
+
+#: data/gtk/database_settings_dialog.ui:172
+msgid "Derivation Algorithm"
+msgstr "خوارزمینهٔ مشتق"
+
+#. Statistics
+#: data/gtk/database_settings_dialog.ui:182
+msgid "Stats"
+msgstr "وضعیت"
+
+#: data/gtk/database_settings_dialog.ui:185
+msgid "Number of Entries"
+msgstr "شمار ورودی‌ها"
+
+#: data/gtk/database_settings_dialog.ui:194
+msgid "Number of Groups"
+msgstr "شمار گروه‌ها"
+
+#: data/gtk/database_settings_dialog.ui:203
+msgid "Passwords"
+msgstr "گذرواژه‌ها"
+
+#: data/gtk/entry_page.ui:55
+msgid "Entry Menu"
+msgstr "فهرست ورودی"
+
+#: data/gtk/entry_page.ui:69 data/gtk/group_page.ui:26
+#: data/gtk/references_dialog.ui:169
+msgid "_Title"
+msgstr "_عنوان"
+
+#: data/gtk/entry_page.ui:75
+msgid "U_RL"
+msgstr "_نشانی"
+
+#: data/gtk/entry_page.ui:81
+msgid "Open Address"
+msgstr "گشودن نشانی"
+
+#: data/gtk/entry_page.ui:109
+msgid "One-Time Password"
+msgstr "گذرواژهٔ یک‌بار مصرف"
+
+#: data/gtk/entry_page.ui:142
+msgid "One-_Time Password Secret"
+msgstr "رمز گذرواژهٔ یک‌بار مصرف"
+
+#. OTP is a proper name
+#: data/gtk/entry_page.ui:148
+msgid "Could not Generate OTP Token"
+msgstr "نتوانست ژتون یک‌بار مصرف را ایجاد کند"
+
+#: data/gtk/entry_page.ui:156 data/gtk/group_page.ui:34
+#: data/gtk/notes_dialog.ui:6 data/gtk/references_dialog.ui:141
+msgid "Notes"
+msgstr "یادداشت‌ها"
+
+#: data/gtk/entry_page.ui:160 data/gtk/group_page.ui:38
+msgid "Edit in a Window"
+msgstr "ویرایش در پنجره"
+
+#: data/gtk/entry_page.ui:198
+msgid "Icon"
+msgstr "نقشک"
+
+#: data/gtk/entry_page.ui:218
+msgid "Attachments"
+msgstr "پیوست‌ها"
+
+#: data/gtk/entry_page.ui:222
+msgid "_Add Attachment"
+msgstr "افزودن _پیوست"
+
+#: data/gtk/entry_page.ui:231
+msgid "Attributes"
+msgstr "مشخصه‌ها"
+
+#: data/gtk/entry_page.ui:236
+msgid "Add Attr_ibute"
+msgstr "افزودن _مشخّصه"
+
+#: data/gtk/entry_page.ui:244
+msgid "Expiration Date"
+msgstr "تاریخ انقضا"
+
+#: data/gtk/entry_page.ui:257
+msgid "_Show More"
+msgstr "_نمایش بیش‌تر"
+
+#: data/gtk/entry_page.ui:271
+msgid "D_uplicate"
+msgstr "_دوتا کردن"
+
+#: data/gtk/entry_page.ui:275
+msgid "_References"
+msgstr "_مرجع‌ها"
+
+#: data/gtk/entry_page.ui:279 data/gtk/group_page.ui:75
+msgid "_Properties"
+msgstr "_ویژگی‌ها"
+
+#: data/gtk/entry_page.ui:285
+msgid "_Save in History"
+msgstr "_ذخیره در تاریخچه"
+
+#: data/gtk/entry_page.ui:289
+msgid "Show _History"
+msgstr "نمایش _تاریخچه"
+
+#: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
+msgid "_Delete"
+msgstr "_حذف"
+
+#: data/gtk/entry_row.ui:81
+msgid "Copy One-Time Password"
+msgstr "رونوشت از گذرواژهٔ یک‌بار مصرف"
+
+#: data/gtk/entry_row.ui:92
+msgid "Copy Username"
+msgstr "رونوشت از نام کاربری"
+
+#: data/gtk/entry_row.ui:102
+msgid "Copy Password"
+msgstr "رونوشت از گذرواژه‌"
+
+#: data/gtk/expiration_date_row.ui:8 gsecrets/widgets/expiration_date_row.py:82
+msgid "Expiration Date not Set"
+msgstr "تاریخ انقضا تنظیم نشده"
+
+#: data/gtk/expiration_date_row.ui:22
+msgid "Edit Expiration Date"
+msgstr "ویرایش تاریخ انقضا"
+
+#: data/gtk/expiration_date_row.ui:30
+msgid "Remove Expiration Date"
+msgstr "برداشتن تاریخ انقضا"
+
+#: data/gtk/expiration_date_row.ui:63
+msgid "_Set Expiration Date"
+msgstr "_تنظیم تاریخ انقضا"
+
+#: data/gtk/group_page.ui:14
+msgid "Group Menu"
+msgstr "فهرست گروه"
+
+#: data/gtk/group_row.ui:67
+msgid "Edit"
+msgstr "ویرایش"
+
+#: data/gtk/help-overlay.ui:11
+msgctxt "Shortcut window description"
+msgid "Application"
+msgstr "برنامه"
+
+#: data/gtk/help-overlay.ui:14
+msgctxt "Shortcut window description"
+msgid "Create Safe"
+msgstr "ایجاد گاوصندوق"
+
+#: data/gtk/help-overlay.ui:20
+msgctxt "Shortcut window description"
+msgid "Go Back"
+msgstr "بازگشت"
+
+#: data/gtk/help-overlay.ui:26
+msgctxt "Shortcut window description"
+msgid "Open Safe"
+msgstr "کشودن گاوصندوق"
+
+#: data/gtk/help-overlay.ui:32
+msgctxt "Shortcut window description"
+msgid "Open Preferences"
+msgstr "گشودن ترجیحات"
+
+#: data/gtk/help-overlay.ui:38
+msgctxt "shortcut window"
+msgid "Show Shortcuts"
+msgstr "نمایش میان‌برها"
+
+#: data/gtk/help-overlay.ui:44
+msgctxt "Shortcut window description"
+msgid "Close Window"
+msgstr "بستن پنجره"
+
+#: data/gtk/help-overlay.ui:50
+msgctxt "Shortcut window description"
+msgid "New Window"
+msgstr "پنجرهٔ جدید"
+
+#: data/gtk/help-overlay.ui:56
+msgctxt "Shortcut window description"
+msgid "Quit"
+msgstr "خروج"
+
+#: data/gtk/help-overlay.ui:64
+msgctxt "Shortcut window description"
+msgid "Safe"
+msgstr "امن"
+
+#: data/gtk/help-overlay.ui:67
+msgctxt "Shortcut window description"
+msgid "Lock Safe"
+msgstr "قفل گاوصندوق"
+
+#: data/gtk/help-overlay.ui:73
+msgctxt "Shortcut window description"
+msgid "Save Safe"
+msgstr "ذخیرهٔ گاوصندوق"
+
+#: data/gtk/help-overlay.ui:79
+msgctxt "Shortcut window description"
+msgid "Open Search"
+msgstr "گشودن جست‌وجو"
+
+#: data/gtk/help-overlay.ui:85
+msgctxt "Shortcut window description"
+msgid "Create Entry"
+msgstr "ایجاد ورودی"
+
+#: data/gtk/help-overlay.ui:91
+msgctxt "Shortcut window description"
+msgid "Create Group"
+msgstr "ایجاد گروه"
+
+#: data/gtk/help-overlay.ui:99
+msgctxt "Shortcut window description"
+msgid "Entry"
+msgstr "ورودی"
+
+#: data/gtk/help-overlay.ui:102
+msgctxt "Shortcut window description"
+msgid "Copy Password"
+msgstr "رونوشت از گذرواژه‌"
+
+#: data/gtk/help-overlay.ui:108
+msgctxt "Shortcut window description"
+msgid "Copy Address"
+msgstr "رونوشت از نشانی"
+
+#: data/gtk/help-overlay.ui:114
+msgctxt "Shortcut window description"
+msgid "Copy Username"
+msgstr "رونوشت از نام کاربری"
+
+#: data/gtk/help-overlay.ui:120
+msgctxt "Shortcut window description"
+msgid "Copy One-Time Password"
+msgstr "رونوشت از گذرواژهٔ یک‌بار مصرف"
+
+#: data/gtk/help-overlay.ui:126
+msgctxt "Shortcut window description"
+msgid "Show History"
+msgstr "نمایش تاریخچه"
+
+#: data/gtk/help-overlay.ui:132
+msgctxt "Shortcut window description"
+msgid "Save in History"
+msgstr "ذخیره در تاریخچه"
+
+#: data/gtk/history_row.ui:18 gsecrets/widgets/history_row.py:47
+msgid "Show Text"
+msgstr "نمایش متن"
+
+#: data/gtk/history_row.ui:39
+msgid "Remove from History"
+msgstr "برداشتن از تاریخچه"
+
+#: data/gtk/history_window.ui:8
+msgid "Password History"
+msgstr "تاریخچهٔ گذرواژه"
+
+#: data/gtk/locked_headerbar.ui:14
+msgid "_Open"
+msgstr "_گشودن"
+
+#: data/gtk/locked_headerbar.ui:32 data/gtk/unlocked_headerbar.ui:89
+#: data/gtk/welcome_page.ui:18
+msgid "_New Safe"
+msgstr "_گاوصندوق جدید"
+
+#: data/gtk/notes_dialog.ui:20
+msgid "_Copy"
+msgstr "_رونوشت"
+
+#. Button tooltip in headerbar to open search page
+#: data/gtk/notes_dialog.ui:32 data/gtk/notes_dialog.ui:57
+#: data/gtk/unlocked_headerbar.ui:26
+msgid "Search"
+msgstr "جست‌وجو"
+
+#: data/gtk/password_generator_popover.ui:23 data/gtk/references_dialog.ui:117
+#: data/gtk/settings_dialog.ui:53 data/gtk/unlock_database.ui:37
+msgid "Password"
+msgstr "گذرواژه"
+
+#: data/gtk/password_generator_popover.ui:32
+msgid "Length"
+msgstr "درازا"
+
+#: data/gtk/password_generator_popover.ui:50
+msgid "Characters"
+msgstr "نویسه‌ها"
+
+#: data/gtk/password_generator_popover.ui:94
+#: gsecrets/provider/pkcs11_provider.py:213
+msgid "Passphrase"
+msgstr "عبارت عبور"
+
+#: data/gtk/password_generator_popover.ui:103
+msgid "Words"
+msgstr "واژه"
+
+#. Button to generate a password
+#: data/gtk/password_generator_popover.ui:132
+#: gsecrets/provider/file_provider.py:196
+msgid "_Generate"
+msgstr "_تولید"
+
+#: data/gtk/properties_dialog.ui:6
+msgid "Properties"
+msgstr "‌ویژگی‌ها"
+
+#: data/gtk/properties_dialog.ui:26 data/gtk/references_dialog.ui:153
+msgid "UUID"
+msgstr "شناسهٔ یکتا"
+
+#: data/gtk/properties_dialog.ui:35
+msgid "Accessed"
+msgstr "دسترسی"
+
+#: data/gtk/properties_dialog.ui:44
+msgid "Modified"
+msgstr "تغییر یافته"
+
+#: data/gtk/properties_dialog.ui:53
+msgid "Created"
+msgstr "ایجاد شده"
+
+#: data/gtk/references_dialog.ui:15
+msgid "Code"
+msgstr "کد"
+
+#: data/gtk/references_dialog.ui:27 data/gtk/references_dialog.ui:242
+#: data/gtk/references_dialog.ui:339
+msgid "Property"
+msgstr "ویژگی"
+
+#: data/gtk/references_dialog.ui:48
+msgid "Title"
+msgstr "عنوان"
+
+#: data/gtk/references_dialog.ui:69
+msgid "Username"
+msgstr "نام کاربری"
+
+#: data/gtk/references_dialog.ui:129
+msgid "URL"
+msgstr "نشانی"
+
+#: data/gtk/references_dialog.ui:181
+msgid "_URL"
+msgstr "_نشانی"
+
+#: data/gtk/references_dialog.ui:185
+msgid "_Notes"
+msgstr "_یادداشت‌ها"
+
+#: data/gtk/references_dialog.ui:191
+msgid "References"
+msgstr "مرجع‌ها"
+
+#: data/gtk/references_dialog.ui:213
+msgid "Syntax"
+msgstr "ترکیب"
+
+#: data/gtk/references_dialog.ui:222
+msgid "The placeholder syntax for field references is the following:"
+msgstr "ترکیب جانگه‌دار برای مرجع‌های زمینه بدین شکل است:"
+
+#: data/gtk/references_dialog.ui:241 data/gtk/references_dialog.ui:269
+msgid "Show Field Codes"
+msgstr "نمایش کدهای زیمنه"
+
+#: data/gtk/references_dialog.ui:270
+msgid "Identifier"
+msgstr "شناساگر"
+
+#: data/gtk/references_dialog.ui:328
+msgid "Reference"
+msgstr "مرجع"
+
+#: data/gtk/references_dialog.ui:367
+msgid ""
+"Each entry has a unique identifier called UUID. It can be found in the "
+"properties of the entry."
+msgstr ""
+"ورودی شناساگری یکتا به نام UUID دارد که می‌تواند در ویژگی‌های ورودی پیدا شود."
+
+#. Dialog title which informs the user about unsaved changes.
+#: data/gtk/save_dialog.ui:4
+msgid "Unsaved Changes"
+msgstr "تغییرات ذخیره نشده"
+
+#. Dialog subtitle which informs the user about unsaved changes more detailed.
+#: data/gtk/save_dialog.ui:5
+msgid "Do you want to write all changes to the safe?"
+msgstr "می‌خواهید همهٔ تغییرات را در گنجه بنویسید؟"
+
+#. _Discard all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
+#: gsecrets/widgets/window.py:419
+msgid "_Quit Without Saving"
+msgstr "_خروج بدون ذخیره"
+
+#. _Cancel exiting the program
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
+msgid "_Don't Quit"
+msgstr "_خارج نشدن"
+
+#. _Save all the changes which the user have made to his keepass safe
+#: data/gtk/save_dialog.ui:12
+msgid "_Save and Quit"
+msgstr "_ذخیره و خروج"
+
+#: data/gtk/settings_dialog.ui:14
+msgid "_Hide First Start Screen"
+msgstr "_نهفتن نخستین صفحهٔ آغاز"
+
+#: data/gtk/settings_dialog.ui:15
+msgid "Reopen last opened safe."
+msgstr "گشودن دوبارهٔ گاوصندوق باز."
+
+#. TRANSLATORS Safe as in strongbox.
+#. NOTE: Safe as in strongbox
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
+msgid "Safe"
+msgstr "امن"
+
+#: data/gtk/settings_dialog.ui:27
+msgid "_Save Automatically"
+msgstr "_ذخیرهٔ خودکار"
+
+#: data/gtk/settings_dialog.ui:28
+msgid "Save every change automatically."
+msgstr "ذخیرهٔ خودکار همهٔ دگرگونی‌ها."
+
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock"
+msgstr "قفل‌گشایی"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:40
+msgid "Remember Composite _Key"
+msgstr "به خاطر سپردن کلید _ترکیبی"
+
+#. A composite key is a authentication method where the user needs both password and keyfile for unlocking his safe
+#: data/gtk/settings_dialog.ui:41
+msgid "Remember last used composite key."
+msgstr "به خاطر سپردن آخرین کلید ترکیبی."
+
+#: data/gtk/settings_dialog.ui:56
+msgid "Password Generation"
+msgstr "تولید گذرواژه"
+
+#: data/gtk/settings_dialog.ui:59
+msgid "Password Length"
+msgstr "درازای گذرواژه"
+
+#: data/gtk/settings_dialog.ui:60
+msgid "Number of characters when generating a password."
+msgstr "شمار نویسه‌ها هنگام تولید گذرواژه."
+
+#: data/gtk/settings_dialog.ui:74
+msgid "_Uppercase Characters"
+msgstr "نویسه‌ها با حروف _بزرگ"
+
+#: data/gtk/settings_dialog.ui:75
+msgid "Use uppercase characters A-Z when generating a password."
+msgstr "استفاده از نویسه‌های بزرگ A تا Z هنگام تولید کردن گذرواژه."
+
+#: data/gtk/settings_dialog.ui:82
+msgid "_Lowercase Characters"
+msgstr "نویسه‌ها با حروف _کوچک"
+
+#: data/gtk/settings_dialog.ui:83
+msgid "Use lowercase characters a-z when generating a password."
+msgstr "استفاده از نویسه‌های بزرگ a تا z هنگام تولید کردن گذرواژه."
+
+#: data/gtk/settings_dialog.ui:90
+msgid "_Numeric Characters"
+msgstr "نویسه‌های _رقمی"
+
+#: data/gtk/settings_dialog.ui:91
+msgid "Use numeric characters when generating a password."
+msgstr "استفاده از نویسه‌های رقمی هنگام تولید کردن گذرواژه."
+
+#: data/gtk/settings_dialog.ui:98
+msgid "_Special Characters"
+msgstr "نویسه‌های _خاص"
+
+#. ASCII is a proper name
+#: data/gtk/settings_dialog.ui:99
+msgid "Use non-alphanumeric ASCII symbols when generating a password."
+msgstr "استفاده از نمادهای غیر رقم‌حروفی اسکی هنگام تولید کردن گذرواژه."
+
+#: data/gtk/settings_dialog.ui:108
+msgid "Passphrase Generation"
+msgstr "تولید کردن عبارت عبور"
+
+#: data/gtk/settings_dialog.ui:111
+msgid "Passphrase Length"
+msgstr "درازای عبارت عبور"
+
+#: data/gtk/settings_dialog.ui:112
+#: data/org.gnome.World.Secrets.gschema.xml.in:98
+msgid "Number of words to use when generating a passphrase."
+msgstr "تعداد واژه‌های استفاده شده هنگام تولید کردن عبارت عبور."
+
+#: data/gtk/settings_dialog.ui:126
+msgid "Separator"
+msgstr "جداساز"
+
+#: data/gtk/settings_dialog.ui:136 data/gtk/settings_dialog.ui:139
+msgid "Security"
+msgstr "امنیت"
+
+#: data/gtk/settings_dialog.ui:142
+msgid "Safe Lock Timeout"
+msgstr "مهلت زمانی قفل گاوصندوق"
+
+#: data/gtk/settings_dialog.ui:143
+msgid "Lock safe on idle after X minutes."
+msgstr "قفل کردن گاوصندوق بی‌کار پس از X دقیقه."
+
+#: data/gtk/settings_dialog.ui:157
+msgid "Lock on _Session Lock"
+msgstr "قفل با قفل شدن _نشست"
+
+#: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
+msgid "Automatically lock when the session is locked."
+msgstr "قفل کردن خودکار هنگام قفل شدن نشست."
+
+#: data/gtk/settings_dialog.ui:165
+msgid "Clear Clipboard"
+msgstr "پاک سازی تخته‌گیره"
+
+#: data/gtk/settings_dialog.ui:166
+msgid "Clear clipboard after X seconds."
+msgstr "پاک سازی تخته‌گیره پس از X ثانیه."
+
+#: data/gtk/settings_dialog.ui:180
+msgid "Clear Recent List"
+msgstr "پاک‌سازی سیاههٔ اخیر"
+
+#: data/gtk/settings_dialog.ui:181
+msgid "Clear the recently opened safes list."
+msgstr "پاک سازی سیاههٔ گاوصندوق‌های باز اخیر."
+
+#: data/gtk/settings_dialog.ui:188
+msgid "Clear"
+msgstr "پاک سازی"
+
+#: data/gtk/unlock_database.ui:20
+msgid "Unlock Safe"
+msgstr "قفل‌گشایی گاوصندوق"
+
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
+msgid "_Unlock"
+msgstr "_قفل‌گشایی"
+
+#: data/gtk/unlocked_database.ui:18
+msgid "Browser"
+msgstr "مرورگر"
+
+#: data/gtk/unlocked_database.ui:29 gsecrets/unlocked_database.py:690
+msgid "Select Items"
+msgstr "گزینش موارد"
+
+#: data/gtk/unlocked_database.ui:35 data/gtk/unlocked_headerbar.ui:11
+msgid "Go Back"
+msgstr "بازگشت"
+
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
+#: gsecrets/widgets/saving_conflict_dialog.py:31
+msgid "_Cancel"
+msgstr "_لغو"
+
+#: data/gtk/unlocked_database.ui:53 data/gtk/unlocked_database.ui:59
+msgid "Search Safe"
+msgstr "جست‌وجوی گاوصندوق"
+
+#: data/gtk/unlocked_database.ui:72
+msgid "_Clear"
+msgstr "_پاک کردن"
+
+#. Button tooltip in selection mode to delete every selected entry/group
+#: data/gtk/unlocked_database.ui:81
+msgid "Delete Selection"
+msgstr "حذف گزینش"
+
+#. Button tooltip in selection mode to move every selected entry/group to another place
+#: data/gtk/unlocked_database.ui:91
+msgid "Move Selection"
+msgstr "جابه‌جایی گزینش"
+
+#: data/gtk/unlocked_database.ui:98
+msgid "Paste Selection"
+msgstr "جایگذاری گزینش"
+
+#: data/gtk/unlocked_database.ui:123
+msgid "Select an Entry"
+msgstr "گزینش ورودی"
+
+#: data/gtk/unlocked_headerbar.ui:18
+msgid "New Entry or Group"
+msgstr "گروه یا ورودی جدید"
+
+#. Button tooltip in headerbar to switch to selection mode where the user can tick password entries and groups
+#: data/gtk/unlocked_headerbar.ui:33
+msgid "Selection Mode"
+msgstr "حالت گزینش"
+
+#. s
+#: data/gtk/unlocked_headerbar.ui:54
+#: gsecrets/widgets/saving_conflict_dialog.py:34
+msgid "_Save"
+msgstr "_ذخیره"
+
+#. s
+#: data/gtk/unlocked_headerbar.ui:58
+msgid "_Lock"
+msgstr "-قفل"
+
+#: data/gtk/unlocked_headerbar.ui:64
+msgid "So_rting"
+msgstr "_ترتیب"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:66
+msgid "_A-Z"
+msgstr "_آ-ی"
+
+#. This is an alphabetical order for entries
+#: data/gtk/unlocked_headerbar.ui:71
+msgid "_Z-A"
+msgstr "_ی-آ"
+
+#: data/gtk/unlocked_headerbar.ui:76
+msgid "_Newest First"
+msgstr "نخست _جدیدترین"
+
+#: data/gtk/unlocked_headerbar.ui:81
+msgid "_Oldest First"
+msgstr "نخست _قدیمی‌ترین"
+
+#: data/gtk/unlocked_headerbar.ui:93
+msgid "New _Window"
+msgstr "_پنجرهٔ جدید"
+
+#: data/gtk/unlocked_headerbar.ui:97
+msgid "Sa_fe Settings"
+msgstr "تنظیمات _گاوصندوق"
+
+#: data/gtk/unlocked_headerbar.ui:119
+msgid "New _Entry"
+msgstr "_ورودی جدید"
+
+#: data/gtk/unlocked_headerbar.ui:123
+msgid "New _Group"
+msgstr "_گروه جدید"
+
+#. The umbrella sentence of the application on the first start screen
+#: data/gtk/welcome_page.ui:11
+msgid "Secure Secrets"
+msgstr "رمزهای امن"
+
+#. The subtitle of the umbrella sentence in the first start screen. This is a sentence which gives the user a starting point what he can do if he opens the application for the first time.
+#: data/gtk/welcome_page.ui:12
+msgid "Create or import a new Keepass safe"
+msgstr "ایجاد یا درون‌ریزی گاوصندوق کی‌پسی جدید"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:5
+msgid "A password manager for GNOME"
+msgstr "مدیر گذرواژه‌ای برای گنوم"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.World.Secrets.desktop.in.in:14
+msgid "keepass;encrypt;secure;"
+msgstr "keepass;encrypt;secure;کی‌پس;رمزنگاری;گاوصندوق;"
+
+#: data/org.gnome.World.Secrets.desktop.in.in:21
+msgid "New Window"
+msgstr "پنجرهٔ جدید"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:12
+msgid "Lock on session lock"
+msgstr "قفل با قفل شدن نشست"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:17
+msgid "Reopen last opened database"
+msgstr "گشودن دوبارهٔ آخرین پایگاه دادهٔ گشوده"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:18
+msgid ""
+"Automatically open the unlock screen of the last opened database, otherwise "
+"show the welcome screen."
+msgstr ""
+"گشودن خودکار صفحهٔ ثقل‌گشایی آخرین پایگاه دادهٔ باز. در غیر این صورت نمایش صفحهٔ "
+"خوش آمدید."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:22
+msgid "Save every change automatically"
+msgstr "ذخیرهٔ خودکار همهٔ دگرگونی‌ها"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:23
+msgid ""
+"Save every change you made instantly into the database. Please note that you "
+"cannot revert changes if Autosave is enabled."
+msgstr ""
+"ذخیرهٔ آنی همهٔ دگرگونی‌های ایجاد شده. به خاطر داشته باشید که در صورت به کار "
+"افتادن ذخیرهٔ خودکار نمی‌توانید دگرگونی‌ها را برگردانید."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:27
+msgid "Lock database after X minutes"
+msgstr "قفل پایگاه داده پس از X دقیقه"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:28
+msgid ""
+"Automatically lock your database after a given amount of minutes to improve "
+"the security."
+msgstr ""
+"قفل کردن خودکار پایگاه داده‌تان پس از دقیقه‌های داده شده برای بهبود امنیت."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:32
+msgid "Clear clipboard after X seconds"
+msgstr "پاک سازی تخته‌گیره پس از X ثانیه"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:33
+msgid "After copying the password clear the clipboard for security reasons."
+msgstr "پاک سازی تخته‌گیره پس از رونوشت از گذرواژه به دلایل امنیتی."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:37
+msgid "Window size"
+msgstr "اندازهٔ پنجره"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:38
+msgid "Remember the window size."
+msgstr "به خاطر سپردن اندازهٔ پنجره."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:42
+msgid "Last opened database"
+msgstr "آخرین پایگاه دادهٔ گشوده"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:43
+msgid "Path to the last opened database."
+msgstr "مسیر آخرین پایگاه دادهٔ گشوده."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:47
+msgid "Remember composite key"
+msgstr "به خاطر سپردن کلید ترکیبی"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:48
+msgid "Remember last used composite key for database unlocking."
+msgstr "به خاطر سپردن آخرین کلید ترکیبی استفاده شده برای قفل‌گشایی پایگاه داده."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:52
+msgid "Last used key provider"
+msgstr "آخرین فراهم کنندهٔ کلید استفاده شده"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:53
+msgid "Key provider for composite database unlocking."
+msgstr "فراهم کنندهٔ کلید برای قفل‌گشایی پایگاه دادهٔ ترکیبی."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:57
+msgid "Remember unlock method"
+msgstr "به خاطر سپردن روش قفل‌گشایی"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:58
+msgid "Remember last used unlock method for future database unlocking."
+msgstr "به خاطر سپردن آخریم روش قفل‌گشایی برای قفل‌گشایی‌های آیندهٔ پایگاه داده."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:62
+msgid "Backup the database on unlock"
+msgstr "پشتیبان از پایگاه داده با قفل‌گشایی"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:63
+msgid ""
+"If an error occurs while saving the database, a backup can be found at ~/."
+"cache/secrets/backups"
+msgstr ""
+"اگر هنگام ذخیره کردن پایگاه داده خطایی رخ دهد، پشتیبانی در ‪~/.cache/secrets/"
+"backups‬ پیدا می‌شود"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:67
+msgid "Sorting order of groups and entries"
+msgstr "ترتیب چیدن گروه‌ها و ورودی‌ها"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:68
+msgid "Order of the rows in the groups and entries view."
+msgstr "ترتیب ردیف‌ها در نمای گروه‌ها و ورودی‌ها."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:72
+msgid "Use uppercases when generating a password"
+msgstr "استفاده از حروف بزرگ هنگام تولید گذرواژه"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:73
+msgid "Use uppercase characters A-Z when generating a random password."
+msgstr "استفاده از نویسه‌های بزرگ A تا Z هنگام تولید گذرواژه‌ای کاتوره‌ای."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:77
+msgid "Use lowercases when generating a password"
+msgstr "استفاده از حروف کوچک هنگام تولید گذرواژه"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:78
+msgid "Use lowercase characters a-z when generating a random password."
+msgstr "استفاده از نویسه‌های بزرگ a تا z هنگام تولید گذرواژه‌ای کاتوره‌ای."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:82
+msgid "Use numbers when generating a password"
+msgstr "استفاده از رقم‌ها هنگام تولید گذرواژه"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:83
+msgid "Use numbers 0-9 characters when generating a random password."
+msgstr "استفاده از نویسه‌های رقمی 0 تا 9 هنگام تولید گذرواژه‌ای کاتوره‌ای."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:87
+msgid "Use symbols when generating a password"
+msgstr "استفاده از نمادها هنگام تولید گذرواژه"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:88
+msgid "Use non-alphanumeric ASCII symbols when generating a random password."
+msgstr "استفاده از نمادهای سایک غیر رقم‌حروفی هنگام تولید گذرواژه‌ای کاتوره‌ای."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:92
+msgid "Password length when generating a password"
+msgstr "درازای گذرواژه هنگام تولید گذرواژه"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:93
+msgid "Number of single characters when generating a password."
+msgstr "شمار تک‌نویسه‌ها هنگام تولید گذرواژه."
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:97
+msgid "Number of words when generating a passphrase"
+msgstr "شمار واژه‌ها هنگام تولید عبارت عبور"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:102
+msgid "Separator when generating a passphrase"
+msgstr "جداساز هنگام تولید عبارت عبور"
+
+#: data/org.gnome.World.Secrets.gschema.xml.in:103
+msgid "Word separator to use when generating a passphrase."
+msgstr "جداساز استفاده شده هنگام تولید عبارت عبور."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:5
+msgid "@NAME@"
+msgstr "هم‌رسانی صدا"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:12
+msgid ""
+"Secrets is a password manager which makes use of the KeePass v.4 format. It "
+"integrates perfectly with the GNOME desktop and provides an easy and "
+"uncluttered interface for the management of password databases."
+msgstr ""
+"رمزها مدیر گذرواژه‌ایست که از قابل v.4 کی‌پس استفاده می‌کند. این برنامه با خوبی "
+"با میزکار گنوم یکپارچه شده و میانایی ساده برای مدیریت پایگاه داده‌های گذرواژه "
+"فراهم می‌کند."
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:312
+msgid "Password management"
+msgstr "مدیریت گذرواژه"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:316
+msgid "Safe unlocking"
+msgstr "قفل‌گشایی گاوصندوق"
+
+#: data/org.gnome.World.Secrets.metainfo.xml.in.in:320
+msgid "Safe creation"
+msgstr "ایجاد گاوصندوق"
+
+#: gsecrets/attachment_warning_dialog.py:71
+#: gsecrets/attachment_warning_dialog.py:82
+msgid "Could not load attachment"
+msgstr "نتوانست پیوست را بار کند"
+
+#: gsecrets/create_database.py:65
+msgid "Passwords do not match"
+msgstr "گذرواژه‌ها مطابق نیستند"
+
+#: gsecrets/create_database.py:80
+msgid "Unable to create database"
+msgstr "ناتوان در ایجاد پایگاه داده"
+
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:98
+#: gsecrets/widgets/database_settings_dialog.py:208
+msgid "Failed to generate composite key"
+msgstr "شکست در تولید کلید ترکیبی"
+
+#: gsecrets/entry_page.py:259 gsecrets/widgets/credentials_group.py:100
+msgid "Saved in history"
+msgstr "ذخیره شده در تاریخچه"
+
+#: gsecrets/entry_page.py:278 gsecrets/entry_row.py:163
+#: gsecrets/widgets/credentials_group.py:95
+msgid "Username copied"
+msgstr "نام کاربری رونوشت شد"
+
+#: gsecrets/entry_page.py:283 gsecrets/entry_page.py:416
+msgid "Address copied"
+msgstr "نشانی رونوشت شد"
+
+#: gsecrets/entry_page.py:292 gsecrets/entry_page.py:347
+msgid "One-time password copied"
+msgstr "گذرواژهٔ یک‌بار مصرف رونوشت شد"
+
+#: gsecrets/entry_page.py:325
+msgid "Could not open URL"
+msgstr "نتوانست نشانی را بگشاید"
+
+#: gsecrets/entry_page.py:335
+msgid "The address is not valid"
+msgstr "نشانی معتبر نیست"
+
+#. NOTE: Filechooser title for selecting attachment file
+#: gsecrets/entry_page.py:372
+msgid "Select Attachments"
+msgstr "گزینش پیوست‌ها"
+
+#: gsecrets/entry_row.py:156 gsecrets/widgets/credentials_group.py:107
+msgid "Password copied"
+msgstr "گذرواژه رونوشت شد"
+
+#: gsecrets/entry_row.py:171
+msgid "One-Time Password copied"
+msgstr "گذرواژهٔ یک‌بار مصرف رونوشت شد"
+
+#: gsecrets/entry_row.py:185 gsecrets/group_row.py:136
+msgid "Title not Specified"
+msgstr "عنوان مشخّص نشده"
+
+#: gsecrets/password_generator_popover.py:74
+msgid "Include Lowercase"
+msgstr "شامل حروف کوچک"
+
+#: gsecrets/password_generator_popover.py:76
+msgid "Exclude Lowercase"
+msgstr "بدون حروف کوچک"
+
+#: gsecrets/password_generator_popover.py:79
+msgid "Include Uppercase"
+msgstr "شامل حروف بزرگ"
+
+#: gsecrets/password_generator_popover.py:81
+msgid "Exclude Uppercase"
+msgstr "بدون حروف بزرگ"
+
+#: gsecrets/password_generator_popover.py:84
+msgid "Include Numbers"
+msgstr "شامل رقم‌ها"
+
+#: gsecrets/password_generator_popover.py:86
+msgid "Exclude Numbers"
+msgstr "بدون رقم‌ها"
+
+#: gsecrets/password_generator_popover.py:89
+msgid "Include Symbols"
+msgstr "شامل نمادها"
+
+#: gsecrets/password_generator_popover.py:91
+msgid "Exclude Symbols"
+msgstr "بدون نمادها"
+
+#: gsecrets/provider/file_provider.py:34 gsecrets/provider/file_provider.py:131
+#: gsecrets/provider/file_provider.py:197 gsecrets/utils.py:86
+msgid "Keyfile"
+msgstr "پروندهٔ کلید"
+
+#: gsecrets/provider/file_provider.py:42 gsecrets/provider/file_provider.py:80
+msgid "Select Keyfile"
+msgstr "گزینش پروندهٔ کلید"
+
+#: gsecrets/provider/file_provider.py:51 gsecrets/provider/file_provider.py:142
+msgid "Clear Keyfile"
+msgstr "پاک سازی پروندهٔ کلید"
+
+#: gsecrets/provider/file_provider.py:70
+msgid "Select keyfile"
+msgstr "گزینش پروندهٔ کلید"
+
+#: gsecrets/provider/file_provider.py:108
+msgid "Could not load keyfile"
+msgstr "نتوانست پروندهٔ کلید را بالر کند"
+
+#: gsecrets/provider/file_provider.py:135
+#: gsecrets/provider/file_provider.py:195
+msgid "Generate Keyfile"
+msgstr "تولید پروندهٔ کلید"
+
+#: gsecrets/provider/file_provider.py:159
+msgid "Use a file to increase security"
+msgstr "استفاده زا پرونده‌ای برای افزایش امنیت"
+
+#: gsecrets/provider/file_provider.py:181
+msgid "Could not create keyfile"
+msgstr "نتوانست پروندهٔ کلید را ایحاد کند"
+
+#: gsecrets/provider/pkcs11_provider.py:99
+msgid "No Smartcard"
+msgstr "بدون کارت هوشمند"
+
+#: gsecrets/provider/pkcs11_provider.py:107
+msgid "No RSA Certificate"
+msgstr "بدون گواهی RSA"
+
+#: gsecrets/provider/pkcs11_provider.py:119
+#: gsecrets/provider/pkcs11_provider.py:268
+msgid "Smartcard"
+msgstr "کارت هوشمند"
+
+#: gsecrets/provider/pkcs11_provider.py:120
+msgid "Select certificate"
+msgstr "انتخاب گواهی"
+
+#: gsecrets/provider/pkcs11_provider.py:196
+msgid "No smartcard present"
+msgstr "هیچ کارت هوشمندی حاضر نیست"
+
+#: gsecrets/provider/pkcs11_provider.py:197
+msgid "Please insert smartcard and retry."
+msgstr "لطفاً کارت هوشمند را وارد کرده و دوباره تلاش کنید."
+
+#: gsecrets/provider/pkcs11_provider.py:200
+#: gsecrets/widgets/database_settings_dialog.py:246
+msgid "_OK"
+msgstr "_تأیید"
+
+#: gsecrets/provider/pkcs11_provider.py:216
+msgid "Unlock your smartcard"
+msgstr "قفل‌گشایی کارت هوشمندتان"
+
+#: gsecrets/provider/pkcs11_provider.py:261
+msgid "Failed to unlock Smartcard"
+msgstr "شکست در قفل‌گشایی کارت هوشمند"
+
+#: gsecrets/provider/pkcs11_provider.py:269
+msgid "Use a smartcard"
+msgstr "استفاده از کارت هوشمند"
+
+#: gsecrets/provider/pkcs11_provider.py:323
+msgid "Refresh Certificate List"
+msgstr "تازه سازی سیاههٔ گواهی‌ها"
+
+#: gsecrets/provider/yubikey_provider.py:36
+msgid "No Key"
+msgstr "بدون کلید"
+
+#. TRANSLATORS For example: YubiKey 4 [123456] - Slot 2
+#: gsecrets/provider/yubikey_provider.py:39
+#, python-brace-format
+msgid "{description} [{serial}] - Slot {slot}"
+msgstr "{description} [{serial}] - شکاف {slot}"
+
+#: gsecrets/provider/yubikey_provider.py:143
+#: gsecrets/provider/yubikey_provider.py:205
+msgid "YubiKey"
+msgstr "یوبی‌کی"
+
+#: gsecrets/provider/yubikey_provider.py:144
+msgid "Select key"
+msgstr "گزینش کلید"
+
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
+msgid "Select YubiKey slot"
+msgstr "گزینش شکاف یوبی‌کی"
+
+#: gsecrets/provider/yubikey_provider.py:246
+msgid "Touch YubiKey"
+msgstr "لمس یوبیکی"
+
+#: gsecrets/recent_files_menu.py:43
+msgid "Recent Files"
+msgstr "پرونده‌های اخیر"
+
+#: gsecrets/safe_element.py:43
+msgid "White"
+msgstr "سفید"
+
+#: gsecrets/safe_element.py:45
+msgid "Blue"
+msgstr "آبی"
+
+#: gsecrets/safe_element.py:47
+msgid "Green"
+msgstr "سبز"
+
+#: gsecrets/safe_element.py:49
+msgid "Yellow"
+msgstr "زرد"
+
+#: gsecrets/safe_element.py:51
+msgid "Orange"
+msgstr "نارنجی"
+
+#: gsecrets/safe_element.py:53
+msgid "Red"
+msgstr "قرمز"
+
+#: gsecrets/safe_element.py:55
+msgid "Purple"
+msgstr "بنفش"
+
+#: gsecrets/safe_element.py:57
+msgid "Brown"
+msgstr "قهوه‌ای"
+
+#: gsecrets/safe_element.py:656
+msgid "Clone"
+msgstr "شبیه‌سازی"
+
+#. This shouldn't happen
+#. TODO Set the body of the message based on the error kind.
+#: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
+#: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
+#: gsecrets/widgets/window.py:418
+msgid "Could not save Safe"
+msgstr "نتواسنت گاوصندوق را ذخیره کند"
+
+#: gsecrets/selection_manager.py:58
+msgid "Operation aborted: deleting currently active group"
+msgstr "عملیات لغو شد:‌ حذف کردن گروه فعّال"
+
+#: gsecrets/selection_manager.py:106
+msgid "Warning"
+msgstr "هشدار"
+
+#: gsecrets/selection_manager.py:108
+msgid ""
+"You are deleting elements in the trash bin, these deletions cannot be undone."
+msgstr ""
+"دارید عنصرهایی را در زباله‌دان حذف می‌کنید. این حذف‌ها قابل بازگردانی نیستند."
+
+#: gsecrets/selection_manager.py:142
+msgid "Operation aborted: moving currently active group"
+msgstr "عملیات لغو شد:‌ جابه‌جا کردن گروه فعّال"
+
+#: gsecrets/selection_manager.py:155
+msgid "Move completed"
+msgstr "جابه‌جایی کامل شد"
+
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlock_database.py:106
+msgid "Safe {} is already open"
+msgstr "گاوصندوق {} از پیش باز است"
+
+#: gsecrets/unlock_database.py:185
+msgid "Failed to unlock Safe"
+msgstr "شکست در قفل‌گشایی گالوصندوق"
+
+#: gsecrets/unlocked_database.py:244
+msgid "Safe saved"
+msgstr "گاوصندوق ذخیره شد"
+
+#: gsecrets/unlocked_database.py:246
+msgid "No changes made"
+msgstr "هیچ تغییری ایجاد نشد"
+
+#. pylint: disable=consider-using-f-string
+#: gsecrets/unlocked_database.py:293
+msgid "Element deleted"
+msgid_plural "{} Elements deleted"
+msgstr[0] "عنصر حذف شد"
+msgstr[1] "{} عنصر حذف شدند"
+
+#: gsecrets/unlocked_database.py:298
+msgid "Deletion completed"
+msgstr "حذف کامل شد"
+
+#: gsecrets/unlocked_database.py:303 gsecrets/unlocked_database.py:327
+msgid "Undo"
+msgstr "برگردان"
+
+#: gsecrets/unlocked_database.py:326
+msgid "Attribute deleted"
+msgstr "مشخّصه حذف شد"
+
+#: gsecrets/unlocked_database.py:355
+msgid "Copied"
+msgstr "رونوشت شد"
+
+#. NOTE: Notification that a safe has been locked.
+#: gsecrets/unlocked_database.py:455
+msgid "Safe locked due to inactivity"
+msgstr "گاوصندوق به خاطر غیرفعّال بودن قفل شد"
+
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
+#: gsecrets/unlocked_database.py:693
+msgid "{} Selected"
+msgid_plural "{} Selected"
+msgstr[0] ""
+"+\n"
+"{} گزیده"
+msgstr[1] "{} گزیده"
+
+#: gsecrets/widgets/add_attribute_dialog.py:35
+msgid "Attribute key contains an illegal character"
+msgstr "کلید مشخّصه نویسه‌ای غیرقانونی دارد"
+
+#: gsecrets/widgets/add_attribute_dialog.py:45
+msgid "Attribute key already exists"
+msgstr "کلید مشخّصه از پیش موجود است"
+
+#. NOTE: Filechooser title for downloading an attachment
+#: gsecrets/widgets/attachment_entry_row.py:37
+msgid "Save Attachment"
+msgstr "ذخیرهٔ پیوست"
+
+#: gsecrets/widgets/attachment_entry_row.py:54
+msgid "Could not store attachment"
+msgstr "نتوانست پیوست را ذخیره کند"
+
+#: gsecrets/widgets/attribute_entry_row.py:43
+#: gsecrets/widgets/protected_attribute_entry_row.py:60
+msgid "Attribute copied"
+msgstr "مشخّصه رونوشت شد"
+
+#: gsecrets/widgets/database_settings_dialog.py:175
+#: gsecrets/widgets/database_settings_dialog.py:179
+msgid "Could not apply changes"
+msgstr "نتوانست دگرگونی‌ها را اعمال کند"
+
+#. Still executes the finally block
+#: gsecrets/widgets/database_settings_dialog.py:182
+msgid "Changes Applied"
+msgstr "دگرگونی‌ها اعمال شدند"
+
+#: gsecrets/widgets/database_settings_dialog.py:236
+msgid "Could not change credentials"
+msgstr "نتوانست گواهی‌ّا را دگرگون کند"
+
+#. TRANSLATORS Warning dialog to resolve file saving conflicts.
+#: gsecrets/widgets/database_settings_dialog.py:241
+#: gsecrets/widgets/saving_conflict_dialog.py:22
+msgid "Conflicts While Saving"
+msgstr "مغایرت هنگام ذخیره کردن"
+
+#: gsecrets/widgets/database_settings_dialog.py:243
+msgid ""
+"The safe was modified from somewhere else. Please resolve these conflicts "
+"from the main window when saving."
+msgstr ""
+"گاوصندوق از جایی دیگر دستکاری شده. لطفاً مغایرت‌ها را هنگام ذخیره از پنجرهٔ "
+"اصلی رفع کنید."
+
+#. Encryption Algorithm
+#. Derivation Algorithm
+#: gsecrets/widgets/database_settings_dialog.py:308
+#: gsecrets/widgets/database_settings_dialog.py:322
+msgid "Unknown"
+msgstr "ناشناخته"
+
+#. NOTE: AES is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:312
+msgid "AES 256-bit"
+msgstr "AES ۲۵۶بیتی"
+
+#. NOTE: ChaCha20 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:315
+msgid "ChaCha20 256-bit"
+msgstr "ChaCha20 ۲۵۶بیتی"
+
+#. NOTE: Twofish is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:318
+msgid "Twofish 256-bit"
+msgstr "Twofish ۲۵۶بیتی"
+
+#. NOTE: Argon2 is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:326
+msgid "Argon2"
+msgstr "Argon2"
+
+#. NOTE: Argon2id is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:329
+msgid "Argon2id"
+msgstr "Argon2id"
+
+#. NOTE: AES-KDF is a proper name
+#: gsecrets/widgets/database_settings_dialog.py:332
+msgid "AES-KDF"
+msgstr "AES-KDF"
+
+#: gsecrets/widgets/expiration_date_row.py:56
+#: gsecrets/widgets/expiration_date_row.py:64
+msgid "Entry expired"
+msgstr "ورودی منقضی شده"
+
+#: gsecrets/widgets/history_row.py:43
+msgid "Hide Text"
+msgstr "نهفتن متن"
+
+#: gsecrets/widgets/notes_dialog.py:58
+msgid "Selection copied"
+msgstr "گزینش رونوشت شد"
+
+#: gsecrets/widgets/password_level_bar.py:22
+msgid "Password Strength"
+msgstr "قدرت گذرواژه"
+
+#. TRANSLATORS Dialog header for when there is a conflict.
+#: gsecrets/widgets/quit_conflict_dialog.py:18
+msgid "Unsaved Changes Conflict"
+msgstr "مغایرت با دگرگونی‌های ذخیره نشده"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:20
+msgid "Save and Quit"
+msgstr "ذخیره و خروج"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:21
+msgid "Back up, Save, and Quit"
+msgstr "پشتیبانی، ذخیره و خروج"
+
+#: gsecrets/widgets/quit_conflict_dialog.py:22
+msgid "Don't Quit"
+msgstr "خارج نشدن"
+
+#. TRANSLATORS Warning Dialog to resolve saving conflicts. \n is a new line.
+#: gsecrets/widgets/saving_conflict_dialog.py:25
+msgid ""
+"The safe was modified from somewhere else. Saving will overwrite their "
+"version of the safe with our current version.\n"
+"\n"
+" You can also make a backup of their version of the safe."
+msgstr ""
+"گاوصندوق از جایی دیگر دستکاری شده. ذخیره کردن نگارش موجود گاوصندوق را با "
+"نگارش کنونی رونویسی می‌کند\n"
+"\n"
+"همچنین می‌توانید پشتیبانی از آن نگارش گاوصندوق بگیرید."
+
+#. TRANSLATORS backup and save current safe.
+#: gsecrets/widgets/saving_conflict_dialog.py:33
+msgid "_Back up and Save"
+msgstr "گرفتن _پشتیبان و ذخیره"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:45
+msgid "Save Backup"
+msgstr "ذخیرهٔ‌ پشتیبان"
+
+#: gsecrets/widgets/saving_conflict_dialog.py:55
+msgid "Could not backup safe"
+msgstr "نتوانست گاوصندوق را ذخیره کند"
+
+#: gsecrets/widgets/window.py:151
+msgid "Any file type"
+msgstr "هر گونه پرونده‌ای"
+
+#: gsecrets/widgets/window.py:158
+msgid "Select Safe"
+msgstr "گزینش گاوصندوق"
+
+#: gsecrets/widgets/window.py:175
+msgid "File does not have a valid path"
+msgstr "پورنده مسیر معتبری ندارد"
+
+#: gsecrets/widgets/window.py:208
+msgid "Safe is already open"
+msgstr "گاوصندوق از پیش باز است"
+
+#: gsecrets/widgets/window.py:240
+msgid "_Create"
+msgstr "_ایجاد"
+
+#: gsecrets/widgets/window.py:262
+msgid "Cannot create Safe: Safe is already open"
+msgstr "نتوانست گاوصندوق را ایجاد کند. گاوصندوق از پیش باز است"
+
+#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
+msgid "Could not create new Safe"
+msgstr "نتوانست گاوصندوق جدید ایجاد کند"
+
+#: gsecrets/widgets/window.py:395
+msgid "Could not save safe"
+msgstr "نتوانست گاوصندوق را ذخیره کند"

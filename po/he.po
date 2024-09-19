@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: secrets master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-05 21:03+0000\n"
-"PO-Revision-Date: 2024-09-06 07:51+0300\n"
+"POT-Creation-Date: 2024-09-11 18:34+0000\n"
+"PO-Revision-Date: 2024-09-19 22:26+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -379,6 +379,7 @@ msgid "Show _History"
 msgstr "הצגת _היסטוריה"
 
 #: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "מ_חיקה"
 
@@ -718,9 +719,7 @@ msgstr "לשמור _אוטומטית"
 msgid "Save every change automatically."
 msgstr "לשמור כל שינוי אוטומטית."
 
-#: data/gtk/settings_dialog.ui:37 data/gtk/unlock_database.ui:51
-#: gsecrets/provider/pkcs11_provider.py:216
-#: gsecrets/provider/pkcs11_provider.py:218
+#: data/gtk/settings_dialog.ui:37 gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock"
 msgstr "שחרור נעילה"
 
@@ -813,6 +812,7 @@ msgid "Lock on _Session Lock"
 msgstr "נעילה עם נעילת הה_פעלה"
 
 #: data/gtk/settings_dialog.ui:158
+#: data/org.gnome.World.Secrets.gschema.xml.in:13
 msgid "Automatically lock when the session is locked."
 msgstr "לנעול עם נעילת ההפעלה."
 
@@ -840,6 +840,10 @@ msgstr "ניקוי"
 msgid "Unlock Safe"
 msgstr "שחרור נעילת כספת"
 
+#: data/gtk/unlock_database.ui:51 gsecrets/provider/pkcs11_provider.py:218
+msgid "_Unlock"
+msgstr "_שחרור נעילה"
+
 #: data/gtk/unlocked_database.ui:18
 msgid "Browser"
 msgstr "דפדפן"
@@ -852,7 +856,8 @@ msgstr "בחירת פריטים"
 msgid "Go Back"
 msgstr "חזרה"
 
-#: data/gtk/unlocked_database.ui:41
+#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
+#: gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_ביטול"
@@ -967,10 +972,6 @@ msgstr "חלון חדש"
 #: data/org.gnome.World.Secrets.gschema.xml.in:12
 msgid "Lock on session lock"
 msgstr "לנעול עם נעילת ההפעלה"
-
-#: data/org.gnome.World.Secrets.gschema.xml.in:13
-msgid "Automatically lock the safe when the session is locked."
-msgstr "לנעול את הכספת כשההפעלה ננעלת."
 
 #: data/org.gnome.World.Secrets.gschema.xml.in:17
 msgid "Reopen last opened database"
@@ -1166,7 +1167,7 @@ msgstr "הססמאות אינן תואמות"
 msgid "Unable to create database"
 msgstr "לא ניתן ליצור מסד נתונים"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:99
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "יצירת מפתח מורכב נכשלה"
@@ -1306,16 +1307,12 @@ msgstr "נא להצמיד כרטיס חכם ולנסות שוב."
 
 #: gsecrets/provider/pkcs11_provider.py:200
 #: gsecrets/widgets/database_settings_dialog.py:246
-msgid "OK"
-msgstr "אישור"
+msgid "_OK"
+msgstr "_אישור"
 
 #: gsecrets/provider/pkcs11_provider.py:216
 msgid "Unlock your smartcard"
 msgstr "שחרור הכרטיס החכם שלך"
-
-#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
-msgid "Cancel"
-msgstr "ביטול"
 
 #: gsecrets/provider/pkcs11_provider.py:261
 msgid "Failed to unlock Smartcard"
@@ -1340,7 +1337,7 @@ msgid "{description} [{serial}] - Slot {slot}"
 msgstr "{description} [{serial}] - חריץ {slot}"
 
 #: gsecrets/provider/yubikey_provider.py:143
-#: gsecrets/provider/yubikey_provider.py:204
+#: gsecrets/provider/yubikey_provider.py:205
 msgid "YubiKey"
 msgstr "YubiKey"
 
@@ -1348,12 +1345,13 @@ msgstr "YubiKey"
 msgid "Select key"
 msgstr "נא לבחור מפתח"
 
-#: gsecrets/provider/yubikey_provider.py:153
-#: gsecrets/provider/yubikey_provider.py:212
+#. TRANSLATORS YubiKey is a proper name key, see https://en.wikipedia.org/wiki/YubiKey.
+#: gsecrets/provider/yubikey_provider.py:154
+#: gsecrets/provider/yubikey_provider.py:213
 msgid "Select YubiKey slot"
 msgstr "נא לבחור חריץ YubiKey"
 
-#: gsecrets/provider/yubikey_provider.py:245
+#: gsecrets/provider/yubikey_provider.py:246
 msgid "Touch YubiKey"
 msgstr "נא לגעת ב־YubiKey"
 
@@ -1418,10 +1416,6 @@ msgid ""
 "You are deleting elements in the trash bin, these deletions cannot be undone."
 msgstr "פעולה זו תמחק רכיבים מסל האשפה, מדובר בפעולה בלתי הפיכה."
 
-#: gsecrets/selection_manager.py:112
-msgid "Delete"
-msgstr "מחיקה"
-
 #: gsecrets/selection_manager.py:142
 msgid "Operation aborted: moving currently active group"
 msgstr "הפעולה בוטלה: העברת הקבוצה שפעילה כרגע"
@@ -1431,11 +1425,11 @@ msgid "Move completed"
 msgstr "ההעברה הושלמה"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:107
+#: gsecrets/unlock_database.py:105
 msgid "Safe {} is already open"
 msgstr "הכספת {} כבר פתוחה"
 
-#: gsecrets/unlock_database.py:180
+#: gsecrets/unlock_database.py:182
 msgid "Failed to unlock Safe"
 msgstr "שחרור נעילת הכספת נכשל"
 
@@ -1477,7 +1471,8 @@ msgstr "הועתק"
 msgid "Safe locked due to inactivity"
 msgstr "הכספת ננעלה עקב חוסר פעילות"
 
-#: gsecrets/unlocked_database.py:692
+#. TRANSLATORS e.g. "21 Selected". What is selected is an 'Item'.
+#: gsecrets/unlocked_database.py:693
 msgid "{} Selected"
 msgid_plural "{} Selected"
 msgstr[0] "{} נבחר"
@@ -1661,6 +1656,15 @@ msgstr "לא ניתן ליצור כספת חדשה"
 #: gsecrets/widgets/window.py:392
 msgid "Could not save safe"
 msgstr "לא ניתן לשמור את הכספת"
+
+#~ msgid "Automatically lock the safe when the session is locked."
+#~ msgstr "לנעול את הכספת כשההפעלה ננעלת."
+
+#~ msgid "Cancel"
+#~ msgstr "ביטול"
+
+#~ msgid "Delete"
+#~ msgstr "מחיקה"
 
 #~ msgid "Navigate To"
 #~ msgstr "ניווט אל"

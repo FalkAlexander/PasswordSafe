@@ -19,7 +19,7 @@ Clone the project [zxcvbn-rs-py](https://github.com/fief-dev/zxcvbn-rs-py), chec
 
     flatpak-pip-generator --build-isolation pykeepass -o flatpak/python3-pykeepass
 
-Then add `"pykeepass-build-sources.json"` as a source.
+Then add `"pykeepass-build-sources.json"` as a source and `--ignore-installed` to the `pip3` command.
 
 # Update python3-pykcs11-sources.json
 

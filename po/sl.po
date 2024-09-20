@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PasswordSafe master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/World/secrets/issues\n"
-"POT-Creation-Date: 2024-09-11 18:34+0000\n"
-"PO-Revision-Date: 2024-09-11 22:25+0200\n"
+"POT-Creation-Date: 2024-09-19 20:09+0000\n"
+"PO-Revision-Date: 2024-09-20 08:25+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -59,7 +59,8 @@ msgstr "Občutljivo"
 msgid "Contains sensitive data."
 msgstr "Vsebuje občutljive podatke."
 
-#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:373
+#: data/gtk/add_attribute_dialog.ui:57 gsecrets/entry_page.py:291
+#: gsecrets/entry_page.py:448
 msgid "_Add"
 msgstr "_Dodaj"
 
@@ -121,7 +122,7 @@ msgstr "Barva"
 
 #. Headerbar subtitle in keepass safe creation routine.
 #. NOTE: Filechooser title for creating a new keepass safe kdbx file
-#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:237
+#: data/gtk/create_database.ui:11 gsecrets/widgets/window.py:238
 msgid "Create Safe"
 msgstr "Ustvari sef"
 
@@ -335,50 +336,58 @@ msgid "Icon"
 msgstr "Ikona"
 
 #: data/gtk/entry_page.ui:218
+msgid "Tags"
+msgstr "Značke"
+
+#: data/gtk/entry_page.ui:223 gsecrets/entry_page.py:289
+msgid "Add New Tag"
+msgstr "Dodaj novo značko"
+
+#: data/gtk/entry_page.ui:245
 msgid "Attachments"
 msgstr "Priloge"
 
-#: data/gtk/entry_page.ui:222
+#: data/gtk/entry_page.ui:249
 msgid "_Add Attachment"
 msgstr "Dodaj _prilogo"
 
-#: data/gtk/entry_page.ui:231
+#: data/gtk/entry_page.ui:258
 msgid "Attributes"
 msgstr "Atributi"
 
-#: data/gtk/entry_page.ui:236
+#: data/gtk/entry_page.ui:263
 msgid "Add Attr_ibute"
 msgstr "Dodaj atri_but"
 
-#: data/gtk/entry_page.ui:244
+#: data/gtk/entry_page.ui:271
 msgid "Expiration Date"
 msgstr "Datum preteka"
 
-#: data/gtk/entry_page.ui:257
+#: data/gtk/entry_page.ui:284
 msgid "_Show More"
 msgstr "Pokaži več _podrobnosti"
 
-#: data/gtk/entry_page.ui:271
+#: data/gtk/entry_page.ui:298
 msgid "D_uplicate"
 msgstr "_Podvoji"
 
-#: data/gtk/entry_page.ui:275
+#: data/gtk/entry_page.ui:302
 msgid "_References"
 msgstr "_Sklici"
 
-#: data/gtk/entry_page.ui:279 data/gtk/group_page.ui:75
+#: data/gtk/entry_page.ui:306 data/gtk/group_page.ui:75
 msgid "_Properties"
 msgstr "_Lastnosti"
 
-#: data/gtk/entry_page.ui:285
+#: data/gtk/entry_page.ui:312
 msgid "_Save in History"
 msgstr "_Shrani v zgodovino"
 
-#: data/gtk/entry_page.ui:289
+#: data/gtk/entry_page.ui:316
 msgid "Show _History"
 msgstr "Po_kaži zgodovino"
 
-#: data/gtk/entry_page.ui:295 data/gtk/group_page.ui:81
+#: data/gtk/entry_page.ui:322 data/gtk/group_page.ui:81
 #: gsecrets/selection_manager.py:112
 msgid "_Delete"
 msgstr "_Izbriši"
@@ -681,12 +690,12 @@ msgstr "Ali želite zapisati vse spremembe v sef?"
 
 #. _Discard all the changes which the user have made to his keepass safe
 #: data/gtk/save_dialog.ui:10 gsecrets/widgets/quit_conflict_dialog.py:24
-#: gsecrets/widgets/window.py:416
+#: gsecrets/widgets/window.py:419
 msgid "_Quit Without Saving"
 msgstr "_Končaj brez shranjevanja"
 
 #. _Cancel exiting the program
-#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:417
+#: data/gtk/save_dialog.ui:11 gsecrets/widgets/window.py:420
 msgid "_Don't Quit"
 msgstr "_Ne končaj"
 
@@ -705,8 +714,8 @@ msgstr "Ponovno odpri nazadnje odprti sef."
 
 #. TRANSLATORS Safe as in strongbox.
 #. NOTE: Safe as in strongbox
-#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:146
-#: gsecrets/widgets/window.py:229 gsecrets/widgets/window.py:241
+#: data/gtk/settings_dialog.ui:24 gsecrets/widgets/window.py:147
+#: gsecrets/widgets/window.py:230 gsecrets/widgets/window.py:242
 msgid "Safe"
 msgstr "Sef"
 
@@ -855,8 +864,8 @@ msgstr "Izbor predmetov"
 msgid "Go Back"
 msgstr "Pojdi nazaj"
 
-#: data/gtk/unlocked_database.ui:41 gsecrets/provider/pkcs11_provider.py:217
-#: gsecrets/selection_manager.py:111
+#: data/gtk/unlocked_database.ui:41 gsecrets/entry_page.py:290
+#: gsecrets/provider/pkcs11_provider.py:217 gsecrets/selection_manager.py:111
 #: gsecrets/widgets/saving_conflict_dialog.py:31
 msgid "_Cancel"
 msgstr "_Prekliči"
@@ -1171,38 +1180,46 @@ msgstr "Gesli se ne ujemata"
 msgid "Unable to create database"
 msgstr "Zbirke podatkov ni mogoče ustvariti"
 
-#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:97
+#: gsecrets/create_database.py:111 gsecrets/unlock_database.py:98
 #: gsecrets/widgets/database_settings_dialog.py:208
 msgid "Failed to generate composite key"
 msgstr "Tvorjenje sestavljenega ključa je spodletelo"
 
-#: gsecrets/entry_page.py:259 gsecrets/widgets/credentials_group.py:100
+#: gsecrets/entry_page.py:283
+msgid "Enter tag name"
+msgstr "Vnesite ime značke"
+
+#: gsecrets/entry_page.py:313
+msgid "The tag already exists"
+msgstr "Značka že obstaja"
+
+#: gsecrets/entry_page.py:334 gsecrets/widgets/credentials_group.py:100
 msgid "Saved in history"
 msgstr "Shranjeno v zgodovini"
 
-#: gsecrets/entry_page.py:278 gsecrets/entry_row.py:163
+#: gsecrets/entry_page.py:353 gsecrets/entry_row.py:163
 #: gsecrets/widgets/credentials_group.py:95
 msgid "Username copied"
 msgstr "Uporabniško ime kopirano"
 
-#: gsecrets/entry_page.py:283 gsecrets/entry_page.py:416
+#: gsecrets/entry_page.py:358 gsecrets/entry_page.py:491
 msgid "Address copied"
 msgstr "Naslov kopiran"
 
-#: gsecrets/entry_page.py:292 gsecrets/entry_page.py:347
+#: gsecrets/entry_page.py:367 gsecrets/entry_page.py:422
 msgid "One-time password copied"
 msgstr "Enkratno geslo je uspešno kopirano"
 
-#: gsecrets/entry_page.py:325
+#: gsecrets/entry_page.py:400
 msgid "Could not open URL"
 msgstr "Ni mogoče odpreti naslova URL"
 
-#: gsecrets/entry_page.py:335
+#: gsecrets/entry_page.py:410
 msgid "The address is not valid"
 msgstr "Naslov ni veljaven"
 
 #. NOTE: Filechooser title for selecting attachment file
-#: gsecrets/entry_page.py:372
+#: gsecrets/entry_page.py:447
 msgid "Select Attachments"
 msgstr "Izberi priloge"
 
@@ -1403,7 +1420,7 @@ msgstr "Kloniraj"
 #. TODO Set the body of the message based on the error kind.
 #: gsecrets/save_dialog.py:32 gsecrets/save_dialog.py:39
 #: gsecrets/unlocked_database.py:241 gsecrets/unlocked_database.py:528
-#: gsecrets/widgets/window.py:415
+#: gsecrets/widgets/window.py:418
 msgid "Could not save Safe"
 msgstr "Sefa ni mogoče shraniti"
 
@@ -1429,11 +1446,11 @@ msgid "Move completed"
 msgstr "Premik dokončan"
 
 #. pylint: disable=consider-using-f-string
-#: gsecrets/unlock_database.py:105
+#: gsecrets/unlock_database.py:106
 msgid "Safe {} is already open"
 msgstr "Sef {} je že odprt"
 
-#: gsecrets/unlock_database.py:182
+#: gsecrets/unlock_database.py:185
 msgid "Failed to unlock Safe"
 msgstr "Odklepanje sefa je spodletelo"
 
@@ -1631,34 +1648,34 @@ msgstr "Shrani varnostno kopiranje"
 msgid "Could not backup safe"
 msgstr "Sefa ni mogoče varnostno kopirati"
 
-#: gsecrets/widgets/window.py:150
+#: gsecrets/widgets/window.py:151
 msgid "Any file type"
 msgstr "Katerakoli vrsta datoteke"
 
-#: gsecrets/widgets/window.py:157
+#: gsecrets/widgets/window.py:158
 msgid "Select Safe"
 msgstr "Izberite sef"
 
-#: gsecrets/widgets/window.py:174
+#: gsecrets/widgets/window.py:175
 msgid "File does not have a valid path"
 msgstr "Datoteka nima veljavne poti"
 
-#: gsecrets/widgets/window.py:207
+#: gsecrets/widgets/window.py:208
 msgid "Safe is already open"
 msgstr "Sef je že odprt"
 
-#: gsecrets/widgets/window.py:239
+#: gsecrets/widgets/window.py:240
 msgid "_Create"
 msgstr "_Ustvari"
 
-#: gsecrets/widgets/window.py:261
+#: gsecrets/widgets/window.py:262
 msgid "Cannot create Safe: Safe is already open"
 msgstr "Sefa ni mogoče ustvariti: je že odprt"
 
-#: gsecrets/widgets/window.py:302 gsecrets/widgets/window.py:315
+#: gsecrets/widgets/window.py:305 gsecrets/widgets/window.py:318
 msgid "Could not create new Safe"
 msgstr "Novega sefa ni bilo mogoče ustvariti"
 
-#: gsecrets/widgets/window.py:392
+#: gsecrets/widgets/window.py:395
 msgid "Could not save safe"
 msgstr "Sefa ni mogoče shraniti"
